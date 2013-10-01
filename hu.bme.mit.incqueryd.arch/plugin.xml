@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated arch-combined -->
+      <package
+            uri="http://incquery.net/arch"
+            class="arch.ArchPackage"
+            genModel="model/Arch.xcore"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated arch-combined -->
+      <package
+            uri="http://incquery.net/d/infrastructure"
+            class="infrastructure.InfrastructurePackage"
+            genModel="model/Infrastructure.xcore"/>
+   </extension>
+</plugin>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ASCII"?>
+<DSEControl:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DSEControl="DSEControl">
+  <reteContainers>
+    <reteNodes traceInfo="DefaultProductionNode [22]"/>
+    <reteNodes traceInfo="UniquenessEnforcerNode : circles :  [2000]"/>
+    <reteNodes traceInfo="UniquenessEnforcerNode : members :  [3998]"/>
+    <reteNodes traceInfo="GenericProjectionIndexer [2000 => 2000]&#xA;"/>
+    <reteNodes traceInfo="GenericProjectionIndexer [2000 => 3998]&#xA;"/>
+    <reteNodes traceInfo="JoinNode&#xA;&lt;person; ; friend; >  &lt;friend; ; person; >  "/>
+    <reteNodes traceInfo="TrimmerNode&#xA;"/>
+    <reteNodes traceInfo="UniquenessEnforcerNode [3996]"/>
+    <reteNodes traceInfo="InequalityFilterNode&#xA;&lt;person; friend; >  "/>
+    <reteNodes traceInfo="TrimmerNode&#xA;"/>
+    <reteNodes traceInfo="UniquenessEnforcerNode [3996]"/>
+    <reteNodes traceInfo="InequalityFilterNode&#xA;&lt;person; friend; >  "/>
+    <reteNodes traceInfo="GenericProjectionIndexer [3993 => 3993]&#xA;"/>
+    <reteNodes traceInfo="GenericProjectionIndexer [3993 => 3993]&#xA;"/>
+    <reteNodes traceInfo="JoinNode&#xA;&lt;person; friend; >  "/>
+    <reteNodes traceInfo="TrimmerNode&#xA;&lt;person; friend; >  "/>
+    <reteNodes traceInfo="RetePatternMatcher&#xA; 'MutualFriends'"/>
+    <reteNodes traceInfo="MemoryNullIndexer [1]&#xA;"/>
+    <reteNodes traceInfo="CallbackNode&#xA;"/>
+    <reteNodes traceInfo="MemoryNullIndexer [1]&#xA;"/>
+    <reteNodes traceInfo="MemoryIdentityIndexer [3998]&#xA;"/>
+    <reteNodes traceInfo="MemoryNullIndexer [1]&#xA;"/>
+    <reteNodes traceInfo="MemoryIdentityIndexer [3996]&#xA;"/>
+    <reteNodes traceInfo="MemoryNullIndexer [1]&#xA;"/>
+    <reteNodes traceInfo="MemoryIdentityIndexer [22]&#xA;"/>
+    <reteNodes traceInfo="MemoryNullIndexer [1]&#xA;"/>
+    <reteNodes traceInfo="MemoryIdentityIndexer [3996]&#xA;"/>
+    <reteNodes traceInfo="MemoryIdentityIndexer [2000]&#xA;"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.10" target="//@reteContainers.0/@reteNodes.11"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.0" target="//@reteContainers.0/@reteNodes.16"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.15" target="//@reteContainers.0/@reteNodes.0"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.3" target="//@reteContainers.0/@reteNodes.5"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.13" target="//@reteContainers.0/@reteNodes.14"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.7" target="//@reteContainers.0/@reteNodes.8"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.5" target="//@reteContainers.0/@reteNodes.6"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.5" target="//@reteContainers.0/@reteNodes.9"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.12" target="//@reteContainers.0/@reteNodes.14"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.6" target="//@reteContainers.0/@reteNodes.7"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.11" target="//@reteContainers.0/@reteNodes.13"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.2" target="//@reteContainers.0/@reteNodes.4"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.14" target="//@reteContainers.0/@reteNodes.15"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.9" target="//@reteContainers.0/@reteNodes.10"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.8" target="//@reteContainers.0/@reteNodes.12"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.4" target="//@reteContainers.0/@reteNodes.5"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.1" target="//@reteContainers.0/@reteNodes.3"/>
+    <reteConnections source="//@reteContainers.0/@reteNodes.16" target="//@reteContainers.0/@reteNodes.18"/>
+  </reteContainers>
+</DSEControl:Configuration>

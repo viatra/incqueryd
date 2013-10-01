@@ -1,0 +1,160 @@
+package hu.bme.mit.incqueryd.arch.incquery.visualization
+
+import "http://incquery.net/arch"
+//import "http://incquery.net/rete/emf"
+import "http://www.eclipse.org/incquery/rete/recipes"
+import "http://incquery.net/d/infrastructure"
+
+/* physical layer */
+
+@Item(item = M, label = "Machine $M.ip$")
+@Format(color = "#009054",
+	textColor = "#ffffff"
+)
+pattern machine(M : Machine) {
+	Machine(M);
+}
+@Item(item = C, label = "Cluster")
+@Format(color = "#ffffff")
+pattern cluster(C : Cluster) { Cluster(C); }
+
+@Item(item = S, label = "Storage $S.kind$")
+@Format(color = "#b74418",
+	textColor = "#ffffff"
+)
+pattern storage(S : Storage) { Storage(S); }
+
+@Edge(source = M, target = S)
+@Format(
+	arrowSourceEnd = "circle",
+	arrowTargetEnd = "circle",
+	lineStyle = "dashed"
+)
+pattern storageToMachine(S : Storage, M: Machine) {
+	Machine.storage(M,S);
+}
+
+@ContainsItem(container = C, item = O)
+pattern objectsInCluster(O,C) {
+	Cluster.infrastructureNodes(C,O); 
+	} or {
+	Cluster.serviceNodes(C,O);
+}
+
+
+
+/* logical layer */
+
+@Item(item = rc, label = "Rete Recipe")
+@Format(color = "#ffffff")
+pattern reteRecipe(rc) { ReteRecipe(rc); }
+
+@ContainsItem(container = rc, item = rn)
+pattern reteNodeInContainer(rn, rc) { ReteRecipe.recipeNodes(rc,rn); }
+
+//@ContainsItem(container = RC, item = RCx)
+//pattern reteConnInContainer(RCx, RC) {
+//	ReteContainer.reteConnections(RC,RCx);
+//}
+
+//@Item(item = RC, label=" ")
+//@Format(color = "#5ab206")
+//pattern reteConnection(RC: ReteConnection) { ReteConnection(RC); }
+
+
+//@Item(item = rn, label = "$rn.traceInfo$")
+//pattern reteNode(rn) { ReteNodeRecipe(rn); }
+
+@Item(item=rn, label="$rn.traceInfo$")
+@Format(color="#31a348")
+pattern alphaNode(rn) { AlphaRecipe(rn);}
+
+@Item(item=rn, label="$rn.traceInfo$")
+@Format(color="#d1ba2f")
+pattern betaNode(rn) { BetaRecipe(rn);}
+
+@Item(item=rn, label="$rn.traceInfo$")
+@Format(color="#d33544")
+pattern productionNode(rn) { ProductionRecipe(rn); }
+
+@Item(item=rn, label="$rn.traceInfo$")
+@Format(color="#3e47d1")
+pattern inputNode(rn) { InputRecipe(rn);}
+
+@Item(item=rn, label="$rn.traceInfo$")
+@Format(color="#d339c5")
+pattern indexerNode(rn) { ProjectionIndexer(rn);}
+
+@Edge(source=parent,target=child, label = "parent")
+@Format(lineColor = "#0000ff")
+pattern parent(
+	parent : ReteNodeRecipe,
+	child : SingleParentNodeRecipe 
+)
+{
+	SingleParentNodeRecipe.parent(child, parent);
+}
+
+@Edge(source=ix,target=beta, label="left")
+@Format(lineColor = "#00ff00")
+pattern leftix(beta, ix)
+{
+	BetaRecipe.leftParent(beta,ix);
+} 
+
+@Edge(source=ix,target=beta,label="right")
+@Format(lineColor = "#ff0000")
+pattern rightix(beta,ix) {
+	BetaRecipe.rightParent(beta,ix);
+}
+
+@Edge(source=parent,target=ue,label="parents")
+@Format(lineColor = "#ffb206")
+pattern multi2parents(ue,parent)
+{
+	MultiParentNodeRecipe.parents(ue,parent);
+}
+
+@Edge(source=input,target=trg,label="input")
+@Format(lineColor = "#3c9ad1")
+pattern inputedges(input,trg)
+{
+	UniquenessEnforcerRecipe.parents(ue,input);
+	SingleParentNodeRecipe.parent(trg, ue);
+}
+
+//@Item(item = J, label = "Join")
+//pattern join(J : Join) { Join(J); }
+//
+//@Item(item = AJ, label = "AntiJoin")
+//pattern antiJoin(AJ : AntiJoin) { AntiJoin(AJ); }
+//
+//@Item(item = PR, label = "Production")
+//pattern production(PR : Production) { Production(PR); }
+//
+//@Item(item = IX, label = "Indexer $IX.traceInfo$")
+//pattern indexer(IX : Indexer) { Indexer(IX); }
+
+
+//@Edge(source = RC, target = P)
+//@Format(lineColor = "#5ab206")
+//pattern RC_Prod(RC : ReteConnection, P: Production) { Production.source(P, RC); }
+//
+//@Edge(source = IX, target = RC)
+//@Format(lineColor = "#5ab206")
+//pattern Ix_RC(RC : ReteConnection, IX: Indexer) { Indexer.target(IX, RC); }
+
+
+/* allocation */
+
+/*
+@Edge(source = DN, target = M, 
+	label = "allocatedTo"
+)
+@Format(lineColor = "#ff0000")
+pattern allocatedTo(DN : DataNode,
+					M  : Machine) {
+	DataNode.allocatedTo(DN,M);
+}
+* /
+*/
