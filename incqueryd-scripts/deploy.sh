@@ -4,7 +4,7 @@
 user=szarnyasg
 akkaver=2.1.4
 akkadir=~/akka-$akkaver
-projectname=incquery-d-prototype
+projectname=incqueryd-prototype
 projectdir=~/workspace_java/$projectname
 bootableclass=bootable.RemoteBootable
 
