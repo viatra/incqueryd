@@ -6,8 +6,8 @@ public class ProductionNodeConfiguration extends ReteNodeConfiguration {
 
 	private static final long serialVersionUID = 1L;
 
-	public ProductionNodeConfiguration(ActorRef coordinator, String targetActorPath) {
-		super(coordinator, targetActorPath);
+	public ProductionNodeConfiguration(final ActorRef coordinator) {
+		super(coordinator, "");
 	}
 
 }

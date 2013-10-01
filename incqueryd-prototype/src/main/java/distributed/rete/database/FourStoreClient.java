@@ -40,7 +40,7 @@ public class FourStoreClient extends DatabaseClient {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("load executed");
+		System.out.println("Load executed.");
 	}
 
 	@Override

@@ -17,11 +17,15 @@ import distributed.rete.datastructure.Tuple;
 
 public class Coordinator extends ReteActor {
 
+	// constants
+	protected final int editCountTotal = 5;
+	
+	// variables
 	protected List<ActorContainer> actorContainers = new ArrayList<>();
 	protected ActorContainer route_routeDefinitionActor;
 	protected ActorContainer productionNode;
 	protected boolean edited = false;
-	protected int editCount = 50;
+	protected int editCountRemaining = editCountTotal;
 
 	/**
 	 * Coordinator constructor. Instantiates the different actors.
@@ -85,7 +89,7 @@ public class Coordinator extends ReteActor {
 		int result = collection.size();
 		logger.info("Result size is " + result + ".");
 
-		if (editCount == 0) {
+		if (editCountRemaining == 0) {
 			logger.info("Edits done.");
 			logger.info("Benchmark result is:");
 			logger.info(BenchmarkResult.INSTANCE.toString());
@@ -98,8 +102,8 @@ public class Coordinator extends ReteActor {
 		BenchmarkResult.INSTANCE.startStopper();
 
 		EditMessage editMessage = new EditMessage();
-		editCount--;
-		logger.info(editCount + " edits left.");
+		editCountRemaining--;
+		logger.info(editCountRemaining + " edits left.");
 		route_routeDefinitionActor.todo = true;
 		route_routeDefinitionActor.actorRef.tell(editMessage, getSelf());
 		edited = true;
@@ -121,7 +125,7 @@ public class Coordinator extends ReteActor {
 			String[] splitted2 = path2.split("/");
 			String actorName2 = splitted2[splitted2.length - 1];
 
-			System.out.println();
+			//System.out.println();
 			//if (actorContainer.actorRef.path().equals(actorPath)) {
 			if (actorName1.equals(actorName2)) {
 				actorContainer.initialized = true;

@@ -47,18 +47,17 @@ public abstract class ReteActor extends UntypedActor {
 
 	protected void sendUpdateMessage(Stack<ActorRef> source, UpdateMessage message) {
 		logger.info("source stack is: " + source);
-
+		
 		Stack<ActorRef> senderStack = new Stack<>();
 		senderStack.addAll(source);
 		senderStack.push(getSelf());
-
-		logger.info(actorString() + " sending tuples to: " + targetActorPath);
+		
 		logger.info(actorString() + " sending " + message.getTuples().size() + " tuples to " + targetActorPath + ", joinSide = " + message.getJoinSide()
-				+ ", propagated update type = " + message.getUpdateType() + ", sender stack = >>>>>" + senderStack);
-
+				+ ", propagated update type = " + message.getUpdateType() + ", sender stack is: " + senderStack);
+		
 		// we're setting the message's sender stack just here
 		message.setSender(senderStack);
-
+		
 		// sentUpdates.put(targetActor, senderStack);
 		targetActor.tell(message, getSelf());
 	}
