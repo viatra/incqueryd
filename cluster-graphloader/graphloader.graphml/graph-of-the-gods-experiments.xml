@@ -1,0 +1,10 @@
+
+	<node>
+		<data key="name">pluto</data>
+		<data key="type">god</data>
+	</node>
+
+	<edge id="2">
+		<data key="name">neptune</data>
+		<data key="type">god</data>
+	</edge>

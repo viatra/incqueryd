@@ -1,0 +1,14 @@
+Highlights:
+
+- Distributed system with Akka and remote actor deployment.
+- Use of Maven shade plug-in.
+- Creating WAR and JAR files from Maven.
+- Two phase parsing with a partial StAX parser: <root> ... </root> hack.
+    - java.xml.stream was buggy so used the WoodStox library instead. 
+- Asynchronous insertion with synchronized primitives.
+- Distributed file system (HDFS) accessed through custom InputStream (FSDataInputStream).
+- Simple progressbar on web UI.
+
+Development:
+- junit tests -- some progress
+- insertion, deletion -- some progress

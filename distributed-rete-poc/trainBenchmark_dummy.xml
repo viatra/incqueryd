@@ -1,0 +1,195 @@
+<?xml version="1.0" ?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.1/graphml.xsd">
+	<key id="Segment_length" for="node" attr.name="Segment_length"
+		attr.type="int"></key>
+	<key id="idx" for="node" attr.name="idx" attr.type="long"></key>
+	<key id="Signal_actualState" for="node" attr.name="Signal_actualState"
+		attr.type="string"></key>
+	<key id="Switch_actualState" for="node" attr.name="Switch_actualState"
+		attr.type="int"></key>
+	<key id="name" for="node" attr.name="name" attr.type="string"></key>
+	<key id="SwitchPosition_switchState" for="node"
+		attr.name="SwitchPosition_switchState" attr.type="int"></key>
+	<key id="type" for="node" attr.name="type" attr.type="string"></key>
+	<graph id="G" edgedefault="directed">
+
+		<node id="1">
+			<data key="idx">1</data>
+			<data key="name">Route0</data>
+			<data key="type">Route</data>
+		</node>
+		<node id="2">
+			<data key="idx">2</data>
+			<data key="Signal_actualState">SIGNAL_STATE_KIND_GO</data>
+			<data key="name">Signal0a</data>
+			<data key="type">Signal</data>
+		</node>
+		<node id="3">
+			<data key="idx">3</data>
+			<data key="Signal_actualState">SIGNAL_STATE_KIND_GO</data>
+			<data key="name">Signal0b</data>
+			<data key="type">Signal</data>
+		</node>
+		<node id="4">
+			<data key="idx">4</data>
+			<data key="name">Switch0_0</data>
+			<data key="Switch_actualState">2</data>
+			<data key="type">Switch</data>
+		</node>
+		<node id="5">
+			<data key="idx">5</data>
+			<data key="name">Sensor0_0_0</data>
+			<data key="type">Sensor</data>
+		</node>
+		<node id="6">
+			<data key="Segment_length">460</data>
+			<data key="idx">6</data>
+			<data key="name">Segment0_0_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="7">
+			<data key="Segment_length">878</data>
+			<data key="idx">7</data>
+			<data key="name">Segment1_0_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="8">
+			<data key="Segment_length">828</data>
+			<data key="idx">8</data>
+			<data key="name">Segment2_0_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="9">
+			<data key="Segment_length">731</data>
+			<data key="idx">9</data>
+			<data key="name">Segment3_0_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="10">
+			<data key="Segment_length">856</data>
+			<data key="idx">10</data>
+			<data key="name">Segment4_0_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="11">
+			<data key="idx">11</data>
+			<data key="name">Sensor1_0_0</data>
+			<data key="type">Sensor</data>
+		</node>
+		<node id="12">
+			<data key="Segment_length">-136</data>
+			<data key="idx">12</data>
+			<data key="name">Segment0_1_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="13">
+			<data key="Segment_length">-493</data>
+			<data key="idx">13</data>
+			<data key="name">Segment1_1_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="14">
+			<data key="Segment_length">978</data>
+			<data key="idx">14</data>
+			<data key="name">Segment2_1_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="15">
+			<data key="Segment_length">-814</data>
+			<data key="idx">15</data>
+			<data key="name">Segment3_1_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="16">
+			<data key="Segment_length">812</data>
+			<data key="idx">16</data>
+			<data key="name">Segment4_1_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="17">
+			<data key="idx">17</data>
+			<data key="name">Sensor2_0_0</data>
+			<data key="type">Sensor</data>
+		</node>
+		<node id="18">
+			<data key="Segment_length">126</data>
+			<data key="idx">18</data>
+			<data key="name">Segment0_2_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="19">
+			<data key="Segment_length">973</data>
+			<data key="idx">19</data>
+			<data key="name">Segment1_2_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="20">
+			<data key="Segment_length">323</data>
+			<data key="idx">20</data>
+			<data key="name">Segment2_2_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="21">
+			<data key="Segment_length">995</data>
+			<data key="idx">21</data>
+			<data key="name">Segment3_2_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="22">
+			<data key="Segment_length">454</data>
+			<data key="idx">22</data>
+			<data key="name">Segment4_2_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="23">
+			<data key="idx">23</data>
+			<data key="name">Sensor3_0_0</data>
+			<data key="type">Sensor</data>
+		</node>
+		<node id="24">
+			<data key="Segment_length">682</data>
+			<data key="idx">24</data>
+			<data key="name">Segment0_3_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="25">
+			<data key="Segment_length">211</data>
+			<data key="idx">25</data>
+			<data key="name">Segment1_3_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="26">
+			<data key="Segment_length">993</data>
+			<data key="idx">26</data>
+			<data key="name">Segment2_3_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="27">
+			<data key="Segment_length">471</data>
+			<data key="idx">27</data>
+			<data key="name">Segment3_3_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="28">
+			<data key="Segment_length">678</data>
+			<data key="idx">28</data>
+			<data key="name">Segment4_3_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+		<node id="29">
+			<data key="idx">29</data>
+			<data key="name">Sensor4_0_0</data>
+			<data key="type">Sensor</data>
+		</node>
+		<node id="30">
+			<data key="Segment_length">710</data>
+			<data key="idx">30</data>
+			<data key="name">Segment0_4_0_0</data>
+			<data key="type">Segment</data>
+		</node>
+
+
+	</graph>
+</graphml>

@@ -1,0 +1,70 @@
+<!doctype html>
+
+<html>
+
+<head>
+<meta charset="utf-8" />
+<title>Cluster graphloader application &ndash; web UI</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<script>
+	$(function() {
+
+		$("#load").button().click(function(event) {
+			var configuration = {
+				"fileName" : $("#fileName").val(),
+				"ips" : [ $("#ip1").val(), $("#ip2").val(), $("#ip3").val(), $("#ip4").val() ]
+			};
+
+			// http://stackoverflow.com/a/13204514					
+			$.ajax('/clustergraphloader/load', {
+				data : JSON.stringify(configuration),
+				contentType : 'application/json',
+				type : 'POST'
+			})
+
+		});
+
+		$(document).ready(function() {
+			setInterval(function() {
+				$.getJSON('/clustergraphloader/status').done(function(json) {
+					var percent = parseInt(json.percent);
+					$("#progressbar").progressbar("option", "value", percent);
+				});
+			}, 1000);
+		});
+
+	});
+</script>
+</head>
+
+<body>
+
+	<div id="progressbar"></div>
+
+	<form action="javascript:void(0)">
+
+		<div>
+			<label for="fileName">File name:</label><input id="fileName" type="text" value="input/graph-of-the-gods.xml" />
+		</div>
+		<div>
+			<label for="ip1">IP 1:</label><input id="ip1" type="text" value="192.168.175.101" />
+		</div>
+		<div>
+			<label for="ip2">IP 2:</label><input id="ip2" type="text" value="192.168.175.102" />
+		</div>
+		<div>
+			<label for="ip3">IP 3:</label><input id="ip3" type="text" value="192.168.175.103" />
+		</div>
+		<div>
+			<label for="ip4">IP 4:</label><input id="ip4" type="text" value="192.168.175.104" />
+		</div>
+		<button id="load">Load graph</button>
+	</form>
+
+	<div id="debug"></div>
+
+</body>
+</html>

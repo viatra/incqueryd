@@ -1,0 +1,8 @@
+#!/bin/bash
+
+types=" Route Segment Sensor Signal Switch SwitchPosition"
+for type in $types; do
+  echo $type
+  sed "s/<TYPE>/$type/" ~/titan-scripts/titan-scripts/vertex-query-template.txt > vertex-query.txt
+  time bin/gremlin.sh < vertex-query.txt > vertices-$label.txt
+done

@@ -1,0 +1,5 @@
+conf = new BaseConfiguration();
+conf.setProperty("storage.backend","cassandrathrift");
+conf.setProperty("storage.hostname","127.0.0.1");
+g = TitanFactory.open(conf);
+g.V('type', 'Route');

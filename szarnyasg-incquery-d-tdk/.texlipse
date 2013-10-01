@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Sun May 12 16:28:13 CEST 2013
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=szarnyasg-incquery-d-tdk.tex
+outputFile=szarnyasg-incquery-d-tdk.pdf
+langSpell=en
+markDer=true
+srcDir=

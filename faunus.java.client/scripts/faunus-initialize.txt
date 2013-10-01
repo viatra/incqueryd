@@ -1,0 +1,22 @@
+conf = new BaseConfiguration();
+conf.setProperty("storage.hostname", hostname);
+conf.setProperty("storage.backend", "cassandra");
+g = TitanFactory.open(conf);
+
+g.makeType().name("ROUTE_ENTRY").makeEdgeLabel();
+g.makeType().name("ROUTE_EXIT").makeEdgeLabel();
+g.makeType().name("ROUTE_ROUTEDEFINITION").makeEdgeLabel();
+g.makeType().name("ROUTE_SWITCHPOSITION").makeEdgeLabel();
+g.makeType().name("TRACKELEMENT_SENSOR").makeEdgeLabel();
+g.makeType().name("TRACKELEMENT_CONNECTSTO").makeEdgeLabel();
+g.makeType().name("SWITCHPOSITION_SWITCH").makeEdgeLabel();
+
+g.makeType().name("idx").dataType(Integer.class).unique(OUT).makePropertyKey();
+g.makeType().name("name").dataType(String.class).unique(OUT).makePropertyKey();
+g.makeType().name("Segment_length").dataType(Integer.class).unique(OUT).makePropertyKey();
+g.makeType().name("Signal_actualState").dataType(String.class).unique(OUT).makePropertyKey();
+g.makeType().name("Switch_actualState").dataType(Integer.class).unique(OUT).makePropertyKey();
+g.makeType().name("SwitchPosition_switchState").dataType(Integer.class).unique(OUT).makePropertyKey();
+g.makeType().name("type").dataType(String.class).indexed(Vertex.class).unique(OUT).makePropertyKey();
+
+g.stopTransaction(SUCCESS);
