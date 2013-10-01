@@ -58,9 +58,7 @@ public class ProductionNode extends ReteActor {
 	protected void sendResult() {
 		logger.info(actorString() + " sending " + memory.size() + ".");
 		UpdateMessage result = new UpdateMessage(null, null, memory);
-		logger.info("telling");
 		getSender().tell(result, getSelf());
-		logger.info("/telling");
 	}
 
 	protected void update(UpdateMessage updateMessage) {

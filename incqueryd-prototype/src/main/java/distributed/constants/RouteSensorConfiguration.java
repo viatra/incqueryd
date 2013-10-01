@@ -15,7 +15,8 @@ public class RouteSensorConfiguration {
 	}
 
 	public static String getActorPath(String actorName) {
-		return "akka://ReteNet@" + ips.get(actorName) + ":2552/remote/ReteNet@" + "10.6.21.191" + ":2554/user/" + actorName;
+		return "akka://ReteNet@" + ips.get(actorName) + ":2552/remote/ReteNet@" + "127.0.0.1" + ":2554/user/" + actorName;
+		//return "akka://ReteNet@" + ips.get(actorName) + ":2552/remote/ReteNet@" + "10.6.21.191" + ":2554/user/" + actorName;
 	}
 
 	// <ActorName, IP> map

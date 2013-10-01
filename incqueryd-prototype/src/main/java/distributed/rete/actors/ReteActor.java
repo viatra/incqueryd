@@ -11,7 +11,6 @@ import distributed.rete.actors.messages.UpdateMessage;
 
 public abstract class ReteActor extends UntypedActor {
 
-	//protected static final Logger logger = Logger.getLogger(Coordinator.class);		
 	protected LoggingAdapter logger = Logging.getLogger(getContext().system(), this);
 	
 	protected String targetActorPath;
@@ -68,7 +67,7 @@ public abstract class ReteActor extends UntypedActor {
 		Stack<ActorRef> route = receivedUpdateMessage.getSender();
 		ActorRef sender = route.pop();
 
-		logger.info(actorString() + " ready immediately, telling ReadyMessage to " + sender + " with route = <<<<<" + route);
+		logger.info(actorString() + " ready immediately, telling ReadyMessage to " + sender + " with the following route: " + route);
 		sender.tell(new ReadyMessage(route), getSelf());
 	}
 
@@ -76,7 +75,7 @@ public abstract class ReteActor extends UntypedActor {
 		Stack<ActorRef> route = readyMessage.getRoute();
 		ActorRef sender = route.pop();
 
-		logger.info(actorString() + " ready by message, telling ReadyMessage to " + sender + " with route = <<<<<" + route);
+		logger.info(actorString() + " ready by message, telling ReadyMessage to " + sender + " with the following route: " + route);
 		sender.tell(new ReadyMessage(route), getSelf());
 	}
 

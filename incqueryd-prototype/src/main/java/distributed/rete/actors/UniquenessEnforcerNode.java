@@ -140,10 +140,8 @@ public class UniquenessEnforcerNode extends ReteActor {
 		// randomly choosing some Routes to modify
 		List<Object> routesToModify = new ArrayList<>();
 
-		logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + routeAndSensorIds.size());
-
-		// logger.info("RouteIds: " + routeIds);
-		logger.info("#(RouteIds): " + routeIds.size());
+		//logger.info("#routeAndSensorIds: " + routeAndSensorIds.size());
+		//logger.info("#routeIds: " + routeIds.size());
 
 		Random random = new Random(0);
 		final int nElemToModify = 10;
