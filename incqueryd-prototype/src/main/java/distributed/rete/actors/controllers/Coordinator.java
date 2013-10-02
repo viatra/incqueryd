@@ -32,12 +32,11 @@ public class Coordinator extends ReteActor {
 	 */
 	public Coordinator() {
 		super();
-
 		routeSensor();
 	}
 
 	@Override
-	public void onReceive(Object message) throws Exception {
+	public void onReceive(final Object message) throws Exception {
 		if (message == NodeMessage.INITIALIZED) {
 			initialized(getSender().path());
 		}
@@ -47,7 +46,7 @@ public class Coordinator extends ReteActor {
 		}
 
 		else if (message instanceof UpdateMessage) {
-			UpdateMessage u = (UpdateMessage) message;
+			final UpdateMessage u = (UpdateMessage) message;
 			processResult(u.getTuples());
 		}
 
@@ -56,17 +55,17 @@ public class Coordinator extends ReteActor {
 		}
 	}
 
-	protected void done(ActorPath actorPath) {
+	protected void done(final ActorPath actorPath) {
 		logger.info("Actor done: " + actorPath);
 
-		for (ActorContainer actorContainer : actorContainers) {
+		for (final ActorContainer actorContainer : actorContainers) {
 			if (actorContainer.actorRef.path().equals(actorPath)) {
 				actorContainer.todo = false;
 			}
 		}
 
 		boolean todo = false;
-		for (ActorContainer actorContainer : actorContainers) {
+		for (final ActorContainer actorContainer : actorContainers) {
 			todo |= actorContainer.todo;
 		}
 
@@ -85,14 +84,20 @@ public class Coordinator extends ReteActor {
 		}
 	}
 
-	private void processResult(Collection<Tuple> collection) {
-		int result = collection.size();
+	protected void processResult(final Collection<Tuple> collection) {
+		final int result = collection.size();
 		logger.info("Result size is " + result + ".");
 
 		if (editCountRemaining == 0) {
 			logger.info("Edits done.");
 			logger.info("Benchmark result is:");
 			logger.info(BenchmarkResult.INSTANCE.toString());
+			logger.info("Benchmark finished, exiting.");
+			try {
+				Thread.sleep(500);
+			} catch (final InterruptedException e) {
+				e.printStackTrace();
+			}
 			System.exit(0);
 		}
 
@@ -101,7 +106,7 @@ public class Coordinator extends ReteActor {
 		BenchmarkResult.INSTANCE.addInvalid(result);
 		BenchmarkResult.INSTANCE.startStopper();
 
-		EditMessage editMessage = new EditMessage();
+		final EditMessage editMessage = new EditMessage();
 		editCountRemaining--;
 		logger.info(editCountRemaining + " edits left.");
 		route_routeDefinitionActor.todo = true;
@@ -113,17 +118,17 @@ public class Coordinator extends ReteActor {
 		// System.exit(0);
 	}
 
-	private void initialized(ActorPath actorPath) {
+	protected void initialized(final ActorPath actorPath) {
 		logger.info("Received initialized from " + actorPath);
 
-		String path1 = actorPath.name();
-		String[] splitted1 = path1.split("/");
-		String actorName1 = splitted1[splitted1.length - 1];
+		final String path1 = actorPath.name();
+		final String[] splitted1 = path1.split("/");
+		final String actorName1 = splitted1[splitted1.length - 1];
 		
-		for (ActorContainer actorContainer : actorContainers) {
-			String path2 = actorContainer.actorRef.path().name();
-			String[] splitted2 = path2.split("/");
-			String actorName2 = splitted2[splitted2.length - 1];
+		for (final ActorContainer actorContainer : actorContainers) {
+			final String path2 = actorContainer.actorRef.path().name();
+			final String[] splitted2 = path2.split("/");
+			final String actorName2 = splitted2[splitted2.length - 1];
 
 			//System.out.println();
 			//if (actorContainer.actorRef.path().equals(actorPath)) {
@@ -133,14 +138,14 @@ public class Coordinator extends ReteActor {
 		}
 
 		boolean allInitialized = true;
-		for (ActorContainer actorContainer : actorContainers) {
+		for (final ActorContainer actorContainer : actorContainers) {
 			allInitialized &= actorContainer.initialized;
 		}
 
 		if (allInitialized) {
 			logger.info("All initialized.");
 
-			for (ActorContainer actorContainer : actorContainers) {
+			for (final ActorContainer actorContainer : actorContainers) {
 				if (actorContainer.startSignal) {
 					logger.info("Starting actor: " + actorContainer.actorRef);
 					actorContainer.todo = true;
@@ -150,7 +155,7 @@ public class Coordinator extends ReteActor {
 		}
 	}
 
-	private void routeSensor() {
+	protected void routeSensor() {
 		// putting actors to ActorContainers
 		createActorContainer("SwitchPosition_switchActor", true);
 		createActorContainer("Route_switchPositionActor", true);
@@ -162,8 +167,8 @@ public class Coordinator extends ReteActor {
 		productionNode = createActorContainer("ProductionNode", false);
 	}
 
-	protected ActorContainer createActorContainer(String actorName, boolean startSignal) {
-		ActorContainer actorContainer = new ActorContainer(startSignal);
+	protected ActorContainer createActorContainer(final String actorName, final boolean startSignal) {
+		final ActorContainer actorContainer = new ActorContainer(startSignal);
 		actorContainer.actorRef = getContext().actorFor(RouteSensorConfiguration.getActorPath(actorName));
 		actorContainers.add(actorContainer);
 		return actorContainer;
