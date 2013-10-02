@@ -12,9 +12,15 @@ public class RouteSensorConfiguration {
 		ips.put(actorName, actorIp);
 	}
 	
-	public static String getActorPath(final String actorName) {
-		final String actorPath = "akka://ReteNet@" + ips.get(actorName) + ":2552/remote/ReteNet@" + "127.0.0.1" + ":2554/user/" + actorName;
-		System.out.println("returning actorpath: " + actorPath);
+	public static String getActorPath(final String actorName, final String hostAddress) {
+//		try {
+//			hostAddress = InetAddress.getLocalHost().getHostAddress();
+//		} catch (final UnknownHostException e) {
+//			e.printStackTrace();
+//		}
+		
+		final String actorPath = "akka://ReteNet@" + ips.get(actorName) + ":2552/remote/ReteNet@" + hostAddress + ":2554/user/" + actorName;
+		System.out.println("returning actor path: " + actorPath);
 		return actorPath;
 	}
 

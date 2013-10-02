@@ -21,7 +21,7 @@ import distributed.constants.RouteSensorConfiguration;
 import distributed.rete.actors.ExistenceNode;
 import distributed.rete.actors.NaturalJoinNode;
 import distributed.rete.actors.ProductionNode;
-import distributed.rete.actors.UniquenessEnforcerNode;
+import distributed.rete.actors.InputNode;
 import distributed.rete.actors.controllers.Coordinator;
 import distributed.rete.configuration.JoinNodeConfiguration;
 import distributed.rete.configuration.ProductionNodeConfiguration;
@@ -104,10 +104,12 @@ public class Benchmark {
 		final String trackElement_sensorActorName = "TrackElement_sensorActor";
 		final String route_routeDefinitionActorName = "Route_routeDefinitionActor";
 		final String joinNode1Name = "JoinNode1";
-		final String joinNode2Name = "JoinNode2"; 
+		final String joinNode2Name = "JoinNode2";
 		final String antiJoinNodeName = "AntiJoinNode";
-		final String productionNodeName = "ProductionNode"; 
-		
+		final String productionNodeName = "ProductionNode";
+
+		final String coordinatorPath = "127.0.0.1";
+
 		hosts.put(switchPosition_switchActorName, "127.0.0.1");
 		hosts.put(route_switchPositionActorName, "127.0.0.1");
 		hosts.put(trackElement_sensorActorName, "127.0.0.1");
@@ -116,45 +118,45 @@ public class Benchmark {
 		hosts.put(joinNode2Name, "127.0.0.1");
 		hosts.put(antiJoinNodeName, "127.0.0.1");
 		hosts.put(productionNodeName, "127.0.0.1");
-		
-		actorClasses.put(switchPosition_switchActorName, UniquenessEnforcerNode.class);
-		actorClasses.put(route_switchPositionActorName, UniquenessEnforcerNode.class);
-		actorClasses.put(trackElement_sensorActorName, UniquenessEnforcerNode.class);
-		actorClasses.put(route_routeDefinitionActorName, UniquenessEnforcerNode.class);
+
+		actorClasses.put(switchPosition_switchActorName, InputNode.class);
+		actorClasses.put(route_switchPositionActorName, InputNode.class);
+		actorClasses.put(trackElement_sensorActorName, InputNode.class);
+		actorClasses.put(route_routeDefinitionActorName, InputNode.class);
 		actorClasses.put(joinNode1Name, NaturalJoinNode.class);
 		actorClasses.put(joinNode2Name, NaturalJoinNode.class);
 		actorClasses.put(antiJoinNodeName, ExistenceNode.class);
 		actorClasses.put(productionNodeName, ProductionNode.class);
-				
+
 		// UniquenessEnforcerNodes' data
 		// UniquenessEnforcerNode: SwitchPosition_switchActor
 		final String switchPosition_switchLabel = "SwitchPosition_switch";
 		final UniquenessEnforcerNodeConfiguration switchPosition_switchConf = new UniquenessEnforcerNodeConfiguration(
-				coordinator, RouteSensorConfiguration.getActorPath(joinNode1Name),
+				coordinator, RouteSensorConfiguration.getActorPath(joinNode1Name, coordinatorPath),
 				switchPosition_switchLabel, JoinSide.PRIMARY, type, filename);
 		configurations.put(switchPosition_switchActorName, switchPosition_switchConf);
 
 		// UniquenessEnforcerNode: Route_switchPositionActor
 		final String route_switchPositionLabel = "Route_switchPosition";
 		final UniquenessEnforcerNodeConfiguration route_switchPositionConf = new UniquenessEnforcerNodeConfiguration(
-				coordinator, RouteSensorConfiguration.getActorPath(joinNode1Name),
+				coordinator, RouteSensorConfiguration.getActorPath(joinNode1Name, coordinatorPath),
 				route_switchPositionLabel, JoinSide.SECONDARY, type, filename);
 		configurations.put(route_switchPositionActorName, route_switchPositionConf);
 
 		// UniquenessEnforcerNode: TrackElement_sensorActor
 		final String trackElement_sensorLabel = "TrackElement_sensor";
 		final UniquenessEnforcerNodeConfiguration trackElement_sensorConf = new UniquenessEnforcerNodeConfiguration(
-				coordinator, RouteSensorConfiguration.getActorPath(joinNode2Name),
+				coordinator, RouteSensorConfiguration.getActorPath(joinNode2Name, coordinatorPath),
 				trackElement_sensorLabel, JoinSide.SECONDARY, type, filename);
 		configurations.put(trackElement_sensorActorName, trackElement_sensorConf);
 
 		// UniquenessEnforcerNode: Route_routeDefinitionActor
 		final String route_routeDefinitionLabel = "Route_routeDefinition";
 		final UniquenessEnforcerNodeConfiguration route_routeDefinitionConf = new UniquenessEnforcerNodeConfiguration(
-				coordinator, RouteSensorConfiguration.getActorPath(antiJoinNodeName),
+				coordinator, RouteSensorConfiguration.getActorPath(antiJoinNodeName, coordinatorPath),
 				route_routeDefinitionLabel, JoinSide.SECONDARY, type, filename);
 		configurations.put(route_routeDefinitionActorName, route_routeDefinitionConf);
-		
+
 		// JoinNode: JoinNode1
 		final TupleMask join1LeftMask =
 				new TupleMask(new ArrayList<>(Arrays.asList(0)), null); // [Sp], Sw
@@ -162,46 +164,45 @@ public class Benchmark {
 				new TupleMask(new ArrayList<>(Arrays.asList(1)), null); // R, [Sp]
 		final JoinNodeConfiguration joinNode1Configuration = new JoinNodeConfiguration(coordinator, join1LeftMask,
 				join1RightMask,
-				RouteSensorConfiguration.getActorPath(joinNode2Name),
+				RouteSensorConfiguration.getActorPath(joinNode2Name, coordinatorPath),
 				JoinSide.PRIMARY);
 		configurations.put(joinNode1Name, joinNode1Configuration);
-		
+
 		// JoinNode: JoinNode2
 		final TupleMask join2LeftMask =
 				new TupleMask(new ArrayList<>(Arrays.asList(1)), null); // Sp, [Sw], R
 		final TupleMask join2RightMask =
 				new TupleMask(new ArrayList<>(Arrays.asList(0)), null); // [Te], S
 		final JoinNodeConfiguration joinNode2Configuration = new JoinNodeConfiguration(coordinator, join2LeftMask,
-				join2RightMask, RouteSensorConfiguration.getActorPath(antiJoinNodeName),
+				join2RightMask, RouteSensorConfiguration.getActorPath(antiJoinNodeName, coordinatorPath),
 				JoinSide.PRIMARY);
 		configurations.put(joinNode2Name, joinNode2Configuration);
-		
+
 		// AntiJoinNode: AntiJoinNode
 		final TupleMask antiJoinLeftMask =
 				new TupleMask(new ArrayList<>(Arrays.asList(2, 3)), null); // Sp, Sw, [R], [Sen]
 		final TupleMask antiJoinRightMask =
 				new TupleMask(new ArrayList<>(Arrays.asList(0, 1)), null); // [R], [Sen]
 		final JoinNodeConfiguration antiJoinNodeConfiguration = new JoinNodeConfiguration(coordinator, antiJoinLeftMask,
-				antiJoinRightMask, RouteSensorConfiguration.getActorPath(productionNodeName),
+				antiJoinRightMask, RouteSensorConfiguration.getActorPath(productionNodeName, coordinatorPath),
 				JoinSide.NULL);
 		configurations.put(antiJoinNodeName, antiJoinNodeConfiguration);
 
 		// ProductionNode: ProductionNode
 		final ProductionNodeConfiguration productionNodeConfiguration = new ProductionNodeConfiguration(coordinator);
 		configurations.put(productionNodeName, productionNodeConfiguration);
-		
+
 		// iterating through the hosts map
 		for (final Map.Entry<String, String> actor : hosts.entrySet()) {
 			deployActor(actor.getKey());
 		}
-		
 	}
-	
-	private void deployActor(final String name) {
+
+	protected void deployActor(final String name) {
 		final String host = hosts.get(name);
 		final ReteNodeConfiguration configuration = configurations.get(name);
-		final Class actorClass = actorClasses.get(name); 
-		
+		final Class actorClass = actorClasses.get(name);
+
 		final Address addr = new Address("akka", actorSystemName, host, 2552);
 		final Deploy deploy = new Deploy(new RemoteScope(addr));
 		final ActorRef actor = system.actorOf(new Props(actorClass).withDeploy(deploy), name);

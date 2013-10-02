@@ -34,7 +34,7 @@ import distributed.rete.exceptions.DatabaseClientException;
  * @author szarnyasg
  * 
  */
-public class UniquenessEnforcerNode extends ReteActor {
+public class InputNode extends ReteActor {
 
 	protected List<Tuple> tuples = new ArrayList<>();
 	protected List<DatabaseClient> clients = new ArrayList<>();
@@ -43,7 +43,7 @@ public class UniquenessEnforcerNode extends ReteActor {
 	protected DatabaseClient databaseClient;
 	protected String edgeLabel;
 
-	public UniquenessEnforcerNode() {
+	public InputNode() {
 		super();
 	}
 

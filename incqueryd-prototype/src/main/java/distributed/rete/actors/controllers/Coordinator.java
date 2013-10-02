@@ -112,10 +112,6 @@ public class Coordinator extends ReteActor {
 		route_routeDefinitionActor.todo = true;
 		route_routeDefinitionActor.actorRef.tell(editMessage, getSelf());
 		edited = true;
-
-		// } else {
-		// BenchmarkResult.INSTANCE.addCheckTime();
-		// System.exit(0);
 	}
 
 	protected void initialized(final ActorPath actorPath) {
@@ -169,7 +165,7 @@ public class Coordinator extends ReteActor {
 
 	protected ActorContainer createActorContainer(final String actorName, final boolean startSignal) {
 		final ActorContainer actorContainer = new ActorContainer(startSignal);
-		actorContainer.actorRef = getContext().actorFor(RouteSensorConfiguration.getActorPath(actorName));
+		actorContainer.actorRef = getContext().actorFor(RouteSensorConfiguration.getActorPath(actorName, "127.0.0.1"));
 		actorContainers.add(actorContainer);
 		return actorContainer;
 	}
