@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import akka.actor.ActorPath;
-import akka.actor.ActorRef;
 import akka.actor.Address;
 import akka.actor.Deploy;
 import akka.actor.Props;
@@ -60,11 +59,7 @@ public class Coordinator extends ReteActor {
 
 	@Override
 	public void onReceive(final Object message) throws Exception {
-		if (message == NodeMessage.STARTBENCHMARK) {
-			// !!
-		}
-
-		else if (message == NodeMessage.INITIALIZED) {
+		if (message == NodeMessage.INITIALIZED) {
 			initialized(getSender().path());
 		}
 
@@ -189,7 +184,7 @@ public class Coordinator extends ReteActor {
 		final String productionNodeName = "ProductionNode";
 
 
-		// final String ip = "10.6.21.191";
+//		final String ip = "10.6.21.191";
 		final String ip = "127.0.0.1";
 		//final String coordinatorPath = ip;
 		
@@ -207,29 +202,6 @@ public class Coordinator extends ReteActor {
 		route_routeDefinitionActor = actors.get(route_routeDefinitionActorName);
 		productionNode = actors.get(productionNodeName);
 		
-		System.out.println(route_routeDefinitionActor);
-		System.out.println(productionNode);
-				
-		
-
-		
-//		hosts.put(switchPosition_switchActorName, ip);
-//		hosts.put(route_switchPositionActorName, ip);
-//		hosts.put(trackElement_sensorActorName, ip);
-//		hosts.put(route_routeDefinitionActorName, ip);
-//		hosts.put(joinNode1Name, ip);
-//		hosts.put(joinNode2Name, ip);
-//		hosts.put(antiJoinNodeName, ip);
-//		hosts.put(productionNodeName, ip);
-//		actorClasses.put(switchPosition_switchActorName, InputNode.class);
-//		actorClasses.put(route_switchPositionActorName, InputNode.class);
-//		actorClasses.put(trackElement_sensorActorName, InputNode.class);
-//		actorClasses.put(route_routeDefinitionActorName, InputNode.class);
-//		actorClasses.put(joinNode1Name, NaturalJoinNode.class);
-//		actorClasses.put(joinNode2Name, NaturalJoinNode.class);
-//		actorClasses.put(antiJoinNodeName, ExistenceNode.class);
-//		actorClasses.put(productionNodeName, ProductionNode.class);
-
 		// iterating through the hosts map to get all actors
 		deployActors();
 		
@@ -293,7 +265,6 @@ public class Coordinator extends ReteActor {
 		final ProductionNodeConfiguration productionNodeConfiguration = new ProductionNodeConfiguration(coordinator);
 		actors.get(productionNodeName).configuration = productionNodeConfiguration;
 
-
 		// iterating through the hosts map to get all actors
 		configureActors();
 	}
@@ -313,27 +284,21 @@ public class Coordinator extends ReteActor {
 			
 			// saving the reference for later use
 			actor.actorRef = getContext().actorOf(new Props(actorClass).withDeploy(deploy), name);			
-		}
-		
+		}		
 	}
 
 	private void configureActors() {
-		for (final Map.Entry<String, ActorContainer> actorContainerPair : actors.entrySet()) {
-			
-			final String name = actorContainerPair.getKey();
-			final ActorContainer actor = actorContainerPair.getValue();
-		
-			final ReteNodeConfiguration configuration = actor.configuration;
-			final ActorRef actorRef = actor.actorRef;
-			
-			//final ReteNodeConfiguration configuration = configurations.get(name);
-			//final ActorRef actor = actors.get(name);
-			actorRef.tell(configuration, null);
-
-			System.out.println(">>> actor" + actor);
-			System.out.println(">>> actor path " + actorRef.path());
-			
+		// telling the configuration object to each actor
+		for (final ActorContainer actor: actors.values()) {
+			actor.actorRef.tell(actor.configuration, null);
 		}
+	}
+
+	@Override
+	protected void configure(final ReteNodeConfiguration reteNodeConfiguration) {
+		// TODO Auto-generated method stub
+		// TODO refactor so this won't have to be here
+		
 	}
 
 }

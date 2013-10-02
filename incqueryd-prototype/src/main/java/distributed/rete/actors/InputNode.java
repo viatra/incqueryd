@@ -19,6 +19,7 @@ import distributed.rete.actors.messages.NodeMessage;
 import distributed.rete.actors.messages.ReadyMessage;
 import distributed.rete.actors.messages.UpdateMessage;
 import distributed.rete.actors.messages.UpdateType;
+import distributed.rete.configuration.ReteNodeConfiguration;
 import distributed.rete.configuration.UniquenessEnforcerNodeConfiguration;
 import distributed.rete.database.DatabaseClient;
 import distributed.rete.database.DatabaseClientFactory;
@@ -47,30 +48,29 @@ public class InputNode extends ReteActor {
 		super();
 	}
 
-	protected void configure(UniquenessEnforcerNodeConfiguration configuration) {
+	protected void configure(final ReteNodeConfiguration reteNodeConfiguration) {
+		final UniquenessEnforcerNodeConfiguration configuration = (UniquenessEnforcerNodeConfiguration) reteNodeConfiguration;
+
 		this.coordinator = configuration.coordinator;
 		this.targetActorPath = configuration.targetActorPath;
 		this.joinSide = configuration.targetJoinSide;
 
-		logger.info("YYYY: " + coordinator);
-
-		databaseClient = DatabaseClientFactory.createDatabaseClient(configuration.databaseClientType, "localhost",
-				configuration.filename);
+		databaseClient = DatabaseClientFactory.createDatabaseClient(configuration.databaseClientType, "localhost", configuration.filename);
 
 		try {
 			Multimap<Object, Object> vertexPairs;
 			edgeLabel = configuration.edgeLabel;
 			vertexPairs = databaseClient.collectEdges(edgeLabel);
 
-			for (Object key : vertexPairs.keySet()) {
-				Collection<?> values = vertexPairs.get(key);
+			for (final Object key : vertexPairs.keySet()) {
+				final Collection<?> values = vertexPairs.get(key);
 
-				for (Object value : values) {
-					Tuple tuple = new TupleImpl(key, value);
+				for (final Object value : values) {
+					final Tuple tuple = new TupleImpl(key, value);
 					tuples.add(tuple);
 				}
 			}
-		} catch (DatabaseClientException e) {
+		} catch (final DatabaseClientException e) {
 			e.printStackTrace();
 		}
 		// logger.info("multimap received: " + vertexPairs);
@@ -82,7 +82,7 @@ public class InputNode extends ReteActor {
 	}
 
 	@Override
-	public void onReceive(Object message) throws Exception {
+	public void onReceive(final Object message) throws Exception {
 		// super.onReceive(message);
 
 		if (message instanceof ReadyMessage) {
@@ -107,7 +107,7 @@ public class InputNode extends ReteActor {
 		}
 
 		else if (message instanceof UniquenessEnforcerNodeConfiguration) {
-			UniquenessEnforcerNodeConfiguration configurationMessage = (UniquenessEnforcerNodeConfiguration) message;
+			final UniquenessEnforcerNodeConfiguration configurationMessage = (UniquenessEnforcerNodeConfiguration) message;
 			configure(configurationMessage);
 		}
 
@@ -117,13 +117,13 @@ public class InputNode extends ReteActor {
 	}
 
 	private void edit() {
-		Collection<Tuple> negTuples = new Vector<>(); // n.b. Vector is synchronized
+		final Collection<Tuple> negTuples = new Vector<>(); // n.b. Vector is synchronized
 
 		// Collections.sort(tuples);
-		Multimap<Object, Object> routeAndSensorIds = ArrayListMultimap.create();
-		for (Tuple tuple : tuples) {
-			Object routeId = (Object) tuple.get(0);
-			Object sensorId = (Object) tuple.get(1);
+		final Multimap<Object, Object> routeAndSensorIds = ArrayListMultimap.create();
+		for (final Tuple tuple : tuples) {
+			final Object routeId = tuple.get(0);
+			final Object sensorId = tuple.get(1);
 			routeAndSensorIds.put(routeId, sensorId);
 		}
 
@@ -131,33 +131,33 @@ public class InputNode extends ReteActor {
 		// logger.info(routeAndSensorIds);
 
 		// swift move: get the set of the routeAndSensorIds multimap and create an ArrayList from them
-		ArrayList<Object> routeIds = new ArrayList<>(routeAndSensorIds.keys().elementSet());
+		final ArrayList<Object> routeIds = new ArrayList<>(routeAndSensorIds.keys().elementSet());
 		// TODO
 		// Collections.sort(routeIds);
 
 		// logger.info("routeIds:" + routeIds);
 
 		// randomly choosing some Routes to modify
-		List<Object> routesToModify = new ArrayList<>();
+		final List<Object> routesToModify = new ArrayList<>();
 
-		//logger.info("#routeAndSensorIds: " + routeAndSensorIds.size());
-		//logger.info("#routeIds: " + routeIds.size());
+		// logger.info("#routeAndSensorIds: " + routeAndSensorIds.size());
+		// logger.info("#routeIds: " + routeIds.size());
 
-		Random random = new Random(0);
+		final Random random = new Random(0);
 		final int nElemToModify = 10;
 		// choose nElemToModify elements to modify
 		for (int i = 0; i < nElemToModify; i++) {
-			int rndTargetPosition = random.nextInt(routeIds.size());
-			Object routeId = routeIds.get(rndTargetPosition);
+			final int rndTargetPosition = random.nextInt(routeIds.size());
+			final Object routeId = routeIds.get(rndTargetPosition);
 			routesToModify.add(routeId);
 
 			// small modification over the original TrainBenchmark: we always choose nElemToModify different Routes
 			routeIds.remove(routeId);
 		}
 
-		for (Map.Entry<Object, Object> row : routeAndSensorIds.entries()) {
-			Object routeId = row.getKey();
-			Object sensorId = row.getValue();
+		for (final Map.Entry<Object, Object> row : routeAndSensorIds.entries()) {
+			final Object routeId = row.getKey();
+			final Object sensorId = row.getValue();
 
 			if (routesToModify.contains(routeId)) {
 				// removing the Route from the routesToModify list
@@ -165,7 +165,7 @@ public class InputNode extends ReteActor {
 				// deleteCandidates.put(routeId, sensorId);
 
 				// creating a tuple from the result row
-				Tuple tuple = new TupleImpl(routeId, sensorId);
+				final Tuple tuple = new TupleImpl(routeId, sensorId);
 
 				// deleting from indexer
 				tuples.remove(tuple);
@@ -173,7 +173,7 @@ public class InputNode extends ReteActor {
 				// deleting from database
 				try {
 					databaseClient.deleteEdge(routeId, sensorId, edgeLabel);
-				} catch (DatabaseClientException e) {
+				} catch (final DatabaseClientException e) {
 					e.printStackTrace();
 				}
 
@@ -185,24 +185,24 @@ public class InputNode extends ReteActor {
 		logger.info("negative tuples: " + negTuples);
 		logger.info(actorString() + " " + tuples.size() + " tuples remaining");
 
-		Long initTime = System.nanoTime();
+		final Long initTime = System.nanoTime();
 		logger.info("waiting");
 
-		Long finishTime = System.nanoTime();
-		Long delta = (finishTime - initTime) / 1000000;
+		final Long finishTime = System.nanoTime();
+		final Long delta = (finishTime - initTime) / 1000000;
 		logger.info("waiting over " + delta + " ms");
 
 		logger.info(negTuples.size() + " tuples in the negative update to " + targetActorPath);
 		sendTuples(UpdateType.NEGATIVE, joinSide, negTuples);
 	}
 
-	protected void sendTuples(UpdateType updateType, JoinSide joinSide, Collection<Tuple> tuples) {
+	protected void sendTuples(final UpdateType updateType, final JoinSide joinSide, final Collection<Tuple> tuples) {
 		updateMessageCount++;
 
-		UpdateMessage updateMessage = new UpdateMessage(updateType, joinSide, tuples);
+		final UpdateMessage updateMessage = new UpdateMessage(updateType, joinSide, tuples);
 		// start with an empty senderStack
 
-		Stack<ActorRef> senderStack = new Stack<>();
+		final Stack<ActorRef> senderStack = new Stack<>();
 		sendUpdateMessage(senderStack, updateMessage);
 	}
 

@@ -11,7 +11,9 @@ import distributed.rete.configuration.ReteNodeConfiguration;
  */
 public class ActorContainer {
 
-	public ActorContainer(final boolean startSignal, final String host, final Class actorClass) {
+	
+	
+	public ActorContainer(final boolean startSignal, final String host, final Class<?> actorClass) {
 		super();
 		this.startSignal = startSignal;
 		this.host = host;
@@ -23,7 +25,7 @@ public class ActorContainer {
 	public boolean startSignal;
 	public boolean todo;
 	public final String host;
-	public final Class actorClass;
+	public final Class<?> actorClass;
 	public ReteNodeConfiguration configuration;
 	public ActorRef actorRef;
 

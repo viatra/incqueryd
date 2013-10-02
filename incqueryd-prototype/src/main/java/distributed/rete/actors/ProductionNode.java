@@ -7,6 +7,7 @@ import akka.actor.ActorRef;
 import distributed.rete.actors.messages.NodeMessage;
 import distributed.rete.actors.messages.UpdateMessage;
 import distributed.rete.configuration.ProductionNodeConfiguration;
+import distributed.rete.configuration.ReteNodeConfiguration;
 import distributed.rete.datastructure.Tuple;
 
 /**
@@ -25,19 +26,20 @@ public class ProductionNode extends ReteActor {
 		super();
 	}
 
-	protected void configure(ProductionNodeConfiguration configuration) {
-		this.coordinator = configuration.coordinator;
-
+	protected void configure(final ReteNodeConfiguration reteNodeConfiguration) {
+		final ProductionNodeConfiguration conf = (ProductionNodeConfiguration) reteNodeConfiguration; 
+		
+		this.coordinator = conf.coordinator;
 		logger.info(actorString() + " telling INITIALIZED to " + coordinator);
 		coordinator.tell(NodeMessage.INITIALIZED, getSelf());
 	}
 
 	@Override
-	public void onReceive(Object message) throws Exception {
+	public void onReceive(final Object message) throws Exception {
 		super.onReceive(message);
 
 		if (message instanceof UpdateMessage) {
-			UpdateMessage updateMessage = (UpdateMessage) message;
+			final UpdateMessage updateMessage = (UpdateMessage) message;
 			update(updateMessage);
 		}
 
@@ -46,7 +48,7 @@ public class ProductionNode extends ReteActor {
 		}
 
 		else if (message instanceof ProductionNodeConfiguration) {
-			ProductionNodeConfiguration configuration = (ProductionNodeConfiguration) message;
+			final ProductionNodeConfiguration configuration = (ProductionNodeConfiguration) message;
 			configure(configuration);
 		}
 
@@ -57,21 +59,21 @@ public class ProductionNode extends ReteActor {
 
 	protected void sendResult() {
 		logger.info(actorString() + " sending " + memory.size() + ".");
-		UpdateMessage result = new UpdateMessage(null, null, memory);
+		final UpdateMessage result = new UpdateMessage(null, null, memory);
 		getSender().tell(result, getSelf());
 	}
 
-	protected void update(UpdateMessage updateMessage) {
-		Collection<Tuple> updateTuples = updateMessage.getTuples();
+	protected void update(final UpdateMessage updateMessage) {
+		final Collection<Tuple> updateTuples = updateMessage.getTuples();
 
 		switch (updateMessage.getUpdateType()) {
 		case POSITIVE:
-			for (Tuple tuple : updateTuples) {
+			for (final Tuple tuple : updateTuples) {
 				memory.add(tuple);
 			}
 			break;
 		case NEGATIVE:
-			for (Tuple tuple : updateTuples) {
+			for (final Tuple tuple : updateTuples) {
 				memory.remove(tuple);
 			}
 			break;

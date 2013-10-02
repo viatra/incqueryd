@@ -44,21 +44,9 @@ public class Benchmark {
 
 		final Config remoteCreationConfig = ConfigFactory.load().getConfig("RemoteDeployment");
 		system = ActorSystem.create("ReteNet", remoteCreationConfig);		
-		final String coordinatorIp = remoteCreationConfig.getString("akka.remote.netty.hostname");
 		
-//		RouteSensorConfiguration.setActorIp(remoteCreationConfig, "SwitchPosition_switchActor", coordinatorIp);
-//		RouteSensorConfiguration.setActorIp(remoteCreationConfig, "Route_switchPositionActor", coordinatorIp);
-//		RouteSensorConfiguration.setActorIp(remoteCreationConfig, "TrackElement_sensorActor", coordinatorIp);
-//		RouteSensorConfiguration.setActorIp(remoteCreationConfig, "Route_routeDefinitionActor", coordinatorIp);
-//		RouteSensorConfiguration.setActorIp(remoteCreationConfig, "JoinNode1", coordinatorIp);
-//		RouteSensorConfiguration.setActorIp(remoteCreationConfig, "JoinNode2", coordinatorIp);
-//		RouteSensorConfiguration.setActorIp(remoteCreationConfig, "AntiJoinNode", coordinatorIp);
-//		RouteSensorConfiguration.setActorIp(remoteCreationConfig, "ProductionNode", coordinatorIp);
-//		System.out.println(RouteSensorConfiguration.ips);
-
 		// instantiating the Coordinator actor and let it do the work
 		final ActorRef coordinator = system.actorOf(new Props(Coordinator.class), "Coordinator");
-		//initRouteSensorNodes(system, coordinator);
 
 		BenchmarkResult.INSTANCE.setReadTime();
 		BenchmarkResult.INSTANCE.startStopper();

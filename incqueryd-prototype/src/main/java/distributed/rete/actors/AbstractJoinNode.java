@@ -7,6 +7,7 @@ import distributed.rete.actors.messages.ReadyMessage;
 import distributed.rete.actors.messages.UpdateMessage;
 import distributed.rete.actors.messages.UpdateType;
 import distributed.rete.configuration.JoinNodeConfiguration;
+import distributed.rete.configuration.ReteNodeConfiguration;
 import distributed.rete.datastructure.JoinSide;
 import distributed.rete.datastructure.Tuple;
 
@@ -20,7 +21,9 @@ public abstract class AbstractJoinNode extends ReteActor {
 		super();
 	}
 
-	protected void configure(JoinNodeConfiguration configuration) {
+	protected void configure(final ReteNodeConfiguration reteNodeConfiguration) {
+		final JoinNodeConfiguration configuration = (JoinNodeConfiguration) reteNodeConfiguration;
+		
 		this.leftIndexer = new Indexer(configuration.leftMask);
 		this.rightIndexer = new Indexer(configuration.rightMask);
 		this.targetActorPath = configuration.targetActorPath;
@@ -32,7 +35,7 @@ public abstract class AbstractJoinNode extends ReteActor {
 	}
 
 	@Override
-	public void onReceive(Object message) throws Exception {
+	public void onReceive(final Object message) throws Exception {
 		super.onReceive(message);
 
 		if (message instanceof UpdateMessage) {
@@ -40,12 +43,11 @@ public abstract class AbstractJoinNode extends ReteActor {
 				targetActor = getContext().actorFor(targetActorPath);
 			}
 
-			UpdateMessage receivedJoinMessage = (UpdateMessage) message;
-			UpdateType updateType = receivedJoinMessage.getUpdateType();
-			Collection<Tuple> tuples = receivedJoinMessage.getTuples();
+			final UpdateMessage receivedJoinMessage = (UpdateMessage) message;
+			final UpdateType updateType = receivedJoinMessage.getUpdateType();
+			final Collection<Tuple> tuples = receivedJoinMessage.getTuples();
 
 			logger.info(tuples.size() + " tuples received");
-			// for (Tuple tuple : tuples) { logger.info(" - " + tuple); }
 
 			sendTuples(receivedJoinMessage, updateType, tuples);
 		}
@@ -54,18 +56,13 @@ public abstract class AbstractJoinNode extends ReteActor {
 			logger.info(actorString() + " ReadyMessage received");
 		}
 
-		else if (message instanceof JoinNodeConfiguration) {
-			JoinNodeConfiguration configuration = (JoinNodeConfiguration) message;
-			configure(configuration);
-		}
-
 		else {
 			unhandledMessage(message);
 		}
 	}
 
-	private void sendTuples(UpdateMessage receivedJoinMessage, UpdateType updateType, Collection<Tuple> tuples) {
-		UpdateMessage propagatedUpdateMessage = joinNewTuples(tuples, receivedJoinMessage.getJoinSide(), updateType);
+	private void sendTuples(final UpdateMessage receivedJoinMessage, final UpdateType updateType, final Collection<Tuple> tuples) {
+		final UpdateMessage propagatedUpdateMessage = joinNewTuples(tuples, receivedJoinMessage.getJoinSide(), updateType);
 
 		if (propagatedUpdateMessage != null) {
 			sendUpdateMessage(receivedJoinMessage.getSender(), propagatedUpdateMessage);
