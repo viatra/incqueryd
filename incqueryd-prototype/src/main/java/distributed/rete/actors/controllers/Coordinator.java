@@ -14,10 +14,10 @@ import akka.actor.Deploy;
 import akka.actor.Props;
 import akka.remote.RemoteScope;
 import distributed.rete.actors.ExistenceNode;
+import distributed.rete.actors.IncQueryDActor;
 import distributed.rete.actors.InputNode;
 import distributed.rete.actors.NaturalJoinNode;
 import distributed.rete.actors.ProductionNode;
-import distributed.rete.actors.ReteActor;
 import distributed.rete.actors.messages.CoordinatorMessage;
 import distributed.rete.actors.messages.EditMessage;
 import distributed.rete.actors.messages.NodeMessage;
@@ -31,7 +31,7 @@ import distributed.rete.datastructure.JoinSide;
 import distributed.rete.datastructure.Tuple;
 import distributed.rete.datastructure.TupleMask;
 
-public class Coordinator extends ReteActor {
+public class Coordinator extends IncQueryDActor {
 
 	// constants
 	protected final int editCountTotal = 5;
@@ -148,7 +148,6 @@ public class Coordinator extends ReteActor {
 			final String[] splitted2 = path2.split("/");
 			final String actorName2 = splitted2[splitted2.length - 1];
 
-			// System.out.println();
 			// if (actorContainer.actorRef.path().equals(actorPath)) {
 			if (actorName1.equals(actorName2)) {
 				actorContainer.initialized = true;
@@ -183,28 +182,29 @@ public class Coordinator extends ReteActor {
 		final String antiJoinNodeName = "AntiJoinNode";
 		final String productionNodeName = "ProductionNode";
 
+		final String ip1 = "10.6.21.191";
+		final String ip2 = "10.6.21.193";
+		final String ip3 = "10.6.21.195";
+		final String ip4 = "10.6.21.197";
+		// final String ip = "127.0.0.1";
 
-//		final String ip = "10.6.21.191";
-		final String ip = "127.0.0.1";
-		//final String coordinatorPath = ip;
-		
 		// putting actors to ActorContainers
-		
-		actors.put(switchPosition_switchActorName, new ActorContainer(true,  ip, InputNode.class));
-		actors.put(route_switchPositionActorName, new ActorContainer(true, ip, InputNode.class));
-		actors.put(trackElement_sensorActorName, new ActorContainer(true, ip, InputNode.class));
-		actors.put(route_routeDefinitionActorName, new ActorContainer(true, ip, InputNode.class));
-		actors.put(joinNode1Name, new ActorContainer(false, ip, NaturalJoinNode.class));
-		actors.put(joinNode2Name, new ActorContainer(false, ip, NaturalJoinNode.class));
-		actors.put(antiJoinNodeName, new ActorContainer(false, ip, ExistenceNode.class));
-		actors.put(productionNodeName, new ActorContainer(false, ip, ProductionNode.class));
+
+		actors.put(switchPosition_switchActorName, new ActorContainer(true, ip1, InputNode.class));
+		actors.put(route_switchPositionActorName, new ActorContainer(true, ip2, InputNode.class));
+		actors.put(trackElement_sensorActorName, new ActorContainer(true, ip3, InputNode.class));
+		actors.put(route_routeDefinitionActorName, new ActorContainer(true, ip4, InputNode.class));
+		actors.put(joinNode1Name, new ActorContainer(false, ip2, NaturalJoinNode.class));
+		actors.put(joinNode2Name, new ActorContainer(false, ip3, NaturalJoinNode.class));
+		actors.put(antiJoinNodeName, new ActorContainer(false, ip4, ExistenceNode.class));
+		actors.put(productionNodeName, new ActorContainer(false, ip1, ProductionNode.class));
 
 		route_routeDefinitionActor = actors.get(route_routeDefinitionActorName);
 		productionNode = actors.get(productionNodeName);
-		
+
 		// iterating through the hosts map to get all actors
 		deployActors();
-		
+
 		// UniquenessEnforcerNodes' data
 		// UniquenessEnforcerNode: SwitchPosition_switchActor
 		final String switchPosition_switchLabel = "SwitchPosition_switch";
@@ -219,7 +219,7 @@ public class Coordinator extends ReteActor {
 				coordinator, actors.get(joinNode1Name).actorRef.path().toString(),
 				route_switchPositionLabel, JoinSide.SECONDARY, type, filename);
 		actors.get(route_switchPositionActorName).configuration = route_switchPositionConf;
-		
+
 		// UniquenessEnforcerNode: TrackElement_sensorActor
 		final String trackElement_sensorLabel = "TrackElement_sensor";
 		final UniquenessEnforcerNodeConfiguration trackElement_sensorConf = new UniquenessEnforcerNodeConfiguration(
@@ -271,34 +271,32 @@ public class Coordinator extends ReteActor {
 
 	protected void deployActors() {
 		for (final Map.Entry<String, ActorContainer> actorContainerPair : actors.entrySet()) {
-			
+
 			final String name = actorContainerPair.getKey();
 			final ActorContainer actor = actorContainerPair.getValue();
-			
+
 			final String host = actor.host;
 			final Class actorClass = actor.actorClass;
 			final Address addr = new Address("akka", "ReteNet", host, 2552);
 			final Deploy deploy = new Deploy(new RemoteScope(addr));
-			System.out.println("deploying " + actor + " to " + host);
+			logger.info("Deploying " + name + " to " + host);
 			// final ActorRef actor = system.actorOf(new Props(actorClass).withDeploy(deploy), name);
-			
+
 			// saving the reference for later use
-			actor.actorRef = getContext().actorOf(new Props(actorClass).withDeploy(deploy), name);			
-		}		
+			actor.actorRef = getContext().actorOf(new Props(actorClass).withDeploy(deploy), name);
+		}
 	}
 
 	private void configureActors() {
 		// telling the configuration object to each actor
-		for (final ActorContainer actor: actors.values()) {
+		for (final ActorContainer actor : actors.values()) {
 			actor.actorRef.tell(actor.configuration, null);
 		}
 	}
 
 	@Override
 	protected void configure(final ReteNodeConfiguration reteNodeConfiguration) {
-		// TODO Auto-generated method stub
-		// TODO refactor so this won't have to be here
-		
+		// do nothing
 	}
 
 }
