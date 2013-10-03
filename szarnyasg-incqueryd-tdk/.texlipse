@@ -1,8 +1,8 @@
 #TeXlipse project settings
-#Sun May 12 16:28:13 CEST 2013
+#Thu Oct 03 10:31:33 CEST 2013
 markTmpDer=true
 builderNum=2
-outputDir=
+outputDir=pdf/
 makeIndSty=
 bibrefDir=
 outputFormat=pdf
@@ -11,4 +11,4 @@ mainTexFile=szarnyasg-incqueryd-tdk.tex
 outputFile=szarnyasg-incqueryd-tdk.pdf
 langSpell=en
 markDer=true
-srcDir=
+srcDir=src/
