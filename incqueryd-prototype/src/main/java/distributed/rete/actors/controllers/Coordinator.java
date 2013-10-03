@@ -34,7 +34,7 @@ import distributed.rete.datastructure.TupleMask;
 public class Coordinator extends IncQueryDActor {
 
 	// constants
-	protected final int editCountTotal = 5;
+	protected final int editCountTotal = 50;
 
 	// variables
 	protected Map<String, ActorContainer> actors = new HashMap<>();
