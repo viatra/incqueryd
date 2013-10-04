@@ -6,8 +6,8 @@ import java.util.Collection;
 import akka.actor.ActorRef;
 import distributed.rete.actors.messages.NodeMessage;
 import distributed.rete.actors.messages.UpdateMessage;
+import distributed.rete.configuration.IncQueryDConfiguration;
 import distributed.rete.configuration.ProductionNodeConfiguration;
-import distributed.rete.configuration.ReteNodeConfiguration;
 import distributed.rete.datastructure.Tuple;
 
 /**
@@ -25,8 +25,8 @@ public class ProductionNode extends ReteActor {
 	public ProductionNode() {
 		super();
 	}
-
-	protected void configure(final ReteNodeConfiguration reteNodeConfiguration) {
+	
+	protected void configure(final IncQueryDConfiguration reteNodeConfiguration) {
 		final ProductionNodeConfiguration conf = (ProductionNodeConfiguration) reteNodeConfiguration; 
 		
 		this.coordinator = conf.coordinator;

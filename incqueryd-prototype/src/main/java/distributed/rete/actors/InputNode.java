@@ -19,7 +19,7 @@ import distributed.rete.actors.messages.NodeMessage;
 import distributed.rete.actors.messages.ReadyMessage;
 import distributed.rete.actors.messages.UpdateMessage;
 import distributed.rete.actors.messages.UpdateType;
-import distributed.rete.configuration.ReteNodeConfiguration;
+import distributed.rete.configuration.IncQueryDConfiguration;
 import distributed.rete.configuration.UniquenessEnforcerNodeConfiguration;
 import distributed.rete.database.DatabaseClient;
 import distributed.rete.database.DatabaseClientFactory;
@@ -48,7 +48,7 @@ public class InputNode extends ReteActor {
 		super();
 	}
 
-	protected void configure(final ReteNodeConfiguration reteNodeConfiguration) {
+	protected void configure(final IncQueryDConfiguration reteNodeConfiguration) {
 		final UniquenessEnforcerNodeConfiguration configuration = (UniquenessEnforcerNodeConfiguration) reteNodeConfiguration;
 
 		this.coordinator = configuration.coordinator;

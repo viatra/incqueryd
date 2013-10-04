@@ -22,9 +22,10 @@ import distributed.rete.actors.messages.CoordinatorMessage;
 import distributed.rete.actors.messages.EditMessage;
 import distributed.rete.actors.messages.NodeMessage;
 import distributed.rete.actors.messages.UpdateMessage;
+import distributed.rete.configuration.CoordinatorConfiguration;
+import distributed.rete.configuration.IncQueryDConfiguration;
 import distributed.rete.configuration.JoinNodeConfiguration;
 import distributed.rete.configuration.ProductionNodeConfiguration;
-import distributed.rete.configuration.ReteNodeConfiguration;
 import distributed.rete.configuration.UniquenessEnforcerNodeConfiguration;
 import distributed.rete.database.DatabaseClientType;
 import distributed.rete.datastructure.JoinSide;
@@ -42,10 +43,8 @@ public class Coordinator extends IncQueryDActor {
 	protected ActorContainer productionNode;
 	protected boolean edited = false;
 	protected int editCountRemaining = editCountTotal;
-
-	// constants
-	protected final DatabaseClientType type = DatabaseClientType.FOURSTORE;
-	protected final String filename = "/home/szarnyasg/hdd/models/owl/testBig_User_1";
+	protected DatabaseClientType databaseClientType;
+	protected String filename;
 
 	/**
 	 * Coordinator constructor. Instantiates the different actors.
@@ -54,11 +53,12 @@ public class Coordinator extends IncQueryDActor {
 		super();
 
 		coordinator = getSelf();
-		routeSensor();
 	}
 
 	@Override
 	public void onReceive(final Object message) throws Exception {
+		super.onReceive(message);
+
 		if (message == NodeMessage.INITIALIZED) {
 			initialized(getSender().path());
 		}
@@ -182,11 +182,11 @@ public class Coordinator extends IncQueryDActor {
 		final String antiJoinNodeName = "AntiJoinNode";
 		final String productionNodeName = "ProductionNode";
 
+		// final String ip = "127.0.0.1";
 		final String ip1 = "10.6.21.191";
 		final String ip2 = "10.6.21.193";
 		final String ip3 = "10.6.21.195";
 		final String ip4 = "10.6.21.197";
-		// final String ip = "127.0.0.1";
 
 		// putting actors to ActorContainers
 
@@ -210,28 +210,28 @@ public class Coordinator extends IncQueryDActor {
 		final String switchPosition_switchLabel = "SwitchPosition_switch";
 		final UniquenessEnforcerNodeConfiguration switchPosition_switchConf = new UniquenessEnforcerNodeConfiguration(
 				coordinator, actors.get(joinNode1Name).actorRef.path().toString(),
-				switchPosition_switchLabel, JoinSide.PRIMARY, type, filename);
+				switchPosition_switchLabel, JoinSide.PRIMARY, databaseClientType, filename);
 		actors.get(switchPosition_switchActorName).configuration = switchPosition_switchConf;
 
 		// UniquenessEnforcerNode: Route_switchPositionActor
 		final String route_switchPositionLabel = "Route_switchPosition";
 		final UniquenessEnforcerNodeConfiguration route_switchPositionConf = new UniquenessEnforcerNodeConfiguration(
 				coordinator, actors.get(joinNode1Name).actorRef.path().toString(),
-				route_switchPositionLabel, JoinSide.SECONDARY, type, filename);
+				route_switchPositionLabel, JoinSide.SECONDARY, databaseClientType, filename);
 		actors.get(route_switchPositionActorName).configuration = route_switchPositionConf;
 
 		// UniquenessEnforcerNode: TrackElement_sensorActor
 		final String trackElement_sensorLabel = "TrackElement_sensor";
 		final UniquenessEnforcerNodeConfiguration trackElement_sensorConf = new UniquenessEnforcerNodeConfiguration(
 				coordinator, actors.get(joinNode2Name).actorRef.path().toString(),
-				trackElement_sensorLabel, JoinSide.SECONDARY, type, filename);
+				trackElement_sensorLabel, JoinSide.SECONDARY, databaseClientType, filename);
 		actors.get(trackElement_sensorActorName).configuration = trackElement_sensorConf;
 
 		// UniquenessEnforcerNode: Route_routeDefinitionActor
 		final String route_routeDefinitionLabel = "Route_routeDefinition";
 		final UniquenessEnforcerNodeConfiguration route_routeDefinitionConf = new UniquenessEnforcerNodeConfiguration(
 				coordinator, actors.get(antiJoinNodeName).actorRef.path().toString(),
-				route_routeDefinitionLabel, JoinSide.SECONDARY, type, filename);
+				route_routeDefinitionLabel, JoinSide.SECONDARY, databaseClientType, filename);
 		actors.get(route_routeDefinitionActorName).configuration = route_routeDefinitionConf;
 
 		// JoinNode: JoinNode1
@@ -295,8 +295,13 @@ public class Coordinator extends IncQueryDActor {
 	}
 
 	@Override
-	protected void configure(final ReteNodeConfiguration reteNodeConfiguration) {
-		// do nothing
+	protected void configure(final IncQueryDConfiguration reteNodeConfiguration) {
+		final CoordinatorConfiguration conf = (CoordinatorConfiguration) reteNodeConfiguration;
+
+		this.filename = conf.filename;
+		this.databaseClientType = conf.databaseClientType;
+		
+		routeSensor();
 	}
 
 }

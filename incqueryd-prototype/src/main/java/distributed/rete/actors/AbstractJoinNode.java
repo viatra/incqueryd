@@ -6,8 +6,8 @@ import distributed.rete.actors.messages.NodeMessage;
 import distributed.rete.actors.messages.ReadyMessage;
 import distributed.rete.actors.messages.UpdateMessage;
 import distributed.rete.actors.messages.UpdateType;
+import distributed.rete.configuration.IncQueryDConfiguration;
 import distributed.rete.configuration.JoinNodeConfiguration;
-import distributed.rete.configuration.ReteNodeConfiguration;
 import distributed.rete.datastructure.JoinSide;
 import distributed.rete.datastructure.Tuple;
 
@@ -21,7 +21,7 @@ public abstract class AbstractJoinNode extends ReteActor {
 		super();
 	}
 
-	protected void configure(final ReteNodeConfiguration reteNodeConfiguration) {
+	protected void configure(final IncQueryDConfiguration reteNodeConfiguration) {
 		final JoinNodeConfiguration configuration = (JoinNodeConfiguration) reteNodeConfiguration;
 		
 		this.leftIndexer = new Indexer(configuration.leftMask);

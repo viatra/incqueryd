@@ -8,6 +8,7 @@ import akka.event.Logging;
 import akka.event.LoggingAdapter;
 import distributed.rete.actors.messages.ReadyMessage;
 import distributed.rete.actors.messages.UpdateMessage;
+import distributed.rete.configuration.IncQueryDConfiguration;
 import distributed.rete.configuration.ReteNodeConfiguration;
 
 public abstract class IncQueryDActor extends UntypedActor {
@@ -46,7 +47,7 @@ public abstract class IncQueryDActor extends UntypedActor {
 		}
 	}
 
-	protected abstract void configure(final ReteNodeConfiguration reteNodeConfiguration);
+	protected abstract void configure(final IncQueryDConfiguration reteNodeConfiguration);
 	
 	protected void unhandledMessage(final Object message) {
 		unhandled(message);

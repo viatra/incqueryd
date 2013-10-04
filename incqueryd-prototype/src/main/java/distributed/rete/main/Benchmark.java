@@ -9,6 +9,7 @@ import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
 import distributed.rete.actors.controllers.Coordinator;
+import distributed.rete.configuration.CoordinatorConfiguration;
 import distributed.rete.database.DatabaseClient;
 import distributed.rete.database.DatabaseClientFactory;
 import distributed.rete.database.DatabaseClientType;
@@ -21,14 +22,14 @@ import distributed.rete.database.DatabaseClientType;
  */
 public class Benchmark {
 
-	protected final DatabaseClientType type;
+	protected final DatabaseClientType databaseClientType;
 	protected final String filename;
 	protected final String databaseServerAddress = "localhost";
 	protected final boolean loadDatabase;
 	protected ActorSystem system;
 
 	public Benchmark(final DatabaseClientType type, final String filename, final boolean loadDatabase) {
-		this.type = type;
+		this.databaseClientType = type;
 		this.filename = filename;
 		this.loadDatabase = loadDatabase;
 	}
@@ -48,6 +49,9 @@ public class Benchmark {
 		// instantiating the Coordinator actor and let it do the work
 		final ActorRef coordinator = system.actorOf(new Props(Coordinator.class), "Coordinator");
 
+		final CoordinatorConfiguration conf = new CoordinatorConfiguration(databaseClientType, filename);
+		coordinator.tell(conf, null);
+
 		BenchmarkResult.INSTANCE.setReadTime();
 		BenchmarkResult.INSTANCE.startStopper();
 	}
@@ -55,7 +59,7 @@ public class Benchmark {
 	protected void loadDatabase() {
 		System.out.println("Connecting to server: " + databaseServerAddress + ", loading: " + filename);
 
-		final DatabaseClient client = DatabaseClientFactory.createDatabaseClient(type, databaseServerAddress, filename);
+		final DatabaseClient client = DatabaseClientFactory.createDatabaseClient(databaseClientType, databaseServerAddress, filename);
 		client.load();
 
 		System.out.println("Databased loaded.");
