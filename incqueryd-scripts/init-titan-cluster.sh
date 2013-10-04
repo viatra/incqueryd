@@ -1,14 +1,12 @@
 #!/bin/bash
 
-TITAN_HOME="~/titan-all-0.3.2"
-
 function download_and_deploy() {
 	url=$1
 	filename=$2
 
 	echo "Downloading and deploying: $filename to $servers"
 	if [ ! -f $filename ]; then
-#		wget $url
+		wget $url
 		for server in ${servers[*]}; do
 			echo "Copying $filename to $server"
 			scp $filename $server:
@@ -27,19 +25,13 @@ titan_url="http://s3.thinkaurelius.com/downloads/titan/titan-all-0.3.2.zip"
 titan_filename="titan-all-0.3.2.zip"
 
 # set these values for your cluster
-username=meres
-masters="10.6.23.91"
-slaves=("10.6.23.92" "10.6.23.93" "10.6.23.94")
-seeds="10.6.23.91"
-servers=("${masters[@]}" "${slaves[@]}")
-
 number_of_servers=${#servers[@]}
 wd=`pwd`
 
 cd ~
 
 # downloading Titan
-download_and_deploy $titan_url $titan_filename
+# download_and_deploy $titan_url $titan_filename
 
 # going back to the working directory (where the scripts are stored)
 cd $wd
@@ -78,4 +70,4 @@ for slave in ${slaves[*]}; do
 	run_titan $username $slave
 done
 
-#watch --interval 1 ~/apache-cassandra/bin/nodetool status
+watch --interval 1 ~/apache-cassandra/bin/nodetool status
