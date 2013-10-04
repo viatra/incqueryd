@@ -72,4 +72,5 @@ for slave in ${slaves[*]}; do
 	run_titan $username $slave
 done
 
+cd $wd
 watch --interval 1 ~/apache-cassandra/bin/nodetool status

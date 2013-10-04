@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TITAN_HOME=/home/meres/titan-all-0.3.2
+source cluster-data.sh
 
 function purge_directory() {
 	dir=$1
