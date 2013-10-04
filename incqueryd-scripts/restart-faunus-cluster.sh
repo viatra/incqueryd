@@ -2,7 +2,6 @@
 
 source cluster-data.sh
 
-
 wd=`pwd`
 
 echo Starting Titan cluster.

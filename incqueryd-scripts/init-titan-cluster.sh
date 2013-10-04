@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source cluster-data.sh
+
 function download_and_deploy() {
 	url=$1
 	filename=$2
@@ -28,7 +30,7 @@ titan_filename="titan-all-0.3.2.zip"
 number_of_servers=${#servers[@]}
 wd=`pwd`
 
-cd ~
+cd
 
 # downloading Titan
 # download_and_deploy $titan_url $titan_filename
