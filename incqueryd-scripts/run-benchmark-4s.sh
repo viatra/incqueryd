@@ -12,7 +12,7 @@
 AKKADIR=akka-2.1.4
 FOURSTORE_CLUSTER_NAME="incqueryd_cluster"
 
-max_size=8
+max_size=1
 size=1
 
 # $size <= $max_size
