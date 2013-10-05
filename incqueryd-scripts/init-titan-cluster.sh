@@ -48,14 +48,14 @@ echo
 # running synchronous scripts on all servers which waits for Titan to finish
 for ((i = 0; i < $number_of_servers; i++)); do
 	server=${servers[$i]}
-	echo "$server: setting up Titan."
+	echo "$server: Setting up Titan."
 	listen_address=$server
 	server_index=$i
 
 	line_number=$(($server_index + 1))
 	token=`$wd/token-generator.py $number_of_servers | sed $line_number"q;d"`
 
-	cat setup-titan-instance.sh | ssh ${username}@${server} bash -s - $token $seeds $listen_address
+	cat cluster-data.sh setup-titan-instance.sh | ssh ${username}@${server} bash -s - $token $listen_address
 	echo "$server: Titan set up."
 	echo
 done
@@ -73,4 +73,4 @@ for slave in ${slaves[*]}; do
 done
 
 cd $wd
-watch --interval 1 ~/apache-cassandra/bin/nodetool status
+#watch --interval 1 ~/apache-cassandra/bin/nodetool status

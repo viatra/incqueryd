@@ -12,18 +12,18 @@
 AKKADIR=akka-2.1.4
 FOURSTORE_CLUSTER_NAME="incqueryd_cluster"
 
-max_size=1
+max_size=2
 size=1
 
 # $size <= $max_size
 while [ $size -le $max_size ]
 do
-  echo `date` " " $tool " " $size
+  echo `date` " 4store " $size
   
   4s-cluster-stop $FOURSTORE_CLUSTER_NAME
   echo killing processes
-  4s-ssh-all "pkill -f akka"
-  4s-ssh-all "pkill -f incquery"
+  4s-ssh-all "pkill -f akk[a]"
+  4s-ssh-all "pkill -f incquer[y]"
   echo deleting 4store data directory
   4s-ssh-all "rm -rf /var/lib/4store/*"
 
