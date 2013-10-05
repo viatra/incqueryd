@@ -24,7 +24,7 @@ public class Benchmark {
 
 	protected final DatabaseClientType databaseClientType;
 	protected final String filename;
-	protected final String databaseServerAddress = "localhost";
+	protected final String databaseServerAddress = "vcl0";
 	protected final boolean loadDatabase;
 	protected ActorSystem system;
 

@@ -26,8 +26,8 @@ public class ProductionNode extends ReteActor {
 		super();
 	}
 	
-	protected void configure(final IncQueryDConfiguration reteNodeConfiguration) {
-		final ProductionNodeConfiguration conf = (ProductionNodeConfiguration) reteNodeConfiguration; 
+	protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
+		final ProductionNodeConfiguration conf = (ProductionNodeConfiguration) incQueryDConfiguration; 
 		
 		this.coordinator = conf.coordinator;
 		logger.info(actorString() + " telling INITIALIZED to " + coordinator);
@@ -50,10 +50,6 @@ public class ProductionNode extends ReteActor {
 		else if (message instanceof ProductionNodeConfiguration) {
 			final ProductionNodeConfiguration configuration = (ProductionNodeConfiguration) message;
 			configure(configuration);
-		}
-
-		else {
-			unhandledMessage(message);
 		}
 	}
 

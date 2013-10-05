@@ -11,7 +11,6 @@ g.makeType().name("TRACKELEMENT_SENSOR").makeEdgeLabel();
 g.makeType().name("TRACKELEMENT_CONNECTSTO").makeEdgeLabel();
 g.makeType().name("SWITCHPOSITION_SWITCH").makeEdgeLabel();
 
-//g.makeType().name("idx").dataType(Integer.class).unique(OUT).makePropertyKey();
 g.makeType().name("idx").dataType(Integer.class).indexed(Vertex.class).unique(OUT).makePropertyKey();
 g.makeType().name("name").dataType(String.class).unique(OUT).makePropertyKey();
 g.makeType().name("Segment_length").dataType(Integer.class).unique(OUT).makePropertyKey();

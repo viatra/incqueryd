@@ -8,11 +8,18 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
+
 import akka.actor.ActorPath;
 import akka.actor.Address;
 import akka.actor.Deploy;
 import akka.actor.Props;
 import akka.remote.RemoteScope;
+
+import com.thinkaurelius.faunus.tinkerpop.gremlin.FaunusGremlinScriptEngineFactory;
+import com.thinkaurelius.faunus.tinkerpop.gremlin.Imports;
+
 import distributed.rete.actors.ExistenceNode;
 import distributed.rete.actors.IncQueryDActor;
 import distributed.rete.actors.InputNode;
@@ -52,6 +59,16 @@ public class Coordinator extends IncQueryDActor {
 	public Coordinator() {
 		super();
 
+//		try {
+//			listHdfs();
+//			Thread.sleep(500);
+//		} catch (final InterruptedException e) {
+//			e.printStackTrace();
+//		} catch (final ScriptException e) {
+//			e.printStackTrace();
+//		}
+//		System.exit(0);
+		
 		coordinator = getSelf();
 	}
 
@@ -70,10 +87,6 @@ public class Coordinator extends IncQueryDActor {
 		else if (message instanceof UpdateMessage) {
 			final UpdateMessage u = (UpdateMessage) message;
 			processResult(u.getTuples());
-		}
-
-		else {
-			unhandledMessage(message);
 		}
 	}
 
@@ -295,13 +308,38 @@ public class Coordinator extends IncQueryDActor {
 	}
 
 	@Override
-	protected void configure(final IncQueryDConfiguration reteNodeConfiguration) {
-		final CoordinatorConfiguration conf = (CoordinatorConfiguration) reteNodeConfiguration;
+	protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
+		final CoordinatorConfiguration conf = (CoordinatorConfiguration) incQueryDConfiguration;
 
 		this.filename = conf.filename;
 		this.databaseClientType = conf.databaseClientType;
-		
+
+		// System.out.println("conf: " + filename + ", " + databaseClientType);
 		routeSensor();
+	}
+
+	public void listHdfs() throws ScriptException {
+		System.out.println("<listHdfs>");
+
+		// import everything the Gremlin shell does
+		String script = "";
+		for (final String importName : Imports.getImports()) {
+			script += "import " + importName + ";\n";
+		}
+		script += ""
+				+ "hdfs = FileSystem.get(new Configuration());\n"
+				+ "hdfs.ls();\n";
+
+		final FaunusGremlinScriptEngineFactory factory = new FaunusGremlinScriptEngineFactory();
+		final ScriptEngine engine = factory.getScriptEngine();
+
+		@SuppressWarnings("unchecked")
+		final ArrayList<String> files = (ArrayList<String>) engine.eval(script);
+
+		for (final String file : files) {
+			System.out.println(file);
+		}
+		System.out.println("</listHdfs>");
 	}
 
 }

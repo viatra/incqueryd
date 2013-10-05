@@ -36,7 +36,7 @@ public class TitanFaunusClient extends DatabaseClient {
 	public TitanFaunusClient(final String serverUrl, final String filename) {
 		super(serverUrl, filename);
 
-		FaunusGremlinScriptEngineFactory factory = new FaunusGremlinScriptEngineFactory();
+		final FaunusGremlinScriptEngineFactory factory = new FaunusGremlinScriptEngineFactory();
 		engine = factory.getScriptEngine();
 		this.hostname = serverUrl;
 	}
@@ -59,7 +59,7 @@ public class TitanFaunusClient extends DatabaseClient {
 			final String load = Utility.readFile(scriptPath, Charset.defaultCharset());
 			final FaunusPipeline pipe = (FaunusPipeline) engine.eval(load, bindings);
 			pipe.submit();
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -73,8 +73,9 @@ public class TitanFaunusClient extends DatabaseClient {
 		try {
 			final String load = Utility.readFile(scriptPath, Charset.defaultCharset());
 			engine.eval(load, bindings);
-		} catch (Exception e) {
+		} catch (final Exception e) {
 			System.out.println("Error during initialization.");
+			e.printStackTrace();
 		}
 
 		System.out.println("</initialize>");
@@ -85,7 +86,7 @@ public class TitanFaunusClient extends DatabaseClient {
 	}
 
 	@Override
-	public Iterable<?> retrieveNodes(String typeName) {
+	public Iterable<?> retrieveNodes(final String typeName) {
 		return null;
 	}
 
@@ -93,15 +94,15 @@ public class TitanFaunusClient extends DatabaseClient {
 		// Titan (and the property graph domain) uses uppercase edge labels
 		final String titanEdgeLabel = edgeLabel.toUpperCase();
 
-		Multimap<Object, Object> vertexPairs = ArrayListMultimap.create();
-		Path path = new Path(filename + extension);
-		Configuration conf = new Configuration();
+		final Multimap<Object, Object> vertexPairs = ArrayListMultimap.create();
+		final Path path = new Path(filename + extension);
+		final Configuration conf = new Configuration();
 		conf.setBoolean("fs.hdfs.impl.disable.cache", true);
 		FileSystem fs;
 		try {
 			fs = FileSystem.get(conf);
 
-			BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(path)));
+			final BufferedReader br = new BufferedReader(new InputStreamReader(fs.open(path)));
 
 			// process each line of the GraphSON file
 			String line = br.readLine();
@@ -112,7 +113,7 @@ public class TitanFaunusClient extends DatabaseClient {
 
 			br.close();
 			fs.close();
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			throw new DatabaseClientException("Error during edge collection.", e);
 		}
 
@@ -124,13 +125,13 @@ public class TitanFaunusClient extends DatabaseClient {
 	}
 
 	protected void processLine(final String line, final String edgeLabel, final Multimap<Object, Object> vertexPairs) throws IOException {
-		FaunusVertex v1 = FaunusGraphSONUtility.fromJSON(line);
-		Long v1Id = (Long) v1.getId();
+		final FaunusVertex v1 = FaunusGraphSONUtility.fromJSON(line);
+		final Long v1Id = (Long) v1.getId();
 
-		Iterable<Edge> edges = v1.getEdges(Direction.OUT, edgeLabel);
-		for (Edge edge : edges) {
-			Vertex v2 = edge.getVertex(Direction.IN);
-			Long v2Id = (Long) v2.getId();
+		final Iterable<Edge> edges = v1.getEdges(Direction.OUT, edgeLabel);
+		for (final Edge edge : edges) {
+			final Vertex v2 = edge.getVertex(Direction.IN);
+			final Long v2Id = (Long) v2.getId();
 			vertexPairs.put(v1Id, v2Id);
 		}
 	}
@@ -146,24 +147,41 @@ public class TitanFaunusClient extends DatabaseClient {
 		final Bindings bindings = engine.createBindings();
 		bindings.put("hostname", hostname);
 
+		// example from the testBig_User_1 model:
+		// g.V('idx', 4968).outE('ROUTE_SWITCHPOSITION').as('edge').inV.filter{it.idx == 5573}.back('edge').remove();
 		final String script = String.format(""
 				+ "conf = new BaseConfiguration();\n"
 				+ "conf.setProperty('storage.hostname', hostname);\n"
 				+ "conf.setProperty('storage.backend', 'cassandra');\n"
 				+ "g = TitanFactory.open(conf);\n"
-				+ "g.V('idx', %s).outE.as('edge').inV.filter{it.idx == %s}.back('edge').remove();\n" // TODO: utilise edgeLabel for faster deletion
+				+ "g.V('idx', %s).outE('%s').as('edge').inV.filter{it.idx == %s}.back('edge').remove();\n"
 				+ "g.stopTransaction(SUCCESS);\n",
-				sourceVertexId, destinationVertexId
+				sourceVertexId, titanEdgeLabel, destinationVertexId
 				);
 
 		Object result = null;
 		try {
 			result = engine.eval(script, bindings);
-		} catch (ScriptException e) {
+		} catch (final ScriptException e) {
 			e.printStackTrace();
 		}
 		System.out.println("result: " + result);
-
+		
+//		final String script2 = String.format(""
+//				+ "conf = new BaseConfiguration();\n"
+//				+ "conf.setProperty('storage.hostname', hostname);\n"
+//				+ "conf.setProperty('storage.backend', 'cassandra');\n"
+//				+ "g = TitanFactory.open(conf);\n"
+//				+ "g.E.count()");
+//
+//		Object result2 = null;
+//		try {
+//			result2 = engine.eval(script2, bindings);
+//		} catch (final ScriptException e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println("count: " + result2);
+				
 		System.out.println("</deleteEdges>");
 	}
 

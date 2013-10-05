@@ -48,14 +48,15 @@ public class InputNode extends ReteActor {
 		super();
 	}
 
-	protected void configure(final IncQueryDConfiguration reteNodeConfiguration) {
-		final UniquenessEnforcerNodeConfiguration configuration = (UniquenessEnforcerNodeConfiguration) reteNodeConfiguration;
+	protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
+		final UniquenessEnforcerNodeConfiguration configuration = (UniquenessEnforcerNodeConfiguration) incQueryDConfiguration;
 
 		this.coordinator = configuration.coordinator;
 		this.targetActorPath = configuration.targetActorPath;
 		this.joinSide = configuration.targetJoinSide;
 
-		databaseClient = DatabaseClientFactory.createDatabaseClient(configuration.databaseClientType, "localhost", configuration.filename);
+		//databaseClient = DatabaseClientFactory.createDatabaseClient(configuration.databaseClientType, "localhost", configuration.filename);
+		databaseClient = DatabaseClientFactory.createDatabaseClient(configuration.databaseClientType, "vcl0", configuration.filename);
 
 		try {
 			Multimap<Object, Object> vertexPairs;
@@ -83,7 +84,7 @@ public class InputNode extends ReteActor {
 
 	@Override
 	public void onReceive(final Object message) throws Exception {
-		// super.onReceive(message);
+//		super.onReceive(message);
 
 		if (message instanceof ReadyMessage) {
 			logger.info(actorString() + " ready message received.");
@@ -109,10 +110,6 @@ public class InputNode extends ReteActor {
 		else if (message instanceof UniquenessEnforcerNodeConfiguration) {
 			final UniquenessEnforcerNodeConfiguration configurationMessage = (UniquenessEnforcerNodeConfiguration) message;
 			configure(configurationMessage);
-		}
-
-		else {
-			unhandledMessage(message);
 		}
 	}
 

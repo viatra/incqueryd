@@ -21,8 +21,8 @@ public abstract class AbstractJoinNode extends ReteActor {
 		super();
 	}
 
-	protected void configure(final IncQueryDConfiguration reteNodeConfiguration) {
-		final JoinNodeConfiguration configuration = (JoinNodeConfiguration) reteNodeConfiguration;
+	protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
+		final JoinNodeConfiguration configuration = (JoinNodeConfiguration) incQueryDConfiguration;
 		
 		this.leftIndexer = new Indexer(configuration.leftMask);
 		this.rightIndexer = new Indexer(configuration.rightMask);
@@ -54,10 +54,6 @@ public abstract class AbstractJoinNode extends ReteActor {
 
 		else if (message instanceof ReadyMessage) {
 			logger.info(actorString() + " ReadyMessage received");
-		}
-
-		else {
-			unhandledMessage(message);
 		}
 	}
 
