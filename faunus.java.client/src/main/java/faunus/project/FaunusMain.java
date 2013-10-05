@@ -12,12 +12,12 @@ import com.thinkaurelius.faunus.tinkerpop.gremlin.FaunusGremlinScriptEngineFacto
  */
 
 public class FaunusMain {
-	public static void main(String[] args) throws Exception {
+	public static void main(final String[] args) throws Exception {
 
-		FaunusGremlinScriptEngineFactory factory = new FaunusGremlinScriptEngineFactory();
-		ScriptEngine engine = factory.getScriptEngine();
+		final FaunusGremlinScriptEngineFactory factory = new FaunusGremlinScriptEngineFactory();
+		final ScriptEngine engine = factory.getScriptEngine();
 
-		Worker worker = new Worker(engine);
+		final Worker worker = new Worker(engine);
 		
 		Timer.instance.startTimer();
 		
@@ -27,14 +27,14 @@ public class FaunusMain {
 		final String hostname = "localhost";
 		final String filename = "testBig_User_1.faunus-graphson";
 
-		worker.initialize(hostname);
-		Timer.instance.restartTimer();
+//		worker.initialize(hostname);
+//		Timer.instance.restartTimer();
 		
 //		worker.load(hostname, filename);
 //		Timer.instance.restartTimer();
 		
-		worker.listVertexPairsFromFile(filename);
-		Timer.instance.restartTimer();
+//		worker.listVertexPairsFromFile(filename);
+//		Timer.instance.restartTimer();
 		
 //		worker.listVertexPairs();
 //		Timer.instance.restartTimer();	
