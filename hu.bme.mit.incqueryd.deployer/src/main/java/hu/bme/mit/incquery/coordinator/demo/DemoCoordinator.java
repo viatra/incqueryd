@@ -38,9 +38,17 @@ public class DemoCoordinator {
 	 * http://wiki.eclipse.org/EMF/FAQ#I_want_to_use_EMF.2C_SDO.2C_or_XSD_in_my_standalone_project.2
 	 * C_or_include_only_a_working_subset_of_the_code._What_libraries_.28jar_files.29_do_I_need_in_my_CLASSPATH.3F
 	 * 
-	 * create runnable JAR from this project as follows: 1) test the project in your Eclipse, create a Java application
-	 * run configuration for it. 2) using Export | Runnable Jar, launch the export wizard 2a) select your run
-	 * configuration at the top 2b) select "package required libraries..." 3) profit :-)
+	 * create runnable JAR from this project as follows:
+	 * 
+	 * 1) test the project in your Eclipse, create a Java application run configuration for it.
+	 * 
+	 * 2) using Export | Runnable Jar, launch the export wizard
+	 * 
+	 * 2a) select your run configuration at the top
+	 * 
+	 * 2b) select "package required libraries..."
+	 * 
+	 * 3) profit :-)
 	 * 
 	 * The JARs in lib were created as follows: emf: copied from a fresh downloadable EMF runtime package, as per EMF
 	 * FAR instructions recipes and arch: export | deployable plug-ins and fragments
@@ -92,10 +100,11 @@ public class DemoCoordinator {
 				for (final ReteNodeRecipe r : rc.getRecipeNodes()) {
 					// System.out.println(r.getTraceInfo());
 
+					final String address = ips.get(r);
 					if (r instanceof BetaRecipe) {
 						System.out.println("- BetaRecipe");
-						System.out.println("# address: " + ips.get(r));
-						
+						System.out.println("# address: " + address);
+
 						if (r instanceof ExistenceJoinRecipe) {
 							final ExistenceJoinRecipe ejr = (ExistenceJoinRecipe) r;
 							System.out.println("  - ExistenceJoinRecipe: " + ejr);
@@ -109,7 +118,7 @@ public class DemoCoordinator {
 						final BetaRecipe br = (BetaRecipe) r;
 						final ReteNodeRecipe leftGrandParent = br.getLeftParent().getParent();
 						final ReteNodeRecipe rightGrandParent = br.getRightParent().getParent();
-						
+
 						final ReteNodeRecipe leftAncestor = getDistributedAncestor(leftGrandParent);
 						final ReteNodeRecipe rightAncestor = getDistributedAncestor(rightGrandParent);
 
@@ -128,13 +137,13 @@ public class DemoCoordinator {
 					if (r instanceof InputRecipe) {
 						final InputRecipe ir = (InputRecipe) r;
 						System.out.println("- InputRecipe: " + ir);
-						System.out.println("# address: " + ips.get(r));
+						System.out.println("# address: " + address);
 					}
 
-//					if (r instanceof TrimmerRecipe) {
-//						final TrimmerRecipe tr = (TrimmerRecipe) r;
-//						System.out.println("- TrimmerRecipe: " + tr);
-//					}
+					// if (r instanceof TrimmerRecipe) {
+					// final TrimmerRecipe tr = (TrimmerRecipe) r;
+					// System.out.println("- TrimmerRecipe: " + tr);
+					// }
 
 					// if (r instanceof UniquenessEnforcerRecipe) {
 					// final UniquenessEnforcerRecipe uer = (UniquenessEnforcerRecipe) r;
@@ -146,8 +155,15 @@ public class DemoCoordinator {
 					// }
 
 					if (r instanceof ProductionRecipe) {
-						final ProductionRecipe pr = (ProductionRecipe) r;
-						System.out.println("- ProductionRecipe: " + pr);
+
+						if (address != null) {
+							final ProductionRecipe pr = (ProductionRecipe) r;
+							System.out.println("- ProductionRecipe: " + pr);
+							System.out.println("# address: " + address);
+							final ReteNodeRecipe reteNodeRecipe = pr.getParents().get(0);
+							final TrimmerRecipe tr = (TrimmerRecipe) reteNodeRecipe;
+							System.out.println(tr.getParent());
+						}
 					}
 
 					System.out.println();
@@ -162,7 +178,7 @@ public class DemoCoordinator {
 			final ReteNodeRecipe ancestor = uer.getParents().get(0);
 			return getDistributedAncestor(ancestor);
 		}
-		
+
 		if (recipe instanceof ProductionRecipe) {
 			final ProductionRecipe pr = (ProductionRecipe) recipe;
 			final ReteNodeRecipe ancestor = pr.getParents().get(0);
@@ -174,7 +190,7 @@ public class DemoCoordinator {
 			final ReteNodeRecipe ancestor = tr.getParent();
 			return getDistributedAncestor(ancestor);
 		}
-		
+
 		return recipe;
 	}
 }
