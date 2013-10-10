@@ -1,0 +1,38 @@
+\newcommand{\myFigure}[2]{
+	\begin{figure}%[!ht]
+		\centering
+		\begin{adjustbox}{max size={\textwidth}{\textheight}}
+			\includegraphics[scale=1.0]{figures/#1}
+		\end{adjustbox}
+		\caption{#2} 
+		\label{fig:#1}
+	\end{figure}
+	\clearpage} % TODO remove clearpage
+	
+\newcommand{\myFigureSmall}[2]{
+	\begin{figure}[!ht]
+		\centering
+		\begin{adjustbox}{max size={0.6\textwidth}{\textheight}}
+			\includegraphics[scale=1.0]{figures/#1}
+		\end{adjustbox}
+		\caption{#2} 
+		\label{fig:#1}
+	\end{figure}}
+	
+\newcommand{\myFigureSide}[2]{\myFigureSideScalable{#1}{1.0}{#2}}
+
+\newcommand{\myFigureSideScalable}[3]{
+	\begin{wrapfigure}{R}{0.34\textwidth}
+	  \vspace{-20pt}
+	  \begin{center}
+		\begin{adjustbox}{max size={0.32\textwidth}{\textheight}}
+		  \includegraphics[scale=#2]{figures/#1}
+	    \end{adjustbox}
+	  \end{center}
+	  \vspace{-10pt}
+	  \caption{#3}
+	  \vspace{-5pt}
+	\end{wrapfigure}}	
+
+%\newcommand{\kiskep}[2]{
+	%\includegraphics[width=#2, keepaspectratio]{img/#1}}

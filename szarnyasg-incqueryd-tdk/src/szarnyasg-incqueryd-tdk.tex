@@ -42,6 +42,7 @@
 \usepackage{subcaption}
 \usepackage{todonotes}
 \usepackage{fourier} % changed Times to Fourier
+\usepackage{adjustbox}
 
 
 %--------------------------------------------------------------------------------------
@@ -251,13 +252,59 @@ aboveskip=10pt}
 \newcommand{\incqueryD}{\textsc{IncQuery-D}}
 \newcommand{\eiq}{\textsc{EMF-IncQuery}}
 \newcommand{\iqd}{\textsc{IncQuery-D}}
+\newcommand{\tb}{TrainBenchmark}
 
 \sloppy
+
+\include{commanddefinitions}
 
 %--------------------------------------------------------------------------------------
 % Main document content
 %--------------------------------------------------------------------------------------
 \begin{document}
+
+\myFigure{4s-cluster}{4store's distributed architecture \cite{4store}}
+\myFigure{akka-actor-path}{Determining an actor's path in Akka}
+\myFigure{akka-logo}{The logo of Akka}
+\myFigure{akka-remote-deployment}{Deploying a remote actor in Akka}
+%\myFigure{All_RouteSensor}{}
+\myFigure{benchmark_results}{}
+\myFigure{benchmark-scenario}{}
+%\myFigure{blueprints-logo}{}
+%\myFigure{cassandra-logo}{}
+\myFigure{cassandra-vnodes}{Cassandra's ring for data partitioning}
+%\myFigure{control-query}{}
+%\myFigure{distribBW}{}
+%\myFigure{garlik-logo}{}
+%\myFigure{gremlin-logo}{}
+\myFigure{hadoop-architecture}{Hadoop's architecture} 
+\myFigure{hdfs}{HDFS' architecture}
+\myFigure{incquery_architecture}{\eiq's architecture}
+\myFigure{incqueryd-architecture}{\iqd's architecture}
+\myFigure{neo4j-logo}{The logo of Neo4j}
+%\myFigure{neoclipse-graph}{}
+%\myFigure{OD_RouteSensor}{}
+%\myFigure{OD_SignalNeighbor}{}
+%\myFigure{OD_SwitchSensor}{}
+%\myFigure{patterndef}{}
+\myFigure{recipe}{The workflow of \eiq (blue) and \iqd (green)}
+%\myFigure{reteinternals}{}
+\myFigure{rete-routesensor-example-instances}{An instance model of the \tb's metamodel}
+\myFigure{rete-routesensor-example-rete}{The Rete net and the partial matches stored in its nodes}
+\myFigure{routesensor-distributed-layout}{The layout of the distributed Rete net}
+\myFigure{routesensor}{The \emph{RouteSensor} pattern}
+%\myFigure{tinkerpop}{}
+%\myFigure{tinkerpop-stack}{}
+\myFigure{titan-cassandra-mapping}{Titan graph vertex stored in Cassandra as a row}
+%\myFigure{titan-logo}{}
+\myFigure{titan-modes-distributed}{Using Titan with Cassandra in remote server mode}
+%\myFigure{titan-modes-embedded}{}
+%\myFigure{titan-modes-rexster}{}
+\myFigure{trainbenchmark-metamodel}{The EMF metamodel of the TrainBenchmark}
+%\myFigure{TrainMetamodel}{}
+
+\myFigure{incqueryd-tooling-tree-editor}{The editor in \iqd's tooling}
+\myFigure{incqueryd-tooling-yfiles-viewer}{The viewer in \iqd's tooling}
 
 \pagenumbering{arabic}
 \onehalfspacing
