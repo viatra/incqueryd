@@ -42,4 +42,5 @@ do
   ssh $user@$coordinator "scp $akkadir/deploy/$projectname.jar $user@$machine:$akkadir/deploy"
 done
 
-echo done
+echo Done.
+
