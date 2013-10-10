@@ -1,0 +1,104 @@
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: szarnyasg-incqueryd-tdk.aux
+A level-1 auxiliary file: title.aux
+A level-1 auxiliary file: declaration.aux
+A level-1 auxiliary file: abstract.aux
+A level-1 auxiliary file: chapter1.aux
+A level-1 auxiliary file: chapter2.aux
+A level-1 auxiliary file: chapter3.aux
+A level-1 auxiliary file: chapter4.aux
+A level-1 auxiliary file: chapter5.aux
+A level-1 auxiliary file: chapter6.aux
+The style file: plain.bst
+A level-1 auxiliary file: appendix.aux
+Database file #1: bibtex/bib.bib
+Warning--entry type for "Neoclipse" isn't style-file defined
+--line 115 of file bibtex/bib.bib
+Repeated entry---line 494 of file bibtex/bib.bib
+ : @misc{EMF
+ :          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 954 of file bibtex/bib.bib
+ : @incollection {models10
+ :                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1020 of file bibtex/bib.bib
+ : @article{cassandra
+ :                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1074 of file bibtex/bib.bib
+ : @book{hadoop
+ :             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1174 of file bibtex/bib.bib
+ : @misc{akka
+ :           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1274 of file bibtex/bib.bib
+ : @misc{4store
+ :             ,
+I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in EMF
+Warning--to sort, need author or key in openvirtuoso
+Warning--to sort, need author or key in sesame
+Warning--to sort, need author or key in incquery
+Warning--to sort, need author or key in NoSQL
+Warning--to sort, need author or key in Neoclipse
+Warning--to sort, need author or key in Tinkerpop
+Warning--to sort, need author or key in Blueprints
+Warning--to sort, need author or key in akka
+Warning--to sort, need author or key in guava
+Warning--to sort, need author or key in restbinding
+Warning--to sort, need author or key in Maven
+Warning--to sort, need author or key in Cassandra
+Warning--to sort, need author or key in hadoop
+Warning--to sort, need author or key in Woodstox
+Warning--to sort, need author or key in Titan
+Warning--to sort, need author or key in TitanRiseOfBigData
+Warning--to sort, need author or key in TitanCassandra
+Warning--to sort, need author or key in HBase
+Warning--to sort, need author or key in Rexster
+Warning--empty publisher in INSTANS2012
+You've used 37 entries,
+            2118 wiz_defined-function locations,
+            685 strings with 8460 characters,
+and the built_in function-call counts, 8167 in all, are:
+= -- 782
+> -- 243
+< -- 4
++ -- 109
+- -- 71
+* -- 431
+:= -- 1184
+add.period$ -- 95
+call.type$ -- 37
+change.case$ -- 144
+chr.to.int$ -- 0
+cite$ -- 58
+duplicate$ -- 336
+empty$ -- 885
+format.name$ -- 71
+if$ -- 1862
+int.to.chr$ -- 0
+int.to.str$ -- 37
+missing$ -- 10
+newline$ -- 168
+num.names$ -- 36
+pop$ -- 278
+preamble$ -- 1
+purify$ -- 107
+quote$ -- 0
+skip$ -- 284
+stack$ -- 0
+substring$ -- 278
+swap$ -- 59
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 148
+warning$ -- 21
+while$ -- 43
+width$ -- 39
+write$ -- 342
+(There were 6 error messages)
