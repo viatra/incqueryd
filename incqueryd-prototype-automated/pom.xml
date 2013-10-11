@@ -1,0 +1,135 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>incqueryd-prototype-automated</groupId>
+	<artifactId>incqueryd-prototype-automated</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>distributed.rete.main.ReteMain</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<properties>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>14.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-actor_2.10</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-remote_2.10</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-kernel_2.10</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.thinkaurelius.faunus</groupId>
+			<artifactId>faunus</artifactId>
+			<version>0.3.2</version>
+		</dependency>
+
+		<!-- IncQuery-D tooling dependencies -->
+
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd.arch_0.2.0.201310041243.jar</groupId>
+			<artifactId>hu.bme.mit.incqueryd.arch_0.2.0.201310041243.jar</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/hu.bme.mit.incqueryd.arch_0.2.0.201310041243.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.emf.common_2.9.1.v20130827-0309.jar</groupId>
+			<artifactId>org.eclipse.emf.common_2.9.1.v20130827-0309.jar</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/org.eclipse.emf.common_2.9.1.v20130827-0309.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.emf.ecore_2.9.1.v20130827-0309.jar</groupId>
+			<artifactId>org.eclipse.emf.ecore_2.9.1.v20130827-0309.jar</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/org.eclipse.emf.ecore_2.9.1.v20130827-0309.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.emf.ecore.change_2.9.0.v20130827-0309.jar</groupId>
+			<artifactId>org.eclipse.emf.ecore.change_2.9.0.v20130827-0309.jar</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/org.eclipse.emf.ecore.change_2.9.0.v20130827-0309.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.emf.ecore.xmi_2.9.1.v20130827-0309.jar</groupId>
+			<artifactId>org.eclipse.emf.ecore.xmi_2.9.1.v20130827-0309.jar</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/org.eclipse.emf.ecore.xmi_2.9.1.v20130827-0309.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.incquery.runtime.rete.recipes_0.1.0.201310041243.jar</groupId>
+			<artifactId>org.eclipse.incquery.runtime.rete.recipes_0.1.0.201310041243.jar</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/org.eclipse.incquery.runtime.rete.recipes_0.1.0.201310041243.jar</systemPath>
+		</dependency>
+
+	</dependencies>
+
+</project>

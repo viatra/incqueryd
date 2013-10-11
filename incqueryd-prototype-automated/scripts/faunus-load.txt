@@ -1,0 +1,8 @@
+hdfs = FileSystem.get(new Configuration());
+hdfs.ls();
+faunusConf = new Configuration();
+faunusConf.setStrings("faunus.graph.input.format", "com.thinkaurelius.faunus.formats.graphson.GraphSONInputFormat");
+faunusConf.setStrings("faunus.input.location", filename);
+faunusConf.setStrings("faunus.graph.output.titan.storage.hostname", hostname);
+g = FaunusFactory.open(loadProperties, faunusConf);
+g._;
