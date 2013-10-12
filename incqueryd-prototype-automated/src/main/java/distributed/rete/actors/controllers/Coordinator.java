@@ -269,6 +269,7 @@ public class Coordinator extends IncQueryDActor {
 
 		final Map<ReteNodeRecipe, String> names = new HashMap<>();
 		final Map<ReteNodeRecipe, ReteNodeRecipe> children = new HashMap<>();
+		final Map<ReteNodeRecipe, JoinSide> childrenSides = new HashMap<>();
 
 		// initialize extension to factory map
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
@@ -341,6 +342,7 @@ public class Coordinator extends IncQueryDActor {
 						}
 
 						final BetaRecipe br = (BetaRecipe) r;
+						
 						final ReteNodeRecipe leftGrandParent = br.getLeftParent().getParent();
 						final ReteNodeRecipe rightGrandParent = br.getRightParent().getParent();
 
@@ -348,9 +350,11 @@ public class Coordinator extends IncQueryDActor {
 						final ReteNodeRecipe rightAncestor = getDistributedAncestor(rightGrandParent);
 
 						children.put(leftAncestor, br);
+						childrenSides.put(leftAncestor, JoinSide.PRIMARY);
 						System.out.println("    LEFT> " + leftAncestor);
 						System.out.println("    # address: " + ips.get(leftAncestor));
 						children.put(rightAncestor, br);
+						childrenSides.put(rightAncestor, JoinSide.SECONDARY);
 						System.out.println("    RIGHT> " + rightAncestor);
 						System.out.println("    # address: " + ips.get(rightAncestor));
 					}
@@ -454,14 +458,21 @@ public class Coordinator extends IncQueryDActor {
 						// JoinNode: JoinNode1
 						final TupleMask leftMask = new TupleMask(leftMaskList, null); // [Sp], Sw
 						final TupleMask rightMask = new TupleMask(rightMaskList, null); // R, [Sp]
-						System.out.println(childName);
-						System.out.println(actors.get(childName));
-						System.out.println(actors.get(childName).actorRef);
-						System.out.println(actors.get(childName).actorRef.path().toString());
+						
+						System.out.println("left mask: " + leftMaskList);
+						System.out.println("right mask: " + rightMaskList);
+						
+						final JoinSide childJoinSide = childrenSides.get(r);
+						System.out.println("child name: " + childName + ", join side: " + childJoinSide);
+						
 						final JoinNodeConfiguration joinNodeConfiguration = new JoinNodeConfiguration(coordinator, leftMask, rightMask,
-								actors.get(childName).actorRef.path().toString(), JoinSide.PRIMARY);
+								actors.get(childName).actorRef.path().toString(), childJoinSide);
+						
+						
 						actors.get(name).configuration = joinNodeConfiguration;
-						System.out.println("----");
+						System.out.println("---");
+						
+						
 						//
 						// if (r instanceof ExistenceJoinRecipe) {
 						// final ExistenceJoinRecipe ejr = (ExistenceJoinRecipe) r;
@@ -480,14 +491,17 @@ public class Coordinator extends IncQueryDActor {
 					// Input recipes
 					if (r instanceof InputRecipe) {
 						final InputRecipe ir = (InputRecipe) r;
-
+						
 						final ReteNodeRecipe childRecipe = children.get(ir);
 						final String childName = names.get(childRecipe);
 
+						final JoinSide childJoinSide = childrenSides.get(r);
+						System.out.println("child name: " + childName + ", join side: " + childJoinSide);
+						
 						final String label = ir.getTypeIdentifier();
 						final UniquenessEnforcerNodeConfiguration config = new UniquenessEnforcerNodeConfiguration(
 								coordinator, actors.get(childName).actorRef.path().toString(),
-								label, JoinSide.PRIMARY, databaseClientType, filename);
+								label, childJoinSide, databaseClientType, filename);
 						final String actorName = names.get(ir);
 						actors.get(actorName).configuration = config;
 					}
@@ -501,7 +515,6 @@ public class Coordinator extends IncQueryDActor {
 							final ProductionNodeConfiguration productionNodeConfiguration = new ProductionNodeConfiguration(coordinator);
 							final String actorName = names.get(pr);
 							actors.get(actorName).configuration = productionNodeConfiguration;
-
 						}
 					}
 				}
@@ -509,6 +522,8 @@ public class Coordinator extends IncQueryDActor {
 
 			configureActors();
 			System.out.println("### configured");
+			
+			System.out.println(childrenSides);
 
 		}
 

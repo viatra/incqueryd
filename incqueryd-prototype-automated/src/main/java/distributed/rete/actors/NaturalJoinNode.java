@@ -36,51 +36,47 @@ public class NaturalJoinNode extends AbstractJoinNode {
 	 * @return
 	 */
 	@Override
-	protected UpdateMessage joinNewTuples(Collection<Tuple> newTuples, JoinSide joinSide, UpdateType updateType) {
+	protected UpdateMessage joinNewTuples(final Collection<Tuple> newTuples, final JoinSide joinSide, final UpdateType updateType) {
 		// int n = 0;
-
-		Indexer newTuplesIndexer = joinSide == JoinSide.PRIMARY ? leftIndexer : rightIndexer;
-		Indexer existingTuplesIndexer = joinSide == JoinSide.PRIMARY ? rightIndexer : leftIndexer;
+		
+		final Indexer newTuplesIndexer = joinSide == JoinSide.PRIMARY ? leftIndexer : rightIndexer;
+		final Indexer existingTuplesIndexer = joinSide == JoinSide.PRIMARY ? rightIndexer : leftIndexer;
 
 		// save the new tuples to the indexer's memory
 		newTuplesIndexer.add(newTuples);
 
-		// TODO: investigate why using a HashSet introduces an ugly heisenbug in
-		// the code
+		// TODO: investigate why using a HashSet introduces an ugly Heisenbug in the code
 		// Collection<Tuple> result = new HashSet<>();
-		List<Tuple> result = new ArrayList<>();
-		List<Integer> rightTupleMask = rightIndexer.getJoinMask().getMask();
+		final List<Tuple> result = new ArrayList<>();
+		final List<Integer> rightTupleMask = rightIndexer.getJoinMask().getMask();
 
-		// logger.info("[" + getSelf().path() + "] Join side is: " +
-		// joinSide);
-		// logger.info("[" + getSelf().path() + "] Tuples added: " +
-		// newTuples.size());
-		// logger.info("[" + getSelf().path() +
-		// "] NewTuplesIndexer size is " + newTuplesIndexer.getSize() +
-		// " mask is: "
-		// + newTuplesIndexer.getJoinMask().getMask() + ", hashCode is: " +
-		// newTuplesIndexer);
-		// logger.info("[" + getSelf().path() +
-		// "] ExistingTuplesIndexer size is " + existingTuplesIndexer.getSize()
-		// + " mask is: "
-		// + existingTuplesIndexer.getJoinMask().getMask() + ", hashCode is: " +
-		// existingTuplesIndexer);
-		// logger.info(existingTuplesIndexer.getMap());
+//		logger.info("[" + getSelf().path() + "] Join side is: " + joinSide);
+//		logger.info("[" + getSelf().path() + "] Tuples added: " + newTuples.size());
+//		logger.info("[" + getSelf().path() + "] NewTuplesIndexer size is " + newTuplesIndexer.getSize() + " mask is: "
+//				+ newTuplesIndexer.getJoinMask().getMask() + ", hashCode is: " + newTuplesIndexer);
+//		logger.info("[" + getSelf().path() + "] ExistingTuplesIndexer size is " + existingTuplesIndexer.getSize()
+//				+ " mask is: " + existingTuplesIndexer.getJoinMask().getMask() + ", hashCode is: " + existingTuplesIndexer);
+//		logger.info(existingTuplesIndexer.getMap().toString());
 
-		for (Tuple newTuple : newTuples) {
-			Tuple extractedTuple = newTuplesIndexer.getJoinMask().extract(newTuple);
-			Collection<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
+		System.out.println(actorString() + "&&&&&&&&&&&&&& NEW UPDATES ARRIVED " + joinSide + " " + updateType + " " + newTuples.size());
+		
+		for (final Tuple newTuple : newTuples) {
 
-			// logger.info(extractedTuple);
+
+			final Tuple extractedTuple = newTuplesIndexer.getJoinMask().extract(newTuple);
+			final Collection<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
+
+//			logger.info("new tuple: " + newTuple + ", extracted tuple is: " + extractedTuple);
+// 			logger.info(extractedTuple);
 
 			// for each matching tuple, create a result tuple
-			for (Tuple matchingTuple : matchingTuples) {
-				int size = newTuple.size() - extractedTuple.size() + matchingTuple.size();
-				Object[] resultTuple = new Object[size];
+			for (final Tuple matchingTuple : matchingTuples) {
+				final int size = newTuple.size() - extractedTuple.size() + matchingTuple.size();
+				final Object[] resultTuple = new Object[size];
 
 				// assemble the result tuple
-				Tuple leftTuple = joinSide == JoinSide.PRIMARY ? newTuple : matchingTuple;
-				Tuple rightTuple = joinSide == JoinSide.PRIMARY ? matchingTuple : newTuple;
+				final Tuple leftTuple = joinSide == JoinSide.PRIMARY ? newTuple : matchingTuple;
+				final Tuple rightTuple = joinSide == JoinSide.PRIMARY ? matchingTuple : newTuple;
 
 				// copy from the left tuple
 				for (int i = 0; i < leftTuple.size(); i++) {
@@ -96,14 +92,13 @@ public class NaturalJoinNode extends AbstractJoinNode {
 					}
 				}
 
-				Tuple tuple = new TupleImpl(resultTuple);
+				final Tuple tuple = new TupleImpl(resultTuple);
 				// logger.info(tuple);
 				result.add(tuple);
 				// n++;
 				// logger.info("n = " + n + ", result size = " +
 				// result.size());
 			}
-
 		}
 
 		UpdateMessage propagatedUpdateMessage = null;

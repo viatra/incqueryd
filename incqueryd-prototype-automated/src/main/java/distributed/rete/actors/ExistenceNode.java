@@ -65,11 +65,13 @@ public class ExistenceNode extends AbstractJoinNode {
 	}
 
 	@Override
-	protected UpdateMessage joinNewTuples(Collection<Tuple> newTuples, JoinSide joinSide, UpdateType updateType) {
+	protected UpdateMessage joinNewTuples(final Collection<Tuple> newTuples, final JoinSide joinSide, final UpdateType updateType) {
 		UpdateType propagatedUpdateType = null;
 
-		// determining the propagated update's type (see the Javadoc for the
-		// class)
+		logger.info("EXISTENCENODE >>>>>>>>>>>>>>>>>>>>>>>>> ");
+		logger.info(newTuples.size() + " tuples, " + joinSide + ", " + updateType);
+		
+		// determining the propagated update's type (see the Javadoc for the class)
 		// remark: important updates are not yet implemented
 		switch (updateType) {
 		case POSITIVE:
@@ -81,17 +83,17 @@ public class ExistenceNode extends AbstractJoinNode {
 		}
 
 		logger.info(actorString() + " JoinSide: " + joinSide);
-		Indexer newTuplesIndexer = joinSide == JoinSide.PRIMARY ? leftIndexer : rightIndexer;
-		Indexer existingTuplesIndexer = joinSide == JoinSide.PRIMARY ? rightIndexer : leftIndexer;
+		final Indexer newTuplesIndexer = joinSide == JoinSide.PRIMARY ? leftIndexer : rightIndexer;
+		final Indexer existingTuplesIndexer = joinSide == JoinSide.PRIMARY ? rightIndexer : leftIndexer;
 
-		List<Tuple> result = new ArrayList<>();
+		final List<Tuple> result = new ArrayList<>();
 
 		// save the new tuples to the indexer's memory
 		newTuplesIndexer.add(newTuples);
 
-		for (Tuple newTuple : newTuples) {
-			Tuple extractedTuple = newTuplesIndexer.getJoinMask().extract(newTuple);
-			Collection<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
+		for (final Tuple newTuple : newTuples) {
+			final Tuple extractedTuple = newTuplesIndexer.getJoinMask().extract(newTuple);
+			final Collection<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
 
 			// see the Javadoc for the class
 			switch (joinSide) {
@@ -102,7 +104,7 @@ public class ExistenceNode extends AbstractJoinNode {
 				break;
 			case SECONDARY:
 				if ((updateType == UpdateType.POSITIVE && !matchingTuples.isEmpty()) || (updateType == UpdateType.NEGATIVE && !matchingTuples.isEmpty())) {
-					for (Tuple tuple : matchingTuples) {
+					for (final Tuple tuple : matchingTuples) {
 						result.add(tuple);
 					}
 				}

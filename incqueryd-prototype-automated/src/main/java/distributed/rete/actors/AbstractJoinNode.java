@@ -60,9 +60,18 @@ public abstract class AbstractJoinNode extends ReteActor {
 	private void sendTuples(final UpdateMessage receivedJoinMessage, final UpdateType updateType, final Collection<Tuple> tuples) {
 		final UpdateMessage propagatedUpdateMessage = joinNewTuples(tuples, receivedJoinMessage.getJoinSide(), updateType);
 
+		
+		logger.info("**************************** sending tuples");
 		if (propagatedUpdateMessage != null) {
+//			logger.info("updatemessage");
+//			final Collection<Tuple> tuples2 = propagatedUpdateMessage.getTuples();
+//			for (final Tuple tuple : tuples2) {
+//				logger.info("--> " + tuple);
+//			}
+			
 			sendUpdateMessage(receivedJoinMessage.getSender(), propagatedUpdateMessage);
 		} else {
+			logger.info("updatemessage null");
 			// if there was nothing to send, we are immediately ready
 			readyImmediately(receivedJoinMessage);
 		}
