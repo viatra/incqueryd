@@ -27,12 +27,12 @@ public class Worker {
 		
 		// check 1
 		System.out.println();
-		System.out.println("Check 1");
+		System.out.println("Check 0");
 		final long count1 = client.check();
 		BenchmarkResult.INSTANCE.addCheckTime();
 		BenchmarkResult.INSTANCE.addInvalid(count1);
 		
-		for (int i = 0; i < runCount; i++) {
+		for (int i = 1; i < runCount; i++) {
 			// edit
 			System.out.println();
 			System.out.println("Edit");
@@ -42,7 +42,7 @@ public class Worker {
 	
 			// check 2
 			System.out.println();
-			System.out.println("Check 2");
+			System.out.println("Check " + (i+1));
 			final long count2 = client.check();
 			BenchmarkResult.INSTANCE.addCheckTime();
 			BenchmarkResult.INSTANCE.addInvalid(count2);
