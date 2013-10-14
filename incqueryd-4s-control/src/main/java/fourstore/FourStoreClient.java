@@ -89,7 +89,7 @@ public class FourStoreClient {
 		return count;
 	}
 
-	protected Multimap<Object, Object> collectEdges(final String edgeLabel) throws IOException {
+	protected Multimap<Object, Object> collectEdges(final String edgeLabel) throws IOException, InterruptedException {
 		final Multimap<Object, Object> vertexPairs = ArrayListMultimap.create();
 
 		final String query = String.format(
@@ -101,7 +101,8 @@ public class FourStoreClient {
 		final ProcessBuilder builder = new ProcessBuilder(command);
 		Process process = null;
 		process = builder.start();
-
+		process.waitFor();
+		
 		// hooking on the process' outputstream
 		final InputStream stdout = process.getInputStream();
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(stdout));
