@@ -60,11 +60,9 @@ To distribute the data across the cluster, Cassandra uses a partitioner mechanis
 
 Hadoop is an open-source, distributed data processing framework inspired by Google's publications about MapReduce \cite{Dean:2008:MSD:1327452.1327492} and the Google File System \cite{Ghemawat:2003:GFS:945445.945450}. Originally developed at Yahoo!, Hadoop is now an Apache project \cite{Hadoop}. Like Google's systems, Hadoop is designed to run on commodity hardware (i.e. server clusters built from commercial off-the-shelf products). Hadoop provides a distributed file system (HDFS) and a column family database (HBase). All software in the Hadoop framework is written in Java.
 
-The MapReduce paradigm provides parallel, asynchronous processing of data.  
+The MapReduce paradigm provides parallel, asynchronous processing of data. As the name implies, MapReduce consists of two phases: the \emph{map} function processes each item of a list. The resulted list, which is aggregated by the \emph{reduce} function.
 
-A typical small Hadoop cluster consists of a single master node which is responsible for the coordination of the cluster and worker nodes which deal with the data processing.
-
-\figref{hadoop-architecture}
+A typical small Hadoop cluster consists of a single master node which is responsible for the coordination of the cluster and worker nodes which deal with the data processing. The MapReduce is coordinated by the master's \emph{job tracker} and processed by the slave nodes' \emph{task tracker} modules (\figref{hadoop-architecture}).
 
 \myFigure{hadoop-architecture}{Hadoop's architecture}
 
@@ -116,29 +114,29 @@ Faunus has its own format called Faunus GraphSON. The Faunus GraphSON format is 
 
 \myFigure{faunus-logo}{The logo of Faunus}
 
-It's important to note that Faunus always traverses the whole graph and does not use its indices.
+It's important to note that Faunus always traverses the whole graph and does not use its indices. This makes it slow for retrieving nodes or edges by type (see our typical workload at XXX).
 
 \subsection{4store}
 
-4store is an open-source, distributed triplestore created by Garlik, Inc. \cite{4store}. Unlike the other tools discussed earlier, 4store is written in C. While 4store is primarily applied for semantic web projects, it's maturity and scalability made it an appropriate storage backend for \iqd's prototype.
+4store is an open-source, distributed triplestore created by Garlik \cite{4store}. Unlike the other tools discussed earlier, 4store is written in C. While 4store is primarily applied for semantic web projects, it's maturity and scalability made it an appropriate storage backend for \iqd's prototype.
 
-Similar to Titan's partitioning, 4store's sharding mechanism (called \emph{segmenting}) distributes the RDF resources evenly across the cluster. However, unlike Titan, 4store's data model is a semantic RDF graph. Hence, 4store's input format is RDF/OWL.  
+Similar to Titan's partitioning, 4store's sharding mechanism (called \emph{segmenting}) distributes the RDF resources evenly across the cluster. However, unlike Titan, 4store's data model is a semantic RDF graph. Hence, 4store's input format is RDF/OWL.
 
 \myFigure{4s-cluster}{4store's distributed architecture \cite{4store}}
 
 \section{Asynchronous messaging}
 
-parallel computation, asynchronous programming 
-
-message queue services
+Implementing a distributed, concurrent system requires a messaging framework. Because of the nature of the Rete algorithm (\ref{subsec:rete}) \iqd\ requires a distributed, asynchronous messaging framework.
 
 \subsection{Akka}
 
-fault-tolerant, distributed, asynchronous messaging
-
-\myFigure{akka-actor-path}{Determining an actor's path in Akka}
-
 \myFigure{akka-logo}{The logo of Akka}
+
+Akka is an open-source, fault-tolerant, distributed, asynchronous messaging framework developed by Typesafe \figref{akka-logo}. Akka is implemented in Scala, a functional and object-oriented programming language which runs on the Java Virtual Machine (JVM). Akka provides language bindings for both Java and Scala.
+
+%\myFigure{akka-actor-path}{Determining an actor's path in Akka}
+
+Akka provides strong support for remoting. Actors have both a logical and a physical path (\figref{akka-remote-deployment}). This way, they can be transparently moved between nodes of the cluster.
 
 \myFigure{akka-remote-deployment}{Deploying a remote actor in Akka}
 
@@ -150,13 +148,11 @@ Eclipse is a free, open-source software development environment and a platform f
 
 \subsection{EMF}
 
-Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Framework). 
-
-\subsection{Ecore}
-
-Ecore is EMF's metamodel for describing models. 
+Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Framework). EMF provides a metamodel (Ecore) for designing applications and a code generation facility to produce the Java classes for the model.
 
 \subsection{\eiq}
+
+\eiq is developed by the Fault Tolerant Systems Research Group (FTSRG) in the Budapest University of Technology and Economics. 
 
 \myFigure{incquery-architecture}{\eiq's architecture}
 

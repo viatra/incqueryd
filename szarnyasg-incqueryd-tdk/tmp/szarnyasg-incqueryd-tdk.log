@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.5.4)  14 OCT 2013 12:16
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.5.4)  14 OCT 2013 21:05
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -1387,7 +1387,7 @@ ABD: EveryShipout initializing macros
 \openout2 = `title.aux'.
 
  (./title.tex
-<figures/BME1782nagy.pdf, id=263, 709.571pt x 198.88303pt>
+<figures/BME1782nagy.pdf, id=259, 709.571pt x 198.88303pt>
 File: figures/BME1782nagy.pdf Graphic file (type pdf)
 
 <use figures/BME1782nagy.pdf>
@@ -1463,11 +1463,15 @@ T1/futs/m/n/12 -ben al-ka-lma-zott inkre-men-tális
 ] (./szarnyasg-incqueryd-tdk.toc [7
 
 
-] [8])
+]
+Underfull \vbox (badness 1888) has occurred while \output is active []
+
+ [8])
 \tf@toc=\write5
 \openout5 = `szarnyasg-incqueryd-tdk.toc'.
 
- [9]
+
+[9]
 \openout2 = `introduction.aux'.
 
  (./introduction.tex
@@ -1498,7 +1502,7 @@ LaTeX Font Info:    Font shape `U/futm/m/n' will be
 
 pdfTeX warning: /usr/bin/pdflatex (file ./figures/graph-data-models.pdf): PDF i
 nclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<figures/graph-data-models.pdf, id=380, 276.78107pt x 227.57523pt>
+<figures/graph-data-models.pdf, id=375, 276.78107pt x 227.57523pt>
 File: figures/graph-data-models.pdf Graphic file (type pdf)
 
 <use figures/graph-data-models.pdf>
@@ -1515,113 +1519,103 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 [12 <./figures/graph-data-models.pdf>]
-<figures/cassandra-logo.png, id=444, 361.35pt x 72.27pt>
+<figures/cassandra-logo.png, id=439, 361.35pt x 72.27pt>
 File: figures/cassandra-logo.png Graphic file (type png)
 
 <use figures/cassandra-logo.png>
 Package pdftex.def Info: figures/cassandra-logo.png used on input line 52.
 (pdftex.def)             Requested size: 361.34912pt x 72.2698pt.
-
-<figures/hadoop-architecture.png, id=450, 521.95pt x 405.515pt>
+ [13 <./figures/cassandra-logo.png>]
+<figures/hadoop-architecture.png, id=457, 521.95pt x 405.515pt>
 File: figures/hadoop-architecture.png Graphic file (type png)
 
 <use figures/hadoop-architecture.png>
-Package pdftex.def Info: figures/hadoop-architecture.png used on input line 69.
+Package pdftex.def Info: figures/hadoop-architecture.png used on input line 67.
 
 (pdftex.def)             Requested size: 521.94872pt x 405.51399pt.
- [13 <./figures/cassandra-logo.png>]
-<figures/hdfs.pdf, id=465, 755.07094pt x 333.49594pt>
+
+<figures/hdfs.pdf, id=460, 755.07094pt x 333.49594pt>
 File: figures/hdfs.pdf Graphic file (type pdf)
  <use figures/hdfs.pdf>
-Package pdftex.def Info: figures/hdfs.pdf used on input line 77.
+Package pdftex.def Info: figures/hdfs.pdf used on input line 75.
 (pdftex.def)             Requested size: 755.06909pt x 333.49512pt.
 
-Underfull \vbox (badness 2181) has occurred while \output is active []
-
- [14 <./figures/hadoop-architecture.png>]
-<figures/neo4j-logo.png, id=476, 451.6875pt x 171.64125pt>
+[14 <./figures/hadoop-architecture.png>]
+<figures/neo4j-logo.png, id=471, 451.6875pt x 171.64125pt>
 File: figures/neo4j-logo.png Graphic file (type png)
 
 <use figures/neo4j-logo.png>
-Package pdftex.def Info: figures/neo4j-logo.png used on input line 89.
+Package pdftex.def Info: figures/neo4j-logo.png used on input line 87.
 (pdftex.def)             Requested size: 451.68639pt x 171.64081pt.
  [15 <./figures/hdfs.pdf> <./figures/neo4j-logo.png (PNG copy)>] <figures/titan
--logo.png, id=497, 93.951pt x 182.1204pt>
+-logo.png, id=492, 93.951pt x 182.1204pt>
 File: figures/titan-logo.png Graphic file (type png)
 
 <use figures/titan-logo.png>
-Package pdftex.def Info: figures/titan-logo.png used on input line 95.
+Package pdftex.def Info: figures/titan-logo.png used on input line 93.
 (pdftex.def)             Requested size: 93.95078pt x 182.11995pt.
 
 
 pdfTeX warning: /usr/bin/pdflatex (file ./figures/titan-cassandra-mapping.pdf):
  PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<figures/titan-cassandra-mapping.pdf, id=499, 661.97441pt x 492.58357pt>
+<figures/titan-cassandra-mapping.pdf, id=494, 661.97441pt x 492.58357pt>
 File: figures/titan-cassandra-mapping.pdf Graphic file (type pdf)
 
 <use figures/titan-cassandra-mapping.pdf>
 Package pdftex.def Info: figures/titan-cassandra-mapping.pdf used on input line
- 103.
+ 101.
 (pdftex.def)             Requested size: 661.9728pt x 492.58237pt.
 
-<figures/titan-modes-distributed.png, id=501, 191.2746pt x 101.6598pt>
+<figures/titan-modes-distributed.png, id=496, 191.2746pt x 101.6598pt>
 File: figures/titan-modes-distributed.png Graphic file (type png)
 
 <use figures/titan-modes-distributed.png>
 Package pdftex.def Info: figures/titan-modes-distributed.png used on input line
- 109.
+ 107.
 (pdftex.def)             Requested size: 191.27411pt x 101.65955pt.
 
-<figures/faunus-logo.png, id=503, 84.315pt x 181.1568pt>
+<figures/faunus-logo.png, id=498, 84.315pt x 181.1568pt>
 File: figures/faunus-logo.png Graphic file (type png)
 
 <use figures/faunus-logo.png>
-Package pdftex.def Info: figures/faunus-logo.png used on input line 117.
+Package pdftex.def Info: figures/faunus-logo.png used on input line 115.
 (pdftex.def)             Requested size: 84.31477pt x 181.15634pt.
  [16 <./figures/titan-logo.png>] [17 <./figures/titan-cassandra-mapping.pdf> <.
 /figures/titan-modes-distributed.png>]
 
 pdfTeX warning: /usr/bin/pdflatex (file ./figures/4s-cluster.pdf): PDF inclusio
 n: found PDF version <1.6>, but at most version <1.5> allowed
-<figures/4s-cluster.pdf, id=542, 257.10553pt x 251.41127pt>
+<figures/4s-cluster.pdf, id=537, 257.10553pt x 251.41127pt>
 File: figures/4s-cluster.pdf Graphic file (type pdf)
 
 <use figures/4s-cluster.pdf>
-Package pdftex.def Info: figures/4s-cluster.pdf used on input line 127.
+Package pdftex.def Info: figures/4s-cluster.pdf used on input line 125.
 (pdftex.def)             Requested size: 257.1049pt x 251.41064pt.
 
-<figures/akka-actor-path.png, id=545, 903.375pt x 451.6875pt>
-File: figures/akka-actor-path.png Graphic file (type png)
-
-<use figures/akka-actor-path.png>
-Package pdftex.def Info: figures/akka-actor-path.png used on input line 139.
-(pdftex.def)             Requested size: 903.3728pt x 451.68639pt.
-
-<figures/akka-logo.png, id=546, 48.9027pt x 38.3031pt>
+<figures/akka-logo.png, id=541, 48.9027pt x 38.3031pt>
 File: figures/akka-logo.png Graphic file (type png)
 
 <use figures/akka-logo.png>
-Package pdftex.def Info: figures/akka-logo.png used on input line 141.
+Package pdftex.def Info: figures/akka-logo.png used on input line 133.
 (pdftex.def)             Requested size: 48.90256pt x 38.303pt.
-
-<figures/akka-remote-deployment.png, id=547, 770.88pt x 578.16pt>
+ [18 <./figures/faunus-logo.png>]
+<figures/akka-remote-deployment.png, id=551, 770.88pt x 578.16pt>
 File: figures/akka-remote-deployment.png Graphic file (type png)
 
 <use figures/akka-remote-deployment.png>
 Package pdftex.def Info: figures/akka-remote-deployment.png used on input line 
-143.
+141.
 (pdftex.def)             Requested size: 770.87813pt x 578.15858pt.
- [18 <./figures/faunus-logo.png>]
-[19 <./figures/4s-cluster.pdf> <./figures/akka-actor-path.png> <./figures/akka-
-logo.png>]
+ [19 <./figures/4s-cluster.pdf> <./figures/akka-logo.png>]
 LaTeX Font Info:    Font shape `T1/futs/bx/sc' in size <14.4> not available
-(Font)              Font shape `T1/futs/b/sc' tried instead on input line 159.
- <figures/incquery-architecture.png, id=607, 1445.4pt x 1084.05pt>
+(Font)              Font shape `T1/futs/b/sc' tried instead on input line 153.
+
+<figures/incquery-architecture.png, id=603, 1445.4pt x 1084.05pt>
 File: figures/incquery-architecture.png Graphic file (type png)
 
 <use figures/incquery-architecture.png>
 Package pdftex.def Info: figures/incquery-architecture.png used on input line 1
-61.
+57.
 (pdftex.def)             Requested size: 1445.39648pt x 1084.04736pt.
 ) [20 <./figures/akka-remote-deployment.png>] [21 <./figures/incquery-architect
 ure.png>]
@@ -1629,7 +1623,7 @@ ure.png>]
 
  (./overview.tex
 Chapter 3.
-<figures/trainbenchmark-metamodel.png, id=621, 778.00867pt x 271.0125pt>
+<figures/trainbenchmark-metamodel.png, id=616, 778.00867pt x 271.0125pt>
 File: figures/trainbenchmark-metamodel.png Graphic file (type png)
 
 <use figures/trainbenchmark-metamodel.png>
@@ -1637,27 +1631,27 @@ Package pdftex.def Info: figures/trainbenchmark-metamodel.png used on input lin
 e 5.
 (pdftex.def)             Requested size: 778.00676pt x 271.01183pt.
 
-<figures/routesensor.png, id=622, 425.33907pt x 168.63pt>
+<figures/routesensor.png, id=617, 425.33907pt x 168.63pt>
 File: figures/routesensor.png Graphic file (type png)
 
 <use figures/routesensor.png>
-Package pdftex.def Info: figures/routesensor.png used on input line 11.
+Package pdftex.def Info: figures/routesensor.png used on input line 12.
 (pdftex.def)             Requested size: 425.33801pt x 168.62958pt.
 
-<figures/incqueryd-architecture.pdf, id=623, 740.0147pt x 426.84468pt>
+<figures/incqueryd-architecture.pdf, id=618, 740.0147pt x 426.84468pt>
 File: figures/incqueryd-architecture.pdf Graphic file (type pdf)
 
 <use figures/incqueryd-architecture.pdf>
 Package pdftex.def Info: figures/incqueryd-architecture.pdf used on input line 
-15.
+16.
 (pdftex.def)             Requested size: 740.0129pt x 426.84364pt.
 
-<figures/rete-routesensor-example-instances.pdf, id=624, 536.0025pt x 439.6425p
+<figures/rete-routesensor-example-instances.pdf, id=619, 536.0025pt x 439.6425p
 t>
 File: figures/rete-routesensor-example-instances.pdf Graphic file (type pdf)
  <use figures/rete-routesensor-example-instances.pdf>
 Package pdftex.def Info: figures/rete-routesensor-example-instances.pdf used on
- input line 31.
+ input line 32.
 (pdftex.def)             Requested size: 536.00119pt x 439.64142pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1668,35 +1662,35 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  <./figures/trainbenchmark-metamodel.png>] [23 <./figures/routesensor.png> <./f
 igures/incqueryd-architecture.pdf>]
-<figures/rete-routesensor-example-rete.pdf, id=652, 807.015pt x 849.1725pt>
+<figures/rete-routesensor-example-rete.pdf, id=647, 807.015pt x 849.1725pt>
 File: figures/rete-routesensor-example-rete.pdf Graphic file (type pdf)
 
 <use figures/rete-routesensor-example-rete.pdf>
 Package pdftex.def Info: figures/rete-routesensor-example-rete.pdf used on inpu
-t line 33.
+t line 34.
 (pdftex.def)             Requested size: 807.01303pt x 849.17043pt.
 
-<figures/recipe.pdf, id=653, 539.01375pt x 520.94624pt>
+<figures/recipe.pdf, id=648, 539.01375pt x 520.94624pt>
 File: figures/recipe.pdf Graphic file (type pdf)
 
 <use figures/recipe.pdf>
-Package pdftex.def Info: figures/recipe.pdf used on input line 45.
+Package pdftex.def Info: figures/recipe.pdf used on input line 46.
 (pdftex.def)             Requested size: 539.01242pt x 520.94498pt.
 
-<figures/incqueryd-tooling-tree-editor.png, id=654, 1371.1225pt x 770.88pt>
+<figures/incqueryd-tooling-tree-editor.png, id=649, 1371.1225pt x 770.88pt>
 File: figures/incqueryd-tooling-tree-editor.png Graphic file (type png)
 
 <use figures/incqueryd-tooling-tree-editor.png>
 Package pdftex.def Info: figures/incqueryd-tooling-tree-editor.png used on inpu
-t line 71.
+t line 72.
 (pdftex.def)             Requested size: 1371.11916pt x 770.87813pt.
 
-<figures/incqueryd-tooling-yfiles-viewer.png, id=655, 1371.1225pt x 770.88pt>
+<figures/incqueryd-tooling-yfiles-viewer.png, id=650, 1371.1225pt x 770.88pt>
 File: figures/incqueryd-tooling-yfiles-viewer.png Graphic file (type png)
 
 <use figures/incqueryd-tooling-yfiles-viewer.png>
 Package pdftex.def Info: figures/incqueryd-tooling-yfiles-viewer.png used on in
-put line 73.
+put line 74.
 (pdftex.def)             Requested size: 1371.11916pt x 770.87813pt.
 )
 Overfull \vbox (357.4466pt too high) has occurred while \output is active []
@@ -1719,14 +1713,14 @@ Chapter 4.
 
  (./evaluation.tex
 Chapter 5.
-<figures/benchmark-scenario.pdf, id=751, 819.8128pt x 306.39468pt>
+<figures/benchmark-scenario.pdf, id=746, 819.8128pt x 306.39468pt>
 File: figures/benchmark-scenario.pdf Graphic file (type pdf)
 
 <use figures/benchmark-scenario.pdf>
 Package pdftex.def Info: figures/benchmark-scenario.pdf used on input line 5.
 (pdftex.def)             Requested size: 819.81079pt x 306.39394pt.
 
-<figures/routesensor-distributed-layout.pdf, id=752, 807.015pt x 549.55313pt>
+<figures/routesensor-distributed-layout.pdf, id=747, 807.015pt x 549.55313pt>
 File: figures/routesensor-distributed-layout.pdf Graphic file (type pdf)
 
 <use figures/routesensor-distributed-layout.pdf>
@@ -1791,14 +1785,14 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 296.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 296.
 Package rerunfilecheck Info: File `szarnyasg-incqueryd-tdk.out' has not changed
 .
-(rerunfilecheck)             Checksum: 01D797FDDBD04B54149F5A418CA7D75C;4229.
+(rerunfilecheck)             Checksum: 7B8D809A99707EABB7BD75300DFA18B8;4170.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 296.
  ) 
 Here is how much of TeX's memory you used:
- 20326 strings out of 493485
- 344977 string characters out of 3143527
- 425020 words of memory out of 3000000
- 22912 multiletter control sequences out of 15000+200000
+ 20318 strings out of 493485
+ 344772 string characters out of 3143527
+ 424999 words of memory out of 3000000
+ 22907 multiletter control sequences out of 15000+200000
  133054 words of font info for 113 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  63i,8n,78p,678b,519s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1817,10 +1811,10 @@ texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/adobe/utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 adobe/utopia/putri8a.pfb>
-Output written on szarnyasg-incqueryd-tdk.pdf (34 pages, 1336730 bytes).
+Output written on szarnyasg-incqueryd-tdk.pdf (34 pages, 1317476 bytes).
 PDF statistics:
- 882 PDF objects out of 1000 (max. 8388607)
- 741 compressed objects within 8 object streams
- 159 named destinations out of 1000 (max. 500000)
- 650 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 877 PDF objects out of 1000 (max. 8388607)
+ 738 compressed objects within 8 object streams
+ 157 named destinations out of 1000 (max. 500000)
+ 637 words of extra memory for PDF output out of 10000 (max. 10000000)
 
