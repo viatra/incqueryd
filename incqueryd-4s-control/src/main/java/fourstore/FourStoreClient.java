@@ -111,6 +111,7 @@ public class FourStoreClient {
 		final Pattern pattern = Pattern.compile("#(.*?)>");
 		String line;
 		while ((line = reader.readLine()) != null) {
+			System.out.println(line);
 			final Matcher matcher = pattern.matcher(line);
 
 			if (matcher.find()) {
