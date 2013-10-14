@@ -3,7 +3,7 @@
 
 % 1 hasab + 1 abra helyed van, helytakarekosan irj, keruld az itemize-okat
 
-We implemented \incqueryD{} as an initial prototype to evaluate the feasibility of the approach, and to experiment with various optimization possibilities. As the storage, we used the popular graph database Neo4j \cite{neo4j} featuring automatic indexes and two core query technologies (Gremlin and Cypher) that were used as a low-level model access interface by our middleware layer. % TODO middleware: blueprints, but custom implementation because\ldots
+We implemented \iqd{} as an initial prototype to evaluate the feasibility of the approach, and to experiment with various optimization possibilities. As the storage, we used the popular graph database Neo4j \cite{neo4j} featuring automatic indexes and two core query technologies (Gremlin and Cypher) that were used as a low-level model access interface by our middleware layer. % TODO middleware: blueprints, but custom implementation because\ldots
 The prototype of the distributed middleware and Rete network were implemented in Java using Akka~\cite{akka}, the Scala-based toolkit for building applications based on the Actor model, since it is well-suited for asynchronous applications. The communication protocol was built on top of Akka's built-in serialization support.
 
 
@@ -41,7 +41,7 @@ In order to measure the efficiency of model queries and manipulation operations 
 \label{benchmark_environment}
 \section{Evaluation aspects and benchmark environment}
 
-To compare the performance characteristics of \incqueryD{} to a traditional case, we defined two scenarios. The \textit{batch} scenario uses only Neo4j to manage models and evaluate the queries in a parallelized way (depicted as \textcircled{1} in \autoref{fig:architecture}). This serves as a baseline for the \textit{incremental} scenario, which uses \incqueryD{} (shown as \textcircled{2} in \autoref{fig:architecture}). For these initial experiments, the layout and allocation of the Rete network was determined manually. As the testbed, we deployed our system to a private cloud consisting of 4 virtual machines on separate host computers. Each virtual machine used dual 2.5 GHz Intel Xeon L5420 CPUs with 16 GBs of RAM, running on Ubuntu 12.10 64 bit with Neo4j 1.8 and Akka 2.1.2. More details are available at \url{http://incquery.net/publications/trainbenchmark}.
+To compare the performance characteristics of \iqd{} to a traditional case, we defined two scenarios. The \textit{batch} scenario uses only Neo4j to manage models and evaluate the queries in a parallelized way (depicted as \textcircled{1} in \autoref{fig:architecture}). This serves as a baseline for the \textit{incremental} scenario, which uses \iqd{} (shown as \textcircled{2} in \autoref{fig:architecture}). For these initial experiments, the layout and allocation of the Rete network was determined manually. As the testbed, we deployed our system to a private cloud consisting of 4 virtual machines on separate host computers. Each virtual machine used dual 2.5 GHz Intel Xeon L5420 CPUs with 16 GBs of RAM, running on Ubuntu 12.10 64 bit with Neo4j 1.8 and Akka 2.1.2. More details are available at \url{http://incquery.net/publications/trainbenchmark}.
 
 \begin{figure}
 \begin{center}
@@ -54,7 +54,7 @@ To compare the performance characteristics of \incqueryD{} to a traditional case
 \section{Results}
 \label{benchmark_results}\label{analysis}
 
-The measurement results of our experiments are shown in \autoref{fig:benchmark} (aggregated from several complete sets to filter transient effects). As expected, the $load$ phase take about the same time for both scenarios, and \incqueryD{} is about half an order of magnitude slower when evaluating the query at first (\textit{check 0} phase) due to the Rete construction overhead. However, \incqueryD{} is several orders of magnitude faster during the $edit_i - check_i$ cycles, making on-the-fly query (re)evaluation feasible even for models larger than 50 million elements. Once initialized, \incqueryD{} scales linearly, since query response times for growing models can be kept low by adding additional computers for hosting Rete nodes.
+The measurement results of our experiments are shown in \autoref{fig:benchmark} (aggregated from several complete sets to filter transient effects). As expected, the $load$ phase take about the same time for both scenarios, and \iqd{} is about half an order of magnitude slower when evaluating the query at first (\textit{check 0} phase) due to the Rete construction overhead. However, \iqd{} is several orders of magnitude faster during the $edit_i - check_i$ cycles, making on-the-fly query (re)evaluation feasible even for models larger than 50 million elements. Once initialized, \iqd{} scales linearly, since query response times for growing models can be kept low by adding additional computers for hosting Rete nodes.
 
 The Rete implementation is based on the Rete algorithm, originally created by Charles Forgy \cite{Forgy} and improved by Gábor Bergmann \cite{BergmannRete}.
 

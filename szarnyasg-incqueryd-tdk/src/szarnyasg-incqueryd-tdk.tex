@@ -22,7 +22,7 @@
 \usepackage{enumerate}
 \usepackage[thmmarks]{ntheorem}
 \usepackage{graphicx}
-\usepackage{epsfig}
+%\usepackage{epsfig}
 \usepackage{listings}
 \usepackage{color} 
 \usepackage{lastpage}
@@ -110,7 +110,7 @@
 }
 
 
-\newcommand{\figref}[1]{Figure~\autoref{fig:#1}}                      
+\newcommand{\figref}[1]{\autoref{fig:#1}}                      
 \newcommand{\secref}[1]{section~\ref{sect#1}}
 % section reference \newcommand{\code}[1]{{\upshape\ttfamily\scriptsize\indent #1}} % formatted code
 \newcommand{\code}[1]{{\small \texttt{#1}}} % formatted code
@@ -119,8 +119,8 @@
 % Constant strings
 %--------------------------------------------------------------------------------------
 \newcommand{\pauthor}{G\'abor Sz\'arnyas}
-\newcommand{\psvisor}{Dr.~Istv\'an R\'ath, Dr.~D\'aniel Varr\'o}
-\newcommand{\ptitle}{Superscalable modeling}
+\newcommand{\psvisor}{Dr.~Istv\'an R\'ath, Benedek Izs\'o, Dr.~D\'aniel Varr\'o}
+\newcommand{\ptitle}{Incremental graph queries in the cloud}
 \newcommand{\pdep}{Department of Measurement and Information Systems}
 \newcommand{\ptype}{Scientific Students' Associations Report}
 \newcommand{\ptool}{Dependency Analysis Tool}
@@ -161,7 +161,7 @@
 \sectionfont{\large\upshape\bfseries}
 \setcounter{secnumdepth}{2}
 \singlespacing{}
-\frenchspacing{}
+%\frenchspacing{}
 %\setlist[description]{leftmargin=0em}                      % remove indent from descriptions
 \setitemize{noitemsep,topsep=0pt,parsep=0pt,partopsep=0pt}  % compact list
 
@@ -248,64 +248,20 @@ aboveskip=10pt}
 
 \newcommand{\tss}{\textsuperscript}
 
-\newcommand{\incquery}{\textsc{EMF-IncQuery}}
-\newcommand{\incqueryD}{\textsc{IncQuery-D}}
 \newcommand{\eiq}{\textsc{EMF-IncQuery}}
 \newcommand{\iqd}{\textsc{IncQuery-D}}
+%\newcommand{\eiq}{EMF-IncQuery}
+%\newcommand{\iqd}{IncQuery-D}
 \newcommand{\tb}{TrainBenchmark}
 
 \sloppy
 
-\include{commanddefinitions}
+\include{command-definitions}
 
 %--------------------------------------------------------------------------------------
 % Main document content
 %--------------------------------------------------------------------------------------
 \begin{document}
-
-\myFigure{4s-cluster}{4store's distributed architecture \cite{4store}}
-\myFigure{akka-actor-path}{Determining an actor's path in Akka}
-\myFigure{akka-logo}{The logo of Akka}
-\myFigure{akka-remote-deployment}{Deploying a remote actor in Akka}
-%\myFigure{All_RouteSensor}{}
-%\myFigure{benchmark_results}{}
-\myFigure{benchmark-scenario}{The benchmark scenario}
-%\myFigure{blueprints-logo}{}
-%\myFigure{cassandra-logo}{}
-\myFigure{cassandra-vnodes}{Cassandra's ring for data partitioning}
-%\myFigure{control-query}{}
-%\myFigure{distribBW}{}
-%\myFigure{garlik-logo}{}
-%\myFigure{gremlin-logo}{}
-\myFigure{hadoop-architecture}{Hadoop's architecture} 
-\myFigure{hdfs}{HDFS' architecture}
-\myFigure{incquery_architecture}{\eiq's architecture}
-\myFigure{incqueryd-architecture}{\iqd's architecture}
-\myFigure{neo4j-logo}{The logo of Neo4j}
-%\myFigure{neoclipse-graph}{}
-%\myFigure{OD_RouteSensor}{}
-%\myFigure{OD_SignalNeighbor}{}
-%\myFigure{OD_SwitchSensor}{}
-%\myFigure{patterndef}{}
-\myFigure{recipe}{The workflow of \eiq (blue) and \iqd (green)}
-%\myFigure{reteinternals}{}
-\myFigure{rete-routesensor-example-instances}{An instance model of the \tb's metamodel}
-\myFigure{rete-routesensor-example-rete}{The Rete net and the partial matches stored in its nodes}
-\myFigure{routesensor-distributed-layout}{The layout of the distributed Rete net}
-\myFigure{routesensor}{The \emph{RouteSensor} pattern}
-%\myFigure{tinkerpop}{}
-%\myFigure{tinkerpop-stack}{}
-\myFigure{titan-cassandra-mapping}{Titan graph vertex stored in Cassandra as a row}
-\myFigure{titan-logo}{The logo of Titan}
-\myFigure{faunus-logo}{The logo of Faunus}
-\myFigure{titan-modes-distributed}{Using Titan with Cassandra in remote server mode}
-%\myFigure{titan-modes-embedded}{}
-%\myFigure{titan-modes-rexster}{}
-\myFigure{trainbenchmark-metamodel}{The EMF metamodel of the TrainBenchmark}
-%\myFigure{TrainMetamodel}{}
-
-\myFigure{incqueryd-tooling-tree-editor}{The editor in \iqd's tooling}
-\myFigure{incqueryd-tooling-yfiles-viewer}{The viewer in \iqd's tooling}
 
 \pagenumbering{arabic}
 \onehalfspacing
@@ -315,16 +271,24 @@ aboveskip=10pt}
 \include{abstract}    % abstract hu + abstract en
 \tableofcontents      % toc
 
-\include{chapter1} 
-\include{chapter2}
-\include{chapter3}
-\include{chapter4}
-\include{chapter5}
-\include{chapter6}
+%\include{chapter1} 
+%\include{chapter2}
+%\include{chapter3}
+%\include{chapter4}
+%\include{chapter5}
+%\include{chapter6}
+
+\include{introduction}
+\include{background-technologies}
+\include{overview}
+\include{related-work}
+\include{evaluation}
+\include{conclusions}
 
 \addcontentsline{toc}{chapter}{Bibliography} % Add bibliography
 \bibliographystyle{plain}                    % use plain style
-\bibliography{bibtex/bib}             % include the entries
+
+\bibliography{bibtex/bib}                    % include the entries
 
 \include{appendix}
 

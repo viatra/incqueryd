@@ -1,0 +1,77 @@
+\chapter{Overview}
+
+\section{Case study: TrainBenchmark}
+
+\myFigure{trainbenchmark-metamodel}{The EMF metamodel of the TrainBenchmark}
+
+\section{Architecture overview (rules of key components)}
+
+\subsection{Rete in general}
+
+\myFigure{routesensor}{The \emph{RouteSensor} pattern}
+
+\subsection{IncQuery-D architecture}
+
+\myFigure{incqueryd-architecture}{\iqd's architecture}
+
+\section{Middleware}
+
+\subsection{Indexing}
+
+\subsection{Graph-like data manipulation}
+
+\subsection{Notification mechanisms}
+
+\section{Incremental queries, change propagation}
+
+\subsection{Rete}
+
+\subsubsection{Detailed Rete with an actual instance model}
+
+\myFigure{rete-routesensor-example-instances}{An instance model of the \tb's metamodel}
+
+\myFigure{rete-routesensor-example-rete}{The Rete net and the partial matches stored in its nodes}
+
+\subsection{Distribution}
+
+\subsubsection{Principles}
+
+\subsubsection{Practice (transparent framework: Akka)}
+
+\section{Deployment, configuration}
+
+\subsection{Tooling (reuse of \eiq)}
+
+\myFigure{recipe}{The workflow of \eiq\ (blue) and \iqd\ (green)}
+
+\subsection{Degrees of freedom}
+
+\subsubsection{Different database implementations}
+
+\subsection{Problem pieces}
+
+\subsubsection{Analyze the model and the query}
+
+\subsubsection{Build a Rete layout}
+
+\subsubsection{Allocate the Rete network in the cloud's nodes}
+
+\subsubsection{Bootstrap the system}
+
+\subsection{Implementation details}
+
+\subsubsection{IQPL, EMF model, P-System}
+
+\subsubsection{EMF-IncQuery's implementation}
+
+\subsubsection{Manual allocation}
+
+\subsubsection{Automatic bootstrapping and operation}
+
+\myFigure{incqueryd-tooling-tree-editor}{The editor in \iqd's tooling}
+
+\myFigure{incqueryd-tooling-yfiles-viewer}{The viewer in \iqd's tooling}
+
+
+\section{Elaboration of the example}
+

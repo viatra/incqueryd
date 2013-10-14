@@ -1,0 +1,156 @@
+\chapter{Background technologies}
+
+Implementing a scalable graph pattern matcher requires a wide range of technologies. Careful selection of the used technologies is critical to the project's success. For \iqd, we were looking for technologies that were designed with scalability in mind and have been deployed in large-scale distributed systems successfully. To avoid licensing issues and costs, we were looking for free and open-source solutions. 
+
+%scalable pattern matcher technology background
+%TODO Linux
+
+\section{Big Data and the NoSQL movement}
+
+Since the 1980s, database management systems based on the relational data model \cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling, etc. However, due to the strongly connected nature of their data model, relational databases often have scalability issues [citation].
+
+In the last decade, organizations often struggled to store and process the huge amounts of data they produced. This problem introduces a diverse palette of scientific and engineering challenges, often called \emph{Big Data} challenges. 
+
+Big Data challenges spawned dozens of new database management systems. Typically, these systems broke up with the strictness of the relational data model and utilized simpler, more scalable data models. These systems dropped support for SQL query language used in relational databases and hence were called \emph{NoSQL databases}\footnote{The community now mostly translates NoSQL as ''not only SQL''.} \cite{NoSQL}. During the development of \iqd's propotype, we experimented with numerous NoSQL databases.
+
+\section{Graph models}
+
+The graph is a well-known mathematical concept widely used in computer science. For our work, it's important to distinguish between the different graph data models.
+
+\myFigure{graph-data-models}{Different graph data models \cite{DBLP:journals/corr/abs-1006-2361}}
+
+\subsection{Graph databases}
+
+nosql movement's databases
+
+\subsubsection{Property graph data model}
+
+typical nosql data model
+
+\subsubsection{TinkerPop}
+
+property graph implementation
+
+\subsection{Triplestores}
+
+semantic technologies, different technological space
+
+\subsubsection{RDF data model}
+
+RDF, OWL
+
+\section{Technologies}
+
+summarize core technologies
+
+\subsection{Cassandra}
+
+background: facebook, now an apache project
+
+data model: column families instead of tables
+
+\myFigure{cassandra-logo}{The logo of Apache Cassandra}
+
+partitioner mechanism
+
+\myFigure{cassandra-vnodes}{Cassandra's ring for data partitioning}
+
+\subsection{Hadoop}
+
+parallel, asynchronous, MapReduce
+
+background: google, yahoo, now and apache project
+
+\myFigure{hadoop-architecture}{Hadoop's architecture} 
+
+\subsubsection{HDFS}
+
+HDFS is an open-source, distributed file system, written specifically for Hadoop \cite{Hadoop}. Unlike other distributed file systems (e.g. Lustre), which require expensive hardware components, HDFS was designed for commodity hardware.
+
+\figref{hdfs}
+
+\myFigure{hdfs}{HDFS' architecture}
+
+\subsubsection{HBase}
+
+HBase is an open-source, distributed column family database. It is developed as part of the Hadoop project and runs on top of HDFS. The tables in an HBase database can serve as the input and the output for MapReduce jobs run in Hadoop.
+
+\subsection{Neo4j}
+
+Neo4j, developed by Neo Technology, is the most popular NoSQL graph database. Neo4j implements TinkerPop's Blueprints property graph data model along with Gremlin. It also provides Cypher, a declarative query language for graph pattern matching. 
+
+Neo4j is one of the most mature NoSQL databases. It's well documented and provides ample tooling. However, it's scalability features are limited: instead of sharding, it only supports replication of data to create a highly available cluster. Of course, the scalability limitations are a hot topic in Neo4j's development. The company makes serious efforts to improve Neo4j's scalability in an ongoing project called Rassilon \cite{rassilon}.
+
+\myFigure{neo4j-logo}{The logo of Neo4j}
+
+\subsection{Titan}
+
+Titan (\figref{titan-logo}) is an open-source, distributed, scalable graph database from Aurelius, the creators of the TinkerPop framework. Unlike Neo4j, Titan is not a standalone database. Instead, it builds on top of existing NoSQL database technologies and leverages Hadoop's MapReduce capabilities. Titan supports various storage backends, including Cassandra and HBase.
+
+\myFigure{titan-logo}{The logo of Titan}
+
+\subsubsection{Mapping and sharding}
+
+To store the graph, Titan maps each vertex to a row of a column family (\figref{titan-cassandra-mapping}). The row stores the identifer and the properties of the vertex, along both the incoming and outgoing edges' identifiers, labels and properties.
+
+Titan uses the storage backend's partitioner (e.g. Cassandra's RandomPartitioner) to shard the data. A more sophisticated partitioning system that will allow for partitioning based on the graph's domain and its connectivity is under implementation, but not yet available.
+
+\myFigure{titan-cassandra-mapping}{Titan graph vertex stored in Cassandra as a row}
+
+\subsubsection{Deployment}
+
+Titan can be deployed in different ways according to the needs of the application. For \iqd's prototype, we used Titan in \textit{remote server mode} (\figref{titan-modes-distributed}). In this setup, Titan runs in the same JVM as the application and communicates with the Cassandra cluster on a low-level protocol (e.g. Thrift).
+
+\myFigure{titan-modes-distributed}{Using Titan with Cassandra in remote server mode}
+
+\subsubsection{Faunus}
+
+Although Titan was designed with scalability in mind, it's query engine does not work in a parallel fashion. Also, it's unable to cope with queries resulting in millions of graph elements. To address this shortcoming, Aurelius developed a Hadoop-based graph analytics engine, Faunus (\figref{faunus-logo}).
+
+Faunus has its own format called Faunus GraphSON. The Faunus GraphSON format is vertex-centric, meaning that each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process.
+
+\myFigure{faunus-logo}{The logo of Faunus}
+
+It's important to note that Faunus always traverses the whole graph and does not use its indices.
+
+\subsection{4store}
+
+4store is an open-source, distributed triplestore created by Garlik, Inc. \cite{4store}. Unlike the other tools discussed earlier, 4store is written in C. While 4store is primarily applied for semantic web projects, it's maturity and scalability made it an appropriate storage backend for \iqd's prototype.
+
+Similar to Titan's partitioning, 4store's sharding mechanism (called \emph{segmenting}) distributes the RDF resources evenly across the cluster. However, unlike Titan, 4store's data model is a semantic RDF graph. Hence, 4store's input format is RDF/OWL.  
+
+\myFigure{4s-cluster}{4store's distributed architecture \cite{4store}}
+
+\section{Asynchronous messaging}
+
+parallel computation, asynchronous programming 
+
+message queue services
+
+\subsection{Akka}
+
+fault-tolerant, distributed, asynchronous messaging
+
+\myFigure{akka-actor-path}{Determining an actor's path in Akka}
+
+\myFigure{akka-logo}{The logo of Akka}
+
+\myFigure{akka-remote-deployment}{Deploying a remote actor in Akka}
+
+\section{EMF-IncQuery}
+
+
+
+\myFigure{incquery-architecture}{\eiq's architecture}
+
+\subsection{Eclipse}
+
+Eclipse is a free, open-source software development environment and a platform for plug-in development. Members of the Eclipse Foundation include industry giants like IBM, Intel, Google and SAP.
+
+\subsection{EMF}
+
+Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Framework).
+
+\subsection{Ecore}
+
+?
