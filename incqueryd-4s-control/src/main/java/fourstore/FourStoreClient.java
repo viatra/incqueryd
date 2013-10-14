@@ -134,6 +134,8 @@ public class FourStoreClient {
 		// swift move: get the set of the routeAndSensorIds multimap and create an ArrayList from them
 		final ArrayList<Object> routeIds = new ArrayList<>(routeAndSensorIds.keys().elementSet());
 
+		System.out.println(routeIds);
+		
 		// randomly choosing some Routes to modify
 		final List<Object> routesToModify = new ArrayList<>();
 
