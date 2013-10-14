@@ -107,13 +107,13 @@ public class FourStoreClient {
 		final InputStream stdout = process.getInputStream();
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(stdout));
 
-		System.out.println("collecting edges");
+		//System.out.println("collecting edges");
 		
 		// collecting ids
 		final Pattern pattern = Pattern.compile("#(.*?)>");
 		String line;
 		while ((line = reader.readLine()) != null) {
-			System.out.println(line);
+			//System.out.println(line);
 			final Matcher matcher = pattern.matcher(line);
 
 			if (matcher.find()) {
