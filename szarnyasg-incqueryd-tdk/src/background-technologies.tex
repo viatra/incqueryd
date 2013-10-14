@@ -41,33 +41,38 @@ RDF, OWL
 
 \section{Technologies}
 
-summarize core technologies
+In the following section we summarize the core technologies used in \iqd's prototype implementation. We briefly introduce the goals of each technology, with particular emphasis on the scalability aspects.
 
 \subsection{Cassandra}
 
-background: facebook, now an apache project
+Cassandra (\figref{cassandra-logo}) is one of the most widely used NoSQL databases \cite{Cassandra}. Originally developed by Facebook \cite{Lakshman:2010:CDS:1773912.1773922}, Cassandra is now an open-source Apache project.
 
-data model: column families instead of tables
+Cassandra's data model is called \emph{column family}. A column family is similar to a table of a relational database: it consists of rows and columns. However, unlike in a relational database's table, the rows do not have to have the same fixed set of columns. Instead, each row can have a different set of columns. This makes the data structure more dynamic and avoids the plethora of problems associated with NULL values.
 
 \myFigure{cassandra-logo}{The logo of Apache Cassandra}
 
-partitioner mechanism
+To distribute the data across the cluster, Cassandra uses a partitioner mechanism. The simplest partitioners distribute the rows evenly based on their hash values. Currently, Cassandra provides \emph{RandomPartitioner} (MD5 hash) and \emph{Murmur3Partitioner} (Murmur3 hash).
 
-\myFigure{cassandra-vnodes}{Cassandra's ring for data partitioning}
+%TODO cover virtual nodes
+%\myFigure{cassandra-vnodes}{Cassandra's ring for data partitioning}
 
 \subsection{Hadoop}
 
-parallel, asynchronous, MapReduce
+Hadoop is an open-source, distributed data processing framework inspired by Google's publications about MapReduce \cite{Dean:2008:MSD:1327452.1327492} and the Google File System \cite{Ghemawat:2003:GFS:945445.945450}. Originally developed at Yahoo!, Hadoop is now an Apache project \cite{Hadoop}. Like Google's systems, Hadoop is designed to run on commodity hardware (i.e. server clusters built from commercial off-the-shelf products). Hadoop provides a distributed file system (HDFS) and a column family database (HBase). All software in the Hadoop framework is written in Java.
 
-background: google, yahoo, now and apache project
+The MapReduce paradigm provides parallel, asynchronous processing of data.  
 
-\myFigure{hadoop-architecture}{Hadoop's architecture} 
+A typical small Hadoop cluster consists of a single master node which is responsible for the coordination of the cluster and worker nodes which deal with the data processing.
+
+\figref{hadoop-architecture}
+
+\myFigure{hadoop-architecture}{Hadoop's architecture}
 
 \subsubsection{HDFS}
 
-HDFS is an open-source, distributed file system, written specifically for Hadoop \cite{Hadoop}. Unlike other distributed file systems (e.g. Lustre), which require expensive hardware components, HDFS was designed for commodity hardware.
+The Hadoop Distributed File System (HDFS) is an open-source, distributed file system, inspired by the Google File System and written specifically for Hadoop \cite{Hadoop}. Unlike other distributed file systems (e.g. Lustre), which require expensive hardware components, HDFS was designed for commodity hardware.
 
-\figref{hdfs}
+HDFS integrated with Hadoop's architecture (\figref{hdfs}). The \emph{NameNode} is responsible for storing the metadata of the files and the location of the replicas. The data is stored by the \emph{DataNode}s.
 
 \myFigure{hdfs}{HDFS' architecture}
 
@@ -137,20 +142,21 @@ fault-tolerant, distributed, asynchronous messaging
 
 \myFigure{akka-remote-deployment}{Deploying a remote actor in Akka}
 
-\section{EMF-IncQuery}
-
-
-
-\myFigure{incquery-architecture}{\eiq's architecture}
-
-\subsection{Eclipse}
+\section{Eclipse-based technologies}
 
 Eclipse is a free, open-source software development environment and a platform for plug-in development. Members of the Eclipse Foundation include industry giants like IBM, Intel, Google and SAP.
 
+\iqd's single workstation predecessor, \eiq\ is built around Eclipse-based technologies. To reap the benefits of a mutual code base, we design \iqd\ to use as much of \eiq's components as possible. In the following section, we introduce the Eclipse-based technologies most important for our work.  
+
 \subsection{EMF}
 
-Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Framework).
+Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Framework). 
 
 \subsection{Ecore}
 
-?
+Ecore is EMF's metamodel for describing models. 
+
+\subsection{\eiq}
+
+\myFigure{incquery-architecture}{\eiq's architecture}
+

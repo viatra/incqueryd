@@ -1,0 +1,65 @@
+This is BibTeX, Version 0.99d (TeX Live 2012/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: szarnyasg-incqueryd-tdk.aux
+A level-1 auxiliary file: title.aux
+A level-1 auxiliary file: declaration.aux
+A level-1 auxiliary file: abstract.aux
+A level-1 auxiliary file: introduction.aux
+A level-1 auxiliary file: background-technologies.aux
+A level-1 auxiliary file: overview.aux
+A level-1 auxiliary file: related-work.aux
+A level-1 auxiliary file: evaluation.aux
+A level-1 auxiliary file: conclusions.aux
+The style file: plain.bst
+A level-1 auxiliary file: appendix.aux
+Database file #1: bibtex/bib.bib
+Repeated entry---line 1286 of file bibtex/bib.bib
+ : @misc{4store
+ :             ,
+I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in NoSQL
+Warning--to sort, need author or key in Cassandra
+Warning--to sort, need author or key in Hadoop
+Warning--to sort, need author or key in rassilon
+You've used 10 entries,
+            2118 wiz_defined-function locations,
+            567 strings with 5565 characters,
+and the built_in function-call counts, 2635 in all, are:
+= -- 262
+> -- 86
+< -- 1
++ -- 38
+- -- 26
+* -- 173
+:= -- 403
+add.period$ -- 26
+call.type$ -- 10
+change.case$ -- 42
+chr.to.int$ -- 0
+cite$ -- 14
+duplicate$ -- 106
+empty$ -- 253
+format.name$ -- 26
+if$ -- 575
+int.to.chr$ -- 0
+int.to.str$ -- 10
+missing$ -- 6
+newline$ -- 48
+num.names$ -- 12
+pop$ -- 60
+preamble$ -- 1
+purify$ -- 33
+quote$ -- 0
+skip$ -- 83
+stack$ -- 0
+substring$ -- 145
+swap$ -- 18
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 40
+warning$ -- 4
+while$ -- 21
+width$ -- 12
+write$ -- 100
+(There was 1 error message)

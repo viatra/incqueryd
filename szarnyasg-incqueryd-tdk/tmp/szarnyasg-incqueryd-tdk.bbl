@@ -1,0 +1,51 @@
+\begin{thebibliography}{10}
+
+\bibitem{rassilon}
+\url{http://blog.neo4j.org/2013/01/2013-whats-coming-next-in-neo4j.html},
+  January 2013.
+
+\bibitem{Cassandra}
+{Apache Cassandra} website.
+\newblock \url{http://cassandra.apache.org/}, May 2013.
+
+\bibitem{Hadoop}
+{Apache Hadoop} website.
+\newblock \url{http://hadoop.apache.org/}, May 2013.
+
+\bibitem{NoSQL}
+{NoSQL Databases}.
+\newblock \url{http://nosql-database.org/}, May 2013.
+
+\bibitem{Codd:1970:RMD:362384.362685}
+E.~F. Codd.
+\newblock A relational model of data for large shared data banks.
+\newblock {\em Commun. ACM}, 13(6):377--387, June 1970.
+
+\bibitem{Dean:2008:MSD:1327452.1327492}
+Jeffrey Dean and Sanjay Ghemawat.
+\newblock Mapreduce: simplified data processing on large clusters.
+\newblock {\em Commun. ACM}, 51(1):107--113, January 2008.
+
+\bibitem{Ghemawat:2003:GFS:945445.945450}
+Sanjay Ghemawat, Howard Gobioff, and Shun-Tak Leung.
+\newblock The google file system.
+\newblock In {\em Proceedings of the nineteenth ACM symposium on Operating
+  systems principles}, SOSP '03, pages 29--43, New York, NY, USA, 2003. ACM.
+
+\bibitem{4store}
+S.~Harris, N.~Lamb, and N.~Shadbolt.
+\newblock {4store: The design and implementation of a clustered {RDF} store}.
+\newblock In {\em 5th International Workshop on Scalable Semantic Web Knowledge
+  Base Systems (SSWS2009)}, 2009.
+
+\bibitem{Lakshman:2010:CDS:1773912.1773922}
+Avinash Lakshman and Prashant Malik.
+\newblock Cassandra: a decentralized structured storage system.
+\newblock {\em SIGOPS Oper. Syst. Rev.}, 44(2):35--40, April 2010.
+
+\bibitem{DBLP:journals/corr/abs-1006-2361}
+Marko~A. Rodriguez and Peter Neubauer.
+\newblock Constructions from dots and lines.
+\newblock {\em CoRR}, abs/1006.2361, 2010.
+
+\end{thebibliography}

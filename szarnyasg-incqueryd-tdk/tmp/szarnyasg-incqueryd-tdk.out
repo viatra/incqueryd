@@ -1,0 +1,64 @@
+\BOOKMARK [0][-]{chapter*.1}{Abstract in Hungarian}{}% 1
+\BOOKMARK [0][-]{chapter*.2}{Abstract in English}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 3
+\BOOKMARK [1][-]{section.1.1}{Context}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.2}{Problem statement, requirements}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.3}{Objectives}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.4}{Contribution, added value}{chapter.1}% 7
+\BOOKMARK [1][-]{section.1.5}{Structure of the report}{chapter.1}% 8
+\BOOKMARK [0][-]{chapter.2}{Background technologies}{}% 9
+\BOOKMARK [1][-]{section.2.1}{Big Data and the NoSQL movement}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.2}{Graph models}{chapter.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.1}{Graph databases}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.2}{Triplestores}{section.2.2}% 13
+\BOOKMARK [1][-]{section.2.3}{Technologies}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.3.1}{Cassandra}{section.2.3}% 15
+\BOOKMARK [2][-]{subsection.2.3.2}{Hadoop}{section.2.3}% 16
+\BOOKMARK [2][-]{subsection.2.3.3}{Neo4j}{section.2.3}% 17
+\BOOKMARK [2][-]{subsection.2.3.4}{Titan}{section.2.3}% 18
+\BOOKMARK [2][-]{subsection.2.3.5}{4store}{section.2.3}% 19
+\BOOKMARK [1][-]{section.2.4}{Asynchronous messaging}{chapter.2}% 20
+\BOOKMARK [2][-]{subsection.2.4.1}{Akka}{section.2.4}% 21
+\BOOKMARK [1][-]{section.2.5}{Eclipse-based technologies}{chapter.2}% 22
+\BOOKMARK [2][-]{subsection.2.5.1}{EMF}{section.2.5}% 23
+\BOOKMARK [2][-]{subsection.2.5.2}{Ecore}{section.2.5}% 24
+\BOOKMARK [2][-]{subsection.2.5.3}{EMF-IncQuery}{section.2.5}% 25
+\BOOKMARK [0][-]{chapter.3}{Overview}{}% 26
+\BOOKMARK [1][-]{section.3.1}{Case study: TrainBenchmark}{chapter.3}% 27
+\BOOKMARK [1][-]{section.3.2}{Architecture overview \(rules of key components\)}{chapter.3}% 28
+\BOOKMARK [2][-]{subsection.3.2.1}{Rete in general}{section.3.2}% 29
+\BOOKMARK [2][-]{subsection.3.2.2}{IncQuery-D architecture}{section.3.2}% 30
+\BOOKMARK [1][-]{section.3.3}{Middleware}{chapter.3}% 31
+\BOOKMARK [2][-]{subsection.3.3.1}{Indexing}{section.3.3}% 32
+\BOOKMARK [2][-]{subsection.3.3.2}{Graph-like data manipulation}{section.3.3}% 33
+\BOOKMARK [2][-]{subsection.3.3.3}{Notification mechanisms}{section.3.3}% 34
+\BOOKMARK [1][-]{section.3.4}{Incremental queries, change propagation}{chapter.3}% 35
+\BOOKMARK [2][-]{subsection.3.4.1}{Rete}{section.3.4}% 36
+\BOOKMARK [2][-]{subsection.3.4.2}{Distribution}{section.3.4}% 37
+\BOOKMARK [1][-]{section.3.5}{Deployment, configuration}{chapter.3}% 38
+\BOOKMARK [2][-]{subsection.3.5.1}{Tooling \(reuse of EMF-IncQuery\)}{section.3.5}% 39
+\BOOKMARK [2][-]{subsection.3.5.2}{Degrees of freedom}{section.3.5}% 40
+\BOOKMARK [2][-]{subsection.3.5.3}{Problem pieces}{section.3.5}% 41
+\BOOKMARK [2][-]{subsection.3.5.4}{Implementation details}{section.3.5}% 42
+\BOOKMARK [1][-]{section.3.6}{Elaboration of the example}{chapter.3}% 43
+\BOOKMARK [0][-]{chapter.4}{Related work}{}% 44
+\BOOKMARK [0][-]{chapter.5}{Evaluation}{}% 45
+\BOOKMARK [1][-]{section.5.1}{Goals}{chapter.5}% 46
+\BOOKMARK [2][-]{subsection.5.1.1}{Measure the response time and the scalability}{section.5.1}% 47
+\BOOKMARK [2][-]{subsection.5.1.2}{Workload profile's difference from standard benchmarks}{section.5.1}% 48
+\BOOKMARK [1][-]{section.5.2}{Environment}{chapter.5}% 49
+\BOOKMARK [2][-]{subsection.5.2.1}{Benchmark setup}{section.5.2}% 50
+\BOOKMARK [2][-]{subsection.5.2.2}{Hardware, software ecosystem}{section.5.2}% 51
+\BOOKMARK [2][-]{subsection.5.2.3}{Benchmark methodology}{section.5.2}% 52
+\BOOKMARK [2][-]{subsection.5.2.4}{Data collection}{section.5.2}% 53
+\BOOKMARK [2][-]{subsection.5.2.5}{Data processing tools}{section.5.2}% 54
+\BOOKMARK [1][-]{section.5.3}{Results and analysis}{chapter.5}% 55
+\BOOKMARK [2][-]{subsection.5.3.1}{Threat to validity}{section.5.3}% 56
+\BOOKMARK [2][-]{subsection.5.3.2}{Conclusions}{section.5.3}% 57
+\BOOKMARK [0][-]{chapter.6}{Conclusions}{}% 58
+\BOOKMARK [1][-]{section.6.1}{Summary of contributions}{chapter.6}% 59
+\BOOKMARK [2][-]{subsection.6.1.1}{Own work}{section.6.1}% 60
+\BOOKMARK [1][-]{section.6.2}{Limitations}{chapter.6}% 61
+\BOOKMARK [1][-]{section.6.3}{Future directions}{chapter.6}% 62
+\BOOKMARK [0][-]{section.6.3}{Bibliography}{}% 63
+\BOOKMARK [0][-]{appendix.A}{Apx}{}% 64
