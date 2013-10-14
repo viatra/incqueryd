@@ -101,7 +101,7 @@ public class FourStoreClient {
 		final ProcessBuilder builder = new ProcessBuilder(command);
 		Process process = null;
 		process = builder.start();
-		process.waitFor();
+		//process.waitFor();
 		
 		// hooking on the process' outputstream
 		final InputStream stdout = process.getInputStream();
