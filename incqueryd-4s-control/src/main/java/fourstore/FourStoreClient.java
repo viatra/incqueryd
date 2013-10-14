@@ -123,6 +123,8 @@ public class FourStoreClient {
 			}
 		}
 
+		System.out.println("vertexPairs size: " + vertexPairs.size());
+		
 		return vertexPairs;
 	}
 
