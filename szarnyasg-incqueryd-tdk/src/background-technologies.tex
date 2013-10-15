@@ -19,25 +19,23 @@ The graph is a well-known mathematical concept widely used in computer science. 
 
 \myFigure{graph-data-models}{Different graph data models \cite{DBLP:journals/corr/abs-1006-2361}}
 
-\subsection{Graph databases}
+\subsection{Graph models}
 
-nosql movement's databases
+The most basic graph model is the \emph{simple graph}, formally defined as $G = (V, E)$. Simple graphs are sometimes referred as textbook-style graphs because they are an integral part of academic literature. Simple graph are useful for modeling homogeneous systems and have plenty of algorithms for processing.
 
-\subsubsection{Property graph data model}
-
-typical nosql data model
+Simple graphs can be extended in different ways (\figref{graph-data-models}). To describe the connections in more detail, we may add directionality to edges (\emph{directed graph}), allow loops and multiple edges (\emph{multi-graph}). To allow different connections, we may label the edges (\emph{labeled graph} or \emph{semantic graph}). \emph{RDF graph}s use URIs instead of labels, otherwise they have similar expressive power as labeled graphs. \emph{Property graph}s add even more possibilites by introducing properties. Each graph element, both vertices and edges can be described with a collection of properties. The properties are key--value pairs, e.g. $\mathit{type} = \mathrm{Person}$, $\mathit{name} = \mathrm{John}$, $\mathit{age} = 34$. Property graphs are powerful enough to describe Java objects or EMF instance models (see \ref{subsec:EMF}).
 
 \subsubsection{TinkerPop}
 
-property graph implementation
+The TinkerPop framework is an open-source software stack for graph storage and processing. TinkerPop includes Blueprints, a property graph model interface.  Blueprints is analogous to the relational databases' JDBC, but for graph databases. Most NoSQL graph databases implement the Blueprints interface, including Neo4j (see \ref{subsec:neo4j}), Titan (see \ref{subsec:titan}), Dex, InfiniteGraph and OrientDB.  
+
+Tinkerpop also introduces a graph query language, Gremlin. Gremlin is a domain specific language based on Groovy, a Java-like dynamic language which runs on the Java Virtual Machine. Unlike most query languages, Gremlin is an imperative language with a strong focus on graph traversals. Gremlin is also capable of analyzing and manipulating the graph.
 
 \subsection{Triplestores}
 
-semantic technologies, different technological space
+Triplestores are tailored to store and process triples efficiently. A triple is a data entity composed of a subject, a predicate and an object, e.g. ''John instanceof Person'', ''John is 34''. Triplestores are mostly used in semantic technology projects. Also, some triplestores are capable of \emph{reasoning}, i.e. inferring logical consequences from a set of facts or axioms. 
 
-\subsubsection{RDF data model}
-
-RDF, OWL
+Triplestores use the RDF (Resource Description Framework) data model. Although the RDF data model has less expressive power than the property graph, by introducing additional resources for each property, a property graph can be easily mapped to a RDF. Triplestores are usually queried via the RDF format's query language, SPARQL. 
 
 \section{Technologies}
 
@@ -79,6 +77,7 @@ HDFS integrated with Hadoop's architecture (\figref{hdfs}). The \emph{NameNode} 
 HBase is an open-source, distributed column family database. It is developed as part of the Hadoop project and runs on top of HDFS. The tables in an HBase database can serve as the input and the output for MapReduce jobs run in Hadoop.
 
 \subsection{Neo4j}
+\label{subsec:neo4j}
 
 Neo4j, developed by Neo Technology, is the most popular NoSQL graph database. Neo4j implements TinkerPop's Blueprints property graph data model along with Gremlin. It also provides Cypher, a declarative query language for graph pattern matching. 
 
@@ -87,6 +86,7 @@ Neo4j is one of the most mature NoSQL databases. It's well documented and provid
 \myFigure{neo4j-logo}{The logo of Neo4j}
 
 \subsection{Titan}
+\label{subsec:titan}
 
 Titan (\figref{titan-logo}) is an open-source, distributed, scalable graph database from Aurelius, the creators of the TinkerPop framework. Unlike Neo4j, Titan is not a standalone database. Instead, it builds on top of existing NoSQL database technologies and leverages Hadoop's MapReduce capabilities. Titan supports various storage backends, including Cassandra and HBase.
 
@@ -102,7 +102,7 @@ Titan uses the storage backend's partitioner (e.g. Cassandra's RandomPartitioner
 
 \subsubsection{Deployment}
 
-Titan can be deployed in different ways according to the needs of the application. For \iqd's prototype, we used Titan in \textit{remote server mode} (\figref{titan-modes-distributed}). In this setup, Titan runs in the same JVM as the application and communicates with the Cassandra cluster on a low-level protocol (e.g. Thrift).
+Titan can be deployed in different ways according to the needs of the application. For \iqd's prototype, we used Titan in \textit{remote server mode} (\figref{titan-modes-distributed}). In this setup, Titan runs in the same Java Virtual Machine as the application and communicates with the Cassandra cluster on a low-level protocol (e.g. Thrift).
 
 \myFigure{titan-modes-distributed}{Using Titan with Cassandra in remote server mode}
 
@@ -132,7 +132,7 @@ Implementing a distributed, concurrent system requires a messaging framework. Be
 
 \myFigure{akka-logo}{The logo of Akka}
 
-Akka is an open-source, fault-tolerant, distributed, asynchronous messaging framework developed by Typesafe \figref{akka-logo}. Akka is implemented in Scala, a functional and object-oriented programming language which runs on the Java Virtual Machine (JVM). Akka provides language bindings for both Java and Scala.
+Akka is an open-source, fault-tolerant, distributed, asynchronous messaging framework developed by Typesafe \figref{akka-logo}. Akka is implemented in Scala, a functional and object-oriented programming language which runs on the Java Virtual Machine. Akka provides language bindings for both Java and Scala.
 
 %\myFigure{akka-actor-path}{Determining an actor's path in Akka}
 
@@ -147,6 +147,7 @@ Eclipse is a free, open-source software development environment and a platform f
 \iqd's single workstation predecessor, \eiq\ is built around Eclipse-based technologies. To reap the benefits of a mutual code base, we design \iqd\ to use as much of \eiq's components as possible. In the following section, we introduce the Eclipse-based technologies most important for our work.  
 
 \subsection{EMF}
+\label{subsec:EMF}
 
 Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Framework). EMF provides a metamodel (Ecore) for designing applications and a code generation facility to produce the Java classes for the model.
 
