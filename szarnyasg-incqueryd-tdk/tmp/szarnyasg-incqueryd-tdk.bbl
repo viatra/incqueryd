@@ -12,6 +12,10 @@
 {Apache Hadoop} website.
 \newblock \url{http://hadoop.apache.org/}, May 2013.
 
+\bibitem{Lustre}
+Lustre.
+\newblock \url{http://lustre.org/}, October 2013.
+
 \bibitem{NoSQL}
 {NoSQL Databases}.
 \newblock \url{http://nosql-database.org/}, May 2013.
@@ -47,5 +51,12 @@ Avinash Lakshman and Prashant Malik.
 Marko~A. Rodriguez and Peter Neubauer.
 \newblock Constructions from dots and lines.
 \newblock {\em CoRR}, abs/1006.2361, 2010.
+
+\bibitem{Sakr13}
+{Sherif Sakr}.
+\newblock {Supply cloud-level data scalability with NoSQL databases}.
+\newblock
+  \url{http://www.ibm.com/developerworks/cloud/library/cl-nosqldatabase/index.html},
+  March 2013.
 
 \end{thebibliography}

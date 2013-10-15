@@ -1,39 +1,41 @@
 \chapter{Background technologies}
 
-Implementing a scalable graph pattern matcher requires a wide range of technologies. Careful selection of the used technologies is critical to the project's success. For \iqd, we were looking for technologies that were designed with scalability in mind and have been deployed in large-scale distributed systems successfully. To avoid licensing issues and costs, we were looking for free and open-source solutions. 
+Implementing a scalable graph pattern matcher requires a wide range of technologies. Careful selection of the technologies is critical to the project's success. For \iqd, we were looking for technologies that were designed with scalability in mind and have been deployed in large-scale distributed systems successfully. To avoid licensing issues and costs, our search criteria included that the technologies must be free and open-source solutions. 
 
 %scalable pattern matcher technology background
 %TODO Linux
 
 \section{Big Data and the NoSQL movement}
 
-Since the 1980s, database management systems based on the relational data model \cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling, etc. However, due to the strongly connected nature of their data model, relational databases often have scalability issues [citation].
+Since the 1980s, database management systems based on the relational data model \cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling and so on. However, due to the strongly connected nature of their data model, relational databases often have scalability issues \cite{Sakr13}. % TODO find a better citation
 
 In the last decade, organizations often struggled to store and process the huge amounts of data they produced. This problem introduces a diverse palette of scientific and engineering challenges, often called \emph{Big Data} challenges. 
 
-Big Data challenges spawned dozens of new database management systems. Typically, these systems broke up with the strictness of the relational data model and utilized simpler, more scalable data models. These systems dropped support for SQL query language used in relational databases and hence were called \emph{NoSQL databases}\footnote{The community now mostly translates NoSQL as ''not only SQL''.} \cite{NoSQL}. During the development of \iqd's propotype, we experimented with numerous NoSQL databases.
+Big Data challenges spawned dozens of new database management systems. Typically, these systems broke with the strictness of the relational data model and utilized simpler, more scalable data models. These systems dropped support for the SQL query language used in relational databases and hence were called \emph{NoSQL databases}\footnote{The community now mostly translates NoSQL as ''not only SQL''.} \cite{NoSQL}. During the development of \iqd's propotype, we experimented with numerous NoSQL databases.
 
 \section{Graph models}
 
-The graph is a well-known mathematical concept widely used in computer science. For our work, it's important to distinguish between the different graph data models.
+The graph is a well-known mathematical concept widely used in computer science. For our work, it's important to distinguish between different graph data models.
 
 \myFigure{graph-data-models}{Different graph data models \cite{DBLP:journals/corr/abs-1006-2361}}
 
 \subsection{Graph models}
 
-The most basic graph model is the \emph{simple graph}, formally defined as $G = (V, E)$. Simple graphs are sometimes referred as textbook-style graphs because they are an integral part of academic literature. Simple graph are useful for modeling homogeneous systems and have plenty of algorithms for processing.
+The most basic graph model is the \emph{simple graph}, formally defined as $G = (V, E)$, where $V$ is the set of vertices and $E \subseteq V \times V$ is the set of edges. Simple graphs are sometimes referred as textbook-style graphs because they are an integral part of academic literature. Simple graphs are useful for modeling homogeneous systems and have plenty of algorithms for processing.
 
-Simple graphs can be extended in different ways (\figref{graph-data-models}). To describe the connections in more detail, we may add directionality to edges (\emph{directed graph}), allow loops and multiple edges (\emph{multi-graph}). To allow different connections, we may label the edges (\emph{labeled graph} or \emph{semantic graph}). \emph{RDF graph}s use URIs instead of labels, otherwise they have similar expressive power as labeled graphs. \emph{Property graph}s add even more possibilites by introducing properties. Each graph element, both vertices and edges can be described with a collection of properties. The properties are key--value pairs, e.g. $\mathit{type} = \mathrm{Person}$, $\mathit{name} = \mathrm{John}$, $\mathit{age} = 34$. Property graphs are powerful enough to describe Java objects or EMF instance models (see \ref{subsec:EMF}).
+Simple graphs can be extended in several different ways (\figref{graph-data-models}). To describe the connections in more detail, we may add directionality to edges (\emph{directed graph}), allow loops and multiple edges (\emph{multi-graph}). To allow different connections, we may label the edges (\emph{labeled graph} or \emph{semantic graph}). \emph{RDF graph}s use URIs instead of labels, otherwise they have similar expressive power as labeled graphs. \emph{Property graph}s add even more possibilites by introducing properties. Each graph element, both vertices and edges can be described with a collection of properties. The properties are key--value pairs, e.g.\ %$\mathit{type} = \mathrm{Person}$, $\mathit{name} = \mathrm{John}$, $\mathit{age} = 34$.
+\texttt{type = 'Person'}, \texttt{name = 'John'}, \texttt{age = 34}. 
+Property graphs are powerful enough to describe Java objects or EMF instance models (see \ref{subsec:EMF}).
 
 \subsubsection{TinkerPop}
 
-The TinkerPop framework is an open-source software stack for graph storage and processing. TinkerPop includes Blueprints, a property graph model interface.  Blueprints is analogous to the relational databases' JDBC, but for graph databases. Most NoSQL graph databases implement the Blueprints interface, including Neo4j (see \ref{subsec:neo4j}), Titan (see \ref{subsec:titan}), Dex, InfiniteGraph and OrientDB.  
+The TinkerPop framework is an open-source software stack for graph storage and processing. TinkerPop includes Blueprints, a property graph model interface. Blueprints fulfills the same role for graph databases as JDBC does for relational databases. Most NoSQL graph databases implement the property graph interface provided by Blueprints, including Neo4j (see \ref{subsec:neo4j}), Titan (see \ref{subsec:titan}), Dex, InfiniteGraph and OrientDB.  
 
-Tinkerpop also introduces a graph query language, Gremlin. Gremlin is a domain specific language based on Groovy, a Java-like dynamic language which runs on the Java Virtual Machine. Unlike most query languages, Gremlin is an imperative language with a strong focus on graph traversals. Gremlin is also capable of analyzing and manipulating the graph.
+Tinkerpop also introduces a graph query language, Gremlin. Gremlin is a domain-specific language based on Groovy, a Java-like dynamic language which runs on the Java Virtual Machine. Unlike most query languages, Gremlin is an imperative language with a strong focus on graph traversals. Gremlin is also capable of analyzing and manipulating the graph.
 
 \subsection{Triplestores}
 
-Triplestores are tailored to store and process triples efficiently. A triple is a data entity composed of a subject, a predicate and an object, e.g. ''John instanceof Person'', ''John is 34''. Triplestores are mostly used in semantic technology projects. Also, some triplestores are capable of \emph{reasoning}, i.e. inferring logical consequences from a set of facts or axioms. 
+Triplestores are tailored to store and process triples efficiently. A triple is a data entity composed of a subject, a predicate and an object, e.g.\ ''John instanceof Person'', ''John is 34''. Triplestores are mostly used in semantic technology projects. Also, some triplestores are capable of \emph{reasoning}, i.e.\ inferring logical consequences from a set of facts or axioms. 
 
 Triplestores use the RDF (Resource Description Framework) data model. Although the RDF data model has less expressive power than the property graph, by introducing additional resources for each property, a property graph can be easily mapped to a RDF. Triplestores are usually queried via the RDF format's query language, SPARQL. 
 
@@ -51,24 +53,26 @@ Cassandra's data model is called \emph{column family}. A column family is simila
 
 To distribute the data across the cluster, Cassandra uses a partitioner mechanism. The simplest partitioners distribute the rows evenly based on their hash values. Currently, Cassandra provides \emph{RandomPartitioner} (MD5 hash) and \emph{Murmur3Partitioner} (Murmur3 hash).
 
+Cassandra has sophisticated fault-tolerance mechanism. It allows the application to balance between availability and consistency by allowing it to tune the consistency constraints. Cassandra is written in Java.
+
 %TODO cover virtual nodes
 %\myFigure{cassandra-vnodes}{Cassandra's ring for data partitioning}
 
 \subsection{Hadoop}
 
-Hadoop is an open-source, distributed data processing framework inspired by Google's publications about MapReduce \cite{Dean:2008:MSD:1327452.1327492} and the Google File System \cite{Ghemawat:2003:GFS:945445.945450}. Originally developed at Yahoo!, Hadoop is now an Apache project \cite{Hadoop}. Like Google's systems, Hadoop is designed to run on commodity hardware (i.e. server clusters built from commercial off-the-shelf products). Hadoop provides a distributed file system (HDFS) and a column family database (HBase). All software in the Hadoop framework is written in Java.
+Hadoop is an open-source, distributed data processing framework inspired by Google's publications about MapReduce \cite{Dean:2008:MSD:1327452.1327492} and the Google File System \cite{Ghemawat:2003:GFS:945445.945450}. Originally developed at Yahoo!, Hadoop is now an Apache project \cite{Hadoop}. Like Google's systems, Hadoop is designed to run on commodity hardware, i.e.\ server clusters built from commercial off-the-shelf products. Hadoop provides a distributed file system (HDFS) and a column family database (HBase). All software in the Hadoop framework is written in Java.
 
-The MapReduce paradigm provides parallel, asynchronous processing of data. As the name implies, MapReduce consists of two phases: the \emph{map} function processes each item of a list. The resulted list, which is aggregated by the \emph{reduce} function.
+The MapReduce paradigm defines a parallel, asynchronous way of processing the data. As the name implies, MapReduce consists of two phases: the \emph{map} function processes each item of a list. The resulted list is then aggregated by the \emph{reduce} function.
 
-A typical small Hadoop cluster consists of a single master node which is responsible for the coordination of the cluster and worker nodes which deal with the data processing. The MapReduce is coordinated by the master's \emph{job tracker} and processed by the slave nodes' \emph{task tracker} modules (\figref{hadoop-architecture}).
+A typical small Hadoop cluster consists of a single master node which is responsible for the coordination of the cluster and worker nodes which deal with the data processing. The MapReduce job is coordinated by the master's \emph{job tracker} and processed by the slave nodes' \emph{task tracker} modules (\figref{hadoop-architecture}).
 
 \myFigure{hadoop-architecture}{Hadoop's architecture}
 
 \subsubsection{HDFS}
 
-The Hadoop Distributed File System (HDFS) is an open-source, distributed file system, inspired by the Google File System and written specifically for Hadoop \cite{Hadoop}. Unlike other distributed file systems (e.g. Lustre), which require expensive hardware components, HDFS was designed for commodity hardware.
+The Hadoop Distributed File System (HDFS) is an open-source, distributed file system, inspired by the Google File System and written specifically for Hadoop \cite{Hadoop}. Unlike other distributed file systems (e.g.\ Lustre \cite{Lustre}), which require expensive hardware components, HDFS was designed to run on commodity hardware.
 
-HDFS integrated with Hadoop's architecture (\figref{hdfs}). The \emph{NameNode} is responsible for storing the metadata of the files and the location of the replicas. The data is stored by the \emph{DataNode}s.
+HDFS tightly integrates with Hadoop's architecture (\figref{hdfs}). The \emph{NameNode} is responsible for storing the metadata of the files and the location of the replicas. The data is stored by the \emph{DataNode}s.
 
 \myFigure{hdfs}{HDFS' architecture}
 
@@ -79,9 +83,9 @@ HBase is an open-source, distributed column family database. It is developed as 
 \subsection{Neo4j}
 \label{subsec:neo4j}
 
-Neo4j, developed by Neo Technology, is the most popular NoSQL graph database. Neo4j implements TinkerPop's Blueprints property graph data model along with Gremlin. It also provides Cypher, a declarative query language for graph pattern matching. 
+Neo4j (\figref{neo4j-logo}), developed by Neo Technology, is the most popular NoSQL graph database. Neo4j implements TinkerPop's Blueprints property graph data model along with Gremlin. It also provides Cypher, a declarative query language for graph pattern matching. 
 
-Neo4j is one of the most mature NoSQL databases. It's well documented and provides ample tooling. However, it's scalability features are limited: instead of sharding, it only supports replication of data to create a highly available cluster. Of course, the scalability limitations are a hot topic in Neo4j's development. The company makes serious efforts to improve Neo4j's scalability in an ongoing project called Rassilon \cite{rassilon}.
+Neo4j is one of the most mature NoSQL databases. It's well documented and provides ample tooling. However, it's scalability features are limited: instead of sharding, it only supports replication of data to create a highly available cluster. Of course, the scalability limitations are a hot topic in Neo4j's development. Neo4j's developers make serious efforts to improve Neo4j's scalability in an ongoing project called Rassilon \cite{rassilon}.
 
 \myFigure{neo4j-logo}{The logo of Neo4j}
 
@@ -96,13 +100,13 @@ Titan (\figref{titan-logo}) is an open-source, distributed, scalable graph datab
 
 To store the graph, Titan maps each vertex to a row of a column family (\figref{titan-cassandra-mapping}). The row stores the identifer and the properties of the vertex, along both the incoming and outgoing edges' identifiers, labels and properties.
 
-Titan uses the storage backend's partitioner (e.g. Cassandra's RandomPartitioner) to shard the data. A more sophisticated partitioning system that will allow for partitioning based on the graph's domain and its connectivity is under implementation, but not yet available.
+Titan uses the storage backend's partitioner (e.g.\ Cassandra's RandomPartitioner) to shard the data. A more sophisticated partitioning system that will allow for partitioning based on the graph's static and dynamic properties (its domain and connectivity, respectively) is under implementation, but not yet available.
 
 \myFigure{titan-cassandra-mapping}{Titan graph vertex stored in Cassandra as a row}
 
 \subsubsection{Deployment}
 
-Titan can be deployed in different ways according to the needs of the application. For \iqd's prototype, we used Titan in \textit{remote server mode} (\figref{titan-modes-distributed}). In this setup, Titan runs in the same Java Virtual Machine as the application and communicates with the Cassandra cluster on a low-level protocol (e.g. Thrift).
+Titan can be deployed in different ways according to the needs of the application. For \iqd's prototype, we used Titan in \textit{remote server mode} (\figref{titan-modes-distributed}). In this setup, Titan runs in the same Java Virtual Machine as the application and communicates with the Cassandra cluster on a low-level protocol (e.g.\ Thrift).
 
 \myFigure{titan-modes-distributed}{Using Titan with Cassandra in remote server mode}
 
@@ -110,7 +114,7 @@ Titan can be deployed in different ways according to the needs of the applicatio
 
 Although Titan was designed with scalability in mind, it's query engine does not work in a parallel fashion. Also, it's unable to cope with queries resulting in millions of graph elements. To address this shortcoming, Aurelius developed a Hadoop-based graph analytics engine, Faunus (\figref{faunus-logo}).
 
-Faunus has its own format called Faunus GraphSON. The Faunus GraphSON format is vertex-centric, meaning that each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process.
+Faunus has its own format called Faunus GraphSON. The Faunus GraphSON format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process.
 
 \myFigure{faunus-logo}{The logo of Faunus}
 
@@ -120,19 +124,19 @@ It's important to note that Faunus always traverses the whole graph and does not
 
 4store is an open-source, distributed triplestore created by Garlik \cite{4store}. Unlike the other tools discussed earlier, 4store is written in C. While 4store is primarily applied for semantic web projects, it's maturity and scalability made it an appropriate storage backend for \iqd's prototype.
 
-Similar to Titan's partitioning, 4store's sharding mechanism (called \emph{segmenting}) distributes the RDF resources evenly across the cluster. However, unlike Titan, 4store's data model is a semantic RDF graph. Hence, 4store's input format is RDF/OWL.
+Similar to Titan's partitioning, 4store's sharding mechanism (called \emph{segmenting}) distributes the RDF resources evenly across the cluster. However, unlike Titan, 4store's data model is an RDF graph. Hence, 4store's input format is RDF/OWL.
 
 \myFigure{4s-cluster}{4store's distributed architecture \cite{4store}}
 
 \section{Asynchronous messaging}
 
-Implementing a distributed, concurrent system requires a messaging framework. Because of the nature of the Rete algorithm (\ref{subsec:rete}) \iqd\ requires a distributed, asynchronous messaging framework.
+Most distributed, concurrent systems use a messaging framework or message queue service. Because of the nature of the Rete algorithm (\ref{subsec:rete}), \iqd\ requires a distributed, asynchronous messaging framework.
 
 \subsection{Akka}
 
 \myFigure{akka-logo}{The logo of Akka}
 
-Akka is an open-source, fault-tolerant, distributed, asynchronous messaging framework developed by Typesafe \figref{akka-logo}. Akka is implemented in Scala, a functional and object-oriented programming language which runs on the Java Virtual Machine. Akka provides language bindings for both Java and Scala.
+Akka is an open-source, fault-tolerant, distributed, asynchronous messaging framework developed by Typesafe (\figref{akka-logo}). Akka is implemented in Scala, a functional and object-oriented programming language which runs on the Java Virtual Machine. Akka provides language bindings for both Java and Scala.
 
 %\myFigure{akka-actor-path}{Determining an actor's path in Akka}
 
@@ -144,7 +148,7 @@ Akka provides strong support for remoting. Actors have both a logical and a phys
 
 Eclipse is a free, open-source software development environment and a platform for plug-in development. Members of the Eclipse Foundation include industry giants like IBM, Intel, Google and SAP.
 
-\iqd's single workstation predecessor, \eiq\ is built around Eclipse-based technologies. To reap the benefits of a mutual code base, we design \iqd\ to use as much of \eiq's components as possible. In the following section, we introduce the Eclipse-based technologies most important for our work.  
+\iqd's single workstation predecessor, \eiq\ is built around Eclipse-based technologies. To reap the benefits of a mutual code base, we designed \iqd\ to use as much of \eiq's components as possible. In the following section, we introduce the Eclipse-based technologies most important for our work.  
 
 \subsection{EMF}
 \label{subsec:EMF}
@@ -153,7 +157,7 @@ Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Fr
 
 \subsection{\eiq}
 
-\eiq is developed by the Fault Tolerant Systems Research Group (FTSRG) in the Budapest University of Technology and Economics. 
+\eiq\ is developed by the Fault Tolerant Systems Research Group (FTSRG) in the Budapest University of Technology and Economics. \eiq is an open-source Eclipse project which provides incremental query evaluation on EMF models. The queries (graph patterns) are defined in IncQuery Pattern Language (IQPL), a domain-specific language implemented in Xtext and Xtend. \eiq's architecture is shown on \figref{incquery-architecture}.
 
 \myFigure{incquery-architecture}{\eiq's architecture}
 

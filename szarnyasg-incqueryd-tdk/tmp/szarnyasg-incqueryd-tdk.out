@@ -9,7 +9,7 @@
 \BOOKMARK [0][-]{chapter.2}{Background technologies}{}% 9
 \BOOKMARK [1][-]{section.2.1}{Big Data and the NoSQL movement}{chapter.2}% 10
 \BOOKMARK [1][-]{section.2.2}{Graph models}{chapter.2}% 11
-\BOOKMARK [2][-]{subsection.2.2.1}{Graph databases}{section.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.2.1}{Graph models}{section.2.2}% 12
 \BOOKMARK [2][-]{subsection.2.2.2}{Triplestores}{section.2.2}% 13
 \BOOKMARK [1][-]{section.2.3}{Technologies}{chapter.2}% 14
 \BOOKMARK [2][-]{subsection.2.3.1}{Cassandra}{section.2.3}% 15
