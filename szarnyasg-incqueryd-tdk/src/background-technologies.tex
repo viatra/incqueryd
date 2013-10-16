@@ -7,17 +7,17 @@ Implementing a scalable graph pattern matcher requires a wide range of technolog
 
 \section{Big Data and the NoSQL movement}
 
-Since the 1980s, database management systems based on the relational data model \cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling and so on. However, due to the strongly connected nature of their data model, relational databases often have scalability issues \cite{Sakr13}. % TODO find a better citation
+Since the 1980s, database management systems based on the relational data model~\cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling and so on. However, due to the strongly connected nature of their data model, relational databases often have scalability issues~\cite{Sakr13}. % TODO find a better citation
 
 In the last decade, organizations often struggled to store and process the huge amounts of data they produced. This problem introduces a diverse palette of scientific and engineering challenges, often called \emph{Big Data} challenges. 
 
-Big Data challenges spawned dozens of new database management systems. Typically, these systems broke with the strictness of the relational data model and utilized simpler, more scalable data models. These systems dropped support for the SQL query language used in relational databases and hence were called \emph{NoSQL databases}\footnote{The community now mostly translates NoSQL as ''not only SQL''.} \cite{NoSQL}. During the development of \iqd's propotype, we experimented with numerous NoSQL databases.
+Big Data challenges spawned dozens of new database management systems. Typically, these systems broke with the strictness of the relational data model and utilized simpler, more scalable data models. These systems dropped support for the SQL query language used in relational databases and hence were called \emph{NoSQL databases}\footnote{The community now mostly translates NoSQL as ''not only SQL''.}~\cite{NoSQL}. During the development of \iqd's propotype, we experimented with numerous NoSQL databases.
 
 \section{Graph models}
 
 The graph is a well-known mathematical concept widely used in computer science. For our work, it's important to distinguish between different graph data models.
 
-\myFigure{graph-data-models}{Different graph data models \cite{DBLP:journals/corr/abs-1006-2361}}
+\myFigure{graph-data-models}{Different graph data models~\cite{DBLP:journals/corr/abs-1006-2361}}
 
 \subsection{Graph models}
 
@@ -29,7 +29,7 @@ Property graphs are powerful enough to describe Java objects or EMF instance mod
 
 \subsubsection{TinkerPop}
 
-The \textit{TinkerPop} framework is an open-source software stack for graph storage and processing. TinkerPop includes Blueprints, a property graph model interface. Blueprints fulfills the same role for graph databases as JDBC does for relational databases. Most NoSQL graph databases implement the property graph interface provided by Blueprints, including Neo4j (\autoref{subsec:neo4j}), Titan (\autoref{subsec:titan}), DEX \cite{DEX}, InfiniteGraph \cite{InfiniteGraph} and OrientDB \cite{OrientDB}.
+The \textit{TinkerPop} framework is an open-source software stack for graph storage and processing. TinkerPop includes Blueprints, a property graph model interface. Blueprints fulfills the same role for graph databases as JDBC does for relational databases. Most NoSQL graph databases implement the property graph interface provided by Blueprints, including Neo4j (\autoref{subsec:neo4j}), Titan (\autoref{subsec:titan}), DEX~\cite{DEX}, InfiniteGraph~\cite{InfiniteGraph} and OrientDB~\cite{OrientDB}.
 
 \myFigure{tinkerpop-stack}{The TinkerPop software stack}
 
@@ -51,7 +51,7 @@ In the following section we summarize the core technologies used in \iqd's proto
 \subsection{Cassandra}
 
 Cassandra %(\figref{cassandra-logo}) 
-is one of the most widely used NoSQL databases \cite{Cassandra}. Originally developed by Facebook \cite{Lakshman:2010:CDS:1773912.1773922}, Cassandra is now an open-source Apache project.
+is one of the most widely used NoSQL databases~\cite{Cassandra}. Originally developed by Facebook~\cite{Lakshman:2010:CDS:1773912.1773922}, Cassandra is now an open-source Apache project.
 
 Cassandra's data model is called \emph{column family}. A column family is similar to a table of a relational database: it consists of rows and columns. However, unlike in a relational database's table, the rows do not have to have the same fixed set of columns. Instead, each row can have a different set of columns. This makes the data structure more dynamic and avoids the plethora of problems associated with NULL values.
 
@@ -66,7 +66,7 @@ Cassandra has sophisticated fault-tolerance mechanism. It allows the application
 
 \subsection{Hadoop}
 
-Hadoop is an open-source, distributed data processing framework inspired by Google's publications about MapReduce \cite{Dean:2008:MSD:1327452.1327492} and the Google File System \cite{Ghemawat:2003:GFS:945445.945450}. Originally developed at Yahoo!, Hadoop is now an Apache project \cite{Hadoop}. Like Google's systems, Hadoop is designed to run on commodity hardware, i.e.\ server clusters built from commercial off-the-shelf products. Hadoop provides a distributed file system (HDFS) and a column family database (HBase). All software in the Hadoop framework is written in Java.
+Hadoop is an open-source, distributed data processing framework inspired by Google's publications about MapReduce~\cite{Dean:2008:MSD:1327452.1327492} and the Google File System~\cite{Ghemawat:2003:GFS:945445.945450}. Originally developed at Yahoo!, Hadoop is now an Apache project~\cite{Hadoop}. Like Google's systems, Hadoop is designed to run on commodity hardware, i.e.\ server clusters built from commercial off-the-shelf products. Hadoop provides a distributed file system (HDFS) and a column family database (HBase). All software in the Hadoop framework is written in Java.
 
 The MapReduce paradigm defines a parallel, asynchronous way of processing the data. As the name implies, MapReduce consists of two phases: the \emph{map} function processes each item of a list. The resulted list is then aggregated by the \emph{reduce} function.
 
@@ -76,7 +76,7 @@ A typical small Hadoop cluster consists of a single master node which is respons
 
 \subsubsection{HDFS}
 
-The Hadoop Distributed File System (HDFS) is an open-source, distributed file system, inspired by the Google File System and written specifically for Hadoop \cite{Hadoop}. Unlike other distributed file systems (e.g.\ Lustre \cite{Lustre}), which require expensive hardware components, HDFS was designed to run on commodity hardware.
+The Hadoop Distributed File System (HDFS) is an open-source, distributed file system, inspired by the Google File System and written specifically for Hadoop~\cite{Hadoop}. Unlike other distributed file systems (e.g.\ Lustre~\cite{Lustre}), which require expensive hardware components, HDFS was designed to run on commodity hardware.
 
 HDFS tightly integrates with Hadoop's architecture (\figref{hdfs}). The \emph{NameNode} is responsible for storing the metadata of the files and the location of the replicas. The data is stored by the \emph{DataNode}s.
 
@@ -92,9 +92,9 @@ HBase is an open-source, distributed column family database. It is developed as 
 %Neo4j (\figref{neo4j-logo})
 Neo4j, developed by Neo Technology, is the most popular NoSQL graph database. Neo4j implements TinkerPop's Blueprints property graph data model along with Gremlin. It also provides Cypher, a declarative query language for graph pattern matching. 
 
-Neo4j is one of the most mature NoSQL databases. It's well documented and provides ample tooling. However, it's scalability features are limited: instead of sharding, it only supports replication of data to create a highly available cluster. Of course, the scalability limitations are a hot topic in Neo4j's development. Neo4j's developers make serious efforts to improve Neo4j's scalability in an ongoing project called Rassilon \cite{rassilon}.
+Neo4j is one of the most mature NoSQL databases. It's well documented and provides ample tooling. However, it's scalability features are limited: instead of sharding, it only supports replication of data to create a highly available cluster. Of course, the scalability limitations are a hot topic in Neo4j's development. Neo4j's developers make serious efforts to improve Neo4j's scalability in an ongoing project called Rassilon~\cite{rassilon}.
 
-Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application \cite{Neoclipse}. A part of a \tb (\autoref{sec:\tb}) instance model is shown on \figref{neoclipse-graph}. 
+Neo4j is capable of loading graphs from GraphML~\cite{GraphML} and Blueprints GraphSON~\cite{BlueprintsGraphSON} formats. Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application~\cite{Neoclipse}. A part of a \tb{} (\autoref{sec:trainbenchmark}) instance model is shown on \figref{neoclipse-graph}.
 
 \myFigure{neoclipse-graph}{\tb subgraph visualized in Neoclipse}
 
@@ -134,11 +134,11 @@ It's important to note that Faunus always traverses the whole graph and does not
 
 \subsection{4store}
 
-4store is an open-source, distributed triplestore created by Garlik \cite{4store}. Unlike the other tools discussed earlier, 4store is written in C. While 4store is primarily applied for semantic web projects, it's maturity and scalability made it an appropriate storage backend for \iqd's prototype.
+4store is an open-source, distributed triplestore created by Garlik~\cite{4store}. Unlike the other tools discussed earlier, 4store is written in C. While 4store is primarily applied for semantic web projects, it's maturity and scalability made it an appropriate storage backend for \iqd's prototype.
 
 Similar to Titan's partitioning, 4store's sharding mechanism (called \emph{segmenting}) distributes the RDF resources evenly across the cluster. However, unlike Titan, 4store's data model is an RDF graph. Hence, 4store's input format is RDF/OWL.
 
-\myFigure{4s-cluster}{4store's distributed architecture \cite{4store}}
+\myFigure{4s-cluster}{4store's distributed architecture~\cite{harris20094store}}
 
 \section{Asynchronous messaging}
 
@@ -159,7 +159,7 @@ Akka provides strong support for remoting. Actors have both a logical and a phys
 
 \subsection{Google Guava libraries}
 
-\iqd{} relies heavily on Google Guava library's Collections framework \cite{guava}. The Guava Collection is an extension to Java's Collection framework. We used both immutable collections and new type of collections (e.g.\ the \texttt{Multimap} interface and its implementations).
+\iqd{} relies heavily on Google Guava library's Collections framework~\cite{guava}. The Guava Collection is an extension to Java's Collection framework. We used both immutable collections and new type of collections (e.g.\ the \texttt{Multimap} interface and its implementations).
 
 \section{Eclipse-based technologies}
 

@@ -1,21 +1,22 @@
 \section{Architecture overview}
 \label{sec:architecture}
 
-The \iqd{} architecture in an example configuration scenario is shown in \figref{incqueryd-architecture}.
-
-rules of key components
+In the following section, we provide an overview of the Rete algorithm, which forms the theoretical basis of \eiq{} and \iqd{}. We also describe \iqd{}'s architecture.
 
 \subsection{Rete in general}
 \label{subsec:rete}
 
-incremental graph pattern matching
+\iqd{}'s is based on the Rete algorithm, which provides incremental graph pattern matching. Originally created by Charles Forgy~\cite{Forgy} for expert systems. Gábor Bergmann adapted it for EMF models and added many tweaks and improvements to the algorithm~\cite{BergmannRete}.
 
-expert systems background
-
-Forgy, Bergmann
+The Rete algorithm defines an asynchronous network of communicating nodes. This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations (like filtering tokens based on constant expressions, or performing join or antijoin operations based on their contents) and store partial (interim) query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their changes. Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts). It is important to emphasize that the database shards and Rete nodes are two distinct levels of distribution that do not directly depend upon each other.
 
 \subsection{\iqd{} architecture}
 
-\myFigure{incqueryd-architecture}{\iqd{}'s architecture}
+\iqd{}'s architecture consists of three layers: the storage layer, the middleware and the production network. 
+The \emph{storage layer} is a distributed database which is responsible for persisting the graph. 
+The client application communicates with the \emph{middleware}. The middleware provides a unified API for accessing the database. It also sends change notifications to the production network and retrieves the query results from the production network. 
+The \emph{production network} is implemented with a distributed Rete net which provides incremental query evaluation. 
 
+\myFigure{incqueryd-architecture}{\iqd{}'s architecture demonstrated on a four-node cluster}
 
+The \iqd{} architecture in an example configuration scenario is shown in \figref{incqueryd-architecture}.

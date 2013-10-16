@@ -3,7 +3,9 @@
 
 \subsection{Tooling}
 
-reuse of \eiq
+reuse of \eiq's components
+
+Eclipse-based editor
 
 \myFigure{recipe}{The workflow of \eiq\ (blue) and \iqd\ (green)}
 
@@ -12,33 +14,51 @@ reuse of \eiq
 
 database sharding, allocation of rete nodes -- orthogonal
 
+choosing different dbs
+
 \subsubsection{Different database implementations}
 
 diffent storage backends are supported
 
 
 
-\subsection{Problem pieces}
+\subsection{Workflow}  %Problem pieces}
+
+workflow from an IQPL pattern to the working pattern matcher 
 
 \subsubsection{Analyze the model and the query}
 
+IQPL -> EMF model
+
+\paragraph{Task.}
+
+\paragraph{Implementation.} IQPL, EMF model, P-System 
+
 \subsubsection{Build a Rete layout}
+
+EMF model -> PSystem -> recipe -> rete layout
+
+\paragraph{Task.}  
+
+\paragraph{Implementation.} \eiq{}'s implementation 
 
 \subsubsection{Allocate the Rete network in the cloud's nodes}
 
+distribution, latency, throughput, .. 
+
+\paragraph{Task.} 
+
+\paragraph{Implementation.} CSP, DSE~\cite{DSE11}
+
 \subsubsection{Bootstrap the system}
 
+deploying actors, initiating the Rete net's processing workflow
+
+\paragraph{Task.} 
+
+\paragraph{Implementation.} Automatic bootstrapping and operation 
 
 
-\subsection{Implementation details}
-
-\subsubsection{IQPL, EMF model, P-System}
-
-\subsubsection{EMF-IncQuery's implementation}
-
-\subsubsection{Manual allocation}
-
-\subsubsection{Automatic bootstrapping and operation}
 
 \myFigure{incqueryd-tooling-tree-editor}{The editor in \iqd's tooling}
 

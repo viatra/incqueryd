@@ -7,26 +7,28 @@ common technique for efficient query executing
 
 \subsection{Graph-like data manipulation}
 
-
+modifications, transformations, ?
 
 \subsection{Notification mechanisms}
 
 
-\subsubsection{..}
+\subsubsection{Current database managment systems}
 
-4s: no notification
+4store: no notification
+
 Titan: has notifications but only in a single JVM
-
-\emph{Storage and middleware.}\label{storage_and_middleware}
 
 The proposed system is based on a distributed database management system.
 
-In recent years, along long standing relational database management systems, dozens of new database systems sprung to life. This systems are often called NoSQL (short for not only SQL) databases.
-These systems are often specialized to serve a specific aspect of Web 2.0 applications. To do so, they provide a non-relational data model and weaker consistency guarantees, but offer higher availability and better scalability.
+%In recent years, along long standing relational database management systems, dozens of new database systems sprung to life. This systems are often called NoSQL (short for not only SQL) databases. These systems are often specialized to serve a specific aspect of Web 2.0 applications. To do so, they provide a non-relational data model and weaker consistency guarantees, but offer higher availability and better scalability.
 
 In contrast to a traditional setup, where the distributed model repository (consisting of four shards in the example) is accessed on a per-node basis by a model manipulation transaction (such as a model transformation benchmark, depicted as $T_{BM}$ in \figref{architecture}), \iqd{} provides a middleware layer that offers three core services (shown in green in \figref{architecture}).
-In {{\em distributed model management}}, the primary task is to provide a \emph{surrogate key} mechanism so that each model element in the entire distributed repository can be uniquely identified, and located within storage shards.
-{{\em Model indexing}} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, the \iqd{} middleware maintains type-instance indexes so that all instances of a given type (both edges and graph nodes) can be enumerated quickly.
-Finally, {{\em model change notifications}} are required by incremental query evaluation, thus model changes are captured and their effects propagated in the form of \emph{notification objects} (NOs). The middleware layer achieves this by providing a facade for model manipulation operations. 
+In \emph{distributed model management}, the primary task is to provide a \emph{surrogate key} mechanism so that each model element in the entire distributed repository can be uniquely identified, and located within storage shards.
+\emph{Model indexing} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, the \iqd{} middleware maintains type-instance indexes so that all instances of a given type (both edges and graph nodes) can be enumerated quickly.
 
-Conceptually, the architecture of \iqd{} allows the usage of a wide scale of model representation formats. Our first prototype has been evaluated in the context of a low abstraction level \emph{property graph}~\cite{DBLP:journals/corr/abs-1006-2361} data model, but other mainstream metamodeling and knowledge representation languages such as Ecore~\cite{EMF} and RDF~\cite{website:rdf_standard} could be supported, as long as they can be mapped to an efficient and distributed storage backend (like key-value stores or column-family databases).
+\emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effects propagated in the form of \emph{notification objects} (NOs). The middleware layer achieves this by providing a facade for model manipulation operations. 
+
+Conceptually, the architecture of \iqd{} allows the usage of a wide scale of model representation formats. Our prototype has been evaluated in the context of %
+%a low abstraction level
+% ~\cite{DBLP:journals/corr/abs-1006-2361}
+the \emph{property graph} and the \emph{RDF} data model, but other mainstream metamodeling and knowledge representation languages such as relational databases' SQL dumps and Ecore~\cite{EMF} could be supported, as long as they can be mapped to an efficient and distributed storage backend (e.g.\ triplestores, key-value stores or column-family databases).

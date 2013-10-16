@@ -1,19 +1,17 @@
 \section{Incremental queries, change propagation}
 \label{sec:incrementality}
 
-space-time tradeoff
 
-Rete algorithm forms the theoretical basis
 
 \subsection{Rete}
 
-The Rete implementation is based on the Rete algorithm, originally created by Charles Forgy \cite{Forgy} and improved by Gábor Bergmann \cite{BergmannRete}.
+
 
 
 \subsubsection{Detailed Rete with an actual instance model}
 
 
-\myFigure{rete-routesensor-example-instances}{An instance model of the \tb's metamodel}
+\myFigure{rete-routesensor-example-instances}{A modification on a \emph{\tb{}} instance model}
 
 \myFigure{rete-routesensor-example-rete}{The Rete net and the partial matches stored in its nodes}
 
@@ -23,7 +21,16 @@ The Rete implementation is based on the Rete algorithm, originally created by Ch
 TREAT, LEAPS, newer Rete variants
 
 
-\subsection{Distribution}
+\subsection{Distributed operation}
+
+% \emph{Information representation and distributed operation.}
+
+The Rete layer of \iqd{} is \emph{domain and storage agnostic} as it stores only tuples constructed from model element identifiers and literals, thus it can be used independently of the model representation format (metamodeling language) of the model repository.
+As illustrated in \figref{architecture}, the Rete nodes can be allocated to different hosts in a cloud computing infrastructure (as the underlying messaging framework, Akka, supports remoting). As change propagation is asynchronous, \iqd{} implements a \emph{termination protocol} to ensure that the query results can be retrieved consistently with the model state after a given transaction (i.e.\ by signaling when the update propagation has been terminated).
+
+
+% \emph{Distributed pattern matcher.}
+
 
 
 
@@ -32,14 +39,11 @@ TREAT, LEAPS, newer Rete variants
 
 \subsubsection{Practice}
 
-transparent framework: Akka
+Transparent framework: Akka
 
 
 
-\emph{Distributed pattern matcher.}\label{distributed_pattern_matcher}
-On top of the middleware, \iqd{} constructs a distributed and asynchronous network of communicating nodes that implement the Rete~\cite{Forgy} algorithm (shown within the dashed region in \figref{incqueryd-architecture}). % TODO
-This layer is essentially a dataflow network, with two types of nodes. Change notification objects (tokens) are propagated to intermediate \emph{worker nodes} that perform operations (like filtering tokens based on constant expressions, or performing join or antijoin operations based on their contents) and
-store partial (interim) query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their changes. Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts). It is important to emphasize that the database shards and Rete nodes are two distinct levels of distribution that do not directly depend upon each other.
+
 
 
 
@@ -47,3 +51,4 @@ store partial (interim) query results in their own memory. In contrast, \emph{pr
 For the storage layer, the most important issue from an incremental query evaluation perspective is that the indexers of the middleware should be filled as quickly as possible. This favors technologies where model sharding can be performed efficiently (i.e.\ with balanced shards in terms of type-instance relationships), and elementary queries (or model graph traversals) can be executed efficiently.
 
 Achieving scalability of the distributed Rete architecture is an equally complex challenge. The overall performance of the system is influenced by a number of factors, including (i) the \emph{layout of the Rete network} (which can be optimized depending on both query and instance model characteristics, e.g.\ to keep the resource requirement of intermediate join operations to a minimum), (ii) the \emph{allocation} of Rete nodes to host computers (e.g.\ to optimize local resource usage, or to minimize the amount of remote network communication), and (iii) \emph{dynamic adaptability} to changing conditions (e.g.\ when the model size and thus query result size grows rapidly, the Rete network may require dynamic reallocation or node sharding due to local resource limitations).
+

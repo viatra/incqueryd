@@ -57,14 +57,14 @@ In a ''real-world'' model editing sequence, the user tipically edits the model i
 
 \section{Generation of models}
 
-We created a property graph generator project based on the previous \tb generators. The generator creates a graph in an embedded Neo4j database and uses the Blueprints library's \texttt{GraphMLWriter} class to save to a GraphML file \cite{Blueprints}.
+We created a property graph generator project based on the previous \tb generators. The generator creates a graph in an embedded Neo4j database and uses the Blueprints library's \texttt{GraphMLWriter} class to save to a GraphML file~\cite{Blueprints}.
 
 %\chapter{Evaluation}
 %\label{sec:evaluation}
 
 % 1 hasab + 1 abra helyed van, helytakarekosan irj, keruld az itemize-okat
 
-We implemented \iqd{} as an initial prototype to evaluate the feasibility of the approach, and to experiment with various optimization possibilities. As the storage, we used the popular graph database Neo4j \cite{neo4j} featuring automatic indexes and two core query technologies (Gremlin and Cypher) that were used as a low-level model access interface by our middleware layer.
+We implemented \iqd{} as an initial prototype to evaluate the feasibility of the approach, and to experiment with various optimization possibilities. As the storage, we used the popular graph database Neo4j~\cite{neo4j} featuring automatic indexes and two core query technologies (Gremlin and Cypher) that were used as a low-level model access interface by our middleware layer.
 The prototype of the distributed middleware and Rete network were implemented in Java using Akka~\cite{akka}, the Scala-based toolkit for building applications based on the Actor model, since it is well-suited for asynchronous applications. The communication protocol was built on top of Akka's built-in serialization support.
 
 
@@ -115,7 +115,7 @@ The measurement results of our experiments are shown in \figref{benchmark} (aggr
 
 \myFigure{benchmark/Check0_RouteSensor}{$\mathit{check}_0$ phase}
 
-\myFigure{benchmark/OnTheFly_RouteSensor}{On-the-fly revalidation ($\mathit{edit} and \mathit{check}_1$  phase)}
+\myFigure{benchmark/OnTheFly_RouteSensor}{On-the-fly revalidation ($\mathit{edit}$ and $\mathit{check}_1$  phase)}
 
 \myFigure{benchmark/OnTheFlyEdit_RouteSensor}{On-the-fly revalidation, $\mathit{edit}$ phase}
 
@@ -123,3 +123,10 @@ The measurement results of our experiments are shown in \figref{benchmark} (aggr
 
 \myFigure{benchmark/Read_RouteSensor}{$\mathit{Read}$ phase}
 
+
+
+\subsection{Results using the Neo4j graph database}
+
+\myFigure{benchmark/neo/BatchTrafo_RouteSensor}{Batch transformation}
+
+\myFigure{benchmark/neo/OnTheFly_RouteSensor}{On-the-fly revalidation ($\mathit{edit}$ and $\mathit{check}_1$  phase)}

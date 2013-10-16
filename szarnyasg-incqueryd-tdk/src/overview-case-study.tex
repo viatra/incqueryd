@@ -1,56 +1,38 @@
 \section{Case study: \tb{}}
 \label{sec:trainbenchmark}
 
+Due to both confidentiality and technical reasons, it's difficult to obtain real-world industrial models and queries. Also, using confidential data sets hamstrings the reproducability of the conducted benchmarks. Therefore, we used an artificial data set which mimics real-world models.  
+
+In the following section we present the \textit{\tb{}}, a benchmark scheme and environment. The \tb{} was designed and implemented by Benedek Izsó, István Ráth and Zoltán Szatmári~\cite{Izso:2012:ODD:2428516.2428523}. The original goal of the \tb{} was to compare various (preferably incremental) query engines' performance to \eiq's. For \iqd, we used a slightly modified version of the \tb{}.
+
 \subsection{Domain}
-
-industrial models hard to retrieve
-
-pseudorandomly generated representative data and workload
 
 \myFigure{trainbenchmark-metamodel}{The EMF metamodel of the \tb{}}
 
+The \tb{} models is an imaginary railroad network. The network is composed of typical railroad items, including signals, segments, switches and sensors. The complete EMF metamodel of the \tb{} is shown on \figref{trainbenchmark-metamodel}. 
 
+The \textit{generator} project of \tb{} is capable of generating railroad instance models of different sizes. It's capable of generating models in different formats, including EMF, OWL, RDF and SQL. 
 
-\section{\tb{}}
+For Neo4j (\autoref{subsec:neo4j}) and Titan (\autoref{subsec:titan}), we expanded the generator with a module that can generate property graphs based on the \tb{}'s metamodel. It supports the GraphML~\cite{GraphML}, the Blueprints GraphSON~\cite{BlueprintsGraphSON} and the Faunus GraphSON~\cite{FaunusGraphSON} output formats.
 
-The base of our work was the \textit{\tb{}}, a benchmark scheme and environment designed by Benedek Izsó, István Ráth and Zoltán Szatmári \cite{?}. The main goal of the \tb{} is to compare various (preferably incremental) query tools' performance to \eiq's.
-
-The \tb{} defines two scenarios:
-
-\begin{description}
-  \item[UserScenario] This scenario simulates a user sitting in front of her workstation and modifying the model in small steps.
-  \item[XFormScenario] This scenario simulates a software running automated transformations on the model.
-\end{description}
-
-\subsection{Metamodel}
-
-\tb{} works on an imaginary railroad's model. The metamodel is shown on \figref{trainbenchmark-metamodel}.
-
-The \texttt{generator} project of \tb{} is capable of generating railroad instance models of different sizes. The project contains classes for generating models in different formats, including EMF, OWL, RDF and SQL.
+% szerintem felesleges a scenariokrol beszelni, mert csak a UserScenarioval foglalkoztunk -- SzG
+% The \tb{} defines two scenarios:
+% \begin{description}
+%   \item[UserScenario] This scenario simulates a user sitting in front of her workstation and modifying the model in small steps.
+%   \item[XFormScenario] This scenario simulates a software running automated transformations on the model.
+% \end{description}
 
 \subsection{Queries}
 
-complex queries typical in MDE, joins
+The \tb{} consists of queries that resemble a typical MDE workload. In general, MDE queries are more complex than those used in traditional databases. They often define large patterns with multiple join operations. The \tb{}'s queries look for violations of well-formedness constraints in the model. Although the \tb{} defines four different queries, in this report, we only discuss the \textit{RouteSensor} query in detail.
 
-IQPL (\autoref{subsec:eiq})
+\subsubsection{RouteSensor}
 
+\myFigure{routesensor-pattern}{Graphical representation of the \emph{RouteSensor} query's pattern. The dashed red arrow defines a negative condition.}
 
-The queries in \tb{} look for violations of well-formedness constraints in the model. We only discuss the \textit{RouteSensor} query in detail.
+The \textit{RouteSensor} query looks for \textit{Sensor}s that are connected to a \textit{Switch}, but the sensor and the switch are \emph{not} connected to the same \textit{Route}. The graphical representation of the RouteSensor query is shown on \figref{routesensor}. The RouteSensor query  IQPL (\autoref{subsec:eiq}).\footnote{Note that the two queries are slightly different: the SPARQL query returns only a set of sensors, while the IQPL query returns a set of (Sensor, Switch, SwitchPosition, Route) tuples. TODO explain.}
 
-\subsection{RouteSensor}
-
-The \textit{RouteSensor} query looks for \textit{Sensors} that are connected to a \textit{Switch}, but the sensor and the switch are \textit{not} connected to the same \textit{Route}. The graphical representation of the RouteSensor query is shown on \figref{routesensor}.
-
-\myFigure{routesensor}{Graphical representation of the \emph{RouteSensor} query's pattern}
-
-%The Cypher code for all \tb{} queries is shown in detail in% \autoref{cypherqueries}.
-
-
-
-
-
-
-\begin{lstlisting}[caption=The RouteSensor query in IQPL, label=lst:routesensor-iqpl]
+\begin{lstlisting}[caption=The \emph{RouteSensor} query in IQPL, label=lst:routesensor-iqpl]
 package hu.bme.mit.train.constraintcheck.incquery
 
 import "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl" 
@@ -75,42 +57,41 @@ pattern head(Sen, R) = {
 
 
 
+\lstset{language=SQL,morekeywords={PREFIX,FILTER}} %,java,rdf,rdfs,url,owl,base}}
 
+\begin{lstlisting}[caption=The \emph{RouteSensor} query in SPARQL, label=lst:routesensor-sparql]
+PREFIX base: <http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-% \lstset{language=SQL,morekeywords={PREFIX,FILTER}} %,java,rdf,rdfs,url,owl,base}}
-% 
-% \begin{lstlisting}[caption=The RouteSensor query in SPARQL, label=lst:routesensor-sparql]
-% PREFIX base: <http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#>
-% PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-% PREFIX owl:  <http://www.w3.org/2002/07/owl#>
-% PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-% 
-% SELECT DISTINCT ?xSensor
-% WHERE
-% {
-%     ?xRoute rdf:type base:Route .
-%     ?xSwitchPosition rdf:type base:SwitchPosition .
-%     ?xSwitch rdf:type base:Switch .
-%     ?xSensor rdf:type base:Sensor .
-%     ?xRoute base:Route_switchPosition ?xSwitchPosition .
-%     ?xSwitchPosition base:SwitchPosition_switch ?xSwitch .
-%     ?xSwitch base:TrackElement_sensor ?xSensor .
-% 
-%     FILTER NOT EXISTS {
-%         ?xRoute ?Route_routeDefinition ?xSensor .
-%     } .
-% }
-% \end{lstlisting}
+SELECT DISTINCT ?xSensor
+WHERE
+{
+    ?xRoute rdf:type base:Route .
+    ?xSwitchPosition rdf:type base:SwitchPosition .
+    ?xSwitch rdf:type base:Switch .
+    ?xSensor rdf:type base:Sensor .
+    ?xRoute base:Route_switchPosition ?xSwitchPosition .
+    ?xSwitchPosition base:SwitchPosition_switch ?xSwitch .
+    ?xSwitch base:TrackElement_sensor ?xSensor .
 
-
-
-\subsection{RouteSensor}
-
-The Cypher implementation of the RouteSensor query is shown on %\autoref{lst:cypher-routesensor}
-
-\begin{lstlisting}[caption=Cyper query for the RouteSensor test case, label=lst:cypher-routesensor, breaklines=true]
-START sensor=node:node_auto_index(type="Sensor")
-MATCH sensor-[:TRACKELEMENT_SENSOR]-switch-[:SWITCHPOSITION_SWITCH]-switchPosition-[:ROUTE_SWITCHPOSITION]-route-[r?:ROUTE_ROUTEDEFINITION]-sensor
-WHERE r IS NULL
-RETURN sensor
+    FILTER NOT EXISTS {
+        ?xRoute ?Route_routeDefinition ?xSensor .
+    } .
+}
 \end{lstlisting}
+
+
+
+
+
+
+% The Cypher implementation of the RouteSensor query is shown on %\autoref{lst:cypher-routesensor}
+% 
+% \begin{lstlisting}[caption=Cyper query for the RouteSensor test case, label=lst:cypher-routesensor, breaklines=true]
+% START sensor=node:node_auto_index(type="Sensor")
+% MATCH sensor-[:TRACKELEMENT_SENSOR]-switch-[:SWITCHPOSITION_SWITCH]-switchPosition-[:ROUTE_SWITCHPOSITION]-route-[r?:ROUTE_ROUTEDEFINITION]-sensor
+% WHERE r IS NULL
+% RETURN sensor
+% \end{lstlisting}
