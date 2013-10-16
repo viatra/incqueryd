@@ -2,8 +2,8 @@
 
 # 4store benchmark sequence script
 
-#for i in `seq 10`; do
-#echo $i >> series.txt
+for i in `seq 5`; do
+echo $i >> series.txt
 
 #for tool in \
 #"rete" \
@@ -12,13 +12,16 @@
 AKKADIR=akka-2.1.4
 FOURSTORE_CLUSTER_NAME="incqueryd_cluster"
 
-max_size=2048
+max_size=1024
 size=1
 
 # $size <= $max_size
 while [ $size -le $max_size ]
 do
   echo `date` " Titan " $size
+
+  sudo sync
+  sudo bash -c "echo 3 > /proc/sys/vm/drop_caches"
   
   4s-ssh-all "pkill -f akk[a]"
 
@@ -55,4 +58,4 @@ done
 #done
 
 # for $i
-#done
+done
