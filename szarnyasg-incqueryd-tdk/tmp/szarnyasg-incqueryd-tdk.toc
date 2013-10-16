@@ -67,49 +67,40 @@
 \contentsline {chapter}{\numberline {5}Related and future work}{35}{chapter.5}
 \contentsline {section}{\numberline {5.1}Related work}{35}{section.5.1}
 \contentsline {section}{\numberline {5.2}Future work}{36}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Cassandra}{36}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Clustered graph loader application}{36}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Titan}{37}{subsection.5.2.3}
-\contentsline {subsubsection}{Titan and Cassandra setups}{37}{section*.42}
-\contentsline {subsubsection}{Initialising Titan}{37}{section*.45}
-\contentsline {subsubsection}{Listing nodes}{38}{section*.46}
-\contentsline {chapter}{\numberline {6}Evaluation}{40}{chapter.6}
-\contentsline {section}{\numberline {6.1}Goals}{41}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Measure the response time and the scalability}{41}{subsection.6.1.1}
-\contentsline {subsection}{\numberline {6.1.2}Workload profile's difference from standard benchmarks}{41}{subsection.6.1.2}
-\contentsline {section}{\numberline {6.2}Environment}{41}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Benchmark setup}{41}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Hardware, software ecosystem}{41}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}Benchmark methodology}{41}{subsection.6.2.3}
-\contentsline {subsection}{\numberline {6.2.4}Data collection}{41}{subsection.6.2.4}
-\contentsline {subsection}{\numberline {6.2.5}Data processing tools}{41}{subsection.6.2.5}
-\contentsline {section}{\numberline {6.3}Results and analysis}{41}{section.6.3}
-\contentsline {subsection}{\numberline {6.3.1}Threat to validity}{41}{subsection.6.3.1}
-\contentsline {subsection}{\numberline {6.3.2}Conclusions}{41}{subsection.6.3.2}
-\contentsline {subsubsection}{Allocation of heap memory}{41}{section*.50}
-\contentsline {subsubsection}{Feedback for the problem pieces subsection}{41}{section*.51}
-\contentsline {subsubsection}{Comparing different tools}{41}{section*.52}
-\contentsline {subsubsection}{Possibilities to increase the throughput of the system}{41}{section*.53}
-\contentsline {chapter}{\numberline {7}Benchmark}{42}{chapter.7}
-\contentsline {section}{\numberline {7.1}TrainBenchmark}{42}{section.7.1}
-\contentsline {subsection}{\numberline {7.1.1}Metamodel}{42}{subsection.7.1.1}
-\contentsline {section}{\numberline {7.2}Queries}{43}{section.7.2}
-\contentsline {subsection}{\numberline {7.2.1}RouteSensor}{43}{subsection.7.2.1}
-\contentsline {section}{\numberline {7.3}Phases}{43}{section.7.3}
-\contentsline {section}{\numberline {7.4}Neo4j}{44}{section.7.4}
-\contentsline {section}{\numberline {7.5}Generation of models}{44}{section.7.5}
-\contentsline {subsection}{\numberline {7.5.1}RouteSensor}{44}{subsection.7.5.1}
-\contentsline {chapter}{\numberline {8}Evaluation}{46}{chapter.8}
-\contentsline {section}{\numberline {8.1}Benchmark scenario}{46}{section.8.1}
-\contentsline {section}{\numberline {8.2}Evaluation aspects and benchmark environment}{47}{section.8.2}
-\contentsline {section}{\numberline {8.3}Results}{48}{section.8.3}
-\contentsline {section}{\numberline {8.4}Technologies}{48}{section.8.4}
-\contentsline {subsection}{\numberline {8.4.1}Akka}{48}{subsection.8.4.1}
-\contentsline {chapter}{\numberline {9}Conclusions}{50}{chapter.9}
-\contentsline {section}{\numberline {9.1}Summary of contributions}{50}{section.9.1}
-\contentsline {subsection}{\numberline {9.1.1}Own work}{50}{subsection.9.1.1}
-\contentsline {section}{\numberline {9.2}Limitations}{50}{section.9.2}
-\contentsline {section}{\numberline {9.3}Future directions}{50}{section.9.3}
-\contentsline {chapter}{\numberline {10}Conclusion}{51}{chapter.10}
-\contentsline {chapter}{Bibliography}{52}{chapter.10}
-\contentsline {chapter}{\numberline {A}Apx}{55}{appendix.A}
+\contentsline {chapter}{\numberline {6}Evaluation}{37}{chapter.6}
+\contentsline {section}{\numberline {6.1}Goals}{38}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Measure the response time and the scalability}{38}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Workload profile's difference from standard benchmarks}{38}{subsection.6.1.2}
+\contentsline {section}{\numberline {6.2}Environment}{38}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Benchmark setup}{38}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Hardware, software ecosystem}{38}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Benchmark methodology}{38}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Data collection}{38}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}Data processing tools}{38}{subsection.6.2.5}
+\contentsline {section}{\numberline {6.3}Results and analysis}{38}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Threat to validity}{38}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Conclusions}{38}{subsection.6.3.2}
+\contentsline {subsubsection}{Allocation of heap memory}{38}{section*.42}
+\contentsline {subsubsection}{Feedback for the problem pieces subsection}{38}{section*.43}
+\contentsline {subsubsection}{Comparing different tools}{38}{section*.44}
+\contentsline {subsubsection}{Possibilities to increase the throughput of the system}{38}{section*.45}
+\contentsline {section}{\numberline {6.4}TrainBenchmark}{38}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Metamodel}{39}{subsection.6.4.1}
+\contentsline {section}{\numberline {6.5}Queries}{39}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}RouteSensor}{39}{subsection.6.5.1}
+\contentsline {section}{\numberline {6.6}Phases}{40}{section.6.6}
+\contentsline {section}{\numberline {6.7}Neo4j}{40}{section.6.7}
+\contentsline {section}{\numberline {6.8}Generation of models}{42}{section.6.8}
+\contentsline {subsection}{\numberline {6.8.1}RouteSensor}{42}{subsection.6.8.1}
+\contentsline {section}{\numberline {6.9}Benchmark scenario}{42}{section.6.9}
+\contentsline {section}{\numberline {6.10}Evaluation aspects and benchmark environment}{43}{section.6.10}
+\contentsline {section}{\numberline {6.11}Results}{44}{section.6.11}
+\contentsline {section}{\numberline {6.12}Technologies}{44}{section.6.12}
+\contentsline {subsection}{\numberline {6.12.1}Akka}{44}{subsection.6.12.1}
+\contentsline {chapter}{\numberline {7}Conclusions}{46}{chapter.7}
+\contentsline {section}{\numberline {7.1}Summary of contributions}{46}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Own work}{46}{subsection.7.1.1}
+\contentsline {section}{\numberline {7.2}Limitations}{46}{section.7.2}
+\contentsline {section}{\numberline {7.3}Future directions}{46}{section.7.3}
+\contentsline {chapter}{Bibliography}{47}{section.7.3}
+\contentsline {chapter}{\numberline {A}Apx}{50}{appendix.A}

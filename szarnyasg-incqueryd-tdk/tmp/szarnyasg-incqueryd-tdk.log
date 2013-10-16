@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.5.4)  16 OCT 2013 10:31
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.5.4)  16 OCT 2013 10:38
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -1391,7 +1391,7 @@ ABD: EveryShipout initializing macros
 \openout2 = `title.aux'.
 
  (./title.tex
-<figures/BME1782nagy.pdf, id=363, 709.571pt x 198.88303pt>
+<figures/BME1782nagy.pdf, id=351, 709.571pt x 198.88303pt>
 File: figures/BME1782nagy.pdf Graphic file (type pdf)
 
 <use figures/BME1782nagy.pdf>
@@ -1490,6 +1490,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 LaTeX Warning: Reference `sec:overview' on page 11 undefined on input line 40.
 
+
+LaTeX Warning: Reference `sec:evaluation' on page 11 undefined on input line 40
+.
+
+
+LaTeX Warning: Reference `sec:conclusion' on page 11 undefined on input line 40
+.
+
 ) [11]
 \openout2 = `background-technologies.aux'.
 
@@ -1511,7 +1519,7 @@ LaTeX Font Info:    Font shape `U/futm/m/n' will be
 
 pdfTeX warning: /usr/bin/pdflatex (file ./figures/graph-data-models.pdf): PDF i
 nclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<figures/graph-data-models.pdf, id=533, 276.78107pt x 227.57523pt>
+<figures/graph-data-models.pdf, id=516, 276.78107pt x 227.57523pt>
 File: figures/graph-data-models.pdf Graphic file (type pdf)
 
 <use figures/graph-data-models.pdf>
@@ -1535,7 +1543,7 @@ File: t1fi4.fd 2009/05/28 T1/Inconsolata
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13 <./figures/graph-data-models.pdf>] [14]
-<figures/hadoop-architecture.png, id=612, 521.95pt x 405.515pt>
+<figures/hadoop-architecture.png, id=595, 521.95pt x 405.515pt>
 File: figures/hadoop-architecture.png Graphic file (type png)
 
 <use figures/hadoop-architecture.png>
@@ -1543,7 +1551,7 @@ Package pdftex.def Info: figures/hadoop-architecture.png used on input line 70.
 
 (pdftex.def)             Requested size: 521.94872pt x 405.51399pt.
 
-<figures/hdfs.pdf, id=616, 755.07094pt x 333.49594pt>
+<figures/hdfs.pdf, id=599, 755.07094pt x 333.49594pt>
 File: figures/hdfs.pdf Graphic file (type pdf)
  <use figures/hdfs.pdf>
 Package pdftex.def Info: figures/hdfs.pdf used on input line 78.
@@ -1553,7 +1561,7 @@ Package pdftex.def Info: figures/hdfs.pdf used on input line 78.
 
 pdfTeX warning: /usr/bin/pdflatex (file ./figures/titan-cassandra-mapping.pdf):
  PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<figures/titan-cassandra-mapping.pdf, id=648, 661.97441pt x 492.58357pt>
+<figures/titan-cassandra-mapping.pdf, id=631, 661.97441pt x 492.58357pt>
 File: figures/titan-cassandra-mapping.pdf Graphic file (type pdf)
 
 <use figures/titan-cassandra-mapping.pdf>
@@ -1561,7 +1569,7 @@ Package pdftex.def Info: figures/titan-cassandra-mapping.pdf used on input line
  108.
 (pdftex.def)             Requested size: 661.9728pt x 492.58237pt.
 
-<figures/titan-modes-distributed.png, id=650, 191.2746pt x 101.6598pt>
+<figures/titan-modes-distributed.png, id=633, 191.2746pt x 101.6598pt>
 File: figures/titan-modes-distributed.png Graphic file (type png)
 
 <use figures/titan-modes-distributed.png>
@@ -1577,7 +1585,7 @@ png>]
 
 pdfTeX warning: /usr/bin/pdflatex (file ./figures/4s-cluster.pdf): PDF inclusio
 n: found PDF version <1.6>, but at most version <1.5> allowed
-<figures/4s-cluster.pdf, id=688, 257.10553pt x 251.41127pt>
+<figures/4s-cluster.pdf, id=671, 257.10553pt x 251.41127pt>
 File: figures/4s-cluster.pdf Graphic file (type pdf)
 
 <use figures/4s-cluster.pdf>
@@ -1587,7 +1595,7 @@ Package pdftex.def Info: figures/4s-cluster.pdf used on input line 132.
 Underfull \vbox (badness 2126) has occurred while \output is active []
 
  [19 <./figures/4s-cluster.pdf>]
-<figures/akka-remote-deployment.png, id=744, 770.88pt x 578.16pt>
+<figures/akka-remote-deployment.png, id=727, 770.88pt x 578.16pt>
 File: figures/akka-remote-deployment.png Graphic file (type png)
 
 <use figures/akka-remote-deployment.png>
@@ -1601,7 +1609,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX Font Info:    Font shape `T1/futs/bx/sc' in size <14.4> not available
 (Font)              Font shape `T1/futs/b/sc' tried instead on input line 166.
 
-<figures/incquery-architecture.png, id=753, 1445.4pt x 1084.05pt>
+<figures/incquery-architecture.png, id=736, 1445.4pt x 1084.05pt>
 File: figures/incquery-architecture.png Graphic file (type png)
 
 <use figures/incquery-architecture.png>
@@ -1614,7 +1622,7 @@ Package pdftex.def Info: figures/incquery-architecture.png used on input line 1
  (./overview.tex
 Chapter 4.
 (./overview-case-study.tex
-<figures/trainbenchmark-metamodel.png, id=765, 778.00867pt x 271.0125pt>
+<figures/trainbenchmark-metamodel.png, id=748, 778.00867pt x 271.0125pt>
 File: figures/trainbenchmark-metamodel.png Graphic file (type png)
 
 <use figures/trainbenchmark-metamodel.png>
@@ -1634,7 +1642,7 @@ LaTeX Font Warning: Font shape `T1/fi4/bx/n' undefined
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 ))
 (./overview-architecture.tex
-<figures/architecture.png, id=784, 2767.33875pt x 1626.075pt>
+<figures/architecture.png, id=767, 2767.33875pt x 1626.075pt>
 File: figures/architecture.png Graphic file (type png)
 
 <use figures/architecture.png>
@@ -1644,14 +1652,14 @@ Package pdftex.def Info: figures/architecture.png used on input line 10.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [24 <./figures/trainbenchmark-metamodel.png>]
-<figures/routesensor.png, id=820, 425.33907pt x 168.63pt>
+<figures/routesensor.png, id=803, 425.33907pt x 168.63pt>
 File: figures/routesensor.png Graphic file (type png)
 
 <use figures/routesensor.png>
 Package pdftex.def Info: figures/routesensor.png used on input line 26.
 (pdftex.def)             Requested size: 425.33801pt x 168.62958pt.
 
-<figures/incqueryd-architecture.pdf, id=821, 740.0147pt x 426.84468pt>
+<figures/incqueryd-architecture.pdf, id=804, 740.0147pt x 426.84468pt>
 File: figures/incqueryd-architecture.pdf Graphic file (type pdf)
 
 <use figures/incqueryd-architecture.pdf>
@@ -1661,7 +1669,7 @@ Package pdftex.def Info: figures/incqueryd-architecture.pdf used on input line
  [25 <./figures/architecture.png> <./figures/routesensor.png>]) (./overview-mid
 dleware.tex [26 <./figures/incqueryd-architecture.pdf>]) (./overview-incrementa
 lity.tex
-<figures/rete-routesensor-example-instances.pdf, id=857, 536.0025pt x 439.6425p
+<figures/rete-routesensor-example-instances.pdf, id=840, 536.0025pt x 439.6425p
 t>
 File: figures/rete-routesensor-example-instances.pdf Graphic file (type pdf)
  <use figures/rete-routesensor-example-instances.pdf>
@@ -1669,7 +1677,7 @@ Package pdftex.def Info: figures/rete-routesensor-example-instances.pdf used on
  input line 11.
 (pdftex.def)             Requested size: 536.00119pt x 439.64142pt.
 
-<figures/rete-routesensor-example-rete.pdf, id=858, 807.015pt x 849.1725pt>
+<figures/rete-routesensor-example-rete.pdf, id=841, 807.015pt x 849.1725pt>
 File: figures/rete-routesensor-example-rete.pdf Graphic file (type pdf)
 
 <use figures/rete-routesensor-example-rete.pdf>
@@ -1682,14 +1690,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [27]
 [28 <./figures/rete-routesensor-example-instances.pdf>] [29 <./figures/rete-rou
 tesensor-example-rete.pdf>]) (./overview-deployment-configuration.tex
-<figures/recipe.pdf, id=917, 539.01375pt x 520.94624pt>
+<figures/recipe.pdf, id=900, 539.01375pt x 520.94624pt>
 File: figures/recipe.pdf Graphic file (type pdf)
 
 <use figures/recipe.pdf>
 Package pdftex.def Info: figures/recipe.pdf used on input line 8.
 (pdftex.def)             Requested size: 539.01242pt x 520.94498pt.
 
-<figures/incqueryd-tooling-tree-editor.png, id=918, 1371.1225pt x 770.88pt>
+<figures/incqueryd-tooling-tree-editor.png, id=901, 1371.1225pt x 770.88pt>
 File: figures/incqueryd-tooling-tree-editor.png Graphic file (type png)
 
 <use figures/incqueryd-tooling-tree-editor.png>
@@ -1701,7 +1709,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [30]
 [31 <./figures/recipe.pdf>]
-<figures/incqueryd-tooling-yfiles-viewer.png, id=941, 1371.1225pt x 770.88pt>
+<figures/incqueryd-tooling-yfiles-viewer.png, id=924, 1371.1225pt x 770.88pt>
 File: figures/incqueryd-tooling-yfiles-viewer.png Graphic file (type png)
 
 <use figures/incqueryd-tooling-yfiles-viewer.png>
@@ -1723,7 +1731,7 @@ Underfull \hbox (badness 7486) in paragraph at lines 8--10
 on. \T1/futs/m/n/12 The Rete layer of
  []
 
-<figures/reteinternals.png, id=960, 2622.79875pt x 1970.36125pt>
+<figures/reteinternals.png, id=943, 2622.79875pt x 1970.36125pt>
 File: figures/reteinternals.png Graphic file (type png)
 
 <use figures/reteinternals.png>
@@ -1742,66 +1750,20 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
-]
-<figures/cassandra-logo.png, id=999, 361.35pt x 72.27pt>
-File: figures/cassandra-logo.png Graphic file (type png)
-
-<use figures/cassandra-logo.png>
-Package pdftex.def Info: figures/cassandra-logo.png used on input line 28.
-(pdftex.def)             Requested size: 361.34912pt x 72.2698pt.
-
-
-LaTeX Warning: Citation `hadoop' on page 36 undefined on input line 39.
-
-[36 <./figures/cassandra-logo.png>]
-<figures/titan-logo.png, id=1015, 93.951pt x 182.1204pt>
-File: figures/titan-logo.png Graphic file (type png)
-
-<use figures/titan-logo.png>
-Package pdftex.def Info: figures/titan-logo.png used on input line 56.
-(pdftex.def)             Requested size: 93.95078pt x 182.11995pt.
-
-<figures/titan-modes-rexster.png, id=1019, 260.6538pt x 101.6598pt>
-File: figures/titan-modes-rexster.png Graphic file (type png)
-
-<use figures/titan-modes-rexster.png>
-Package pdftex.def Info: figures/titan-modes-rexster.png used on input line 72.
-
-(pdftex.def)             Requested size: 284.52756pt x 110.98225pt.
-
-<figures/titan-modes-embedded.png, id=1020, 461.725pt x 191.71625pt>
-File: figures/titan-modes-embedded.png Graphic file (type png)
-
-<use figures/titan-modes-embedded.png>
-Package pdftex.def Info: figures/titan-modes-embedded.png used on input line 80
-.
-(pdftex.def)             Requested size: 284.52756pt x 118.14027pt.
- [37 <./figures/titan-logo.png>]
-<figures/gremlin-logo.png, id=1041, 267.399pt x 103.3461pt>
-File: figures/gremlin-logo.png Graphic file (type png)
-
-<use figures/gremlin-logo.png>
-Package pdftex.def Info: figures/gremlin-logo.png used on input line 101.
-(pdftex.def)             Requested size: 267.39835pt x 103.34584pt.
-
-
-LaTeX Font Warning: Font shape `T1/fi4/m/it' undefined
-(Font)              using `T1/fi4/m/n' instead on input line 111.
-
-[38 <./figures/titan-modes-rexster.png> <./figures/titan-modes-embedded.png> <.
-/figures/gremlin-logo.png>]) [39]
+])
+[36]
 \openout2 = `evaluation.aux'.
 
  (./evaluation.tex
 Chapter 6.
-<figures/benchmark-scenario.pdf, id=1065, 819.8128pt x 306.39468pt>
+<figures/benchmark-scenario.pdf, id=986, 819.8128pt x 306.39468pt>
 File: figures/benchmark-scenario.pdf Graphic file (type pdf)
 
 <use figures/benchmark-scenario.pdf>
 Package pdftex.def Info: figures/benchmark-scenario.pdf used on input line 6.
 (pdftex.def)             Requested size: 819.81079pt x 306.39394pt.
 
-<figures/routesensor-distributed-layout.pdf, id=1066, 807.015pt x 549.55313pt>
+<figures/routesensor-distributed-layout.pdf, id=987, 807.015pt x 549.55313pt>
 File: figures/routesensor-distributed-layout.pdf Graphic file (type pdf)
 
 <use figures/routesensor-distributed-layout.pdf>
@@ -1811,103 +1773,93 @@ ut line 16.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [40
+ [37
 
 
 
  <./figures/benchmark-scenario.pdf>]
-Overfull \vbox (314.53482pt too high) has occurred while \output is active []
+Overfull \vbox (382.29968pt too high) has occurred while \output is active []
 
 
-[41 <./figures/routesensor-distributed-layout.pdf>]
-Chapter 7.
-<figures/TrainMetamodel.png, id=1115, 778.00867pt x 271.0125pt>
+[38 <./figures/routesensor-distributed-layout.pdf>]
+<figures/TrainMetamodel.png, id=1038, 778.00867pt x 271.0125pt>
 File: figures/TrainMetamodel.png Graphic file (type png)
 
 <use figures/TrainMetamodel.png>
-Package pdftex.def Info: figures/TrainMetamodel.png used on input line 68.
+Package pdftex.def Info: figures/TrainMetamodel.png used on input line 62.
 (pdftex.def)             Requested size: 398.33858pt x 138.75626pt.
- [42
 
- <./figures/TrainMetamodel.png>]
-<figures/OD_RouteSensor.png, id=1124, 425.33907pt x 168.63pt>
+<figures/OD_RouteSensor.png, id=1040, 425.33907pt x 168.63pt>
 File: figures/OD_RouteSensor.png Graphic file (type png)
 
 <use figures/OD_RouteSensor.png>
-Package pdftex.def Info: figures/OD_RouteSensor.png used on input line 86.
+Package pdftex.def Info: figures/OD_RouteSensor.png used on input line 80.
 (pdftex.def)             Requested size: 425.33801pt x 168.62958pt.
 
 
-LaTeX Warning: Reference `cypherqueries' on page 43 undefined on input line 92.
+LaTeX Warning: Reference `cypherqueries' on page 39 undefined on input line 86.
 
 
-[43 <./figures/OD_RouteSensor.png>]
-<figures/neo4j-logo.png, id=1138, 451.6875pt x 171.64125pt>
+[39 <./figures/TrainMetamodel.png>]
+<figures/neo4j-logo.png, id=1051, 451.6875pt x 171.64125pt>
 File: figures/neo4j-logo.png Graphic file (type png)
 
 <use figures/neo4j-logo.png>
-Package pdftex.def Info: figures/neo4j-logo.png used on input line 113.
+Package pdftex.def Info: figures/neo4j-logo.png used on input line 107.
 (pdftex.def)             Requested size: 451.68639pt x 171.64081pt.
 
-Overfull \hbox (24.89503pt too wide) in paragraph at lines 113--114
+Overfull \hbox (24.89503pt too wide) in paragraph at lines 107--108
  [][] 
  []
 
-<figures/neoclipse-graph.png, id=1140, 1167.36125pt x 657.45625pt>
+<figures/neoclipse-graph.png, id=1053, 1167.36125pt x 657.45625pt>
 File: figures/neoclipse-graph.png Graphic file (type png)
 
 <use figures/neoclipse-graph.png>
-Package pdftex.def Info: figures/neoclipse-graph.png used on input line 123.
+Package pdftex.def Info: figures/neoclipse-graph.png used on input line 117.
 (pdftex.def)             Requested size: 398.33858pt x 224.34476pt.
- [44 <./figures/neo4j-logo.png (PNG copy)>]
-[45 <./figures/neoclipse-graph.png (PNG copy)>]
-Chapter 8.
+ [40 <./figures/OD_RouteSensor.png>] [41 <./figures/neo4j-logo.png (PNG copy)> 
+<./figures/neoclipse-graph.png (PNG copy)>]
 
-LaTeX Warning: Reference `fig:patterndef' on page 46 undefined on input line 16
-8.
+LaTeX Warning: Reference `fig:patterndef' on page 42 undefined on input line 16
+2.
 
-LaTeX Font Info:    Try loading font information for OMS+futs on input line 189
+LaTeX Font Info:    Try loading font information for OMS+futs on input line 183
 .
-LaTeX Font Info:    No file OMSfuts.fd. on input line 189.
+LaTeX Font Info:    No file OMSfuts.fd. on input line 183.
 
 LaTeX Font Warning: Font shape `OMS/futs/m/n' undefined
-(Font)              using `OMS/cmsy/m/n' instead on input line 189.
+(Font)              using `OMS/cmsy/m/n' instead on input line 183.
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [46
-
-]
-<figures/All_RouteSensor.png, id=1172, 653.57217pt x 556.16478pt>
+[42] <figures/All_RouteSensor.png, id=1091, 653.57217pt x 556.16478pt>
 File: figures/All_RouteSensor.png Graphic file (type png)
 
 <use figures/All_RouteSensor.png>
-Package pdftex.def Info: figures/All_RouteSensor.png used on input line 193.
+Package pdftex.def Info: figures/All_RouteSensor.png used on input line 187.
 (pdftex.def)             Requested size: 426.79135pt x 363.18312pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [47 <./figures/All_RouteSensor.png>]
-<figures/akka-logo.png, id=1183, 48.9027pt x 38.3031pt>
+ [43 <./figures/All_RouteSensor.png>]
+<figures/akka-logo.png, id=1103, 48.9027pt x 38.3031pt>
 File: figures/akka-logo.png Graphic file (type png)
 
 <use figures/akka-logo.png>
-Package pdftex.def Info: figures/akka-logo.png used on input line 214.
+Package pdftex.def Info: figures/akka-logo.png used on input line 208.
 (pdftex.def)             Requested size: 170.71652pt x 133.74603pt.
- [48 <./figures/akka-logo.png>]) [49]
+
+
+LaTeX Font Warning: Font shape `T1/fi4/m/it' undefined
+(Font)              using `T1/fi4/m/n' instead on input line 224.
+
+[44 <./figures/akka-logo.png>]) [45]
 \openout2 = `conclusions.aux'.
 
-
-(./conclusions.tex
-Chapter 9.
-[50
-
+ (./conclusions.tex
+Chapter 7.
+) [46
 
 
-]
-Chapter 10.
-) [51
 
 ] (./szarnyasg-incqueryd-tdk.bbl
 Underfull \hbox (badness 4391) in paragraph at lines 22--26
@@ -1921,7 +1873,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 28--30
 s-[]coming-[]next-[]in-[]neo4j . html$[][]\T1/futs/m/n/12 ,
  []
 
-[52
+[47
 
 
 ]
@@ -1930,7 +1882,7 @@ Underfull \hbox (badness 1478) in paragraph at lines 124--127
 /fi4/m/n/12 http : / / eclipse . org /
  []
 
-[53]
+[48]
 Underfull \hbox (badness 4441) in paragraph at lines 188--193
 [][]\T1/futs/m/n/12 Sherif Sakr.  Sup-ply cloud-level data scal-a-bil-ity with 
 NoSQL databases.
@@ -1954,12 +1906,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 201--204
 http : / / www . w3 . org / TR /
  []
 
-) [54]
+) [49]
 \openout2 = `appendix.aux'.
 
  (./appendix.tex
 Appendix A.
-) [55
+) [50
 
 
 ]
@@ -1976,10 +1928,16 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 295.
 (./appendix.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 295.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 295.
-Package rerunfilecheck Info: File `szarnyasg-incqueryd-tdk.out' has not changed
-.
-(rerunfilecheck)             Checksum: DDBC85E512AFEA03A0D237A8A768307D;5713.
 
+
+Package rerunfilecheck Warning: File `szarnyasg-incqueryd-tdk.out' has changed.
+
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `szarnyasg-incqueryd-tdk.out':
+(rerunfilecheck)             Before: 10E455A77AF85F5E36811CBC2638B597;5581
+(rerunfilecheck)             After:  E66098DAF1C4762FAFC92143B4608555;5371.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1992,34 +1950,49 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 295.
  ) 
 Here is how much of TeX's memory you used:
- 21332 strings out of 493485
- 357229 string characters out of 3143527
- 489172 words of memory out of 3000000
- 23727 multiletter control sequences out of 15000+200000
+ 21262 strings out of 493485
+ 355978 string characters out of 3143527
+ 461934 words of memory out of 3000000
+ 23687 multiletter control sequences out of 15000+200000
  140032 words of font info for 124 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  63i,8n,78p,1234b,1956s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/inconsolata/fi4-ec.enc}{/usr/s
-hare/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-d
-ist/fonts/type1/public/inconsolata/Inconsolata.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/fourier/fourier-ms.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/adobe/utopia/putb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-adobe/utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia
-/putri8a.pfb>
-Output written on szarnyasg-incqueryd-tdk.pdf (55 pages, 2135130 bytes).
+pdfTeX warning (dest): name{figure.caption.55} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{figure.caption.52} has been referenced but does not
+ exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.5.2.3} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.5.2.2} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.5.2.1} has been referenced but does not 
+exist, replaced by a fixed one
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/inconsolata/fi4-ec.enc}{/usr/sha
+re/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dis
+t/fonts/type1/public/inconsolata/Inconsolata.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/fourier/fourier-ms.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/adobe/utopia/putb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ad
+obe/utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/p
+utri8a.pfb>
+Output written on szarnyasg-incqueryd-tdk.pdf (50 pages, 1879902 bytes).
 PDF statistics:
- 1369 PDF objects out of 1440 (max. 8388607)
- 1191 compressed objects within 12 object streams
- 312 named destinations out of 1000 (max. 500000)
- 885 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1287 PDF objects out of 1440 (max. 8388607)
+ 1124 compressed objects within 12 object streams
+ 287 named destinations out of 1000 (max. 500000)
+ 836 words of extra memory for PDF output out of 10000 (max. 10000000)
 

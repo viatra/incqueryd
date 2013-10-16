@@ -48,42 +48,36 @@
 \BOOKMARK [0][-]{chapter.5}{Related and future work}{}% 48
 \BOOKMARK [1][-]{section.5.1}{Related work}{chapter.5}% 49
 \BOOKMARK [1][-]{section.5.2}{Future work}{chapter.5}% 50
-\BOOKMARK [2][-]{subsection.5.2.1}{Cassandra}{section.5.2}% 51
-\BOOKMARK [2][-]{subsection.5.2.2}{Clustered graph loader application}{section.5.2}% 52
-\BOOKMARK [2][-]{subsection.5.2.3}{Titan}{section.5.2}% 53
-\BOOKMARK [0][-]{chapter.6}{Evaluation}{}% 54
-\BOOKMARK [1][-]{section.6.1}{Goals}{chapter.6}% 55
-\BOOKMARK [2][-]{subsection.6.1.1}{Measure the response time and the scalability}{section.6.1}% 56
-\BOOKMARK [2][-]{subsection.6.1.2}{Workload profile's difference from standard benchmarks}{section.6.1}% 57
-\BOOKMARK [1][-]{section.6.2}{Environment}{chapter.6}% 58
-\BOOKMARK [2][-]{subsection.6.2.1}{Benchmark setup}{section.6.2}% 59
-\BOOKMARK [2][-]{subsection.6.2.2}{Hardware, software ecosystem}{section.6.2}% 60
-\BOOKMARK [2][-]{subsection.6.2.3}{Benchmark methodology}{section.6.2}% 61
-\BOOKMARK [2][-]{subsection.6.2.4}{Data collection}{section.6.2}% 62
-\BOOKMARK [2][-]{subsection.6.2.5}{Data processing tools}{section.6.2}% 63
-\BOOKMARK [1][-]{section.6.3}{Results and analysis}{chapter.6}% 64
-\BOOKMARK [2][-]{subsection.6.3.1}{Threat to validity}{section.6.3}% 65
-\BOOKMARK [2][-]{subsection.6.3.2}{Conclusions}{section.6.3}% 66
-\BOOKMARK [0][-]{chapter.7}{Benchmark}{}% 67
-\BOOKMARK [1][-]{section.7.1}{TrainBenchmark}{chapter.7}% 68
-\BOOKMARK [2][-]{subsection.7.1.1}{Metamodel}{section.7.1}% 69
-\BOOKMARK [1][-]{section.7.2}{Queries}{chapter.7}% 70
-\BOOKMARK [2][-]{subsection.7.2.1}{RouteSensor}{section.7.2}% 71
-\BOOKMARK [1][-]{section.7.3}{Phases}{chapter.7}% 72
-\BOOKMARK [1][-]{section.7.4}{Neo4j}{chapter.7}% 73
-\BOOKMARK [1][-]{section.7.5}{Generation of models}{chapter.7}% 74
-\BOOKMARK [2][-]{subsection.7.5.1}{RouteSensor}{section.7.5}% 75
-\BOOKMARK [0][-]{chapter.8}{Evaluation}{}% 76
-\BOOKMARK [1][-]{section.8.1}{Benchmark scenario}{chapter.8}% 77
-\BOOKMARK [1][-]{section.8.2}{Evaluation aspects and benchmark environment}{chapter.8}% 78
-\BOOKMARK [1][-]{section.8.3}{Results}{chapter.8}% 79
-\BOOKMARK [1][-]{section.8.4}{Technologies}{chapter.8}% 80
-\BOOKMARK [2][-]{subsection.8.4.1}{Akka}{section.8.4}% 81
-\BOOKMARK [0][-]{chapter.9}{Conclusions}{}% 82
-\BOOKMARK [1][-]{section.9.1}{Summary of contributions}{chapter.9}% 83
-\BOOKMARK [2][-]{subsection.9.1.1}{Own work}{section.9.1}% 84
-\BOOKMARK [1][-]{section.9.2}{Limitations}{chapter.9}% 85
-\BOOKMARK [1][-]{section.9.3}{Future directions}{chapter.9}% 86
-\BOOKMARK [0][-]{chapter.10}{Conclusion}{}% 87
-\BOOKMARK [0][-]{chapter.10}{Bibliography}{}% 88
-\BOOKMARK [0][-]{appendix.A}{Apx}{}% 89
+\BOOKMARK [0][-]{chapter.6}{Evaluation}{}% 51
+\BOOKMARK [1][-]{section.6.1}{Goals}{chapter.6}% 52
+\BOOKMARK [2][-]{subsection.6.1.1}{Measure the response time and the scalability}{section.6.1}% 53
+\BOOKMARK [2][-]{subsection.6.1.2}{Workload profile's difference from standard benchmarks}{section.6.1}% 54
+\BOOKMARK [1][-]{section.6.2}{Environment}{chapter.6}% 55
+\BOOKMARK [2][-]{subsection.6.2.1}{Benchmark setup}{section.6.2}% 56
+\BOOKMARK [2][-]{subsection.6.2.2}{Hardware, software ecosystem}{section.6.2}% 57
+\BOOKMARK [2][-]{subsection.6.2.3}{Benchmark methodology}{section.6.2}% 58
+\BOOKMARK [2][-]{subsection.6.2.4}{Data collection}{section.6.2}% 59
+\BOOKMARK [2][-]{subsection.6.2.5}{Data processing tools}{section.6.2}% 60
+\BOOKMARK [1][-]{section.6.3}{Results and analysis}{chapter.6}% 61
+\BOOKMARK [2][-]{subsection.6.3.1}{Threat to validity}{section.6.3}% 62
+\BOOKMARK [2][-]{subsection.6.3.2}{Conclusions}{section.6.3}% 63
+\BOOKMARK [1][-]{section.6.4}{TrainBenchmark}{chapter.6}% 64
+\BOOKMARK [2][-]{subsection.6.4.1}{Metamodel}{section.6.4}% 65
+\BOOKMARK [1][-]{section.6.5}{Queries}{chapter.6}% 66
+\BOOKMARK [2][-]{subsection.6.5.1}{RouteSensor}{section.6.5}% 67
+\BOOKMARK [1][-]{section.6.6}{Phases}{chapter.6}% 68
+\BOOKMARK [1][-]{section.6.7}{Neo4j}{chapter.6}% 69
+\BOOKMARK [1][-]{section.6.8}{Generation of models}{chapter.6}% 70
+\BOOKMARK [2][-]{subsection.6.8.1}{RouteSensor}{section.6.8}% 71
+\BOOKMARK [1][-]{section.6.9}{Benchmark scenario}{chapter.6}% 72
+\BOOKMARK [1][-]{section.6.10}{Evaluation aspects and benchmark environment}{chapter.6}% 73
+\BOOKMARK [1][-]{section.6.11}{Results}{chapter.6}% 74
+\BOOKMARK [1][-]{section.6.12}{Technologies}{chapter.6}% 75
+\BOOKMARK [2][-]{subsection.6.12.1}{Akka}{section.6.12}% 76
+\BOOKMARK [0][-]{chapter.7}{Conclusions}{}% 77
+\BOOKMARK [1][-]{section.7.1}{Summary of contributions}{chapter.7}% 78
+\BOOKMARK [2][-]{subsection.7.1.1}{Own work}{section.7.1}% 79
+\BOOKMARK [1][-]{section.7.2}{Limitations}{chapter.7}% 80
+\BOOKMARK [1][-]{section.7.3}{Future directions}{chapter.7}% 81
+\BOOKMARK [0][-]{section.7.3}{Bibliography}{}% 82
+\BOOKMARK [0][-]{appendix.A}{Apx}{}% 83
