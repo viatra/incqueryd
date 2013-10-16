@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.5.4)  15 OCT 2013 18:19
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.5.4)  16 OCT 2013 09:18
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -1259,66 +1259,82 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@loff=\dimen196
 \@vwid@roff=\dimen197
 ))
-Package hyperref Info: Option `unicode' set `false' on input line 186.
-Package hyperref Info: Option `pdfnewwindow' set `true' on input line 186.
-Package hyperref Info: Option `colorlinks' set `true' on input line 186.
+Package hyperref Info: Option `unicode' set `false' on input line 185.
+Package hyperref Info: Option `pdfnewwindow' set `true' on input line 185.
+Package hyperref Info: Option `colorlinks' set `true' on input line 185.
 
 \@input{command-definitions.aux}
 \openout2 = `command-definitions.aux'.
 
 (./command-definitions.tex) (./szarnyasg-incqueryd-tdk.aux (./title.aux)
 (./declaration.aux) (./abstract.aux) (./introduction.aux)
-(./background-technologies.aux) (./overview.aux) (./related-work.aux)
-(./evaluation.aux) (./conclusions.aux) (./appendix.aux))
+(./background-technologies.aux) (./overview.aux) (./related-work.aux
+
+LaTeX Warning: Label `fig:cassandra-logo' multiply defined.
+
+
+LaTeX Warning: Label `fig:titan-logo' multiply defined.
+
+) (./evaluation.aux
+
+LaTeX Warning: Label `fig:routesensor' multiply defined.
+
+
+LaTeX Warning: Label `fig:neo4j-logo' multiply defined.
+
+
+LaTeX Warning: Label `fig:akka-logo' multiply defined.
+
+) (./conclusions.aux) (./appendix.aux))
 \openout1 = `szarnyasg-incqueryd-tdk.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 264.
-LaTeX Font Info:    ... okay on input line 264.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 264.
-LaTeX Font Info:    ... okay on input line 264.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 264.
-LaTeX Font Info:    ... okay on input line 264.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 264.
-LaTeX Font Info:    ... okay on input line 264.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 264.
-LaTeX Font Info:    ... okay on input line 264.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 264.
-LaTeX Font Info:    ... okay on input line 264.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 264.
-LaTeX Font Info:    ... okay on input line 264.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 264.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 264.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 263.
+LaTeX Font Info:    ... okay on input line 263.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 263.
+LaTeX Font Info:    ... okay on input line 263.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 263.
+LaTeX Font Info:    ... okay on input line 263.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 263.
+LaTeX Font Info:    ... okay on input line 263.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 263.
+LaTeX Font Info:    ... okay on input line 263.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 263.
+LaTeX Font Info:    ... okay on input line 263.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 263.
+LaTeX Font Info:    ... okay on input line 263.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 263.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 263.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 264.
-LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 264.
-LaTeX Font Info:    Try loading font information for FML+futm on input line 264
+LaTeX Font Info:    ... okay on input line 263.
+LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 263.
+LaTeX Font Info:    Try loading font information for FML+futm on input line 263
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmlfutm.fd
 File: fmlfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futm.
 )
-LaTeX Font Info:    ... okay on input line 264.
-LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 264.
-LaTeX Font Info:    Try loading font information for FMS+futm on input line 264
+LaTeX Font Info:    ... okay on input line 263.
+LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 263.
+LaTeX Font Info:    Try loading font information for FMS+futm on input line 263
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmsfutm.fd
 File: fmsfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FMS/futm.
 )
-LaTeX Font Info:    ... okay on input line 264.
-LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 264.
-LaTeX Font Info:    Try loading font information for FMX+futm on input line 264
+LaTeX Font Info:    ... okay on input line 263.
+LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 263.
+LaTeX Font Info:    Try loading font information for FMX+futm on input line 263
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmxfutm.fd
 File: fmxfutm.fd futm-extension
 )
-LaTeX Font Info:    ... okay on input line 264.
-LaTeX Font Info:    Try loading font information for T1+futs on input line 264.
+LaTeX Font Info:    ... okay on input line 263.
+LaTeX Font Info:    Try loading font information for T1+futs on input line 263.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/t1futs.fd
@@ -1359,12 +1375,12 @@ Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             or
 (lastpage)             http://www.ctan.org/tex-archive/ 
 (lastpage)             install/macros/latex/contrib/pageslts.tds.zip
-(lastpage)             ! on input line 264.
+(lastpage)             ! on input line 263.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box47
-Package hyperref Info: Link coloring ON on input line 264.
+Package hyperref Info: Link coloring ON on input line 263.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
@@ -1374,9 +1390,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count165
 )
-LaTeX Info: Redefining \ref on input line 264.
-LaTeX Info: Redefining \pageref on input line 264.
-LaTeX Info: Redefining \nameref on input line 264.
+LaTeX Info: Redefining \ref on input line 263.
+LaTeX Info: Redefining \pageref on input line 263.
+LaTeX Info: Redefining \nameref on input line 263.
 
 (./szarnyasg-incqueryd-tdk.out) (./szarnyasg-incqueryd-tdk.out)
 \@outlinefile=\write4
@@ -1387,44 +1403,44 @@ ABD: EveryShipout initializing macros
 \openout2 = `title.aux'.
 
  (./title.tex
-<figures/BME1782nagy.pdf, id=259, 709.571pt x 198.88303pt>
+<figures/BME1782nagy.pdf, id=379, 709.571pt x 198.88303pt>
 File: figures/BME1782nagy.pdf Graphic file (type pdf)
 
 <use figures/BME1782nagy.pdf>
-Package pdftex.def Info: figures/BME1782nagy.pdf used on input line 7.
+Package pdftex.def Info: figures/BME1782nagy.pdf used on input line 6.
 (pdftex.def)             Requested size: 170.71652pt x 47.8482pt.
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <12> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 9.
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 8.
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 14.
-LaTeX Font Info:    Try loading font information for FML+futmi on input line 18
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 13.
+LaTeX Font Info:    Try loading font information for FML+futmi on input line 17
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmlfutmi.fd
 File: fmlfutmi.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futmi.
 )
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 18.
+(Font)              scaled to size 11.03998pt on input line 17.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 18.
+(Font)              scaled to size 8.27998pt on input line 17.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 18.
-LaTeX Font Info:    Try loading font information for U+msa on input line 18.
+(Font)              scaled to size 6.43999pt on input line 17.
+LaTeX Font Info:    Try loading font information for U+msa on input line 17.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 18.
+LaTeX Font Info:    Try loading font information for U+msb on input line 17.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 18.
+(Font)              scaled to size 11.03998pt on input line 17.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 18.
+(Font)              scaled to size 8.27998pt on input line 17.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 18.
+(Font)              scaled to size 6.43999pt on input line 17.
  [1
 
 
@@ -1435,14 +1451,12 @@ LaTeX Font Info:    Font shape `U/futm/m/n' will be
 \openout2 = `declaration.aux'.
 
 
-(./declaration.tex [3
-
-
-
-]
+(./declaration.tex
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 7.
- [4
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 6.
+ [3
+
+
 
 ])
 \openout2 = `abstract.aux'.
@@ -1453,39 +1467,43 @@ Underfull \hbox (badness 2042) in paragraph at lines 10--11
 n-tális
  []
 
-[5
+[4
 
 
 
 
-]) [6
+]) [5
 
-] (./szarnyasg-incqueryd-tdk.toc [7
+] (./szarnyasg-incqueryd-tdk.toc [6
 
 
-]
-Underfull \vbox (badness 1888) has occurred while \output is active []
-
- [8])
+] [7])
 \tf@toc=\write5
 \openout5 = `szarnyasg-incqueryd-tdk.toc'.
 
-
-[9]
+ [8]
 \openout2 = `introduction.aux'.
 
  (./introduction.tex
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/futs/b/n' tried instead on input line 3.
-) [10
+(Font)              Font shape `T1/futs/b/n' tried instead on input line 4.
+[9
 
 
 ]
+Chapter 2.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10
+
+])
+[11]
 \openout2 = `background-technologies.aux'.
 
  (./background-technologies.tex
-Chapter 2.
+Chapter 3.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
 (Font)              scaled to size 9.19998pt on input line 14.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
@@ -1502,7 +1520,7 @@ LaTeX Font Info:    Font shape `U/futm/m/n' will be
 
 pdfTeX warning: /usr/bin/pdflatex (file ./figures/graph-data-models.pdf): PDF i
 nclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<figures/graph-data-models.pdf, id=376, 276.78107pt x 227.57523pt>
+<figures/graph-data-models.pdf, id=554, 276.78107pt x 227.57523pt>
 File: figures/graph-data-models.pdf Graphic file (type pdf)
 
 <use figures/graph-data-models.pdf>
@@ -1513,7 +1531,7 @@ LaTeX Font Info:    Font shape `T1/futs/bx/n' in size <10.95> not available
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11
+ [12
 
 
 
@@ -1525,55 +1543,55 @@ File: t1fi4.fd 2009/05/28 T1/Inconsolata
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [12 <./figures/graph-data-models.pdf>]
-<figures/cassandra-logo.png, id=444, 361.35pt x 72.27pt>
+ [13 <./figures/graph-data-models.pdf>]
+<figures/cassandra-logo.png, id=623, 361.35pt x 72.27pt>
 File: figures/cassandra-logo.png Graphic file (type png)
 
 <use figures/cassandra-logo.png>
 Package pdftex.def Info: figures/cassandra-logo.png used on input line 52.
 (pdftex.def)             Requested size: 361.34912pt x 72.2698pt.
- [13]
-<figures/hadoop-architecture.png, id=459, 521.95pt x 405.515pt>
+ [14]
+<figures/hadoop-architecture.png, id=637, 521.95pt x 405.515pt>
 File: figures/hadoop-architecture.png Graphic file (type png)
 
 <use figures/hadoop-architecture.png>
 Package pdftex.def Info: figures/hadoop-architecture.png used on input line 69.
 
 (pdftex.def)             Requested size: 521.94872pt x 405.51399pt.
- [14 <./figures/cassandra-logo.png>]
-[15 <./figures/hadoop-architecture.png>]
-<figures/hdfs.pdf, id=480, 755.07094pt x 333.49594pt>
+ [15 <./figures/cassandra-logo.png>]
+[16 <./figures/hadoop-architecture.png>]
+<figures/hdfs.pdf, id=659, 755.07094pt x 333.49594pt>
 File: figures/hdfs.pdf Graphic file (type pdf)
  <use figures/hdfs.pdf>
 Package pdftex.def Info: figures/hdfs.pdf used on input line 77.
 (pdftex.def)             Requested size: 755.06909pt x 333.49512pt.
 
-<figures/neo4j-logo.png, id=483, 451.6875pt x 171.64125pt>
+<figures/neo4j-logo.png, id=662, 451.6875pt x 171.64125pt>
 File: figures/neo4j-logo.png Graphic file (type png)
 
 <use figures/neo4j-logo.png>
 Package pdftex.def Info: figures/neo4j-logo.png used on input line 90.
 (pdftex.def)             Requested size: 451.68639pt x 171.64081pt.
 
-<figures/titan-logo.png, id=485, 93.951pt x 182.1204pt>
+<figures/titan-logo.png, id=664, 93.951pt x 182.1204pt>
 File: figures/titan-logo.png Graphic file (type png)
 
 <use figures/titan-logo.png>
 Package pdftex.def Info: figures/titan-logo.png used on input line 97.
 (pdftex.def)             Requested size: 93.95078pt x 182.11995pt.
- [16 <./figures/hdfs.pdf>]
+ [17 <./figures/hdfs.pdf>]
 
 pdfTeX warning: /usr/bin/pdflatex (file ./figures/titan-cassandra-mapping.pdf):
  PDF inclusion: found PDF version <1.6>, but at most version <1.5> allowed
-<figures/titan-cassandra-mapping.pdf, id=507, 661.97441pt x 492.58357pt>
+<figures/titan-cassandra-mapping.pdf, id=686, 661.97441pt x 492.58357pt>
 File: figures/titan-cassandra-mapping.pdf Graphic file (type pdf)
 
 <use figures/titan-cassandra-mapping.pdf>
 Package pdftex.def Info: figures/titan-cassandra-mapping.pdf used on input line
  105.
 (pdftex.def)             Requested size: 661.9728pt x 492.58237pt.
- [17 <./figures/neo4j-logo.png (PNG copy)> <./figures/titan-logo.png>]
-<figures/titan-modes-distributed.png, id=518, 191.2746pt x 101.6598pt>
+ [18 <./figures/neo4j-logo.png (PNG copy)> <./figures/titan-logo.png>]
+<figures/titan-modes-distributed.png, id=699, 191.2746pt x 101.6598pt>
 File: figures/titan-modes-distributed.png Graphic file (type png)
 
 <use figures/titan-modes-distributed.png>
@@ -1581,163 +1599,252 @@ Package pdftex.def Info: figures/titan-modes-distributed.png used on input line
  111.
 (pdftex.def)             Requested size: 191.27411pt x 101.65955pt.
 
-<figures/faunus-logo.png, id=520, 84.315pt x 181.1568pt>
+<figures/faunus-logo.png, id=701, 84.315pt x 181.1568pt>
 File: figures/faunus-logo.png Graphic file (type png)
 
 <use figures/faunus-logo.png>
 Package pdftex.def Info: figures/faunus-logo.png used on input line 119.
 (pdftex.def)             Requested size: 84.31477pt x 181.15634pt.
- [18 <./figures/titan-cassandra-mapping.pdf> <./figures/titan-modes-distributed
+ [19 <./figures/titan-cassandra-mapping.pdf> <./figures/titan-modes-distributed
 .png>]
 
 pdfTeX warning: /usr/bin/pdflatex (file ./figures/4s-cluster.pdf): PDF inclusio
 n: found PDF version <1.6>, but at most version <1.5> allowed
-<figures/4s-cluster.pdf, id=550, 257.10553pt x 251.41127pt>
+<figures/4s-cluster.pdf, id=732, 257.10553pt x 251.41127pt>
 File: figures/4s-cluster.pdf Graphic file (type pdf)
 
 <use figures/4s-cluster.pdf>
 Package pdftex.def Info: figures/4s-cluster.pdf used on input line 129.
 (pdftex.def)             Requested size: 257.1049pt x 251.41064pt.
 
-<figures/akka-logo.png, id=554, 48.9027pt x 38.3031pt>
+<figures/akka-logo.png, id=736, 48.9027pt x 38.3031pt>
 File: figures/akka-logo.png Graphic file (type png)
 
 <use figures/akka-logo.png>
 Package pdftex.def Info: figures/akka-logo.png used on input line 137.
 (pdftex.def)             Requested size: 48.90256pt x 38.303pt.
- [19 <./figures/faunus-logo.png>]
-<figures/akka-remote-deployment.png, id=565, 770.88pt x 578.16pt>
+ [20 <./figures/faunus-logo.png>]
+<figures/akka-remote-deployment.png, id=746, 770.88pt x 578.16pt>
 File: figures/akka-remote-deployment.png Graphic file (type png)
 
 <use figures/akka-remote-deployment.png>
 Package pdftex.def Info: figures/akka-remote-deployment.png used on input line 
 145.
 (pdftex.def)             Requested size: 770.87813pt x 578.15858pt.
- [20 <./figures/4s-cluster.pdf> <./figures/akka-logo.png>]
+ [21 <./figures/4s-cluster.pdf> <./figures/akka-logo.png>]
 LaTeX Font Info:    Font shape `T1/futs/bx/sc' in size <14.4> not available
 (Font)              Font shape `T1/futs/b/sc' tried instead on input line 158.
 
-<figures/incquery-architecture.png, id=617, 1445.4pt x 1084.05pt>
+<figures/incquery-architecture.png, id=800, 1445.4pt x 1084.05pt>
 File: figures/incquery-architecture.png Graphic file (type png)
 
 <use figures/incquery-architecture.png>
 Package pdftex.def Info: figures/incquery-architecture.png used on input line 1
 62.
 (pdftex.def)             Requested size: 1445.39648pt x 1084.04736pt.
-) [21 <./figures/akka-remote-deployment.png>] [22 <./figures/incquery-architect
+) [22 <./figures/akka-remote-deployment.png>] [23 <./figures/incquery-architect
 ure.png>]
 \openout2 = `overview.aux'.
 
  (./overview.tex
-Chapter 3.
-<figures/trainbenchmark-metamodel.png, id=630, 778.00867pt x 271.0125pt>
+Chapter 4.
+
+LaTeX Font Warning: Font shape `T1/fi4/bx/n' undefined
+(Font)              using `T1/fi4/m/n' instead on input line 5.
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+) [24
+
+
+
+]
+<figures/trainbenchmark-metamodel.png, id=856, 778.00867pt x 271.0125pt>
 File: figures/trainbenchmark-metamodel.png Graphic file (type png)
 
 <use figures/trainbenchmark-metamodel.png>
 Package pdftex.def Info: figures/trainbenchmark-metamodel.png used on input lin
-e 5.
+e 59.
 (pdftex.def)             Requested size: 778.00676pt x 271.01183pt.
 
-<figures/routesensor.png, id=631, 425.33907pt x 168.63pt>
+<figures/routesensor.png, id=857, 425.33907pt x 168.63pt>
 File: figures/routesensor.png Graphic file (type png)
 
 <use figures/routesensor.png>
-Package pdftex.def Info: figures/routesensor.png used on input line 12.
+Package pdftex.def Info: figures/routesensor.png used on input line 72.
 (pdftex.def)             Requested size: 425.33801pt x 168.62958pt.
 
-<figures/incqueryd-architecture.pdf, id=632, 740.0147pt x 426.84468pt>
+<figures/incqueryd-architecture.pdf, id=858, 740.0147pt x 426.84468pt>
 File: figures/incqueryd-architecture.pdf Graphic file (type pdf)
 
 <use figures/incqueryd-architecture.pdf>
 Package pdftex.def Info: figures/incqueryd-architecture.pdf used on input line 
-16.
+75.
 (pdftex.def)             Requested size: 740.0129pt x 426.84364pt.
-
-<figures/rete-routesensor-example-instances.pdf, id=633, 536.0025pt x 439.6425p
+ [25 <./figures/trainbenchmark-metamodel.png> <./figures/routesensor.png>]
+<figures/rete-routesensor-example-instances.pdf, id=869, 536.0025pt x 439.6425p
 t>
 File: figures/rete-routesensor-example-instances.pdf Graphic file (type pdf)
  <use figures/rete-routesensor-example-instances.pdf>
 Package pdftex.def Info: figures/rete-routesensor-example-instances.pdf used on
- input line 32.
+ input line 91.
 (pdftex.def)             Requested size: 536.00119pt x 439.64142pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [23
-
-
-
- <./figures/trainbenchmark-metamodel.png>] [24 <./figures/routesensor.png> <./f
-igures/incqueryd-architecture.pdf>]
-<figures/rete-routesensor-example-rete.pdf, id=661, 807.015pt x 849.1725pt>
+<figures/rete-routesensor-example-rete.pdf, id=870, 807.015pt x 849.1725pt>
 File: figures/rete-routesensor-example-rete.pdf Graphic file (type pdf)
 
 <use figures/rete-routesensor-example-rete.pdf>
 Package pdftex.def Info: figures/rete-routesensor-example-rete.pdf used on inpu
-t line 34.
+t line 93.
 (pdftex.def)             Requested size: 807.01303pt x 849.17043pt.
 
-<figures/recipe.pdf, id=662, 539.01375pt x 520.94624pt>
+<figures/recipe.pdf, id=871, 539.01375pt x 520.94624pt>
 File: figures/recipe.pdf Graphic file (type pdf)
 
 <use figures/recipe.pdf>
-Package pdftex.def Info: figures/recipe.pdf used on input line 46.
+Package pdftex.def Info: figures/recipe.pdf used on input line 107.
 (pdftex.def)             Requested size: 539.01242pt x 520.94498pt.
 
-<figures/incqueryd-tooling-tree-editor.png, id=663, 1371.1225pt x 770.88pt>
+<figures/incqueryd-tooling-tree-editor.png, id=872, 1371.1225pt x 770.88pt>
 File: figures/incqueryd-tooling-tree-editor.png Graphic file (type png)
 
 <use figures/incqueryd-tooling-tree-editor.png>
 Package pdftex.def Info: figures/incqueryd-tooling-tree-editor.png used on inpu
-t line 72.
+t line 133.
 (pdftex.def)             Requested size: 1371.11916pt x 770.87813pt.
-
-<figures/incqueryd-tooling-yfiles-viewer.png, id=664, 1371.1225pt x 770.88pt>
+ [26 <./figures/incqueryd-architecture.pdf>] [27 <./figures/rete-routesensor-ex
+ample-instances.pdf>] [28 <./figures/rete-routesensor-example-rete.pdf>] [29 <.
+/figures/recipe.pdf>]
+<figures/incqueryd-tooling-yfiles-viewer.png, id=963, 1371.1225pt x 770.88pt>
 File: figures/incqueryd-tooling-yfiles-viewer.png Graphic file (type png)
 
 <use figures/incqueryd-tooling-yfiles-viewer.png>
 Package pdftex.def Info: figures/incqueryd-tooling-yfiles-viewer.png used on in
-put line 74.
+put line 135.
 (pdftex.def)             Requested size: 1371.11916pt x 770.87813pt.
-)
-Overfull \vbox (357.4466pt too high) has occurred while \output is active []
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30 <./figures/incqueryd-tooling-tree-editor.png>]
+Overfull \vbox (3.87645pt too high) has occurred while \output is active []
 
 
-[25] [26 <./figures/rete-routesensor-example-instances.pdf>] [27 <./figures/ret
-e-routesensor-example-rete.pdf>] [28 <./figures/recipe.pdf>] [29 <./figures/inc
-queryd-tooling-tree-editor.png> <./figures/incqueryd-tooling-yfiles-viewer.png>
-]
+[31 <./figures/incqueryd-tooling-yfiles-viewer.png>]
+<figures/architecture.png, id=987, 2767.33875pt x 1626.075pt>
+File: figures/architecture.png Graphic file (type png)
+
+<use figures/architecture.png>
+Package pdftex.def Info: figures/architecture.png used on input line 161.
+(pdftex.def)             Requested size: 405.45047pt x 238.21881pt.
+ [32 <./figures/architecture.png>]
+<figures/patterndef.png, id=1001, 1282.7925pt x 834.11626pt>
+File: figures/patterndef.png Graphic file (type png)
+
+<use figures/patterndef.png>
+Package pdftex.def Info: figures/patterndef.png used on input line 209.
+(pdftex.def)             Requested size: 192.0548pt x 124.87021pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [33]
+Underfull \hbox (badness 7486) in paragraph at lines 221--223
+[][]\T1/futs/m/it/12 Information rep-re-sen-ta-tion and dis-tributed op-er-a-ti
+on. \T1/futs/m/n/12 The Rete layer of
+ []
+
+<figures/reteinternals.png, id=1012, 2622.79875pt x 1970.36125pt>
+File: figures/reteinternals.png Graphic file (type png)
+
+<use figures/reteinternals.png>
+Package pdftex.def Info: figures/reteinternals.png used on input line 226.
+(pdftex.def)             Requested size: 341.43437pt x 256.48666pt.
+) [34 <./figures/patterndef.png>] [35 <./figures/reteinternals.png>]
 \openout2 = `related-work.aux'.
 
  (./related-work.tex
-Chapter 4.
-) [30
+Chapter 5.
+[36
 
 
 
 ]
+Chapter 6.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [37
+
+]
+File: figures/cassandra-logo.png Graphic file (type png)
+
+<use figures/cassandra-logo.png>
+Package pdftex.def Info: figures/cassandra-logo.png used on input line 39.
+(pdftex.def)             Requested size: 361.34912pt x 72.2698pt.
+
+
+LaTeX Warning: Citation `hadoop' on page 38 undefined on input line 50.
+
+[38]
+File: figures/titan-logo.png Graphic file (type png)
+ <use figures/titan-logo.png>
+Package pdftex.def Info: figures/titan-logo.png used on input line 67.
+(pdftex.def)             Requested size: 93.95078pt x 182.11995pt.
+
+<figures/titan-modes-rexster.png, id=1085, 260.6538pt x 101.6598pt>
+File: figures/titan-modes-rexster.png Graphic file (type png)
+
+<use figures/titan-modes-rexster.png>
+Package pdftex.def Info: figures/titan-modes-rexster.png used on input line 83.
+
+(pdftex.def)             Requested size: 284.52756pt x 110.98225pt.
+
+<figures/titan-modes-embedded.png, id=1086, 461.725pt x 191.71625pt>
+File: figures/titan-modes-embedded.png Graphic file (type png)
+
+<use figures/titan-modes-embedded.png>
+Package pdftex.def Info: figures/titan-modes-embedded.png used on input line 91
+.
+(pdftex.def)             Requested size: 284.52756pt x 118.14027pt.
+ [39]
+<figures/gremlin-logo.png, id=1104, 267.399pt x 103.3461pt>
+File: figures/gremlin-logo.png Graphic file (type png)
+
+<use figures/gremlin-logo.png>
+Package pdftex.def Info: figures/gremlin-logo.png used on input line 112.
+(pdftex.def)             Requested size: 267.39835pt x 103.34584pt.
+
+
+LaTeX Font Warning: Font shape `T1/fi4/m/it' undefined
+(Font)              using `T1/fi4/m/n' instead on input line 122.
+
+[40 <./figures/titan-modes-rexster.png> <./figures/titan-modes-embedded.png> <.
+/figures/gremlin-logo.png>]) [41]
 \openout2 = `evaluation.aux'.
 
  (./evaluation.tex
-Chapter 5.
-<figures/benchmark-scenario.pdf, id=760, 819.8128pt x 306.39468pt>
+Chapter 7.
+<figures/benchmark-scenario.pdf, id=1128, 819.8128pt x 306.39468pt>
 File: figures/benchmark-scenario.pdf Graphic file (type pdf)
 
 <use figures/benchmark-scenario.pdf>
-Package pdftex.def Info: figures/benchmark-scenario.pdf used on input line 5.
+Package pdftex.def Info: figures/benchmark-scenario.pdf used on input line 6.
 (pdftex.def)             Requested size: 819.81079pt x 306.39394pt.
 
-<figures/routesensor-distributed-layout.pdf, id=761, 807.015pt x 549.55313pt>
+<figures/routesensor-distributed-layout.pdf, id=1129, 807.015pt x 549.55313pt>
 File: figures/routesensor-distributed-layout.pdf Graphic file (type pdf)
 
 <use figures/routesensor-distributed-layout.pdf>
 Package pdftex.def Info: figures/routesensor-distributed-layout.pdf used on inp
-ut line 15.
+ut line 16.
 (pdftex.def)             Requested size: 807.01303pt x 549.55179pt.
-)
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [31
+ [42
 
 
 
@@ -1745,42 +1852,149 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (314.53482pt too high) has occurred while \output is active []
 
 
-[32 <./figures/routesensor-distributed-layout.pdf>]
+[43 <./figures/routesensor-distributed-layout.pdf>]
+Chapter 8.
+<figures/TrainMetamodel.png, id=1180, 778.00867pt x 271.0125pt>
+File: figures/TrainMetamodel.png Graphic file (type png)
+
+<use figures/TrainMetamodel.png>
+Package pdftex.def Info: figures/TrainMetamodel.png used on input line 68.
+(pdftex.def)             Requested size: 398.33858pt x 138.75626pt.
+ [44
+
+ <./figures/TrainMetamodel.png>]
+<figures/OD_RouteSensor.png, id=1188, 425.33907pt x 168.63pt>
+File: figures/OD_RouteSensor.png Graphic file (type png)
+
+<use figures/OD_RouteSensor.png>
+Package pdftex.def Info: figures/OD_RouteSensor.png used on input line 86.
+(pdftex.def)             Requested size: 425.33801pt x 168.62958pt.
+
+
+LaTeX Warning: Reference `cypherqueries' on page 45 undefined on input line 92.
+
+
+[45 <./figures/OD_RouteSensor.png>]
+File: figures/neo4j-logo.png Graphic file (type png)
+ <use figures/neo4j-logo.png>
+Package pdftex.def Info: figures/neo4j-logo.png used on input line 113.
+(pdftex.def)             Requested size: 451.68639pt x 171.64081pt.
+
+Overfull \hbox (24.89503pt too wide) in paragraph at lines 113--114
+ [][] 
+ []
+
+<figures/neoclipse-graph.png, id=1202, 1167.36125pt x 657.45625pt>
+File: figures/neoclipse-graph.png Graphic file (type png)
+
+<use figures/neoclipse-graph.png>
+Package pdftex.def Info: figures/neoclipse-graph.png used on input line 123.
+(pdftex.def)             Requested size: 398.33858pt x 224.34476pt.
+ [46] [47 <./figures/neoclipse-graph.png (PNG copy)>]
+Chapter 9.
+LaTeX Font Info:    Try loading font information for OMS+futs on input line 189
+.
+LaTeX Font Info:    No file OMSfuts.fd. on input line 189.
+
+LaTeX Font Warning: Font shape `OMS/futs/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead on input line 189.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [48
+
+]
+<figures/All_RouteSensor.png, id=1234, 653.57217pt x 556.16478pt>
+File: figures/All_RouteSensor.png Graphic file (type png)
+
+<use figures/All_RouteSensor.png>
+Package pdftex.def Info: figures/All_RouteSensor.png used on input line 193.
+(pdftex.def)             Requested size: 426.79135pt x 363.18312pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [49 <./figures/All_RouteSensor.png>]
+File: figures/akka-logo.png Graphic file (type png)
+ <use figures/akka-logo.png>
+Package pdftex.def Info: figures/akka-logo.png used on input line 214.
+(pdftex.def)             Requested size: 170.71652pt x 133.74603pt.
+ [50]
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
+[]\T1/futs/m/n/12 I used Neo4j in \T1/futs/m/it/12 server mode \T1/futs/m/n/12 
+and ac-cessed the REST in-ter-face with the
+ []
+
+) [51]
 \openout2 = `conclusions.aux'.
 
  (./conclusions.tex
-Chapter 6.
-) [33
+Chapter 10.
+[52
 
 
+
+]
+Chapter 11.
+) [53
 
 ] (./szarnyasg-incqueryd-tdk.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 4--6
+Underfull \hbox (badness 1005) in paragraph at lines 4--6
+[][]\T1/futs/m/n/12 Java bind-ing for the Neo4j Server REST API.  [][]$\T1/fi4/
+m/n/12 https : / / github . com / neo4j /
+ []
+
+
+Underfull \hbox (badness 4391) in paragraph at lines 30--34
+[][]\T1/futs/m/n/12 Titan -- The Rise of Big Data.  [][]$\T1/fi4/m/n/12 http : 
+/ / www . slideshare . net / slidarko /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--38
 [][][][]$\T1/fi4/m/n/12 http : / / blog . neo4j . org / 2013 / 01 / 2013-[]what
 s-[]coming-[]next-[]in-[]neo4j . html$[][]\T1/futs/m/n/12 ,
  []
 
+[54
 
-Underfull \hbox (badness 4441) in paragraph at lines 56--61
+
+]
+Underfull \hbox (badness 1478) in paragraph at lines 132--135
+[][]\T1/futs/m/n/12 Eclipse MDT Project.  Eclispe OCL web-site, 2011.  [][]$\T1
+/fi4/m/n/12 http : / / eclipse . org /
+ []
+
+[55]
+Underfull \hbox (badness 4441) in paragraph at lines 196--201
 [][]\T1/futs/m/n/12 Sherif Sakr.  Sup-ply cloud-level data scal-a-bil-ity with 
 NoSQL databases.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--61
+Underfull \hbox (badness 10000) in paragraph at lines 196--201
 [][]$\T1/fi4/m/n/12 http : / / www . ibm . com / developerworks / cloud / libra
 ry / cl-[]nosqldatabase /
  []
 
-) [34
+
+Underfull \hbox (badness 1354) in paragraph at lines 203--207
+[][]\T1/futs/m/n/12 Andrés Tay-lor and Al-is-tair Jones.  Cypher Query Lan-guag
+e.  [][]$\T1/fi4/m/n/12 http : / / www .
+ []
 
 
-]
+Underfull \hbox (badness 10000) in paragraph at lines 209--212
+[][]\T1/futs/m/n/12 W3C.  SPARQL Query Lan-guage for RDF.  [][]$\T1/fi4/m/n/12 
+http : / / www . w3 . org / TR /
+ []
+
+) [56]
 \openout2 = `appendix.aux'.
 
  (./appendix.tex
 Appendix A.
-) [35
+) [57
 
 
 ]
@@ -1789,27 +2003,37 @@ Appendix A.
 
  
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 296.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 296.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 295.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 295.
 (./szarnyasg-incqueryd-tdk.aux (./title.aux) (./declaration.aux)
 (./abstract.aux) (./introduction.aux) (./background-technologies.aux)
 (./overview.aux) (./related-work.aux) (./evaluation.aux) (./conclusions.aux)
 (./appendix.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 296.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 296.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 295.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 295.
 Package rerunfilecheck Info: File `szarnyasg-incqueryd-tdk.out' has not changed
 .
-(rerunfilecheck)             Checksum: A91B4C2D2AA15D836C105E314C9628DA;4167.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 296.
+(rerunfilecheck)             Checksum: 64205D7AE7D9C098F12F650D6D403DC7;5985.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 295.
  ) 
 Here is how much of TeX's memory you used:
- 20328 strings out of 493485
- 344878 string characters out of 3143527
- 425183 words of memory out of 3000000
- 22912 multiletter control sequences out of 15000+200000
- 133986 words of font info for 117 fonts, out of 3000000 for 9000
+ 21379 strings out of 493485
+ 357723 string characters out of 3143527
+ 490195 words of memory out of 3000000
+ 23761 multiletter control sequences out of 15000+200000
+ 140032 words of font info for 124 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 63i,8n,78p,848b,519s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 63i,14n,78p,1234b,1892s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/inconsolata/fi4-ec.enc}{/usr/s
 hare/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-d
 ist/fonts/type1/public/inconsolata/Inconsolata.pfb></usr/share/texlive/texmf-di
@@ -1820,16 +2044,17 @@ ic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
 onts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/fourier/fourier-ms.pfb></usr/share/texlive/texmf
--dist/fonts/type1/adobe/utopia/putb8a.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/adobe/utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/
-utopia/putri8a.pfb>
-Output written on szarnyasg-incqueryd-tdk.pdf (35 pages, 1322104 bytes).
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/fourier/fourier-ms.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/adobe/utopia/putb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+adobe/utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia
+/putri8a.pfb>
+Output written on szarnyasg-incqueryd-tdk.pdf (57 pages, 2274575 bytes).
 PDF statistics:
- 896 PDF objects out of 1000 (max. 8388607)
- 755 compressed objects within 8 object streams
- 158 named destinations out of 1000 (max. 500000)
- 637 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1444 PDF objects out of 1728 (max. 8388607)
+ 1260 compressed objects within 13 object streams
+ 341 named destinations out of 1000 (max. 500000)
+ 927 words of extra memory for PDF output out of 10000 (max. 10000000)
 

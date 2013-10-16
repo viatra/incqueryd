@@ -8,59 +8,96 @@ A level-1 auxiliary file: introduction.aux
 A level-1 auxiliary file: background-technologies.aux
 A level-1 auxiliary file: overview.aux
 A level-1 auxiliary file: related-work.aux
+Case mismatch error between cite keys hadoop and Hadoop
+---line 28 of file related-work.aux
+ : \citation{hadoop
+ :                 }
+I'm skipping whatever remains of this command
 A level-1 auxiliary file: evaluation.aux
 A level-1 auxiliary file: conclusions.aux
 The style file: plain.bst
 A level-1 auxiliary file: appendix.aux
 Database file #1: bibtex/bib.bib
+Warning--entry type for "Neoclipse" isn't style-file defined
+--line 143 of file bibtex/bib.bib
+Repeated entry---line 550 of file bibtex/bib.bib
+ : @misc{EMF
+ :          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1010 of file bibtex/bib.bib
+ : @incollection {models10
+ :                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1214 of file bibtex/bib.bib
+ : @misc{akka
+ :           ,
+I'm skipping whatever remains of this entry
 Repeated entry---line 1314 of file bibtex/bib.bib
  : @misc{4store
  :             ,
 I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in EMF
+Warning--to sort, need author or key in openvirtuoso
+Warning--to sort, need author or key in sesame
 Warning--to sort, need author or key in NoSQL
 Warning--to sort, need author or key in Cassandra
 Warning--to sort, need author or key in Hadoop
 Warning--to sort, need author or key in Lustre
 Warning--to sort, need author or key in rassilon
-You've used 12 entries,
+Warning--to sort, need author or key in Woodstox
+Warning--to sort, need author or key in Titan
+Warning--to sort, need author or key in TitanRiseOfBigData
+Warning--to sort, need author or key in TitanCassandra
+Warning--to sort, need author or key in HBase
+Warning--to sort, need author or key in Rexster
+Warning--to sort, need author or key in incquery
+Warning--to sort, need author or key in Neoclipse
+Warning--to sort, need author or key in Tinkerpop
+Warning--to sort, need author or key in Blueprints
+Warning--to sort, need author or key in akka
+Warning--to sort, need author or key in guava
+Warning--to sort, need author or key in restbinding
+Warning--to sort, need author or key in Maven
+Warning--empty publisher in INSTANS2012
+You've used 43 entries,
             2118 wiz_defined-function locations,
-            575 strings with 5765 characters,
-and the built_in function-call counts, 3010 in all, are:
-= -- 298
-> -- 94
-< -- 1
-+ -- 42
-- -- 28
-* -- 189
-:= -- 456
-add.period$ -- 31
-call.type$ -- 12
-change.case$ -- 49
+            719 strings with 9204 characters,
+and the built_in function-call counts, 9583 in all, are:
+= -- 925
+> -- 280
+< -- 4
++ -- 127
+- -- 81
+* -- 527
+:= -- 1400
+add.period$ -- 110
+call.type$ -- 43
+change.case$ -- 166
 chr.to.int$ -- 0
-cite$ -- 17
-duplicate$ -- 120
-empty$ -- 298
-format.name$ -- 28
-if$ -- 662
+cite$ -- 66
+duplicate$ -- 388
+empty$ -- 1029
+format.name$ -- 81
+if$ -- 2166
 int.to.chr$ -- 0
-int.to.str$ -- 12
-missing$ -- 6
-newline$ -- 57
-num.names$ -- 14
-pop$ -- 76
+int.to.str$ -- 43
+missing$ -- 13
+newline$ -- 195
+num.names$ -- 44
+pop$ -- 310
 preamble$ -- 1
-purify$ -- 38
+purify$ -- 124
 quote$ -- 0
-skip$ -- 97
+skip$ -- 326
 stack$ -- 0
-substring$ -- 155
-swap$ -- 20
-text.length$ -- 1
+substring$ -- 371
+swap$ -- 63
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 48
-warning$ -- 5
-while$ -- 23
-width$ -- 14
-write$ -- 118
-(There was 1 error message)
+type$ -- 172
+warning$ -- 23
+while$ -- 57
+width$ -- 45
+write$ -- 399
+(There were 5 error messages)

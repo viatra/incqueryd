@@ -1,86 +1,119 @@
 \select@language {english}
-\contentsline {chapter}{Abstract in Hungarian}{5}{chapter*.1}
-\contentsline {chapter}{Abstract in English}{6}{chapter*.2}
-\contentsline {chapter}{\numberline {1}Introduction}{10}{chapter.1}
-\contentsline {section}{\numberline {1.1}Context}{10}{section.1.1}
-\contentsline {section}{\numberline {1.2}Problem statement, requirements}{10}{section.1.2}
-\contentsline {section}{\numberline {1.3}Objectives}{10}{section.1.3}
-\contentsline {section}{\numberline {1.4}Contribution, added value}{10}{section.1.4}
-\contentsline {section}{\numberline {1.5}Structure of the report}{10}{section.1.5}
-\contentsline {chapter}{\numberline {2}Background technologies}{11}{chapter.2}
-\contentsline {section}{\numberline {2.1}Big Data and the NoSQL movement}{11}{section.2.1}
-\contentsline {section}{\numberline {2.2}Graph models}{12}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Graph models}{12}{subsection.2.2.1}
-\contentsline {subsubsection}{TinkerPop}{13}{section*.5}
-\contentsline {subsection}{\numberline {2.2.2}Triplestores}{13}{subsection.2.2.2}
-\contentsline {section}{\numberline {2.3}Technologies}{13}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Cassandra}{13}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Hadoop}{14}{subsection.2.3.2}
-\contentsline {subsubsection}{HDFS}{14}{section*.8}
-\contentsline {subsubsection}{HBase}{16}{section*.10}
-\contentsline {subsection}{\numberline {2.3.3}Neo4j}{16}{subsection.2.3.3}
-\contentsline {subsection}{\numberline {2.3.4}Titan}{16}{subsection.2.3.4}
-\contentsline {subsubsection}{Mapping and sharding}{17}{section*.13}
-\contentsline {subsubsection}{Deployment}{17}{section*.15}
-\contentsline {subsubsection}{Faunus}{18}{section*.17}
-\contentsline {subsection}{\numberline {2.3.5}4store}{19}{subsection.2.3.5}
-\contentsline {section}{\numberline {2.4}Asynchronous messaging}{19}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Akka}{19}{subsection.2.4.1}
-\contentsline {section}{\numberline {2.5}Eclipse-based technologies}{20}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}EMF}{20}{subsection.2.5.1}
-\contentsline {subsection}{\numberline {2.5.2}\unhbox \voidb@x \hbox {\textsc {EMF-IncQuery}}}{21}{subsection.2.5.2}
-\contentsline {chapter}{\numberline {3}Overview}{23}{chapter.3}
-\contentsline {section}{\numberline {3.1}Case study: TrainBenchmark}{25}{section.3.1}
-\contentsline {section}{\numberline {3.2}Architecture overview (rules of key components)}{25}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Rete in general}{25}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}IncQuery-D architecture}{25}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Middleware}{25}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Indexing}{25}{subsection.3.3.1}
-\contentsline {subsection}{\numberline {3.3.2}Graph-like data manipulation}{25}{subsection.3.3.2}
-\contentsline {subsection}{\numberline {3.3.3}Notification mechanisms}{25}{subsection.3.3.3}
-\contentsline {section}{\numberline {3.4}Incremental queries, change propagation}{25}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Rete}{25}{subsection.3.4.1}
-\contentsline {subsubsection}{Detailed Rete with an actual instance model}{25}{section*.26}
-\contentsline {subsection}{\numberline {3.4.2}Distribution}{25}{subsection.3.4.2}
-\contentsline {subsubsection}{Principles}{25}{section*.29}
-\contentsline {subsubsection}{Practice (transparent framework: Akka)}{25}{section*.30}
-\contentsline {section}{\numberline {3.5}Deployment, configuration}{25}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}Tooling (reuse of \unhbox \voidb@x \hbox {\textsc {EMF-IncQuery}})}{25}{subsection.3.5.1}
-\contentsline {subsection}{\numberline {3.5.2}Degrees of freedom}{25}{subsection.3.5.2}
-\contentsline {subsubsection}{Different database implementations}{25}{section*.32}
-\contentsline {subsection}{\numberline {3.5.3}Problem pieces}{25}{subsection.3.5.3}
-\contentsline {subsubsection}{Analyze the model and the query}{25}{section*.33}
-\contentsline {subsubsection}{Build a Rete layout}{25}{section*.34}
-\contentsline {subsubsection}{Allocate the Rete network in the cloud's nodes}{25}{section*.35}
-\contentsline {subsubsection}{Bootstrap the system}{25}{section*.36}
-\contentsline {subsection}{\numberline {3.5.4}Implementation details}{25}{subsection.3.5.4}
-\contentsline {subsubsection}{IQPL, EMF model, P-System}{25}{section*.37}
-\contentsline {subsubsection}{EMF-IncQuery's implementation}{25}{section*.38}
-\contentsline {subsubsection}{Manual allocation}{25}{section*.39}
-\contentsline {subsubsection}{Automatic bootstrapping and operation}{25}{section*.40}
-\contentsline {section}{\numberline {3.6}Elaboration of the example}{25}{section.3.6}
-\contentsline {chapter}{\numberline {4}Related work}{30}{chapter.4}
-\contentsline {chapter}{\numberline {5}Evaluation}{31}{chapter.5}
-\contentsline {section}{\numberline {5.1}Goals}{32}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Measure the response time and the scalability}{32}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Workload profile's difference from standard benchmarks}{32}{subsection.5.1.2}
-\contentsline {section}{\numberline {5.2}Environment}{32}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Benchmark setup}{32}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Hardware, software ecosystem}{32}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Benchmark methodology}{32}{subsection.5.2.3}
-\contentsline {subsection}{\numberline {5.2.4}Data collection}{32}{subsection.5.2.4}
-\contentsline {subsection}{\numberline {5.2.5}Data processing tools}{32}{subsection.5.2.5}
-\contentsline {section}{\numberline {5.3}Results and analysis}{32}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Threat to validity}{32}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Conclusions}{32}{subsection.5.3.2}
-\contentsline {subsubsection}{Allocation of heap memory}{32}{section*.45}
-\contentsline {subsubsection}{Feedback for the problem pieces subsection}{32}{section*.46}
-\contentsline {subsubsection}{Comparing different tools}{32}{section*.47}
-\contentsline {subsubsection}{Possibilities to increase the throughput of the system}{32}{section*.48}
-\contentsline {chapter}{\numberline {6}Conclusions}{33}{chapter.6}
-\contentsline {section}{\numberline {6.1}Summary of contributions}{33}{section.6.1}
-\contentsline {subsection}{\numberline {6.1.1}Own work}{33}{subsection.6.1.1}
-\contentsline {section}{\numberline {6.2}Limitations}{33}{section.6.2}
-\contentsline {section}{\numberline {6.3}Future directions}{33}{section.6.3}
-\contentsline {chapter}{Bibliography}{34}{section.6.3}
-\contentsline {chapter}{\numberline {A}Apx}{35}{appendix.A}
+\contentsline {chapter}{Abstract in Hungarian}{4}{chapter*.1}
+\contentsline {chapter}{Abstract in English}{5}{chapter*.2}
+\contentsline {chapter}{\numberline {1}Introduction}{9}{chapter.1}
+\contentsline {section}{\numberline {1.1}Context}{9}{section.1.1}
+\contentsline {section}{\numberline {1.2}Problem statement, requirements}{9}{section.1.2}
+\contentsline {section}{\numberline {1.3}Objectives}{9}{section.1.3}
+\contentsline {section}{\numberline {1.4}Contribution, added value}{9}{section.1.4}
+\contentsline {section}{\numberline {1.5}Structure of the report}{9}{section.1.5}
+\contentsline {chapter}{\numberline {2}Introduction}{10}{chapter.2}
+\contentsline {section}{\numberline {2.1}Introduction}{10}{section.2.1}
+\contentsline {chapter}{\numberline {3}Background technologies}{12}{chapter.3}
+\contentsline {section}{\numberline {3.1}Big Data and the NoSQL movement}{12}{section.3.1}
+\contentsline {section}{\numberline {3.2}Graph models}{13}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Graph models}{13}{subsection.3.2.1}
+\contentsline {subsubsection}{TinkerPop}{14}{section*.5}
+\contentsline {subsection}{\numberline {3.2.2}Triplestores}{14}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Technologies}{14}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Cassandra}{14}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Hadoop}{15}{subsection.3.3.2}
+\contentsline {subsubsection}{HDFS}{15}{section*.8}
+\contentsline {subsubsection}{HBase}{17}{section*.10}
+\contentsline {subsection}{\numberline {3.3.3}Neo4j}{17}{subsection.3.3.3}
+\contentsline {subsection}{\numberline {3.3.4}Titan}{17}{subsection.3.3.4}
+\contentsline {subsubsection}{Mapping and sharding}{18}{section*.13}
+\contentsline {subsubsection}{Deployment}{18}{section*.15}
+\contentsline {subsubsection}{Faunus}{19}{section*.17}
+\contentsline {subsection}{\numberline {3.3.5}4store}{20}{subsection.3.3.5}
+\contentsline {section}{\numberline {3.4}Asynchronous messaging}{20}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Akka}{20}{subsection.3.4.1}
+\contentsline {section}{\numberline {3.5}Eclipse-based technologies}{21}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}EMF}{21}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}\unhbox \voidb@x \hbox {\textsc {EMF-IncQuery}}}{22}{subsection.3.5.2}
+\contentsline {chapter}{\numberline {4}Overview}{24}{chapter.4}
+\contentsline {section}{\numberline {4.1}Case study: TrainBenchmark}{25}{section.4.1}
+\contentsline {section}{\numberline {4.2}Architecture overview}{25}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Rete in general}{25}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}IncQuery-D architecture}{26}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Middleware}{26}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Indexing}{26}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Graph-like data manipulation}{26}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Notification mechanisms}{26}{subsection.4.3.3}
+\contentsline {section}{\numberline {4.4}Incremental queries, change propagation}{26}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Rete}{26}{subsection.4.4.1}
+\contentsline {subsubsection}{Detailed Rete with an actual instance model}{26}{section*.26}
+\contentsline {subsection}{\numberline {4.4.2}Distribution}{26}{subsection.4.4.2}
+\contentsline {subsubsection}{Principles}{26}{section*.29}
+\contentsline {subsubsection}{Practice (transparent framework: Akka)}{26}{section*.30}
+\contentsline {section}{\numberline {4.5}Deployment, configuration}{26}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Tooling}{26}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Degrees of freedom}{31}{subsection.4.5.2}
+\contentsline {subsubsection}{Different database implementations}{31}{section*.32}
+\contentsline {subsection}{\numberline {4.5.3}Problem pieces}{31}{subsection.4.5.3}
+\contentsline {subsubsection}{Analyze the model and the query}{31}{section*.33}
+\contentsline {subsubsection}{Build a Rete layout}{31}{section*.34}
+\contentsline {subsubsection}{Allocate the Rete network in the cloud's nodes}{31}{section*.35}
+\contentsline {subsubsection}{Bootstrap the system}{31}{section*.36}
+\contentsline {subsection}{\numberline {4.5.4}Implementation details}{31}{subsection.4.5.4}
+\contentsline {subsubsection}{IQPL, EMF model, P-System}{31}{section*.37}
+\contentsline {subsubsection}{EMF-IncQuery's implementation}{31}{section*.38}
+\contentsline {subsubsection}{Manual allocation}{31}{section*.39}
+\contentsline {subsubsection}{Automatic bootstrapping and operation}{31}{section*.40}
+\contentsline {section}{\numberline {4.6}Elaboration of the example}{31}{section.4.6}
+\contentsline {section}{\numberline {4.7}Overview of the Approach}{31}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}Architecture}{32}{subsection.4.7.1}
+\contentsline {subsection}{\numberline {4.7.2}Scalability considerations}{34}{subsection.4.7.2}
+\contentsline {chapter}{\numberline {5}Related work}{36}{chapter.5}
+\contentsline {chapter}{\numberline {6}Related and future work}{37}{chapter.6}
+\contentsline {section}{\numberline {6.1}Related work}{37}{section.6.1}
+\contentsline {section}{\numberline {6.2}Future work}{38}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Cassandra}{38}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Clustered graph loader application}{38}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Titan}{39}{subsection.6.2.3}
+\contentsline {subsubsection}{Titan and Cassandra setups}{39}{section*.48}
+\contentsline {subsubsection}{Initialising Titan}{39}{section*.51}
+\contentsline {subsubsection}{Listing nodes}{40}{section*.52}
+\contentsline {chapter}{\numberline {7}Evaluation}{42}{chapter.7}
+\contentsline {section}{\numberline {7.1}Goals}{43}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Measure the response time and the scalability}{43}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Workload profile's difference from standard benchmarks}{43}{subsection.7.1.2}
+\contentsline {section}{\numberline {7.2}Environment}{43}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Benchmark setup}{43}{subsection.7.2.1}
+\contentsline {subsection}{\numberline {7.2.2}Hardware, software ecosystem}{43}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.3}Benchmark methodology}{43}{subsection.7.2.3}
+\contentsline {subsection}{\numberline {7.2.4}Data collection}{43}{subsection.7.2.4}
+\contentsline {subsection}{\numberline {7.2.5}Data processing tools}{43}{subsection.7.2.5}
+\contentsline {section}{\numberline {7.3}Results and analysis}{43}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Threat to validity}{43}{subsection.7.3.1}
+\contentsline {subsection}{\numberline {7.3.2}Conclusions}{43}{subsection.7.3.2}
+\contentsline {subsubsection}{Allocation of heap memory}{43}{section*.56}
+\contentsline {subsubsection}{Feedback for the problem pieces subsection}{43}{section*.57}
+\contentsline {subsubsection}{Comparing different tools}{43}{section*.58}
+\contentsline {subsubsection}{Possibilities to increase the throughput of the system}{43}{section*.59}
+\contentsline {chapter}{\numberline {8}Benchmark}{44}{chapter.8}
+\contentsline {section}{\numberline {8.1}TrainBenchmark}{44}{section.8.1}
+\contentsline {subsection}{\numberline {8.1.1}Metamodel}{44}{subsection.8.1.1}
+\contentsline {section}{\numberline {8.2}Queries}{45}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}RouteSensor}{45}{subsection.8.2.1}
+\contentsline {section}{\numberline {8.3}Phases}{45}{section.8.3}
+\contentsline {section}{\numberline {8.4}Neo4j}{46}{section.8.4}
+\contentsline {section}{\numberline {8.5}Generation of models}{46}{section.8.5}
+\contentsline {subsection}{\numberline {8.5.1}RouteSensor}{46}{subsection.8.5.1}
+\contentsline {chapter}{\numberline {9}Evaluation}{48}{chapter.9}
+\contentsline {section}{\numberline {9.1}Benchmark scenario}{48}{section.9.1}
+\contentsline {section}{\numberline {9.2}Evaluation aspects and benchmark environment}{49}{section.9.2}
+\contentsline {section}{\numberline {9.3}Results}{50}{section.9.3}
+\contentsline {section}{\numberline {9.4}Technologies}{50}{section.9.4}
+\contentsline {subsection}{\numberline {9.4.1}Akka}{50}{subsection.9.4.1}
+\contentsline {subsection}{\numberline {9.4.2}Google Guava}{51}{subsection.9.4.2}
+\contentsline {subsection}{\numberline {9.4.3}Neo4j Java REST binding}{51}{subsection.9.4.3}
+\contentsline {subsection}{\numberline {9.4.4}Apache Maven}{51}{subsection.9.4.4}
+\contentsline {chapter}{\numberline {10}Conclusions}{52}{chapter.10}
+\contentsline {section}{\numberline {10.1}Summary of contributions}{52}{section.10.1}
+\contentsline {subsection}{\numberline {10.1.1}Own work}{52}{subsection.10.1.1}
+\contentsline {section}{\numberline {10.2}Limitations}{52}{section.10.2}
+\contentsline {section}{\numberline {10.3}Future directions}{52}{section.10.3}
+\contentsline {chapter}{\numberline {11}Conclusion}{53}{chapter.11}
+\contentsline {chapter}{Bibliography}{54}{chapter.11}
+\contentsline {chapter}{\numberline {A}Apx}{57}{appendix.A}

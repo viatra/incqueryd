@@ -1,8 +1,44 @@
 \begin{thebibliography}{10}
 
+\bibitem{restbinding}
+{Java binding for the Neo4j Server REST API}.
+\newblock \url{https://github.com/neo4j/java-rest-binding}.
+
+\bibitem{openvirtuoso}
+{OpenLink Software: Virtuoso Universal Server}.
+\newblock \url{http://virtuoso.openlinksw.com/}.
+
+\bibitem{sesame}
+{Sesame: RDF API and Query Engine}.
+\newblock \url{http://www.openrdf.org/}.
+
+\bibitem{Maven}
+{Apache Maven} website.
+\newblock \url{http://maven.apache.org}, October 2012.
+
+\bibitem{EMF}
+{Eclipse Modeling Framework} website.
+\newblock \url{http://www.eclipse.org/emf}, October 2012.
+
+\bibitem{TitanCassandra}
+{Titan -- Big Data with Cassandra}.
+\newblock
+  \url{http://www.slideshare.net/knowfrominfo/titan-big-graph-data-with-cassandra},
+  August 2012.
+
+\bibitem{TitanRiseOfBigData}
+{Titan -- The Rise of Big Data}.
+\newblock
+  \url{http://www.slideshare.net/slidarko/titan-the-rise-of-big-graph-data},
+  June 2012.
+
 \bibitem{rassilon}
 \url{http://blog.neo4j.org/2013/01/2013-whats-coming-next-in-neo4j.html},
   January 2013.
+
+\bibitem{akka}
+Akka website.
+\newblock \url{http://akka.io/}, May 2013.
 
 \bibitem{Cassandra}
 {Apache Cassandra} website.
@@ -12,13 +48,75 @@
 {Apache Hadoop} website.
 \newblock \url{http://hadoop.apache.org/}, May 2013.
 
+\bibitem{HBase}
+{Apache HBase} website.
+\newblock \url{http://hbase.apache.org/}, May 2013.
+
+\bibitem{Blueprints}
+Blueprints website.
+\newblock \url{http://blueprints.tinkerpop.com/}, May 2013.
+
+\bibitem{incquery}
+{EMF-IncQuery} website.
+\newblock \url{http://incquery.net/incquery}, May 2013.
+
+\bibitem{guava}
+{Guava: Google Core Libraries for Java 1.6+}.
+\newblock \url{https://code.google.com/p/guava-libraries/}, May 2013.
+
 \bibitem{Lustre}
 Lustre.
 \newblock \url{http://lustre.org/}, October 2013.
 
+\bibitem{Neoclipse}
+Neoclipse website.
+\newblock \url{https://github.com/neo4j/neoclipse}, May 2013.
+
 \bibitem{NoSQL}
 {NoSQL Databases}.
 \newblock \url{http://nosql-database.org/}, May 2013.
+
+\bibitem{Rexster}
+Rexster website.
+\newblock \url{http://rexster.tinkerpop.com/}, May 2013.
+
+\bibitem{Tinkerpop}
+Tinkerpop website.
+\newblock \url{http://www.tinkerpop.com/}, May 2013.
+
+\bibitem{Titan}
+Titan website.
+\newblock \url{https://github.com/thinkaurelius/titan}, May 2013.
+
+\bibitem{Woodstox}
+Woostox website.
+\newblock \url{http://woodstox.codehaus.org/}, May 2013.
+
+\bibitem{message-passing-rete}
+{Acharya, A. et al.}
+\newblock Implementation of production systems on message-passing computers.
+\newblock {\em IEEE Trans. Parallel Distr. Syst.}, 3(4):477--487, July 1992.
+
+\bibitem{BergmannRete}
+G\'abor Bergmann.
+\newblock Incremental graph pattern matching and applications.
+\newblock Master's thesis, Budapest University of Technology and Economics,
+  \url{http://mit.bme.hu/~rath/pub/theses/diploma_bergmann.pdf}, 2008.
+
+\bibitem{models10}
+G\'abor Bergmann, \'Akos Horv\'ath, István Ráth, and D\'aniel Varr\'o.
+\newblock Incremental evaluation of model queries over {EMF} models.
+\newblock In Dorina Petriu, Nicolas Rouquette, and Øystein Haugen, editors,
+  {\em Model Driven Engineering Languages and Systems}, volume 6394 of {\em
+  Lecture Notes in Computer Science}, pages 76--90. Springer Berlin /
+  Heidelberg, 2010.
+\newblock Acceptance rate: 21\%; DOI: 10.1007/978-3-642-16145-2\_6.
+
+\bibitem{mapreduce-rete}
+Bin Cao, Jianwei Yin, Qi~Zhang, and Yanming Ye.
+\newblock A mapreduce-based architecture for rule matching in production
+  system.
+\newblock In {\em CLOUDCOM}. IEEE, 2010.
 
 \bibitem{Codd:1970:RMD:362384.362685}
 E.~F. Codd.
@@ -30,11 +128,31 @@ Jeffrey Dean and Sanjay Ghemawat.
 \newblock Mapreduce: simplified data processing on large clusters.
 \newblock {\em Commun. ACM}, 51(1):107--113, January 2008.
 
+\bibitem{EclipseOCL}
+{Eclipse MDT Project}.
+\newblock {Eclispe OCL} website, 2011.
+\newblock \url{http://eclipse.org/modeling/mdt/?project=ocl}.
+
+\bibitem{Forgy}
+Charles Forgy.
+\newblock Rete: A fast algorithm for the many pattern/many object pattern match
+  problem.
+\newblock {\em Artificial Intelligences}, 19(1):17--37, 1982.
+
 \bibitem{Ghemawat:2003:GFS:945445.945450}
 Sanjay Ghemawat, Howard Gobioff, and Shun-Tak Leung.
 \newblock The google file system.
 \newblock In {\em Proceedings of the nineteenth ACM symposium on Operating
   systems principles}, SOSP '03, pages 29--43, New York, NY, USA, 2003. ACM.
+
+\bibitem{OCLIA}
+Thomas Goldschmidt and Axel Uhl.
+\newblock Efficient {OCL} impact analysis, 2011.
+
+\bibitem{website:rdf_standard}
+RDF Core~Working Group.
+\newblock {Resource Description Framework (RDF)}.
+\newblock \url{http://www.w3.org/RDF/}, 2004.
 
 \bibitem{4store}
 S.~Harris, N.~Lamb, and N.~Shadbolt.
@@ -42,10 +160,32 @@ S.~Harris, N.~Lamb, and N.~Shadbolt.
 \newblock In {\em 5th International Workshop on Scalable Semantic Web Knowledge
   Base Systems (SSWS2009)}, 2009.
 
+\bibitem{hillairet2008bridging}
+Guillaume Hillairet, Fr{\'e}d{\'e}ric Bertrand, Jean~Yves Lafaye, et~al.
+\newblock Bridging emf applications and rdf data sources.
+\newblock In {\em Proceedings of the 4th International Workshop on Semantic Web
+  Enabled Software Engineering, SWESE}, 2008.
+
 \bibitem{Lakshman:2010:CDS:1773912.1773922}
 Avinash Lakshman and Prashant Malik.
 \newblock Cassandra: a decentralized structured storage system.
 \newblock {\em SIGOPS Oper. Syst. Rev.}, 44(2):35--40, April 2010.
+
+\bibitem{miranker2012diamond}
+{Miranker, Daniel P et al.}
+\newblock Diamond: A {SPARQL} query engine, for linked data based on the {Rete}
+  match.
+\newblock {\em AImWD}, 2012.
+
+\bibitem{neo4j}
+{Neo Technology}.
+\newblock Neo4j.
+\newblock \url{http://neo4j.org/}, 2013.
+
+\bibitem{INSTANS2012}
+Mikko Rinne.
+\newblock {SPARQL} update for complex event processing.
+\newblock In {\em ISWC'12}, volume 7650 of {\em LNCS}. 2012.
 
 \bibitem{DBLP:journals/corr/abs-1006-2361}
 Marko~A. Rodriguez and Peter Neubauer.
@@ -58,5 +198,16 @@ Marko~A. Rodriguez and Peter Neubauer.
 \newblock
   \url{http://www.ibm.com/developerworks/cloud/library/cl-nosqldatabase/index.html},
   March 2013.
+
+\bibitem{cypher}
+Andrés Taylor and Alistair Jones.
+\newblock {Cypher Query Language}.
+\newblock \url{http://www.slideshare.net/graphdevroom/cypher-query-language},
+  2012.
+
+\bibitem{SPARQL}
+{W3C}.
+\newblock {SPARQL Query Language for RDF}.
+\newblock \url{http://www.w3.org/TR/rdf-sparql-query/}.
 
 \end{thebibliography}
