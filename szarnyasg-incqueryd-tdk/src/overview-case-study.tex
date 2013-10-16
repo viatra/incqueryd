@@ -1,0 +1,63 @@
+\section{Case study: TrainBenchmark}
+
+industrial models hard to retrieve
+
+pseudorandomly generated representative data and workload
+
+
+
+
+\myFigure{trainbenchmark-metamodel}{The EMF metamodel of the TrainBenchmark}
+
+
+
+
+
+
+\begin{lstlisting}[caption=The RouteSensor query in IQPL, label=lst:routesensor-iqpl]
+package hu.bme.mit.train.constraintcheck.incquery
+
+import "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl" 
+
+pattern routeSensor(Sen, Sw, Sp, R) = {
+	Route(R);
+	SwitchPosition(Sp);
+	Switch(Sw);
+	Sensor(Sen);
+	
+	Route.Route_switchPosition(R, Sp);
+	SwitchPosition.SwitchPosition_switch(Sp, Sw);
+	Trackelement.TrackElement_sensor(Sw, Sen);
+	
+	neg find head(Sen, R);	
+}
+
+pattern head(Sen, R) = {
+	Route.Route_routeDefinition(R, Sen);
+}
+\end{lstlisting}
+
+\lstset{language=SQL,morekeywords={PREFIX,FILTER}} %,java,rdf,rdfs,url,owl,base}}
+
+\begin{lstlisting}[caption=The RouteSensor query in SPARQL, label=lst:routesensor-sparql]
+PREFIX base: <http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl:  <http://www.w3.org/2002/07/owl#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT DISTINCT ?xSensor
+WHERE
+{
+    ?xRoute rdf:type base:Route .
+    ?xSwitchPosition rdf:type base:SwitchPosition .
+    ?xSwitch rdf:type base:Switch .
+    ?xSensor rdf:type base:Sensor .
+    ?xRoute base:Route_switchPosition ?xSwitchPosition .
+    ?xSwitchPosition base:SwitchPosition_switch ?xSwitch .
+    ?xSwitch base:TrackElement_sensor ?xSensor .
+
+    FILTER NOT EXISTS {
+        ?xRoute ?Route_routeDefinition ?xSensor .
+    } .
+}
+\end{lstlisting}

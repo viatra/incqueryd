@@ -229,15 +229,3 @@ MATCH (route)-[:ROUTE_ROUTEDEFINITION]->(sensor)
 RETURN route.idx AS routeId, sensor.idx AS sensorId;
 \end{lstlisting}
 
-\subsection{Google Guava}
-
-The implementation relied heavily on Google Guava library's Collections framework \cite{guava}. The Guava Collection is an extension to Java's Collection framework. We used immutable collections and new type of collections (e.g.\ Multimap).
-
-\subsection{Neo4j Java REST binding}
-
-I used Neo4j in \textit{server mode} and accessed the REST interface with the \texttt{java-rest-binding} library \cite{restbinding}.
-
-\subsection{Apache Maven}
-
-To integrate the technologies, we used Apache Maven \cite{Maven}, an open source build automation system.
-

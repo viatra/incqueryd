@@ -21,73 +21,69 @@
 \BOOKMARK [2][-]{subsection.3.3.5}{4store}{section.3.3}% 21
 \BOOKMARK [1][-]{section.3.4}{Asynchronous messaging}{chapter.3}% 22
 \BOOKMARK [2][-]{subsection.3.4.1}{Akka}{section.3.4}% 23
-\BOOKMARK [1][-]{section.3.5}{Eclipse-based technologies}{chapter.3}% 24
-\BOOKMARK [2][-]{subsection.3.5.1}{EMF}{section.3.5}% 25
-\BOOKMARK [2][-]{subsection.3.5.2}{EMF-IncQuery}{section.3.5}% 26
-\BOOKMARK [0][-]{chapter.4}{Overview}{}% 27
-\BOOKMARK [1][-]{section.4.1}{Case study: TrainBenchmark}{chapter.4}% 28
-\BOOKMARK [1][-]{section.4.2}{Architecture overview}{chapter.4}% 29
-\BOOKMARK [2][-]{subsection.4.2.1}{Rete in general}{section.4.2}% 30
-\BOOKMARK [2][-]{subsection.4.2.2}{IncQuery-D architecture}{section.4.2}% 31
-\BOOKMARK [1][-]{section.4.3}{Middleware}{chapter.4}% 32
-\BOOKMARK [2][-]{subsection.4.3.1}{Indexing}{section.4.3}% 33
-\BOOKMARK [2][-]{subsection.4.3.2}{Graph-like data manipulation}{section.4.3}% 34
-\BOOKMARK [2][-]{subsection.4.3.3}{Notification mechanisms}{section.4.3}% 35
-\BOOKMARK [1][-]{section.4.4}{Incremental queries, change propagation}{chapter.4}% 36
-\BOOKMARK [2][-]{subsection.4.4.1}{Rete}{section.4.4}% 37
-\BOOKMARK [2][-]{subsection.4.4.2}{Distribution}{section.4.4}% 38
-\BOOKMARK [1][-]{section.4.5}{Deployment, configuration}{chapter.4}% 39
-\BOOKMARK [2][-]{subsection.4.5.1}{Tooling}{section.4.5}% 40
-\BOOKMARK [2][-]{subsection.4.5.2}{Degrees of freedom}{section.4.5}% 41
-\BOOKMARK [2][-]{subsection.4.5.3}{Problem pieces}{section.4.5}% 42
-\BOOKMARK [2][-]{subsection.4.5.4}{Implementation details}{section.4.5}% 43
-\BOOKMARK [1][-]{section.4.6}{Elaboration of the example}{chapter.4}% 44
-\BOOKMARK [1][-]{section.4.7}{Overview of the Approach}{chapter.4}% 45
-\BOOKMARK [2][-]{subsection.4.7.1}{Architecture}{section.4.7}% 46
-\BOOKMARK [2][-]{subsection.4.7.2}{Scalability considerations}{section.4.7}% 47
-\BOOKMARK [0][-]{chapter.5}{Related work}{}% 48
-\BOOKMARK [0][-]{chapter.6}{Related and future work}{}% 49
-\BOOKMARK [1][-]{section.6.1}{Related work}{chapter.6}% 50
-\BOOKMARK [1][-]{section.6.2}{Future work}{chapter.6}% 51
-\BOOKMARK [2][-]{subsection.6.2.1}{Cassandra}{section.6.2}% 52
-\BOOKMARK [2][-]{subsection.6.2.2}{Clustered graph loader application}{section.6.2}% 53
-\BOOKMARK [2][-]{subsection.6.2.3}{Titan}{section.6.2}% 54
-\BOOKMARK [0][-]{chapter.7}{Evaluation}{}% 55
-\BOOKMARK [1][-]{section.7.1}{Goals}{chapter.7}% 56
-\BOOKMARK [2][-]{subsection.7.1.1}{Measure the response time and the scalability}{section.7.1}% 57
-\BOOKMARK [2][-]{subsection.7.1.2}{Workload profile's difference from standard benchmarks}{section.7.1}% 58
-\BOOKMARK [1][-]{section.7.2}{Environment}{chapter.7}% 59
-\BOOKMARK [2][-]{subsection.7.2.1}{Benchmark setup}{section.7.2}% 60
-\BOOKMARK [2][-]{subsection.7.2.2}{Hardware, software ecosystem}{section.7.2}% 61
-\BOOKMARK [2][-]{subsection.7.2.3}{Benchmark methodology}{section.7.2}% 62
-\BOOKMARK [2][-]{subsection.7.2.4}{Data collection}{section.7.2}% 63
-\BOOKMARK [2][-]{subsection.7.2.5}{Data processing tools}{section.7.2}% 64
-\BOOKMARK [1][-]{section.7.3}{Results and analysis}{chapter.7}% 65
-\BOOKMARK [2][-]{subsection.7.3.1}{Threat to validity}{section.7.3}% 66
-\BOOKMARK [2][-]{subsection.7.3.2}{Conclusions}{section.7.3}% 67
-\BOOKMARK [0][-]{chapter.8}{Benchmark}{}% 68
-\BOOKMARK [1][-]{section.8.1}{TrainBenchmark}{chapter.8}% 69
-\BOOKMARK [2][-]{subsection.8.1.1}{Metamodel}{section.8.1}% 70
-\BOOKMARK [1][-]{section.8.2}{Queries}{chapter.8}% 71
-\BOOKMARK [2][-]{subsection.8.2.1}{RouteSensor}{section.8.2}% 72
-\BOOKMARK [1][-]{section.8.3}{Phases}{chapter.8}% 73
-\BOOKMARK [1][-]{section.8.4}{Neo4j}{chapter.8}% 74
-\BOOKMARK [1][-]{section.8.5}{Generation of models}{chapter.8}% 75
-\BOOKMARK [2][-]{subsection.8.5.1}{RouteSensor}{section.8.5}% 76
-\BOOKMARK [0][-]{chapter.9}{Evaluation}{}% 77
-\BOOKMARK [1][-]{section.9.1}{Benchmark scenario}{chapter.9}% 78
-\BOOKMARK [1][-]{section.9.2}{Evaluation aspects and benchmark environment}{chapter.9}% 79
-\BOOKMARK [1][-]{section.9.3}{Results}{chapter.9}% 80
-\BOOKMARK [1][-]{section.9.4}{Technologies}{chapter.9}% 81
-\BOOKMARK [2][-]{subsection.9.4.1}{Akka}{section.9.4}% 82
-\BOOKMARK [2][-]{subsection.9.4.2}{Google Guava}{section.9.4}% 83
-\BOOKMARK [2][-]{subsection.9.4.3}{Neo4j Java REST binding}{section.9.4}% 84
-\BOOKMARK [2][-]{subsection.9.4.4}{Apache Maven}{section.9.4}% 85
-\BOOKMARK [0][-]{chapter.10}{Conclusions}{}% 86
-\BOOKMARK [1][-]{section.10.1}{Summary of contributions}{chapter.10}% 87
-\BOOKMARK [2][-]{subsection.10.1.1}{Own work}{section.10.1}% 88
-\BOOKMARK [1][-]{section.10.2}{Limitations}{chapter.10}% 89
-\BOOKMARK [1][-]{section.10.3}{Future directions}{chapter.10}% 90
-\BOOKMARK [0][-]{chapter.11}{Conclusion}{}% 91
-\BOOKMARK [0][-]{chapter.11}{Bibliography}{}% 92
-\BOOKMARK [0][-]{appendix.A}{Apx}{}% 93
+\BOOKMARK [2][-]{subsection.3.4.2}{Google Guava}{section.3.4}% 24
+\BOOKMARK [1][-]{section.3.5}{Eclipse-based technologies}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.5.1}{EMF}{section.3.5}% 26
+\BOOKMARK [2][-]{subsection.3.5.2}{EMF-IncQuery}{section.3.5}% 27
+\BOOKMARK [0][-]{chapter.4}{Overview}{}% 28
+\BOOKMARK [1][-]{section.4.1}{Case study: TrainBenchmark}{chapter.4}% 29
+\BOOKMARK [1][-]{section.4.2}{Architecture overview}{chapter.4}% 30
+\BOOKMARK [2][-]{subsection.4.2.1}{Architecture}{section.4.2}% 31
+\BOOKMARK [2][-]{subsection.4.2.2}{Rete in general}{section.4.2}% 32
+\BOOKMARK [2][-]{subsection.4.2.3}{IncQuery-Darchitecture}{section.4.2}% 33
+\BOOKMARK [1][-]{section.4.3}{Middleware}{chapter.4}% 34
+\BOOKMARK [2][-]{subsection.4.3.1}{Indexing}{section.4.3}% 35
+\BOOKMARK [2][-]{subsection.4.3.2}{Graph-like data manipulation}{section.4.3}% 36
+\BOOKMARK [2][-]{subsection.4.3.3}{Notification mechanisms}{section.4.3}% 37
+\BOOKMARK [1][-]{section.4.4}{Incremental queries, change propagation}{chapter.4}% 38
+\BOOKMARK [2][-]{subsection.4.4.1}{Rete}{section.4.4}% 39
+\BOOKMARK [2][-]{subsection.4.4.2}{Distribution}{section.4.4}% 40
+\BOOKMARK [2][-]{subsection.4.4.3}{Scalability considerations}{section.4.4}% 41
+\BOOKMARK [1][-]{section.4.5}{Deployment, configuration}{chapter.4}% 42
+\BOOKMARK [2][-]{subsection.4.5.1}{Tooling}{section.4.5}% 43
+\BOOKMARK [2][-]{subsection.4.5.2}{Degrees of freedom}{section.4.5}% 44
+\BOOKMARK [2][-]{subsection.4.5.3}{Problem pieces}{section.4.5}% 45
+\BOOKMARK [2][-]{subsection.4.5.4}{Implementation details}{section.4.5}% 46
+\BOOKMARK [1][-]{section.4.6}{Elaboration of the example}{chapter.4}% 47
+\BOOKMARK [0][-]{chapter.5}{Related and future work}{}% 48
+\BOOKMARK [1][-]{section.5.1}{Related work}{chapter.5}% 49
+\BOOKMARK [1][-]{section.5.2}{Future work}{chapter.5}% 50
+\BOOKMARK [2][-]{subsection.5.2.1}{Cassandra}{section.5.2}% 51
+\BOOKMARK [2][-]{subsection.5.2.2}{Clustered graph loader application}{section.5.2}% 52
+\BOOKMARK [2][-]{subsection.5.2.3}{Titan}{section.5.2}% 53
+\BOOKMARK [0][-]{chapter.6}{Evaluation}{}% 54
+\BOOKMARK [1][-]{section.6.1}{Goals}{chapter.6}% 55
+\BOOKMARK [2][-]{subsection.6.1.1}{Measure the response time and the scalability}{section.6.1}% 56
+\BOOKMARK [2][-]{subsection.6.1.2}{Workload profile's difference from standard benchmarks}{section.6.1}% 57
+\BOOKMARK [1][-]{section.6.2}{Environment}{chapter.6}% 58
+\BOOKMARK [2][-]{subsection.6.2.1}{Benchmark setup}{section.6.2}% 59
+\BOOKMARK [2][-]{subsection.6.2.2}{Hardware, software ecosystem}{section.6.2}% 60
+\BOOKMARK [2][-]{subsection.6.2.3}{Benchmark methodology}{section.6.2}% 61
+\BOOKMARK [2][-]{subsection.6.2.4}{Data collection}{section.6.2}% 62
+\BOOKMARK [2][-]{subsection.6.2.5}{Data processing tools}{section.6.2}% 63
+\BOOKMARK [1][-]{section.6.3}{Results and analysis}{chapter.6}% 64
+\BOOKMARK [2][-]{subsection.6.3.1}{Threat to validity}{section.6.3}% 65
+\BOOKMARK [2][-]{subsection.6.3.2}{Conclusions}{section.6.3}% 66
+\BOOKMARK [0][-]{chapter.7}{Benchmark}{}% 67
+\BOOKMARK [1][-]{section.7.1}{TrainBenchmark}{chapter.7}% 68
+\BOOKMARK [2][-]{subsection.7.1.1}{Metamodel}{section.7.1}% 69
+\BOOKMARK [1][-]{section.7.2}{Queries}{chapter.7}% 70
+\BOOKMARK [2][-]{subsection.7.2.1}{RouteSensor}{section.7.2}% 71
+\BOOKMARK [1][-]{section.7.3}{Phases}{chapter.7}% 72
+\BOOKMARK [1][-]{section.7.4}{Neo4j}{chapter.7}% 73
+\BOOKMARK [1][-]{section.7.5}{Generation of models}{chapter.7}% 74
+\BOOKMARK [2][-]{subsection.7.5.1}{RouteSensor}{section.7.5}% 75
+\BOOKMARK [0][-]{chapter.8}{Evaluation}{}% 76
+\BOOKMARK [1][-]{section.8.1}{Benchmark scenario}{chapter.8}% 77
+\BOOKMARK [1][-]{section.8.2}{Evaluation aspects and benchmark environment}{chapter.8}% 78
+\BOOKMARK [1][-]{section.8.3}{Results}{chapter.8}% 79
+\BOOKMARK [1][-]{section.8.4}{Technologies}{chapter.8}% 80
+\BOOKMARK [2][-]{subsection.8.4.1}{Akka}{section.8.4}% 81
+\BOOKMARK [0][-]{chapter.9}{Conclusions}{}% 82
+\BOOKMARK [1][-]{section.9.1}{Summary of contributions}{chapter.9}% 83
+\BOOKMARK [2][-]{subsection.9.1.1}{Own work}{section.9.1}% 84
+\BOOKMARK [1][-]{section.9.2}{Limitations}{chapter.9}% 85
+\BOOKMARK [1][-]{section.9.3}{Future directions}{chapter.9}% 86
+\BOOKMARK [0][-]{chapter.10}{Conclusion}{}% 87
+\BOOKMARK [0][-]{chapter.10}{Bibliography}{}% 88
+\BOOKMARK [0][-]{appendix.A}{Apx}{}% 89

@@ -1,9 +1,5 @@
 \begin{thebibliography}{10}
 
-\bibitem{restbinding}
-{Java binding for the Neo4j Server REST API}.
-\newblock \url{https://github.com/neo4j/java-rest-binding}.
-
 \bibitem{openvirtuoso}
 {OpenLink Software: Virtuoso Universal Server}.
 \newblock \url{http://virtuoso.openlinksw.com/}.
@@ -11,10 +7,6 @@
 \bibitem{sesame}
 {Sesame: RDF API and Query Engine}.
 \newblock \url{http://www.openrdf.org/}.
-
-\bibitem{Maven}
-{Apache Maven} website.
-\newblock \url{http://maven.apache.org}, October 2012.
 
 \bibitem{EMF}
 {Eclipse Modeling Framework} website.

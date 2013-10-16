@@ -9,7 +9,7 @@ A level-1 auxiliary file: background-technologies.aux
 A level-1 auxiliary file: overview.aux
 A level-1 auxiliary file: related-work.aux
 Case mismatch error between cite keys hadoop and Hadoop
----line 28 of file related-work.aux
+---line 25 of file related-work.aux
  : \citation{hadoop
  :                 }
 I'm skipping whatever remains of this command
@@ -44,6 +44,7 @@ Warning--to sort, need author or key in Cassandra
 Warning--to sort, need author or key in Hadoop
 Warning--to sort, need author or key in Lustre
 Warning--to sort, need author or key in rassilon
+Warning--to sort, need author or key in guava
 Warning--to sort, need author or key in Woodstox
 Warning--to sort, need author or key in Titan
 Warning--to sort, need author or key in TitanRiseOfBigData
@@ -55,49 +56,46 @@ Warning--to sort, need author or key in Neoclipse
 Warning--to sort, need author or key in Tinkerpop
 Warning--to sort, need author or key in Blueprints
 Warning--to sort, need author or key in akka
-Warning--to sort, need author or key in guava
-Warning--to sort, need author or key in restbinding
-Warning--to sort, need author or key in Maven
 Warning--empty publisher in INSTANS2012
-You've used 43 entries,
+You've used 41 entries,
             2118 wiz_defined-function locations,
-            719 strings with 9204 characters,
-and the built_in function-call counts, 9583 in all, are:
-= -- 925
-> -- 280
+            712 strings with 9040 characters,
+and the built_in function-call counts, 9259 in all, are:
+= -- 894
+> -- 278
 < -- 4
-+ -- 127
++ -- 125
 - -- 81
-* -- 527
-:= -- 1400
-add.period$ -- 110
-call.type$ -- 43
-change.case$ -- 166
+* -- 514
+:= -- 1365
+add.period$ -- 106
+call.type$ -- 41
+change.case$ -- 160
 chr.to.int$ -- 0
-cite$ -- 66
-duplicate$ -- 388
-empty$ -- 1029
+cite$ -- 62
+duplicate$ -- 374
+empty$ -- 983
 format.name$ -- 81
-if$ -- 2166
+if$ -- 2085
 int.to.chr$ -- 0
-int.to.str$ -- 43
+int.to.str$ -- 41
 missing$ -- 13
-newline$ -- 195
+newline$ -- 187
 num.names$ -- 44
-pop$ -- 310
+pop$ -- 294
 preamble$ -- 1
-purify$ -- 124
+purify$ -- 120
 quote$ -- 0
-skip$ -- 326
+skip$ -- 311
 stack$ -- 0
-substring$ -- 371
-swap$ -- 63
+substring$ -- 361
+swap$ -- 61
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 172
-warning$ -- 23
+type$ -- 164
+warning$ -- 21
 while$ -- 57
-width$ -- 45
-write$ -- 399
+width$ -- 43
+write$ -- 384
 (There were 5 error messages)

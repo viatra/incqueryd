@@ -29,7 +29,7 @@ Property graphs are powerful enough to describe Java objects or EMF instance mod
 
 \subsubsection{TinkerPop}
 
-The TinkerPop framework is an open-source software stack for graph storage and processing. TinkerPop includes Blueprints, a property graph model interface. Blueprints fulfills the same role for graph databases as JDBC does for relational databases. Most NoSQL graph databases implement the property graph interface provided by Blueprints, including Neo4j (see \ref{subsec:neo4j}), Titan (see \ref{subsec:titan}), Dex, InfiniteGraph and OrientDB.  
+The TinkerPop framework is an open-source software stack for graph storage and processing. TinkerPop includes Blueprints, a property graph model interface. Blueprints fulfills the same role for graph databases as JDBC does for relational databases. Most NoSQL graph databases implement the property graph interface provided by Blueprints, including Neo4j (see \ref{subsec:neo4j}), Titan (see \ref{subsec:titan}), Dex, InfiniteGraph and OrientDB.
 
 Tinkerpop also introduces a graph query language, Gremlin. Gremlin is a domain-specific language based on Groovy, a Java-like dynamic language which runs on the Java Virtual Machine. Unlike most query languages, Gremlin is an imperative language with a strong focus on graph traversals. Gremlin is also capable of analyzing and manipulating the graph.
 
@@ -45,11 +45,12 @@ In the following section we summarize the core technologies used in \iqd's proto
 
 \subsection{Cassandra}
 
-Cassandra (\figref{cassandra-logo}) is one of the most widely used NoSQL databases \cite{Cassandra}. Originally developed by Facebook \cite{Lakshman:2010:CDS:1773912.1773922}, Cassandra is now an open-source Apache project.
+Cassandra %(\figref{cassandra-logo}) 
+is one of the most widely used NoSQL databases \cite{Cassandra}. Originally developed by Facebook \cite{Lakshman:2010:CDS:1773912.1773922}, Cassandra is now an open-source Apache project.
 
 Cassandra's data model is called \emph{column family}. A column family is similar to a table of a relational database: it consists of rows and columns. However, unlike in a relational database's table, the rows do not have to have the same fixed set of columns. Instead, each row can have a different set of columns. This makes the data structure more dynamic and avoids the plethora of problems associated with NULL values.
 
-\myFigure{cassandra-logo}{The logo of Apache Cassandra}
+%\myFigure{cassandra-logo}{The logo of Apache Cassandra}
 
 To distribute the data across the cluster, Cassandra uses a partitioner mechanism. The simplest partitioners distribute the rows evenly based on their hash values. Currently, Cassandra provides \emph{RandomPartitioner} (MD5 hash) and \emph{Murmur3Partitioner} (Murmur3 hash).
 
@@ -83,18 +84,20 @@ HBase is an open-source, distributed column family database. It is developed as 
 \subsection{Neo4j}
 \label{subsec:neo4j}
 
-Neo4j (\figref{neo4j-logo}), developed by Neo Technology, is the most popular NoSQL graph database. Neo4j implements TinkerPop's Blueprints property graph data model along with Gremlin. It also provides Cypher, a declarative query language for graph pattern matching. 
+%Neo4j (\figref{neo4j-logo})
+Neo4j, developed by Neo Technology, is the most popular NoSQL graph database. Neo4j implements TinkerPop's Blueprints property graph data model along with Gremlin. It also provides Cypher, a declarative query language for graph pattern matching. 
 
 Neo4j is one of the most mature NoSQL databases. It's well documented and provides ample tooling. However, it's scalability features are limited: instead of sharding, it only supports replication of data to create a highly available cluster. Of course, the scalability limitations are a hot topic in Neo4j's development. Neo4j's developers make serious efforts to improve Neo4j's scalability in an ongoing project called Rassilon \cite{rassilon}.
 
-\myFigure{neo4j-logo}{The logo of Neo4j}
+%\myFigure{neo4j-logo}{The logo of Neo4j}
 
 \subsection{Titan}
 \label{subsec:titan}
 
-Titan (\figref{titan-logo}) is an open-source, distributed, scalable graph database from Aurelius, the creators of the TinkerPop framework. Unlike Neo4j, Titan is not a standalone database. Instead, it builds on top of existing NoSQL database technologies and leverages Hadoop's MapReduce capabilities. Titan supports various storage backends, including Cassandra and HBase.
+Titan %(\figref{titan-logo}) 
+is an open-source, distributed, scalable graph database from Aurelius, the creators of the TinkerPop framework. Unlike Neo4j, Titan is not a standalone database. Instead, it builds on top of existing NoSQL database technologies and leverages Hadoop's MapReduce capabilities. Titan supports various storage backends, including Cassandra and HBase.
 
-\myFigure{titan-logo}{The logo of Titan}
+%\myFigure{titan-logo}{The logo of Titan}
 
 \subsubsection{Mapping and sharding}
 
@@ -112,11 +115,11 @@ Titan can be deployed in different ways according to the needs of the applicatio
 
 \subsubsection{Faunus}
 
-Although Titan was designed with scalability in mind, it's query engine does not work in a parallel fashion. Also, it's unable to cope with queries resulting in millions of graph elements. To address this shortcoming, Aurelius developed a Hadoop-based graph analytics engine, Faunus (\figref{faunus-logo}).
+Although Titan was designed with scalability in mind, it's query engine does not work in a parallel fashion. Also, it's unable to cope with queries resulting in millions of graph elements. To address this shortcoming, Aurelius developed a Hadoop-based graph analytics engine, Faunus. %(\figref{faunus-logo}).
 
 Faunus has its own format called Faunus GraphSON. The Faunus GraphSON format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process.
 
-\myFigure{faunus-logo}{The logo of Faunus}
+%\myFigure{faunus-logo}{The logo of Faunus}
 
 It's important to note that Faunus always traverses the whole graph and does not use its indices. This makes it slow for retrieving nodes or edges by type (see our typical workload at XXX).
 
@@ -134,9 +137,10 @@ Most distributed, concurrent systems use a messaging framework or message queue 
 
 \subsection{Akka}
 
-\myFigure{akka-logo}{The logo of Akka}
+%\myFigure{akka-logo}{The logo of Akka}
 
-Akka is an open-source, fault-tolerant, distributed, asynchronous messaging framework developed by Typesafe (\figref{akka-logo}). Akka is implemented in Scala, a functional and object-oriented programming language which runs on the Java Virtual Machine. Akka provides language bindings for both Java and Scala.
+Akka is an open-source, fault-tolerant, distributed, asynchronous messaging framework developed by Typesafe. %(\figref{akka-logo}).
+Akka is implemented in Scala, a functional and object-oriented programming language which runs on the Java Virtual Machine. Akka provides language bindings for both Java and Scala.
 
 %\myFigure{akka-actor-path}{Determining an actor's path in Akka}
 
@@ -144,11 +148,15 @@ Akka provides strong support for remoting. Actors have both a logical and a phys
 
 \myFigure{akka-remote-deployment}{Deploying a remote actor in Akka}
 
+\subsection{Google Guava}
+
+\iqd relies heavily on Google Guava library's Collections framework \cite{guava}. The Guava Collection is an extension to Java's Collection framework. We used both immutable collections and new type of collections (e.g.\ \textit{Multimap}s).
+
 \section{Eclipse-based technologies}
 
 Eclipse is a free, open-source software development environment and a platform for plug-in development. Members of the Eclipse Foundation include industry giants like IBM, Intel, Google and SAP.
 
-\iqd's single workstation predecessor, \eiq\ is built around Eclipse-based technologies. To reap the benefits of a mutual code base, we designed \iqd\ to use as much of \eiq's components as possible. In the following section, we introduce the Eclipse-based technologies most important for our work.  
+\iqd's single workstation predecessor, \eiq\ is built around Eclipse-based technologies. To reap the benefits of a mutual code base, we designed \iqd\ to use as much of \eiq's components as possible. In the following section, we introduce the Eclipse-based technologies most important for our work.
 
 \subsection{EMF}
 \label{subsec:EMF}
