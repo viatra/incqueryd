@@ -32,10 +32,6 @@ Akka website.
 Blueprints website.
 \newblock \url{http://blueprints.tinkerpop.com/}, May 2013.
 
-\bibitem{incquery}
-{EMF-IncQuery} website.
-\newblock \url{http://incquery.net/incquery}, May 2013.
-
 \bibitem{guava}
 {Guava: Google Core Libraries for Java 1.6+}.
 \newblock \url{https://code.google.com/p/guava-libraries/}, May 2013.
@@ -52,9 +48,17 @@ Neoclipse website.
 {NoSQL Databases}.
 \newblock \url{http://nosql-database.org/}, May 2013.
 
-\bibitem{TinkerPop}
-Tinkerpop website.
-\newblock \url{http://www.tinkerpop.com/}, May 2013.
+\bibitem{InfiniteGraph}
+Objectivity -- infinitegraph.
+\newblock \url{http://www.objectivity.com/infinitegraph}, October 2013.
+
+\bibitem{OrientDB}
+Orientdb graph-document nosql dbms.
+\newblock \url{http://www.orientdb.org/}, October 2013.
+
+\bibitem{DEX}
+Sparsity-technologies: Dex high-performance graph database.
+\newblock \url{http://www.sparsity-technologies.com/dex}, October 2013.
 
 \bibitem{message-passing-rete}
 {Acharya, A. et al.}

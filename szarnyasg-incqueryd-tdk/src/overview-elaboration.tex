@@ -8,10 +8,10 @@ The Rete network constructed for matching this graph pattern is depicted in \fig
 \emph{Information representation and distributed operation.} The Rete layer of \iqd{} is \emph{domain and storage agnostic} as it stores only tuples constructed from model element identifiers and literals, thus it can be used independently of the model representation format (metamodeling language) of the model repository.
 As illustrated in \figref{architecture}, the Rete nodes can be allocated to different hosts in a cloud computing infrastructure (as the communication protocol supports remoting). As change propagation is asynchronous, \iqd{} implements a \emph{termination protocol} to ensure that the query results can be retrieved consistently with the model state after a given transaction (i.e.\ by signaling when the update propagation has been terminated).
 
-\begin{figure}[!tb]
-\begin{center}
-\includegraphics[width=.8\columnwidth]{figures/reteinternals}
-\caption{Rete layout}
-\label{fig:retelayout}
-\end{center}
-\end{figure}
+% \begin{figure}[!tb]
+% \begin{center}
+% \includegraphics[width=.8\columnwidth]{figures/reteinternals}
+% \caption{Rete layout}
+% \label{fig:retelayout}
+% \end{center}
+% \end{figure}

@@ -1,4 +1,4 @@
-\section{Case study: TrainBenchmark}
+\section{Case study: \tb{}}
 \label{sec:trainbenchmark}
 
 \subsection{Domain}
@@ -7,13 +7,47 @@ industrial models hard to retrieve
 
 pseudorandomly generated representative data and workload
 
-\myFigure{trainbenchmark-metamodel}{The EMF metamodel of the TrainBenchmark}
+\myFigure{trainbenchmark-metamodel}{The EMF metamodel of the \tb{}}
 
 
+
+\section{\tb{}}
+
+The base of our work was the \textit{\tb{}}, a benchmark scheme and environment designed by Benedek Izsó, István Ráth and Zoltán Szatmári \cite{?}. The main goal of the \tb{} is to compare various (preferably incremental) query tools' performance to \eiq's.
+
+The \tb{} defines two scenarios:
+
+\begin{description}
+  \item[UserScenario] This scenario simulates a user sitting in front of her workstation and modifying the model in small steps.
+  \item[XFormScenario] This scenario simulates a software running automated transformations on the model.
+\end{description}
+
+\subsection{Metamodel}
+
+\tb{} works on an imaginary railroad's model. The metamodel is shown on \figref{trainbenchmark-metamodel}.
+
+The \texttt{generator} project of \tb{} is capable of generating railroad instance models of different sizes. The project contains classes for generating models in different formats, including EMF, OWL, RDF and SQL.
 
 \subsection{Queries}
 
-complex queries typical MDE
+complex queries typical in MDE, joins
+
+IQPL (\autoref{subsec:eiq})
+
+
+The queries in \tb{} look for violations of well-formedness constraints in the model. We only discuss the \textit{RouteSensor} query in detail.
+
+\subsection{RouteSensor}
+
+The \textit{RouteSensor} query looks for \textit{Sensors} that are connected to a \textit{Switch}, but the sensor and the switch are \textit{not} connected to the same \textit{Route}. The graphical representation of the RouteSensor query is shown on \figref{routesensor}.
+
+\myFigure{routesensor}{Graphical representation of the \emph{RouteSensor} query's pattern}
+
+%The Cypher code for all \tb{} queries is shown in detail in% \autoref{cypherqueries}.
+
+
+
+
 
 
 \begin{lstlisting}[caption=The RouteSensor query in IQPL, label=lst:routesensor-iqpl]
@@ -67,3 +101,16 @@ pattern head(Sen, R) = {
 %     } .
 % }
 % \end{lstlisting}
+
+
+
+\subsection{RouteSensor}
+
+The Cypher implementation of the RouteSensor query is shown on %\autoref{lst:cypher-routesensor}
+
+\begin{lstlisting}[caption=Cyper query for the RouteSensor test case, label=lst:cypher-routesensor, breaklines=true]
+START sensor=node:node_auto_index(type="Sensor")
+MATCH sensor-[:TRACKELEMENT_SENSOR]-switch-[:SWITCHPOSITION_SWITCH]-switchPosition-[:ROUTE_SWITCHPOSITION]-route-[r?:ROUTE_ROUTEDEFINITION]-sensor
+WHERE r IS NULL
+RETURN sensor
+\end{lstlisting}

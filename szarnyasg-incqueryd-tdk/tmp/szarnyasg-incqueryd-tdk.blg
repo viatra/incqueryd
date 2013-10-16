@@ -14,77 +14,79 @@ The style file: plain.bst
 A level-1 auxiliary file: appendix.aux
 Database file #1: bibtex/bib.bib
 Warning--entry type for "Neoclipse" isn't style-file defined
---line 143 of file bibtex/bib.bib
-Repeated entry---line 550 of file bibtex/bib.bib
+--line 185 of file bibtex/bib.bib
+Repeated entry---line 592 of file bibtex/bib.bib
  : @misc{EMF
  :          ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1010 of file bibtex/bib.bib
+Repeated entry---line 1052 of file bibtex/bib.bib
  : @incollection {models10
  :                        ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1214 of file bibtex/bib.bib
+Repeated entry---line 1256 of file bibtex/bib.bib
  : @misc{akka
  :           ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 1314 of file bibtex/bib.bib
+Repeated entry---line 1356 of file bibtex/bib.bib
  : @misc{4store
  :             ,
 I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "?"
 Warning--to sort, need author or key in EMF
 Warning--to sort, need author or key in openvirtuoso
 Warning--to sort, need author or key in sesame
 Warning--to sort, need author or key in NoSQL
+Warning--to sort, need author or key in DEX
+Warning--to sort, need author or key in InfiniteGraph
+Warning--to sort, need author or key in OrientDB
 Warning--to sort, need author or key in Cassandra
 Warning--to sort, need author or key in Hadoop
 Warning--to sort, need author or key in Lustre
 Warning--to sort, need author or key in rassilon
-Warning--to sort, need author or key in guava
-Warning--to sort, need author or key in incquery
 Warning--to sort, need author or key in Neoclipse
-Warning--to sort, need author or key in TinkerPop
+Warning--to sort, need author or key in guava
 Warning--to sort, need author or key in Blueprints
 Warning--to sort, need author or key in akka
 Warning--empty publisher in INSTANS2012
-You've used 35 entries,
+You've used 36 entries,
             2118 wiz_defined-function locations,
-            688 strings with 8499 characters,
-and the built_in function-call counts, 8269 in all, are:
-= -- 798
-> -- 272
+            694 strings with 8660 characters,
+and the built_in function-call counts, 8434 in all, are:
+= -- 814
+> -- 273
 < -- 4
-+ -- 119
++ -- 120
 - -- 81
-* -- 466
-:= -- 1257
-add.period$ -- 94
-call.type$ -- 35
-change.case$ -- 142
+* -- 474
+:= -- 1275
+add.period$ -- 96
+call.type$ -- 36
+change.case$ -- 145
 chr.to.int$ -- 0
-cite$ -- 50
-duplicate$ -- 332
-empty$ -- 845
+cite$ -- 52
+duplicate$ -- 339
+empty$ -- 868
 format.name$ -- 81
-if$ -- 1839
+if$ -- 1880
 int.to.chr$ -- 0
-int.to.str$ -- 35
+int.to.str$ -- 36
 missing$ -- 13
-newline$ -- 163
+newline$ -- 167
 num.names$ -- 44
-pop$ -- 246
+pop$ -- 254
 preamble$ -- 1
-purify$ -- 108
+purify$ -- 110
 quote$ -- 0
-skip$ -- 269
+skip$ -- 276
 stack$ -- 0
-substring$ -- 331
-swap$ -- 55
+substring$ -- 336
+swap$ -- 56
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 140
-warning$ -- 15
+type$ -- 144
+warning$ -- 16
 while$ -- 57
-width$ -- 37
-write$ -- 336
+width$ -- 38
+write$ -- 344
 (There were 4 error messages)
