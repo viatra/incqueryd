@@ -1,8 +1,10 @@
 \section{Incremental queries, change propagation}
-
+\label{sec:incrementality}
 
 
 \subsection{Rete}
+
+The Rete implementation is based on the Rete algorithm, originally created by Charles Forgy \cite{Forgy} and improved by Gábor Bergmann \cite{BergmannRete}.
 
 
 \subsubsection{Detailed Rete with an actual instance model}
@@ -27,39 +29,9 @@
 
 
 \emph{Distributed pattern matcher.}\label{distributed_pattern_matcher}
-On top of the middleware, \iqd{} constructs a distributed and asynchronous network of communicating nodes that implement the Rete~\cite{Forgy} algorithm (shown within the dashed region in \autoref{fig:architecture}). This layer is essentially a dataflow network, with two types of nodes. Change notification objects (tokens) are propagated to intermediate \emph{worker nodes} that perform operations (like filtering tokens based on constant expressions, or performing join or antijoin operations based on their contents) and
+On top of the middleware, \iqd{} constructs a distributed and asynchronous network of communicating nodes that implement the Rete~\cite{Forgy} algorithm (shown within the dashed region in \figref{incqueryd-architecture}). % TODO
+This layer is essentially a dataflow network, with two types of nodes. Change notification objects (tokens) are propagated to intermediate \emph{worker nodes} that perform operations (like filtering tokens based on constant expressions, or performing join or antijoin operations based on their contents) and
 store partial (interim) query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their changes. Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts). It is important to emphasize that the database shards and Rete nodes are two distinct levels of distribution that do not directly depend upon each other.
-
-% \begin{figure}[!h]
-% \begin{center}
-% \begin{tabular}{cc}
-% \begin{minipage}{0.35\columnwidth}
-% \begin{lstlisting}
-% pattern test(
-%   V1:Type1, V2:Type2,
-%   V3:Type3, V4:Type4) {
-%   Type1.edgeType1(V1, V2);
-%   // join 1
-%   Type2.edgeType2(V2, V3);
-%   // join 2
-%   Type3.edgeType3(V3, V4);
-%   // antijoin
-%   neg find anti(V4, V1);
-% }
-% pattern anti(V4, V1) {
-%  Type1.edgeType4(V4, V1);
-% }
-% \end{lstlisting}
-% \end{minipage}
-% \hspace{0.5cm}
-% \begin{minipage}{0.45\columnwidth}
-%   \includegraphics[width=\textwidth]{figures/patterndef}
-% \end{minipage}
-% \end{tabular}
-% \end{center}
-% \caption{Example graph query}
-% \label{fig:patterndef}
-% \end{figure}
 
 
 

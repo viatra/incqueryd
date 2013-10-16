@@ -12,18 +12,6 @@
 {Eclipse Modeling Framework} website.
 \newblock \url{http://www.eclipse.org/emf}, October 2012.
 
-\bibitem{TitanCassandra}
-{Titan -- Big Data with Cassandra}.
-\newblock
-  \url{http://www.slideshare.net/knowfrominfo/titan-big-graph-data-with-cassandra},
-  August 2012.
-
-\bibitem{TitanRiseOfBigData}
-{Titan -- The Rise of Big Data}.
-\newblock
-  \url{http://www.slideshare.net/slidarko/titan-the-rise-of-big-graph-data},
-  June 2012.
-
 \bibitem{rassilon}
 \url{http://blog.neo4j.org/2013/01/2013-whats-coming-next-in-neo4j.html},
   January 2013.
@@ -39,10 +27,6 @@ Akka website.
 \bibitem{Hadoop}
 {Apache Hadoop} website.
 \newblock \url{http://hadoop.apache.org/}, May 2013.
-
-\bibitem{HBase}
-{Apache HBase} website.
-\newblock \url{http://hbase.apache.org/}, May 2013.
 
 \bibitem{Blueprints}
 Blueprints website.
@@ -68,21 +52,9 @@ Neoclipse website.
 {NoSQL Databases}.
 \newblock \url{http://nosql-database.org/}, May 2013.
 
-\bibitem{Rexster}
-Rexster website.
-\newblock \url{http://rexster.tinkerpop.com/}, May 2013.
-
-\bibitem{Tinkerpop}
+\bibitem{TinkerPop}
 Tinkerpop website.
 \newblock \url{http://www.tinkerpop.com/}, May 2013.
-
-\bibitem{Titan}
-Titan website.
-\newblock \url{https://github.com/thinkaurelius/titan}, May 2013.
-
-\bibitem{Woodstox}
-Woostox website.
-\newblock \url{http://woodstox.codehaus.org/}, May 2013.
 
 \bibitem{message-passing-rete}
 {Acharya, A. et al.}
