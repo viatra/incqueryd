@@ -1,20 +1,20 @@
 \newcommand{\myFigure}[2]{
-	\begin{figure}%[!ht]
+	\begin{figure}[!htb]
 		\centering
 		\begin{adjustbox}{max size={\textwidth}{\textheight}}
 			\includegraphics[scale=1.0]{figures/#1}
 		\end{adjustbox}
-		\caption{#2} 
+		\caption{#2}
 		\label{fig:#1}
 	\end{figure}}
 
 \newcommand{\myFigureSmall}[2]{
-	\begin{figure}%[!ht]
+	\begin{figure}[!htb]
 		\centering
 		\begin{adjustbox}{max size={0.6\textwidth}{\textheight}}
 			\includegraphics[scale=1.0]{figures/#1}
 		\end{adjustbox}
-		\caption{#2} 
+		\caption{#2}
 		\label{fig:#1}
 	\end{figure}}
 

@@ -5,10 +5,9 @@
 
 reuse of \eiq's components
 
-Eclipse-based editor
+Eclipse-based tree editor and yworks viewer
 
-\myFigure{recipe}{The workflow of \eiq\ (blue) and \iqd\ (green)}
-
+\myFigure{recipe}{The workflow of \eiq{} (blue) and \iqd{} (green)}
 
 \subsection{Degrees of freedom}
 
@@ -22,17 +21,19 @@ diffent storage backends are supported
 
 
 
-\subsection{Workflow}  %Problem pieces}
+\subsection{Workflow} % ''Problem pieces''
 
-workflow from an IQPL pattern to the working pattern matcher 
+In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will describe the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher.
+
 
 \subsubsection{Analyze the model and the query}
 
+\paragraph{Task.} IQPL (\iq{} Pattern Language)
+
 IQPL -> EMF model
 
-\paragraph{Task.}
-
 \paragraph{Implementation.} IQPL, EMF model, P-System 
+
 
 \subsubsection{Build a Rete layout}
 
@@ -42,6 +43,7 @@ EMF model -> PSystem -> recipe -> rete layout
 
 \paragraph{Implementation.} \eiq{}'s implementation 
 
+
 \subsubsection{Allocate the Rete network in the cloud's nodes}
 
 distribution, latency, throughput, .. 
@@ -49,6 +51,7 @@ distribution, latency, throughput, ..
 \paragraph{Task.} 
 
 \paragraph{Implementation.} CSP, DSE~\cite{DSE11}
+
 
 \subsubsection{Bootstrap the system}
 

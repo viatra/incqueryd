@@ -5,6 +5,42 @@
 
 \subsection{Own work}
 
+TrainBenchmark generator for property graphs (GraphML, Blueprints GraphSON and Faunus GraphSON formats)
+
+adapted the Rete algorithm for property graphs and RDF graphs
+
+detached, backend-agnostic incremental query engine 
+
+working prototype for a distributed Rete network, ''proof of concept''
+
+tooling: automated deployment of the Rete network
+
+over 3000 LoC of Java code, lots of configuration and deployment shell scripts (~500 LoC)
+
+technological work:
+
+- Titan ecosystem (Cassandra, Hadoop, HDFS, Faunus), Gremlin queries
+- Neo4j, Cypher queries
+- 4store, SPARQL queries
+- Akka 
+
+% scientific contributions
+% * backend-agnostic distributed incremental query service
+%   * architecture (query as a separate service from DB backends)
+%   * initialization, indexing
+%     * standalone, Rete-based distributed indexing service
+%     * incremental maintenance (when using our middleware API)
+%   * database management
+%     * notification (when using our middleware API)
+%   * incremental query
+%     * define complex queries in a high-level language
+%     * efficient change propagation
+%     * low reponse time
+%   * tooling (automation as motivation)
+%     * languages (for configuration)
+%     * code generation
+%     * configuration / deployment
+
 \section{Limitations}
 
 \section{Future directions}

@@ -9,28 +9,19 @@ Indexing is a common technique for decreasing the execution time of database que
 
 \iqd{}'s middleware exposes an API that provides methods to manipulate the graph. By allowing graph-like data manipulation we allow the user to focus on the domain-specific challenges, thus increasing her productivity. The middleware translates the user's operation and forwards it to the underlying data storage (e.g.\ SPARQL queries for 4store and Gremlin queries for Titan).
 
+\subsubsection{Data representation}
+
+Conceptually, the architecture of \iqd{} allows the usage of a wide scale of model representation formats. Our prototype has been evaluated in the context of the \emph{property graph} and the \emph{RDF} data model, but other mainstream metamodeling and knowledge representation languages such as relational databases' SQL dumps and Ecore~\cite{EMF} could be supported, as long as they can be mapped to an efficient and distributed storage backend (e.g.\ triplestores, key-value stores or column-family databases).
+
+To support different data models, we only have to supply the appropriate connector classes to \iqd{}'s middleware. The current implementation supports 4store and Titan. 
+
 \subsection{Notification mechanisms}
 
-\emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effects propagated in the form of \emph{notification objects} (NOs). The middleware layer achieves this by providing a facade for model manipulation operations. 
-
-
-
-%To maintain the Rete network's state, each data manipulation operation must trigger some sort of notification. The notification  
-
+\emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effects propagated in the form of \emph{notification objects} (NOs). To notifications are responsible for maintaining the Rete network's state. \iqd{}'s middleware layer achieves this by providing a facade for model manipulation operations. 
 
 \subsubsection{Current database managment systems}
 
 While relational databases usually provide \emph{trigger}s for generating notifications, most triplestores and graph databases lack this feature. Among our primary database backends, 4store provides no triggers at all. Titan and Neo4j incorporate Blueprints, which provides an \texttt{EventGraph} class, which is capable of generating notification events, but only in a single JVM. Implementing distributed notifications would require us to extend the \texttt{EventGraph} class and using a messaging framework (see Future work XXX). 
 
-Because of these reasons, in \iqd{}'s current implementation, notifications are controlled by the middleware.
+Because of these reasons, in \iqd{}'s current implementation, notifications are controlled by the middleware. The notification messages are propagated through the Rete network via the Akka messaging framework. 
 
-%The proposed system is based on a distributed database management system.
-
-%In contrast to a traditional setup, where the distributed model repository is accessed on a per-node basis by a model manipulation transaction (such as a model transformation benchmark, depicted as $T_{BM}$ in \figref{architecture}), \iqd{} provides a middleware layer that offers three core services (shown in green in \figref{architecture}).
-%In \emph{distributed model management}, the primary task is to provide a \emph{surrogate key} mechanism so that each model element in the entire distributed repository can be uniquely identified, and located within storage shards.
-
-
-Conceptually, the architecture of \iqd{} allows the usage of a wide scale of model representation formats. Our prototype has been evaluated in the context of %
-%a low abstraction level
-% ~\cite{DBLP:journals/corr/abs-1006-2361}
-the \emph{property graph} and the \emph{RDF} data model, but other mainstream metamodeling and knowledge representation languages such as relational databases' SQL dumps and Ecore~\cite{EMF} could be supported, as long as they can be mapped to an efficient and distributed storage backend (e.g.\ triplestores, key-value stores or column-family databases).
