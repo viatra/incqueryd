@@ -94,7 +94,9 @@ Neo4j, developed by Neo Technology, is the most popular NoSQL graph database. Ne
 
 Neo4j is one of the most mature NoSQL databases. It's well documented and provides ample tooling. However, it's scalability features are limited: instead of sharding, it only supports replication of data to create a highly available cluster. Of course, the scalability limitations are a hot topic in Neo4j's development. Neo4j's developers make serious efforts to improve Neo4j's scalability in an ongoing project called Rassilon~\cite{rassilon}.
 
-Neo4j is capable of loading graphs from GraphML~\cite{GraphML} and Blueprints GraphSON~\cite{BlueprintsGraphSON} formats. Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application~\cite{Neoclipse}. A part of a \tb{} (\autoref{sec:trainbenchmark}) instance model is shown on \figref{neoclipse-graph}.
+Neo4j is capable of loading graphs from \graphml{}~\cite{GraphML} and Blueprints \graphson{}~\cite{BlueprintsGraphSON} formats. Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application~\cite{Neoclipse}. A part of a \tb{} (\autoref{sec:trainbenchmark}) instance model is shown on \figref{neoclipse-graph}.
+
+\section{Graph technologies}
 
 \myFigure{neoclipse-graph}{\tb{} subgraph visualized in Neoclipse}
 
@@ -126,7 +128,7 @@ Titan can be deployed in different ways according to the needs of the applicatio
 
 Although Titan was designed with scalability in mind, it's query engine does not work in a parallel fashion. Also, it's unable to cope with queries resulting in millions of graph elements. To address this shortcoming, Aurelius developed a Hadoop-based graph analytics engine, Faunus. %(\figref{faunus-logo}).
 
-Faunus has its own format called Faunus GraphSON. The Faunus GraphSON format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process.
+Faunus has its own format called Faunus \graphson{}. The Faunus \graphson{} format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process.
 
 %\myFigure{faunus-logo}{The logo of Faunus}
 
@@ -139,6 +141,19 @@ It's important to note that Faunus always traverses the whole graph and does not
 Similar to Titan's partitioning, 4store's sharding mechanism (called \emph{segmenting}) distributes the RDF resources evenly across the cluster. However, unlike Titan, 4store's data model is an RDF graph. Hence, 4store's input format is RDF/OWL.
 
 \myFigure{4s-cluster}{4store's distributed architecture~\cite{harris20094store}}
+
+\begin{tabl}{Overview of database technologies}{database-technologies}{ | l | l | l | m{2cm} | l | m{2cm} | }
+\hline
+\bf Technology & 
+\bf Data model & 
+\bf Sharding & 
+\bf Distributed operation & 
+\bf DML facility & 
+\bf Identifier generation \tabularnewline \hline\hline
+Neo4j      & Property graph & Manual    & Manual                & Cypher       & Manual                \\ \hline
+4store     & RDF            & Automatic & Manual                & SPARQL       & Manual                \\ \hline
+Titan      & Property graph & Automatic & Automatic             & Gremlin      & Automatic             \\ \hline
+\end{tabl}
 
 \section{Asynchronous messaging}
 
@@ -175,7 +190,7 @@ Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Fr
 \subsection{\eiq{}}
 \label{subsec:eiq}
 
-\eiq{}\ is developed by the Fault Tolerant Systems Research Group (FTSRG) in the Budapest University of Technology and Economics. \eiq is an open-source Eclipse project which provides incremental query evaluation on EMF models. The queries (graph patterns) are defined in IncQuery Pattern Language (IQPL), a domain-specific language implemented in Xtext and Xtend. \eiq's architecture is shown on \figref{incquery-architecture}.
+\eiq{}\ is developed by the Fault Tolerant Systems Research Group (FTSRG) in the Budapest University of Technology and Economics. \eiq is an open-source Eclipse project which provides incremental query evaluation on EMF models. The queries (graph patterns) are defined in IncQuery Pattern Language (IQPL), a domain-specific language implemented in Xtext and Xtend. \eiq{}'s architecture is shown on \figref{incquery-architecture}.
 
-\myFigure{incquery-architecture}{\eiq's architecture}
+\myFigure{incquery-architecture}{\eiq{}'s architecture}
 

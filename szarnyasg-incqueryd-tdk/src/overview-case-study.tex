@@ -13,7 +13,7 @@ The \tb{} models is an imaginary railroad network. The network is composed of ty
 
 The \textit{generator} project of \tb{} is capable of generating railroad instance models of different sizes. It's capable of generating models in different formats, including EMF, OWL, RDF and SQL. 
 
-For Neo4j (\autoref{subsec:neo4j}) and Titan (\autoref{subsec:titan}), we expanded the generator with a module that can generate property graphs based on the \tb{}'s metamodel. It supports the GraphML~\cite{GraphML}, the Blueprints GraphSON~\cite{BlueprintsGraphSON} and the Faunus GraphSON~\cite{FaunusGraphSON} output formats.
+For Neo4j (\autoref{subsec:neo4j}) and Titan (\autoref{subsec:titan}), we expanded the generator with a module that can generate property graphs based on the \tb{}'s metamodel. It supports the \graphml{}~\cite{GraphML}, the Blueprints \graphson{}~\cite{BlueprintsGraphSON} and the Faunus \graphson{}~\cite{FaunusGraphSON} output formats.
 
 % szerintem felesleges a scenariokrol beszelni, mert csak a UserScenarioval foglalkoztunk -- SzG
 % The \tb{} defines two scenarios:
@@ -30,7 +30,9 @@ The \tb{} consists of queries that resemble a typical MDE workload. In general, 
 
 \myFigure{routesensor-pattern}{Graphical representation of the \emph{RouteSensor} query's pattern. The dashed red arrow defines a negative condition.}
 
-The \textit{RouteSensor} query looks for \textit{Sensor}s that are connected to a \textit{Switch}, but the sensor and the switch are \emph{not} connected to the same \textit{Route}. The graphical representation of the RouteSensor query is shown on \figref{routesensor}. The RouteSensor query  IQPL (\autoref{subsec:eiq}).\footnote{Note that the two queries are slightly different: the SPARQL query returns only a set of sensors, while the IQPL query returns a set of (Sensor, Switch, SwitchPosition, Route) tuples. TODO explain.}
+The \textit{RouteSensor} query looks for \textit{Sensor}s that are connected to a \textit{Switch}, but the sensor and the switch are \emph{not} connected to the same \textit{Route}. The graphical representation of the RouteSensor query is shown on \figref{routesensor-pattern}. The RouteSensor query  IQPL (\autoref{subsec:eiq}).\footnote{Note that the two queries are slightly different: the SPARQL query returns only a set of sensors, while the IQPL query returns a set of (Sensor, Switch, SwitchPosition, Route) tuples. TODO explain.}
+
+\lstset{language=viatra}
 
 \begin{lstlisting}[caption=The \emph{RouteSensor} query in IQPL, label=lst:routesensor-iqpl]
 package hu.bme.mit.train.constraintcheck.incquery
@@ -54,7 +56,6 @@ pattern head(Sen, R) = {
 	Route.Route_routeDefinition(R, Sen);
 }
 \end{lstlisting}
-
 
 
 \lstset{language=SQL,morekeywords={PREFIX,FILTER}} %,java,rdf,rdfs,url,owl,base}}
