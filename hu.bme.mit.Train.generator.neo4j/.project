@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>hu.bme.mit.Train.generator.neo4j</name>
+	<name>hu.bme.mit.Train.generator.incqueryd</name>
 	<comment></comment>
 	<projects>
 	</projects>

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Generator
-Bundle-SymbolicName: hu.bme.mit.Train.generator.neo4j
+Bundle-SymbolicName: hu.bme.mit.Train.generator.incqueryd
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: hu.bme.mit.train.generator.Activator
 Require-Bundle: org.eclipse.ui,

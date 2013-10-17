@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/hu.bme.mit.Train.generator.neo4j/src/hu/bme/mit/train/generator/Main.java"/>
+<listEntry value="/hu.bme.mit.Train.generator.incqueryd/src/hu/bme/mit/train/generator/Main.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
@@ -11,7 +11,7 @@
 <stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-7-oracle"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="hu.bme.mit.train.generator.Main"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-scenario User -syntax Neo4j -sizes 1 -graphFormat FaunusGraphSON"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="hu.bme.mit.Train.generator.neo4j"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="hu.bme.mit.Train.generator.incqueryd"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-XX:MaxPermSize=512m -XX:+UseCompressedOops -Xmx6096m -Xms6096m"/>
 </launchConfiguration>
