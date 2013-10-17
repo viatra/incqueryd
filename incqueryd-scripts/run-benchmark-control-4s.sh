@@ -12,8 +12,8 @@ echo $i >> series.txt
 AKKADIR=akka-2.1.4
 FOURSTORE_CLUSTER_NAME="incqueryd_cluster"
 
-max_size=256
-size=1
+max_size=1024
+size=1024
 
 # $size <= $max_size
 while [ $size -le $max_size ]
