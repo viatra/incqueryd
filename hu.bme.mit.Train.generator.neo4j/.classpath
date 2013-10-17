@@ -17,5 +17,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="libs/openrdf-sesame-2.6.6-onejar.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
