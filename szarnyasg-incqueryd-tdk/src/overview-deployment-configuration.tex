@@ -1,13 +1,21 @@
 \section{Deployment, configuration}
 \label{sec:deployment-configuration}
 
+Deploying, configuring and operating a distributed pattern matcher is a complex task. In the following, we will present our tools for these tasks. 
+
 \subsection{Tooling}
+
+
 
 reuse of \eiq's components
 
 Eclipse-based tree editor and yworks viewer
 
-\myFigure{recipe}{The workflow of \eiq{} (blue) and \iqd{} (green)}
+
+\myFigure{incqueryd-tooling-tree-editor}{The editor in \iqd's tooling}
+
+\myFigure{incqueryd-tooling-yfiles-viewer}{The viewer in \iqd's tooling}
+
 
 \subsection{Degrees of freedom}
 
@@ -19,50 +27,37 @@ choosing different dbs
 
 diffent storage backends are supported
 
+storage agnostic representation
+
 
 
 \subsection{Workflow} % ''Problem pieces''
 
-In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will describe the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher.
+In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{recipe}.
 
+\myFigure{recipe}{The workflow of \eiq{} (blue) and \iqd{} (green)}
 
-\subsubsection{Analyze the model and the query}
+\subsubsection{Analyze the metamodel and the query}
 
-\paragraph{Task.} IQPL (\iq{} Pattern Language)
+\paragraph{Task.} First, we determine the constraints defined by the query pattern. The matches satisfying these constraints will define the results of the query.
 
-IQPL -> EMF model
-
-\paragraph{Implementation.} IQPL, EMF model, P-System 
-
+\paragraph{Implementation.} The pattern is defined in an IQPL (\iq{} Pattern Language) text file, e.g.\ \texttt{RouteSensor.eiq} (see \autoref{lst:routesensor-iqpl}). Using Xtext \cite{Xtext}, an Eclipse-based framework for creating domain-specific languages, the textual representation of the pattern is parsed to an EMF model. Based on the EMF model's pattern and the metamodel, a PSystem is generated. The PSystem is a constraint network defined in Gábor Bergmann's PhD dissertation \cite{PSystem}. 
 
 \subsubsection{Build a Rete layout}
 
-EMF model -> PSystem -> recipe -> rete layout
+\paragraph{Task.} To allow incremental query evaluation, we create a Rete net based on the constraints derived from the query.
 
-\paragraph{Task.}  
+\paragraph{Implementation.} As we mentioned earlier, we aim to reuse as much of \eiq{}'s existing code base as possible. As part of this attempt, we introduced the concept of \textit{Rete recipe}s which define the layout of a Rete network.    
 
-\paragraph{Implementation.} \eiq{}'s implementation 
+\subsubsection{Allocate the Rete network in the cloud's nodes} 
 
+\paragraph{Task.} Because of its single workstation nature, \eiq{} simply unfolds the Rete net based on the derived Rete recipe. At the same time, \iqd{} operates in a distributed environment where local resource exhaustion, network latency and throughput are critical aspects. 
 
-\subsubsection{Allocate the Rete network in the cloud's nodes}
-
-distribution, latency, throughput, .. 
-
-\paragraph{Task.} 
-
-\paragraph{Implementation.} CSP, DSE~\cite{DSE11}
-
+\paragraph{Implementation.} Currently, the allocation of the Rete nodes is done manually. To address this limitation, we plan to utilize Constraint Satisfaction Problem (CSP) solvers, or dynamic techniques like Design Space Exploration (DSE)~\cite{DSE11}. 
 
 \subsubsection{Bootstrap the system}
 
-deploying actors, initiating the Rete net's processing workflow
+\paragraph{Task.} Based on the Rete network's allocation, we have to deply the Rete nodes in the distributed systems. After the successful deployment, the Rete network has to be initialised. Due to the Rete algorithm's asynchronous nature, it uses a termination protocol to signal when the data processing is finished. 
 
-\paragraph{Task.} 
+\paragraph{Implementation.} In \iqd{}'s prototype, both the bootstrapping and the Rete network's operation is carried out automatically. The Akka actors representing the Rete nodes are deployed and initiated using Akka's \textit{programmatic remote deployment} feature. 
 
-\paragraph{Implementation.} Automatic bootstrapping and operation 
-
-
-
-\myFigure{incqueryd-tooling-tree-editor}{The editor in \iqd's tooling}
-
-\myFigure{incqueryd-tooling-yfiles-viewer}{The viewer in \iqd's tooling}
