@@ -9,12 +9,10 @@ Deploying, configuring and operating a distributed pattern matcher is a complex 
 
 reuse of \eiq's components
 
-Eclipse-based tree editor and yworks viewer
+Eclipse-based tree editor and yWorks viewer
 
 
-\myFigure{incqueryd-tooling-tree-editor}{The editor in \iqd's tooling}
 
-\myFigure{incqueryd-tooling-yfiles-viewer}{The viewer in \iqd's tooling}
 
 
 \subsection{Degrees of freedom}
@@ -41,7 +39,7 @@ In the following part, we will describe the workflow behind the pattern matching
 
 \paragraph{Task.} First, we determine the constraints defined by the query pattern. The matches satisfying these constraints will define the results of the query.
 
-\paragraph{Implementation.} The pattern is defined in an IQPL (\iq{} Pattern Language) text file, e.g.\ \texttt{RouteSensor.eiq} (see \autoref{lst:routesensor-iqpl}). Using Xtext \cite{Xtext}, an Eclipse-based framework for creating domain-specific languages, the textual representation of the pattern is parsed to an EMF model. Based on the EMF model's pattern and the metamodel, a PSystem is generated. The PSystem is a constraint network defined in Gábor Bergmann's PhD dissertation \cite{PSystem}. 
+\paragraph{Implementation.} The pattern is defined in an IQPL (\iq{} Pattern Language) text file, e.g.\ \texttt{RouteSensor.eiq} (see \lstref{routesensor-iqpl}). Using Xtext \cite{Xtext}, an Eclipse-based framework for creating domain-specific languages, the textual representation of the pattern is parsed to an EMF model. Based on the EMF model's pattern and the metamodel, a PSystem is generated. The PSystem is a constraint network defined in Gábor Bergmann's PhD dissertation \cite{PSystem}. 
 
 \subsubsection{Build a Rete layout}
 
