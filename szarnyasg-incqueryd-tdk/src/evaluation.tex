@@ -1,131 +1,16 @@
 \chapter{Evaluation}
 \label{chap:evaluation}
 
-\section{Goals}
+\input{evaluation-goals}
 
+\input{evaluation-benchmark-scenario}
 
-% lifted from thesis work
-\subsection{Phases}
+\input{evaluation-generation}
 
-The \tb{} consists of the following phases:
+\input{evaluation-environment}
 
-\begin{enumerate}
-  \item $\mathit{read}$: loading the model,
-  \item $\mathit{check}_0$: running the queries,
-  \item $\mathit{edit}_i$: editing the model, 
-  \item $\mathit{check}_i$: running the queries again.
-\end{enumerate}
-
-In a ''real-world'' model editing sequence, the user tipically edits the model in small steps ($\mathit{edit}_i$ phases). The user's work is much more productive if she receives an instant feedback, hence we would like to run re-evaluate well-formedness queries quickly (preferably in sub-second time). This creates the need for an incremental pattern matcher tools.
-
-\subsection{Measure the response time and the scalability}
-
-\subsection{Workload profile's difference from standard benchmarks}
-
-\section{Environment}
-
-\myFigure{benchmark-scenario}{The benchmark scenario}
-
-\subsection{Benchmark setup}
-
-\myFigure{routesensor-distributed-layout}{The layout of the distributed Rete net}
-
-\subsection{Hardware, software ecosystem}
-
-\subsection{Benchmark methodology}
-
-\subsection{Data collection}
-
-\subsection{Data processing tools}
-
-\section{Results and analysis}
-
-\subsection{Threat to validity}
-
-\subsection{Conclusions}
-
-\subsubsection{Allocation of heap memory}
-
-\subsubsection{Feedback for the problem pieces subsection}
-
-\subsubsection{Comparing different tools}
-
-\subsubsection{Possibilities to increase the throughput of the system}
-
-
-\section{Generation of models}
-
-We created a property graph generator project based on the previous \tb{} generators. The generator creates a graph in an embedded Neo4j database and uses the Blueprints library's \texttt{GraphMLWriter} class to save to a \graphml{} file~\cite{Blueprints}.
-
-%\chapter{Evaluation}
-%\label{sec:evaluation}
-
-% 1 hasab + 1 abra helyed van, helytakarekosan irj, keruld az itemize-okat
-
-We implemented \iqd{} as an initial prototype to evaluate the feasibility of the approach, and to experiment with various optimization possibilities. As the storage, we used the popular graph database Neo4j~\cite{neo4j} featuring automatic indexes and two core query technologies (Gremlin and Cypher) that were used as a low-level model access interface by our middleware layer.
-The prototype of the distributed middleware and Rete network were implemented in Java using Akka~\cite{akka}, the Scala-based toolkit for building applications based on the Actor model, since it is well-suited for asynchronous applications. The communication protocol was built on top of Akka's built-in serialization support.
-
-
-%TODO mit merunk? model manipulacios muveletek es query kiertekeles valaszido
-%adott: query def, modell manipulacios szekvencia
-
-% 4 fazisban az alabbiak szerint TODO
-%generalt: novekvo meretu modellek (hogyan generaltuk, mi a query-k eredmenyhalmaz meretenek viszonya a modellhez?, 
-
-%mi az elosztott modell sajatossaga/limitacioja (nincsenek keresztelek))
-
-%mert: lekerdezesek, ill. manip. tranzakcio lefutasi ideje
-
-\section{Benchmark scenario}
-
-\label{benchmark}
-In order to measure the efficiency of model queries and manipulation operations over the distributed architecture, we designed a benchmark to measure tool response times in a well-formedness validation use case. The benchmark transaction sequence consists of four phases: (i) during the $\mathit{load}$ phase, the serialization of the model is loaded into the database; (ii) a test query (\figref{patterndef}) is executed ($\mathit{check}_0$); finally, in a cycle consisting of several repetitions, some elements are programmatically modified ($\mathit{edit}_i$) and the test query is re-evaluated ($\mathit{check}_i$). We ran the benchmark on pseudo-randomly generated instance models of growing size, each model containing about twice as many elements (vertices and edges) as the previous one and having a regular fan-out structure. As the current version of Neo4j does not have built-in support for graph sharding, the benchmark uses a manually sharded strategy where each shard contains a disjoint partition of the model.
-
-\myFigure{benchmark-baseline}{The non-incremental baseline benchmark's setup}
-
-%TODO referencia leirasa (miert az, ami?)
-% We implemented two approaches
-% on top of Neo4j.
-% Non-incremental: uses only Cypher for the pattern matching. 
-%   Beside Neo4j's indexes, no additonal data structures are built.
-
-% TODO sajat implementacio leirasa (manualis allokacio)
-
-% Incremental: builds a distributed Rete network to support incremental pattern matching, and 
-%     maintains both the databases and the Rete net upon modification. 
-%     Only uses Cypher to retrieve the graph nodes for the type indexers of the Rete net. 
-
-% For the incremental query, we manually created the Rete network and 
-% generated random instance models of different sizes to benchmark the query's execution time.
-
-\label{benchmark_environment}
-\section{Evaluation aspects and benchmark environment}
-
-To compare the performance characteristics of \iqd{} to a traditional case, we defined two scenarios. The \textit{batch} scenario uses only Neo4j to manage models and evaluate the queries in a parallelized way (depicted as \textcircled{1} in \figref{architecture}). This serves as a baseline for the \textit{incremental} scenario, which uses \iqd{} (shown as \textcircled{2} in \figref{architecture}). For these initial experiments, the layout and allocation of the Rete network was determined manually. As the testbed, we deployed our system to a private cloud consisting of 4 virtual machines on separate host computers. Each virtual machine used dual 2.5 GHz Intel Xeon L5420 CPUs with 16 GBs of RAM, running on Ubuntu 12.10 64-bit with Neo4j 1.8 and Akka 2.1.2.
-
-\section{Results}
-\label{benchmark_results}\label{analysis}
-
-The measurement results of our experiments are shown in \figref{benchmark} (aggregated from several complete sets to filter transient effects). As expected, the $\mathit{load}$ phase take about the same time for both scenarios, and \iqd{} is about half an order of magnitude slower when evaluating the query at first ($\mathit{check}_0$ phase) due to the Rete construction overhead. However, \iqd{} is several orders of magnitude faster during the $\mathit{edit}_i-\mathit{check}_i$ cycles, making on-the-fly query (re)evaluation feasible even for models larger than 50 million elements. Once initialized, \iqd{} scales linearly, since query response times for growing models can be kept low by adding additional computers for hosting Rete nodes.
-
-\myFigure{benchmark/BatchTrafo_RouteSensor}{Batch transformation}
-
-\myFigure{benchmark/BatchValid_RouteSensor}{Batch validation}
-
-\myFigure{benchmark/Check0_RouteSensor}{$\mathit{check}_0$ phase}
-
-\myFigure{benchmark/OnTheFly_RouteSensor}{On-the-fly revalidation ($\mathit{edit}$ and $\mathit{check}_1$  phase)}
-
-\myFigure{benchmark/OnTheFlyEdit_RouteSensor}{On-the-fly revalidation, $\mathit{edit}$ phase}
-
-\myFigure{benchmark/OnTheFlyCheck_RouteSensor}{On-the-fly revalidation, $\mathit{check}_1$ phase}
-
-\myFigure{benchmark/Read_RouteSensor}{$\mathit{Read}$ phase}
+\input{evaluation-results}
 
 
 
-\subsection{Results using the Neo4j graph database}
 
-\myFigure{benchmark/neo/BatchTrafo_RouteSensor}{Batch transformation}
-
-\myFigure{benchmark/neo/OnTheFly_RouteSensor}{On-the-fly revalidation ($\mathit{edit}$ and $\mathit{check}_1$  phase)}

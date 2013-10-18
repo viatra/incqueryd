@@ -1,36 +1,34 @@
 \section{Elaboration of the example}
 \label{sec:elaboration}
 
-Our example graph query is shown on \lstref{routesensor-iqpl} and visualized on \figref{routesensor-pattern}. 
-
-\myFigureSmall{eiq-model}{EMF model}
-
-\subsection{}
-
-
+We use the \textit{RouteSensor} query as our example. The query is shown as a graph pattern definition on \lstref{routesensor-iqpl} and visualized on \figref{routesensor-pattern}. Queries like this are typical in MDE applications (such as well-formedness validation or complex model transformations).
 
 \subsection{Workflow}
 
+Following the workflow defined in \autoref{subsec:workflow}, we will cover the actual steps for deploying and operating a distributed pattern matcher for the \textit{RouteSensor} query.
 
 \subsubsection{Analyze the metamodel and the query}
 
+The metamodel is shown on \figref{trainbenchmark-metamodel}. Using \eiq{}'s tooling, the textual representation (\texttt{routeSensor.arch}, see \lstref{routesensor-iqpl}) is analyzed and parsed to an EMF model (\figref{eiq-model}).
+
+\myFigureSmall{eiq-model}{The EMF model generated from the pattern}
 
 \subsubsection{Build a Rete layout}
 
+Based on the query's EMF model, \eiq{}'s tooling builds PSystem and creates a Rete layout, that quarantees the satisfaction of the constraints. The Rete layout is shown on \figref{rete-routesensor-example-rete}. 
 
 \subsubsection{Allocate the Rete network in the cloud's nodes} 
 
-\myFigureSmall{incqueryd-tooling-tree-editor}{The editor in \iqd's tooling}
+In \iqd{}'s current implementation, the Rete recipe's nodes are allocated manually on the cloud servers (called \textit{Machine}s). The allocation is currently defined in an architecture file (e.g.\ \texttt{routeSensor.arch}). The Rete nodes are associated with the machines with \textit{infrastructure mapping} edges.
 
-\myFigureSmall{incqueryd-tooling-yfiles-viewer}{The viewer in \iqd's tooling}
+\iqd{}'s tooling currently provides an Eclipse-based tree editor to define machines and the infrastructure mapping edges (\figref{incqueryd-tooling-tree-editor}).
 
+\myFigureSmall{incqueryd-tooling-tree-editor}{The tree editor in \iqd's tooling}
+
+The tooling is capable of visualizing the Rete network and its mapping to the machines (see \figref{incqueryd-tooling-yfiles-viewer})
+
+\myFigureSmall{incqueryd-tooling-yfiles-viewer}{The yFiles viewer in \iqd's tooling}
 
 \subsubsection{Bootstrap the system}
- 
 
-
- 
-as a graph pattern definition in \eiq{} syntax~\cite{Bergmann:2010:IEM:1926458.1926467} on the left and graphically on the right. This query represents a typical pattern that is used in MDE applications (such as well-formedness validation or complex model transformations), whereby a subgraph of 4 connected vertices ($V1, V2, V3, V4$) is sought after with a \emph{negative application condition} prescribing that a typed edge (between vertices $V4$ and $V1$) must not exist.
-The Rete network constructed for matching this graph pattern is depicted in \figref{retelayout}. In \iqd{}, type-instance indexers for edge types enumerate all source and target vertices, thus the intermediate join nodes perform join operations on vertex pairs that are connected by typed edges as prescribed by the definition in \figref{patterndef}. The join nodes all store the intermediate query results (e.g.\ connected $V1-V2$ and $V2-V3$ tuples in the case of the leftmost join node), and keep these caches up-to-date as change tokens arrive from the middleware (whenever model changes are performed).
-
-
+\iqd{}'s current implementation, the distributed system is initiated with a Bash script which launches the Akka microkernel on the appropriate nodes. The Akka actors representing the Rete network's nodes are deployed automatically by the \iqd{} \textit{Coordinator} node.

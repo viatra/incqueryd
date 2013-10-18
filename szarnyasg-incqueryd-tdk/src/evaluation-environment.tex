@@ -1,0 +1,44 @@
+\section{Benchmark environment}
+\label{sec:benchmark-environment}
+
+\myFigure{benchmark-scenario}{The benchmark scenario}
+
+\subsection{Benchmark setup}
+
+\myFigure{routesensor-distributed-layout}{The layout of the distributed Rete net}
+
+\subsection{Hardware, software ecosystem}
+
+As the testbed, we deployed our system to a private cloud consisting of 4 virtual machines on separate host computers. 
+
+\subsubsection{Hardware}
+
+For Titan and 4store, each virtual machine used dual 2.5 GHz Intel Xeon L5420 CPUs with 8 GBs of RAM, running on Ubuntu 12.10 64-bit.
+
+For Neo4j, each virtual machine had the same parameters but twice as much, 16 GBs of RAM. 
+
+\subsubsection{Software}
+
+We used the following technologies:
+
+\begin{itemize}
+  \item Ubuntu 12.10 64-bit
+  \item Oracle Java 7 64-bit
+  \item 4store 1.1.5
+  \item Titan 0.3.2
+  \item Faunus 0.3.2
+  \item Hadoop 1.1.2
+  \item Cassandra 1.2.2
+  \item Neo4j 1.8
+  \item Blueprint 2.3.0
+  \item Akka 2.1.2
+  \item Eclipse 4.3 (Kepler)
+\end{itemize}
+
+\subsection{Benchmark methodology}
+
+\subsection{Data collection}
+
+\subsection{Data processing tools}
+
+To compare the performance characteristics of \iqd{} to a traditional case, we defined two scenarios. The \textit{batch} scenario uses only Neo4j to manage models and evaluate the queries in a parallelized way (depicted as \textcircled{1} in \figref{architecture}). This serves as a baseline for the \textit{incremental} scenario, which uses \iqd{} (shown as \textcircled{2} in \figref{architecture}). For these initial experiments, the layout and allocation of the Rete network was determined manually. 

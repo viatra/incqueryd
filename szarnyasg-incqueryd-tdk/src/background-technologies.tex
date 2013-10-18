@@ -94,7 +94,7 @@ Neo4j, developed by Neo Technology, is the most popular NoSQL graph database. Ne
 
 Neo4j is one of the most mature NoSQL databases. It's well documented and provides ample tooling. However, it's scalability features are limited: instead of sharding, it only supports replication of data to create a highly available cluster. Of course, the scalability limitations are a hot topic in Neo4j's development. Neo4j's developers make serious efforts to improve Neo4j's scalability in an ongoing project called Rassilon~\cite{rassilon}.
 
-Neo4j is capable of loading graphs from \graphml{}~\cite{GraphML} and Blueprints \graphson{}~\cite{BlueprintsGraphSON} formats. Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application~\cite{Neoclipse}. A part of a \tb{} (\autoref{sec:trainbenchmark}) instance model is shown on \figref{neoclipse-graph}.
+Neo4j is capable of loading graphs from \graphml{}~\cite{GraphML} and Blueprints \graphson{}~\cite{BlueprintsGraphSON} formats (see \autoref{sec:property-graph-formats} for examples). Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application~\cite{Neoclipse}. A part of a \tb{} (\autoref{sec:trainbenchmark}) instance model is shown on \figref{neoclipse-graph}.
 
 \myFigure{neoclipse-graph}{\tb{} subgraph visualized in Neoclipse}
 
@@ -128,7 +128,7 @@ Titan can be deployed in different ways according to the needs of the applicatio
 
 Although Titan was designed with scalability in mind, it's query engine does not work in a parallel fashion. Also, it's unable to cope with queries resulting in millions of graph elements. To address this shortcoming, Aurelius developed a Hadoop-based graph analytics engine, Faunus. %(\figref{faunus-logo}).
 
-Faunus has its own format called Faunus \graphson{}. The Faunus \graphson{} format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process.
+Faunus has its own format called Faunus \graphson{}. The Faunus \graphson{} format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process. See \autoref{subsec:faunus-graphson} for an example.
 
 %\myFigure{faunus-logo}{The logo of Faunus}
 
@@ -160,6 +160,7 @@ Titan      & Property graph & Automatic & Automatic             & Gremlin      &
 Most distributed, concurrent systems use a messaging framework or message queue service. Because of the nature of the Rete algorithm (\ref{subsec:rete}), \iqd\ requires a distributed, asynchronous messaging framework.
 
 \subsection{Akka}
+\label{subsec:akka}
 
 %\myFigure{akka-logo}{The logo of Akka}
 

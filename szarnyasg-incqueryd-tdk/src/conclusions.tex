@@ -3,32 +3,36 @@
 
 \section{Summary of contributions}
 
+In this chapter, \ldots
+
 \subsection{Own work}
 
-During the research and development of \iqd{}, I achieved the following results:
+During the research and development of \iqd{}'s prototype, I achieved the following results:
 
 \begin{itemize}
-  \item I expanded the \tb{} with a new generator, which can produce property graphs and serialize in various formats: \graphml{}, Blueprints \graphson{} and Faunus \graphson{} (\autoref{sec:property-graph-formats}).
-  \item I implemented a distributed, asynchronous version of the Rete algorithm with a termination protocol.
-  \item Using the distributed Rete net, I created an incremental query engine's prototype, which is not only detached from the data storage backend, but also agnostic to the storage backend's data model. To prove this, the query engine was tested with both property graphs and RDF graphs. 
-  \item Based on \eiq{} and István Ráth's work, I created an Eclipse-based environment to provide automated deployment of the Rete network. This allows the user to define complex queries in IQPL, a high-level pattern language. 
+  \item I expanded the \tb{} with a \emph{new instance model generator}, which can produce property graphs and serialize them in various formats: \graphml{}, Blueprints \graphson{} and Faunus \graphson{}. % (\autoref{sec:property-graph-formats}).
+  \item I implemented a \emph{distributed, asynchronous version of the Rete algorithm} with a termination protocol. Based on the Rete algorithm, I created a \emph{distributed incremental query engine's prototype}, which is not only detached from the data storage backend, but also agnostic to the storage backend's data model. To prove this, the query engine was tested with both property graphs and RDF graphs. 
+  \item Based on \eiq{} and István Ráth's work, I created an \emph{Eclipse-based environment} to provide automated deployment of the Rete network. This allows the user to define complex queries in IQPL, a high-level pattern language. % TODO SzG define own work
   \item I experimented with contemporary non-relational database management systems with a focus on NoSQL graph databases and triple stores.
   \begin{itemize}
-    \item I implemented scripts to install the Titan graph database and its ecosystem on a cluster. Titan's ecosystem includes technologies on different maturity levels, including the Apache Cassandra database, the Apache Hadoop with the HDFS distributed file system, the Tinkerpop graph framework with the Gremlin query language and the Faunus graph analytics engine.
-    \item I implemented scripts to install the 4store triplestore on a cluster. I created the connector class in \iqd{}'s middleware, and formulated the necessary the SPARQL queries. 
-    \item I deployed a manually sharded Neo4j server cluster. I created the connector class in \iqd{}'s middlware to use Neo4j's REST interface, and formulated the appropriate Cypher queries.
-    \item For the benchmark's non-incremental baseline, I adopted the \tb{} for Neo4j and 4store. 
+    \item I implemented scripts to install the \emph{Titan graph database and its ecosystem} on a cluster. Titan's ecosystem includes technologies on different maturity levels, including the Apache Cassandra database, the Apache Hadoop MapReduce framework with the HDFS distributed file system, the TinkerPop graph framework with the Gremlin query language and the Faunus graph analytics engine.
+    \item I implemented scripts to install the \emph{4store triplestore} on a cluster. I created the connector class in \iqd{}'s middleware and formulated the necessary the SPARQL queries. 
+    \item I deployed a manually sharded \emph{Neo4j cluster}. I created the connector class in \iqd{}'s middleware to use Neo4j's REST interface and formulated the appropriate Cypher queries.
   \end{itemize}
-  \item I implemented scripts for automating the benchmark and operating an Akka cluster.
-  \item I conducted a benchmark to measure \iqd{}'s response time and scalability characteristics.
-  \item For \iqd{}'s implementation, I wrote over 3000 lines of Java code, and approximately 500 lines of configuration and deployment scripts.
+  \item I implemented scripts for \emph{automating the benchmark and operating a cluster of Akka microkernels}.
+  \item I conducted a benchmark to measure \iqd{}'s \emph{response time and scalability characteristics}. For the benchmark's baseline, I created \emph{distributed non-incremental benchmark scenarios}, with Neo4j and 4store. 
+  \item For \iqd{}'s implementation, I wrote more than 3000 lines of Java code and approximately 500 lines of configuration and deployment scripts.
 \end{itemize}
 
 \section{Limitations}
 
+\begin{itemize}
+  \item manual allocation of Rete nodes
+  \item only a subset of Rete nodes implemented 
+  \item lack of complete tooling   
+\end{itemize}
+
 \section{Future directions}
 
 We presented \iqd{}, a novel approach to adapt distributed incremental query techniques to large and complex model driven software engineering scenarios. Our proposal is based on a distributed Rete network that is decoupled from sharded graph databases by a middleware layer, and its feasibility has been evaluated using a benchmarking scenario of on-the-fly well-formedness validation of software design models. The results are promising as they show nearly instantaneous query re-evaluation as model sizes grow well beyond $10^7$ elements.
-For future work, we plan on providing more sophisticated automation for sharded Ecore models, and further exploring advanced optimization challenges such as dynamic reconfiguration and fault tolerance.
-We also plan experiment with programming languages that are better suited to asynchronous algorithms (e.g.\ Erlang and Scala) and try different database systems (e.g. MongoDB) as our storage layer.
 

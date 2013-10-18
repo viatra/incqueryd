@@ -1,0 +1,22 @@
+\section{Benchmark scenario}
+
+\label{benchmark}
+In order to measure the efficiency of model queries and manipulation operations over the distributed architecture, we designed a benchmark to measure tool response times in a well-formedness validation use case. The benchmark transaction sequence consists of four phases: (i) during the $\mathit{load}$ phase, the serialization of the model is loaded into the database; (ii) a test query (\figref{patterndef}) is executed ($\mathit{check}_0$); finally, in a cycle consisting of several repetitions, some elements are programmatically modified ($\mathit{edit}_i$) and the test query is re-evaluated ($\mathit{check}_i$). We ran the benchmark on pseudo-randomly generated instance models of growing size, each model containing about twice as many elements (vertices and edges) as the previous one and having a regular fan-out structure. As the current version of Neo4j does not have built-in support for graph sharding, the benchmark uses a manually sharded strategy where each shard contains a disjoint partition of the model.
+
+\myFigure{benchmark-baseline}{The non-incremental baseline benchmark's setup}
+
+%TODO referencia leirasa (miert az, ami?)
+% We implemented two approaches
+% on top of Neo4j.
+% Non-incremental: uses only Cypher for the pattern matching. 
+%   Beside Neo4j's indexes, no additonal data structures are built.
+
+% TODO sajat implementacio leirasa (manualis allokacio)
+
+% Incremental: builds a distributed Rete network to support incremental pattern matching, and 
+%     maintains both the databases and the Rete net upon modification. 
+%     Only uses Cypher to retrieve the graph nodes for the type indexers of the Rete net. 
+
+% For the incremental query, we manually created the Rete network and 
+% generated random instance models of different sizes to benchmark the query's execution time.
+

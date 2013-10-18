@@ -1,0 +1,26 @@
+\section{Results}
+\label{benchmark_results}\label{analysis}
+
+The measurement results of our experiments are shown in \figref{benchmark} (aggregated from several complete sets to filter transient effects). As expected, the $\mathit{load}$ phase take about the same time for both scenarios, and \iqd{} is about half an order of magnitude slower when evaluating the query at first ($\mathit{check}_0$ phase) due to the Rete construction overhead. However, \iqd{} is several orders of magnitude faster during the $\mathit{edit}_i-\mathit{check}_i$ cycles, making on-the-fly query (re)evaluation feasible even for models larger than 50 million elements. Once initialized, \iqd{} scales linearly, since query response times for growing models can be kept low by adding additional computers for hosting Rete nodes.
+
+\myFigure{benchmark/BatchTrafo_RouteSensor}{Batch transformation}
+
+\myFigure{benchmark/BatchValid_RouteSensor}{Batch validation}
+
+\myFigure{benchmark/Check0_RouteSensor}{$\mathit{check}_0$ phase}
+
+\myFigure{benchmark/OnTheFly_RouteSensor}{On-the-fly revalidation ($\mathit{edit}$ and $\mathit{check}_1$  phase)}
+
+\myFigure{benchmark/OnTheFlyEdit_RouteSensor}{On-the-fly revalidation, $\mathit{edit}$ phase}
+
+\myFigure{benchmark/OnTheFlyCheck_RouteSensor}{On-the-fly revalidation, $\mathit{check}_1$ phase}
+
+\myFigure{benchmark/Read_RouteSensor}{$\mathit{Read}$ phase}
+
+
+
+\subsection{Results using the Neo4j graph database}
+
+\myFigure{benchmark/neo/BatchTrafo_RouteSensor}{Batch transformation}
+
+\myFigure{benchmark/neo/OnTheFly_RouteSensor}{On-the-fly revalidation ($\mathit{edit}$ and $\mathit{check}_1$  phase)}
