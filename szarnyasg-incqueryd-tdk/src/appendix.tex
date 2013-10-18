@@ -1,16 +1,16 @@
 \appendix
 
-\chapter{Property graph formats}
+\chapter{Graph formats}
 
-%\section{Property graph formats}
-\label{sec:property-graph-formats}
-
-In this section, we provide examples for the different property graph formats. The examples describe a small instance model based on the \tb{}'s metamodel, shown on \figref{trainbenchmark-instancemodel-subgraph}.
+In this chapter, we provide examples for the different graph formats, including property graphs and RDF graphs. The examples describe a small instance model based on the \tb{}'s metamodel, shown on \figref{trainbenchmark-instancemodel-subgraph}.
 
 \myFigureSmall{trainbenchmark-instancemodel-subgraph}{An example graph based on the \tb{}'s metamodel}
 
-%\subsection{GraphML}
-\section{GraphML}
+\section{Property graph formats}
+\label{sec:property-graph-formats}
+
+\subsection{GraphML}
+%\section{GraphML}
 
 %     <node id="0">
 %       <data key="type">root</data>
@@ -46,8 +46,8 @@ In this section, we provide examples for the different property graph formats. T
 </graphml>
 \end{lstlisting}
 
-%\subsection{Blueprints GraphSON}
-\section{Blueprints GraphSON}
+\subsection{Blueprints GraphSON}
+%\section{Blueprints GraphSON}
 
 %     {
 %       "type":"root",
@@ -117,8 +117,8 @@ In this section, we provide examples for the different property graph formats. T
 }
 \end{lstlisting}
 
-%\subsection{Faunus GraphSON}
-\section{Faunus GraphSON}
+\subsection{Faunus GraphSON}
+%\section{Faunus GraphSON}
 
 %{"type":"root","_id":0,"_outE":[],"_inE":[]}
 \begin{lstlisting}[caption=A graph based on the \tb{}'s metamodel stored in Faunus \graphson{} format]
@@ -126,4 +126,66 @@ In this section, we provide examples for the different property graph formats. T
 {"id":1,"type":"Route","_id":2,"_outE":[{"_id":0,"_inV":1,"_label":"ROUTE_ROUTEDEFINITION"},{"_id":1,"_inV":3,"_label":"ROUTE_SWITCHPOSITION"}],"_inE":[]}
 {"id":2,"type":"SwitchPosition","_id":3,"_outE":[{"_id":2,"_inV":4,"_label":"SWITCHPOSITION_SWITCH"}],"_inE":[{"_id":1,"_outV":2,"_label":"ROUTE_SWITCHPOSITION"}]}
 {"id":3,"type":"Switch","_id":4,"_outE":[{"_id":3,"_inV":1,"_label":"TRACKELEMENT_SENSOR"}],"_inE":[{"_id":2,"_outV":3,"_label":"SWITCHPOSITION_SWITCH"}]}
+\end{lstlisting}
+
+\section{Semantic graph formats}
+
+\subsection{RDF}
+
+\lstset{language=XML,breaklines=true}
+\begin{lstlisting}[caption=A graph based on the \tb{}'s metamodel stored in RDF format. Note that the identifiers are slightly different from the property graph's ids in \autoref{sec:property-graph-formats}.]
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+	xmlns="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+	xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+	xmlns:owl="http://www.w3.org/2002/07/owl#"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+
+<rdf:Description rdf:about="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl">
+	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Segment">
+	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Trackelement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Switch">
+	<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+	<rdfs:subClassOf rdf:resource="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Trackelement"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#1">
+	<rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Sensor"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#2">
+	<rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Route"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#3">
+	<rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Switch"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#4">
+	<rdf:type rdf:resource="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#SwitchPosition"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#3">
+	<TrackElement_sensor rdf:resource="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#1"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#4">
+	<SwitchPosition_switch rdf:resource="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#3"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#2">
+	<Route_routeDefinition rdf:resource="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#1"/>
+	<Route_switchPosition rdf:resource="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#4"/>
+</rdf:Description>
+
+</rdf:RDF>
 \end{lstlisting}
