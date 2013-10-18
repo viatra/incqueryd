@@ -10,32 +10,23 @@ In this chapter, we provide examples for the different graph formats, including 
 \label{sec:property-graph-formats}
 
 \subsection{GraphML}
-%\section{GraphML}
 
-%     <node id="0">
-%       <data key="type">root</data>
-%     </node>
 \lstset{language=XML,breaklines=true}
 \begin{lstlisting}[caption=A graph based on the \tb{}'s metamodel stored in \graphml{} format]
 <?xml version="1.0" encoding="UTF-8"?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.1/graphml.xsd">
-  <key id="id" for="node" attr.name="id" attr.type="int" />
   <key id="type" for="node" attr.name="type" attr.type="string" />
   <graph id="G" edgedefault="directed">
     <node id="1">
-      <data key="id">0</data>
       <data key="type">Sensor</data>
     </node>
     <node id="2">
-      <data key="id">1</data>
       <data key="type">Route</data>
     </node>
     <node id="3">
-      <data key="id">2</data>
       <data key="type">SwitchPosition</data>
     </node>
     <node id="4">
-      <data key="id">3</data>
       <data key="type">Switch</data>
     </node>
     <edge id="0" source="2" target="1" label="ROUTE_ROUTEDEFINITION" />
@@ -47,38 +38,27 @@ In this chapter, we provide examples for the different graph formats, including 
 \end{lstlisting}
 
 \subsection{Blueprints GraphSON}
-%\section{Blueprints GraphSON}
 
-%     {
-%       "type":"root",
-%       "_id":0,
-%       "_type":"vertex"
-%     },
-%  "mode":"NORMAL",
 \lstset{language=json,firstnumber=1}
 \begin{lstlisting}[caption=A graph based on the \tb{}'s metamodel stored in Blueprints \graphson{} format]
 {
   "vertices":[
     {
-      "id":0,
       "type":"Sensor",
       "_id":1,
       "_type":"vertex"
     },
     {
-      "id":1,
       "type":"Route",
       "_id":2,
       "_type":"vertex"
     },
     {
-      "id":2,
       "type":"SwitchPosition",
       "_id":3,
       "_type":"vertex"
     },
     {
-      "id":3,
       "type":"Switch",
       "_id":4,
       "_type":"vertex"
@@ -118,14 +98,12 @@ In this chapter, we provide examples for the different graph formats, including 
 \end{lstlisting}
 
 \subsection{Faunus GraphSON}
-%\section{Faunus GraphSON}
 
-%{"type":"root","_id":0,"_outE":[],"_inE":[]}
 \begin{lstlisting}[caption=A graph based on the \tb{}'s metamodel stored in Faunus \graphson{} format]
-{"id":0,"type":"Sensor","_id":1,"_outE":[],"_inE":[{"_id":0,"_outV":2,"_label":"ROUTE_ROUTEDEFINITION"},{"_id":3,"_outV":4,"_label":"TRACKELEMENT_SENSOR"}]}
-{"id":1,"type":"Route","_id":2,"_outE":[{"_id":0,"_inV":1,"_label":"ROUTE_ROUTEDEFINITION"},{"_id":1,"_inV":3,"_label":"ROUTE_SWITCHPOSITION"}],"_inE":[]}
-{"id":2,"type":"SwitchPosition","_id":3,"_outE":[{"_id":2,"_inV":4,"_label":"SWITCHPOSITION_SWITCH"}],"_inE":[{"_id":1,"_outV":2,"_label":"ROUTE_SWITCHPOSITION"}]}
-{"id":3,"type":"Switch","_id":4,"_outE":[{"_id":3,"_inV":1,"_label":"TRACKELEMENT_SENSOR"}],"_inE":[{"_id":2,"_outV":3,"_label":"SWITCHPOSITION_SWITCH"}]}
+{"type":"Sensor","_id":1,"_outE":[],"_inE":[{"_id":0,"_outV":2,"_label":"ROUTE_ROUTEDEFINITION"},{"_id":3,"_outV":4,"_label":"TRACKELEMENT_SENSOR"}]}
+{"type":"Route","_id":2,"_outE":[{"_id":0,"_inV":1,"_label":"ROUTE_ROUTEDEFINITION"},{"_id":1,"_inV":3,"_label":"ROUTE_SWITCHPOSITION"}],"_inE":[]}
+{"type":"SwitchPosition","_id":3,"_outE":[{"_id":2,"_inV":4,"_label":"SWITCHPOSITION_SWITCH"}],"_inE":[{"_id":1,"_outV":2,"_label":"ROUTE_SWITCHPOSITION"}]}
+{"type":"Switch","_id":4,"_outE":[{"_id":3,"_inV":1,"_label":"TRACKELEMENT_SENSOR"}],"_inE":[{"_id":2,"_outV":3,"_label":"SWITCHPOSITION_SWITCH"}]}
 \end{lstlisting}
 
 \section{Semantic graph formats}
@@ -133,7 +111,7 @@ In this chapter, we provide examples for the different graph formats, including 
 \subsection{RDF}
 
 \lstset{language=XML,breaklines=true}
-\begin{lstlisting}[caption=A graph based on the \tb{}'s metamodel stored in RDF format. Note that the identifiers are slightly different from the property graph's ids in \autoref{sec:property-graph-formats}.]
+\begin{lstlisting}[caption=A graph based on the \tb{}'s metamodel stored in RDF format.]
 <?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF
 	xmlns="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#"
