@@ -6,11 +6,21 @@ In the following section, we provide an overview of the Rete algorithm, which fo
 \subsection{Rete in general}
 \label{subsec:rete}
 
-\iqd{}'s is based on the Rete algorithm, which provides incremental graph pattern matching. Originally created by Charles Forgy~\cite{Forgy} for expert systems. Gábor Bergmann adapted it for EMF models and added many tweaks and improvements to the algorithm~\cite{BergmannRete}.
+\iqd{} is based on the Rete algorithm, which provides incremental graph pattern matching. The algorithm was originally created by Charles Forgy~\cite{Forgy} for expert systems. Gábor Bergmann adapted it for EMF models and added many tweaks and improvements to the algorithm~\cite{BergmannRete}.
 
 The Rete algorithm defines an asynchronous network of communicating nodes. This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations (like filtering tokens based on constant expressions, or performing join or antijoin operations based on their contents) and store partial (interim) query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their changes. Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts).
 
 It is important to emphasize that the database shards and Rete nodes are two distinct levels of distribution that do not directly depend upon each other.
+
+\subsubsection{Similar algorithms}
+
+TREAT \cite{Miranker:1991:OPT:627280.627434} 
+
+LEAPS \cite{Batory:1994:LA:899216}
+
+newer versions of Rete
+
+\ldots
 
 \subsection{\iqd{} architecture}
 
@@ -19,6 +29,6 @@ The \emph{storage layer} is a distributed database which is responsible for pers
 The client application communicates with the \emph{middleware}. The middleware provides a unified API for accessing the database. It also sends change notifications to the production network and retrieves the query results from the production network. 
 The \emph{production network} is implemented with a distributed Rete net which provides incremental query evaluation. 
 
-\myFigure{incqueryd-architecture}{\iqd{}'s architecture demonstrated on a four-node cluster}
+\myFigure{incqueryd-architecture}{\iqd{}'s architecture on a four-node cluster}
 
-The \iqd{} architecture in an example configuration scenario is shown in \figref{incqueryd-architecture}.
+The \iqd{} architecture in a four-node cluster configuration is shown in \figref{incqueryd-architecture}.

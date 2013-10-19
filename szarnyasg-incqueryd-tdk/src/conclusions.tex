@@ -32,7 +32,13 @@ During the research and development of \iqd{}'s prototype, I achieved the follow
   \item lack of complete tooling   
 \end{itemize}
 
-\section{Future directions}
+\section{Future work}
+\label{sec:future-work}
 
 We presented \iqd{}, a novel approach to adapt distributed incremental query techniques to large and complex model driven software engineering scenarios. Our proposal is based on a distributed Rete network that is decoupled from sharded graph databases by a middleware layer, and its feasibility has been evaluated using a benchmarking scenario of on-the-fly well-formedness validation of software design models. The results are promising as they show nearly instantaneous query re-evaluation as model sizes grow well beyond $10^7$ elements.
+
+
+For future work, we plan on providing more sophisticated automation for sharded Ecore models, and further exploring advanced optimization challenges such as dynamic reconfiguration and fault tolerance.
+We also plan experiment with programming languages that are better suited to asynchronous algorithms (e.g.\ Erlang and Scala) and try different database systems (e.g. MongoDB) as our storage layer.
+
 

@@ -1,54 +1,41 @@
 \section{Incremental queries, change propagation}
 \label{sec:incrementality}
 
-
+Incremental query evaluation introduces a number of challenges. In the following section, we will describe these and present \iqd{}'s solutions for them.
 
 \subsection{Rete}
 
-
-
+The Rete algorithm (\autoref{subsec:rete}) utilizes both indexing and caching to provide fast incremental query evalution.  
 
 \subsubsection{Detailed Rete with an actual instance model}
 
 
+
+\figref{rete-routesensor-example-instances}
+
 \myFigure{rete-routesensor-example-instances}{A modification on a \emph{\tb{}} instance model}
+
+\figref{rete-routesensor-example-rete}
 
 \myFigure{rete-routesensor-example-rete}{The Rete net and the partial matches stored in its nodes}
 
 
-\subsubsection{Similar algorithms}
-
-TREAT, LEAPS, newer Rete variants
-
-TREAT \cite{Miranker:1991:OPT:627280.627434} 
-
-LEAPS \cite{Batory:1994:LA:899216}
 
 
 
 \subsection{Distributed operation}
 
-
-%The Rete layer of \iqd{} is \emph{domain and storage agnostic} as it stores only tuples constructed from model element identifiers and literals, thus it can be used independently of the model representation format (metamodeling language) of the model repository.
-%As illustrated in \figref{architecture}, the Rete nodes can be allocated to different hosts in a cloud computing infrastructure (as the underlying messaging framework, Akka, supports remoting). As change propagation is asynchronous, \iqd{} implements a \emph{termination protocol} to ensure that the query results can be retrieved consistently with the model state after a given transaction (i.e.\ by signaling when the update propagation has been terminated).
-
-
-
-
+principles and practice of distributed op
 
 
 \subsubsection{Principles}
 
+The system should be able to allocate the Rete nodes to different hosts in a cloud computing infrastructure. As the Rete algorithm's change propagation is asynchronous, the system must implement a \emph{termination protocol} to ensure that the query results can be retrieved consistently with the model state after a given transaction (i.e.\ by signaling when the update propagation has been terminated).
+
 
 \subsubsection{Practice}
 
-\autoref{}
-
-Transparent framework: Akka
-
-
-
-
+In the prototype of \iqd{}, the distributed middleware and Rete network were implemented using Akka (\autoref{subsec:akka}). The communication protocol was built on top of Akka's built-in serialization support.
 
 
 

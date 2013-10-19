@@ -1,22 +1,3 @@
 \section{Generation of models}
 
-We created a property graph generator project based on the previous \tb{} generators. The generator creates a graph in an embedded Neo4j database and uses the Blueprints library's \texttt{GraphMLWriter} class to save to a \graphml{} file~\cite{Blueprints}.
-
-%\chapter{Evaluation}
-%\label{sec:evaluation}
-
-% 1 hasab + 1 abra helyed van, helytakarekosan irj, keruld az itemize-okat
-
-We implemented \iqd{} as an initial prototype to evaluate the feasibility of the approach, and to experiment with various optimization possibilities. As the storage, we used the popular graph database Neo4j~\cite{neo4j} featuring automatic indexes and two core query technologies (Gremlin and Cypher) that were used as a low-level model access interface by our middleware layer.
-The prototype of the distributed middleware and Rete network were implemented in Java using Akka~\cite{akka}, the Scala-based toolkit for building applications based on the Actor model, since it is well-suited for asynchronous applications. The communication protocol was built on top of Akka's built-in serialization support.
-
-
-%TODO mit merunk? model manipulacios muveletek es query kiertekeles valaszido
-%adott: query def, modell manipulacios szekvencia
-
-% 4 fazisban az alabbiak szerint TODO
-%generalt: novekvo meretu modellek (hogyan generaltuk, mi a query-k eredmenyhalmaz meretenek viszonya a modellhez?, 
-
-%mi az elosztott modell sajatossaga/limitacioja (nincsenek keresztelek))
-
-%mert: lekerdezesek, ill. manip. tranzakcio lefutasi ideje
+We created a property graph generator project based on the previous \tb{} generators. The generator creates a graph in a Neo4j database and uses the Blueprints library's \texttt{GraphMLWriter} and \texttt{GraphSONWriter} classes to serialize the graph to \graphml{} and Blueprints \graphson{} formats. It is also capable of serializing the graph to Faunus \graphson{} format.

@@ -1,9 +1,9 @@
 \section{Case study: \tb{}}
 \label{sec:trainbenchmark}
 
-Due to both confidentiality and technical reasons, it's difficult to obtain real-world industrial models and queries. Also, using confidential data sets hamstrings the reproducability of the conducted benchmarks. Therefore, we used an artificial data set which mimics real-world models.  
+Due to both confidentiality and technical reasons, it is difficult to obtain real-world industrial models and queries. Also, using confidential data sets hamstrings the reproducability of the conducted benchmarks. Therefore, we used an artificial data set which mimics real-world models.  
 
-In the following section we present the \textit{\tb{}}, a benchmark scheme and environment. The \tb{} was designed and implemented by Benedek Izsó, István Ráth and Zoltán Szatmári~\cite{Izso:2012:ODD:2428516.2428523}. The original goal of the \tb{} was to compare various (preferably incremental) query engines' performance to \eiq's. For \iqd, we used a slightly modified version of the \tb{}.
+In the following section we present the \textit{\tb{}}, a benchmark scheme and environment. The \tb{} was designed and implemented by Benedek Izsó, István Ráth and Zoltán Szatmári~\cite{Izso:2012:ODD:2428516.2428523}. The original goal of the \tb{} was to compare various (preferably incremental) query engines' performance to \eiq's. For \iqd, we used a slightly modified version of the \tb{}, which also works in a distributed environment.
 
 \subsection{Domain}
 
@@ -11,7 +11,7 @@ In the following section we present the \textit{\tb{}}, a benchmark scheme and e
 
 The \tb{} models is an imaginary railroad network. The network is composed of typical railroad items, including signals, segments, switches and sensors. The complete EMF metamodel of the \tb{} is shown on \figref{trainbenchmark-metamodel}. 
 
-The \textit{generator} project of \tb{} is capable of generating railroad instance models of different sizes. It's capable of generating models in different formats, including EMF, OWL, RDF and SQL. 
+The \textit{generator} project of \tb{} is capable of generating railroad instance models of different sizes. It is capable of generating models in different formats, including EMF, OWL, RDF and SQL. 
 
 For Neo4j (\autoref{subsec:neo4j}) and Titan (\autoref{subsec:titan}), we expanded the generator with a module that can generate property graphs based on the \tb{}'s metamodel. It supports the \graphml{}~\cite{GraphML}, the Blueprints \graphson{}~\cite{BlueprintsGraphSON} and the Faunus \graphson{}~\cite{FaunusGraphSON} output formats.
 
@@ -24,13 +24,13 @@ For Neo4j (\autoref{subsec:neo4j}) and Titan (\autoref{subsec:titan}), we expand
 
 \subsection{Queries}
 
-The \tb{} consists of queries that resemble a typical MDE workload. In general, MDE queries are more complex than those used in traditional databases. They often define large patterns with multiple join operations. The \tb{}'s queries look for violations of well-formedness constraints in the model. Although the \tb{} defines four different queries, in this report, we only discuss the \textit{RouteSensor} query in detail.
+The \tb{} consists of queries that resemble a typical MDE application's workload. In general, MDE queries are more complex than those used in traditional databases. They often define large patterns with multiple join operations. The \tb{}'s queries look for violations of well-formedness constraints in the model. Although the \tb{} defines a total of four queries, in this report, we only discuss the \textit{RouteSensor} query in detail.
 
 \subsubsection{RouteSensor}
 
 \myFigure{routesensor-pattern}{Graphical representation of the \emph{RouteSensor} query's pattern. The dashed red arrow defines a negative condition.}
 
-The \textit{RouteSensor} query looks for \textit{Sensor}s that are connected to a \textit{Switch}, but the sensor and the switch are \emph{not} connected to the same \textit{Route}. The graphical representation of the RouteSensor query is shown on \figref{routesensor-pattern}. The RouteSensor query  IQPL (\autoref{subsec:eiq}).\footnote{Note that the two queries are slightly different: the SPARQL query returns only a set of sensors, while the IQPL query returns a set of (Sensor, Switch, SwitchPosition, Route) tuples. TODO explain.}
+The \textit{RouteSensor} query looks for \texttt{Sensor}s that are connected to a \texttt{Switch}, but the sensor and the switch are \emph{not} connected to the same \texttt{Route}. The graphical representation of the RouteSensor query is shown on \figref{routesensor-pattern}. The IQPL query (\autoref{subsec:eiq}) is shown on \lstref{routesensor-iqpl}, while the SPARQL query is shown on \lstref{routesensor-sparql}.\footnote{Note that the two queries are slightly different: the SPARQL query returns only a set of \texttt{Sensor}s, while the IQPL query returns a set of (\texttt{Sensor}, \texttt{Switch}, \texttt{SwitchPosition}, \texttt{Route}) tuples.} % TODO explain why.
 
 \lstset{language=viatra}
 
@@ -82,10 +82,6 @@ WHERE
     } .
 }
 \end{lstlisting}
-
-
-
-
 
 
 % The Cypher implementation of the RouteSensor query is shown on %\lstrefcypher-routesensor}

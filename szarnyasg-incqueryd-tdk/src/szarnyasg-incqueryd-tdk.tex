@@ -303,10 +303,10 @@ aboveskip=10pt}
 \pagenumbering{arabic}
 \onehalfspacing
 
-\include{title}       % title		+ blank
-%\include{declaration} % thanks		+ declaration 
-\include{abstract}    % abstract hu + abstract en
-\tableofcontents      % toc
+\include{title}
+%\include{declaration} 
+%\include{abstract}
+\tableofcontents
 
 \include{introduction}
 \include{background-technologies}
@@ -315,10 +315,12 @@ aboveskip=10pt}
 \include{related-work}
 \include{conclusions}
 
-\addcontentsline{toc}{chapter}{Bibliography} % Add bibliography
-\bibliographystyle{plain}                    % use plain style
+\listoffigures
 
-\bibliography{bibtex/bib}                    % include the entries
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{plain}
+
+\bibliography{bibtex/bib}
 
 \include{appendix}
 

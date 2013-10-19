@@ -1,35 +1,23 @@
 \section{Deployment, configuration}
 \label{sec:deployment-configuration}
 
-Deploying, configuring and operating a distributed pattern matcher is a complex task. In the following, we will present our tools for these tasks. 
+Deploying, configuring and operating a distributed pattern matcher is a complex task. In the following, we will break down this task to smaller steps and present our tools for solving them. 
 
 \subsection{Tooling}
 
-
-
-reuse of \eiq's components
-
-Eclipse-based tree editor and yWorks viewer
-
-
-
-
+We aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete net generator. For the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
 
 \subsection{Degrees of freedom}
 
-database sharding, allocation of rete nodes -- orthogonal
+The deployment and configuration of a distributed pattern matcher involves many degrees of freedom:
 
-choosing different dbs
+\begin{itemize}
+  \item We may choose different database implementations due to the \iqd{}'s backend-agnostic nature. Until now, we experimented with property graph databases (Neo4j, Titan) and triplestores (4store).
+  \item We may use different database sharding strategies (e.g.\ random partitioners or more sophisticated sharding methods based on domain-specific knowledge).
+  \item We may choose diffent strategies to allocate the Rete nodes. Note that in theory, this is orthogonal to the database's sharding strategy. However, we expect that keeping the Rete network's type indexer nodes and the instances of the given type on the same server would decrease the initialization time significantly.
+\end{itemize}
 
-\subsubsection{Different database implementations}
-
-diffent storage backends are supported
-
-storage agnostic representation
-
-
-
-\subsection{Workflow} % ''Problem pieces''
+\subsection{Workflow}
 \label{subsec:workflow}
 
 In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{recipe}.
@@ -40,7 +28,7 @@ In the following part, we will describe the workflow behind the pattern matching
 
 \paragraph{Task.} First, we determine the constraints defined by the query pattern. The matches satisfying these constraints will define the results of the query.
 
-\paragraph{Implementation.} The pattern is defined in an IQPL (\iq{} Pattern Language) text file. Using Xtext \cite{Xtext}, an Eclipse-based framework for creating domain-specific languages, the textual representation of the pattern is parsed to an EMF model. Based on the EMF model's pattern and the metamodel, a constraint network called PSystem (short for \textit{Pattern System}) is generated. 
+\paragraph{Implementation.} The pattern is defined in an IQPL (\iq{} Pattern Language) text file. Using Xtext \cite{Xtext}, an Eclipse-based framework for creating domain-specific languages, the textual representation of the pattern is parsed to an EMF model. Based on the EMF model's pattern and the metamodel, a constraint network called \textit{PSystem} (short for \textit{Pattern System}) is generated. 
 
 \subsubsection{Build a Rete layout}
 

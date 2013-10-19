@@ -15,7 +15,7 @@ Big Data challenges spawned dozens of new database management systems. Typically
 
 \section{Graph models}
 
-The graph is a well-known mathematical concept widely used in computer science. For our work, it's important to distinguish between different graph data models.
+The graph is a well-known mathematical concept widely used in computer science. For our work, it is important to distinguish between different graph data models.
 
 \myFigure{graph-data-models}{Different graph data models~\cite{DBLP:journals/corr/abs-1006-2361}}
 
@@ -42,7 +42,7 @@ TinkerPop also provides a graph server (\textit{Rexster}), a set of graph algori
 
 Triplestores are tailored to store and process triples efficiently. A triple is a data entity composed of a subject, a predicate and an object, e.g.\ ''John instanceof Person'', ''John is 34''. Triplestores are mostly used in semantic technology projects. Also, some triplestores are capable of \emph{reasoning}, i.e.\ inferring logical consequences from a set of facts or axioms. 
 
-Triplestores use the RDF (Resource Description Framework) data model. Although the RDF data model has less expressive power than the property graph, by introducing additional resources for each property, a property graph can be easily mapped to a RDF. Triplestores are usually queried via the RDF format's query language, SPARQL. 
+Triplestores use the RDF (Resource Description Framework) data model. Although the RDF data model has less expressive power than the property graph, by introducing additional resources for each property, a property graph can be easily mapped to a RDF. Triplestores are usually queried via the RDF format's query language, SPARQL (recursive acronym for SPARQL Protocol and RDF Query Language). 
 
 \section{NoSQL technologies}
 
@@ -92,7 +92,7 @@ HBase is an open-source, distributed column family database. It is developed as 
 %Neo4j (\figref{neo4j-logo})
 Neo4j, developed by Neo Technology, is the most popular NoSQL graph database. Neo4j implements TinkerPop's Blueprints property graph data model along with Gremlin. It also provides Cypher, a declarative query language for graph pattern matching. 
 
-Neo4j is one of the most mature NoSQL databases. It's well documented and provides ample tooling. However, it's scalability features are limited: instead of sharding, it only supports replication of data to create a highly available cluster. Of course, the scalability limitations are a hot topic in Neo4j's development. Neo4j's developers make serious efforts to improve Neo4j's scalability in an ongoing project called Rassilon~\cite{rassilon}.
+Neo4j is one of the most mature NoSQL databases. It is well documented and provides ample tooling. However, it is scalability features are limited: instead of sharding, it only supports replication of data to create a highly available cluster. Of course, the scalability limitations are a hot topic in Neo4j's development. Neo4j's developers make serious efforts to improve Neo4j's scalability in an ongoing project called Rassilon~\cite{rassilon}.
 
 Neo4j is capable of loading graphs from \graphml{}~\cite{GraphML} and Blueprints \graphson{}~\cite{BlueprintsGraphSON} formats (see \autoref{sec:property-graph-formats} for examples). Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application~\cite{Neoclipse}. A part of a \tb{} (\autoref{sec:trainbenchmark}) instance model is shown on \figref{neoclipse-graph}.
 
@@ -114,9 +114,9 @@ is an open-source, distributed, scalable graph database from Aurelius, the creat
 
 To store the graph, Titan maps each vertex to a row of a column family (\figref{titan-cassandra-mapping}). The row stores the identifer and the properties of the vertex, along both the incoming and outgoing edges' identifiers, labels and properties.
 
-Titan uses the storage backend's partitioner (e.g.\ Cassandra's RandomPartitioner) to shard the data. A more sophisticated partitioning system that will allow for partitioning based on the graph's static and dynamic properties (its domain and connectivity, respectively) is under implementation, but not yet available.
+Titan uses the storage backend's partitioner (e.g.\ Cassandra's RandomPartitioner) to shard the data. A more sophisticated partitioning system that will allow for partitioning based on the graph's static and dynamic properties (its domain and connectivity, respectively) is under implementation as of October 2013, but not yet available.
 
-\myFigure{titan-cassandra-mapping}{Titan graph vertex stored in Cassandra as a row}
+\myFigureSmall{titan-cassandra-mapping}{Titan graph vertex stored in Cassandra as a row}
 
 \subsubsection{Deployment}
 
@@ -126,17 +126,17 @@ Titan can be deployed in different ways according to the needs of the applicatio
 
 \subsubsection{Faunus}
 
-Although Titan was designed with scalability in mind, it's query engine does not work in a parallel fashion. Also, it's unable to cope with queries resulting in millions of graph elements. To address this shortcoming, Aurelius developed a Hadoop-based graph analytics engine, Faunus. %(\figref{faunus-logo}).
+Although Titan was designed with scalability in mind, its query engine does not work in a parallel fashion. Also, it is unable to cope with queries resulting in millions of graph elements. To address this shortcoming, Aurelius developed a Hadoop-based graph analytics engine, Faunus. %(\figref{faunus-logo}).
 
 Faunus has its own format called Faunus \graphson{}. The Faunus \graphson{} format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process. See \autoref{subsec:faunus-graphson} for an example.
 
 %\myFigure{faunus-logo}{The logo of Faunus}
 
-It's important to note that Faunus always traverses the whole graph and does not use its indices. This makes it slow for retrieving nodes or edges by type (see our typical workload at XXX).
+It is important to note that Faunus always traverses the whole graph and does not use its indices. This makes it slow for retrieving nodes or edges by type (see our typical workload at XXX).
 
 \subsection{4store}
 
-4store is an open-source, distributed triplestore created by Garlik~\cite{4store}. Unlike the other tools discussed earlier, 4store is written in C. While 4store is primarily applied for semantic web projects, it's maturity and scalability made it an appropriate storage backend for \iqd's prototype.
+4store is an open-source, distributed triplestore created by Garlik~\cite{4store}. Unlike the other tools discussed earlier, 4store is written in C. While 4store is primarily applied for semantic web projects, its maturity and scalability made it an appropriate storage backend for \iqd's prototype.
 
 Similar to Titan's partitioning, 4store's sharding mechanism (called \emph{segmenting}) distributes the RDF resources evenly across the cluster. However, unlike Titan, 4store's data model is an RDF graph. Hence, 4store's input format is RDF/OWL.
 
@@ -157,7 +157,7 @@ Titan      & Property graph & Automatic & Automatic             & Gremlin      &
 
 \section{Asynchronous messaging}
 
-Most distributed, concurrent systems use a messaging framework or message queue service. Because of the nature of the Rete algorithm (\ref{subsec:rete}), \iqd\ requires a distributed, asynchronous messaging framework.
+Most distributed, concurrent systems use a messaging framework or message queue service. Because of the nature of the Rete algorithm (\autoref{subsec:rete}), \iqd\ requires a distributed, asynchronous messaging framework.
 
 \subsection{Akka}
 \label{subsec:akka}
@@ -173,9 +173,8 @@ Akka provides strong support for remoting. Actors have both a logical and a phys
 
 \myFigure{akka-remote-deployment}{Deploying a remote actor in Akka}
 
-\section{Google Guava libraries}
-
-\iqd{} relies heavily on Google Guava library's Collections framework~\cite{guava}. The Guava Collection is an extension to Java's Collection framework. We used both immutable collections and new type of collections (e.g.\ the \texttt{Multimap} interface and its implementations).
+%\section{Google Guava libraries}
+%\iqd{} relies heavily on Google Guava library's Collections framework~\cite{guava}. The Guava Collection is an extension to Java's Collection framework. We used both immutable collections and new type of collections (e.g.\ the \texttt{Multimap} interface and its implementations).
 
 \section{Eclipse-based technologies}
 
