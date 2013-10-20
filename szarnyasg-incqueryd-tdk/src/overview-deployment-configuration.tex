@@ -16,10 +16,10 @@ The deployment and configuration of a distributed pattern matcher involves many 
   \item We may use different database sharding strategies (e.g.\ random partitioners or more sophisticated sharding methods based on domain-specific knowledge).
   \item We may choose diffent strategies to allocate the Rete nodes. Note that in theory, this is orthogonal to the database's sharding strategy. However, we expect that keeping the Rete network's type indexer nodes and the instances of the given type on the same server would decrease the initialization time significantly.
 \end{itemize}
-
+ 
 \subsection{Workflow}
 \label{subsec:workflow}
-
+ 
 In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{recipe}.
 
 \myFigureSmall{recipe}{The workflow of \eiq{} (blue) and \iqd{} (green)}

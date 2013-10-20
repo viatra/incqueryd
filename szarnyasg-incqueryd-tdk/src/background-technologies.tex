@@ -1,5 +1,5 @@
 \chapter{Background technologies}
-
+ 
 Implementing a scalable graph pattern matcher requires a wide range of technologies. Careful selection of the technologies is critical to the project's success. For \iqd, we were looking for technologies that were designed with scalability in mind and have been deployed in large-scale distributed systems successfully. To avoid licensing issues and costs, our search criteria included that the technologies must be free and open-source solutions. 
 
 %scalable pattern matcher technology background
@@ -7,9 +7,9 @@ Implementing a scalable graph pattern matcher requires a wide range of technolog
 
 \section{Big Data and the NoSQL movement}
 
-Since the 1980s, database management systems based on the relational data model~\cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling and so on. However, due to the strongly connected nature of their data model, relational databases often have scalability issues~\cite{Sakr13}. % TODO find a better citation
+Since the 1980s, database management systems based on the relational data model~\cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling and so on. However, due to the strongly connected nature of their data model, relational databases often have scalability issues~\cite{Jacobs:2009:PBD:1536616.1536632, Sakr13}.
 
-In the last decade, organizations often struggled to store and process the huge amounts of data they produced. This problem introduces a diverse palette of scientific and engineering challenges, often called \emph{Big Data} challenges. 
+In the last decade, large organizations struggled to store and process the huge amounts of data they produced. This problem introduces a diverse palette of scientific and engineering challenges, called \emph{Big Data} challenges. 
 
 Big Data challenges spawned dozens of new database management systems. Typically, these systems broke with the strictness of the relational data model and utilized simpler, more scalable data models. These systems dropped support for the SQL query language used in relational databases and hence were called \emph{NoSQL databases}\footnote{The community now mostly translates NoSQL as ''not only SQL''.}~\cite{NoSQL}. During the development of \iqd's propotype, we experimented with numerous NoSQL databases.
 
@@ -17,22 +17,21 @@ Big Data challenges spawned dozens of new database management systems. Typically
 
 The graph is a well-known mathematical concept widely used in computer science. For our work, it is important to distinguish between different graph data models.
 
-\myFigure{graph-data-models}{Different graph data models~\cite{DBLP:journals/corr/abs-1006-2361}}
+\myFigure{graph-classes}{Different graph data models~\cite{DBLP:journals/corr/abs-1006-2361}}
 
 \subsection{Graph models}
-
+ 
 The most basic graph model is the \emph{simple graph}, formally defined as $G = (V, E)$, where $V$ is the set of vertices and $E \subseteq V \times V$ is the set of edges. Simple graphs are sometimes referred as textbook-style graphs because they are an integral part of academic literature. Simple graphs are useful for modeling homogeneous systems and have plenty of algorithms for processing.
 
-Simple graphs can be extended in several different ways (\figref{graph-data-models}). To describe the connections in more detail, we may add directionality to edges (\emph{directed graph}), allow loops and multiple edges (\emph{multi-graph}). To allow different connections, we may label the edges (\emph{labeled graph} or \emph{semantic graph}). \emph{RDF graph}s use URIs instead of labels, otherwise they have similar expressive power as labeled graphs. \emph{Property graph}s add even more possibilites by introducing properties. Each graph element, both vertices and edges can be described with a collection of properties. The properties are key--value pairs, e.g.\ %$\mathit{type} = \mathrm{Person}$, $\mathit{name} = \mathrm{John}$, $\mathit{age} = 34$.
-\texttt{type = 'Person'}, \texttt{name = 'John'}, \texttt{age = 34}. 
-Property graphs are powerful enough to describe Java objects or EMF instance models (\autoref{subsec:EMF}).
+Simple graphs can be extended in several different ways (\figref{graph-classes}). To describe the connections in more detail, we may add directionality to edges (\emph{directed graph}), allow loops and multiple edges (\emph{multi-graph}). To allow different connections, we may label the edges (\emph{labeled graph}). \emph{RDF graph}s use URIs instead of labels, otherwise they have similar expressive power as labeled graphs. \emph{Property graph}s add even more possibilites by introducing properties. Each graph element, both vertices and edges can be described with a collection of properties. The properties are key--value pairs, e.g. \texttt{type = 'Person'}, \texttt{name = 'John'}, \texttt{age = 34}. 
+Property graphs are powerful enough to describe Java objects or EMF instance models (\autoref{subsec:EMF}). 
 
 \subsubsection{TinkerPop}
 
 The \textit{TinkerPop} framework is an open-source software stack for graph storage and processing. TinkerPop includes Blueprints, a property graph model interface. Blueprints fulfills the same role for graph databases as JDBC does for relational databases. Most NoSQL graph databases implement the property graph interface provided by Blueprints, including Neo4j (\autoref{subsec:neo4j}), Titan (\autoref{subsec:titan}), DEX~\cite{DEX}, InfiniteGraph~\cite{InfiniteGraph} and OrientDB~\cite{OrientDB}.
 
-\myFigure{tinkerpop-stack}{The TinkerPop software stack}
-
+\myFigureSmall{tinkerpop-stack}{The TinkerPop software stack \cite{Blueprints}}
+ 
 TinkerPop also introduces a graph query language, \textit{Gremlin}. Gremlin is a domain-specific language based on Groovy, a Java-like dynamic language which runs on the Java Virtual Machine. Unlike most query languages, Gremlin is an imperative language with a strong focus on graph traversals. Gremlin is based on \textit{Pipes}, TinkerPop's dataflow processing framework. Besides the traversing, Gremlin capable of analyzing and manipulating the graph as well.
 
 TinkerPop also provides a graph server (\textit{Rexster}), a set of graph algorithms tailored for property graphs (\textit{Furnace}) and an object-graph mapper (\textit{Frames}). The TinkerPop software stack is shown on \figref{tinkerpop-stack}.
@@ -47,23 +46,35 @@ Triplestores use the RDF (Resource Description Framework) data model. Although t
 \section{NoSQL technologies}
 
 In the following section we summarize the core technologies used in \iqd's prototype implementation. We briefly introduce the goals of each technology, with particular emphasis on the scalability aspects.
-
+ 
 \subsection{Cassandra}
 
-Cassandra %(\figref{cassandra-logo}) 
-is one of the most widely used NoSQL databases~\cite{Cassandra}. Originally developed by Facebook~\cite{Lakshman:2010:CDS:1773912.1773922}, Cassandra is now an open-source Apache project.
+ %(\figref{cassandra-logo}) 
+Cassandra is one of the most widely used NoSQL databases~\cite{Cassandra}. Originally developed by Facebook~\cite{Lakshman:2010:CDS:1773912.1773922}, Cassandra is now an open-source Apache project. The whole project is written in Java.
 
-Cassandra's data model is called \emph{column family}. A column family is similar to a table of a relational database: it consists of rows and columns. However, unlike in a relational database's table, the rows do not have to have the same fixed set of columns. Instead, each row can have a different set of columns. This makes the data structure more dynamic and avoids the plethora of problems associated with NULL values.
+Cassandra's data model is called \emph{column family}. A column family is similar to a table of a relational database: it consists of rows and columns. However, unlike in a relational database's table, the rows do not have to have the same fixed set of columns. Instead, each row can have a different set of columns. This makes the data structure more dynamic and avoids the problems associated with NULL values.
 
 %\myFigure{cassandra-logo}{The logo of Apache Cassandra}
 
-To distribute the data across the cluster, Cassandra uses a partitioner mechanism. The simplest partitioners distribute the rows evenly based on their hash values. Currently, Cassandra provides \emph{RandomPartitioner} (MD5 hash) and \emph{Murmur3Partitioner} (Murmur3 hash).
+Cassandra has sophisticated fault-tolerance mechanisms. It allows the application to balance between availability and consistency by allowing it to tune the consistency constraints.
 
-Cassandra has sophisticated fault-tolerance mechanism. It allows the application to balance between availability and consistency by allowing it to tune the consistency constraints. Cassandra is written in Java.
+Cassandra is used mainly by web 2.0 companies, including Digg, Netflix, Reddit, SoundCloud and Twitter. It is also used for research purposes at CERN and NASA \cite{CassandraCompanies}.
 
-%TODO cover virtual nodes
+\subsubsection{Consistent hashing}
+
+To distribute the data across the cluster, Cassandra uses a partitioner mechanism. The basic partitioners distribute the rows evenly based on their key's hash value. In a cluster with $n$ nodes, the na\"ive method for determining the location for a row with key $x$ is computing $ h(x) \bmod n $, where $h(x)$ is the hash function. Currently, Cassandra provides partitioners based on the MD5 and the Murmur3 hash function. However, this approach has a serious limitation: if we remove or add nodes to the cluster, we have to recompute the hash values and possibly relocate almost all rows in the cluster. To avoid this, Cassandra uses a special kind of hashing called \textit{consistent hashing}.
+
+The ring is divided into ranges equal to the number of nodes, with each node being responsible for one or more ranges of the data. Before a node can join the ring, it must be assigned a \textit{token}. The token value determines the node's position in the ring and its range of data. The ring is walked clockwise until it locates the node with a token value greater than that of the row key. %Each node is responsible for the region of the ring between itself (inclusive) and its predecessor (exclusive). 
+With the nodes sorted in token order, the last node is considered the predecessor of the first node; hence the ring representation\footnote{Note ''consistent'' here is different from both the idea of consistency in data consistency and in the ACID (atomicity, consistency, isolation, durability) properties guaranteed by transactions. It refers to the fact that tries to map the same rows to the same machine, even if the number of machines ($n$) changes over time slightly.} \cite{CassandraPartitioning}.
+
+For example, consider a simple four-node cluster (\figref{cassandra-ring-partitions}), where all of the row keys managed by the cluster are in the range of 0 to 100. Each node is assigned a token that represents a point in this range. In this example, the token values are 0, 25, 50 and 75. The first node (with token 0), is responsible for the wrapping range ($76+$), the second node (with token 25) is responsible for the data range $1-25$, and so on %The node with the lowest token also accepts row keys less than the lowest token and more than the highest token 
+\cite{CassandraPartitioning}.
+
+\myFigureTiny{cassandra-ring-partitions}{Cassandra's ring for data partitioning \cite{CassandraPartitioning}}
+
 %\myFigure{cassandra-vnodes}{Cassandra's ring for data partitioning}
-
+% \emph{virtual nodes}
+ 
 \subsection{Hadoop}
 
 Hadoop is an open-source, distributed data processing framework inspired by Google's publications about MapReduce~\cite{Dean:2008:MSD:1327452.1327492} and the Google File System~\cite{Ghemawat:2003:GFS:945445.945450}. Originally developed at Yahoo!, Hadoop is now an Apache project~\cite{Hadoop}. Like Google's systems, Hadoop is designed to run on commodity hardware, i.e.\ server clusters built from commercial off-the-shelf products. Hadoop provides a distributed file system (HDFS) and a column family database (HBase). All software in the Hadoop framework is written in Java.
@@ -72,7 +83,7 @@ The MapReduce paradigm defines a parallel, asynchronous way of processing the da
 
 A typical small Hadoop cluster consists of a single master node which is responsible for the coordination of the cluster and worker nodes which deal with the data processing. The MapReduce job is coordinated by the master's \emph{job tracker} and processed by the slave nodes' \emph{task tracker} modules (\figref{hadoop-architecture}).
 
-\myFigureSmall{hadoop-architecture}{Hadoop's architecture}
+\myFigureSmall{hadoop-architecture}{Hadoop's architecture TODO \url{http://www.michael-noll.com/tutorials/running-hadoop-on-ubuntu-linux-multi-node-cluster/}}
 
 \subsubsection{HDFS}
 
@@ -105,9 +116,9 @@ Neo4j is capable of loading graphs from \graphml{}~\cite{GraphML} and Blueprints
 \subsection{Titan}
 \label{subsec:titan}
 
-Titan %(\figref{titan-logo}) 
-is an open-source, distributed, scalable graph database from Aurelius, the creators of the TinkerPop framework. Unlike Neo4j, Titan is not a standalone database. Instead, it builds on top of existing NoSQL database technologies and leverages Hadoop's MapReduce capabilities. Titan supports various storage backends, including Cassandra and HBase.
-
+Titan is an open-source, distributed, scalable graph database from Aurelius, the creators of the TinkerPop framework. Unlike Neo4j, Titan is not a standalone database. Instead, it builds on top of existing NoSQL database technologies and leverages Hadoop's MapReduce capabilities. Titan supports various storage backends, including Cassandra and HBase.
+ 
+%(\figref{titan-logo})
 %\myFigure{titan-logo}{The logo of Titan}
 
 \subsubsection{Mapping and sharding}

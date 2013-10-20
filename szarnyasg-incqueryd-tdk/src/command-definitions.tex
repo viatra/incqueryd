@@ -17,6 +17,16 @@
 		\caption{#2}
 		\label{fig:#1}
 	\end{figure}}
+	
+\newcommand{\myFigureTiny}[2]{
+	\begin{figure}[!htb]
+		\centering
+		\begin{adjustbox}{max size={0.5\textwidth}{\textheight}}
+			\includegraphics[scale=1.0]{figures/#1}
+		\end{adjustbox}
+		\caption{#2}
+		\label{fig:#1}
+	\end{figure}}
 
 \newcommand{\myFigureSide}[2]{\myFigureSideScalable{#1}{1.0}{#2}}
 
