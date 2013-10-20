@@ -1,36 +1,27 @@
-\section{Incremental queries, change propagation}
+\section{Incremental queries and change propagation}
 \label{sec:incrementality}
 
-Incremental query evaluation introduces a number of challenges. In the following section, we will describe these and present \iqd{}'s solutions for them.
+Distributed incremental query evaluation introduces a number of challenges. In the following section, we will describe these and present \iqd{}'s solutions for them.
 
-\subsection{Rete}
+\subsection{Distributed storage layer}
 
-The Rete algorithm (\autoref{subsec:rete}) utilizes both indexing and caching to provide fast incremental query evalution.  
+For the storage layer, the most important issue from an incremental query evaluation perspective is that the indexers of the middleware should be filled as quickly as possible. This favors technologies where model sharding can be performed efficiently (i.e.\ with balanced shards in terms of type-instance relationships), and elementary queries 
+can be executed efficiently.
 
-\subsubsection{Detailed Rete with an actual instance model}
+%(or model graph traversals) 
 
+\subsection{Distributed Rete operation and scalability challenges}
 
+The Rete algorithm (\autoref{subsec:rete}) utilizes both indexing and caching to provide fast incremental query evalution. \iqd{}'s horizontally scalability is supported by the distribution of the pattern matcher's Rete net. To enable this, the system must be able to allocate the Rete nodes to different hosts in a cloud computing infrastructure. As the Rete algorithm's change propagation is asynchronous, the system must also implement a \emph{termination protocol} to ensure that the query results can be retrieved consistently with the model state after a given transaction (i.e.\ by signaling when the update propagation has been terminated).
 
-\figref{rete-routesensor-example-instances}
+%Achieving scalability of the distributed Rete architecture is an equally complex challenge. 
+The overall performance of the system is influenced by a number of factors.
 
-\myFigure{rete-routesensor-example-instances}{A modification on a \emph{\tb{}} instance model}
-
-\figref{rete-routesensor-example-rete}
-
-\myFigure{rete-routesensor-example-rete}{The Rete net and the partial matches stored in its nodes}
-
-
-
-
-
-\subsection{Distributed operation}
-
-principles and practice of distributed op
-
-
-\subsubsection{Principles}
-
-The system should be able to allocate the Rete nodes to different hosts in a cloud computing infrastructure. As the Rete algorithm's change propagation is asynchronous, the system must implement a \emph{termination protocol} to ensure that the query results can be retrieved consistently with the model state after a given transaction (i.e.\ by signaling when the update propagation has been terminated).
+\begin{itemize}
+  \item The \emph{layout of the Rete network}. This can be optimized depending on both query and instance model characteristics, e.g.\ to keep the resource requirement of intermediate join operations to a minimum.
+  \item The \emph{allocation} of Rete nodes to host computers. E.g.\ the optimization strategy may choose to optimize local resource usage, or to minimize the amount of remote network communication.
+  \item The \emph{dynamic adaptability} to changing conditions. E.g.\ when the model size and thus query result size grows rapidly, the Rete network may require dynamic reallocation or node sharding due to local resource limitations.
+\end{itemize}
 
 
 \subsubsection{Practice}
@@ -38,9 +29,13 @@ The system should be able to allocate the Rete nodes to different hosts in a clo
 In the prototype of \iqd{}, the distributed middleware and Rete network were implemented using Akka (\autoref{subsec:akka}). The communication protocol was built on top of Akka's built-in serialization support.
 
 
+\subsubsection{Rete operation}
 
-\subsection{Scalability considerations}
-For the storage layer, the most important issue from an incremental query evaluation perspective is that the indexers of the middleware should be filled as quickly as possible. This favors technologies where model sharding can be performed efficiently (i.e.\ with balanced shards in terms of type-instance relationships), and elementary queries (or model graph traversals) can be executed efficiently.
+We present the Rete algorithm's operation on an actual instance model. Suppose we have the graph show on the top of \figref{rete-routesensor-example-instances-neoclipse} loaded to the Rete net and we decide to delete the \texttt{ROUTE\_ROUTEDEFINITION} edge between vertices 2 and 1. 
 
-Achieving scalability of the distributed Rete architecture is an equally complex challenge. The overall performance of the system is influenced by a number of factors, including (i) the \emph{layout of the Rete network} (which can be optimized depending on both query and instance model characteristics, e.g.\ to keep the resource requirement of intermediate join operations to a minimum), (ii) the \emph{allocation} of Rete nodes to host computers (e.g.\ to optimize local resource usage, or to minimize the amount of remote network communication), and (iii) \emph{dynamic adaptability} to changing conditions (e.g.\ when the model size and thus query result size grows rapidly, the Rete network may require dynamic reallocation or node sharding due to local resource limitations).
+\myFigure{rete-routesensor-example-instances-neoclipse}{A modification on a \emph{\tb{}} instance model}
+
+\figref{rete-routesensor-example-rete} shows the Rete net containing the interim matches of the original graph. When we delete the edge between vertices 2 and 1, the \texttt{ROUTE\_ROUTEDEFINITION} type indexer receives a notification and sends a \textit{negative update} \textcircled{1} with the tuple $(2, 1)$. The antijoin node processes the negative update and propagates a negative update \textcircled{2} with the tuple $(3, 4, 2, 1)$. This is received by the production node, which initiates the \textit{termination protocol} \textcircled{3}, \textcircled{4}. After the termination protocol finished, the indexer signals the client about the successful update. The client can now retrieve the results from the production node. The client may choose to retrieve only the ''deltas'', i.e.\ only the the tuples that have been added or deleted since the last modification.
+
+\myFigure{rete-routesensor-example-rete}{The Rete net and the partial matches stored in its nodes}
 
