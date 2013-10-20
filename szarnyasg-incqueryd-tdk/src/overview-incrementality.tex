@@ -33,7 +33,7 @@ In the prototype of \iqd{}, the distributed middleware and Rete network were imp
 
 We present the Rete algorithm's operation on an actual instance model. Suppose we have the graph show on the top of \figref{rete-routesensor-example-instances-neoclipse} loaded to the Rete net and we decide to delete the \texttt{ROUTE\_ROUTEDEFINITION} edge between vertices 2 and 1. 
 
-\myFigure{rete-routesensor-example-instances-neoclipse}{A modification on a \emph{\tb{}} instance model}
+\myFigure{rete-routesensor-example-instances-neoclipse}{A modification on a \tb{} instance model}
 
 \figref{rete-routesensor-example-rete} shows the Rete net containing the interim matches of the original graph. When we delete the edge between vertices 2 and 1, the \texttt{ROUTE\_ROUTEDEFINITION} type indexer receives a notification and sends a \textit{negative update} \textcircled{1} with the tuple $(2, 1)$. The antijoin node processes the negative update and propagates a negative update \textcircled{2} with the tuple $(3, 4, 2, 1)$. This is received by the production node, which initiates the \textit{termination protocol} \textcircled{3}, \textcircled{4}. After the termination protocol finished, the indexer signals the client about the successful update. The client can now retrieve the results from the production node. The client may choose to retrieve only the ''deltas'', i.e.\ only the the tuples that have been added or deleted since the last modification.
 

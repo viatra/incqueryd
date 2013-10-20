@@ -1,3 +1,13 @@
+\newcommand{\myFigureBig}[2]{
+	\begin{figure}[!htb]
+		\centering
+		\begin{adjustbox}{max size={\textwidth}{\textheight}}
+			\includegraphics[scale=1.3]{figures/#1}
+		\end{adjustbox}
+		\caption{#2}
+		\label{fig:#1}
+	\end{figure}}
+
 \newcommand{\myFigure}[2]{
 	\begin{figure}[!htb]
 		\centering

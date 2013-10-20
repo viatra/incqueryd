@@ -3,7 +3,7 @@
 
 Due to both confidentiality and technical reasons, it is difficult to obtain real-world industrial models and queries. Also, using confidential data sets hamstrings the reproducability of the conducted benchmarks. Therefore, we used an artificial data set which mimics real-world models.  
 
-In the following section we present the \textit{\tb{}}, a benchmark scheme and environment. The \tb{} was designed and implemented by Benedek Izsó, István Ráth and Zoltán Szatmári~\cite{Izso:2012:ODD:2428516.2428523}. The original goal of the \tb{} was to compare various (preferably incremental) query engines' performance to \eiq's. For \iqd, we used a slightly modified version of the \tb{}, which also works in a distributed environment.
+In the following section we present the \textit{\tb{}}, a benchmark scheme and environment. The \tb{} was designed and implemented by Benedek Izsó, István Ráth and Zoltán Szatmári~\cite{Izso:2012:ODD:2428516.2428523}. The original goal of the \tb{} was to compare various incremental and non-incremental query engines' performance to \eiq{}'s. For \iqd{}, we used an improved version of the \tb{}, which also works in a distributed environment.
 
 \subsection{Domain}
 
@@ -24,17 +24,17 @@ For Neo4j (\autoref{subsec:neo4j}) and Titan (\autoref{subsec:titan}), we expand
 
 \subsection{Queries}
 
-The \tb{} consists of queries that resemble a typical MDE application's workload. In general, MDE queries are more complex than those used in traditional databases. They often define large patterns with multiple join operations. The \tb{}'s queries look for violations of well-formedness constraints in the model. Although the \tb{} defines a total of four queries, in this report, we only discuss the \textit{RouteSensor} query in detail.
+The \tb{} consists of queries that resemble a typical MDE application's workload. In general, MDE queries are more complex than those used in traditional databases. They often define large patterns with multiple join operations. The \tb{}'s queries look for violations of well-formedness constraints in the model. Although the \tb{} defines a total of four queries, in this report we only discuss the \textit{RouteSensor} query in detail.
 
 \subsubsection{RouteSensor}
 
 \myFigure{routesensor-pattern}{Graphical representation of the \emph{RouteSensor} query's pattern. The dashed red arrow defines a negative condition.}
 
-The \textit{RouteSensor} query looks for \texttt{Sensor}s that are connected to a \texttt{Switch}, but the sensor and the switch are \emph{not} connected to the same \texttt{Route}. The graphical representation of the RouteSensor query is shown on \figref{routesensor-pattern}. The IQPL query (\autoref{subsec:eiq}) is shown on \lstref{routesensor-iqpl}, while the SPARQL query is shown on \lstref{routesensor-sparql}.\footnote{Note that the two queries are slightly different: the SPARQL query returns only a set of \texttt{Sensor}s, while the IQPL query returns a set of (\texttt{Sensor}, \texttt{Switch}, \texttt{SwitchPosition}, \texttt{Route}) tuples.} % TODO explain why.
+The \textit{RouteSensor} query looks for \texttt{Sensor}s that are connected to a \texttt{Switch}, but the \texttt{Sensor} and the \texttt{Switch} are \emph{not} connected to the same \texttt{Route}. The graphical representation of the RouteSensor query is shown on \figref{routesensor-pattern}. The IQPL query (\autoref{subsec:eiq}) is shown on \lstref{routesensor-iqpl}, while the SPARQL query is shown on \lstref{routesensor-sparql}.\footnote{Note that the two queries are slightly different: the SPARQL query returns only a set of \texttt{Sensor}s, while the IQPL query returns a set of (\texttt{Sensor}, \texttt{Switch}, \texttt{SwitchPosition}, \texttt{Route}) tuples.} % TODO explain why.
 
 \lstset{language=viatra}
 
-\begin{lstlisting}[caption=The \emph{RouteSensor} query in IQPL, label=lst:routesensor-iqpl]
+\begin{lstlisting}[caption=The RouteSensor query in IQPL, label=lst:routesensor-iqpl]
 package hu.bme.mit.train.constraintcheck.incquery
 
 import "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl" 
@@ -60,7 +60,7 @@ pattern head(Sen, R) = {
 
 \lstset{language=SQL,morekeywords={PREFIX,FILTER}} %,java,rdf,rdfs,url,owl,base}}
 
-\begin{lstlisting}[caption=The \emph{RouteSensor} query in SPARQL, label=lst:routesensor-sparql]
+\begin{lstlisting}[caption=The RouteSensor query in SPARQL, label=lst:routesensor-sparql]
 PREFIX base: <http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl:  <http://www.w3.org/2002/07/owl#>
