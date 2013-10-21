@@ -1,11 +1,14 @@
 \chapter{Background technologies}
- 
+\label{chap:background-technologies}
+
 Implementing a scalable graph pattern matcher requires a wide range of technologies. Careful selection of the technologies is critical to the project's success. For \iqd{}, we looked for technologies that can form the building blocks of a distributed, scalable model repository and pattern matcher. These technologies must been designed with scalability in mind and deployed at scale successfully. To avoid licensing issues, our search criteria included that, if possible, the technologies should be free and open-source solutions.
+
+Usually, instance models are graph-like data structures. Therefore, we looked for scalable graph databases. In this context, scalability requires distributed storage and querying capabilities.
 
 During the early phase of the research, we studied the architecture and limitations of the candidate systems. For databases, we inspected the data sharding strategies, consistency guarantees and transaction capabilities, along with the API and query methods. We also checked the systems' support for asynchronous processing, notification and messaging mechanisms.
 
-While we did not disqualify closed-source operating systems, it quickly became apparent that most tools are best tailored for Unix-like operating systems, e.g.\ systems based on the Linux kernel.
- 
+In this chapter, we introduce the technologies that can form the basis of a scalable, distributed, asynchronous system. We also present EMF (Eclipse Modeling Framework), and \eiq{}, an incremental model query evaluation tool.
+
 \section{Big Data and the NoSQL movement}
 
 Since the 1980s, database management systems based on the relational data model~\cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling and so on. However, due to their rich feature set and the strongly connected nature of their data model, relational databases often have scalability issues~\cite{Jacobs:2009:PBD:1536616.1536632, Sakr13}. In practice, this renders them impractical for a number of use cases, e.g.\ running complex queries on large data sets.
@@ -117,10 +120,9 @@ Neo4j, developed by Neo Technology, is the most popular NoSQL graph database. Ne
 
 Neo4j is one of the most mature NoSQL databases. It is well documented and provides ample tooling. However, it is scalability features are limited: instead of sharding, it only supports replication of data to create a highly available cluster. Of course, the scalability limitations are a hot topic in Neo4j's development. Neo4j's developers make serious efforts to improve Neo4j's scalability in an ongoing project called Rassilon~\cite{rassilon}.
 
-Neo4j is capable of loading graphs from \graphml{}~\cite{GraphML} and Blueprints \graphson{}~\cite{BlueprintsGraphSON} formats (see \autoref{sec:property-graph-formats} for examples). Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application~\cite{Neoclipse}. A part of a \tb{} (\autoref{sec:trainbenchmark}) instance model is shown on \figref{neoclipse-graph}.
+Neo4j is capable of loading graphs from \graphml{}~\cite{GraphML} and Blueprints \graphson{}~\cite{BlueprintsGraphSON} formats (see \autoref{sec:property-graph-formats} for examples). Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application~\cite{Neoclipse}. %A part of a \tb{} (\autoref{sec:trainbenchmark}) instance model is shown on \figref{neoclipse-graph}.
 
-\myFigure{neoclipse-graph}{\tb{} subgraph visualized in Neoclipse}
-
+%\myFigure{neoclipse-graph}{\tb{} subgraph visualized in Neoclipse}
 %\myFigure{neo4j-logo}{The logo of Neo4j}
 
 \section{Graph technologies}
