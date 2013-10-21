@@ -6,13 +6,11 @@ To demonstrate \iqd{}'s approach, we elaborate an example in detail. We introduc
 \subsection{Case study: railway system design}
 \label{subsec:casestudy}
 
-The example is built around an imaginary railroad system. The system's network is composed of typical railroad items, including signals, segments, switches and sensors. The complete EMF metamodel is shown on \figref{trainbenchmark-metamodel}. An instance model is shown on \figref{neoclipse-graph}.
-
 \myFigure{trainbenchmark-metamodel}{The EMF metamodel of the railroad system}
 
-\myFigure{neoclipse-graph}{A subgraph of a railroad system visualized}
+The example is built around an imaginary railroad system. The system's network is composed of typical railroad items, including signals, segments, switches and sensors. The complete EMF metamodel is shown on \figref{trainbenchmark-metamodel}. An instance model is shown on \figref{neoclipse-graph}.
 
-\subsection{Queries}
+\myFigure{neoclipse-graph}{A subgraph of a railroad system visualized}
 
 We defined queries that resemble a typical MDE application's workload. In general, MDE queries are more complex than those used in traditional databases. They often define large patterns with multiple join operations. The queries look for violations of well-formedness constraints in the model. In this section, we discuss the \textit{RouteSensor} query in detail.
 % TODO see more in the benchmark section?
@@ -24,10 +22,10 @@ We defined queries that resemble a typical MDE application's workload. In genera
 
 The \textit{RouteSensor} query looks for \texttt{Sensor}s that are connected to a \texttt{Switch}, but the \texttt{Sensor} and the \texttt{Switch} are \emph{not} connected to the same \texttt{Route}. The graphical representation of the RouteSensor query is shown on \figref{routesensor-pattern}. In general, the RouteSensor query binds the type of the vertices, defines three edges and one negative edge, called NAC (negative application condition). 
 
-The IQPL (\iq{} Pattern Language) query %(\autoref{subsec:eiq}) 
-is shown on \lstref{routesensor-iqpl}. This query binds the variables (\texttt{Sen}, \texttt{Sw}, \texttt{Sp}, \texttt{R}) to the appropriate type. It defines the three edges as relationships between the variables, and defines the negative application condition as a negative pattern.
+The RouteSensor query in IQPL (\iq{} Pattern Language) %(\autoref{subsec:eiq}) 
+is shown on \lstref{routesensor-iqpl}. This query binds the variables (\texttt{Sen}, \texttt{Sw}, \texttt{Sp}, \texttt{R}) to the appropriate type. It defines the three edges as relationships between the variables and defines the negative application condition as a negative pattern (\texttt{neg find}).
 
-The SPARQL query is shown on \lstref{routesensor-sparql}. Here, the types are defined with \texttt{rdf:type}, while the edges are defined with \texttt{base:\ldots} predicates. The negative application condition is defined with the \texttt{FILTER NOT EXISTS} construction\footnote{Note that the two queries are slightly different: the SPARQL query returns only a set of \texttt{Sensor}s, while the IQPL query returns a set of (\texttt{Sensor}, \texttt{Switch}, \texttt{SwitchPosition}, \texttt{Route}) tuples.}.
+The RouteSensor query in SPARQL is shown on \lstref{routesensor-sparql}. Here, the types are defined with \texttt{rdf:type}, while the edges are defined with \texttt{base} predicates. The negative application condition is defined with the \texttt{FILTER NOT EXISTS} construction\footnote{Note that the two queries are slightly different: the SPARQL query returns only a set of \texttt{Sensor}s, while the IQPL query returns a set of (\texttt{Sensor}, \texttt{Switch}, \texttt{SwitchPosition}, \texttt{Route}) tuples.}.
 
 \lstset{language=viatra}
 
@@ -93,29 +91,14 @@ WHERE
 
 
 
-
-\subsection{Distributed Rete operation and scalability challenges}
-
-The Rete algorithm (\autoref{subsec:rete}) utilizes both indexing and caching to provide fast incremental query evaluation. \iqd{}'s horizontal scalability is supported by the distribution of the pattern matcher's Rete net. To enable this, the system must be able to allocate the Rete nodes to different hosts in a cloud computing infrastructure. As the Rete algorithm's change propagation is asynchronous, the system must also implement a \emph{termination protocol} to ensure that the query results can be retrieved consistently with the model state after a given transaction (i.e.\ by signaling when the update propagation has been terminated).
-
-%Achieving scalability of the distributed Rete architecture is an equally complex challenge. 
-The overall performance of the system is influenced by a number of factors.
-
-\begin{itemize}
-  \item The \emph{layout of the Rete network}. This can be optimized depending on both query and instance model characteristics, e.g.\ to keep the resource requirement of intermediate join operations to a minimum.
-  \item The \emph{allocation} of Rete nodes to host computers. The optimization strategy may choose to optimize local resource usage, or to minimize the amount of remote network communication.
-  \item The \emph{dynamic adaptability} to changing conditions. For example, when the model size and thus query result size grows rapidly, the Rete network may require \emph{dynamic reallocation} or \emph{node sharding} due to local resource limitations.
-\end{itemize}
-
-
-\subsubsection{Practice}
-
-In the prototype of \iqd{}, the distributed middleware and Rete network were implemented using Akka (\autoref{subsec:akka}). The communication protocol was built on top of Akka's built-in serialization support.
+% \subsubsection{Practice}
+% 
+% In the prototype of \iqd{}, the distributed middleware and Rete network were implemented using Akka (\autoref{subsec:akka}). The communication protocol was built on top of Akka's built-in serialization support.
 
 
 \subsubsection{Rete operation}
 
-We present the Rete algorithm's operation on an actual instance model. Suppose we have the graph shown on the top of \figref{rete-routesensor-example-instances-neoclipse} loaded to the Rete net and we decide to delete the \texttt{ROUTE\_ROUTEDEFINITION} edge between vertices 2 and 1.
+We demonstrate the Rete algorithm's operation on an actual instance model. Suppose we have the graph shown on the top of \figref{rete-routesensor-example-instances-neoclipse} loaded to the Rete net and we decide to delete the \texttt{ROUTE\_ROUTEDEFINITION} edge between vertices 2 and 1.
 
 \myFigureSmall{rete-routesensor-example-instances-neoclipse}{A modification on a \tb{} instance model}
 
@@ -123,64 +106,8 @@ We present the Rete algorithm's operation on an actual instance model. Suppose w
 
 \myFigure{rete-routesensor-example-rete}{The Rete net and the partial matches stored in its nodes}
 
-
-
-
-\subsection{Deployment and configuration}
-\label{subsec:deployment-configuration}
-
-Deploying, configuring and operating a distributed pattern matcher is a complex task. In the following, we will break down this task to smaller steps and present our tools for solving them. 
-
-\subsection{Tooling}
-
-We aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete net generator. For the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
-
-\subsection{Degrees of freedom}
-
-The deployment and configuration of a distributed pattern matcher involves many degrees of freedom:
-
-\begin{itemize}
-  \item We may choose different database implementations due to the \iqd{}'s backend-agnostic nature. Until now, we experimented with property graph databases (Neo4j, Titan) and triplestores (4store).
-  \item We may use different database sharding strategies (e.g.\ random partitioners or more sophisticated sharding methods based on domain-specific knowledge).
-  \item We may choose different strategies to allocate the Rete nodes. Note that in theory, this is orthogonal to the database's sharding strategy. However, we expect that keeping the Rete network's type indexer nodes and the instances of the given type on the same server would improve the speed of the initialization and modification tasks significantly.
-\end{itemize}
- 
-\subsection{Workflow}
-\label{subsec:workflow}
-
-In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{recipe}.
-
-\myFigureSmall{recipe}{The workflow of \eiq{} (blue) and \iqd{} (green)}
-
-\subsubsection{Analyze the metamodel and the query}
-
-\paragraph{Task.} First, we determine the constraints defined by the query pattern. The matches satisfying these constraints will define the results of the query.
-
-\paragraph{Implementation.} The pattern is defined in an IQPL (\iq{} Pattern Language) text file. Using Xtext~\cite{Xtext}, an Eclipse-based framework for creating domain-specific languages, the textual representation of the pattern is parsed to an EMF model. Based on the EMF model's pattern and the metamodel, a constraint network called \textit{PSystem} (short for \textit{Pattern System}) is generated. 
-
-\subsubsection{Build a Rete layout}
-
-\paragraph{Task.} To allow incremental query evaluation, we create a Rete net based on the constraints derived from the query.
-
-\paragraph{Implementation.} As we mentioned earlier, we aim to reuse as much of \eiq{}'s existing code base as possible. As part of this attempt, we introduced the concept of \textit{Rete recipe}s which define the layout of a Rete network.    
-
-\subsubsection{Allocate the Rete network in the cloud's nodes} 
-
-\paragraph{Task.} Because of its single workstation nature, \eiq{} simply unfolds the Rete net based on the derived Rete recipe. At the same time, \iqd{} operates in a distributed environment where local resource exhaustion, network latency and throughput are critical aspects. 
-
-\paragraph{Implementation.} Currently, the allocation of the Rete nodes is done manually. To address this limitation, we plan to utilize CSP (Constraint Satisfaction Problem) solvers, or dynamic techniques like DSE (Design Space Exploration)~\cite{DSE11}. 
-
-\subsubsection{Bootstrap the system}
-
-\paragraph{Task.} Based on the Rete network's allocation, we have to deploy the Rete nodes in the distributed systems. After the successful deployment, the Rete network has to be initialized. Due to the Rete algorithm's asynchronous nature, it uses a termination protocol to signal when the data processing is finished. 
-
-\paragraph{Implementation.} In \iqd{}'s prototype, both the bootstrapping and the Rete network's operation is carried out automatically. The Akka actors representing the Rete nodes are deployed and initiated using Akka's \textit{programmatic remote deployment} feature. For signalling the end of data processing, an asynchronous termination protocol was implemented. 
-
-
-
-
-
-We use the \textit{RouteSensor} query as our example. The query is shown as a graph pattern definition on \lstref{routesensor-iqpl} and visualized on \figref{routesensor-pattern}. Queries like this are typical in MDE applications (such as well-formedness validation or complex model transformations).
+We use the \textit{RouteSensor} query as our example. The query is shown as a graph pattern definition on \lstref{routesensor-iqpl} and visualized on \figref{routesensor-pattern}.
+% Queries like this are typical in MDE applications (such as well-formedness validation or complex model transformations).
 
 \subsection{Workflow}
 

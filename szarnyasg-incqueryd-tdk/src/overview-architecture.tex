@@ -3,36 +3,82 @@
 
 In the following, we will cover the challenges for building an incremental pattern matcher and present the architecture of \iqd{}.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\subsection{Initialization and indexing}
-%\label{subsec:indexing}
-%In the following section we will cover the challenges that arise around the indexing and initialization of \iqd{}.
+\subsection{\iqd{}'s architecture}
 
-\subsection{Indexing}
-%\label{subsec:indexing}
+\iqd{}'s architecture consists of three layers: the storage layer, the middleware and the production network. 
+The \emph{storage layer} is a distributed database which is responsible for persisting the model (\autoref{storage}). 
+The client application communicates with the \emph{middleware}. The middleware provides a unified API for accessing the database. It also sends change notifications to the production network and retrieves the query results from the production network (\autoref{notifications}). 
+The \emph{production network} is implemented with a distributed Rete net which provides incremental query evaluation (\autoref{rete}).
 
-Indexing is a common technique for decreasing the execution time of database queries. In MDE, \emph{model indexing} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, the \iqd{} middleware maintains type-instance indexes so that all instances of a given type (both edges and graph nodes) can be enumerated quickly. These indexers form the bottom layer of the Rete production network. 
+\myFigure{incqueryd-architecture}{\iqd{}'s architecture on a four-node cluster}
 
-\subsection{Graph-like data manipulation}
+The \iqd{} architecture in a four-node cluster configuration is shown in \figref{incqueryd-architecture}.
 
-\iqd{}'s middleware exposes an API that provides methods to manipulate the graph. By allowing graph-like data manipulation we allow the user to focus on the domain-specific challenges, thus increasing her productivity. The middleware translates the user's operation and forwards it to the underlying data storage (e.g.\ SPARQL queries for 4store and Gremlin queries for Titan).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Data representation}
+\subsection{Incremental query evaluation}
+\label{rete}
 
-Conceptually, the architecture of \iqd{} allows the usage of a wide scale of model representation formats. Our prototype has been evaluated in the context of the \emph{property graph} and the \emph{RDF} data model, but other mainstream metamodeling and knowledge representation languages such as relational databases' SQL dumps and Ecore~\cite{EMF} could be supported, as long as they can be mapped to an efficient and distributed storage backend (e.g.\ triplestores, key-value stores or column-family databases).
+Some queries, e.g.\ well-formedness constraints in MDE are evaluated many times, while the data sets they are evaluated on only changes to a small degree. In these cases, the idea of incremental query evaluation arises naturally: to speed up queries, we should not start the evaluation all over again. Instead, we should rely on the (partial) results derived during the previous executions of the query and process the changes that occured.
+ 
+In practice, incremental query evaluation algorithms typically use data structures for caching the interim results. This  means that they usually consume more memory, in other words, they trade memory consumption for execution speed. This approach, called \emph{space--time tradeoff}, is well-known and widely used in computer science.
 
-To support different data models, we only have to supply the appropriate connector class to \iqd{}'s middleware. The current implementation supports 4store, Neo4j and Titan. % Ertelemszeruen Neo4j-t a mostani verzioba nem hoztam at 100%-ig 
+In the following, we provide an overview of the Rete algorithm, which forms the theoretical basis of \eiq{} and \iqd{}.
+
+\subsubsection{Rete in general}
+
+\iqd{} is based on the Rete algorithm, which provides a propagation network for incremental graph pattern matching\footnote{\emph{Rete} is Latin for \emph{net} or \emph{comb}.}. The algorithm was originally created by Charles Forgy~\cite{Forgy} for rule-based expert systems. Gábor Bergmann adapted the algorithm for EMF models and added many tweaks and improvements to it~\cite{BergmannRete}.
+
+\myFigure{rete}{The structure of the Rete propagation network}
+
+The Rete algorithm defines an asynchronous network of communicating nodes. This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations, like filtering tokens based on constant expressions and performing join or antijoin operations based on their contents. The worker nodes store partial (interim) query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their changes (\emph{deltas}). Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts).
+
+\subsubsection{Similar algorithms}
+
+Along the original Rete algorithm, many algorithms were developed for incremental pattern matching. Rete itself has improved versions (Rete II, Rete III, Rete-NT), however, unlike the original algorithm, these are not publicly available. 
+
+Other novel algorithms include TREAT \cite{Miranker:1991:OPT:627280.627434}, which aims at minimizing memory usage by using only indexers and dropping partial results, while having the same algorithmic complexity as Rete. Another candidate is the LEAPS \cite{Batory:1994:LA:899216} algorithm, which is claimed to provide better space--time complexity. However, we found that even LEAPS is difficult to understand and implement even on a single workstation, not to mention the distributed case. 
+
+Because the Rete algorithm is well-known and well-understood by the \eiq{} team, we decided to build \iqd{} on the same foundation. Experimenting with improved versions or alternative approaches is subject to future work.
+
+\subsubsection{Termination protocol}
+
+As the Rete algorithm's change propagation is asynchronous, the system must also implement a \emph{termination protocol} to ensure that the query results can be retrieved consistently with the model state after a given transaction (i.e.\ by signaling when the update propagation has been terminated). \iqd{}'s current termination protocol works by adding a stack to the message. The stack registers each Rete node the message passes through. After the message reaches the production node, the termination protocol starts. Based on the content of the stack, acknowledgement messages are propagated back on the network. When all relevant indexer nodes (where the original notification token(s) started from) receive the acknowledge messages, the termination protocol finishes.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Indexing and initialization}
+\label{indexing}
+
+Indexing is a common technique for decreasing the execution time of database queries. In MDE, \emph{model indexing} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, all queries utilize some type attribute (in property graphs, the equivalents are node type properties and edge labels). Typical elementary model queries are the following:
+
+\begin{itemize}
+  \item Retrieving all node instances of a given type (e.g.\ get all nodes with the type \texttt{Person}).
+  \item Retrieving all edges instances of a given label (e.g.\ get all edges with the label \texttt{child}).
+  \item Retrieving a given node's all incoming and/or outgoing edges of a given type (e.g.\ get all outgoing \texttt{child} edges of a given node). 
+  \item Reverse navigation: retrieving the node on the other end of an edge (e.g.\ the \texttt{child} relation is identical to the inverse of the \texttt{parent} relation). 
+\end{itemize}
+
+To process these queries efficiently, the \iqd{} middleware maintains type-instance indexes so that all instances of a given type (both edges and graph nodes) can be enumerated quickly. These indexers form the bottom layer of the Rete production network. During initialization, these indexers are filled from the database backend. In order to reduce the initialization time, the underlying storage layer must be able to process these queries efficiently. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Distributed storage layer}
+\label{storage}
 
 For the storage layer, the most important issue from an incremental query evaluation perspective is that the indexers of the middleware should be filled as quickly as possible. This favors technologies where model sharding can be performed efficiently (i.e.\ with balanced shards in terms of type-instance relationships), and elementary queries 
 can be executed efficiently.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Notification mechanisms}
+\label{notifications}
 
 % -- The Rete algorithm defines an asynchronous network of communicating nodes. This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations, like filtering tokens based on constant expressions and performing join or antijoin operations based on their contents. The worker nodes store partial (interim) query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their changes (\emph{deltas}). Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts).
 
-\emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effects propagated in the form of \emph{notification objects} (NOs). The notifications generate \emph{tokens} that keep the Rete network's state consistent with the model. \iqd{}'s middleware layer facilitates notifications by providing a facade for model manipulation operations.
+\emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effectes propagated in the form of \emph{notification objects} (NOs). The notifications generate \emph{tokens} that keep the Rete network's state consistent with the model. \iqd{}'s middleware layer facilitates notifications by providing a facade for model manipulation operations.
 
 \figref{incqueryd-architecture}
 
@@ -47,56 +93,21 @@ Because the lack of support for distributed notifications, in \iqd{}'s current i
 
 %Distributed incremental query evaluation introduces a number of challenges. In the following section, we will describe these and present \iqd{}'s solutions for them.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Graph-like data manipulation}
 
+\iqd{}'s middleware exposes an API that provides methods to manipulate the graph. By allowing graph-like data manipulation we allow the user to focus on the domain-specific challenges, thus increasing her productivity. The middleware translates the user's operation and forwards it to the underlying data storage (e.g.\ SPARQL queries for 4store and Gremlin queries for Titan).
 
+\subsubsection{Data representation}
 
+Conceptually, the architecture of \iqd{} allows the usage of a wide scale of model representation formats. Our prototype has been evaluated in the context of the \emph{property graph} and the \emph{RDF} data model, but other mainstream metamodeling and knowledge representation languages such as relational databases' SQL dumps and Ecore~\cite{EMF} could be supported, as long as they can be mapped to an efficient and distributed storage backend (e.g.\ triplestores, key-value stores or column-family databases).
 
-\subsection{Incremental query evaluation}
-\label{subsec:incrementality}
+To support different data models, we only have to supply the appropriate connector class to \iqd{}'s middleware. The current implementation supports 4store, Neo4j and Titan. % Ertelemszeruen Neo4j-t a mostani verzioba nem hoztam at 100%-ig 
 
-%Kicsit más logika alapján csinálnám ezt.
-%Én előre venném az inkrementális (gráf)lekérdezés, mint ötlet/technika bemutatását, utána mesélném el a Retét, mint ennek egy megvalósítását, és csak nagyon röviden említeném az egyéb alternatívákat (főleg arra koncentrálva, hogy a Retéhez képest mi a jellegzetes különbségük).
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Some queries, e.g.\ well-formedness constraints in MDE are evaluated many times, while the data sets they are evaluated on only changes to a small degree. In these cases, the idea of incremental query evaluation arises naturally: to speed up queries, we should not start the evaluation all over again. Instead, we should rely on the (partial) results derived during the previous executions of the query and process the changes that occured.
- 
-In practice, incremental query evaluation algorithms typically use data structures for caching the interim results. This  means that they usually consume more memory, in other words, they trade memory consumption for execution speed. This approach, called \emph{space--time tradeoff}, is well-known and widely used in computer science.
-
-In the following, we provide an overview of the Rete algorithm, which forms the theoretical basis of \eiq{} and \iqd{}.
-
-\subsubsection{Rete in general}
-\label{subsubsec:rete}
-
-\iqd{} is based on the Rete algorithm, which provides a propagation network for incremental graph pattern matching. The algorithm was originally created by Charles Forgy~\cite{Forgy} for rule-based expert systems. Gábor Bergmann adapted the algorithm for EMF models and added many tweaks and improvements to it~\cite{BergmannRete}.
-
-The Rete algorithm defines an asynchronous network of communicating nodes. This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations, like filtering tokens based on constant expressions and performing join or antijoin operations based on their contents. The worker nodes store partial (interim) query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their changes (\emph{deltas}). Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts).
-
-\subsubsection{Similar algorithms}
-
-Along the original Rete algorithm, many algorithms were developed for incremental pattern matching. Rete itself has improved versions (Rete II, Rete III, Rete-NT), however, unlike the original algorithm, these are not publicly available. 
-
-Other novel algorithms include TREAT \cite{Miranker:1991:OPT:627280.627434}, which aims at minimizing memory using only indexers and dropping partial results, while having the same algorithmic complexity as Rete. Another candidate is the LEAPS \cite{Batory:1994:LA:899216} algorithm, which is claimed to provide better space--time complexity. However, we found that even LEAPS is difficult to understand and implement even on a single workstation, not to mention the distributed case. 
-
-Because the Rete algorithm is well-known and well-understood by the \eiq{} team, we decided to build \iqd{} on the same foundation. Experimenting with improved versions or alternative approaches is subject to future work.
-
-\subsection{\iqd{}'s architecture}
-
-\iqd{}'s architecture consists of three layers: the storage layer, the middleware and the production network. 
-The \emph{storage layer} is a distributed database which is responsible for persisting the graph. 
-The client application communicates with the \emph{middleware}. The middleware provides a unified API for accessing the database. It also sends change notifications to the production network and retrieves the query results from the production network. 
-The \emph{production network} is implemented with a distributed Rete net which provides incremental query evaluation. 
-
-\myFigure{incqueryd-architecture}{\iqd{}'s architecture on a four-node cluster}
-
-The \iqd{} architecture in a four-node cluster configuration is shown in \figref{incqueryd-architecture}.
-
-
-\subsection{Deployment and configuration}
-\label{subsec:deployment-configuration}
-
-Deploying, configuring and operating a distributed pattern matcher is a complex task. In the following, we will break down this task to smaller steps and present our tools for solving them.
-
-\subsubsection{Degrees of freedom}
+\subsection{Degrees of freedom}
 
 The deployment and configuration of a distributed pattern matcher involves many degrees of freedom:
 
@@ -105,38 +116,40 @@ The deployment and configuration of a distributed pattern matcher involves many 
   \item We may use different database sharding strategies (e.g.\ random partitioners or more sophisticated sharding methods based on domain-specific knowledge).
   \item We may choose different strategies to allocate the Rete nodes. Note that in theory, this is orthogonal to the database's sharding strategy. However, we expect that keeping the Rete network's type indexer nodes and the instances of the given type on the same server would improve the speed of the initialization and modification tasks significantly.
 \end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Deployment and configuration}
+\label{deployment-configuration}
+
+Deploying, configuring and operating a distributed pattern matcher is a complex task. In the following, we will break down this task to smaller steps and present our tools for solving them.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Distributed Rete operation and scalability challenges}
+
+The Rete algorithm (\autoref{rete}) utilizes both indexing and caching to provide fast incremental query evaluation. \iqd{}'s horizontal scalability is supported by the distribution of the pattern matcher's Rete net. To enable this, the system must be able to allocate the Rete nodes to different hosts in a cloud computing infrastructure. 
+
+%Achieving scalability of the distributed Rete architecture is an equally complex challenge. 
+The overall performance of the system is influenced by a number of factors.
+
+\begin{itemize}
+  \item The \emph{layout of the Rete network}. This can be optimized depending on both query and instance model characteristics, e.g.\ to keep the resource requirement of intermediate join operations to a minimum.
+  \item The \emph{allocation} of Rete nodes to host computers. The optimization strategy may choose to optimize local resource usage, or to minimize the amount of remote network communication.
+  \item The \emph{dynamic adaptability} to changing conditions. For example, when the model size and thus query result size grows rapidly, the Rete network may require \emph{dynamic reallocation} or \emph{node sharding} due to local resource limitations.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Tooling}
+
+We aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete net generator. For the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{workflow}
  
-\subsection{Workflow}
-\label{subsec:workflow}
+In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{workflow}.
 
-In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{recipe}.
-
-\myFigureSmall{recipe}{The workflow of \eiq{} (blue) and \iqd{} (green)}
-
-\subsubsection{Analyze the metamodel and the query}
-
-\paragraph{Task.} First, we determine the constraints defined by the query pattern. The matches satisfying these constraints will define the results of the query.
-
-\paragraph{Implementation.} The pattern is defined in an IQPL (\iq{} Pattern Language) text file. Using Xtext~\cite{Xtext}, an Eclipse-based framework for creating domain-specific languages, the textual representation of the pattern is parsed to an EMF model. Based on the EMF model's pattern and the metamodel, a constraint network called \textit{PSystem} (short for \textit{Pattern System}) is generated. 
-
-\subsubsection{Build a Rete layout}
-
-\paragraph{Task.} To allow incremental query evaluation, we create a Rete net based on the constraints derived from the query.
-
-\paragraph{Implementation.} As we mentioned earlier, we aim to reuse as much of \eiq{}'s existing code base as possible. As part of this attempt, we introduced the concept of \textit{Rete recipe}s which define the layout of a Rete network.    
-
-\subsubsection{Allocate the Rete network in the cloud's nodes} 
-
-\paragraph{Task.} Because of its single workstation nature, \eiq{} simply unfolds the Rete net based on the derived Rete recipe. At the same time, \iqd{} operates in a distributed environment where local resource exhaustion, network latency and throughput are critical aspects. 
-
-\paragraph{Implementation.} Currently, the allocation of the Rete nodes is done manually. To address this limitation, we plan to utilize CSP (Constraint Satisfaction Problem) solvers, or dynamic techniques like DSE (Design Space Exploration)~\cite{DSE11}. 
-
-\subsubsection{Bootstrap the system}
-
-\paragraph{Task.} Based on the Rete network's allocation, we have to deploy the Rete nodes in the distributed systems. After the successful deployment, the Rete network has to be initialized. Due to the Rete algorithm's asynchronous nature, it uses a termination protocol to signal when the data processing is finished. 
-
-\paragraph{Implementation.} In \iqd{}'s prototype, both the bootstrapping and the Rete network's operation is carried out automatically. The Akka actors representing the Rete nodes are deployed and initiated using Akka's \textit{programmatic remote deployment} feature. For signalling the end of data processing, an asynchronous termination protocol was implemented. 
-
-
-\subsection{Termination protocol}
+\myFigureSmall{workflow}{The workflow of \iqd{}}
 

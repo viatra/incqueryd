@@ -31,7 +31,6 @@
 \usepackage{sectsty}
 \usepackage{setspace}
 \usepackage[hang]{caption}
-\usepackage{hyperref}
 \usepackage{tabularx}
 %\usepackage{libertine-type1}
 \usepackage{hyphenat}
@@ -168,22 +167,22 @@
 %--------------------------------------------------------------------------------------
 %	Setup hyperref package
 %--------------------------------------------------------------------------------------
-\hypersetup{
-    %bookmarks=true,           % show bookmarks bar?
-    unicode=false,             % non-Latin characters in Acrobat’s bookmarks
-    pdftitle={\ptitle},        % title
-    pdfauthor={\pauthor},      % author
-    pdfsubject={\ptype},       % subject of the document
-    pdfcreator={\pauthor},     % creator of the document
-    pdfproducer={Producer},    % producer of the document
-    pdfkeywords={keywords},    % list of keywords
-    pdfnewwindow=true,         % links in new window
-    colorlinks=true,           % false: boxed links; true: colored links
-    linkcolor=black,           % color of internal links
-    citecolor=black,           % color of links to bibliography
-    filecolor=black,           % color of file links
-    urlcolor=black             % color of external links
-}
+% \hypersetup{
+%     %bookmarks=true,           % show bookmarks bar?
+%     unicode=false,             % non-Latin characters in Acrobat’s bookmarks
+%     pdftitle={\ptitle},        % title
+%     pdfauthor={\pauthor},      % author
+%     pdfsubject={\ptype},       % subject of the document
+%     pdfcreator={\pauthor},     % creator of the document
+%     pdfproducer={Producer},    % producer of the document
+%     pdfkeywords={keywords},    % list of keywords
+%     pdfnewwindow=true,         % links in new window
+%     colorlinks=true,           % false: boxed links; true: colored links
+%     linkcolor=black,           % color of internal links
+%     citecolor=black,           % color of links to bibliography
+%     filecolor=black,           % color of file links
+%     urlcolor=black             % color of external links
+% }
 
 
 %--------------------------------------------------------------------------------------
@@ -294,6 +293,7 @@ aboveskip=10pt}
       {]}{{{\color{delim}{]}}}}{1},
 }
 
+\usepackage{hyperref}
 
 %--------------------------------------------------------------------------------------
 % Main document content

@@ -146,7 +146,7 @@ Although Titan was designed with scalability in mind, its query engine does not 
 
 Faunus has its own format called Faunus \graphson{}. The Faunus \graphson{} format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process. See \autoref{subsec:faunus-graphson} for an example.
 
-It is important to note that Faunus always traverses the whole graph and does not use its indices. This makes it slow for retrieving nodes or edges by type (see our typical workload in \autoref{subsec:indexing}).
+It is important to note that Faunus always traverses the whole graph and does not use its indices. This makes it slow for retrieving nodes or edges by type (see our typical workload in \autoref{indexing}).
 
 \subsection{4store}
 
@@ -173,7 +173,7 @@ Titan      & Property graph & Automatic & Automatic             & Gremlin      &
 
 \section{Asynchronous messaging}
 
-Most distributed, concurrent systems use a messaging framework or message queue service. Because of the nature of the Rete algorithm (\autoref{subsec:rete}), \iqd{}\ requires a distributed, asynchronous messaging framework.
+Most distributed, concurrent systems use a messaging framework or message queue service. Because of the nature of the Rete algorithm (\autoref{rete}), \iqd{}\ requires a distributed, asynchronous messaging framework.
 
 \subsection{Akka}
 \label{subsec:akka}
