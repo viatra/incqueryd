@@ -15,11 +15,11 @@ The metamodel is shown on \figref{trainbenchmark-metamodel}. Using \eiq{}'s tool
 
 \subsubsection{Build a Rete layout}
 
-Based on the query's EMF model, \eiq{}'s tooling builds PSystem and creates a Rete layout, that quarantees the satisfaction of the constraints. The Rete layout is shown on \figref{rete-routesensor-example-rete}. 
+Based on the query's EMF model, \eiq{}'s tooling builds PSystem and creates a Rete layout, that guarantees the satisfaction of the constraints. The Rete layout is shown on \figref{rete-routesensor-example-rete}. 
 
 \subsubsection{Allocate the Rete network in the cloud's nodes} 
 
-In \iqd{}'s current implementation, the Rete recipe's nodes are allocated manually on the cloud servers (called \textit{Machine}s). The allocation is currently defined in an architecture file (e.g.\ \texttt{routeSensor.arch}). The Rete nodes are associated with the machines with \textit{infrastructure mapping} edges.
+In \iqd{}'s current implementation, the Rete recipe's nodes are allocated manually on the cloud servers (called \textit{Machine}s). The allocation is currently defined in an architecture file (e.g.\ \texttt{routeSensor.arch}). The Rete nodes are associated with the machines with \textit{infrastructure mapping} relationships.
 
 \iqd{}'s tooling currently provides an Eclipse-based tree editor to define machines and the infrastructure mapping edges (\figref{incqueryd-tooling-tree-editor}).
 

@@ -27,7 +27,7 @@ Property graphs are powerful enough to describe Java objects or EMF instance mod
 
 \subsection{TinkerPop}
 
-The \textit{TinkerPop} framework is an open-source software stack for graph storage and processing. TinkerPop includes \textit{Blueprints}, a property graph model interface. Blueprints fulfills the same role for graph databases as JDBC does for relational databases. Most NoSQL graph databases implement the property graph interface provided by Blueprints, including Neo4j (\autoref{subsec:neo4j}), Titan (\autoref{subsec:titan}), DEX~\cite{DEX}, InfiniteGraph~\cite{InfiniteGraph} and OrientDB~\cite{OrientDB}.
+The \textit{TinkerPop} framework is an open-source software stack for graph storage and processing \cite{TinkerPop}. TinkerPop includes \textit{Blueprints}, a property graph model interface. Blueprints fulfills the same role for graph databases as JDBC does for relational databases. Most NoSQL graph databases implement the property graph interface provided by Blueprints, including Neo4j (\autoref{subsec:neo4j}), Titan (\autoref{subsec:titan}), DEX~\cite{DEX}, InfiniteGraph~\cite{InfiniteGraph} and OrientDB~\cite{OrientDB}.
 
 \myFigureSmall{tinkerpop-stack}{The TinkerPop software stack \cite{Blueprints}}
  
@@ -95,7 +95,7 @@ Hadoop is often used for sorting, filtering and aggregating data sets. It is als
 
 A typical small Hadoop cluster consists of a single master node which is responsible for the coordination of the cluster and worker nodes which deal with the data processing. The MapReduce job is coordinated by the master's \emph{job tracker} and processed by the slave nodes' \emph{task tracker} modules (\figref{hadoop-architecture}).
 
-\myFigureSmall{hadoop-architecture}{Hadoop's architecture TODO \url{http://www.michael-noll.com/tutorials/running-hadoop-on-ubuntu-linux-multi-node-cluster/}}
+\myFigureSmall{hadoop-architecture}{Hadoop's architecture \cite{HadoopMultinode}}
 
 \subsubsection{HDFS}
 
@@ -156,7 +156,7 @@ Faunus has its own format called Faunus \graphson{}. The Faunus \graphson{} form
 
 %\myFigure{faunus-logo}{The logo of Faunus}
 
-It is important to note that Faunus always traverses the whole graph and does not use its indices. This makes it slow for retrieving nodes or edges by type (see our typical workload at XXX).
+It is important to note that Faunus always traverses the whole graph and does not use its indices. This makes it slow for retrieving nodes or edges by type (see our typical workload in \autoref{subsec:indexing}).
 
 \subsection{4store}
 
@@ -190,14 +190,15 @@ Most distributed, concurrent systems use a messaging framework or message queue 
 
 %\myFigure{akka-logo}{The logo of Akka}
 
-Akka is an open-source, fault-tolerant, distributed, asynchronous messaging framework developed by Typesafe. %(\figref{akka-logo}).
+Akka is an open-source, fault-tolerant, distributed, asynchronous messaging framework developed by Typesafe \cite{Akka}. %(\figref{akka-logo}).
 Akka is implemented in Scala, a functional and object-oriented programming language which runs on the Java Virtual Machine. Akka provides language bindings for both Java and Scala.
 
 %\myFigure{akka-actor-path}{Determining an actor's path in Akka}
 
-Akka provides strong support for remoting. Actors have both a logical and a physical path (\figref{akka-remote-deployment}). This way, they can be transparently moved between nodes of the cluster.
+Akka is based on the actor model and provides built-in support for remoting. % citation?
+Unlike traditional remoting solutions, e.g.\ Java RMI (Remote Method Invocation) and CORBA (Common Object Request Broker Architecture), the remote and local interface is the same for each actor. Actors have both a logical and a physical path (\figref{akka-remote-deployment}). This way, they can be transparently moved between machines on the network.
 
-Akka's remoting is more lightweight than traditional remoting solutions. e.g.\ Java RMI (Remote Method Invocation). As of October 2013, the latest version (Akka 2.2) also features \textit{pluggable transport support}.
+As of October 2013, the latest version (Akka 2.2) also features \textit{pluggable transport support} to use various transports to communicate with remote systems \cite{Akka}. For serializing the messages, Akka supports different frameworks, including Java's built-in serialization, Google Protobuf \cite{Protobuf} and Thrift \cite{Thrift}.
 
 \myFigure{akka-remote-deployment}{Deploying a remote actor in Akka}
 
@@ -215,6 +216,9 @@ Eclipse is a free, open-source software development environment and a platform f
 
 Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Framework). EMF provides a metamodel (Ecore) for designing applications and a code generation facility to produce the Java classes for the model.
 
+
+\myFigure{ecore-metamodel}{The metamodel of Ecore}
+
 \subsection{\eiq{}}
 \label{subsec:eiq}
 
@@ -222,8 +226,6 @@ Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Fr
 
 \myFigure{incquery-architecture}{\eiq{}'s architecture}
 
-\myFigure{ecore-metamodel}{The metamodel of Ecore}
- 
 % Ez a 2.7-es rész kicsit kilóg színvonalban (lefelé) a többihez képest.
 % 
 % Egyértelműbben le kellene írni, hogy mi az Eclipse és az EMF-IncQuery szerepe:

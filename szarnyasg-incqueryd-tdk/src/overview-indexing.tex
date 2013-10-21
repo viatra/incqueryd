@@ -4,6 +4,7 @@
 In the following section we will cover the challenges that arise around the indexing and initialization of \iqd{}.
 
 \subsection{Indexing}
+\label{subsec:indexing}
 
 Indexing is a common technique for decreasing the execution time of database queries. In MDE, \emph{model indexing} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, the \iqd{} middleware maintains type-instance indexes so that all instances of a given type (both edges and graph nodes) can be enumerated quickly. These indexers form the bottom layer of the Rete production network. 
 
@@ -15,15 +16,18 @@ Indexing is a common technique for decreasing the execution time of database que
 
 Conceptually, the architecture of \iqd{} allows the usage of a wide scale of model representation formats. Our prototype has been evaluated in the context of the \emph{property graph} and the \emph{RDF} data model, but other mainstream metamodeling and knowledge representation languages such as relational databases' SQL dumps and Ecore~\cite{EMF} could be supported, as long as they can be mapped to an efficient and distributed storage backend (e.g.\ triplestores, key-value stores or column-family databases).
 
-To support different data models, we only have to supply the appropriate connector class to \iqd{}'s middleware. The current implementation supports 4store and Titan. 
+To support different data models, we only have to supply the appropriate connector class to \iqd{}'s middleware. The current implementation supports 4store, Neo4j and Titan. % Ertelemszeruen Neo4j-t a mostani verzioba nem hoztam at 100%-ig 
 
 \subsection{Notification mechanisms}
 
-\emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effects propagated in the form of \emph{notification objects} (NOs). The notifications are responsible for maintaining the Rete network's state. \iqd{}'s middleware layer achieves this by providing a facade for model manipulation operations. 
+% -- The Rete algorithm defines an asynchronous network of communicating nodes. This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations, like filtering tokens based on constant expressions and performing join or antijoin operations based on their contents. The worker nodes store partial (interim) query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their changes (\emph{deltas}). Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts).
 
-\subsubsection{Current database managment systems}
+\emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effects propagated in the form of \emph{notification objects} (NOs). The notifications generate \emph{tokens} that keep the Rete network's state consistent with the model. \iqd{}'s middleware layer facilitates notifications by providing a facade for model manipulation operations.
 
-While relational databases usually provide \emph{trigger}s for generating notifications, most triplestores and graph databases lack this feature. Among our primary database backends, 4store provides no triggers at all. Titan and Neo4j incorporate Blueprints, which provides an \texttt{EventGraph} class capable of generating notification events, but the events are only propagated in a single JVM. Implementing distributed notifications would require us to extend the \texttt{EventGraph} class and use a messaging framework. This is subject to future work (see \autoref{sec:future-work}). 
 
-Because the lack of support for disrtibuted notifications, in \iqd{}'s current implementation, notifications are controlled by the middleware. The notification messages are propagated through the Rete network via the Akka messaging framework. 
+\subsubsection{Current database management systems}
+
+While relational databases usually provide \emph{trigger}s for generating notifications, most triplestores and graph databases lack this feature. Among our primary database backends, 4store provides no triggers at all. Titan and Neo4j incorporate Blueprints, which provides an \texttt{EventGraph} class capable of generating notification events, but the events are only propagated in a single JVM (Java Virtual Machine). Implementing distributed notifications would require us to extend the \texttt{EventGraph} class and use a messaging framework. This is subject to future work (see \autoref{sec:future-work}). 
+
+Because the lack of support for distributed notifications, in \iqd{}'s current implementation, notifications are controlled by the middleware. The notification messages are propagated through the Rete network via the Akka messaging framework. 
 
