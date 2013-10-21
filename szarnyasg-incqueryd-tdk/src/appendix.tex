@@ -2,9 +2,9 @@
  
 \chapter{Graph formats}
 
-In this chapter, we provide examples for the different graph formats, including property graphs and RDF graphs. The examples describe a small instance model based on the \tb{}'s metamodel, shown on \figref{trainbenchmark-instancemodel-subgraph}.
+In this chapter, we provide examples for the different graph formats, including property graphs and RDF graphs. The examples describe a small instance model based on the railway system metamodel, shown on \figref{trainbenchmark-instancemodel-subgraph}.
 
-\myFigureSmall{trainbenchmark-instancemodel-subgraph}{An example graph based on the \tb{}'s metamodel}
+\myFigureSmall{trainbenchmark-instancemodel-subgraph}{An example graph based on the railway system metamodel}
  
 \section{Property graph formats}
 \label{sec:property-graph-formats}
@@ -13,7 +13,7 @@ In this chapter, we provide examples for the different graph formats, including 
 \label{subsec:graphml}
 
 \lstset{language=XML,breaklines=true}
-\begin{lstlisting}[caption=A graph based on the \tb{}'s metamodel stored in \graphml{} format]
+\begin{lstlisting}[caption=A graph based on the railway system metamodel stored in \graphml{} format]
 <?xml version="1.0" encoding="UTF-8"?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.1/graphml.xsd">
   <key id="type" for="node" attr.name="type" attr.type="string" />
@@ -42,7 +42,7 @@ In this chapter, we provide examples for the different graph formats, including 
 \label{subsec:blueprints-graphson}
 
 \lstset{language=json,firstnumber=1}
-\begin{lstlisting}[caption=A graph based on the \tb{}'s metamodel stored in Blueprints \graphson{} format]
+\begin{lstlisting}[caption=A graph based on the railway system metamodel stored in Blueprints \graphson{} format]
 {
   "vertices":[
     {
@@ -102,7 +102,7 @@ In this chapter, we provide examples for the different graph formats, including 
 \subsection{Faunus GraphSON}
 \label{subsec:faunus-graphson}
 
-\begin{lstlisting}[caption=A graph based on the \tb{}'s metamodel stored in Faunus \graphson{} format]
+\begin{lstlisting}[caption=A graph based on the railway system metamodel stored in Faunus \graphson{} format]
 {"type":"Sensor","_id":1,"_outE":[],"_inE":[{"_id":0,"_outV":2,"_label":"ROUTE_ROUTEDEFINITION"},{"_id":3,"_outV":4,"_label":"TRACKELEMENT_SENSOR"}]}
 {"type":"Route","_id":2,"_outE":[{"_id":0,"_inV":1,"_label":"ROUTE_ROUTEDEFINITION"},{"_id":1,"_inV":3,"_label":"ROUTE_SWITCHPOSITION"}],"_inE":[]}
 {"type":"SwitchPosition","_id":3,"_outE":[{"_id":2,"_inV":4,"_label":"SWITCHPOSITION_SWITCH"}],"_inE":[{"_id":1,"_outV":2,"_label":"ROUTE_SWITCHPOSITION"}]}
@@ -115,7 +115,7 @@ In this chapter, we provide examples for the different graph formats, including 
 \label{subsec:rdf}
 
 \lstset{language=XML,breaklines=true}
-\begin{lstlisting}[caption=A graph based on the \tb{}'s metamodel stored in RDF format.]
+\begin{lstlisting}[caption=A graph based on the railway system metamodel stored in RDF format]
 <?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF
 	xmlns="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#"
