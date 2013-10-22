@@ -1,5 +1,9 @@
 \section{Extensions for Distributed Scalability}
 
+Developing a distributed, scalable, incremental pattern matcher introduces numerous challenges. In the following, we will cover the \iqd{}'s architecture and its main extensions to \eiq{}.
+
+\pic{incqueryd-architecture}{\iqd{}'s architecture on a four-node cluster}
+
 \subsection{\iqd{}'s Architecture}
 
 The \iqd{} architecture in an example configuration is shown in \figref{incqueryd-architecture}. \iqd{}'s architecture consists of three layers: the storage layer, the middleware and the production network. 
@@ -7,15 +11,13 @@ The \emph{storage layer} is a distributed database which is responsible for pers
 The client application communicates with the \emph{middleware} \textcircled{1}. The middleware provides a unified API for accessing the database \textcircled{2}. It also sends change notifications \textcircled{3} (\autoref{notifications}) to the production network and retrieves the query results from the production network \textcircled{4} . 
 The \emph{production network} is implemented with a distributed Rete net which provides incremental query evaluation (\autoref{rete}).
 
-\pic{incqueryd-architecture}{\iqd{}'s architecture on a four-node cluster}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \subsection{Indexing and Initialization}
 \label{indexing}
 
-Indexing is a common technique for decreasing the execution time of database queries. In MDE, \emph{model indexing} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, all queries utilize some type attribute. In property graphs, the equivalents are node type properties and edge labels (see also \autoref{ecore-mapping}). Typical elementary model queries are the following: TODO eloreutalni a toolingra
+Indexing is a common technique for decreasing the execution time of database queries. In MDE, \emph{model indexing} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, all queries utilize some type attribute. In property graphs, the equivalents are node type properties and edge labels (see also \autoref{ecore-mapping}). Typical elementary model queries are the following:
 
 \begin{itemize}
   \item Retrieving all node instances of a given type (e.g.\ get all nodes with the type \texttt{Person}).
@@ -85,19 +87,20 @@ The deployment and configuration of a distributed pattern matcher involves many 
 \iqd{}'s current termination protocol works by adding a stack to the message. The stack registers each Rete node the message passes through. After the message reaches the production node, the termination protocol starts. Based on the content of the stack, acknowledgement messages are propagated back on the network. When all relevant indexer nodes (where the original notification token(s) started from) receive the acknowledge messages, the termination protocol finishes.
 
 \subsection{Workflow}
-\label{workflow}
+\label{iqd-workflow}
 
 In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{incqueryd-workflow}.
  
 \pic{incqueryd-workflow}{The workflow of \iqd{}} 
 
+By design, \iqd{}'s workflow's steps are similar to \eiq{}'s, discussed in \autoref{eiq-workflow}. However, due to the system's distributed nature, they are more difficult to design and implement.
+In \iqd{}, deploying the Rete network \textcircled{2} requires the deployment of remote actors \autoref{subsec:akka} on the servers. Both the Rete indexers and the database are distributed across the cluster. Hence, loading the model and initializing the Rete net needs network communication \textcircled{3}. The Rete net works using Akka's remote messaging feature. The query results can be retrieved from the Rete net (this may also require network communication) \textcircled{4}. The database shards can only be accessed through the middleware, which is reponsible for sending notifications to the Rete net's appropriate indexers. After the notifications are processed and the termination algorithm finishes, the Rete net is in a consistent state \textcircled{5}. The results can be retieved by the client and it may modify the model an reevaluate the query again \textcircled{6}. 
+
 \subsection{Tooling}   
 
 To be able to focus on the distributed aspects, of the system, we aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete net generator. Also, \eiq{} has an Eclipse-based user interface for defining and executing queries.
 
-For \iqd{}, we plan to provide the same tooling environment.
-
-For the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
+For \iqd{}, we plan to provide the same tooling environment. Also, for the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
 
 \subsection{Mapping Ecore to Other Data Models}
 \label{ecore-mapping}
@@ -124,7 +127,7 @@ Our intention to reuse \eiq{} for building \iqd{} required us to map EMF's metam
 
 % see also http://components.neo4j.org/neo4j/snapshot/apidocs/org/neo4j/graphdb/PropertyContainer.html
 
-A possible mapping from the Ecore kernel (\figref{ecore-kernel}) to property graphs and RDF/RDFS models are shown on \autoref{tab:ecore-mapping}. For an example, take the railroad system case study (introduced in \autoref{railroad-system}, metamodel shown on \figref{trainbenchmark-metamodel}, instance model shown on \figref{neoclipse-graph}). Here, all Ecore kernel concepts can be observed:
+A possible mapping from the Ecore kernel (\figref{ecore-kernel}) to property graphs and RDF models are shown on \autoref{tab:ecore-mapping}. For an example, take the railroad system case study (introduced in \autoref{railroad-system}, metamodel shown on \figref{trainbenchmark-metamodel}, instance model shown on \figref{neoclipse-graph}). Here, all Ecore kernel concepts can be observed:
 \begin{itemize}
   \item \verb+Segment+ is an \verb+EClass+ instance. In a property graph, types cannot be represented explicitly. Instead, for each node representing a \verb+Segment+ instance, we add a \verb+type+ property with the value \verb+Segment+.
   \item \verb+Segment_length+ is an \verb+EAttribute+ instance. For each graph node representing a \verb+Segment+, we define a property with the value \verb+Segment_length+.
@@ -132,4 +135,3 @@ A possible mapping from the Ecore kernel (\figref{ecore-kernel}) to property gra
   \item \verb+EInt+ in an \verb+EDataType+ instance. Each attribute with this type, e.g.\ the \verb+Sensor+ class' \verb+Segment_length+ attribute, are defined with the Java primitive type \verb+int+.
 \end{itemize}
 Note that the property graph and the RDF data models lack some of the advanced metamodeling features of Ecore. For example, an Ecore \verb+EReference+ not just defines a relationship between specific \verb+EClass+ instances (this is already impossible in a property graph), but also defines multiplicity and containment constraints. This cannot be enforced by the property graphs and RDF data models, instead, it has to be handled by the modeling application explicitly. 
-
