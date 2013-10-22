@@ -1,14 +1,14 @@
 \section{Architecture of Incremental Queries}
 \label{sec:architecture}
 
-In the following, we will cover the challenges for building an incremental pattern matcher and present the architecture of \iqd{}.
+In the following, we will cover the challenges for building a \emph{single-node} incremental pattern matcher like \eiq{}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Incremental Query Evaluation}
 \label{rete}
 
-Some queries, e.g.\ well-formedness constraints in MDE are evaluated many times, while the data sets they are evaluated on only changes to a small degree. In these cases, the idea of incremental query evaluation arises naturally: to speed up queries, we should not start the evaluation all over again. Instead, we should rely on the (partial) results derived during the previous executions of the query and process the changes that occured.
+Some queries, e.g.\ well-formedness constraints in MDE are evaluated many times, while the data sets they are evaluated on only changes to a small degree. In these cases, the idea of incremental query evaluation arises naturally: to speed up queries, we should not start the evaluation all over again. Instead, we should rely on the (partial) results derived during the previous executions of the query and process only the changes that occured.
  
 In practice, incremental query evaluation algorithms typically use data structures for caching the interim results. This  means that they usually consume more memory, in other words, they trade memory consumption for execution speed. This approach, called \emph{space--time tradeoff}, is well-known and widely used in computer science.
 
@@ -20,7 +20,7 @@ The Rete algorithm provides a propagation network for incremental graph pattern 
 
 \pic{rete}{The structure of the Rete propagation network}
 
-The Rete algorithm defines an asynchronous network of communicating nodes. This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations, like filtering tokens based on constant expressions and performing join or antijoin operations based on their contents. The worker nodes store partial (interim) query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their changes (\emph{deltas}) \figref{rete}. %Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts).
+The Rete algorithm defines an asynchronous network of communicating nodes. This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations, like filtering tokens based on constant expressions and performing join or antijoin operations based on their contents. The worker nodes store partial query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their change sets (\emph{deltas}) \figref{rete}. %Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts).
 
 \subsubsection{Similar Algorithms}
 
@@ -43,6 +43,6 @@ As the Rete algorithm's change propagation is asynchronous, the system must also
 \subsection{Notification Mechanisms}
 \label{notifications}
 
-\emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effectes propagated in the form of \emph{notification objects} (NOs). The notifications generate \emph{tokens} that keep the Rete network's state consistent with the model. 
+\emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effects are propagated in the form of \emph{notification objects} (NOs). The notifications generate \emph{tokens} that keep the Rete network's state consistent with the model. 
 
 

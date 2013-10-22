@@ -3,14 +3,14 @@
 
 To demonstrate \iqd{}'s approach, we elaborate an example in detail. We introduce a case study, then formulate a query and show the workflow that executes the distributed, incremental evaluation of the pattern defined by query.
 
+\pic{trainbenchmark-metamodel}{The EMF metamodel of the railroad system}
+
 \subsection{Case Study: Railway System Design}
 \label{subsec:casestudy}
 
-\pic{trainbenchmark-metamodel}{The EMF metamodel of the railroad system}
+\pic{neoclipse-graph}{A subgraph of a railroad system visualized}
 
 The example is built around an imaginary railroad system. The system's network is composed of typical railroad items, including signals, segments, switches and sensors. The complete EMF metamodel is shown on \figref{trainbenchmark-metamodel}. A subgraph of an instance model is shown on \figref{neoclipse-graph}.
-
-\pic{neoclipse-graph}{A subgraph of a railroad system visualized}
 
 We defined queries that resemble a typical MDE application's workload. In general, MDE queries are more complex than those used in traditional databases. They often define large patterns with multiple join operations. The queries look for violations of \emph{well-formedness constraints} in the model. In this section, we discuss the \textit{RouteSensor} query in detail.
 % TODO see more in the benchmark section?
@@ -20,12 +20,12 @@ We defined queries that resemble a typical MDE application's workload. In genera
 
 \pic{routesensor-pattern}{Graphical representation of the RouteSensor query's pattern. The dashed red arrow defines a negative application condition.}
 
-The \textit{RouteSensor} query looks for \texttt{Sensor}s that are connected to a \texttt{Switch}, but the \texttt{Sensor} and the \texttt{Switch} are \emph{not} connected to the same \texttt{Route}. The graphical representation of the RouteSensor query is shown on \figref{routesensor-pattern}. In general, the RouteSensor query binds the type of the vertices, defines three edges and one negative edge, called NAC (negative application condition). 
+The \textit{RouteSensor} query looks for \texttt{Sensor}s that are connected to a \texttt{Switch}, but the \texttt{Sensor} and the \texttt{Switch} are \emph{not} connected to the same \texttt{Route}. The graphical representation of the RouteSensor query is shown on \figref{routesensor-pattern}. Basically, the RouteSensor query binds the type of the vertices, defines three edges and one negative edge, called NAC (negative application condition). 
 
 The RouteSensor query in IQPL (\iq{} Pattern Language) %(\autoref{subsec:eiq}) 
 is shown on \lstref{routesensor-iqpl}. This query binds the variables (\texttt{Sen}, \texttt{Sw}, \texttt{Sp}, \texttt{R}) to the appropriate type. It defines the three edges as relationships between the variables and defines the negative application condition as a negative pattern (\texttt{neg find}).
 
-The RouteSensor query in SPARQL is shown on \lstref{routesensor-sparql}. Here, the types are defined with \texttt{rdf:type}, while the edges are defined with \texttt{base} predicates. The negative application condition is defined with the \texttt{FILTER NOT EXISTS} construction\footnote{Note that the two queries are slightly different: the SPARQL query returns only a set of \texttt{Sensor}s, while the IQPL query returns a set of (\texttt{Sensor}, \texttt{Switch}, \texttt{SwitchPosition}, \texttt{Route}) tuples.}.
+For comparison, we also present the RouteSensor query in SPARQL (RDF's query language) on \lstref{routesensor-sparql}. Here, the types are defined with the \texttt{rdf:type} predicate, while the edges are defined with \texttt{base} predicates. The negative application condition is defined with the \texttt{FILTER NOT EXISTS} construction\footnote{Note that the two queries are slightly different: the SPARQL query returns only a set of \texttt{Sensor}s, while the IQPL query returns a set of (\texttt{Sensor}, \texttt{Switch}, \texttt{SwitchPosition}, \texttt{Route}) tuples.}.
 
 \lstset{language=viatra}
 
@@ -100,19 +100,19 @@ WHERE
 
 Following the workflow defined in \autoref{workflow}, we will cover the actual steps for deploying and operating a distributed pattern matcher for the \textit{RouteSensor} query.
 
-\picSmall{recipe}{\iqd{}'s workflow}
+\picSmall{recipe}{\iqd{}'s workflow} 
 
 \subsubsection{Analyze the Metamodel and the Query}
 
 The metamodel is shown on \figref{trainbenchmark-metamodel}. Using \eiq{}'s tooling, the textual representation (\texttt{routeSensor.arch}, see \lstref{routesensor-iqpl}) is analyzed and parsed to an EMF model (\figref{eiq-model}).
 
-\picSmall{eiq-model}{The EMF model generated from the pattern}
+\picSmall{eiq-model}{The EMF model generated from the RouteSensor query's pattern}
 
 \subsubsection{Build a Rete Layout}
 
-Based on the query's EMF model, \eiq{}'s tooling builds PSystem and creates a Rete layout, that guarantees the satisfaction of the constraints. The Rete layout is shown on \figref{rete-routesensor-example-rete}. 
-
-\pic{routesensor-rete-layout}{The RouteSensor query's layout}
+Based on the query's EMF model, \eiq{}'s tooling builds PSystem and creates a Rete layout, that guarantees the satisfaction of the constraints. The Rete layout is shown on \figref{rete-routesensor-layout}. 
+ 
+\pic{rete-routesensor-layout}{The RouteSensor query's layout}
 
 \subsubsection{Allocate the Rete Network in the Cloud's Nodes} 
 
