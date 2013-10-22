@@ -1,4 +1,4 @@
-\section{Benchmark scenario}
+\section{Benchmark Scenario}
 
 \label{benchmark}
 In order to measure the efficiency of model queries and manipulation operations over the distributed architecture, we designed a benchmark to measure tool response times in a well-formedness validation use case. The benchmark transaction sequence consists of four phases: (i) during the $\mathit{load}$ phase, the serialization of the model is loaded into the database; (ii) a test query (\figref{patterndef}) is executed ($\mathit{check}_0$); finally, in a cycle consisting of several repetitions, some elements are programmatically modified ($\mathit{edit}_i$) and the test query is re-evaluated ($\mathit{check}_i$). We ran the benchmark on pseudo-randomly generated instance models of growing size, each model containing about twice as many elements (vertices and edges) as the previous one and having a regular fan-out structure. As the current version of Neo4j does not have built-in support for graph sharding, the benchmark uses a manually sharded strategy where each shard contains a disjoint partition of the model.

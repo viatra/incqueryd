@@ -3,7 +3,7 @@
 
 This chapter, \ldots
 
-\section{Summary of contributions}
+\section{Summary of Contributions}
 
 We presented \iqd{}, a novel approach to adapt distributed incremental query techniques to large and complex model driven software engineering scenarios. Our proposal is based on a distributed Rete network that is decoupled from sharded graph databases by a middleware layer, and its feasibility has been evaluated using a benchmarking scenario of on-the-fly well-formedness validation of software design models. The results are promising as they show nearly instantaneous query re-evaluation as model sizes grow well beyond $10^7$ elements.
 
@@ -11,7 +11,7 @@ We presented \iqd{}, a novel approach to adapt distributed incremental query tec
 
 During the research and development of \iqd{}'s prototype, I achieved the following results.
 
-\subsection{Scientific contributions}
+\subsection{Scientific Contributions}
 
 \begin{itemize}
   \item I implemented a \emph{distributed, asynchronous version of the Rete algorithm} with a termination protocol. Based on the Rete algorithm, I created a \emph{distributed incremental query engine's prototype}, which is not only detached from the data storage backend, but also agnostic to the storage backend's data model. To prove this, the query engine was tested with both property graphs and RDF graphs. 
@@ -20,7 +20,7 @@ During the research and development of \iqd{}'s prototype, I achieved the follow
   \item I extended the termination protocol to work in a distributed environment. 
 \end{itemize}
 
-\subsection{Practical accomplishments}
+\subsection{Practical Accomplishments}
 
 \begin{itemize}
   \item I extended the \tb{} with a \emph{new instance model generator}, which can produce property graphs and serialize them in various formats: \graphml{}, Blueprints \graphson{} and Faunus \graphson{}. % (\autoref{sec:property-graph-formats}).

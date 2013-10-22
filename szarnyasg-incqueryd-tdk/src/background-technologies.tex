@@ -1,4 +1,4 @@
-\chapter{Background technologies}
+\chapter{Background Technologies}
 \label{chap:background-technologies}
 
 Implementing a scalable graph pattern matcher requires a wide range of technologies. Careful selection of the technologies is critical to the project's success. For \iqd{}, we looked for technologies that can form the building blocks of a distributed, scalable model repository and pattern matcher. These technologies must been designed with scalability in mind and deployed at scale successfully. To avoid licensing issues, our search criteria included that, if possible, the technologies should be free and open-source solutions.
@@ -9,7 +9,7 @@ During the early phase of the research, we studied the architecture and limitati
 
 In this chapter, we introduce the technologies that can form the basis of a scalable, distributed, asynchronous system. We also present EMF (Eclipse Modeling Framework), and \eiq{}, an incremental model query evaluation tool.
 
-\section{Big Data and the NoSQL movement}
+\section{Big Data and the NoSQL Movement}
 
 Since the 1980s, database management systems based on the relational data model~\cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling and so on. However, due to their rich feature set and the strongly connected nature of their data model, relational databases often have scalability issues~\cite{Jacobs:2009:PBD:1536616.1536632, Sakr13}. In practice, this renders them impractical for a number of use cases, e.g.\ running complex queries on large data sets.
 
@@ -17,7 +17,7 @@ In the last decade, large organizations struggled to store and process the huge 
 
 Big Data challenges spawned dozens of new database management systems. Typically, these systems broke with the strictness of the relational data model and utilized simpler, more scalable data models. These systems dropped support for the SQL query language used in relational databases and hence were called \emph{NoSQL databases}\footnote{The community now mostly interprets NoSQL as ''not only SQL''.}~\cite{NoSQL}. During the development of \iqd's propotype, we experimented with numerous NoSQL databases.
 
-\section{Graph models and storage methods}
+\section{Graph Models and Storage Methods}
 
 The graph is a well-known mathematical concept widely used in computer science. For our work, it is important to distinguish between different graph data models.
 
@@ -56,7 +56,7 @@ TinkerPop also provides a graph server (\textit{Rexster}), a set of graph algori
 
 Triplestores use the RDF (Resource Description Framework) data model. Although the RDF data model has less expressive power than the property graph data model, by introducing additional resources for each property, a property graph can be easily mapped to a RDF. Triplestores are usually queried via the RDF format's query language, SPARQL (recursive acronym for SPARQL Protocol and RDF Query Language). 
 
-\section{NoSQL technologies}
+\section{NoSQL Technologies}
 
 In the following section we summarize the core technologies used in \iqd's prototype implementation. We briefly introduce the goals of each technology, with particular emphasis on the scalability aspects.
  
@@ -70,7 +70,7 @@ Cassandra has sophisticated fault-tolerance mechanisms. It allows the applicatio
 
 Cassandra is used mainly by web 2.0 companies, including Digg, Netflix, Reddit, SoundCloud and Twitter. It is also used for research purposes at CERN and NASA \cite{CassandraCompanies}.
 
-\subsubsection{Consistent hashing}
+\subsubsection{Consistent Hashing}
 
 To distribute the data across the cluster, Cassandra uses a partitioner mechanism. The basic partitioners distribute the rows evenly based on their key's hash value. In a cluster with $n$ nodes, the na\"ive method for determining the location for a row with key $x$ is computing $ h(x) \bmod n $, where $h(x)$ is the hash function. Currently, Cassandra provides partitioners based on the MD5 and the Murmur3 hash function. However, this approach has a serious limitation: if we remove or add nodes to the cluster, we have to recompute the hash values and possibly relocate almost all rows in the cluster. To avoid this, Cassandra uses a special kind of hashing called \textit{consistent hashing}.
 
@@ -118,14 +118,14 @@ Neo4j is one of the most mature NoSQL databases. It is well documented and provi
 
 Neo4j is capable of loading graphs from \graphml{}~\cite{GraphML} and Blueprints \graphson{}~\cite{BlueprintsGraphSON} formats (see \autoref{sec:property-graph-formats} for examples). Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application~\cite{Neoclipse}. %A part of a \tb{} (\autoref{sec:trainbenchmark}) instance model is shown on \figref{neoclipse-graph}.
 
-\section{Graph technologies}
+\section{Graph Technologies}
 
 \subsection{Titan}
 \label{subsec:titan}
 
 Titan is an open-source, distributed, scalable graph database from Aurelius, the creators of the TinkerPop framework. Unlike Neo4j, Titan is not a standalone database. Instead, it builds on top of existing NoSQL database technologies and leverages Hadoop's MapReduce capabilities. Titan supports various storage backends, including Cassandra and HBase.
 
-\subsubsection{Mapping and sharding}
+\subsubsection{Mapping and Sharding}
 
 To store the graph, Titan maps each vertex to a row of a column family (\figref{titan-cassandra-mapping}). The row stores the identifer and the properties of the vertex, along both the incoming and outgoing edges' identifiers, labels and properties.
 
@@ -171,7 +171,7 @@ Titan      & Property graph & Automatic & Automatic             & Gremlin      &
 
 \autoref{tab:database-technologies} summarizes the relevant characteristics of the aforementioned database management systems. Accoding to these, Titan provides the most complete feature set. 4store and Neo4j lack important features like automatic identifier generation, which has to be implemented in the client application. Neo4j also misses automatic sharding, which seriously hinders its scalability potential. 
 
-\section{Asynchronous messaging}
+\section{Asynchronous Messaging}
 
 Most distributed, concurrent systems use a messaging framework or message queue service. Because of the nature of the Rete algorithm (\autoref{rete}), \iqd{}\ requires a distributed, asynchronous messaging framework.
 
@@ -193,7 +193,7 @@ As of October 2013, the latest version (Akka 2.2) also features \textit{pluggabl
 %\section{Google Guava libraries}
 %\iqd{} relies heavily on Google Guava library's Collections framework~\cite{guava}. The Guava Collection is an extension to Java's Collection framework. We used both immutable collections and new type of collections (e.g.\ the \texttt{Multimap} interface and its implementations).
 
-\section{Eclipse-based technologies}
+\section{Eclipse-based Technologies}
 
 Eclipse is a free, open-source software development environment and a platform for plug-in development. Members of the Eclipse Foundation include industry giants like IBM, Intel, Google and SAP.
 

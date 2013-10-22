@@ -1,6 +1,6 @@
 \section{Extensions for Distributed Scalability}
 
-\subsection{\iqd{}'s architecture}
+\subsection{\iqd{}'s Architecture}
 
 The \iqd{} architecture in an example configuration is shown in \figref{incqueryd-architecture}. \iqd{}'s architecture consists of three layers: the storage layer, the middleware and the production network. 
 The \emph{storage layer} is a distributed database which is responsible for persisting the model (\autoref{storage}). 
@@ -12,7 +12,7 @@ The \emph{production network} is implemented with a distributed Rete net which p
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\subsection{Indexing and initialization}
+\subsection{Indexing and Initialization}
 \label{indexing}
 
 Indexing is a common technique for decreasing the execution time of database queries. In MDE, \emph{model indexing} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, all queries utilize some type attribute (in property graphs, the equivalents are node type properties and edge labels). Typical elementary model queries are the following:
@@ -29,7 +29,7 @@ To process these queries efficiently, the \iqd{} middleware maintains type-insta
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\subsection{Distributed storage layer}
+\subsection{Distributed Storage Layer}
 \label{storage}
 
 For the storage layer, the most important issue from an incremental query evaluation perspective is that the indexers of the middleware should be filled as quickly as possible. This favors technologies where model sharding can be performed efficiently (i.e.\ with balanced shards in terms of type-instance relationships), and elementary queries 
@@ -37,7 +37,7 @@ can be executed efficiently.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Notification in distributed database management systems}
+\subsection{Notification in Distributed Database Management Systems}
 
 While relational databases usually provide \emph{trigger}s for generating notifications, most triplestores and graph databases lack this feature. Among our primary database backends, 4store provides no triggers at all. Titan and Neo4j incorporate Blueprints, which provides an \texttt{EventGraph} class capable of generating notification events, but the events are only propagated in a single JVM (Java Virtual Machine). Implementing distributed notifications would require us to extend the \texttt{EventGraph} class and use a messaging framework. This is subject to future work (see \autoref{sec:future-work}). 
 
@@ -45,11 +45,11 @@ Because the lack of support for distributed notifications, in \iqd{}'s current i
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Graph-like data manipulation}
+\subsection{Graph-like Data Manipulation}
 
 \iqd{}'s middleware exposes an API that provides methods to manipulate the graph. By allowing graph-like data manipulation we allow the user to focus on the domain-specific challenges, thus increasing her productivity. The middleware translates the user's operation and forwards it to the underlying data storage (e.g.\ SPARQL queries for 4store and Gremlin queries for Titan).
 
-\subsubsection{Data representation}
+\subsubsection{Data Representation}
 
 Conceptually, the architecture of \iqd{} allows the usage of a wide scale of model representation formats. Our prototype has been evaluated in the context of the \emph{property graph} and the \emph{RDF} data model, but other mainstream metamodeling and knowledge representation languages such as relational databases' SQL dumps and Ecore~\cite{EMF} could be supported, as long as they can be mapped to an efficient and distributed storage backend (e.g.\ triplestores, key-value stores or column-family databases).
 
@@ -57,7 +57,7 @@ To support different data models, we only have to supply the appropriate connect
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Degrees of freedom}
+\subsection{Degrees of Freedom}
  
 The Rete algorithm (\autoref{rete}) utilizes both indexing and caching to provide fast incremental query evaluation. \iqd{}'s horizontal scalability is supported by the distribution of the pattern matcher's Rete net. To enable this, the system must be able to allocate the Rete nodes to different hosts in a cloud computing infrastructure. 
 
@@ -67,7 +67,7 @@ The deployment and configuration of a distributed pattern matcher involves many 
   \item For the storage layer, we may choose different database implementations due to the \iqd{}'s backend-agnostic nature. In this report, we used property graph databases (Neo4j, Titan) and triplestores (4store).
   \item We may use different database sharding strategies (e.g.\ random partitioners or more sophisticated sharding methods based on domain-specific knowledge).
   \item Using query optimization methods, we can derive \emph{Rete networks with different layouts} for the same query. The most efficient layout can be choosen based on both query and instance model characteristics, e.g.\ to keep the resource requirement of intermediate join operations to a minimum.
-  \item We may choose different strategies to \emph{allocate the Rete nodes} in the distributed system. The optimization strategy may choose to optimize local resource usage, or to minimize the amount of remote network communication. Note that in theory, this is orthogonal to the database's sharding strategy. However, we expect that keeping the Rete network's type indexer nodes and the instances of the given type on the same server would improve the speed of the initialization and modification tasks significantly.
+  \item We may choose different strategies to \emph{allocate the Rete nodes} in the distributed system. The optimization strategy may choose to optimize local resource usage, or to minimize the amount of remote network communication. Note that in theory, this is \emph{orthogonal} to the database's sharding strategy, i.e.\ these are two distinct level of distribution that do not directly depend upon each other. However, we expect that keeping the Rete network's type indexer nodes and the instances of the given type on the same server would improve the speed of the initialization and modification tasks significantly.
   \item We may implement \emph{dynamic adaptability} to changing conditions. For example, when the model size and thus query result size grows rapidly, the Rete network may require \emph{dynamic reallocation} or \emph{node sharding} due to local resource limitations.
 \end{itemize}
 
@@ -85,7 +85,7 @@ The deployment and configuration of a distributed pattern matcher involves many 
 
 In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{workflow}.
  
-\myFigure{workflow}{The workflow of \iqd{}} 
+\myFigure{incqueryd-workflow}{The workflow of \iqd{}} 
 
 \subsubsection{Tooling}
 
