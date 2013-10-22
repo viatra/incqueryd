@@ -8,11 +8,11 @@ To demonstrate \iqd{}'s approach, we elaborate an example in detail. We introduc
 
 \myFigure{trainbenchmark-metamodel}{The EMF metamodel of the railroad system}
 
-The example is built around an imaginary railroad system. The system's network is composed of typical railroad items, including signals, segments, switches and sensors. The complete EMF metamodel is shown on \figref{trainbenchmark-metamodel}. An instance model is shown on \figref{neoclipse-graph}.
+The example is built around an imaginary railroad system. The system's network is composed of typical railroad items, including signals, segments, switches and sensors. The complete EMF metamodel is shown on \figref{trainbenchmark-metamodel}. A subgraph of an instance model is shown on \figref{neoclipse-graph}.
 
 \myFigure{neoclipse-graph}{A subgraph of a railroad system visualized}
 
-We defined queries that resemble a typical MDE application's workload. In general, MDE queries are more complex than those used in traditional databases. They often define large patterns with multiple join operations. The queries look for violations of well-formedness constraints in the model. In this section, we discuss the \textit{RouteSensor} query in detail.
+We defined queries that resemble a typical MDE application's workload. In general, MDE queries are more complex than those used in traditional databases. They often define large patterns with multiple join operations. The queries look for violations of \emph{well-formedness constraints} in the model. In this section, we discuss the \textit{RouteSensor} query in detail.
 % TODO see more in the benchmark section?
 %Although the \tb{} defines a total of four queries, in this report we only discuss the \textit{RouteSensor} query in detail.
 
@@ -107,7 +107,6 @@ We demonstrate the Rete algorithm's operation on an actual instance model. Suppo
 \myFigure{rete-routesensor-example-rete}{The Rete net and the partial matches stored in its nodes}
 
 We use the \textit{RouteSensor} query as our example. The query is shown as a graph pattern definition on \lstref{routesensor-iqpl} and visualized on \figref{routesensor-pattern}.
-% Queries like this are typical in MDE applications (such as well-formedness validation or complex model transformations).
 
 \subsection{Workflow}
 

@@ -33,13 +33,13 @@ In the following, we provide an overview of the Rete algorithm, which forms the 
 
 \myFigure{rete}{The structure of the Rete propagation network}
 
-The Rete algorithm defines an asynchronous network of communicating nodes. This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations, like filtering tokens based on constant expressions and performing join or antijoin operations based on their contents. The worker nodes store partial (interim) query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their changes (\emph{deltas}). Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts).
+The Rete algorithm defines an asynchronous network of communicating nodes. This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations, like filtering tokens based on constant expressions and performing join or antijoin operations based on their contents. The worker nodes store partial (interim) query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their changes (\emph{deltas}) \figref{rete}. %Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts).
 
 \subsubsection{Similar algorithms}
 
 Along the original Rete algorithm, many algorithms were developed for incremental pattern matching. Rete itself has improved versions (Rete II, Rete III, Rete-NT), however, unlike the original algorithm, these are not publicly available. 
 
-Other novel algorithms include TREAT \cite{Miranker:1991:OPT:627280.627434}, which aims at minimizing memory usage by using only indexers and dropping partial results, while having the same algorithmic complexity as Rete. Another candidate is the LEAPS \cite{Batory:1994:LA:899216} algorithm, which is claimed to provide better space--time complexity. However, we found that even LEAPS is difficult to understand and implement even on a single workstation, not to mention the distributed case. 
+Other algorithms include TREAT \cite{Miranker:1991:OPT:627280.627434}, which aims at minimizing memory usage by using only indexers and dropping partial results, while having the same algorithmic complexity as Rete. Another candidate is the LEAPS \cite{Batory:1994:LA:899216} algorithm, which is claimed to provide better space--time complexity. However, we found that even LEAPS is difficult to understand and implement even on a single workstation, not to mention the distributed case. 
 
 Because the Rete algorithm is well-known and well-understood by the \eiq{} team, we decided to build \iqd{} on the same foundation. Experimenting with improved versions or alternative approaches is subject to future work.
 
@@ -76,8 +76,6 @@ can be executed efficiently.
 \subsection{Notification mechanisms}
 \label{notifications}
 
-% -- The Rete algorithm defines an asynchronous network of communicating nodes. This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations, like filtering tokens based on constant expressions and performing join or antijoin operations based on their contents. The worker nodes store partial (interim) query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their changes (\emph{deltas}). Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts).
-
 \emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effectes propagated in the form of \emph{notification objects} (NOs). The notifications generate \emph{tokens} that keep the Rete network's state consistent with the model. \iqd{}'s middleware layer facilitates notifications by providing a facade for model manipulation operations.
 
 \figref{incqueryd-architecture}
@@ -87,11 +85,6 @@ can be executed efficiently.
 While relational databases usually provide \emph{trigger}s for generating notifications, most triplestores and graph databases lack this feature. Among our primary database backends, 4store provides no triggers at all. Titan and Neo4j incorporate Blueprints, which provides an \texttt{EventGraph} class capable of generating notification events, but the events are only propagated in a single JVM (Java Virtual Machine). Implementing distributed notifications would require us to extend the \texttt{EventGraph} class and use a messaging framework. This is subject to future work (see \autoref{sec:future-work}). 
 
 Because the lack of support for distributed notifications, in \iqd{}'s current implementation, notifications are controlled by the middleware. The notification messages are propagated through the Rete network via the Akka messaging framework. 
-
-%\subsection{Incremental queries and change propagation}
-%\label{subsec:incrementality}
-
-%Distributed incremental query evaluation introduces a number of challenges. In the following section, we will describe these and present \iqd{}'s solutions for them.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -109,47 +102,36 @@ To support different data models, we only have to supply the appropriate connect
 
 \subsection{Degrees of freedom}
 
-The deployment and configuration of a distributed pattern matcher involves many degrees of freedom:
-
-\begin{itemize}
-  \item We may choose different database implementations due to the \iqd{}'s backend-agnostic nature. Until now, we experimented with property graph databases (Neo4j, Titan) and triplestores (4store).
-  \item We may use different database sharding strategies (e.g.\ random partitioners or more sophisticated sharding methods based on domain-specific knowledge).
-  \item We may choose different strategies to allocate the Rete nodes. Note that in theory, this is orthogonal to the database's sharding strategy. However, we expect that keeping the Rete network's type indexer nodes and the instances of the given type on the same server would improve the speed of the initialization and modification tasks significantly.
-\end{itemize}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Deployment and configuration}
-\label{deployment-configuration}
-
-Deploying, configuring and operating a distributed pattern matcher is a complex task. In the following, we will break down this task to smaller steps and present our tools for solving them.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Distributed Rete operation and scalability challenges}
-
 The Rete algorithm (\autoref{rete}) utilizes both indexing and caching to provide fast incremental query evaluation. \iqd{}'s horizontal scalability is supported by the distribution of the pattern matcher's Rete net. To enable this, the system must be able to allocate the Rete nodes to different hosts in a cloud computing infrastructure. 
 
-%Achieving scalability of the distributed Rete architecture is an equally complex challenge. 
-The overall performance of the system is influenced by a number of factors.
+The deployment and configuration of a distributed pattern matcher involves many degrees of freedom, and design decisions. The overall performance of the system is influenced by a number of factors.
 
 \begin{itemize}
-  \item The \emph{layout of the Rete network}. This can be optimized depending on both query and instance model characteristics, e.g.\ to keep the resource requirement of intermediate join operations to a minimum.
-  \item The \emph{allocation} of Rete nodes to host computers. The optimization strategy may choose to optimize local resource usage, or to minimize the amount of remote network communication.
-  \item The \emph{dynamic adaptability} to changing conditions. For example, when the model size and thus query result size grows rapidly, the Rete network may require \emph{dynamic reallocation} or \emph{node sharding} due to local resource limitations.
+  \item For the storage layer, we may choose different database implementations due to the \iqd{}'s backend-agnostic nature. In this report, we used property graph databases (Neo4j, Titan) and triplestores (4store).
+  \item We may use different database sharding strategies (e.g.\ random partitioners or more sophisticated sharding methods based on domain-specific knowledge).
+  \item Using query optimization methods, we can derive \emph{Rete networks with different layouts} for the same query. The most efficient layout can be choosen based on both query and instance model characteristics, e.g.\ to keep the resource requirement of intermediate join operations to a minimum.
+  \item We may choose different strategies to \emph{allocate the Rete nodes} in the distributed system. The optimization strategy may choose to optimize local resource usage, or to minimize the amount of remote network communication. Note that in theory, this is orthogonal to the database's sharding strategy. However, we expect that keeping the Rete network's type indexer nodes and the instances of the given type on the same server would improve the speed of the initialization and modification tasks significantly.
+  \item We may implement \emph{dynamic adaptability} to changing conditions. For example, when the model size and thus query result size grows rapidly, the Rete network may require \emph{dynamic reallocation} or \emph{node sharding} due to local resource limitations.
 \end{itemize}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Tooling}
-
-We aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete net generator. For the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
+% \subsection{Deployment and configuration}
+% \label{deployment-configuration}
+% 
+% Deploying, configuring and operating a distributed pattern matcher is a complex task. In the following, we will break down this task to smaller steps and present our tools for solving them.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{workflow}
+\subsection{Workflow}
  
 In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{workflow}.
+ 
+\myFigure{workflow}{The workflow of \iqd{}} 
 
-\myFigureSmall{workflow}{The workflow of \iqd{}}
+
+\subsubsection{Tooling}
+
+
+We aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete net generator. For the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
 
