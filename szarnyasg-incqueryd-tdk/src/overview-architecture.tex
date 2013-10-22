@@ -1,4 +1,4 @@
-\section{Architecture overview}
+\section{Architecture of incremental queries}
 \label{sec:architecture}
 
 In the following, we will cover the challenges for building an incremental pattern matcher and present the architecture of \iqd{}.
@@ -7,14 +7,12 @@ In the following, we will cover the challenges for building an incremental patte
 
 \subsection{\iqd{}'s architecture}
 
-\iqd{}'s architecture consists of three layers: the storage layer, the middleware and the production network. 
+The \iqd{} architecture in an example configuration is shown in \figref{incqueryd-architecture}. \iqd{}'s architecture consists of three layers: the storage layer, the middleware and the production network. 
 The \emph{storage layer} is a distributed database which is responsible for persisting the model (\autoref{storage}). 
-The client application communicates with the \emph{middleware}. The middleware provides a unified API for accessing the database. It also sends change notifications to the production network and retrieves the query results from the production network (\autoref{notifications}). 
+The client application communicates with the \emph{middleware} \textcircled{1}. The middleware provides a unified API for accessing the database \textcircled{2}. It also sends change notifications \textcircled{3} (\autoref{notifications}) to the production network and retrieves the query results from the production network \textcircled{4} . 
 The \emph{production network} is implemented with a distributed Rete net which provides incremental query evaluation (\autoref{rete}).
 
 \myFigure{incqueryd-architecture}{\iqd{}'s architecture on a four-node cluster}
-
-The \iqd{} architecture in a four-node cluster configuration is shown in \figref{incqueryd-architecture}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -61,7 +59,7 @@ Indexing is a common technique for decreasing the execution time of database que
   \item Reverse navigation: retrieving the node on the other end of an edge (e.g.\ the \texttt{child} relation is identical to the inverse of the \texttt{parent} relation). 
 \end{itemize}
 
-To process these queries efficiently, the \iqd{} middleware maintains type-instance indexes so that all instances of a given type (both edges and graph nodes) can be enumerated quickly. These indexers form the bottom layer of the Rete production network. During initialization, these indexers are filled from the database backend. In order to reduce the initialization time, the underlying storage layer must be able to process these queries efficiently. 
+To process these queries efficiently, the \iqd{} middleware maintains type-instance indexes so that all instances of a given type (both edges and graph nodes) can be enumerated quickly. These indexers form the bottom layer of the Rete production network. During initialization, these indexers are filled from the database backend (\figref{incqueryd-architecture} \textcircled{2}). In order to reduce the initialization time, the underlying storage layer must be able to process these queries efficiently. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -76,9 +74,7 @@ can be executed efficiently.
 \subsection{Notification mechanisms}
 \label{notifications}
 
-\emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effectes propagated in the form of \emph{notification objects} (NOs). The notifications generate \emph{tokens} that keep the Rete network's state consistent with the model. \iqd{}'s middleware layer facilitates notifications by providing a facade for model manipulation operations.
-
-\figref{incqueryd-architecture}
+\emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effectes propagated in the form of \emph{notification objects} (NOs). The notifications generate \emph{tokens} that keep the Rete network's state consistent with the model. \iqd{}'s middleware layer facilitates notifications by providing a facade for model manipulation operations (\figref{incqueryd-architecture} \textcircled{3}).
 
 \subsubsection{Notification in distributed database management systems}
 
@@ -101,7 +97,7 @@ To support different data models, we only have to supply the appropriate connect
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Degrees of freedom}
-
+ 
 The Rete algorithm (\autoref{rete}) utilizes both indexing and caching to provide fast incremental query evaluation. \iqd{}'s horizontal scalability is supported by the distribution of the pattern matcher's Rete net. To enable this, the system must be able to allocate the Rete nodes to different hosts in a cloud computing infrastructure. 
 
 The deployment and configuration of a distributed pattern matcher involves many degrees of freedom, and design decisions. The overall performance of the system is influenced by a number of factors.
@@ -124,14 +120,15 @@ The deployment and configuration of a distributed pattern matcher involves many 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Workflow}
- 
+\label{workflow}
+
 In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{workflow}.
  
 \myFigure{workflow}{The workflow of \iqd{}} 
 
-
 \subsubsection{Tooling}
 
-
 We aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete net generator. For the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
+
+
 

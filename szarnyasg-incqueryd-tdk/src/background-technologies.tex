@@ -183,7 +183,7 @@ Akka is implemented in Scala, a functional and object-oriented programming langu
 
 %\myFigure{akka-actor-path}{Determining an actor's path in Akka}
 
-Akka is based on the actor model and provides built-in support for remoting. % citation?
+Akka is based on the actor model \cite{Hewitt:1973:UMA:1624775.1624804} and provides built-in support for remoting. % citation?
 Unlike traditional remoting solutions, e.g.\ Java RMI (Remote Method Invocation) and CORBA (Common Object Request Broker Architecture), the remote and local interface is the same for each actor. Actors have both a logical and a physical path (\figref{akka-remote-deployment}). This way, they can be transparently moved between machines on the network.
 
 As of October 2013, the latest version (Akka 2.2) also features \textit{pluggable transport support} to use various transports to communicate with remote systems \cite{Akka}. For serializing the messages, Akka supports different frameworks, including Java's built-in serialization, Google Protobuf \cite{Protobuf} and Thrift \cite{Thrift}.
@@ -203,7 +203,6 @@ Eclipse is a free, open-source software development environment and a platform f
 \label{subsec:EMF}
 
 Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Framework). EMF provides a metamodel (Ecore) for designing applications and a code generation facility to produce the Java classes for the model.
-
 
 \myFigure{ecore-metamodel}{The metamodel of Ecore}
 
