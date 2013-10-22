@@ -13,7 +13,6 @@ The \emph{production network} is implemented with a distributed Rete net which p
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 \subsection{Indexing and Initialization}
 \label{indexing}
 
@@ -29,7 +28,6 @@ Indexing is a common technique for decreasing the execution time of database que
 To process these queries efficiently, the \iqd{} middleware maintains type-instance indexes so that all instances of a given type (both edges and graph nodes) can be enumerated quickly. These indexers form the bottom layer of the Rete production network. During initialization, these indexers are filled from the database backend (\figref{incqueryd-architecture} \textcircled{2}). In order to reduce the initialization time, the underlying storage layer must be able to process these queries efficiently. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \subsection{Distributed Storage Layer}
 \label{storage}
@@ -75,13 +73,6 @@ The deployment and configuration of a distributed pattern matcher involves many 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \subsection{Deployment and configuration}
-% \label{deployment-configuration}
-% 
-% Deploying, configuring and operating a distributed pattern matcher is a complex task. In the following, we will break down this task to smaller steps and present our tools for solving them.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \subsection{Distributed Termination Protocol}
 
 \iqd{}'s current termination protocol works by adding a stack to the message. The stack registers each Rete node the message passes through. After the message reaches the production node, the termination protocol starts. Based on the content of the stack, acknowledgement messages are propagated back on the network. When all relevant indexer nodes (where the original notification token(s) started from) receive the acknowledge messages, the termination protocol finishes.
@@ -95,43 +86,3 @@ In the following part, we will describe the workflow behind the pattern matching
 
 By design, \iqd{}'s workflow's steps are similar to \eiq{}'s, discussed in \autoref{eiq-workflow}. However, due to the system's distributed nature, they are more difficult to design and implement.
 In \iqd{}, deploying the Rete network \textcircled{2} requires the deployment of remote actors \autoref{subsec:akka} on the servers. Both the Rete indexers and the database are distributed across the cluster. Hence, loading the model and initializing the Rete net needs network communication \textcircled{3}. The Rete net works using Akka's remote messaging feature. The query results can be retrieved from the Rete net (this may also require network communication) \textcircled{4}. The database shards can only be accessed through the middleware, which is reponsible for sending notifications to the Rete net's appropriate indexers. After the notifications are processed and the termination algorithm finishes, the Rete net is in a consistent state \textcircled{5}. The results can be retieved by the client and it may modify the model an reevaluate the query again \textcircled{6}. 
-
-\subsection{Tooling}   
-
-To be able to focus on the distributed aspects, of the system, we aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete net generator. Also, \eiq{} has an Eclipse-based user interface for defining and executing queries.
-
-For \iqd{}, we plan to provide the same tooling environment. Also, for the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
-
-\subsection{Mapping Ecore to Other Data Models}
-\label{ecore-mapping}
-
-Our intention to reuse \eiq{} for building \iqd{} required us to map EMF's metamodel, Ecore to the domain of property graphs and RDF models.
-
-\begin{table}[htb]
-
-\centering
-\begin{tabular}{ | l | l | l | }
-
-\hline
-\bf Ecore concept          & \bf Property graph concept  & \bf RDF concept \tabularnewline \hline\hline
-\verb+EClass+ instance     & nodes' \verb+type+ property & \verb+rdfs:Resource+ \\ \hline
-\verb+EAttribute+ instance & nodes' property names       & \verb+rdf:Property+  \\ \hline
-\verb+EReference+ instance & edge label                  & \verb+rdf:Property+  \\ \hline
-\verb+EDataType+ instance  & Java primitive types        & \verb+rdfs:Datatype+ \\ \hline
- 
-\end{tabular}
-\caption{Mapping Ecore to property graphs and RDF}
-\label{tab:ecore-mapping}
-
-\end{table}
-
-% see also http://components.neo4j.org/neo4j/snapshot/apidocs/org/neo4j/graphdb/PropertyContainer.html
-
-A possible mapping from the Ecore kernel (\figref{ecore-kernel}) to property graphs and RDF models are shown on \autoref{tab:ecore-mapping}. For an example, take the railroad system case study (introduced in \autoref{railroad-system}, metamodel shown on \figref{trainbenchmark-metamodel}, instance model shown on \figref{neoclipse-graph}). Here, all Ecore kernel concepts can be observed:
-\begin{itemize}
-  \item \verb+Segment+ is an \verb+EClass+ instance. In a property graph, types cannot be represented explicitly. Instead, for each node representing a \verb+Segment+ instance, we add a \verb+type+ property with the value \verb+Segment+.
-  \item \verb+Segment_length+ is an \verb+EAttribute+ instance. For each graph node representing a \verb+Segment+, we define a property with the value \verb+Segment_length+.
-  \item \verb+TrackElement_Sensor+ is an \verb+EReference+ instance. For each edge representing a \verb+TrackElement_Sensor+ instance, we add the \verb+TRACKELEMENT_SENSOR+ label.
-  \item \verb+EInt+ in an \verb+EDataType+ instance. Each attribute with this type, e.g.\ the \verb+Sensor+ class' \verb+Segment_length+ attribute, are defined with the Java primitive type \verb+int+.
-\end{itemize}
-Note that the property graph and the RDF data models lack some of the advanced metamodeling features of Ecore. For example, an Ecore \verb+EReference+ not just defines a relationship between specific \verb+EClass+ instances (this is already impossible in a property graph), but also defines multiplicity and containment constraints. This cannot be enforced by the property graphs and RDF data models, instead, it has to be handled by the modeling application explicitly. 
