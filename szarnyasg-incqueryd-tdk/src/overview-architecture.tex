@@ -1,7 +1,7 @@
 \section{Architecture of Incremental Queries}
 \label{sec:architecture}
 
-In the following, we will cover the challenges for building a \emph{single-node} incremental pattern matcher like \eiq{}.
+In the following, we will overview the architecture of a \emph{single-node} incremental pattern matcher, specifically \eiq{}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -14,6 +14,16 @@ In practice, incremental query evaluation algorithms typically use data structur
 
 In the following, we provide an overview of the Rete algorithm, which forms the theoretical basis of \eiq{} and \iqd{}.
 
+\subsubsection{Incremental Pattern Matching Algorithms}
+
+TODO
+
+Along the original Rete algorithm, many algorithms were developed for incremental pattern matching. Rete itself has improved versions (Rete II, Rete III, Rete-NT), however, unlike the original algorithm, these are not publicly available. 
+
+Other algorithms include TREAT \cite{Miranker:1991:OPT:627280.627434}, which aims at minimizing memory usage by using only indexers and dropping partial results, while having the same algorithmic complexity as Rete. Another candidate is the LEAPS \cite{Batory:1994:LA:899216} algorithm, which is claimed to provide better space--time complexity. However, we found that even LEAPS is difficult to understand and implement even on a single workstation, not to mention the distributed case. 
+
+Because the Rete algorithm is well-known and well-understood by the \eiq{} team, we decided to build \iqd{} on the same foundation. Experimenting with improved versions or alternative approaches is subject to future work.
+
 \subsubsection{Rete in General}
 
 The Rete algorithm provides a propagation network for incremental graph pattern matching\footnote{\emph{Rete} is Latin for \emph{net} or \emph{comb}.}. The algorithm was originally created by Charles Forgy~\cite{Forgy} for rule-based expert systems. Gábor Bergmann adapted the algorithm for EMF models and added many tweaks and improvements to it~\cite{BergmannRete}.
@@ -22,13 +32,6 @@ The Rete algorithm provides a propagation network for incremental graph pattern 
 
 The Rete algorithm defines an asynchronous network of communicating nodes. This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations, like filtering tokens based on constant expressions and performing join or antijoin operations based on their contents. The worker nodes store partial query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their change sets (\emph{deltas}) \figref{rete}. %Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts).
 
-\subsubsection{Similar Algorithms}
-
-Along the original Rete algorithm, many algorithms were developed for incremental pattern matching. Rete itself has improved versions (Rete II, Rete III, Rete-NT), however, unlike the original algorithm, these are not publicly available. 
-
-Other algorithms include TREAT \cite{Miranker:1991:OPT:627280.627434}, which aims at minimizing memory usage by using only indexers and dropping partial results, while having the same algorithmic complexity as Rete. Another candidate is the LEAPS \cite{Batory:1994:LA:899216} algorithm, which is claimed to provide better space--time complexity. However, we found that even LEAPS is difficult to understand and implement even on a single workstation, not to mention the distributed case. 
-
-Because the Rete algorithm is well-known and well-understood by the \eiq{} team, we decided to build \iqd{} on the same foundation. Experimenting with improved versions or alternative approaches is subject to future work.
 
 \subsubsection{Termination Protocol}
 
@@ -36,13 +39,36 @@ As the Rete algorithm's change propagation is asynchronous, the system must also
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Rete in \eiq{}}
+
 \picTiny{incquery-architecture}{\eiq{}'s architecture}
 
-\pic{incquery-workflow}{\eiq{}'s workflow}
 
-\subsection{Notification Mechanisms}
+
+\subsubsection{Notification Mechanisms}
 \label{notifications}
 
 \emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effects are propagated in the form of \emph{notification objects} (NOs). The notifications generate \emph{tokens} that keep the Rete network's state consistent with the model. 
 
 
+\subsubsection{Query optimization}
+
+Linear construction of Rete
+
+Constraints --> Rete
+
+Node sharing optimization
+
+Small micro optimizations not covered
+
+\cite{BergmannPhD}
+
+\subsubsection{Workflow}
+
+\pic{incquery-workflow}{\eiq{}'s workflow}
+
+\subsubsection{Data representation}
+
+Rete:
+- EMF model pointer
+- Ecore scalar (EString, EInt, etc.)

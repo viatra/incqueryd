@@ -78,24 +78,6 @@ WHERE
 }
 \end{lstlisting}
 
-
-% The Cypher implementation of the RouteSensor query is shown on %\lstrefcypher-routesensor}
-% 
-% \begin{lstlisting}[caption=Cyper query for the RouteSensor test case, label=lst:cypher-routesensor, breaklines=true]
-% START sensor=node:node_auto_index(type="Sensor")
-% MATCH sensor-[:TRACKELEMENT_SENSOR]-switch-[:SWITCHPOSITION_SWITCH]-switchPosition-[:ROUTE_SWITCHPOSITION]-route-[r?:ROUTE_ROUTEDEFINITION]-sensor
-% WHERE r IS NULL
-% RETURN sensor
-% \end{lstlisting}
-
-
-
-
-% \subsubsection{Practice}
-% 
-% In the prototype of \iqd{}, the distributed middleware and Rete network were implemented using Akka (\autoref{subsec:akka}). The communication protocol was built on top of Akka's built-in serialization support.
-
-
 \subsection{Workflow}
 
 Following the workflow defined in \autoref{workflow}, we will cover the actual steps for deploying and operating a distributed pattern matcher for the \textit{RouteSensor} query.

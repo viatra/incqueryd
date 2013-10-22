@@ -15,7 +15,7 @@ The \emph{production network} is implemented with a distributed Rete net which p
 \subsection{Indexing and Initialization}
 \label{indexing}
 
-Indexing is a common technique for decreasing the execution time of database queries. In MDE, \emph{model indexing} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, all queries utilize some type attribute (in property graphs, the equivalents are node type properties and edge labels). Typical elementary model queries are the following:
+Indexing is a common technique for decreasing the execution time of database queries. In MDE, \emph{model indexing} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, all queries utilize some type attribute (in property graphs, the equivalents are node type properties and edge labels). Typical elementary model queries are the following: TODO eloreutalni a toolingra
 
 \begin{itemize}
   \item Retrieving all node instances of a given type (e.g.\ get all nodes with the type \texttt{Person}).
@@ -87,13 +87,42 @@ The deployment and configuration of a distributed pattern matcher involves many 
 \subsection{Workflow}
 \label{workflow}
 
-In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{workflow}.
+In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{incqueryd-workflow}.
  
 \pic{incqueryd-workflow}{The workflow of \iqd{}} 
 
 \subsubsection{Tooling}
 
+\eiq{} -- jo Eclipse kornyezet
+
 We aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete net generator. For the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
+
+% see http://components.neo4j.org/neo4j/snapshot/apidocs/org/neo4j/graphdb/PropertyContainer.html
+
+
+\begin{table}[htb]
+
+\centering
+\begin{tabular}{ | l | l | l | }
+
+\hline
+\bf Ecore class & 
+\bf Property graph &
+\bf RDF \tabularnewline \hline\hline
+\texttt{EClass}     & node type            & \texttt{rdfs:Class} \\ \hline
+\texttt{EAttribute} & node property        & \texttt{rdf:Property} \\ \hline
+\texttt{EReference} & edge                 & \texttt{rdf:Statement} \\ \hline
+\texttt{EDataType}  & Java primitive types & \texttt{rdfs:Datatype} \\ \hline
+ 
+\end{tabular}
+\caption{Mapping Ecore to property graphs and RDF}
+\label{tab:ecore-mapping}
+
+\end{table}
+
+
+Ecore -> property graphy mapping \autoref{tab:ecore-mapping}
+
 
 
 
