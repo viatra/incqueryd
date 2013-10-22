@@ -91,17 +91,18 @@ In the following part, we will describe the workflow behind the pattern matching
  
 \pic{incqueryd-workflow}{The workflow of \iqd{}} 
 
-\subsubsection{Tooling}
+\subsection{Tooling}   
 
-\eiq{} -- jo Eclipse kornyezet
+To be able to focus on the distributed aspects, of the system, we aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete net generator. Also, \eiq{} has an Eclipse-based user interface for defining and executing queries.
 
-We aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete net generator. For the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
+For \iqd{}, we plan to provide the same tooling environment.
 
-% see http://components.neo4j.org/neo4j/snapshot/apidocs/org/neo4j/graphdb/PropertyContainer.html
+For the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
 
-\subsubsection{Mapping Ecore}
+\subsection{Mapping Ecore to Other Data Models}
+\label{ecore-mapping}
 
-Our concept to reuse \eiq{} for building \iqd{} required us to map EMF's metamodel, Ecore to the domain of property graphs and RDF models.
+Our intention to reuse \eiq{} for building \iqd{} required us to map EMF's metamodel, Ecore to the domain of property graphs and RDF models.
 
 \begin{table}[htb]
 
@@ -109,14 +110,11 @@ Our concept to reuse \eiq{} for building \iqd{} required us to map EMF's metamod
 \begin{tabular}{ | l | l | l | }
 
 \hline
-\bf Ecore concept & 
-\bf Property graph concept &
-\bf RDF concept \tabularnewline \hline\hline
-
-\texttt{EClass} instance     & nodes' \texttt{type} property & \texttt{rdfs:Resource} \\ \hline
-\texttt{EAttribute} instance & nodes' property names         & \texttt{rdf:Property}  \\ \hline
-\texttt{EReference} instance & edge label                    & \texttt{rdf:Property}  \\ \hline
-\texttt{EDataType} instance  & Java primitive types          & \texttt{rdfs:Datatype} \\ \hline
+\bf Ecore concept          & \bf Property graph concept  & \bf RDF concept \tabularnewline \hline\hline
+\verb+EClass+ instance     & nodes' \verb+type+ property & \verb+rdfs:Resource+ \\ \hline
+\verb+EAttribute+ instance & nodes' property names       & \verb+rdf:Property+  \\ \hline
+\verb+EReference+ instance & edge label                  & \verb+rdf:Property+  \\ \hline
+\verb+EDataType+ instance  & Java primitive types        & \verb+rdfs:Datatype+ \\ \hline
  
 \end{tabular}
 \caption{Mapping Ecore to property graphs and RDF}
@@ -124,13 +122,14 @@ Our concept to reuse \eiq{} for building \iqd{} required us to map EMF's metamod
 
 \end{table}
 
-A possible mapping between from Ecore to property graphs and RDF/RDFS models are show on \autoref{tab:ecore-mapping}.
+% see also http://components.neo4j.org/neo4j/snapshot/apidocs/org/neo4j/graphdb/PropertyContainer.html
 
-For an example, take the railroad system case study (introduced in \autoref{railroad-system}, metamodel shown on \figref{trainbenchmark-metamodel}, instance model shown on \figref{neoclipse-graph}).
+A possible mapping from the Ecore kernel (\figref{ecore-kernel}) to property graphs and RDF/RDFS models are shown on \autoref{tab:ecore-mapping}. For an example, take the railroad system case study (introduced in \autoref{railroad-system}, metamodel shown on \figref{trainbenchmark-metamodel}, instance model shown on \figref{neoclipse-graph}). Here, all Ecore kernel concepts can be observed:
 \begin{itemize}
-  \item \texttt{Segment} is an \texttt{EClass} instance. In the property graph, types cannot be represented explicitly. Instead, for each node representing a \texttt{Segment} instance, we add a \texttt{type} property with the value \texttt{Segment}.
-  \item \texttt{Segment\_length} is an \texttt{EAttribute} instance. For each graph node representing a \texttt{Segment}, we define a property with the value \texttt{Segment\_length}.
-  \item \texttt{TrackElement\_Sensor} is an \texttt{EReference} instance. For each edge representing a \texttt{TrackElement\_Sensor} instance, we add the \texttt{TRACKELEMENT\_SENSOR} label.
-  \item \texttt{EInt} in an \texttt{EDataType} instance. Each attribute with this type (e.g.\ \texttt{Segment\_length}) are defined with the Java primitive type \texttt{int}.
+  \item \verb+Segment+ is an \verb+EClass+ instance. In a property graph, types cannot be represented explicitly. Instead, for each node representing a \verb+Segment+ instance, we add a \verb+type+ property with the value \verb+Segment+.
+  \item \verb+Segment_length+ is an \verb+EAttribute+ instance. For each graph node representing a \verb+Segment+, we define a property with the value \verb+Segment_length+.
+  \item \verb+TrackElement_Sensor+ is an \verb+EReference+ instance. For each edge representing a \verb+TrackElement_Sensor+ instance, we add the \verb+TRACKELEMENT_SENSOR+ label.
+  \item \verb+EInt+ in an \verb+EDataType+ instance. Each attribute with this type, e.g.\ the \verb+Sensor+ class' \verb+Segment_length+ attribute, are defined with the Java primitive type \verb+int+.
 \end{itemize}
-Note that the property graph and the RDF data models lack some advanced features of Ecore. For example, an Ecore \texttt{EReference} specifies a relationship between \texttt{EClass} instances and defines multiplicity constraints and containment. 
+Note that the property graph and the RDF data models lack some of the advanced metamodeling features of Ecore. For example, an Ecore \verb+EReference+ not just defines a relationship between specific \verb+EClass+ instances (this is already impossible in a property graph), but also defines multiplicity and containment constraints. This cannot be enforced by the property graphs and RDF data models, instead, it has to be handled by the modeling application explicitly. 
+
