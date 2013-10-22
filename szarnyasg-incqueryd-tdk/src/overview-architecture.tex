@@ -16,9 +16,9 @@ In the following, we provide an overview of the Rete algorithm, which forms the 
 
 \subsubsection{Rete in General}
 
-\iqd{} is based on the Rete algorithm, which provides a propagation network for incremental graph pattern matching\footnote{\emph{Rete} is Latin for \emph{net} or \emph{comb}.}. The algorithm was originally created by Charles Forgy~\cite{Forgy} for rule-based expert systems. Gábor Bergmann adapted the algorithm for EMF models and added many tweaks and improvements to it~\cite{BergmannRete}.
+The Rete algorithm provides a propagation network for incremental graph pattern matching\footnote{\emph{Rete} is Latin for \emph{net} or \emph{comb}.}. The algorithm was originally created by Charles Forgy~\cite{Forgy} for rule-based expert systems. Gábor Bergmann adapted the algorithm for EMF models and added many tweaks and improvements to it~\cite{BergmannRete}.
 
-\myFigure{rete}{The structure of the Rete propagation network}
+\pic{rete}{The structure of the Rete propagation network}
 
 The Rete algorithm defines an asynchronous network of communicating nodes. This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations, like filtering tokens based on constant expressions and performing join or antijoin operations based on their contents. The worker nodes store partial (interim) query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their changes (\emph{deltas}) \figref{rete}. %Connections between nodes can be \emph{local} (within one host) or \emph{remote} (when two Rete nodes are allocated to different hosts).
 
@@ -32,19 +32,17 @@ Because the Rete algorithm is well-known and well-understood by the \eiq{} team,
 
 \subsubsection{Termination Protocol}
 
-As the Rete algorithm's change propagation is asynchronous, the system must also implement a \emph{termination protocol} to ensure that the query results can be retrieved consistently with the model state after a given transaction (i.e.\ by signaling when the update propagation has been terminated). \iqd{}'s current termination protocol works by adding a stack to the message. The stack registers each Rete node the message passes through. After the message reaches the production node, the termination protocol starts. Based on the content of the stack, acknowledgement messages are propagated back on the network. When all relevant indexer nodes (where the original notification token(s) started from) receive the acknowledge messages, the termination protocol finishes.
+As the Rete algorithm's change propagation is asynchronous, the system must also implement a \emph{termination protocol} to ensure that the query results can be retrieved consistently with the model state after a given transaction (i.e.\ by signaling when the update propagation has been terminated).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\picTiny{incquery-architecture}{\eiq{}'s architecture}
 
-\myFigureTiny{incquery-architecture}{\eiq{}'s architecture}
-
-\myFigure{incquery-workflow}{\eiq{}'s workflow}
-
+\pic{incquery-workflow}{\eiq{}'s workflow}
 
 \subsection{Notification Mechanisms}
 \label{notifications}
 
-\emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effectes propagated in the form of \emph{notification objects} (NOs). The notifications generate \emph{tokens} that keep the Rete network's state consistent with the model. \iqd{}'s middleware layer facilitates notifications by providing a facade for model manipulation operations (\figref{incqueryd-architecture} \textcircled{3}).
+\emph{Model change notifications} are required by incremental query evaluation, thus model changes are captured and their effectes propagated in the form of \emph{notification objects} (NOs). The notifications generate \emph{tokens} that keep the Rete network's state consistent with the model. 
 
 

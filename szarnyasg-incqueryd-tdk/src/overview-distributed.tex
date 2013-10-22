@@ -7,7 +7,7 @@ The \emph{storage layer} is a distributed database which is responsible for pers
 The client application communicates with the \emph{middleware} \textcircled{1}. The middleware provides a unified API for accessing the database \textcircled{2}. It also sends change notifications \textcircled{3} (\autoref{notifications}) to the production network and retrieves the query results from the production network \textcircled{4} . 
 The \emph{production network} is implemented with a distributed Rete net which provides incremental query evaluation (\autoref{rete}).
 
-\myFigure{incqueryd-architecture}{\iqd{}'s architecture on a four-node cluster}
+\pic{incqueryd-architecture}{\iqd{}'s architecture on a four-node cluster}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -41,7 +41,7 @@ can be executed efficiently.
 
 While relational databases usually provide \emph{trigger}s for generating notifications, most triplestores and graph databases lack this feature. Among our primary database backends, 4store provides no triggers at all. Titan and Neo4j incorporate Blueprints, which provides an \texttt{EventGraph} class capable of generating notification events, but the events are only propagated in a single JVM (Java Virtual Machine). Implementing distributed notifications would require us to extend the \texttt{EventGraph} class and use a messaging framework. This is subject to future work (see \autoref{sec:future-work}). 
 
-Because the lack of support for distributed notifications, in \iqd{}'s current implementation, notifications are controlled by the middleware. The notification messages are propagated through the Rete network via the Akka messaging framework. 
+Because the lack of support for distributed notifications, in \iqd{}'s current implementation, notifications are controlled by the middleware by providing a facade for model manipulation operations (\figref{incqueryd-architecture} \textcircled{3}). The notification messages are propagated through the Rete network via the Akka messaging framework. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -80,12 +80,16 @@ The deployment and configuration of a distributed pattern matcher involves many 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Distributed Termination Protocol}
+
+\iqd{}'s current termination protocol works by adding a stack to the message. The stack registers each Rete node the message passes through. After the message reaches the production node, the termination protocol starts. Based on the content of the stack, acknowledgement messages are propagated back on the network. When all relevant indexer nodes (where the original notification token(s) started from) receive the acknowledge messages, the termination protocol finishes.
+
 \subsection{Workflow}
 \label{workflow}
 
 In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{workflow}.
  
-\myFigure{incqueryd-workflow}{The workflow of \iqd{}} 
+\pic{incqueryd-workflow}{The workflow of \iqd{}} 
 
 \subsubsection{Tooling}
 
