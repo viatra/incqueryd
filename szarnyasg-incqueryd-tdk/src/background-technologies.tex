@@ -95,7 +95,7 @@ Hadoop is often used for sorting, filtering and aggregating data sets. It is als
 
 A typical small Hadoop cluster consists of a single master node which is responsible for the coordination of the cluster and worker nodes which deal with the data processing. The MapReduce job is coordinated by the master's \emph{job tracker} and processed by the slave nodes' \emph{task tracker} modules (\figref{hadoop-architecture}).
 
-\myFigureSmall{hadoop-architecture}{Hadoop's architecture \cite{HadoopMultinode}}
+\myFigureTiny{hadoop-architecture}{Hadoop's architecture \cite{HadoopMultinode}}
 
 \subsubsection{HDFS}
 
@@ -156,7 +156,12 @@ Similar to Titan's partitioning, 4store's sharding mechanism (called \emph{segme
 
 \myFigureBig{4s-cluster}{4store's distributed architecture~\cite{harris20094store}}
 
-\begin{tabl}{Overview of database technologies}{database-technologies}{ | l | l | l | m{2cm} | l | m{2cm} | }
+\begin{table}[htb]
+
+\label{tab:database-technologies}
+\centering
+\begin{tabular}{ | l | l | l | m{2cm} | l | m{2cm} | }
+
 \hline
 \bf Technology & 
 \bf Data model & 
@@ -167,7 +172,11 @@ Similar to Titan's partitioning, 4store's sharding mechanism (called \emph{segme
 4store     & RDF            & Automatic & Manual                & SPARQL       & Manual                \\ \hline
 Neo4j      & Property graph & Manual    & Manual                & Cypher       & Manual                \\ \hline
 Titan      & Property graph & Automatic & Automatic             & Gremlin      & Automatic             \\ \hline
-\end{tabl}
+
+\end{tabular}
+\caption{Overview of database technologies}
+
+\end{table}
 
 \autoref{tab:database-technologies} summarizes the relevant characteristics of the aforementioned database management systems. Accoding to these, Titan provides the most complete feature set. 4store and Neo4j lack important features like automatic identifier generation, which has to be implemented in the client application. Neo4j also misses automatic sharding, which seriously hinders its scalability potential. 
 

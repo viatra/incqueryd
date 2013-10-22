@@ -43,69 +43,69 @@
 \usepackage{minibox}
 
 
-%--------------------------------------------------------------------------------------
-% Custom commands
-%--------------------------------------------------------------------------------------
-% insert pictures
-\newcommand{\pic}[2]{
-\begin{figure}[htb]
-   \center   
-   \caption{#2}
-   \label{fig:#1}  
-      \includegraphics{figures/#1}
-\end{figure}
-}
-
-% insert and resize picture to the width of the screen
-\newcommand{\picr}[2]{
-\begin{figure}[htb]
-   \center   
-   \caption{#2}
-   \label{fig:#1}  
-     \resizebox{\linewidth}{!}{
-      \includegraphics{figures/#1}
-      } 
-\end{figure}
-}
-
-
-\newcommand{\picfifty}[2]{
-\begin{figure}[htb]
-   \center
-   \caption{#2}
-   \label{fig:#1}
-     \resizebox{0.5\linewidth}{!}{
-      \includegraphics{figures/#1}
-      }
-\end{figure}
-}
-
-\newcommand{\picseventy}[2]{
-\begin{figure}[htb]
-   \center
-   \caption{#2}
-   \label{fig:#1}
-     \resizebox{0.7\linewidth}{!}{
-      \includegraphics{figures/#1}
-      }
-\end{figure}
-}
+% %--------------------------------------------------------------------------------------
+% % Custom commands
+% %--------------------------------------------------------------------------------------
+% % insert pictures
+% \newcommand{\pic}[2]{
+% \begin{figure}[htb]
+%    \center   
+%    \caption{#2}
+%    \label{fig:#1}  
+%       \includegraphics{figures/#1}
+% \end{figure}
+% }
+% 
+% % insert and resize picture to the width of the screen
+% \newcommand{\picr}[2]{
+% \begin{figure}[htb]
+%    \center   
+%    \caption{#2}
+%    \label{fig:#1}  
+%      \resizebox{\linewidth}{!}{
+%       \includegraphics{figures/#1}
+%       } 
+% \end{figure}
+% }
+% 
+% 
+% \newcommand{\picfifty}[2]{
+% \begin{figure}[htb]
+%    \center
+%    \caption{#2}
+%    \label{fig:#1}
+%      \resizebox{0.5\linewidth}{!}{
+%       \includegraphics{figures/#1}
+%       }
+% \end{figure}
+% }
+% 
+% \newcommand{\picseventy}[2]{
+% \begin{figure}[htb]
+%    \center
+%    \caption{#2}
+%    \label{fig:#1}
+%      \resizebox{0.7\linewidth}{!}{
+%       \includegraphics{figures/#1}
+%       }
+% \end{figure}
+% }
 
 % insert tables
 % 1. parameter: caption
 % 2. parameter: label
 % 3. parameter: oszlopok definialasa
-\newenvironment*{tabl}[3]{
-   \begin{table}[htb]
-   
-   \caption{#1}
-   \label{tab:#2}
-   \centering
-   \begin{tabular}{#3}
-}{
-   \end{tabular}
-   \end{table}
-}
+% \newenvironment*{tabl}[3]{
+%    \begin{table}[htb]
+%    
+%    \caption{#1}
+%    \label{tab:#2}
+%    \centering
+%    \begin{tabular}{#3}
+% }{
+%    \end{tabular}
+%    \end{table}
+% }
 
 
 \newcommand{\figref}[1]{\autoref{fig:#1}}
