@@ -45,13 +45,9 @@ As the Rete algorithm's change propagation is asynchronous, the system must also
 
 \subsection{Rete in \eiq{}}
 
-The Rete algorithm forms the foundation of \eiq{}'s query engine.
+The Rete algorithm forms the foundation of \eiq{}'s query engine. \figref{incquery-architecture} shows the architecture of \eiq{} and the Rete algorithm's role in the system. 
 
-
-
-TODO 
-
-\figref{incquery-architecture}
+A typical model transformation sequence is the following. The modeling application manipulates the EMF instance model \textcircled{1}. The model sends notifications to \eiq{}'s base indexer \textcircled{2}. The indexer propagates the modified tuples to the Rete network as update messages \textcircled{3}, which processes the updates and sends the resulting tuples to the query evaluation interface \textcircled{4}. The modeling application can retrieve the results from the interface \textcircled{5}.
 
 \picTiny{incquery-architecture}{\eiq{}'s architecture}
 
@@ -75,10 +71,4 @@ This data representation principle intends to keep the Rete network's size as sm
 
 In the following, we describe \eiq{}'s workflow based on \figref{incquery-workflow}. 
 
-Based on the \emph{metamodel} and the \emph{query specification}, \iqd{} first constructs a Rete network \textcircled{1} and deploys it \textcircled{2}. It loads the model (from the disk) to an \emph{in-memory storage} \textcircled{3} and traverses it, to initialize the Rete network's indexers.
-
-
-
-
-
-
+Based on the \emph{metamodel} and the \emph{query specification}, \iqd{} first constructs a Rete network \textcircled{1} and deploys it \textcircled{2}. It loads the model (from the persistent storage) to an \emph{in-memory storage} \textcircled{3} and traverses it to initialize the Rete network's indexers. The Rete network evaluates the query by processing the incoming tuples \textcircled{4}. If the modeling application modifies the model through the EMF API, the modifications are propagated the Rete net, hence keeping it in a consistent state \textcircled{5}. The query results can be retrieved from the Rete net \textcircled{6}. The modeling application may modify the model and reevaluate the query again.
