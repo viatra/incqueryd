@@ -15,7 +15,7 @@ The \emph{production network} is implemented with a distributed Rete net which p
 \subsection{Indexing and Initialization}
 \label{indexing}
 
-Indexing is a common technique for decreasing the execution time of database queries. In MDE, \emph{model indexing} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, all queries utilize some type attribute (in property graphs, the equivalents are node type properties and edge labels). Typical elementary model queries are the following: TODO eloreutalni a toolingra
+Indexing is a common technique for decreasing the execution time of database queries. In MDE, \emph{model indexing} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, all queries utilize some type attribute. In property graphs, the equivalents are node type properties and edge labels (see also \autoref{ecore-mapping}). Typical elementary model queries are the following: TODO eloreutalni a toolingra
 
 \begin{itemize}
   \item Retrieving all node instances of a given type (e.g.\ get all nodes with the type \texttt{Person}).
@@ -99,6 +99,9 @@ We aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete
 
 % see http://components.neo4j.org/neo4j/snapshot/apidocs/org/neo4j/graphdb/PropertyContainer.html
 
+\subsubsection{Mapping Ecore}
+
+Our concept to reuse \eiq{} for building \iqd{} required us to map EMF's metamodel, Ecore to the domain of property graphs and RDF models.
 
 \begin{table}[htb]
 
@@ -106,13 +109,14 @@ We aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete
 \begin{tabular}{ | l | l | l | }
 
 \hline
-\bf Ecore class & 
-\bf Property graph &
-\bf RDF \tabularnewline \hline\hline
-\texttt{EClass}     & node type            & \texttt{rdfs:Class} \\ \hline
-\texttt{EAttribute} & node property        & \texttt{rdf:Property} \\ \hline
-\texttt{EReference} & edge                 & \texttt{rdf:Statement} \\ \hline
-\texttt{EDataType}  & Java primitive types & \texttt{rdfs:Datatype} \\ \hline
+\bf Ecore concept & 
+\bf Property graph concept &
+\bf RDF concept \tabularnewline \hline\hline
+
+\texttt{EClass} instance     & nodes' \texttt{type} property & \texttt{rdfs:Resource} \\ \hline
+\texttt{EAttribute} instance & nodes' property names         & \texttt{rdf:Property}  \\ \hline
+\texttt{EReference} instance & edge label                    & \texttt{rdf:Property}  \\ \hline
+\texttt{EDataType} instance  & Java primitive types          & \texttt{rdfs:Datatype} \\ \hline
  
 \end{tabular}
 \caption{Mapping Ecore to property graphs and RDF}
@@ -120,10 +124,13 @@ We aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete
 
 \end{table}
 
+A possible mapping between from Ecore to property graphs and RDF/RDFS models are show on \autoref{tab:ecore-mapping}.
 
-Ecore -> property graphy mapping \autoref{tab:ecore-mapping}
-
-
-
-
-
+For an example, take the railroad system case study (introduced in \autoref{railroad-system}, metamodel shown on \figref{trainbenchmark-metamodel}, instance model shown on \figref{neoclipse-graph}).
+\begin{itemize}
+  \item \texttt{Segment} is an \texttt{EClass} instance. In the property graph, types cannot be represented explicitly. Instead, for each node representing a \texttt{Segment} instance, we add a \texttt{type} property with the value \texttt{Segment}.
+  \item \texttt{Segment\_length} is an \texttt{EAttribute} instance. For each graph node representing a \texttt{Segment}, we define a property with the value \texttt{Segment\_length}.
+  \item \texttt{TrackElement\_Sensor} is an \texttt{EReference} instance. For each edge representing a \texttt{TrackElement\_Sensor} instance, we add the \texttt{TRACKELEMENT\_SENSOR} label.
+  \item \texttt{EInt} in an \texttt{EDataType} instance. Each attribute with this type (e.g.\ \texttt{Segment\_length}) are defined with the Java primitive type \texttt{int}.
+\end{itemize}
+Note that the property graph and the RDF data models lack some advanced features of Ecore. For example, an Ecore \texttt{EReference} specifies a relationship between \texttt{EClass} instances and defines multiplicity constraints and containment. 
