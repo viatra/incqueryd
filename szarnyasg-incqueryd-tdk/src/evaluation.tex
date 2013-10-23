@@ -1,16 +1,16 @@
 \chapter{Evaluation of Scalability and Performance}
 \label{chap:evaluation}
 
-In this chapter, \ldots
-
-%We implemented \iqd{} as an initial prototype to evaluate the feasibility of the approach, and to experiment with various optimization possibilities. As the storage, we used the popular graph database Neo4j~\cite{neo4j} featuring automatic indexes and two core query technologies (Gremlin and Cypher) that were used as a low-level model access interface by our middleware layer.
-
+We implemented \iqd{} as an initial prototype to evaluate the feasibility of the approach. In the following chapter, we introduce the \tb{}, a performance benchmark for query engines. We also present the distributed \tb{}, which is also capable of measuring certain scalability aspects.
+ 
 \input{evaluation-goals}
 
-\input{evaluation-benchmark-scenario}
+\input{evaluation-trainbenchmark}
 
-\input{evaluation-generation}
+\input{evaluation-distributed-trainbenchmark}
 
 \input{evaluation-environment}
 
 \input{evaluation-results}
+
+\input{evaluation-summary}
