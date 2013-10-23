@@ -1,7 +1,5 @@
 \section{Summary}
 
-Our benchmarks proved that the concept of a distributed, incremental pattern matcher is a working one. \iqd{}'s scalability characteristics confirmed that while network overhead is present, it is possible to keep \eiq{}'s almost constant performance characteristics in a distributed environment. The results show the model size barrier, primarily caused by limitations of memory [TODO REF] \autoref{memory}, can be pushed further using a horizontal scaling approach.
-
 %   - derived conclusions
 %     - proof of concept
 %     - scalable in this setup
@@ -10,5 +8,10 @@ Our benchmarks proved that the concept of a distributed, incremental pattern mat
 %     - model size barrier pushed further
 %     - not all distributed scalability aspects covered
 
-It is important to note that our benchmark did not cover all aspects of distributed scalability. ..
+
+Our benchmarks proved that the concept of a distributed, incremental pattern matcher is a working one. \iqd{}'s scalability characteristics confirmed that while network overhead is present, it is possible to keep \eiq{}'s almost constant performance characteristics in a distributed environment. The results show the model size barrier, primarily caused by limitations of memory, %[TODO REF] \autoref{memory}, 
+can be pushed further using a horizontal scaling approach.
+
+It is important to note that our benchmark did not cover all aspects of distributed scalability. For example, simulating multiple userts, measuring the exact memory consumption and network traffic of each server is subject to future work.
+ 
 

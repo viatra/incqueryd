@@ -10,7 +10,7 @@ In the following section, we discuss the results of our benchmark.
 %\pic{benchmark/Check0_RouteSensor}{$\mathit{Check}_0$ phase}
 %\pic{benchmark/OnTheFly_RouteSensor}{Execution times for transformation and revalidation} %($\mathit{Edit}$ and $\mathit{Check}_1$  phase)}
 
-We present the visualizations of the benchmark's most important results. The $x$ axis shows the models size (number of model elements), the $y$ axis shows execution time. Both axes are logarithmic. The \emph{batch} (non-incremental) tool is represented with a dashed line, while the \emph{incremental} tools are represented with solid lines.
+We present the visualizations of the benchmark's most important results. The $x$ axis shows the models size (number of model elements), while the $y$ axis shows execution time. Both axes are logarithmic. The \emph{batch} (non-incremental) tool is represented with a dashed line, while the \emph{incremental} tools are represented with solid lines.
 
 \pic{benchmark/BatchValid_RouteSensor}{Execution times for load and first validation}
 
@@ -23,23 +23,23 @@ The execution times for the \emph{transformation} phase are shown on \figref{ben
 
 \pic{benchmark/OnTheFlyCheck_RouteSensor}{Execution times of the revalidation}
 
-The incremental tools have an even greater advantage for \emph{revalidation} times, shown on \figref{benchmark/OnTheFlyCheck_RouteSensor}. For medium-sized models, they are more than three orders of magnitude faster than the non-incremental tools. Note that the incremental tools provide sub-second revalidation times even for large models with tens of millions of elements.
+The incremental tools have an even greater advantage for \emph{revalidation} times, shown on \figref{benchmark/OnTheFlyCheck_RouteSensor}. For medium-sized models, they are more than three orders of magnitude faster than the batch tool. Note that the incremental tools provide sub-second revalidation times even for large models with tens of millions of elements.
 
 \pic{benchmark/BatchTrafo_RouteSensor}{Total execution times for 50 validations}
 
-\figref{benchmark/BatchTrafo_RouteSensor} shows the total execution time for a total sequence: loading the model, then running transformations and revalidations 50 times. Due to the large number of transformations and revalidations, incremental tools are significantly faster. For example, for a model with 6 million elements, the batch tool took almost 6 hours, while the 4store-based incremental tool took less than 5 minutes. 
+\figref{benchmark/BatchTrafo_RouteSensor} shows the total execution time for a sequence: loading the model, then running transformations and revalidations 50 times. Due to the large number of transformations and revalidations, incremental tools are significantly faster. For example, for a model with 6 million elements, the batch tool took almost 6 hours, while the 4store-based incremental tool took less than 5 minutes. 
 
-The results show that the 4store-based \iqd{} implementation is consistently faster than the Titan-based one. This is due to 4store's simpler architecture and different data model, which is better suited to the \iqd{} middleware's elementary model queries and modifications.
+The results show that the 4store-based \iqd{} implementation is consistently faster in the \emph{load} phase than the Titan-based one. This is due to 4store's simpler architecture and different data model, which is better suited to the \iqd{} middleware's elementary model queries.
 
 \section{Result Analysis}
 
 The results clearly show that the initialization of the Rete net adds some overhead during the \emph{load and first validation phases}. However, even for medium-sized models, this is easily outweighed by the high query performance of the Rete net.
 
-The almost constant characteristic of execution times of the incremental tools \emph{transformation} and \emph{validation} phases confirm that a distributed, scalable, incremental pattern matcher is feasible with current technologies. The results also show that while network latency is present, the distributed Rete network still allows sub-second on-the-fly model validation operations. It is also important to observe the similar characteristic of \iqd{}'s and \eiq{}'s transformation and validation times (\figref{classic-trainbenchmark-results}).
+The almost constant characteristic of execution times of the incremental tools' \emph{transformation} and \emph{validation} phases confirm that a distributed, scalable, incremental pattern matcher is feasible with current technologies. The results also show that while network latency is present, the distributed Rete network still allows sub-second on-the-fly model validation operations. It is also important to observe the similar characteristic of \iqd{}'s and \eiq{}'s transformation and validation times (\figref{classic-trainbenchmark-results}).
 
-Another important observation is that for incremental tools, the execution time is approximately proportional to \emph{the number of affected model elements}. For non-incremental tools, it is proportional to the \emph{size of the model}. 
+Another important observation is that for incremental tools, the execution time is approximately proportional to \emph{the number of affected model elements}. For batch tools, it is proportional to the \emph{size of the model}. 
 
-Note that these results and scalability characteristics do not apply for every workload profile. For example, if the user modifies large chunks of the model and issues queries infrequently, non-incremental query evaluation methods can be faster. 
+Note that these results and scalability characteristics do not apply for every workload profile. For example, if the user modifies large chunks of the model and issues queries infrequently, batch query evaluation methods can be faster. 
 
 %Once initialized, \iqd{} scales linearly, since query response times for growing models can be kept low by adding additional computers for hosting Rete nodes.
 %* inkrementális esetben a APPROX MÓDOSÍTÁSSAL arányos a lekérdezés ideje.
@@ -50,32 +50,35 @@ Note that these results and scalability characteristics do not apply for every w
 
 During our experiments, we ran into cases where the Java Virtual Machine ran out of or had just enough memory, resulting in \texttt{OutOfMemoryError: Java heap space} and \texttt{OutOfMemoryError: GC overhead limit exceeded} exceptions, respectively. Introducing a fault-tolerance mechanism for these cases is subject to future work (\autoref{future-work}).
 
-\subsection{Measurements Using Neo4j}
+\subsection{Threats to Validity}
+\label{threats-to-validity}
+
+To guarantee the correctness of our benchmarks, we added some rules to ensure the precision of the results.
+
+First, to start each benchmark sequence independently, we turned the operating system's caching mechanisms off. The execution time of the \emph{validation and transformation phases} were determined by running them 50 times and taking the \emph{median} values. This way, we could measure the Java Virtual Machine's warmup effect (which would also occur in a real-world model query engine running for several days or months).
+
+As discussed in \autoref{ecosystem}, our servers could be influenced from the workload caused by other users of the same cloud. To minimalize the effect of this and other transient loads, we ran the benchmark five times and took the \emph{minimum} value for each phase. We also disabled file caching in the operating system, so that the serialized model always must be read from the disk.
+
+
+%%%%% new section for Neo4j
+
+\section{Benchmark Results with Neo4j}
 
 During the earlier phases of the research, we conducted measurement using only Neo4j \cite{Izso:2012:ODD:2428516.2428523}. The benchmark's setup was slightly different, with the main differences being the following.
 
 \begin{itemize}
   \item Due to the lack of sharding in Neo4j, we \emph{sharded the graph manually}. This had a number of important implications.
   \begin{itemize}
-    \item The non-incremental queries were ran on all shards separately and their results were aggregated by the coordinator. The transformations also ran separately. 
+    \item The batch queries were ran on all shards separately and their results were aggregated by the coordinator. The transformations also ran separately. 
     \item The incremental queries were evaluated with a distributed Rete net. The elementary model queries (for filling the indexers) were ran on all shards separately and aggregated by the indexers. The transformations also ran separately.
   \end{itemize}
   \item The servers had twice as much memory (16~GB).
 \end{itemize}
 
-Despite the differences, we compare the results of this benchmark with the most recent one detailed above. \figref{benchmark/neo/BatchTrafo_RouteSensor} shows that the Neo4j-based incremental tool consistently outperforms the Neo4j's own query engine.
+Despite the differences, we can still derive some useful conclusions by compare the results of this benchmark with the most recent one detailed previously. \figref{benchmark/neo/BatchTrafo_RouteSensor} shows that the Neo4j-based incremental tool consistently outperforms the Neo4j's own query engine.
 
 \pic{benchmark/neo/BatchTrafo_RouteSensor}{Total execution times for 50 validations}
 
-\figref{benchmark/neo/OnTheFly_RouteSensor} shows that while Neo4j's non-incremental query engine scales better than 4store's (in this particular setup with manual sharding), the incremental version is about two orders of magnitude faster.
+\figref{benchmark/neo/OnTheFly_RouteSensor} shows that while Neo4j's non-incremental query engine scales better than 4store's (in this particular setup), the incremental tool based on Neo4j is about two orders of magnitude faster.
 
 \pic{benchmark/neo/OnTheFly_RouteSensor}{Execution times for transformation and revalidation}
-
-\subsection{Threats to validity}
-\label{threats-to-validity}
-
-To guarantee the correctness of our benchmarks, we added some rules to ensure the precision of the results.
-
-First, to start each benchmark sequence independently, we turned the operating system's caching mechanisms off. The length of the \emph{validation and transformation phases} were determined by taking the \emph{median} value of 50 runs. This way, we could measure the Java Virtual Machine's warmup effect (which would also occur in a real-world model query engine running for several days or months).
-
-As discussed in \autoref{ecosystem}, our servers could be influenced from workload caused by other users of the same cloud. To minimalize the effect of this and other transient loads, we ran the benchmark five times and took the \emph{minimum} value for each phase. We also disabled file caching in the operating system, so that the serialized model always must be read from the disk.

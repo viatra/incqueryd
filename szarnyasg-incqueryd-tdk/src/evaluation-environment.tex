@@ -1,11 +1,11 @@
 \section{Benchmark Environment}
 \label{sec:benchmark-environment}
 
-We used the distributed \tb{} (\autoref{distributed-trainbenchmark}) to evaluate \iqd{}'s performance and compare is to non-incremental solutions. Our benchmark environment was very similar to the one used for evaluating \iqd{}'s earlier prototype \cite{Izso:2013:IIG:2487766.2487772}. In the following section, we will discuss the benchmark setup and the hardware/software ecosystem in detail.
+We used the distributed \tb{} (\autoref{distributed-trainbenchmark}) to evaluate \iqd{}'s performance and compare it to non-incremental solutions. Our benchmark environment was very similar to the one used for evaluating \iqd{}'s earlier prototype \cite{Izso:2013:IIG:2487766.2487772}. In the following section, we will discuss the benchmark setup and the environment in detail.
 
 \subsection{Benchmark Setup}
 
-We tested \iqd{} with two storage backends: 4store (\autoref{4store}) and Titan (\autoref{titan}). As a \emph{non-incremental baseline}, we used 4store as a standalone database management system. We also planned to use Titan, however, we found that Titan is more geared towards local graph traversals. While graph patterns can be formulated as traversal operations, we found that even for small graphs, the system was unable to run the queries efficiently.
+We tested \iqd{} with two storage backends: 4store (\autoref{4store}) and Titan (\autoref{titan}). As a \emph{non-incremental baseline}, we used 4store as a standalone database management system. While we also planned to use Titan, we found that Titan is more geared towards local graph traversals. Although graph patterns can be formulated as traversal operations, we found that even for small graphs, the system was unable to run the queries efficiently.
 
 \pic{benchmark-scenario}{The benchmark scenario. The green arrows and components are specific to the incremental scenario.}
 
@@ -63,7 +63,7 @@ For the benchmarks, we used the following software stack. The technologies are d
 \subsection{Benchmark Methodology and Data Processing}
 \label{benchmark-methodology}
 
-The benchmark coordinator software used the \tb{}'s framework to collect the data about the results of the benchmark. We mainly measured the execution time of the predefined phases. The execution time includes the time required for the coordinator's operation, the computation and IO operations of the cluster's computers and the network communication (to both directions).
+The benchmark coordinator software used the \tb{}'s framework to collect the data about the results of the benchmark. We mainly measured the execution time of the predefined phases. The execution time includes the time required for the coordinator's operation, the computation and IO operations of the cluster's computers and the network communication (to both directions). The execution times were determined using Java's \texttt{System.nanoTime()} method.
 
 The results were collected in text files, which were processed by an R script \cite{RProject} developed by Benedek Izsó. The script is capable of generating and visualizing the results. 
 
