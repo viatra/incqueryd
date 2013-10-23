@@ -18,13 +18,13 @@ The architecture of \iqd{} is discussed in detail in \autoref{iqd-architecture}.
 \subsection{Hardware and Software Ecosystem}
 \label{ecosystem}
 
-As the testbed, we deployed our system to a private cloud consisting of 4 virtual machines on separate host computers. The private cloud is managed by Apache VCL (Virtual Computing Lab) and is also used for educational purposes. Therefore, during the benchmark, the network and the host machines could be under load from other users as well. Our countermeasures are discussed in \autoref{benchmark-methodology}.
+As the testbed, we deployed our system to a private cloud consisting of 4 virtual machines on separate host computers. The private cloud is managed by Apache VCL (Virtual Computing Lab) and is also used for educational purposes. Therefore, during the benchmark, the network and the host machines could be under load from other users as well. Our countermeasures are discussed in \autoref{threats-to-validity}.
 
 The detailed configuration of the servers are provided below.
 
 \subsubsection{Hardware}
  
-Each virtual machine used two cores of an Intel Xeon L5420 running at 2.5 GHz and had 8 GBs of RAM. The host machines were connected with gigabit Ethernet network connection.
+Each virtual machine used two cores of an Intel Xeon L5420 running at 2.5~GHz and had 8~GBs of RAM. The host machines were connected with gigabit Ethernet network connection.
 
 \subsubsection{Software}
 
@@ -63,11 +63,8 @@ For the benchmarks, we used the following software stack. The technologies are d
 \subsection{Benchmark Methodology and Data Processing}
 \label{benchmark-methodology}
 
-As discussed in \autoref{ecosystem}, our servers could be influenced from workload caused by other users of the same cloud. To minimalize the effect of this and other transient loads, we ran the benchmark five times and took the \emph{minimum} value for each phase. We also disabled file caching in the operating system, so that the serialized model always must be read from the disk.
+The benchmark coordinator software used the \tb{}'s framework to collect the data about the results of the benchmark. We mainly measured the execution time of the predefined phases. The execution time includes the time required for the coordinator's operation, the computation and IO operations of the cluster's computers and the network communication (to both directions).
 
-%\subsection{Data Collection and Processing}
+The results were collected in text files, which were processed by an R script \cite{RProject} developed by Benedek Izsó. The script is capable of generating and visualizing the results. 
 
-The benchmark coordinator software used the \tb{}'s utilities to collect the data about the results of the benchmark. The data was collected in text files, which were  processed by an R script \cite{RProject} developed by Benedek Izsó. The script is capable of generating visualizing the results, shown in \autoref{evaluation-results}. 
-
-TODO We took the median of 50 runs.
-
+We also worked to ensure the \emph{functional equivalence} of the measured tools. During the development, we followed the \tb{}'s well-defined specification~\cite{ASE2013}. In runtime, we checked the result set provided by each tool.

@@ -111,7 +111,7 @@ HDFS tightly integrates with Hadoop's architecture (\figref{hdfs}). The \emph{Na
 HBase is an open-source, distributed column family database. It is developed as part of the Hadoop project and runs on top of HDFS. The tables in an HBase database can serve as the input and the output for MapReduce jobs run in Hadoop.
 
 \subsection{Neo4j}
-\label{subsec:neo4j}
+\label{neo4j}
 
 Neo4j, developed by Neo Technology, is the most popular NoSQL graph database. Neo4j implements TinkerPop's Blueprints property graph data model along with Gremlin. It also provides Cypher, a declarative query language for graph pattern matching. 
 
@@ -152,11 +152,11 @@ It is important to note that Faunus always traverses the whole graph and does no
 \subsection{4store}
 \label{4store}
 
-4store is an open-source, distributed triplestore created by Garlik~\cite{4store}. Unlike the other tools discussed earlier, 4store is written in C. While 4store is primarily applied for semantic web projects, its maturity and scalability made it an appropriate storage backend for \iqd's prototype.
+4store is an open-source, distributed triplestore created by Garlik~\cite{4store}. Unlike the other tools discussed earlier, 4store is written in C. While 4store is primarily applied for semantic web projects, its maturity and scalability made it an appropriate storage backend for \iqd{}'s prototype.
 
 Similar to Titan's partitioning, 4store's sharding mechanism (called \emph{segmenting}) distributes the RDF resources evenly across the cluster. However, unlike Titan, 4store's data model is an RDF graph. Hence, 4store's input format is RDF/OWL.
 
-\picBig{4s-cluster}{4store's distributed architecture~\cite{harris20094store}}
+%\picBig{4s-cluster}{4store's distributed architecture~\cite{harris20094store}}
 
 \begin{table}[htb]
 

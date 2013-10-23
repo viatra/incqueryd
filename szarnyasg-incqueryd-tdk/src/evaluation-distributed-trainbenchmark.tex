@@ -5,7 +5,7 @@ Based on the \tb{}, discussed in \autoref{trainbenchmark}, we created an extende
 
 \subsection{Generating Models}
 
-For Neo4j (\autoref{subsec:neo4j}), we already expanded the the generator with a \emph{property graph generator} module. The generator creates a graph in a Neo4j database and uses the Blueprints library's \texttt{GraphMLWriter} and \texttt{GraphSONWriter} classes to serialize it to \graphml{} (\autoref{graphml-example}) and Blueprints \graphson{} (\autoref{blueprints-graphson-example}) formats. 
+For Neo4j, we already expanded the the generator with a \emph{property graph generator} module. The generator creates a graph in a Neo4j database and uses the Blueprints library's \texttt{GraphMLWriter} and \texttt{GraphSONWriter} classes to serialize it to \graphml{} (\autoref{graphml-example}) and Blueprints \graphson{} (\autoref{blueprints-graphson-example}) formats. 
 
 Titan's Faunus framework requires a specific format called Faunus \graphson{} (\autoref{faunus-graphson-example}). To use Faunus, we extended the property graph generator to generate Faununs \graphson{} files as well.
 
