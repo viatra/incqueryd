@@ -2,15 +2,17 @@
  
 \chapter{Graph Formats}
 
-In this chapter, we provide examples for the different graph formats, including property graphs and RDF graphs. The examples describe a small instance model based on the railway system metamodel, shown on \figref{trainbenchmark-instancemodel-subgraph}.
+In this chapter, we provide examples for the different graph serialization formats, including property graphs and RDF graphs. The examples describe a small instance model based on the railway system metamodel, shown on \figref{trainbenchmark-instancemodel-subgraph}.
 
 \picSmall{trainbenchmark-instancemodel-subgraph}{An example graph based on the railway system metamodel}
  
 \section{Property Graph Formats}
-\label{sec:property-graph-formats}
+\label{property-graph-formats}
 
-\subsection{GraphML}
-\label{subsec:graphml}
+\subsection{\graphml{}}
+\label{graphml-example}
+
+The \graphml{} format \cite{GraphML} is the most widely used graph representation format, based on XML (Extensible Markup Language). It has strong tooling support between graph databases and graph visualizing tools.
 
 \lstset{language=XML,breaklines=true}
 \begin{lstlisting}[caption=A graph based on the railway system metamodel stored in \graphml{} format]
@@ -38,8 +40,10 @@ In this chapter, we provide examples for the different graph formats, including 
 </graphml>
 \end{lstlisting}
 
-\subsection{Blueprints GraphSON}
-\label{subsec:blueprints-graphson}
+\subsection{Blueprints \graphson{}}
+\label{blueprints-graphson-example}
+
+Blueprints \graphson{} \cite{BlueprintsGraphSON} is a JSON-based (JavaScript Object Notation) format. It is not as well supported as the GraphML format (\autoref{subsec:graphml}), but it is less verbose and more readable.
 
 \lstset{language=json,firstnumber=1}
 \begin{lstlisting}[caption=A graph based on the railway system metamodel stored in Blueprints \graphson{} format]
@@ -99,8 +103,10 @@ In this chapter, we provide examples for the different graph formats, including 
 }
 \end{lstlisting}
 
-\subsection{Faunus GraphSON}
-\label{subsec:faunus-graphson}
+\subsection{Faunus \graphson{}}
+\label{faunus-graphson-example}
+
+In the Faunus \graphson{} format \cite{FaunusGraphSON}, each line is a separate JSON (JavaScript Object Notation) document representing a vertex in the graph. This way, the file can be splitted to blocks efficiently and processed on Hadoop nodes in a parallel fashion.   
 
 \begin{lstlisting}[caption=A graph based on the railway system metamodel stored in Faunus \graphson{} format]
 {"type":"Sensor","_id":1,"_outE":[],"_inE":[{"_id":0,"_outV":2,"_label":"ROUTE_ROUTEDEFINITION"},{"_id":3,"_outV":4,"_label":"TRACKELEMENT_SENSOR"}]}
@@ -111,8 +117,10 @@ In this chapter, we provide examples for the different graph formats, including 
 
 \section{Semantic Graph Formats}
 
-\subsection{RDF}
-\label{subsec:rdf}
+\subsection{RDF/XML}
+\label{rdfxml-example}
+
+RDF/XML is an XML-based (Extensible Markup Language) format for serializing RDF triples.
 
 \lstset{language=XML,breaklines=true}
 \begin{lstlisting}[caption=A graph based on the railway system metamodel stored in RDF format]

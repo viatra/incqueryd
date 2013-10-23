@@ -1,49 +1,40 @@
 \section{\tb{}}
 \label{trainbenchmark}
 
-The \tb{} was designed by Benedek Izsó, Zoltán Szatmári and István Ráth \cite{high-performance-queries} to measure the efficiency of model queries and manipulation operations in different tools. The \tb{} is primarily targeted for a well-formedness validation use case. 
+The \tb{} was designed by Benedek Izsó, Zoltán Szatmári and István Ráth \cite{high-performance-queries} to measure the efficiency of model queries and manipulation operations in different tools. The \tb{} is primarily targeted for typical MDE workloads, more specifically for well-formedness validations.
 
+The benchmark is built on the \emph{railway system metamodel}, defined in 
 
-* Measure the response time and the scalability
+\subsection{Benchmark Goals}
 
-* Workload profile's difference from standard benchmarks
+The \tb{} measures both the response time and the scalability of the tools.
 
+The benchmark models a ''real-world'' MDE workload by simulating a user's interaction with the model. In this sequence, the user loads the model and validates it against a set  queries (defining well-formedness constraints). The user edits the model in small steps. The user's work is more productive and less error-prone if she receives instant feedback after each edit. Therefore, we would like to run re-evaluate well-formedness queries quickly, which implies that incremental query engines are more favorable for this workload.
 
-In a ''real-world'' model editing sequence, the user tipically edits the model in small steps ($\mathit{edit}_i$ phases). The user's work is much more productive if she receives an instant feedback, hence we would like to run re-evaluate well-formedness queries quickly (preferably in sub-second time). This creates the need for an incremental pattern matcher tools.
-
-
-
-The \tb{} consists of the following phases:
+The benchmark defines four distinct phases:
 
 \begin{enumerate}
-  \item $\mathit{read}$: loading the model,
-  \item $\mathit{check}_0$: running the queries,
-  \item $\mathit{edit}_i$: editing the model, 
-  \item $\mathit{check}_i$: running the queries again.
+  \item $\mathit{Read}$: load the serialized instance model to the database
+  \item $\mathit{Check}_0$: execute the well-formedness query on the model
+  \item $\mathit{Edit}_i$: modify the model
+  \item $\mathit{Check}_i$: execute the well-formedness query again
 \end{enumerate}
 
+To measure the scalability of the tools, the benchmark uses instance models of growing sizes, each model containing about twice as many model elements as the previous one (\autoref{trainbenchmark-model-generation}). Running the same validation sequence on different model sizes highlighted the limitations of the tested query engines.
 
-
-The benchmark transaction sequence consists of four phases: (i) during the $\mathit{load}$ phase, the serialization of the model is loaded into the database; (ii) a test query (\figref{patterndef}) is executed ($\mathit{check}_0$); finally, in a cycle consisting of several repetitions, some elements are programmatically modified ($\mathit{edit}_i$) and the test query is re-evaluated ($\mathit{check}_i$). We ran the benchmark on pseudo-randomly generated instance models of growing size, each model containing about twice as many elements (vertices and edges) as the previous one and having a regular fan-out structure. 
-%As the current version of Neo4j does not have built-in support for graph sharding, the benchmark uses a manually sharded strategy where each shard contains a disjoint partition of the model.
-
-
-
-4.2 TrainBenchmark
-  - performance comparison of various query engines
-  - in the context of MDE workload (incremental model validation)
-  - scalability is measured along model size and query complexity
+Scalability is also measured along the complexity of the queries. The benchmark defines four queries, each testing different aspects of the query engine (filtering, join and antijoin operations, etc.).
 
 \subsection{Results}
-  
-  - present classic TB results
+
+The \tb{} was implemented for different tools originating from various technological spaces, e.g.\ EMF-based tools (\eiq{}, Eclipse OCL), semantic web technologies (Allegro Graph, Sesame, 4store), NoSQL databases (Neo4j), etc.
 
 \pic{classic-trainbenchmark-results}{\tb{} results measured on a single node}
 
-\subsection{Generating models}
+\figref{classic-trainbenchmark-results} shows the incremental transformation and validation time for the \emph{RouteSensor} query, discussed in \autoref{railroad-system}. The results clearly show the advantage of incremental query engines. Both Eclipse OCL Impact Analyzer and \eiq{} scale sublinearly (their characteristic is almost constant), while non-incremental tools scale linearly at best, which renders them inefficient for lange models.
 
-Due to both confidentiality and technical reasons, it is difficult to obtain real-world industrial models and queries. Also, using confidential data sets hamstrings the reproducibility of the conducted benchmarks. Therefore, we used an artificial data set which mimics real-world models.
+\subsection{Generating Models}
+\label{trainbenchmark-model-generation}
 
-The generator capable of generating railroad instance models of different sizes. It is capable of generating models in different formats, including EMF, OWL, RDF and SQL. 
+Due to both confidentiality and technical reasons, it is difficult to obtain real-world industrial models and queries. Also, using confidential data sets hamstrings the reproducibility of the conducted benchmarks. Therefore, we generated instance models which mimic real-world models.
 
-For Neo4j (\autoref{subsec:neo4j}) and Titan (\autoref{subsec:titan}), we expanded the generator with a module that can generate property graphs. The generator creates a graph in a Neo4j database and uses the Blueprints library's \texttt{GraphMLWriter} and \texttt{GraphSONWriter} classes to serialize the graph to \graphml{} and Blueprints \graphson{} formats. It is also capable of serializing the graph to Faunus \graphson{} format.
+The instance models are generated pseudorandomly, with pre-defined structural constraints \cite{ASE2013}. The generator is capable of generating models of different sizes and formats, including EMF, OWL, RDF and SQL. 

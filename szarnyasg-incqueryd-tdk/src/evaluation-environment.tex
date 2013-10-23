@@ -1,65 +1,70 @@
 \section{Benchmark Environment}
 \label{sec:benchmark-environment}
 
-describe the benchmark envirnment
-
-
-Big MDE article \cite{Izso:2013:IIG:2487766.2487772}
-
-
-\pic{benchmark-baseline}{The non-incremental baseline benchmark's setup}
+We used the distributed \tb{} (\autoref{distributed-trainbenchmark}) to evaluate \iqd{}'s performance and compare is to non-incremental solutions. Our benchmark environment was very similar to the one used for evaluating \iqd{}'s earlier prototype \cite{Izso:2013:IIG:2487766.2487772}. In the following section, we will discuss the benchmark setup and the hardware/software ecosystem in detail.
 
 \subsection{Benchmark Setup}
 
-\pic{benchmark-scenario}{The benchmark scenario}
+We tested \iqd{} with two storage backends: 4store (\autoref{4store}) and Titan (\autoref{titan}). As a \emph{non-incremental baseline}, we used 4store as a standalone database management system. We also planned to use Titan, however, we found that Titan is more geared towards local graph traversals. While graph patterns can be formulated as traversal operations, we found that even for small graphs, the system was unable to run the queries efficiently.
 
-distributed the Rete net as shown on \figref{rete-routesensor-distributed-layout}
+\pic{benchmark-scenario}{The benchmark scenario. The green arrows and components are specific to the incremental scenario.}
 
-\pic{rete-routesensor-distributed-layout}{The layout of the distributed Rete net}
+The benchmark follows the phases defined in the distributed \tb{}. The workflow is shown on \figref{benchmark-scenario}. Note that the main difference between the batch and incremental scenarios is that the latter maintain a distributed Rete net, which allows efficient query (re)evaluation.   
+
+The architecture of \iqd{} is discussed in detail in \autoref{iqd-architecture}. The baseline scenario's benchmark setup is shown on \figref{benchmark-baseline}.
+
+\pic{benchmark-baseline}{The non-incremental ''batch'' scenario benchmark's setup}
 
 \subsection{Hardware and Software Ecosystem}
+\label{ecosystem}
 
-As the testbed, we deployed our system to a private cloud consisting of 4 virtual machines on separate host computers. 
+As the testbed, we deployed our system to a private cloud consisting of 4 virtual machines on separate host computers. The private cloud is managed by Apache VCL (Virtual Computing Lab) and is also used for educational purposes. Therefore, during the benchmark, the network and the host machines could be under load from other users as well. Our countermeasures are discussed in \autoref{benchmark-methodology}.
+
+The detailed configuration of the servers are provided below.
 
 \subsubsection{Hardware}
  
-For Titan and 4store, each virtual machine used dual 2.5 GHz Intel Xeon L5420 CPUs with 8 GBs of RAM, running on Ubuntu 12.10 64-bit.
-
-For Neo4j, each virtual machine had the same parameters but twice as much, 16 GBs of RAM. 
+Each virtual machine used two cores of an Intel Xeon L5420 running at 2.5 GHz and had 8 GBs of RAM. The host machines were connected with gigabit Ethernet network connection.
 
 \subsubsection{Software}
 
-We used the following technologies:
+For the benchmarks, we used the following software stack. The technologies are discussed in \autoref{chap:background-technologies}.
 
 \begin{itemize}
-  \item Ubuntu 12.10 64-bit
-  \item Oracle Java 7 64-bit
-  \item 4store 1.1.5
-  \item Titan 0.3.2
-  \item Faunus 0.3.2
-  \item Hadoop 1.1.2
-  \item Cassandra 1.2.2
-  \item Neo4j 1.8
-  \item Blueprints 2.3.0
-  \item Akka 2.1.2
-  \item Eclipse 4.3 (Kepler)
+  \item Operating system and Java Virtual Machine
+  \begin{itemize}
+    \item Ubuntu 12.10 64-bit
+    \item Oracle Java 7 64-bit
+  \end{itemize}  
+  
+  \item Database management system
+  \begin{itemize}
+    \item Neo4j 1.8
+    \item 4store 1.1.5
+    \item Titan 0.3.2
+    \begin{itemize}
+      \item Faunus 0.3.2
+      \item Hadoop 1.1.2
+      \item Cassandra 1.2.2
+    \end{itemize}
+  \end{itemize}  
+
+  \item Messaging framework
+  \begin{itemize}
+    \item Akka 2.1.2
+  \end{itemize}  
+
+  \item Development environment and tooling 
+  \begin{itemize}
+    \item Eclipse 4.3 (Kepler)
+  \end{itemize}  
 \end{itemize}
 
-\subsection{Benchmark Methodology}
+\subsection{Benchmark Methodology and Data Processing}
+\label{benchmark-methodology}
 
-five runs
+As discussed in \autoref{ecosystem}, our servers could be influenced from workload caused by other users of the same cloud. To minimalize the effect of this and other transient loads, we ran the benchmark five times and took the \emph{minimum} value for each phase. We also disabled file caching in the operating system, so that the serialized model always must be read from the disk.
 
-some load on servers, so used the \emph{minimum} of the results
+%\subsection{Data Collection and Processing}
 
-\subsection{Data Collection}
-
-\tb{}'s utility classes
-
-\subsection{Data Processing Tools}
-
-To compare the performance characteristics of \iqd{} to a traditional case, we defined two scenarios. 
-
-R script \cite{RProject} developed by Benedek Izsó 
-
-The \textit{batch} scenario uses only 4store to manage models and evaluate the queries (depicted as \textcircled{1} in \figref{architecture}). This serves as a baseline for the \textit{incremental} scenario, which uses \iqd{} (shown as \textcircled{2} in \figref{architecture}). For these initial experiments, the layout and allocation of the Rete network was determined manually. 
-
+The benchmark coordinator software used the \tb{}'s utilities to collect the data about the results of the benchmark. The data was collected in text files, which were  processed by an R script \cite{RProject} developed by Benedek Izsó. The script is capable of generating visualizing the results, shown in \autoref{evaluation-results}. 

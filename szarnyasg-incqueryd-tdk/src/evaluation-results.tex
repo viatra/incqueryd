@@ -1,67 +1,93 @@
 \section{Results}
-\label{benchmark-results}\label{analysis}
+\label{evaluation-results}
 
-The measurement results of our experiments are shown in \figref{benchmark} (aggregated from several complete sets to filter transient effects). As expected, the $\mathit{load}$ phase take about the same time for both scenarios, and \iqd{} is about half an order of magnitude slower when evaluating the query at first ($\mathit{check}_0$ phase) due to the Rete construction overhead. However, \iqd{} is several orders of magnitude faster during the $\mathit{edit}_i-\mathit{check}_i$ cycles, making on-the-fly query (re)evaluation feasible even for models larger than 50 million elements. Once initialized, \iqd{} scales linearly, since query response times for growing models can be kept low by adding additional computers for hosting Rete nodes.
+In the following section, we discuss the results of our benchmark.
 
+\subsection{Result visualizations}
 
-4.5.1 prezentálni minimális magyarázattal (ami callout lenne), log scale, OOM differences
-4.5.2 result analysis
-  - összekapcsolni a látott eredményeket a rendszer felépítésével
-  - lapos karakterisztika azt mutatja, hogy működik az elv
-  - hálózati kommunikáció nem akkora gond
-  - memória túlhasználat: van tapasztalatunk vele, future work to introduce fault-tolerance
-  - inkrementális esetben a APPROX MÓDOSÍTÁSSAL arányos a lekérdezés ideje.
-  - nem-inkrementális esetben a MODELLEL arányos
-  - Rete akkor jó, ha kicsiket módosít a user
-4.5.3 threats to validity
-  - befolyásoló tényezők
-    - caching off
-    - keresztbe terhelés, tranziens hibák 5x mérés, ...
+The $x$ axis shows the models size (number of model elements), the $y$ axis shows execution time. Both axes are logarithmic. 
+
+%As expected, the $\mathit{Read}$ phase take about the same time for both scenarios, and \iqd{} is about half an order of magnitude slower when evaluating the query at first ($\mathit{Check}_0$ phase) due to the Rete construction overhead. However, \iqd{} is several orders of magnitude faster during the $\mathit{Edit}_i-\mathit{Check}_i$ cycles, making on-the-fly query (re)evaluation feasible even for models larger than 50 million elements. Once initialized, \iqd{} scales linearly, since query response times for growing models can be kept low by adding additional computers for hosting Rete nodes.
+
+%4.5.1 prezentálni minimális magyarázattal (ami callout lenne), log scale, OOM differences
 
 
-\pic{benchmark/BatchTrafo_RouteSensor}{Batch transformation}
+%\pic{benchmark/Read_RouteSensor}{Execution times for the $\mathit{Read}$ phase}
+%\figref{benchmark/Read_RouteSensor}
 
-\figref{benchmark/BatchTrafo_RouteSensor}
+%\pic{benchmark/Check0_RouteSensor}{$\mathit{Check}_0$ phase}
+%\figref{benchmark/Check0_RouteSensor}
 
 
-\pic{benchmark/BatchValid_RouteSensor}{Batch validation}
+
+\pic{benchmark/BatchValid_RouteSensor}{Execution time for load and first validation}
 
 \figref{benchmark/BatchValid_RouteSensor}
 
 
-\pic{benchmark/Check0_RouteSensor}{$\mathit{check}_0$ phase}
 
-\figref{benchmark/Check0_RouteSensor}
-
-
-\pic{benchmark/OnTheFly_RouteSensor}{On-the-fly revalidation ($\mathit{edit}$ and $\mathit{check}_1$  phase)}
+\pic{benchmark/OnTheFly_RouteSensor}{Execution time for transformation and revalidation} %($\mathit{Edit}$ and $\mathit{Check}_1$  phase)}
 
 \figref{benchmark/OnTheFly_RouteSensor}
 
 
-\pic{benchmark/OnTheFlyEdit_RouteSensor}{On-the-fly revalidation, $\mathit{edit}$ phase}
+
+\pic{benchmark/OnTheFlyEdit_RouteSensor}{Execution time for transformation} %On-the-fly revalidation, $\mathit{Edit}$ phase}
 
 \figref{benchmark/OnTheFlyEdit_RouteSensor}
 
 
-\pic{benchmark/OnTheFlyCheck_RouteSensor}{On-the-fly revalidation, $\mathit{check}_1$ phase}
+ 
+\pic{benchmark/OnTheFlyCheck_RouteSensor}{Execution time of the revalidation} % ($\mathit{Check}_1$ phase)}
 
 \figref{benchmark/OnTheFlyCheck_RouteSensor}
 
 
-\pic{benchmark/Read_RouteSensor}{$\mathit{Read}$ phase}
 
-\figref{benchmark/Read_RouteSensor}
+\pic{benchmark/BatchTrafo_RouteSensor}{Total execution time for 50 validations}
+
+\figref{benchmark/BatchTrafo_RouteSensor}
+
+ 
 
 
 
-\subsection{Results Using Neo4j}
+\section{Result Analysis}
 
-\pic{benchmark/neo/BatchTrafo_RouteSensor}{Batch transformation}
 
-\figref{}
 
-\pic{benchmark/neo/OnTheFly_RouteSensor}{On-the-fly revalidation ($\mathit{edit}$ and $\mathit{check}_1$  phase)}
+- összekapcsolni a látott eredményeket a rendszer felépítésével
+- lapos karakterisztika azt mutatja, hogy működik az elv
 
-\figref{}
+The results prove that while network latency is present, the distributed Rete network still allows quick on-the-fly model validation operations. 
 
+\subsection{Memory Consumption}
+
+During our experiments, we measured cases where the Java Virtual Machine ran out of memory or had just enough memory, resulting in \texttt{OutOfMemoryError: Java heap space} and \texttt{OutOfMemoryError: GC overhead limit exceeded} exceptions, respectively. Introducing fault-tolerance mechanism for these cases is subject to future work (\autoref{future-work}).  
+  
+For incremental tools, the execution time is approximately proportional to \emph{the number of affected model elements}. For non-incremental tools, it is proportional to the \emph{size of the model}. 
+
+
+
+* inkrementális esetben a APPROX MÓDOSÍTÁSSAL arányos a lekérdezés ideje.
+* nem-inkrementális esetben a MODELLEL arányos
+* Rete akkor jó, ha kicsiket módosít a user
+
+
+% \subsection{Results Using Neo4j}
+% 
+% \pic{benchmark/neo/BatchTrafo_RouteSensor}{Batch transformation}
+% 
+% \figref{}
+% 
+% \pic{benchmark/neo/OnTheFly_RouteSensor}{On-the-fly revalidation ($\mathit{Edit}$ and $\mathit{Check}_1$  phase)}
+% 
+% \figref{}
+
+\subsection{Threats to validity}
+\label{threats-to-validity}
+
+4.5.3 threats to validity
+  - befolyásoló tényezők
+    - caching off
+    - keresztbe terhelés, tranziens hibák 5x mérés, ...

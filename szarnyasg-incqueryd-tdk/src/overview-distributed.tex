@@ -1,4 +1,5 @@
 \section{Extensions for Distributed Scalability}
+\label{iqd-architecture}
 
 Developing a distributed, scalable, incremental pattern matcher introduces numerous challenges. In the following, we will cover the \iqd{}'s architecture and its main extensions to \eiq{}.
 
@@ -39,7 +40,7 @@ can be executed efficiently.
 
 \subsection{Notification in Distributed Database Management Systems}
 
-While relational databases usually provide \emph{trigger}s for generating notifications, most triplestores and graph databases lack this feature. Among our primary database backends, 4store provides no triggers at all. Titan and Neo4j incorporate Blueprints, which provides an \texttt{EventGraph} class capable of generating notification events, but the events are only propagated in a single JVM (Java Virtual Machine). Implementing distributed notifications would require us to extend the \texttt{EventGraph} class and use a messaging framework. This is subject to future work (see \autoref{sec:future-work}). 
+While relational databases usually provide \emph{trigger}s for generating notifications, most triplestores and graph databases lack this feature. Among our primary database backends, 4store provides no triggers at all. Titan and Neo4j incorporate Blueprints, which provides an \texttt{EventGraph} class capable of generating notification events, but the events are only propagated in a single JVM (Java Virtual Machine). Implementing distributed notifications would require us to extend the \texttt{EventGraph} class and use a messaging framework. This is subject to future work (see \autoref{future-work}). 
 
 Because the lack of support for distributed notifications, in \iqd{}'s current implementation, notifications are controlled by the middleware by providing a facade for all model manipulation operations (\figref{incqueryd-architecture} \textcircled{3}). The notification messages are propagated through the Rete network via the Akka messaging framework. 
 

@@ -117,12 +117,12 @@ Neo4j, developed by Neo Technology, is the most popular NoSQL graph database. Ne
 
 Neo4j is one of the most mature NoSQL databases. It is well documented and provides ample tooling. However, it is scalability features are limited: instead of sharding, it only supports replication of data to create a highly available cluster. Of course, the scalability limitations are a hot topic in Neo4j's development. Neo4j's developers make serious efforts to improve Neo4j's scalability in an ongoing project called Rassilon~\cite{rassilon}.
 
-Neo4j is capable of loading graphs from \graphml{}~\cite{GraphML} and Blueprints \graphson{}~\cite{BlueprintsGraphSON} formats (see \autoref{sec:property-graph-formats} for examples). Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application~\cite{Neoclipse}. %A part of a \tb{} (\autoref{sec:trainbenchmark}) instance model is shown on \figref{neoclipse-graph}.
+Neo4j is capable of loading graphs from \graphml{}~\cite{GraphML} and Blueprints \graphson{}~\cite{BlueprintsGraphSON} formats (see \autoref{property-graph-formats} for examples). Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application~\cite{Neoclipse}. %A part of a \tb{} (\autoref{sec:trainbenchmark}) instance model is shown on \figref{neoclipse-graph}.
 
 \section{Graph Technologies}
 
 \subsection{Titan}
-\label{subsec:titan}
+\label{titan}
 
 Titan is an open-source, distributed, scalable graph database from Aurelius, the creators of the TinkerPop framework. Unlike Neo4j, Titan is not a standalone database. Instead, it builds on top of existing NoSQL database technologies and leverages Hadoop's MapReduce capabilities. Titan supports various storage backends, including Cassandra and HBase.
 
@@ -141,15 +141,16 @@ Titan can be deployed in different ways according to the needs of the applicatio
 \pic{titan-modes-distributed}{Using Titan with Cassandra in remote server mode}
 
 \subsubsection{Faunus}
-\label{subsubsec:faunus}
+\label{faunus}
 
 Although Titan was designed with scalability in mind, its query engine does not work in a parallel fashion. Also, it is unable to cope with queries resulting in millions of graph elements. To address this shortcoming, Aurelius developed a Hadoop-based graph analytics engine, Faunus.
 
-Faunus has its own format called Faunus \graphson{}. The Faunus \graphson{} format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process. See \autoref{subsec:faunus-graphson} for an example.
+Faunus has its own format called Faunus \graphson{}. The Faunus \graphson{} format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process. See \autoref{faunus-graphson} for an example.
 
 It is important to note that Faunus always traverses the whole graph and does not use its indices. This makes it slow for retrieving nodes or edges by type (see our typical workload in \autoref{indexing}).
 
 \subsection{4store}
+\label{4store}
 
 4store is an open-source, distributed triplestore created by Garlik~\cite{4store}. Unlike the other tools discussed earlier, 4store is written in C. While 4store is primarily applied for semantic web projects, its maturity and scalability made it an appropriate storage backend for \iqd's prototype.
 
@@ -183,7 +184,7 @@ Titan      & Property graph & Automatic & Automatic             & Gremlin      &
 
 \section{Asynchronous Messaging}
 
-Most distributed, concurrent systems use a messaging framework or message queue service. Because of the nature of the Rete algorithm (\autoref{Rete}), \iqd{}\ requires a distributed, asynchronous messaging framework.
+Most distributed, concurrent systems use a messaging framework or megssage queue service. Because of the nature of the Rete algorithm (\autoref{Rete}), \iqd{}\ requires a distributed, asynchronous messaging framework.
 
 \subsection{Akka}
 \label{subsec:akka}
@@ -235,7 +236,7 @@ languages are defined using this formalism.
 %  \end{figure}
  
  
- Figure \ref{fig:ecore-kernel} illustrates the core elements of the Ecore approach. The full metamodel can be found in the literature. The most important elements are:
+Figure \ref{fig:ecore-kernel} illustrates the core elements of the Ecore approach. The full metamodel can be found in the literature. The most important elements are:
 
 \begin{itemize}
   \item \emph{EClass} models classes (or concepts). EClasses are identified by
@@ -258,7 +259,7 @@ The rest of the Ecore metamodeling language contains utility elements,
 common supertypes that support the organization and hierarchisation of the
 models but the main metamodeling part has been covered here.
 
-\picTiny{ecore-kernel}{A simplified subset of the Ecore metamodel}
+\picSmall{ecore-kernel}{The Ecore kernel, a simplified subset of the Ecore metamodel}
 
 \subsection{\eiq{}}
 \label{subsec:eiq}
@@ -310,7 +311,7 @@ transitive closures, etc.~on top of the models.
 % Tooling.
 The framework contains UI tooling which helps the users to effectively develop
 test and integrate queries into their solution. The first element of the tooling
-is the rich XText~\cite{XtextWeb} based editor for the query language which aids writing well
+is the rich Xtext~\cite{XtextWeb} based editor for the query language which aids writing well
 formed queries providing content assist, error markings and such. The next part
 of the tooling is the ability to load EMF models and execute the queries on them
 as the user writes them giving visual feedback about the result.

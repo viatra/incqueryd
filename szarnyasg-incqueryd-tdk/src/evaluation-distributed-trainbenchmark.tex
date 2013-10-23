@@ -1,16 +1,21 @@
 \section{Distributed \tb{}}
 \label{distributed-trainbenchmark}
 
+Based on the \tb{}, discussed in \autoref{trainbenchmark}, we created an extended version for distributed systems. The main goal of the distributed \tb{} is the same as the original's: measure the reponse time and scalability of different tools.
 
+\subsection{Generating Models}
 
-- based on the \tb{}, I created an extended version for distributed systems. 
-  - cite ASE article
-  - TrainBenchmark
-  - models in different format
-  - different technologies
-  - different workflow (queries, model manipulation)
-  - measure eponse time, not throughput
-  - we increate the model's size --> query results size increases
-  - read check edit check phases
-  - the benchmark runs on a coordinator and delegates the operations to a distributed system
-  - one user uses the entire cluster (for benchmarking purposes)
+For Neo4j (\autoref{subsec:neo4j}), we already expanded the the generator with a \emph{property graph generator} module. The generator creates a graph in a Neo4j database and uses the Blueprints library's \texttt{GraphMLWriter} and \texttt{GraphSONWriter} classes to serialize it to \graphml{} (\autoref{graphml-example}) and Blueprints \graphson{} (\autoref{blueprints-graphson-example}) formats. 
+
+Titan's Faunus framework requires a specific format called Faunus \graphson{} (\autoref{faunus-graphson-example}). To use Faunus, we extended the property graph generator to generate Faununs \graphson{} files as well.
+
+\subsection{Distributed Architecture}
+
+The distributed benchmark defines the same phases as the original \tb{}. The benchmark is controlled by a distinguished node of the system, called the \emph{coordinator}. The coordinator delegates the operations (e.g.\ loading the graph) to the distributed system. The queries and the model manipulation operations also run distributedly.
+
+%- we increase the model's size --> query results size increases
+
+\subsection{Benchmark Limitations}
+
+A common reason for designing and implementing distributed systems is that they are capable of handling a great number of concurrent requests. This way, more users can use the system at the same time. In the distributed \tb{}, the system is only used by a single user. Simulating multiple users and issuing concurrent requests is subject to future work (\autoref{future-work}).
+
