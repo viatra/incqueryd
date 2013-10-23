@@ -83,7 +83,7 @@ WHERE
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\picSmall{recipe}{\iqd{}'s workflow} 
+\picTiny{recipe}{\iqd{}'s workflow} 
 
 \subsection{Workflow of the Example}
 \label{example-workflow}
@@ -99,7 +99,7 @@ First, using \eiq{}'s tooling, the query (\texttt{routeSensor.iqpl}, see \lstref
 
 The metamodel (\texttt{railroad.ecore}) is shown on \figref{trainbenchmark-metamodel}. Based on the query \textcircled{2} and the metamodel \textcircled{3} \eiq{} builds a \emph{pattern system} (PSystem). The PSystem is translated to a Rete recipe, the system derives a Rete layout \textcircled{4}, that guarantees the satisfaction of the constraints. The Rete layout is shown on \figref{rete-routesensor-layout}.
 
-\pic{rete-routesensor-layout}{The RouteSensor query's layout}
+\picSmall{rete-routesensor-layout}{The RouteSensor query's layout}
 
 \subsubsection{Deploying the Rete Net}
 
@@ -127,4 +127,4 @@ In order to provide query results that are consistent with the model, we need ma
 
 \figref{rete-routesensor-example-distributed} shows the distributed Rete net containing the partial matches of the original graph. When we delete the edge between vertices 2 and 1, the \texttt{ROUTE\_ROUTEDEFINITION} type indexer receives a notification from the middleware and sends a \textit{negative update} \textcircled{1} with the tuple $(2, 1)$. The antijoin node processes the negative update and propagates a negative update \textcircled{2} with the tuple $(3, 4, 2, 1)$. This is received by the production node, which initiates the \textit{termination protocol} \textcircled{3}, \textcircled{4}. After the termination protocol finishes, the indexer signals the client about the successful update. The client can now retrieve the results from the production node. The client may choose to retrieve only the ''deltas'', i.e.\ only the the tuples that have been added or deleted since the last modification.
 
-\pic{rete-routesensor-example-distributed}{Operation sequence on a distributed Rete net}
+\picSmall{rete-routesensor-example-distributed}{Operation sequence on a distributed Rete net}

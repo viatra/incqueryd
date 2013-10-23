@@ -26,7 +26,7 @@ Rete has many improved versions (e.g.\ Rete II, Rete III, Rete-NT), however, unl
 
 The algorithm was originally created by Charles Forgy~\cite{Forgy} for rule-based expert systems. Gábor Bergmann  adapted the algorithm for EMF models and added many tweaks and improvements to it~\cite{BergmannMasters}.
 
-\pic{rete}{The structure of the Rete propagation network}
+\picSmall{rete}{The structure of the Rete propagation network}
 
 The Rete algorithm defines an asynchronous network of communicating nodes (\figref{rete}). This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations known from relational algebra, like projection ($ \pi $), selection ($ \sigma $),  join ($ \rhd\!\!\lhd $) and antijoin ($ \rhd $) operations. The worker nodes store partial query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their change sets (\emph{deltas}).
 

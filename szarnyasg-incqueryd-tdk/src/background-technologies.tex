@@ -10,6 +10,7 @@ During the early phase of the research, we studied the architecture and limitati
 In this chapter, we introduce the technologies that can form the basis of a scalable, distributed, asynchronous system. We also present EMF (Eclipse Modeling Framework), and \eiq{}, an incremental model query evaluation tool.
 
 \section{Big Data and the NoSQL Movement}
+\label{nosql}
 
 Since the 1980s, database management systems based on the relational data model~\cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling and so on. However, due to their rich feature set and the strongly connected nature of their data model, relational databases often have scalability issues~\cite{Jacobs:2009:PBD:1536616.1536632, Sakr13}. In practice, this renders them impractical for a number of use cases, e.g.\ running complex queries on large data sets.
 
@@ -182,7 +183,7 @@ Titan      & Property graph & Automatic & Automatic             & Gremlin      &
 
 \section{Asynchronous Messaging}
 
-Most distributed, concurrent systems use a messaging framework or message queue service. Because of the nature of the Rete algorithm (\autoref{rete}), \iqd{}\ requires a distributed, asynchronous messaging framework.
+Most distributed, concurrent systems use a messaging framework or message queue service. Because of the nature of the Rete algorithm (\autoref{Rete}), \iqd{}\ requires a distributed, asynchronous messaging framework.
 
 \subsection{Akka}
 \label{subsec:akka}
@@ -262,15 +263,70 @@ models but the main metamodeling part has been covered here.
 \subsection{\eiq{}}
 \label{subsec:eiq}
 
-\eiq{} is developed by the Fault Tolerant Systems Research Group (FTSRG) in the Budapest University of Technology and Economics. \eiq{} is an open-source Eclipse project which provides incremental query evaluation on EMF models. The queries (graph patterns) are defined in \iq{} Pattern Language (IQPL), a domain-specific language implemented in Xtext and Xtend. \eiq{}'s architecture is shown on \figref{incquery-architecture}.
+%\eiq{} is developed by the Fault Tolerant Systems Research Group (FTSRG) in the Budapest University of Technology and Economics. \eiq{} is an open-source Eclipse project which provides incremental query evaluation on EMF models. The queries (graph patterns) are defined in \iq{} Pattern Language (IQPL), a domain-specific language implemented in Xtext and Xtend. \eiq{}'s architecture is shown on \figref{incquery-architecture}.
 
 \picTiny{incquery-architecture}{\eiq{}'s architecture}
 
-% Ez a 2.7-es rész kicsit kilóg színvonalban (lefelé) a többihez képest.
-% 
-% Egyértelműbben le kellene írni, hogy mi az Eclipse és az EMF-IncQuery szerepe:
-% - Eclipse = tooling környezet
-% - EMF-IncQuery = tooling bizonyos részei
-% 
-% Ami háttértechnológiaként nagyon fontos az Eclipse-ből, az a metamodeling + EMF (erről legalább 1 teljes oldal kellene, ábrával), és az IncQuery-t is sokkal részletesebben el kellene magyarázni.
+%\cite{icmt2011} 
+
+%TODO
+
+% Problem to solve.
+When working with models, it is quite common task to query the model for
+validating certain properties or searching for interesting parts. EMF-IncQuery
+\cite{EMFIncQuery} provides a solution for this problem: It is a framework to
+execute fast model queries over EMF models. It is actively developed at Budapest
+University of Technology and Economics. The current stable version (0.7) 
+proved its usability through industrial use-cases
+and university researches.
+
+% Core.
+The core of the framework is a query evaluator engine built on top of graph
+pattern matching engine using Rete algorithm adapted from expert
+systems to facilitate the efficient storage and retrieval of partial views of
+graph-like models. In a nutshell, Rete maintains a hierarchical query data
+structure on top of the model which stores the result of sub-queries. On model
+change, the event propagates through this data structure leaving the unmodified
+part of the model untouched. This results in fast, near zero response time and
+size-independence on small model changes. In return, the model and the query
+structure has to be loaded into the memory, which can be a significant resource
+expense.
+
+% API.
+To access the capabilities of the core, an easy-to-use, type safe API is
+defined. Using the API, EMF resources and object hierarchies can be loaded and
+queried incrementally. In addition certain extensions -- such as the validation
+framework -- can be attached (\autoref{fig:incquery-architecture}).
+
+% Query lanuage.
+Along the API, a complete query language is defined. It provides a declarative
+way to express the queries over the EMF model in the form of graph patterns.
+With the language the user can express combined queries, negative patterns,
+checking property conditions, simple calculations, calculate disjunctions and
+transitive closures, etc.~on top of the models.
+
+% Tooling.
+The framework contains UI tooling which helps the users to effectively develop
+test and integrate queries into their solution. The first element of the tooling
+is the rich XText~\cite{XtextWeb} based editor for the query language which aids writing well
+formed queries providing content assist, error markings and such. The next part
+of the tooling is the ability to load EMF models and execute the queries on them
+as the user writes them giving visual feedback about the result.
+The last important part is the code generation. The tooling dynamically
+generates the source code which contains the programmatic equivalent of the
+model queries. The users can integrate this code out of the box in Eclipse
+plugins as well as headless applications to execute queries and get back the
+results from the source code level.
+
+\section{Challenges}
+
+\eiq{} is proven to be effecient for incremental query evaluation on small to medium-sized models (in the order of magnitude of $10^6$). However, model-driven engineering challenges often present large models, with $10^7$ or more elements \cite{Scheidgen12}. 
+
+Due to the Rete algorithm's memory consumption (\autoref{rete}), \eiq{} cannot handle large models efficiently \cite{models10}. A trivial solution would be to use \emph{vertical scaling}: put more memory in the workstation. Unfortunately, this approach is not feasible due to nature of Java's memory management. The Garbage Collector (GC) cannot handle heap sizes larger than 10~GB efficiently, thus introducing long pauses in the application \cite{Azul}. 
+
+This problem is well-known in the Java community. There are alternative Java Virtual Machines (JVMs) with specialized Garbage Collectors, like Azul Systems' JVM. However, the Azul JVM is a proprietary product and has specific hardware requirements. 
+
+Instead of vertical scaling, we decided to opt for horizontal scaling. As described in \autoref{nosql}, distributed non-relational databases have been gaining momentum in the last years. For persisting models, we inspected graph databases, but found that their query layer does not scale well in a distributed environment. This is a serious problem for MDE, where the queries are typically more complex than in traditional, transactional database management.
+
+Therefore, we decided to implement our own distributed, scalable query layer, \iqd{}.
 
