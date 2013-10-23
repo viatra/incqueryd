@@ -1,28 +1,17 @@
-\section{Benchmark Scenario}
+\section{\tb{}}
+\label{trainbenchmark}
 
-\label{benchmark}
-In order to measure the efficiency of model queries and manipulation operations over the distributed architecture, we designed a benchmark to measure tool response times in a well-formedness validation use case. The benchmark transaction sequence consists of four phases: (i) during the $\mathit{load}$ phase, the serialization of the model is loaded into the database; (ii) a test query (\figref{patterndef}) is executed ($\mathit{check}_0$); finally, in a cycle consisting of several repetitions, some elements are programmatically modified ($\mathit{edit}_i$) and the test query is re-evaluated ($\mathit{check}_i$). We ran the benchmark on pseudo-randomly generated instance models of growing size, each model containing about twice as many elements (vertices and edges) as the previous one and having a regular fan-out structure. As the current version of Neo4j does not have built-in support for graph sharding, the benchmark uses a manually sharded strategy where each shard contains a disjoint partition of the model.
-
-\pic{benchmark-baseline}{The non-incremental baseline benchmark's setup}
-
-%TODO referencia leirasa (miert az, ami?)
-% We implemented two approaches
-% on top of Neo4j.
-% Non-incremental: uses only Cypher for the pattern matching. 
-%   Beside Neo4j's indexes, no additonal data structures are built.
-
-% TODO sajat implementacio leirasa (manualis allokacio)
-
-% Incremental: builds a distributed Rete network to support incremental pattern matching, and 
-%     maintains both the databases and the Rete net upon modification. 
-%     Only uses Cypher to retrieve the graph nodes for the type indexers of the Rete net. 
-
-% For the incremental query, we manually created the Rete network and 
-% generated random instance models of different sizes to benchmark the query's execution time.
+The \tb{} was designed by Benedek Izsó, Zoltán Szatmári and István Ráth \cite{high-performance-queries} to measure the efficiency of model queries and manipulation operations in different tools. The \tb{} is primarily targeted for a well-formedness validation use case. 
 
 
+* Measure the response time and the scalability
 
-% lifted from thesis work
+* Workload profile's difference from standard benchmarks
+
+
+In a ''real-world'' model editing sequence, the user tipically edits the model in small steps ($\mathit{edit}_i$ phases). The user's work is much more productive if she receives an instant feedback, hence we would like to run re-evaluate well-formedness queries quickly (preferably in sub-second time). This creates the need for an incremental pattern matcher tools.
+
+
 
 The \tb{} consists of the following phases:
 
@@ -33,8 +22,28 @@ The \tb{} consists of the following phases:
   \item $\mathit{check}_i$: running the queries again.
 \end{enumerate}
 
-In a ''real-world'' model editing sequence, the user tipically edits the model in small steps ($\mathit{edit}_i$ phases). The user's work is much more productive if she receives an instant feedback, hence we would like to run re-evaluate well-formedness queries quickly (preferably in sub-second time). This creates the need for an incremental pattern matcher tools.
 
-Measure the response time and the scalability
 
-Workload profile's difference from standard benchmarks
+The benchmark transaction sequence consists of four phases: (i) during the $\mathit{load}$ phase, the serialization of the model is loaded into the database; (ii) a test query (\figref{patterndef}) is executed ($\mathit{check}_0$); finally, in a cycle consisting of several repetitions, some elements are programmatically modified ($\mathit{edit}_i$) and the test query is re-evaluated ($\mathit{check}_i$). We ran the benchmark on pseudo-randomly generated instance models of growing size, each model containing about twice as many elements (vertices and edges) as the previous one and having a regular fan-out structure. 
+%As the current version of Neo4j does not have built-in support for graph sharding, the benchmark uses a manually sharded strategy where each shard contains a disjoint partition of the model.
+
+
+
+4.2 TrainBenchmark
+  - performance comparison of various query engines
+  - in the context of MDE workload (incremental model validation)
+  - scalability is measured along model size and query complexity
+
+\subsection{Results}
+  
+  - present classic TB results
+
+\pic{classic-trainbenchmark-results}{\tb{} results measured on a single node}
+
+\subsection{Generating models}
+
+Due to both confidentiality and technical reasons, it is difficult to obtain real-world industrial models and queries. Also, using confidential data sets hamstrings the reproducibility of the conducted benchmarks. Therefore, we used an artificial data set which mimics real-world models.
+
+The generator capable of generating railroad instance models of different sizes. It is capable of generating models in different formats, including EMF, OWL, RDF and SQL. 
+
+For Neo4j (\autoref{subsec:neo4j}) and Titan (\autoref{subsec:titan}), we expanded the generator with a module that can generate property graphs. The generator creates a graph in a Neo4j database and uses the Blueprints library's \texttt{GraphMLWriter} and \texttt{GraphSONWriter} classes to serialize the graph to \graphml{} and Blueprints \graphson{} formats. It is also capable of serializing the graph to Faunus \graphson{} format.

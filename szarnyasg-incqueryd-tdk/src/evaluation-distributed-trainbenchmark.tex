@@ -1,12 +1,6 @@
-\section{Generation of Models}
+\section{Distributed \tb{}}
+\label{distributed-trainbenchmark}
 
-Due to both confidentiality and technical reasons, it is difficult to obtain real-world industrial models and queries. Also, using confidential data sets hamstrings the reproducibility of the conducted benchmarks. Therefore, we used an artificial data set which mimics real-world models.
-
-..
-
-The generator capable of generating railroad instance models of different sizes. It is capable of generating models in different formats, including EMF, OWL, RDF and SQL. 
-
-For Neo4j (\autoref{subsec:neo4j}) and Titan (\autoref{subsec:titan}), we expanded the generator with a module that can generate property graphs. The generator creates a graph in a Neo4j database and uses the Blueprints library's \texttt{GraphMLWriter} and \texttt{GraphSONWriter} classes to serialize the graph to \graphml{} and Blueprints \graphson{} formats. It is also capable of serializing the graph to Faunus \graphson{} format.
 
 
 - based on the \tb{}, I created an extended version for distributed systems. 
