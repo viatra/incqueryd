@@ -211,7 +211,7 @@ Eclipse is a free, open-source software development environment and a platform f
 \iqd{}'s single workstation predecessor, \eiq{} is built around Eclipse-based technologies. To reap the benefits of a mutual code base, we designed \iqd\ to use as much of \eiq's components as possible. In the following section, we introduce the Eclipse-based technologies most important for our work.
 
 \subsection{EMF}
-\label{subsec:EMF}
+\label{emf}
 
 Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Framework). EMF provides a metamodel (Ecore) for designing applications and a code generation facility to produce the Java classes for the model.
 
@@ -333,3 +333,16 @@ Instead of vertical scaling, we decided to opt for \emph{horizontal scaling}. As
 
 Therefore, we decided to implement our own distributed, scalable query layer based on NoSQL and semantic web databases.
 
+
+
+
+
+
+
+
+
+The Resource Description Framework (RDF~\cite{website:rdf_standard}) is developed to support the description of instances of the semantic web, assuming sparse, ever-growing, incomplete data. Semantic models are built up from triple statements and they can be queried using the SPARQL~\cite{SPARQL} graph pattern language with tools like Sesame~\cite{sesame} or Virtuoso~\cite{openvirtuoso}.
+
+Property graphs~\cite{DBLP:journals/corr/abs-1006-2361} provide a more general way to describe graphs by annotating vertices and edges with key-value properties.
+
+Such data structures can be stored in graph databases like Neo4j~\cite{neo4j} which provides the Cypher~\cite{cypher} query language. Even though big data storage (usually based on MapReduce) provides fast object persistence and retrieval, query engines realized directly on these data structures do not provide dedicated support for incremental query evaluation.
