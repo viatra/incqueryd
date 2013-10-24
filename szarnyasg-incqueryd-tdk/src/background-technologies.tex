@@ -9,6 +9,8 @@ During the early phase of the research, we studied the architecture and limitati
 
 In this chapter, we introduce the technologies that can form the basis of a scalable, distributed, asynchronous system. We also present EMF (Eclipse Modeling Framework), and \eiq{}, an incremental model query evaluation tool.
 
+\pic{graph-sharding}{Different sharding strategies for the same graph}
+
 \section{Big Data and the NoSQL Movement}
 \label{nosql}
 
@@ -16,22 +18,31 @@ Since the 1980s, database management systems based on the relational data model~
 
 In the last decade, large organizations struggled to store and process the huge amounts of data they produced. This problem introduces a diverse palette of scientific and engineering challenges, called \emph{Big Data} challenges. 
 
-Big Data challenges spawned dozens of new database management systems. Typically, these systems broke with the strictness of the relational data model and utilized simpler, more scalable data models. These systems dropped support for the SQL query language used in relational databases and hence were called \emph{NoSQL databases}\footnote{The community now mostly interprets NoSQL as ''not only SQL''.}~\cite{NoSQL}. During the development of \iqd's propotype, we experimented with numerous NoSQL databases.
+Big Data challenges spawned dozens of new database management systems. Typically, these systems broke with the strictness of the relational data model and utilized simpler, more scalable data models. These systems dropped support for the SQL query language used in relational databases and hence were called \emph{NoSQL databases}\footnote{The community now mostly interprets NoSQL as ''not only SQL''.}~\cite{NoSQL}. During the development of \iqd{}'s prototype, we experimented with numerous NoSQL databases.
 
 \section{Graph Models and Storage Methods}
 
 The graph is a well-known mathematical concept widely used in computer science. For our work, it is important to distinguish between different graph data models.
 
-\pic{graph-classes}{Different graph data models~(based on \cite{DBLP:journals/corr/abs-1006-2361})}
+\picSmall{graph-classes}{Different graph data models~(based on \cite{DBLP:journals/corr/abs-1006-2361})} 
 
 The most basic graph model is the \emph{simple graph}, formally defined as $G = (V, E)$, where $V$ is the set of vertices and $E \subseteq V \times V$ is the set of edges. Simple graphs are sometimes referred as textbook-style graphs because they are an integral part of academic literature. Simple graphs are useful for modeling homogeneous systems and have plenty of algorithms for processing.
 
-Simple graphs can be extended in several different ways (\figref{graph-classes}). To describe the connections in more detail, we may add directionality to edges (\emph{directed graph}), allow loops and multiple edges (\emph{multi-graph}). To allow different connections, we may label the edges (\emph{labeled graph}). \emph{RDF graph}s use URIs (Uniform Resource Identifiers) instead of labels, otherwise they have similar expressive power as labeled graphs. \emph{Property graph}s add even more possibilites by introducing properties. Each graph element, both vertices and edges can be described with a collection of properties. The properties are key--value pairs, e.g. \texttt{type = 'Person'}, \texttt{name = 'John'}, \texttt{age = 34}. 
-Property graphs are powerful enough to describe Java objects or EMF instance models (\autoref{subsec:EMF}). 
+Simple graphs can be extended in several different ways (\figref{graph-classes}). To describe the connections in more detail, we may add directionality to edges (\emph{directed graph}). To allow different connections, we may label the edges (\emph{labeled graph}). 
+
+\emph{RDF graph}s use URIs (Uniform Resource Identifiers) instead of labels, otherwise they have similar expressive power as labeled graphs. \emph{Property graph}s add even more possibilites by introducing properties. Each graph element, both vertices and edges can be described with a collection of properties. The properties are key--value pairs, e.g. \texttt{type = 'Person'}, \texttt{name = 'John'}, \texttt{age = 34}.
+
+\emph{Typed graph}s
+
+\emph{Attributed graph}s
+
+\emph{Semantic graph}s
+
+Property graphs are powerful enough to describe Java objects or EMF instance models. 
 
 \subsection{TinkerPop}
 
-The \textit{TinkerPop} framework is an open-source software stack for graph storage and processing \cite{TinkerPop}. TinkerPop includes \textit{Blueprints}, a property graph model interface. Blueprints fulfills the same role for graph databases as JDBC does for relational databases. Most NoSQL graph databases implement the property graph interface provided by Blueprints, including Neo4j (\autoref{subsec:neo4j}), Titan (\autoref{subsec:titan}), DEX~\cite{DEX}, InfiniteGraph~\cite{InfiniteGraph} and OrientDB~\cite{OrientDB}.
+The \textit{TinkerPop} framework is an open-source software stack for graph storage and processing \cite{TinkerPop}. TinkerPop includes \textit{Blueprints}, a property graph model interface. Blueprints fulfills the same role for graph databases as JDBC does for relational databases. Most NoSQL graph databases implement the property graph interface provided by Blueprints, including Neo4j (\autoref{neo4j}), Titan (\autoref{titan}), DEX~\cite{DEX}, InfiniteGraph~\cite{InfiniteGraph} and OrientDB~\cite{OrientDB}.
 
 \picSmall{tinkerpop-stack}{The TinkerPop software stack \cite{Blueprints}}
  
@@ -59,7 +70,7 @@ Triplestores use the RDF (Resource Description Framework) data model. Although t
 
 \section{NoSQL Technologies}
 
-In the following section we summarize the core technologies used in \iqd's prototype implementation. We briefly introduce the goals of each technology, with particular emphasis on the scalability aspects.
+In the following section we summarize the core technologies used in \iqd{}'s prototype implementation. We briefly introduce the goals of each technology, with particular emphasis on the scalability aspects.
  
 \subsection{Cassandra}
 
@@ -136,7 +147,7 @@ Titan uses the storage backend's partitioner (e.g.\ Cassandra's RandomPartitione
 
 \subsubsection{Deployment}
 
-Titan can be deployed in different ways according to the needs of the application. For \iqd's prototype, we used Titan in \textit{remote server mode} (\figref{titan-modes-distributed}). In this setup, Titan runs in the same Java Virtual Machine as the application and communicates with the Cassandra cluster on a low-level protocol (e.g.\ Thrift).
+Titan can be deployed in different ways according to the needs of the application. For \iqd{}'s prototype, we used Titan in \textit{remote server mode} (\figref{titan-modes-distributed}). In this setup, Titan runs in the same Java Virtual Machine as the application and communicates with the Cassandra cluster on a low-level protocol (e.g.\ Thrift).
 
 \pic{titan-modes-distributed}{Using Titan with Cassandra in remote server mode}
 
@@ -145,7 +156,7 @@ Titan can be deployed in different ways according to the needs of the applicatio
 
 Although Titan was designed with scalability in mind, its query engine does not work in a parallel fashion. Also, it is unable to cope with queries resulting in millions of graph elements. To address this shortcoming, Aurelius developed a Hadoop-based graph analytics engine, Faunus.
 
-Faunus has its own format called Faunus \graphson{}. The Faunus \graphson{} format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process. See \autoref{faunus-graphson} for an example.
+Faunus has its own format called Faunus \graphson{}. The Faunus \graphson{} format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process. See \autoref{faunus-graphson-example} for an example.
 
 It is important to note that Faunus always traverses the whole graph and does not use its indices. This makes it slow for retrieving nodes or edges by type (see our typical workload in \autoref{indexing}).
 
@@ -184,7 +195,7 @@ Titan      & Property graph & Automatic & Automatic             & Gremlin      &
 
 \section{Asynchronous Messaging}
 
-Most distributed, concurrent systems use a messaging framework or megssage queue service. Because of the nature of the Rete algorithm (\autoref{Rete}), \iqd{}\ requires a distributed, asynchronous messaging framework.
+Most distributed, concurrent systems use a messaging framework or megssage queue service. Because of the nature of the Rete algorithm (\autoref{rete}), \iqd{} requires a distributed, asynchronous messaging framework.
 
 \subsection{Akka}
 \label{subsec:akka}
@@ -208,7 +219,7 @@ As of October 2013, the latest version (Akka 2.2) also features \textit{pluggabl
 
 Eclipse is a free, open-source software development environment and a platform for plug-in development. Members of the Eclipse Foundation include industry giants like IBM, Intel, Google and SAP.
 
-\iqd{}'s single workstation predecessor, \eiq{} is built around Eclipse-based technologies. To reap the benefits of a mutual code base, we designed \iqd\ to use as much of \eiq's components as possible. In the following section, we introduce the Eclipse-based technologies most important for our work.
+\iqd{}'s single workstation predecessor, \eiq{} is built around Eclipse-based technologies. To reap the benefits of a mutual code base, we designed \iqd{} to use as much of \eiq's components as possible. In the following section, we introduce the Eclipse-based technologies most important for our work.
 
 \subsection{EMF}
 \label{emf}
@@ -329,20 +340,41 @@ Due to the Rete algorithm's memory consumption (\autoref{rete}), \eiq{} cannot h
 
 This problem is well-known in the Java community. There are alternative Java Virtual Machines (JVMs) with specialized Garbage Collectors, like Azul Systems' JVM. However, the Azul JVM is a proprietary product and has specific hardware requirements. Also, this does not solve the scaling problem entirely -- the model size is still limited by the total amount memory in a single computer.
 
-Instead of vertical scaling, we decided to opt for \emph{horizontal scaling}. As described in \autoref{nosql}, distributed non-relational databases have been gaining momentum in the last years. For persisting models, we inspected graph databases, but found that their query layer does not scale well in a distributed environment (\autoref{benchmark-results}). This is a serious problem for MDE, where the queries are typically more complex than in traditional, transactional database management.
+Instead of vertical scaling, we decided to opt for \emph{horizontal scaling}. As described in \autoref{nosql}, distributed non-relational databases have been gaining momentum in the last years. For persisting models, we inspected graph databases, but found that their query layer does not scale well in a distributed environment (\autoref{evaluation-results}). This is a serious problem for MDE, where the queries are typically more complex than in traditional, transactional database management.
 
 Therefore, we decided to implement our own distributed, scalable query layer based on NoSQL and semantic web databases.
 
 
+ 
+
+\subsection{Mapping Ecore to Other Data Models}
+\label{ecore-mapping}
+
+Our intention to reuse \eiq{} for building \iqd{} required us to map EMF's metamodel, Ecore to the domain of property graphs and RDF models.
+
+\begin{table}[htb]
+
+\centering
+\begin{tabular}{ | l | l | l | }
+
+\hline
+\bf Ecore concept          & \bf Property graph concept  & \bf RDF concept \tabularnewline \hline\hline
+\verb+EClass+ instance     & nodes' \verb+type+ property & \verb+rdfs:Resource+ \\ \hline
+\verb+EAttribute+ instance & nodes' property names       & \verb+rdf:Property+  \\ \hline
+\verb+EReference+ instance & edge label                  & \verb+rdf:Property+  \\ \hline
+\verb+EDataType+ instance  & Java primitive types        & \verb+rdfs:Datatype+ \\ \hline
+ 
+\end{tabular}
+\caption{Mapping Ecore to property graphs and RDF}
+\label{tab:ecore-mapping}
+
+\end{table}
 
 
 
 
-
-
-
-The Resource Description Framework (RDF~\cite{website:rdf_standard}) is developed to support the description of instances of the semantic web, assuming sparse, ever-growing, incomplete data. Semantic models are built up from triple statements and they can be queried using the SPARQL~\cite{SPARQL} graph pattern language with tools like Sesame~\cite{sesame} or Virtuoso~\cite{openvirtuoso}.
-
-Property graphs~\cite{DBLP:journals/corr/abs-1006-2361} provide a more general way to describe graphs by annotating vertices and edges with key-value properties.
-
-Such data structures can be stored in graph databases like Neo4j~\cite{neo4j} which provides the Cypher~\cite{cypher} query language. Even though big data storage (usually based on MapReduce) provides fast object persistence and retrieval, query engines realized directly on these data structures do not provide dedicated support for incremental query evaluation.
+% The Resource Description Framework (RDF~\cite{website:rdf_standard}) is developed to support the description of instances of the semantic web, assuming sparse, ever-growing, incomplete data. Semantic models are built up from triple statements and they can be queried using the SPARQL~\cite{SPARQL} graph pattern language with tools like Sesame~\cite{sesame} or Virtuoso~\cite{openvirtuoso}.
+% 
+% Property graphs~\cite{DBLP:journals/corr/abs-1006-2361} provide a more general way to describe graphs by annotating vertices and edges with key-value properties.
+% 
+% Such data structures can be stored in graph databases like Neo4j~\cite{neo4j} which provides the Cypher~\cite{cypher} query language. Even though big data storage (usually based on MapReduce) provides fast object persistence and retrieval, query engines realized directly on these data structures do not provide dedicated support for incremental query evaluation.

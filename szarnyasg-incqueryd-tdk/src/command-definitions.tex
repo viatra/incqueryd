@@ -1,43 +1,3 @@
-\newcommand{\picBig}[2]{
-	\begin{figure}[!htb]
-		\centering
-		\begin{adjustbox}{max size={\textwidth}{\textheight}}
-			\includegraphics[scale=1.3]{figures/#1}
-		\end{adjustbox}
-		\caption{#2}
-		\label{fig:#1}
-	\end{figure}}
-
-\newcommand{\pic}[2]{
-	\begin{figure}[!htb]
-		\centering
-		\begin{adjustbox}{max size={\textwidth}{\textheight}}
-			\includegraphics[scale=1.0]{figures/#1}
-		\end{adjustbox}
-		\caption{#2}
-		\label{fig:#1}
-	\end{figure}}
-
-\newcommand{\picSmall}[2]{
-	\begin{figure}[!htb]
-		\centering
-		\begin{adjustbox}{max size={0.8\textwidth}{\textheight}}
-			\includegraphics[scale=1.0]{figures/#1}
-		\end{adjustbox}
-		\caption{#2}
-		\label{fig:#1}
-	\end{figure}}
-	
-\newcommand{\picTiny}[2]{
-	\begin{figure}[!htb]
-		\centering
-		\begin{adjustbox}{max size={0.6\textwidth}{\textheight}}
-			\includegraphics[scale=1.0]{figures/#1}
-		\end{adjustbox}
-		\caption{#2}
-		\label{fig:#1}
-	\end{figure}}
-
 \newcommand{\picCustom}[3]{
 	\begin{figure}[!htb]
 		\centering
@@ -48,17 +8,109 @@
 		\label{fig:#1}
 	\end{figure}}
 
-\newcommand{\picSide}[2]{\picSideScalable{#1}{1.0}{#2}}
+\newcommand{\picBig}[2]{\picCustom{#1}{#2}{1.3}}
+\newcommand{\pic}[2]{\picCustom{#1}{#2}{1.0}}
+\newcommand{\picSmall}[2]{\picCustom{#1}{#2}{0.8}}
+\newcommand{\picTiny}[2]{\picCustom{#1}{#2}{0.6}}
 
-\newcommand{\picSideScalable}[3]{
-	\begin{wrapfigure}{R}{0.34\textwidth}
-	  \vspace{-20pt}
-	  \begin{center}
-		\begin{adjustbox}{max size={0.32\textwidth}{\textheight}}
-		  \includegraphics[scale=#2]{figures/#1}
-	    \end{adjustbox}
-	  \end{center}
-	  \vspace{-10pt}
-	  \caption{#3}
-	  \vspace{-5pt}
-	\end{wrapfigure}}	
+\renewcommand{\captionlabelfont}{\small\bf}
+\renewcommand{\captionfont}{\footnotesize\it}
+	
+% standard IncQuery stuff
+
+\definecolor{listinggray}{rgb}{0.9,0.9,0.9}
+\definecolor{keywordcolor}{rgb}{0.5,0,0.1}
+\definecolor{commentcolor}{rgb}{0,0.3,0.1}
+\definecolor{stringcolor}{rgb}{0,0,1}
+\lstdefinelanguage{viatra}
+{morekeywords={@Interpretation,@Trigger,package,private,count,sum,max,min,avg,shareable,trigger,guard,eval,
+asmfunction,rule,gtrule,if,do,choose,forall,iterate,print,println,log,apply,
+    entity,relation,supertypeOf,subtypeOf,typeOf,instanceOf,try,else,pattern,
+    precondition,postcondition,action,neg,find,import,namespace,in,below,out,
+    inout,let,multiplicity,many_to_one,many_to_many,one_to_many,one_to_one,
+    isAggregation,inverse,seq,update,ref,true,false,call,machine,or,
+    undef,rename,new,del,delete,move,copy,value,interface,class,,setFrom,setTo,with,when,check,change,appear,disappear,cdrule,transformation,common,from,to,toInteger},
+    sensitive=true, morecomment=[l]{//}, morecomment=[s]{/*}{*/}, morestring=[b]{"}, }
+\lstset{backgroundcolor=\color{listinggray}}
+\lstset{basicstyle=\scriptsize\ttfamily}
+\lstset{commentstyle=\itshape\color{commentcolor}\ttfamily}
+\lstset{stringstyle=\color{stringcolor}\ttfamily}
+\lstset{frameround=tttt}
+\lstset{captionpos=b}
+\lstset{keywordstyle=\color{keywordcolor}\bfseries\ttfamily}
+\lstset{showstringspaces=false}
+\lstset{tabsize=2}
+\lstset{numbers=left,numberstyle=\scriptsize\ttfamily,stepnumber=1,numbersep=5pt}
+\lstset{language=viatra}
+\lstset{escapeinside={(*@}{@*)}}
+
+
+
+%--------------------------------------------------------------------------------------
+%	Setup hyperref package
+%--------------------------------------------------------------------------------------
+% \hypersetup{
+%     %bookmarks=true,           % show bookmarks bar?
+%     unicode=false,             % non-Latin characters in Acrobat’s bookmarks
+%     pdftitle={\ptitle},        % title
+%     pdfauthor={\pauthor},      % author
+%     pdfsubject={\ptype},       % subject of the document
+%     pdfcreator={\pauthor},     % creator of the document
+%     pdfproducer={Producer},    % producer of the document
+%     pdfkeywords={keywords},    % list of keywords
+%     pdfnewwindow=true,         % links in new window
+%     colorlinks=true,           % false: boxed links; true: colored links
+%     linkcolor=black,           % color of internal links
+%     citecolor=black,           % color of links to bibliography
+%     filecolor=black,           % color of file links
+%     urlcolor=black             % color of external links
+% }
+
+%--------------------------------------------------------------------------------------
+% Set up listings
+%--------------------------------------------------------------------------------------
+% \lstset{
+% 	basicstyle=\scriptsize\ttfamily,              % print whole listing small
+% 	keywordstyle=\color{black}\bfseries\underbar, % underlined bold black keywords
+% 	identifierstyle=, 					          % nothing happens
+% 	commentstyle=\color{white},                   % white comments
+% 	stringstyle=\scriptsize\sffamily, 			  % typewriter type for strings
+% 	showstringspaces=false,                       % no special string spaces
+% 	aboveskip=3pt,
+% 	belowskip=3pt,
+% 	columns=fixed,
+% 	backgroundcolor=\color{lightgray},
+% } 		
+%\def\lstlistingname{lista}	
+
+\colorlet{punct}{red!60!black}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+%     basicstyle=\normalfont\ttfamily,
+%     numbers=left,
+%     numberstyle=\scriptsize,
+%     stepnumber=1,
+%     numbersep=8pt,
+%     showstringspaces=false,
+%     breaklines=true,
+%     frame=lines,
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}{}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}

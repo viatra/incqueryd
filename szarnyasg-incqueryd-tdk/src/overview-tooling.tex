@@ -5,39 +5,14 @@ To be able to focus on the distributed aspects, of the system, we aimed to build
 
 For \iqd{}, we plan to provide the same tooling environment. Also, for the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
 
-\subsection{Mapping Ecore to Other Data Models}
-\label{ecore-mapping}
 
-Our intention to reuse \eiq{} for building \iqd{} required us to map EMF's metamodel, Ecore to the domain of property graphs and RDF models.
-
-\begin{table}[htb]
-
-\centering
-\begin{tabular}{ | l | l | l | }
-
-\hline
-\bf Ecore concept          & \bf Property graph concept  & \bf RDF concept \tabularnewline \hline\hline
-\verb+EClass+ instance     & nodes' \verb+type+ property & \verb+rdfs:Resource+ \\ \hline
-\verb+EAttribute+ instance & nodes' property names       & \verb+rdf:Property+  \\ \hline
-\verb+EReference+ instance & edge label                  & \verb+rdf:Property+  \\ \hline
-\verb+EDataType+ instance  & Java primitive types        & \verb+rdfs:Datatype+ \\ \hline
- 
-\end{tabular}
-\caption{Mapping Ecore to property graphs and RDF}
-\label{tab:ecore-mapping}
-
-\end{table}
 
 % see also http://components.neo4j.org/neo4j/snapshot/apidocs/org/neo4j/graphdb/PropertyContainer.html
 
-A possible mapping from the Ecore kernel (\figref{ecore-kernel}) to property graphs and RDF models are shown on \autoref{tab:ecore-mapping}. For an example, take the railroad system case study (introduced in \autoref{railroad-system}, metamodel shown on \figref{trainbenchmark-metamodel}, instance model shown on \figref{neoclipse-graph}). Here, all Ecore kernel concepts can be observed:
-\begin{itemize}
-  \item \verb+Segment+ is an \verb+EClass+ instance. In a property graph, types cannot be represented explicitly. Instead, for each node representing a \verb+Segment+ instance, we add a \verb+type+ property with the value \verb+Segment+.
-  \item \verb+Segment_length+ is an \verb+EAttribute+ instance. For each graph node representing a \verb+Segment+, we define a property with the value \verb+Segment_length+.
-  \item \verb+TrackElement_Sensor+ is an \verb+EReference+ instance. For each edge representing a \verb+TrackElement_Sensor+ instance, we add the \verb+TRACKELEMENT_SENSOR+ label.
-  \item \verb+EInt+ in an \verb+EDataType+ instance. Each attribute with this type, e.g.\ the \verb+Sensor+ class' \verb+Segment_length+ attribute, are defined with the Java primitive type \verb+int+.
-\end{itemize}
-Note that the property graph and the RDF data models lack some of the advanced metamodeling features of Ecore. For example, an Ecore \verb+EReference+ not just defines a relationship between specific \verb+EClass+ instances (this is already impossible in a property graph), but also defines multiplicity and containment constraints. This cannot be enforced by the property graphs and RDF data models, instead, it has to be handled by the modeling application explicitly. 
+
+
+% TODO move to TB
+
 
 \subsection{Runtime Model-based Dashboard}
 \label{dashboard}

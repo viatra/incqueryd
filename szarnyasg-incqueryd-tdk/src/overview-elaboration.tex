@@ -116,12 +116,12 @@ The Rete network is deployed to the Akka instances running on the servers \textc
 
 \subsubsection{Evaluating Query}
 
-The query is evaluated by initializing the Rete net \textcircled{7} and reading the results from its production node. 
+The query is evaluated by initializing the Rete net \textcircled{7} and reading the results from its production node.
 %In \iqd{}'s current implementation, the distributed system is . The Akka actors representing the Rete network's nodes are deployed automatically by the \iqd{} \textit{Coordinator} node.
 
 \subsubsection{Maintaining the Query Results}
 
-In order to provide query results that are consistent with the model, we need maintain the Rete net's state. Suppose we have the graph shown on the left side of \figref{rete-routesensor-example-instances-neoclipse} loaded to the Rete net and we decide to delete the \texttt{ROUTE\_ROUTEDEFINITION} edge between vertices 2 and 1.
+In order to provide query results that are consistent with the model, we need maintain the Rete net's state. Suppose we have the graph shown on the left side of \figref{rete-routesensor-example-instances} loaded to the Rete net and we decide to delete the \texttt{ROUTE\_ROUTEDEFINITION} edge between vertices 2 and 1.
 
 \pic{rete-routesensor-example-instances}{A modification on a \tb{} instance model}
 
