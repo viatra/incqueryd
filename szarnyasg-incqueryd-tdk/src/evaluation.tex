@@ -48,11 +48,18 @@ We used  the \emph{railway system metamodel}, defined in \autoref{overview-elabo
 
 \subsection{Original Results for Non-distributed Tools}
 
+\pic{trainBenchmark_IncQuery_RouteSensor}{\tb{}: reponse times for incremental query evaluation, measured on a single node \cite{TODO}}
+
 The \tb{} was designed to work with different tools originating from various technological spaces, e.g.\ EMF-based tools (\eiq{}, Eclipse OCL), semantic web technologies (AllegroGraph, Sesame), NoSQL databases (Neo4j), etc.
 
-\pic{classic-trainbenchmark-results}{\tb{} results measured on a single node \cite{TODO}}
+\figref{trainBenchmark_IncQuery_RouteSensor} shows the incremental transformation and validation time for the \emph{RouteSensor} query, discussed in \autoref{railroad-system}. The results clearly show the advantage of incremental query engines. Both Eclipse OCL Impact Analyzer and \eiq{} scale very well (their characteristic is almost constant to the model size and linear to the size of the result set), while non-incremental tools scale linearly at best, which renders them inefficient for lange models.
 
-\figref{classic-trainbenchmark-results} shows the incremental transformation and validation time for the \emph{RouteSensor} query, discussed in \autoref{railroad-system}. The results clearly show the advantage of incremental query engines. Both Eclipse OCL Impact Analyzer and \eiq{} scale very well (their characteristic is almost constant to the model size and linear to the size of the result set), while non-incremental tools scale linearly at best, which renders them inefficient for lange models.
+% The $x$ axis shows the models size (number of model elements), while the $y$ axis shows execution time. Both axes are logarithmic.
+
+\pic{trainBenchmark_Memory_User_RouteSensor}{\tb{}: memory consumption of the tools}
+
+\figref{trainBenchmark_Memory_User_RouteSensor} show the memory consumption of the diffent tools.
+
 
 % see also http://www.inf.mit.bme.hu/sites/default/files/materials/category/kateg%C3%B3ria/oktat%C3%A1s/msc-t%C3%A1rgyak/szolg%C3%A1ltat%C3%A1sbiztons%C3%A1gra-tervez%C3%A9s-laborat%C3%B3rium/10/02_szolgbiztlab_teljesitmenyteszteles-segedlet.pdf
 
@@ -160,23 +167,32 @@ The results were processed by an R script~\cite{RProject}. The script is capable
 
 \section{Benchmark Results with Neo4j}
 
-During the earlier phases of the research, we conducted measurement using only Neo4j \cite{Izso:2012:ODD:2428516.2428523}. The benchmark's setup was slightly different, with the main differences being the following.
-
-\begin{itemize}
-  \item Due to the lack of sharding in Neo4j, we \emph{sharded the graph manually}. This had a number of important implications.
+During the earlier phases of the research, we conducted measurement using only Neo4j \cite{Izso:2012:ODD:2428516.2428523}. The benchmark's setup was slightly different, %with the main differences being the following. %
+with the main difference being that %
+%
+%\begin{itemize}
+%  \item
+%Due
+due to the lack of sharding in Neo4j, we \emph{sharded the graph manually}. This had a number of important implications.
   \begin{itemize}
     \item The batch queries were ran on all shards separately and their results were aggregated by the coordinator. The transformations also ran separately. 
     \item The incremental queries were evaluated with a distributed Rete net. The elementary model queries (for filling the indexers) were ran on all shards separately and aggregated by the indexers. The transformations also ran separately.
-    \item Because the graph was sharded to disjoint partitions with no edges between them, this can be viewed as an ideal case of graph sharding. Therefore, we can use the results to inspect the an ''ideal'' sharding strategy's impact on the performance.
-  \end{itemize}
-  \item The servers had twice as much memory (16~GB).
-\end{itemize}
+%    \item
 
-Despite the differences, we can still derive some useful conclusions by compare the results of this benchmark with the most recent one detailed previously. \figref{benchmark/neo/BatchTrafo_RouteSensor} shows that the Neo4j-based incremental tool consistently outperforms the Neo4j's own query engine.
+  \end{itemize}
+%  \item The servers had twice as much memory (16~GB).
+%\end{itemize}
+
+Because the graph was sharded to disjoint partitions with no edges between them, this can be viewed as an ideal case of graph sharding. Therefore, we can use the results to inspect the an ''ideal'' sharding strategy's impact on the performance.
+
+We present the most important results of the benchmark.
+
+%Despite the differences, we can still derive some useful conclusions by compare the results of this benchmark with the most recent one detailed previously.
+\figref{benchmark/neo/BatchTrafo_RouteSensor} shows that the Neo4j-based incremental tool consistently outperforms the Neo4j's own query engine.
 
 \pic{benchmark/neo/BatchTrafo_RouteSensor}{Total execution times for 50 validations}
 
-\figref{benchmark/neo/OnTheFly_RouteSensor} shows that while Neo4j's non-incremental query engine scales better than 4store's (in this particular setup), the incremental tool based on Neo4j is about two orders of magnitude faster.
+\figref{benchmark/neo/OnTheFly_RouteSensor} shows that while the \iqd{} with neo4j is about two orders of magnitude faster than Neo4j's own query engine.
 
 \pic{benchmark/neo/OnTheFly_RouteSensor}{Execution times for transformation and revalidation}
 
@@ -188,8 +204,6 @@ Despite the differences, we can still derive some useful conclusions by compare 
 %\pic{benchmark/Read_RouteSensor}{Execution times for the $\mathit{Read}$ phase}
 %\pic{benchmark/Check0_RouteSensor}{$\mathit{Check}_0$ phase}
 %\pic{benchmark/OnTheFly_RouteSensor}{Execution times for transformation and revalidation} %($\mathit{Edit}$ and $\mathit{Check}_1$  phase)}
-
-We present the visualizations of the benchmark's most important results. The $x$ axis shows the models size (number of model elements), while the $y$ axis shows execution time. Both axes are logarithmic. The \emph{batch} (non-incremental) tool is represented with a dashed line, while the \iqd{} tools are represented with solid lines.
 
 \pic{benchmark/BatchValid_RouteSensor}{Execution times for load and first validation}
 
@@ -229,10 +243,11 @@ The results show that the 4store-based \iqd{} implementation is consistently fas
 
 To guarantee the correctness of our benchmarks, we added some rules to ensure the precision of the results.
 
-First, to start each benchmark sequence independently, we turned the operating system's caching mechanisms off. The execution time of the \emph{validation and transformation phases} were determined by running them 50 times and taking the \emph{median} values (TODO avg the median is less sensitive to transient effect). This way, we could measure the Java Virtual Machine's warmup effect (which would also occur in a real-world model query engine running for several days or months).
+First, to start each benchmark sequence independently, we turned the operating system's caching mechanisms off. The execution time of the \emph{validation and transformation phases} were determined by running them 50 times and taking the \emph{median} values (we decided to take the median instead of the mean value, because the former is less sensitive to transient effects). This way, we could measure the Java Virtual Machine's warmup effect, which would also occur in a real-world model query engine running for several hours or even longer.
 
 As discussed in \autoref{ecosystem}, our servers could be influenced from the workload caused by other users of the same cloud. To minimalize the effect of this and other transient loads, we ran the benchmark five times and took the \emph{minimum} value for each phase. We also disabled file caching in the operating system, so that the serialized model always must be read from the disk.
 
+Despite our efforts, transient effects could still be present in the results. However, their effect is only a threat for smaller model sizes, where the measured execution times are low. For larger models with longer execution times, the transient effects do not threat the validity of the benchmark results.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
