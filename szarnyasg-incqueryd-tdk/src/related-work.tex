@@ -16,13 +16,16 @@ Extensive tooling helps the creation and transformation of such domain models. F
 % 
 % Such data structures can be stored in graph databases like Neo4j~\cite{neo4j} which provides the Cypher~\cite{cypher} query language. Even though big data storage (usually based on MapReduce) provides fast object persistence and retrieval, query engines realized directly on these data structures do not provide dedicated support for incremental query evaluation. 
 
+\section{Benchmarking}
+
+FTSRG related work
 
 
 \section{Rete Implementations}
 
 %In the context of event-based systems, distributed evaluation engines were proposed earlier~\cite{message-passing-rete}. However they scaled up in the number of rules~\cite{mapreduce-rete} rather than in the number of data elements. 
 
-As a very recent development, Rete-based caching approaches have been proposed for the processing of Linked Data (bearing the closest similarity of our approach). INSTANS~\cite{INSTANS2012} uses this algorithm to perform complex event processing (formulated in SPARQL) on RDF data, gathered from distributed sensors.
+As a very recent development, Rete-based caching approaches have been proposed for the processing of Linked Data (bearing the closest similarity of our approach). \mbox{INSTANS}~\cite{INSTANS2012} uses this algorithm to perform complex event processing (formulated in SPARQL) on RDF data, gathered from distributed sensors.
 
 Diamond~\cite{miranker2012diamond} uses a \emph{distributed Rete network} to evaluate SPARQL queries on Linked Data, but it lacks an indexing middleware layer so their main challenge is efficient data traversal.
 

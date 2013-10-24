@@ -1,33 +1,30 @@
-\chapter{Evaluation of Scalability and Performance}
+\chapter{Evaluation of Performance and Scalability}
 \label{chap:evaluation}
 
-We implemented a prototype of \iqd{} to evaluate the feasibility of the approach. In the following chapter, we introduce the \tb{}, a performance benchmark for query engines and the distributed \tb{}, which is also capable of measuring certain scalability aspects. We present the benchmark environment and analyze the results.
+We developed a prototype of \iqd{} to evaluate the feasibility of the approach. In the following chapter, based on the work for \eiq{}, we introduce a distributed performance benchmark. We present the benchmark environment and analyze the results, with particular emphasis on the scalability of our approach. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% of measuring certain scalability aspects. We .
+% we introduce the a distributed benchmark \tb{}, a performance benchmark for query engines and the distributed \tb{}, which is also capable
 
-\section{Goals}
-
-We implemented a prototype of \iqd{} based on the architecture presented in \autoref{chap:overview}. A working prototype is beneficial for a number of reasons. First, it serves as a proof concept by demonstrating that a distributed, incremental pattern matcher is feasible with the technologies currently available.
+The prototype of \iqd{} is based on the architecture presented in \autoref{chap:overview}. A working prototype is beneficial for a number of reasons. First, it serves as a proof concept by demonstrating that a distributed, incremental pattern matcher is feasible with the technologies currently available.
 On the other hand, it gives us the opportunity to define and run benchmarks, so that we can evaluate the scalability aspects of the system.
 
-\subsection{Dimensions of Scalability}
+\section{Dimensions of Scalability}
 
-A distributed system's \emph{scalability} has multiple dimensions. Usually, when aiming for \emph{horizontal scalability}, the most emphasized dimension is the \emph{number of processing nodes} (computers) in the system. However, there are other important aspects that include \emph{local resources} of the servers, \emph{network communication overhead}, etc. The main goal of our benchmark was to prove that an \iqd{} cluster is indeed capable of processing queries for large models.
+A distributed system's \emph{scalability} has multiple dimensions. Usually, when aiming for \emph{horizontal scalability}, the most emphasized dimension is the \emph{number of processing nodes} (computers) in the system. However, there are other important aspects that include \emph{local resources} of the servers, \emph{network communication overhead}, etc. The main goals of our benchmark was to measure the scalability of \iqd{} with respect to the model size and compare it to other non-incremental query technologies. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{\tb{}}
+\section{Foundations: the \tb{}}
 \label{trainbenchmark}
 
-The \tb{} was designed by Benedek Izsó, Zoltán Szatmári and István Ráth \cite{high-performance-queries} to measure the efficiency of model queries and manipulation operations in different tools. The \tb{} is primarily targeted for typical MDE workloads, more specifically for well-formedness validations.
-
-The benchmark is built on the \emph{railway system metamodel}, defined in \autoref{overview-elaboration}.
+The \tb{} was designed at the Fault Tolerant Systems Research Group \cite{high-performance-queries, ASE2013} to measure the efficiency of model queries and manipulation operations in different tools. The \tb{} is primarily targeted for typical MDE workloads, more specifically for well-formedness validations.
 
 \subsection{Benchmark Goals}
 
-The \tb{} measures both the response time and the scalability of the tools. The benchmark models a ''real-world'' MDE workload by simulating a user's interaction with the model. In this sequence, the user loads the model and validates it against a set  queries (defining well-formedness constraints). The user edits the model in small steps. The user's work is more productive and less error-prone if she receives instant feedback after each edit. Therefore, we would like to run re-evaluate well-formedness queries quickly, which implies that incremental query engines are more favorable for this workload.
+The \tb{} measures the response time. The benchmark models a ''real-world'' MDE workload by simulating a user's interaction with the model. In this sequence, the user loads the model and validates it against a set  queries (defining well-formedness constraints). The user edits the model in small steps. The user's work is more productive and less error-prone if she receives the results of the validation instantly after each edit. Therefore, the user would like to run re-evaluate well-formedness queries quickly.
 
-The benchmark defines four distinct phases:
+The benchmark defines four distinct phases. These phases are also used in the distributed \tb{} TODO
 
 \begin{enumerate}
   \item \emph{Load:} load the serialized instance model to the database.
@@ -36,26 +33,20 @@ The benchmark defines four distinct phases:
   \item \emph{Revalidation:} execute the well-formedness query again.
 \end{enumerate}
 
-To measure the scalability of the tools, the benchmark uses instance models of growing sizes, each model containing about twice as many model elements as the previous one (\autoref{trainbenchmark-model-generation}). Running the same validation sequence on different model sizes highlighted the limitations of the tested query engines.
+To assess the scalability of the tools, the benchmark uses instance models of growing sizes, each model containing about twice as many model elements as the previous one (\autoref{trainbenchmark-model-generation}). Running the same validation sequence on different model sizes highlighted the limitations of the tested query engines.
 
-Scalability is also measured along the complexity of the queries. The benchmark defines four queries, each testing different aspects of the query engine (filtering, join and antijoin operations, etc.).
+Scalability is also evaluated against the complexity of the queries. The benchmark defines four queries, each testing different aspects of the query engine (filtering, join and antijoin operations, etc.).
 
-\subsection{Results}
-
-The \tb{} was implemented for different tools originating from various technological spaces, e.g.\ EMF-based tools (\eiq{}, Eclipse OCL), semantic web technologies (Allegro Graph, Sesame, 4store), NoSQL databases (Neo4j), etc.
-
-\pic{classic-trainbenchmark-results}{\tb{} results measured on a single node}
-
-\figref{classic-trainbenchmark-results} shows the incremental transformation and validation time for the \emph{RouteSensor} query, discussed in \autoref{railroad-system}. The results clearly show the advantage of incremental query engines. Both Eclipse OCL Impact Analyzer and \eiq{} scale sublinearly (moreover, their characteristic is almost constant), while non-incremental tools scale linearly at best, which renders them inefficient for lange models.
-
-\subsection{Generating Models}
+\subsection{Generating Instance Models}
 \label{trainbenchmark-model-generation}
 
-Due to both confidentiality and technical reasons, it is difficult to obtain real-world industrial models and queries. Also, using confidential data sets hamstrings the reproducibility of the conducted benchmarks. Therefore, we generated instance models which mimic real-world models.
+Due to both confidentiality and technical reasons, it is difficult to obtain real-world industrial models and queries. Also, using confidential data sets hinders the reproducibility of the conducted benchmarks. Therefore, a generator modules was developed which creates instance models which mimic real-world models.
 
-The instance models are generated pseudorandomly, with pre-defined structural constraints \cite{ASE2013}. The generator is capable of generating models of different sizes and formats, including EMF, OWL, RDF and SQL. 
+We used  the \emph{railway system metamodel}, defined in \autoref{overview-elaboration}. The instance models are generated pseudorandomly, with pre-defined structural constraints \cite{ASE2013}. The generator is capable of generating models of different sizes and formats, including EMF, OWL, RDF and SQL. 
 
-As mentioned earlier, the railroad system metamodel, introduced in \autoref{railroad-system}, was designed in Ecore. Based on the mapping from the Ecore kernel (\autoref{ecore-mapping}) we created the equivalent instance models for property graphs as well.
+\subsubsection{Mapping Ecore to Property Graphs}
+
+As mentioned earlier, the railroad system metamodel, introduced in \autoref{railroad-system}, was designed in Ecore. Based on the mapping from the Ecore kernel (\autoref{ecore-mapping}), we created the equivalent instance models for property graphs as well.
 % instance model shown on \figref{neoclipse-graph}). 
 
 The Ecore kernel concepts map to property graphs as follows:
@@ -67,29 +58,41 @@ The Ecore kernel concepts map to property graphs as follows:
 \end{itemize}
 Note that the property graph and the RDF data models lack some of the advanced metamodeling features of Ecore. For example, an Ecore \verb+EReference+ not just defines a relationship between specific \verb+EClass+ instances (this is already impossible in a property graph), but also defines multiplicity and containment constraints. This cannot be enforced by the property graphs and RDF data models, instead, it has to be handled by the modeling application explicitly. 
 
+\subsection{Original Results for Non-distributed Tools}
+
+The \tb{} was designed to work with different tools originating from various technological spaces, e.g.\ EMF-based tools (\eiq{}, Eclipse OCL), semantic web technologies (AllegroGraph, Sesame), NoSQL databases (Neo4j), etc.
+
+\pic{classic-trainbenchmark-results}{\tb{} results measured on a single node \cite{TODO}}
+
+\figref{classic-trainbenchmark-results} shows the incremental transformation and validation time for the \emph{RouteSensor} query, discussed in \autoref{railroad-system}. The results clearly show the advantage of incremental query engines. Both Eclipse OCL Impact Analyzer and \eiq{} scale very well (their characteristic is almost constant to the model size and linear to the size of the result set), while non-incremental tools scale linearly at best, which renders them inefficient for lange models.
+
+% see also http://www.inf.mit.bme.hu/sites/default/files/materials/category/kateg%C3%B3ria/oktat%C3%A1s/msc-t%C3%A1rgyak/szolg%C3%A1ltat%C3%A1sbiztons%C3%A1gra-tervez%C3%A9s-laborat%C3%B3rium/10/02_szolgbiztlab_teljesitmenyteszteles-segedlet.pdf
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Distributed \tb{}}
 \label{distributed-trainbenchmark}
 
-Based on the \tb{}, discussed in \autoref{trainbenchmark}, we created an extended version for distributed systems. The main goal of the distributed \tb{} is the same as the original's: measure the reponse time and scalability of different tools.
+% Fogalmazz pontosabban: ebben a mérésben a hw archtektúra (tehát az elosztott rendszer elrendezése, és erőforrása) konstans végig, tehát kizárólag a modellméret növekedése függvényében vizsgáljuk a skálázhatóságot.
+% A benchmark performance része pedig az, hogy a saját technológiát teljesítményét többféle baseline-nal is összeméred.
 
-\subsection{Generating Models}
+Based on the \tb{}, discussed in \autoref{trainbenchmark}, we created an extended version for distributed systems. The main goal of the distributed \tb{} is the same as the original's: measure the reponse time and reason about the scalability of different tools.
 
-For Neo4j, we already expanded the the generator with a \emph{property graph generator} module. The generator creates a graph in a Neo4j database and uses the Blueprints library's \texttt{GraphMLWriter} and \texttt{GraphSONWriter} classes to serialize it to \graphml{} (\autoref{graphml-example}) and Blueprints \graphson{} (\autoref{blueprints-graphson-example}) formats. 
-
-Titan's Faunus framework requires a specific format called Faunus \graphson{} (\autoref{faunus-graphson-example}). To use Faunus, we extended the property graph generator to generate Faununs \graphson{} files as well.
+Another important goal is to compare the performance of the system to non-incremental query technologies.
 
 \subsection{Distributed Architecture}
 
 The distributed benchmark defines the same phases as the original \tb{}. The benchmark is controlled by a distinguished node of the system, called the \emph{coordinator}. The coordinator delegates the operations (e.g.\ loading the graph) to the distributed system. The queries and the model manipulation operations also run distributedly.
 
-%- we increase the model's size --> query results size increases
+%\subsection{Benchmark Limitations}
 
-\subsection{Benchmark Limitations}
+A common reason for designing and implementing distributed systems is that they are capable of handling a large number of concurrent requests. This way, more users can use the system at the same time. In the distributed \tb{}, the system is only used by a single user. Simulating multiple users and issuing concurrent requests is subject to future work (\autoref{future-work}).
 
-A common reason for designing and implementing distributed systems is that they are capable of handling a great number of concurrent requests. This way, more users can use the system at the same time. In the distributed \tb{}, the system is only used by a single user. Simulating multiple users and issuing concurrent requests is subject to future work (\autoref{future-work}).
+\subsection{Generating Instance Models}
+
+For Neo4j, we already expanded the the generator with a \emph{property graph generator} module. The generator creates a graph in a Neo4j database and uses the Blueprints library's \texttt{GraphMLWriter} and \texttt{GraphSONWriter} classes to serialize it to \graphml{} (\autoref{graphml-example}) and Blueprints \graphson{} (\autoref{blueprints-graphson-example}) formats. 
+
+Titan's Faunus framework requires a specific format called Faunus \graphson{} (\autoref{faunus-graphson-example}). To use Faunus, we extended the property graph generator to generate Faununs \graphson{} files as well.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -100,7 +103,11 @@ We used the distributed \tb{} (\autoref{distributed-trainbenchmark}) to evaluate
 
 \subsection{Benchmark Setup}
 
-We tested \iqd{} with two storage backends: 4store (\autoref{4store}) and Titan (\autoref{titan}). As a \emph{non-incremental baseline}, we used 4store as a standalone database management system. While we also planned to use Titan, we found that Titan is more geared towards local graph traversals. Although graph patterns can be formulated as traversal operations, we found that even for small graphs, the system was unable to run the queries efficiently.
+We tested \iqd{} with two storage backends: 4store (\autoref{4store}) and Titan (\autoref{titan}). The system was deployed on a four-node cluster.
+
+As a \emph{non-incremental baseline}, we used 4store as a standalone database management system. While we also planned to use Titan, %we found that Titan is more geared towards graph traversals. 
+%Although graph patterns can be formulated as traversal operations, 
+our experiments showed that even for small graphs, the system was unable to run the queries efficiently. TODO elementary lekérdezések sem futottak le
 
 \pic{benchmark-scenario}{The benchmark scenario. The green arrows and components are specific to the incremental scenario.}
 
@@ -108,122 +115,110 @@ The benchmark follows the phases defined in the distributed \tb{}. The workflow 
 
 The architecture of \iqd{} is discussed in detail in \autoref{iqd-architecture}. The baseline scenario's benchmark setup is shown on \figref{benchmark-baseline}.
 
-\pic{benchmark-baseline}{The non-incremental ''batch'' scenario benchmark's setup}
+%\pic{benchmark-baseline}{The non-incremental ''batch'' scenario benchmark's setup}
 
 \subsection{Hardware and Software Ecosystem}
 \label{ecosystem}
 
-As the testbed, we deployed our system to a private cloud consisting of 4 virtual machines on separate host computers. The private cloud is managed by Apache VCL (Virtual Computing Lab) and is also used for educational purposes. Therefore, during the benchmark, the network and the host machines could be under load from other users as well. Our countermeasures are discussed in \autoref{threats-to-validity}.
+As the testbed, we deployed our system to a private cloud. The cloud is managed by Apache VCL (Virtual Computing Lab) and is also used for educational purposes. Therefore, during the benchmark, the network and the host machines could be under load from other users as well. We consider the effect of these in \autoref{threats-to-validity}.
 
 The detailed configuration of the servers are provided below.
 
 \subsubsection{Hardware}
  
-Each virtual machine used two cores of an Intel Xeon L5420 running at 2.5~GHz and had 8~GBs of RAM. The host machines were connected with gigabit Ethernet network connection.
+Each virtual machine used two cores of an Intel Xeon L5420 CPU running at 2.5~GHz and had 8~GBs of RAM. The host machines were connected with gigabit Ethernet network connection.
 
 \subsubsection{Software}
 
 For the benchmarks, we used the following software stack. The technologies are discussed in \autoref{chap:background-technologies}.
 
-\begin{itemize}
-  \item Operating system and Java Virtual Machine
-  \begin{itemize}
+\begin{itemize*}
+  %\item Operating system and Java Virtual Machine
+  %\begin{itemize}
     \item Ubuntu 12.10 64-bit
     \item Oracle Java 7 64-bit
-  \end{itemize}  
-  
-  \item Database management system
-  \begin{itemize}
+  %\end{itemize}   
+  %\item Database management system
+  %\begin{itemize}
     \item Neo4j 1.8
     \item 4store 1.1.5
     \item Titan 0.3.2
-    \begin{itemize}
+    %\begin{itemize}
       \item Faunus 0.3.2
       \item Hadoop 1.1.2
       \item Cassandra 1.2.2
-    \end{itemize}
-  \end{itemize}  
-
-  \item Messaging framework
-  \begin{itemize}
+    %\end{itemize}
+  %\end{itemize}  
+  %\item Messaging framework
+  %\begin{itemize}
     \item Akka 2.1.2
-  \end{itemize}  
-
-  \item Development environment and tooling 
-  \begin{itemize}
-    \item Eclipse 4.3 (Kepler)
-  \end{itemize}  
-\end{itemize}
+  %\end{itemize}  
+  %\item Development environment and tooling 
+  %\begin{itemize} 
+    %\item Eclipse 4.3 (Kepler)
+  %\end{itemize}  
+\end{itemize*}
 
 \subsection{Benchmark Methodology and Data Processing}
 \label{benchmark-methodology}
 
-The benchmark coordinator software used the \tb{}'s framework to collect the data about the results of the benchmark. We mainly measured the execution time of the predefined phases. The execution time includes the time required for the coordinator's operation, the computation and IO operations of the cluster's computers and the network communication (to both directions). The execution times were determined using Java's \texttt{System.nanoTime()} method.
+Both during the development and in runtime we ensured the \emph{functional equivalence} of the measured tools. During the development, we followed the \tb{}'s well-defined specification~\cite{ASE2013}. This precisely defines the steps for each phase, e.g.\ the number of elements to modify in each transformation and the amount of transformation--validation cycles. In runtime, we checked the result set for correctness against the reference implementation. 
 
-The results were collected in text files, which were processed by an R script \cite{RProject} developed by Benedek Izsó. The script is capable of generating and visualizing the results. 
+The benchmark coordinator software used the \tb{}'s framework to collect the data about the results of the benchmark. We measured the execution time of the predefined phases. The execution time includes the time required for the coordinator's operation, the computation and IO operations of the cluster's computers and the network communication (to both directions). The execution times were determined using Java's \texttt{System.nanoTime()} method.
 
-We also worked to ensure the \emph{functional equivalence} of the measured tools. During the development, we followed the \tb{}'s well-defined specification~\cite{ASE2013}. In runtime, we checked the result set provided by each tool.
+The results were processed by an R script~\cite{RProject}. The script is capable of generating and visualizing the results. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Results}
 \label{evaluation-results}
 
-In the following section, we discuss the results of our benchmark.
-
-\subsection{Result visualizations}
-
 % pictures not used
 %\pic{benchmark/Read_RouteSensor}{Execution times for the $\mathit{Read}$ phase}
 %\pic{benchmark/Check0_RouteSensor}{$\mathit{Check}_0$ phase}
 %\pic{benchmark/OnTheFly_RouteSensor}{Execution times for transformation and revalidation} %($\mathit{Edit}$ and $\mathit{Check}_1$  phase)}
 
-We present the visualizations of the benchmark's most important results. The $x$ axis shows the models size (number of model elements), while the $y$ axis shows execution time. Both axes are logarithmic. The \emph{batch} (non-incremental) tool is represented with a dashed line, while the \emph{incremental} tools are represented with solid lines.
+We present the visualizations of the benchmark's most important results. The $x$ axis shows the models size (number of model elements), while the $y$ axis shows execution time. Both axes are logarithmic. The \emph{batch} (non-incremental) tool is represented with a dashed line, while the \iqd{} tools are represented with solid lines.
 
 \pic{benchmark/BatchValid_RouteSensor}{Execution times for load and first validation}
 
 The execution times for the \emph{load and first validation} phases are shown on \figref{benchmark/BatchValid_RouteSensor}.
-As expected, due to the overhead of the Rete network's construction, the \emph{batch} tool is faster for small models. However, it is important to observe that even for medium-sized models (with a couple of million elements), the \emph{incremental} tools start to edge ahead. This shows that the Rete network's construction overhead already pays off for the first validation.
+As expected, due to the overhead of the Rete network's construction, the \emph{batch} tool is faster for small models. However, it is important to observe that even for medium-sized models (with a couple of million elements), the \iqd{} tools start to edge ahead. This shows that the Rete network's construction overhead already pays off for the first validation.
 
 \pic{benchmark/OnTheFlyEdit_RouteSensor}{Execution times for transformation}
 
-The execution times for the \emph{transformation} phase are shown on \figref{benchmark/OnTheFlyEdit_RouteSensor}. The incremental tools provide faster query transformation times due to the fact that instead of querying the database, the modeling application can rely on the query layer's indexers. Even for medium-sized models, the incremental tool are more than two orders of magnitude faster than the batch tool.
+The execution times for the \emph{transformation} phase are shown on \figref{benchmark/OnTheFlyEdit_RouteSensor}. The incremental tools provide faster transformation times due to the fact that instead of querying the database, the modeling application can rely on the query layer's indexers. Even for medium-sized models, the \iqd{} tools are more than two orders of magnitude faster than the batch tool.
 
 \pic{benchmark/OnTheFlyCheck_RouteSensor}{Execution times of the revalidation}
 
-The incremental tools have an even greater advantage for \emph{revalidation} times, shown on \figref{benchmark/OnTheFlyCheck_RouteSensor}. For medium-sized models, they are more than three orders of magnitude faster than the batch tool. Note that the incremental tools provide sub-second revalidation times even for large models with tens of millions of elements.
+The incremental tools have an even greater advantage for \emph{revalidation} times, shown on \figref{benchmark/OnTheFlyCheck_RouteSensor}. For medium-sized models, they are more than three orders of magnitude faster than the batch tool.
+
+This shows that \iqd{} is not just capable of processing models with tens of millions of elements (well beyond the capabilities of single-node tools), but also, it provides sub-second revalidation times.
 
 \pic{benchmark/BatchTrafo_RouteSensor}{Total execution times for 50 validations}
 
 \figref{benchmark/BatchTrafo_RouteSensor} shows the total execution time for a sequence: loading the model, then running transformations and revalidations 50 times. Due to the large number of transformations and revalidations, incremental tools are significantly faster. For example, for a model with 6 million elements, the batch tool took almost 6 hours, while the 4store-based incremental tool took less than 5 minutes. 
 
-The results show that the 4store-based \iqd{} implementation is consistently faster in the \emph{load} phase than the Titan-based one. This is due to 4store's simpler architecture and different data model, which is better suited to the \iqd{} middleware's elementary model queries.
-
 \section{Result Analysis}
 
 The results clearly show that the initialization of the Rete net adds some overhead during the \emph{load and first validation phases}. However, even for medium-sized models, this is easily outweighed by the high query performance of the Rete net.
 
-The almost constant characteristic of execution times of the incremental tools' \emph{transformation} and \emph{validation} phases confirm that a distributed, scalable, incremental pattern matcher is feasible with current technologies. The results also show that while network latency is present, the distributed Rete network still allows sub-second on-the-fly model validation operations. It is also important to observe the similar characteristic of \iqd{}'s and \eiq{}'s transformation and validation times (\figref{classic-trainbenchmark-results}).
+The almost constant characteristic of execution times of the \iqd{} tools' \emph{transformation} and \emph{validation} phases confirm that a distributed, scalable, incremental pattern matcher is feasible with current technologies. Based on the results, we can conclude that while network latency is present, the distributed Rete network still allows sub-second on-the-fly model validation operations. It is also important to observe the similar characteristic of \iqd{}'s and \eiq{}'s transformation and validation times (\figref{classic-trainbenchmark-results}).
 
-Another important observation is that for incremental tools, the execution time is approximately proportional to \emph{the number of affected model elements}. For batch tools, it is proportional to the \emph{size of the model}. 
+Another important observation is that for \iqd{} tools, the execution time is approximately proportional to \emph{the size of the change}. For batch tools, it is proportional to the \emph{size of the model}. 
 
 Note that these results and scalability characteristics do not apply for every workload profile. For example, if the user modifies large chunks of the model and issues queries infrequently, batch query evaluation methods can be faster. 
 
-%Once initialized, \iqd{} scales linearly, since query response times for growing models can be kept low by adding additional computers for hosting Rete nodes.
-%* inkrementális esetben a APPROX MÓDOSÍTÁSSAL arányos a lekérdezés ideje.
-%* nem-inkrementális esetben a MODELLEL arányos
-%* Rete akkor jó, ha kicsiket módosít a user
+The high memory consumption of the Rete algorithm was one of our main motivations to build a distributed system. For very large models (beyond $10^8$ model elements, we ran into cases where the Java Virtual Machine ran out of or had just enough memory. This resulted in \texttt{OutOfMemoryError: Java heap space} and \texttt{OutOfMemoryError: GC overhead limit exceeded} exceptions, respectively. Introducing a \emph{Rete node sharding} or other fault-tolerance mechanisms for these cases is subject to future work (\autoref{future-work}).
 
-\subsection{Memory Consumption}
-
-During our experiments, we ran into cases where the Java Virtual Machine ran out of or had just enough memory, resulting in \texttt{OutOfMemoryError: Java heap space} and \texttt{OutOfMemoryError: GC overhead limit exceeded} exceptions, respectively. Introducing a fault-tolerance mechanism for these cases is subject to future work (\autoref{future-work}).
+The results show that the 4store-based \iqd{} implementation is consistently faster in the \emph{load} phase than the Titan-based one. This is due to 4store's simpler architecture and different data model, which is better suited to the \iqd{} middleware's elementary model queries.
 
 \subsection{Threats to Validity}
 \label{threats-to-validity}
 
 To guarantee the correctness of our benchmarks, we added some rules to ensure the precision of the results.
 
-First, to start each benchmark sequence independently, we turned the operating system's caching mechanisms off. The execution time of the \emph{validation and transformation phases} were determined by running them 50 times and taking the \emph{median} values. This way, we could measure the Java Virtual Machine's warmup effect (which would also occur in a real-world model query engine running for several days or months).
+First, to start each benchmark sequence independently, we turned the operating system's caching mechanisms off. The execution time of the \emph{validation and transformation phases} were determined by running them 50 times and taking the \emph{median} values (TODO avg the median is less sensitive to transient effect). This way, we could measure the Java Virtual Machine's warmup effect (which would also occur in a real-world model query engine running for several days or months).
 
 As discussed in \autoref{ecosystem}, our servers could be influenced from the workload caused by other users of the same cloud. To minimalize the effect of this and other transient loads, we ran the benchmark five times and took the \emph{minimum} value for each phase. We also disabled file caching in the operating system, so that the serialized model always must be read from the disk.
 
@@ -239,6 +234,7 @@ During the earlier phases of the research, we conducted measurement using only N
   \begin{itemize}
     \item The batch queries were ran on all shards separately and their results were aggregated by the coordinator. The transformations also ran separately. 
     \item The incremental queries were evaluated with a distributed Rete net. The elementary model queries (for filling the indexers) were ran on all shards separately and aggregated by the indexers. The transformations also ran separately.
+    \item Because the graph was sharded to disjoint partitions with no edges between them, this can be viewed as an ideal case of graph sharding. Therefore, we can use the results to inspect the an ''ideal'' sharding strategy's impact on the performance.
   \end{itemize}
   \item The servers had twice as much memory (16~GB).
 \end{itemize}
@@ -255,16 +251,8 @@ Despite the differences, we can still derive some useful conclusions by compare 
 
 \section{Summary}
 
-%   - derived conclusions
-%     - proof of concept
-%     - scalable in this setup
-%     - kept EMF-IncQuery's characteristics
-%     - small overhead
-%     - model size barrier pushed further
-%     - not all distributed scalability aspects covered
-
-
-Our benchmarks proved that the concept of a distributed, incremental pattern matcher is a working one. \iqd{}'s scalability characteristics confirmed that while network overhead is present, it is possible to keep \eiq{}'s almost constant performance characteristics in a distributed environment. The results show the model size barrier, primarily caused by limitations of memory, %[TODO REF] \autoref{memory}, 
+Our benchmarks proved that the proposed architecture is capable of providing scalable, incremental query evaluation.
+\iqd{}'s scalability characteristics confirmed that despite the additional network latency, it is possible to keep \eiq{}'s almost constant performance characteristics in a distributed environment. The results show the model size barrier, primarily caused by limitations of memory, 
 can be pushed further using a horizontal scaling approach.
 
 It is important to note that our benchmark did not cover all aspects of distributed scalability. For example, simulating multiple userts, measuring the exact memory consumption and network traffic of each server is subject to future work.

@@ -9,7 +9,21 @@ During the early phase of the research, we studied the architecture and limitati
 
 In this chapter, we introduce the technologies that can form the basis of a scalable, distributed, asynchronous system. We also present EMF (Eclipse Modeling Framework), and \eiq{}, an incremental model query evaluation tool.
 
-\pic{graph-sharding}{Different sharding strategies for the same graph}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Motivation}
+
+\eiq{} is proven to be effecient for incremental query evaluation on small to medium-sized models (in the order of magnitude of $10^6$). However, model-driven engineering challenges often present large models, with $10^7$ or more elements \cite{Scheidgen12}. 
+
+Due to the Rete algorithm's memory consumption (\autoref{rete}), \eiq{} cannot handle large models efficiently \cite{models10}. A trivial solution would be to use \emph{vertical scaling}, i.e.\ putting more memory in the workstation. Unfortunately, this approach is not feasible due to nature of Java's memory management. The Garbage Collector (GC) cannot handle heap sizes larger than 10~GB efficiently, thus introducing long pauses in the application \cite{Azul}. 
+
+This problem is well-known in the Java community. There are alternative Java Virtual Machines (JVMs) with specialized Garbage Collectors, like Azul Systems' JVM. However, the Azul JVM is a proprietary product and has specific hardware requirements. Also, this does not solve the scaling problem entirely -- the model size is still limited by the total amount memory in a single computer.
+
+Instead of vertical scaling, we decided to opt for \emph{horizontal scaling}. As described in \autoref{nosql}, distributed non-relational databases have been gaining momentum in the last years. For persisting models, we inspected graph databases, but found that their query layer does not scale well in a distributed environment (\autoref{evaluation-results}). This is a serious problem for MDE, where the queries are typically more complex than in traditional, transactional database management.
+
+Therefore, we decided to implement our own distributed, scalable query layer based on NoSQL and semantic web databases.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Big Data and the NoSQL Movement}
 \label{nosql}
@@ -20,7 +34,37 @@ In the last decade, large organizations struggled to store and process the huge 
 
 Big Data challenges spawned dozens of new database management systems. Typically, these systems broke with the strictness of the relational data model and utilized simpler, more scalable data models. These systems dropped support for the SQL query language used in relational databases and hence were called \emph{NoSQL databases}\footnote{The community now mostly interprets NoSQL as ''not only SQL''.}~\cite{NoSQL}. During the development of \iqd{}'s prototype, we experimented with numerous NoSQL databases.
 
-\section{Graph Models and Storage Methods}
+
+\section{Distributed System Concepts}
+
+\subsubsection{Distributed Consistency}
+
+
+\subsubsection{Graph Sharding}
+
+
+\subsubsection{Column families}
+
+A column family is similar to a table of a relational database: it consists of rows and columns. However, unlike in a relational database's table, the rows do not have to have the same fixed set of columns. Instead, each row can have a different set of columns. This makes the data structure more dynamic and avoids the problems associated with NULL values.
+
+\subsubsection{MapReduce}
+
+The \emph{MapReduce paradigm} defines a parallel, asynchronous way of processing the data. As the name implies, MapReduce consists of two phases: the \emph{map} function processes each item of a list. The resulted list is then aggregated by the \emph{reduce} function.
+
+MapReduce is often used for sorting, filtering and aggregating data sets. It is also used for fault-tolerant, distributed task execution.
+
+
+\pic{graph-sharding}{Different shardings of the same graph}
+
+\figref{graph-sharding} shows different shardings of the same graph in a three-node cluster. 
+In case \textcircled{1} most edges run between servers and are therefore expensive to traverse.
+In case \textcircled{2}, \emph{Server 2} is overloaded, taking more than three quarters of the total load.
+Case \textcircled{3} presents a more balanced sharding of the graph.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Graph Models}
 
 The graph is a well-known mathematical concept widely used in computer science. For our work, it is important to distinguish between different graph data models.
 
@@ -40,7 +84,35 @@ Simple graphs can be extended in several different ways (\figref{graph-classes})
 
 Property graphs are powerful enough to describe Java objects or EMF instance models. 
 
-\subsection{TinkerPop}
+\subsubsection{Ecore}
+\label{ecore}
+
+% TODO hivatkozni, ..
+
+Ecore is the metamodeling language that is used by EMF. It has been developed in order to provide an approach
+% -- simpler than MOF -- 
+for metamodel definition that supports the direct implementation of models using a programming language. 
+The main rationale in introducing Ecore separately that it is the \emph{de facto}
+standard metamodeling environment of the industry, and several domain-specific
+languages are defined using this formalism.
+%Ecore is nearly identical with the EMOF package of MOF, so the Ecore elements will only covered shortly.
+
+
+
+Figure \ref{fig:ecore-kernel} illustrates the core elements of the Ecore approach. The full metamodel can be found in the literature. The most important elements are:
+
+\begin{itemize}
+  \item \verb+EClass+ models classes (or concepts). \verb+EClass+es are identified by name and can have several attributes and references. To support inheritance, a class can refer to a number of \emph{supertype} classes.
+  \item \verb+EAttribute+ models attributes, that contain data elements of a class. They are identified by name, and have a \emph{data type}.
+  \item \verb+EDataType+ is used to represent simple data types that are treated as atomic (their internal structure is not modeled). Data types are also identified by their name.
+  \item \verb+EReference+ represents a unidirectional association between \verb+EClass+es and as identified by a name. Lower and upper multiplicities can be specified. It is also possible to mark a reference as a \emph{containment} that represents composition relation between elements. If a bidirectional association is needed, it should be modeled as two \verb+EReference+ instances that are mutually connected via their \emph{opposite} references.
+\end{itemize}
+
+The rest of the Ecore metamodeling language contains utility elements, common supertypes that support the organization and hierarchization of the models but the main metamodeling part has been covered here.
+
+\picSmall{ecore-kernel}{The Ecore kernel, a simplified subset of the Ecore metamodel}
+
+\subsection{Property graphs}
 
 The \textit{TinkerPop} framework is an open-source software stack for graph storage and processing \cite{TinkerPop}. TinkerPop includes \textit{Blueprints}, a property graph model interface. Blueprints fulfills the same role for graph databases as JDBC does for relational databases. Most NoSQL graph databases implement the property graph interface provided by Blueprints, including Neo4j (\autoref{neo4j}), Titan (\autoref{titan}), DEX~\cite{DEX}, InfiniteGraph~\cite{InfiniteGraph} and OrientDB~\cite{OrientDB}.
 
@@ -68,106 +140,180 @@ TinkerPop also provides a graph server (\textit{Rexster}), a set of graph algori
 
 Triplestores use the RDF (Resource Description Framework) data model. Although the RDF data model has less expressive power than the property graph data model, by introducing additional resources for each property, a property graph can be easily mapped to a RDF. Triplestores are usually queried via the RDF format's query language, SPARQL (recursive acronym for SPARQL Protocol and RDF Query Language). 
 
-\section{NoSQL Technologies}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In the following section we summarize the core technologies used in \iqd{}'s prototype implementation. We briefly introduce the goals of each technology, with particular emphasis on the scalability aspects.
+\section{Graph Storage Systems}
+\label{graph-storage-systems}
+
+%---------------------------------------------------------------------------------------------------
+
+\subsection{EMF}
+\label{emf}
+
+Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Framework). EMF provides a metamodel (Ecore) for designing applications and a code generation facility to produce the Java classes for the model.
+
+
+\subsubsection{Architecture}
+
+
+\subsubsection{Data Model}
+
+Ecore
+
+\subsubsection{Sharding}
+
+CDO
+
+\subsubsection{Query Language and Evaluation}
+
+
+\subsubsection{\eiq{}}
+\label{subsec:eiq}
+
+The following section is based on \cite{CsikosMasters}.
+
+%\eiq{} is developed by the Fault Tolerant Systems Research Group (FTSRG) in the Budapest University of Technology and Economics. \eiq{} is an open-source Eclipse project which provides incremental query evaluation on EMF models. The queries (graph patterns) are defined in \iq{} Pattern Language (IQPL), a domain-specific language implemented in Xtext and Xtend. \eiq{}'s architecture is shown on \figref{incquery-architecture}.
+
+%\picTiny{incquery-architecture}{\eiq{}'s architecture}
  
-\subsection{Cassandra}
+\cite{icmt2011} 
 
-Cassandra is one of the most widely used NoSQL databases~\cite{Cassandra}. Originally developed by Facebook~\cite{Lakshman:2010:CDS:1773912.1773922}, Cassandra is now an open-source Apache project. The whole project is written in Java.
+% Problem to solve.
+When working with models, it is quite common task to query the model for validating certain properties or searching for interesting parts. EMF-IncQuery \cite{EMFIncQuery} provides a solution for this problem: It is a framework to execute fast model queries over EMF models. It is actively developed at Budapest University of Technology and Economics. The current stable version (0.7) proved its usability through industrial use-cases and university researches.
 
-Cassandra's data model is called \emph{column family}. A column family is similar to a table of a relational database: it consists of rows and columns. However, unlike in a relational database's table, the rows do not have to have the same fixed set of columns. Instead, each row can have a different set of columns. This makes the data structure more dynamic and avoids the problems associated with NULL values.
+% Core.
+The core of the framework is a query evaluator engine built on top of graph pattern matching engine using Rete algorithm adapted from expert systems to facilitate the efficient storage and retrieval of partial views of graph-like models. In a nutshell, Rete maintains a hierarchical query data structure on top of the model which stores the result of sub-queries. On model change, the event propagates through this data structure leaving the unmodified part of the model untouched. This results in fast, near zero response time and size-independence on small model changes. In return, the model and the query structure has to be loaded into the memory, which can be a significant resource expense.
 
-Cassandra has sophisticated fault-tolerance mechanisms. It allows the application to balance between availability and consistency by allowing it to tune the consistency constraints.
+% API.
+To access the capabilities of the core, an easy-to-use, type safe API is defined. Using the API, EMF resources and object hierarchies can be loaded and queried incrementally. In addition certain extensions -- such as the validation
+framework -- can be attached (\autoref{fig:incquery-architecture}). 
 
-Cassandra is used mainly by web 2.0 companies, including Digg, Netflix, Reddit, SoundCloud and Twitter. It is also used for research purposes at CERN and NASA \cite{CassandraCompanies}.
+% Query lanuage.
+Along the API, a complete query language is defined. It provides a declarative way to express the queries over the EMF model in the form of graph patterns. With the language the user can express combined queries, negative patterns, checking property conditions, simple calculations, calculate disjunctions and transitive closures, etc.~on top of the models.
 
-\subsubsection{Consistent Hashing}
+% Tooling.
+The framework contains UI tooling which helps the users to effectively develop test and integrate queries into their solution. The first element of the tooling is the rich Xtext~\cite{XtextWeb} based editor for the query language which aids writing well formed queries providing content assist, error markings and such. The next part of the tooling is the ability to load EMF models and execute the queries on them as the user writes them giving visual feedback about the result. The last important part is the code generation. The tooling dynamically generates the source code which contains the programmatic equivalent of the model queries. The users can integrate this code out of the box in Eclipse
+plugins as well as headless applications to execute queries and get back the results from the source code level.
 
-To distribute the data across the cluster, Cassandra uses a partitioner mechanism. The basic partitioners distribute the rows evenly based on their key's hash value. In a cluster with $n$ nodes, the na\"ive method for determining the location for a row with key $x$ is computing $ h(x) \bmod n $, where $h(x)$ is the hash function. Currently, Cassandra provides partitioners based on the MD5 and the Murmur3 hash function. However, this approach has a serious limitation: if we remove or add nodes to the cluster, we have to recompute the hash values and possibly relocate almost all rows in the cluster. To avoid this, Cassandra uses a special kind of hashing called \textit{consistent hashing}.
 
-The ring is divided into ranges equal to the number of nodes, with each node being responsible for one or more ranges of the data. Before a node can join the ring, it must be assigned a \textit{token}. The token value determines the node's position in the ring and its range of data. The ring is walked clockwise until it locates the node with a token value greater than that of the row key. %Each node is responsible for the region of the ring between itself (inclusive) and its predecessor (exclusive). 
-With the nodes sorted in token order, the last node is considered the predecessor of the first node; hence the ring representation\footnote{Note ''consistent'' here is different from both the idea of consistency in data consistency and in the ACID (atomicity, consistency, isolation, durability) properties guaranteed by transactions. It refers to the fact that tries to map the same rows to the same machine, even if the number of machines ($n$) changes over time slightly.} \cite{CassandraPartitioning}.
-
-For example, consider a simple four-node cluster (\figref{cassandra-ring-partitions}), where all of the row keys managed by the cluster are in the range of 0 to 100. Each node is assigned a token that represents a point in this range. In this example, the token values are 0, 25, 50 and 75. The first node (with token 0), is responsible for the wrapping range ($76+$), the second node (with token 25) is responsible for the data range $1-25$, and so on %The node with the lowest token also accepts row keys less than the lowest token and more than the highest token 
-\cite{CassandraPartitioning}.
-
-\picTiny{cassandra-ring-partitions}{Cassandra's ring for data partitioning \cite{CassandraPartitioning}}
-
-%\pic{cassandra-vnodes}{Cassandra's ring for data partitioning}
-% \emph{virtual nodes}
- 
-\subsection{Hadoop}
-
-Hadoop is an open-source, distributed data processing framework inspired by Google's publications about MapReduce~\cite{Dean:2008:MSD:1327452.1327492} and the Google File System~\cite{Ghemawat:2003:GFS:945445.945450}. Originally developed at Yahoo!, Hadoop is now an Apache project~\cite{Hadoop}. Like Google's systems, Hadoop is designed to run on commodity hardware, i.e.\ server clusters built from commercial off-the-shelf products. Hadoop provides a distributed file system (HDFS) and a column family database (HBase). All software in the Hadoop framework is written in Java.
-
-The MapReduce paradigm defines a parallel, asynchronous way of processing the data. As the name implies, MapReduce consists of two phases: the \emph{map} function processes each item of a list. The resulted list is then aggregated by the \emph{reduce} function.
-
-Hadoop is often used for sorting, filtering and aggregating data sets. It is also used for fault-tolerant, distributed task execution.
-
-A typical small Hadoop cluster consists of a single master node which is responsible for the coordination of the cluster and worker nodes which deal with the data processing. The MapReduce job is coordinated by the master's \emph{job tracker} and processed by the slave nodes' \emph{task tracker} modules (\figref{hadoop-architecture}).
-
-\picTiny{hadoop-architecture}{Hadoop's architecture \cite{HadoopMultinode}}
-
-\subsubsection{HDFS}
-
-The Hadoop Distributed File System (HDFS) is an open-source, distributed file system, inspired by the Google File System and written specifically for Hadoop~\cite{Hadoop}. Unlike other distributed file systems (e.g.\ Lustre~\cite{Lustre}), which require expensive hardware components, HDFS was designed to run on commodity hardware.
-
-HDFS tightly integrates with Hadoop's architecture (\figref{hdfs}). The \emph{NameNode} is responsible for storing the metadata of the files and the location of the replicas. The data is stored by the \emph{DataNode}s.
-
-\pic{hdfs}{HDFS' architecture}
-
-\subsubsection{HBase}
-
-HBase is an open-source, distributed column family database. It is developed as part of the Hadoop project and runs on top of HDFS. The tables in an HBase database can serve as the input and the output for MapReduce jobs run in Hadoop.
+%---------------------------------------------------------------------------------------------------
 
 \subsection{Neo4j}
 \label{neo4j}
 
-Neo4j, developed by Neo Technology, is the most popular NoSQL graph database. Neo4j implements TinkerPop's Blueprints property graph data model along with Gremlin. It also provides Cypher, a declarative query language for graph pattern matching. 
+Neo4j, developed by Neo Technology, is the most popular NoSQL graph database. 
 
 Neo4j is one of the most mature NoSQL databases. It is well documented and provides ample tooling. However, it is scalability features are limited: instead of sharding, it only supports replication of data to create a highly available cluster. Of course, the scalability limitations are a hot topic in Neo4j's development. Neo4j's developers make serious efforts to improve Neo4j's scalability in an ongoing project called Rassilon~\cite{rassilon}.
 
-Neo4j is capable of loading graphs from \graphml{}~\cite{GraphML} and Blueprints \graphson{}~\cite{BlueprintsGraphSON} formats (see \autoref{property-graph-formats} for examples). Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application~\cite{Neoclipse}. %A part of a \tb{} (\autoref{sec:trainbenchmark}) instance model is shown on \figref{neoclipse-graph}.
+Neo4j is capable of loading graphs from \graphml{}~\cite{GraphML} and Blueprints \graphson{}~\cite{BlueprintsGraphSON} formats (see \autoref{property-graph-formats} for examples). Neo4j graphs can be visualized in Neoclipse, an Eclipse RCP application~\cite{Neoclipse}.
 
-\section{Graph Technologies}
+
+\subsubsection{Architecture}
+
+
+\subsubsection{Data Model}
+
+Neo4j implements TinkerPop's Blueprints property graph data model. 
+
+\subsubsection{Sharding}
+
+No sharding, HA replication only
+
+\subsubsection{Query Language and Evaluation}
+
+Neo4j can be queried 
+
+TinkerPop's Gremlin
+
+It also provides Cypher, a declarative query language for graph pattern matching. 
+
+
+
+%---------------------------------------------------------------------------------------------------
 
 \subsection{Titan}
 \label{titan}
 
-Titan is an open-source, distributed, scalable graph database from Aurelius, the creators of the TinkerPop framework. Unlike Neo4j, Titan is not a standalone database. Instead, it builds on top of existing NoSQL database technologies and leverages Hadoop's MapReduce capabilities. Titan supports various storage backends, including Cassandra and HBase.
+Titan is a distributed, scalable graph database from Aurelius, the creators of the TinkerPop framework. 
 
-\subsubsection{Mapping and Sharding}
+\subsubsection{Architecture}
+
+Titan is not a standalone database, instead, it builds on top of existing NoSQL database technologies and leverages Hadoop's MapReduce capabilities. Titan supports various storage backends, including Cassandra and HBase. In the following, we shortly cover the technologies Titan builds upon. Both Titan and it's dependencies are open-source software, written in Java.
+
+\paragraph{Hadoop}
+
+Hadoop is an distributed data processing framework inspired by Google's publications about MapReduce~\cite{Dean:2008:MSD:1327452.1327492} and the Google File System~\cite{Ghemawat:2003:GFS:945445.945450}. Originally developed at Yahoo!, Hadoop is now an Apache project~\cite{Hadoop}. Like Google's systems, Hadoop is designed to run on commodity hardware, i.e.\ server clusters built from commercial off-the-shelf products. Hadoop provides a distributed file system (HDFS) and a column family database (HBase). %All software in the Hadoop framework is written in Java. 
+A typical Hadoop cluster consists of a single master node which is responsible for the coordination of the cluster and worker nodes which deal with the data processing. The MapReduce job is coordinated by the master's \emph{job tracker} and processed by the slave nodes' \emph{task tracker} modules (\figref{hadoop-architecture}).
+
+\picTiny{hadoop-architecture}{Hadoop's architecture \cite{HadoopMultinode}}
+
+\paragraph{HDFS}
+
+The Hadoop Distributed File System (HDFS) is an distributed file system, inspired by the Google File System and written specifically for Hadoop~\cite{Hadoop}. Unlike other distributed file systems (e.g.\ Lustre~\cite{Lustre}), which require expensive hardware components, HDFS was designed to run on commodity hardware. HDFS tightly integrates with Hadoop's architecture (\figref{hadoop-architecture}).% (\figref{hdfs}). 
+The \emph{NameNode} is responsible for storing the metadata of the files and the location of the replicas. The data is stored by the \emph{DataNode}s.
+
+%\picSmall{hdfs}{HDFS' architecture}
+
+\paragraph{HBase} 
+
+HBase~\cite{HBase} is an distributed column family database. It is developed as part of the Hadoop project and runs on top of HDFS. The tables in an HBase database can serve as the input and the output for MapReduce jobs run in Hadoop.
+
+\paragraph{Cassandra}
+
+Cassandra is one of the most widely used NoSQL databases~\cite{Cassandra}. Originally developed by Facebook~\cite{Lakshman:2010:CDS:1773912.1773922}, Cassandra is now an Apache project. 
+Cassandra's a column family database with advanced fault-tolerance mechanisms. It allows the application to balance between availability and consistency by allowing it to tune the consistency constraints. Cassandra is used mainly by web 2.0 companies, including Digg, Netflix, Reddit, SoundCloud and Twitter. It is also used for research purposes at CERN and NASA \cite{CassandraCompanies}.
+
+\subsubsection{Data Model}
 
 To store the graph, Titan maps each vertex to a row of a column family (\figref{titan-cassandra-mapping}). The row stores the identifer and the properties of the vertex, along both the incoming and outgoing edges' identifiers, labels and properties.
 
-Titan uses the storage backend's partitioner (e.g.\ Cassandra's RandomPartitioner) to shard the data. A more sophisticated partitioning system that will allow for partitioning based on the graph's static and dynamic properties (its domain and connectivity, respectively) is under implementation as of October 2013, but not yet available.
 
 \picSmall{titan-cassandra-mapping}{Titan graph vertex stored in Cassandra as a row}
 
-\subsubsection{Deployment}
+\subsubsection{Sharding}
 
-Titan can be deployed in different ways according to the needs of the application. For \iqd{}'s prototype, we used Titan in \textit{remote server mode} (\figref{titan-modes-distributed}). In this setup, Titan runs in the same Java Virtual Machine as the application and communicates with the Cassandra cluster on a low-level protocol (e.g.\ Thrift).
+Titan uses the storage backend's partitioner (e.g.\ Cassandra's RandomPartitioner) to shard the data. A more sophisticated partitioning system that will allow for partitioning based on the graph's static and dynamic properties (its domain and connectivity, respectively) is under implementation as of October 2013, but not yet available.
 
-\pic{titan-modes-distributed}{Using Titan with Cassandra in remote server mode}
+\subsubsection{Query Language and Evaluation}
 
-\subsubsection{Faunus}
-\label{faunus}
+Titan supports the TinkerPop framework's Gremlin query language.
 
-Although Titan was designed with scalability in mind, its query engine does not work in a parallel fashion. Also, it is unable to cope with queries resulting in millions of graph elements. To address this shortcoming, Aurelius developed a Hadoop-based graph analytics engine, Faunus.
 
-Faunus has its own format called Faunus \graphson{}. The Faunus \graphson{} format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process. See \autoref{faunus-graphson-example} for an example.
 
-It is important to note that Faunus always traverses the whole graph and does not use its indices. This makes it slow for retrieving nodes or edges by type (see our typical workload in \autoref{indexing}).
+\paragraph{Faunus}
+
+Although Titan was designed with scalability in mind, its query engine does not work in a parallel fashion. Also, it is unable to cope with queries resulting in millions of graph elements. To address this shortcoming, Aurelius developed a Hadoop-based graph analytics engine, Faunus. Faunus has its own format called Faunus \graphson{}. The Faunus \graphson{} format is vertex-centric: each row represents a vertex of the graph. This way, Hadoop is able to efficiently split the input file and parallelize the load process. See \autoref{faunus-graphson-example} for an example. It is important to note that Faunus always traverses the whole graph and does not use its indices. This makes it slow for retrieving nodes or edges by type (see our typical workload in \autoref{indexing}).
+
+
+
+
+
+%---------------------------------------------------------------------------------------------------
 
 \subsection{4store}
 \label{4store}
 
-4store is an open-source, distributed triplestore created by Garlik~\cite{4store}. Unlike the other tools discussed earlier, 4store is written in C. While 4store is primarily applied for semantic web projects, its maturity and scalability made it an appropriate storage backend for \iqd{}'s prototype.
+4store is an open-source, distributed triplestore created by Garlik~\cite{4store}. While 4store is primarily applied for semantic web projects, its maturity and scalability made it an appropriate storage backend for \iqd{}'s prototype.
 
-Similar to Titan's partitioning, 4store's sharding mechanism (called \emph{segmenting}) distributes the RDF resources evenly across the cluster. However, unlike Titan, 4store's data model is an RDF graph. Hence, 4store's input format is RDF/OWL.
+\subsubsection{Architecture}
 
-%\picBig{4s-cluster}{4store's distributed architecture~\cite{harris20094store}}
+Unlike the other tools discussed earlier, 4store is written in C. 
+
+\subsubsection{Data Model}
+
+4store's data model is an RDF graph. Hence, 4store's input format is RDF/XML, which is processed using the Raptor RDF Syntax Library~\cite{Raptor}.
+
+\subsubsection{Sharding}
+
+Similar to Titan's partitioning, 4store's \emph{segmenting} mechanism distributes the RDF resources evenly across the cluster. 4store also supports replication by \emph{mirroring} tuples across the cluster.
+
+\subsubsection{Query Language and Evaluation}
+
+4store supports SPARQL queries with the Rasqal RDF Query Library~\cite{Rasqal}.  
+
+%---------------------------------------------------------------------------------------------------
+
+\subsection{Overview of graph storage technologies}
 
 \begin{table}[htb]
 
@@ -177,9 +323,9 @@ Similar to Titan's partitioning, 4store's sharding mechanism (called \emph{segme
 \hline
 \bf Technology & 
 \bf Data model & 
-\bf Sharding & 
-\bf Distributed operation & 
-\bf DML facility & 
+\bf Sharding   & 
+\bf Sharding   & 
+\bf Queries    & 
 \bf Identifier generation \tabularnewline \hline\hline
 4store     & RDF            & Automatic & Manual                & SPARQL       & Manual                \\ \hline
 Neo4j      & Property graph & Manual    & Manual                & Cypher       & Manual                \\ \hline
@@ -193,6 +339,8 @@ Titan      & Property graph & Automatic & Automatic             & Gremlin      &
 
 \autoref{tab:database-technologies} summarizes the relevant characteristics of the aforementioned database management systems. Accoding to these, Titan provides the most complete feature set. 4store and Neo4j lack important features like automatic identifier generation, which has to be implemented in the client application. Neo4j also misses automatic sharding, which seriously hinders its scalability potential. 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Asynchronous Messaging}
 
 Most distributed, concurrent systems use a messaging framework or megssage queue service. Because of the nature of the Rete algorithm (\autoref{rete}), \iqd{} requires a distributed, asynchronous messaging framework.
@@ -203,147 +351,19 @@ Most distributed, concurrent systems use a messaging framework or megssage queue
 Akka is an open-source, fault-tolerant, distributed, asynchronous messaging framework developed by Typesafe \cite{Akka}.
 Akka is implemented in Scala, a functional and object-oriented programming language which runs on the Java Virtual Machine. Akka provides language bindings for both Java and Scala.
 
-%\pic{akka-actor-path}{Determining an actor's path in Akka}
+\picSmall{akka-remote-deployment}{Deploying a remote actor in Akka \cite{Akka}}
 
-Akka is based on the actor model \cite{Hewitt:1973:UMA:1624775.1624804} and provides built-in support for remoting. % citation?
-Unlike traditional remoting solutions, e.g.\ Java RMI (Remote Method Invocation) and CORBA (Common Object Request Broker Architecture), the remote and local interface is the same for each actor. Actors have both a logical and a physical path (\figref{akka-remote-deployment}). This way, they can be transparently moved between machines on the network.
+Akka is based on the actor model \cite{Hewitt:1973:UMA:1624775.1624804} and provides built-in support for remoting. Unlike traditional remoting solutions, e.g.\ Java RMI (Remote Method Invocation) and CORBA (Common Object Request Broker Architecture), the remote and local interface is the same for each actor. Actors have both a logical and a physical path (\figref{akka-remote-deployment}). This way, they can be transparently moved between machines on the network.
 
 As of October 2013, the latest version (Akka 2.2) also features \textit{pluggable transport support} to use various transports to communicate with remote systems \cite{Akka}. For serializing the messages, Akka supports different frameworks, including Java's built-in serialization, Google Protobuf \cite{Protobuf} and Thrift \cite{Thrift}.
 
-\pic{akka-remote-deployment}{Deploying a remote actor in Akka}
 
-%\section{Google Guava libraries}
-%\iqd{} relies heavily on Google Guava library's Collections framework~\cite{guava}. The Guava Collection is an extension to Java's Collection framework. We used both immutable collections and new type of collections (e.g.\ the \texttt{Multimap} interface and its implementations).
+%\section{Eclipse-based Technologies}
 
-\section{Eclipse-based Technologies}
+Eclipse is a free, open-source software development environment and a platform for plug-in development. 
+% Members of the Eclipse Foundation include industry giants like IBM, Intel, Google and SAP.
 
-Eclipse is a free, open-source software development environment and a platform for plug-in development. Members of the Eclipse Foundation include industry giants like IBM, Intel, Google and SAP.
-
-\iqd{}'s single workstation predecessor, \eiq{} is built around Eclipse-based technologies. To reap the benefits of a mutual code base, we designed \iqd{} to use as much of \eiq's components as possible. In the following section, we introduce the Eclipse-based technologies most important for our work.
-
-\subsection{EMF}
-\label{emf}
-
-Eclipse comes with its own modeling technologies called EMF (Eclipse Modeling Framework). EMF provides a metamodel (Ecore) for designing applications and a code generation facility to produce the Java classes for the model.
-
-\subsubsection{Ecore}
-\label{ecore}
-
-% TODO hivatkozni, ..
-
-Ecore is the metamodeling language that is used by EMF. It has been developed in order to provide an approach
-% -- simpler than MOF -- 
-for metamodel definition that supports the direct implementation of models using a programming language. 
-The main rationale in introducing Ecore separately that it is the \emph{de facto}
-standard metamodeling environment of the industry, and several domain-specific
-languages are defined using this formalism.
-%Ecore is nearly identical with the EMOF package of MOF, so the Ecore elements will only covered shortly.
-
-%  \begin{figure}
-%  \centering
-%  \includegraphics[width=0.7\textwidth]{ecore}
-%  \caption{A simplified subset of the Ecore metamodel}
-%  \label{fig:ecorekernel}
-%  \end{figure}
- 
- 
-Figure \ref{fig:ecore-kernel} illustrates the core elements of the Ecore approach. The full metamodel can be found in the literature. The most important elements are:
-
-\begin{itemize}
-  \item \emph{EClass} models classes (or concepts). EClasses are identified by
-  name and can have several attributes and references. To support inheritance,
-  a class can refer to a number of \emph{supertype} classes.
-  \item \emph{EAttribute} models attributes, that contain data elements of a
-  class. They are identified by name, and have a \emph{data type}.
-  \item \emph{EDataType} is used to represent simple data types that are
-  treated as atomic (their internal structure is not modeled). Data types are
-  also identified by their name.
-  \item \emph{EReference} represents a unidirectional association between
-  EClasses and as identified by a name. Lower and upper multiplicities can be 
-  specified. It is also possible to mark a reference as \emph{containment} that
-  represents composition relation between elements. If a bidirectional
-  association is needed, it should be modeled as two EReference instances
-  that are mutually connected via their \emph{opposite} references.
-\end{itemize}
-
-The rest of the Ecore metamodeling language contains utility elements,
-common supertypes that support the organization and hierarchisation of the
-models but the main metamodeling part has been covered here.
-
-\picSmall{ecore-kernel}{The Ecore kernel, a simplified subset of the Ecore metamodel}
-
-\subsection{\eiq{}}
-\label{subsec:eiq}
-
-The following section is based on \cite{CsikosMasters}.
-
-%\eiq{} is developed by the Fault Tolerant Systems Research Group (FTSRG) in the Budapest University of Technology and Economics. \eiq{} is an open-source Eclipse project which provides incremental query evaluation on EMF models. The queries (graph patterns) are defined in \iq{} Pattern Language (IQPL), a domain-specific language implemented in Xtext and Xtend. \eiq{}'s architecture is shown on \figref{incquery-architecture}.
-
-\picTiny{incquery-architecture}{\eiq{}'s architecture}
-
-%\cite{icmt2011} 
-
-%TODO
-
-% Problem to solve.
-When working with models, it is quite common task to query the model for
-validating certain properties or searching for interesting parts. EMF-IncQuery
-\cite{EMFIncQuery} provides a solution for this problem: It is a framework to
-execute fast model queries over EMF models. It is actively developed at Budapest
-University of Technology and Economics. The current stable version (0.7) 
-proved its usability through industrial use-cases
-and university researches.
-
-% Core.
-The core of the framework is a query evaluator engine built on top of graph
-pattern matching engine using Rete algorithm adapted from expert
-systems to facilitate the efficient storage and retrieval of partial views of
-graph-like models. In a nutshell, Rete maintains a hierarchical query data
-structure on top of the model which stores the result of sub-queries. On model
-change, the event propagates through this data structure leaving the unmodified
-part of the model untouched. This results in fast, near zero response time and
-size-independence on small model changes. In return, the model and the query
-structure has to be loaded into the memory, which can be a significant resource
-expense.
-
-% API.
-To access the capabilities of the core, an easy-to-use, type safe API is
-defined. Using the API, EMF resources and object hierarchies can be loaded and
-queried incrementally. In addition certain extensions -- such as the validation
-framework -- can be attached (\autoref{fig:incquery-architecture}).
-
-% Query lanuage.
-Along the API, a complete query language is defined. It provides a declarative
-way to express the queries over the EMF model in the form of graph patterns.
-With the language the user can express combined queries, negative patterns,
-checking property conditions, simple calculations, calculate disjunctions and
-transitive closures, etc.~on top of the models.
-
-% Tooling.
-The framework contains UI tooling which helps the users to effectively develop
-test and integrate queries into their solution. The first element of the tooling
-is the rich Xtext~\cite{XtextWeb} based editor for the query language which aids writing well
-formed queries providing content assist, error markings and such. The next part
-of the tooling is the ability to load EMF models and execute the queries on them
-as the user writes them giving visual feedback about the result.
-The last important part is the code generation. The tooling dynamically
-generates the source code which contains the programmatic equivalent of the
-model queries. The users can integrate this code out of the box in Eclipse
-plugins as well as headless applications to execute queries and get back the
-results from the source code level.
-
-\section{Challenges}
-
-\eiq{} is proven to be effecient for incremental query evaluation on small to medium-sized models (in the order of magnitude of $10^6$). However, model-driven engineering challenges often present large models, with $10^7$ or more elements \cite{Scheidgen12}. 
-
-Due to the Rete algorithm's memory consumption (\autoref{rete}), \eiq{} cannot handle large models efficiently \cite{models10}. A trivial solution would be to use \emph{vertical scaling}: put more memory in the workstation. Unfortunately, this approach is not feasible due to nature of Java's memory management. The Garbage Collector (GC) cannot handle heap sizes larger than 10~GB efficiently, thus introducing long pauses in the application \cite{Azul}. 
-
-This problem is well-known in the Java community. There are alternative Java Virtual Machines (JVMs) with specialized Garbage Collectors, like Azul Systems' JVM. However, the Azul JVM is a proprietary product and has specific hardware requirements. Also, this does not solve the scaling problem entirely -- the model size is still limited by the total amount memory in a single computer.
-
-Instead of vertical scaling, we decided to opt for \emph{horizontal scaling}. As described in \autoref{nosql}, distributed non-relational databases have been gaining momentum in the last years. For persisting models, we inspected graph databases, but found that their query layer does not scale well in a distributed environment (\autoref{evaluation-results}). This is a serious problem for MDE, where the queries are typically more complex than in traditional, transactional database management.
-
-Therefore, we decided to implement our own distributed, scalable query layer based on NoSQL and semantic web databases.
-
+%\iqd{}'s single workstation predecessor, \eiq{} is built around Eclipse-based technologies. To reap the benefits of a mutual code base, we designed \iqd{} to use as much of \eiq's components as possible. In the following section, we introduce the Eclipse-based technologies most important for our work.
 
  
 
@@ -378,3 +398,12 @@ Our intention to reuse \eiq{} for building \iqd{} required us to map EMF's metam
 % Property graphs~\cite{DBLP:journals/corr/abs-1006-2361} provide a more general way to describe graphs by annotating vertices and edges with key-value properties.
 % 
 % Such data structures can be stored in graph databases like Neo4j~\cite{neo4j} which provides the Cypher~\cite{cypher} query language. Even though big data storage (usually based on MapReduce) provides fast object persistence and retrieval, query engines realized directly on these data structures do not provide dedicated support for incremental query evaluation.
+
+
+
+
+%% temp
+
+%\paragraph{Deployment}
+%Titan can be deployed in different ways according to the needs of the application. For \iqd{}'s prototype, we used Titan in \textit{remote server mode} (\figref{titan-modes-distributed}). In this setup, Titan runs in the same Java Virtual Machine as the application and communicates with the Cassandra cluster on a low-level protocol (e.g.\ Thrift).
+%\pic{titan-modes-distributed}{Using Titan with Cassandra in remote server mode}

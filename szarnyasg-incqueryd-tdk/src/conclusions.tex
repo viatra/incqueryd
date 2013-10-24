@@ -1,7 +1,7 @@
 \chapter{Conclusions}
 \label{chap:conclusions}
 
-This chapter, \ldots
+This chapter summarizes the contributions presented in the report. 
 
 \section{Summary of Contributions}
 
@@ -13,34 +13,43 @@ During the research and development of \iqd{}'s prototype, I achieved the follow
 
 \subsection{Scientific Contributions}
 
+I achieved the following scientific contributions:
+
 \begin{itemize}
-  \item I implemented a \emph{distributed, asynchronous version of the Rete algorithm} with a termination protocol. Based on the Rete algorithm, I created a \emph{distributed incremental query engine's prototype}, which is not only detached from the data storage backend, but also agnostic to the storage backend's data model. To prove this, the query engine was tested with both property graphs and RDF graphs. 
-  \item Based on \eiq{} and István Ráth's work, I created an \emph{Eclipse-based environment} to provide automated deployment of the Rete network. This allows the user to define complex queries in IQPL, a high-level pattern language. % TODO SzG define own work
-  \item I conducted a benchmark to measure \iqd{}'s \emph{response time and scalability characteristics}. For the benchmark's baseline, I created \emph{distributed non-incremental benchmark scenarios}, with Neo4j and 4store.
-  \item I extended the termination protocol to work in a distributed environment. 
+  \item I designed and implemented a \emph{distributed, asynchronous version of the Rete algorithm}. 
+  \item I proposed a novel architecture for building a distributed, scalable, incremenetal graph query engine over different storage backends. % incremental query as a service
+  \item I conducted a benchmark to measure \iqd{}'s \emph{response time and scalability characteristics}. For the benchmark's baseline, I created \emph{distributed non-incremental benchmark scenarios}. 
+  \item I extended the termination protocol used \eiq{} to work in a distributed environment. 
+  \item I extended the \tb{} to work in a distributed environment. 
 \end{itemize}
 
 \subsection{Practical Accomplishments}
 
+I achieved the following practical accomplishements:
+
 \begin{itemize}
+  \item Based on the Rete algorithm, I created a \emph{distributed incremental query engine's prototype}, which is not only detached from the data storage backend, but also agnostic to the storage backend's data model. To prove this, the query engine was tested with both property graphs and RDF graphs.
   \item I extended the \tb{} with a \emph{new instance model generator}, which can produce property graphs and serialize them in various formats: \graphml{}, Blueprints \graphson{} and Faunus \graphson{}. % (\autoref{sec:property-graph-formats}).
-  \item I extended the \tb{} to work in a distributed environment. 
   \item I implemented \iqd{}'s prototype, including the storage, the middleware and the query layer. I wrote more than 3000 lines of Java code and approximately 500 lines of configuration and deployment scripts.
-  \item I experimented with modern non-relational database management systems with a focus on NoSQL graph databases and triple stores. I created the connector class in \iqd{}'s middleware and formulated the necessary the Gremlin queries.
+%  \item Based on \eiq{} and István Ráth's work, I created an \emph{Eclipse-based environment} to provide automated deployment of the Rete network. This allows the user to define complex queries in IQPL, a high-level pattern language. % TODO SzG define own work
+  \item I elaborated automated deployment technologies based on \eiq{}'s existing technologies.
+  \item I experimented with modern non-relational database management systems with a focus on NoSQL graph databases and triple stores. For the purpose of benchmarking different tools, I implemented scripts to install various graph storages. 
   \begin{itemize}
-    \item I implemented scripts to install the \emph{Titan graph database and its ecosystem} on a cluster. Titan's ecosystem includes technologies on different maturity levels, including the Apache Cassandra database, the Apache Hadoop MapReduce framework with the HDFS distributed file system, the TinkerPop graph framework and the Faunus graph analytics engine.
-    \item I implemented scripts to install the \emph{4store triplestore} on a cluster. I created the connector class in \iqd{}'s middleware and formulated the necessary the SPARQL queries. 
-    \item I deployed a manually sharded \emph{Neo4j cluster}. I created the connector class in \iqd{}'s middleware to access Neo4j and formulated the appropriate Cypher queries.
+    \item I implemented scripts to install the \emph{Titan graph database and its ecosystem} on a cluster. Titan's ecosystem includes technologies on different maturity levels, including the Apache Cassandra database, the Apache Hadoop MapReduce framework with the HDFS distributed file system, the TinkerPop graph framework and the Faunus graph analytics engine. I formulated the necessary the Gremlin queries and created the connector class in \iqd{}'s middleware.
+    \item I implemented scripts to install the \emph{4store triplestore} on a cluster. I formulated the necessary the SPARQL queries and created the connector class in \iqd{}'s middleware. 
+    \item I deployed a manually sharded \emph{Neo4j cluster}. I formulated the appropriate Cypher queries and created the connector class in \iqd{}'s middleware to access Neo4j.
   \end{itemize}
   \item I implemented scripts for \emph{automating the benchmark} and \emph{operating a cluster of Akka microkernels}.
 \end{itemize}
 
 \section{Limitations}
 
+\iqd{}'s current implementation has some limitations, the most important being the following:
+
 \begin{itemize}
-  \item The Rete nodes are manual allocated.
-  \item Only a subset of the Rete nodes are implemented. No \emph{check} expressions. 
-  \item Tooling does not cover the whole workflow.   
+  \item The Rete nodes are allocated manually.
+  \item Only a subset of the nodes defined in the Rete algorithm are implemented. %No \emph{check} expressions. 
+  \item The Eclipse-based tooling does not cover the whole workflow. The user is required to do some manual work, e.g.\ running scripts manually.
 \end{itemize}
 
 \section{Future work}
@@ -50,7 +59,7 @@ For future work, we plan on providing more sophisticated automation for sharded 
 
 We also plan experiment with programming languages that are better suited to asynchronous algorithms (e.g.\ Erlang and Scala) and try different database systems (e.g. MongoDB) as our storage layer.
 
-Distributed \tb{} w/ concurrent requests.
+We plan to extend the distributed \tb{} to model different real-world workloads, e.g.\ simulating multiple users issuing concurrent requests.
 
 \begin{itemize}
   \item Use programming languages better suited for asynchronous processing, e.g.\ Scala, a Java-based functional object-oriented programming language.
