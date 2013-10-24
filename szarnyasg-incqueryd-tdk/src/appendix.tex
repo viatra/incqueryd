@@ -179,3 +179,14 @@ RDF/XML is an XML-based (Extensible Markup Language) format for serializing RDF 
 
 </rdf:RDF>
 \end{lstlisting}
+
+\section{Mapping Ecore to Property Graphs}
+\label{trainbenchmark-mapping}
+
+Mapping the Ecore kernel's concepts to property graphs is not a trivial task. We developed the property graph generator module for the \tb{} based on the railroad system's Ecore metamodel (\autoref{railroad-system}), which meant the Ecore concepts had to be mapped to property graphs. Following the mapping defined in \autoref{ecore-mapping}, we created the equivalent instance models for property graphs as well. Below, we provide some examples about the mapping:
+\begin{itemize}
+  \item \verb+Segment+ is an \verb+EClass+ instance. In a property graph, types cannot be represented explicitly. Instead, for each node representing a \verb+Segment+ instance, we add a \verb+type+ property with the value \verb+Segment+.
+  \item \verb+Segment_length+ is an \verb+EAttribute+ instance. For each graph node representing a \verb+Segment+, we define a property with the value \verb+Segment_length+.
+  \item \verb+TrackElement_Sensor+ is an \verb+EReference+ instance. For each edge representing a \verb+TrackElement_Sensor+ instance, we add the \verb+TRACKELEMENT_SENSOR+ label.
+  \item \verb+EInt+ in an \verb+EDataType+ instance. Each attribute with this type, e.g.\ the \verb+Sensor+ class' \verb+Segment_length+ attribute, is defined with the Java primitive type \verb+int+.
+\end{itemize}

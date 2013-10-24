@@ -35,6 +35,8 @@ The benchmark defines four distinct phases. These phases are also used in the di
 
 To assess the scalability of the tools, the benchmark uses instance models of growing sizes, each model containing about twice as many model elements as the previous one (\autoref{trainbenchmark-model-generation}). Running the same validation sequence on different model sizes highlighted the limitations of the tested query engines.
 
+\pic{benchmark-original}{The \tb{}'s scenario}%. The green arrows and components are specific to the incremental scenario.}
+
 Scalability is also evaluated against the complexity of the queries. The benchmark defines four queries, each testing different aspects of the query engine (filtering, join and antijoin operations, etc.).
 
 \subsection{Generating Instance Models}
@@ -42,21 +44,7 @@ Scalability is also evaluated against the complexity of the queries. The benchma
 
 Due to both confidentiality and technical reasons, it is difficult to obtain real-world industrial models and queries. Also, using confidential data sets hinders the reproducibility of the conducted benchmarks. Therefore, a generator modules was developed which creates instance models which mimic real-world models.
 
-We used  the \emph{railway system metamodel}, defined in \autoref{overview-elaboration}. The instance models are generated pseudorandomly, with pre-defined structural constraints \cite{ASE2013}. The generator is capable of generating models of different sizes and formats, including EMF, OWL, RDF and SQL. 
-
-\subsubsection{Mapping Ecore to Property Graphs}
-
-As mentioned earlier, the railroad system metamodel, introduced in \autoref{railroad-system}, was designed in Ecore. Based on the mapping from the Ecore kernel (\autoref{ecore-mapping}), we created the equivalent instance models for property graphs as well.
-% instance model shown on \figref{neoclipse-graph}). 
-
-The Ecore kernel concepts map to property graphs as follows:
-\begin{itemize}
-  \item \verb+Segment+ is an \verb+EClass+ instance. In a property graph, types cannot be represented explicitly. Instead, for each node representing a \verb+Segment+ instance, we add a \verb+type+ property with the value \verb+Segment+.
-  \item \verb+Segment_length+ is an \verb+EAttribute+ instance. For each graph node representing a \verb+Segment+, we define a property with the value \verb+Segment_length+.
-  \item \verb+TrackElement_Sensor+ is an \verb+EReference+ instance. For each edge representing a \verb+TrackElement_Sensor+ instance, we add the \verb+TRACKELEMENT_SENSOR+ label.
-  \item \verb+EInt+ in an \verb+EDataType+ instance. Each attribute with this type, e.g.\ the \verb+Sensor+ class' \verb+Segment_length+ attribute, are defined with the Java primitive type \verb+int+.
-\end{itemize}
-Note that the property graph and the RDF data models lack some of the advanced metamodeling features of Ecore. For example, an Ecore \verb+EReference+ not just defines a relationship between specific \verb+EClass+ instances (this is already impossible in a property graph), but also defines multiplicity and containment constraints. This cannot be enforced by the property graphs and RDF data models, instead, it has to be handled by the modeling application explicitly. 
+We used  the \emph{railway system metamodel}, defined in \autoref{overview-elaboration}. The instance models are generated pseudorandomly, with pre-defined structural constraints and a regular fan-out structure (i.e.\ nodes of a given type have similar indegree and outdegree)~\cite{ASE2013}. The generator is capable of generating models of different sizes and formats, including EMF, OWL, RDF and SQL. We also developed a generator for the property graph data model. In \autoref{trainbenchmark-mapping}, we some examples about mapping the Ecore kernel to property graphs.
 
 \subsection{Original Results for Non-distributed Tools}
 
@@ -170,7 +158,30 @@ The results were processed by an R script~\cite{RProject}. The script is capable
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Results}
+\section{Benchmark Results with Neo4j}
+
+During the earlier phases of the research, we conducted measurement using only Neo4j \cite{Izso:2012:ODD:2428516.2428523}. The benchmark's setup was slightly different, with the main differences being the following.
+
+\begin{itemize}
+  \item Due to the lack of sharding in Neo4j, we \emph{sharded the graph manually}. This had a number of important implications.
+  \begin{itemize}
+    \item The batch queries were ran on all shards separately and their results were aggregated by the coordinator. The transformations also ran separately. 
+    \item The incremental queries were evaluated with a distributed Rete net. The elementary model queries (for filling the indexers) were ran on all shards separately and aggregated by the indexers. The transformations also ran separately.
+    \item Because the graph was sharded to disjoint partitions with no edges between them, this can be viewed as an ideal case of graph sharding. Therefore, we can use the results to inspect the an ''ideal'' sharding strategy's impact on the performance.
+  \end{itemize}
+  \item The servers had twice as much memory (16~GB).
+\end{itemize}
+
+Despite the differences, we can still derive some useful conclusions by compare the results of this benchmark with the most recent one detailed previously. \figref{benchmark/neo/BatchTrafo_RouteSensor} shows that the Neo4j-based incremental tool consistently outperforms the Neo4j's own query engine.
+
+\pic{benchmark/neo/BatchTrafo_RouteSensor}{Total execution times for 50 validations}
+
+\figref{benchmark/neo/OnTheFly_RouteSensor} shows that while Neo4j's non-incremental query engine scales better than 4store's (in this particular setup), the incremental tool based on Neo4j is about two orders of magnitude faster.
+
+\pic{benchmark/neo/OnTheFly_RouteSensor}{Execution times for transformation and revalidation}
+
+
+\section{Benchmark Results with 4store and Titan}
 \label{evaluation-results}
 
 % pictures not used
@@ -222,30 +233,6 @@ First, to start each benchmark sequence independently, we turned the operating s
 
 As discussed in \autoref{ecosystem}, our servers could be influenced from the workload caused by other users of the same cloud. To minimalize the effect of this and other transient loads, we ran the benchmark five times and took the \emph{minimum} value for each phase. We also disabled file caching in the operating system, so that the serialized model always must be read from the disk.
 
-
-%%%%% new section for Neo4j
-
-\section{Benchmark Results with Neo4j}
-
-During the earlier phases of the research, we conducted measurement using only Neo4j \cite{Izso:2012:ODD:2428516.2428523}. The benchmark's setup was slightly different, with the main differences being the following.
-
-\begin{itemize}
-  \item Due to the lack of sharding in Neo4j, we \emph{sharded the graph manually}. This had a number of important implications.
-  \begin{itemize}
-    \item The batch queries were ran on all shards separately and their results were aggregated by the coordinator. The transformations also ran separately. 
-    \item The incremental queries were evaluated with a distributed Rete net. The elementary model queries (for filling the indexers) were ran on all shards separately and aggregated by the indexers. The transformations also ran separately.
-    \item Because the graph was sharded to disjoint partitions with no edges between them, this can be viewed as an ideal case of graph sharding. Therefore, we can use the results to inspect the an ''ideal'' sharding strategy's impact on the performance.
-  \end{itemize}
-  \item The servers had twice as much memory (16~GB).
-\end{itemize}
-
-Despite the differences, we can still derive some useful conclusions by compare the results of this benchmark with the most recent one detailed previously. \figref{benchmark/neo/BatchTrafo_RouteSensor} shows that the Neo4j-based incremental tool consistently outperforms the Neo4j's own query engine.
-
-\pic{benchmark/neo/BatchTrafo_RouteSensor}{Total execution times for 50 validations}
-
-\figref{benchmark/neo/OnTheFly_RouteSensor} shows that while Neo4j's non-incremental query engine scales better than 4store's (in this particular setup), the incremental tool based on Neo4j is about two orders of magnitude faster.
-
-\pic{benchmark/neo/OnTheFly_RouteSensor}{Execution times for transformation and revalidation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
