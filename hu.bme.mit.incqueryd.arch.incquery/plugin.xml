@@ -58,6 +58,14 @@
       </matcher>
    </extension>
    <extension
+         id="hu.bme.mit.incqueryd.arch.incquery.visualization.indexerInContainer"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.incqueryd.arch.incquery.visualization.util.IndexerInContainerQuerySpecification$Provider"
+            id="hu.bme.mit.incqueryd.arch.incquery.visualization.indexerInContainer">
+      </matcher>
+   </extension>
+   <extension
          id="hu.bme.mit.incqueryd.arch.incquery.visualization.alphaNode"
          point="org.eclipse.incquery.runtime.queryspecification">
       <matcher
@@ -135,6 +143,14 @@
       <matcher
             querySpecificationProvider="hu.bme.mit.incqueryd.arch.incquery.visualization.util.InputedgesQuerySpecification$Provider"
             id="hu.bme.mit.incqueryd.arch.incquery.visualization.inputedges">
+      </matcher>
+   </extension>
+   <extension
+         id="hu.bme.mit.incqueryd.arch.incquery.visualization.infrastructure"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.incqueryd.arch.incquery.visualization.util.InfrastructureQuerySpecification$Provider"
+            id="hu.bme.mit.incqueryd.arch.incquery.visualization.infrastructure">
       </matcher>
    </extension>
 

@@ -52,6 +52,21 @@ pattern reteRecipe(rc) { ReteRecipe(rc); }
 @ContainsItem(container = rc, item = rn)
 pattern reteNodeInContainer(rn, rc) { ReteRecipe.recipeNodes(rc,rn); }
 
+@ContainsItem(container = rc, item = ix)
+pattern indexerInContainer(ix, rc) {
+	ReteRecipe.recipeNodes(rc,rn);
+	JoinRecipe.leftParent(rn,ix);
+	} or {
+	ReteRecipe.recipeNodes(rc,rn);
+	JoinRecipe.rightParent(rn,ix);
+	} or {
+	ReteRecipe.recipeNodes(rc,rn);
+	AntiJoinRecipe.leftParent(rn,ix);
+	} or {
+	ReteRecipe.recipeNodes(rc,rn);
+	AntiJoinRecipe.rightParent(rn,ix);		
+}
+
 //@ContainsItem(container = RC, item = RCx)
 //pattern reteConnInContainer(RCx, RC) {
 //	ReteContainer.reteConnections(RC,RCx);
@@ -66,23 +81,23 @@ pattern reteNodeInContainer(rn, rc) { ReteRecipe.recipeNodes(rc,rn); }
 //pattern reteNode(rn) { ReteNodeRecipe(rn); }
 
 @Item(item=rn, label="$rn.traceInfo$")
-@Format(color="#31a348")
+@Format(color="#98fb98")
 pattern alphaNode(rn) { AlphaRecipe(rn);}
 
 @Item(item=rn, label="$rn.traceInfo$")
-@Format(color="#d1ba2f")
+@Format(color="#fffacd")
 pattern betaNode(rn) { BetaRecipe(rn);}
 
 @Item(item=rn, label="$rn.traceInfo$")
-@Format(color="#d33544")
+@Format(color="#deb887")
 pattern productionNode(rn) { ProductionRecipe(rn); }
 
 @Item(item=rn, label="$rn.traceInfo$")
-@Format(color="#3e47d1")
+@Format(color="#d3d3d3")
 pattern inputNode(rn) { InputRecipe(rn);}
 
 @Item(item=rn, label="$rn.traceInfo$")
-@Format(color="#d339c5")
+@Format(color="#b0e0e6")
 pattern indexerNode(rn) { ProjectionIndexer(rn);}
 
 @Edge(source=parent,target=child, label = "parent")
@@ -121,6 +136,15 @@ pattern inputedges(input,trg)
 {
 	UniquenessEnforcerRecipe.parents(ue,input);
 	SingleParentNodeRecipe.parent(trg, ue);
+}
+
+@Edge(source=element,target=trg,label="mapping")
+@Format(lineColor = "#000000", lineStyle="dashed")
+pattern infrastructure(element,trg)
+{
+	InfrastructureMapping.mappedElements(im, element);
+	InfrastructureMapping.targetElement(im, trg);
+	
 }
 
 //@Item(item = J, label = "Join")
