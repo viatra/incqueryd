@@ -154,12 +154,12 @@ The deployment and configuration of a distributed pattern matcher involves many 
 
 In the following, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{incquery-workflow}. First, we describe the workflow of \eiq{} and then emphasize the differences in \iqd{}'s.
 
-\subsection{\eiq{}'s workflow}
+\subsection{\eiq{}'s Workflow}
 \label{eiq-workflow}
 
 Based on the \emph{metamodel} and the \emph{query specification}, \eiq{} first constructs a Rete network~\textcircled{1} and deploys it~\textcircled{2}. It loads the model (from the persistent storage) to an \emph{in-memory storage}~\textcircled{3} and traverses it to initialize the Rete network's indexers. The Rete network evaluates the query by processing the incoming tuples~\textcircled{4}. If the modeling application modifies the model through the EMF API, the modifications are propagated the Rete network, hence keeping it in a consistent state~\textcircled{5}. The query results can be retrieved from the Rete network~\textcircled{6}. The modeling application may modify the model and reevaluate the query again.
 
-\subsection{\iqd{}'s workflow}
+\subsection{\iqd{}'s Workflow}
 \label{iqd-workflow}
 
 By design, \iqd{}'s workflow's steps are similar to \eiq{}'s, discussed in \autoref{eiq-workflow}. However, due to the system's distributed nature, they are more difficult to design and implement.

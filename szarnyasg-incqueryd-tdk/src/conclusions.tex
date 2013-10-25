@@ -45,12 +45,9 @@ I achieved the following practical accomplishements:
 \iqd{}'s current implementation has some limitations, the most important ones are the following.
 
 \begin{enumerate}
-  \item 
-  The Rete nodes are allocated manually. The user has to define the mapping between the Rete network and the infrastructure. However, given a mapping, the system is capable of automatically deploying the Rete network.
-  \item
-  Only a subset of the nodes defined in the Rete algorithm are implemented. For example, the current implementation does not support recursive patterns, checking property conditions and transitive closures.
-  \item
-   The Eclipse-based tooling does not cover the whole workflow. The user is required to do some manual work, e.g.\ running scripts manually.
+  \item The Rete nodes are allocated manually. The user has to define the mapping between the Rete network and the infrastructure. However, given a mapping, the system is capable of automatically deploying the Rete network.
+  \item Only a subset of the nodes defined in the Rete algorithm are implemented. For example, the current implementation does not support recursive patterns, checking property conditions and transitive closures.
+  \item The Eclipse-based tooling does not cover the whole workflow. The user is required to do some manual work, e.g.\ running scripts manually.
 \end{enumerate}
 
 \section{Future work}
@@ -58,18 +55,13 @@ I achieved the following practical accomplishements:
 
 For future work, we plan to address the aforementioned limitations.
 
-%We plan to provide more sophisticated automation for sharded Ecore models
-
 \begin{enumerate}
-\item
-The allocation of the Rete nodes will be supported using techniques like CSP (Constraint Satisfaction Problem) solvers and DSE (Design Space Exploration) \cite{DSE11}. We plan to further explore advanced optimization challenges such as dynamic reconfiguration and fault tolerance.
-\item
-We will complete the implementation of the nodes defined in Rete algorithm.
-\item
-The tooling in under active development with plans for a \emph{live monitoring} feature.
+  \item The allocation of the Rete nodes will be supported using techniques like CSP (Constraint Satisfaction Problem) solvers and DSE (Design Space Exploration) \cite{DSE11}. We plan to further explore advanced optimization challenges such as dynamic reconfiguration and fault tolerance.
+  \item We will complete the implementation of the nodes defined in Rete algorithm.
+  \item The tooling in under active development with plans for a \emph{live monitoring} feature.
 \end{enumerate}
 
 We also plan to extend the distributed \tb{} to model different real-world workloads, e.g.\ simulating multiple users issuing concurrent requests.
 
 Another direction is experimenting with programming languages that are better suited to asynchronous algorithms, e.g.\ Erlang and Scala, a Java-based functional object-oriented programming language. 
-For our storage layer, we plan to test distributed in-memory databases, e.g.\ Hazelcast~\cite{Hazelcast}. Also, we are constantly looking for scalable persistent database technologies. 
+For our storage layer, we plan to test distributed in-memory databases, e.g.\ Hazelcast~\cite{Hazelcast}. Also, we are constantly looking for alternative scalable persistent graph database technologies. 

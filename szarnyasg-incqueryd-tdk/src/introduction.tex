@@ -1,45 +1,36 @@
 \chapter{Introduction}
 \label{chap:introduction}
 
-Nowadays, model-driven software engineering (MDE) plays an important role in the development processes of critical embedded systems. Advanced modeling tools provide support for a wide range of development tasks such as requirements and traceability management, system modeling, early design validation, automated code generation, model-based testing and other validation and verification tasks. 
-With the dramatic increase in complexity that is also affecting critical embedded systems in recent years, modeling toolchains are facing scalability challenges as the size of design models constantly increases, and automated tool features become more sophisticated.
+This chapter introduces the report's context. It defines the main problems and summarizes the goals of our research.  
 
 \section{Context}
 
-% The role/importance  of expressive and incremental queries in MDE
-Many scalability issues can be addressed by improving query performance. \emph{Incremental evaluation} of model queries aims to reduce query response time by limiting the impact of model modifications to query result calculation. Such algorithms work by either (i) building a cache of interim query results and keeping it up-to-date as models change (e.g.\ \eiq{}~\cite{models10}) or (ii) applying impact analysis techniques and re-evaluating queries only in contexts that are affected by a change (e.g.\ the Eclipse OCL Impact Analyzer~\cite{OCLIA}). This technique has been proven to improve performance dramatically in several scenarios (e.g.\ on-the-fly well-formedness validation or model synchronization), at the cost of increasing memory consumption. Unfortunately, this overhead is combined with the increase in model sizes due to in-memory representation (found in state-of-the-art frameworks such as EMF~\cite{EMF}). Since single-computer heaps cannot grow arbitrarily (as response times degrade drastically due to garbage collection problems), memory consumption is the most significant scalability limitation.% of the single workstation architecture.
+Nowadays, model-driven software engineering (MDE) plays an important role in the development processes of critical embedded systems. Advanced modeling tools provide support for a wide range of development tasks such as requirements and traceability management, system modeling, early design validation, automated code generation, model-based testing and other validation and verification tasks. 
 
-% Scalability for databases and linked data
-% graph databases, RDF/SPARQL
-% at the cost of expressive ad-hoc queries
-
-An alternative approach to tackling MDE scalability issues is to make use of advances in persistence technology. As the majority of model-based tools uses a graph-oriented data model, recent results of the NoSQL and Linked Data movement~\cite{neo4j,openvirtuoso,sesame} are straightforward candidates for adaptation to MDE purposes. Unfortunately, this idea poses difficult conceptual and technological challenges: (i) property graph databases lack strong metamodeling support and their query features are simplistic compared to MDE needs, and (ii) the underlying data representation format of semantic databases (RDF~\cite{website:rdf_standard}) has crucial conceptual and technological differences to traditional metamodeling languages such as Ecore~\cite{EMF}. Additionally, while there are initial efforts to overcome the mapping issues between the MDE and Linked Data worlds~\cite{hillairet2008bridging}, even the most sophisticated NoSQL storage technologies lack efficient and mature support for executing expressive queries \emph{incrementally}.
+Models representing sensor data, reverse engineered software models (e.g.\ abstract syntax trees of existing source code) and geospatial models can contain well over $10^9$ modeling elements \cite{Scheidgen12}. The dramatic increase in complexity is also affecting critical embedded systems in recent years. Modeling toolchains are facing scalability challenges as the size of design models constantly increases, and automated tool features become more sophisticated.
 
 \section{Problem Statement and Requirements}
 
-\cite{Scheidgen12}
+Many scalability issues can be addressed by improving query performance. \emph{Incremental evaluation} of model queries aims to reduce query response time by limiting the impact of model modifications to query result calculation. Such algorithms work by either (i) building a cache of interim query results and keeping it up-to-date as models change (e.g.\ \eiq{}~\cite{models10}) or (ii) applying impact analysis techniques and re-evaluating queries only in contexts that are affected by a change (e.g.\ the Eclipse OCL Impact Analyzer~\cite{OCLIA}). This technique has been proven to improve performance dramatically in several scenarios (e.g.\ on-the-fly well-formedness validation or model synchronization), at the cost of increasing memory consumption. Unfortunately, this overhead is combined with the increase in model sizes due to in-memory representation (found in state-of-the-art frameworks such as EMF~\cite{EMF}). Since single-computer heaps cannot grow arbitrarily (as response times degrade drastically due to garbage collection problems), memory consumption is the most significant scalability limitation.% of the single workstation architecture.
 
+An alternative approach to tackling MDE scalability issues is to make use of advances in persistence technology. As the majority of model-based tools uses a graph-oriented data model, recent results of the NoSQL and Linked Data movement~\cite{neo4j,openvirtuoso,sesame} are straightforward candidates for adaptation to MDE purposes. Unfortunately, this idea poses difficult conceptual and technological challenges: (i) property graph databases lack strong metamodeling support and their query features are simplistic compared to MDE needs, and (ii) the underlying data representation format of semantic databases (RDF~\cite{website:rdf_standard}) has crucial conceptual and technological differences to traditional metamodeling languages such as Ecore~\cite{EMF}. Additionally, while there are initial efforts to overcome the mapping issues between the MDE and Linked Data worlds~\cite{hillairet2008bridging}, even the most sophisticated NoSQL storage technologies lack efficient and mature support for executing expressive queries \emph{incrementally}.
 
 \section{Objectives}
 
 % Goals: scale up to large models, yet maintain scalability for expressive and incremental queries
-% proposal, prototype tool
-% engineering principles: adaptability
-% initial feasibility and performance evaluation experiments
 
-%We aim to address these challenges by adapting incremental graph search techniques from \eiq{} to the cloud infrastructure. We introduce \iqd, a prototype system based on a distributed Rete network~\cite{Forgy} that can scale up from a single-workstation tool to a cluster to handle very large models and complex queries efficiently (\autoref{sec:overview}). 
-
-conceptual novelty
-new query engine built on top of existing persistent storage
+We aim to address these challenges by adapting incremental graph search techniques from \eiq{} to the cloud infrastructure. We introduce \iqd{}, a prototype system based on a distributed Rete network~\cite{Forgy} that can scale up from a single-workstation tool to a cluster to handle very large models and complex queries efficiently.
 
 \section{Contribution, Added Value}
+ 
+The main contributions of this report is a \emph{novel architecture} for a distributed, incremental query engine. We developed a \emph{working prototype} and designed a \emph{benchmark environment} to evaluate the scalability characteristics of the system. 
 
-The main contributions of this report are a novel architecture for distributed, incremental query engine and the evaluation of the architecture on a working prototype. 
+We conducted benchmarks with different storage backends and query engines. The analysis of the results confirmed the feasibility of the approach.
 
 \section{Structure of the Report}
  
 The report is structured as follows. 
-\autoref{chap:background-technologies} introduces the background technologies and the motivation behind building a distributed, incremental graph pattern matcher. \autoref{chap:overview} provides an overview of current a single-node incremental pattern macher, \eiq{}. 
+\autoref{chap:background-technologies} introduces the background technologies and the motivation for building a distributed, incremental graph pattern matcher. \autoref{chap:overview} provides an overview of current a single-node incremental pattern macher, \eiq{}. 
 \autoref{chap:evaluation} shows an initial performance evaluation in the context of on-the-fly well-formedness validation of software design models. 
 \autoref{chap:related-work} discusses the related work. \autoref{chap:conclusions} concludes the report and presents our future plans. 
 

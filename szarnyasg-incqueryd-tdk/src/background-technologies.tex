@@ -1,18 +1,18 @@
 \chapter{Background Technologies}
 \label{chap:background-technologies}
 
-Developing a scalable graph pattern matcher requires a wide range of technologies. Careful selection of the technologies is critical to the project's success. For \iqd{}, we looked for technologies that can form the building blocks of a distributed, scalable model repository and pattern matcher. These technologies must been designed with scalability in mind and deployed in large-scale distributed systems successfully. To avoid licensing issues, our search criteria included that, if possible, the technologies should be free and open-source solutions.
+Developing a scalable graph pattern matcher requires a wide range of technologies. Careful selection of the technologies is critical to the project's success. For \iqd{}, we looked for technologies that can form the building blocks of a distributed, scalable model repository and pattern matcher. These technologies must been designed with scalability in mind and deployed in large-scale distributed systems successfully. %To avoid licensing issues, our search criteria included that, if possible, the technologies should be free and open-source solutions.
 
 Usually, instance models are graph-like data structures. Therefore, we looked for scalable graph databases. In this context, scalability requires distributed storage and querying capabilities.
 
 During the early phase of the research, we studied the architecture and limitations of the candidate systems. For databases, we inspected the data sharding strategies, consistency guarantees and transaction capabilities, along with the API and query methods. We also checked the systems' support for asynchronous processing, notification and messaging mechanisms.
 
-In this chapter, we introduce the technologies that can form the basis of a scalable, distributed, asynchronous system. We also present EMF (Eclipse Modeling Framework) and \eiq{}, an incremental model query evaluation tool.
+In this chapter, we introduce the concepts and technologies that can form the basis of a scalable, distributed, asynchronous system. %We also present EMF (Eclipse Modeling Framework) and \eiq{}, an incremental model query evaluation tool.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% \section{Big Data and the NoSQL Movement}
-% \label{nosql}
+\section{Big Data and the NoSQL Movement}
+\label{nosql}
 
 Since the 1980s, database management systems based on the relational data model~\cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling and so on. However, due to their rich feature set and the strongly connected nature of their data model, relational databases often have scalability issues~\cite{Jacobs:2009:PBD:1536616.1536632, Sakr13}. They are typically optimized for transaction processing, instead of data analsysis (see \emph{data warehouses} for an exception). In practice, these render them impractical for a number of use cases, e.g.\ running complex queries on large data sets.
 
@@ -80,10 +80,10 @@ The rest of the Ecore metamodeling language contains utility elements, common su
 
 \subsubsection{TinkerPop framework}
 
+\picTiny{tinkerpop-stack}{The TinkerPop software stack \cite{Blueprints}}
+
 The \emph{TinkerPop} framework is an open-source software stack for graph storage and processing \cite{TinkerPop}. TinkerPop includes \emph{Blueprints}, a property graph model interface. Blueprints fulfills the same role for graph databases as JDBC does for relational databases. Most NoSQL graph databases implement the property graph interface provided by Blueprints, including Neo4j (\autoref{neo4j}), Titan (\autoref{titan}), DEX~\cite{DEX}, InfiniteGraph~\cite{InfiniteGraph} and OrientDB~\cite{OrientDB}.
 
-\picTiny{tinkerpop-stack}{The TinkerPop software stack \cite{Blueprints}}
- 
 TinkerPop also introduces a graph query language, \textit{Gremlin}. Gremlin is a domain-specific language based on Groovy, a Java-like dynamic language which runs on the Java Virtual Machine. Unlike most query languages, Gremlin is an imperative language with a strong focus on graph traversals. For example, if John's father is Jack and Jack's father is Scott, we may run the traversals shown on \lstref{gremlin-queries}.
 
 \begin{lstlisting}[caption=Simple Gremlin queries, label=lst:gremlin-queries]
@@ -374,6 +374,21 @@ Akka is implemented in Scala, a functional and object-oriented programming langu
 Akka is based on the actor model \cite{Hewitt:1973:UMA:1624775.1624804} and provides built-in support for remoting. Unlike traditional remoting solutions, e.g.\ Java RMI (Remote Method Invocation) and CORBA (Common Object Request Broker Architecture), the remote and local interface is the same for each actor. Actors have both a logical and a physical path (\figref{akka-remote-deployment}). This way, they can be transparently moved between machines on the network.
 
 As of October 2013, the latest version (Akka 2.2) also supports \textit{pluggable transport} to use various transports to communicate with remote systems \cite{Akka}. For serializing the messages, Akka supports different frameworks, including Java's built-in serialization, Google Protobuf \cite{Protobuf} and Apache Thrift \cite{Thrift}.
+
+\section{Motivation for Horizontal Scaling}
+
+\eiq{} is proven to be effecient for incremental query evaluation on small to medium-sized models (in the order of magnitude of $10^6$). However, model-driven engineering challenges often present large models, with $10^9$ or more elements \cite{Scheidgen12}.
+
+Due to the Rete algorithm's memory consumption (\autoref{rete}), \eiq{} cannot handle large models efficiently \cite{models10}. A trivial solution would be to use \emph{vertical scaling}, i.e.\ putting more memory in the workstation. Unfortunately, this approach is not feasible due to nature of Java's memory management. The Garbage Collector (GC) cannot handle heap sizes larger than 10~GB efficiently, thus introducing long pauses in the application \cite{Azul}. 
+
+This problem is well-known in the Java community. There are alternative Java Virtual Machines (JVMs) with specialized Garbage Collectors, like Azul Systems' JVM. However, the Azul JVM is a proprietary product and has specific hardware requirements. Also, this does not solve the scaling problem entirely -- the model size is still limited by the total amount memory in a single computer.
+
+Instead of vertical scaling, we decided to opt for \emph{horizontal scaling}. As described in \autoref{nosql}, distributed non-relational databases have been gaining momentum in the last years. For persisting models, we inspected graph databases, but found that their query layer does not scale well in a distributed environment (\autoref{evaluation-results}). This is a serious problem for MDE, where the queries are typically more complex than in traditional, transactional database management.
+
+Therefore, we decided to design a stand-alone distributed, scalable query engine based on NoSQL and semantic web databases.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 %\section{Eclipse-based Technologies}

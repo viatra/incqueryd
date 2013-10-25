@@ -100,7 +100,7 @@ We used the distributed \tb{} (\autoref{distributed-trainbenchmark}) to evaluate
 
 We tested \iqd{} with three storage backends: first with Neo4j, then with 4store (\autoref{4store}) and Titan (\autoref{titan}). In both cases, the system was deployed on a four-node cluster.
 
-As a \emph{non-incremental baseline}, we used Neo4j's and 4store's own query engine. While we also planned to use Titan's query engine, our experiments showed that even for medium-sized graphs, the system was unable to run even the elementary queries (e.g.\ retrieving vertices by type), not to mention the more complex ones.
+As a \emph{non-incremental baseline}, we used Neo4j's and 4store's own query engines. While we also planned to use Titan's query engine, our experiments showed that even for medium-sized graphs, the system was unable to run even the elementary queries (e.g.\ retrieving vertices by type), not to mention the more complex ones.
 
 The benchmark follows the phases defined in the distributed \tb{}. Note that the main difference between the batch and incremental scenarios is that the latter maintain a distributed Rete network, which allows efficient query (re)evaluation.
 
