@@ -64,12 +64,3 @@ The Rete network represents the data in \emph{tuples}. Basically, in the Rete ne
 \end{itemize}
 
 This data representation principle intends to keep the Rete network's size as small as possible, while allowing efficient processing. Because of the tuple representation, various operations, e.g.\ projection ($ \pi $) and join ($ \rhd\!\!\lhd $), can be simply defined using tuple masks~\cite{BergmannMasters}.
-
-\subsubsection{Workflow}
-\label{eiq-workflow}
-
-\pic{incquery-workflow}{\eiq{}'s workflow}
-
-In the following, we describe \eiq{}'s workflow based on \figref{incquery-workflow}. 
-
-Based on the \emph{metamodel} and the \emph{query specification}, \eiq{} first constructs a Rete network \textcircled{1} and deploys it \textcircled{2}. It loads the model (from the persistent storage) to an \emph{in-memory storage} \textcircled{3} and traverses it to initialize the Rete network's indexers. The Rete network evaluates the query by processing the incoming tuples \textcircled{4}. If the modeling application modifies the model through the EMF API, the modifications are propagated the Rete network, hence keeping it in a consistent state \textcircled{5}. The query results can be retrieved from the Rete network \textcircled{6}. The modeling application may modify the model and reevaluate the query again.

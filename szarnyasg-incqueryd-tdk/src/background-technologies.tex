@@ -6,8 +6,8 @@ Developing a scalable graph pattern matcher requires a wide range of technologie
 Usually, instance models are graph-like data structures. Therefore, we looked for scalable graph databases. In this context, scalability requires distributed storage and querying capabilities.
 
 During the early phase of the research, we studied the architecture and limitations of the candidate systems. For databases, we inspected the data sharding strategies, consistency guarantees and transaction capabilities, along with the API and query methods. We also checked the systems' support for asynchronous processing, notification and messaging mechanisms.
-
-In this chapter, we introduce the technologies that can form the basis of a scalable, distributed, asynchronous system. We also present EMF (Eclipse Modeling Framework), and \eiq{}, an incremental model query evaluation tool.
+ 
+In this chapter, we introduce the technologies that can form the basis of a scalable, distributed, asynchronous system. We also present EMF (Eclipse Modeling Framework) and \eiq{}, an incremental model query evaluation tool.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -286,7 +286,7 @@ Although Titan was designed with scalability in mind, its query engine does not 
 
 \subsection{4store}
 \label{4store}
-ocl site:inf.mit.bme.hu
+
 4store is an open-source, distributed triplestore created by Garlik~\cite{4store}. Unlike the other tools discussed earlier, 4store is written in C. 4store is primarily applied for semantic web projects.
 
 \subsubsection{Architecture}
@@ -321,7 +321,7 @@ Similar to Titan's partitioning, 4store's \emph{segmenting} mechanism distribute
 \bf Sharding   & 
 \bf Queries    & 
 \bf Identifier generation \tabularnewline \hline\hline
-EMF     & Ecore           & None       & None       & OCL, IQPL & Automatic  \\ \hline
+EMF     & Ecore           & Variable   & Variable   & OCL, IQPL & Automatic  \\ \hline
 4store  & RDF             & Manual     & Automatic  & SPARQL    & Manual     \\ \hline
 Neo4j   & Property graph  & Manual     & Manual     & Cypher    & Manual     \\ \hline
 Titan   & Property graph  & Automatic  & Automatic  & Gremlin   & Automatic  \\ \hline
@@ -332,7 +332,7 @@ Titan   & Property graph  & Automatic  & Automatic  & Gremlin   & Automatic  \\ 
 
 \end{table}
 
-\autoref{tab:database-technologies} summarizes the relevant characteristics of the aforementioned database management systems. Accoding to these, Titan provides the most complete feature set. 4store and Neo4j lack important features like automatic identifier generation, which has to be implemented in the client application. Neo4j also misses automatic sharding, which seriously hinders its scalability potential. 
+\autoref{tab:database-technologies} summarizes the relevant characteristics of the aforementioned database management systems. Accoding to these, Titan provides the most complete feature set. 4store and Neo4j lack important features like automatic identifier generation, which has to be implemented in the client application. Neo4j also misses automatic sharding, which seriously hinders its scalability potential. EMF's distributed operation and sharding capabilities depend on the actual model repository and database backend being used. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -340,8 +340,7 @@ Titan   & Property graph  & Automatic  & Automatic  & Gremlin   & Automatic  \\ 
 \label{akka}
 
 Most distributed, concurrent systems use a messaging framework or message queue service. %Because of the nature of the Rete algorithm (\autoref{rete}), 
-
-\iqd{} requires a distributed, asynchronous messaging framework. For this purpose, we used the Akka framework.
+The \iqd{} system also requires a distributed, asynchronous messaging framework. For this purpose, we used the Akka framework.
 
 Akka is an open-source, fault-tolerant, distributed, asynchronous messaging framework developed by Typesafe \cite{Akka}.
 Akka is implemented in Scala, a functional and object-oriented programming language which runs on the Java Virtual Machine. Akka provides language bindings for both Java and Scala.

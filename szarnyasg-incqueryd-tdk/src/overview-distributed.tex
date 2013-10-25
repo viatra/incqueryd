@@ -78,12 +78,3 @@ The deployment and configuration of a distributed pattern matcher involves many 
 
 \iqd{}'s current termination protocol works by adding a stack to the message. The stack registers each Rete node the message passes through. After the message reaches the production node, the termination protocol starts. Based on the content of the stack, acknowledgement messages are propagated back on the network. When all relevant indexer nodes (where the original notification token(s) started from) receive the acknowledge messages, the termination protocol finishes.
 
-\subsection{Workflow}
-\label{iqd-workflow}
-
-In the following part, we will describe the workflow behind the pattern matching process. Starting from a metamodel, an instance model and a graph pattern, we will cover the problem pieces that need to be solved for setting up an incremental, distributed pattern matcher. The workflow is shown on \figref{incqueryd-workflow}.
- 
-\pic{incqueryd-workflow}{The workflow of \iqd{}} 
-
-By design, \iqd{}'s workflow's steps are similar to \eiq{}'s, discussed in \autoref{eiq-workflow}. However, due to the system's distributed nature, they are more difficult to design and implement.
-In \iqd{}, deploying the Rete network \textcircled{2} requires the deployment of remote actors (\autoref{akka}) on the servers. Both the Rete indexers and the database are distributed across the cluster. Hence, loading the model and initializing the Rete network needs network communication \textcircled{3}. The Rete network works using Akka's remote messaging feature. The query results can be retrieved from the Rete network (this may also require network communication) \textcircled{4}. The database shards can only be accessed through the middleware, which is reponsible for sending notifications to the Rete network's appropriate indexers. After the notifications are processed and the termination algorithm finishes, the Rete network is in a consistent state \textcircled{5}. The results can be retieved by the client and it may modify the model an reevaluate the query again \textcircled{6}. 
