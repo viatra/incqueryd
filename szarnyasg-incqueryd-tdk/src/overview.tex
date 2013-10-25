@@ -114,20 +114,20 @@ For the storage layer, the most important issue from an incremental query evalua
 
 \iqd{}'s middleware exposes an API that provides methods to manipulate the graph. By allowing graph-like data manipulation we allow the user to focus on the domain-specific challenges, thus increasing her productivity. The middleware translates the user's operation to the backend's query language and forwards it to the underlying data storage.
 
-%\subsubsection{Graph-like Data Manipulation}
-%\subsubsection{Data Representation}
+In order to allow the Rete algorithm to work, each model element has to have a unique identifier. Issuing a unique identifier in a distributed system is a non-trivial task and is subject to future work (\autoref{future-work}).
 
 To support different data models, we only have to supply the appropriate connector class to \iqd{}'s middleware. The current prototype supports 4store, Neo4j and Titan.
 
 \subsection{Notification Mechanisms}
 
-While relational databases usually provide \emph{trigger}s for generating notifications, most triplestores and graph databases lack this feature. Among our primary database backends, 4store provides no triggers at all. Titan and Neo4j incorporate Blueprints, which provides an \texttt{EventGraph} class capable of generating notification events, but the events are only propagated in a single JVM (Java Virtual Machine). Implementing distributed notifications would require us to extend the \texttt{EventGraph} class and use a messaging framework. This is subject to future work (see \autoref{future-work}). 
+While relational databases usually provide \emph{trigger}s for generating notifications, most triplestores and graph databases lack this feature. Among our primary database backends, 4store provides no triggers at all. Titan and Neo4j incorporate Blueprints, which provides an \texttt{EventGraph} class capable of generating notification events, but the events are only propagated in a single JVM (Java Virtual Machine). Implementing distributed notifications would require us to extend the \texttt{EventGraph} class and use a messaging framework. This is subject to future work (see \autoref{future-work}).
 
-Because the lack of support for distributed notifications, in \iqd{}'s prototype, notifications are controlled by the middleware by providing a facade for all model manipulation operations (\figref{incqueryd-architecture} \textcircled{3}). The notification messages are propagated through the Rete network using the Akka messaging framework. 
+Because the lack of support for distributed notifications, in \iqd{}'s prototype, notifications are controlled by the middleware by providing a facade for all model manipulation operations (\figref{incqueryd-architecture} \textcircled{3}). The notification messages are propagated through the Rete network using the Akka messaging framework.
 
 \subsection{Termination Protocol}
 
 \iqd{}'s termination protocol works by adding a stack to the message. The stack registers each Rete node the message passes through. After the message reaches the production node, the termination protocol starts. Based on the content of the stack, acknowledgement messages are propagated back on the network. When all relevant indexer nodes (where the original notification token(s) started from) receive the acknowledge messages, the termination protocol finishes.
+
 
 \subsection{Configuration and Performance Optimization}
  
@@ -216,8 +216,9 @@ We used a query that resembles a typical MDE application's workload. The query, 
 
 \pic{routesensor-pattern}{Graphical representation of the RouteSensor query's pattern. The dashed red arrow defines a negative application condition.}
 
-The \textit{RouteSensor} query looks for \texttt{Sensor}s that are connected to a \texttt{Switch}, but the \texttt{Sensor} and the \texttt{Switch} are \emph{not} connected to the same \texttt{Route}. The graphical representation of the query is shown on \figref{routesensor-pattern}. Basically, the query binds the type of the vertices, defines three edges and one negative edge, called NAC (negative application condition). 
+The \textit{RouteSensor} query looks for \texttt{Sensor}s that are connected to a \texttt{Switch}, but the \texttt{Sensor} and the \texttt{Switch} are \emph{not} connected to the same \texttt{Route}. In other words, all sensors that are associated with a switch that belongs to a route must also be associated directly with the same route.
 
+The graphical representation of the query is shown on \figref{routesensor-pattern}. Basically, the query binds the type of the vertices, defines three edges and one negative edge, called NAC (negative application condition). 
 
 \lstset{language=viatra}
 

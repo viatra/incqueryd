@@ -4,6 +4,7 @@
 This chapter summarizes the contributions presented in the report. 
 
 \section{Summary of Contributions}
+\label{summary}
 
 We presented \iqd{}, a novel approach to adapt distributed incremental query techniques to large and complex model driven software engineering scenarios. Our proposal is based on a distributed Rete network that is decoupled from sharded graph databases by a middleware layer. The feasibility of the approach has been evaluated using a benchmarking scenario of on-the-fly well-formedness validation of software design models. The results are promising as they show nearly instantaneous query re-evaluation as model sizes grow well beyond 50 million elements.
 
@@ -36,10 +37,11 @@ I achieved the following practical accomplishements:
     \item I implemented scripts to install the \emph{Titan graph database and its ecosystem} on a cluster. Titan's ecosystem includes technologies on different maturity levels, including the Apache Cassandra database, the Apache Hadoop MapReduce framework with the HDFS distributed file system, the TinkerPop graph framework and the Faunus graph analytics engine. I formulated the necessary the Gremlin queries and created the connector class in \iqd{}'s middleware.
     \item I implemented scripts to install the \emph{4store triplestore} on a cluster. I formulated the necessary the SPARQL queries and created the connector class in \iqd{}'s middleware. 
   \end{itemize}
+  \item The analysis of the results confirmed the feasibility of the approach and showed its superiority to current open-source graph query engines.
   \item I implemented scripts for \emph{automating the benchmark} and \emph{operating a cluster of Akka microkernels}.
 \end{itemize}
 
-Compared to our results published in~\cite{Izso:2013:IIG:2487766.2487772}, the latest system features backends with automatic sharding, automatic deployment of the Rete nodes and an Eclipse-based tooling environment.
+Compared to our results published in~\cite{Izso:2013:IIG:2487766.2487772}, the latest system features backends with automatic sharding, automatic deployment of the Rete nodes and an Eclipse-based tooling environment. This report discusses the theoretical and practical difficulties, including the detailed presentation of the architecture (\autoref{chap:overview}), the benchmark environment and results (\autoref{chap:evaluation}.
 
 \section{Limitations}
 
@@ -62,7 +64,7 @@ For future work, we plan to address the aforementioned limitations.
   \item The tooling in under active development with plans for a \emph{live monitoring} feature.
 \end{enumerate}
 
-We also plan to extend the distributed \tb{} to model different real-world workloads, e.g.\ simulating multiple users issuing concurrent requests.
+We also plan to extend the distributed \tb{} to model different real-world workloads, e.g.\ simulating multiple users issuing concurrent requests. We will add a \emph{unique identifier generator} to the middleware, which will allow us to use multiple data sources (which may have different element with the same identifiers).   
 
 Another direction is experimenting with programming languages that are better suited to asynchronous algorithms, e.g.\ Erlang and Scala, a Java-based functional object-oriented programming language.
 For our storage layer, we plan to test distributed in-memory databases, e.g.\ Hazelcast~\cite{Hazelcast} and to extend proven solutions, like Titan, with a distributed notification layer.
