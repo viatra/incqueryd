@@ -1,9 +1,11 @@
 \chapter{Overview of the Approach}
 \label{chap:overview}
 
+The primary goal of \iqd{} is to provide a scalable architecture for executing incremental queries over large models. Our approach is based on the following foundations: (i) a distributed model storage system that (ii) supports a graph-oriented data representation format, and (iii) a graph query language adapted from the \eiq{} framework. The novel contribution of this report is an architecture that consists of a (i) distributed model management middleware, and a (ii) distributed and stateful pattern matcher network based on the Rete algorithm.
+
+\iqd{} provides incremental query execution by \emph{indexing model contents} and \emph{capturing model manipulation operations} in the middleware layer, and \emph{propagating change tokens} along the pattern matcher network to \emph{produce query results and query result changes} (corresponding to model manipulation transactions) efficiently. As the primary sources of memory consumption, i.e.\ both the indexing and intermediate Rete nodes can be distributed in a cloud infrastructure, the system is expected to scale well beyond the limitations of the traditional single workstation setup.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 
 \section{Incremental Query Evaluation}
 \label{rete}
@@ -22,7 +24,8 @@ One of the most well-known is the \emph{Rete algorithm}, which creates a propaga
 
 Rete has many improved versions (e.g.\ Rete II, Rete III, Rete-NT), however, unlike the original algorithm, these are not publicly available. Because the original Rete algorithm is well-understood by the \eiq{} team, we decided to build \iqd{} on the same foundation. Experimenting with improved versions or alternative approaches is subject to future work.
 
-\subsection{Rete in General}
+\subsection{The Rete Algorithm}
+\label{rete}
 
 The algorithm was originally created by Charles Forgy~\cite{Forgy} for rule-based expert systems. Gábor Bergmann  adapted the algorithm for EMF models and added many tweaks and improvements to it~\cite{BergmannMasters}.
 
@@ -45,9 +48,9 @@ In the following, we will overview the architecture of a \emph{single-node} incr
 
 The Rete algorithm forms the foundation of \eiq{}'s query engine. \figref{incquery-architecture} shows the architecture of \eiq{} and the Rete algorithm's role in the system. 
 
-A typical model transformation sequence is the following. The modeling application manipulates the EMF instance model \textcircled{1}. The model sends notifications to \eiq{}'s base indexer \textcircled{2}. The indexer propagates the modified tuples to the Rete network as update messages \textcircled{3}, which processes the updates and sends the resulting tuples to the query evaluation interface \textcircled{4}. The modeling application can retrieve the results from the interface \textcircled{5}.
-
 \picTiny{incquery-architecture}{\eiq{}'s architecture}
+
+A typical model transformation sequence is the following. The modeling application manipulates the EMF instance model \textcircled{1}. The model sends notifications to \eiq{}'s base indexer \textcircled{2}. The indexer propagates the modified tuples to the Rete network as update messages \textcircled{3}, which processes the updates and sends the resulting tuples to the query evaluation interface \textcircled{4}. The modeling application can retrieve the results from the interface \textcircled{5}.
 
 \subsection{Indexing and Initialization}
 \label{indexing}
@@ -65,9 +68,7 @@ Indexing is a common technique for decreasing the execution time of database que
 
 \subsection{Data Representation and Storage}
 
-\eiq{} works on EMF instance models.
-
-The Rete network represents the data in \emph{tuples}. Basically, the network's tuples can contain two sorts of values: (i) pointers to an EMF model, (ii) Ecore scalar values (\verb+EString+, \verb+EInt+, etc. instances). This data representation principle intends to keep the Rete network's size as small as possible, while allowing efficient processing. Because of the tuple representation, various operations, e.g.\ projection ($ \pi $) and join ($ \rhd\!\!\lhd $), can be simply defined using tuple masks~\cite{BergmannMasters}.
+\eiq{} works on in-memory EMF models. The Rete network represents the data in \emph{tuples}. Basically, the network's tuples can contain two sorts of values: (i) pointers to an EMF model, (ii) Ecore scalar values (\verb+EString+, \verb+EInt+, etc. instances). This data representation principle intends to keep the Rete network's size as small as possible, while allowing efficient processing. Because of the tuple representation, various operations, e.g.\ projection ($ \pi $) and join ($ \rhd\!\!\lhd $), can be simply defined using tuple masks~\cite{BergmannMasters}.
 
 \subsection{Notification Mechanisms}
 \label{notifications}
@@ -80,9 +81,7 @@ As the Rete algorithm's change propagation is asynchronous, the system must also
 
 \subsection{Degrees of Freedom}
 
-\subsubsection{Query optimization}
-
-Similarly to optimizing query plans for relational databases, we can also optimize the Rete network's layout. Currently, \eiq{} supports basic optimizations. It utilizes node sharing, i.e.\ it detects if two Rete nodes would store the same partial matches and merges them to a single Rete node. More details are available in \cite{BergmannPhD}.
+For a given model, the system's performance for a query is mainly determined by the layout of the generated Rete network. Similarly to relational query optimization, we can also optimize the Rete network's layout. Currently, \eiq{} supports basic optimizations. It utilizes node sharing, i.e.\ it detects if two Rete nodes would store the same partial matches and merges them to a single Rete node. More details are available in \cite{BergmannPhD}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -104,21 +103,12 @@ The \emph{production network} is implemented with a distributed Rete network whi
 \subsection{Indexing and Initialization}
 \label{indexing}
 
-%Indexing is a common technique for decreasing the execution time of database queries. In MDE, \emph{model indexing} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, all queries utilize some type attribute. In property graphs, the equivalents are node type properties and edge labels (see also \autoref{ecore-mapping}). Typical elementary model queries are the following:
-
-% \begin{itemize}
-%   \item Retrieving all node instances of a given type (e.g.\ get all nodes with the type \texttt{Person}).
-%   \item Retrieving all edges instances of a given label (e.g.\ get all edges with the label \texttt{child}).
-%   \item Retrieving a given node's all incoming and/or outgoing edges of a given type (e.g.\ get all outgoing \texttt{child} edges of a given node). 
-%   \item Reverse navigation: retrieving the node on the other end of an edge (e.g.\ the \texttt{child} relation is identical to the inverse of the \texttt{parent} relation). 
-% \end{itemize}
-
 To process the queries required for indexing efficiently, the \iqd{} middleware maintains type-instance indexes so that all instances of a given type (both edges and graph nodes) can be enumerated quickly. These indexers form the bottom layer of the Rete production network. During initialization, these indexers are filled from the database backend (\figref{incqueryd-architecture} \textcircled{2}). In order to reduce the initialization time, the underlying storage layer must be able to process these queries efficiently. 
 
 \subsection{Data Representation and Storage}
 \label{storage}
 
-Conceptually, the architecture of \iqd{} allows the usage of a wide scale of model representation formats. Our prototype has been evaluated in the context of the \emph{property graph} and the \emph{RDF} data model, but other mainstream metamodeling and knowledge representation languages such as relational databases' SQL dumps and Ecore instance models~\autoref{ecore} could be supported, as long as they can be mapped to an efficient and distributed storage backend (e.g.\ triplestores, key-value stores or column-family databases).
+Conceptually, the architecture of \iqd{} allows the usage of a wide scale of model representation formats. Our prototype has been evaluated in the context of the \emph{property graph} and the \emph{RDF} data model, but other mainstream metamodeling and knowledge representation languages such as relational databases' SQL dumps and Ecore instance models (\autoref{ecore}) could be supported, as long as they can be mapped to an efficient and distributed storage backend.
 
 For the storage layer, the most important issue from an incremental query evaluation perspective is that the indexers of the middleware should be filled as quickly as possible. This favors technologies where model sharding can be performed efficiently (i.e.\ with balanced shards in terms of type-instance relationships), and elementary queries can be executed efficiently.
 
@@ -127,7 +117,7 @@ For the storage layer, the most important issue from an incremental query evalua
 %\subsubsection{Graph-like Data Manipulation}
 %\subsubsection{Data Representation}
 
-To support different data models, we only have to supply the appropriate connector class to \iqd{}'s middleware. The current prototype supports 4store, Neo4j and Titan. % Ertelemszeruen Neo4j-t a mostani verzioba nem hoztam at 100%-ig 
+To support different data models, we only have to supply the appropriate connector class to \iqd{}'s middleware. The current prototype supports 4store, Neo4j and Titan.
 
 \subsection{Notification Mechanisms}
 

@@ -165,11 +165,18 @@ Queries can be defined in both imperative and declarative languages. The theoret
 
 Query engines can be divided into two core categories: \emph{search-based} and \emph{incremental} engines. The main difference between these approaches is the way they re-evaluate queries. While search-based engines process the whole data set (i.e.\ not just the data elements affected by the change), incremental engines utilize some data structures to be able to re-evaluate the query based on the change set.
 
-\subsection{Asynchronous Parallel Processing with MapReduce}
+\subsection{Miscellaneous}
+\label{concepts-misc}
+
+\subsubsection{Asynchronous Parallel Processing with MapReduce}
 
 The \emph{MapReduce paradigm} defines a parallel, asynchronous way of processing the data. As the name implies, MapReduce consists of two phases: the \emph{map} function processes each item of a list. The resulted list is then aggregated by the \emph{reduce} function.
 
 MapReduce is often used for sorting, filtering and aggregating data sets. It is also used for fault-tolerant, distributed task execution.
+
+\subsubsection{The Column Family Data Model}
+
+A column family is similar to a table of a relational database: it consists of rows and columns. However, unlike in a relational database's table, the rows do not have to have the same fixed set of columns. Instead, each row can have a different set of columns. This makes the data structure more dynamic and avoids the problems associated with NULL values.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -191,7 +198,7 @@ EMF models can be persisted as XMI (XML Metadata Interchange) documents. By desi
 
 \begin{itemize}
   \item CDO (Connected Data Objects), a distributed shared model framework for EMF models and metamodels~\cite{CDO}. CDO provides an object-relational mapping from Ecore to databases.
-  \item Morsa is a MongoDB-based model repository~\cite{Pagan:2011:MSA:2050655.2050665}.
+  \item Morsa~\cite{Pagan:2011:MSA:2050655.2050665} is a distributed model repository based on MongoDB~\cite{MongoDB}, a popular NoSQL database management system.
 \end{itemize}
  
 \subsubsection{Data Model}
