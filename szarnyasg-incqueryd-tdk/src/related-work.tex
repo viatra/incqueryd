@@ -30,8 +30,7 @@ Acharya et al.\ described a Rete network mapping for fine-grained and medium-gra
 
 \section{Benchmarks}
 
-This section is based on~\cite{ASE2013}. Benchmarks have been proposed earlier, mainly to track improvements of a query engine, or to compare tool performance for a given use case. However, most benchmarks are only useful for predicting (relative) performance of tools depending on model size; there is rarely enough data to consider other signals such as query or model structure. Despite the abundance of benchmarks, it is still difficult to choose the best tool for a given purpose, due to the absence of common
-metrics.
+This section is based on~\cite{ASE2013}. Benchmarks have been proposed earlier, mainly to track improvements of a query engine, or to compare tool performance for a given use case. 
 
 \subsection{RDF Benchmarks}
 
@@ -57,10 +56,5 @@ queries with different metrics combinations to different engines was not tested.
 
 \subsection{Model Transformation and Graph Transformation Benchmarks}
 
-There are numerous graph transformation benchmarks that do not focus specifically on query performance. However \cite{icgt08-bhrv} aims to design and evaluate graph transformation benchmark cases corresponding to three usage patterns for the purpose of measuring the performance of incremental approaches on different model sizes and workloads. These scenarios are conceptual continuations of the comprehensive graph transformation benchmark library proposed earlier in \cite{vlhcc05_vsv} (described more extensively in \cite{VSV05}), which gave an overview on typical application scenarios of graph transformation together with their characteristic features. \cite{GK:07} suggested some improvements to the benchmarks described in \cite{vlhcc05_vsv} and reported measurement results for many graph transformation tools. 
-
-A similar approach to graph transformation benchmarking was used for the AGTIVE Tool Contest~\cite{AGTIVEToolContest}, including a simulation problem for the Ludo table game. %The Petri net firing test case that was presented in~\cite{icgt08-bhrv} is better suited for benchmarking performance since it can be parameterized to scale up to large model sizes and long transformation sequences. 
-Later, the GraBaTs tool contest~\cite{GraBaTs08Contest} introduced an AntWorld case study~\cite{zuendorf08antworldcase}, %which had similar properties. T
-and the community continued to hold tool contests in the TTC~\cite{TTC} series.
-
+There are numerous graph transformation benchmarks that do not focus specifically on query performance. However \cite{icgt08-bhrv} aims to design and evaluate graph transformation benchmark cases corresponding to three usage patterns for the purpose of measuring the performance of incremental approaches on different model sizes and workloads. These scenarios are conceptual continuations of the comprehensive graph transformation benchmark library proposed earlier in \cite{vlhcc05_vsv}, which gave an overview on typical application scenarios of graph transformation together with their characteristic features. \cite{GK:07} suggested some improvements to the benchmarks described in \cite{vlhcc05_vsv} and reported measurement results for many graph transformation tools. 
 As model validation is an important use case of incremental model queries, several model query and/or validation tools have been measured in incremental constraint validation benchmarks~\cite{Egyed-incConsistency,falleri-praxis,models10}. 
