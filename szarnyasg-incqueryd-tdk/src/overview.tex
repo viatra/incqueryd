@@ -10,7 +10,7 @@ The primary goal of \iqd{} is to provide a scalable architecture for executing i
 \section{Incremental Query Evaluation}
 \label{rete}
 
-Some queries, e.g.\ well-formedness constraints in MDE are evaluated many times, while the data sets they are evaluated on only changes to a small degree. In these cases, the idea of incremental query evaluation arises naturally: to speed up queries, we should not start the evaluation all over again. Instead, we should rely on the (partial) results derived during the previous executions of the query and process only the changes that occured.
+Some queries, e.g.\ well-formedness constraints in MDE are evaluated many times, while the data set they are evaluated on only changes to a small degree. In these cases, the idea of incremental query evaluation arises naturally: to speed up queries, we should not start the evaluation all over again. Instead, we should rely on the (partial) results derived during the previous executions of the query and process only the changes that occured.
  
 In practice, incremental query evaluation algorithms typically use data structures for caching the interim results. This  means that they usually consume more memory, in other words, they trade memory consumption for execution speed. This approach, called \emph{space--time tradeoff}, is well-known and widely used in computer science.
 
