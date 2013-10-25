@@ -51,14 +51,15 @@ Graph models are found in many languages and environments. In the following, we 
 
 \subsubsection{Metamodeling}
 
-Metamodeling is a methodology for the definition of modeling languages. A metamodel specifies the abstract syntax (structure) of a modeling language. Metamodels are expressed using a metamodeling language that itself is a modeling language. The metamodel can also be interpreted as the object-oriented data model of the language under design. Metamodeling allows us to define spefic graph models. In general, metamodeling enforces typing, resulting in \emph{typed graphs}, but also allows for attributes, thus, it can express \emph{property graphs} as well.
+Metamodeling is a methodology for the definition of modeling languages. A metamodel specifies the abstract syntax (structure) of a modeling language. Metamodels are expressed using a metamodeling language that itself is a modeling language. The metamodel can also be interpreted as the object-oriented data model of the language under design. %Metamodeling allows us to define spefic graph models. In general, metamodeling enforces typing, resulting in \emph{typed graphs}, but also allows for attributes, thus, it can express \emph{property graphs} as well.
+Metamodeling can be viewed as the grammar for a \emph{typed property graph}, so the created models are both \emph{typed graph}s and \emph{property graph}s. 
 
 \subsubsection{Ecore}
 \label{ecore}
 
-Ecore is the metamodeling language used by EMF. It has been developed in order to provide an approach for metamodel definition that supports the direct implementation of models using a programming language. The main rationale in introducing Ecore separately that it is the \emph{de facto} standard metamodeling environment of the industry, and several domain-specific languages are defined using this formalism.
-
 \picSmall{ecore-kernel}{The Ecore kernel, a simplified subset of the Ecore metamodel}
+
+Ecore is the metamodeling language used by EMF. It has been developed in order to provide an approach for metamodel definition that supports the direct implementation of models using a programming language. The main rationale in introducing Ecore separately that it is the \emph{de facto} standard metamodeling environment of the industry, and several domain-specific languages are defined using this formalism.
 
 Figure \ref{fig:ecore-kernel} illustrates the core elements of the Ecore approach. The full metamodel can be found in the EMF documentation~\cite{Ecore}. The most important elements are the following.
  
