@@ -27,9 +27,8 @@ I achieved the following practical accomplishements:
 
 \begin{itemize}
   \item Based on the Rete algorithm, I created a \emph{distributed incremental query engine's prototype}, which is not only detached from the data storage backend, but also agnostic to the storage backend's data model. To prove this, the query engine was tested with both property graphs and RDF graphs.
-  \item I extended the \tb{} with a \emph{new instance model generator}, which can produce property graphs and serialize them in various formats: \graphml{}, Blueprints \graphson{} and Faunus \graphson{}. % (\autoref{sec:property-graph-formats}).
+  \item I extended the \tb{} with a \emph{new instance model generator}, which can produce property graphs and serialize them in various formats: \graphml{}, Blueprints \graphson{} and Faunus \graphson{}.
   \item I developed \iqd{}'s prototype, including the query layer, the middleware and the integration to different storage technologies. I wrote more than 3000 lines of Java code and approximately 500 lines of configuration and deployment scripts.
-%  \item Based on \eiq{} and István Ráth's work, I created an \emph{Eclipse-based environment} to provide automated deployment of the Rete network. This allows the user to define complex queries in IQPL, a high-level pattern language. % TODO SzG define own work
   \item I elaborated automated deployment tools based on \eiq{}'s existing technologies.
   \item I experimented with modern non-relational database management systems with a focus on NoSQL graph databases and triple stores. For the purpose of benchmarking different tools, I created scripts to install various graph storages. 
   \begin{itemize}
@@ -39,6 +38,8 @@ I achieved the following practical accomplishements:
   \end{itemize}
   \item I implemented scripts for \emph{automating the benchmark} and \emph{operating a cluster of Akka microkernels}.
 \end{itemize}
+
+Compared to our results published in~\cite{Izso:2013:IIG:2487766.2487772}, the latest system features backends with automatic sharding, automatic deployment of the Rete nodes and an Eclipse-based tooling environment.
 
 \section{Limitations}
 

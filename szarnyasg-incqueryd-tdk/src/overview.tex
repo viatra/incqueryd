@@ -39,18 +39,18 @@ The Rete network is built on top of type-specific indexers, which are reponsible
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Incremental Pattern Matching on a Single Node: \eiq{}}
+\section{Incremental Pattern Matching on a Single Workstation: \eiq{}}
 \label{eiq-architecture}
 
 In the following, we will overview the architecture of a \emph{single-node} incremental pattern matcher, specifically \eiq{}.
 
 \subsection{Architecture}
 
-The Rete algorithm forms the foundation of \eiq{}'s query engine. \figref{incquery-architecture} shows the architecture of \eiq{} and the Rete network's role in the system. 
+The Rete algorithm forms the foundation of \eiq{}'s query engine. \figref{incquery-architecture} shows the architecture of \eiq{} and the role of the Rete network in the system. 
 
 \picTiny{incquery-architecture}{\eiq{}'s architecture}
 
-A typical model transformation sequence is the following. The modeling application manipulates the EMF instance model \textcircled{1}. The model sends notifications to \eiq{}'s base indexer \textcircled{2}. The indexer propagates the modified tuples to the Rete network as update messages \textcircled{3}, which processes the updates and sends the resulting tuples to the query evaluation interface \textcircled{4}. The modeling application can retrieve the results from the interface \textcircled{5}.
+A typical model transformation sequence is the following. The modeling application manipulates the EMF instance model \textcircled{1}. Upon modification, the model sends notifications to \eiq{}'s base indexer \textcircled{2}. The indexer propagates the modified tuples to the Rete network as update messages \textcircled{3}, which processes the updates and sends the resulting tuples to the query evaluation interface \textcircled{4}. The modeling application can retrieve the results from the interface \textcircled{5}.
 
 \subsection{Indexing and Initialization}
 \label{indexing}
@@ -64,7 +64,7 @@ Indexing is a common technique for decreasing the execution time of database que
   \item Reverse navigation: retrieving the node on the other end of an edge (e.g.\ the \texttt{child} relation is identical to the inverse of the \texttt{parent} relation). 
 \end{itemize}
 
-\eiq{} uses the EMF API to run this queries efficiently.
+\eiq{} uses the EMF API to run these queries efficiently.
 
 \subsection{Data Representation and Storage}
 
@@ -77,9 +77,9 @@ Indexing is a common technique for decreasing the execution time of database que
 
 \subsection{Termination Protocol}
 
-As the Rete algorithm's change propagation is asynchronous, the system must also implement a \emph{termination protocol} to ensure that the query results can be retrieved consistently with the model state after a given transaction (i.e.\ by signaling when the update propagation has been terminated).
+As the Rete algorithm's change propagation is asynchronous, the system must also implement a \emph{termination protocol} to ensure that the query results can be retrieved consistently with the model state after a given transaction (i.e.\ by signaling when the update propagation has been terminated). The correctness of the protocol is proved in \cite{BergmannMasters}.
 
-\subsection{Degrees of Freedom}
+\subsection{Configuration and Performance Optimization}
 
 For a given model, the system's performance for a query is mainly determined by the layout of the generated Rete network. Similarly to relational query optimization, we can also optimize the Rete network's layout. Currently, \eiq{} supports basic optimizations. It utilizes node sharing, i.e.\ it detects if two Rete nodes would store the same partial matches and merges them to a single node. More details are available in \cite{BergmannPhD}.
 
@@ -89,7 +89,7 @@ For a given model, the system's performance for a query is mainly determined by 
 \section{Extensions for Distributed Scalability: \iqd{}}
 \label{iqd-architecture}
 
-Developing a distributed, scalable, incremental pattern matcher introduces numerous challenges. In the following, we will cover the \iqd{}'s architecture and its main extensions to \eiq{}.
+Developing a distributed, scalable, incremental pattern matcher introduces numerous challenges. In the following, we will cover the \iqd{}'s architecture and our main extensions to \eiq{}.
 
 \pic{incqueryd-architecture}{\iqd{}'s architecture on a four-node cluster}
 
@@ -127,9 +127,9 @@ Because the lack of support for distributed notifications, in \iqd{}'s prototype
 
 \subsection{Termination Protocol}
 
-\iqd{}'s current termination protocol works by adding a stack to the message. The stack registers each Rete node the message passes through. After the message reaches the production node, the termination protocol starts. Based on the content of the stack, acknowledgement messages are propagated back on the network. When all relevant indexer nodes (where the original notification token(s) started from) receive the acknowledge messages, the termination protocol finishes.
+\iqd{}'s termination protocol works by adding a stack to the message. The stack registers each Rete node the message passes through. After the message reaches the production node, the termination protocol starts. Based on the content of the stack, acknowledgement messages are propagated back on the network. When all relevant indexer nodes (where the original notification token(s) started from) receive the acknowledge messages, the termination protocol finishes.
 
-\subsection{Degrees of Freedom}
+\subsection{Configuration and Performance Optimization}
  
 The Rete algorithm (\autoref{rete}) utilizes both indexing and caching to provide fast incremental query evaluation. \iqd{}'s horizontal scalability is supported by the distribution of the pattern matcher's Rete network. To enable this, the system must be able to allocate the Rete nodes to different hosts in a cloud computing infrastructure. 
 
@@ -138,7 +138,7 @@ The deployment and configuration of a distributed pattern matcher involves many 
 \begin{itemize}
   \item For the storage layer, we may choose different database implementations due to \iqd{}'s backend-agnostic nature. In this report, we used property graph databases (Neo4j, Titan) and triplestores (4store).
   \item We may use different database sharding strategies (e.g.\ random partitioners or more sophisticated sharding methods based on domain-specific knowledge).
-  \item Using query optimization methods, we can derive \emph{Rete networks with different layouts} for the same query. The most efficient layout can be choosen based on both query and instance model characteristics, e.g.\ to keep the resource requirement of intermediate join operations to a minimum.
+  \item Using query optimization methods, we can derive \emph{Rete networks with different layouts} for the same query. The most efficient layout can be choosen based on both query and instance model characteristics, e.g.\ to keep the resource requirement of intermediate join operations to a minimum. \cite{BergmannPhD} discusses the possible optimizations in detail.
   \item We may choose different strategies to \emph{allocate the Rete nodes} in the distributed system. The optimization strategy may choose to optimize local resource usage, or to minimize the amount of remote network communication. Note that in theory, this is \emph{orthogonal} to the database's sharding strategy, i.e.\ these are two distinct levels of distribution that do not directly depend upon each other. However, we expect that keeping the Rete network's type indexer nodes and the instances of the given type on the same server would improve the speed of the initialization and modification tasks significantly.
   \item We may implement \emph{dynamic adaptability} to changing conditions. For example, when the model size and thus query result size grows rapidly, the Rete network may require \emph{dynamic reallocation} or \emph{node sharding} due to local resource limitations.
 \end{itemize}
@@ -286,13 +286,13 @@ Following the workflow defined in \autoref{workflow}, we will cover the steps fo
 \subsubsection{Constructing a Rete network}
 
 First, using \eiq{}'s tooling, the query (\texttt{routeSensor.iqpl}, see \lstref{routesensor-iqpl}) is analyzed and parsed to an EMF model %(\figref{eiq-model})
-\textcircled{1}. The metamodel (\texttt{railroad.ecore}) is shown on \figref{trainbenchmark-metamodel}. Based on the query~\textcircled{2} and the metamodel~\textcircled{3} \eiq{} builds a \emph{pattern system} (PSystem). The PSystem is translated to a Rete recipe, the system derives a Rete layout~\textcircled{4}, that guarantees the satisfaction of the constraints. The Rete layout is shown on \figref{rete-routesensor-layout}.
+\textcircled{1}. The metamodel (\texttt{railroad.ecore}) is shown on \figref{trainbenchmark-metamodel}. Based on the query~\textcircled{2} and the metamodel~\textcircled{3} \eiq{} builds a \emph{pattern system} (PSystem). The PSystem is translated to a Rete recipe, which defines a Rete layout~\textcircled{4}, that guarantees the satisfaction of the constraints. The Rete layout is shown on \figref{rete-routesensor-layout}.
 
 \picSmall{rete-routesensor-layout}{The RouteSensor query's layout}
 
 \subsubsection{Deploying the Rete network}
 
-The Rete nodes are allocated to the cluster's servers by providing the infrastructure mapping~\textcircled{5}. In \iqd{}'s prototype, the Rete recipe's nodes are allocated manually on the cloud servers (called \textit{Machine}s). The Rete nodes are associated with the machines with \textit{infrastructure mapping} relationships. \iqd{}'s tooling currently provides an Eclipse-based tree editor to define machines and the the infrastructure mapping relationships.% (\figref{incqueryd-tooling-tree-editor}). 
+The Rete nodes are allocated to the cluster's servers by providing the infrastructure mapping~\textcircled{5}. In \iqd{}'s prototype, the Rete nodes defined in the recipe are allocated manually on the cloud servers (called \textit{Machine}s). The Rete nodes are associated with the machines with \textit{infrastructure mapping} relationships. \iqd{}'s tooling currently provides an Eclipse-based tree editor to define machines and the the infrastructure mapping relationships. 
 
 The tooling is capable of visualizing the Rete network and its mapping to the machines (see \figref{incqueryd-tooling-yfiles-viewer}).
 The Rete network is deployed to the Akka instances running on the servers~\textcircled{6}.
@@ -302,7 +302,6 @@ The Rete network is deployed to the Akka instances running on the servers~\textc
 \subsubsection{Evaluating Query}
 
 The query is evaluated by initializing the Rete network~\textcircled{7} and reading the results from its production node.
-%In \iqd{}'s current implementation, the distributed system is . The Akka actors representing the Rete networkwork's nodes are deployed automatically by the \iqd{} \textit{Coordinator} node.
 
 \subsubsection{Maintaining the Query Results}
 

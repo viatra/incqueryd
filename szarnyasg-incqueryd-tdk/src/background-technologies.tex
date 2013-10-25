@@ -1,11 +1,11 @@
 \chapter{Background Technologies}
 \label{chap:background-technologies}
 
-Developing a scalable graph pattern matcher requires a wide range of technologies. Careful selection of the technologies is critical to the project's success. For \iqd{}, we looked for technologies that can form the building blocks of a distributed, scalable model repository and pattern matcher. These technologies must been designed with scalability in mind and deployed in large-scale distributed systems successfully. %To avoid licensing issues, our search criteria included that, if possible, the technologies should be free and open-source solutions.
+Developing a scalable graph pattern matcher requires a wide range of technologies. Careful selection of the technologies is critical to the success of the project. For \iqd{}, we looked for technologies that can form the building blocks of a distributed, scalable model repository and pattern matcher. These technologies must been designed with scalability in mind and deployed in large-scale distributed systems successfully. %To avoid licensing issues, our search criteria included that, if possible, the technologies should be free and open-source solutions.
 
 Usually, instance models are graph-like data structures. Therefore, we looked for scalable graph databases. In this context, scalability requires distributed storage and querying capabilities.
 
-During the early phase of the research, we studied the architecture and limitations of the candidate systems. For databases, we inspected the data sharding strategies, consistency guarantees and transaction capabilities, along with the API and query methods. We also checked the systems' support for asynchronous processing, notification and messaging mechanisms.
+During the early phase of the research, we studied the architecture and limitations of the candidate systems. For databases, we inspected the data sharding strategies, consistency guarantees and transaction capabilities, along with the API and query methods. We also checked the support for asynchronous processing, notification and messaging mechanisms.
 
 In this chapter, we introduce the concepts and technologies that can form the basis of a scalable, distributed, asynchronous system. %We also present EMF (Eclipse Modeling Framework) and \eiq{}, an incremental model query evaluation tool.
 
@@ -18,7 +18,7 @@ Since the 1980s, database management systems based on the relational data model~
 
 In the last decade, large organizations struggled to store and process the huge amounts of data they produced. This problem introduces a diverse palette of scientific and engineering challenges, called \emph{Big Data} challenges. 
 
-Big Data challenges spawned dozens of new database management systems. Typically, these systems broke with the strictness of the relational data model and utilized simpler, more scalable data models. These systems dropped support for the SQL query language used in relational databases and hence were called \emph{NoSQL databases}\footnote{The community now mostly interprets NoSQL as ''not only SQL''.}~\cite{NoSQL}. During the development of \iqd{}'s prototype, we experimented with numerous NoSQL databases.
+Big Data challenges spawned dozens of new database management systems. Typically, these systems broke with the strictness of the relational data model and utilized simpler, more scalable data models. These systems dropped support for the SQL query language used in relational databases and hence were called \emph{NoSQL databases}\footnote{The community now mostly interprets NoSQL as ''not only SQL''.}~\cite{NoSQL}. Because relational databases are not suitble for large-scale model-driven applications, we experimented with numerous NoSQL databases.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -27,10 +27,6 @@ Big Data challenges spawned dozens of new database management systems. Typically
 This section introduces the most important concepts used in this report. %We shortly introduce the concept of \emph{metamodeling}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Metamodeling}
-
-Metamodeling is a methodology for the definition of modeling languages. A metamodel specifies the abstract syntax (structure) of a modeling language. Metamodels are expressed using a metamodeling language that itself is a modeling language. The metamodel can also be interpreted as the object-oriented data model of the language under design.
 
 \subsection{Graph Data Models}
 
@@ -67,7 +63,7 @@ Ecore models can express \emph{typed graphs} and \emph{property graphs} as well.
 
 \picSmall{ecore-kernel}{The Ecore kernel, a simplified subset of the Ecore metamodel}
 
-Figure \ref{fig:ecore-kernel} illustrates the core elements of the Ecore approach. The full metamodel can be found in the EMF documentation~\cite{ecore}. The most important elements are the following.
+Figure \ref{fig:ecore-kernel} illustrates the core elements of the Ecore approach. The full metamodel can be found in the EMF documentation~\cite{Ecore}. The most important elements are the following.
  
 \begin{itemize}
   \item \verb+EClass+ models classes (or concepts). \verb+EClass+es are identified by name and can have several attributes and references. To support inheritance, a class can refer to a number of \emph{supertype} classes.
@@ -76,7 +72,7 @@ Figure \ref{fig:ecore-kernel} illustrates the core elements of the Ecore approac
   \item \verb+EReference+ represents a unidirectional association between \verb+EClass+es and as identified by a name. Lower and upper multiplicities can be specified. It is also possible to mark a reference as a \emph{containment} that represents composition relation between elements. If a bidirectional association is needed, it should be modeled as two \verb+EReference+ instances that are mutually connected via their \emph{opposite} references.
 \end{itemize}
 
-The rest of the Ecore metamodeling language contains utility elements, common supertypes that support the organization and hierarchization of the models but the main metamodeling part has been covered here.
+The rest of the details of Ecore has been ommitted for the sake of clarity, see~\cite{Ecore} for further reference.
 
 \subsubsection{TinkerPop framework}
 
@@ -84,14 +80,7 @@ The rest of the Ecore metamodeling language contains utility elements, common su
 
 The \emph{TinkerPop} framework is an open-source software stack for graph storage and processing \cite{TinkerPop}. TinkerPop includes \emph{Blueprints}, a property graph model interface. Blueprints fulfills the same role for graph databases as JDBC does for relational databases. Most NoSQL graph databases implement the property graph interface provided by Blueprints, including Neo4j (\autoref{neo4j}), Titan (\autoref{titan}), DEX~\cite{DEX}, InfiniteGraph~\cite{InfiniteGraph} and OrientDB~\cite{OrientDB}.
 
-TinkerPop also introduces a graph query language, \textit{Gremlin}. Gremlin is a domain-specific language based on Groovy, a Java-like dynamic language which runs on the Java Virtual Machine. Unlike most query languages, Gremlin is an imperative language with a strong focus on graph traversals. For example, if John's father is Jack and Jack's father is Scott, we may run the traversals shown on \lstref{gremlin-queries}.
-
-\begin{lstlisting}[caption=Simple Gremlin queries, label=lst:gremlin-queries]
-gremlin> g.V('name', 'John').out('father')
-==>Jack
-gremlin> g.V('name', 'John').out('father').out('father')
-==>Scott
-\end{lstlisting}
+TinkerPop also introduces a graph query language, \textit{Gremlin}. Gremlin is a domain-specific language based on Groovy, a Java-like dynamic language which runs on the Java Virtual Machine. Unlike most query languages, Gremlin is an imperative language with a strong focus on graph traversals. 
 
 Gremlin is based on \textit{Pipes}, TinkerPop's dataflow processing framework. Besides traversing, Gremlin is capable of analyzing and manipulating the graph as well.
 
@@ -137,7 +126,7 @@ Our intention to reuse \eiq{} for building \iqd{} required us to map EMF's metam
 
 \subsection{Sharding}
  
-To provide scalable persistence and processing for large amounts of data, the data has to be split between multiple computers. This process is known as \emph{data sharding}. \emph{Graph sharding} is a particularly difficult problem due to the strongly connected and mutable nature of graphs. Efficient sharding of graphs is still an ongoing research problem~\cite{ShardingGraph}.
+To provide scalable persistence and processing for large amounts of data, the data has to be split between multiple computers. This process is known as \emph{data sharding}. \emph{Graph sharding} is a particularly difficult problem due to the strongly connected and mutable nature of graphs. Efficient sharding of graphs is still an open research area~\cite{ShardingGraph}.
 
 \pic{graph-sharding}{Different partitionings of the same graph}
 
@@ -150,33 +139,26 @@ Unfortunately, for large graphs, balanced sharding is hard to achieve in practic
 Most graph partition problems NP-hard and practical solutions to these problems could be derived using heuristics and approximation algorithms~\cite{conf/stacs/FeldmannF12}. Unfortunately, open-source database implementations lack support for such algorithms.
 
 
-
-
-
 \subsection{Query Languages and Evaluation Strategies}
 
 In the context of this report, a query defines a \emph{graph pattern}. The result of the query is a \emph{set of subgraphs} of the original graph. Graph patterns are useful for identifying patterns in a set of connected data elements. They are especially widely used in the context of model-driven engineering for defining well-formedness validation constraints and graph transformations.
 
 \subsubsection{Query Language}
 
-Queries can be defined in both imperative and declarative languages. The theoretical basis for most declarative query languages is first order logic. Both tuple relational calculus and relational algebra (widely used in query processing) are offshoots of first-order logic. Relational calculus defines the , relational algebra .
+Queries can be defined in both imperative and declarative languages. The theoretical basis for most declarative query languages is first order logic. Both tuple relational calculus and relational algebra (widely used in query processing) are offshoots of first-order logic.
+
+As mentioned earlier, unlike most query languages, Gremlin is an imperative query languages describing graph traversals. For example, if John's father is Jack and Jack's father is Scott, we may run the traversals shown on \lstref{gremlin-queries}.
+
+\begin{lstlisting}[caption=Simple Gremlin queries, label=lst:gremlin-queries]
+gremlin> g.V('name', 'John').out('father')
+==>Jack
+gremlin> g.V('name', 'John').out('father').out('father')
+==>Scott
+\end{lstlisting}
 
 \subsubsection{Query Evaluation Strategies}
 
 Query engines can be divided into two core categories: \emph{search-based} and \emph{incremental} engines. The main difference between these approaches is the way they reevaluate queries. While search-based engines process the whole data set (i.e.\ not just the data elements affected by the change), incremental engines utilize some data structures to be able to reevaluate the query based on the change set.
-
-\subsection{Miscellaneous}
-\label{concepts-misc}
-
-\subsubsection{Asynchronous Parallel Processing with MapReduce}
-
-The \emph{MapReduce paradigm} defines a parallel, asynchronous way of processing the data. As the name implies, MapReduce consists of two phases: the \emph{map} function processes each item of a list. The resulted list is then aggregated by the \emph{reduce} function.
-
-MapReduce is often used for sorting, filtering and aggregating data sets. It is also used for fault-tolerant, distributed task execution.
-
-\subsubsection{The Column Family Data Model}
-
-A column family is similar to a table of a relational database: it consists of rows and columns. However, unlike in a relational database's table, the rows do not have to have the same fixed set of columns. Instead, each row can have a different set of columns. This makes the data structure more dynamic and avoids the problems associated with NULL values.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -260,11 +242,19 @@ Neo4j can be queried in various ways. When deployed in embedded mode, the applic
 \subsection{Titan}
 \label{titan}
 
-Titan is a distributed, scalable graph database from Aurelius, the creators of the TinkerPop framework. 
+Titan is a distributed, scalable graph database from Aurelius, the creators of the TinkerPop framework. To understand Titan's complex architecture, we present two additional concepts: the \emph{MapReduce} paradigm and the \emph{column family} data model.
+
+\paragraph{Asynchronous Parallel Processing with MapReduce} 
+
+The \emph{MapReduce paradigm} defines a parallel, asynchronous way of processing the data. As the name implies, MapReduce consists of two phases: the \emph{map} function processes each item of a list. The resulted list is then aggregated by the \emph{reduce} function. MapReduce is often used for sorting, filtering and aggregating data sets. It is also used for fault-tolerant, distributed task execution.
+
+\paragraph{The Column Family Data Model}
+
+A column family is similar to a table of a relational database: it consists of rows and columns. However, unlike in a relational database's table, the rows do not have to have the same fixed set of columns. Instead, each row can have a different set of columns. This makes the data structure more dynamic and avoids the problems associated with NULL values.
 
 \subsubsection{Architecture}
 
-Titan is not a standalone database, instead, it builds on top of existing NoSQL database technologies and leverages Hadoop's MapReduce capabilities. Titan supports various storage backends, including Cassandra and HBase. In the following, we shortly cover the technologies Titan builds upon. Both Titan and it's dependencies are open-source software, written in Java.
+Titan is not a standalone database, instead, it builds on top of existing NoSQL database technologies and leverages Hadoop's MapReduce capabilities. Titan supports various storage backends, including Cassandra and HBase. In the following, we shortly cover the technologies Titan builds upon. Both Titan and its dependencies are open-source software, written in Java. 
 
 \paragraph{Hadoop}
 
@@ -392,3 +382,13 @@ As of October 2013, the latest version (Akka 2.2) also supports \textit{pluggabl
 %\paragraph{Deployment}
 %Titan can be deployed in different ways according to the needs of the application. For \iqd{}'s prototype, we used Titan in \textit{remote server mode} (\figref{titan-modes-distributed}). In this setup, Titan runs in the same Java Virtual Machine as the application and communicates with the Cassandra cluster on a low-level protocol (e.g.\ Thrift).
 %\pic{titan-modes-distributed}{Using Titan with Cassandra in remote server mode}
+
+
+
+%Ezt inkább úgy mondanám, hogy a metamodellezés általában egyesíti magában a típusosságot és a property-ket (ez utóbbiakat is típusrendszerbe igazítva), és ennek az Ecore egy konkrét megvalósítása.
+
+
+
+%Itt sem logikus a sorrend. Először beszélj a tágabb fogalomról (graph data), és utána a metamodelingről. Így jobban érthetővé válik az is, hogy a következőkben miért az Ecore-ról kezdesz beszélni.
+
+%Ennek megfelelően, a metamodelingnél azt kellene leírni, hogy miben több a metamodel a graph data modelnél. Hol helyezhető el a metamodeling a 2.1-es ábrán? (ezt szöveggel kéne megoldani, az ábra maradjon úgy ahogy van)
