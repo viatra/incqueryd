@@ -33,11 +33,11 @@ I achieved the following practical accomplishements:
   \item I implemented \iqd{}'s prototype, including the storage, the middleware and the query layer. I wrote more than 3000 lines of Java code and approximately 500 lines of configuration and deployment scripts.
 %  \item Based on \eiq{} and István Ráth's work, I created an \emph{Eclipse-based environment} to provide automated deployment of the Rete network. This allows the user to define complex queries in IQPL, a high-level pattern language. % TODO SzG define own work
   \item I elaborated automated deployment technologies based on \eiq{}'s existing technologies.
-  \item I experimented with modern non-relational database management systems with a focus on NoSQL graph databases and triple stores. For the purpose of benchmarking different tools, I implemented scripts to install various graph storages. 
+  \item I experimented with modern non-relational database management systems with a focus on NoSQL graph databases and triple stores. For the purpose of benchmarking different tools, I created scripts to install various graph storages. 
   \begin{itemize}
     \item I implemented scripts to install the \emph{Titan graph database and its ecosystem} on a cluster. Titan's ecosystem includes technologies on different maturity levels, including the Apache Cassandra database, the Apache Hadoop MapReduce framework with the HDFS distributed file system, the TinkerPop graph framework and the Faunus graph analytics engine. I formulated the necessary the Gremlin queries and created the connector class in \iqd{}'s middleware.
     \item I implemented scripts to install the \emph{4store triplestore} on a cluster. I formulated the necessary the SPARQL queries and created the connector class in \iqd{}'s middleware. 
-    \item I deployed a manually sharded \emph{Neo4j cluster}. I formulated the appropriate Cypher queries and created the connector class in \iqd{}'s middleware to access Neo4j.
+    \item I deployed a manually sharded \emph{Neo4j} cluster. I formulated the appropriate Cypher queries and created the connector class in \iqd{}'s middleware to access Neo4j.
   \end{itemize}
   \item I implemented scripts for \emph{automating the benchmark} and \emph{operating a cluster of Akka microkernels}.
 \end{itemize}

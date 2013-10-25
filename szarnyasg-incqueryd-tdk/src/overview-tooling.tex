@@ -1,7 +1,7 @@
 \section{Tooling}
 \label{tooling}   
 
-To be able to focus on the distributed aspects, of the system, we aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete net generator. Also, \eiq{} has an Eclipse-based user interface for defining and executing queries.
+To be able to focus on the distributed aspects, of the system, we aimed to build \iqd{} on top of \eiq{}'s pattern language (IQPL) and its Rete network generator. Also, \eiq{} has an Eclipse-based user interface for defining and executing queries.
 
 For \iqd{}, we plan to provide the same tooling environment. Also, for the allocation of Rete nodes, we created an Eclipse-based editor and viewer.
 
@@ -13,14 +13,13 @@ For \iqd{}, we plan to provide the same tooling environment. Also, for the alloc
 
 % TODO move to TB
 
-
 \subsection{Runtime Model-based Dashboard}
 \label{dashboard}
 
-To aid the system's dynamic capabilities, we plan to implement a runtime model-based dashboard to monitor the state of \iqd{}'s nodes. Currently, the \iqd{} tooling generates an architecture file (\texttt{arch}), which is used for deploying the distributed pattern matcher.
+To aid the system's dynamic capabilities, we plan to develop a runtime model-based dashboard to monitor the state of \iqd{}'s nodes. Currently, the \iqd{} tooling generates an architecture file (\texttt{arch}), which is used for deploying the distributed pattern matcher.
 
-This file contains the Rete network's layout and its allocation in the cloud (as of now, the latter is defined manually). \iqd{} uses the architecture description for instantiating the Rete net and initializing the middleware (\figref{incqueryd-architecture-dashboard}).
+This file contains the Rete network's layout and its allocation in the cloud (as of now, the latter is defined manually). \iqd{} uses the architecture description for instantiating the Rete network and initializing the middleware (\figref{incqueryd-architecture-dashboard}).
 
 \picTiny{incqueryd-architecture-dashboard}{Architecture of \iqd{} with a runtime dashboard}
 
-To provide live feedback, we plan to implement a \emph{live} architecture model. The live model will provide real-time details about the systems' current state, including the local resources on each server, the Rete nodes' memory consumption and so on.
+To provide live feedback, we will adopt a \emph{live} architecture model. The live model will provide real-time details about the systems' current state, including the local resources on each server, the Rete nodes' memory consumption and so on.

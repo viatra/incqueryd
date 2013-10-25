@@ -1,7 +1,7 @@
 \chapter{Background Technologies}
 \label{chap:background-technologies}
 
-Implementing a scalable graph pattern matcher requires a wide range of technologies. Careful selection of the technologies is critical to the project's success. For \iqd{}, we looked for technologies that can form the building blocks of a distributed, scalable model repository and pattern matcher. These technologies must been designed with scalability in mind and deployed at scale successfully. To avoid licensing issues, our search criteria included that, if possible, the technologies should be free and open-source solutions.
+Developing a scalable graph pattern matcher requires a wide range of technologies. Careful selection of the technologies is critical to the project's success. For \iqd{}, we looked for technologies that can form the building blocks of a distributed, scalable model repository and pattern matcher. These technologies must been designed with scalability in mind and deployed at scale successfully. To avoid licensing issues, our search criteria included that, if possible, the technologies should be free and open-source solutions.
 
 Usually, instance models are graph-like data structures. Therefore, we looked for scalable graph databases. In this context, scalability requires distributed storage and querying capabilities.
 
@@ -21,7 +21,7 @@ This problem is well-known in the Java community. There are alternative Java Vir
 
 Instead of vertical scaling, we decided to opt for \emph{horizontal scaling}. As described in \autoref{nosql}, distributed non-relational databases have been gaining momentum in the last years. For persisting models, we inspected graph databases, but found that their query layer does not scale well in a distributed environment (\autoref{evaluation-results}). This is a serious problem for MDE, where the queries are typically more complex than in traditional, transactional database management.
 
-Therefore, we decided to implement our own distributed, scalable query layer based on NoSQL and semantic web databases.
+Therefore, we decided to design our own distributed, scalable query engine based on NoSQL and semantic web databases.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -358,6 +358,7 @@ Titan   & Property graph  & Automatic  & Automatic  & Gremlin   & Automatic  \\ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Asynchronous Messaging: Akka}
+\label{akka}
 
 Most distributed, concurrent systems use a messaging framework or megssage queue service. Because of the nature of the Rete algorithm (\autoref{rete}), \iqd{} requires a distributed, asynchronous messaging framework. For this purpose, we used the Akka framework.
 

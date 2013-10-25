@@ -10,7 +10,7 @@ Developing a distributed, scalable, incremental pattern matcher introduces numer
 The \iqd{} architecture in an example configuration is shown in \figref{incqueryd-architecture}. \iqd{}'s architecture consists of three layers: the storage layer, the middleware and the production network. 
 The \emph{storage layer} is a distributed database which is responsible for persisting the model (\autoref{storage}). 
 The client application communicates with the \emph{middleware} \textcircled{1}. The middleware provides a unified API for accessing the database \textcircled{2}. It also sends change notifications \textcircled{3} (\autoref{notifications}) to the production network and retrieves the query results from the production network \textcircled{4} . 
-The \emph{production network} is implemented with a distributed Rete net which provides incremental query evaluation (\autoref{rete}).
+The \emph{production network} is implemented with a distributed Rete network which provides incremental query evaluation (\autoref{rete}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -42,7 +42,7 @@ can be executed efficiently.
 
 While relational databases usually provide \emph{trigger}s for generating notifications, most triplestores and graph databases lack this feature. Among our primary database backends, 4store provides no triggers at all. Titan and Neo4j incorporate Blueprints, which provides an \texttt{EventGraph} class capable of generating notification events, but the events are only propagated in a single JVM (Java Virtual Machine). Implementing distributed notifications would require us to extend the \texttt{EventGraph} class and use a messaging framework. This is subject to future work (see \autoref{future-work}). 
 
-Because the lack of support for distributed notifications, in \iqd{}'s current implementation, notifications are controlled by the middleware by providing a facade for all model manipulation operations (\figref{incqueryd-architecture} \textcircled{3}). The notification messages are propagated through the Rete network via the Akka messaging framework. 
+Because the lack of support for distributed notifications, in \iqd{}'s prototype, notifications are controlled by the middleware by providing a facade for all model manipulation operations (\figref{incqueryd-architecture} \textcircled{3}). The notification messages are propagated through the Rete network via the Akka messaging framework. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -54,13 +54,13 @@ Because the lack of support for distributed notifications, in \iqd{}'s current i
 
 Conceptually, the architecture of \iqd{} allows the usage of a wide scale of model representation formats. Our prototype has been evaluated in the context of the \emph{property graph} and the \emph{RDF} data model, but other mainstream metamodeling and knowledge representation languages such as relational databases' SQL dumps and Ecore instance models~\autoref{ecore} could be supported, as long as they can be mapped to an efficient and distributed storage backend (e.g.\ triplestores, key-value stores or column-family databases).
 
-To support different data models, we only have to supply the appropriate connector class to \iqd{}'s middleware. The current implementation supports 4store, Neo4j and Titan. % Ertelemszeruen Neo4j-t a mostani verzioba nem hoztam at 100%-ig 
+To support different data models, we only have to supply the appropriate connector class to \iqd{}'s middleware. The current prototype supports 4store, Neo4j and Titan. % Ertelemszeruen Neo4j-t a mostani verzioba nem hoztam at 100%-ig 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Degrees of Freedom}
  
-The Rete algorithm (\autoref{rete}) utilizes both indexing and caching to provide fast incremental query evaluation. \iqd{}'s horizontal scalability is supported by the distribution of the pattern matcher's Rete net. To enable this, the system must be able to allocate the Rete nodes to different hosts in a cloud computing infrastructure. 
+The Rete algorithm (\autoref{rete}) utilizes both indexing and caching to provide fast incremental query evaluation. \iqd{}'s horizontal scalability is supported by the distribution of the pattern matcher's Rete network. To enable this, the system must be able to allocate the Rete nodes to different hosts in a cloud computing infrastructure. 
 
 The deployment and configuration of a distributed pattern matcher involves many degrees of freedom, and design decisions. The overall performance of the system is influenced by a number of factors.
 
@@ -86,4 +86,4 @@ In the following part, we will describe the workflow behind the pattern matching
 \pic{incqueryd-workflow}{The workflow of \iqd{}} 
 
 By design, \iqd{}'s workflow's steps are similar to \eiq{}'s, discussed in \autoref{eiq-workflow}. However, due to the system's distributed nature, they are more difficult to design and implement.
-In \iqd{}, deploying the Rete network \textcircled{2} requires the deployment of remote actors \autoref{subsec:akka} on the servers. Both the Rete indexers and the database are distributed across the cluster. Hence, loading the model and initializing the Rete net needs network communication \textcircled{3}. The Rete net works using Akka's remote messaging feature. The query results can be retrieved from the Rete net (this may also require network communication) \textcircled{4}. The database shards can only be accessed through the middleware, which is reponsible for sending notifications to the Rete net's appropriate indexers. After the notifications are processed and the termination algorithm finishes, the Rete net is in a consistent state \textcircled{5}. The results can be retieved by the client and it may modify the model an reevaluate the query again \textcircled{6}. 
+In \iqd{}, deploying the Rete network \textcircled{2} requires the deployment of remote actors (\autoref{akka}) on the servers. Both the Rete indexers and the database are distributed across the cluster. Hence, loading the model and initializing the Rete network needs network communication \textcircled{3}. The Rete network works using Akka's remote messaging feature. The query results can be retrieved from the Rete network (this may also require network communication) \textcircled{4}. The database shards can only be accessed through the middleware, which is reponsible for sending notifications to the Rete network's appropriate indexers. After the notifications are processed and the termination algorithm finishes, the Rete network is in a consistent state \textcircled{5}. The results can be retieved by the client and it may modify the model an reevaluate the query again \textcircled{6}. 

@@ -16,7 +16,7 @@ In the following, we provide an overview of the \emph{Rete algorithm}, which for
 
 \subsubsection{Incremental Pattern Matching Algorithms}
 
-Numerous algorithms were implemented for the purpose of incremental pattern matching. Mostly, these algorithms originate from the field of rule-based expert systems.
+Numerous algorithms were invented for the purpose of incremental pattern matching. Mostly, these algorithms originate from the field of rule-based expert systems.
 
 One of the most well-known is the \emph{Rete algorithm}, which creates a propagation network, which stores the partial matches in the graph\footnote{\emph{Rete} is Latin for \emph{net} or \emph{comb}.}. TREAT \cite{Miranker:1991:OPT:627280.627434} aims at minimizing memory usage by using only indexers and dropping partial results, while having the same algorithmic complexity as Rete. Another candidate is the LEAPS \cite{Batory:1994:LA:899216} algorithm, which is claimed to provide better space--time complexity. However, we found that LEAPS is difficult to understand and implement even on a single workstation, not to mention the distributed case. 
 
@@ -30,7 +30,7 @@ The algorithm was originally created by Charles Forgy~\cite{Forgy} for rule-base
 
 The Rete algorithm defines an asynchronous network of communicating nodes (\figref{rete}). This is essentially a dataflow network, with two types of nodes. Change notification objects (\emph{tokens}) are propagated to intermediate \emph{worker nodes} that perform operations known from relational algebra, like projection ($ \pi $), selection ($ \sigma $),  join ($ \rhd\!\!\lhd $) and antijoin ($ \rhd $) operations. The worker nodes store partial query results in their own memory. In contrast, \emph{production nodes} are terminators that provide an interface for fetching query results and also their change sets (\emph{deltas}).
 
-The Rete net is built on top of type-specific indexers, which are reponsible for providing quick lookups and generating notifications for the worker nodes.
+The Rete network is built on top of type-specific indexers, which are reponsible for providing quick lookups and generating notifications for the worker nodes.
 
 \subsubsection{Termination Protocol}
 
@@ -53,7 +53,7 @@ A typical model transformation sequence is the following. The modeling applicati
 
 \subsubsection{Query optimization}
 
-Similarly to optimizing query plans for relational databases, we can also optimize the Rete net's layout. Currently, \eiq{} supports basic optimizations. It utilizes node sharing, i.e.\ it detects if two Rete nodes would store the same partial matches and merges them to a single Rete node. More details are available in \cite{BergmannPhD}.
+Similarly to optimizing query plans for relational databases, we can also optimize the Rete network's layout. Currently, \eiq{} supports basic optimizations. It utilizes node sharing, i.e.\ it detects if two Rete nodes would store the same partial matches and merges them to a single Rete node. More details are available in \cite{BergmannPhD}.
 
 \subsubsection{Data representation}
 
@@ -72,4 +72,4 @@ This data representation principle intends to keep the Rete network's size as sm
 
 In the following, we describe \eiq{}'s workflow based on \figref{incquery-workflow}. 
 
-Based on the \emph{metamodel} and the \emph{query specification}, \iqd{} first constructs a Rete network \textcircled{1} and deploys it \textcircled{2}. It loads the model (from the persistent storage) to an \emph{in-memory storage} \textcircled{3} and traverses it to initialize the Rete network's indexers. The Rete network evaluates the query by processing the incoming tuples \textcircled{4}. If the modeling application modifies the model through the EMF API, the modifications are propagated the Rete net, hence keeping it in a consistent state \textcircled{5}. The query results can be retrieved from the Rete net \textcircled{6}. The modeling application may modify the model and reevaluate the query again.
+Based on the \emph{metamodel} and the \emph{query specification}, \iqd{} first constructs a Rete network \textcircled{1} and deploys it \textcircled{2}. It loads the model (from the persistent storage) to an \emph{in-memory storage} \textcircled{3} and traverses it to initialize the Rete network's indexers. The Rete network evaluates the query by processing the incoming tuples \textcircled{4}. If the modeling application modifies the model through the EMF API, the modifications are propagated the Rete network, hence keeping it in a consistent state \textcircled{5}. The query results can be retrieved from the Rete network \textcircled{6}. The modeling application may modify the model and reevaluate the query again.
