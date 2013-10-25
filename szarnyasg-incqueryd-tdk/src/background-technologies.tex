@@ -11,8 +11,8 @@ In this chapter, we introduce the technologies that can form the basis of a scal
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Big Data and the NoSQL Movement}
-\label{nosql}
+% \section{Big Data and the NoSQL Movement}
+% \label{nosql}
 
 Since the 1980s, database management systems based on the relational data model~\cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling and so on. However, due to their rich feature set and the strongly connected nature of their data model, relational databases often have scalability issues~\cite{Jacobs:2009:PBD:1536616.1536632, Sakr13}. They are typically optimized for transaction processing, instead of data analsysis (see \emph{data warehouses} for an exception). In practice, these render them impractical for a number of use cases, e.g.\ running complex queries on large data sets.
 
@@ -25,34 +25,6 @@ Big Data challenges spawned dozens of new database management systems. Typically
 \section{Concepts}
 
 This section introduces the most important concepts used in this report. 
-
-\subsection{Metamodel}
-
-Metamodeling is a methodology for the definition of modeling languages. A metamodel specifies the abstract syntax (structure) of a language. Metamodels are expressed using a metamodeling language that itself is a modeling language. The metamodel can also be interpreted as the object-oriented data model of the language under design.
-
-\subsection{Query}
-
-In the context of this report, a query defines \emph{graph pattern}. The result of the query is a \emph{set of subgraphs} of the original graph. Graph patterns have are useful for identifying patterns in a set of connected data elements. They are especially widely used in the context of model-driven engineering for defining well-formedness validation constraints and graph transformations.
-
-\subsection{Data Sharding}
-
-To provide scalable persistence and processing for large amounts of data, the data has to be split between multiple computers. This process is known as \emph{data sharding}. \emph{Graph sharding} is a particularly difficult problem due to the strongly connected and mutable nature of graphs. Efficient sharding of graphs is still an ongoing research problem~\cite{ShardingGraph}.
-
-\pic{graph-sharding}{Different partitionings of the same graph}
-
-To illustrate the problem, \figref{graph-sharding} shows different partitionings of the same graph in a three-node cluster.  
-In case \textcircled{1} most edges run between servers and are therefore expensive to traverse.
-In case \textcircled{2}, \emph{Server 2} is overloaded, taking more than three quarters of the total load.
-Case \textcircled{3} presents a more balanced sharding of the graph.
-Unfortunately, for large graphs, balanced sharding is hard to achieve in practice.
-
-Most graph partition problems NP-hard and practical solutions to these problems could be derived using heuristics and approximation algorithms~\cite{conf/stacs/FeldmannF12}. Unfortunately, open-source database implementations lack support for such algorithms.
-
-\subsection{MapReduce}
-
-The \emph{MapReduce paradigm} defines a parallel, asynchronous way of processing the data. As the name implies, MapReduce consists of two phases: the \emph{map} function processes each item of a list. The resulted list is then aggregated by the \emph{reduce} function.
-
-MapReduce is often used for sorting, filtering and aggregating data sets. It is also used for fault-tolerant, distributed task execution.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -78,7 +50,52 @@ Simple graphs can be extended in several different ways (\figref{graph-classes})
 
 %Property graphs are powerful enough to describe Java objects or EMF instance models. 
 
-These graph models are found in many languages and environments. In the following, we will present the ones most important for this report: the Ecore metamodeling language, the TinkerPop framework and the Resource Description Framework (RDF).   
+These graph models are found in many languages and environments. In the following, we will present the ones most important for this report: the Ecore metamodeling language, the TinkerPop framework and the Resource Description Framework (RDF).
+
+\subsection{Metamodel}
+
+Metamodeling is a methodology for the definition of modeling languages. A metamodel specifies the abstract syntax (structure) of a language. Metamodels are expressed using a metamodeling language that itself is a modeling language. The metamodel can also be interpreted as the object-oriented data model of the language under design.
+
+\subsection{Query Language and Evaluation}
+
+In the context of this report, a query defines a \emph{graph pattern}. The result of the query is a \emph{set of subgraphs} of the original graph. Graph patterns are useful for identifying patterns in a set of connected data elements. They are especially widely used in the context of model-driven engineering for defining well-formedness validation constraints and graph transformations.
+
+\subsubsection{Query Language}
+
+Queries can be defined in both imperative and declarative languages. The theoretical basis for most declarative query languages is first order logic. Both tuple relational calculus and relational algebra (widely used in query processing) are offshoots of first-order logic.
+
+\subsubsection{Query Evaluation}
+
+Query engines can be divided into two core categories: \emph{search-based} and \emph{incremental} engines. The main difference between this approaches is the way they re-evaluate queries. While search-based engines process the whole data set (i.e.\ not just the data elements affected by the change), incremental engines utilizes some data structures to be able to reevaluate the query based on the change set.
+
+\subsection{Data Sharding}
+ 
+To provide scalable persistence and processing for large amounts of data, the data has to be split between multiple computers. This process is known as \emph{data sharding}. \emph{Graph sharding} is a particularly difficult problem due to the strongly connected and mutable nature of graphs. Efficient sharding of graphs is still an ongoing research problem~\cite{ShardingGraph}.
+
+\pic{graph-sharding}{Different partitionings of the same graph}
+
+To illustrate the problem, \figref{graph-sharding} shows different partitionings of the same graph in a three-node cluster.  
+In case \textcircled{1} most edges run between servers and are therefore expensive to traverse.
+In case \textcircled{2}, \emph{Server 2} is overloaded, taking more than three quarters of the total load.
+Case \textcircled{3} presents a more balanced sharding of the graph.
+Unfortunately, for large graphs, balanced sharding is hard to achieve in practice.
+
+Most graph partition problems NP-hard and practical solutions to these problems could be derived using heuristics and approximation algorithms~\cite{conf/stacs/FeldmannF12}. Unfortunately, open-source database implementations lack support for such algorithms.
+
+\subsection{Asynchronous Parallel Processing with MapReduce}
+
+The \emph{MapReduce paradigm} defines a parallel, asynchronous way of processing the data. As the name implies, MapReduce consists of two phases: the \emph{map} function processes each item of a list. The resulted list is then aggregated by the \emph{reduce} function.
+
+MapReduce is often used for sorting, filtering and aggregating data sets. It is also used for fault-tolerant, distributed task execution.
+
+
+
+
+
+
+
+
+
 
 \subsubsection{Ecore}
 \label{ecore}
@@ -307,7 +324,7 @@ Similar to Titan's partitioning, 4store's \emph{segmenting} mechanism distribute
 
 %---------------------------------------------------------------------------------------------------
 
-\subsection{Overview of Graph Storage Technologies}
+\subsection{Overview and Evaluation of Graph Storage Technologies}
 
 \begin{table}[htb]
 
@@ -321,10 +338,10 @@ Similar to Titan's partitioning, 4store's \emph{segmenting} mechanism distribute
 \bf Sharding   & 
 \bf Queries    & 
 \bf Identifier generation \tabularnewline \hline\hline
-EMF     & Ecore           & Variable   & Variable   & OCL, IQPL & Automatic  \\ \hline
-4store  & RDF             & Manual     & Automatic  & SPARQL    & Manual     \\ \hline
-Neo4j   & Property graph  & Manual     & Manual     & Cypher    & Manual     \\ \hline
-Titan   & Property graph  & Automatic  & Automatic  & Gremlin   & Automatic  \\ \hline
+EMF     & Ecore           & Differs             & Differs             & OCL, IQPL & \textbf{Automatic}  \\ \hline
+4store  & RDF             & Manual              & \textbf{Automatic}  & SPARQL    & Manual              \\ \hline
+Neo4j   & Property graph  & Manual              & Manual              & Cypher    & Manual              \\ \hline
+Titan   & Property graph  & \textbf{Automatic}  & \textbf{Automatic}  & Gremlin   & \textbf{Automatic}  \\ \hline
 
 \end{tabular}
 \caption{Overview of database technologies}
