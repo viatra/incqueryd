@@ -20,7 +20,7 @@ In the following, we provide an overview of the \emph{Rete algorithm}, which for
 
 Numerous algorithms were invented for the purpose of incremental pattern matching. Mostly, these algorithms originate from the field of rule-based expert systems.
 
-One of the most well-known is the \emph{Rete algorithm}, which creates a propagation network, which stores the partial matches in the graph\footnote{\emph{Rete} is Latin for \emph{net}.}. TREAT \cite{Miranker:1991:OPT:627280.627434} aims at minimizing memory usage by using only indexers and dropping partial results, while having the same algorithmic complexity as Rete. Another candidate is the LEAPS \cite{Batory:1994:LA:899216} algorithm, which is claimed to provide better space--time complexity. However, we found that LEAPS is difficult to understand and implement even on a single workstation, not to mention the distributed case. 
+One of the most well-known is the \emph{Rete algorithm}, which creates a propagation network, which stores the partial matches found in the graph\footnote{\emph{Rete} is Latin for \emph{net}.}. TREAT \cite{Miranker:1991:OPT:627280.627434} aims at minimizing memory usage by using only indexers and dropping partial results, while having the same algorithmic complexity as Rete. Another candidate is the LEAPS \cite{Batory:1994:LA:899216} algorithm, which is claimed to provide better space--time complexity. However, we found that LEAPS is difficult to understand and implement even on a single workstation, not to mention the distributed case. 
 
 Rete has many improved versions (e.g.\ Rete II, Rete III, Rete-NT), however, unlike the original algorithm, these are not publicly available. Because the original Rete algorithm is well-understood by the \eiq{} team, we decided to build \iqd{} on the same foundation. Experimenting with improved versions or alternative approaches is subject to future work.
 
@@ -46,7 +46,7 @@ In the following, we will overview the architecture of a \emph{single-node} incr
 
 \subsection{Architecture}
 
-The Rete algorithm forms the foundation of \eiq{}'s query engine. \figref{incquery-architecture} shows the architecture of \eiq{} and the Rete algorithm's role in the system. 
+The Rete algorithm forms the foundation of \eiq{}'s query engine. \figref{incquery-architecture} shows the architecture of \eiq{} and the Rete network's role in the system. 
 
 \picTiny{incquery-architecture}{\eiq{}'s architecture}
 
@@ -55,11 +55,11 @@ A typical model transformation sequence is the following. The modeling applicati
 \subsection{Indexing and Initialization}
 \label{indexing}
 
-Indexing is a common technique for decreasing the execution time of database queries. In MDE, \emph{model indexing} is the key to high performance model queries. As MDE primarily uses a metamodeling infrastructure, all queries utilize some type attribute.
+Indexing is a common technique for decreasing the execution time of database queries. In MDE, \emph{model indexing} has a key role to high performance model queries. As MDE primarily uses a metamodeling infrastructure, all queries utilize some type attribute. Typical elementary queries are listed below.
 
 \begin{itemize}
   \item Retrieving all node instances of a given type (e.g.\ get all nodes with the type \texttt{Person}).
-  \item Retrieving all edges instances of a given label (e.g.\ get all edges with the label \texttt{child}).
+  \item Retrieving all edge instances of a given label (e.g.\ get all edges with the label \texttt{child}).
   \item Retrieving a given node's all incoming and/or outgoing edges of a given type (e.g.\ get all outgoing \texttt{child} edges of a given node). 
   \item Reverse navigation: retrieving the node on the other end of an edge (e.g.\ the \texttt{child} relation is identical to the inverse of the \texttt{parent} relation). 
 \end{itemize}
@@ -81,7 +81,7 @@ As the Rete algorithm's change propagation is asynchronous, the system must also
 
 \subsection{Degrees of Freedom}
 
-For a given model, the system's performance for a query is mainly determined by the layout of the generated Rete network. Similarly to relational query optimization, we can also optimize the Rete network's layout. Currently, \eiq{} supports basic optimizations. It utilizes node sharing, i.e.\ it detects if two Rete nodes would store the same partial matches and merges them to a single Rete node. More details are available in \cite{BergmannPhD}.
+For a given model, the system's performance for a query is mainly determined by the layout of the generated Rete network. Similarly to relational query optimization, we can also optimize the Rete network's layout. Currently, \eiq{} supports basic optimizations. It utilizes node sharing, i.e.\ it detects if two Rete nodes would store the same partial matches and merges them to a single node. More details are available in \cite{BergmannPhD}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
