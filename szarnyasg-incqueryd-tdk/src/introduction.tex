@@ -14,7 +14,7 @@ Many scalability issues can be addressed by improving query performance. \emph{I
 % graph databases, RDF/SPARQL
 % at the cost of expressive ad-hoc queries
 
-An alternative approach to tackling MDE scalability issues is to make use of advances in persistence technology. As the majority of model-based tools uses a graph-oriented data model, recent results of the NoSQL and Linked Data movement~\cite{neo4j,openvirtuoso,sesame} are straightforward candidates for adaptation to MDE purposes. Unfortunately, this idea poses difficult conceptual and technological challenges: (i) property graph databases lack strong metamodeling support and their query features are simplistic compared to MDE needs, and (ii) the underlying data representation format of semantic databases (RDF~\cite{website:rdf_standard}) has crucial conceptual and technological differences to traditional metamodeling languages such as Ecore~\cite{EMF}. Additionally, while there are initial efforts to overcome the mapping issues between the MDE and Linked Data worlds~\cite{hillairet2008bridging}, even the most sophisticated NoSQL storage technologies lack efficient and mature support for executing expressive queries incrementally.
+An alternative approach to tackling MDE scalability issues is to make use of advances in persistence technology. As the majority of model-based tools uses a graph-oriented data model, recent results of the NoSQL and Linked Data movement~\cite{neo4j,openvirtuoso,sesame} are straightforward candidates for adaptation to MDE purposes. Unfortunately, this idea poses difficult conceptual and technological challenges: (i) property graph databases lack strong metamodeling support and their query features are simplistic compared to MDE needs, and (ii) the underlying data representation format of semantic databases (RDF~\cite{website:rdf_standard}) has crucial conceptual and technological differences to traditional metamodeling languages such as Ecore~\cite{EMF}. Additionally, while there are initial efforts to overcome the mapping issues between the MDE and Linked Data worlds~\cite{hillairet2008bridging}, even the most sophisticated NoSQL storage technologies lack efficient and mature support for executing expressive queries \emph{incrementally}.
 
 \section{Problem Statement and Requirements}
 
@@ -29,6 +29,9 @@ An alternative approach to tackling MDE scalability issues is to make use of adv
 % initial feasibility and performance evaluation experiments
 
 %We aim to address these challenges by adapting incremental graph search techniques from \eiq{} to the cloud infrastructure. We introduce \iqd, a prototype system based on a distributed Rete network~\cite{Forgy} that can scale up from a single-workstation tool to a cluster to handle very large models and complex queries efficiently (\autoref{sec:overview}). 
+
+conceptual novelty
+new query engine built on top of existing persistent storage
 
 \section{Contribution, Added Value}
 
