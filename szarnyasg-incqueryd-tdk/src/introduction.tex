@@ -15,43 +15,44 @@ Many scalability issues can be addressed by improving query performance. \emph{I
 
 An alternative approach to tackling MDE scalability issues is to make use of advances in persistence technology. As the majority of model-based tools uses a graph-oriented data model, recent results of the NoSQL and Linked Data movement~\cite{neo4j,openvirtuoso,sesame} are straightforward candidates for adaptation to MDE purposes. Unfortunately, this idea poses difficult conceptual and technological challenges: (i) property graph databases lack strong metamodeling support and their query features are simplistic compared to MDE needs, and (ii) the underlying data representation format of semantic databases (RDF~\cite{website:rdf_standard}) has crucial conceptual and technological differences to traditional metamodeling languages such as Ecore~\cite{EMF}. Additionally, while there are initial efforts to overcome the mapping issues between the MDE and Linked Data worlds~\cite{hillairet2008bridging}, even the most sophisticated NoSQL storage technologies lack efficient and mature support for executing expressive queries \emph{incrementally}.
 
+%Ez a két rész érdemi bővítésre szorul.
+%Mik (tételesen) azok a kihívások, amelyekre a dolgozat megoldást kíván találni? Miért jelentősek / nehezek ezek (elméleti, gyakorlati szempontból)?
+%Mi az IncQueryD mint megközelítés lényege? Hogyan fogja ez megoldani a fentebb részletezett kihívásokat?
+%Legalább a következő oldal aljáig érjen a bevezető!
 
+% miben haladja meg a state of the artot
+% scalability
+% open-source technologiak lekerdezeseinel gyorsabbak vagyunk
+% This is a serious problem for MDE, where the queries are typically more complex than in traditional, transactional database management.
+%\eiq{} is proven to be efficient for incremental query evaluation on small to medium-sized models (in the order of magnitude of $10^6$). However, model-driven engineering challenges often present large models, with $10^9$ or more elements \cite{Scheidgen12}.
+
+\section{Objectives}
+
+The objective of our research is to provide a scalable solution for incremental query evaluation. Instead of \emph{vertical scaling} (putting more resources to the same workstation), we decided to opt for \emph{horizontal scaling}. This introduces a number of challenges.
+
+On the theoretical side, we need to adopt an incremental pattern matching algorithm to work in a distributed environment. We will design a distributed architecture which is capable of handling multiple client requests for loading, transforming and querying models.
+ 
+On the practical side, we require a distributed storage system, which is capable of partitioning the data in a cluster of servers. Based on the architecture and the pattern matcher algorithm, we will build a system prototype and compare its performance to existing tools.
+
+%As described in \autoref{nosql}, distributed non-relational databases have been gaining momentum in the last years. For persisting models, we inspected graph databases, but found that their distributed storage capabilities are limited and their query layer does not scale well in a distributed environment (\autoref{evaluation-results}).
 
 %Ez a két rész érdemi bővítésre szorul.
 %Mik (tételesen) azok a kihívások, amelyekre a dolgozat megoldást kíván találni? Miért jelentősek / nehezek ezek (elméleti, gyakorlati szempontból)?
 %Mi az IncQueryD mint megközelítés lényege? Hogyan fogja ez megoldani a fentebb részletezett kihívásokat?
 %Legalább a következő oldal aljáig érjen a bevezető!
 
+% Due to the Rete algorithm's memory consumption (\autoref{rete}), \eiq{} cannot handle large models efficiently \cite{models10}. A trivial solution would be to use \emph{vertical scaling}, i.e.\ putting more memory in the workstation. Unfortunately, this approach is not feasible due to nature of Java's memory management. The Garbage Collector (GC) cannot handle heap sizes larger than 10~GB efficiently, thus introducing long pauses in the application \cite{Azul}. 
 
-
-% miben haladja meg a state of the artot
-% scalability
-% open-source technologiak lekerdezeseinel gyorsabbak vagyunk
-
-\section{Objectives}
-
-
-
-\section{Motivations for Horizontal Scaling}
-
-\eiq{} is proven to be efficient for incremental query evaluation on small to medium-sized models (in the order of magnitude of $10^6$). However, model-driven engineering challenges often present large models, with $10^9$ or more elements \cite{Scheidgen12}.
-
-Due to the Rete algorithm's memory consumption (\autoref{rete}), \eiq{} cannot handle large models efficiently \cite{models10}. A trivial solution would be to use \emph{vertical scaling}, i.e.\ putting more memory in the workstation. Unfortunately, this approach is not feasible due to nature of Java's memory management. The Garbage Collector (GC) cannot handle heap sizes larger than 10~GB efficiently, thus introducing long pauses in the application \cite{Azul}. 
-
-This problem is well-known in the Java community. There are alternative Java Virtual Machines (JVMs) with specialized Garbage Collectors, like Azul Systems' JVM. However, the Azul JVM is a proprietary product and has specific hardware requirements. Also, this does not solve the scaling problem entirely -- the model size is still limited by the total amount memory in a single computer.
-
-Instead of vertical scaling, we decided to opt for \emph{horizontal scaling}. As described in \autoref{nosql}, distributed non-relational databases have been gaining momentum in the last years. For persisting models, we inspected graph databases, but found that their query layer does not scale well in a distributed environment (\autoref{evaluation-results}). This is a serious problem for MDE, where the queries are typically more complex than in traditional, transactional database management.
+% This problem is well-known in the Java community. There are alternative Java Virtual Machines (JVMs) with specialized Garbage Collectors, like Azul Systems' JVM. However, the Azul JVM is a proprietary product and has specific hardware requirements. Also, this does not solve the scaling problem entirely -- the model size is still limited by the total amount memory in a single computer.
 
 \section{Contributions}
 
-We aim to address these challenges by adapting incremental graph search techniques from \eiq{} to the cloud infrastructure. We introduce \iqd{}, a prototype system based on a distributed Rete network~\cite{Forgy} that can scale up from a single-workstation tool to a cluster of servers to handle very large models and complex queries efficiently.
+We aim to address the scalability challenge of MDE by adapting incremental graph search techniques from \eiq{} to the cloud infrastructure. To build a scalable incremental query engine, we need a distributed software stack. This includes a distributed database management system and a messaging framework. We define the search criteria for these systems and evaluate them accordingly.
 
-The main contributions of this report is a \emph{novel architecture} for a distributed, incremental query engine. We developed a \emph{working prototype} and designed a \emph{benchmark environment} to evaluate the scalability characteristics of the system. 
+We extend the algorithm behind \eiq{} to work in a distributed environment and present a \emph{novel architecture}. We introduce a prototype system, \iqd{}, that can scale up from a single-workstation tool to a cluster of servers to handle very large models and complex queries efficiently. 
 
-We conducted benchmarks with different storage backends and query engines. The analysis of the results confirmed the feasibility of the approach.
-
-%Therefore, we decided to design a stand-alone distributed, scalable query engine based on NoSQL and semantic web databases.
-
+We designed a \emph{benchmark environment} to evaluate the scalability characteristics of the system. We conducted benchmarks with different storage backends and query engines. The analysis of the results confirmed the feasibility of the approach and showed its superiority to current % state of the art (?)
+graph query engines.
 
 \section{Structure of the Report}
  

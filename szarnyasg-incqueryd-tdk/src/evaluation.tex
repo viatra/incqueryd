@@ -22,9 +22,9 @@ The \tb{} was designed at the Fault Tolerant Systems Research Group \cite{high-p
 
 \subsection{Benchmark Goals}
 
-The \tb{} measures the response time of the system under test. The benchmark models a ''real-world'' MDE workload by simulating a user's interaction with the model. In this sequence, the user loads the model and validates it against a set  queries (defining well-formedness constraints). The user edits the model in small steps. The user's work is more productive and less error-prone if she receives the results of the validation instantly after each edit. Therefore, the user would like to run re-evaluate well-formedness queries quickly.
+The \tb{} measures the response time of the system under load. The benchmark models a ''real-world'' MDE workload by simulating a user's interaction with the model. In this sequence, the user loads the model and validates it against a set  queries (defining well-formedness constraints). The user edits the model in small steps. The user's work is more productive and less error-prone if she receives the results of the validation instantly after each edit. Therefore, the user would like to run re-evaluate well-formedness queries quickly.
 
-\pic{trainbenchmark-sequence}{The \tb{}'s sequence}%. The green arrows and components are specific to the incremental scenario.}
+\pic{trainbenchmark-sequence}{The \tb{}'s sequence}
 
 The benchmark defines four distinct phases, also shown on \figref{trainbenchmark-sequence}.
 
@@ -59,7 +59,6 @@ The \tb{} was designed to work with different tools originating from various tec
 \pic{trainBenchmark_Memory_User_RouteSensor}{\tb{}: memory consumption of the tools \cite{rath-high-performance-queries}}
 
 \figref{trainBenchmark_Memory_User_RouteSensor} shows the memory consumption of the diffent tools. It is apparent that incremental tools space--time tradeoff causes them to consume more memory.
-
 
 % see also http://www.inf.mit.bme.hu/sites/default/files/materials/category/kateg%C3%B3ria/oktat%C3%A1s/msc-t%C3%A1rgyak/szolg%C3%A1ltat%C3%A1sbiztons%C3%A1gra-tervez%C3%A9s-laborat%C3%B3rium/10/02_szolgbiztlab_teljesitmenyteszteles-segedlet.pdf
 
