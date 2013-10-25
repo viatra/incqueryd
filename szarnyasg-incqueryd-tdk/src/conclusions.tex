@@ -5,7 +5,7 @@ This chapter summarizes the contributions presented in the report.
 
 \section{Summary of Contributions}
 
-We presented \iqd{}, a novel approach to adapt distributed incremental query techniques to large and complex model driven software engineering scenarios. Our proposal is based on a distributed Rete network that is decoupled from sharded graph databases by a middleware layer. The feasibility of the approach has been evaluated using a benchmarking scenario of on-the-fly well-formedness validation of software design models. The results are promising as they show nearly instantaneous query re-evaluation as model sizes grow well beyond $10^7$ elements.
+We presented \iqd{}, a novel approach to adapt distributed incremental query techniques to large and complex model driven software engineering scenarios. Our proposal is based on a distributed Rete network that is decoupled from sharded graph databases by a middleware layer. The feasibility of the approach has been evaluated using a benchmarking scenario of on-the-fly well-formedness validation of software design models. The results are promising as they show nearly instantaneous query re-evaluation as model sizes grow well beyond 50 million elements.
 
 During the research and development of \iqd{} so far, I achieved the following results.
 
@@ -14,11 +14,11 @@ During the research and development of \iqd{} so far, I achieved the following r
 I achieved the following scientific contributions:
 
 \begin{itemize}
+  \item I proposed a novel architecture for building a distributed, scalable, incremental graph query engine over different storage backends. The architecture was published in \cite{Izso:2013:IIG:2487766.2487772}. 
   \item I designed and implemented a \emph{distributed, asynchronous version of the Rete algorithm}. 
-  \item I proposed a novel architecture for building a distributed, scalable, incremental graph query engine over different storage backends. % incremental query as a service
+  \item I extended the termination protocol used \eiq{} to work in a distributed environment. 
   \item I extended the \tb{} to work in a distributed environment.  
   \item I conducted a benchmark to measure \iqd{}'s \emph{response time and scalability characteristics}. For the benchmark's baseline, I created \emph{distributed non-incremental benchmark scenarios}. 
-  \item I extended the termination protocol used \eiq{} to work in a distributed environment. 
 \end{itemize}
 
 \subsection{Practical Accomplishments}
@@ -30,7 +30,7 @@ I achieved the following practical accomplishements:
   \item I extended the \tb{} with a \emph{new instance model generator}, which can produce property graphs and serialize them in various formats: \graphml{}, Blueprints \graphson{} and Faunus \graphson{}. % (\autoref{sec:property-graph-formats}).
   \item I developed \iqd{}'s prototype, including the query layer, the middleware and the integration to different storage technologies. I wrote more than 3000 lines of Java code and approximately 500 lines of configuration and deployment scripts.
 %  \item Based on \eiq{} and István Ráth's work, I created an \emph{Eclipse-based environment} to provide automated deployment of the Rete network. This allows the user to define complex queries in IQPL, a high-level pattern language. % TODO SzG define own work
-  \item I elaborated automated deployment technologies based on \eiq{}'s existing technologies.
+  \item I elaborated automated deployment tools based on \eiq{}'s existing technologies.
   \item I experimented with modern non-relational database management systems with a focus on NoSQL graph databases and triple stores. For the purpose of benchmarking different tools, I created scripts to install various graph storages. 
   \begin{itemize}
     \item I deployed a manually sharded \emph{Neo4j} cluster. I formulated the appropriate Cypher queries and created the connector class in \iqd{}'s middleware to access Neo4j.
@@ -42,13 +42,16 @@ I achieved the following practical accomplishements:
 
 \section{Limitations}
 
-\iqd{}'s current implementation has some limitations, the most important being the following.
+\iqd{}'s current implementation has some limitations, the most important ones are the following.
 
-\begin{itemize}
-  \item The Rete nodes are allocated manually.
-  \item Only a subset of the nodes defined in the Rete algorithm are implemented. %No \emph{check} expressions. 
-  \item The Eclipse-based tooling does not cover the whole workflow. The user is required to do some manual work, e.g.\ running scripts manually.
-\end{itemize}
+\begin{enumerate}
+  \item 
+  The Rete nodes are allocated manually. The user has to define the mapping between the Rete network and the infrastructure. However, given a mapping, the system is capable of automatically deploying the Rete network.
+  \item
+  Only a subset of the nodes defined in the Rete algorithm are implemented. For example, the current implementation does not support recursive patterns, checking property conditions and transitive closures.
+  \item
+   The Eclipse-based tooling does not cover the whole workflow. The user is required to do some manual work, e.g.\ running scripts manually.
+\end{enumerate}
 
 \section{Future work}
 \label{future-work}
@@ -57,9 +60,16 @@ For future work, we plan to address the aforementioned limitations.
 
 %We plan to provide more sophisticated automation for sharded Ecore models
 
-First, we will provide automatic allocation of Rete nodes using techniques like CSP (Constraint Satisfaction Problem) and DSE (Design Space Exploration) \cite{DSE11}. We plan to further explore advanced optimization challenges such as dynamic reconfiguration and fault tolerance. Second, we will provide a more complete implementation of the Rete algorithm by implementing all the nodes defined by the algorithm. Third, we will improve the tooling and add a \emph{live monitoring} feature.
+\begin{enumerate}
+\item
+The allocation of the Rete nodes will be supported using techniques like CSP (Constraint Satisfaction Problem) solvers and DSE (Design Space Exploration) \cite{DSE11}. We plan to further explore advanced optimization challenges such as dynamic reconfiguration and fault tolerance.
+\item
+We will complete the implementation of the nodes defined in Rete algorithm.
+\item
+The tooling in under active development with plans for a \emph{live monitoring} feature.
+\end{enumerate}
 
-We plan to extend the distributed \tb{} to model different real-world workloads, e.g.\ simulating multiple users issuing concurrent requests.
+We also plan to extend the distributed \tb{} to model different real-world workloads, e.g.\ simulating multiple users issuing concurrent requests.
 
-We also plan to experiment with programming languages that are better suited to asynchronous algorithms, e.g.\ Erlang and Scala, a Java-based functional object-oriented programming language. 
+Another direction is experimenting with programming languages that are better suited to asynchronous algorithms, e.g.\ Erlang and Scala, a Java-based functional object-oriented programming language. 
 For our storage layer, we plan to test distributed in-memory databases, e.g.\ Hazelcast~\cite{Hazelcast}. Also, we are constantly looking for scalable persistent database technologies. 

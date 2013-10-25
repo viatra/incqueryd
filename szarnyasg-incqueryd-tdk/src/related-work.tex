@@ -16,20 +16,6 @@ Extensive tooling helps the creation and transformation of such domain models. F
 % 
 % Such data structures can be stored in graph databases like Neo4j~\cite{neo4j} which provides the Cypher~\cite{cypher} query language. Even though big data storage (usually based on MapReduce) provides fast object persistence and retrieval, query engines realized directly on these data structures do not provide dedicated support for incremental query evaluation. 
 
-\section{Benchmarking}
-
-FTSRG related work
-
-
-\cite{VSV05b}
-
-\cite{STTT10}
-
-\cite{ASE2013}
-
-% http://www.ckrause.org/2013/10/henshin-giraph-big-data-graph.html ?
-
-
 \section{Rete Implementations}
 
 %In the context of event-based systems, distributed evaluation engines were proposed earlier~\cite{message-passing-rete}. However they scaled up in the number of rules~\cite{mapreduce-rete} rather than in the number of data elements. 
@@ -41,4 +27,10 @@ Diamond~\cite{miranker2012diamond} uses a \emph{distributed Rete network} to eva
 The conceptual foundations of our approach as based on \eiq{}~\cite{models10}, a tool that evaluates graph patterns over EMF models using Rete. Up to our best knowledge, \iqd{} is the first approach to promote distributed scalability by \emph{distributed incremental query evaluation} in the context of model-driven engineering. As the architecture of \iqd{} separates the data store from the query engine, we believe that the scalable processing of RDF and property graphs can open up interesting applications outside of the MDE world.
 
 Acharya et al.\ described a Rete network mapping for fine-grained and medium-grained message-passing computers~\cite{message-passing-rete}. The medium-grained computer connected processors in a crossbar architecture, while our approach use computers connected by gigabit Ethernet. The paper published benchmark results of the medium-grained solution, but these are based only on simulations.
+
+\section{Benchmarking}
+
+In the research work undertaken in the Budapest University of Technology and Economics, numerous benchmarks were designed and elaborated for graph pattern matching and graph transformation~\cite{VSV05b, STTT10}.
+
+The distributed \tb{} used in this report builds on the most recent results, published in~\cite{ASE2013}.
 
