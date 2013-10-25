@@ -1,8 +1,6 @@
 \chapter{Introduction}
 \label{chap:introduction}
 
-This chapter introduces the report's context. It defines the main problems and summarizes the goals of our research.  
-
 \section{Context}
 
 Nowadays, model-driven software engineering (MDE) plays an important role in the development processes of critical embedded systems. Advanced modeling tools provide support for a wide range of development tasks such as requirements and traceability management, system modeling, early design validation, automated code generation, model-based testing and other validation and verification tasks. 
@@ -17,18 +15,27 @@ An alternative approach to tackling MDE scalability issues is to make use of adv
 
 \section{Objectives and Contributions}
 
-% Goals: scale up to large models, yet maintain scalability for expressive and incremental queries
-
 We aim to address these challenges by adapting incremental graph search techniques from \eiq{} to the cloud infrastructure. We introduce \iqd{}, a prototype system based on a distributed Rete network~\cite{Forgy} that can scale up from a single-workstation tool to a cluster to handle very large models and complex queries efficiently.
  
 The main contributions of this report is a \emph{novel architecture} for a distributed, incremental query engine. We developed a \emph{working prototype} and designed a \emph{benchmark environment} to evaluate the scalability characteristics of the system. 
 
 We conducted benchmarks with different storage backends and query engines. The analysis of the results confirmed the feasibility of the approach.
 
+\section{Motivations for Horizontal Scaling}
+
+\eiq{} is proven to be effecient for incremental query evaluation on small to medium-sized models (in the order of magnitude of $10^6$). However, model-driven engineering challenges often present large models, with $10^9$ or more elements \cite{Scheidgen12}.
+
+Due to the Rete algorithm's memory consumption (\autoref{rete}), \eiq{} cannot handle large models efficiently \cite{models10}. A trivial solution would be to use \emph{vertical scaling}, i.e.\ putting more memory in the workstation. Unfortunately, this approach is not feasible due to nature of Java's memory management. The Garbage Collector (GC) cannot handle heap sizes larger than 10~GB efficiently, thus introducing long pauses in the application \cite{Azul}. 
+
+This problem is well-known in the Java community. There are alternative Java Virtual Machines (JVMs) with specialized Garbage Collectors, like Azul Systems' JVM. However, the Azul JVM is a proprietary product and has specific hardware requirements. Also, this does not solve the scaling problem entirely -- the model size is still limited by the total amount memory in a single computer.
+
+Instead of vertical scaling, we decided to opt for \emph{horizontal scaling}. As described in \autoref{nosql}, distributed non-relational databases have been gaining momentum in the last years. For persisting models, we inspected graph databases, but found that their query layer does not scale well in a distributed environment (\autoref{evaluation-results}). This is a serious problem for MDE, where the queries are typically more complex than in traditional, transactional database management.
+
+Therefore, we decided to design a stand-alone distributed, scalable query engine based on NoSQL and semantic web databases.
+
+
 % miben haladja meg a state of the artot
-
 % scalability
-
 % open-source technologiak lekerdezeseinel gyorsabbak vagyunk
 
 \section{Structure of the Report}
