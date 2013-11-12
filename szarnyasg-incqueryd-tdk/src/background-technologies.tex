@@ -14,7 +14,7 @@ In this chapter, we introduce the concepts and technologies that can form the ba
 \section{Big Data and the NoSQL Movement}
 \label{nosql}
 
-Since the 1980s, database management systems based on the relational data model~\cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling and so on. However, due to their rich feature set and the strongly connected nature of their data model, relational databases often have scalability issues~\cite{Jacobs:2009:PBD:1536616.1536632, Sakr13}. They are typically optimized for transaction processing, instead of data analsysis (see \emph{data warehouses} for an exception). In practice, these render them impractical for a number of use cases, e.g.\ running complex queries on large data sets.
+Since the 1980s, database management systems based on the relational data model~\cite{Codd:1970:RMD:362384.362685} dominated the database market. Relational databases have a number of important advantages: precise mathematical background, understandibility, mature tooling and so on. However, due to their rich feature set and the strongly connected nature of their data model, relational databases often have scalability issues~\cite{Jacobs:2009:PBD:1536616.1536632, Sakr13}. They are typically optimized for transaction processing, instead of data analysis (see \emph{data warehouses} for an exception). In practice, these render them impractical for a number of use cases, e.g.\ running complex queries on large data sets.
 
 In the last decade, large organizations struggled to store and process the huge amounts of data they produced. This problem introduces a diverse palette of scientific and engineering challenges, called \emph{Big Data} challenges. 
 
@@ -61,7 +61,7 @@ Metamodeling can be viewed as the grammar for a \emph{typed property graph}, so 
 
 Ecore is the metamodeling language used by EMF. It has been developed in order to provide an approach for metamodel definition that supports the direct implementation of models using a programming language. The main rationale in introducing Ecore separately that it is the \emph{de facto} standard metamodeling environment of the industry, and several domain-specific languages are defined using this formalism.
 
-Figure \ref{fig:ecore-kernel} illustrates the core elements of the Ecore approach. The full metamodel can be found in the EMF documentation~\cite{Ecore}. The most important elements are the following.
+\autoref{fig:ecore-kernel} illustrates the core elements of the Ecore approach. The full metamodel can be found in the EMF documentation~\cite{Ecore}. The most important elements are the following.
  
 \begin{itemize}
   \item \verb+EClass+ models classes (or concepts). \verb+EClass+es are identified by name and can have several attributes and references. To support inheritance, a class can refer to a number of \emph{supertype} classes.

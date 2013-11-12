@@ -1,0 +1,55 @@
+CREATE KEYSPACE car_database 
+WITH REPLICATION = { 
+  'class' : 'SimpleStrategy', 
+  'replication_factor' : 1 
+};
+
+USE car_database;
+
+
+
+
+
+DROP TABLE cars;
+
+CREATE TABLE cars (
+  manufacturer varchar,
+  type_name varchar,
+  PRIMARY KEY (manufacturer, type_name)
+);
+
+INSERT INTO cars (manufacturer, type_name) VALUES('Ford', 'Focus');
+
+
+SELECT * FROM cars;
+
+ALTER TABLE cars ADD powertrain_type varchar;
+ALTER TABLE cars ADD max_power int;
+ALTER TABLE cars ADD max_torque int;
+ALTER TABLE cars ADD fuel_type varchar;
+ALTER TABLE cars ADD displacement int;
+ALTER TABLE cars ADD hybrid_internal_combustion_max_power int;
+ALTER TABLE cars ADD hybrid_internal_combustion_max_torque int;
+ALTER TABLE cars ADD hybrid_electric_max_power int;
+ALTER TABLE cars ADD hybrid_electric_max_torque int;
+
+SELECT * FROM cars;
+
+INSERT INTO cars (manufacturer, type_name, powertrain_type, max_power, max_torque, fuel_type, displacement)
+  VALUES('Ford', 'Focus', 'internal combustion engine', 99, 170, 'petrol', 1000);
+INSERT INTO cars (manufacturer, type_name, powertrain_type, max_power, max_torque)
+  VALUES('Tesla', 'Models S', 'electric motor', 302, 430);
+
+
+CREATE INDEX powertrain_type ON cars (powertrain_type);
+
+
+SELECT * FROM cars WHERE powertrain_type = 'internal combustion engine';
+SELECT * FROM cars WHERE powertrain_type = 'electric motor';
+
+INSERT INTO cars (manufacturer, type_name, powertrain_type, max_power, max_torque)
+  VALUES('Honda', 'CR-Z', 'hybrid', 122, 174);
+
+SELECT * FROM cars WHERE powertrain_type = 'internal combustion engine' OR powertrain_type = 'electric motor';
+// surprise: the is no "OR" operator in Cassandra
+
