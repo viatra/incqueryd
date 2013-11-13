@@ -1,7 +1,0 @@
-1) Open pptx with Ms Powerpoint
-2) Save it to PDF 
-   (Printing (as greyscale) will not work, "Notifications" will not be transparent.)
-3) From Adobe Reader print it with setting:
-   Advanced | Color profile: Working Gray: Gray Gamma 2.2
-   (Setting Black & White in Properties will not work.)
-4) pdfcrop distribBW.pdf
