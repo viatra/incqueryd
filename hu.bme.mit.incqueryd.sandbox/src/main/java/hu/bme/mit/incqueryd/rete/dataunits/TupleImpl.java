@@ -23,14 +23,14 @@ public class TupleImpl implements Tuple {
 	
 	@Override
 	public String toString() {
-		String result = "[";
+		String result = "<";
 		if (tuple.size() > 0) {
 			result += tuple.get(0).toString();
 			for (int i = 1; i < tuple.size(); i++) {
 				result += ", " + tuple.get(i).toString();
 			}	
 		}
-		result += "]";
+		result += ">";
 		return result;
 	}
 	
