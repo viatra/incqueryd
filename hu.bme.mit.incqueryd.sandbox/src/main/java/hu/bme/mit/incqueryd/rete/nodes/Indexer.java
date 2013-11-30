@@ -17,10 +17,11 @@ import com.google.common.collect.Multimap;
 public class Indexer {
 
 	protected Multimap<Tuple, Tuple> map = ArrayListMultimap.create();
+	//protected Multimap<Tuple, Tuple> map = TreeMultimap.create();
 
 	protected TupleMask joinMask;
 
-	public Indexer(TupleMask joinMask) {
+	public Indexer(final TupleMask joinMask) {
 		this.joinMask = joinMask;
 	}
 
@@ -28,18 +29,18 @@ public class Indexer {
 		return joinMask;
 	}
 
-	public void add(Collection<Tuple> tuples) {
-		for (Tuple tuple : tuples) {
+	public void add(final Collection<Tuple> tuples) {
+		for (final Tuple tuple : tuples) {
 			add(tuple);
 		}
 	}
 
-	public void add(Tuple tuple) {
-		Tuple extractedTuple = joinMask.extract(tuple);
+	public void add(final Tuple tuple) {
+		final Tuple extractedTuple = joinMask.extract(tuple);
 		map.put(extractedTuple, tuple);
 	}
 
-	public Collection<Tuple> get(Tuple tuple) {
+	public Collection<Tuple> get(final Tuple tuple) {
 		return map.get(tuple);
 	}
 
