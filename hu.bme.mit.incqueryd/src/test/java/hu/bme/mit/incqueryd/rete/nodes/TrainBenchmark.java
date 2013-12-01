@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
+import static org.junit.Assert.assertEquals;
 import hu.bme.mit.incqueryd.io.GraphSonFormat;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
@@ -13,21 +14,27 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.junit.Before;
 import org.junit.Test;
 
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
 
 /**
- * Test cases for the TrainBenchmark queries.
- * The queries are evaluated on an instance model serialized in Faunus GraphSON format.
- * For details, see the TrainBenchmark website: http://incquery.net/publications/trainbenchmark
+ * Test cases for the TrainBenchmark queries. The queries are evaluated on an instance model serialized in Faunus GraphSON format. For details, see the
+ * TrainBenchmark website: http://incquery.net/publications/trainbenchmark
+ * See the private wiki for reference output values: https://trac.inf.mit.bme.hu/Ontology/wiki/TrainBenchmark/TBResultFormat
+ * 
  * @author szarnyasg
- *
+ * 
  */
 public class TrainBenchmark {
 
+	// vertex types
+	protected final String Switch = "Switch";
+	protected final String Segment = "Segment";
+
+	// edge labels
 	protected final String Route_routeDefinition = "Route_routeDefinition";
 	protected final String Route_switchPosition = "Route_switchPosition";
 	protected final String SwitchPosition_switch = "SwitchPosition_switch";
@@ -38,27 +45,40 @@ public class TrainBenchmark {
 
 	protected final boolean logResults = false;
 	protected final boolean logMessages = false;
-	
-	final Map<String, Collection<Tuple>> tuplesMap = new HashMap<>();
 
-	@Before
-	public void load() throws IOException {
-		final Collection<String> edgeLabels = ImmutableList.of(Route_routeDefinition, Route_switchPosition, SwitchPosition_switch, TrackElement_sensor);
+	final Map<String, Collection<Tuple>> vertexTuplesMap = new HashMap<>();
+	final Map<String, Collection<Tuple>> edgeTuplesMap = new HashMap<>();
 
-		logMessage();
-		logMessage("Loading");
-		logMessage("-------");
+	private void load(final Collection<String> vertexTypes, final Collection<String> edgeLabels) throws IOException {
+		final Multimap<String, Object> vertexTypeVertexIdsMap = ArrayListMultimap.create();
+		final Map<Object, Map<String, Object>> vertexIdVertexPropertiesMap = new HashMap<>();
+		final Map<String, Multimap<Object, Object>> edgeLabelVertexPairsMap = new HashMap<>();
+
+		logMessage("Loading...");
 
 		// collect the edges from the Faunus GraphSON file in one run
 		startTimer();
-		final Map<String, Multimap<Object, Object>> edgeLabelVertexPairsMap = GraphSonFormat.collectDifferentEdges(pathName, edgeLabels);
+		GraphSonFormat.indexGraph(pathName, vertexTypes, vertexTypeVertexIdsMap, vertexIdVertexPropertiesMap, edgeLabels, edgeLabelVertexPairsMap);
 
+		// converting the vertices to tuples
+		for (final String vertexType : vertexTypeVertexIdsMap.keySet()) {
+			final Collection<Object> verticesId = vertexTypeVertexIdsMap.get(vertexType);
+			final Collection<Tuple> tuples = new HashSet<>();
+			
+			for (final Object vertexId : verticesId) {
+				final Tuple tuple = new TupleImpl(vertexId);
+				tuples.add(tuple);
+			}
+			vertexTuplesMap.put(vertexType, tuples);				
+		}
+		
+		// converting the edges to tuples
 		for (final Entry<String, Multimap<Object, Object>> entry : edgeLabelVertexPairsMap.entrySet()) {
 			final String edgeLabel = entry.getKey();
 			final Multimap<Object, Object> edges = entry.getValue();
 
 			final Collection<Tuple> tuples = new HashSet<>();
-			tuplesMap.put(edgeLabel, tuples);
+			edgeTuplesMap.put(edgeLabel, tuples);
 
 			for (final Object v1 : edges.keySet()) {
 				final Collection<Object> v2s = edges.get(v1);
@@ -75,15 +95,18 @@ public class TrainBenchmark {
 		System.out.print("loaded, ");
 		restartTimer();
 	}
-	
+
 	@Test
-	public void routeSensor() {
-		logMessage("Results");
-		logMessage("-------");
-		final Collection<Tuple> route_switchPositionTuples = tuplesMap.get(Route_switchPosition); // Route, SwitchPosition
-		final Collection<Tuple> switchPosition_switchTuples = tuplesMap.get(SwitchPosition_switch); // SwitchPosition, Switch
-		final Collection<Tuple> trackElement_sensorTuples = tuplesMap.get(TrackElement_sensor); // Switch, Sensor
-		final Collection<Tuple> route_routeDefinitionTuples = tuplesMap.get(Route_routeDefinition); // Route, Sensor
+	public void routeSensor() throws IOException {
+		logMessage("RouteSensor query");
+		final Collection<String> vertexTypes = ImmutableList.of();
+		final Collection<String> edgeLabels = ImmutableList.of(Route_routeDefinition, Route_switchPosition, SwitchPosition_switch, TrackElement_sensor);
+		load(vertexTypes, edgeLabels);
+
+		final Collection<Tuple> route_routeDefinitionTuples = edgeTuplesMap.get(Route_routeDefinition); // Route, Sensor
+		final Collection<Tuple> route_switchPositionTuples = edgeTuplesMap.get(Route_switchPosition); // Route, SwitchPosition
+		final Collection<Tuple> switchPosition_switchTuples = edgeTuplesMap.get(SwitchPosition_switch); // SwitchPosition, Switch
+		final Collection<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch, Sensor
 
 		logMessage("Route_switchPosition JOIN SwitchPosition_switch");
 		logMessage("<Route, SwitchPosition, Switch>");
@@ -107,18 +130,37 @@ public class TrainBenchmark {
 		logMessage("<Route, SwitchPosition, Switch, Sensor, Route>");
 		final TupleMask leftMask3 = new TupleMask(ImmutableList.of(3));
 		final TupleMask rightMask3 = new TupleMask(ImmutableList.of(1));
-		//final JoinNode joinNode3 = new JoinNode(leftMask3, rightMask3);
 		final AntiJoinNode joinNode3 = new AntiJoinNode(leftMask3, rightMask3);
 		final ChangeSet resultChangeSet3 = Algorithms.join(joinNode3, resultChangeSet2.getTuples(), route_routeDefinitionTuples);
 		logResult(resultChangeSet3.getTuples().toString());
 		logMessage(resultChangeSet3.getTuples().size() + " tuples");
-		// logBenchmark(resultChangeSet3.getTuples().size() + "");
-		System.out.print(resultChangeSet3.getTuples().size() + ", ");
+		logBenchmark(resultChangeSet3.getTuples().size() + " tuples");
 
-		// finishing microbenchmark
-		restartTimer();
+		assertEquals(resultChangeSet3.getTuples().size(), 19);		
 	}
-	
+
+	@Test
+	public void switchSensor() throws IOException {	
+		logMessage("SwitchSensor query");
+		final Collection<String> vertexTypes = ImmutableList.of(Switch);
+		final Collection<String> edgeLabels = ImmutableList.of(TrackElement_sensor);
+		load(vertexTypes, edgeLabels);
+
+		final Collection<Tuple> switchTuples = vertexTuplesMap.get(Switch);
+		final Collection<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch, Sensor
+
+		logMessage("Route_switchPosition JOIN SwitchPosition_switch");
+		logMessage("<Route, SwitchPosition, Switch>");
+		final TupleMask leftMask = new TupleMask(ImmutableList.of(0));
+		final TupleMask rightMask = new TupleMask(ImmutableList.of(0));
+		final AntiJoinNode anitJoinNode = new AntiJoinNode(leftMask, rightMask);
+		final ChangeSet resultChangeSet = Algorithms.join(anitJoinNode, switchTuples, trackElement_sensorTuples);
+		logResult(resultChangeSet.getTuples().toString());
+		logBenchmark(resultChangeSet.getTuples().size() + " tuples");
+		
+		assertEquals(resultChangeSet.getTuples().size(), 26);
+	}
+
 	private long startTime;
 
 	private void startTimer() {
@@ -150,9 +192,9 @@ public class TrainBenchmark {
 			System.out.println(message);
 		}
 	}
-	
+
 	private void logBenchmark(final String message) {
 		System.out.println(message);
 	}
-	
+
 }
