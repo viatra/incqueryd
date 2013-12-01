@@ -1,13 +1,11 @@
-package hu.bme.mit.incqueryd.sandbox;
+package hu.bme.mit.incqueryd.rete.nodes;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import hu.bme.mit.incqueryd.main.Main;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleImpl;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
-import hu.bme.mit.incqueryd.rete.nodes.JoinNode;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -16,10 +14,13 @@ import org.junit.Test;
 
 import com.google.common.collect.ImmutableList;
 
+/**
+ * Test cases for the {@link JoinNode} class.
+ * @author szarnyasg
+ *
+ */
 public class JoinNodeTest {
 
-	
-	
 	@Test
 	public void joinTest1() {
 		final Collection<Tuple> leftTuples = new HashSet<>();
@@ -32,9 +33,7 @@ public class JoinNodeTest {
 		final TupleMask leftMask = new TupleMask(ImmutableList.of(2));
 		final TupleMask rightMask = new TupleMask(ImmutableList.of(0));
 		final JoinNode joinNode = new JoinNode(leftMask, rightMask);
-		final ChangeSet resultChangeSet = Main.join(joinNode, leftTuples, rightTuples);
-		
-//		System.out.println(resultChangeSet.getTuples());
+		final ChangeSet resultChangeSet = Algorithms.join(joinNode, leftTuples, rightTuples);
 		
 		final Collection<Tuple> tuples = resultChangeSet.getTuples();
 		assertEquals(tuples.size(), 2);
