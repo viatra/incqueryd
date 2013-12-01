@@ -122,14 +122,6 @@ public class Main {
 
 		// finishing microbenchmark
 		restartTimer();
-
-		// little JUnit test igredients
-		// final Collection<Tuple> leftTuples = new ArrayList<>();
-		// leftTuples.add(new TupleImpl(5, 6, 7));
-		// leftTuples.add(new TupleImpl(10, 11, 7));
-		//
-		// final Collection<Tuple> rightTuples = new ArrayList<>();
-		// rightTuples.add(new TupleImpl(7, 8));
 	}
 
 	private static long startTime;
@@ -168,7 +160,7 @@ public class Main {
 		System.out.println(message);
 	}
 
-	private static ChangeSet join(final AbstractJoinNode joinNode, final Collection<Tuple> leftTuples, final Collection<Tuple> rightTuples) {
+	public static ChangeSet join(final AbstractJoinNode joinNode, final Collection<Tuple> leftTuples, final Collection<Tuple> rightTuples) {
 		final ChangeSet leftChangeSet = new ChangeSet(leftTuples, ChangeType.POSITIVE);
 		final ChangeSet rightChangeSet = new ChangeSet(rightTuples, ChangeType.POSITIVE);
 
