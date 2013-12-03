@@ -24,7 +24,7 @@ package hu.bme.mit.incqueryd.rete.actors;
 //		return joinMask;
 //	}
 //
-//	public void add(Collection<Tuple> tuples) {
+//	public void add(Set<Tuple> tuples) {
 //		for (Tuple tuple : tuples) {
 //			add(tuple);
 //		}
@@ -35,7 +35,7 @@ package hu.bme.mit.incqueryd.rete.actors;
 //		map.put(extractedTuple, tuple);
 //	}
 //
-//	public Collection<Tuple> get(Tuple tuple) {
+//	public Set<Tuple> get(Tuple tuple) {
 //		return map.get(tuple);
 //	}
 //

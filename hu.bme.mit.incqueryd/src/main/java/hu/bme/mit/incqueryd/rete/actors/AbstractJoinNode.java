@@ -46,7 +46,7 @@
 //
 //			final UpdateMessage receivedJoinMessage = (UpdateMessage) message;
 //			final UpdateType updateType = receivedJoinMessage.getUpdateType();
-//			final Collection<Tuple> tuples = receivedJoinMessage.getTuples();
+//			final Set<Tuple> tuples = receivedJoinMessage.getTuples();
 //
 //			logger.info(tuples.size() + " tuples received");
 //
@@ -58,7 +58,7 @@
 //		}
 //	}
 //
-//	private void sendTuples(final UpdateMessage receivedJoinMessage, final UpdateType updateType, final Collection<Tuple> tuples) {
+//	private void sendTuples(final UpdateMessage receivedJoinMessage, final UpdateType updateType, final Set<Tuple> tuples) {
 //		final UpdateMessage propagatedUpdateMessage = joinNewTuples(tuples, receivedJoinMessage.getJoinSide(), updateType);
 //
 //		if (propagatedUpdateMessage != null) {
@@ -69,6 +69,6 @@
 //		}
 //	}
 //
-//	protected abstract UpdateMessage joinNewTuples(Collection<Tuple> newTuples, JoinSide joinSide, UpdateType updateType);
+//	protected abstract UpdateMessage joinNewTuples(Set<Tuple> newTuples, JoinSide joinSide, UpdateType updateType);
 //
 //}

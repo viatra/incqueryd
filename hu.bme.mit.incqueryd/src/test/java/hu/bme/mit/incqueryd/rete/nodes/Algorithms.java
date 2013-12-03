@@ -5,7 +5,7 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 
-import java.util.Collection;
+import java.util.Set;
 
 /**
  * Algorithms for using the Rete nodes.
@@ -14,7 +14,7 @@ import java.util.Collection;
  */
 public class Algorithms {
 	
-	public static ChangeSet join(final AbstractJoinNode joinNode, final Collection<Tuple> primaryTuples, final Collection<Tuple> secondaryTuples) {
+	public static ChangeSet join(final AbstractJoinNode joinNode, final Set<Tuple> primaryTuples, final Set<Tuple> secondaryTuples) {
 		final ChangeSet primaryChangeSet = new ChangeSet(primaryTuples, ChangeType.POSITIVE);
 		final ChangeSet secondaryChangeSet = new ChangeSet(secondaryTuples, ChangeType.POSITIVE);
 

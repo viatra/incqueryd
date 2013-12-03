@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
+import static org.junit.Assert.assertTrue;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.nodes.data.JoinNodeTestData;
 import hu.bme.mit.incqueryd.rete.nodes.helpers.JoinNodeTestHelper;
@@ -18,7 +19,8 @@ public class JoinNodeTest {
 		final JoinNode joinNode = new JoinNode(data.getPrimaryMask(), data.getSecondaryMask());
 		final ChangeSet resultChangeSet = Algorithms.join(joinNode, data.getPrimaryTuples(), data.getSecondaryTuples());
 		System.out.println(resultChangeSet.getTuples());
-
+		System.out.println(data.getJoinExpectedResults().getTuples());
+		assertTrue(resultChangeSet.equals(data.getJoinExpectedResults()));
 	}
 
 	@Test

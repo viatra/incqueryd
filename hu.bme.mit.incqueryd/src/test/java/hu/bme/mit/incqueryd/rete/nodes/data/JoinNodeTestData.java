@@ -4,19 +4,24 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
-import java.util.Collection;
+import java.util.Set;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class JoinNodeTestData {
 
-	protected Collection<Tuple> primaryTuples;
-	protected Collection<Tuple> secondaryTuples;
+	protected Set<Tuple> primaryTuples;
+	protected Set<Tuple> secondaryTuples;
 	protected TupleMask primaryMask;
 	protected TupleMask secondaryMask;
 
 	protected ChangeSet antiJoinExpectedResults;
 	protected ChangeSet joinExpectedResults;
 
-	public JoinNodeTestData(final Collection<Tuple> primaryTuples, final Collection<Tuple> secondaryTuples, final TupleMask primaryMask,
+	public JoinNodeTestData(final Set<Tuple> primaryTuples, final Set<Tuple> secondaryTuples, final TupleMask primaryMask,
 			final TupleMask secondaryMask, final ChangeSet expectedResults, final ChangeSet antiJoinExpectedResults) {
 		super();
 		this.primaryTuples = primaryTuples;
@@ -27,11 +32,11 @@ public class JoinNodeTestData {
 		this.joinExpectedResults = expectedResults;
 	}
 
-	public Collection<Tuple> getPrimaryTuples() {
+	public Set<Tuple> getPrimaryTuples() {
 		return primaryTuples;
 	}
 
-	public Collection<Tuple> getSecondaryTuples() {
+	public Set<Tuple> getSecondaryTuples() {
 		return secondaryTuples;
 	}
 

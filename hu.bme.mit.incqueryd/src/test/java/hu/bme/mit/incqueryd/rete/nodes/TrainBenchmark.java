@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -47,8 +48,8 @@ public class TrainBenchmark {
 	protected final boolean logResults = false;
 	protected final boolean logMessages = false;
 
-	final Map<String, Collection<Tuple>> vertexTuplesMap = new HashMap<>();
-	final Map<String, Collection<Tuple>> edgeTuplesMap = new HashMap<>();
+	final Map<String, Set<Tuple>> vertexTuplesMap = new HashMap<>();
+	final Map<String, Set<Tuple>> edgeTuplesMap = new HashMap<>();
 
 	private void load(final Collection<String> vertexTypes, final Collection<String> edgeLabels) throws IOException {
 		final Multimap<String, Object> vertexTypeVertexIdsMap = ArrayListMultimap.create();
@@ -64,7 +65,7 @@ public class TrainBenchmark {
 		// converting the vertices to tuples
 		for (final String vertexType : vertexTypeVertexIdsMap.keySet()) {
 			final Collection<Object> verticesId = vertexTypeVertexIdsMap.get(vertexType);
-			final Collection<Tuple> tuples = new HashSet<>();
+			final Set<Tuple> tuples = new HashSet<>();
 
 			for (final Object vertexId : verticesId) {
 				final Tuple tuple = new TupleImpl(vertexId);
@@ -78,7 +79,7 @@ public class TrainBenchmark {
 			final String edgeLabel = entry.getKey();
 			final Multimap<Object, Object> edges = entry.getValue();
 
-			final Collection<Tuple> tuples = new HashSet<>();
+			final Set<Tuple> tuples = new HashSet<>();
 			edgeTuplesMap.put(edgeLabel, tuples);
 
 			for (final Object v1 : edges.keySet()) {
@@ -109,10 +110,10 @@ public class TrainBenchmark {
 		final Collection<String> edgeLabels = ImmutableList.of(Route_routeDefinition, Route_switchPosition, SwitchPosition_switch, TrackElement_sensor);
 		load(vertexTypes, edgeLabels);
 
-		final Collection<Tuple> route_routeDefinitionTuples = edgeTuplesMap.get(Route_routeDefinition); // Route, Sensor
-		final Collection<Tuple> route_switchPositionTuples = edgeTuplesMap.get(Route_switchPosition); // Route, SwitchPosition
-		final Collection<Tuple> switchPosition_switchTuples = edgeTuplesMap.get(SwitchPosition_switch); // SwitchPosition, Switch
-		final Collection<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch, Sensor
+		final Set<Tuple> route_routeDefinitionTuples = edgeTuplesMap.get(Route_routeDefinition); // Route, Sensor
+		final Set<Tuple> route_switchPositionTuples = edgeTuplesMap.get(Route_switchPosition); // Route, SwitchPosition
+		final Set<Tuple> switchPosition_switchTuples = edgeTuplesMap.get(SwitchPosition_switch); // SwitchPosition, Switch
+		final Set<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch, Sensor
 
 		logMessage("Route_switchPosition JOIN SwitchPosition_switch");
 		logMessage("<Route, SwitchPosition, Switch>");
@@ -156,8 +157,8 @@ public class TrainBenchmark {
 		final Collection<String> edgeLabels = ImmutableList.of(TrackElement_sensor);
 		load(vertexTypes, edgeLabels);
 
-		final Collection<Tuple> switchTuples = vertexTuplesMap.get(Switch);
-		final Collection<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch, Sensor
+		final Set<Tuple> switchTuples = vertexTuplesMap.get(Switch);
+		final Set<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch, Sensor
 
 		logMessage("Route_switchPosition JOIN SwitchPosition_switch");
 		logMessage("<Route, SwitchPosition, Switch>");

@@ -8,18 +8,23 @@ import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleImpl;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Test;
 
 import com.google.common.collect.ImmutableList;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class EqualityNodeTest {
 
 	@Test
 	public void test1() {
-		final Collection<Tuple> tuples = new HashSet<>();
+		final Set<Tuple> tuples = new HashSet<>();
 		tuples.add(new TupleImpl(1, 2, 1, 3));
 		tuples.add(new TupleImpl(1, 2, 3, 1));
 		tuples.add(new TupleImpl(1, 2, 3, 3));
@@ -30,7 +35,7 @@ public class EqualityNodeTest {
 		final ChangeSet incomingChangeSet = new ChangeSet(tuples, ChangeType.POSITIVE);
 		
 		final ChangeSet resultChangeSet = filterNode.update(incomingChangeSet);			
-		final Collection<Tuple> resultTuples = resultChangeSet.getTuples();
+		final Set<Tuple> resultTuples = resultChangeSet.getTuples();
 
 		assertEquals(resultTuples.size(), 1);
 		assertTrue(resultTuples.contains(new TupleImpl(1, 2, 1, 1)));

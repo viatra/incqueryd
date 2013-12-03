@@ -116,7 +116,7 @@ package hu.bme.mit.incqueryd.rete.actors;
 //	}
 //
 //	private void edit() {
-//		final Collection<Tuple> negTuples = new Vector<>(); // n.b. Vector is synchronized
+//		final Set<Tuple> negTuples = new Vector<>(); // n.b. Vector is synchronized
 //
 //		// Collections.sort(tuples);
 //		final Multimap<Object, Object> routeAndSensorIds = ArrayListMultimap.create();
@@ -195,7 +195,7 @@ package hu.bme.mit.incqueryd.rete.actors;
 //		sendTuples(UpdateType.NEGATIVE, joinSide, negTuples);
 //	}
 //
-//	protected void sendTuples(final UpdateType updateType, final JoinSide joinSide, final Collection<Tuple> tuples) {
+//	protected void sendTuples(final UpdateType updateType, final JoinSide joinSide, final Set<Tuple> tuples) {
 //		updateMessageCount++;
 //
 //		final UpdateMessage updateMessage = new UpdateMessage(updateType, joinSide, tuples);

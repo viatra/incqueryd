@@ -63,7 +63,7 @@
 //	}
 //
 //	@Override
-//	protected UpdateMessage joinNewTuples(Collection<Tuple> newTuples, JoinSide joinSide, UpdateType updateType) {
+//	protected UpdateMessage joinNewTuples(Set<Tuple> newTuples, JoinSide joinSide, UpdateType updateType) {
 //		UpdateType propagatedUpdateType = null;
 //
 //		// determining the propagated update's type (see the Javadoc for the
@@ -89,7 +89,7 @@
 //
 //		for (Tuple newTuple : newTuples) {
 //			Tuple extractedTuple = newTuplesIndexer.getJoinMask().extract(newTuple);
-//			Collection<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
+//			Set<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
 //
 //			// see the Javadoc for the class
 //			switch (joinSide) {

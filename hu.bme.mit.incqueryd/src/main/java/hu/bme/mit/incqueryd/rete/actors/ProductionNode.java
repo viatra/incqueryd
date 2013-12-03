@@ -21,7 +21,7 @@ package hu.bme.mit.incqueryd.rete.actors;
 // */
 //public class ProductionNode extends ReteActor {
 //
-//	protected Collection<Tuple> memory = new ArrayList<>();
+//	protected Set<Tuple> memory = new ArrayList<>();
 //	protected ActorRef coordinator;
 //
 //	public ProductionNode() {
@@ -62,7 +62,7 @@ package hu.bme.mit.incqueryd.rete.actors;
 //	}
 //
 //	protected void update(final UpdateMessage updateMessage) {
-//		final Collection<Tuple> updateTuples = updateMessage.getTuples();
+//		final Set<Tuple> updateTuples = updateMessage.getTuples();
 //
 //		switch (updateMessage.getUpdateType()) {
 //		case POSITIVE:

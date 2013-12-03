@@ -3,8 +3,8 @@ package hu.bme.mit.incqueryd.rete.dataunits;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -17,8 +17,8 @@ public class ChangeSetTest {
 
 	@Test
 	public void test1() {
-		final Collection<Tuple> tuples1 = new HashSet<>();
-		final Collection<Tuple> tuples2 = new HashSet<>();
+		final Set<Tuple> tuples1 = new HashSet<>();
+		final Set<Tuple> tuples2 = new HashSet<>();
 		
 		tuples1.add(new TupleImpl(1, 2));
 		tuples2.add(new TupleImpl(1, 2));
@@ -32,8 +32,8 @@ public class ChangeSetTest {
 	
 	@Test
 	public void test2() {
-		final Collection<Tuple> tuples1 = new HashSet<>();
-		final Collection<Tuple> tuples2 = new HashSet<>();
+		final Set<Tuple> tuples1 = new HashSet<>();
+		final Set<Tuple> tuples2 = new HashSet<>();
 		
 		tuples1.add(new TupleImpl(1, 2));
 		tuples1.add(new TupleImpl(3, 4));
@@ -50,8 +50,8 @@ public class ChangeSetTest {
 	
 	@Test
 	public void test3() {
-		final Collection<Tuple> tuples1 = new HashSet<>();
-		final Collection<Tuple> tuples2 = new HashSet<>();
+		final Set<Tuple> tuples1 = new HashSet<>();
+		final Set<Tuple> tuples2 = new HashSet<>();
 		
 		tuples1.add(new TupleImpl(1, 2));
 

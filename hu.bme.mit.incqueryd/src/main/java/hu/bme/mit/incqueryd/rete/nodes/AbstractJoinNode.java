@@ -4,12 +4,12 @@ import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
 public abstract class AbstractJoinNode extends BetaNode {
 
-	protected Indexer leftIndexer;
-	protected Indexer rightIndexer;
+	protected Indexer primaryIndexer;
+	protected Indexer secondaryIndexer;
 
 	public AbstractJoinNode(final TupleMask leftMask, final TupleMask rightMask) {
-		this.leftIndexer = new Indexer(leftMask);
-		this.rightIndexer = new Indexer(rightMask);
+		this.primaryIndexer = new Indexer(leftMask);
+		this.secondaryIndexer = new Indexer(rightMask);
 	}
 
 }

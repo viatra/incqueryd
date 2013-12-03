@@ -37,7 +37,7 @@
 //	 * @return
 //	 */
 //	@Override
-//	protected UpdateMessage joinNewTuples(Collection<Tuple> newTuples, JoinSide joinSide, UpdateType updateType) {
+//	protected UpdateMessage joinNewTuples(Set<Tuple> newTuples, JoinSide joinSide, UpdateType updateType) {
 //		// int n = 0;
 //
 //		Indexer newTuplesIndexer = joinSide == JoinSide.PRIMARY ? leftIndexer : rightIndexer;
@@ -48,7 +48,7 @@
 //
 //		// TODO: investigate why using a HashSet introduces an ugly heisenbug in
 //		// the code
-//		// Collection<Tuple> result = new HashSet<>();
+//		// Set<Tuple> result = new HashSet<>();
 //		List<Tuple> result = new ArrayList<>();
 //		List<Integer> rightTupleMask = rightIndexer.getJoinMask().getMask();
 //
@@ -70,7 +70,7 @@
 //
 //		for (Tuple newTuple : newTuples) {
 //			Tuple extractedTuple = newTuplesIndexer.getJoinMask().extract(newTuple);
-//			Collection<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
+//			Set<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
 //
 //			// logger.info(extractedTuple);
 //

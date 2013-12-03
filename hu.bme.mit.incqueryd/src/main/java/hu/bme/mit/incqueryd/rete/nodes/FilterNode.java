@@ -4,9 +4,9 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public abstract class FilterNode extends AlphaNode {
 
@@ -22,8 +22,8 @@ public abstract class FilterNode extends AlphaNode {
 	@Override
 	public ChangeSet update(final ChangeSet incomingChangeSet) {
 		final List<Integer> mask = tupleMask.getMask();
-		final Collection<Tuple> incomingTuples = incomingChangeSet.getTuples();
-		Collection<Tuple> resultTuples;
+		final Set<Tuple> incomingTuples = incomingChangeSet.getTuples();
+		Set<Tuple> resultTuples;
 
 		if (mask.size() <= 1) {
 			// nothing to compare, all

@@ -6,9 +6,8 @@ import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * The other kind of dual input nodes is the NotNode, that filters all tuples from its primary input slot that do NOT have a matching tuple on the secondary
@@ -64,7 +63,7 @@ public class AntiJoinNode extends AbstractJoinNode {
 
 	@Override
 	public ChangeSet update(final ChangeSet incomingChangeSet, final ReteNodeSlot slot) {
-		final Collection<Tuple> incomingTuples = incomingChangeSet.getTuples();
+		final Set<Tuple> incomingTuples = incomingChangeSet.getTuples();
 		final ChangeType changeType = incomingChangeSet.getChangeType();
 
 		ChangeType propagatedChangeType = null;
@@ -81,17 +80,17 @@ public class AntiJoinNode extends AbstractJoinNode {
 		}
 
 		// logger.info(actorString() + " ReteNodeSlot: " + ReteNodeSlot);
-		final Indexer newTuplesIndexer = slot == ReteNodeSlot.PRIMARY ? leftIndexer : rightIndexer;
-		final Indexer existingTuplesIndexer = slot == ReteNodeSlot.PRIMARY ? rightIndexer : leftIndexer;
+		final Indexer newTuplesIndexer = slot == ReteNodeSlot.PRIMARY ? primaryIndexer : secondaryIndexer;
+		final Indexer existingTuplesIndexer = slot == ReteNodeSlot.PRIMARY ? secondaryIndexer : primaryIndexer;
 
-		final List<Tuple> resultTuples = new ArrayList<>();
+		final Set<Tuple> resultTuples = new HashSet<>();
 
 		// save the new tuples to the indexer's memory
 		newTuplesIndexer.add(incomingTuples);
 
 		for (final Tuple newTuple : incomingTuples) {
 			final Tuple extractedTuple = newTuplesIndexer.getJoinMask().extract(newTuple);
-			final Collection<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
+			final Set<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
 
 			// see the Javadoc for the class
 			switch (slot) {
