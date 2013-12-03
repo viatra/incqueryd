@@ -29,19 +29,11 @@ public class ChangeSet {
 	
 	@Override
 	public boolean equals(final Object o) {
-		if (!(o instanceof ChangeSet)) return false;
-		
-		System.out.println("X");
+		if (!(o instanceof ChangeSet)) return false;		
 		final ChangeSet changeSet = (ChangeSet) o;
 		
 		// comparing fields
 		if (getChangeType() != changeSet.getChangeType()) return false;
-			
-		System.out.println("Y");
-		
-		System.out.println(getTuples().getClass());
-		System.out.println(changeSet.getTuples().getClass());
-		
 		return getTuples().equals(changeSet.getTuples());
 	}
 

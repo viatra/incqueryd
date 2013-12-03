@@ -100,12 +100,12 @@ public class TrainBenchmark {
 
 	@Test
 	public void posLength() throws IOException {
-		
+		System.out.println("PosLength query");
 	}
 
 	@Test
-	public void routeSensor() throws IOException {
-		logMessage("RouteSensor query");
+	public void routeSensor() throws IOException {		
+		System.out.println("RouteSensor query");
 		final Collection<String> vertexTypes = ImmutableList.of();
 		final Collection<String> edgeLabels = ImmutableList.of(Route_routeDefinition, Route_switchPosition, SwitchPosition_switch, TrackElement_sensor);
 		load(vertexTypes, edgeLabels);
@@ -148,11 +148,12 @@ public class TrainBenchmark {
 
 	@Test
 	public void signalNeighbor() throws IOException {
+		System.out.println("SignalNeighbor query");
 	}
 	
 	@Test
 	public void switchSensor() throws IOException {
-		logMessage("SwitchSensor query");
+		System.out.println("SwitchSensor query");
 		final Collection<String> vertexTypes = ImmutableList.of(Switch);
 		final Collection<String> edgeLabels = ImmutableList.of(TrackElement_sensor);
 		load(vertexTypes, edgeLabels);
