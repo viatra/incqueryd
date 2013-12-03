@@ -17,7 +17,7 @@ public class AntiJoinNodeTest {
 
 	public void test(final JoinNodeTestData data) {
 		final AntiJoinNode joinNode = new AntiJoinNode(data.getPrimaryMask(), data.getSecondaryMask());
-		final ChangeSet resultChangeSet = Algorithms.join(joinNode, data.getPrimaryTuples(), data.getSecondaryTuples());				
+		final ChangeSet resultChangeSet = Algorithms.join(joinNode, data.getPrimaryChangeSet(), data.getSecondaryChangeSet());				
 		assertTrue(resultChangeSet.equals(data.getAntiJoinExpectedResults()));
 	}
 

@@ -1,5 +1,5 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
-public abstract class AbstractJoinNodeTest {
+public abstract class BetaNodeTest {
 
 }

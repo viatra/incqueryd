@@ -55,7 +55,7 @@ import java.util.Set;
  * @author szarnyasg
  * 
  */
-public class AntiJoinNode extends AbstractJoinNode {
+public class AntiJoinNode extends BetaNode {
 
 	public AntiJoinNode(final TupleMask leftMask, final TupleMask rightMask) {
 		super(leftMask, rightMask);

@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class JoinNode extends AbstractJoinNode {
+public class JoinNode extends BetaNode {
 
 	public JoinNode(final TupleMask primaryMask, final TupleMask secondaryMask) {
 		super(primaryMask, secondaryMask);

@@ -1,10 +1,7 @@
 package hu.bme.mit.incqueryd.rete.nodes.data;
 
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
-import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
-
-import java.util.Set;
 
 /**
  * 
@@ -13,31 +10,31 @@ import java.util.Set;
  */
 public class JoinNodeTestData {
 
-	protected Set<Tuple> primaryTuples;
-	protected Set<Tuple> secondaryTuples;
+	protected ChangeSet primaryChangeSet;
+	protected ChangeSet secondaryChangeSet;
 	protected TupleMask primaryMask;
 	protected TupleMask secondaryMask;
 
 	protected ChangeSet antiJoinExpectedResults;
 	protected ChangeSet joinExpectedResults;
 
-	public JoinNodeTestData(final Set<Tuple> primaryTuples, final Set<Tuple> secondaryTuples, final TupleMask primaryMask,
+	public JoinNodeTestData(final ChangeSet primaryChangeSet, final ChangeSet secondaryChangeSet, final TupleMask primaryMask,
 			final TupleMask secondaryMask, final ChangeSet expectedResults, final ChangeSet antiJoinExpectedResults) {
 		super();
-		this.primaryTuples = primaryTuples;
-		this.secondaryTuples = secondaryTuples;
+		this.primaryChangeSet = primaryChangeSet;
+		this.secondaryChangeSet = secondaryChangeSet;
 		this.primaryMask = primaryMask;
 		this.secondaryMask = secondaryMask;
 		this.antiJoinExpectedResults = antiJoinExpectedResults;
 		this.joinExpectedResults = expectedResults;
 	}
 
-	public Set<Tuple> getPrimaryTuples() {
-		return primaryTuples;
+	public ChangeSet getPrimaryChangeSet() {
+		return primaryChangeSet;
 	}
 
-	public Set<Tuple> getSecondaryTuples() {
-		return secondaryTuples;
+	public ChangeSet getSecondaryChangeSet() {
+		return secondaryChangeSet;
 	}
 
 	public TupleMask getPrimaryMask() {
