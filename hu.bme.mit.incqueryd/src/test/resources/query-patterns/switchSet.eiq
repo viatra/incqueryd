@@ -1,0 +1,29 @@
+package hu.bme.mit.train.constraintcheck.incquery
+
+import "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl" 
+
+pattern switchSet(Spstate, Sw, Sig, Sp, Swstate, R) = {
+	Route(R);  // there is a train route
+	
+	Signal(Sig);
+	Route.Route_entry(R, Sig); // that has an entry signal
+	
+	SignalStateKind(Individual3);
+	Signal.Signal_actualState(Sig, Individual3);
+	
+	Individual3 == SignalStateKind::SignalStateKind_GO; // SignalStateKind_GO
+	
+	SwitchPosition(Sp);
+	Route.Route_switchPosition(R, Sp); // and the route requires a switch
+
+	SwitchStateKind(Spstate);
+	SwitchPosition.SwitchPosition_switchState(Sp, Spstate); // and its position is Spstate
+
+	Switch(Sw);
+	SwitchPosition.SwitchPosition_switch(Sp, Sw); // and there is the switch
+	
+	SwitchStateKind(Swstate);
+	Switch.Switch_actualState(Sw, Swstate); // which is in Swstate
+	
+	Spstate != Swstate;
+}

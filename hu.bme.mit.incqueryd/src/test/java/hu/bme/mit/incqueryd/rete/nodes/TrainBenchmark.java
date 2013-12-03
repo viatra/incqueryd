@@ -23,6 +23,7 @@ import com.google.common.collect.Multimap;
 /**
  * Test cases for the TrainBenchmark queries. The queries are evaluated on an instance model serialized in Faunus GraphSON format. For details, see the
  * TrainBenchmark website: http://incquery.net/publications/trainbenchmark
+ * 
  * See the private wiki for reference output values: https://trac.inf.mit.bme.hu/Ontology/wiki/TrainBenchmark/TBResultFormat
  * 
  * @author szarnyasg
@@ -64,14 +65,14 @@ public class TrainBenchmark {
 		for (final String vertexType : vertexTypeVertexIdsMap.keySet()) {
 			final Collection<Object> verticesId = vertexTypeVertexIdsMap.get(vertexType);
 			final Collection<Tuple> tuples = new HashSet<>();
-			
+
 			for (final Object vertexId : verticesId) {
 				final Tuple tuple = new TupleImpl(vertexId);
 				tuples.add(tuple);
 			}
-			vertexTuplesMap.put(vertexType, tuples);				
+			vertexTuplesMap.put(vertexType, tuples);
 		}
-		
+
 		// converting the edges to tuples
 		for (final Entry<String, Multimap<Object, Object>> entry : edgeLabelVertexPairsMap.entrySet()) {
 			final String edgeLabel = entry.getKey();
@@ -94,6 +95,11 @@ public class TrainBenchmark {
 
 		System.out.print("loaded, ");
 		restartTimer();
+	}
+
+	@Test
+	public void posLength() throws IOException {
+		
 	}
 
 	@Test
@@ -136,11 +142,15 @@ public class TrainBenchmark {
 		logMessage(resultChangeSet3.getTuples().size() + " tuples");
 		logBenchmark(resultChangeSet3.getTuples().size() + " tuples");
 
-		assertEquals(resultChangeSet3.getTuples().size(), 19);		
+		assertEquals(resultChangeSet3.getTuples().size(), 19);
 	}
 
 	@Test
-	public void switchSensor() throws IOException {	
+	public void signalNeighbor() throws IOException {
+	}
+	
+	@Test
+	public void switchSensor() throws IOException {
 		logMessage("SwitchSensor query");
 		final Collection<String> vertexTypes = ImmutableList.of(Switch);
 		final Collection<String> edgeLabels = ImmutableList.of(TrackElement_sensor);
@@ -157,7 +167,7 @@ public class TrainBenchmark {
 		final ChangeSet resultChangeSet = Algorithms.join(anitJoinNode, switchTuples, trackElement_sensorTuples);
 		logResult(resultChangeSet.getTuples().toString());
 		logBenchmark(resultChangeSet.getTuples().size() + " tuples");
-		
+
 		assertEquals(resultChangeSet.getTuples().size(), 26);
 	}
 

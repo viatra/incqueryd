@@ -15,11 +15,11 @@ import org.junit.Test;
 import com.google.common.collect.ImmutableList;
 
 /**
- * Test cases for the {@link JoinNode} class.
+ * Test cases for the {@link AntiJoinNode} class.
  * @author szarnyasg
  *
  */
-public class JoinNodeTest {
+public class AntiJoinNodeTest {
 
 	@Test
 	public void test1() {
@@ -32,13 +32,11 @@ public class JoinNodeTest {
 
 		final TupleMask leftMask = new TupleMask(ImmutableList.of(2));
 		final TupleMask rightMask = new TupleMask(ImmutableList.of(0));
-		final JoinNode joinNode = new JoinNode(leftMask, rightMask);
+		final AntiJoinNode joinNode = new AntiJoinNode(leftMask, rightMask);
 		final ChangeSet resultChangeSet = Algorithms.join(joinNode, leftTuples, rightTuples);
 		
 		final Collection<Tuple> tuples = resultChangeSet.getTuples();
-		assertEquals(tuples.size(), 2);
-		assertTrue(tuples.contains(new TupleImpl(5, 6, 7, 8)));
-		assertTrue(tuples.contains(new TupleImpl(10, 11, 7, 8)));		
+		assertEquals(tuples.size(), 0);
 	}
 	
 	@Test
