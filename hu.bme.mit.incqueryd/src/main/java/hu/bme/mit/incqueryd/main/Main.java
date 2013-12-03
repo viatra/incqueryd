@@ -11,6 +11,11 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Multimap;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class Main {
 
 	public static void main(final String[] args) throws IOException {

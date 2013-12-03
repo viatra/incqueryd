@@ -2,6 +2,8 @@ package hu.bme.mit.incqueryd.rete.nodes;
 
 import static org.junit.Assert.assertEquals;
 import hu.bme.mit.incqueryd.io.GraphSonFormat;
+import hu.bme.mit.incqueryd.rete.comparison.ComparisonOperator;
+import hu.bme.mit.incqueryd.rete.comparison.ConditionExpression;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
@@ -102,6 +104,26 @@ public class TrainBenchmark {
 	@Test
 	public void posLength() throws IOException {
 		System.out.println("PosLength query");
+		final Collection<String> vertexTypes = ImmutableList.of(Switch);
+		final Collection<String> edgeLabels = ImmutableList.of();
+		load(vertexTypes, edgeLabels);
+
+		final Set<Tuple> switchTuples = vertexTuplesMap.get(Switch);
+		final ChangeSet switchChangeSet = new ChangeSet(switchTuples, ChangeType.POSITIVE);
+		
+		logMessage("Segment.segment_length <= 0");
+		logMessage("<Segment>");
+		
+		final Collection<ConditionExpression> conditionExpressions = new HashSet<>();
+		// t[1] <= 0
+		conditionExpressions.add(new ConditionExpression(1, ComparisonOperator.LESS_THAN_OR_EQUAL, 0));
+		
+		final TermEvaluatorNode termEvaluatorNode = new TermEvaluatorNode(conditionExpressions);	
+		final ChangeSet resultChangeSet = termEvaluatorNode.update(switchChangeSet);
+		logResult(resultChangeSet.getTuples().toString());
+		logBenchmark(resultChangeSet.getTuples().size() + " tuples");
+
+		assertEquals(resultChangeSet.getTuples().size(), 98);
 	}
 
 	@Test
@@ -139,8 +161,8 @@ public class TrainBenchmark {
 		logResult(resultChangeSet2.getTuples().toString());
 		logMessage(resultChangeSet2.getTuples().size() + " tuples");
 
-		logMessage("Route_switchPosition JOIN SwitchPosition_switch JOIN TrackElement_sensor JOIN Route_routeDefinition");
-		logMessage("<Route, SwitchPosition, Switch, Sensor, Route>");
+		logMessage("Route_switchPosition JOIN SwitchPosition_switch JOIN TrackElement_sensor ANTIJOIN Route_routeDefinition");
+		logMessage("<Route, SwitchPosition, Switch, Sensor>");
 		final TupleMask leftMask3 = new TupleMask(ImmutableList.of(3));
 		final TupleMask rightMask3 = new TupleMask(ImmutableList.of(1));
 		final AntiJoinNode joinNode3 = new AntiJoinNode(leftMask3, rightMask3);
@@ -165,17 +187,17 @@ public class TrainBenchmark {
 		load(vertexTypes, edgeLabels);
 
 		final Set<Tuple> switchTuples = vertexTuplesMap.get(Switch);
-		final Set<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch, Sensor
-		final ChangeSet switchChangeSet = new ChangeSet(vertexTuplesMap.get(Switch), ChangeType.POSITIVE);
-		final ChangeSet trackElement_sensorChangeSet = new ChangeSet(trackElement_sensorTuples, ChangeType.POSITIVE); // Switch, Sensor
+		final Set<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch, Sensor vertex pairs
+		final ChangeSet switchChangeSet = new ChangeSet(switchTuples, ChangeType.POSITIVE);
+		final ChangeSet trackElement_sensorChangeSet = new ChangeSet(trackElement_sensorTuples, ChangeType.POSITIVE);
 
 		
-		logMessage("Route_switchPosition JOIN SwitchPosition_switch");
-		logMessage("<Route, SwitchPosition, Switch>");
+		logMessage("Switch ANTIJOIN Sensor");
+		logMessage("<Switch>");
 		final TupleMask leftMask = new TupleMask(ImmutableList.of(0));
 		final TupleMask rightMask = new TupleMask(ImmutableList.of(0));
-		final AntiJoinNode anitJoinNode = new AntiJoinNode(leftMask, rightMask);
-		final ChangeSet resultChangeSet = Algorithms.join(anitJoinNode, switchChangeSet, trackElement_sensorChangeSet);
+		final AntiJoinNode antiJoinNode = new AntiJoinNode(leftMask, rightMask);
+		final ChangeSet resultChangeSet = Algorithms.join(antiJoinNode, switchChangeSet, trackElement_sensorChangeSet);
 		logResult(resultChangeSet.getTuples().toString());
 		logBenchmark(resultChangeSet.getTuples().size() + " tuples");
 
