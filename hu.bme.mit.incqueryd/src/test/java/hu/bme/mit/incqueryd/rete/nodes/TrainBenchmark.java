@@ -73,35 +73,25 @@ public class TrainBenchmark {
 		GraphSonFormat.indexGraph(pathName, vertexTypesAndProperties, vertexTypeVertexIdsMap, vertexIdVertexPropertiesMap, edgeLabels, edgeLabelVertexPairsMap);
 
 		// converting the vertices to tuples
+		// e.g. <id, Segment_length>
 		for (final String vertexType : vertexTypeVertexIdsMap.keySet()) {
 			final Collection<Object> verticesId = vertexTypeVertexIdsMap.get(vertexType);
 			final Set<Tuple> tuples = new HashSet<>();
-
-			System.out.println(vertexType);
 
 			for (final Object vertexId : verticesId) {
 				final List<Object> tupleItems = new LinkedList<>();
 				tupleItems.add(vertexId);
 				
 				final Collection<String> propertiesToExtract = vertexTypesAndProperties.get(vertexType);
-//				System.out.println(propertiesToExtract);
-//				System.out.println(propertiesToExtract.size());				
-//				System.out.println(">>> " + tupleItems);
-				
 				for (final String propertyName : propertiesToExtract) {
 					final Object propertyValue = vertexIdVertexPropertiesMap.get(vertexId).get(propertyName);
-					System.out.println("- " + propertyName + ": " + propertyValue);
 					tupleItems.add(propertyValue);
 				}
 
 				final Tuple tuple = new TupleImpl(tupleItems.toArray());
 				tuples.add(tuple);
-				System.out.println(tuple);
-				
 			}
 			
-			System.out.println("::: " + tuples + ", " + tuples.size());
-
 			vertexTuplesMap.put(vertexType, tuples);
 		}
 
@@ -137,7 +127,8 @@ public class TrainBenchmark {
 
 		load(vertexTypesAndProperties, ImmutableList.<String> of());
 
-		final Set<Tuple> switchTuples = vertexTuplesMap.get(Switch);
+		final Set<Tuple> switchTuples = vertexTuplesMap.get(Segment);
+				
 		final ChangeSet switchChangeSet = new ChangeSet(switchTuples, ChangeType.POSITIVE);
 
 		logMessage("Segment.segment_length <= 0");
@@ -151,7 +142,7 @@ public class TrainBenchmark {
 		final ChangeSet resultChangeSet = termEvaluatorNode.update(switchChangeSet);
 		logResult(resultChangeSet.getTuples().toString());
 		logBenchmark(resultChangeSet.getTuples().size() + " tuples");
-
+		
 		assertEquals(98, resultChangeSet.getTuples().size());
 	}
 
@@ -225,9 +216,6 @@ public class TrainBenchmark {
 		final Set<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch, Sensor vertex pairs
 		final ChangeSet switchChangeSet = new ChangeSet(switchTuples, ChangeType.POSITIVE);
 		final ChangeSet trackElement_sensorChangeSet = new ChangeSet(trackElement_sensorTuples, ChangeType.POSITIVE);
-
-		System.out.println(switchTuples);
-		System.out.println(trackElement_sensorTuples);
 		
 		logMessage("Switch ANTIJOIN Sensor");
 		logMessage("<Switch>");
