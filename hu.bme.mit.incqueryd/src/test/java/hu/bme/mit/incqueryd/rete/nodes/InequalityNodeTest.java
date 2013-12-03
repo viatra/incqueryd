@@ -12,17 +12,18 @@ import org.junit.Test;
  * @author szarnyasg
  *
  */
-public class EqualityNodeTest {
+public class InequalityNodeTest {
 
 	public void test(final FilterNodeTestData data) {
-		final FilterNode filterNode = new EqualityNode(data.getTupleMask());
+		final FilterNode filterNode = new InequalityNode(data.getTupleMask());
 		final ChangeSet resultChangeSet = filterNode.update(data.getChangeSet());
 		
-		assertTrue(resultChangeSet.equals(data.getEqualityExpectedResults()));		
+		assertTrue(resultChangeSet.equals(data.getInequalityExpectedResults()));		
 	}
 
 	@Test
 	public void test1() {
 		test(FilterNodeTestHelper.data1());
 	}
+	
 }

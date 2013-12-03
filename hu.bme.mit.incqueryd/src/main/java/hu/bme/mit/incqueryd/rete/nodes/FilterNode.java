@@ -18,7 +18,21 @@ public abstract class FilterNode extends AlphaNode {
 	}
 
 	protected abstract boolean compare(Object o1, Object o2);
+	
+	protected boolean checkCondition(final Tuple tuple, final List<Integer> mask) {
+		// the mask's first item determines the reference value's index
+		final Object referenceValue = tuple.get(tupleMask.getMask().get(0));
 
+		for (int i = 1; i < mask.size(); i++) {
+			final Object value = tuple.get(mask.get(i));
+			if (!compare(value, referenceValue)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+	
 	@Override
 	public ChangeSet update(final ChangeSet incomingChangeSet) {
 		final List<Integer> mask = tupleMask.getMask();
@@ -33,19 +47,7 @@ public abstract class FilterNode extends AlphaNode {
 			resultTuples = new HashSet<Tuple>();
 
 			for (final Tuple tuple : incomingTuples) {
-				// the mask's first item determines the reference value's index
-				final Object referenceValue = tuple.get(mask.get(0));
-
-				boolean equal = true;
-				for (int i = 1; i < mask.size(); i++) {
-					final Object value = tuple.get(mask.get(i));
-					if (!compare(value, referenceValue)) {
-						equal = false;
-						break;
-					}
-				}
-				
-				if (equal) {
+				if (checkCondition(tuple, mask)) {
 					resultTuples.add(tuple);
 				}				
 			}
