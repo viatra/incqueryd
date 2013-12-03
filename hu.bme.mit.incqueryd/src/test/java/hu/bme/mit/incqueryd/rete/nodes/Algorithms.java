@@ -14,15 +14,15 @@ import java.util.Collection;
  */
 public class Algorithms {
 	
-	public static ChangeSet join(final AbstractJoinNode joinNode, final Collection<Tuple> leftTuples, final Collection<Tuple> rightTuples) {
-		final ChangeSet leftChangeSet = new ChangeSet(leftTuples, ChangeType.POSITIVE);
-		final ChangeSet rightChangeSet = new ChangeSet(rightTuples, ChangeType.POSITIVE);
+	public static ChangeSet join(final AbstractJoinNode joinNode, final Collection<Tuple> primaryTuples, final Collection<Tuple> secondaryTuples) {
+		final ChangeSet primaryChangeSet = new ChangeSet(primaryTuples, ChangeType.POSITIVE);
+		final ChangeSet secondaryChangeSet = new ChangeSet(secondaryTuples, ChangeType.POSITIVE);
 
 		// this is the correct order for the antijoin operations
 		// new tuples from the secondary slot
-		final ChangeSet joinedTuples1 = joinNode.update(rightChangeSet, ReteNodeSlot.SECONDARY);		
+		final ChangeSet joinedTuples1 = joinNode.update(secondaryChangeSet, ReteNodeSlot.SECONDARY);		
 		// new tuples from the primary slot
-		final ChangeSet joinedTuples2 = joinNode.update(leftChangeSet, ReteNodeSlot.PRIMARY);
+		final ChangeSet joinedTuples2 = joinNode.update(primaryChangeSet, ReteNodeSlot.PRIMARY);
 		
 		return joinedTuples2;
 	}

@@ -20,10 +20,12 @@ public class EqualityNodeTest {
 	@Test
 	public void test1() {
 		final Collection<Tuple> tuples = new HashSet<>();
-		tuples.add(new TupleImpl(1, 2, 3));
-		tuples.add(new TupleImpl(1, 2, 1));
+		tuples.add(new TupleImpl(1, 2, 1, 3));
+		tuples.add(new TupleImpl(1, 2, 3, 1));
+		tuples.add(new TupleImpl(1, 2, 3, 3));
+		tuples.add(new TupleImpl(1, 2, 1, 1));
 
-		final TupleMask tupleMask = new TupleMask(ImmutableList.of(0, 2));
+		final TupleMask tupleMask = new TupleMask(ImmutableList.of(0, 2, 3));
 		final EqualityNode filterNode = new EqualityNode(tupleMask);
 		final ChangeSet incomingChangeSet = new ChangeSet(tuples, ChangeType.POSITIVE);
 		
@@ -31,7 +33,7 @@ public class EqualityNodeTest {
 		final Collection<Tuple> resultTuples = resultChangeSet.getTuples();
 
 		assertEquals(resultTuples.size(), 1);
-		assertTrue(resultTuples.contains(new TupleImpl(1, 2, 1)));		
+		assertTrue(resultTuples.contains(new TupleImpl(1, 2, 1, 1)));
 	}
 	
 }
