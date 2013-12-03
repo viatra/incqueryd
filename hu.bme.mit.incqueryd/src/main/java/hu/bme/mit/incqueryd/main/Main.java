@@ -24,7 +24,9 @@ public class Main {
 
 		final String pathName = "/home/szarnyasg/hdd/models/faunus-graphson/testBig_User_1.faunus-graphson";
 
-		final Collection<String> vertexTypes = ImmutableList.of("Switch");
+		final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
+		vertexTypesAndProperties.put("Segment", ImmutableList.<String>of());
+		
 		final Collection<String> edgeLabels = ImmutableList.of("TrackElement_sensor");
 
 		// for vertices
@@ -37,7 +39,7 @@ public class Main {
 		// "label" --> "vertex pairs, e.g. [[1]->[2, 3], [4]->[5, 6, 7], ...]"
 		final Map<String, Multimap<Object, Object>> edgeLabelVertexPairsMap = new HashMap<>();
 
-		GraphSonFormat.indexGraph(pathName, vertexTypes, vertexTypeVertexIdsMap, vertexIdVertexPropertiesMap, edgeLabels, edgeLabelVertexPairsMap);
+		GraphSonFormat.indexGraph(pathName, vertexTypesAndProperties, vertexTypeVertexIdsMap, vertexIdVertexPropertiesMap, edgeLabels, edgeLabelVertexPairsMap);
 
 		System.out.println(vertexTypeVertexIdsMap);
 		System.out.println(vertexIdVertexPropertiesMap);

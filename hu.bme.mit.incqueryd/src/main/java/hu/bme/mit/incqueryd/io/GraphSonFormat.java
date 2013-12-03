@@ -14,9 +14,24 @@ import com.tinkerpop.blueprints.Direction;
 import com.tinkerpop.blueprints.Edge;
 import com.tinkerpop.blueprints.Vertex;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class GraphSonFormat {
-
-	public static void indexGraph(final String pathName, final Collection<String> vertexTypes, final Multimap<String, Object> vertexTypeVertexIdsMap,
+	
+	/**
+	 * 
+	 * @param pathName
+	 * @param vertexTypesAndProperties See https://code.google.com/p/guava-libraries/wiki/NewCollectionTypesExplained#Multimap_Is_Not_A_Map.
+	 * @param vertexTypeVertexIdsMap
+	 * @param vertexIdVertexPropertiesMap
+	 * @param edgeLabels
+	 * @param edgeLabelVertexPairsMap
+	 * @throws IOException
+	 */
+	public static void indexGraph(final String pathName, final Map<String, Collection<String>> vertexTypesAndProperties, final Multimap<String, Object> vertexTypeVertexIdsMap,
 			final Map<Object, Map<String, Object>> vertexIdVertexPropertiesMap, final Collection<String> edgeLabels,
 			final Map<String, Multimap<Object, Object>> edgeLabelVertexPairsMap) throws IOException {
 
@@ -33,14 +48,14 @@ public class GraphSonFormat {
 			final FaunusVertex v = FaunusGraphSONUtility.fromJSON(line);
 
 			collectAdjacentVertices(v, edgeLabels, edgeLabelVertexPairsMap);
-			extractVertexProperties(v, vertexTypes, vertexTypeVertexIdsMap, vertexIdVertexPropertiesMap);
+			extractVertexProperties(v, vertexTypesAndProperties, vertexTypeVertexIdsMap, vertexIdVertexPropertiesMap);
 
 			line = br.readLine();
 		}
 
 		br.close();
 	}
-
+	
 	protected static void collectAdjacentVertices(final FaunusVertex v1, final Collection<String> edgeLabels,
 			final Map<String, Multimap<Object, Object>> edgeLabelVertexPairsMap) throws IOException {
 		final Long v1Id = (Long) v1.getId();
@@ -60,13 +75,13 @@ public class GraphSonFormat {
 		}
 	}
 
-	private static void extractVertexProperties(final FaunusVertex v, final Collection<String> vertexTypes, final Multimap<String, Object> vertexTypeVertexIdsMap,
+	private static void extractVertexProperties(final FaunusVertex v, final Map<String, Collection<String>> vertexTypesAndProperties, final Multimap<String, Object> vertexTypeVertexIdsMap,
 			final Map<Object, Map<String, Object>> vertexIdVertexPropertiesMap) throws IOException {
 		final Map<String, Object> vertexProperties = v.getProperties();
 		final String vertexType = (String) vertexProperties.get("type");
 		
 		// if we are looking for this vertex type, add it to the maps
-		if (vertexTypes.contains(vertexType)) {
+		if (vertexTypesAndProperties.containsKey(vertexType)) {
 			final Long id = (Long) v.getId();
 			vertexTypeVertexIdsMap.put(vertexType, id);
 			vertexIdVertexPropertiesMap.put(id, vertexProperties);

@@ -14,6 +14,12 @@ import java.util.Set;
 
 import org.junit.Test;
 
+/**
+ * Test cases for the {@link TermEvaluatorNode} class.
+ * 
+ * @author szarnyasg
+ *
+ */
 public class TermEvaluatorNodeTest {
 
 	@Test

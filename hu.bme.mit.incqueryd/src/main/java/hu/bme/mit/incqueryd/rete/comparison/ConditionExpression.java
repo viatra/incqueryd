@@ -2,6 +2,11 @@ package hu.bme.mit.incqueryd.rete.comparison;
 
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class ConditionExpression {
 
 	protected int index;

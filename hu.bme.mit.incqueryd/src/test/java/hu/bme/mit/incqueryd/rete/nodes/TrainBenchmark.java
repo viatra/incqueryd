@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -39,22 +41,27 @@ public class TrainBenchmark {
 	protected final String Switch = "Switch";
 	protected final String Segment = "Segment";
 
+	// property names
+	protected final String Segment_length = "Segment_length";
+
 	// edge labels
 	protected final String Route_routeDefinition = "Route_routeDefinition";
 	protected final String Route_switchPosition = "Route_switchPosition";
 	protected final String SwitchPosition_switch = "SwitchPosition_switch";
 	protected final String TrackElement_sensor = "TrackElement_sensor";
 
+	// file path
 	protected final int size = 1;
 	protected final String pathName = "src/test/resources/testBig_User_" + size + ".faunus-graphson";
 
+	// logging constants
 	protected final boolean logResults = false;
 	protected final boolean logMessages = false;
 
 	final Map<String, Set<Tuple>> vertexTuplesMap = new HashMap<>();
 	final Map<String, Set<Tuple>> edgeTuplesMap = new HashMap<>();
 
-	private void load(final Collection<String> vertexTypes, final Collection<String> edgeLabels) throws IOException {
+	private void load(final Map<String, Collection<String>> vertexTypesAndProperties, final Collection<String> edgeLabels) throws IOException {
 		final Multimap<String, Object> vertexTypeVertexIdsMap = ArrayListMultimap.create();
 		final Map<Object, Map<String, Object>> vertexIdVertexPropertiesMap = new HashMap<>();
 		final Map<String, Multimap<Object, Object>> edgeLabelVertexPairsMap = new HashMap<>();
@@ -63,17 +70,38 @@ public class TrainBenchmark {
 
 		// collect the edges from the Faunus GraphSON file in one run
 		startTimer();
-		GraphSonFormat.indexGraph(pathName, vertexTypes, vertexTypeVertexIdsMap, vertexIdVertexPropertiesMap, edgeLabels, edgeLabelVertexPairsMap);
+		GraphSonFormat.indexGraph(pathName, vertexTypesAndProperties, vertexTypeVertexIdsMap, vertexIdVertexPropertiesMap, edgeLabels, edgeLabelVertexPairsMap);
 
 		// converting the vertices to tuples
 		for (final String vertexType : vertexTypeVertexIdsMap.keySet()) {
 			final Collection<Object> verticesId = vertexTypeVertexIdsMap.get(vertexType);
 			final Set<Tuple> tuples = new HashSet<>();
 
+			System.out.println(vertexType);
+
 			for (final Object vertexId : verticesId) {
-				final Tuple tuple = new TupleImpl(vertexId);
+				final List<Object> tupleItems = new LinkedList<>();
+				tupleItems.add(vertexId);
+				
+				final Collection<String> propertiesToExtract = vertexTypesAndProperties.get(vertexType);
+//				System.out.println(propertiesToExtract);
+//				System.out.println(propertiesToExtract.size());				
+//				System.out.println(">>> " + tupleItems);
+				
+				for (final String propertyName : propertiesToExtract) {
+					final Object propertyValue = vertexIdVertexPropertiesMap.get(vertexId).get(propertyName);
+					System.out.println("- " + propertyName + ": " + propertyValue);
+					tupleItems.add(propertyValue);
+				}
+
+				final Tuple tuple = new TupleImpl(tupleItems.toArray());
 				tuples.add(tuple);
+				System.out.println(tuple);
+				
 			}
+			
+			System.out.println("::: " + tuples + ", " + tuples.size());
+
 			vertexTuplesMap.put(vertexType, tuples);
 		}
 
@@ -104,34 +132,36 @@ public class TrainBenchmark {
 	@Test
 	public void posLength() throws IOException {
 		System.out.println("PosLength query");
-		final Collection<String> vertexTypes = ImmutableList.of(Switch);
-		final Collection<String> edgeLabels = ImmutableList.of();
-		load(vertexTypes, edgeLabels);
+		final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
+		vertexTypesAndProperties.put(Segment, ImmutableList.of(Segment_length));
+
+		load(vertexTypesAndProperties, ImmutableList.<String> of());
 
 		final Set<Tuple> switchTuples = vertexTuplesMap.get(Switch);
 		final ChangeSet switchChangeSet = new ChangeSet(switchTuples, ChangeType.POSITIVE);
-		
+
 		logMessage("Segment.segment_length <= 0");
 		logMessage("<Segment>");
-		
+
 		final Collection<ConditionExpression> conditionExpressions = new HashSet<>();
 		// t[1] <= 0
 		conditionExpressions.add(new ConditionExpression(1, ComparisonOperator.LESS_THAN_OR_EQUAL, 0));
-		
-		final TermEvaluatorNode termEvaluatorNode = new TermEvaluatorNode(conditionExpressions);	
+
+		final TermEvaluatorNode termEvaluatorNode = new TermEvaluatorNode(conditionExpressions);
 		final ChangeSet resultChangeSet = termEvaluatorNode.update(switchChangeSet);
 		logResult(resultChangeSet.getTuples().toString());
 		logBenchmark(resultChangeSet.getTuples().size() + " tuples");
 
-		assertEquals(resultChangeSet.getTuples().size(), 98);
+		assertEquals(98, resultChangeSet.getTuples().size());
 	}
 
 	@Test
-	public void routeSensor() throws IOException {		
+	public void routeSensor() throws IOException {
 		System.out.println("RouteSensor query");
-		final Collection<String> vertexTypes = ImmutableList.of();
+		final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
+
 		final Collection<String> edgeLabels = ImmutableList.of(Route_routeDefinition, Route_switchPosition, SwitchPosition_switch, TrackElement_sensor);
-		load(vertexTypes, edgeLabels);
+		load(vertexTypesAndProperties, edgeLabels);
 
 		final Set<Tuple> route_routeDefinitionTuples = edgeTuplesMap.get(Route_routeDefinition); // Route, Sensor
 		final Set<Tuple> route_switchPositionTuples = edgeTuplesMap.get(Route_switchPosition); // Route, SwitchPosition
@@ -141,8 +171,7 @@ public class TrainBenchmark {
 		final ChangeSet route_switchPositionChangeSet = new ChangeSet(route_switchPositionTuples, ChangeType.POSITIVE);
 		final ChangeSet switchPosition_switchChangeSet = new ChangeSet(switchPosition_switchTuples, ChangeType.POSITIVE);
 		final ChangeSet trackElement_sensorChangeSet = new ChangeSet(trackElement_sensorTuples, ChangeType.POSITIVE);
-		
-		
+
 		logMessage("Route_switchPosition JOIN SwitchPosition_switch");
 		logMessage("<Route, SwitchPosition, Switch>");
 		final TupleMask leftMask1 = new TupleMask(ImmutableList.of(1));
@@ -171,26 +200,34 @@ public class TrainBenchmark {
 		logMessage(resultChangeSet3.getTuples().size() + " tuples");
 		logBenchmark(resultChangeSet3.getTuples().size() + " tuples");
 
-		assertEquals(resultChangeSet3.getTuples().size(), 19);
+		assertEquals(19, resultChangeSet3.getTuples().size());
 	}
 
 	@Test
 	public void signalNeighbor() throws IOException {
 		System.out.println("SignalNeighbor query");
 	}
-	
+
 	@Test
 	public void switchSensor() throws IOException {
 		System.out.println("SwitchSensor query");
-		final Collection<String> vertexTypes = ImmutableList.of(Switch);
+
+		// vertex type and properties
+		final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
+		vertexTypesAndProperties.put(Switch, ImmutableList.<String> of());
+
+		// edge labels
 		final Collection<String> edgeLabels = ImmutableList.of(TrackElement_sensor);
-		load(vertexTypes, edgeLabels);
+
+		load(vertexTypesAndProperties, edgeLabels);
 
 		final Set<Tuple> switchTuples = vertexTuplesMap.get(Switch);
 		final Set<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch, Sensor vertex pairs
 		final ChangeSet switchChangeSet = new ChangeSet(switchTuples, ChangeType.POSITIVE);
 		final ChangeSet trackElement_sensorChangeSet = new ChangeSet(trackElement_sensorTuples, ChangeType.POSITIVE);
 
+		System.out.println(switchTuples);
+		System.out.println(trackElement_sensorTuples);
 		
 		logMessage("Switch ANTIJOIN Sensor");
 		logMessage("<Switch>");
@@ -201,7 +238,7 @@ public class TrainBenchmark {
 		logResult(resultChangeSet.getTuples().toString());
 		logBenchmark(resultChangeSet.getTuples().size() + " tuples");
 
-		assertEquals(resultChangeSet.getTuples().size(), 26);
+		assertEquals(26, resultChangeSet.getTuples().size());
 	}
 
 	private long startTime;
