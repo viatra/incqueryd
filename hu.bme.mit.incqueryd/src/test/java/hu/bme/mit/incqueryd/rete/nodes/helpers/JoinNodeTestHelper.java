@@ -41,10 +41,9 @@ public class JoinNodeTestHelper {
 		final Set<Tuple> antiJoinResultTuples = new HashSet<>();
 		final ChangeSet antiJoinExpectedChangeSet = new ChangeSet(antiJoinResultTuples, ChangeType.POSITIVE);
 
-		final JoinNodeTestData data1 = new JoinNodeTestData(primaryChangeSet, secondaryChangeSet, primaryMask, secondaryMask, joinExpectedChangeSet,
+		final JoinNodeTestData data = new JoinNodeTestData(primaryChangeSet, secondaryChangeSet, primaryMask, secondaryMask, joinExpectedChangeSet,
 				antiJoinExpectedChangeSet);
-		return data1;
-
+		return data;
 	}
 
 	public static JoinNodeTestData data2() {
@@ -68,9 +67,40 @@ public class JoinNodeTestHelper {
 		antiJoinResultTuples.add(new TupleImpl(2, 6));
 		final ChangeSet antiJoinExpectedChangeSet = new ChangeSet(antiJoinResultTuples, ChangeType.POSITIVE);
 
-		final JoinNodeTestData data2 = new JoinNodeTestData(primaryChangeSet, secondaryChangeSet, primaryMask, secondaryMask, joinExpectedChangeSet,
+		final JoinNodeTestData data = new JoinNodeTestData(primaryChangeSet, secondaryChangeSet, primaryMask, secondaryMask, joinExpectedChangeSet,
 				antiJoinExpectedChangeSet);
-		return data2;
+		return data;
+	}
+	
+	/**
+	 * No common attributes (empty tuple masks).
+	 * @return
+	 */
+	public static JoinNodeTestData data3() {
+		final Set<Tuple> primaryTuples = new HashSet<>();
+		primaryTuples.add(new TupleImpl(1, 5));
+		primaryTuples.add(new TupleImpl(2, 6));
+		final ChangeSet primaryChangeSet = new ChangeSet(primaryTuples, ChangeType.POSITIVE);
+
+		final Set<Tuple> secondaryTuples = new HashSet<>();
+		secondaryTuples.add(new TupleImpl(5, 10));
+		final ChangeSet secondaryChangeSet = new ChangeSet(secondaryTuples, ChangeType.POSITIVE);
+
+		final TupleMask primaryMask = new TupleMask(ImmutableList.<Integer>of());
+		final TupleMask secondaryMask = new TupleMask(ImmutableList.<Integer>of());
+
+		final Set<Tuple> joinResultTuples = new HashSet<>();
+		joinResultTuples.add(new TupleImpl(1, 5, 5, 10));
+		joinResultTuples.add(new TupleImpl(2, 6, 5, 10));
+		final ChangeSet joinExpectedChangeSet = new ChangeSet(joinResultTuples, ChangeType.POSITIVE);		
+		
+		final Set<Tuple> antiJoinResultTuples = new HashSet<>();
+		antiJoinResultTuples.add(new TupleImpl(2, 6));
+		final ChangeSet antiJoinExpectedChangeSet = new ChangeSet(antiJoinResultTuples, ChangeType.POSITIVE);
+
+		final JoinNodeTestData data = new JoinNodeTestData(primaryChangeSet, secondaryChangeSet, primaryMask, secondaryMask, joinExpectedChangeSet,
+				antiJoinExpectedChangeSet);
+		return data;
 	}
 
 }

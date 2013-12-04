@@ -30,5 +30,10 @@ public class JoinNodeTest {
 	public void test2() {
 		test(JoinNodeTestHelper.data2());
 	}
+	
+	@Test
+	public void test3() {
+		test(JoinNodeTestHelper.data3());
+	}
 
 }

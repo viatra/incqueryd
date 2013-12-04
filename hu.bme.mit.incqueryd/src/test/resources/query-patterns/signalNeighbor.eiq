@@ -22,7 +22,9 @@ pattern entrySignalSensor(Sig, R2, Sen2) =
 	find entrySignal(R2, Sig);
 	find rDefinition(R2, Sen2);
 }
-	
+
+
+
 pattern entrySignal(R, Sig) =
 {
 	Route(R);
@@ -66,33 +68,3 @@ pattern sensorTrackelement(Sen, Te) =
 	Sensor.Sensor_trackElement(Sen, Te);
 }
 
-/*
-pattern Iq4SignalNeighbor(R1) =
-{
-	Route.Route_exit(R1, SigA);
-	Route.Route_routeDefinition(R1, Sen1A);
-	
-	Sensor.Sensor_trackElement(Sen1A, Te1);
-	Sensor.Sensor_trackElement(Sen2A, Te2);
-	Trackelement.TrackElement_connectsTo(Te1, Te2);
-	
-	Route.Route_routeDefinition(R3A, Sen2A);
-	
-	R3A != R1;
-		
-	neg find Iq4entrySignalSensor(SigA, _R2A, Sen2A);
-}
-	
-	
-pattern Iq4entrySignalSensor(Sig, R2, Sen2) =
-{
-	Route.Route_entry(R2, Sig);
-	Route.Route_routeDefinition(R2, Sen2);
-}
-
-pattern Iq4exitSignalSensor(Sig, R1, Sen1) =
-{
-	Route.Route_exit(R1, Sig);
-	Route.Route_routeDefinition(R1, Sen1);
-}
-*/

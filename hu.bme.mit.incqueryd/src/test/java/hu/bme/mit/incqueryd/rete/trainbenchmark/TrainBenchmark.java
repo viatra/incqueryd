@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.rete.nodes;
+package hu.bme.mit.incqueryd.rete.trainbenchmark;
 
 import static org.junit.Assert.assertEquals;
 import hu.bme.mit.incqueryd.io.GraphSonFormat;
@@ -9,6 +9,10 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleImpl;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
+import hu.bme.mit.incqueryd.rete.nodes.Algorithms;
+import hu.bme.mit.incqueryd.rete.nodes.AntiJoinNode;
+import hu.bme.mit.incqueryd.rete.nodes.JoinNode;
+import hu.bme.mit.incqueryd.rete.nodes.TermEvaluatorNode;
 
 import java.io.IOException;
 import java.util.Collection;
