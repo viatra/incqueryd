@@ -1,0 +1,14 @@
+#TeXlipse project settings
+#Wed Dec 04 15:14:37 CET 2013
+markTmpDer=true
+builderNum=2
+outputDir=
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=tmp
+mainTexFile=szarnyasg-cv-hu.tex
+outputFile=szarnyasg-cv-hu.pdf
+langSpell=hu
+markDer=true
+srcDir=
