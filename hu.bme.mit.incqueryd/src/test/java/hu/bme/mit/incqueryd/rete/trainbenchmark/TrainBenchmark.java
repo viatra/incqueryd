@@ -53,14 +53,17 @@ public class TrainBenchmark {
 	protected final String Route_switchPosition = "Route_switchPosition";
 	protected final String SwitchPosition_switch = "SwitchPosition_switch";
 	protected final String TrackElement_sensor = "TrackElement_sensor";
+	protected final String TrackElement_connectsTo = "TrackElement_connectsTo";
+	protected final String Route_entry = "Route_entry";
+	protected final String Route_exit = "Route_exit";
 
 	// file path
 	protected final int size = 1;
 	protected final String pathName = "src/test/resources/testBig_User_" + size + ".faunus-graphson";
 
 	// logging constants
-	protected final boolean logResults = false;
-	protected final boolean logMessages = false;
+	protected final boolean logResults = true;
+	protected final boolean logMessages = true;
 
 	final Map<String, Set<Tuple>> vertexTuplesMap = new HashMap<>();
 	final Map<String, Set<Tuple>> edgeTuplesMap = new HashMap<>();
@@ -85,7 +88,7 @@ public class TrainBenchmark {
 			for (final Object vertexId : verticesId) {
 				final List<Object> tupleItems = new LinkedList<>();
 				tupleItems.add(vertexId);
-				
+
 				final Collection<String> propertiesToExtract = vertexTypesAndProperties.get(vertexType);
 				for (final String propertyName : propertiesToExtract) {
 					final Object propertyValue = vertexIdVertexPropertiesMap.get(vertexId).get(propertyName);
@@ -95,7 +98,7 @@ public class TrainBenchmark {
 				final Tuple tuple = new TupleImpl(tupleItems.toArray());
 				tuples.add(tuple);
 			}
-			
+
 			vertexTuplesMap.put(vertexType, tuples);
 		}
 
@@ -107,16 +110,21 @@ public class TrainBenchmark {
 			final Set<Tuple> tuples = new HashSet<>();
 			edgeTuplesMap.put(edgeLabel, tuples);
 
+			System.out.println(edgeLabel);
+
 			for (final Object v1 : edges.keySet()) {
 				final Collection<Object> v2s = edges.get(v1);
 
-				logResult(v1 + ": " + v2s);
+				// logResult(v1 + ": " + v2s);
 				for (final Object v2 : v2s) {
 					final Tuple tuple = new TupleImpl(v1, v2);
 					tuples.add(tuple);
-					logResult(tuple.toString());
+					// logResult(tuple.toString());
+					System.out.println(tuple.toString() + ", ");
 				}
 			}
+
+			System.out.println();
 		}
 
 		System.out.print("loaded, ");
@@ -132,7 +140,7 @@ public class TrainBenchmark {
 		load(vertexTypesAndProperties, ImmutableList.<String> of());
 
 		final Set<Tuple> switchTuples = vertexTuplesMap.get(Segment);
-				
+
 		final ChangeSet switchChangeSet = new ChangeSet(switchTuples, ChangeType.POSITIVE);
 
 		logMessage("Segment.segment_length <= 0");
@@ -146,7 +154,7 @@ public class TrainBenchmark {
 		final ChangeSet resultChangeSet = termEvaluatorNode.update(switchChangeSet);
 		logResult(resultChangeSet.getTuples().toString());
 		logBenchmark(resultChangeSet.getTuples().size() + " tuples");
-		
+
 		assertEquals(98, resultChangeSet.getTuples().size());
 	}
 
@@ -201,6 +209,98 @@ public class TrainBenchmark {
 	@Test
 	public void signalNeighbor() throws IOException {
 		System.out.println("SignalNeighbor query");
+
+		// base:Route_routeDefinition
+		// base:Route_exit
+		// base:Route_entry
+		// base:TrackElement_sensor
+		// base:TrackElement_connectsTo
+
+		// ?xRoute1 rdf:type base:Route .
+		// ?xSen1 rdf:type base:Sensor .
+		// ?xRoute1 base:Route_routeDefinition ?xSen1 .
+		// ?xTE1 rdf:type base:Trackelement .
+		// ?xTE1 base:TrackElement_sensor ?xSen1 .
+		// ?xTE2 rdf:type base:Trackelement .
+		// ?xTE1 base:TrackElement_connectsTo ?xTE2 .
+		// ?xSen2 rdf:type base:Sensor .
+		// ?xTE2 base:TrackElement_sensor ?xSen2 .
+		// ?xSig rdf:type base:Signal .
+		// ?xRoute1 base:Route_exit ?xSig .
+		//
+		// ?xRouteX rdf:type base:Route .
+		// ?xRouteX base:Route_routeDefinition ?xSen2 .
+		// FILTER ( ?xRouteX != ?xRoute1 )
+		//
+		// OPTIONAL {
+		// ?xRoute2 rdf:type base:Route .
+		// ?xRoute2 base:Route_routeDefinition ?xSen2 .
+		// ?xRoute2 base:Route_entry ?xSig .
+		// } .
+		// FILTER (!bound(?xRoute2))
+
+		final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
+
+		final Collection<String> edgeLabels = ImmutableList.of(Route_routeDefinition, Route_entry, Route_exit, TrackElement_sensor, TrackElement_connectsTo);
+		load(vertexTypesAndProperties, edgeLabels);
+
+		final Set<Tuple> route_routeDefinitionTuples = edgeTuplesMap.get(Route_routeDefinition); // Route, Sensor
+		final Set<Tuple> route_entryTuples = edgeTuplesMap.get(Route_entry); // Route, Signal
+		final Set<Tuple> route_exitTuples = edgeTuplesMap.get(Route_exit); // Route, Signal
+		final Set<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch, Sensor
+		final Set<Tuple> trackElement_connectsToTuples = edgeTuplesMap.get(TrackElement_connectsTo); // TrackElement, TrackElement
+
+		final ChangeSet route_routeDefinitionChangeSet = new ChangeSet(route_routeDefinitionTuples, ChangeType.POSITIVE);
+		final ChangeSet route_entryChangeSet = new ChangeSet(route_entryTuples, ChangeType.POSITIVE);
+		final ChangeSet route_exitChangeSet = new ChangeSet(route_exitTuples, ChangeType.POSITIVE);
+		final ChangeSet trackElement_sensorChangeSet = new ChangeSet(trackElement_sensorTuples, ChangeType.POSITIVE);
+		final ChangeSet trackElement_connectsToChangeSet = new ChangeSet(trackElement_connectsToTuples, ChangeType.POSITIVE);
+
+		// System.out.println("rrd: " + route_routeDefinitionChangeSet.getTuples().size());
+		// System.out.println("ren: " + route_entryChangeSet.getTuples().size());
+		// System.out.println("rex: " + route_exitChangeSet.getTuples().size());
+		// System.out.println("tEs: " + trackElement_sensorChangeSet.getTuples().size());
+		// System.out.println("tEc: " + trackElement_connectsToChangeSet.getTuples().size());
+
+		logMessage("Route_entry JOIN Route_routeDefinition");
+		logMessage("<Route, Signal, Sensor>");
+		final TupleMask leftMask1 = new TupleMask(ImmutableList.of(0));
+		final TupleMask rightMask1 = new TupleMask(ImmutableList.of(0));
+		final JoinNode joinNode1 = new JoinNode(leftMask1, rightMask1);
+		final ChangeSet resultChangeSet1 = Algorithms.join(joinNode1, route_entryChangeSet, route_routeDefinitionChangeSet);
+		logResult(resultChangeSet1.getTuples().toString());
+		logMessage(resultChangeSet1.getTuples().size() + " tuples");
+
+		logMessage("Route_exit JOIN Route_routeDefinition");
+		logMessage("<Route, Signal, Sensor>");
+		final TupleMask leftMask2 = new TupleMask(ImmutableList.of(0));
+		final TupleMask rightMask2 = new TupleMask(ImmutableList.of(0));
+		final JoinNode joinNode2 = new JoinNode(leftMask2, rightMask2);
+		final ChangeSet resultChangeSet2 = Algorithms.join(joinNode2, route_exitChangeSet, route_routeDefinitionChangeSet);
+		logResult(resultChangeSet2.getTuples().toString());
+		logMessage(resultChangeSet2.getTuples().size() + " tuples");
+
+		logMessage("trackElement_sensor JOIN trackElement_connectsTo");
+		logMessage("<TrackElement, Sensor, TrackElement>");
+		final TupleMask leftMask3 = new TupleMask(ImmutableList.of(0));
+		final TupleMask rightMask3 = new TupleMask(ImmutableList.of(0));
+		final JoinNode joinNode3 = new JoinNode(leftMask3, rightMask3);
+		final ChangeSet resultChangeSet3 = Algorithms.join(joinNode3, trackElement_sensorChangeSet, trackElement_connectsToChangeSet);
+		logResult(resultChangeSet3.getTuples().toString());
+		logMessage(resultChangeSet3.getTuples().size() + " tuples");
+
+		logMessage("trackElement_sensor JOIN trackElement_connectsTo JOIN trackElement_sensor");
+		logMessage("<TrackElement, Sensor, TrackElement, Sensor>");
+		final TupleMask leftMask4 = new TupleMask(ImmutableList.of(2));
+		final TupleMask rightMask4 = new TupleMask(ImmutableList.of(0));
+		final JoinNode joinNode4 = new JoinNode(leftMask4, rightMask4);
+		final ChangeSet resultChangeSet4 = Algorithms.join(joinNode4, resultChangeSet3, trackElement_sensorChangeSet);
+		logResult(resultChangeSet4.getTuples().toString());
+		logMessage(resultChangeSet4.getTuples().size() + " tuples");
+
+		// logBenchmark(resultChangeSetXX.getTuples().size() + " tuples");
+
+		// assertEquals(20, resultChangeSet3.getTuples().size());
 	}
 
 	@Test
@@ -220,7 +320,7 @@ public class TrainBenchmark {
 		final Set<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch, Sensor vertex pairs
 		final ChangeSet switchChangeSet = new ChangeSet(switchTuples, ChangeType.POSITIVE);
 		final ChangeSet trackElement_sensorChangeSet = new ChangeSet(trackElement_sensorTuples, ChangeType.POSITIVE);
-		
+
 		logMessage("Switch ANTIJOIN Sensor");
 		logMessage("<Switch>");
 		final TupleMask leftMask = new TupleMask(ImmutableList.of(0));
