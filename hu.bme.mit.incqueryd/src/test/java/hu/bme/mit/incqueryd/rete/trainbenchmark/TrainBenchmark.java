@@ -10,7 +10,9 @@ import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleImpl;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import hu.bme.mit.incqueryd.rete.nodes.Algorithms;
+import hu.bme.mit.incqueryd.rete.nodes.AlphaNode;
 import hu.bme.mit.incqueryd.rete.nodes.AntiJoinNode;
+import hu.bme.mit.incqueryd.rete.nodes.InequalityNode;
 import hu.bme.mit.incqueryd.rete.nodes.JoinNode;
 import hu.bme.mit.incqueryd.rete.nodes.TermEvaluatorNode;
 import hu.bme.mit.incqueryd.rete.nodes.TrimmerNode;
@@ -207,23 +209,23 @@ public class TrainBenchmark {
 		assertEquals(19, resultChangeSet3.getTuples().size());
 	}
 
-//	pattern signalNeighbor(R1) =
-//	{
-//		Route.Route_exit(R1, SigA);
-//		Route.Route_routeDefinition(R1, Sen1A);
-//		Sensor.Sensor_trackElement(Sen1A, Te1);
-//		Sensor.Sensor_trackElement(Sen2A, Te2);
-//		Trackelement.TrackElement_connectsTo(Te1, Te2);
-//		Route.Route_routeDefinition(R3A, Sen2A);
-//
-//		R3A != R1;
-//
-//		neg find 
-//		{
-//			Route.Route_entry(_R2A, SigA);
-//			Route.Route_routeDefinition(_R2A, Sen2A);
-//		}
-//	}	
+	// pattern signalNeighbor(R1) =
+	// {
+	// Route.Route_exit(Route1, Signal);
+	// Route.Route_routeDefinition(Route1, Sensor1);
+	// Sensor.Sensor_trackElement(Sensor1, Te1);
+	// Sensor.Sensor_trackElement(Sensor2, Te2);
+	// Trackelement.TrackElement_connectsTo(Te1, Te2);
+	// Route.Route_routeDefinition(Route3, Sensor2);
+	//
+	// Route1 != Route3;
+	//
+	// neg find
+	// {
+	// Route.Route_entry(_Route2, Signal);
+	// Route.Route_routeDefinition(_Route2, Sensor2);
+	// }
+	// }
 	@Test
 	public void signalNeighbor() throws IOException {
 		System.out.println("SignalNeighbor query");
@@ -245,12 +247,6 @@ public class TrainBenchmark {
 		final ChangeSet trackElement_sensorChangeSet = new ChangeSet(trackElement_sensorTuples, ChangeType.POSITIVE);
 		final ChangeSet trackElement_connectsToChangeSet = new ChangeSet(trackElement_connectsToTuples, ChangeType.POSITIVE);
 
-		// System.out.println("rrd: " + route_routeDefinitionChangeSet.getTuples().size());
-		// System.out.println("ren: " + route_entryChangeSet.getTuples().size());
-		// System.out.println("rex: " + route_exitChangeSet.getTuples().size());
-		// System.out.println("tEs: " + trackElement_sensorChangeSet.getTuples().size());
-		// System.out.println("tEc: " + trackElement_connectsToChangeSet.getTuples().size());
-
 		logMessage("Route_exit JOIN Route_routeDefinition");
 		logMessage("<Route1, Signal, Sensor1>");
 		final TupleMask leftMask1 = new TupleMask(ImmutableList.of(0));
@@ -270,8 +266,6 @@ public class TrainBenchmark {
 		logResult(resultChangeSet2.getTuples().toString());
 		logMessage(resultChangeSet2.getTuples().size() + " tuples");
 
-		
-		// -----
 		logMessage("TrackElement_sensor JOIN TrackElement_connectsTo");
 		logMessage("<TrackElement1, Sensor1, TrackElement2>");
 		final TupleMask leftMask3 = new TupleMask(ImmutableList.of(0));
@@ -292,12 +286,11 @@ public class TrainBenchmark {
 
 		logMessage("PROJECTION_{1, 3} (TrackElement_sensor JOIN TrackElement_connectsTo JOIN TrackElement_sensor)");
 		logMessage("<Sensor1, Sensor2>");
-		final TupleMask projectionMask = new TupleMask(ImmutableList.of(1, 3));
-		final TrimmerNode trimmerNode1 = new TrimmerNode(projectionMask);
+		final TupleMask projectionMask1 = new TupleMask(ImmutableList.of(1, 3));
+		final TrimmerNode trimmerNode1 = new TrimmerNode(projectionMask1);
 		final ChangeSet resultChangeSet5 = trimmerNode1.update(resultChangeSet4);
 		logResult(resultChangeSet5.getTuples().toString());
 		logMessage(resultChangeSet5.getTuples().size() + " tuples");
-		// -----
 
 		logMessage("Route_exit JOIN Route_routeDefinition JOIN ");
 		logMessage("  PROJECTION_{1, 3} (TrackElement_sensor JOIN TrackElement_connectsTo JOIN TrackElement_sensor)");
@@ -312,31 +305,50 @@ public class TrainBenchmark {
 		logMessage("Route_exit JOIN Route_routeDefinition JOIN ");
 		logMessage("  PROJECTION_{1, 3} (TrackElement_sensor JOIN TrackElement_connectsTo JOIN TrackElement_sensor)");
 		logMessage("  JOIN Route_routeDefinition");
-		logMessage("<Route1, Signal, Sensor1, Sensor2, Route2>");
-		final TupleMask leftMask8 = new TupleMask(ImmutableList.of(3));
-		final TupleMask rightMask8 = new TupleMask(ImmutableList.of(1));
-		final JoinNode joinNode6 = new JoinNode(leftMask8, rightMask8);
-		final ChangeSet resultChangeSet8 = Algorithms.join(joinNode6, resultChangeSet6, route_routeDefinitionChangeSet);
-		logResult(resultChangeSet8.getTuples().toString());
-		logMessage(resultChangeSet8.getTuples().size() + " tuples");
-		
-		logMessage("Route_exit JOIN Route_routeDefinition JOIN ");
-		logMessage("  PROJECTION_{1, 3} (TrackElement_sensor JOIN TrackElement_connectsTo JOIN TrackElement_sensor)");
-		logMessage("  JOIN Route_routeDefinition");
-		logMessage("  ANTIJOIN (Route_exit JOIN Route_routeDefinition)");
-		logMessage("<Route1, Signal, Sensor1, Sensor2, Route2>");
-		
+		logMessage("<Route1, Signal, Sensor1, Sensor2, Route3>");
 		final TupleMask leftMask6 = new TupleMask(ImmutableList.of(3));
-		final TupleMask rightMask6 = new TupleMask(ImmutableList.of(2));
-		final AntiJoinNode antijoinNode = new AntiJoinNode(leftMask6, rightMask6);
-		final ChangeSet resultChangeSet7 = Algorithms.join(antijoinNode, resultChangeSet8, resultChangeSet2);
+		final TupleMask rightMask6 = new TupleMask(ImmutableList.of(1));
+		final JoinNode joinNode6 = new JoinNode(leftMask6, rightMask6);
+		final ChangeSet resultChangeSet7 = Algorithms.join(joinNode6, resultChangeSet6, route_routeDefinitionChangeSet);
 		logResult(resultChangeSet7.getTuples().toString());
 		logMessage(resultChangeSet7.getTuples().size() + " tuples");
 
+		logMessage("SELECTION_{t[0] != t[4]}");
+		logMessage("Route_exit JOIN Route_routeDefinition JOIN ");
+		logMessage("  PROJECTION_{1, 3} (TrackElement_sensor JOIN TrackElement_connectsTo JOIN TrackElement_sensor)");
+		logMessage("  JOIN Route_routeDefinition");
+		logMessage("<Route1, Signal, Sensor1, Sensor2, Route3>");
+		final TupleMask inequalityMask = new TupleMask(ImmutableList.of(0, 4));
+		final AlphaNode inequalityNode = new InequalityNode(inequalityMask);
+		final ChangeSet resultChangeSet8 = inequalityNode.update(resultChangeSet7);
+		logResult(resultChangeSet8.getTuples().toString());
+		logMessage(resultChangeSet8.getTuples().size() + " tuples");
 		
+		logMessage("SELECTION_{t[0] != t[4]} (");
+		logMessage("  Route_exit JOIN Route_routeDefinition JOIN ");
+		logMessage("  PROJECTION_{1, 3} (TrackElement_sensor JOIN TrackElement_connectsTo JOIN TrackElement_sensor)");
+		logMessage("  JOIN Route_routeDefinition");
+		logMessage(")");
+		logMessage("ANTIJOIN ");
+		logMessage("  (Route_exit JOIN Route_routeDefinition)");
+		logMessage("<Route1, Signal, Sensor1, Sensor2, Route3>)");
+		final TupleMask leftMask7 = new TupleMask(ImmutableList.of(1, 3));
+		final TupleMask rightMask7 = new TupleMask(ImmutableList.of(1, 2));
+		final AntiJoinNode joinNode7 = new AntiJoinNode(leftMask7, rightMask7);
+		final ChangeSet resultChangeSet9 = Algorithms.join(joinNode7, resultChangeSet8, resultChangeSet2);
+		logResult(resultChangeSet9.getTuples().toString());
+		logMessage(resultChangeSet9.getTuples().size() + " tuples");
+
+		logMessage("Trimming for Routes");
+		logMessage("<Route1>");
+		final TupleMask projectionMask2 = new TupleMask(ImmutableList.of(0));
+		final TrimmerNode trimmerNode2 = new TrimmerNode(projectionMask2);
+		final ChangeSet resultChangeSet10 = trimmerNode2.update(resultChangeSet9);
+		logResult(resultChangeSet10.getTuples().toString());
+		logMessage(resultChangeSet10.getTuples().size() + " tuples");
 		
-		// logBenchmark(resultChangeSetXX.getTuples().size() + " tuples");
-		// assertEquals(20, resultChangeSet3.getTuples().size());
+		logBenchmark(resultChangeSet10.getTuples().size() + " tuples");
+		assertEquals(2, resultChangeSet10.getTuples().size());
 	}
 
 	@Test
@@ -365,7 +377,7 @@ public class TrainBenchmark {
 		final ChangeSet resultChangeSet = Algorithms.join(antiJoinNode, switchChangeSet, trackElement_sensorChangeSet);
 		logResult(resultChangeSet.getTuples().toString());
 		logBenchmark(resultChangeSet.getTuples().size() + " tuples");
-		
+
 		assertEquals(26, resultChangeSet.getTuples().size());
 	}
 
