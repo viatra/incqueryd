@@ -1,6 +1,14 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
+import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
+import hu.bme.mit.incqueryd.rete.dataunits.TupleImpl;
+import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * The TrimmerNode has a pattern mask and outputs the contents of its parent transformed by the mask. On receiving an update, it uses the mask to transform the
@@ -14,10 +22,33 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
  */
 public class TrimmerNode extends AlphaNode {
 
+	protected TupleMask projectionMask;
+
+	public TrimmerNode(final TupleMask projectionMask) {
+		this.projectionMask = projectionMask;
+	}
+
 	@Override
 	public ChangeSet update(final ChangeSet incomingChangeSet) {
+		final List<Integer> mask = projectionMask.getMask();
 
-		return null;
+		final Set<Tuple> incomingTuples = incomingChangeSet.getTuples();
+
+		final Set<Tuple> resultTuples = new HashSet<>();
+		for (final Tuple incomingTuple : incomingTuples) {
+			
+			// generating the new tuple from the incoming tuple (projection according to the mask)
+			final ArrayList<Object> resultTupleList = new ArrayList<>(mask.size());			
+			for (final Integer element : mask) {
+				resultTupleList.add(incomingTuple.get(element));
+			}
+			
+			final TupleImpl tuple = new TupleImpl(resultTupleList.toArray());
+			resultTuples.add(tuple);
+		}
+
+		final ChangeSet resultChangeSet = new ChangeSet(resultTuples, incomingChangeSet.getChangeType());
+		return resultChangeSet;
 	}
 
 }
