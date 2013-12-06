@@ -113,7 +113,7 @@ public class TrainBenchmark {
 			final Set<Tuple> tuples = new HashSet<>();
 			edgeTuplesMap.put(edgeLabel, tuples);
 
-			System.out.println(edgeLabel);
+			//System.out.println(edgeLabel);
 
 			for (final Object v1 : edges.keySet()) {
 				final Collection<Object> v2s = edges.get(v1);
@@ -123,11 +123,11 @@ public class TrainBenchmark {
 					final Tuple tuple = new TupleImpl(v1, v2);
 					tuples.add(tuple);
 					// logResult(tuple.toString());
-					System.out.println(tuple.toString() + ", ");
+					//System.out.println(tuple.toString() + ", ");
 				}
 			}
 
-			System.out.println();
+			//System.out.println();
 		}
 
 		System.out.print("loaded, ");
@@ -204,9 +204,17 @@ public class TrainBenchmark {
 		final ChangeSet resultChangeSet3 = Algorithms.join(joinNode3, resultChangeSet2, route_routeDefinitionChangeSet);
 		logResult(resultChangeSet3.getTuples().toString());
 		logMessage(resultChangeSet3.getTuples().size() + " tuples");
-		logBenchmark(resultChangeSet3.getTuples().size() + " tuples");
 
-		assertEquals(19, resultChangeSet3.getTuples().size());
+		logMessage("PROJECTION_{0} (");
+		logMessage("Route_switchPosition JOIN SwitchPosition_switch JOIN TrackElement_sensor ANTIJOIN Route_routeDefinition");
+		logMessage("<Route>");
+		final TupleMask projectionMask = new TupleMask(ImmutableList.of(0));
+		final TrimmerNode trimmerNode = new TrimmerNode(projectionMask);
+		final ChangeSet resultChangeSet4 = trimmerNode.update(resultChangeSet3);
+		logResult(resultChangeSet4.getTuples().toString());
+		logMessage(resultChangeSet4.getTuples().size() + " tuples");
+		
+		assertEquals(12, resultChangeSet4.getTuples().size());
 	}
 
 	// pattern signalNeighbor(R1) =
@@ -339,7 +347,15 @@ public class TrainBenchmark {
 		logResult(resultChangeSet9.getTuples().toString());
 		logMessage(resultChangeSet9.getTuples().size() + " tuples");
 
-		logMessage("Trimming for Routes");
+		logMessage("PROJECTION_{0} (");
+		logMessage("SELECTION_{t[0] != t[4]} (");
+		logMessage("  Route_exit JOIN Route_routeDefinition JOIN ");
+		logMessage("  PROJECTION_{1, 3} (TrackElement_sensor JOIN TrackElement_connectsTo JOIN TrackElement_sensor)");
+		logMessage("  JOIN Route_routeDefinition");
+		logMessage(")");
+		logMessage("ANTIJOIN ");
+		logMessage("  (Route_exit JOIN Route_routeDefinition)");
+		logMessage(")");
 		logMessage("<Route1>");
 		final TupleMask projectionMask2 = new TupleMask(ImmutableList.of(0));
 		final TrimmerNode trimmerNode2 = new TrimmerNode(projectionMask2);
