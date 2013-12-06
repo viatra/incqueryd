@@ -27,9 +27,9 @@ WHERE
   FILTER ( ?xRouteX != ?xRoute1 ) .
   
   OPTIONAL {
-    // ?xRoute2 rdf:type base:Route .
-    // ?xRoute2 base:Route_routeDefinition ?xSen2 .
-    ?xRoute2 base:Route_entry ?xSig .
+    ?xRoute2 rdf:type base:Route .
+    ?xRoute2 base:Route_entry ?xSig . //elso
+    ?xRoute2 base:Route_routeDefinition ?xSen2 . //utolso
   } .
   FILTER (!bound(?xRoute2))
 }
