@@ -3,15 +3,19 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl:  <http://www.w3.org/2002/07/owl#>
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT distinct ?xRoute1
+//                Route1, Signal, Sensor1, Sensor2, Route2
+
+SELECT DISTINCT ?xRoute1 //, ?xSig, ?xSen1, ?xSen2, ?xRouteX
 WHERE
 {
   ?xRoute1 rdf:type base:Route .
   ?xSen1 rdf:type base:Sensor .
   ?xRoute1 base:Route_routeDefinition ?xSen1 .
-  ?xTE1 rdf:type base:Trackelement .
+  //?xTE1 rdf:type base:Trackelement .
+  //?xTE2 rdf:type base:Trackelement .
+  {?xTE1 rdf:type base:Switch} UNION {?xTE1 rdf:type base:Segment}  .
+  {?xTE2 rdf:type base:Switch} UNION {?xTE2 rdf:type base:Segment}  .
   ?xTE1 base:TrackElement_sensor ?xSen1 .
-  ?xTE2 rdf:type base:Trackelement .
   ?xTE1 base:TrackElement_connectsTo ?xTE2 .
   ?xSen2 rdf:type base:Sensor .
   ?xTE2 base:TrackElement_sensor ?xSen2 .
@@ -20,12 +24,12 @@ WHERE
   
   ?xRouteX rdf:type base:Route .
   ?xRouteX base:Route_routeDefinition ?xSen2 .
-  FILTER ( ?xRouteX != ?xRoute1 )
+  FILTER ( ?xRouteX != ?xRoute1 ) .
   
-  OPTIONAL { 
-           ?xRoute2 rdf:type base:Route .
-           ?xRoute2 base:Route_routeDefinition ?xSen2 .
-           ?xRoute2 base:Route_entry ?xSig .
-           } .
+  OPTIONAL {
+    // ?xRoute2 rdf:type base:Route .
+    // ?xRoute2 base:Route_routeDefinition ?xSen2 .
+    ?xRoute2 base:Route_entry ?xSig .
+  } .
   FILTER (!bound(?xRoute2))
 }

@@ -3,8 +3,10 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl:  <http://www.w3.org/2002/07/owl#>
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-SELECT distinct ?xTE
+SELECT ?xTE
 WHERE
 {
-  ?xTE rdf:type base:Trackelement
+  {?xTE rdf:type base:Segment}
+  UNION
+  {?xTE rdf:type base:Switch}
 }
