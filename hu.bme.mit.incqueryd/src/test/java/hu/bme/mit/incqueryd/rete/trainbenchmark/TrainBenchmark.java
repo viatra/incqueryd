@@ -273,7 +273,9 @@ public class TrainBenchmark {
 		final ChangeSet resultChangeSet2 = Algorithms.join(joinNode2, route_entryChangeSet, route_routeDefinitionChangeSet);
 		logResult(resultChangeSet2.getTuples().toString());
 		logMessage(resultChangeSet2.getTuples().size() + " tuples");
-
+		// /NAC
+		
+		
 		logMessage("TrackElement_sensor JOIN TrackElement_connectsTo");
 		logMessage("<TrackElement1, Sensor1, TrackElement2>");
 		final TupleMask leftMask3 = new TupleMask(ImmutableList.of(0));
@@ -338,7 +340,7 @@ public class TrainBenchmark {
 		logMessage("  JOIN Route_routeDefinition");
 		logMessage(")");
 		logMessage("ANTIJOIN ");
-		logMessage("  (Route_exit JOIN Route_routeDefinition)");
+		logMessage("  (Route_entry JOIN Route_routeDefinition)");
 		logMessage("<Route1, Signal, Sensor1, Sensor2, Route3>)");
 		final TupleMask leftMask7 = new TupleMask(ImmutableList.of(1, 3));
 		final TupleMask rightMask7 = new TupleMask(ImmutableList.of(1, 2));
@@ -354,7 +356,7 @@ public class TrainBenchmark {
 		logMessage("  JOIN Route_routeDefinition");
 		logMessage(")");
 		logMessage("ANTIJOIN ");
-		logMessage("  (Route_exit JOIN Route_routeDefinition)");
+		logMessage("  (Route_entry JOIN Route_routeDefinition)");
 		logMessage(")");
 		logMessage("<Route1>");
 		final TupleMask projectionMask2 = new TupleMask(ImmutableList.of(0));
