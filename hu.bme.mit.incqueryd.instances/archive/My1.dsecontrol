@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DSEControl:Cluster xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DSEControl="DSEControl">
+  <contains xsi:type="DSEControl:Machine" storage="//@contains.7" host="host1" dataNode="//@contains.2 //@contains.3"/>
+  <contains xsi:type="DSEControl:Machine" storage="//@contains.8" host="host2"/>
+  <contains xsi:type="DSEControl:Indexer" allocatedTo="//@contains.0" usedSpace="//@contains.4" target="//@contains.6"/>
+  <contains xsi:type="DSEControl:Production" allocatedTo="//@contains.0" usedSpace="//@contains.5" source="//@contains.6"/>
+  <contains xsi:type="DSEControl:Storage" used="300"/>
+  <contains xsi:type="DSEControl:Storage" used="100"/>
+  <contains xsi:type="DSEControl:ReteConnection" indexer="//@contains.2" production="//@contains.3"/>
+  <contains xsi:type="DSEControl:Storage" maximum="600"/>
+  <contains xsi:type="DSEControl:Storage" maximum="500"/>
+</DSEControl:Cluster>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ASCII"?>
+<DSEControl:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:DSEControl="DSEControl">
+  <reteContainers>
+    <reteNodes traceInfo="UniquenessEnforcerNode : Cluster :  [1]"/>
+    <reteNodes traceInfo="TrimmerNode&#xA;&lt;C; >  "/>
+    <reteNodes traceInfo="DefaultProductionNode [1]"/>
+    <reteNodes traceInfo="RetePatternMatcher&#xA; 'cluster'"/>
+    <reteNodes traceInfo="CallbackNode&#xA;"/>
+    <reteNodes traceInfo="UniquenessEnforcerNode : ReteContainer :  [1]"/>
+    <reteNodes traceInfo="TrimmerNode&#xA;&lt;RC; >  "/>
+    <reteNodes traceInfo="DefaultProductionNode [1]"/>
+    <reteNodes traceInfo="RetePatternMatcher&#xA; 'reteContainer'"/>
+    <reteNodes traceInfo="CallbackNode&#xA;"/>
+    <reteNodes traceInfo="UniquenessEnforcerNode : Storage :  [4]"/>
+    <reteNodes traceInfo="TrimmerNode&#xA;&lt;S; >  "/>
+    <reteNodes traceInfo="DefaultProductionNode [4]"/>
+    <reteNodes traceInfo="RetePatternMatcher&#xA; 'storage'"/>
+    <reteNodes traceInfo="CallbackNode&#xA;"/>
+    <reteNodes traceInfo="UniquenessEnforcerNode : ReteConnection :  [1]"/>
+    <reteNodes traceInfo="TrimmerNode&#xA;&lt;RC; >  "/>
+    <reteNodes traceInfo="DefaultProductionNode [1]"/>
+    <reteNodes traceInfo="RetePatternMatcher&#xA; 'reteConnection'"/>
+    <reteNodes traceInfo="CallbackNode&#xA;"/>
+    <reteNodes traceInfo="UniquenessEnforcerNode : Indexer :  [1]"/>
+    <reteNodes traceInfo="TrimmerNode&#xA;&lt;IX; >  "/>
+    <reteNodes traceInfo="DefaultProductionNode [1]"/>
+    <reteNodes traceInfo="RetePatternMatcher&#xA; 'indexer'"/>
+    <reteNodes traceInfo="CallbackNode&#xA;"/>
+    <reteNodes traceInfo="UniquenessEnforcerNode : Machine :  [2]"/>
+    <reteNodes traceInfo="TrimmerNode&#xA;&lt;M; >  "/>
+    <reteNodes traceInfo="DefaultProductionNode [2]"/>
+    <reteNodes traceInfo="RetePatternMatcher&#xA; 'machine'"/>
+    <reteNodes traceInfo="CallbackNode&#xA;"/>
+    <reteNodes traceInfo="UniquenessEnforcerNode : Join :  [0]"/>
+    <reteNodes traceInfo="TrimmerNode&#xA;&lt;J; >  "/>
+    <reteNodes traceInfo="DefaultProductionNode [0]"/>
+    <reteNodes traceInfo="RetePatternMatcher&#xA; 'join'"/>
+    <reteNodes traceInfo="CallbackNode&#xA;"/>
+    <reteNodes traceInfo="UniquenessEnforcerNode : Production :  [1]"/>
+    <reteNodes traceInfo="TrimmerNode&#xA;&lt;PR; >  "/>
+    <reteNodes traceInfo="DefaultProductionNode [1]"/>
+    <reteNodes traceInfo="RetePatternMatcher&#xA; 'production'"/>
+    <reteNodes traceInfo="CallbackNode&#xA;"/>
+    <reteNodes traceInfo="UniquenessEnforcerNode : AntiJoin :  [0]"/>
+    <reteNodes traceInfo="TrimmerNode&#xA;&lt;AJ; >  "/>
+    <reteNodes traceInfo="DefaultProductionNode [0]"/>
+    <reteNodes traceInfo="RetePatternMatcher&#xA; 'antiJoin'"/>
+    <reteNodes traceInfo="CallbackNode&#xA;"/>
+  </reteContainers>
+</DSEControl:Configuration>
