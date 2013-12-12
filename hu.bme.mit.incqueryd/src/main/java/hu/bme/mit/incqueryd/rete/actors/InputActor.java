@@ -16,11 +16,12 @@ import hu.bme.mit.incqueryd.rete.messages.UpdateType;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.Stack;
-import java.util.Vector;
 
 import org.apache.cassandra.transport.messages.ReadyMessage;
 
@@ -29,23 +30,16 @@ import akka.actor.ActorRef;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
-/**
- * Implementation for the UniquenessEnforcerNode. "UniquenessEnforcerNode has a memory that works like a multi-set (also
- * known as bag) and enforces the uniqueness principle." [Bergmann's MSc thesis, p.40]
- * 
- * @author szarnyasg
- * 
- */
-public class InputNode extends ReteActor {
+public class InputActor extends ReteActor {
 
-    protected List<Tuple> tuples = new ArrayList<>();
+    protected Set<Tuple> tuples = new HashSet<>();
     protected List<DatabaseClient> clients = new ArrayList<>();
     protected ReteNodeSlot nodeSlot;
     protected int updateMessageCount = 0;
     protected DatabaseClient databaseClient;
     protected String edgeLabel;
 
-    public InputNode() {
+    public InputActor() {
         super();
     }
 
@@ -118,7 +112,10 @@ public class InputNode extends ReteActor {
     }
 
     private void edit() {
-        final Collection<Tuple> negTuples = new Vector<>(); // n.b. Vector is synchronized
+        final Set<Tuple> negTuples = new HashSet<>(); // n.b. Vector is synchronized
+        // TODO 
+        // - do we need synchronization?
+        // - if we do, is HashSet synchronized?
 
         // Collections.sort(tuples);
         final Multimap<Object, Object> routeAndSensorIds = ArrayListMultimap.create();
@@ -197,7 +194,7 @@ public class InputNode extends ReteActor {
         sendTuples(UpdateType.NEGATIVE, nodeSlot, negTuples);
     }
 
-    protected void sendTuples(final UpdateType updateType, final ReteNodeSlot nodeSlot, final Collection<Tuple> tuples) {
+    protected void sendTuples(final UpdateType updateType, final ReteNodeSlot nodeSlot, final Set<Tuple> tuples) {
         updateMessageCount++;
 
         final UpdateMessage updateMessage = new UpdateMessage(updateType, nodeSlot, tuples);

@@ -4,6 +4,8 @@ import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -33,8 +35,8 @@ public class Indexer {
         map.put(extractedTuple, tuple);
     }
 
-    public Collection<Tuple> get(final Tuple tuple) {
-        return map.get(tuple);
+    public Set<Tuple> get(final Tuple tuple) {
+        return new HashSet<Tuple>(map.get(tuple));
     }
 
     public int getSize() {

@@ -6,24 +6,18 @@ import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.messages.NodeMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import akka.actor.ActorRef;
 
-/**
- * Finally, a distinguished production node for each pattern collects the matches of the pattern. [Bergmann's MSc
- * thesis, p. 27]
- * 
- * @author szarnyasg
- * 
- */
-public class ProductionNode extends ReteActor {
+public class ProductionActor extends AlphaActor {
 
-    protected Collection<Tuple> memory = new ArrayList<>();
+    protected Set<Tuple> memory = new HashSet<>();
     protected ActorRef coordinator;
 
-    public ProductionNode() {
+    public ProductionActor() {
         super();
     }
 
