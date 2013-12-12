@@ -7,7 +7,7 @@
 //import java.util.Collection;
 //import java.util.List;
 //
-//import distributed.rete.datastructure.JoinSide;
+//import distributed.rete.datastructure.NodeSlot;
 //import distributed.rete.datastructure.Tuple;
 //
 ///**
@@ -63,7 +63,7 @@
 //	}
 //
 //	@Override
-//	protected UpdateMessage joinNewTuples(Set<Tuple> newTuples, JoinSide joinSide, UpdateType updateType) {
+//	protected UpdateMessage joinNewTuples(Set<Tuple> newTuples, NodeSlot nodeSlot, UpdateType updateType) {
 //		UpdateType propagatedUpdateType = null;
 //
 //		// determining the propagated update's type (see the Javadoc for the
@@ -71,16 +71,16 @@
 //		// remark: important updates are not yet implemented
 //		switch (updateType) {
 //		case POSITIVE:
-//			propagatedUpdateType = joinSide == ReteNodeSlot.PRIMARY ? UpdateType.POSITIVE : UpdateType.NEGATIVE;
+//			propagatedUpdateType = nodeSlot == ReteNodeSlot.PRIMARY ? UpdateType.POSITIVE : UpdateType.NEGATIVE;
 //			break;
 //		case NEGATIVE:
-//			propagatedUpdateType = joinSide == ReteNodeSlot.PRIMARY ? UpdateType.NEGATIVE : UpdateType.POSITIVE;
+//			propagatedUpdateType = nodeSlot == ReteNodeSlot.PRIMARY ? UpdateType.NEGATIVE : UpdateType.POSITIVE;
 //			break;
 //		}
 //
-//		logger.info(actorString() + " JoinSide: " + joinSide);
-//		Indexer newTuplesIndexer = joinSide == ReteNodeSlot.PRIMARY ? leftIndexer : rightIndexer;
-//		Indexer existingTuplesIndexer = joinSide == ReteNodeSlot.PRIMARY ? rightIndexer : leftIndexer;
+//		logger.info(actorString() + " NodeSlot: " + nodeSlot);
+//		Indexer newTuplesIndexer = nodeSlot == ReteNodeSlot.PRIMARY ? leftIndexer : rightIndexer;
+//		Indexer existingTuplesIndexer = nodeSlot == ReteNodeSlot.PRIMARY ? rightIndexer : leftIndexer;
 //
 //		List<Tuple> result = new ArrayList<>();
 //
@@ -92,7 +92,7 @@
 //			Set<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
 //
 //			// see the Javadoc for the class
-//			switch (joinSide) {
+//			switch (nodeSlot) {
 //			case PRIMARY:
 //				if ((updateType == UpdateType.POSITIVE && matchingTuples.isEmpty()) || (updateType == UpdateType.NEGATIVE && !matchingTuples.isEmpty())) {
 //					result.add(newTuple);
@@ -112,7 +112,7 @@
 //
 //		UpdateMessage propagatedUpdateMessage = null;
 //		if (!result.isEmpty() && targetActor != null) {
-//			propagatedUpdateMessage = new UpdateMessage(propagatedUpdateType, nextJoinSide, result);
+//			propagatedUpdateMessage = new UpdateMessage(propagatedUpdateType, nextNodeSlot, result);
 //		}
 //
 //		return propagatedUpdateMessage;

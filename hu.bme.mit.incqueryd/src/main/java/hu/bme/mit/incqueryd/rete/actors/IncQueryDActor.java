@@ -57,7 +57,7 @@ public abstract class IncQueryDActor extends UntypedActor {
         senderStack.push(getSelf());
 
         logger.info(actorString() + " sending " + message.getTuples().size() + " tuples to " + targetActorPath
-                + ", joinSide = " + message.getJoinSide() + ", propagated update type = " + message.getUpdateType()
+                + ", nodeSlot = " + message.getNodeSlot() + ", propagated update type = " + message.getUpdateType()
                 + ", sender stack is: " + senderStack);
 
         // we're setting the message's sender stack just here

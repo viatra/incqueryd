@@ -40,7 +40,7 @@ public class InputNode extends ReteActor {
 
     protected List<Tuple> tuples = new ArrayList<>();
     protected List<DatabaseClient> clients = new ArrayList<>();
-    protected ReteNodeSlot joinSide;
+    protected ReteNodeSlot nodeSlot;
     protected int updateMessageCount = 0;
     protected DatabaseClient databaseClient;
     protected String edgeLabel;
@@ -55,7 +55,7 @@ public class InputNode extends ReteActor {
 
         this.coordinator = configuration.coordinator;
         this.targetActorPath = configuration.targetActorPath;
-        this.joinSide = configuration.targetJoinSide;
+        this.nodeSlot = configuration.targetNodeSlot;
 
         // databaseClient = DatabaseClientFactory.createDatabaseClient(configuration.databaseClientType, "localhost",
         // configuration.filename);
@@ -103,7 +103,7 @@ public class InputNode extends ReteActor {
         else if (message == CoordinatorMessage.START) {
             logger.info("[" + getSelf().path() + "] start received.");
             targetActor = getContext().actorFor(targetActorPath);
-            sendTuples(UpdateType.POSITIVE, joinSide, tuples);
+            sendTuples(UpdateType.POSITIVE, nodeSlot, tuples);
         }
 
         else if (message instanceof EditMessage) {
@@ -194,13 +194,13 @@ public class InputNode extends ReteActor {
         logger.info("waiting over " + delta + " ms");
 
         logger.info(negTuples.size() + " tuples in the negative update to " + targetActorPath);
-        sendTuples(UpdateType.NEGATIVE, joinSide, negTuples);
+        sendTuples(UpdateType.NEGATIVE, nodeSlot, negTuples);
     }
 
-    protected void sendTuples(final UpdateType updateType, final ReteNodeSlot joinSide, final Collection<Tuple> tuples) {
+    protected void sendTuples(final UpdateType updateType, final ReteNodeSlot nodeSlot, final Collection<Tuple> tuples) {
         updateMessageCount++;
 
-        final UpdateMessage updateMessage = new UpdateMessage(updateType, joinSide, tuples);
+        final UpdateMessage updateMessage = new UpdateMessage(updateType, nodeSlot, tuples);
         // start with an empty senderStack
 
         final Stack<ActorRef> senderStack = new Stack<>();

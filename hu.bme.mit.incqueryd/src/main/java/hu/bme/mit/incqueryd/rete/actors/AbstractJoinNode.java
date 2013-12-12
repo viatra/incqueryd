@@ -16,7 +16,7 @@ public abstract class AbstractJoinNode extends ReteActor {
 
     protected Indexer leftIndexer;
     protected Indexer rightIndexer;
-    protected ReteNodeSlot nextJoinSide;
+    protected ReteNodeSlot nextNodeSlot;
 
     public AbstractJoinNode() {
         super();
@@ -29,7 +29,7 @@ public abstract class AbstractJoinNode extends ReteActor {
         this.leftIndexer = new Indexer(configuration.leftMask);
         this.rightIndexer = new Indexer(configuration.rightMask);
         this.targetActorPath = configuration.targetActorPath;
-        this.nextJoinSide = configuration.targetJoinSide;
+        this.nextNodeSlot = configuration.targetNodeSlot;
         this.coordinator = configuration.coordinator;
 
         logger.info(actorString() + " telling INITIALIZED to " + coordinator);
@@ -61,7 +61,7 @@ public abstract class AbstractJoinNode extends ReteActor {
 
     private void sendTuples(final UpdateMessage receivedJoinMessage, final UpdateType updateType,
             final Collection<Tuple> tuples) {
-        final UpdateMessage propagatedUpdateMessage = joinNewTuples(tuples, receivedJoinMessage.getJoinSide(),
+        final UpdateMessage propagatedUpdateMessage = joinNewTuples(tuples, receivedJoinMessage.getNodeSlot(),
                 updateType);
 
         if (propagatedUpdateMessage != null) {
@@ -72,6 +72,6 @@ public abstract class AbstractJoinNode extends ReteActor {
         }
     }
 
-    protected abstract UpdateMessage joinNewTuples(Collection<Tuple> newTuples, ReteNodeSlot joinSide, UpdateType updateType);
+    protected abstract UpdateMessage joinNewTuples(Collection<Tuple> newTuples, ReteNodeSlot nodeSlot, UpdateType updateType);
 
 }

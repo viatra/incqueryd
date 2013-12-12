@@ -7,7 +7,7 @@
 //import java.util.Collection;
 //import java.util.List;
 //
-//import distributed.rete.datastructure.JoinSide;
+//import distributed.rete.datastructure.NodeSlot;
 //import distributed.rete.datastructure.Tuple;
 //import distributed.rete.datastructure.TupleImpl;
 //
@@ -37,11 +37,11 @@
 //	 * @return
 //	 */
 //	@Override
-//	protected UpdateMessage joinNewTuples(Set<Tuple> newTuples, JoinSide joinSide, UpdateType updateType) {
+//	protected UpdateMessage joinNewTuples(Set<Tuple> newTuples, NodeSlot nodeSlot, UpdateType updateType) {
 //		// int n = 0;
 //
-//		Indexer newTuplesIndexer = joinSide == ReteNodeSlot.PRIMARY ? leftIndexer : rightIndexer;
-//		Indexer existingTuplesIndexer = joinSide == ReteNodeSlot.PRIMARY ? rightIndexer : leftIndexer;
+//		Indexer newTuplesIndexer = nodeSlot == ReteNodeSlot.PRIMARY ? leftIndexer : rightIndexer;
+//		Indexer existingTuplesIndexer = nodeSlot == ReteNodeSlot.PRIMARY ? rightIndexer : leftIndexer;
 //
 //		// save the new tuples to the indexer's memory
 //		newTuplesIndexer.add(newTuples);
@@ -53,7 +53,7 @@
 //		List<Integer> rightTupleMask = rightIndexer.getJoinMask().getMask();
 //
 //		// logger.info("[" + getSelf().path() + "] Join side is: " +
-//		// joinSide);
+//		// nodeSlot);
 //		// logger.info("[" + getSelf().path() + "] Tuples added: " +
 //		// newTuples.size());
 //		// logger.info("[" + getSelf().path() +
@@ -80,8 +80,8 @@
 //				Object[] resultTuple = new Object[size];
 //
 //				// assemble the result tuple
-//				Tuple leftTuple = joinSide == ReteNodeSlot.PRIMARY ? newTuple : matchingTuple;
-//				Tuple rightTuple = joinSide == ReteNodeSlot.PRIMARY ? matchingTuple : newTuple;
+//				Tuple leftTuple = nodeSlot == ReteNodeSlot.PRIMARY ? newTuple : matchingTuple;
+//				Tuple rightTuple = nodeSlot == ReteNodeSlot.PRIMARY ? matchingTuple : newTuple;
 //
 //				// copy from the left tuple
 //				for (int i = 0; i < leftTuple.size(); i++) {
@@ -109,7 +109,7 @@
 //
 //		UpdateMessage propagatedUpdateMessage = null;
 //		if (!result.isEmpty() && targetActor != null) {
-//			propagatedUpdateMessage = new UpdateMessage(updateType, nextJoinSide, result);
+//			propagatedUpdateMessage = new UpdateMessage(updateType, nextNodeSlot, result);
 //		}
 //
 //		return propagatedUpdateMessage;
