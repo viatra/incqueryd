@@ -21,7 +21,6 @@ public abstract class IncQueryDActor extends UntypedActor {
 
     // sentUpdates is a <target, source route> map
     // protected Map<ActorRef, Stack<ActorRef>> sentUpdates = new HashMap<>();
-
     public IncQueryDActor() {
         super();
 
