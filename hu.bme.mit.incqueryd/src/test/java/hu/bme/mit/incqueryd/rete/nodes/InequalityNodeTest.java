@@ -10,20 +10,20 @@ import org.junit.Test;
 /**
  * 
  * @author szarnyasg
- *
+ * 
  */
 public class InequalityNodeTest {
 
-	public void test(final FilterNodeTestData data) {
-		final FilterNode filterNode = new InequalityNode(data.getTupleMask());
-		final ChangeSet resultChangeSet = filterNode.update(data.getChangeSet());
-		
-		assertTrue(resultChangeSet.equals(data.getInequalityExpectedResults()));		
-	}
+    public void test(final FilterNodeTestData data) {
+        final FilterNode filterNode = new InequalityNode(data.getTupleMask());
+        final ChangeSet resultChangeSet = filterNode.update(data.getChangeSet());
 
-	@Test
-	public void test1() {
-		test(FilterNodeTestHelper.data1());
-	}
-	
+        assertTrue(resultChangeSet.equals(data.getInequalityExpectedResults()));
+    }
+
+    @Test
+    public void test1() {
+        test(FilterNodeTestHelper.data1());
+    }
+
 }

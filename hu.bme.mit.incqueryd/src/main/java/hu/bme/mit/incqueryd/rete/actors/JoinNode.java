@@ -40,8 +40,8 @@
 //	protected UpdateMessage joinNewTuples(Set<Tuple> newTuples, JoinSide joinSide, UpdateType updateType) {
 //		// int n = 0;
 //
-//		Indexer newTuplesIndexer = joinSide == JoinSide.PRIMARY ? leftIndexer : rightIndexer;
-//		Indexer existingTuplesIndexer = joinSide == JoinSide.PRIMARY ? rightIndexer : leftIndexer;
+//		Indexer newTuplesIndexer = joinSide == ReteNodeSlot.PRIMARY ? leftIndexer : rightIndexer;
+//		Indexer existingTuplesIndexer = joinSide == ReteNodeSlot.PRIMARY ? rightIndexer : leftIndexer;
 //
 //		// save the new tuples to the indexer's memory
 //		newTuplesIndexer.add(newTuples);
@@ -80,8 +80,8 @@
 //				Object[] resultTuple = new Object[size];
 //
 //				// assemble the result tuple
-//				Tuple leftTuple = joinSide == JoinSide.PRIMARY ? newTuple : matchingTuple;
-//				Tuple rightTuple = joinSide == JoinSide.PRIMARY ? matchingTuple : newTuple;
+//				Tuple leftTuple = joinSide == ReteNodeSlot.PRIMARY ? newTuple : matchingTuple;
+//				Tuple rightTuple = joinSide == ReteNodeSlot.PRIMARY ? matchingTuple : newTuple;
 //
 //				// copy from the left tuple
 //				for (int i = 0; i < leftTuple.size(); i++) {
@@ -114,4 +114,4 @@
 //
 //		return propagatedUpdateMessage;
 //	}
-//}
+// }

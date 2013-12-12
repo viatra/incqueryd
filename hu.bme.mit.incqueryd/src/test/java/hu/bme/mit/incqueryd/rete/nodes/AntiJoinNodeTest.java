@@ -11,24 +11,25 @@ import org.junit.Test;
  * Test cases for the {@link AntiJoinNode} class.
  * 
  * @author szarnyasg
- *
+ * 
  */
 public class AntiJoinNodeTest {
 
-	public void test(final JoinNodeTestData data) {
-		final AntiJoinNode joinNode = new AntiJoinNode(data.getPrimaryMask(), data.getSecondaryMask());
-		final ChangeSet resultChangeSet = Algorithms.join(joinNode, data.getPrimaryChangeSet(), data.getSecondaryChangeSet());				
-		assertTrue(resultChangeSet.equals(data.getAntiJoinExpectedResults()));
-	}
+    public void test(final JoinNodeTestData data) {
+        final AntiJoinNode joinNode = new AntiJoinNode(data.getPrimaryMask(), data.getSecondaryMask());
+        final ChangeSet resultChangeSet = Algorithms.join(joinNode, data.getPrimaryChangeSet(),
+                data.getSecondaryChangeSet());
+        assertTrue(resultChangeSet.equals(data.getAntiJoinExpectedResults()));
+    }
 
-	@Test
-	public void test1() {
-		test(JoinNodeTestHelper.data1());
-	}
+    @Test
+    public void test1() {
+        test(JoinNodeTestHelper.data1());
+    }
 
-	@Test
-	public void test2() {
-		test(JoinNodeTestHelper.data2());
-	}
+    @Test
+    public void test2() {
+        test(JoinNodeTestHelper.data2());
+    }
 
 }

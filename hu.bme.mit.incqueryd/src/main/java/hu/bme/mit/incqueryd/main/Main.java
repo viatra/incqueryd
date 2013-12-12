@@ -14,38 +14,38 @@ import com.google.common.collect.Multimap;
 /**
  * 
  * @author szarnyasg
- *
+ * 
  */
 public class Main {
 
-	public static void main(final String[] args) throws IOException {
-		System.out.println("IncQuery-D main");
-		System.out.println("===============");
+    public static void main(final String[] args) throws IOException {
+        System.out.println("IncQuery-D main");
+        System.out.println("===============");
 
-		final String pathName = "/home/szarnyasg/hdd/models/faunus-graphson/testBig_User_1.faunus-graphson";
+        final String pathName = "/home/szarnyasg/hdd/models/faunus-graphson/testBig_User_1.faunus-graphson";
 
-		final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
-		vertexTypesAndProperties.put("Segment", ImmutableList.<String>of());
-		
-		final Collection<String> edgeLabels = ImmutableList.of("TrackElement_sensor");
+        final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
+        vertexTypesAndProperties.put("Segment", ImmutableList.<String> of());
 
-		// for vertices
-		// "type" --> "vertex ids"
-		final Multimap<String, Object> vertexTypeVertexIdsMap = ArrayListMultimap.create();
-		// "vertex id" --> "vertex properties"
-		final Map<Object, Map<String, Object>> vertexIdVertexPropertiesMap = new HashMap<>();
+        final Collection<String> edgeLabels = ImmutableList.of("TrackElement_sensor");
 
-		// for edges
-		// "label" --> "vertex pairs, e.g. [[1]->[2, 3], [4]->[5, 6, 7], ...]"
-		final Map<String, Multimap<Object, Object>> edgeLabelVertexPairsMap = new HashMap<>();
+        // for vertices
+        // "type" --> "vertex ids"
+        final Multimap<String, Object> vertexTypeVertexIdsMap = ArrayListMultimap.create();
+        // "vertex id" --> "vertex properties"
+        final Map<Object, Map<String, Object>> vertexIdVertexPropertiesMap = new HashMap<>();
 
-		GraphSonFormat.indexGraph(pathName, vertexTypesAndProperties, vertexTypeVertexIdsMap, vertexIdVertexPropertiesMap, edgeLabels, edgeLabelVertexPairsMap);
+        // for edges
+        // "label" --> "vertex pairs, e.g. [[1]->[2, 3], [4]->[5, 6, 7], ...]"
+        final Map<String, Multimap<Object, Object>> edgeLabelVertexPairsMap = new HashMap<>();
 
-		System.out.println(vertexTypeVertexIdsMap);
-		System.out.println(vertexIdVertexPropertiesMap);
-		System.out.println(edgeLabelVertexPairsMap);
+        GraphSonFormat.indexGraph(pathName, vertexTypesAndProperties, vertexTypeVertexIdsMap,
+                vertexIdVertexPropertiesMap, edgeLabels, edgeLabelVertexPairsMap);
 
-		
-	}
+        System.out.println(vertexTypeVertexIdsMap);
+        System.out.println(vertexIdVertexPropertiesMap);
+        System.out.println(edgeLabelVertexPairsMap);
+
+    }
 
 }

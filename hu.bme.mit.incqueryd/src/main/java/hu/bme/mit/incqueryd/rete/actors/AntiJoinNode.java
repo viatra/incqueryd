@@ -71,16 +71,16 @@
 //		// remark: important updates are not yet implemented
 //		switch (updateType) {
 //		case POSITIVE:
-//			propagatedUpdateType = joinSide == JoinSide.PRIMARY ? UpdateType.POSITIVE : UpdateType.NEGATIVE;
+//			propagatedUpdateType = joinSide == ReteNodeSlot.PRIMARY ? UpdateType.POSITIVE : UpdateType.NEGATIVE;
 //			break;
 //		case NEGATIVE:
-//			propagatedUpdateType = joinSide == JoinSide.PRIMARY ? UpdateType.NEGATIVE : UpdateType.POSITIVE;
+//			propagatedUpdateType = joinSide == ReteNodeSlot.PRIMARY ? UpdateType.NEGATIVE : UpdateType.POSITIVE;
 //			break;
 //		}
 //
 //		logger.info(actorString() + " JoinSide: " + joinSide);
-//		Indexer newTuplesIndexer = joinSide == JoinSide.PRIMARY ? leftIndexer : rightIndexer;
-//		Indexer existingTuplesIndexer = joinSide == JoinSide.PRIMARY ? rightIndexer : leftIndexer;
+//		Indexer newTuplesIndexer = joinSide == ReteNodeSlot.PRIMARY ? leftIndexer : rightIndexer;
+//		Indexer existingTuplesIndexer = joinSide == ReteNodeSlot.PRIMARY ? rightIndexer : leftIndexer;
 //
 //		List<Tuple> result = new ArrayList<>();
 //
@@ -117,4 +117,4 @@
 //
 //		return propagatedUpdateMessage;
 //	}
-//}
+// }

@@ -10,51 +10,51 @@ import java.util.Set;
 
 public abstract class FilterNode extends AlphaNode {
 
-	protected final TupleMask tupleMask;
+    protected final TupleMask tupleMask;
 
-	public FilterNode(final TupleMask tupleMask) {
-		super();
-		this.tupleMask = tupleMask;
-	}
+    public FilterNode(final TupleMask tupleMask) {
+        super();
+        this.tupleMask = tupleMask;
+    }
 
-	protected abstract boolean compare(Object o1, Object o2);
-	
-	protected boolean checkCondition(final Tuple tuple, final List<Integer> mask) {
-		// the mask's first item determines the reference value's index
-		final Object referenceValue = tuple.get(tupleMask.getMask().get(0));
+    protected abstract boolean compare(Object o1, Object o2);
 
-		for (int i = 1; i < mask.size(); i++) {
-			final Object value = tuple.get(mask.get(i));
-			if (!compare(value, referenceValue)) {
-				return false;
-			}
-		}
+    protected boolean checkCondition(final Tuple tuple, final List<Integer> mask) {
+        // the mask's first item determines the reference value's index
+        final Object referenceValue = tuple.get(tupleMask.getMask().get(0));
 
-		return true;
-	}
-	
-	@Override
-	public ChangeSet update(final ChangeSet incomingChangeSet) {
-		final List<Integer> mask = tupleMask.getMask();
-		final Set<Tuple> incomingTuples = incomingChangeSet.getTuples();
-		Set<Tuple> resultTuples;
+        for (int i = 1; i < mask.size(); i++) {
+            final Object value = tuple.get(mask.get(i));
+            if (!compare(value, referenceValue)) {
+                return false;
+            }
+        }
 
-		if (mask.size() <= 1) {
-			// nothing to compare, all
-			resultTuples = incomingTuples;
+        return true;
+    }
 
-		} else {
-			resultTuples = new HashSet<Tuple>();
+    @Override
+    public ChangeSet update(final ChangeSet incomingChangeSet) {
+        final List<Integer> mask = tupleMask.getMask();
+        final Set<Tuple> incomingTuples = incomingChangeSet.getTuples();
+        Set<Tuple> resultTuples;
 
-			for (final Tuple tuple : incomingTuples) {
-				if (checkCondition(tuple, mask)) {
-					resultTuples.add(tuple);
-				}				
-			}
+        if (mask.size() <= 1) {
+            // nothing to compare, all
+            resultTuples = incomingTuples;
 
-		}
-		final ChangeSet resultChangeSet = new ChangeSet(resultTuples, incomingChangeSet.getChangeType());
-		
-		return resultChangeSet;
-	}
+        } else {
+            resultTuples = new HashSet<Tuple>();
+
+            for (final Tuple tuple : incomingTuples) {
+                if (checkCondition(tuple, mask)) {
+                    resultTuples.add(tuple);
+                }
+            }
+
+        }
+        final ChangeSet resultChangeSet = new ChangeSet(resultTuples, incomingChangeSet.getChangeType());
+
+        return resultChangeSet;
+    }
 }

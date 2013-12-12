@@ -91,6 +91,9 @@
 
 
 	<dependencies>
+
+		<!-- general dependencies -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -104,11 +107,34 @@
 			<version>14.0</version>
 		</dependency>
 
+		<!-- database-specific dependencies -->
+
 		<dependency>
 			<groupId>com.thinkaurelius.faunus</groupId>
 			<artifactId>faunus</artifactId>
 			<version>0.3.2</version>
 		</dependency>
+
+		<!-- Akka dependencies -->
+
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-actor_2.10</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-remote_2.10</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-kernel_2.10</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+
 	</dependencies>
 
 </project>
