@@ -12,10 +12,10 @@ public class AntiJoinActor extends BetaActor {
 
     @Override
     protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
-        final BetaNodeConfiguration configuration = (BetaNodeConfiguration) incQueryDConfiguration;
+        super.configure(incQueryDConfiguration);
         
+        final BetaNodeConfiguration configuration = (BetaNodeConfiguration) incQueryDConfiguration;        
         reteNode = new AntiJoinNode(configuration.getPrimaryMask(), configuration.getSecondaryMask());
-        super.configure(configuration);
     }
 
 }

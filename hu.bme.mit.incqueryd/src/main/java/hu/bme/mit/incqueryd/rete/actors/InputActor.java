@@ -31,10 +31,6 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 public class InputActor extends ReteActor {
-
-//    private IndexerNode getInputNode() {
-//        return (InputNode) reteNode;
-//    }
     
     protected Set<Tuple> tuples = new HashSet<>();
     protected List<DatabaseClient> clients = new ArrayList<>();
