@@ -19,6 +19,11 @@ import com.google.common.collect.ImmutableList;
  */
 public class JoinNodeTestHelper {
 
+    /**
+     * Simple case: one common attribute.
+     * 
+     * @return
+     */
     public static JoinNodeTestData data1() {
 
         final Set<Tuple> primaryTuples = new HashSet<>();
@@ -73,7 +78,8 @@ public class JoinNodeTestHelper {
     }
 
     /**
-     * No common attributes (empty tuple masks).
+     * No common attributes (empty tuple masks). Note that in the absence of common attribute names (i.e. empty tuple
+     * masks), the natural is equal to the Cartesian product operator.
      * 
      * @return
      */
