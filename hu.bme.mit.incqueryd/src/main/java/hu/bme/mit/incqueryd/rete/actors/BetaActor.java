@@ -64,11 +64,9 @@ public abstract class BetaActor extends ReteActor {
                 
         if (resultChangeSet.getTuples().isEmpty()) {
             // if there was nothing to send, we are immediately ready
-            System.out.println("x");
             readyImmediately(updateMessage);
         } else {
             // if there is something to send, we send it to the approriate actor
-            System.out.println("y");
             final UpdateMessage propagatedUpdateMessage = new UpdateMessage(resultChangeSet, null, updateMessage.getSenderStack());
             sendUpdateMessage(updateMessage.getSenderStack(), propagatedUpdateMessage);
         }

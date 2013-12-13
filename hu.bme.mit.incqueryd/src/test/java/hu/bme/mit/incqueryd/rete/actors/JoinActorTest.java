@@ -41,7 +41,7 @@ public class JoinActorTest {
         system.shutdown();
     }
 
-    public void test() {
+    public void test(final BetaNodeTestData data) {
         new JavaTestKit(system) {
             {
                 // Arrange
@@ -56,7 +56,6 @@ public class JoinActorTest {
                 final ActorRef coordinator = getRef();
                 final TupleMask primaryMask = data.getPrimaryMask();
                 final TupleMask secondaryMask = data.getSecondaryMask();
-                final String targetActorPath = "";
                 final ReteNodeSlot targetNodeSlot = null;
                 final BetaNodeConfiguration configuration = new BetaNodeConfiguration(coordinator, primaryMask,
                         secondaryMask, targetActorRef, targetNodeSlot);
@@ -82,112 +81,26 @@ public class JoinActorTest {
                 final UpdateMessage secondarySlotUpdateMessage = new UpdateMessage(data.getSecondaryChangeSet(), ReteNodeSlot.SECONDARY, senderStack2);
                 betaActor.tell(secondarySlotUpdateMessage, getRef());
                 // Assert
-                // we expect a ReadyMessage with an empty stack as the sender route
-                final ReadyMessage readyMessage2 = expectMsgClass(duration("1 second"), ReadyMessage.class);
-                assertEquals(new Stack<ActorRef>(), readyMessage2.getRoute());
-
-//                final Serializable propagatedUpdateMessage = expectMsgClass(duration("1 second"), Serializable.class);
-//                System.out.println(propagatedUpdateMessage);
-
-                
-                
-                // Assert
-//                final DummyMessage expectedMessage1 = expectMsgClass(duration("1 second"), UpdateMe.class);
-//                System.out.println(expectedMessage1);
-
-                // assertion
-//                assertEquals(expectedMessage1.getX(), 2);
-
-
-                
-                
-                // final ActorMessage actorMessage = expectMsgClass(duration("1 second"), ActorMessage.class);
-                // System.out.println(actorMessage);
-                // final UpdateMessage secondarySlotUpdateMessage = new UpdateMessage(data.getSecondaryChangeSet(),
-                // ReteNodeSlot.SECONDARY);
-                // betaActor.tell(secondarySlotUpdateMessage, getRef());
-                //
-                // final UpdateMessage expectedUpdateMessage = new UpdateMessage(data.getJoinExpectedResults(), null);
-                //
-                // System.out.println("changeset }}} " + expectedUpdateMessage.getChangeSet().getChangeType() + " "
-                // + expectedUpdateMessage.getChangeSet().getTuples());
-                // System.out.println("nodeslot  }}} " + expectedUpdateMessage.getNodeSlot());
-                // System.out.println("sender    }}} " + expectedUpdateMessage.getSender());
-                //
-                // //
-                //
-                // final UpdateMessage out = new ExpectMsg<UpdateMessage>("match hint") {
-                // // do not put code outside this method, will run afterwards
-                // @Override
-                // protected UpdateMessage match(final Object in) {
-                // if (in instanceof UpdateMessage) {
-                // return (UpdateMessage) in;
-                // } else {
-                // throw noMatch();
-                // }
-                // }
-                // }.get(); // this extracts the received message
-                // System.out.println(out + " //////////////////////");
-                //
-                // // assertEquals("match", out);
-                //
-                // //
-                //
-                // final UpdateMessage[] updateMessages = new ReceiveWhile<UpdateMessage>(UpdateMessage.class,
-                // duration("1 second")) {
-                //
-                // @Override
-                // protected UpdateMessage match(final Object msg) {
-                // System.out.println("-----------------");
-                // System.out.println(msg.getClass() + ": " + msg);
-                // if (msg instanceof UpdateMessage) {
-                // return (UpdateMessage) msg;
-                // } else {
-                // return null;
-                // }
-                // }
-                // }.get();
-                //
-                // System.out.println("===================================");
-                // System.out.println(updateMessages);
-                // System.out.println("===================================");
-
-                // expectMsgEquals(duration("3 second"), expectedUpdateMessage);
-
-                // the run() method needs to finish within 3 seconds
-                // new Within(duration("3 seconds")) {
-                // @Override
-                // protected void run() {
-                //
-                // betaActor.tell(configuration, getRef());
-                // // betaActor.tell("hello", getRef());
-                //
-                // // This is a demo: would normally use expectMsgEquals().
-                // // Wait time is bounded by 3-second deadline above.
-                // new AwaitCond() {
-                // @Override
-                // protected boolean cond() {
-                // return probe.msgAvailable();
-                // }
-                // };
-                //
-                // // response must have been enqueued to us before probe
-                // expectMsgEquals(Duration.Zero(), "world");
-                // // check that the probe we injected earlier got the msg
-                // probe.expectMsgEquals(Duration.Zero(), "hello");
-                // Assert.assertEquals(getRef(), probe.getLastSender());
-                //
-                // // Will wait for the rest of the 3 seconds
-                // expectNoMsg();
-                // }
-                // };
+                // we expect an UpdateMessage to the probe
+                final UpdateMessage propagatedUpdateMessage = probe.expectMsgClass(duration("1 second"), UpdateMessage.class);
+                assertEquals(data.getJoinExpectedResults(), propagatedUpdateMessage.getChangeSet());
             }
         };
     }
 
     @Test
     public void test1() {
-        test();
+        test(BetaNodeTestHelper.data1());
     }
 
+    @Test
+    public void test2() {
+        test(BetaNodeTestHelper.data2());
+    }
+
+    @Test
+    public void test3() {
+        test(BetaNodeTestHelper.data3());
+    }
+    
 }
