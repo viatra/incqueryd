@@ -1,6 +1,7 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
 import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
+import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 
@@ -11,6 +12,11 @@ import akka.actor.UntypedActor;
 import akka.event.Logging;
 import akka.event.LoggingAdapter;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public abstract class IncQueryDActor extends UntypedActor {
 
     protected LoggingAdapter logger = Logging.getLogger(getContext().system(), this);
@@ -22,13 +28,14 @@ public abstract class IncQueryDActor extends UntypedActor {
     // sentUpdates is a <target, source route> map
     // protected Map<ActorRef, Stack<ActorRef>> sentUpdates = new HashMap<>();
     public IncQueryDActor() {
-        super();
-
+        super();        
+        
         logger.info(actorString() + " " + this.getClass().getSimpleName() + " constructor called.");
     }
 
     protected String actorString() {
-        return "[" + getSelf().path() + "]";
+        //return "[" + getSelf().path() + "]";
+        return "";
     }
 
     @Override
@@ -43,24 +50,31 @@ public abstract class IncQueryDActor extends UntypedActor {
         else if (message instanceof IncQueryDConfiguration) {
             final IncQueryDConfiguration configuration = (IncQueryDConfiguration) message;
             configure(configuration);
+            logger.info(actorString() + " telling INITIALIZED to " + coordinator);
+            coordinator.tell(ActorMessage.INITIALIZED, getSelf());
         }
     }
 
     protected abstract void configure(final IncQueryDConfiguration incQueryDConfiguration);
 
     protected void sendUpdateMessage(final Stack<ActorRef> source, final UpdateMessage message) {
+        System.out.println("send update");
         logger.info("source stack is: " + source);
 
         final Stack<ActorRef> senderStack = new Stack<>();
         senderStack.addAll(source);
         senderStack.push(getSelf());
 
-        logger.info(actorString() + " sending " + message.getTuples().size() + " tuples to " + targetActorPath
-                + ", nodeSlot = " + message.getNodeSlot() + ", propagated update type = " + message.getUpdateType()
-                + ", sender stack is: " + senderStack);
+//        logger.info(actorString() + " sending " + message.getTuples().size() + " tuples to " + targetActorPath
+//                + ", nodeSlot = " + message.getNodeSlot() + ", propagated update type = " + message.getUpdateType()
+//                + ", sender stack is: " + senderStack);
 
         // we're setting the message's sender stack just here
-        message.setSender(senderStack);
+//        message.setSender(senderStack);
+        
+        System.out.println("changeset >>> " + message.getChangeSet().getChangeType() + " " + message.getChangeSet().getTuples());
+        System.out.println("nodeslot  >>> " + message.getNodeSlot());
+        System.out.println("sender    >>> " + message.getSender());
 
         // sentUpdates.put(targetActor, senderStack);
         targetActor.tell(message, getSelf());

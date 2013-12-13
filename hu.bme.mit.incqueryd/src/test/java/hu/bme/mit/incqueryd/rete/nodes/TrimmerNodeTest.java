@@ -7,6 +7,11 @@ import hu.bme.mit.incqueryd.rete.nodes.helpers.TrimmerNodeTestHelper;
 
 import org.junit.Test;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class TrimmerNodeTest {
 
     public void test(final TrimmerNodeTestData data) {

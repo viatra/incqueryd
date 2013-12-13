@@ -12,7 +12,11 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class TermEvaluatorNodeTestHelper {
 
     public static TermEvaluatorNodeTestData data1() {

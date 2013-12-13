@@ -10,6 +10,11 @@ import java.util.Set;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class Indexer {
 
     protected Multimap<Tuple, Tuple> map = ArrayListMultimap.create();

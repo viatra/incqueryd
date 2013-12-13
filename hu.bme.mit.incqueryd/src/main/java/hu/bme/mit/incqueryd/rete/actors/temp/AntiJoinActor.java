@@ -1,9 +1,15 @@
-package hu.bme.mit.incqueryd.rete.actors;
+package hu.bme.mit.incqueryd.rete.actors.temp;
 
+import hu.bme.mit.incqueryd.rete.actors.BetaActor;
 import hu.bme.mit.incqueryd.rete.configuration.BetaNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
 import hu.bme.mit.incqueryd.rete.nodes.AntiJoinNode;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class AntiJoinActor extends BetaActor {
 
     private AntiJoinNode getAntiJoinNode() {
@@ -12,10 +18,10 @@ public class AntiJoinActor extends BetaActor {
 
     @Override
     protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
-        super.configure(incQueryDConfiguration);
-        
         final BetaNodeConfiguration configuration = (BetaNodeConfiguration) incQueryDConfiguration;        
         reteNode = new AntiJoinNode(configuration.getPrimaryMask(), configuration.getSecondaryMask());
+
+        super.configure(configuration);
     }
 
 }

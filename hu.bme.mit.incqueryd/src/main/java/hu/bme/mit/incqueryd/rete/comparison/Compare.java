@@ -1,7 +1,12 @@
 package hu.bme.mit.incqueryd.rete.comparison;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class Compare {
-    public static boolean compare(int a, int b, ComparisonOperator comparisonOperator) {
+    public static boolean compare(final int a, final int b, final ComparisonOperator comparisonOperator) {
         switch (comparisonOperator) {
         case EQUALS:
             return a == b;

@@ -4,6 +4,11 @@ import hu.bme.mit.incqueryd.databases.DatabaseClientType;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import akka.actor.ActorRef;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class UniquenessEnforcerNodeConfiguration extends ReteNodeConfiguration {
 
     public UniquenessEnforcerNodeConfiguration(final ActorRef coordinator, final String targetActorPath,

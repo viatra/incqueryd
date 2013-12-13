@@ -26,6 +26,11 @@ import com.tinkerpop.blueprints.Direction;
 import com.tinkerpop.blueprints.Edge;
 import com.tinkerpop.blueprints.Vertex;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class TitanFaunusClient extends DatabaseClient {
 
     protected final ScriptEngine engine;

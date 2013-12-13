@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.rete.actors;
+package hu.bme.mit.incqueryd.rete.actors.temp;
 
 import hu.bme.mit.incqueryd.rete.configuration.FilterActorConfiguration;
 import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
@@ -12,12 +12,12 @@ public class EqualityActor extends FilterActor {
     
     @Override
     protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
-        super.configure(incQueryDConfiguration);
-
         final FilterActorConfiguration configuration = (FilterActorConfiguration) incQueryDConfiguration;
 
         // instantiating a new EqualityNode with the appropriate mask
         reteNode = new EqualityNode(configuration.getMask());
+
+        super.configure(configuration);
     }
 
 }

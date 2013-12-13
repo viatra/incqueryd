@@ -2,6 +2,11 @@ package hu.bme.mit.incqueryd.rete.configuration;
 
 import akka.actor.ActorRef;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class ReteNodeConfiguration extends IncQueryDConfiguration {
 
     private static final long serialVersionUID = 1L;

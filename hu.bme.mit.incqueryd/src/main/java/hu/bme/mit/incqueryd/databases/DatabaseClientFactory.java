@@ -1,5 +1,10 @@
 package hu.bme.mit.incqueryd.databases;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class DatabaseClientFactory {
 
     public static DatabaseClient createDatabaseClient(final DatabaseClientType type, final String serverUrl,

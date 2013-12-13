@@ -4,6 +4,11 @@ import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import akka.actor.ActorRef;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class BetaNodeConfiguration extends ReteNodeConfiguration {
 
     private static final long serialVersionUID = 1L;

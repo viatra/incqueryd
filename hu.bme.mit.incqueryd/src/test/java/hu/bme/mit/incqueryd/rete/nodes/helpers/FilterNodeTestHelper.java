@@ -12,6 +12,11 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableList;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class FilterNodeTestHelper {
 
     public static FilterNodeTestData data1() {

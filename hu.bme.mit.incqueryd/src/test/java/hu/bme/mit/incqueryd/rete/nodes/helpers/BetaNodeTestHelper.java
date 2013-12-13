@@ -5,7 +5,7 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleImpl;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
-import hu.bme.mit.incqueryd.rete.nodes.data.JoinNodeTestData;
+import hu.bme.mit.incqueryd.rete.nodes.data.BetaNodeTestData;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,14 +17,14 @@ import com.google.common.collect.ImmutableList;
  * @author szarnyasg
  * 
  */
-public class JoinNodeTestHelper {
+public class BetaNodeTestHelper {
 
     /**
      * Simple case: one common attribute.
      * 
      * @return
      */
-    public static JoinNodeTestData data1() {
+    public static BetaNodeTestData data1() {
 
         final Set<Tuple> primaryTuples = new HashSet<>();
         primaryTuples.add(new TupleImpl(5, 6, 7));
@@ -46,12 +46,17 @@ public class JoinNodeTestHelper {
         final Set<Tuple> antiJoinResultTuples = new HashSet<>();
         final ChangeSet antiJoinExpectedChangeSet = new ChangeSet(antiJoinResultTuples, ChangeType.POSITIVE);
 
-        final JoinNodeTestData data = new JoinNodeTestData(primaryChangeSet, secondaryChangeSet, primaryMask,
+        final BetaNodeTestData data = new BetaNodeTestData(primaryChangeSet, secondaryChangeSet, primaryMask,
                 secondaryMask, joinExpectedChangeSet, antiJoinExpectedChangeSet);
         return data;
     }
 
-    public static JoinNodeTestData data2() {
+    /**
+     * Simple case: one common attribute.
+     * 
+     * @return
+     */
+    public static BetaNodeTestData data2() {
         final Set<Tuple> primaryTuples = new HashSet<>();
         primaryTuples.add(new TupleImpl(1, 5));
         primaryTuples.add(new TupleImpl(2, 6));
@@ -72,18 +77,20 @@ public class JoinNodeTestHelper {
         antiJoinResultTuples.add(new TupleImpl(2, 6));
         final ChangeSet antiJoinExpectedChangeSet = new ChangeSet(antiJoinResultTuples, ChangeType.POSITIVE);
 
-        final JoinNodeTestData data = new JoinNodeTestData(primaryChangeSet, secondaryChangeSet, primaryMask,
+        final BetaNodeTestData data = new BetaNodeTestData(primaryChangeSet, secondaryChangeSet, primaryMask,
                 secondaryMask, joinExpectedChangeSet, antiJoinExpectedChangeSet);
         return data;
     }
 
     /**
-     * No common attributes (empty tuple masks). Note that in the absence of common attribute names (i.e. empty tuple
-     * masks), the natural is equal to the Cartesian product operator.
+     * No common attributes (empty tuple masks).
+     * 
+     * Note that in the absence of common attribute names (i.e. empty tuple masks), "R natural join S" is equal to
+     * "R × S", while "R antijoin S" returns (1) R if S is empty, (2) an empty relation is S is not empty.
      * 
      * @return
      */
-    public static JoinNodeTestData data3() {
+    public static BetaNodeTestData data3() {
         final Set<Tuple> primaryTuples = new HashSet<>();
         primaryTuples.add(new TupleImpl(1, 5));
         primaryTuples.add(new TupleImpl(2, 6));
@@ -102,10 +109,10 @@ public class JoinNodeTestHelper {
         final ChangeSet joinExpectedChangeSet = new ChangeSet(joinResultTuples, ChangeType.POSITIVE);
 
         final Set<Tuple> antiJoinResultTuples = new HashSet<>();
-        antiJoinResultTuples.add(new TupleImpl(2, 6));
+        // the expected changeset is empty
         final ChangeSet antiJoinExpectedChangeSet = new ChangeSet(antiJoinResultTuples, ChangeType.POSITIVE);
 
-        final JoinNodeTestData data = new JoinNodeTestData(primaryChangeSet, secondaryChangeSet, primaryMask,
+        final BetaNodeTestData data = new BetaNodeTestData(primaryChangeSet, secondaryChangeSet, primaryMask,
                 secondaryMask, joinExpectedChangeSet, antiJoinExpectedChangeSet);
         return data;
     }

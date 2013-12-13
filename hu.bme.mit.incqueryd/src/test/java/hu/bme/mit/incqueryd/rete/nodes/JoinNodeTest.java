@@ -2,8 +2,8 @@ package hu.bme.mit.incqueryd.rete.nodes;
 
 import static org.junit.Assert.assertTrue;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
-import hu.bme.mit.incqueryd.rete.nodes.data.JoinNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.JoinNodeTestHelper;
+import hu.bme.mit.incqueryd.rete.nodes.data.BetaNodeTestData;
+import hu.bme.mit.incqueryd.rete.nodes.helpers.BetaNodeTestHelper;
 
 import org.junit.Test;
 
@@ -15,7 +15,7 @@ import org.junit.Test;
  */
 public class JoinNodeTest {
 
-    public void test(final JoinNodeTestData data) {
+    public void test(final BetaNodeTestData data) {
         final JoinNode joinNode = new JoinNode(data.getPrimaryMask(), data.getSecondaryMask());
         final ChangeSet resultChangeSet = Algorithms.join(joinNode, data.getPrimaryChangeSet(),
                 data.getSecondaryChangeSet());
@@ -24,17 +24,17 @@ public class JoinNodeTest {
 
     @Test
     public void test1() {
-        test(JoinNodeTestHelper.data1());
+        test(BetaNodeTestHelper.data1());
     }
 
     @Test
     public void test2() {
-        test(JoinNodeTestHelper.data2());
+        test(BetaNodeTestHelper.data2());
     }
 
     @Test
     public void test3() {
-        test(JoinNodeTestHelper.data3());
+        test(BetaNodeTestHelper.data3());
     }
 
 }

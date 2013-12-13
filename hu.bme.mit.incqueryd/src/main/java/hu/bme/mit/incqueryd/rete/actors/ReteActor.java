@@ -1,11 +1,18 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
+import hu.bme.mit.incqueryd.rete.actors.temp.AntiJoinActor;
+import hu.bme.mit.incqueryd.rete.actors.temp.FilterActor;
 import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
 import hu.bme.mit.incqueryd.rete.configuration.ReteNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.nodes.AntiJoinNode;
 import hu.bme.mit.incqueryd.rete.nodes.FilterNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public abstract class ReteActor extends IncQueryDActor {
 
     /**

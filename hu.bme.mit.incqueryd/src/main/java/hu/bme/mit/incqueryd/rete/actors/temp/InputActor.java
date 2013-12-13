@@ -1,17 +1,17 @@
-package hu.bme.mit.incqueryd.rete.actors;
+package hu.bme.mit.incqueryd.rete.actors.temp;
 
 import hu.bme.mit.incqueryd.databases.DatabaseClient;
 import hu.bme.mit.incqueryd.databases.DatabaseClientFactory;
 import hu.bme.mit.incqueryd.exceptions.DatabaseClientException;
+import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
 import hu.bme.mit.incqueryd.rete.configuration.UniquenessEnforcerNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleImpl;
+import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
 import hu.bme.mit.incqueryd.rete.messages.EditMessage;
-import hu.bme.mit.incqueryd.rete.messages.NodeMessage;
-import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateType;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 public class InputActor extends ReteActor {
-    
+
     protected Set<Tuple> tuples = new HashSet<>();
     protected List<DatabaseClient> clients = new ArrayList<>();
     protected ReteNodeSlot nodeSlot;
@@ -74,10 +74,8 @@ public class InputActor extends ReteActor {
         }
         // logger.info("multimap received: " + vertexPairs);
 
-        logger.info(actorString() + " " + tuples.size() + " tuples");
-        logger.info(actorString() + " telling INITIALIZED to " + coordinator);
 
-        coordinator.tell(NodeMessage.INITIALIZED, getSelf());
+        coordinator.tell(ActorMessage.INITIALIZED, getSelf());
     }
 
     @Override
@@ -90,7 +88,7 @@ public class InputActor extends ReteActor {
             logger.info(updateMessageCount + " update messages pending.");
             if (updateMessageCount == 0) {
                 logger.info(actorString() + " ready");
-                coordinator.tell(NodeMessage.DONE, getSelf());
+                coordinator.tell(ActorMessage.DONE, getSelf());
             }
         }
 
@@ -113,7 +111,7 @@ public class InputActor extends ReteActor {
 
     private void edit() {
         final Set<Tuple> negTuples = new HashSet<>(); // n.b. Vector is synchronized
-        // TODO 
+        // TODO
         // - do we need synchronization?
         // - if we do, is HashSet synchronized?
 
@@ -197,11 +195,11 @@ public class InputActor extends ReteActor {
     protected void sendTuples(final UpdateType updateType, final ReteNodeSlot nodeSlot, final Set<Tuple> tuples) {
         updateMessageCount++;
 
-        final UpdateMessage updateMessage = new UpdateMessage(updateType, nodeSlot, tuples);
+        // final UpdateMessage updateMessage = new UpdateMessage(updateType, nodeSlot, tuples);
         // start with an empty senderStack
 
         final Stack<ActorRef> senderStack = new Stack<>();
-        sendUpdateMessage(senderStack, updateMessage);
+        // sendUpdateMessage(senderStack, updateMessage);
     }
 
 }

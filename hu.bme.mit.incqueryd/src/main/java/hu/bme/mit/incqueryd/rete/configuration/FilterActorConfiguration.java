@@ -2,6 +2,11 @@ package hu.bme.mit.incqueryd.rete.configuration;
 
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class FilterActorConfiguration extends IncQueryDConfiguration {
 
     private static final long serialVersionUID = 1L;

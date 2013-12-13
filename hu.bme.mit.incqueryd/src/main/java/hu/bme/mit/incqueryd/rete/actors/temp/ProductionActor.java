@@ -1,17 +1,21 @@
-package hu.bme.mit.incqueryd.rete.actors;
+package hu.bme.mit.incqueryd.rete.actors.temp;
 
 import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
 import hu.bme.mit.incqueryd.rete.configuration.ProductionNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.rete.messages.NodeMessage;
+import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import akka.actor.ActorRef;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class ProductionActor extends AlphaActor {
 
     protected Set<Tuple> memory = new HashSet<>();
@@ -26,8 +30,8 @@ public class ProductionActor extends AlphaActor {
         final ProductionNodeConfiguration configuration = (ProductionNodeConfiguration) incQueryDConfiguration;
 
         this.coordinator = configuration.getCoordinator();
-        logger.info(actorString() + " telling INITIALIZED to " + coordinator);
-        coordinator.tell(NodeMessage.INITIALIZED, getSelf());
+        
+        super.configure(configuration);
     }
 
     @Override
@@ -39,7 +43,7 @@ public class ProductionActor extends AlphaActor {
             update(updateMessage);
         }
 
-        else if (message == NodeMessage.GETRESULT) {
+        else if (message == ActorMessage.GETRESULT) {
             sendResult();
         }
 
@@ -50,27 +54,27 @@ public class ProductionActor extends AlphaActor {
     }
 
     protected void sendResult() {
-        logger.info(actorString() + " sending " + memory.size() + ".");
-        final UpdateMessage result = new UpdateMessage(null, null, memory);
-        getSender().tell(result, getSelf());
+//        logger.info(actorString() + " sending " + memory.size() + ".");
+//        final UpdateMessage result = new UpdateMessage(null, null, memory);
+//        getSender().tell(result, getSelf());
     }
 
     protected void update(final UpdateMessage updateMessage) {
-        final Collection<Tuple> updateTuples = updateMessage.getTuples();
-
-        switch (updateMessage.getUpdateType()) {
-        case POSITIVE:
-            for (final Tuple tuple : updateTuples) {
-                memory.add(tuple);
-            }
-            break;
-        case NEGATIVE:
-            for (final Tuple tuple : updateTuples) {
-                memory.remove(tuple);
-            }
-            break;
-        }
-        readyImmediately(updateMessage);
+//        final Collection<Tuple> updateTuples = updateMessage.getTuples();
+//
+//        switch (updateMessage.getUpdateType()) {
+//        case POSITIVE:
+//            for (final Tuple tuple : updateTuples) {
+//                memory.add(tuple);
+//            }
+//            break;
+//        case NEGATIVE:
+//            for (final Tuple tuple : updateTuples) {
+//                memory.remove(tuple);
+//            }
+//            break;
+//        }
+//        readyImmediately(updateMessage);
     }
 
 }

@@ -8,7 +8,7 @@ import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
  * @author szarnyasg
  * 
  */
-public class JoinNodeTestData {
+public class BetaNodeTestData {
 
     protected ChangeSet primaryChangeSet;
     protected ChangeSet secondaryChangeSet;
@@ -18,7 +18,7 @@ public class JoinNodeTestData {
     protected ChangeSet antiJoinExpectedResults;
     protected ChangeSet joinExpectedResults;
 
-    public JoinNodeTestData(final ChangeSet primaryChangeSet, final ChangeSet secondaryChangeSet,
+    public BetaNodeTestData(final ChangeSet primaryChangeSet, final ChangeSet secondaryChangeSet,
             final TupleMask primaryMask, final TupleMask secondaryMask, final ChangeSet expectedResults,
             final ChangeSet antiJoinExpectedResults) {
         super();

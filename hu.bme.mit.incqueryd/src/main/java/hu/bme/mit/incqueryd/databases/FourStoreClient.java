@@ -12,6 +12,11 @@ import java.util.regex.Pattern;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class FourStoreClient extends DatabaseClient {
 
     protected final String extension = ".owl";
@@ -32,24 +37,24 @@ public class FourStoreClient extends DatabaseClient {
 
         try {
             System.out.println(importCommand);
-            Process importProcess = Runtime.getRuntime().exec(importCommand);
+            final Process importProcess = Runtime.getRuntime().exec(importCommand);
             importProcess.waitFor();
 
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (final InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println("Load executed.");
     }
 
     @Override
-    public Iterable<?> retrieveNodes(String typeName) {
+    public Iterable<?> retrieveNodes(final String typeName) {
         return null;
     }
 
     @Override
-    public Multimap<Object, Object> collectEdges(String edgeLabel) throws DatabaseClientException {
+    public Multimap<Object, Object> collectEdges(final String edgeLabel) throws DatabaseClientException {
         final Multimap<Object, Object> vertexPairs = ArrayListMultimap.create();
 
         final String query = String
@@ -57,12 +62,12 @@ public class FourStoreClient extends DatabaseClient {
                         edgeLabel);
 
         // passing command name and arguments as an array to the ProcessBuilder
-        String[] command = new String[] { "4s-query", clustername, "-f", "text", "-s", "-1", query };
-        ProcessBuilder builder = new ProcessBuilder(command);
+        final String[] command = new String[] { "4s-query", clustername, "-f", "text", "-s", "-1", query };
+        final ProcessBuilder builder = new ProcessBuilder(command);
         Process process = null;
         try {
             process = builder.start();
-        } catch (IOException e) {
+        } catch (final IOException e) {
             throw new DatabaseClientException("Error during query process.", e);
         }
 
@@ -78,11 +83,11 @@ public class FourStoreClient extends DatabaseClient {
                 final Matcher matcher = pattern.matcher(line);
 
                 if (matcher.find()) {
-                    String sourceString = matcher.group(1);
+                    final String sourceString = matcher.group(1);
                     if (matcher.find()) {
-                        String destinationString = matcher.group(1);
-                        Long source = Long.parseLong(sourceString);
-                        Long destination = Long.parseLong(destinationString);
+                        final String destinationString = matcher.group(1);
+                        final Long source = Long.parseLong(sourceString);
+                        final Long destination = Long.parseLong(destinationString);
                         vertexPairs.put(source, destination);
                     }
                 }
@@ -97,11 +102,11 @@ public class FourStoreClient extends DatabaseClient {
     @Override
     public void deleteEdge(final Object sourceVertexId, final Object destinationVertexId, final String edgeLabel)
             throws DatabaseClientException {
-        String delete = String
+        final String delete = String
                 .format("PREFIX base: <http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#> DELETE DATA { base:%s base:%s base:%s }",
                         sourceVertexId, edgeLabel, destinationVertexId);
 
-        String[] command = new String[] { "4s-update", clustername, delete };
+        final String[] command = new String[] { "4s-update", clustername, delete };
 
         // for (String c : command) {
         // System.out.print(c + " ");
@@ -109,7 +114,7 @@ public class FourStoreClient extends DatabaseClient {
         // System.out.println();
         // System.out.println("deleting edge: " + command );
 
-        ProcessBuilder builder = new ProcessBuilder(command);
+        final ProcessBuilder builder = new ProcessBuilder(command);
         Process process = null;
         try {
             process = builder.start();

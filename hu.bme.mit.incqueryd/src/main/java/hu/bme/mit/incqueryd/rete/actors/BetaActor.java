@@ -2,43 +2,41 @@ package hu.bme.mit.incqueryd.rete.actors;
 
 import hu.bme.mit.incqueryd.rete.configuration.BetaNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
+import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
-import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.rete.messages.NodeMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
-import hu.bme.mit.incqueryd.rete.messages.UpdateType;
 import hu.bme.mit.incqueryd.rete.nodes.BetaNode;
-
-import java.util.Set;
 
 import org.apache.cassandra.transport.messages.ReadyMessage;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public abstract class BetaActor extends ReteActor {
 
     private BetaNode getBetaNode() {
         return (BetaNode) reteNode;
     }
-    
+
     protected Indexer primaryIndexer;
     protected Indexer secondaryIndexer;
     protected ReteNodeSlot nextNodeSlot;
 
     public BetaActor() {
-        super();        
+        super();
     }
 
     @Override
-    protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {        
+    protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
         final BetaNodeConfiguration configuration = (BetaNodeConfiguration) incQueryDConfiguration;
-        
-        super.configure(configuration);
 
         this.primaryIndexer = new Indexer(configuration.getPrimaryMask());
         this.secondaryIndexer = new Indexer(configuration.getSecondaryMask());
         this.nextNodeSlot = configuration.getTargetNodeSlot();
 
-        logger.info(actorString() + " telling INITIALIZED to " + coordinator);
-        coordinator.tell(NodeMessage.INITIALIZED, getSelf());
+        super.configure(configuration);
     }
 
     @Override
@@ -51,12 +49,7 @@ public abstract class BetaActor extends ReteActor {
             }
 
             final UpdateMessage incomingUpdateMessage = (UpdateMessage) message;
-            final UpdateType updateType = incomingUpdateMessage.getUpdateType();
-            final Set<Tuple> tuples = incomingUpdateMessage.getTuples();
-
-            logger.info(tuples.size() + " tuples received");
-
-            incomingUpdate(incomingUpdateMessage, updateType, tuples);
+            incomingUpdate(incomingUpdateMessage);
         }
 
         else if (message instanceof ReadyMessage) {
@@ -64,20 +57,23 @@ public abstract class BetaActor extends ReteActor {
         }
     }
 
-    private void incomingUpdate(final UpdateMessage incomingUpdateMessage, final UpdateType updateType,
-            final Set<Tuple> tuples) {
-        final UpdateMessage propagatedUpdateMessage = joinNewTuples(tuples, incomingUpdateMessage.getNodeSlot(),
-                updateType);
+    protected void incomingUpdate(final UpdateMessage updateMessage) {        
+        System.out.println("incoming update");
+        
+        final ChangeSet resultChangeSet = getBetaNode().update(updateMessage.getChangeSet(), updateMessage.getNodeSlot());
+        final UpdateMessage propagatedUpdateMessage = new UpdateMessage(resultChangeSet, null);
 
-        if (propagatedUpdateMessage != null) {
-            sendUpdateMessage(incomingUpdateMessage.getSender(), propagatedUpdateMessage);
-        } else {
+//        final ChangeSet changeSet = updateMessage.getChangeSet();
+//        final Set<Tuple> incomingTuples = changeSet.getTuples();
+//        logger.info(incomingTuples.size() + " tuples received");
+        //if (propagatedUpdateMessage != null) {        
+        
+        if (resultChangeSet.getTuples().isEmpty()) {
             // if there was nothing to send, we are immediately ready
-            readyImmediately(incomingUpdateMessage);
+            readyImmediately(updateMessage);
+        } else {
+            sendUpdateMessage(updateMessage.getSender(), propagatedUpdateMessage);
         }
     }
-    
-    protected UpdateMessage joinNewTuples(final Set<Tuple> newTuples, final ReteNodeSlot nodeSlot, final UpdateType updateType) {
-        return null;
-    }
+
 }

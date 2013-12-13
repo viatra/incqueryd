@@ -10,6 +10,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * 
+ * @author szarnyasg
+ *
+ */
 public class JoinNode extends BetaNode {
 
     public JoinNode(final TupleMask primaryMask, final TupleMask secondaryMask) {

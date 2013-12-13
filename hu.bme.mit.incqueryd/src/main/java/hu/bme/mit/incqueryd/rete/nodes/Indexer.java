@@ -10,7 +10,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
 /**
- * Indexer node for
+ * Indexer node for the {@link BetaNode}s.
  * 
  * @author szarnyasg
  * 
