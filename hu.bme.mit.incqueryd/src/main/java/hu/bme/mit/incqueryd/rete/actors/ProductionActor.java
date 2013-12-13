@@ -23,9 +23,9 @@ public class ProductionActor extends AlphaActor {
 
     @Override
     protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
-        final ProductionNodeConfiguration conf = (ProductionNodeConfiguration) incQueryDConfiguration;
+        final ProductionNodeConfiguration configuration = (ProductionNodeConfiguration) incQueryDConfiguration;
 
-        this.coordinator = conf.coordinator;
+        this.coordinator = configuration.getCoordinator();
         logger.info(actorString() + " telling INITIALIZED to " + coordinator);
         coordinator.tell(NodeMessage.INITIALIZED, getSelf());
     }

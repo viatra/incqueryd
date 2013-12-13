@@ -51,8 +51,8 @@ public class InputActor extends ReteActor {
     protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
         final UniquenessEnforcerNodeConfiguration configuration = (UniquenessEnforcerNodeConfiguration) incQueryDConfiguration;
 
-        this.coordinator = configuration.coordinator;
-        this.targetActorPath = configuration.targetActorPath;
+        this.coordinator = configuration.getCoordinator();
+        this.targetActorPath = configuration.getTargetActorPath();
         this.nodeSlot = configuration.targetNodeSlot;
 
         // databaseClient = DatabaseClientFactory.createDatabaseClient(configuration.databaseClientType, "localhost",
