@@ -39,20 +39,14 @@ public class DummyActorTest {
                 final Props props = new Props(DummyActor.class);
                 final ActorRef actor = system.actorOf(props);
 
-                // 1st round
-                // ----------------------------------------------------------------------------------------------------
                 // Act
                 actor.tell(new DummyMessage(1), getRef());
-
                 // Assert
                 final DummyMessage expectedMessage1 = expectMsgClass(duration("1 second"), DummyMessage.class);
                 assertEquals(expectedMessage1.getX(), 2);
 
-                // 2nd round
-                // ----------------------------------------------------------------------------------------------------
                 // Act                
                 actor.tell(new DummyMessage(3), getRef());
-
                 // Assert
                 final DummyMessage expectedMessage2 = expectMsgClass(duration("1 second"), DummyMessage.class);
                 assertEquals(expectedMessage2.getX(), 4);

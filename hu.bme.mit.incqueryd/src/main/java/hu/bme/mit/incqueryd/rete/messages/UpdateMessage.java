@@ -19,11 +19,12 @@ public class UpdateMessage implements Serializable {
 
     protected ChangeSet changeSet;
     protected ReteNodeSlot nodeSlot;
-    protected Stack<ActorRef> sender = new Stack<>();
+    protected Stack<ActorRef> senderStack;
 
-    public UpdateMessage(final ChangeSet changeSet, final ReteNodeSlot nodeSlot) {
+    public UpdateMessage(final ChangeSet changeSet, final ReteNodeSlot nodeSlot, final Stack<ActorRef> senderStack) {
         this.changeSet = changeSet;
         this.nodeSlot = nodeSlot;
+        this.senderStack = senderStack;
     }
 
     public ChangeSet getChangeSet() {
@@ -34,12 +35,14 @@ public class UpdateMessage implements Serializable {
         return nodeSlot;
     }
 
-    public Stack<ActorRef> getSender() {
-        return sender;
+    public Stack<ActorRef> getSenderStack() {
+        return senderStack;
     }
 
-    public void setSender(final Stack<ActorRef> sender) {
-        this.sender = sender;
+    @Override
+    public String toString() {
+        return "UpdateMessage [changeSet=" + changeSet + ", nodeSlot=" + nodeSlot + ", senderStack=" + senderStack
+                + "]";
     }
 
 }

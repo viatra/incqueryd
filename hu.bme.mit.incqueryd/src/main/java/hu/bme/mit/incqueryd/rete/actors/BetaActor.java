@@ -44,9 +44,9 @@ public abstract class BetaActor extends ReteActor {
         super.onReceive(message);
 
         if (message instanceof UpdateMessage) {
-            if (targetActor == null) {
-                targetActor = getContext().actorFor(targetActorPath);
-            }
+//            if (targetActor == null) {
+//                targetActor = getContext().actorFor(targetActorPath);
+//            }
 
             final UpdateMessage incomingUpdateMessage = (UpdateMessage) message;
             incomingUpdate(incomingUpdateMessage);
@@ -58,21 +58,19 @@ public abstract class BetaActor extends ReteActor {
     }
 
     protected void incomingUpdate(final UpdateMessage updateMessage) {        
-        System.out.println("incoming update");
+        System.out.println("Incoming update " + updateMessage.getChangeSet().getTuples().size() + " tuples.");
         
         final ChangeSet resultChangeSet = getBetaNode().update(updateMessage.getChangeSet(), updateMessage.getNodeSlot());
-        final UpdateMessage propagatedUpdateMessage = new UpdateMessage(resultChangeSet, null);
-
-//        final ChangeSet changeSet = updateMessage.getChangeSet();
-//        final Set<Tuple> incomingTuples = changeSet.getTuples();
-//        logger.info(incomingTuples.size() + " tuples received");
-        //if (propagatedUpdateMessage != null) {        
-        
+                
         if (resultChangeSet.getTuples().isEmpty()) {
             // if there was nothing to send, we are immediately ready
+            System.out.println("x");
             readyImmediately(updateMessage);
         } else {
-            sendUpdateMessage(updateMessage.getSender(), propagatedUpdateMessage);
+            // if there is something to send, we send it to the approriate actor
+            System.out.println("y");
+            final UpdateMessage propagatedUpdateMessage = new UpdateMessage(resultChangeSet, null, updateMessage.getSenderStack());
+            sendUpdateMessage(updateMessage.getSenderStack(), propagatedUpdateMessage);
         }
     }
 

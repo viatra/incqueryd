@@ -11,10 +11,10 @@ import akka.actor.ActorRef;
  */
 public class UniquenessEnforcerNodeConfiguration extends ReteNodeConfiguration {
 
-    public UniquenessEnforcerNodeConfiguration(final ActorRef coordinator, final String targetActorPath,
+    public UniquenessEnforcerNodeConfiguration(final ActorRef coordinator, final ActorRef targetActorRef,
             final String edgeLabel, final ReteNodeSlot targetNodeSlot, final DatabaseClientType databaseClientType,
             final String filename) {
-        super(coordinator, targetActorPath);
+        super(coordinator, targetActorRef);
 
         this.edgeLabel = edgeLabel;
         this.targetNodeSlot = targetNodeSlot;

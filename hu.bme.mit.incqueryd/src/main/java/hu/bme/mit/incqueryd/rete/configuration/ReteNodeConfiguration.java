@@ -11,21 +11,21 @@ public class ReteNodeConfiguration extends IncQueryDConfiguration {
 
     private static final long serialVersionUID = 1L;
 
-    public ReteNodeConfiguration(final ActorRef coordinator, final String targetActorPath) {
+    protected ActorRef coordinator;
+    protected ActorRef targetActorRef;
+
+    public ReteNodeConfiguration(final ActorRef coordinator, final ActorRef targetActorRef) {
         super();
         this.coordinator = coordinator;
-        this.targetActorPath = targetActorPath;
+        this.targetActorRef = targetActorRef;
     }
-
-    protected ActorRef coordinator;
-    protected String targetActorPath;
     
     public ActorRef getCoordinator() {
         return coordinator;
     }
     
-    public String getTargetActorPath() {
-        return targetActorPath;
+    public ActorRef getTargetActorRef() {
+        return targetActorRef;
     }
     
 }

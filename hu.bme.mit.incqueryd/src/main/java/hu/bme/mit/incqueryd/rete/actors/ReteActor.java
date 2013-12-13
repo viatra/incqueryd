@@ -4,14 +4,19 @@ import hu.bme.mit.incqueryd.rete.actors.temp.AntiJoinActor;
 import hu.bme.mit.incqueryd.rete.actors.temp.FilterActor;
 import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
 import hu.bme.mit.incqueryd.rete.configuration.ReteNodeConfiguration;
+import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.AntiJoinNode;
 import hu.bme.mit.incqueryd.rete.nodes.FilterNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
 
+import java.util.Stack;
+
+import akka.actor.ActorRef;
+
 /**
  * 
  * @author szarnyasg
- *
+ * 
  */
 public abstract class ReteActor extends IncQueryDActor {
 
@@ -22,13 +27,33 @@ public abstract class ReteActor extends IncQueryDActor {
      * getAntiJoinNode(), a {@link FilterActor} has a getFilterNode() method.
      */
     protected ReteNode reteNode;
+    // TODO a ReteActor may send the update message to multiple targets
+    protected ActorRef targetActorRef;
 
     @Override
     protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
         final ReteNodeConfiguration configuration = (ReteNodeConfiguration) incQueryDConfiguration;
 
-        this.targetActorPath = configuration.getTargetActorPath();
+        this.targetActorRef = configuration.getTargetActorRef();
         this.coordinator = configuration.getCoordinator();
     };
+
+    protected void sendUpdateMessage(final Stack<ActorRef> source, final UpdateMessage message) {
+        logger.info("source stack is: " + source);
+
+        final Stack<ActorRef> senderStack = new Stack<>();
+        senderStack.addAll(source);
+        senderStack.push(getSelf());
+
+        logger.info(actorString() + " sending " + message.getChangeSet().getTuples().size() + " tuples to " + targetActorRef
+                + ", nodeSlot = " + message.getNodeSlot() + ", propagated update type = " + message.getChangeSet().getChangeType()
+                + ", sender stack is: " + senderStack);
+
+        // pushing this actor to the top of the sender stack
+        message.getSenderStack().push(getSelf());
+
+        // sentUpdates.put(targetActor, senderStack);
+        targetActorRef.tell(message, getSelf());
+    }
 
 }

@@ -48,7 +48,7 @@ public class InputActor extends ReteActor {
         final UniquenessEnforcerNodeConfiguration configuration = (UniquenessEnforcerNodeConfiguration) incQueryDConfiguration;
 
         this.coordinator = configuration.getCoordinator();
-        this.targetActorPath = configuration.getTargetActorPath();
+        this.targetActorRef = configuration.getTargetActorRef();
         this.nodeSlot = configuration.targetNodeSlot;
 
         // databaseClient = DatabaseClientFactory.createDatabaseClient(configuration.databaseClientType, "localhost",
@@ -94,7 +94,6 @@ public class InputActor extends ReteActor {
 
         else if (message == CoordinatorMessage.START) {
             logger.info("[" + getSelf().path() + "] start received.");
-            targetActor = getContext().actorFor(targetActorPath);
             sendTuples(UpdateType.POSITIVE, nodeSlot, tuples);
         }
 
@@ -188,7 +187,7 @@ public class InputActor extends ReteActor {
         final Long delta = (finishTime - initTime) / 1000000;
         logger.info("waiting over " + delta + " ms");
 
-        logger.info(negTuples.size() + " tuples in the negative update to " + targetActorPath);
+        logger.info(negTuples.size() + " tuples in the negative update to " + targetActorRef);
         sendTuples(UpdateType.NEGATIVE, nodeSlot, negTuples);
     }
 

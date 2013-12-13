@@ -18,8 +18,8 @@ public class BetaNodeConfiguration extends ReteNodeConfiguration {
     protected ReteNodeSlot targetNodeSlot;
 
     public BetaNodeConfiguration(final ActorRef coordinator, final TupleMask primaryMask,
-            final TupleMask secondaryMask, final String targetActorPath, final ReteNodeSlot targetNodeSlot) {
-        super(coordinator, targetActorPath);
+            final TupleMask secondaryMask, final ActorRef targetActorRef, final ReteNodeSlot targetNodeSlot) {
+        super(coordinator, targetActorRef);
         this.primaryMask = primaryMask;
         this.secondaryMask = secondaryMask;
         this.targetNodeSlot = targetNodeSlot;
