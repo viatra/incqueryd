@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ASCII"?>
+<arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://incquery.net/arch" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
+  <reteRecipes>
+    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode [2]"/>
+    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode [769]"/>
+    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode [890]"/>
+    <recipeNodes xsi:type="recipes:UniquenessEnforcerRecipe" traceInfo="UniquenessEnforcerNode : Route_routeDefinition :  [890]"/>
+    <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;&lt;; ; >  " parent="//@reteRecipes.0/@recipeNodes.3">
+      <mask sourceArity="2">
+        <sourceIndices>0</sourceIndices>
+        <sourceIndices>1</sourceIndices>
+      </mask>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode [17]"/>
+    <recipeNodes xsi:type="recipes:UniquenessEnforcerRecipe" traceInfo="UniquenessEnforcerNode : Route_exit :  [17]"/>
+    <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;&lt;; ; >  " parent="//@reteRecipes.0/@recipeNodes.6">
+      <mask sourceArity="2">
+        <sourceIndices>0</sourceIndices>
+        <sourceIndices>1</sourceIndices>
+      </mask>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="JoinNode&#xA;&lt;; ; ; >  ">
+      <rightParent traceInfo="GenericProjectionIndexer [17 => 17]&#xA;" parent="//@reteRecipes.0/@recipeNodes.5">
+        <mask sourceArity="1">
+          <sourceIndices>0</sourceIndices>
+        </mask>
+      </rightParent>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;&lt;; ; ; >  " parent="//@reteRecipes.0/@recipeNodes.8">
+      <mask sourceArity="3">
+        <sourceIndices>2</sourceIndices>
+        <sourceIndices>0</sourceIndices>
+        <sourceIndices>1</sourceIndices>
+      </mask>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode [3201]"/>
+    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode [4852]"/>
+    <recipeNodes xsi:type="recipes:UniquenessEnforcerRecipe" traceInfo="UniquenessEnforcerNode : TrackElement_connectsTo :  [4852]"/>
+    <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;&lt;; ; >  " parent="//@reteRecipes.0/@recipeNodes.12">
+      <mask sourceArity="2">
+        <sourceIndices>0</sourceIndices>
+        <sourceIndices>1</sourceIndices>
+      </mask>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:UniquenessEnforcerRecipe" traceInfo="UniquenessEnforcerNode : Sensor_trackElement :  [5549]"/>
+    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode [5549]"/>
+    <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;&lt;; ; >  " parent="//@reteRecipes.0/@recipeNodes.14">
+      <mask sourceArity="2">
+        <sourceIndices>0</sourceIndices>
+        <sourceIndices>1</sourceIndices>
+      </mask>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="JoinNode&#xA;&lt;; ; ; >  ">
+      <leftParent traceInfo="GenericProjectionIndexer [4852 => 4852]&#xA;" parent="//@reteRecipes.0/@recipeNodes.11">
+        <mask sourceArity="1">
+          <sourceIndices>0</sourceIndices>
+        </mask>
+      </leftParent>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:UniquenessEnforcerRecipe" traceInfo="UniquenessEnforcerNode [5549]" parents="//@reteRecipes.0/@recipeNodes.19"/>
+    <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;" parent="//@reteRecipes.0/@recipeNodes.17">
+      <mask sourceArity="2">
+        <sourceIndices>1</sourceIndices>
+        <sourceIndices>2</sourceIndices>
+      </mask>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="JoinNode&#xA;&lt;; ; ; >  ">
+      <leftParent traceInfo="GenericProjectionIndexer [4826 => 5549]&#xA;" parent="//@reteRecipes.0/@recipeNodes.15">
+        <mask sourceArity="1">
+          <sourceIndices>1</sourceIndices>
+        </mask>
+      </leftParent>
+      <rightParent traceInfo="GenericProjectionIndexer [4826 => 5549]&#xA;" parent="//@reteRecipes.0/@recipeNodes.18">
+        <mask sourceArity="1">
+          <sourceIndices>0</sourceIndices>
+        </mask>
+      </rightParent>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;&lt;; ; >  " parent="//@reteRecipes.0/@recipeNodes.20">
+      <mask sourceArity="2">
+        <sourceIndices>2</sourceIndices>
+        <sourceIndices>0</sourceIndices>
+      </mask>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="JoinNode&#xA;&lt;; ; ; >  ">
+      <leftParent traceInfo="GenericProjectionIndexer [928 => 3201]&#xA;" parent="//@reteRecipes.0/@recipeNodes.10">
+        <mask sourceArity="1">
+          <sourceIndices>1</sourceIndices>
+        </mask>
+      </leftParent>
+      <rightParent traceInfo="GenericProjectionIndexer [890 => 890]&#xA;" parent="//@reteRecipes.0/@recipeNodes.2">
+        <mask sourceArity="1">
+          <sourceIndices>1</sourceIndices>
+        </mask>
+      </rightParent>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode [729]"/>
+    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode [17]"/>
+    <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="JoinNode&#xA;&lt;; ; ; ; ; >  ">
+      <leftParent traceInfo="GenericProjectionIndexer [769 => 769]&#xA;" parent="//@reteRecipes.0/@recipeNodes.1">
+        <mask sourceArity="1">
+          <sourceIndices>2</sourceIndices>
+        </mask>
+      </leftParent>
+      <rightParent traceInfo="GenericProjectionIndexer [926 => 3093]&#xA;" parent="//@reteRecipes.0/@recipeNodes.22">
+        <mask sourceArity="1">
+          <sourceIndices>0</sourceIndices>
+        </mask>
+      </rightParent>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:InequalityFilterRecipe" traceInfo="InequalityFilterNode&#xA;&lt;; ; ; ; ; >  " parent="//@reteRecipes.0/@recipeNodes.25"/>
+    <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="JoinNode&#xA;&lt;; ; ; >  ">
+      <leftParent traceInfo="GenericProjectionIndexer [17 => 17]&#xA;" parent="//@reteRecipes.0/@recipeNodes.24">
+        <mask sourceArity="1">
+          <sourceIndices>0</sourceIndices>
+        </mask>
+      </leftParent>
+      <rightParent traceInfo="GenericProjectionIndexer [20 => 890]&#xA;" parent="//@reteRecipes.0/@recipeNodes.2">
+        <mask sourceArity="1">
+          <sourceIndices>0</sourceIndices>
+        </mask>
+      </rightParent>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:UniquenessEnforcerRecipe" traceInfo="UniquenessEnforcerNode : Route_entry :  [17]"/>
+    <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;&lt;; ; >  " parent="//@reteRecipes.0/@recipeNodes.28">
+      <mask sourceArity="2">
+        <sourceIndices>0</sourceIndices>
+        <sourceIndices>1</sourceIndices>
+      </mask>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:AntiJoinRecipe" traceInfo="ExistenceNode&#xA;&lt;; ; ; ; ; >  ">
+      <leftParent traceInfo="GenericProjectionIndexer [53 => 53]&#xA;" parent="//@reteRecipes.0/@recipeNodes.26">
+        <mask sourceArity="2">
+          <sourceIndices>3</sourceIndices>
+          <sourceIndices>0</sourceIndices>
+        </mask>
+      </leftParent>
+      <rightParent traceInfo="GenericProjectionIndexer [729 => 729]&#xA;" parent="//@reteRecipes.0/@recipeNodes.23">
+        <mask sourceArity="2">
+          <sourceIndices>2</sourceIndices>
+          <sourceIndices>0</sourceIndices>
+        </mask>
+      </rightParent>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;&lt;; ; ; >  " parent="//@reteRecipes.0/@recipeNodes.27">
+      <mask sourceArity="3">
+        <sourceIndices>1</sourceIndices>
+        <sourceIndices>0</sourceIndices>
+        <sourceIndices>2</sourceIndices>
+      </mask>
+    </recipeNodes>
+    <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;&lt;; >  " parent="//@reteRecipes.0/@recipeNodes.30">
+      <mask sourceArity="1">
+        <sourceIndices>1</sourceIndices>
+      </mask>
+    </recipeNodes>
+  </reteRecipes>
+</arch:Configuration>
