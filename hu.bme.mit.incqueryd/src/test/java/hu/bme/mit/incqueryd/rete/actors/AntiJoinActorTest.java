@@ -1,6 +1,7 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
 import static org.junit.Assert.assertEquals;
+import hu.bme.mit.incqueryd.rete.actors.temp.AntiJoinActor;
 import hu.bme.mit.incqueryd.rete.configuration.BetaNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
@@ -27,7 +28,7 @@ import akka.testkit.JavaTestKit;
  * @author szarnyasg
  * 
  */
-public class JoinActorTest {
+public class AntiJoinActorTest {
 
     static ActorSystem system;
 
@@ -45,15 +46,16 @@ public class JoinActorTest {
         new JavaTestKit(system) {
             {
                 // Arrange
-                final Props props = new Props(JoinActor.class);
+                final Props props = new Props(AntiJoinActor.class);
                 final ActorRef betaActor = system.actorOf(props);
 
                 // create a probe to check the propagated UpdateMessage from the BetaNode
                 final JavaTestKit probe = new JavaTestKit(system);
                 final ActorRef targetActorRef = probe.getRef();
-                
+
                 final BetaNodeTestData data = BetaNodeTestHelper.data1();
 
+                // the TestKit will serve as the coordinator
                 final ActorRef coordinator = getRef();
                 final TupleMask primaryMask = data.getPrimaryMask();
                 final TupleMask secondaryMask = data.getSecondaryMask();
@@ -66,25 +68,39 @@ public class JoinActorTest {
                 // Assert
                 expectMsgEquals(duration("1 second"), ActorMessage.INITIALIZED);
 
+                // 1. sending the updates to the secondary input slot
                 // Act
-                final Stack<ActorRef> senderStack1 = new Stack<>();
-                senderStack1.add(getRef());
-                final UpdateMessage primarySlotUpdateMessage = new UpdateMessage(data.getPrimaryChangeSet(), ReteNodeSlot.PRIMARY, senderStack1);
-                betaActor.tell(primarySlotUpdateMessage, getRef());
+                final Stack<ActorRef> senderStack2 = new Stack<>();
+                senderStack2.add(getRef());
+                final UpdateMessage secondarySlotUpdateMessage = new UpdateMessage(data.getSecondaryChangeSet(),
+                        ReteNodeSlot.SECONDARY, senderStack2);
+                betaActor.tell(secondarySlotUpdateMessage, getRef());
                 // Assert
                 // we expect a ReadyMessage with an empty stack as the sender route
                 final ReadyMessage readyMessage1 = expectMsgClass(duration("1 second"), ReadyMessage.class);
                 assertEquals(new Stack<ActorRef>(), readyMessage1.getRoute());
-                               
+
+                // 2. sending the updates to the primary input slot
                 // Act
-                final Stack<ActorRef> senderStack2 = new Stack<>();
-                senderStack2.add(getRef());
-                final UpdateMessage secondarySlotUpdateMessage = new UpdateMessage(data.getSecondaryChangeSet(), ReteNodeSlot.SECONDARY, senderStack2);
-                betaActor.tell(secondarySlotUpdateMessage, getRef());
+                final Stack<ActorRef> senderStack1 = new Stack<>();
+                senderStack1.add(getRef());
+                final UpdateMessage primarySlotUpdateMessage = new UpdateMessage(data.getPrimaryChangeSet(),
+                        ReteNodeSlot.PRIMARY, senderStack1);
+                betaActor.tell(primarySlotUpdateMessage, getRef());
                 // Assert
-                // we expect an UpdateMessage to the probe with the expected content defined by the BetaNodeTestData object 
-                final UpdateMessage propagatedUpdateMessage = probe.expectMsgClass(duration("1 second"), UpdateMessage.class);
-                assertEquals(data.getJoinExpectedResults(), propagatedUpdateMessage.getChangeSet());
+                if (data.getAntiJoinExpectedResults().getTuples().isEmpty()) {
+                    // if the operation results in no tuples, we expect a ReadyMessage to the coordinator (the TestKit)
+                    final ReadyMessage readyMessage2 = expectMsgClass(duration("1 second"), ReadyMessage.class);
+                    assertEquals(new Stack<ActorRef>(), readyMessage2.getRoute());
+
+                } else {
+                    // else we expect an UpdateMessage to the probe with the expected content defined by the
+                    // BetaNodeTestData object
+                    final UpdateMessage propagatedUpdateMessage = probe.expectMsgClass(duration("1 second"),
+                            UpdateMessage.class);
+                    assertEquals(data.getAntiJoinExpectedResults(), propagatedUpdateMessage.getChangeSet());
+                }
+
             }
         };
     }
@@ -103,5 +119,5 @@ public class JoinActorTest {
     public void test3() {
         test(BetaNodeTestHelper.data3());
     }
-    
+
 }

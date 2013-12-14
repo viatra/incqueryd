@@ -39,13 +39,13 @@ public abstract class ReteActor extends IncQueryDActor {
     };
 
     protected void sendUpdateMessage(final Stack<ActorRef> source, final UpdateMessage message) {
-        logger.info("source stack is: " + source);
+        logger.info(actorString() + " Source stack is: " + source);
 
         final Stack<ActorRef> senderStack = new Stack<>();
         senderStack.addAll(source);
         senderStack.push(getSelf());
 
-        logger.info(actorString() + " sending " + message.getChangeSet().getTuples().size() + " tuples to " + targetActorRef
+        logger.info(actorString() + " Sending " + message.getChangeSet().getTuples().size() + " tuples to " + targetActorRef
                 + ", nodeSlot = " + message.getNodeSlot() + ", propagated update type = " + message.getChangeSet().getChangeType()
                 + ", sender stack is: " + senderStack);
 

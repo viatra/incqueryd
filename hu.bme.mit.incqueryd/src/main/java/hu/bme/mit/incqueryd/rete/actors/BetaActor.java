@@ -44,10 +44,6 @@ public abstract class BetaActor extends ReteActor {
         super.onReceive(message);
 
         if (message instanceof UpdateMessage) {
-//            if (targetActor == null) {
-//                targetActor = getContext().actorFor(targetActorPath);
-//            }
-
             final UpdateMessage incomingUpdateMessage = (UpdateMessage) message;
             incomingUpdate(incomingUpdateMessage);
         }
@@ -58,8 +54,6 @@ public abstract class BetaActor extends ReteActor {
     }
 
     protected void incomingUpdate(final UpdateMessage updateMessage) {        
-        System.out.println("Incoming update " + updateMessage.getChangeSet().getTuples().size() + " tuples.");
-        
         final ChangeSet resultChangeSet = getBetaNode().update(updateMessage.getChangeSet(), updateMessage.getNodeSlot());
                 
         if (resultChangeSet.getTuples().isEmpty()) {

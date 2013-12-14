@@ -38,7 +38,7 @@ public abstract class IncQueryDActor extends UntypedActor {
 
     @Override
     public void onReceive(final Object message) throws Exception {
-        logger.info(actorString() + " Onreceive " + message);
+        logger.info(actorString() + " OnReceive " + message);
 
         if (message instanceof ReadyMessage) {
             final ReadyMessage readyMessage = (ReadyMessage) message;
@@ -48,7 +48,7 @@ public abstract class IncQueryDActor extends UntypedActor {
         else if (message instanceof IncQueryDConfiguration) {
             final IncQueryDConfiguration configuration = (IncQueryDConfiguration) message;
             configure(configuration);
-            logger.info(actorString() + " telling INITIALIZED to " + coordinator);
+            logger.info(actorString() + " Sending INITIALIZED to " + coordinator);
             coordinator.tell(ActorMessage.INITIALIZED, getSelf());
         }
     }
@@ -87,7 +87,7 @@ public abstract class IncQueryDActor extends UntypedActor {
         final Stack<ActorRef> route = receivedUpdateMessage.getSenderStack();
         final ActorRef sender = route.pop();
 
-        logger.info(actorString() + " Ready immediately, telling ReadyMessage to " + sender
+        logger.info(actorString() + " Ready immediately. Sending ReadyMessage to " + sender
                 + " with the following route: " + route);
         sender.tell(new ReadyMessage(route), getSelf());
     }
@@ -101,7 +101,7 @@ public abstract class IncQueryDActor extends UntypedActor {
         final Stack<ActorRef> route = readyMessage.getRoute();
         final ActorRef sender = route.pop();
 
-        logger.info(actorString() + " Ready by message, telling ReadyMessage to " + sender
+        logger.info(actorString() + " Ready by message. Sending ReadyMessage to " + sender
                 + " with the following route: " + route);
         sender.tell(new ReadyMessage(route), getSelf());
     }
