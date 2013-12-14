@@ -41,7 +41,7 @@ public class UpdateMessage implements Serializable {
 
     @Override
     public String toString() {
-        return "UpdateMessage [changeSet=" + changeSet + ", nodeSlot=" + nodeSlot + ", senderStack=" + senderStack
+        return "UpdateMessage [changeSet=" + changeSet.getChangeType() + ", " + changeSet.getTuples() + ", nodeSlot=" + nodeSlot + ", senderStack=" + senderStack
                 + "]";
     }
 

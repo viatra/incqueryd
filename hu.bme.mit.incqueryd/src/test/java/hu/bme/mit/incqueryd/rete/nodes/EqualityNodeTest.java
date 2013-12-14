@@ -8,6 +8,7 @@ import hu.bme.mit.incqueryd.rete.nodes.helpers.FilterNodeTestHelper;
 import org.junit.Test;
 
 /**
+ * Test cases for the {@link EqualityNode} class.
  * 
  * @author szarnyasg
  * 

@@ -1,14 +1,15 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
 import static org.junit.Assert.assertEquals;
-import hu.bme.mit.incqueryd.rete.configuration.TrimmerActorConfiguration;
+import hu.bme.mit.incqueryd.rete.comparison.ConditionExpression;
+import hu.bme.mit.incqueryd.rete.configuration.TermEvaluatorActorConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
-import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
-import hu.bme.mit.incqueryd.rete.nodes.data.TrimmerNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.TrimmerNodeTestHelper;
+import hu.bme.mit.incqueryd.rete.nodes.data.TermEvaluatorNodeTestData;
+import hu.bme.mit.incqueryd.rete.nodes.helpers.TermEvaluatorNodeTestHelper;
 
+import java.util.Collection;
 import java.util.Stack;
 
 import org.junit.AfterClass;
@@ -21,13 +22,11 @@ import akka.actor.Props;
 import akka.testkit.JavaTestKit;
 
 /**
- * Test cases for the {@link TrimmerActor} class.
- * 
+ * Test cases for the {@link TermEvaluatorActor} class.
  * @author szarnyasg
- * 
+ *
  */
-public class TrimmerActorTest {
-
+public class TermEvaluatorActorTest {
     static ActorSystem system;
 
     @BeforeClass
@@ -40,11 +39,11 @@ public class TrimmerActorTest {
         system.shutdown();
     }
 
-    public void test(final TrimmerNodeTestData data) {
+    public void test(final TermEvaluatorNodeTestData data) {
         new JavaTestKit(system) {
             {
                 // Arrange
-                final Props props = new Props(TrimmerActor.class);
+                final Props props = new Props(TermEvaluatorActor.class);
                 final ActorRef filterActor = system.actorOf(props);
 
                 // create a probe to check the propagated UpdateMessage from the EqualityNode
@@ -52,10 +51,10 @@ public class TrimmerActorTest {
                 final ActorRef targetActorRef = probe.getRef();
 
                 final ActorRef coordinator = getRef();
-                final TupleMask projectionMask = data.getProjectionMask();
+                final Collection<ConditionExpression> conditionExpressions = data.getConditionExpressions();
                 final ReteNodeSlot targetNodeSlot = null;
-                final TrimmerActorConfiguration configuration = new TrimmerActorConfiguration(coordinator,
-                        targetActorRef, targetNodeSlot, projectionMask);
+                final TermEvaluatorActorConfiguration configuration = new TermEvaluatorActorConfiguration(coordinator,
+                        targetActorRef, targetNodeSlot, conditionExpressions);
 
                 // Act
                 filterActor.tell(configuration, getRef());
@@ -78,7 +77,6 @@ public class TrimmerActorTest {
 
     @Test
     public void test1() {
-        test(TrimmerNodeTestHelper.data1());
+        test(TermEvaluatorNodeTestHelper.data1());
     }
-
 }

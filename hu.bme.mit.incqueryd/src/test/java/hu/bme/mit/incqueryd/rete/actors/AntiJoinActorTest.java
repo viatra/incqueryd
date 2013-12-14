@@ -1,8 +1,7 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
 import static org.junit.Assert.assertEquals;
-import hu.bme.mit.incqueryd.rete.actors.temp.AntiJoinActor;
-import hu.bme.mit.incqueryd.rete.configuration.BetaNodeConfiguration;
+import hu.bme.mit.incqueryd.rete.configuration.BetaActorConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
@@ -23,7 +22,7 @@ import akka.actor.Props;
 import akka.testkit.JavaTestKit;
 
 /**
- * 
+ * Test cases for the {@link AntiJoinActor} class.
  * 
  * @author szarnyasg
  * 
@@ -43,6 +42,10 @@ public class AntiJoinActorTest {
     }
 
     public void test(final BetaNodeTestData data) {
+
+        System.out.println();
+        System.out.println();
+
         new JavaTestKit(system) {
             {
                 // Arrange
@@ -53,15 +56,13 @@ public class AntiJoinActorTest {
                 final JavaTestKit probe = new JavaTestKit(system);
                 final ActorRef targetActorRef = probe.getRef();
 
-                final BetaNodeTestData data = BetaNodeTestHelper.data1();
-
                 // the TestKit will serve as the coordinator
                 final ActorRef coordinator = getRef();
                 final TupleMask primaryMask = data.getPrimaryMask();
                 final TupleMask secondaryMask = data.getSecondaryMask();
                 final ReteNodeSlot targetNodeSlot = null;
-                final BetaNodeConfiguration configuration = new BetaNodeConfiguration(coordinator, primaryMask,
-                        secondaryMask, targetActorRef, targetNodeSlot);
+                final BetaActorConfiguration configuration = new BetaActorConfiguration(coordinator, targetActorRef,
+                        targetNodeSlot, primaryMask, secondaryMask);
 
                 // Act
                 betaActor.tell(configuration, getRef());

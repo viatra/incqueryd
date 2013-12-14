@@ -1,9 +1,7 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
-import hu.bme.mit.incqueryd.rete.actors.temp.AntiJoinActor;
-import hu.bme.mit.incqueryd.rete.actors.temp.FilterActor;
 import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
-import hu.bme.mit.incqueryd.rete.configuration.ReteNodeConfiguration;
+import hu.bme.mit.incqueryd.rete.configuration.ReteActorConfiguration;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.AntiJoinNode;
 import hu.bme.mit.incqueryd.rete.nodes.FilterNode;
@@ -32,7 +30,7 @@ public abstract class ReteActor extends IncQueryDActor {
 
     @Override
     protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
-        final ReteNodeConfiguration configuration = (ReteNodeConfiguration) incQueryDConfiguration;
+        final ReteActorConfiguration configuration = (ReteActorConfiguration) incQueryDConfiguration;
 
         this.targetActorRef = configuration.getTargetActorRef();
         this.coordinator = configuration.getCoordinator();

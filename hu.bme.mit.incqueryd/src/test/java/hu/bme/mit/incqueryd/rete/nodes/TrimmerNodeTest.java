@@ -8,6 +8,7 @@ import hu.bme.mit.incqueryd.rete.nodes.helpers.TrimmerNodeTestHelper;
 import org.junit.Test;
 
 /**
+ * Test cases for the {@link TrimmerNode} class.
  * 
  * @author szarnyasg
  *

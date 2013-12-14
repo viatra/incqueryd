@@ -7,22 +7,20 @@ import akka.actor.ActorRef;
 /**
  * 
  * @author szarnyasg
- *
+ * 
  */
-public class BetaNodeConfiguration extends ReteNodeConfiguration {
+public class BetaActorConfiguration extends ReteActorConfiguration {
 
     private static final long serialVersionUID = 1L;
 
     protected TupleMask primaryMask;
     protected TupleMask secondaryMask;
-    protected ReteNodeSlot targetNodeSlot;
 
-    public BetaNodeConfiguration(final ActorRef coordinator, final TupleMask primaryMask,
-            final TupleMask secondaryMask, final ActorRef targetActorRef, final ReteNodeSlot targetNodeSlot) {
-        super(coordinator, targetActorRef);
+    public BetaActorConfiguration(final ActorRef coordinator, final ActorRef targetActorRef,
+            final ReteNodeSlot targetNodeSlot, final TupleMask primaryMask, final TupleMask secondaryMask) {
+        super(coordinator, targetActorRef, targetNodeSlot);
         this.primaryMask = primaryMask;
         this.secondaryMask = secondaryMask;
-        this.targetNodeSlot = targetNodeSlot;
     }
 
     public TupleMask getPrimaryMask() {

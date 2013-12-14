@@ -1,21 +1,23 @@
-package hu.bme.mit.incqueryd.rete.actors.temp;
+package hu.bme.mit.incqueryd.rete.actors;
 
 import hu.bme.mit.incqueryd.rete.configuration.FilterActorConfiguration;
 import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
-import hu.bme.mit.incqueryd.rete.nodes.EqualityNode;
+import hu.bme.mit.incqueryd.rete.nodes.FilterNode;
 
-public class EqualityActor extends FilterActor {
+/**
+ * 
+ * @author szarnyasg
+ * 
+ */
+public class FilterActor extends AlphaActor {
 
-    private EqualityNode getEqualityNode() {
-        return (EqualityNode) reteNode;
+    private FilterNode getFilterNode() {
+        return (FilterNode) reteNode;
     }
-    
+
     @Override
     protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
         final FilterActorConfiguration configuration = (FilterActorConfiguration) incQueryDConfiguration;
-
-        // instantiating a new EqualityNode with the appropriate mask
-        reteNode = new EqualityNode(configuration.getMask());
 
         super.configure(configuration);
     }

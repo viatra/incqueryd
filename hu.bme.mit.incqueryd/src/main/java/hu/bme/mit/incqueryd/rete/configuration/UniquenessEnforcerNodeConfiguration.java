@@ -9,12 +9,12 @@ import akka.actor.ActorRef;
  * @author szarnyasg
  *
  */
-public class UniquenessEnforcerNodeConfiguration extends ReteNodeConfiguration {
+public class UniquenessEnforcerNodeConfiguration extends ReteActorConfiguration {
 
-    public UniquenessEnforcerNodeConfiguration(final ActorRef coordinator, final ActorRef targetActorRef,
-            final String edgeLabel, final ReteNodeSlot targetNodeSlot, final DatabaseClientType databaseClientType,
+    public UniquenessEnforcerNodeConfiguration(final ActorRef coordinator, final ActorRef targetActorRef, final ReteNodeSlot targetNodeSlot,
+            final String edgeLabel, final DatabaseClientType databaseClientType,
             final String filename) {
-        super(coordinator, targetActorRef);
+        super(coordinator, targetActorRef, targetNodeSlot);
 
         this.edgeLabel = edgeLabel;
         this.targetNodeSlot = targetNodeSlot;

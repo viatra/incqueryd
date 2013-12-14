@@ -1,7 +1,7 @@
-package hu.bme.mit.incqueryd.rete.actors.temp;
+package hu.bme.mit.incqueryd.rete.actors;
 
 import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
-import hu.bme.mit.incqueryd.rete.configuration.ProductionNodeConfiguration;
+import hu.bme.mit.incqueryd.rete.configuration.ProductionActorConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
@@ -27,7 +27,7 @@ public class ProductionActor extends AlphaActor {
 
     @Override
     protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
-        final ProductionNodeConfiguration configuration = (ProductionNodeConfiguration) incQueryDConfiguration;
+        final ProductionActorConfiguration configuration = (ProductionActorConfiguration) incQueryDConfiguration;
 
         this.coordinator = configuration.getCoordinator();
         
@@ -47,8 +47,8 @@ public class ProductionActor extends AlphaActor {
             sendResult();
         }
 
-        else if (message instanceof ProductionNodeConfiguration) {
-            final ProductionNodeConfiguration configuration = (ProductionNodeConfiguration) message;
+        else if (message instanceof ProductionActorConfiguration) {
+            final ProductionActorConfiguration configuration = (ProductionActorConfiguration) message;
             configure(configuration);
         }
     }

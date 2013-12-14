@@ -1,13 +1,13 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
 import static org.junit.Assert.assertEquals;
-import hu.bme.mit.incqueryd.rete.configuration.TrimmerActorConfiguration;
+import hu.bme.mit.incqueryd.rete.configuration.FilterActorConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
-import hu.bme.mit.incqueryd.rete.nodes.data.TrimmerNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.TrimmerNodeTestHelper;
+import hu.bme.mit.incqueryd.rete.nodes.data.FilterNodeTestData;
+import hu.bme.mit.incqueryd.rete.nodes.helpers.FilterNodeTestHelper;
 
 import java.util.Stack;
 
@@ -21,12 +21,12 @@ import akka.actor.Props;
 import akka.testkit.JavaTestKit;
 
 /**
- * Test cases for the {@link TrimmerActor} class.
+ * Test cases for the {@link InequalityActor} class.
  * 
  * @author szarnyasg
  * 
  */
-public class TrimmerActorTest {
+public class InequalityActorTest {
 
     static ActorSystem system;
 
@@ -40,22 +40,22 @@ public class TrimmerActorTest {
         system.shutdown();
     }
 
-    public void test(final TrimmerNodeTestData data) {
+    public void test(final FilterNodeTestData data) {
         new JavaTestKit(system) {
             {
                 // Arrange
-                final Props props = new Props(TrimmerActor.class);
+                final Props props = new Props(InequalityActor.class);
                 final ActorRef filterActor = system.actorOf(props);
 
-                // create a probe to check the propagated UpdateMessage from the EqualityNode
+                // create a probe to check the propagated UpdateMessage from the InequalityNode
                 final JavaTestKit probe = new JavaTestKit(system);
                 final ActorRef targetActorRef = probe.getRef();
 
                 final ActorRef coordinator = getRef();
-                final TupleMask projectionMask = data.getProjectionMask();
+                final TupleMask mask = data.getTupleMask();
                 final ReteNodeSlot targetNodeSlot = null;
-                final TrimmerActorConfiguration configuration = new TrimmerActorConfiguration(coordinator,
-                        targetActorRef, targetNodeSlot, projectionMask);
+                final FilterActorConfiguration configuration = new FilterActorConfiguration(coordinator,
+                        targetActorRef, targetNodeSlot, mask);
 
                 // Act
                 filterActor.tell(configuration, getRef());
@@ -71,14 +71,14 @@ public class TrimmerActorTest {
                 // we expect a ReadyMessage with an empty stack as the sender route
                 final UpdateMessage propagatedUpdateMessage = probe.expectMsgClass(duration("1 second"),
                         UpdateMessage.class);
-                assertEquals(data.getExpectedResults(), propagatedUpdateMessage.getChangeSet());
+                assertEquals(data.getInequalityExpectedResults(), propagatedUpdateMessage.getChangeSet());
             }
         };
     }
 
     @Test
     public void test1() {
-        test(TrimmerNodeTestHelper.data1());
+        test(FilterNodeTestHelper.data1());
     }
 
 }

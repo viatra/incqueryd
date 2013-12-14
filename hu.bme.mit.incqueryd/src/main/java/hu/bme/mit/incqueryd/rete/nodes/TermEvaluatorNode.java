@@ -12,7 +12,7 @@ import java.util.Set;
  * TermEvaluatorNode [...] deserves special mention because it diverges significantly from the classic RETE concept. It
  * evaluates a GTASM expression on tuples and filters those tuples for which it evaluates to true. It is similar to an
  * alpha node, with one key difference: the filtering condition is not required to be constant. The filtering condition
- * is an arbitrary GTASM term, it is considered as a black box.
+ * is an arbitrary GTASM term, it is considered as a black box. [Bergmann's MSc thesis, p.41]
  * 
  * The current implementation is a simplified version of the one defined above.
  * 
@@ -21,7 +21,7 @@ import java.util.Set;
  */
 public class TermEvaluatorNode extends AlphaNode {
 
-    Collection<ConditionExpression> conditionExpressions;
+    protected Collection<ConditionExpression> conditionExpressions;
 
     public TermEvaluatorNode(final Collection<ConditionExpression> conditionExpressions) {
         this.conditionExpressions = conditionExpressions;
