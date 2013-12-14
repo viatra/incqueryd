@@ -3,7 +3,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import static org.junit.Assert.assertTrue;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.nodes.data.TrimmerNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.TrimmerNodeTestHelper;
+import hu.bme.mit.incqueryd.rete.nodes.helpers.TrimmerTestHelper;
 
 import org.junit.Test;
 
@@ -23,7 +23,7 @@ public class TrimmerNodeTest {
     
     @Test
     public void test1() {
-        test(TrimmerNodeTestHelper.data1());
+        test(TrimmerTestHelper.data1());
     }
 
 }

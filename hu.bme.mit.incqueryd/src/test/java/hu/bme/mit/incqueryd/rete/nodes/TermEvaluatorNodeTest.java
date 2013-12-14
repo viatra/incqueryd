@@ -3,7 +3,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import static org.junit.Assert.assertTrue;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.nodes.data.TermEvaluatorNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.TermEvaluatorNodeTestHelper;
+import hu.bme.mit.incqueryd.rete.nodes.helpers.TermEvaluatorTestHelper;
 
 import org.junit.Test;
 
@@ -24,7 +24,7 @@ public class TermEvaluatorNodeTest {
 
     @Test
     public void test1() {
-        test(TermEvaluatorNodeTestHelper.data1());
+        test(TermEvaluatorTestHelper.data1());
     }
   
 }

@@ -17,7 +17,7 @@ import java.util.Set;
  * @author szarnyasg
  *
  */
-public class TermEvaluatorNodeTestHelper {
+public class TermEvaluatorTestHelper {
 
     public static TermEvaluatorNodeTestData data1() {
         final Set<Tuple> tuples = new HashSet<>();

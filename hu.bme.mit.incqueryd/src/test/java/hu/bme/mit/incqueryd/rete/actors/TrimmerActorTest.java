@@ -7,7 +7,7 @@ import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.data.TrimmerNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.TrimmerNodeTestHelper;
+import hu.bme.mit.incqueryd.rete.nodes.helpers.TrimmerTestHelper;
 
 import java.util.Stack;
 
@@ -78,7 +78,7 @@ public class TrimmerActorTest {
 
     @Test
     public void test1() {
-        test(TrimmerNodeTestHelper.data1());
+        test(TrimmerTestHelper.data1());
     }
 
 }

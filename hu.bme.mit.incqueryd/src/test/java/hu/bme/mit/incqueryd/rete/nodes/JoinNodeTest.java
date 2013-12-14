@@ -3,7 +3,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import static org.junit.Assert.assertTrue;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.nodes.data.BetaNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.BetaNodeTestHelper;
+import hu.bme.mit.incqueryd.rete.nodes.helpers.BetaTestHelper;
 
 import org.junit.Test;
 
@@ -24,17 +24,17 @@ public class JoinNodeTest {
 
     @Test
     public void test1() {
-        test(BetaNodeTestHelper.data1());
+        test(BetaTestHelper.data1());
     }
 
     @Test
     public void test2() {
-        test(BetaNodeTestHelper.data2());
+        test(BetaTestHelper.data2());
     }
 
     @Test
     public void test3() {
-        test(BetaNodeTestHelper.data3());
+        test(BetaTestHelper.data3());
     }
 
 }

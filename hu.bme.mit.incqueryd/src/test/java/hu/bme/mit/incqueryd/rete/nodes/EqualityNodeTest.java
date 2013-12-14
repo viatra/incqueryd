@@ -3,7 +3,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import static org.junit.Assert.assertTrue;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.nodes.data.FilterNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.FilterNodeTestHelper;
+import hu.bme.mit.incqueryd.rete.nodes.helpers.FilterTestHelper;
 
 import org.junit.Test;
 
@@ -24,6 +24,6 @@ public class EqualityNodeTest {
 
     @Test
     public void test1() {
-        test(FilterNodeTestHelper.data1());
+        test(FilterTestHelper.data1());
     }
 }

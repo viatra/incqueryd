@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
  * @author szarnyasg
  *
  */
-public class FilterNodeTestHelper {
+public class FilterTestHelper {
 
     public static FilterNodeTestData data1() {
         final Set<Tuple> tuples = new HashSet<>();

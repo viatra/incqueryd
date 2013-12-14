@@ -7,7 +7,7 @@ import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.data.TermEvaluatorNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.TermEvaluatorNodeTestHelper;
+import hu.bme.mit.incqueryd.rete.nodes.helpers.TermEvaluatorTestHelper;
 
 import java.util.Collection;
 import java.util.Stack;
@@ -77,6 +77,6 @@ public class TermEvaluatorActorTest {
 
     @Test
     public void test1() {
-        test(TermEvaluatorNodeTestHelper.data1());
+        test(TermEvaluatorTestHelper.data1());
     }
 }

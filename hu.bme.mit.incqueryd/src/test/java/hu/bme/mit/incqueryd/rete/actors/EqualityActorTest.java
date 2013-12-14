@@ -7,7 +7,7 @@ import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.data.FilterNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.FilterNodeTestHelper;
+import hu.bme.mit.incqueryd.rete.nodes.helpers.FilterTestHelper;
 
 import java.util.Stack;
 
@@ -78,7 +78,7 @@ public class EqualityActorTest {
 
     @Test
     public void test1() {
-        test(FilterNodeTestHelper.data1());
+        test(FilterTestHelper.data1());
     }
 
 }

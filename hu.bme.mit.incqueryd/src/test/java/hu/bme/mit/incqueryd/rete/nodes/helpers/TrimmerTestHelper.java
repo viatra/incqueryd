@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
  * @author szarnyasg
  *
  */
-public class TrimmerNodeTestHelper {
+public class TrimmerTestHelper {
 
     public static TrimmerNodeTestData data1() {
         final Set<Tuple> tuples = new HashSet<>();

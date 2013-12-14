@@ -17,7 +17,7 @@ import com.google.common.collect.ImmutableList;
  * @author szarnyasg
  * 
  */
-public class BetaNodeTestHelper {
+public class BetaTestHelper {
 
     /**
      * Simple case: one common attribute.
