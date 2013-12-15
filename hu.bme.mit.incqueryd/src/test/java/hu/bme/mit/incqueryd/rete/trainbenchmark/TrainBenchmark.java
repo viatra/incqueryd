@@ -1,13 +1,12 @@
 package hu.bme.mit.incqueryd.rete.trainbenchmark;
 
 import static org.junit.Assert.assertEquals;
-import hu.bme.mit.incqueryd.io.GraphSonFormat;
+import hu.bme.mit.incqueryd.io.GraphSonLoader;
 import hu.bme.mit.incqueryd.rete.comparison.ComparisonOperator;
 import hu.bme.mit.incqueryd.rete.comparison.ConditionExpression;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.rete.dataunits.TupleImpl;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import hu.bme.mit.incqueryd.rete.nodes.Algorithms;
 import hu.bme.mit.incqueryd.rete.nodes.AlphaNode;
@@ -21,17 +20,12 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 import org.junit.Test;
 
-import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Multimap;
 
 /**
  * Test cases for the TrainBenchmark queries. The queries are evaluated on an instance model serialized in Faunus
@@ -69,81 +63,15 @@ public class TrainBenchmark {
     protected final boolean logResults = true;
     protected final boolean logMessages = true;
 
-    final Map<String, Set<Tuple>> vertexTuplesMap = new HashMap<>();
-    final Map<String, Set<Tuple>> edgeTuplesMap = new HashMap<>();
-
-    private void load(final Map<String, Collection<String>> vertexTypesAndProperties,
-            final Collection<String> edgeLabels) throws IOException {
-        final Multimap<String, Object> vertexTypeVertexIdsMap = ArrayListMultimap.create();
-        final Map<Object, Map<String, Object>> vertexIdVertexPropertiesMap = new HashMap<>();
-        final Map<String, Multimap<Object, Object>> edgeLabelVertexPairsMap = new HashMap<>();
-
-        logMessage("Loading...");
-
-        // collect the edges from the Faunus GraphSON file in one run
-        startTimer();
-        GraphSonFormat.indexGraph(pathName, vertexTypesAndProperties, vertexTypeVertexIdsMap,
-                vertexIdVertexPropertiesMap, edgeLabels, edgeLabelVertexPairsMap);
-
-        // converting the vertices to tuples
-        // e.g. <id, Segment_length>
-        for (final String vertexType : vertexTypeVertexIdsMap.keySet()) {
-            final Collection<Object> verticesId = vertexTypeVertexIdsMap.get(vertexType);
-            final Set<Tuple> tuples = new HashSet<>();
-
-            for (final Object vertexId : verticesId) {
-                final List<Object> tupleItems = new LinkedList<>();
-                tupleItems.add(vertexId);
-
-                final Collection<String> propertiesToExtract = vertexTypesAndProperties.get(vertexType);
-                for (final String propertyName : propertiesToExtract) {
-                    final Object propertyValue = vertexIdVertexPropertiesMap.get(vertexId).get(propertyName);
-                    tupleItems.add(propertyValue);
-                }
-
-                final Tuple tuple = new TupleImpl(tupleItems.toArray());
-                tuples.add(tuple);
-            }
-
-            vertexTuplesMap.put(vertexType, tuples);
-        }
-
-        // converting the edges to tuples
-        for (final Entry<String, Multimap<Object, Object>> entry : edgeLabelVertexPairsMap.entrySet()) {
-            final String edgeLabel = entry.getKey();
-            final Multimap<Object, Object> edges = entry.getValue();
-
-            final Set<Tuple> tuples = new HashSet<>();
-            edgeTuplesMap.put(edgeLabel, tuples);
-
-            // System.out.println(edgeLabel);
-
-            for (final Object v1 : edges.keySet()) {
-                final Collection<Object> v2s = edges.get(v1);
-
-                // logResult(v1 + ": " + v2s);
-                for (final Object v2 : v2s) {
-                    final Tuple tuple = new TupleImpl(v1, v2);
-                    tuples.add(tuple);
-                    // logResult(tuple.toString());
-                    // System.out.println(tuple.toString() + ", ");
-                }
-            }
-
-            // System.out.println();
-        }
-
-        System.out.print("loaded, ");
-        restartTimer();
-    }
-
     @Test
     public void posLength() throws IOException {
         System.out.println("PosLength query");
         final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
         vertexTypesAndProperties.put(Segment, ImmutableList.of(Segment_length));
 
-        load(vertexTypesAndProperties, ImmutableList.<String> of());
+        final GraphSonLoader graphSonLoader = new GraphSonLoader(pathName, vertexTypesAndProperties,
+                ImmutableList.<String> of());
+        final Map<String, Set<Tuple>> vertexTuplesMap = graphSonLoader.getVertexTuplesMap();
 
         final Set<Tuple> switchTuples = vertexTuplesMap.get(Segment);
 
@@ -171,7 +99,9 @@ public class TrainBenchmark {
 
         final Collection<String> edgeLabels = ImmutableList.of(Route_routeDefinition, Route_switchPosition,
                 SwitchPosition_switch, TrackElement_sensor);
-        load(vertexTypesAndProperties, edgeLabels);
+
+        final GraphSonLoader graphSonLoader = new GraphSonLoader(pathName, vertexTypesAndProperties, edgeLabels);
+        final Map<String, Set<Tuple>> edgeTuplesMap = graphSonLoader.getEdgeTuplesMap();
 
         final Set<Tuple> route_routeDefinitionTuples = edgeTuplesMap.get(Route_routeDefinition); // Route, Sensor
         final Set<Tuple> route_switchPositionTuples = edgeTuplesMap.get(Route_switchPosition); // Route, SwitchPosition
@@ -245,10 +175,12 @@ public class TrainBenchmark {
         System.out.println("SignalNeighbor query");
 
         final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
-
         final Collection<String> edgeLabels = ImmutableList.of(Route_routeDefinition, Route_entry, Route_exit,
                 TrackElement_sensor, TrackElement_connectsTo);
-        load(vertexTypesAndProperties, edgeLabels);
+
+        final GraphSonLoader graphSonLoader = new GraphSonLoader(pathName, vertexTypesAndProperties,
+                edgeLabels);
+        final Map<String, Set<Tuple>> edgeTuplesMap = graphSonLoader.getEdgeTuplesMap();
 
         final Set<Tuple> route_routeDefinitionTuples = edgeTuplesMap.get(Route_routeDefinition); // Route, Sensor
         final Set<Tuple> route_entryTuples = edgeTuplesMap.get(Route_entry); // Route, Signal
@@ -390,8 +322,10 @@ public class TrainBenchmark {
 
         // edge labels
         final Collection<String> edgeLabels = ImmutableList.of(TrackElement_sensor);
-
-        load(vertexTypesAndProperties, edgeLabels);
+        
+        final GraphSonLoader graphSonLoader = new GraphSonLoader(pathName, vertexTypesAndProperties, edgeLabels);
+        final Map<String, Set<Tuple>> vertexTuplesMap = graphSonLoader.getVertexTuplesMap();
+        final Map<String, Set<Tuple>> edgeTuplesMap = graphSonLoader.getEdgeTuplesMap();
 
         final Set<Tuple> switchTuples = vertexTuplesMap.get(Switch);
         final Set<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch, Sensor vertex

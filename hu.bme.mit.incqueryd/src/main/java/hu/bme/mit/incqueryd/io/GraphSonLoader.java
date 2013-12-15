@@ -80,8 +80,6 @@ public class GraphSonLoader {
 
             // System.out.println();
         }
-
-        System.out.print("loaded, ");
     }
     
     public Map<String, Set<Tuple>> getVertexTuplesMap() {

@@ -60,8 +60,8 @@ import java.util.Set;
  */
 public class AntiJoinNode extends BetaNode {
 
-    public AntiJoinNode(final TupleMask leftMask, final TupleMask rightMask) {
-        super(leftMask, rightMask);
+    public AntiJoinNode(final TupleMask primaryMask, final TupleMask secondaryMask) {
+        super(primaryMask, secondaryMask);
     }
 
     @Override
