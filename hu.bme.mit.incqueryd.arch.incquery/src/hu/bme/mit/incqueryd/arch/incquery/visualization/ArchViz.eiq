@@ -7,7 +7,7 @@ import "http://incquery.net/d/infrastructure"
 
 /* physical layer */
 
-@Item(item = M, label = "Machine $M.ip$")
+@Item(item = M, label = "Machine $M.traceInfo$")
 @Format(color = "#009054",
 	textColor = "#ffffff"
 )
@@ -79,6 +79,10 @@ pattern indexerInContainer(ix, rc) {
 
 //@Item(item = rn, label = "$rn.traceInfo$")
 //pattern reteNode(rn) { ReteNodeRecipe(rn); }
+
+@Item(item=rn, label="$rn.traceInfo$")
+@Format(color="#9ec9cf")
+pattern uniquenessEnforcerNode(rn) { UniquenessEnforcerRecipe(rn); }
 
 @Item(item=rn, label="$rn.traceInfo$")
 @Format(color="#98fb98")
