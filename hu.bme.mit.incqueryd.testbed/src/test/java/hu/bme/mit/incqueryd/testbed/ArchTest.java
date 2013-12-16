@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -73,11 +74,12 @@ public class ArchTest {
 
         final Map<ReteNodeRecipe, String> names = new HashMap<>();
 
+        
         // parent-children pairs
         final Map<ReteNodeRecipe, ReteNodeRecipe> children = new HashMap<>();
         // parent-slot pairs
         final Map<ReteNodeRecipe, ReteNodeSlot> childrenSlots = new HashMap<>();
-
+        
         // initialize extension to factory map
         Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
         // initialize package registry
@@ -115,7 +117,7 @@ public class ArchTest {
 
             // edge labels
             final Collection<String> edgeLabels = new LinkedList<>();
-
+            
             // ------------------------------------------------------------------------------------------------------------------
             // first iteration
             // ------------------------------------------------------------------------------------------------------------------
@@ -217,6 +219,14 @@ public class ArchTest {
                     }
 
                 }
+                
+                final List<ReteNodeRecipe> topologicalSort = Algorithms.topologicalSort(names.keySet(), children);
+                
+                for (final ReteNodeRecipe reteNodeRecipe : topologicalSort) {
+                    System.out.println(reteNodeRecipe);
+                }
+                
+                if (true) return;
 
                 // loading the graph
                 final GraphSonLoader graphSonLoader = new GraphSonLoader(modelFile, vertexTypesAndProperties,
