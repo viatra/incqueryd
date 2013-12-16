@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ExistenceJoinRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
@@ -36,6 +37,7 @@ import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexer;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 import org.junit.Test;
 
@@ -57,7 +59,7 @@ public class ArchTest {
     // file paths
     protected final int size = 1;
     protected final String modelFile = "src/test/resources/testBig_User_" + size + ".faunus-graphson";
-    protected final String archFile = "src/test/resources/routeSensor-untouched.arch";
+    protected final String archFile = "src/test/resources/routeSensor-quantified.arch";
     // protected final String archFile = "src/test/resources/routeSensor-vcl.arch";
     protected DatabaseClientType databaseClientType;
     protected String filename;
@@ -128,31 +130,53 @@ public class ArchTest {
 
                     ReteNode reteNode = null;
 
-                    // UniquenessEnforcer recipes
-                    if (r instanceof UniquenessEnforcerRecipe) {
-                        System.out.println("- UniquenessEnforcer recipe");
+                    // --------------------------------------------------------------------------------
+                    // Alpha recipes
+                    // --------------------------------------------------------------------------------
+                    if (r instanceof AlphaRecipe) {
 
-                        final UniquenessEnforcerRecipe uer = (UniquenessEnforcerRecipe) r;
+                        final AlphaRecipe ar = (AlphaRecipe) r;
 
-                        // traceInfo looks something like "UniquenessEnforcerNode : Route_routeDefinition :  [0]"
-                        final String traceInfo = uer.getTraceInfo();
-                        // extracting the type information from the traceInfo
-                        // TODO add a separate field for this to the architecture's Xcore file
-                        final String patternString = ": (\\w*) :";
+                        // adding reverse reference to the children                        
+                        children.put(ar.getParent(), ar);
 
-                        final Pattern pattern = Pattern.compile(patternString);
-                        final Matcher m = pattern.matcher(traceInfo);
-                        String edgeLabel;
-                        if (m.find()) {
-                            edgeLabel = m.group(1);
-                        } else {
-                            throw new RuntimeException("Invalid UniquenessEnforcerRecipe");
+                        // UniquenessEnforcer recipes
+                        if (r instanceof UniquenessEnforcerRecipe) {
+                            System.out.println("- UniquenessEnforcer recipe");
+
+                            final UniquenessEnforcerRecipe uer = (UniquenessEnforcerRecipe) ar;
+
+                            // traceInfo looks something like "UniquenessEnforcerNode : Route_routeDefinition :  [0]"
+                            final String traceInfo = uer.getTraceInfo();
+                            // extracting the type information from the traceInfo
+                            // TODO add a separate field for this to the architecture's Xcore file
+                            final String patternString = ": (\\w*) :";
+
+                            final Pattern pattern = Pattern.compile(patternString);
+                            final Matcher m = pattern.matcher(traceInfo);
+                            String edgeLabel;
+                            if (m.find()) {
+                                edgeLabel = m.group(1);
+                            } else {
+                                throw new RuntimeException("Invalid UniquenessEnforcerRecipe");
+                            }
+
+                            edgeLabels.add(edgeLabel);
                         }
 
-                        edgeLabels.add(edgeLabel);
+                        // Trimmer recipes
+                        if (r instanceof TrimmerRecipe) {
+                            System.out.println("- Trimmer recipe");
+
+                            final TrimmerRecipe tr = (TrimmerRecipe) ar;
+
+                            System.out.println("Mask: " + tr.getMask().getSourceIndices());
+                        }
                     }
 
-                    // Beta recipes: join and antijoin
+                    // --------------------------------------------------------------------------------
+                    // Beta recipes
+                    // --------------------------------------------------------------------------------
                     if (r instanceof BetaRecipe) {
                         System.out.println("- Beta recipe");
 
@@ -161,34 +185,35 @@ public class ArchTest {
                         // extract indexer masks
                         final TupleMask primaryMask = new TupleMask(br.getLeftParent().getMask().getSourceIndices());
                         final TupleMask secondaryMask = new TupleMask(br.getRightParent().getMask().getSourceIndices());
+                        System.out.println("  primary mask: " + primaryMask.getMask() + ", secondary mask: "
+                                + secondaryMask.getMask());
 
                         // Rete node parents
                         final ReteNodeRecipe primaryParent = br.getLeftParent().getParent();
                         final ReteNodeRecipe secondaryParent = br.getRightParent().getParent();
 
                         // adding reverse references to the children
-                        children.put(primaryParent, r);
+                        children.put(primaryParent, br);
                         childrenSlots.put(primaryParent, ReteNodeSlot.PRIMARY);
 
-                        children.put(secondaryParent, r);
+                        children.put(secondaryParent, br);
                         childrenSlots.put(secondaryParent, ReteNodeSlot.SECONDARY);
 
-                        
+                        // join
                         if (br instanceof JoinRecipe) {
-                            final JoinRecipe jr = (JoinRecipe) r;
-                            System.out.println("  - Join recipe: " + jr);
+                            final JoinRecipe jr = (JoinRecipe) br;
+                            System.out.println("  - Join recipe");
 
                             reteNode = new JoinNode(primaryMask, secondaryMask);
                         }
 
+                        // antijoin
                         if (br instanceof ExistenceJoinRecipe) {
-                            final ExistenceJoinRecipe ejr = (ExistenceJoinRecipe) r;
-                            System.out.println("  - ExistenceJoin recipe: " + ejr);
+                            final ExistenceJoinRecipe ejr = (ExistenceJoinRecipe) br;
+                            System.out.println("  - ExistenceJoin recipe");
 
                             reteNode = new AntiJoinNode(primaryMask, secondaryMask);
                         }
-
-
                     }
 
                 }
@@ -207,6 +232,13 @@ public class ArchTest {
                 System.out.println("edge tuples");
                 for (final Entry<String, Set<Tuple>> entry : edgeTuplesMap.entrySet()) {
                     System.out.println(entry);
+                }
+
+                System.out.println();
+                for (final Entry<ReteNodeRecipe, ReteNodeRecipe> entry : children.entrySet()) {
+                    final ReteNodeRecipe key = entry.getKey();
+                    final ReteNodeRecipe value = entry.getValue();
+                    System.out.println(key.getClass().getSimpleName() + " ---> " + value.getClass().getSimpleName());
                 }
 
                 // final ReteNodeRecipe childRecipe = children.get(uer);
