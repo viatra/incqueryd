@@ -3,17 +3,20 @@ package hu.bme.mit.incqueryd.testbed;
 import hu.bme.mit.incqueryd.databases.DatabaseClientType;
 import hu.bme.mit.incqueryd.io.GraphSonLoader;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
+import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
+import hu.bme.mit.incqueryd.rete.nodes.AlphaNode;
 import hu.bme.mit.incqueryd.rete.nodes.AntiJoinNode;
+import hu.bme.mit.incqueryd.rete.nodes.BetaNode;
+import hu.bme.mit.incqueryd.rete.nodes.EdgeInputNode;
 import hu.bme.mit.incqueryd.rete.nodes.JoinNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
 import hu.bme.mit.incqueryd.rete.nodes.TrimmerNode;
 import infrastructure.InfrastructurePackage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -35,7 +38,6 @@ import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ExistenceJoinRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexer;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
@@ -45,9 +47,6 @@ import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 import org.junit.Test;
 
 import akka.actor.ActorRef;
-import akka.actor.Address;
-import akka.actor.Deploy;
-import akka.remote.RemoteScope;
 import arch.ArchPackage;
 import arch.Configuration;
 
@@ -84,8 +83,8 @@ public class ArchTest {
 
     // rete recipe-rete node pairs
     final Map<ReteNodeRecipe, ReteNode> reteNodeForRecipe = new HashMap<>();
-    // rete node-rete changeset pairs
-    final Map<ReteNode, ChangeSet> reteNodeChangeSet = new HashMap<>();
+    // rete recipe-rete changeset pairs
+    final Map<ReteNodeRecipe, ChangeSet> reteRecipeChangeSet = new HashMap<>();
 
     @Test
     public void testApp() throws IOException {
@@ -121,10 +120,8 @@ public class ArchTest {
         // iterating through the Rete network
         int n = 0;
         for (final ReteNodeRecipe reteNodeRecipe : reteRecipe.getRecipeNodes()) {
-            n++;
-            final String name = "ReteNode" + n;
-            names.put(reteNodeRecipe, name);
-
+            // processing the recipe
+            // currently only support some recipes
             ReteNode reteNode = null;
 
             if (reteNodeRecipe instanceof BetaRecipe) {
@@ -137,14 +134,23 @@ public class ArchTest {
                 reteNode = processSingleParentNodeRecipe((SingleParentNodeRecipe) reteNodeRecipe);
             }
 
+            // is the recipe was supported, the reteNode will point to a not null reference
+            // if (reteNode != null) {
+            n++;
+            final String name = "ReteNode" + n;
+            names.put(reteNodeRecipe, name);
+
             reteNodeForRecipe.put(reteNodeRecipe, reteNode);
+            // }
         }
+
+        System.out.println(children.size());
 
         System.out.println();
         System.out.println("Topological sort");
         System.out.println("----------------");
-        final List<ReteNodeRecipe> topologicalSort = Algorithms.topologicalSort(names.keySet(), children);
-        for (final ReteNodeRecipe reteNodeRecipe : topologicalSort) {
+        final List<ReteNodeRecipe> sortedRecipes = Algorithms.topologicalSort(names.keySet(), children);
+        for (final ReteNodeRecipe reteNodeRecipe : sortedRecipes) {
             System.out.println(reteNodeRecipe);
         }
 
@@ -170,11 +176,48 @@ public class ArchTest {
             System.out.println(entry);
         }
 
-        System.out.println();
+        System.out.println(children.size());
+
         for (final Entry<ReteNodeRecipe, ReteNodeRecipe> entry : children.entrySet()) {
             final ReteNodeRecipe key = entry.getKey();
             final ReteNodeRecipe value = entry.getValue();
             System.out.println(key.getClass().getSimpleName() + " ---> " + value.getClass().getSimpleName());
+        }
+
+        for (final ReteNodeRecipe recipe : sortedRecipes) {
+
+            if (recipe instanceof MultiParentNodeRecipe) {
+                if (recipe instanceof UniquenessEnforcerRecipe) {
+                    final EdgeInputNode ein = (EdgeInputNode) reteNodeForRecipe.get(recipe);
+                    System.out.println("ein: " + ein);
+
+                    final Set<Tuple> edges = edgeTuplesMap.get(ein.getEdgeLabel());
+                    final ChangeSet changeSet = new ChangeSet(edges, ChangeType.POSITIVE);
+                    reteRecipeChangeSet.put(recipe, changeSet);
+                    
+                    System.out.println("edgeLabel: " + changeSet);
+                }
+            }
+
+            if (recipe instanceof SingleParentNodeRecipe) {
+                final SingleParentNodeRecipe spnr = (SingleParentNodeRecipe) recipe;
+                final AlphaNode an = (AlphaNode) reteNodeForRecipe.get(recipe);
+                System.out.println("an: " + an);
+                
+                final ReteNodeRecipe parent = spnr.getParent();
+                final ChangeSet parentChangeSet = reteRecipeChangeSet.get(parent);
+                
+                System.out.println("parent's changeset: " + parentChangeSet); 
+                
+                
+            }
+
+            if (recipe instanceof BetaRecipe) {
+                final BetaNode bn = (BetaNode) reteNodeForRecipe.get(recipe);
+                System.out.println("bn: " + bn);
+                
+                
+            }
         }
 
     }
@@ -226,9 +269,8 @@ public class ArchTest {
             }
 
             edgeLabels.add(edgeLabel);
+            reteNode = new EdgeInputNode(edgeLabel);
         }
-
-        reteNode = null;
 
         return reteNode;
     }
@@ -272,33 +314,33 @@ public class ArchTest {
         return reteNode;
     }
 
-    protected ArrayList<Integer> extractMask(final ProjectionIndexer pI) {
-        final EList<Integer> eLeftMask = pI.getMask().getSourceIndices();
-        final ArrayList<Integer> mask = new ArrayList<>();
-        for (final Integer integer : eLeftMask) {
-            mask.add(integer);
-        }
-        return mask;
-    }
+    // protected ArrayList<Integer> extractMask(final ProjectionIndexer pI) {
+    // final EList<Integer> eLeftMask = pI.getMask().getSourceIndices();
+    // final ArrayList<Integer> mask = new ArrayList<>();
+    // for (final Integer integer : eLeftMask) {
+    // mask.add(integer);
+    // }
+    // return mask;
+    // }
 
-    protected void deployActors() {
-        for (final Map.Entry<String, ActorContainer> actorContainerPair : actors.entrySet()) {
-
-            final String name = actorContainerPair.getKey();
-            final ActorContainer actor = actorContainerPair.getValue();
-
-            final String host = actor.host;
-            final Class actorClass = actor.actorClass;
-            final Address addr = new Address("akka", "ReteNet", host, 2552);
-            final Deploy deploy = new Deploy(new RemoteScope(addr));
-            // logger.info("Deploying " + name + " to " + host);
-            // final ActorRef actor = system.actorOf(new Props(actorClass).withDeploy(deploy), name);
-
-            // saving the reference for later use
-            // actor.actorRef = getContext().actorOf(new Props(actorClass).withDeploy(deploy), name);
-            // TODO fix this
-        }
-    }
+    // protected void deployActors() {
+    // for (final Map.Entry<String, ActorContainer> actorContainerPair : actors.entrySet()) {
+    //
+    // final String name = actorContainerPair.getKey();
+    // final ActorContainer actor = actorContainerPair.getValue();
+    //
+    // final String host = actor.host;
+    // final Class actorClass = actor.actorClass;
+    // final Address addr = new Address("akka", "ReteNet", host, 2552);
+    // final Deploy deploy = new Deploy(new RemoteScope(addr));
+    // // logger.info("Deploying " + name + " to " + host);
+    // // final ActorRef actor = system.actorOf(new Props(actorClass).withDeploy(deploy), name);
+    //
+    // // saving the reference for later use
+    // // actor.actorRef = getContext().actorOf(new Props(actorClass).withDeploy(deploy), name);
+    // // TODO fix this
+    // }
+    // }
 
     // private void configureActors() {
     // // telling the configuration object to each actor

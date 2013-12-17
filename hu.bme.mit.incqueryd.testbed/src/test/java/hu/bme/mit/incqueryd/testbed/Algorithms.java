@@ -2,6 +2,7 @@ package hu.bme.mit.incqueryd.testbed;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,8 @@ public class Algorithms {
      */
     public static <T> List<T> topologicalSort(final Collection<T> items, final Map<T, T> children) {
         final List<T> input = new ArrayList<>(items);
+        final Map<T, T> relations = new HashMap<>(children);
+        
         final LinkedList<T> output = new LinkedList<T>();
         
 //        System.out.println(input);
@@ -29,13 +32,13 @@ public class Algorithms {
             for (final T item : input) {
 //                System.out.println(item);
                 // if the item is not a child of any parent 
-                if (!children.values().contains(item)) {
+                if (!relations.values().contains(item)) {
                     // we add it to the result list
                     output.add(item);
                     
                     // and remove it from the input item list and the graph
                     input.remove(item);
-                    children.remove(item);
+                    relations.remove(item);
                     
                     break;
                 }
