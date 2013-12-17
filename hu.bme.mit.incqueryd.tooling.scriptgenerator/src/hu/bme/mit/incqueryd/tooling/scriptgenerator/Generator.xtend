@@ -71,9 +71,6 @@ class Generator {
 
 	def void trimmer(TrimmerRecipe recipe) {
 		println("Trimmer recipe")
-		
 	}
-
-
 
 }
