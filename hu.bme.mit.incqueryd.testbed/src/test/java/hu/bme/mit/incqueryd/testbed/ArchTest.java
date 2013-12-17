@@ -1,14 +1,15 @@
 package hu.bme.mit.incqueryd.testbed;
 
-import static org.junit.Assert.assertTrue;
 import hu.bme.mit.incqueryd.databases.DatabaseClientType;
 import hu.bme.mit.incqueryd.io.GraphSonLoader;
+import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import hu.bme.mit.incqueryd.rete.nodes.AntiJoinNode;
 import hu.bme.mit.incqueryd.rete.nodes.JoinNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
+import hu.bme.mit.incqueryd.rete.nodes.TrimmerNode;
 import infrastructure.InfrastructurePackage;
 
 import java.io.IOException;
@@ -30,14 +31,15 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ExistenceJoinRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexer;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.SingleParentNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 import org.junit.Test;
@@ -64,22 +66,29 @@ public class ArchTest {
     // protected final String archFile = "src/test/resources/routeSensor-vcl.arch";
     protected DatabaseClientType databaseClientType;
     protected String filename;
-    protected ActorContainer productionActor;
     protected final ActorRef coordinator = null;
     final Map<String, ActorContainer> actors = new HashMap<>();
 
+    // rete node names (for Akka)
+    final Map<ReteNodeRecipe, String> names = new HashMap<>();
+
+    // vertex type and properties
+    final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
+    // edge labels
+    final Collection<String> edgeLabels = new LinkedList<>();
+
+    // the network is defined by parent-children pairs
+    final Map<ReteNodeRecipe, ReteNodeRecipe> children = new HashMap<>();
+    // parent-children's target slot pairs
+    final Map<ReteNodeRecipe, ReteNodeSlot> childrenSlots = new HashMap<>();
+
+    // rete recipe-rete node pairs
+    final Map<ReteNodeRecipe, ReteNode> reteNodeForRecipe = new HashMap<>();
+    // rete node-rete changeset pairs
+    final Map<ReteNode, ChangeSet> reteNodeChangeSet = new HashMap<>();
+
     @Test
     public void testApp() throws IOException {
-        assertTrue(true);
-
-        final Map<ReteNodeRecipe, String> names = new HashMap<>();
-
-        
-        // parent-children pairs
-        final Map<ReteNodeRecipe, ReteNodeRecipe> children = new HashMap<>();
-        // parent-slot pairs
-        final Map<ReteNodeRecipe, ReteNodeSlot> childrenSlots = new HashMap<>();
-        
         // initialize extension to factory map
         Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
         // initialize package registry
@@ -92,285 +101,175 @@ public class ArchTest {
         final Resource res = rs.getResource(URI.createFileURI(archFile), true);
 
         // traverse model
-        final EObject o = res.getContents().get(0);
+        final EObject model = res.getContents().get(0);
 
-        if (o instanceof Configuration) {
+        if (model instanceof Configuration) {
+            final Configuration configuration = (Configuration) model;
 
-            // // reference
-            // final Map<ReteNodeRecipe, String> ips = new HashMap<>();
-            //
-            // final EList<InfrastructureMapping> mappings = ((Configuration) o).getMappings();
-            // for (final InfrastructureMapping mapping : mappings) {
-            // final InfrastructureNode targetElement = mapping.getTargetElement();
-            //
-            // final EList<ReteNodeRecipe> mappedElements = mapping.getMappedElements();
-            // for (final ReteNodeRecipe reteNodeRecipe : mappedElements) {
-            // if (targetElement instanceof Machine) {
-            // final Machine machine = (Machine) targetElement;
-            // ips.put(reteNodeRecipe, machine.getIp());
-            // }
-            // }
-            // }
-
-            // vertex type and properties
-            final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
-
-            // edge labels
-            final Collection<String> edgeLabels = new LinkedList<>();
-            
-            // ------------------------------------------------------------------------------------------------------------------
-            // first iteration
-            // ------------------------------------------------------------------------------------------------------------------
-            for (final ReteRecipe rc : ((Configuration) o).getReteRecipes()) {
-                System.out.println("Processing Rete recipe " + rc.toString());
-
-                int n = 0;
-                for (final ReteNodeRecipe r : rc.getRecipeNodes()) {
-                    n++;
-                    final String name = "ReteNode" + n;
-                    names.put(r, name);
-
-                    ReteNode reteNode = null;
-
-                    // --------------------------------------------------------------------------------
-                    // Alpha recipes
-                    // --------------------------------------------------------------------------------
-                    if (r instanceof AlphaRecipe) {
-
-                        final AlphaRecipe ar = (AlphaRecipe) r;
-
-                        // adding reverse reference to the children                        
-                        children.put(ar.getParent(), ar);
-
-                        // UniquenessEnforcer recipes
-                        if (r instanceof UniquenessEnforcerRecipe) {
-                            System.out.println("- UniquenessEnforcer recipe");
-
-                            final UniquenessEnforcerRecipe uer = (UniquenessEnforcerRecipe) ar;
-
-                            // traceInfo looks something like "UniquenessEnforcerNode : Route_routeDefinition :  [0]"
-                            final String traceInfo = uer.getTraceInfo();
-                            // extracting the type information from the traceInfo
-                            // TODO add a separate field for this to the architecture's Xcore file
-                            final String patternString = ": (\\w*) :";
-
-                            final Pattern pattern = Pattern.compile(patternString);
-                            final Matcher m = pattern.matcher(traceInfo);
-                            String edgeLabel;
-                            if (m.find()) {
-                                edgeLabel = m.group(1);
-                            } else {
-                                throw new RuntimeException("Invalid UniquenessEnforcerRecipe");
-                            }
-
-                            edgeLabels.add(edgeLabel);
-                        }
-
-                        // Trimmer recipes
-                        if (r instanceof TrimmerRecipe) {
-                            System.out.println("- Trimmer recipe");
-
-                            final TrimmerRecipe tr = (TrimmerRecipe) ar;
-
-                            System.out.println("Mask: " + tr.getMask().getSourceIndices());
-                        }
-                    }
-
-                    // --------------------------------------------------------------------------------
-                    // Beta recipes
-                    // --------------------------------------------------------------------------------
-                    if (r instanceof BetaRecipe) {
-                        System.out.println("- Beta recipe");
-
-                        final BetaRecipe br = (BetaRecipe) r;
-
-                        // extract indexer masks
-                        final TupleMask primaryMask = new TupleMask(br.getLeftParent().getMask().getSourceIndices());
-                        final TupleMask secondaryMask = new TupleMask(br.getRightParent().getMask().getSourceIndices());
-                        System.out.println("  primary mask: " + primaryMask.getMask() + ", secondary mask: "
-                                + secondaryMask.getMask());
-
-                        // Rete node parents
-                        final ReteNodeRecipe primaryParent = br.getLeftParent().getParent();
-                        final ReteNodeRecipe secondaryParent = br.getRightParent().getParent();
-
-                        // adding reverse references to the children
-                        children.put(primaryParent, br);
-                        childrenSlots.put(primaryParent, ReteNodeSlot.PRIMARY);
-
-                        children.put(secondaryParent, br);
-                        childrenSlots.put(secondaryParent, ReteNodeSlot.SECONDARY);
-
-                        // join
-                        if (br instanceof JoinRecipe) {
-                            final JoinRecipe jr = (JoinRecipe) br;
-                            System.out.println("  - Join recipe");
-
-                            reteNode = new JoinNode(primaryMask, secondaryMask);
-                        }
-
-                        // antijoin
-                        if (br instanceof ExistenceJoinRecipe) {
-                            final ExistenceJoinRecipe ejr = (ExistenceJoinRecipe) br;
-                            System.out.println("  - ExistenceJoin recipe");
-
-                            reteNode = new AntiJoinNode(primaryMask, secondaryMask);
-                        }
-                    }
-
-                }
-                
-                final List<ReteNodeRecipe> topologicalSort = Algorithms.topologicalSort(names.keySet(), children);
-                
-                for (final ReteNodeRecipe reteNodeRecipe : topologicalSort) {
-                    System.out.println(reteNodeRecipe);
-                }
-                
-                if (true) return;
-
-                // loading the graph
-                final GraphSonLoader graphSonLoader = new GraphSonLoader(modelFile, vertexTypesAndProperties,
-                        edgeLabels);
-                final Map<String, Set<Tuple>> vertexTuplesMap = graphSonLoader.getVertexTuplesMap();
-                final Map<String, Set<Tuple>> edgeTuplesMap = graphSonLoader.getEdgeTuplesMap();
-
-                System.out.println("vertex tuples");
-                for (final Entry<String, Set<Tuple>> entry : vertexTuplesMap.entrySet()) {
-                    System.out.println(entry);
-                }
-
-                System.out.println("edge tuples");
-                for (final Entry<String, Set<Tuple>> entry : edgeTuplesMap.entrySet()) {
-                    System.out.println(entry);
-                }
-
-                System.out.println();
-                for (final Entry<ReteNodeRecipe, ReteNodeRecipe> entry : children.entrySet()) {
-                    final ReteNodeRecipe key = entry.getKey();
-                    final ReteNodeRecipe value = entry.getValue();
-                    System.out.println(key.getClass().getSimpleName() + " ---> " + value.getClass().getSimpleName());
-                }
-
-                // final ReteNodeRecipe childRecipe = children.get(uer);
-                // final String childName = names.get(childRecipe);
-                //
-                // System.out.println("child name: " + childName + ", join side: " + childReteNodeSlot);
-
-                // final String label = ir.getTypeIdentifier();
-                // final UniquenessEnforcerNodeConfiguration config = new UniquenessEnforcerNodeConfiguration(
-                // coordinator, actors.get(childName).actorRef, childReteNodeSlot, label,
-                // databaseClientType, filename);
-                // final String actorName = names.get(ir);
-                // actors.get(actorName).configuration = config;
-
-                //
-                // final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
-                // final Collection<String> edgeLabels = ImmutableList.of(Route_routeDefinition, Route_switchPosition,
-                // SwitchPosition_switch, TrackElement_sensor);
-                // load(vertexTypesAndProperties, edgeLabels);
-
-                // // vertex type and properties
-                // final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
-                // vertexTypesAndProperties.put("Segment", ImmutableList.of("a", "b"));
-                //
-                // // edge labels
-                // final Collection<String> edgeLabels = ImmutableList.of("e1", "e2");
-
-                // loading the graph
-                // final GraphSonLoader graphSonLoader = new GraphSonLoader(modelFile, vertexTypesAndProperties,
-                // edgeLabels);
-                // final Map<String, Set<Tuple>> vertexTuplesMap = graphSonLoader.getVertexTuplesMap();
-                // final Map<String, Set<Tuple>> edgeTuplesMap = graphSonLoader.getEdgeTuplesMap();
-                //
-                // System.out.println(vertexTuplesMap);
-                // System.out.println(edgeTuplesMap);
-
-                // final ReteNodeRecipe childRecipe = children.get(uer);
-                // final String childName = names.get(childRecipe);
-                //
-                // final ReteNodeSlot childReteNodeSlot = childrenSides.get(r);
-                // System.out.println("child name: " + childName + ", join side: " + childReteNodeSlot);
-
-                // final String label = ir.getTypeIdentifier();
-                // final UniquenessEnforcerNodeConfiguration config = new UniquenessEnforcerNodeConfiguration(
-                // coordinator, actors.get(childName).actorRef, childReteNodeSlot, label,
-                // databaseClientType, filename);
-                // final String actorName = names.get(ir);
-                // actors.get(actorName).configuration = config;
-
-                //
-                // final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
-                // final Collection<String> edgeLabels = ImmutableList.of(Route_routeDefinition, Route_switchPosition,
-                // SwitchPosition_switch, TrackElement_sensor);
-                // load(vertexTypesAndProperties, edgeLabels);
-
-                // final Set<Tuple> route_routeDefinitionTuples = edgeTuplesMap.get(Route_routeDefinition); //
-                // Route, Sensor
-                // final Set<Tuple> route_switchPositionTuples = edgeTuplesMap.get(Route_switchPosition); // Route,
-                // SwitchPosition
-                // final Set<Tuple> switchPosition_switchTuples = edgeTuplesMap.get(SwitchPosition_switch); //
-                // SwitchPosition,
-                // // Switch
-                // final Set<Tuple> trackElement_sensorTuples = edgeTuplesMap.get(TrackElement_sensor); // Switch,
-                // Sensor
-                // final ChangeSet route_routeDefinitionChangeSet = new ChangeSet(route_routeDefinitionTuples,
-                // ChangeType.POSITIVE);
-                // final ChangeSet route_switchPositionChangeSet = new ChangeSet(route_switchPositionTuples,
-                // ChangeType.POSITIVE);
-                // final ChangeSet switchPosition_switchChangeSet = new ChangeSet(switchPosition_switchTuples,
-                // ChangeType.POSITIVE);
-                // final ChangeSet trackElement_sensorChangeSet = new ChangeSet(trackElement_sensorTuples,
-                // ChangeType.POSITIVE);
-                //
-                // logMessage("Route_switchPosition JOIN SwitchPosition_switch");
-                // logMessage("<Route, SwitchPosition, Switch>");
-                // final TupleMask leftMask1 = new TupleMask(ImmutableList.of(1));
-                // final TupleMask rightMask1 = new TupleMask(ImmutableList.of(0));
-                // final JoinNode joinNode1 = new JoinNode(leftMask1, rightMask1);
-                // final ChangeSet resultChangeSet1 = Algorithms.join(joinNode1, route_switchPositionChangeSet,
-                // switchPosition_switchChangeSet);
-                // logResult(resultChangeSet1.getTuples().toString());
-                // logMessage(resultChangeSet1.getTuples().size() + " tuples");
-                //
-                // logMessage("Route_switchPosition JOIN SwitchPosition_switch JOIN TrackElement_sensor");
-                // logMessage("<Route, SwitchPosition, Switch, Sensor>");
-                // final TupleMask leftMask2 = new TupleMask(ImmutableList.of(2));
-                // final TupleMask rightMask2 = new TupleMask(ImmutableList.of(0));
-                // final JoinNode joinNode2 = new JoinNode(leftMask2, rightMask2);
-                // final ChangeSet resultChangeSet2 = Algorithms.join(joinNode2, resultChangeSet1,
-                // trackElement_sensorChangeSet);
-                // logResult(resultChangeSet2.getTuples().toString());
-                // logMessage(resultChangeSet2.getTuples().size() + " tuples");
-                //
-                // logMessage("Route_switchPosition JOIN SwitchPosition_switch JOIN TrackElement_sensor ANTIJOIN Route_routeDefinition");
-                // logMessage("<Route, SwitchPosition, Switch, Sensor>");
-                // final TupleMask leftMask3 = new TupleMask(ImmutableList.of(3));
-                // final TupleMask rightMask3 = new TupleMask(ImmutableList.of(1));
-                // final AntiJoinNode joinNode3 = new AntiJoinNode(leftMask3, rightMask3);
-                // final ChangeSet resultChangeSet3 = Algorithms.join(joinNode3, resultChangeSet2,
-                // route_routeDefinitionChangeSet);
-                // logResult(resultChangeSet3.getTuples().toString());
-                // logMessage(resultChangeSet3.getTuples().size() + " tuples");
-                //
-                // logMessage("PROJECTION_{0} (");
-                // logMessage("Route_switchPosition JOIN SwitchPosition_switch JOIN TrackElement_sensor ANTIJOIN Route_routeDefinition");
-                // logMessage("<Route>");
-                // final TupleMask projectionMask = new TupleMask(ImmutableList.of(0));
-                // final TrimmerNode trimmerNode = new TrimmerNode(projectionMask);
-                // final ChangeSet resultChangeSet4 = trimmerNode.update(resultChangeSet3);
-                // logResult(resultChangeSet4.getTuples().toString());
-                // logMessage(resultChangeSet4.getTuples().size() + " tuples");
-                //
-                // assertEquals(12, resultChangeSet4.getTuples().size());
-
-                // deployActors();
-                // System.out.println("# deployed");
-
-                // }
-
+            for (final ReteRecipe reteRecipe : configuration.getReteRecipes()) {
+                processRecipe(reteRecipe);
             }
         }
+    }
 
+    private void processRecipe(final ReteRecipe reteRecipe) throws IOException {
+        System.out.println("Processing Rete network recipe " + reteRecipe.toString());
+
+        System.out.println();
+        System.out.println("First iteration");
+        System.out.println("---------------");
+        // iterating through the Rete network
+        int n = 0;
+        for (final ReteNodeRecipe reteNodeRecipe : reteRecipe.getRecipeNodes()) {
+            n++;
+            final String name = "ReteNode" + n;
+            names.put(reteNodeRecipe, name);
+
+            ReteNode reteNode = null;
+
+            if (reteNodeRecipe instanceof BetaRecipe) {
+                reteNode = processBetaRecipe((BetaRecipe) reteNodeRecipe);
+            }
+            if (reteNodeRecipe instanceof MultiParentNodeRecipe) {
+                reteNode = processMultiParentNodeRecipe((MultiParentNodeRecipe) reteNodeRecipe);
+            }
+            if (reteNodeRecipe instanceof SingleParentNodeRecipe) {
+                reteNode = processSingleParentNodeRecipe((SingleParentNodeRecipe) reteNodeRecipe);
+            }
+
+            reteNodeForRecipe.put(reteNodeRecipe, reteNode);
+        }
+
+        System.out.println();
+        System.out.println("Topological sort");
+        System.out.println("----------------");
+        final List<ReteNodeRecipe> topologicalSort = Algorithms.topologicalSort(names.keySet(), children);
+        for (final ReteNodeRecipe reteNodeRecipe : topologicalSort) {
+            System.out.println(reteNodeRecipe);
+        }
+
+        System.out.println();
+        System.out.println("Second iteration");
+        System.out.println("----------------");
+
+        System.out.println(vertexTypesAndProperties);
+        System.out.println(edgeLabels);
+
+        // loading the graph (based on the UniquenessEnforcerNodes)
+        final GraphSonLoader graphSonLoader = new GraphSonLoader(modelFile, vertexTypesAndProperties, edgeLabels);
+        final Map<String, Set<Tuple>> vertexTuplesMap = graphSonLoader.getVertexTuplesMap();
+        final Map<String, Set<Tuple>> edgeTuplesMap = graphSonLoader.getEdgeTuplesMap();
+
+        System.out.println("vertex tuples");
+        for (final Entry<String, Set<Tuple>> entry : vertexTuplesMap.entrySet()) {
+            System.out.println(entry);
+        }
+
+        System.out.println("edge tuples");
+        for (final Entry<String, Set<Tuple>> entry : edgeTuplesMap.entrySet()) {
+            System.out.println(entry);
+        }
+
+        System.out.println();
+        for (final Entry<ReteNodeRecipe, ReteNodeRecipe> entry : children.entrySet()) {
+            final ReteNodeRecipe key = entry.getKey();
+            final ReteNodeRecipe value = entry.getValue();
+            System.out.println(key.getClass().getSimpleName() + " ---> " + value.getClass().getSimpleName());
+        }
+
+    }
+
+    private ReteNode processSingleParentNodeRecipe(final SingleParentNodeRecipe recipe) {
+        ReteNode reteNode = null;
+
+        // adding reverse reference to the children
+        children.put(recipe.getParent(), recipe);
+
+        // Trimmer recipes
+        if (recipe instanceof TrimmerRecipe) {
+            System.out.println("- Trimmer recipe");
+
+            final TrimmerRecipe tr = (TrimmerRecipe) recipe;
+            final EList<Integer> projectionMask = tr.getMask().getSourceIndices();
+            System.out.println("Mask: " + projectionMask);
+
+            final TupleMask tupleMask = new TupleMask(projectionMask);
+            reteNode = new TrimmerNode(tupleMask);
+        }
+        return reteNode;
+    }
+
+    private ReteNode processMultiParentNodeRecipe(final MultiParentNodeRecipe recipe) {
+        ReteNode reteNode = null;
+
+        // adding reverse reference to the children
+        // not adding inverse reference in this implementation
+        // UniquenessEnforcer recipes
+        if (recipe instanceof UniquenessEnforcerRecipe) {
+            System.out.println("- UniquenessEnforcer recipe");
+
+            final UniquenessEnforcerRecipe uer = (UniquenessEnforcerRecipe) recipe;
+
+            // traceInfo looks something like "UniquenessEnforcerNode : Route_routeDefinition :  [0]"
+            final String traceInfo = uer.getTraceInfo();
+            // extracting the type information from the traceInfo
+            // TODO add a separate field for this to the architecture's Xcore file
+            final String patternString = ": (\\w*) :";
+
+            final Pattern pattern = Pattern.compile(patternString);
+            final Matcher m = pattern.matcher(traceInfo);
+            String edgeLabel;
+            if (m.find()) {
+                edgeLabel = m.group(1);
+            } else {
+                throw new RuntimeException("Invalid UniquenessEnforcerRecipe");
+            }
+
+            edgeLabels.add(edgeLabel);
+        }
+
+        reteNode = null;
+
+        return reteNode;
+    }
+
+    private ReteNode processBetaRecipe(final BetaRecipe recipe) {
+        ReteNode reteNode = null;
+
+        System.out.println("- Beta recipe");
+
+        // extract indexer masks
+        final TupleMask primaryMask = new TupleMask(recipe.getLeftParent().getMask().getSourceIndices());
+        final TupleMask secondaryMask = new TupleMask(recipe.getRightParent().getMask().getSourceIndices());
+        System.out.println("  primary mask: " + primaryMask.getMask() + ", secondary mask: " + secondaryMask.getMask());
+
+        // Rete node parents
+        final ReteNodeRecipe primaryParent = recipe.getLeftParent().getParent();
+        final ReteNodeRecipe secondaryParent = recipe.getRightParent().getParent();
+
+        // adding reverse references to the children
+        children.put(primaryParent, recipe);
+        childrenSlots.put(primaryParent, ReteNodeSlot.PRIMARY);
+
+        children.put(secondaryParent, recipe);
+        childrenSlots.put(secondaryParent, ReteNodeSlot.SECONDARY);
+
+        // join
+        if (recipe instanceof JoinRecipe) {
+            final JoinRecipe jr = (JoinRecipe) recipe;
+            System.out.println("  - Join recipe");
+
+            reteNode = new JoinNode(primaryMask, secondaryMask);
+        }
+
+        // antijoin
+        if (recipe instanceof ExistenceJoinRecipe) {
+            final ExistenceJoinRecipe ejr = (ExistenceJoinRecipe) recipe;
+            System.out.println("  - ExistenceJoin recipe");
+
+            reteNode = new AntiJoinNode(primaryMask, secondaryMask);
+        }
+        return reteNode;
     }
 
     protected ArrayList<Integer> extractMask(final ProjectionIndexer pI) {
