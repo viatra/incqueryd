@@ -69,25 +69,28 @@ public class ArchTest {
     protected final String modelFile = "src/test/resources/testBig_User_" + size + ".faunus-graphson";
 
     // rete node names (for Akka)
-    final Map<ReteNodeRecipe, String> names = new HashMap<>();
+    protected final Map<ReteNodeRecipe, String> names = new HashMap<>();
 
     // vertex type and properties
-    final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
+    protected final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
     // edge labels
-    final Collection<String> edgeLabels = new LinkedList<>();
+    protected final Collection<String> edgeLabels = new LinkedList<>();
 
     // the network is defined by parent-children pairs
-    final Map<ReteNodeRecipe, ReteNodeRecipe> children = new HashMap<>();
+    protected final Map<ReteNodeRecipe, ReteNodeRecipe> children = new HashMap<>();
     // parent-children's target slot pairs
-    final Map<ReteNodeRecipe, ReteNodeSlot> childrenSlots = new HashMap<>();
+    protected final Map<ReteNodeRecipe, ReteNodeSlot> childrenSlots = new HashMap<>();
 
     // rete recipe-rete node pairs
-    final Map<ReteNodeRecipe, ReteNode> reteNodeForRecipe = new HashMap<>();
+    protected final Map<ReteNodeRecipe, ReteNode> reteNodeForRecipe = new HashMap<>();
     // rete recipe-rete changeset pairs
-    final Map<ReteNodeRecipe, ChangeSet> reteRecipeChangeSet = new HashMap<>();
+    protected final Map<ReteNodeRecipe, ChangeSet> reteRecipeChangeSet = new HashMap<>();
+
+    protected Map<String, Set<Tuple>> vertexTuplesMap;
+    protected Map<String, Set<Tuple>> edgeTuplesMap;
 
     @Test
-    public void testApp() throws IOException {
+    public void test() throws IOException {
         // initialize extension to factory map
         Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
         // initialize package registry
@@ -114,78 +117,23 @@ public class ArchTest {
     private void processRecipe(final ReteRecipe reteRecipe) throws IOException {
         System.out.println("Processing Rete network recipe " + reteRecipe.toString());
 
-        
-        
-        System.out.println();
-        System.out.println("First iteration");
-        System.out.println("---------------");
-        // iterating through the Rete network
-        int n = 0;
-        for (final ReteNodeRecipe reteNodeRecipe : reteRecipe.getRecipeNodes()) {
-            // processing the recipe
-            // currently only support some recipes
-            ReteNode reteNode = null;
+        processRecipeFirst(reteRecipe);
 
-            if (reteNodeRecipe instanceof BetaRecipe) {
-                reteNode = processBetaRecipe((BetaRecipe) reteNodeRecipe);
-            }
-            if (reteNodeRecipe instanceof MultiParentNodeRecipe) {
-                reteNode = processMultiParentNodeRecipe((MultiParentNodeRecipe) reteNodeRecipe);
-            }
-            if (reteNodeRecipe instanceof SingleParentNodeRecipe) {
-                reteNode = processSingleParentNodeRecipe((SingleParentNodeRecipe) reteNodeRecipe);
-            }
-
-            // is the recipe was supported, the reteNode will point to a not null reference
-            if (reteNode != null) {
-                n++;
-                final String name = "ReteNode" + n;
-                names.put(reteNodeRecipe, name);
-
-                reteNodeForRecipe.put(reteNodeRecipe, reteNode);
-            }
-        }
-
-        
-        
-        System.out.println(children.size());
+        // loading the graph (based on the UniquenessEnforcerNodes)
+        processRecipeLoad();
 
         System.out.println();
         System.out.println("Topological sort");
         System.out.println("----------------");
-        final List<ReteNodeRecipe> sortedRecipes = Algorithms.topologicalSort(names.keySet(), children);
-        for (final ReteNodeRecipe reteNodeRecipe : sortedRecipes) {
+        final List<ReteNodeRecipe> sortedReteRecipe = Algorithms.topologicalSort(names.keySet(), children);
+        for (final ReteNodeRecipe reteNodeRecipe : sortedReteRecipe) {
             System.out.println(reteNodeRecipe);
         }
 
-        System.out.println(vertexTypesAndProperties);
-        System.out.println(edgeLabels);
+        processRecipeSecond(sortedReteRecipe);
+    }
 
-        // loading the graph (based on the UniquenessEnforcerNodes)
-        final GraphSonLoader graphSonLoader = new GraphSonLoader(modelFile, vertexTypesAndProperties, edgeLabels);
-        final Map<String, Set<Tuple>> vertexTuplesMap = graphSonLoader.getVertexTuplesMap();
-        final Map<String, Set<Tuple>> edgeTuplesMap = graphSonLoader.getEdgeTuplesMap();
-
-        System.out.println("vertex tuples");
-        for (final Entry<String, Set<Tuple>> entry : vertexTuplesMap.entrySet()) {
-            System.out.println(entry);
-        }
-
-        System.out.println("edge tuples");
-        for (final Entry<String, Set<Tuple>> entry : edgeTuplesMap.entrySet()) {
-            System.out.println(entry);
-        }
-
-        System.out.println(children.size());
-
-        for (final Entry<ReteNodeRecipe, ReteNodeRecipe> entry : children.entrySet()) {
-            final ReteNodeRecipe key = entry.getKey();
-            final ReteNodeRecipe value = entry.getValue();
-            System.out.println(key.getClass().getSimpleName() + " ---> " + value.getClass().getSimpleName());
-        }
-
-        
-        
+    private void processRecipeSecond(final List<ReteNodeRecipe> sortedRecipes) {
         System.out.println();
         System.out.println("Second iteration on the sorted list");
         System.out.println("-----------------------------------");
@@ -215,53 +163,110 @@ public class ArchTest {
             }
 
             if (recipe instanceof SingleParentNodeRecipe) {
-                final SingleParentNodeRecipe spnr = (SingleParentNodeRecipe) recipe;
-                final AlphaNode an = (AlphaNode) reteNodeForRecipe.get(spnr);
-                System.out.println("an: " + an);
-
-                final ReteNodeRecipe parent = spnr.getParent();
-                final ChangeSet parentChangeSet = reteRecipeChangeSet.get(parent);
-
-                System.out.println("parent's changeset: " + parentChangeSet);
-
-                final ChangeSet resultChangeSet = an.update(parentChangeSet);
-                reteRecipeChangeSet.put(spnr, resultChangeSet);
-
-                System.out.println("result changeset: " + resultChangeSet);
-
+                operateSingleParentNode((SingleParentNodeRecipe) recipe);
             }
 
             if (recipe instanceof BetaRecipe) {
-                final BetaRecipe br = (BetaRecipe) recipe;
-                final BetaNode bn = (BetaNode) reteNodeForRecipe.get(recipe);
-                System.out.println("bn: " + bn);
-
-                final ReteNodeRecipe primaryParentRecipe = br.getLeftParent().getParent();
-                final ReteNodeRecipe secondaryParentRecipe = br.getRightParent().getParent();
-
-                // System.out.println(">> PRIMARY PARENT:   " + primaryParentRecipe);
-                // System.out.println(">> SECONDARY PARENT: " + secondaryParentRecipe);
-
-                // final ReteNode primaryParentNode = reteNodeForRecipe.get(primaryParentRecipe);
-                // final ReteNode secondaryParentNode = reteNodeForRecipe.get(secondaryParentRecipe);
-
-                final ChangeSet primaryParentChangeSet = reteRecipeChangeSet.get(primaryParentRecipe);
-                final ChangeSet secondaryParentChangeSet = reteRecipeChangeSet.get(secondaryParentRecipe);
-
-                // System.out.println(">> PRIMARY CHANGESET:   " + primaryParentChangeSet);
-                // System.out.println(">> SECONDARY CHANGESET: " + secondaryParentChangeSet);
-
-                bn.update(secondaryParentChangeSet, ReteNodeSlot.SECONDARY);
-                final ChangeSet changeSet = bn.update(primaryParentChangeSet, ReteNodeSlot.PRIMARY);
-
-                System.out.println("result changeset: " + changeSet);
-
-                reteRecipeChangeSet.put(br, changeSet);
+                operateBetaNode((BetaRecipe) recipe);
             }
         }
-
     }
 
+    private void processRecipeLoad() throws IOException {
+        final GraphSonLoader graphSonLoader = new GraphSonLoader(modelFile, vertexTypesAndProperties, edgeLabels);
+
+        vertexTuplesMap = graphSonLoader.getVertexTuplesMap();
+        edgeTuplesMap = graphSonLoader.getEdgeTuplesMap();
+
+        System.out.println("vertex tuples");
+        for (final Entry<String, Set<Tuple>> entry : vertexTuplesMap.entrySet()) {
+            System.out.println(entry);
+        }
+
+        System.out.println("edge tuples");
+        for (final Entry<String, Set<Tuple>> entry : edgeTuplesMap.entrySet()) {
+            System.out.println(entry);
+        }
+
+        for (final Entry<ReteNodeRecipe, ReteNodeRecipe> entry : children.entrySet()) {
+            final ReteNodeRecipe key = entry.getKey();
+            final ReteNodeRecipe value = entry.getValue();
+            System.out.println(key.getClass().getSimpleName() + " ---> " + value.getClass().getSimpleName());
+        }
+
+        System.out.println(vertexTypesAndProperties);
+        System.out.println(edgeLabels);
+    }
+
+    private void processRecipeFirst(final ReteRecipe reteRecipe) {
+        System.out.println();
+        System.out.println("First iteration");
+        System.out.println("---------------");
+        // iterating through the Rete network
+        int n = 0;
+        for (final ReteNodeRecipe reteNodeRecipe : reteRecipe.getRecipeNodes()) {
+            // processing the recipe
+            // currently only support some recipes
+            ReteNode reteNode = null;
+
+            if (reteNodeRecipe instanceof BetaRecipe) {
+                reteNode = processBetaRecipe((BetaRecipe) reteNodeRecipe);
+            }
+            if (reteNodeRecipe instanceof MultiParentNodeRecipe) {
+                reteNode = processMultiParentNodeRecipe((MultiParentNodeRecipe) reteNodeRecipe);
+            }
+            if (reteNodeRecipe instanceof SingleParentNodeRecipe) {
+                reteNode = processSingleParentNodeRecipe((SingleParentNodeRecipe) reteNodeRecipe);
+            }
+
+            // is the recipe was supported, the reteNode will point to a not null reference
+            if (reteNode != null) {
+                n++;
+                final String name = "ReteNode" + n;
+                names.put(reteNodeRecipe, name);
+
+                reteNodeForRecipe.put(reteNodeRecipe, reteNode);
+            }
+        }
+    }
+
+    // methods for Rete node operation
+    // -------------------------------
+    private void operateSingleParentNode(final SingleParentNodeRecipe spnr) {
+        final AlphaNode an = (AlphaNode) reteNodeForRecipe.get(spnr);
+        System.out.println("an: " + an);
+
+        final ReteNodeRecipe parent = spnr.getParent();
+        final ChangeSet parentChangeSet = reteRecipeChangeSet.get(parent);
+
+        System.out.println("parent's changeset: " + parentChangeSet);
+
+        final ChangeSet resultChangeSet = an.update(parentChangeSet);
+        reteRecipeChangeSet.put(spnr, resultChangeSet);
+
+        System.out.println("result changeset: " + resultChangeSet);
+    }
+
+    private void operateBetaNode(final BetaRecipe recipe) {
+        final BetaRecipe br = recipe;
+        final BetaNode bn = (BetaNode) reteNodeForRecipe.get(recipe);
+        System.out.println("bn: " + bn);
+
+        final ReteNodeRecipe primaryParentRecipe = br.getLeftParent().getParent();
+        final ReteNodeRecipe secondaryParentRecipe = br.getRightParent().getParent();
+
+        final ChangeSet primaryParentChangeSet = reteRecipeChangeSet.get(primaryParentRecipe);
+        final ChangeSet secondaryParentChangeSet = reteRecipeChangeSet.get(secondaryParentRecipe);
+
+        bn.update(secondaryParentChangeSet, ReteNodeSlot.SECONDARY);
+        final ChangeSet changeSet = bn.update(primaryParentChangeSet, ReteNodeSlot.PRIMARY);
+
+        System.out.println("result changeset: " + changeSet);
+        reteRecipeChangeSet.put(br, changeSet);
+    }
+
+    // methods for Rete recipe processing
+    // ----------------------------------
     private ReteNode processSingleParentNodeRecipe(final SingleParentNodeRecipe recipe) {
         ReteNode reteNode = null;
 
@@ -311,8 +316,6 @@ public class ArchTest {
             edgeLabels.add(edgeLabel);
             reteNode = new InputNode(edgeLabel, GraphElement.EDGE);
         }
-
-        // reteNode = new InputNode(edgeLabel, GraphElement.NODE);
 
         return reteNode;
     }
