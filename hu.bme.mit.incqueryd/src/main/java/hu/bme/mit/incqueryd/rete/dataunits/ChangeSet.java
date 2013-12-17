@@ -28,6 +28,11 @@ public class ChangeSet {
     }
 
     @Override
+    public String toString() {
+        return "ChangeSet, " + getTuples().size() + " tuples, [tuples=" + tuples + ", changeType=" + changeType + "]";
+    }
+
+    @Override
     public boolean equals(final Object o) {
         if (!(o instanceof ChangeSet))
             return false;

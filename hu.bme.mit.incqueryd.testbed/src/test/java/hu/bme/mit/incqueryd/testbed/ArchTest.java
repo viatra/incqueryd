@@ -1,16 +1,16 @@
 package hu.bme.mit.incqueryd.testbed;
 
-import hu.bme.mit.incqueryd.databases.DatabaseClientType;
 import hu.bme.mit.incqueryd.io.GraphSonLoader;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
+import hu.bme.mit.incqueryd.rete.dataunits.GraphElement;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import hu.bme.mit.incqueryd.rete.nodes.AlphaNode;
 import hu.bme.mit.incqueryd.rete.nodes.AntiJoinNode;
 import hu.bme.mit.incqueryd.rete.nodes.BetaNode;
-import hu.bme.mit.incqueryd.rete.nodes.EdgeInputNode;
+import hu.bme.mit.incqueryd.rete.nodes.InputNode;
 import hu.bme.mit.incqueryd.rete.nodes.JoinNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
 import hu.bme.mit.incqueryd.rete.nodes.TrimmerNode;
@@ -46,7 +46,6 @@ import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 import org.junit.Test;
 
-import akka.actor.ActorRef;
 import arch.ArchPackage;
 import arch.Configuration;
 
@@ -58,15 +57,16 @@ import arch.Configuration;
  */
 public class ArchTest {
 
-    // file paths
+    private static final ReteNodeRecipe MultiParentNodeRecipe = null;
+    // architecture descriptors
+    // protected final String archFile = "src/test/resources/switchSensor-quantified.arch";
+    protected final String archFile = "src/test/resources/routeSensor-quantified.arch";
+    // protected final String archFile = "src/test/resources/routeSensor-quantified-trim-to-route.arch";
+    // protected final String archFile = "src/test/resources/routeSensor-vcl.arch";
+
+    // model
     protected final int size = 1;
     protected final String modelFile = "src/test/resources/testBig_User_" + size + ".faunus-graphson";
-    protected final String archFile = "src/test/resources/routeSensor-quantified.arch";
-    // protected final String archFile = "src/test/resources/routeSensor-vcl.arch";
-    protected DatabaseClientType databaseClientType;
-    protected String filename;
-    protected final ActorRef coordinator = null;
-    final Map<String, ActorContainer> actors = new HashMap<>();
 
     // rete node names (for Akka)
     final Map<ReteNodeRecipe, String> names = new HashMap<>();
@@ -114,6 +114,8 @@ public class ArchTest {
     private void processRecipe(final ReteRecipe reteRecipe) throws IOException {
         System.out.println("Processing Rete network recipe " + reteRecipe.toString());
 
+        
+        
         System.out.println();
         System.out.println("First iteration");
         System.out.println("---------------");
@@ -135,15 +137,17 @@ public class ArchTest {
             }
 
             // is the recipe was supported, the reteNode will point to a not null reference
-            // if (reteNode != null) {
-            n++;
-            final String name = "ReteNode" + n;
-            names.put(reteNodeRecipe, name);
+            if (reteNode != null) {
+                n++;
+                final String name = "ReteNode" + n;
+                names.put(reteNodeRecipe, name);
 
-            reteNodeForRecipe.put(reteNodeRecipe, reteNode);
-            // }
+                reteNodeForRecipe.put(reteNodeRecipe, reteNode);
+            }
         }
 
+        
+        
         System.out.println(children.size());
 
         System.out.println();
@@ -153,10 +157,6 @@ public class ArchTest {
         for (final ReteNodeRecipe reteNodeRecipe : sortedRecipes) {
             System.out.println(reteNodeRecipe);
         }
-
-        System.out.println();
-        System.out.println("Second iteration");
-        System.out.println("----------------");
 
         System.out.println(vertexTypesAndProperties);
         System.out.println(edgeLabels);
@@ -184,39 +184,79 @@ public class ArchTest {
             System.out.println(key.getClass().getSimpleName() + " ---> " + value.getClass().getSimpleName());
         }
 
+        
+        
+        System.out.println();
+        System.out.println("Second iteration on the sorted list");
+        System.out.println("-----------------------------------");
         for (final ReteNodeRecipe recipe : sortedRecipes) {
 
             if (recipe instanceof MultiParentNodeRecipe) {
                 if (recipe instanceof UniquenessEnforcerRecipe) {
-                    final EdgeInputNode ein = (EdgeInputNode) reteNodeForRecipe.get(recipe);
-                    System.out.println("ein: " + ein);
+                    final InputNode in = (InputNode) reteNodeForRecipe.get(recipe);
+                    System.out.println("in: " + in);
 
-                    final Set<Tuple> edges = edgeTuplesMap.get(ein.getEdgeLabel());
-                    final ChangeSet changeSet = new ChangeSet(edges, ChangeType.POSITIVE);
+                    Set<Tuple> graphElements = null;
+
+                    switch (in.getGraphElement()) {
+                    case NODE:
+                        graphElements = vertexTuplesMap.get(in.getType());
+                        break;
+                    case EDGE:
+                        graphElements = edgeTuplesMap.get(in.getType());
+                        break;
+                    }
+
+                    final ChangeSet changeSet = new ChangeSet(graphElements, ChangeType.POSITIVE);
                     reteRecipeChangeSet.put(recipe, changeSet);
-                    
+
                     System.out.println("edgeLabel: " + changeSet);
                 }
             }
 
             if (recipe instanceof SingleParentNodeRecipe) {
                 final SingleParentNodeRecipe spnr = (SingleParentNodeRecipe) recipe;
-                final AlphaNode an = (AlphaNode) reteNodeForRecipe.get(recipe);
+                final AlphaNode an = (AlphaNode) reteNodeForRecipe.get(spnr);
                 System.out.println("an: " + an);
-                
+
                 final ReteNodeRecipe parent = spnr.getParent();
                 final ChangeSet parentChangeSet = reteRecipeChangeSet.get(parent);
-                
-                System.out.println("parent's changeset: " + parentChangeSet); 
-                
-                
+
+                System.out.println("parent's changeset: " + parentChangeSet);
+
+                final ChangeSet resultChangeSet = an.update(parentChangeSet);
+                reteRecipeChangeSet.put(spnr, resultChangeSet);
+
+                System.out.println("result changeset: " + resultChangeSet);
+
             }
 
             if (recipe instanceof BetaRecipe) {
+                final BetaRecipe br = (BetaRecipe) recipe;
                 final BetaNode bn = (BetaNode) reteNodeForRecipe.get(recipe);
                 System.out.println("bn: " + bn);
-                
-                
+
+                final ReteNodeRecipe primaryParentRecipe = br.getLeftParent().getParent();
+                final ReteNodeRecipe secondaryParentRecipe = br.getRightParent().getParent();
+
+                // System.out.println(">> PRIMARY PARENT:   " + primaryParentRecipe);
+                // System.out.println(">> SECONDARY PARENT: " + secondaryParentRecipe);
+
+                // final ReteNode primaryParentNode = reteNodeForRecipe.get(primaryParentRecipe);
+                // final ReteNode secondaryParentNode = reteNodeForRecipe.get(secondaryParentRecipe);
+
+                final ChangeSet primaryParentChangeSet = reteRecipeChangeSet.get(primaryParentRecipe);
+                final ChangeSet secondaryParentChangeSet = reteRecipeChangeSet.get(secondaryParentRecipe);
+
+                // System.out.println(">> PRIMARY CHANGESET:   " + primaryParentChangeSet);
+                // System.out.println(">> SECONDARY CHANGESET: " + secondaryParentChangeSet);
+
+                bn.update(secondaryParentChangeSet, ReteNodeSlot.SECONDARY);
+                final ChangeSet changeSet = bn.update(primaryParentChangeSet, ReteNodeSlot.PRIMARY);
+
+                System.out.println("result changeset: " + changeSet);
+
+                reteRecipeChangeSet.put(br, changeSet);
             }
         }
 
@@ -269,8 +309,10 @@ public class ArchTest {
             }
 
             edgeLabels.add(edgeLabel);
-            reteNode = new EdgeInputNode(edgeLabel);
+            reteNode = new InputNode(edgeLabel, GraphElement.EDGE);
         }
+
+        // reteNode = new InputNode(edgeLabel, GraphElement.NODE);
 
         return reteNode;
     }
