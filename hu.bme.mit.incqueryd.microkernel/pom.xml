@@ -125,6 +125,13 @@
 			<version>2.2.3</version>
 		</dependency>
 
+		<!-- IncQuery-D dependencies -->
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>incqueryd-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 
 </project>
