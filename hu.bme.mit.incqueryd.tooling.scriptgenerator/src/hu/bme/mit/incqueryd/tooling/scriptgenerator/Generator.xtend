@@ -1,15 +1,14 @@
 package hu.bme.mit.incqueryd.tooling.scriptgenerator
 
+import akka.actor.ActorSystem
 import arch.Configuration
+import infrastructure.Machine
 import org.eclipse.core.resources.IFile
+import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe
 import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe
-import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe
-import org.eclipse.incquery.runtime.rete.recipes.ExistenceJoinRecipe
+import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe
-import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
-import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe
-import com.google.common.net.InetAddresses.TeredoInfo
 
 class Generator {
 
@@ -19,36 +18,43 @@ class Generator {
 	}
 
 	def CharSequence generateConfiguration(Configuration configuration) {
-		println
-		println("Generating configuration")
-		println("------------------------")
-		println
-
 
 		configuration.clusters.forEach [
 			println("# Cluster: " + it.traceInfo)
 			val nodes = it.infrastructureNodes
 			nodes.forEach [
-				println("#  - Machine: " + it.traceInfo)
+				if (it instanceof Machine) {
+					val m = it as Machine
+					println("#  - Machine: " + m.ip);				
+				}
 			]
 		]
+		val system = ActorSystem.create("incqueryd-local");
 		
-				
+		
+		println
+		println("Generating configuration")
+		println("------------------------")
+		println
+
 		println("# Rete recipes")
 		configuration.reteRecipes.forEach[
 			it.recipeNodes.forEach [
 				val lines = it.traceInfo.split("\\n");
 				println("# - Rete recipe: " + lines.get(0))
-				
 				// only inspect concrete classes
 				switch (it) {
 					AntiJoinRecipe: antiJoin(it)
 					JoinRecipe: join(it)
 					ProductionRecipe: production(it)
-					UniquenessEnforcerRecipe: uniquenessEnforcer(it) 
+					UniquenessEnforcerRecipe: uniquenessEnforcer(it)
 					TrimmerRecipe: trimmer(it)
 				}
 			]]
+
+		configuration.mappings.forEach[
+			println(it)			
+		];
 
 		return "";
 	}
