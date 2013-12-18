@@ -30,7 +30,7 @@ public class IncQueryDKernelTest {
             final Address addr = new Address("akka.tcp", "incqueryd-kernel", host, 2554);
             final ActorRef ref = system.actorOf(Props.create(HelloActor.class).withDeploy(
                     new Deploy(new RemoteScope(addr))));
-            ref.tell("hello", null);
+            ref.tell("hello", system.deadLetters());
             System.out.println("Actor reference: " + ref);
         }
 
