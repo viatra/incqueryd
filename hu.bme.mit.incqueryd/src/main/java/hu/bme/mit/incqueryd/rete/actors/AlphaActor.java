@@ -12,7 +12,7 @@ import org.apache.cassandra.transport.messages.ReadyMessage;
  * @author szarnyasg
  * 
  */
-public class AlphaActor extends ReteActor {
+public abstract class AlphaActor extends ReteActor {
 
     private AlphaNode getAlphaNode() {
         return (AlphaNode) reteNode;
