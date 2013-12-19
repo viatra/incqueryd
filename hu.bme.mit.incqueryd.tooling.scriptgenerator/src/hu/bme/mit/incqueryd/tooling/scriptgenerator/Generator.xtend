@@ -18,65 +18,88 @@ import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe
 
 class Generator {
 
+	val system = ActorSystem.create("incqueryd-local")
+
 	public def generateScripts(IFile file, Configuration configuration) {
-		val fileHandler = new FileHandler()
 		val fileName = "deploy.sh"
-		val filePath = fileHandler.writeFile(file, fileName, configuration.generateConfiguration)
+		val scriptPath = FileHandler.writeFileToProject(file, fileName, generateScript(file, configuration))
 		
-		println(filePath.toString)
+		println(scriptPath.toString)
 		
-		val builder = new ProcessBuilder("/bin/bash", filePath.toString)
-		val process = builder.start()
-		process.waitFor()
-		
-		println("deploying actors")		
-		configuration.deployActors
+		val builder = new ProcessBuilder("/bin/bash", scriptPath.toString)
+		val process = builder.start
+		process.waitFor
+				
+		println("deploying actors")
+//		configuration.deployActors
+		system.shutdown
 	}
 
-	val system = ActorSystem.create("incqueryd-local");
-
-	def CharSequence generateConfiguration(Configuration configuration) {
-		val machines = new ArrayList<String>()
+	def CharSequence generateScript(IFile file, Configuration configuration) {
+		val machines = new ArrayList<String>
 
 		configuration.clusters.forEach [
 			println("# Cluster: " + it.traceInfo)
 			val nodes = it.infrastructureNodes
 			nodes.forEach [
+				
 				if (it instanceof Machine) {
 					val m = it as Machine
 					machines.add(m.ip)
+					
+					FileHandler.writeFileToProject(file, "application.conf-" + m.ip, m.generateConfiguration)					
 				}
 			]
 		]
 
-		val machineList = machines.join(" ");
+		val machineList = machines.join(" ")
+		val configurationFilePath = FileHandler.generateFileHandle(file, "application.conf").rawLocation.toString
+		println(configurationFilePath);
+		
 
 		'''
-			#!/bin/bash
-			
-			echo > ~/hello.txt
-			
-			user=szarnyasg
-			machines=(«machineList»)
-			akkadir=akka-2.2.3
-			
-			for ((i = 0; i < ${#machines[@]}; ++i))
-			do
-				machine=${machines[i]}
-				echo $machine
-			
-			    ssh $user@$machine "pkill -f akka"
-			done
-			sleep 3
-			
-			for ((i = 0; i < ${#machines[@]}; ++i))
-			do
-				machine=${machines[i]}
-				echo $machine
-			
-			    ssh $user@$machine "nohup ~/$akkadir/bin/akka hu.bme.mit.incqueryd.tooling.actors.IncQueryDKernel > akka.out 2> akka.err < /dev/null &"
-			done
-			sleep 3
+		#!/bin/bash
+		
+		user=szarnyasg
+		machines=(«machineList»)
+		akkadir=akka-2.2.3
+		
+		for ((i = 0; i < ${#machines[@]}; ++i))
+		do
+			machine=${machines[i]}
+			echo $machine
+		
+			scp «configurationFilePath»-$machine $user@$machine:$akkadir/config/application.conf
+		    ssh $user@$machine "pkill -f akka"
+		done
+		sleep 3
+		
+		for ((i = 0; i < ${#machines[@]}; ++i))
+		do
+			machine=${machines[i]}
+			echo $machine
+		
+		    ssh $user@$machine "nohup ~/$akkadir/bin/akka hu.bme.mit.incqueryd.tooling.actors.IncQueryDKernel > akka.out 2> akka.err < /dev/null &"
+		done
+		sleep 3
+		'''
+	}
+
+	def CharSequence generateConfiguration(Machine machine) {
+		'''
+		akka {
+		  actor {
+		    provider = "akka.remote.RemoteActorRefProvider"    
+		  }
+		  
+		  remote {
+		    enabled-transports = ["akka.remote.netty.tcp"]
+		    netty.tcp {
+		      hostname = "«machine.ip»"
+		      port = 2554
+		    }
+		  }
+		}
 		'''
 	}
 
@@ -97,16 +120,16 @@ class Generator {
 					}
 				]
 			}
-		];
+		]
 
-		Thread.sleep(2000);
+		Thread.sleep(2000)
 	}
 
 	def void deploy(Machine m, Object msg) {
 		val addr = new Address("akka.tcp", "incqueryd-kernel", m.ip, 2554)
 		val ref = system.actorOf(Props.create(typeof(ReteActor)).withDeploy(new Deploy(new RemoteScope(addr))))
-		ref.tell(msg, system.deadLetters);
-		System.out.println("Actor deployed: " + ref);
+		ref.tell(msg, system.deadLetters)
+		System.out.println("Actor deployed: " + ref)
 	}
 
 	def void antiJoin(Machine m, AntiJoinRecipe recipe) {
