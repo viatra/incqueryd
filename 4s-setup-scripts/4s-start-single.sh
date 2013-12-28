@@ -2,9 +2,6 @@
 # kill other running instances
 source 4s-kill.sh
 
-# delete previous data
-sudo rm -rf /var/lib/4store/*
-
 export FOURSTORE_CLUSTER_NAME="incqueryd_cluster"
 
 # start new backend
