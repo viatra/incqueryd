@@ -1,14 +1,12 @@
 #!/bin/bash
 # kill other running instances
-source kill-4s.sh
+source 4s-kill.sh
 
-export FOURSTORE_CLUSTER_NAME="demo1"
+# delete previous data
+sudo rm -rf /var/lib/4store/*
+
+export FOURSTORE_CLUSTER_NAME="incqueryd_cluster"
 
 # start new backend
 4s-backend-setup -v $FOURSTORE_CLUSTER_NAME
 4s-backend $FOURSTORE_CLUSTER_NAME
-
-cd RDF-models
-4s-import $FOURSTORE_CLUSTER_NAME $1
-cd ..
-

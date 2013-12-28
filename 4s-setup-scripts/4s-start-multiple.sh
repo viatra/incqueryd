@@ -1,6 +1,6 @@
 #!/bin/bash
 # kill other running instances
-source kill-4s.sh
+source 4s-start-multiple.sh
 
 # set query specific variables
 name="demo1"

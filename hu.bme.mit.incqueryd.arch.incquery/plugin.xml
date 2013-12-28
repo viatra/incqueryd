@@ -66,6 +66,14 @@
       </matcher>
    </extension>
    <extension
+         id="hu.bme.mit.incqueryd.arch.incquery.visualization.uniquenessEnforcerNode"
+         point="org.eclipse.incquery.runtime.queryspecification">
+      <matcher
+            querySpecificationProvider="hu.bme.mit.incqueryd.arch.incquery.visualization.util.UniquenessEnforcerNodeQuerySpecification$Provider"
+            id="hu.bme.mit.incqueryd.arch.incquery.visualization.uniquenessEnforcerNode">
+      </matcher>
+   </extension>
+   <extension
          id="hu.bme.mit.incqueryd.arch.incquery.visualization.alphaNode"
          point="org.eclipse.incquery.runtime.queryspecification">
       <matcher

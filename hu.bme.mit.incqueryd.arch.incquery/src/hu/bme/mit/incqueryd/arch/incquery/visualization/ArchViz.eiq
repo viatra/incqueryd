@@ -2,69 +2,66 @@ package hu.bme.mit.incqueryd.arch.incquery.visualization
 
 import "http://incquery.net/arch"
 //import "http://incquery.net/rete/emf"
-import "http://www.eclipse.org/incquery/rete/recipes"
-import "http://incquery.net/d/infrastructure"
+import "http://www.eclipse.org/incquery/rete/recipes" import
+"http://incquery.net/d/infrastructure"
 
 /* physical layer */
-
 @Item(item = M, label = "Machine $M.traceInfo$")
-@Format(color = "#009054",
-	textColor = "#ffffff"
-)
+@Format(color = "#009054", textColor = "#ffffff")
 pattern machine(M : Machine) {
 	Machine(M);
 }
+
 @Item(item = C, label = "Cluster")
 @Format(color = "#ffffff")
-pattern cluster(C : Cluster) { Cluster(C); }
+pattern cluster(C : Cluster) {
+	Cluster(C);
+}
 
 @Item(item = S, label = "Storage $S.kind$")
-@Format(color = "#b74418",
-	textColor = "#ffffff"
-)
-pattern storage(S : Storage) { Storage(S); }
+@Format(color = "#b74418", textColor = "#ffffff")
+pattern storage(S : Storage) {
+	Storage(S);
+}
 
 @Edge(source = M, target = S)
-@Format(
-	arrowSourceEnd = "circle",
-	arrowTargetEnd = "circle",
-	lineStyle = "dashed"
-)
-pattern storageToMachine(S : Storage, M: Machine) {
-	Machine.storage(M,S);
+@Format(arrowSourceEnd = "circle", arrowTargetEnd = "circle", lineStyle = "dashed")
+pattern storageToMachine(S : Storage, M : Machine) {
+	Machine.storage(M, S);
 }
 
 @ContainsItem(container = C, item = O)
-pattern objectsInCluster(O,C) {
-	Cluster.infrastructureNodes(C,O); 
-	} or {
-	Cluster.serviceNodes(C,O);
+pattern objectsInCluster(O, C) {
+	Cluster.infrastructureNodes(C, O);
+} or {
+	Cluster.serviceNodes(C, O);
 }
 
-
-
 /* logical layer */
-
 @Item(item = rc, label = "Rete Recipe")
 @Format(color = "#ffffff")
-pattern reteRecipe(rc) { ReteRecipe(rc); }
+pattern reteRecipe(rc) {
+	ReteRecipe(rc);
+}
 
 @ContainsItem(container = rc, item = rn)
-pattern reteNodeInContainer(rn, rc) { ReteRecipe.recipeNodes(rc,rn); }
+pattern reteNodeInContainer(rn, rc) {
+	ReteRecipe.recipeNodes(rc, rn);
+}
 
 @ContainsItem(container = rc, item = ix)
 pattern indexerInContainer(ix, rc) {
-	ReteRecipe.recipeNodes(rc,rn);
-	JoinRecipe.leftParent(rn,ix);
-	} or {
-	ReteRecipe.recipeNodes(rc,rn);
-	JoinRecipe.rightParent(rn,ix);
-	} or {
-	ReteRecipe.recipeNodes(rc,rn);
-	AntiJoinRecipe.leftParent(rn,ix);
-	} or {
-	ReteRecipe.recipeNodes(rc,rn);
-	AntiJoinRecipe.rightParent(rn,ix);		
+	ReteRecipe.recipeNodes(rc, rn);
+	JoinRecipe.leftParent(rn, ix);
+} or {
+	ReteRecipe.recipeNodes(rc, rn);
+	JoinRecipe.rightParent(rn, ix);
+} or {
+	ReteRecipe.recipeNodes(rc, rn);
+	AntiJoinRecipe.leftParent(rn, ix);
+} or {
+	ReteRecipe.recipeNodes(rc, rn);
+	AntiJoinRecipe.rightParent(rn, ix);
 }
 
 //@ContainsItem(container = RC, item = RCx)
@@ -79,76 +76,78 @@ pattern indexerInContainer(ix, rc) {
 
 //@Item(item = rn, label = "$rn.traceInfo$")
 //pattern reteNode(rn) { ReteNodeRecipe(rn); }
+@Item(item = rn, label = "$rn.traceInfo$")
+@Format(color = "#9ec9cf")
+pattern uniquenessEnforcerNode(rn) {
+	UniquenessEnforcerRecipe(rn);
+}
 
-@Item(item=rn, label="$rn.traceInfo$")
-@Format(color="#9ec9cf")
-pattern uniquenessEnforcerNode(rn) { UniquenessEnforcerRecipe(rn); }
+@Item(item = rn, label = "$rn.traceInfo$")
+@Format(color = "#98fb98")
+pattern alphaNode(rn) {
+	AlphaRecipe(rn);
+}
 
-@Item(item=rn, label="$rn.traceInfo$")
-@Format(color="#98fb98")
-pattern alphaNode(rn) { AlphaRecipe(rn);}
+@Item(item = rn, label = "$rn.traceInfo$")
+@Format(color = "#fffacd")
+pattern betaNode(rn) {
+	BetaRecipe(rn);
+}
 
-@Item(item=rn, label="$rn.traceInfo$")
-@Format(color="#fffacd")
-pattern betaNode(rn) { BetaRecipe(rn);}
+@Item(item = rn, label = "$rn.traceInfo$")
+@Format(color = "#deb887")
+pattern productionNode(rn) {
+	ProductionRecipe(rn);
+}
 
-@Item(item=rn, label="$rn.traceInfo$")
-@Format(color="#deb887")
-pattern productionNode(rn) { ProductionRecipe(rn); }
+@Item(item = rn, label = "$rn.traceInfo$")
+@Format(color = "#d3d3d3")
+pattern inputNode(rn) {
+	InputRecipe(rn);
+}
 
-@Item(item=rn, label="$rn.traceInfo$")
-@Format(color="#d3d3d3")
-pattern inputNode(rn) { InputRecipe(rn);}
+@Item(item = rn, label = "$rn.traceInfo$")
+@Format(color = "#b0e0e6")
+pattern indexerNode(rn) {
+	ProjectionIndexer(rn);
+}
 
-@Item(item=rn, label="$rn.traceInfo$")
-@Format(color="#b0e0e6")
-pattern indexerNode(rn) { ProjectionIndexer(rn);}
-
-@Edge(source=parent,target=child, label = "parent")
+@Edge(source = parent, target = child, label = "parent")
 @Format(lineColor = "#0000ff")
-pattern parent(
-	parent : ReteNodeRecipe,
-	child : SingleParentNodeRecipe 
-)
-{
+pattern parent(parent : ReteNodeRecipe, child : SingleParentNodeRecipe) {
 	SingleParentNodeRecipe.parent(child, parent);
 }
 
-@Edge(source=ix,target=beta, label="left")
+@Edge(source = ix, target = beta, label = "left")
 @Format(lineColor = "#00ff00")
-pattern leftix(beta, ix)
-{
-	BetaRecipe.leftParent(beta,ix);
-} 
+pattern leftix(beta, ix) {
+	BetaRecipe.leftParent(beta, ix);
+}
 
-@Edge(source=ix,target=beta,label="right")
+@Edge(source = ix, target = beta, label = "right")
 @Format(lineColor = "#ff0000")
-pattern rightix(beta,ix) {
-	BetaRecipe.rightParent(beta,ix);
+pattern rightix(beta, ix) {
+	BetaRecipe.rightParent(beta, ix);
 }
 
-@Edge(source=parent,target=ue,label="parents")
+@Edge(source = parent, target = ue, label = "parents")
 @Format(lineColor = "#ffb206")
-pattern multi2parents(ue,parent)
-{
-	MultiParentNodeRecipe.parents(ue,parent);
+pattern multi2parents(ue, parent) {
+	MultiParentNodeRecipe.parents(ue, parent);
 }
 
-@Edge(source=input,target=trg,label="input")
+@Edge(source = input, target = trg, label = "input")
 @Format(lineColor = "#3c9ad1")
-pattern inputedges(input,trg)
-{
-	UniquenessEnforcerRecipe.parents(ue,input);
+pattern inputedges(input, trg) {
+	UniquenessEnforcerRecipe.parents(ue, input);
 	SingleParentNodeRecipe.parent(trg, ue);
 }
 
-@Edge(source=element,target=trg,label="mapping")
-@Format(lineColor = "#000000", lineStyle="dashed")
-pattern infrastructure(element,trg)
-{
+@Edge(source = element, target = trg, label = "mapping")
+@Format(lineColor = "#000000", lineStyle = "dashed")
+pattern infrastructure(element, trg) {
 	InfrastructureMapping.mappedElements(im, element);
 	InfrastructureMapping.targetElement(im, trg);
-	
 }
 
 //@Item(item = J, label = "Join")
