@@ -7,7 +7,7 @@ Bundle-Activator: hu.bme.mit.train.generator.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  hu.bme.mit.Train.constraintCheck;bundle-version="1.0.0",
- org.junit4;bundle-version="4.8.1"
+ org.junit
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: hu.bme.mit.train.generator
