@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ ******************************************************************************
+ * Copyright (c) 2013 Oracle
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Konstantin Komissarchik - initial implementation and ongoing maintenance
+ ******************************************************************************
+-->
+
+<definition>
+
+    <import>
+        <package>org.eclipse.sapphire.samples</package>
+        <package>org.eclipse.sapphire.samples.ezbug</package>
+    </import>
+    
+    <composite>
+        <id>BugReportForm</id>
+        <documentation>
+            <title>EzBug</title>
+            <content>This would be the help content for the EzBug system.</content>
+        </documentation>
+        <content>
+            <property-editor>CustomerId</property-editor>
+            <property-editor>Title</property-editor>
+            <property-editor>
+                <property>Details</property>
+                <scale-vertically>true</scale-vertically>
+            </property-editor>
+            <property-editor>ProductVersion</property-editor>
+            <property-editor>ProductStage</property-editor>
+            <property-editor>
+                <property>Hardware</property>
+                <child-property>
+                    <property>Type</property>
+                </child-property>
+                <child-property>
+                    <property>Make</property>
+                </child-property>
+                <child-property>
+                    <property>ItemModel</property>
+                </child-property>
+            </property-editor>
+            <composite>
+                <indent>true</indent>
+                <content>
+                    <separator>
+                        <label>description</label>
+                    </separator>
+                    <detail-section>
+                        <property>Hardware</property>
+                        <case>
+                            <content>
+                                <property-editor>
+                                    <property>Description</property>
+                                    <span>true</span>
+                                    <height>75</height>
+                                    <show-label>false</show-label>
+                                </property-editor>
+                            </content>
+                        </case>
+                    </detail-section>
+                </content>
+            </composite>
+        </content>
+        <scale-vertically>true</scale-vertically>
+        <width>600</width>
+        <height>500</height>
+    </composite>
+    
+    <composite>
+        <id>BugReportFormScrolled</id>
+        <content>
+            <include>BugReportForm</include>
+        </content>
+        <scroll-vertically>true</scroll-vertically>
+        <scale-vertically>true</scale-vertically>
+    </composite>
+    
+    <dialog>
+        <id>FileBugReportDialog</id>
+        <label>file bug report (sapphire sample)</label>
+        <initial-focus>Title</initial-focus>
+        <content>
+            <include>BugReportForm</include>
+        </content>
+        <scale-vertically>true</scale-vertically>
+    </dialog>
+
+    <dialog>
+        <id>FileBugReportDialogWhite</id>
+        <label>file bug report (sapphire sample)</label>
+        <initial-focus>Title</initial-focus>
+        <content>
+            <include>BugReportForm</include>
+        </content>
+        <scale-vertically>true</scale-vertically>
+        <background-color>white</background-color>
+    </dialog>
+
+    <wizard>
+        <id>FileBugReportWizard</id>
+        <element-type>FileBugReportOp</element-type>
+        <label>file bug report (sapphire sample)</label>
+        <page>
+            <label>file bug report</label>
+            <description>Create and submit a bug report.</description>
+            <initial-focus>Title</initial-focus>
+            <content>
+                <with>
+                    <path>BugReport</path>
+                    <case>
+                        <content>
+                            <include>BugReportForm</include>
+                        </content>
+                    </case>
+                </with>
+            </content>
+            <scale-vertically>true</scale-vertically>
+            <id>MainPage</id>
+        </page>
+    </wizard>
+    
+    <editor-page>
+        <id>BugRepositoryEditorPage</id>
+        <element-type>BugRepository</element-type>
+        <page-name>bug repository</page-name>
+        <page-header-text>Bug Repository (Sapphire Sample)</page-header-text>
+        <initial-selection>bug reports</initial-selection>
+        <action>
+            <id>Sample.OpenSapphireWebSite</id>
+            <label>Sapphire Web Site</label>
+            <tooltip>Open Sapphire Web Site (Ctrl+Alt+Shift+S)</tooltip>
+            <key-binding>CONTROL+ALT+SHIFT+s</key-binding>
+            <key-binding-behavior>propagated</key-binding-behavior>
+            <image>Web.png</image>
+            <context>Sapphire.EditorPage</context>
+            <group>Sample.OpenSapphireWebSite</group>
+            <location>after:Sapphire.Outline.Hide</location>
+            <hint>
+                <name>style</name>
+                <value>image+text</value>
+            </hint>
+        </action>
+        <action-handler>
+            <action>Sample.OpenSapphireWebSite</action>
+            <id>Sample.OpenSapphireWebSite</id>
+            <label>Sapphire Web Site</label>
+            <impl>OpenSapphireWebSiteActionHandler</impl>
+        </action-handler>
+        <root-node>
+            <node>
+                <label>bug reports</label>
+                <section>
+                    <content>
+                        <actuator>
+                            <action-id>Sapphire.Add</action-id>
+                            <label>add a bug report</label>
+                        </actuator>
+                    </content>
+                    <description>Use this editor to manage your bug repository.</description>
+                </section>
+                <node-factory>
+                    <property>BugReports</property>
+                    <case>
+                        <label>${ Title == null ? "&lt;bug&gt;" : Title }</label>
+                        <section>
+                            <label>bug report</label>
+                            <content>
+                                <include>BugReportForm</include>
+                            </content>
+                        </section>
+                    </case>
+                </node-factory>
+            </node>
+        </root-node>
+    </editor-page>
+    
+</definition>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ ******************************************************************************
+ * Copyright (c) 2013 Oracle
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Konstantin Komissarchik - initial implementation
+ ******************************************************************************
+-->
+
+<definition>
+    <form-editor-page>
+        <id>MainPage</id>
+        <element-type>org.eclipse.sapphire.samples.reading.ReadingJournal</element-type>
+        <page-name>reading journal</page-name>
+        <page-header-text>reading journal</page-header-text>
+        <content>
+            <split-form>
+                <orientation>vertical</orientation>
+                <scale-vertically>true</scale-vertically>
+                <margin-vertical>10</margin-vertical>
+                <margin-horizontal>5</margin-horizontal>
+                <block>
+                    <weight>75</weight>
+                    <content>
+                        <property-editor>
+                            <scale-vertically>true</scale-vertically>
+                            <property>Entries</property>
+                            <span>true</span>
+                            <show-label>false</show-label>
+                            <child-property>DateFinished</child-property>
+                            <child-property>Title</child-property>
+                            <child-property>Author</child-property>
+                            <child-property>Genre</child-property>
+                            <child-property>Isbn</child-property>
+                            <child-property>Pages</child-property>
+                            <hint>
+                                <name>column.widths</name>
+                                <value>100:10,200:35,200:30,100:15,100:10,100:10</value>
+                            </hint>
+                        </property-editor>
+                    </content>
+                </block>
+                <block>
+                    <weight>25</weight>
+                    <content>
+                        <detail-section>
+                            <property>Entries</property>
+                            <scale-vertically>true</scale-vertically>
+                            <case>
+                                <content>
+                                    <tab-group>
+                                        <scale-vertically>true</scale-vertically>
+                                        <tab>
+                                            <label>notes</label>
+                                            <content>
+                                                <property-editor>
+                                                    <scale-vertically>true</scale-vertically>
+                                                    <property>Notes</property>
+                                                    <span>true</span>
+                                                    <show-label>false</show-label>
+                                                </property-editor>
+                                            </content>
+                                        </tab>
+                                    </tab-group>
+                                </content>
+                                <scale-vertically>true</scale-vertically>
+                            </case>
+                        </detail-section>
+                    </content>
+                </block>
+            </split-form>
+        </content>
+    </form-editor-page>
+    <import>
+        <package>org.eclipse.sapphire.samples.reading</package>
+    </import>
+</definition>

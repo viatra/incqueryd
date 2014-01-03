@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema 
+  xmlns="http://www.w3.org/2001/XMLSchema" 
+  targetNamespace="http://www.eclipse.org/sapphire/samples/address" 
+  xmlns:tns="http://www.eclipse.org/sapphire/samples/address" 
+  elementFormDefault="qualified">
+  
+    <element name="street" type="string"></element>
+    <element name="city" type="string"></element>
+    <element name="state" type="string"></element>
+    <element name="zip" type="string"></element>
+    
+</schema>

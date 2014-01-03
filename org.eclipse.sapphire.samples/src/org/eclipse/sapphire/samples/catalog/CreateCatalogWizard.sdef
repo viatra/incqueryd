@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ ******************************************************************************
+ * Copyright (c) 2013 Oracle
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Konstantin Komissarchik - initial implementation
+ ******************************************************************************
+-->
+
+<definition>
+    <import>
+        <definition>org.eclipse.sapphire.workspace.ui.CreateWorkspaceFileForm</definition>
+    </import>
+    <wizard>
+        <id>CreateCatalogWizard</id>
+        <label>New Catalog (Sapphire Sample)</label>
+        <page>
+            <id>CreateCatalogWizard.MainPage</id>
+            <label>Catalog (Sapphire Sample)</label>
+            <description>Create a catalog.</description>
+            <content>
+                <include>CreateWorkspaceFileForm</include>
+            </content>
+            <scale-vertically>true</scale-vertically>
+            <image>org/eclipse/sapphire/samples/SapphireWizardBanner.png</image>
+        </page>
+        <element-type>org.eclipse.sapphire.samples.catalog.CreateCatalogOp</element-type>
+    </wizard>    
+</definition>

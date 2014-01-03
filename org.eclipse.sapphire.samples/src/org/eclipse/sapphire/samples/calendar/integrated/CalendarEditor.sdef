@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ ******************************************************************************
+ * Copyright (c) 2013 Oracle
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Konstantin Komissarchik - initial implementation and ongoing maintenance
+ ******************************************************************************
+-->
+
+<definition>
+
+    <import>
+        <package>org.eclipse.sapphire.samples</package>
+        <package>org.eclipse.sapphire.samples.contacts</package>
+        <package>org.eclipse.sapphire.samples.calendar.integrated</package>
+        <package>org.eclipse.sapphire.samples.calendar.ui</package>
+    </import>
+    
+    <editor-page>
+        <id>main</id>
+        <page-name>calendar</page-name>
+        <page-header-text>Calendar (Sapphire Sample)</page-header-text>
+        <initial-selection>events</initial-selection>
+        <action>
+            <id>Sample.OpenSapphireWebSite</id>
+            <label>Sapphire Web Site</label>
+            <tooltip>Open Sapphire Web Site (Ctrl+Alt+Shift+S)</tooltip>
+            <key-binding>CONTROL+ALT+SHIFT+s</key-binding>
+            <key-binding-behavior>propagated</key-binding-behavior>
+            <image>Web.png</image>
+            <context>Sapphire.EditorPage</context>
+            <group>Sample.OpenSapphireWebSite</group>
+            <location>after:Sapphire.Outline.Hide</location>
+            <hint>
+                <name>style</name>
+                <value>image+text</value>
+            </hint>
+        </action>
+        <action-handler>
+            <action>Sample.OpenSapphireWebSite</action>
+            <id>Sample.OpenSapphireWebSite</id>
+            <label>Sapphire Web Site</label>
+            <impl>OpenSapphireWebSiteActionHandler</impl>
+        </action-handler>
+        <root-node>
+            <node>
+                <label>events</label>
+                <section>
+                    <content>
+                        <actuator>
+                            <action-id>Sapphire.Add</action-id>
+                            <label>add an event</label>
+                        </actuator>
+                    </content>
+                    <description>Use this simple editor to organize your calendar.</description>
+                </section>
+                <node-factory>
+                    <property>Events</property>
+                    <case>
+                        <label>${ Subject == null ? "&lt;event&gt;" : Subject }</label>
+                        <node>
+                            <label>attachments</label>
+                            <section>
+                                <content>
+                                    <property-editor>
+                                        <property>Attachments</property>
+                                        <show-label>false</show-label>
+                                        <span>true</span>
+                                    </property-editor>
+                                </content>
+                            </section>
+                        </node>
+                        <section>
+                            <label>event</label>
+                            <content>
+                                <property-editor>Subject</property-editor>
+                                <property-editor>Location</property-editor>
+                                <property-editor>StartTime</property-editor>
+                                <property-editor>EndTime</property-editor>
+                                <property-editor>Notes</property-editor>
+                            </content>
+                        </section>
+                        <section>
+                            <label>attendees</label>
+                            <content>
+                                <property-editor>
+                                    <property>Attendees</property>
+                                    <show-label>false</show-label>
+                                    <span>true</span>
+                                    <child-property>
+                                        <property>Name</property>
+                                        <action-handler>
+                                            <action>Sapphire.Jump</action>
+                                            <impl>ContactDetailsJumpHandler</impl>
+                                        </action-handler>
+                                    </child-property>
+                                </property-editor>
+                                <separator>
+                                    <label>details</label>
+                                </separator>
+                                <detail-section>
+                                    <property>Attendees</property>
+                                    <case>
+                                        <content>
+                                            <property-editor>
+                                                <property>Name</property>
+                                                <action-handler>
+                                                    <action>Sapphire.Jump</action>
+                                                    <impl>ContactDetailsJumpHandler</impl>
+                                                </action-handler>
+                                            </property-editor>
+                                            <property-editor>Type</property-editor>
+                                            <property-editor>
+                                                <property>EMail</property>
+                                                <hint>
+                                                    <name>assist.contributors</name>
+                                                    <value>SendMailActionContributor</value>
+                                                </hint>
+                                            </property-editor>
+                                            <spacer/>
+                                            <actuator>
+                                                <action-id>Sapphire.Sample.ShowContactDetails</action-id>
+                                                <show-image>true</show-image>
+                                                <action>
+                                                    <id>sapphire.sample.ShowContactDetails</id>
+                                                    <image>Contact.png</image>
+                                                    <label>show contact details</label>
+                                                </action>
+                                                <action-handler>
+                                                    <action>Sapphire.Sample.ShowContactDetails</action>
+                                                    <impl>ShowContactDetailsActionHandler</impl>
+                                                </action-handler>
+                                            </actuator>
+                                        </content>
+                                    </case>
+                                </detail-section>
+                            </content>
+                        </section>
+                    </case>
+                </node-factory>
+            </node>
+        </root-node>
+        <element-type>ICalendar</element-type>
+    </editor-page>
+    
+</definition>

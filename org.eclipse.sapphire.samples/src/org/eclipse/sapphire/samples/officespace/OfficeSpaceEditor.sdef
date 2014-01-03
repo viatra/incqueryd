@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ ******************************************************************************
+ * Copyright (c) 2013 Oracle
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Shenxue Zhou - initial implementation and ongoing maintenance
+ ******************************************************************************
+-->
+
+<definition>
+    <diagram-page>
+        <id>DiagramPage</id>
+        <element-type>org.eclipse.sapphire.samples.officespace.OfficeSpace</element-type>
+        <page-name>diagram</page-name>
+        <page-header-text>diagram</page-header-text>
+        <node>
+            <id>Building</id>
+            <instance-id>${Name}</instance-id>
+            <property>Buildings</property>
+            <tool-palette-label>building</tool-palette-label>
+            <rectangle>
+                <sequence-layout>
+                    <spacing>0</spacing>
+                    <margin>0</margin>
+                </sequence-layout>
+                <content>
+                    <text>
+                        <content>${ Name == null ? &quot;&lt;building&gt;&quot; : Name }</content>
+                        <sequence-layout-constraint>
+                            <margin>5</margin>
+                            <expand-horizontally>true</expand-horizontally>
+                            <horizontal-alignment>center</horizontal-alignment>
+                        </sequence-layout-constraint>
+                    </text>
+                    <rectangle>
+                        <top-border>
+                            <weight>2</weight>
+                            <style>dot</style>
+                        </top-border>
+                        <sequence-layout-constraint>
+                            <expand-horizontally>false</expand-horizontally>
+                        </sequence-layout-constraint>
+                        <content>
+                            <shape-factory>
+                                <property>Floors</property>
+                                <separator>
+                                    <line>
+                                        <color>#C0C0C0</color>
+                                        <style>dot</style>
+                                    </line>
+                                </separator>
+                                <case>
+                                    <rectangle>
+                                        <sequence-layout-constraint>
+                                            <expand-horizontally>false</expand-horizontally>
+                                        </sequence-layout-constraint>                                    
+                                        <content>
+                                            <rectangle>
+                                                <sequence-layout>
+                                                    <orientation>horizontal</orientation>
+                                                    <spacing>0</spacing>
+                                                    <margin>0</margin>
+                                                </sequence-layout>
+                                                <content>
+                                                    <validation-marker>
+                                                        <size>small</size>
+                                                    </validation-marker>
+                                                    <text>
+                                                        <content>${ Name == null ? &quot;&lt;floor&gt;&quot; : Name }</content>
+                                                        <sequence-layout-constraint>
+                                                            <expand-horizontally>true</expand-horizontally>
+                                                            <expand-vertically>true</expand-vertically>
+                                                            <horizontal-alignment>center</horizontal-alignment>
+                                                        </sequence-layout-constraint>
+                                                    </text>
+                                                </content>
+                                                <sequence-layout-constraint>
+                                                    <expand-horizontally>false</expand-horizontally>
+                                                </sequence-layout-constraint>
+                                            </rectangle>
+                                            <rectangle>
+                                                <top-border>
+                                                    <weight>1</weight>
+                                                </top-border>
+                                                <content>
+                                                    <shape-factory>
+                                                        <property>Offices</property>
+                                                        <case>
+                                                            <text>
+                                                                <content>${ Occupant == null ? &quot;&lt;occupant&gt;&quot; : Occupant}</content>
+                                                                <sequence-layout-constraint>
+                                                                    <expand-horizontally>true</expand-horizontally>
+                                                                </sequence-layout-constraint>
+                                                            </text>
+                                                        </case>
+                                                    </shape-factory>
+                                                </content>
+                                                <sequence-layout-constraint>
+                                                    <expand-horizontally>false</expand-horizontally>
+                                                </sequence-layout-constraint>
+                                                <border>
+                                                    <weight>1</weight>
+                                                    <color>#00FF00</color>
+                                                </border>
+                                            </rectangle>
+                                        </content>
+                                        <border>
+                                            <weight>1</weight>
+                                            <color>#FF0000</color>
+                                        </border>
+                                    </rectangle>
+                                </case>
+                            </shape-factory>
+                        </content>
+                    </rectangle>
+                </content>
+                <border>
+                    <weight>1</weight>
+                    <color>#008000</color>
+                    <style>solid</style>
+                </border>
+            </rectangle>
+        </node>
+    </diagram-page>
+</definition>

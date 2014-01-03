@@ -1,0 +1,2332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ ******************************************************************************
+ * Copyright (c) 2013 Oracle and Liferay
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Konstantin Komissarchik - initial implementation
+ *    Gregory Amerson - [342771] Support "image+label" hint for when actions are presented in a toolbar
+ *    Gregory Amerson - [343972] Support image in editor page header
+ *    Gregory Amerson - [374622] Add ability to specify action tooltips
+ ******************************************************************************
+-->
+
+<definition>
+
+    <import>
+        <package>org.eclipse.sapphire.ui.forms.swt</package>
+        <package>org.eclipse.sapphire.samples</package>
+        <package>org.eclipse.sapphire.samples.gallery</package>
+        <package>org.eclipse.sapphire.samples.gallery.internal</package>
+        <package>org.eclipse.sapphire.samples.gallery.ui</package>
+        <package>org.eclipse.sapphire.workspace.ui</package>
+        <package>org.eclipse.sapphire.samples.ui</package>
+    </import>
+
+    <documentation>
+        <id>documentation-id</id>
+        <title>Help gallery</title>
+        <content>content help for the help gallery</content>
+        <topic>
+            <label>eclipse home</label>
+            <href>http://www.eclipse.org</href>
+        </topic>
+    </documentation>
+
+    <editor-page>
+        <id>main</id>
+        <page-header-text>Gallery (Sapphire Sample)</page-header-text>
+        <initial-selection>simple values</initial-selection>
+        <documentation>
+            <title>Sapphire Gallery</title>
+            <content>content help for Sapphire Gallery</content>
+        </documentation>
+        <action>
+            <id>Sample.OpenSapphireWebSite</id>
+            <label>Sapphire Web Site</label>
+            <tooltip>Open Sapphire Web Site (Ctrl+Alt+Shift+S)</tooltip>
+            <key-binding>CONTROL+ALT+SHIFT+s</key-binding>
+            <key-binding-behavior>propagated</key-binding-behavior>
+            <image>Web.png</image>
+            <context>Sapphire.EditorPage</context>
+            <group>Sample.OpenSapphireWebSite</group>
+            <location>after:Sapphire.Outline.Hide</location>
+            <hint>
+                <name>style</name>
+                <value>image+text</value>
+            </hint>
+        </action>
+        <action-handler>
+            <action>Sample.OpenSapphireWebSite</action>
+            <id>Sample.OpenSapphireWebSite</id>
+            <label>Sapphire Web Site</label>
+            <impl>OpenSapphireWebSiteActionHandler</impl>
+        </action-handler>
+        <root-node>
+            <node>
+                <label>general</label>
+                <section>
+                    <label>custom colors</label>
+                    <content>
+                        <property-editor>
+                            <show-label>false</show-label>
+                            <property>CustomColors</property>
+                            <span>true</span>
+                        </property-editor>
+                    </content>
+                </section>
+            </node>
+            <node>
+                <label>value properties</label>
+                <section>
+                  <content>
+                    <label>
+                      In some situations, the description text for say a section gets a bit long. The approach we've adopted is to include the summary in the section and then add section level help content.###brk###This adequate, but may not be as intuitive as say a "More details..." link at the end of the on-screen description text with that pops up a tooltip-style window with complete information.
+                    </label>
+                  </content>
+                </section>
+                <node>
+                    <label>numbers</label>
+                    <section>
+                      <content>
+                        <label>Numbers</label>
+                      </content>
+                    </section>
+                    <node>
+                        <label>integer</label>
+                        <property>IntegerValueGallery</property>
+                        <section>
+                            <documentation-ref>
+                                <id>documentation-id</id>
+                            </documentation-ref>
+                            <content>
+                                <property-editor>Simple</property-editor>
+                                <property-editor>Positive</property-editor>
+                                <property-editor>RangeConstrainedWithDefault</property-editor>
+                            </content>
+                        </section>
+                    </node>
+                    <node>
+                        <label>long integer</label>
+                        <property>LongIntegerValueGallery</property>
+                        <section>
+                            <content>
+                                <property-editor>Simple</property-editor>
+                                <property-editor>Positive</property-editor>
+                                <property-editor>RangeConstrainedWithDefault</property-editor>
+                            </content>
+                        </section>
+                    </node>
+                    <node>
+                        <label>big integer</label>
+                        <property>BigIntegerValueGallery</property>
+                        <section>
+                            <content>
+                                <property-editor>Simple</property-editor>
+                                <property-editor>Positive</property-editor>
+                                <property-editor>RangeConstrainedWithDefault</property-editor>
+                            </content>
+                        </section>
+                    </node>
+                    <node>
+                        <label>single precision float</label>
+                        <property>FloatValueGallery</property>
+                        <section>
+                            <content>
+                                <property-editor>Simple</property-editor>
+                                <property-editor>Positive</property-editor>
+                                <property-editor>RangeConstrainedWithDefault</property-editor>
+                            </content>
+                        </section>
+                    </node>
+                    <node>
+                        <label>double precision float</label>
+                        <property>DoubleValueGallery</property>
+                        <section>
+                            <content>
+                                <property-editor>Simple</property-editor>
+                                <property-editor>Positive</property-editor>
+                                <property-editor>RangeConstrainedWithDefault</property-editor>
+                            </content>
+                        </section>
+                    </node>
+                    <node>
+                        <label>decimal</label>
+                        <property>BigDecimalValueGallery</property>
+                        <section>
+                            <content>
+                                <property-editor>Simple</property-editor>
+                                <property-editor>Positive</property-editor>
+                                <property-editor>RangeConstrainedWithDefault</property-editor>
+                            </content>
+                        </section>
+                    </node>
+                </node>
+                <node>
+                    <label>booleans</label>
+                    <section>
+                        <content>
+                            <label>Boolean properties are rendered using a checkbox widget. Different layout styles are available for better presentation in various circumstances. Use &quot;checkbox.layout&quot; hint.</label>
+                            <spacer></spacer>
+                            <separator>
+                                <label>hint value: &quot;trailing.label&quot; (default)</label>
+                            </separator>
+                            <label>By default, the checkbox label is on the right side and the checkbox is aligned on the first column.</label>
+                            <spacer></spacer>
+                            <property-editor>BooleanProperty</property-editor>
+                            <property-editor>StringProperty</property-editor>
+                            <property-editor>StringProperty</property-editor>
+                            <spacer></spacer>
+                            <separator>
+                                <label>hint value: &quot;trailing.label.indented&quot;</label>
+                            </separator>
+                            <label>A hint can be used to align the checkbox on the second column. This is called indenting.</label>
+                            <spacer></spacer>
+                            <property-editor>StringProperty</property-editor>
+                            <property-editor>StringProperty</property-editor>
+                            <property-editor>
+                                <property>BooleanProperty</property>
+                                <hint>
+                                    <name>checkbox.layout</name>
+                                    <value>trailing.label.idented</value>
+                                </hint>
+                            </property-editor>
+                            <spacer></spacer>
+                            <separator>
+                                <label>hint value: &quot;leading.label&quot;</label>
+                            </separator>
+                            <label>In some circumstances, it may be more appropriate to use a leading label. This is particularly useful in cases where the checkbox is surrounded by many property editors using the leading label presentation.</label>
+                            <spacer></spacer>
+                            <property-editor>StringProperty</property-editor>
+                            <property-editor>
+                                <property>BooleanProperty</property>
+                                <hint>
+                                    <name>checkbox.layout</name>
+                                    <value>leading.label</value>
+                                </hint>
+                            </property-editor>
+                            <property-editor>StringProperty</property-editor>
+                        </content>
+                    </section>
+                    <property>BooleanValueGallery</property>
+                </node>
+                <node>
+                    <label>enums</label>
+                    <property>EnumValueGallery</property>
+                    <section>
+                        <label>enums</label>
+                        <content>
+                          <label>
+                            This page shows two enum value properties being edited in three different ways. The first property is
+                            a simple one relying on Enum.name() for serialization. The second one has customized serialization. Choice "yes"
+                            can also be expressed as "true" or "1". Choice "maybe" can also be expressed as "0". Choice "no" can also be
+                            expressed as "false" or "-1". Choice "no" use case-sensitive matching, while the other two do not.
+                          </label>
+                        </content>
+                    </section>
+                    <section>
+                        <label>combo boxes</label>
+                        <content>
+                            <property-editor>
+                                <style>Sapphire.PropertyEditor.PopUpListField</style>
+                                <property>Simple</property>
+                            </property-editor>
+                            <property-editor>
+                                <style>Sapphire.PropertyEditor.PopUpListField</style>
+                                <property>CustomSerializedWithDefault</property>
+                            </property-editor>
+                        </content>
+                    </section>
+                    <section>
+                        <label>radio buttons (horizontal arrangement)</label>
+                        <content>
+                            <property-editor>
+                                <property>Simple</property>
+                                <style>Sapphire.PropertyEditor.RadioButtonGroup</style>
+                            </property-editor>
+                            <property-editor>
+                                <property>CustomSerializedWithDefault</property>
+                                <style>Sapphire.PropertyEditor.RadioButtonGroup</style>
+                            </property-editor>
+                        </content>
+                    </section>
+                    <section>
+                        <label>radio buttons (vertical arrangement)</label>
+                        <content>
+                            <property-editor>
+                                <property>Simple</property>
+                                <style>Sapphire.PropertyEditor.RadioButtonGroup.Vertical</style>
+                            </property-editor>
+                            <spacer />
+                            <property-editor>
+                                <property>CustomSerializedWithDefault</property>
+                                <style>Sapphire.PropertyEditor.RadioButtonGroup.Vertical</style>
+                            </property-editor>
+                            <spacer />
+                            <group>
+                                <label>no label (in group)</label>
+                                <content>
+                                    <property-editor>
+                                        <property>CustomSerializedWithDefault</property>
+                                        <style>Sapphire.PropertyEditor.RadioButtonGroup.Vertical</style>
+                                        <show-label>false</show-label>
+                                        <span>true</span>
+                                    </property-editor>
+                                </content>
+                            </group>
+                            <spacer />
+                            <group>
+                                <label>no label (in group with aux text)</label>
+                                <content>
+                                    <property-editor>
+                                        <property>CustomSerializedWithDefault</property>
+                                        <style>Sapphire.PropertyEditor.RadioButtonGroup.Vertical</style>
+                                        <show-label>false</show-label>
+                                        <span>true</span>
+                                        <hint>
+                                            <name>aux.text.yes</name>
+                                            <value>Shows agreement or acceptance.</value>
+                                        </hint>
+                                        <hint>
+                                            <name>aux.text.maybe</name>
+                                            <value>Indicating a lack of certainty. Expressing no commitment to a decision or a neutral viewpoint to a statement.</value>
+                                        </hint>
+                                        <hint>
+                                            <name>aux.text.no</name>
+                                            <value>Not any possibility or allowance of doing something.</value>
+                                        </hint>
+                                    </property-editor>
+                                </content>
+                            </group>
+                        </content>
+                    </section>
+                </node>
+                <node>
+                    <label>java type names</label>
+                    <property>JavaTypeNameValueGallery</property>
+                    <section>
+                        <content>
+                            <label>Takes a name of any Java type (class, interface, annotation or enum). The Java type doesn't need to exist.</label>
+                            <spacer />
+                            <property-editor>OptionalAnyType</property-editor>
+                            <spacer />
+                            <label>Takes a name of a class, which must exist.</label>
+                            <spacer />
+                            <property-editor>RequiredClass1</property-editor>
+                            <spacer />
+                            <label>Takes a name of a class, which must exist and must implement java.util.List interface.</label>
+                            <spacer />
+                            <property-editor>RequiredClass2</property-editor>
+                            <spacer />
+                            <label>Takes a name of a class, which must exist and must extend java.util.AbstractList class.</label>
+                            <spacer />
+                            <property-editor>RequiredClass3</property-editor>
+                            <spacer />
+                            <label>Takes a name of a class, which must exist and must extend java.util.AbstractList class while also implementing java.lang.Cloneable interface.</label>
+                            <spacer />
+                            <property-editor>RequiredClass4</property-editor>
+                            <spacer />
+                            <label>Takes a name of a class, which must exist, must be non-abstract and must extend java.util.AbstractList class.</label>
+                            <spacer />
+                            <property-editor>RequiredClass5</property-editor>
+                            <spacer />
+                            <label>Takes a name of an interface, which must exist.</label>
+                            <spacer />
+                            <property-editor>RequiredInterface1</property-editor>
+                            <spacer />
+                            <label>Takes a name of an interface, which must exist and must extend java.util.List interface.</label>
+                            <spacer />
+                            <property-editor>RequiredInterface2</property-editor>
+                            <spacer />
+                            <label>Takes a name of an interface, which must exist and must extend java.util.List interface while also extending java.lang.Cloneable interfaces.</label>
+                            <spacer />
+                            <property-editor>RequiredInterface3</property-editor>
+                            <spacer />
+                            <label>Takes a name of an annotation, which must exist.</label>
+                            <spacer />
+                            <property-editor>RequiredAnnotation1</property-editor>
+                            <spacer />
+                            <label>Takes a name of an enum, which must exist.</label>
+                            <spacer />
+                            <property-editor>RequiredEnum1</property-editor>
+                            <spacer />
+                            <label>Takes a name of a class or an interface, which must exist.</label>
+                            <spacer />
+                            <property-editor>RequiredMixedType1</property-editor>
+                            <spacer />
+                            <label>Takes a name of a class, an interface or an enum, which must exist.</label>
+                            <spacer />
+                            <property-editor>RequiredMixedType2</property-editor>
+                        </content>
+                    </section>
+                </node>
+                <node>
+                    <label>color</label>
+                    <section>
+                        <content>
+                            <property-editor>Color</property-editor>
+                        </content>
+                    </section>
+                    <property>ValuePropertiesGallery</property>
+                </node>
+                <node>
+                    <label>custom</label>
+                    <property>CustomValueGallery</property>
+                    <section>
+                        <content>
+                            <label>
+                                Sapphire can hold any object in a value property as long as a serialization service 
+                                is provided (string encode and decode logic). It is recommended that the value object
+                                is immutable.
+                            </label>
+                            <spacer />
+                            <label>
+                                There are two ways to specify the serialization service. One approach is to use
+                                @ValueSerilization annotation to attach the service to a specific property (Rectangle example).
+                                Another approach is to use Sapphire extension system to attach the service globally for
+                                a given object type (Circle example). 
+                            </label>
+                            <spacer />
+                            <property-editor>
+                                <property>Rectangle</property>
+                                <hint>
+                                    <name>aux.text</name>
+                                    <value>x, y, width, height</value>
+                                </hint>
+                            </property-editor>
+                            <spacer />
+                            <property-editor>
+                                <property>Circle</property>
+                                <hint>
+                                    <name>aux.text</name>
+                                    <value>x, y, radius</value>
+                                </hint>
+                            </property-editor>
+                        </content>
+                    </section>
+                </node>
+                <node>
+                    <label>whitespace</label>
+                    <property>ValuePropertiesGallery</property>
+                    <section>
+                        <content>
+                            <with>
+                                <path>WhitespaceHandlingGallery</path>
+                                <case>
+                                    <content>
+                                        <property-editor>
+                                            <property>Preserved</property>
+                                            <show-label>false</show-label>
+                                            <span>true</span>
+                                            <related-content>
+                                                <html>
+                                                    <fragment></fragment>
+                                                    <content>&lt;p&gt;@Whitespace( trim = false, collapse = false )&lt;/p&gt;
+&lt;p&gt;Preserve all whitespace, including leading and trailing.&lt;/p&gt;</content>
+                                                </html>
+                                            </related-content>
+                                        </property-editor>
+                                        <property-editor>
+                                            <property>Trimmed</property>
+                                            <show-label>false</show-label>
+                                            <span>true</span>
+                                            <related-content>
+                                                <html>
+                                                    <fragment></fragment>
+                                                    <content>&lt;p&gt;@Whitespace( trim = true, collapse = false )&lt;/p&gt;
+&lt;p&gt;Remove leading and trailing whitespace. This is the default treatment.&lt;/p&gt;</content>
+                                                </html>
+                                            </related-content>
+                                        </property-editor>
+                                        <property-editor>
+                                            <property>Collapsed</property>
+                                            <show-label>false</show-label>
+                                            <span>true</span>
+                                            <related-content>
+                                                <html>
+                                                    <fragment></fragment>
+                                                    <content>&lt;p&gt;@Whitespace( trim = true, collapse = true )&lt;/p&gt;
+&lt;p&gt;Remove leading and trailing whitespace. Further, replace all sequences of one or more whitespace characters with a single space character.&lt;/p&gt;</content>
+                                                </html>
+                                            </related-content>
+                                        </property-editor>
+                                    </content>
+                                </case>
+                            </with>
+                        </content>
+                    </section>
+                </node>
+                <node>
+                    <label>default value</label>
+                    <section>
+                        <content>
+                            <with>
+                                <path>DefaultValueGallery</path>
+                                <case>
+                                    <content>
+                                        <label>The default value is used when null is read from the backing resource, such as an XML document.</label>
+                                        <spacer></spacer>
+                                        <property-editor>String</property-editor>
+                                    </content>
+                                </case>
+                            </with>
+                        </content>
+                    </section>
+                    <property>ValuePropertiesGallery</property>
+                </node>
+                <node>
+                    <label>initial value</label>
+                    <section>
+                        <content>
+                            <label>The initial value is assigned when the containing model element is created. Since the initial value is explicitly assigned to the property, it is written to the backing resource, such as an XML document.</label>
+                            <spacer></spacer>
+                            <with>
+                                <path>InitialValueGallery</path>
+                                <case>
+                                    <content>
+                                        <property-editor>String</property-editor>
+                                    </content>
+                                </case>
+                            </with>
+                        </content>
+                    </section>
+                    <property>ValuePropertiesGallery</property>
+                </node>
+                <node>
+                    <label>possible values</label>
+                    <section>
+                        <content>
+                            <with>
+                                <path>PossibleValuesGallery</path>
+                                <case>
+                                    <content>
+                                        <label>Properties with possible values constraint can be presented in a number of different ways. The default presentation is a text field with a browse button and content assist.</label>
+                                        <spacer></spacer>
+                                        <label>In this example, two properties are used to illustrate the different options. The Color property specifies an error for the severity of deviation from the possible values constraint, while the Shape property specifies a warning.</label>
+                                        <spacer></spacer>
+                                        <property-editor>Color</property-editor>
+                                        <property-editor>Shape</property-editor>
+                                        <spacer></spacer>
+                                        <label>An editable combo box presentation can be used instead by specifying Sapphire.PropertyEditor.PopUpListField.Editable as the presentation style. This presentation is most appropriate when the severity of deviation from the possible values constraint is something other than an error.</label>
+                                        <spacer></spacer>
+                                        <property-editor>
+                                            <property>Color</property>
+                                            <style>Sapphire.PropertyEditor.PopUpListField.Editable</style>
+                                        </property-editor>
+                                        <property-editor>
+                                            <property>Shape</property>
+                                            <style>Sapphire.PropertyEditor.PopUpListField.Editable</style>
+                                        </property-editor>
+                                        <spacer></spacer>
+                                        <label>A strict combo box presentation can be used instead by specifying Sapphire.PropertyEditor.PopUpListField.Strict as the presentation style. This presentation is most appropriate when the severity of deviation from the possible values constraint is an error.</label>
+                                        <spacer></spacer>
+                                        <property-editor>
+                                            <property>Color</property>
+                                            <style>Sapphire.PropertyEditor.PopUpListField.Strict</style>
+                                        </property-editor>
+                                        <property-editor>
+                                            <property>Shape</property>
+                                            <style>Sapphire.PropertyEditor.PopUpListField.Strict</style>
+                                        </property-editor>
+                                        <spacer></spacer>
+                                        <label>Alternatively, let the framework choose between editable and strict combo styles depending on the property's possible values constraint by specifying Sapphire.PropertyEditor.PopUpListField as the presentation style.</label>
+                                        <spacer></spacer>
+                                        <property-editor>
+                                            <property>Color</property>
+                                            <style>Sapphire.PropertyEditor.PopUpListField</style>
+                                        </property-editor>
+                                        <property-editor>
+                                            <property>Shape</property>
+                                            <style>Sapphire.PropertyEditor.PopUpListField</style>
+                                        </property-editor>
+                                    </content>
+                                </case>
+                            </with>
+                        </content>
+                    </section>
+                    <property>ValuePropertiesGallery</property>
+                    <section>
+                        <label>list</label>
+                        <content>
+                            <with>
+                                <path>PossibleValuesGallery</path>
+                                <case>
+                                    <content>
+                                        <property-editor>
+                                            <property>ColoredShapes</property>
+                                            <show-label>false</show-label>
+                                            <span>true</span>
+                                            <child-property>
+                                                <property>Color</property>
+                                                <style>Sapphire.PropertyEditor.PopUpListField</style>
+                                            </child-property>
+                                            <child-property>
+                                                <property>Shape</property>
+                                                <style>Sapphire.PropertyEditor.PopUpListField</style>
+                                            </child-property>
+                                        </property-editor>
+                                    </content>
+                                </case>
+                            </with>
+                        </content>
+                    </section>
+                </node>
+            </node>
+            <node>
+                <label>element properties</label>
+                <property>ElementPropertiesGallery</property>
+                <node>
+                    <label>homogeneous</label>
+                    <section>
+                        <content>
+                            <label>A homogeneous element property has one possible child element type.</label>
+                            <spacer></spacer>
+                            <with>
+                                <path>Homogeneous</path>
+                                <label>include child element</label>
+                                <case>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                    </content>
+                                </case>
+                            </with>
+                        </content>
+                    </section>
+                    <node-factory>
+                        <property>Homogeneous</property>
+                        <case>
+                            <section>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                </content>
+                                <label>child element</label>
+                            </section>
+                            <label>${ StringValue == null ? &quot;&lt;child&gt;&quot; : StringValue }</label>
+                        </case>
+                    </node-factory>
+                </node>
+                <node>
+                    <label>heterogeneous</label>
+                    <section>
+                        <content>
+                            <label>A heterogeneous element property has multiple possible child element types.</label>
+                            <spacer></spacer>
+                            <with>
+                                <path>Heterogeneous</path>
+                                <show-label>false</show-label>
+                                <case>
+                                    <element-type>IChildElementWithEnum</element-type>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                        <property-editor>EnumValue</property-editor>
+                                    </content>
+                                </case>
+                                <case>
+                                    <element-type>IChildElementWithInteger</element-type>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                        <property-editor>IntegerValue</property-editor>
+                                    </content>
+                                </case>
+                                <case>
+                                    <element-type>IChildElement</element-type>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                    </content>
+                                </case>
+                            </with>
+                        </content>
+                    </section>
+                    <node-factory>
+                        <property>Heterogeneous</property>
+                        <case>
+                            <element-type>IChildElementWithEnum</element-type>
+                            <section>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                    <property-editor>EnumValue</property-editor>
+                                </content>
+                                <label>child element with enum</label>
+                            </section>
+                            <label>${ StringValue == null ? &quot;&lt;child-with-enum&gt;&quot; : StringValue }</label>
+                        </case>
+                        <case>
+                            <element-type>IChildElementWithInteger</element-type>
+                            <section>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                    <property-editor>IntegerValue</property-editor>
+                                </content>
+                                <label>child element with integer</label>
+                            </section>
+                            <label>${ StringValue == null ? &quot;&lt;child-with-integer&gt;&quot; : StringValue }</label>
+                        </case>
+                        <case>
+                            <element-type>IChildElement</element-type>
+                            <section>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                </content>
+                                <label>child element</label>
+                            </section>
+                            <label>${ StringValue == null ? &quot;&lt;child&gt;&quot; : StringValue }</label>
+                        </case>
+                    </node-factory>
+                </node>
+                <node>
+                    <label>custom PossibleTypesService</label>
+                    <section>
+                        <content>
+                            <label>A heterogeneous element property has multiple possible child element types that can vary at runtime.</label>
+                            <spacer></spacer>
+                            <label>Use the following properties to experiment with varying possible element types.</label>
+                            <spacer></spacer>
+                            <property-editor>AllowChildElementWithEnum</property-editor>
+                            <property-editor>AllowChildElementWithInteger</property-editor>
+                            <spacer></spacer>
+                            <with>
+                                <path>Element</path>
+                                <show-label>false</show-label>
+                                <case>
+                                    <element-type>IChildElementWithEnum</element-type>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                        <property-editor>EnumValue</property-editor>
+                                    </content>
+                                </case>
+                                <case>
+                                    <element-type>IChildElementWithInteger</element-type>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                        <property-editor>IntegerValue</property-editor>
+                                    </content>
+                                </case>
+                                <case>
+                                    <element-type>IChildElement</element-type>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                    </content>
+                                </case>
+                            </with>
+                        </content>
+                    </section>
+                    <node-factory>
+                        <property>Element</property>
+                        <case>
+                            <element-type>IChildElementWithEnum</element-type>
+                            <section>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                    <property-editor>EnumValue</property-editor>
+                                </content>
+                                <label>child element with enum</label>
+                            </section>
+                            <label>${ StringValue == null ? &quot;&lt;child-with-enum&gt;&quot; : StringValue }</label>
+                        </case>
+                        <case>
+                            <element-type>IChildElementWithInteger</element-type>
+                            <section>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                    <property-editor>IntegerValue</property-editor>
+                                </content>
+                                <label>child element with integer</label>
+                            </section>
+                            <label>${ StringValue == null ? &quot;&lt;child-with-integer&gt;&quot; : StringValue }</label>
+                        </case>
+                        <case>
+                            <element-type>IChildElement</element-type>
+                            <section>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                </content>
+                                <label>child element</label>
+                            </section>
+                            <label>${ StringValue == null ? &quot;&lt;child&gt;&quot; : StringValue }</label>
+                        </case>
+                    </node-factory>
+                    <property>CustomPossibleTypes</property>
+                </node>
+                <section>
+                    <label>element properties</label>
+                    <content>
+                        <label>An element property holds an optional child element. </label>
+                    </content>
+                </section>
+                <node>
+                    <label>implied</label>
+                    <section>
+                        <content>
+                            <label>An implied element property has one possible child element type. The child element is not created explicitly and cannot be deleted.</label>
+                            <spacer></spacer>
+                            <label>When an implied element property is referenced in a with construct, the context model element changes without any manifestation in the user interface. Contrast with explicit element properties where controls for managing the child element are presented. In the following example, the last two properties are from the child element accessed using with construct.</label>
+                            <spacer></spacer>
+                            <property-editor>StringValue</property-editor>
+                            <property-editor>IntegerValue</property-editor>
+                            <with>
+                                <path>Implied</path>
+                                <case>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                        <property-editor>IntegerValue</property-editor>
+                                    </content>
+                                </case>
+                            </with>
+                        </content>
+                    </section>
+                </node>
+            </node>
+            <node>
+                <label>list properties</label>
+                <node>
+                    <label>homogeneous</label>
+                    <section>
+                        <content>
+                            <label>A list with one possible element type.</label>
+                            <spacer />
+                            <actuator>
+                                <action-id>Sapphire.Add</action-id>
+                                <label>add a child element</label>
+                            </actuator>
+                            <spacer></spacer>
+                            <label>Use the following property to experiment with enabling and disabling the lists.</label>
+                            <spacer></spacer>
+                            <property-editor>Enabled</property-editor>
+                        </content>
+                    </section>
+                    <section>
+                        <label>list</label>
+                        <content>
+                            <property-editor>
+                                <property>Homogeneous</property>
+                                <show-label>false</show-label>
+                                <span>true</span>
+                            </property-editor>
+                        </content>
+                    </section>
+                    <section>
+                        <label>compact presentation</label>
+                        <content>
+                            <property-editor>
+                                <property>Homogeneous</property>
+                                <hint>
+                                    <name>factory</name>
+                                    <value>CompactListPropertyEditorPresentation$Factory</value>
+                                </hint>
+                            </property-editor>
+                        </content>
+                    </section>
+                    <section>
+                        <label>compact presentation for a list of java types</label>
+                        <content>
+                            <property-editor>
+                                <property>HomogeneousWithJavaType</property>
+                                <hint>
+                                    <name>factory</name>
+                                    <value>CompactListPropertyEditorPresentation$Factory</value>
+                                </hint>
+                            </property-editor>
+                        </content>
+                    </section>
+                    <node-factory>
+                        <property>Homogeneous</property>
+                        <case>
+                            <label>${ StringValue == null ? "&lt;item&gt;" : StringValue }</label>
+                            <section>
+                                <label>child element</label>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                </content>
+                            </section>
+                        </case>
+                    </node-factory>
+                </node>
+                <node>
+                    <label>heterogeneous</label>
+                    <section>
+                        <content>
+                            <label>A list with multiple possible element types.</label>
+                            <spacer />
+                            <actuator>
+                                <action-id>Sapphire.Add</action-id>
+                                <action-handler-id>Sapphire.Add.IChildElement</action-handler-id>
+                                <label>add a basic child element</label>
+                            </actuator>
+                            <actuator>
+                                <action-id>Sapphire.Add</action-id>
+                                <action-handler-id>Sapphire.Add.IChildElementWithEnum</action-handler-id>
+                                <label>add a child element with enum</label>
+                            </actuator>
+                            <actuator>
+                                <action-id>Sapphire.Add</action-id>
+                                <action-handler-id>Sapphire.Add.IChildElementWithInteger</action-handler-id>
+                                <label>add a child element with integer</label>
+                            </actuator>
+                            <spacer></spacer>
+                            <label>Use the following property to experiment with enabling and disabling the lists.</label>
+                            <spacer></spacer>
+                            <property-editor>Enabled</property-editor>
+                        </content>
+                    </section>
+                    <section>
+                        <label>list</label>
+                        <content>
+                            <property-editor>
+                                <property>Heterogeneous</property>
+                                <show-label>false</show-label>
+                                <span>true</span>
+                            </property-editor>
+                            <separator>
+                                <label>details</label>
+                            </separator>
+                            <detail-section>
+                                <property>Heterogeneous</property>
+                                <case>
+                                    <element-type>IChildElementWithEnum</element-type>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                        <property-editor>EnumValue</property-editor>
+                                    </content>
+                                </case>
+                                <case>
+                                    <element-type>IChildElementWithInteger</element-type>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                        <property-editor>IntegerValue</property-editor>
+                                    </content>
+                                </case>
+                                <case>
+                                    <element-type>IChildElement</element-type>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                    </content>
+                                </case>
+                            </detail-section>
+                        </content>
+                    </section>
+                    <node-factory>
+                        <property>Heterogeneous</property>
+                        <case>
+                            <element-type>IChildElementWithInteger</element-type>
+                            <label>${ StringValue == null ? &quot;&lt;child-with-integer&gt;&quot; : StringValue }</label>
+                            <section>
+                                <label>child element with integer</label>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                    <property-editor>IntegerValue</property-editor>
+                                </content>
+                            </section>
+                        </case>
+                        <case>
+                            <element-type>IChildElementWithEnum</element-type>
+                            <label>${ StringValue == null ? &quot;&lt;child-with-enum&gt;&quot; : StringValue }</label>
+                            <section>
+                                <label>child element with enum</label>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                    <property-editor>EnumValue</property-editor>
+                                </content>
+                            </section>
+                        </case>
+                        <case>
+                            <element-type>IChildElement</element-type>
+                            <label>${ StringValue == null ? &quot;&lt;child&gt;&quot; : StringValue }</label>
+                            <section>
+                                <label>child element</label>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                </content>
+                            </section>
+                        </case>
+                    </node-factory>
+                </node>
+                <node>
+                    <label>Custom PossibleTypesService</label>
+                    <property>CustomPossibleTypes</property>
+                    <node-factory>
+                        <property>List</property>
+                        <case>
+                            <element-type>IChildElementWithInteger</element-type>
+                            <label>${ StringValue == null ? &quot;&lt;child-with-integer&gt;&quot; : StringValue }</label>
+                            <section>
+                                <label>child element with integer</label>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                    <property-editor>IntegerValue</property-editor>
+                                </content>
+                            </section>
+                        </case>
+                        <case>
+                            <element-type>IChildElementWithEnum</element-type>
+                            <label>${ StringValue == null ? &quot;&lt;child-with-enum&gt;&quot; : StringValue }</label>
+                            <section>
+                                <label>child element with enum</label>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                    <property-editor>EnumValue</property-editor>
+                                </content>
+                            </section>
+                        </case>
+                        <case>
+                            <element-type>IChildElement</element-type>
+                            <label>${ StringValue == null ? &quot;&lt;child&gt;&quot; : StringValue }</label>
+                            <section>
+                                <label>child element</label>
+                                <content>
+                                    <property-editor>StringValue</property-editor>
+                                </content>
+                            </section>
+                        </case>
+                    </node-factory>
+                    <section>
+                        <content>
+                            <label>A list with multiple possible element types that can vary at runtime.</label>
+                            <spacer />
+                            <actuator>
+                                <action-id>Sapphire.Add</action-id>
+                                <action-handler-id>Sapphire.Add.IChildElement</action-handler-id>
+                                <label>add a basic child element</label>
+                            </actuator>
+                            <actuator>
+                                <action-id>Sapphire.Add</action-id>
+                                <action-handler-id>Sapphire.Add.IChildElementWithEnum</action-handler-id>
+                                <label>add a child element with enum</label>
+                            </actuator>
+                            <actuator>
+                                <action-id>Sapphire.Add</action-id>
+                                <action-handler-id>Sapphire.Add.IChildElementWithInteger</action-handler-id>
+                                <label>add a child element with integer</label>
+                            </actuator>
+                            <spacer></spacer>
+                            <label>Use the following properties to experiment with varying possible element types.</label>
+                            <spacer></spacer>
+                            <property-editor>AllowChildElementWithEnum</property-editor>
+                            <property-editor>AllowChildElementWithInteger</property-editor>
+                        </content>
+                    </section>
+                    <section>
+                        <label>list</label>
+                        <content>
+                            <property-editor>
+                                <property>List</property>
+                                <show-label>false</show-label>
+                                <span>true</span>
+                            </property-editor>
+                            <separator>
+                                <label>details</label>
+                            </separator>
+                            <detail-section>
+                                <property>List</property>
+                                <case>
+                                    <element-type>IChildElementWithEnum</element-type>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                        <property-editor>EnumValue</property-editor>
+                                    </content>
+                                </case>
+                                <case>
+                                    <element-type>IChildElementWithInteger</element-type>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                        <property-editor>IntegerValue</property-editor>
+                                    </content>
+                                </case>
+                                <case>
+                                    <element-type>IChildElement</element-type>
+                                    <content>
+                                        <property-editor>StringValue</property-editor>
+                                    </content>
+                                </case>
+                            </detail-section>
+                        </content>
+                    </section>
+                </node>
+                <property>ListPropertiesGallery</property>
+                <node>
+                    <label>multi-select</label>
+                    <section>
+                        <content>
+                            <label>One common requirement is to allow the user to select zero or more items from a set of possible values. This is modeled with a list property whose entry type has a single value property. The value property must be decorated with @NoDuplicates annotation and must have a PossibleValuesService (either a custom implementation or via @PossibleValues annotation).</label> 
+                            <spacer />
+                            <label>Use the following property to experiment with enabling and disabling the lists.</label> 
+                            <spacer></spacer>
+                            <property-editor>Enabled</property-editor>
+                            <spacer></spacer> 
+                            <label>
+                                The slush bucket is the default property editor type. 
+                            </label>
+                            <property-editor>
+                                <property>MultiSelectString</property>
+                                <show-label>false</show-label>
+                                <span>true</span>
+                            </property-editor>
+                            <spacer />
+                            <label>
+                                The checkbox list is an alternate property editor type that may work better in some cases. To use it,
+                                specify CheckBoxListPropertyEditorPresentation$Factory for factory hint. The property editor is located in
+                                the org.eclipse.sapphire.ui.forms.swt package.</label>
+                            <property-editor>
+                                <property>MultiSelectString</property>
+                                <show-label>false</show-label>
+                                <span>true</span>
+                                <hint>
+                                    <name>factory</name>
+                                    <value>CheckBoxListPropertyEditorPresentation$Factory</value>
+                                </hint>
+                            </property-editor>
+                            <spacer></spacer>
+                            <label>A common variant of a multi-select list is an enum list. In this case, the PossibleValueService is implied by the enum. The checkbox list is the default presentation for enum lists.</label>
+                            <property-editor>
+                                <property>MultiSelectEnum</property>
+                                <show-label>false</show-label>
+                                <span>true</span>
+                                <hint>
+                                    <name>show.header</name>
+                                    <value>false</value>
+                                </hint>
+                            </property-editor>
+                        </content>
+                    </section>
+                </node>
+                <node>
+                    <label>nested properties</label>
+                    <property>NestedPropertiesInListGallery</property>
+                    <section>
+                        <content>
+                            <property-editor>
+                                <span>true</span>
+                                <property>Employees</property>
+                                <show-label>false</show-label>
+                                <child-property>Name/First</child-property>
+                                <child-property>Name/Last</child-property>
+                                <child-property>Location/City</child-property>
+                                <child-property>Location/Country</child-property>
+                                <child-property>Salary</child-property>
+                            </property-editor>
+                        </content>
+                    </section>
+                </node>
+            </node>
+            <node>
+                <label>enablement</label>
+                <property>EnablementGallery</property>
+                <section>
+                    <label>controlling</label>
+                    <content>
+                        <label>
+                            In many situations, a property's enablement state is dependent on values of other
+                            properties. In this sample, the properties in the Controlling section influence the
+                            enablement of properties in the Dependent section.
+                        </label>
+                        <spacer />
+                        <property-editor>ControllingPropBoolean</property-editor>
+                        <property-editor>ControllingPropEnum</property-editor>
+                    </content>
+                </section>
+                <section>
+                    <label>dependent</label>
+                    <content>
+                        <label>Enabled if boolean controlling property is set true.</label>
+                        <spacer />
+                        <property-editor>DependentProp1</property-editor>
+                        <spacer />
+                        <spacer />
+                        <label>Enabled if enum controlling property is set to yes.</label>
+                        <spacer />
+                        <property-editor>DependentProp2</property-editor>
+                        <spacer />
+                        <spacer />
+                        <label>
+                            Enabled if boolean controlling property is set to false and enum controlling 
+                            property is set to yes or maybe.
+                        </label>
+                        <spacer />
+                        <property-editor>DependentProp3</property-editor>
+                    </content>
+                </section>
+            </node>
+            <node>
+                <label>browse support</label>
+                <property>BrowseSupportGallery</property>
+                <section>
+                    <content>
+                        <property-editor>AbsoluteFilePath</property-editor>
+                        <property-editor>AbsoluteFolderPath</property-editor>
+                        <property-editor>RelativeFilePath</property-editor>
+                        <property-editor>ModelRelativePath</property-editor>
+                        <property-editor>ProjectRelativePath</property-editor>
+                        <property-editor>WorkspaceRelativePath</property-editor>
+                        <property-editor>
+                            <property>MultiOptionPath</property>
+                            <action-handler>
+                                <action>Sapphire.Browse</action>
+                                <impl>org.eclipse.sapphire.ui.forms.swt.AbsoluteFilePathBrowseActionHandler</impl>
+                                <param>
+                                    <name>extensions</name>
+                                    <value>jar,zip</value>
+                                </param>
+                            </action-handler>
+                            <action-handler>
+                                <action>Sapphire.Browse</action>
+                                <impl>org.eclipse.sapphire.ui.forms.swt.AbsoluteFolderPathBrowseActionHandler</impl>
+                            </action-handler>
+                            <action-handler>
+                                <action>Sapphire.Browse</action>
+                                <impl>org.eclipse.sapphire.workspace.ui.WorkspaceRelativePathBrowseActionHandler</impl>
+                                <param>
+                                    <name>extensions</name>
+                                    <value>jar,zip</value>
+                                </param>
+                                <param>
+                                    <name>leading-slash</name>
+                                    <value>true</value>
+                                </param>
+                            </action-handler>
+                        </property-editor>
+                        <property-editor>
+                            <property>List</property>
+                            <child-property>
+                                <property>MultiOptionPath</property>
+                                <action-handler>
+                                    <action>Sapphire.Browse</action>
+                                    <impl>org.eclipse.sapphire.ui.forms.swt.AbsoluteFilePathBrowseActionHandler</impl>
+                                    <param>
+                                        <name>extensions</name>
+                                        <value>jar,zip</value>
+                                    </param>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Browse</action>
+                                    <impl>org.eclipse.sapphire.ui.forms.swt.AbsoluteFolderPathBrowseActionHandler</impl>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Browse</action>
+                                    <impl>org.eclipse.sapphire.workspace.ui.WorkspaceRelativePathBrowseActionHandler</impl>
+                                    <param>
+                                        <name>extensions</name>
+                                        <value>jar,zip</value>
+                                    </param>
+                                    <param>
+                                        <name>leading-slash</name>
+                                        <value>true</value>
+                                    </param>
+                                </action-handler>
+                            </child-property>
+                        </property-editor>
+                        <property-editor>
+                            <property>List</property>
+                            <hint>
+                                <name>factory</name>
+                                <value>CompactListPropertyEditorPresentation$Factory</value>
+                            </hint>
+                            <child-property>
+                                <property>MultiOptionPath</property>
+                                <action-handler>
+                                    <action>Sapphire.Browse</action>
+                                    <impl>org.eclipse.sapphire.ui.forms.swt.AbsoluteFilePathBrowseActionHandler</impl>
+                                    <param>
+                                        <name>extensions</name>
+                                        <value>jar,zip</value>
+                                    </param>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Browse</action>
+                                    <impl>org.eclipse.sapphire.ui.forms.swt.AbsoluteFolderPathBrowseActionHandler</impl>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Browse</action>
+                                    <impl>org.eclipse.sapphire.workspace.ui.WorkspaceRelativePathBrowseActionHandler</impl>
+                                    <param>
+                                        <name>extensions</name>
+                                        <value>jar,zip</value>
+                                    </param>
+                                    <param>
+                                        <name>leading-slash</name>
+                                        <value>true</value>
+                                    </param>
+                                </action-handler>
+                            </child-property>
+                        </property-editor>
+                    </content>
+                </section>
+            </node>
+            <node>
+                <label>actions</label>
+                <property>ValuePropertyActionsGallery</property>
+                <section>
+                    <content>
+                        <property-editor>Entities</property-editor>
+                    </content>
+                </section>
+                <node>
+                    <label>value property editor</label>
+                    <section>
+                        <content>
+                            <label>
+                                The following sample shows actions in the context of a value property editor. The browse action handler
+                                is contributed by the system. The create action handler is contributed in the sdef file. Notice how the 
+                                create button gets disabled when the referenced entity already exists.
+                            </label>
+                            <spacer />
+                            <property-editor>
+                                <property>Reference</property>
+                                <action-handler>
+                                    <action>Sapphire.Create</action>
+                                    <impl>ValuePropertyActionsGalleryReferenceCreateActionHandler1</impl>
+                                </action-handler>
+                            </property-editor>
+                            <spacer />
+                            <spacer />
+                            <label>
+                                The following sample shows how multiple action handlers can be concurrently associated with the
+                                same action. The create button is enabled if any of its action handlers are enabled. Pressing on the 
+                                button activates a menu that shows all available action handlers. Notice how the action handler label 
+                                can vary depending on a property value. 
+                            </label>
+                            <spacer />
+                            <property-editor>
+                                <property>Reference</property>
+                                <action-handler>
+                                    <action>Sapphire.Create</action>
+                                    <impl>ValuePropertyActionsGalleryReferenceCreateActionHandler1</impl>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Create</action>
+                                    <impl>ValuePropertyActionsGalleryReferenceCreateActionHandler2</impl>
+                                </action-handler>
+                            </property-editor>
+                            <spacer />
+                            <spacer />
+                            <label>
+                                The following sample shows how to define a new action in the sdef file, how to position it in relation
+                                to other actions, and how to associate images with action handlers. It also reinforces the concept
+                                that arbitrary handlers can be added to any action by contributing message dialog handlers to create
+                                and browse actions.
+                            </label>
+                            <spacer />
+                            <property-editor>
+                                <property>Reference</property>
+                                <action>
+                                    <id>Sapphire.Sample.Message</id>
+                                    <label>message</label>
+                                    <image>BalloonYellow.png</image>
+                                    <location>after:Sapphire.Browse</location>
+                                    <location>before:Sapphire.Create</location>
+                                    <key-binding>SHIFT+CONTROL+ALT+m</key-binding>
+                                </action>
+                                <action-handler>
+                                    <action>Sapphire.Create</action>
+                                    <id>create.1</id>
+                                    <impl>ValuePropertyActionsGalleryReferenceCreateActionHandler1</impl>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Create</action>
+                                    <id>create.2</id>
+                                    <impl>ValuePropertyActionsGalleryReferenceCreateActionHandler2</impl>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Sample.Message</action>
+                                    <id>Sapphire.Sample.Message.1</id>
+                                    <impl>MessageBoxActionHandler</impl>
+                                    <label>first message</label>
+                                    <image>BalloonYellow.png</image>
+                                    <param>
+                                        <name>message</name>
+                                        <value>This is the first message.</value>
+                                    </param>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Sample.Message</action>
+                                    <id>Sapphire.Sample.Message.2</id>
+                                    <impl>MessageBoxActionHandler</impl>
+                                    <label>second message</label>
+                                    <image>BalloonBlue.png</image>
+                                    <location>after:Sapphire.Sample.Message.1</location>
+                                    <param>
+                                        <name>message</name>
+                                        <value>This is the second message.</value>
+                                    </param>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Sample.Message</action>
+                                    <id>Sapphire.Sample.Message.3</id>
+                                    <impl>MessageBoxActionHandler</impl>
+                                    <label>third message</label>
+                                    <image>BalloonRed.png</image>
+                                    <location>after:Sapphire.Sample.Message.2</location>
+                                    <param>
+                                        <name>message</name>
+                                        <value>This is the third message.</value>
+                                    </param>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Browse</action>
+                                    <id>Sapphire.Sample.Message.4</id>
+                                    <impl>MessageBoxActionHandler</impl>
+                                    <label>fourth message</label>
+                                    <image>BalloonYellow.png</image>
+                                    <location>after:Sapphire.Browse.Possible</location>
+                                    <param>
+                                        <name>message</name>
+                                        <value>This is the fourth message.</value>
+                                    </param>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Create</action>
+                                    <id>Sapphire.Sample.Message.5</id>
+                                    <impl>MessageBoxActionHandler</impl>
+                                    <label>fifth message</label>
+                                    <image>BalloonYellow.png</image>
+                                    <location>after:create.2</location>
+                                    <param>
+                                        <name>message</name>
+                                        <value>This is the fifth message.</value>
+                                    </param>
+                                </action-handler>
+                            </property-editor>
+                            <spacer />
+                            <spacer />
+                            <label>
+                                The following sample shows how to define a toggle action. Unlike a push action, a toggle action only
+                                supports one active handler. The first handler in the sequence specified by location hints will be
+                                used.
+                            </label>
+                            <spacer />
+                            <property-editor>
+                                <property>Reference</property>
+                                <action>
+                                    <id>Sapphire.Sample.Prefix</id>
+                                    <label>prefix</label>
+                                    <image>Prefix.png</image>
+                                    <type>toggle</type>
+                                    <location>after:Sapphire.Browse</location>
+                                    <key-binding>SHIFT+CONTROL+ALT+p</key-binding>
+                                </action>
+                                <action-handler>
+                                    <action>Sapphire.Sample.Prefix</action>
+                                    <impl>PrefixActionHandlerForValue</impl>
+                                    <param>
+                                        <name>prefix</name>
+                                        <value>Prefix</value>
+                                    </param>
+                                </action-handler>
+                            </property-editor>
+                        </content>
+                    </section>
+                </node>
+                <node>
+                    <label>list property editor</label>
+                    <section>
+                        <content>
+                            <label>
+                                The following sample shows actions inside a cell editor. In this case only system action handlers are used. 
+                            </label>
+                            <spacer />
+                            <property-editor>References</property-editor>
+                            <spacer />
+                            <spacer />
+                            <label>
+                                The following sample shows multiple actions inside a cell editor. The create action handler and the message
+                                handler for the browse action are contributed in the sdef file. This sample also shows adding actions and
+                                handlers to the list property editor itself.
+                            </label>
+                            <spacer />
+                            <property-editor>
+                                <property>References</property>
+                                <action>
+                                    <id>Sapphire.Sample.Message</id>
+                                    <label>message</label>
+                                    <image>BalloonYellow.png</image>
+                                    <location>before:Sapphire.Add</location>
+                                    <key-binding>SHIFT+CONTROL+ALT+m</key-binding>
+                                </action>
+                                <action-handler>
+                                    <action>Sapphire.Sample.Message</action>
+                                    <id>Sapphire.Sample.Message.Yellow</id>
+                                    <impl>MessageBoxActionHandler</impl>
+                                    <label>yellow message</label>
+                                    <image>BalloonYellow.png</image>
+                                    <param>
+                                        <name>message</name>
+                                        <value>This is a yellow message.</value>
+                                    </param>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Sample.Message</action>
+                                    <id>Sapphire.Sample.Message.Blue</id>
+                                    <impl>MessageBoxActionHandler</impl>
+                                    <label>blue message</label>
+                                    <image>BalloonBlue.png</image>
+                                    <param>
+                                        <name>message</name>
+                                        <value>This is a blue message.</value>
+                                    </param>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Sample.Message</action>
+                                    <id>Sapphire.Sample.Message.Red</id>
+                                    <impl>MessageBoxActionHandler</impl>
+                                    <label>red message</label>
+                                    <image>BalloonRed.png</image>
+                                    <param>
+                                        <name>message</name>
+                                        <value>This is a red message.</value>
+                                    </param>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Add</action>
+                                    <id>Sapphire.Sample.Message.Yellow</id>
+                                    <impl>MessageBoxActionHandler</impl>
+                                    <label>yellow message</label>
+                                    <image>BalloonYellow.png</image>
+                                    <param>
+                                        <name>message</name>
+                                        <value>This is a yellow message.</value>
+                                    </param>
+                                </action-handler>
+                                <action-handler>
+                                    <action>Sapphire.Add</action>
+                                    <id>Sapphire.Sample.Message.Blue</id>
+                                    <impl>MessageBoxActionHandler</impl>
+                                    <label>blue message</label>
+                                    <image>BalloonBlue.png</image>
+                                    <param>
+                                        <name>message</name>
+                                        <value>This is a blue message.</value>
+                                    </param>
+                                </action-handler>
+                                <child-property>
+                                    <property>Reference</property>
+                                    <action-handler>
+                                        <action>Sapphire.Create</action>
+                                        <impl>ValuePropertyActionsGalleryReferenceCreateActionHandler2</impl>
+                                    </action-handler>
+                                    <action-handler>
+                                        <action>Sapphire.Browse</action>
+                                        <id>Sapphire.Sample.Message</id>
+                                        <impl>MessageBoxActionHandler</impl>
+                                        <label>message</label>
+                                        <image>BalloonYellow.png</image>
+                                        <location>after:Sapphire.Browse.Possible</location>
+                                        <param>
+                                            <name>message</name>
+                                            <value>This is a message.</value>
+                                        </param>
+                                    </action-handler>
+                                </child-property>
+                            </property-editor>
+                            <spacer />
+                            <spacer />
+                            <label>
+                                The following sample shows how to define toggle actions for a list property editor as well as inside
+                                a cell editor. Unlike a push action, a toggle action only supports one active handler. The first 
+                                handler in the sequence specified by location hints will be used.
+                            </label>
+                            <spacer />
+                            <label>
+                                Note: There is currently no support for rendering of toggle states for actions inside a cell
+                                editor. In that context, toggle actions will only operate as toggles at API level.
+                            </label>
+                            <spacer />
+                            <property-editor>
+                                <property>References</property>
+                                <action>
+                                    <id>Sapphire.Sample.Prefix</id>
+                                    <label>prefix first</label>
+                                    <image>Prefix.png</image>
+                                    <type>toggle</type>
+                                    <location>before:Sapphire.Add</location>
+                                    <key-binding>SHIFT+CONTROL+ALT+p</key-binding>
+                                </action>
+                                <action-handler>
+                                    <action>Sapphire.Sample.Prefix</action>
+                                    <impl>PrefixActionHandlerForList</impl>
+                                    <param>
+                                        <name>prefix</name>
+                                        <value>Prefix</value>
+                                    </param>
+                                </action-handler>
+                                <child-property>
+                                    <property>Reference</property>
+                                    <action>
+                                        <id>Sapphire.Sample.Prefix</id>
+                                        <label>prefix</label>
+                                        <image>PrefixMini.png</image>
+                                        <type>toggle</type>
+                                        <location>after:Sapphire.Browse</location>
+                                        <key-binding>SHIFT+CONTROL+ALT+p</key-binding>
+                                    </action>
+                                    <action-handler>
+                                        <action>Sapphire.Sample.Prefix</action>
+                                        <impl>PrefixActionHandlerForValue</impl>
+                                        <param>
+                                            <name>prefix</name>
+                                            <value>Prefix</value>
+                                        </param>
+                                    </action-handler>
+                                </child-property>
+                            </property-editor>
+                        </content>
+                    </section>
+                </node>
+                <node>
+                    <label>actuators</label>
+                    <section>
+                        <content>
+                            <label>An actuator provides means to invoke an action. The action could be drawn from the context where actuator is placed or provided as part of actuator's definition. In this example, the action doubles the entered number.</label>
+                            <spacer></spacer>
+                            <property-editor>Number</property-editor>
+                            <spacer></spacer>
+                            <label>An actuator can be presented as a link that is aligned in different ways across both of the columns.</label>
+                            <spacer></spacer>
+                            <actuator>
+                                <action-id>Sapphire.Gallery.Actuators.DoubleTheNumber</action-id>
+                                <action>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <label>double the number</label>
+                                </action>
+                                <action-handler>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <action>Sapphire.Gallery.Actuators.DoubleTheNumber</action>
+                                    <impl>ActuatorsGalleryDoubleTheNumberActionHandler</impl>
+                                </action-handler>
+                            </actuator>
+                            <actuator>
+                                <action-id>Sapphire.Gallery.Actuators.DoubleTheNumber</action-id>
+                                <action>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <label>double the number</label>
+                                </action>
+                                <action-handler>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <action>Sapphire.Gallery.Actuators.DoubleTheNumber</action>
+                                    <impl>ActuatorsGalleryDoubleTheNumberActionHandler</impl>
+                                </action-handler>
+                                <horizontal-align>center</horizontal-align>
+                            </actuator>
+                            <actuator>
+                                <action-id>Sapphire.Gallery.Actuators.DoubleTheNumber</action-id>
+                                <action>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <label>double the number</label>
+                                </action>
+                                <action-handler>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <action>Sapphire.Gallery.Actuators.DoubleTheNumber</action>
+                                    <impl>ActuatorsGalleryDoubleTheNumberActionHandler</impl>
+                                </action-handler>
+                                <horizontal-align>right</horizontal-align>
+                            </actuator>
+                            <spacer></spacer>
+                            <label>Alternatively, the alignment range can be limited to just the second column.</label>
+                            <spacer></spacer>
+                            <actuator>
+                                <action-id>Sapphire.Gallery.Actuators.DoubleTheNumber</action-id>
+                                <action>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <label>double the number</label>
+                                </action>
+                                <action-handler>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <action>Sapphire.Gallery.Actuators.DoubleTheNumber</action>
+                                    <impl>ActuatorsGalleryDoubleTheNumberActionHandler</impl>
+                                </action-handler>
+                                <span>false</span>
+                            </actuator>
+                            <actuator>
+                                <action-id>Sapphire.Gallery.Actuators.DoubleTheNumber</action-id>
+                                <action>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <label>double the number</label>
+                                </action>
+                                <action-handler>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <action>Sapphire.Gallery.Actuators.DoubleTheNumber</action>
+                                    <impl>ActuatorsGalleryDoubleTheNumberActionHandler</impl>
+                                </action-handler>
+                                <span>false</span>
+                                <horizontal-align>center</horizontal-align>
+                            </actuator>
+                            <actuator>
+                                <action-id>Sapphire.Gallery.Actuators.DoubleTheNumber</action-id>
+                                <action>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <label>double the number</label>
+                                </action>
+                                <action-handler>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <action>Sapphire.Gallery.Actuators.DoubleTheNumber</action>
+                                    <impl>ActuatorsGalleryDoubleTheNumberActionHandler</impl>
+                                </action-handler>
+                                <span>false</span>
+                                <horizontal-align>right</horizontal-align>
+                            </actuator>
+                            <spacer></spacer>
+                            <label>An actuator can also be presented as a button.</label>
+                            <spacer></spacer>
+                            <actuator>
+                                <action-id>Sapphire.Gallery.Actuators.DoubleTheNumber</action-id>
+                                <action>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <label>double the number</label>
+                                </action>
+                                <action-handler>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <action>Sapphire.Gallery.Actuators.DoubleTheNumber</action>
+                                    <impl>ActuatorsGalleryDoubleTheNumberActionHandler</impl>
+                                </action-handler>
+                                <style>Sapphire.Actuator.Button</style>
+                            </actuator>
+                            <actuator>
+                                <action-id>Sapphire.Gallery.Actuators.DoubleTheNumber</action-id>
+                                <action>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <label>double the number</label>
+                                </action>
+                                <action-handler>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <action>Sapphire.Gallery.Actuators.DoubleTheNumber</action>
+                                    <impl>ActuatorsGalleryDoubleTheNumberActionHandler</impl>
+                                </action-handler>
+                                <horizontal-align>center</horizontal-align>
+                                <style>Sapphire.Actuator.Button</style>
+                            </actuator>
+                            <actuator>
+                                <action-id>Sapphire.Gallery.Actuators.DoubleTheNumber</action-id>
+                                <action>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <label>double the number</label>
+                                </action>
+                                <action-handler>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <action>Sapphire.Gallery.Actuators.DoubleTheNumber</action>
+                                    <impl>ActuatorsGalleryDoubleTheNumberActionHandler</impl>
+                                </action-handler>
+                                <horizontal-align>right</horizontal-align>
+                                <style>Sapphire.Actuator.Button</style>
+                            </actuator>
+                            <spacer></spacer>
+                            <label>Similarly to link presentation, the alignment range can be limited to just the second column.</label>
+                            <spacer></spacer>
+                            <actuator>
+                                <action-id>Sapphire.Gallery.Actuators.DoubleTheNumber</action-id>
+                                <action>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <label>double the number</label>
+                                </action>
+                                <action-handler>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <action>Sapphire.Gallery.Actuators.DoubleTheNumber</action>
+                                    <impl>ActuatorsGalleryDoubleTheNumberActionHandler</impl>
+                                </action-handler>
+                                <span>false</span>
+                                <style>Sapphire.Actuator.Button</style>
+                            </actuator>
+                            <actuator>
+                                <action-id>Sapphire.Gallery.Actuators.DoubleTheNumber</action-id>
+                                <action>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <label>double the number</label>
+                                </action>
+                                <action-handler>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <action>Sapphire.Gallery.Actuators.DoubleTheNumber</action>
+                                    <impl>ActuatorsGalleryDoubleTheNumberActionHandler</impl>
+                                </action-handler>
+                                <span>false</span>
+                                <horizontal-align>center</horizontal-align>
+                                <style>Sapphire.Actuator.Button</style>
+                            </actuator>
+                            <actuator>
+                                <action-id>Sapphire.Gallery.Actuators.DoubleTheNumber</action-id>
+                                <action>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <label>double the number</label>
+                                </action>
+                                <action-handler>
+                                    <id>Sapphire.Gallery.Actuators.DoubleTheNumber</id>
+                                    <action>Sapphire.Gallery.Actuators.DoubleTheNumber</action>
+                                    <impl>ActuatorsGalleryDoubleTheNumberActionHandler</impl>
+                                </action-handler>
+                                <span>false</span>
+                                <horizontal-align>right</horizontal-align>
+                                <style>Sapphire.Actuator.Button</style>
+                            </actuator>
+                        </content>
+                    </section>
+                    <property>Actuators</property>
+                </node>
+            </node>
+            <node>
+                <label>sections</label>
+                <section>
+                    <label>regular section</label>
+                    <content>
+                        <label>Each content outline node can have zero or more sections associated with it. A section can hold any form content.</label>
+                        <spacer></spacer>
+                        <property-editor>Text</property-editor>
+                        <property-editor>ThreeChoiceAnswer</property-editor>
+                    </content>
+                </section>
+                <section>
+                    <label>collapsible section</label>
+                    <content>
+                        <label>A section can be collapsible. This is one approach for handling too much content to fit on the screen. Another, typically more effective, approach is to break up content between more nodes in the content outline.</label>
+                        <spacer></spacer>
+                        <property-editor>Text</property-editor>
+                        <property-editor>ThreeChoiceAnswer</property-editor>
+                    </content>
+                    <collapsible>true</collapsible>
+                </section>
+                <section>
+                    <label>collapsed initially section</label>
+                    <content>
+                        <label>A collapsible section can be specified to be showed collapsed initially.</label>
+                        <spacer></spacer>
+                        <property-editor>Text</property-editor>
+                        <property-editor>ThreeChoiceAnswer</property-editor>
+                    </content>
+                    <collapsible>true</collapsible>
+                    <collapsed-initially>true</collapsed-initially>
+                </section>
+                <property>SectionsGallery</property>
+            </node>
+            <node>
+                <label>visible when</label>
+                <section>
+                    <content>
+                        <property-editor>ValueVisible</property-editor>
+                        <property-editor>ListVisible</property-editor>
+                    </content>
+                </section>
+                <section>
+                    <content>
+                        <label>In this example, each of the property editors along with the section itself have visibility conditions. The section is specified to be visible when either of its two property editors are visible.</label>
+                        <spacer></spacer>
+                        <property-editor>
+                            <visible-when>${ ValueVisible }</visible-when>
+                            <property>Value</property>
+                        </property-editor>
+                        <property-editor>
+                            <visible-when>${ ListVisible }</visible-when>
+                            <property>List</property>
+                        </property-editor>
+                    </content>
+                    <visible-when>${ ValueVisible || ListVisible }</visible-when>
+                    <label>example</label>
+                </section>
+                <property>VisibleWhenGallery</property>
+                <node>
+                    <label>value</label>
+                    <visible-when>${ ValueVisible }</visible-when>
+                    <section>
+                        <content>
+                            <property-editor>Value</property-editor>
+                        </content>
+                    </section>
+                </node>
+                <node-factory>
+                    <property>List</property>
+                    <visible-when>${ ListVisible }</visible-when>
+                    <case>
+                        <section>
+                            <label>entry</label>
+                            <content>
+                                <property-editor>Value</property-editor>
+                            </content>
+                        </section>
+                        <label>${ Value == null ? &quot;&lt;entry&gt;&quot; : Value }</label>
+                    </case>
+                </node-factory>
+            </node>
+            <node>
+                <label>help</label>
+                <section>
+                    <documentation-ref>
+                        <id>documentation-id</id>
+                    </documentation-ref>
+                    <content>
+                      <label>Help gallery shows content help capabilities in Sapphire.</label>
+                    </content>
+                </section>
+                <node>
+                    <label>help</label>
+                    <property>HelpGallery</property>
+                    <section>
+                        <documentation>
+                            <title>Help</title>
+                            <content>Simple shows the help content annotation.[pbr/]Positive shows the help content provider annotation.[pbr/]Range constrained with default shows the auto-generated content help.</content>
+                        </documentation>
+                        <content>
+                            <label>Simple shows the help content annotation. Positive shows the help content provider annotation. Range constrained with default shows the auto-generated content help.</label>
+                            <spacer />
+                            <property-editor>Simple</property-editor>
+                            <property-editor>Positive</property-editor>
+                            <property-editor>RangeConstrainedWithDefault</property-editor>
+                            <property-editor>Code</property-editor>
+                            <property-editor>SimpleChoice</property-editor>
+                        </content>
+                    </section>
+                </node>
+                <node>
+                    <label>extended help</label>
+                    <property>ExtendedHelpGallery</property>
+                    <section>
+                        <documentation>
+                            <topic>
+                                <label>eclipse home</label>
+                                <href>http://www.eclipse.org</href>
+                            </topic>
+                        </documentation>
+                        <content>
+                            <label>Content help for the ExtendedHelpGallery model element will be appended to all properties. Both Simple and Positive have options to augment, in which the parent's content help will be appended. </label>
+                            <spacer />
+                            <property-editor>Simple</property-editor>
+                            <property-editor>Positive</property-editor>
+                            <property-editor>RangeConstrainedWithDefault</property-editor>
+                            <property-editor>SimpleChoice</property-editor>
+                        </content>
+                    </section>
+                </node>
+            </node>
+            <node>
+                <label>related content</label>
+                <property>RelatedContentGallery</property>
+                <section>
+                    <content>
+                        <label>
+                            Use related content to display two property editors on one line. This pattern is especially powerful
+                            when the relationship of two properties is such that a single label will suffice.
+                        </label>
+                        <spacer />
+                        <property-editor>
+                            <property>Measurement</property>
+                            <related-content>
+                                <property-editor>
+                                    <property>MeasurementUnits</property>
+                                    <show-label>false</show-label>
+                                    <span>true</span>
+                                </property-editor>
+                            </related-content>
+                        </property-editor>
+                        <spacer />
+                        <label>
+                            Display more than two parts on one line by nesting related content inside related content. Use sparingly.
+                        </label>
+                        <spacer />
+                        <property-editor>
+                            <property>Measurement</property>
+                            <related-content>
+                                <property-editor>
+                                    <property>MeasurementUnits</property>
+                                    <show-label>false</show-label>
+                                    <span>true</span>
+                                    <related-content-width>30</related-content-width>
+                                    <related-content>
+                                        <property-editor>MeasurementOfArea</property-editor>
+                                    </related-content>
+                                </property-editor>
+                            </related-content>
+                        </property-editor>
+                        <spacer />
+                        <label>
+                            Related content isn't limited to property editors. Any part can be placed into related content. This is
+                            particularly useful when the main property editor spans more than one vertical line, such as a list
+                            property editor or a multi-line text box. In this example, related content is used to display explanatory text.
+                        </label>
+                        <spacer />
+                        <property-editor>
+                            <property>Description</property>
+                            <height>250</height>
+                            <related-content>
+                                <html>
+                                    <content>
+                                        &lt;style>
+                                        body, td
+                                        {
+                                             color: grey;
+                                        }
+                                        &lt;/style>
+                                        Format content using syntax similar to HTML. The following tags are supported:&lt;br/>&lt;br/>
+                                        
+                                        &lt;table>
+                                            &lt;tr>&lt;td>[b]...[/b]&lt;/td>&lt;td>bold text&lt;/td>&lt;/tr> 
+                                            &lt;tr>&lt;td>[br/]&lt;/td>&lt;td>line break&lt;/td>&lt;/tr>
+                                            &lt;tr>&lt;td>[pbr/]&lt;/td>&lt;td>paragraph break&lt;/td>&lt;/tr> 
+                                            &lt;tr>&lt;td>[ol]...[/ol]&lt;/td>&lt;td>ordered list&lt;/td>&lt;/tr>
+                                            &lt;tr>&lt;td>[ul]...[/ul]&lt;/td>&lt;td>unordered list&lt;/td>&lt;/tr>
+                                            &lt;tr>&lt;td>[li]...[/li]&lt;/td>&lt;td>list item&lt;/td>&lt;/tr>
+                                        &lt;/table>
+                                    </content>
+                                    <fragment />
+                                    <scale-vertically>true</scale-vertically>
+                                </html>
+                            </related-content>
+                        </property-editor>
+                        <spacer />
+                        <label>
+                            Multiple parts can be placed into related content. They will be arranged vertically.
+                        </label>
+                        <spacer />
+                        <property-editor>
+                            <property>Description</property>
+                            <related-content>
+                                <property-editor>Measurement</property-editor>
+                                <property-editor>MeasurementUnits</property-editor>
+                                <composite>
+                                    <indent>true</indent>
+                                    <content>
+                                        <property-editor>MeasurementOfArea</property-editor>
+                                    </content>
+                                </composite>
+                            </related-content>
+                        </property-editor>
+                    </content>
+                </section>
+            </node>
+            <node>
+                <label>HTML content</label>
+                <property>HtmlContentGallery</property>
+                <section>
+                    <content>
+                        <property-editor>City</property-editor>
+                        <property-editor>State</property-editor>
+                        <spacer />
+                        <html>
+                            <content>
+                                It is hard to beat the simplicity and flexibility of HTML for presenting formatted
+                                text content. Weave in HTML into Sapphire UI with ease.&lt;br/>&lt;br/>
+                                
+                                Include content from model... ${ City }, ${ State}&lt;br/>&lt;br/>
+                                
+                                Use all HTML features like CSS and tables...&lt;br/>&lt;br/>
+                                        
+                                &lt;table>
+                                    &lt;tr>&lt;td>Seattle&lt;/td>&lt;td>WA&lt;/td>&lt;/tr> 
+                                    &lt;tr>&lt;td>New York&lt;/td>&lt;td>NY&lt;/td>&lt;/tr>
+                                    &lt;tr>&lt;td>San Francisco&lt;/td>&lt;td>CA&lt;/td>&lt;/tr>
+                                    &lt;tr>&lt;td>Portland&lt;/td>&lt;td>OR&lt;/td>&lt;/tr>
+                                &lt;/table>
+                            </content>
+                            <fragment />
+                            <height>500</height>
+                        </html>
+                    </content>
+                </section>
+                <node>
+                    <label>browser</label>
+                    <section>
+                        <content>
+                            <property-editor>Url</property-editor>
+                            <html>
+                                <url>${ Url }</url>
+                                <height>600</height>
+                                <show-border />
+                            </html>
+                        </content>
+                    </section>
+                </node>
+            </node>
+            <node>
+                <label>tab group</label>
+                <section>
+                    <content>
+                        <tab-group>
+                            <tab>
+                                <label>tab 1</label>
+                                <image>${ TypeKind == &quot;ANNOTATION&quot; ? &quot;JavaAnnotation.png&quot; : ( TypeKind == &quot;ENUM&quot; ? &quot;JavaEnum.png&quot; : ( TypeKind == &quot;INTERFACE&quot; ? &quot;JavaInterface.png&quot; : &quot;JavaClass.png&quot; ) ) }</image>
+                                <content>
+                                    <label>Specify an image for a tab to make it easier for users to visually differentiate tabs. An expression can be used to specify the image. This allows the image to vary based some condition, such as property value. Change type kind property to see this in action.</label>
+                                    <spacer/>
+                                    <property-editor>
+                                        <property>TypeKind</property>
+                                        <style>Sapphire.PropertyEditor.RadioButtonGroup</style>
+                                    </property-editor>
+                                    <property-editor>Property1</property-editor>
+                                    <property-editor>Property2</property-editor>
+                                </content>
+                            </tab>
+                            <tab>
+                                <label>tab 2</label>
+                                <content>
+                                    <label>If no tab image is specified, a default one is used. This allows problem markers to be shown in all cases.</label>
+                                    <spacer/>
+                                    <property-editor>Property3</property-editor>
+                                    <property-editor>Property4</property-editor>
+                                </content>
+                            </tab>
+                        </tab-group>
+                    </content>
+                </section>
+                <property>TabGroupGallery</property>
+            </node>
+            <node>
+                <label>ancestor access</label>
+                <property>AncestorAccessGallery</property>
+                <section>
+                    <content>
+                        <html>
+                            <fragment></fragment>
+                            <content>&lt;p&gt;Ancestor navigation path syntax (leading &quot;/&quot; for root and &quot;..&quot; for parent) can be used when specifying a property editor or using the with directive.&lt;/p&gt;
+
+&lt;p&gt;Examples of valid paths:&lt;/p&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;b&gt;Text&lt;/b&gt;&lt;/li&gt;
+        &lt;td&gt;Property Text of the context element.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;b&gt;../Text&lt;/b&gt;&lt;/li&gt;
+        &lt;td&gt;Property Text of the parent of the context element.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;b&gt;../../Text&lt;/b&gt;&lt;/li&gt;
+        &lt;td&gt;Property Text of the grandparent of the context element.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;b&gt;/Text&lt;/b&gt;&lt;/li&gt;
+        &lt;td&gt;Property Text of the root element.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;b&gt;../..&lt;/b&gt;&lt;/li&gt;
+        &lt;td&gt;Grandparent of the context element. Only legal for the with directive as this path doesn't end with a property.&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</content>
+                            <height>300</height>
+                        </html>
+                    </content>
+                </section>
+                <node>
+                    <label>level 1</label>
+                    <section>
+                        <content>
+                            <property-editor>Text</property-editor>
+                        </content>
+                    </section>
+                    <node-factory>
+                        <property>List</property>
+                        <case>
+                            <label>Level 2</label>
+                            <section>
+                                <label>level 2</label>
+                                <content>
+                                    <property-editor>../Text</property-editor>
+                                    <property-editor>Text</property-editor>
+                                </content>
+                            </section>
+                            <node>
+                                <label>level 3</label>
+                                <property>Child</property>
+                                <section>
+                                    <content>
+                                        <property-editor>../../Text</property-editor>
+                                        <property-editor>../Text</property-editor>
+                                        <property-editor>Text</property-editor>
+                                    </content>
+                                </section>
+                                <section>
+                                    <label>with ..</label>
+                                    <content>
+                                        <with>
+                                            <path>..</path>
+                                            <case>
+                                                <content>
+                                                    <property-editor>../Text</property-editor>
+                                                    <property-editor>Text</property-editor>
+                                                </content>
+                                            </case>
+                                        </with>
+                                    </content>
+                                </section>
+                                <section>
+                                    <label>with ../..</label>
+                                    <content>
+                                        <with>
+                                            <path>../..</path>
+                                            <case>
+                                                <content>
+                                                    <property-editor>Text</property-editor>
+                                                </content>
+                                            </case>
+                                        </with>
+                                    </content>
+                                </section>
+                                <section>
+                                    <label>with ../Child</label>
+                                    <content>
+                                        <with>
+                                            <path>../Child</path>
+                                            <case>
+                                                <content>
+                                                    <property-editor>../../Text</property-editor>
+                                                    <property-editor>../Text</property-editor>
+                                                    <property-editor>Text</property-editor>
+                                                </content>
+                                            </case>
+                                        </with>
+                                    </content>
+                                </section>
+                            </node>
+                        </case>
+                    </node-factory>
+                </node>
+            </node>
+            <node>
+                <label>split form</label>
+                <property>SplitFormGallery</property>
+                <section>
+                    <content>
+                        <label>Some descriptive text.</label>
+                        <spacer></spacer>
+                        <actuator>
+                            <label>Open split form dialog...</label>
+                            <action>
+                                <id>Sample.Gallery.OpenSplitFormDialog</id>
+                                <label>open split form dialog</label>
+                            </action>
+                            <action-handler>
+                                <action>Sample.Gallery.OpenSplitFormDialog</action>
+                                <id>Sample.Gallery.OpenSplitFormDialog</id>
+                                <impl>OpenSplitFormDialogActionHandler</impl>
+                            </action-handler>
+                            <action-id>Sample.Gallery.OpenSplitFormDialog</action-id>
+                        </actuator>
+                        <spacer></spacer>
+                        <split-form>
+                            <orientation>horizontal</orientation>
+                            <adjustable>true</adjustable>
+                            <block>
+                                <content>
+                                    <property-editor>String1</property-editor>
+                                    <property-editor>String2</property-editor>
+                                    <property-editor>
+                                        <property>List1</property>
+                                        <scale-vertically>true</scale-vertically>
+                                        <child-property>Entity</child-property>
+                                    </property-editor>
+                                    <composite>
+                                        <indent>true</indent>
+                                        <content>
+                                            <separator>
+                                                <label>description</label>
+                                            </separator>
+                                            <detail-section>
+                                                <property>List1</property>
+                                                <case>
+                                                    <content>
+                                                        <property-editor>
+                                                            <property>Description</property>
+                                                            <show-label>false</show-label>
+                                                            <span>true</span>
+                                                        </property-editor>
+                                                    </content>
+                                                </case>
+                                            </detail-section>
+                                        </content>
+                                    </composite>
+                                </content>
+                                <weight>2</weight>
+                            </block>
+                            <block>
+                                <content>
+                                    <split-form>
+                                        <orientation>vertical</orientation>
+                                        <block>
+                                            <content>
+                                                <property-editor>
+                                                    <property>List2</property>
+                                                    <child-property>Entity</child-property>
+                                                    <child-property>Size</child-property>
+                                                    <scale-vertically>true</scale-vertically>
+                                                </property-editor>
+                                            </content>
+                                        </block>
+                                        <block>
+                                            <content>
+                                                <property-editor>
+                                                    <property>List3</property>
+                                                    <child-property>Entity</child-property>
+                                                    <child-property>Size</child-property>
+                                                    <scale-vertically>true</scale-vertically>
+                                                </property-editor>
+                                            </content>
+                                        </block>
+                                        <block>
+                                            <content>
+                                                <property-editor>
+                                                    <property>List4</property>
+                                                    <scale-vertically>true</scale-vertically>
+                                                    <child-property>Entity</child-property>
+                                                    <child-property>Size</child-property>
+                                                </property-editor>
+                                            </content>
+                                        </block>
+                                        <scale-vertically>true</scale-vertically>
+                                    </split-form>
+                                </content>
+                                <weight>3</weight>
+                            </block>
+                        </split-form>
+                    </content>
+                </section>
+            </node>
+        </root-node>
+        <page-name>gallery</page-name>
+        <element-type>IGallery</element-type>
+    </editor-page>
+    <dialog>
+        <id>SplitFormDialog</id>
+        <label>split form dialog</label>
+        <content>
+            <split-form>
+                <block>
+                    <content>
+                        <property-editor>
+                            <property>List1</property>
+                            <span>true</span>
+                            <show-label>false</show-label>
+                            <child-property>Entity</child-property>
+                            <child-property>Size</child-property>
+                            <scale-vertically>true</scale-vertically>
+                        </property-editor>
+                    </content>
+                    <weight>7</weight>
+                </block>
+                <block>
+                    <content>
+                        <separator>
+                            <label>description</label>
+                        </separator>
+                        <detail-section>
+                            <property>List1</property>
+                            <case>
+                                <content>
+                                    <property-editor>
+                                        <property>Description</property>
+                                        <span>true</span>
+                                        <show-label>false</show-label>
+                                        <scale-vertically>true</scale-vertically>
+                                    </property-editor>
+                                </content>
+                            </case>
+                            <scale-vertically>true</scale-vertically>
+                        </detail-section>
+                    </content>
+                    <weight>3</weight>
+                </block>
+                <orientation>vertical</orientation>
+                <scale-vertically>true</scale-vertically>
+            </split-form>
+        </content>
+        <width>600</width>
+        <height>400</height>
+        <scale-vertically>true</scale-vertically>
+    </dialog>
+    
+</definition>

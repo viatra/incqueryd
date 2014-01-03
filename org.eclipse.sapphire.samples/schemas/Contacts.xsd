@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema
+  xmlns="http://www.w3.org/2001/XMLSchema" 
+  targetNamespace="http://www.eclipse.org/sapphire/samples/contacts"
+  xmlns:tns="http://www.eclipse.org/sapphire/samples/contacts"
+  xmlns:a="http://www.eclipse.org/sapphire/samples/address"
+  elementFormDefault="qualified"> 
+
+    <import namespace="http://www.eclipse.org/sapphire/samples/address" schemaLocation="http://www.eclipse.org/sapphire/samples/address/1.0" />
+    
+    <element name="contacts">
+        <complexType>
+            <sequence>
+                <element name="contact" maxOccurs="unbounded" minOccurs="0">
+                    <complexType>
+                        <sequence>
+                          <element name="e-mail" type="string" maxOccurs="1" minOccurs="0"></element>
+                          <element name="phone-numbers" maxOccurs="1" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="phone-number" maxOccurs="unbounded" minOccurs="0">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="type" type="string" maxOccurs="1" minOccurs="0"></element>
+                                      <element name="number" type="string"></element>
+                                    </sequence>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                          <element name="web-sites" maxOccurs="1" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="web-site" maxOccurs="unbounded" minOccurs="0">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="url" type="string"></element>
+                                    </sequence>
+                                  </complexType>
+                                </element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                          <element name="address" maxOccurs="1" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element ref="a:street" />
+                                <element ref="a:city" />
+                                <element ref="a:state" />
+                                <element ref="a:zip" />
+                              </sequence>
+                            </complexType>
+                          </element>
+                          <element name="assistant" maxOccurs="1" minOccurs="0">
+                            <complexType>
+                              <sequence>
+                                <element name="name" type="string"></element>
+                                <element name="notes" type="string" maxOccurs="1" minOccurs="0"></element>
+                                <element name="task" type="string" maxOccurs="unbounded" minOccurs="0"></element>
+                              </sequence>
+                            </complexType>
+                          </element>
+                          <element name="connections" type="string" maxOccurs="1" minOccurs="0"></element>
+                          <element name="primary-occupation" maxOccurs="1" minOccurs="0">
+                            <complexType>
+                              <choice>
+                                <element name="job">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="employer" type="string"></element>
+                                      <element name="title" type="string"></element>
+                                      <element name="manager" type="string" maxOccurs="1" minOccurs="0"></element>
+                                    </sequence>
+                                  </complexType>
+                                </element>
+                                <element name="student">
+                                  <complexType>
+                                    <sequence>
+                                      <element name="educational-institution" type="string"></element>
+                                      <element name="program" type="string"></element>
+                                    </sequence>
+                                  </complexType>
+                                </element>
+                                <element name="homemaker">
+                                  <complexType></complexType>
+                                </element>
+                              </choice>
+                            </complexType>
+                          </element>
+                        </sequence>
+                        <attribute name="name" type="string"></attribute>
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
+    
+</schema>

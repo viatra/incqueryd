@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ ******************************************************************************
+ * Copyright (c) 2013 Oracle
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Konstantin Komissarchik - initial implementation
+ ******************************************************************************
+-->
+
+<definition>
+    <form-editor-page>
+        <id>MainPage</id>
+        <page-name>journal</page-name>
+        <page-header-text>journal</page-header-text>
+        <element-type>org.eclipse.sapphire.samples.journal.Journal</element-type>
+        <content>
+            <split-form>
+                <block>
+                    <content>
+                        <property-editor>
+                            <property>Entries</property>
+                            <scale-vertically>true</scale-vertically>
+                            <show-label>false</show-label>
+                            <span>true</span>
+                            <child-property>Date</child-property>
+                            <child-property>Category</child-property>
+                            <child-property>Summary</child-property>
+                        </property-editor>
+                    </content>
+                    <weight>75</weight>
+                </block>
+                <block>
+                    <content>
+                        <detail-section>
+                            <property>Entries</property>
+                            <case>
+                                <content>
+                                    <tab-group>
+                                        <scale-vertically>true</scale-vertically>
+                                        <tab>
+                                            <content>
+                                                <property-editor>
+                                                    <scale-vertically>true</scale-vertically>
+                                                    <property>Notes</property>
+                                                    <show-label>false</show-label>
+                                                    <span>true</span>
+                                                </property-editor>
+                                            </content>
+                                            <label>notes</label>
+                                        </tab>
+                                        <tab>
+                                            <label>files</label>
+                                            <content>
+                                                <split-form>
+                                                    <orientation>horizontal</orientation>
+                                                    <block>
+                                                        <weight>4</weight>
+                                                        <content>
+                                                            <property-editor>
+                                                                <scale-vertically>true</scale-vertically>
+                                                                <property>Files</property>
+                                                                <span>true</span>
+                                                                <show-label>false</show-label>
+                                                                <hint>
+                                                                    <name>show.header</name>
+                                                                    <value>false</value>
+                                                                </hint>
+                                                            </property-editor>
+                                                        </content>
+                                                    </block>
+                                                    <block>
+                                                        <weight>6</weight>
+                                                        <content>
+                                                            <detail-section>
+                                                                <property>Files</property>
+                                                                <case>
+                                                                    <content>
+                                                                        <html>
+                                                                            <content>&lt;html&gt;
+    &lt;body bgcolor=&quot;white&quot;&gt;
+        &lt;center&gt;&lt;img src=&quot;${Path.Absolute}&quot;/&gt;&lt;/center&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</content>
+                                                                            <scale-vertically>true</scale-vertically>
+                                                                            <visible-when>${ Path.LowerCase.EndsWith( &quot;.png&quot; ) }</visible-when>
+                                                                        </html>
+                                                                        <label>
+                                                                            <text>Unable to view this file type.</text>
+                                                                            <visible-when>${ ! Path.LowerCase.EndsWith( &quot;.png&quot; ) }</visible-when>
+                                                                        </label>
+                                                                    </content>
+                                                                    <scale-vertically>true</scale-vertically>
+                                                                </case>
+                                                                <scale-vertically>true</scale-vertically>
+                                                            </detail-section>
+                                                        </content>
+                                                    </block>
+                                                    <scale-vertically>true</scale-vertically>
+                                                </split-form>
+                                            </content>
+                                        </tab>
+                                    </tab-group>
+                                </content>
+                                <scale-vertically>true</scale-vertically>
+                            </case>
+                            <scale-vertically>true</scale-vertically>
+                        </detail-section>
+                    </content>
+                    <weight>25</weight>
+                </block>
+                <orientation>vertical</orientation>
+                <scale-vertically>true</scale-vertically>
+                <margin-vertical>10</margin-vertical>
+                <margin-horizontal>5</margin-horizontal>
+            </split-form>
+        </content>
+    </form-editor-page>
+    <import>
+        <package>org.eclipse.sapphire.samples.journal</package>
+    </import>
+</definition>
