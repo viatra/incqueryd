@@ -31,6 +31,13 @@ import org.eclipse.sapphire.modeling.xml.annotations.XmlListBinding;
  * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
  */
 
+// Name
+// Description
+// Dependencies
+// Provider
+// Copyright
+// Position
+
 public interface Component extends Element
 {
     ElementType TYPE = new ElementType( Component.class );
@@ -50,7 +57,7 @@ public interface Component extends Element
     @LongString
     @XmlBinding( path = "description" )
     
-    ValueProperty PROP_DESCRIPTION = new ValueProperty( TYPE, "Description" );
+    ValueProperty PROP_DESCRIPTION = new ValueProperty( TYPE, "My description text" );
     
     Value<String> getDescription();
     void setDescription( String value );

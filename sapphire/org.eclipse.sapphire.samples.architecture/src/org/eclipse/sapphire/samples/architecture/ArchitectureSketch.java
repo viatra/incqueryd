@@ -57,7 +57,7 @@ public interface ArchitectureSketch extends Element
     @LongString
     @XmlBinding( path = "description" )
     
-    ValueProperty PROP_DESCRIPTION = new ValueProperty( TYPE, "Description" );
+    ValueProperty PROP_DESCRIPTION = new ValueProperty( TYPE, "My description text" );
     
     Value<String> getDescription();
     void setDescription( String value );

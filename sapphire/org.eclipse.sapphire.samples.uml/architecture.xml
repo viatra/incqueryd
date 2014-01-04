@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ ******************************************************************************
+ * Copyright (c) 2013 Oracle
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Konstantin Komissarchik - initial implementation and ongoing maintenance
+ ******************************************************************************
+-->
+
+<architecture>
+    <component>
+        <name>Modeling</name>
+    </component>
+    <component>
+        <name>XML Support</name>
+        <dependency>
+            <name>WTP URI Resolver</name>
+        </dependency>
+        <dependency>
+            <name>Modeling</name>
+        </dependency>
+    </component>
+    <component>
+        <name>UI</name>
+        <dependency>
+            <name>Modeling</name>
+        </dependency>
+        <dependency>
+            <name>Java Support</name>
+        </dependency>
+        <dependency>
+            <name>XML Support</name>
+        </dependency>
+    </component>
+    <component>
+        <name>XML Editor Support</name>
+        <dependency>
+            <name>UI</name>
+        </dependency>
+        <dependency>
+            <name>WTP XML Editor</name>
+        </dependency>
+        <dependency>
+            <name>XML Support</name>
+        </dependency>
+    </component>
+    <component>
+        <name>WTP XML Editor</name>
+    </component>
+    <component>
+        <name>WTP URI Resolver</name>
+    </component>
+    <component>
+        <name>Graphiti Renderer</name>
+        <dependency>
+            <name>UI</name>
+        </dependency>
+        <dependency>
+            <name>Graphiti</name>
+        </dependency>
+    </component>
+    <component>
+        <name>Graphiti</name>
+        <dependency>
+            <name>EMF</name>
+        </dependency>
+        <dependency>
+            <name>GEF</name>
+        </dependency>
+    </component>
+    <component>
+        <name>GEF</name>
+    </component>
+    <component>
+        <name>EMF</name>
+    </component>
+    <component>
+        <name>SDK</name>
+        <dependency>
+            <name>JDT Support</name>
+        </dependency>
+        <dependency>
+            <name>XML Editor Support</name>
+        </dependency>
+    </component>
+    <component>
+        <name>Samples</name>
+        <dependency>
+            <name>XML Editor Support</name>
+        </dependency>
+        <dependency>
+            <name>JDT Support</name>
+        </dependency>
+        <dependency>
+            <name>Graphiti Renderer</name>
+        </dependency>
+    </component>
+    <component>
+        <name>Tests</name>
+        <dependency>
+            <name>JDT Support</name>
+        </dependency>
+    </component>
+    <component>
+        <name>JDT Support</name>
+        <dependency>
+            <name>Java Support</name>
+        </dependency>
+        <dependency>
+            <name>JDT</name>
+        </dependency>
+        <dependency>
+            <name>UI</name>
+        </dependency>
+    </component>
+    <component>
+        <name>Java Support</name>
+        <dependency>
+            <name>Modeling</name>
+        </dependency>
+    </component>
+    <component>
+        <name>JDT</name>
+    </component>
+</architecture>
