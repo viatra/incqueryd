@@ -24,73 +24,77 @@ import org.eclipse.sapphire.modeling.annotations.Required;
 import org.eclipse.sapphire.modeling.annotations.Type;
 
 /**
- * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
+ * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin
+ *         Komissarchik</a>
  */
 
-public interface Entity extends Element
-{
-    ElementType TYPE = new ElementType( Entity.class );
-    
-    // *** Name ***
-    
-    @Label( standard = "name" )
-    @Required
-    
-    ValueProperty PROP_NAME = new ValueProperty( TYPE, "Name" );
-    
-    Value<String> getName();
-    void setName( String value );
-    
-    // *** Kind ***
-    
-    enum Kind
-    {
-        @Label( standard = "class" )
-        @EnumSerialization( primary = "class" )
-        
-        CLASS,
-        
-        @Label( standard = "interface" )
-        @EnumSerialization( primary = "interface" )
-        
-        INTERFACE
-    }
-    
-    @Type( base = Kind.class )
-    @Label( standard = "kind" )
-    @DefaultValue( text = "class" )
-    
-    ValueProperty PROP_KIND = new ValueProperty( TYPE, "Kind" );
-    
-    Value<Kind> getKind();
-    void setKind( String value );
-    void setKind( Kind value );
-    
-    // *** Fields ***
-    
-    @Type( base = Field.class )
-    @Label( standard = "fields" )
-    
-    ListProperty PROP_FIELDS = new ListProperty( TYPE, "Fields" );
-    
-    ElementList<Field> getFields();
-    
-    // *** Methods ***
-    
-    @Type( base = Method.class )
-    @Label( standard = "methods" )
-    
-    ListProperty PROP_METHODS = new ListProperty( TYPE, "Methods" );
-    
-    ElementList<Method> getMethods();
-    
-    // *** ExtendedEntities ***
-    
-    @Type( base = EntityRef.class )
-    @Label( standard = "extended entities" )
-    
-    ListProperty PROP_EXTENDED_ENTITIES = new ListProperty( TYPE, "ExtendedEntities" );
-    
-    ElementList<EntityRef> getExtendedEntities();
-    
+public interface Entity extends Element {
+	ElementType TYPE = new ElementType(Entity.class);
+
+	// *** Name ***
+
+	@Label(standard = "name")
+	@Required
+	ValueProperty PROP_NAME = new ValueProperty(TYPE, "Name");
+
+	Value<String> getName();
+
+	void setName(String value);
+
+	// *** Kind ***
+
+	enum Kind {
+		@Label(standard = "trimmer")
+		@EnumSerialization(primary = "trimmer")
+		TRIMMER,
+
+		@Label(standard = "predicateevaluator")
+		@EnumSerialization(primary = "predicateevaluator")
+		PREDICATEEVALUATOR,
+		
+		@Label(standard = "equality")
+		@EnumSerialization(primary = "equality")
+		EQUALITY,
+		
+		@Label(standard = "inequality")
+		@EnumSerialization(primary = "inequality")
+		INEQUALITY,		
+	}
+
+	@Type(base = Kind.class)
+	@Label(standard = "kind")
+	@DefaultValue(text = "class")
+	ValueProperty PROP_KIND = new ValueProperty(TYPE, "Kind");
+
+	Value<Kind> getKind();
+
+	void setKind(String value);
+
+	void setKind(Kind value);
+
+	// *** Fields ***
+
+	@Type(base = Field.class)
+	@Label(standard = "fields")
+	ListProperty PROP_FIELDS = new ListProperty(TYPE, "Fields");
+
+	ElementList<Field> getFields();
+
+	// *** Methods ***
+
+	@Type(base = Method.class)
+	@Label(standard = "methods")
+	ListProperty PROP_METHODS = new ListProperty(TYPE, "Methods");
+
+	ElementList<Method> getMethods();
+
+	// *** ExtendedEntities ***
+
+	@Type(base = EntityRef.class)
+	@Label(standard = "extended entities")
+	ListProperty PROP_EXTENDED_ENTITIES = new ListProperty(TYPE,
+			"ExtendedEntities");
+
+	ElementList<EntityRef> getExtendedEntities();
+
 }

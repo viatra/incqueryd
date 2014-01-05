@@ -25,14 +25,14 @@ public final class EntityKindDoubleTapActionHandler extends SapphireActionHandle
 	protected Object run( final Presentation context ) 
 	{
 		Entity entity = (Entity)getPart().getLocalModelElement();
-		if (entity.getKind().content() == Entity.Kind.CLASS)
-		{
-			entity.setKind(Entity.Kind.INTERFACE);
-		}
-		else 
-		{
-			entity.setKind(Entity.Kind.CLASS);
-		}
+//		if (entity.getKind().content() == Entity.Kind.CLASS)
+//		{
+//			entity.setKind(Entity.Kind.INTERFACE);
+//		}
+//		else 
+//		{
+//			entity.setKind(Entity.Kind.CLASS);
+//		}
 		return null;
 	}
 

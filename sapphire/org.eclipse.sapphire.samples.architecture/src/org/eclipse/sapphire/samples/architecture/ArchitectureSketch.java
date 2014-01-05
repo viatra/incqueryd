@@ -73,19 +73,19 @@ public interface ArchitectureSketch extends Element {
 
 	// *** Komponents ***
 
-	@Type(base = Component.class)
+	@Type(base = Komponent.class)
 	@XmlListBinding(mappings = @XmlListBinding.Mapping(element = "komponent", type = Component.class))
 	ListProperty PROP_KOMPONENTS = new ListProperty(TYPE, "Komponents");
 
-	ElementList<Component> getKomponents();
+	ElementList<Komponent> getKomponents();
 
 	// *** Lomponents ***
 
-	@Type(base = Component.class)
+	@Type(base = Lomponent.class)
 	@XmlListBinding(mappings = @XmlListBinding.Mapping(element = "lomponent", type = Component.class))
 	ListProperty PROP_LOMPONENTS = new ListProperty(TYPE, "Lomponents");
 
-	ElementList<Component> getLomponents();
+	ElementList<Lomponent> getLomponents();
 
 	// *** DetailLevel ***
 
