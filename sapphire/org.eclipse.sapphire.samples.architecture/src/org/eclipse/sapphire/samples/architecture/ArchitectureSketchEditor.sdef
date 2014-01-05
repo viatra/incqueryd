@@ -159,7 +159,7 @@
         <page-header-text>Architecture (Sapphire Sample)</page-header-text>
         <connection>
             <id>Dependency</id>
-            <tool-palette-label>dependency</tool-palette-label>
+            <tool-palette-label>dependencykehh</tool-palette-label>
             <endpoint2>
                 <type>arrow</type>
             </endpoint2>
@@ -198,6 +198,125 @@
         </service>
         <page-name>architecture</page-name>
         <element-type>ArchitectureSketch</element-type>
+
+
+
+		<node>
+            <instance-id>${ Name }</instance-id>
+            <rectangle>
+              <sequence-layout>
+                <orientation>vertical</orientation>
+                    <spacing>0</spacing>
+              </sequence-layout>
+              <content>
+                <rectangle>
+                  <sequence-layout-constraint>
+                    <expand-horizontally>true</expand-horizontally>
+                    <horizontal-alignment>center</horizontal-alignment>
+                    <vertical-alignment>top</vertical-alignment>
+                  </sequence-layout-constraint>
+                  <sequence-layout>
+                    <orientation>stacked</orientation>
+                  </sequence-layout>
+                  <content>
+                    <image>
+	                  <path>Komponent.png</path>
+                                <sequence-layout-constraint>
+                                    <horizontal-alignment>center</horizontal-alignment>
+                                </sequence-layout-constraint>
+                    </image>
+                    <validation-marker>
+                     <size>small</size>
+                     <sequence-layout-constraint>
+                       <horizontal-alignment>left</horizontal-alignment>
+                       <vertical-alignment>bottom</vertical-alignment>
+                                    <margin-bottom>4</margin-bottom>
+                                    <margin-left>5</margin-left>
+                     </sequence-layout-constraint>
+                    </validation-marker>                    
+                    <image>
+                      <path>DependsOn-16.png</path>
+                      <visible-when>${ Dependencies.Size > 0 }</visible-when>
+                      <sequence-layout-constraint>
+                        <horizontal-alignment>right</horizontal-alignment>
+                        <vertical-alignment>bottom</vertical-alignment>
+                                    <margin-right>3</margin-right>
+                      </sequence-layout-constraint>
+                    </image>
+                  </content>
+                </rectangle>    
+                <text>
+                  <content>${ Name == null ? &quot;&lt;default komponent&gt;&quot; : Name }</content>
+                  <sequence-layout-constraint>
+                    <horizontal-alignment>center</horizontal-alignment>
+                    <vertical-alignment>center</vertical-alignment>
+                    <expand-horizontally>true</expand-horizontally>
+                  </sequence-layout-constraint>
+                        <color>#333399</color>
+                </text>
+              </content>
+            </rectangle>
+            <tool-palette-label>komponent</tool-palette-label>
+            <property>Komponents</property>
+            <connection-binding>
+                <connection-id>Dependency</connection-id>
+                <property>Dependencies</property>
+                <instance-id>${ Name }</instance-id>
+                <endpoint2>
+                    <property>Name</property>
+                    <value>${ Name }</value>
+                </endpoint2>
+            </connection-binding>
+            <id>Komponent</id>
+            <properties-view>
+                <page>
+                    <label>general</label>
+                    <content>
+                        <property-editor>Name</property-editor>
+                        <property-editor>
+                            <property>My description text</property>
+                            <scale-vertically>true</scale-vertically>
+                        </property-editor>
+                    </content>
+                </page>
+                <page>
+                    <label>dependencies</label>
+                    <image>${ Dependencies.Size == 0 ? &quot;DependenciesNone.png&quot; : ( Dependencies.Size == 1 ? &quot;DependenciesOne.png&quot; :  &quot;DependenciesMultiple.png&quot; ) }</image>
+                    <content>
+                        <property-editor>
+                            <property>Dependencies</property>
+                            <child-property>Name</child-property>
+                            <child-property>My description text</child-property>
+                            <show-label>false</show-label>
+                            <span>true</span>
+                            <scale-vertically>true</scale-vertically>
+                            <hint>
+                                <name>column.widths</name>
+                                <value>100:30,100:70</value>
+                            </hint>
+                        </property-editor>
+                    </content>
+                </page>
+                <page>
+                    <label>provider</label>
+                    <visible-when>${ Root().DetailLevel GE 2 AND VersionMatches( Root().Version, '[1.1' ) }</visible-when>
+                    <content>
+                        <property-editor>Provider</property-editor>
+                        <property-editor>
+                            <property>Copyright</property>
+                            <scale-vertically>true</scale-vertically>
+                        </property-editor>
+                    </content>
+                </page>
+            </properties-view>
+            <width>80</width>
+            <visible-when>${Root().DetailLevel &gt; 0}</visible-when>
+        </node>
+        <node>
+            <tool-palette-label>lomponent</tool-palette-label>
+            <property>Lomponents</property>
+            <id>lomponent</id>
+        </node>
     </diagram-page>
     <editor-page>
         <id>DetailsPage</id>

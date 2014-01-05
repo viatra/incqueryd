@@ -30,44 +30,45 @@ import org.eclipse.sapphire.modeling.xml.annotations.XmlListBinding;
 import org.eclipse.sapphire.samples.architecture.internal.ComponentReferenceService;
 
 /**
- * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
+ * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin
+ *         Komissarchik</a>
  */
 
-public interface ComponentDependency extends Element
-{
-    ElementType TYPE = new ElementType( ComponentDependency.class );
-    
-    // *** Name ***
-    
-    @Reference( target = Component.class )
-    @Service( impl = ComponentReferenceService.class )
-    @Required
-    @MustExist
-    @PossibleValues( property = "/Components/Name" )
-    @XmlBinding( path = "name" )
+public interface ComponentDependency extends Element {
+	ElementType TYPE = new ElementType(ComponentDependency.class);
 
-    ValueProperty PROP_NAME = new ValueProperty( TYPE, "Name" );
+	// *** Name ***
 
-    ReferenceValue<String,Component> getName();
-    void setName( String value );
-    
-    // *** Description ***
-    
-    @LongString
-    @XmlBinding( path = "description" )
-    
-    ValueProperty PROP_DESCRIPTION = new ValueProperty( TYPE, "My description text" );
-    
-    Value<String> getDescription();
-    void setDescription( String value );
-    
-    // *** ConnectionBendpoints***
+	@Reference(target = Component.class)
+	@Service(impl = ComponentReferenceService.class)
+	@Required
+	@MustExist
+	@PossibleValues(property = "/Components/Name")
+	@XmlBinding(path = "name")
+	ValueProperty PROP_NAME = new ValueProperty(TYPE, "Name");
 
-    @Type( base = ConnectionBendpoint.class )
-    @XmlListBinding( mappings = @XmlListBinding.Mapping( element = "bendpoint", type = ConnectionBendpoint.class ) )
-    
-    ListProperty PROP_CONNECTION_BENDPOINTS = new ListProperty( TYPE, "ConnectionBendPoints" );
-    
-    ElementList<ConnectionBendpoint> getConnectionBendpoints();
-    
+	ReferenceValue<String, Component> getName();
+
+	void setName(String value);
+
+	// *** Description ***
+
+	@LongString
+	@XmlBinding(path = "description")
+	ValueProperty PROP_DESCRIPTION = new ValueProperty(TYPE,
+			"My description text");
+
+	Value<String> getDescription();
+
+	void setDescription(String value);
+
+	// *** ConnectionBendpoints***
+
+	@Type(base = ConnectionBendpoint.class)
+	@XmlListBinding(mappings = @XmlListBinding.Mapping(element = "bendpoint", type = ConnectionBendpoint.class))
+	ListProperty PROP_CONNECTION_BENDPOINTS = new ListProperty(TYPE,
+			"ConnectionBendPoints");
+
+	ElementList<ConnectionBendpoint> getConnectionBendpoints();
+
 }

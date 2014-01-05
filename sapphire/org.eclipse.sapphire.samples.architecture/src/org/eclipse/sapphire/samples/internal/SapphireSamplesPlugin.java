@@ -23,30 +23,25 @@ import org.osgi.framework.Bundle;
  * @author <a href="mailto:kosta@bea.com">Konstantin Komissarchik</a>
  */
 
-public final class SapphireSamplesPlugin 
-{
-    public static final String PLUGIN_ID = "org.eclipse.sapphire.samples"; //$NON-NLS-1$
-    private static final ILog platformLog = Platform.getLog( getBundle() );
-    
-    public static Bundle getBundle()
-    {
-        return Platform.getBundle( PLUGIN_ID );
-    }
-    
-    public static void log( final Exception e )
-    {
-        final String msg = e.getMessage() + ""; //$NON-NLS-1$
-        log( new Status( IStatus.ERROR, PLUGIN_ID, IStatus.OK, msg, e ) );
-    }
+public final class SapphireSamplesPlugin {
+	public static final String PLUGIN_ID = "org.eclipse.sapphire.samples.architecture"; //$NON-NLS-1$
+	private static final ILog platformLog = Platform.getLog(getBundle());
 
-    public static void log( final IStatus status )
-    {
-        platformLog.log( status );
-    }
-    
-    public static ImageDescriptor getImageDescriptor( final String path )
-    {
-        return AbstractUIPlugin.imageDescriptorFromPlugin( PLUGIN_ID, path );
-    }
-    
+	public static Bundle getBundle() {
+		return Platform.getBundle(PLUGIN_ID);
+	}
+
+	public static void log(final Exception e) {
+		final String msg = e.getMessage() + ""; //$NON-NLS-1$
+		log(new Status(IStatus.ERROR, PLUGIN_ID, IStatus.OK, msg, e));
+	}
+
+	public static void log(final IStatus status) {
+		platformLog.log(status);
+	}
+
+	public static ImageDescriptor getImageDescriptor(final String path) {
+		return AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, path);
+	}
+
 }

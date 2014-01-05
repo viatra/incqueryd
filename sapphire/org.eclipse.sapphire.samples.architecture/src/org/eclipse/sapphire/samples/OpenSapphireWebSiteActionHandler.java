@@ -24,33 +24,29 @@ import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
  * @author <a href="mailto:gregory.amerson@liferay.com">Greg Amerson</a>
  */
 
-public final class OpenSapphireWebSiteActionHandler extends SapphireActionHandler
-{
-    @Override
-    protected Object run( final Presentation context ) 
-    {
-        Display.getDefault().asyncExec(new Runnable() 
-        {
-            public void run() 
-            {
-                try 
-                {
-                    IWorkbenchBrowserSupport browserSupport = PlatformUI.getWorkbench().getBrowserSupport();
+public final class OpenSapphireWebSiteActionHandler extends
+		SapphireActionHandler {
+	@Override
+	protected Object run(final Presentation context) {
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				try {
+					IWorkbenchBrowserSupport browserSupport = PlatformUI
+							.getWorkbench().getBrowserSupport();
 
-                    IWebBrowser browser =
-                        browserSupport.createBrowser(IWorkbenchBrowserSupport.LOCATION_BAR |
-                            IWorkbenchBrowserSupport.NAVIGATION_BAR, null, "Sapphire Project", null);
+					IWebBrowser browser = browserSupport.createBrowser(
+							IWorkbenchBrowserSupport.LOCATION_BAR
+									| IWorkbenchBrowserSupport.NAVIGATION_BAR,
+							null, "Sapphire Project", null);
 
-                    browser.openURL(new URL("http://www.eclipse.org/sapphire/"));
-                }
-                catch (Exception e) 
-                {
-                    // ignore
-                }
-            }
-        });
+					browser.openURL(new URL("http://www.eclipse.org/sapphire/"));
+				} catch (Exception e) {
+					// ignore
+				}
+			}
+		});
 
-        return null;
-    }
+		return null;
+	}
 
 }

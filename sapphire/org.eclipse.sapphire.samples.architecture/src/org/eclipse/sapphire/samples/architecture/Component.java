@@ -28,7 +28,8 @@ import org.eclipse.sapphire.modeling.xml.annotations.XmlBinding;
 import org.eclipse.sapphire.modeling.xml.annotations.XmlListBinding;
 
 /**
- * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
+ * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin
+ *         Komissarchik</a>
  */
 
 // Name
@@ -38,69 +39,68 @@ import org.eclipse.sapphire.modeling.xml.annotations.XmlListBinding;
 // Copyright
 // Position
 
-public interface Component extends Element
-{
-    ElementType TYPE = new ElementType( Component.class );
-    
-    // *** Name ***
-    
-    @Required
-    @XmlBinding( path = "name" )
-    
-    ValueProperty PROP_NAME = new ValueProperty( TYPE, "Name" );
-    
-    Value<String> getName();
-    void setName( String value );
-    
-    // *** Description ***
-    
-    @LongString
-    @XmlBinding( path = "description" )
-    
-    ValueProperty PROP_DESCRIPTION = new ValueProperty( TYPE, "My description text" );
-    
-    Value<String> getDescription();
-    void setDescription( String value );
-    
-    // *** Dependencies ***
-    
-    @Type( base = ComponentDependency.class )
-    @XmlListBinding( mappings = @XmlListBinding.Mapping( element = "dependency", type = ComponentDependency.class ) )
+public interface Component extends Element {
+	ElementType TYPE = new ElementType(Component.class);
 
-    ListProperty PROP_DEPENDENCIES = new ListProperty( TYPE, "Dependencies" );
-    
-    ElementList<ComponentDependency> getDependencies();
-    
-    // *** Provider ***
-    
-    @Label( standard = "provider" )
-    @Enablement( expr = "${ VersionMatches( Root().Version, '[1.1' ) }" )
-    @XmlBinding( path = "provider" )
-    
-    ValueProperty PROP_PROVIDER = new ValueProperty( TYPE, "Provider" );
-    
-    Value<String> getProvider();
-    void setProvider( String value );
-    
-    // *** Copyright ***
-    
-    @Label( standard = "copyright" )
-    @Enablement( expr = "${ VersionMatches( Root().Version, '[1.1' ) }" )
-    @LongString
-    @XmlBinding( path = "copyright" )
-    
-    ValueProperty PROP_COPYRIGHT = new ValueProperty( TYPE, "Copyright" );
-    
-    Value<String> getCopyright();
-    void setCopyright( String value );
-    
-    // *** Position ***
-    
-    @Type( base = Position.class )
-    @XmlBinding( path = "position")
-    
-    ImpliedElementProperty PROP_POSITION = new ImpliedElementProperty( TYPE, "Position" );
+	// *** Name ***
 
-    Position getPosition();    
-    
+	@Required
+	@XmlBinding(path = "name")
+	ValueProperty PROP_NAME = new ValueProperty(TYPE, "Name");
+
+	Value<String> getName();
+
+	void setName(String value);
+
+	// *** Description ***
+
+	@LongString
+	@XmlBinding(path = "description")
+	ValueProperty PROP_DESCRIPTION = new ValueProperty(TYPE,
+			"My description text");
+
+	Value<String> getDescription();
+
+	void setDescription(String value);
+
+	// *** Dependencies ***
+
+	@Type(base = ComponentDependency.class)
+	@XmlListBinding(mappings = @XmlListBinding.Mapping(element = "dependency", type = ComponentDependency.class))
+	ListProperty PROP_DEPENDENCIES = new ListProperty(TYPE, "Dependencies");
+
+	ElementList<ComponentDependency> getDependencies();
+
+	// *** Provider ***
+
+	@Label(standard = "provider")
+	@Enablement(expr = "${ VersionMatches( Root().Version, '[1.1' ) }")
+	@XmlBinding(path = "provider")
+	ValueProperty PROP_PROVIDER = new ValueProperty(TYPE, "Provider");
+
+	Value<String> getProvider();
+
+	void setProvider(String value);
+
+	// *** Copyright ***
+
+	@Label(standard = "copyright")
+	@Enablement(expr = "${ VersionMatches( Root().Version, '[1.1' ) }")
+	@LongString
+	@XmlBinding(path = "copyright")
+	ValueProperty PROP_COPYRIGHT = new ValueProperty(TYPE, "Copyright");
+
+	Value<String> getCopyright();
+
+	void setCopyright(String value);
+
+	// *** Position ***
+
+	@Type(base = Position.class)
+	@XmlBinding(path = "position")
+	ImpliedElementProperty PROP_POSITION = new ImpliedElementProperty(TYPE,
+			"Position");
+
+	Position getPosition();
+
 }

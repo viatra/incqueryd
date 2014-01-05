@@ -23,32 +23,33 @@ import org.eclipse.sapphire.modeling.xml.annotations.XmlBinding;
  * @author <a href="mailto:shenxue.zhou@oracle.com">Shenxue Zhou</a>
  */
 
-public interface ConnectionBendpoint extends Element 
-{
-	ElementType TYPE = new ElementType( ConnectionBendpoint.class );
-	
-    // *** X ***
-    
-    @Type( base = Integer.class )
-    @XmlBinding( path = "@x" )
-    @DefaultValue( text = "0" )
-    
-    ValueProperty PROP_X = new ValueProperty( TYPE, "X");
-    
-    Value<Integer> getX();
-    void setX(Integer value);
-    void setX(String value);
+public interface ConnectionBendpoint extends Element {
+	ElementType TYPE = new ElementType(ConnectionBendpoint.class);
 
-    // *** Y ***
-    
-    @Type( base = Integer.class )
-    @XmlBinding( path = "@y" )
-    @DefaultValue( text = "0" )
+	// *** X ***
 
-    ValueProperty PROP_Y = new ValueProperty( TYPE, "Y");
-    
-    Value<Integer> getY();
-    void setY(Integer value);
-    void setY(String value);
-	
+	@Type(base = Integer.class)
+	@XmlBinding(path = "@x")
+	@DefaultValue(text = "0")
+	ValueProperty PROP_X = new ValueProperty(TYPE, "X");
+
+	Value<Integer> getX();
+
+	void setX(Integer value);
+
+	void setX(String value);
+
+	// *** Y ***
+
+	@Type(base = Integer.class)
+	@XmlBinding(path = "@y")
+	@DefaultValue(text = "0")
+	ValueProperty PROP_Y = new ValueProperty(TYPE, "Y");
+
+	Value<Integer> getY();
+
+	void setY(Integer value);
+
+	void setY(String value);
+
 }

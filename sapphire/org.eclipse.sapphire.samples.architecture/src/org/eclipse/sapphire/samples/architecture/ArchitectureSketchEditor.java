@@ -25,62 +25,55 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.wst.sse.ui.StructuredTextEditor;
 
 /**
- * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
+ * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin
+ *         Komissarchik</a>
  */
 
-public final class ArchitectureSketchEditor extends SapphireEditor
-{
-    private ArchitectureSketch architectureModel;
-    private StructuredTextEditor pageSource;
-    private SapphireDiagramEditor pageDiagram;
-    private MasterDetailsEditorPage pageDetails;
-    
-    @Override
-    protected void createSourcePages() throws PartInitException 
-    {
-        this.pageSource = new StructuredTextEditor();
-        this.pageSource.setEditorPart( this );
-        
-        int index = addPage( this.pageSource, getEditorInput() );
-        setPageText( index, "Source" );
-    }
+public final class ArchitectureSketchEditor extends SapphireEditor {
+	private ArchitectureSketch architectureModel;
+	private StructuredTextEditor pageSource;
+	private SapphireDiagramEditor pageDiagram;
+	private MasterDetailsEditorPage pageDetails;
 
-    @Override
-    protected Element createModel() 
-    {
-        this.architectureModel = ArchitectureSketch.TYPE.instantiate( new RootXmlResource( new XmlEditorResourceStore( this, this.pageSource ) ) );
-        return this.architectureModel;
-    }
+	@Override
+	protected void createSourcePages() throws PartInitException {
+		this.pageSource = new StructuredTextEditor();
+		this.pageSource.setEditorPart(this);
 
-    @Override
-    protected void createDiagramPages() throws PartInitException
-    {
-		this.pageDiagram = new SapphireDiagramEditor
-		(
-		    this, this.architectureModel, 
-		    DefinitionLoader.sdef( getClass() ).page( "DiagramPage" )
-		);
-		
-        addEditorPage( 0, this.pageDiagram );
-    }
-    
-    @Override
-    protected void createFormPages() throws PartInitException 
-    {
-        this.pageDetails = new MasterDetailsEditorPage
-        (
-            this, this.architectureModel,
-            DefinitionLoader.sdef( getClass() ).page( "DetailsPage" )
-        );
-        
-        addPage( 1, this.pageDetails );
-    }
+		int index = addPage(this.pageSource, getEditorInput());
+		setPageText(index, "Source");
+	}
 
-    @Override
-    public void doSave( final IProgressMonitor monitor )
-    {
-        this.pageDiagram.doSave( monitor );
-        super.doSave( monitor );        
-    }
-    
+	@Override
+	protected Element createModel() {
+		this.architectureModel = ArchitectureSketch.TYPE
+				.instantiate(new RootXmlResource(new XmlEditorResourceStore(
+						this, this.pageSource)));
+		return this.architectureModel;
+	}
+
+	@Override
+	protected void createDiagramPages() throws PartInitException {
+		this.pageDiagram = new SapphireDiagramEditor(this,
+				this.architectureModel, DefinitionLoader.sdef(getClass()).page(
+						"DiagramPage"));
+
+		addEditorPage(0, this.pageDiagram);
+	}
+
+	@Override
+	protected void createFormPages() throws PartInitException {
+		this.pageDetails = new MasterDetailsEditorPage(this,
+				this.architectureModel, DefinitionLoader.sdef(getClass()).page(
+						"DetailsPage"));
+
+		addPage(1, this.pageDetails);
+	}
+
+	@Override
+	public void doSave(final IProgressMonitor monitor) {
+		this.pageDiagram.doSave(monitor);
+		super.doSave(monitor);
+	}
+
 }

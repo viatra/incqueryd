@@ -19,20 +19,19 @@ import org.eclipse.sapphire.workspace.CreateWorkspaceFileOp;
 import org.eclipse.sapphire.workspace.WorkspaceFileType;
 
 /**
- * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
+ * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin
+ *         Komissarchik</a>
  */
 
-@WorkspaceFileType( ArchitectureSketch.class )
+@WorkspaceFileType(ArchitectureSketch.class)
+public interface CreateArchitectureSketchOp extends CreateWorkspaceFileOp {
+	ElementType TYPE = new ElementType(CreateArchitectureSketchOp.class);
 
-public interface CreateArchitectureSketchOp extends CreateWorkspaceFileOp
-{
-    ElementType TYPE = new ElementType( CreateArchitectureSketchOp.class );
-    
-    // *** File ***
-    
-    @DefaultValue( text = "architecture.xml" )
-    @PreferDefaultValue
+	// *** File ***
 
-    ValueProperty PROP_FILE = new ValueProperty( TYPE, CreateWorkspaceFileOp.PROP_FILE );
-    
+	@DefaultValue(text = "architecture.xml")
+	@PreferDefaultValue
+	ValueProperty PROP_FILE = new ValueProperty(TYPE,
+			CreateWorkspaceFileOp.PROP_FILE);
+
 }
