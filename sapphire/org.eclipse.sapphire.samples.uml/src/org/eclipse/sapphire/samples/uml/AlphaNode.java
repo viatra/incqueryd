@@ -28,8 +28,8 @@ import org.eclipse.sapphire.modeling.annotations.Type;
  *         Komissarchik</a>
  */
 
-public interface Entity extends Element {
-	ElementType TYPE = new ElementType(Entity.class);
+public interface AlphaNode extends Element {
+	ElementType TYPE = new ElementType(AlphaNode.class);
 
 	// *** Name ***
 
@@ -63,7 +63,7 @@ public interface Entity extends Element {
 
 	@Type(base = Kind.class)
 	@Label(standard = "kind")
-	@DefaultValue(text = "class")
+	@DefaultValue(text = "")
 	ValueProperty PROP_KIND = new ValueProperty(TYPE, "Kind");
 
 	Value<Kind> getKind();

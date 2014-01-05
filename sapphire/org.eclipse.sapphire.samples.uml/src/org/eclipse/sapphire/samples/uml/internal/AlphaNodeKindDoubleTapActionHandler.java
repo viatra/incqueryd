@@ -11,7 +11,7 @@ package org.eclipse.sapphire.samples.uml.internal;
  *    Shenxue Zhou - initial implementation and ongoing maintenance
  ******************************************************************************/
 
-import org.eclipse.sapphire.samples.uml.Entity;
+import org.eclipse.sapphire.samples.uml.AlphaNode;
 import org.eclipse.sapphire.ui.Presentation;
 import org.eclipse.sapphire.ui.SapphireActionHandler;
 
@@ -19,12 +19,12 @@ import org.eclipse.sapphire.ui.SapphireActionHandler;
  * @author <a href="mailto:shenxue.zhou@oracle.com">Shenxue Zhou</a>
  */
 
-public final class EntityKindDoubleTapActionHandler extends SapphireActionHandler 
+public final class AlphaNodeKindDoubleTapActionHandler extends SapphireActionHandler 
 {
 	@Override
 	protected Object run( final Presentation context ) 
 	{
-		Entity entity = (Entity)getPart().getLocalModelElement();
+		AlphaNode entity = (AlphaNode)getPart().getLocalModelElement();
 //		if (entity.getKind().content() == Entity.Kind.CLASS)
 //		{
 //			entity.setKind(Entity.Kind.INTERFACE);

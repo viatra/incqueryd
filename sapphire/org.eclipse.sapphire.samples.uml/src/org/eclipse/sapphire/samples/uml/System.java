@@ -19,20 +19,19 @@ import org.eclipse.sapphire.modeling.annotations.Label;
 import org.eclipse.sapphire.modeling.annotations.Type;
 
 /**
- * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
+ * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin
+ *         Komissarchik</a>
  */
 
-public interface System extends Element
-{
-    ElementType TYPE = new ElementType( System.class );
-    
-    // *** Entities ***
-    
-    @Type( base = Entity.class )
-    @Label( standard = "entities" )
-    
-    ListProperty PROP_ENTITIES = new ListProperty( TYPE, "Entities" );
-    
-    ElementList<Entity> getEntities();
-    
+public interface System extends Element {
+	ElementType TYPE = new ElementType(System.class);
+
+	// *** Entities ***
+
+	@Type(base = AlphaNode.class)
+	@Label(standard = "entities")
+	ListProperty PROP_ENTITIES = new ListProperty(TYPE, "Entities");
+
+	ElementList<AlphaNode> getEntities();
+
 }

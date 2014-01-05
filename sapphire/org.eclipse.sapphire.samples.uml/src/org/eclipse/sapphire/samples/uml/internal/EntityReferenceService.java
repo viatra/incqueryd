@@ -11,7 +11,7 @@
 
 package org.eclipse.sapphire.samples.uml.internal;
 
-import org.eclipse.sapphire.samples.uml.Entity;
+import org.eclipse.sapphire.samples.uml.AlphaNode;
 import org.eclipse.sapphire.services.ReferenceService;
 
 /**
@@ -25,7 +25,7 @@ public final class EntityReferenceService extends ReferenceService
     {
         if( reference != null )
         {
-            for( final Entity entity : context( org.eclipse.sapphire.samples.uml.System.class ).getEntities() )
+            for( final AlphaNode entity : context( org.eclipse.sapphire.samples.uml.System.class ).getEntities() )
             {
                 if( reference.equals( entity.getName().text() ) )
                 {

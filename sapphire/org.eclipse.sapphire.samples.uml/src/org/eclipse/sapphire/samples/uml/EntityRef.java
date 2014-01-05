@@ -31,14 +31,14 @@ public interface EntityRef extends Element
     
     // *** Entity ***
     
-    @Reference( target = Entity.class )
+    @Reference( target = AlphaNode.class )
     @Service( impl = EntityReferenceService.class )
     @Required
     @PossibleValues( property = "/Entities/Name" )
 
     ValueProperty PROP_ENTITY = new ValueProperty( TYPE, "Entity" );
 
-    ReferenceValue<String,Entity> getEntity();
+    ReferenceValue<String,AlphaNode> getEntity();
     void setEntity( String value );
     
     
