@@ -29,9 +29,9 @@ public interface System extends Element {
 	// *** Entities ***
 
 	@Type(base = AlphaNode.class)
-	@Label(standard = "entities")
-	ListProperty PROP_ENTITIES = new ListProperty(TYPE, "Entities");
+	@Label(standard = "nodes")
+	ListProperty PROP_NODES = new ListProperty(TYPE, "Nodes");
 
-	ElementList<AlphaNode> getEntities();
+	ElementList<AlphaNode> getNodes();
 
 }

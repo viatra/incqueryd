@@ -11,7 +11,6 @@ package org.eclipse.sapphire.samples.uml.internal;
  *    Shenxue Zhou - initial implementation and ongoing maintenance
  ******************************************************************************/
 
-import org.eclipse.sapphire.samples.uml.AlphaNode;
 import org.eclipse.sapphire.ui.Presentation;
 import org.eclipse.sapphire.ui.SapphireActionHandler;
 

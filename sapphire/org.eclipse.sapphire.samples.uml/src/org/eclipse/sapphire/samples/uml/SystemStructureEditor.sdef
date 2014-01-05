@@ -9,10 +9,11 @@
 <definition>
 
 	<diagram-page>
+
 		<node>
 			<instance-id>${ Name }</instance-id>
 			<id>AlphaNode</id>
-			<property>Entities</property>
+			<property>Nodes</property>
 			<tool-palette-label>alpha node</tool-palette-label>
 			<properties-view>
 				<page>
@@ -94,6 +95,38 @@
 				</sequence-layout>
 			</rectangle>
 		</node>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		<element-type>org.eclipse.sapphire.samples.uml.System</element-type>
 		<page-name>diagram</page-name>
