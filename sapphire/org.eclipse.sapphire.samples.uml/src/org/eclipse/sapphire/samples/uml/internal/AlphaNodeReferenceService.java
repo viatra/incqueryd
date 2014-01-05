@@ -25,11 +25,11 @@ public final class AlphaNodeReferenceService extends ReferenceService
     {
         if( reference != null )
         {
-            for( final AlphaNode entity : context( org.eclipse.sapphire.samples.uml.System.class ).getEntities() )
+            for( final AlphaNode alphaNode : context( org.eclipse.sapphire.samples.uml.System.class ).getEntities() )
             {
-                if( reference.equals( entity.getName().text() ) )
+                if( reference.equals( alphaNode.getName().text() ) )
                 {
-                    return entity;
+                    return alphaNode;
                 }
             }
         }

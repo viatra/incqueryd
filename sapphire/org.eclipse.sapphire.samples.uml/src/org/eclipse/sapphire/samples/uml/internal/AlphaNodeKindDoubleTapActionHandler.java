@@ -24,15 +24,6 @@ public final class AlphaNodeKindDoubleTapActionHandler extends SapphireActionHan
 	@Override
 	protected Object run( final Presentation context ) 
 	{
-		AlphaNode entity = (AlphaNode)getPart().getLocalModelElement();
-//		if (entity.getKind().content() == Entity.Kind.CLASS)
-//		{
-//			entity.setKind(Entity.Kind.INTERFACE);
-//		}
-//		else 
-//		{
-//			entity.setKind(Entity.Kind.CLASS);
-//		}
 		return null;
 	}
 

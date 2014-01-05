@@ -19,7 +19,7 @@ import org.eclipse.sapphire.modeling.annotations.PossibleValues;
 import org.eclipse.sapphire.modeling.annotations.Reference;
 import org.eclipse.sapphire.modeling.annotations.Required;
 import org.eclipse.sapphire.modeling.annotations.Service;
-import org.eclipse.sapphire.samples.uml.internal.EntityReferenceService;
+import org.eclipse.sapphire.samples.uml.internal.AlphaNodeReferenceService;
 
 /**
  * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
@@ -32,7 +32,7 @@ public interface EntityRef extends Element
     // *** Entity ***
     
     @Reference( target = AlphaNode.class )
-    @Service( impl = EntityReferenceService.class )
+    @Service( impl = AlphaNodeReferenceService.class )
     @Required
     @PossibleValues( property = "/Entities/Name" )
 
