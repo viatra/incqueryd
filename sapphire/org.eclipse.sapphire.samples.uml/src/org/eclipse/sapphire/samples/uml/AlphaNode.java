@@ -90,11 +90,11 @@ public interface AlphaNode extends Element {
 
 	// *** ExtendedEntities ***
 
-	@Type(base = EntityRef.class)
+	@Type(base = AlphaNodeRef.class)
 	@Label(standard = "extended entities")
-	ListProperty PROP_EXTENDED_ENTITIES = new ListProperty(TYPE,
-			"ExtendedEntities");
+	ListProperty PROP_EXTENDED_NODES = new ListProperty(TYPE,
+			"ExtendedNodes");
 
-	ElementList<EntityRef> getExtendedEntities();
+	ElementList<AlphaNodeRef> getExtendedNodes();
 
 }

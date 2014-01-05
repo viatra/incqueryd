@@ -9,9 +9,9 @@
 <definition>
 
 	<diagram-page>
-		<node>	
+		<node>
 			<instance-id>${ Name }</instance-id>
-			<id>Entity</id>
+			<id>AlphaNode</id>
 			<property>Entities</property>
 			<tool-palette-label>alpha node</tool-palette-label>
 			<properties-view>
@@ -25,10 +25,10 @@
 			</properties-view>
 			<connection-binding>
 				<connection-id>Extends</connection-id>
-				<property>ExtendedEntities</property>
-				<instance-id>${ Entity }</instance-id>
+				<property>ExtendedNodes</property>
+				<instance-id>${ AlphaNode }</instance-id>
 				<endpoint2>
-					<property>Entity</property>
+					<property>AlphaNode</property>
 					<value>${ Name }</value>
 				</endpoint2>
 			</connection-binding>
@@ -54,7 +54,7 @@
 									<image>
 										<path>${ Kind }.png</path>
 										<action-handler>
-											<action>Sapphire.Do	ubleTap</action>
+											<action>Sapphire.DoubleTap</action>
 											<impl>org.eclipse.sapphire.samples.uml.internal.AlphaNodeKindDoubleTapActionHandler
 											</impl>
 										</action-handler>
@@ -106,9 +106,9 @@
 			<endpoint1>
 				<type>none</type>
 			</endpoint1>
-            <endpoint2>
-                <type>arrow</type>
-            </endpoint2>
+			<endpoint2>
+				<type>arrow</type>
+			</endpoint2>
 		</connection>
 	</diagram-page>
 </definition>

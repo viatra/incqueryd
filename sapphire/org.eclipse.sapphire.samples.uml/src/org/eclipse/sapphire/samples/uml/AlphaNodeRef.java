@@ -25,9 +25,9 @@ import org.eclipse.sapphire.samples.uml.internal.AlphaNodeReferenceService;
  * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
  */
 
-public interface EntityRef extends Element
+public interface AlphaNodeRef extends Element
 {
-    ElementType TYPE = new ElementType( EntityRef.class );
+    ElementType TYPE = new ElementType( AlphaNodeRef.class );
     
     // *** Entity ***
     
@@ -36,10 +36,10 @@ public interface EntityRef extends Element
     @Required
     @PossibleValues( property = "/Entities/Name" )
 
-    ValueProperty PROP_ENTITY = new ValueProperty( TYPE, "Entity" );
+    ValueProperty PROP_ALPHANODE = new ValueProperty( TYPE, "AlphaNode" );
 
-    ReferenceValue<String,AlphaNode> getEntity();
-    void setEntity( String value );
+    ReferenceValue<String,AlphaNode> getAlphaNode();
+    void setAlphaNode( String value );
     
     
     
