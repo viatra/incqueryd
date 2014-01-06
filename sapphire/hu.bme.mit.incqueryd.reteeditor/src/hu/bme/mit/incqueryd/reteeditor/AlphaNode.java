@@ -60,7 +60,7 @@ public interface AlphaNode extends ReteNode {
 
 	// void setKind(Kind value);
 
-	// *** ExtendedEntities ***
+	// *** ChildNodes ***
 
 	@Type(base = AlphaNodeRef.class)
 	@Label(standard = "child nodes")
