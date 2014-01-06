@@ -25,8 +25,8 @@
 				</page>
 			</properties-view>
 			<connection-binding>
-				<connection-id>Extends</connection-id>
-				<property>ExtendedNodes</property>
+				<connection-id>Child</connection-id>
+				<property>ChildNodes</property>
 				<instance-id>${ AlphaNode }</instance-id>
 				<endpoint2>
 					<property>AlphaNode</property>
@@ -120,7 +120,7 @@
 		<page-header-text>diagram</page-header-text>
 		<id>DiagramPage</id>
 		<connection>
-			<id>Extends</id>
+			<id>Child</id>
 			<line-style>solid</line-style>
 			<tool-palette-label>child</tool-palette-label>
 			<endpoint1>

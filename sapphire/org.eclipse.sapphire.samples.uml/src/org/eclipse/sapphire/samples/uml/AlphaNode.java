@@ -30,7 +30,6 @@ import org.eclipse.sapphire.modeling.annotations.Type;
 public interface AlphaNode extends ReteNode {
 	ElementType TYPE = new ElementType(AlphaNode.class);
 
-
 	// *** Kind ***
 
 	enum Kind {
@@ -60,7 +59,7 @@ public interface AlphaNode extends ReteNode {
 
 	void setKind(String value);
 
-	void setKind(Kind value);
+//	void setKind(Kind value);
 
 	// *** Fields ***
 
@@ -82,8 +81,8 @@ public interface AlphaNode extends ReteNode {
 
 	@Type(base = AlphaNodeRef.class)
 	@Label(standard = "extended entities")
-	ListProperty PROP_EXTENDED_NODES = new ListProperty(TYPE, "ExtendedNodes");
+	ListProperty PROP_CHILDNODES = new ListProperty(TYPE, "ChildNodes");
 
-	ElementList<AlphaNodeRef> getExtendedNodes();
+	ElementList<AlphaNodeRef> getChildNodes();
 
 }
