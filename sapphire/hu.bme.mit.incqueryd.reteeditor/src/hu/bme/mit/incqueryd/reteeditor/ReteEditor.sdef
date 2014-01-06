@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--  ****************************************************************************** -->
-<!--  * Copyright (c) 2013 Oracle -->
-<!--  * All rights reserved. This program and the accompanying materials -->
-<!--  * are made available under the terms of the Eclipse Public License v1.0 -->
-<!--  * which accompanies this distribution, and is available at -->
-<!--  * http://www.eclipse.org/legal/epl-v10.html -->
-<!--  * -->
-<!--  * Contributors: -->
-<!--  *    Konstantin Komissarchik - initial implementation -->
-<!--  ****************************************************************************** -->
+<!-- ****************************************************************************** -->
+<!-- * Copyright (c) 2013 Oracle -->
+<!-- * All rights reserved. This program and the accompanying materials -->
+<!-- * are made available under the terms of the Eclipse Public License v1.0 -->
+<!-- * which accompanies this distribution, and is available at -->
+<!-- * http://www.eclipse.org/legal/epl-v10.html -->
+<!-- * -->
+<!-- * Contributors: -->
+<!-- * Konstantin Komissarchik - initial implementation -->
+<!-- ****************************************************************************** -->
 
 <definition>
 
@@ -46,7 +46,7 @@
 				</background>
 				<border>
 					<weight>2</weight>
-                    <color>#B22222</color>
+					<color>#B22222</color>
 				</border>
 				<content>
 					<rectangle>
@@ -82,7 +82,7 @@
 								<sequence-layout-constraint>
 									<margin>5</margin>
 								</sequence-layout-constraint>
-                                <color>#B22222</color>
+								<color>#B22222</color>
 							</text>
 						</content>
 						<sequence-layout-constraint>
@@ -95,6 +95,7 @@
 					<margin>0</margin>
 					<spacing>0</spacing>
 				</sequence-layout>
+				<corner-radius>10</corner-radius>
 			</rectangle>
 		</node>
 
@@ -108,87 +109,89 @@
 
 
 
-<!-- 	<node> -->
-<!-- 		<instance-id>${ Name }</instance-id> -->
-<!-- 		<id>BetaNode</id> -->
-<!-- 		<property>BetaNodes</property> -->
-<!-- 		<tool-palette-label>beta node</tool-palette-label> -->
-<!-- 		<properties-view> -->
-<!-- 			<page> -->
-<!-- 				<label>beta node</label> -->
-<!-- 				<content> -->
-<!-- 					<property-editor>Name</property-editor> -->
-<!-- 					<property-editor>Kind</property-editor> -->
-<!-- 				</content> -->
-<!-- 			</page> -->
-<!-- 		</properties-view> -->
-<!-- 		<connection-binding> -->
-<!-- 			<connection-id>Child</connection-id> -->
-<!-- 			<property>ChildNodes</property> -->
-<!-- 			<instance-id>${ ReteNode }</instance-id> -->
-<!-- 			<endpoint2> -->
-<!-- 				<property>ReteNode</property> -->
-<!-- 				<value>${ Name }</value> -->
-<!-- 			</endpoint2> -->
-<!-- 		</connection-binding> -->
-<!-- 		<rectangle> -->
-<!-- 			<background> -->
-<!-- 				<color> -->
-<!-- 					<Color>#FFFFFF</Color> -->
-<!-- 				</color> -->
-<!-- 			</background> -->
-<!-- 			<border> -->
-<!-- 				<weight>1</weight> -->
-<!-- 			</border> -->
-<!-- 			<content> -->
-<!-- 				<rectangle> -->
-<!-- 					<sequence-layout> -->
-<!-- 						<margin>0</margin> -->
-<!-- 						<orientation>horizontal</orientation> -->
-<!-- 						<spacing>0</spacing> -->
-<!-- 					</sequence-layout> -->
-<!-- 					<content> -->
-<!-- 						<rectangle> -->
-<!-- 							<content> -->
-<!-- 								<image> -->
-<!-- 									<path>${ Kind }.png</path> -->
-<!-- 								</image> -->
-<!-- 								<validation-marker> -->
-<!-- 									<size>large</size> -->
-<!-- 									<sequence-layout-constraint> -->
-<!-- 										<vertical-alignment>bottom</vertical-alignment> -->
-<!-- 									</sequence-layout-constraint> -->
-<!-- 								</validation-marker> -->
-<!-- 							</content> -->
-<!-- 							<sequence-layout> -->
-<!-- 								<margin>0</margin> -->
-<!-- 								<orientation>stacked</orientation> -->
-<!-- 							</sequence-layout> -->
-<!-- 						</rectangle> -->
-<!-- 						<text> -->
-<!-- 							<content>${ Name == null ? &quot;&lt;name&gt;&quot; : Name } -->
-<!-- 							</content> -->
-<!-- 							<font> -->
-<!-- 								<size>12</size> -->
-<!-- 							</font> -->
-<!-- 							<sequence-layout-constraint> -->
-<!-- 								<margin>5</margin> -->
-<!-- 							</sequence-layout-constraint> -->
-<!-- 						</text> -->
-<!-- 					</content> -->
-<!-- 					<sequence-layout-constraint> -->
-<!-- 						<horizontal-alignment>center</horizontal-alignment> -->
-<!-- 						<expand-horizontally>true</expand-horizontally> -->
-<!-- 					</sequence-layout-constraint> -->
-<!-- 				</rectangle> -->
-<!-- 			</content> -->
-<!-- 			<sequence-layout> -->
-<!-- 				<margin>0</margin> -->
-<!-- 				<spacing>0</spacing> -->
-<!-- 			</sequence-layout> -->
-<!-- 		</rectangle> -->
-<!-- 	</node> -->
-
+		<node>
+			<instance-id>${ Name }</instance-id>
+			<id>BetaNode</id>
+			<property>BetaNodes</property>
+			<tool-palette-label>beta node</tool-palette-label>
+			<properties-view>
+				<page>
+					<label>beta node</label>
+					<content>
+						<property-editor>Name</property-editor>
+						<property-editor>Kind</property-editor>
+					</content>
+				</page>
+			</properties-view>
+			<connection-binding>
+				<connection-id>Child</connection-id>
+				<property>ChildNodes</property>
+				<instance-id>${ ReteNode }</instance-id>
+				<endpoint2>
+					<property>ReteNode</property>
+					<value>${ Name }</value>
+				</endpoint2>
+			</connection-binding>
+			<rectangle>
+				<background>
+					<color>
+						<Color>#FFFFFF</Color>
+					</color>
+				</background>
+				<border>
+					<weight>2</weight>
+					<color>#4169E1</color>
+				</border>
+				<content>
+					<rectangle>
+						<sequence-layout>
+							<margin>0</margin>
+							<orientation>horizontal</orientation>
+							<spacing>0</spacing>
+						</sequence-layout>
+						<content>
+							<rectangle>
+								<content>
+									<image>
+										<path>${ Kind }.png</path>
+									</image>
+									<validation-marker>
+										<size>large</size>
+										<sequence-layout-constraint>
+											<vertical-alignment>bottom</vertical-alignment>
+										</sequence-layout-constraint>
+									</validation-marker>
+								</content>
+								<sequence-layout>
+									<margin>0</margin>
+									<orientation>stacked</orientation>
+								</sequence-layout>
+							</rectangle>
+							<text>
+								<content>${ Name == null ? &quot;&lt;name&gt;&quot; : Name }
+								</content>
+								<font>
+									<size>12</size>
+								</font>
+								<sequence-layout-constraint>
+									<margin>5</margin>
+								</sequence-layout-constraint>
+								<color>#4169E1</color>
+							</text>
+						</content>
+						<sequence-layout-constraint>
+							<horizontal-alignment>center</horizontal-alignment>
+							<expand-horizontally>true</expand-horizontally>
+						</sequence-layout-constraint>
+					</rectangle>
+				</content>
+				<sequence-layout>
+					<margin>0</margin>
+					<spacing>0</spacing>
+				</sequence-layout>
+				<corner-radius>10</corner-radius>
+			</rectangle>
+		</node>
 
 
 
@@ -203,12 +206,12 @@
 
 		<node>
 			<instance-id>${ Name }</instance-id>
-			<id>ProductionNode</id>
-			<property>ProductionNodes</property>
-			<tool-palette-label>production node</tool-palette-label>
+			<id>Input</id>
+			<property>InputNodes</property>
+			<tool-palette-label>input node</tool-palette-label>
 			<properties-view>
 				<page>
-					<label>production node</label>
+					<label>input node</label>
 					<content>
 						<property-editor>Name</property-editor>
 					</content>
@@ -226,11 +229,12 @@
 			<rectangle>
 				<background>
 					<color>
-						<Color>#40E0D0</Color>
+						<Color>#FFFFE0</Color>
 					</color>
 				</background>
 				<border>
-					<weight>1</weight>
+					<weight>2</weight>
+                    <color>#f0f09c</color>
 				</border>
 				<content>
 					<rectangle>
@@ -275,6 +279,94 @@
 					<margin>0</margin>
 					<spacing>0</spacing>
 				</sequence-layout>
+				<corner-radius>10</corner-radius>
+			</rectangle>
+		</node>		
+		
+		
+
+
+
+
+
+
+
+		<node>
+			<instance-id>${ Name }</instance-id>
+			<id>ProductionNode</id>
+			<property>ProductionNodes</property>
+			<tool-palette-label>production node</tool-palette-label>
+			<properties-view>
+				<page>
+					<label>production node</label>
+					<content>
+						<property-editor>Name</property-editor>
+					</content>
+				</page>
+			</properties-view>
+			<connection-binding>
+				<connection-id>Child</connection-id>
+				<property>ChildNodes</property>
+				<instance-id>${ ReteNode }</instance-id>
+				<endpoint2>
+					<property>ReteNode</property>
+					<value>${ Name }</value>
+				</endpoint2>
+			</connection-binding>
+			<rectangle>
+				<background>
+					<color>
+						<Color>#DDA0DD</Color>
+					</color>
+				</background>
+				<border>
+					<weight>2</weight>
+                    <color>#dd77dd</color>
+				</border>
+				<content>
+					<rectangle>
+						<sequence-layout>
+							<margin>0</margin>
+							<orientation>horizontal</orientation>
+							<spacing>0</spacing>
+						</sequence-layout>
+						<content>
+							<rectangle>
+								<content>
+									<validation-marker>
+										<size>large</size>
+										<sequence-layout-constraint>
+											<vertical-alignment>bottom</vertical-alignment>
+										</sequence-layout-constraint>
+									</validation-marker>
+								</content>
+								<sequence-layout>
+									<margin>0</margin>
+									<orientation>stacked</orientation>
+								</sequence-layout>
+							</rectangle>
+							<text>
+								<content>${ Name == null ? &quot;&lt;name&gt;&quot; : Name }
+								</content>
+								<font>
+									<size>12</size>
+								</font>
+								<sequence-layout-constraint>
+									<margin>5</margin>
+								</sequence-layout-constraint>
+							</text>
+						</content>
+						<sequence-layout-constraint>
+							<horizontal-alignment>center</horizontal-alignment>
+							<expand-horizontally>true</expand-horizontally>
+						</sequence-layout-constraint>
+					</rectangle>
+				</content>
+				<sequence-layout>
+					<margin>0</margin>
+					<spacing>0</spacing>
+				</sequence-layout>
+				<corner-radius>10</corner-radius>
 			</rectangle>
 		</node>
 
@@ -290,7 +382,8 @@
 
 
 
-		<element-type>hu.bme.mit.incqueryd.reteeditor.ReteNetwork</element-type>
+		<element-type>hu.bme.mit.incqueryd.reteeditor.ReteNetwork
+		</element-type>
 		<page-name>diagram</page-name>
 		<page-header-text>diagram</page-header-text>
 		<id>DiagramPage</id>

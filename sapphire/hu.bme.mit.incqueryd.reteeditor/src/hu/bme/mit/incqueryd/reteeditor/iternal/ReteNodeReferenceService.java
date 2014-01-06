@@ -28,6 +28,8 @@ public final class ReteNodeReferenceService extends ReferenceService {
 		if (reference != null) {
 			List<ReteNode> reteNodes = new ArrayList<>(); 
 			reteNodes.addAll(context(hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class).getAlphaNodes());
+			reteNodes.addAll(context(hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class).getBetaNodes());
+			reteNodes.addAll(context(hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class).getInputNodes());
 			reteNodes.addAll(context(hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class).getProductionNodes());
 
 			for (ReteNode reteNode : reteNodes) {

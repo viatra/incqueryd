@@ -17,12 +17,12 @@ public interface ReteNetwork extends Element {
 
 	ElementList<ReteNode> getAlphaNodes();
 
-//	// *** BetaNodes ***
-//	@Type(base = AlphaNode.class)
-//	@Label(standard = "nodes")
-//	ListProperty PROP_BETANODES = new ListProperty(TYPE, "BetaNodes");
-//
-//	ElementList<ReteNode> getBetaNodes();
+	// *** BetaNodes ***
+	@Type(base = BetaNode.class)
+	@Label(standard = "nodes")
+	ListProperty PROP_BETANODES = new ListProperty(TYPE, "BetaNodes");
+
+	ElementList<ReteNode> getBetaNodes();
 
 	// *** ProductionNodes ***
 	@Type(base = ProductionNode.class)
@@ -30,6 +30,13 @@ public interface ReteNetwork extends Element {
 	ListProperty PROP_PRODUCTIONNODES = new ListProperty(TYPE, "ProductionNodes");
 
 	ElementList<ReteNode> getProductionNodes();
+
+	// *** InputNodes ***
+	@Type(base = InputNode.class)
+	@Label(standard = "nodes")
+	ListProperty PROP_INPUTNODES = new ListProperty(TYPE, "InputNodes");
+
+	ElementList<ReteNode> getInputNodes();
 
 	
 }
