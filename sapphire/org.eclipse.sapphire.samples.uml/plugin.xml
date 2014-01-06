@@ -22,7 +22,7 @@
       default="true"
       filenames="rete.xml"
       name="UML Editor (Sapphire Sample)"
-      icon="org/eclipse/sapphire/samples/SapphireFile.png"/>
+      icon="SapphireFile.png"/>
   </extension>
   
 </plugin>
