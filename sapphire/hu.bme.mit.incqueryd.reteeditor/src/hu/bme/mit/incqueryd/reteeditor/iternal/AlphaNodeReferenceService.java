@@ -19,23 +19,18 @@ import org.eclipse.sapphire.services.ReferenceService;
  * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
  */
 
-public final class AlphaNodeReferenceService extends ReferenceService
-{
-    @Override
-    public Object resolve( final String reference ) 
-    {
-        if( reference != null )
-        {
-            for( final AlphaNode alphaNode : context( hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class ).getAlphaNodes() )
-            {
-                if( reference.equals( alphaNode.getName().text() ) )
-                {
-                    return alphaNode;
-                }
-            }
-        }
-        
-        return null;
-    }
+public final class AlphaNodeReferenceService extends ReferenceService {
+	@Override
+	public Object resolve(final String reference) {
+		if (reference != null) {
+			for (final AlphaNode alphaNode : context(hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class).getAlphaNodes()) {
+				if (reference.equals(alphaNode.getName().text())) {
+					return alphaNode;
+				}
+			}
+		}
+
+		return null;
+	}
 
 }
