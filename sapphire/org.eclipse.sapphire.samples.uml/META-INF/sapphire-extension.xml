@@ -14,18 +14,4 @@
 -->
 
 <extension xmlns="http://www.eclipse.org/sapphire/xmlns/extension" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <service>
-        <id>Sample.ConversionService.StringToCircle</id>
-        <context>Sapphire</context>
-        <implementation>org.eclipse.sapphire.samples.gallery.internal.StringToCircleConversionService</implementation>
-    </service>
-    <service>
-        <id>Sample.ConversionService.CircleToString</id>
-        <context>Sapphire</context>
-        <implementation>org.eclipse.sapphire.samples.gallery.internal.CircleToStringConversionService</implementation>
-    </service>
-    <function>
-        <name>CatalogItemImage</name>
-        <impl>org.eclipse.sapphire.samples.catalog.ItemImageFunction</impl>
-    </function>
 </extension>
