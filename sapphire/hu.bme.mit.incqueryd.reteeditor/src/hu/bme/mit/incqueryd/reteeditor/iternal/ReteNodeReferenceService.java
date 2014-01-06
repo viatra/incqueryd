@@ -13,6 +13,9 @@ package hu.bme.mit.incqueryd.reteeditor.iternal;
 
 import hu.bme.mit.incqueryd.reteeditor.ReteNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.sapphire.services.ReferenceService;
 
 /**
@@ -23,13 +26,11 @@ public final class ReteNodeReferenceService extends ReferenceService {
 	@Override
 	public Object resolve(final String reference) {
 		if (reference != null) {
-			for (final ReteNode reteNode : context(hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class).getAlphaNodes()) {
-				if (reference.equals(reteNode.getName().text())) {
-					return reteNode;
-				}
-			}
-			
-			for (final ReteNode reteNode : context(hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class).getProductionNodes()) {
+			List<ReteNode> reteNodes = new ArrayList<>(); 
+			reteNodes.addAll(context(hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class).getAlphaNodes());
+			reteNodes.addAll(context(hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class).getProductionNodes());
+
+			for (ReteNode reteNode : reteNodes) {
 				if (reference.equals(reteNode.getName().text())) {
 					return reteNode;
 				}
