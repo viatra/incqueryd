@@ -34,4 +34,12 @@ public interface System extends Element {
 
 	ElementList<AlphaNode> getAlphaNodes();
 	
+	// *** ProductionNodes ***
+
+	@Type(base = AlphaNode.class)
+	@Label(standard = "nodes")
+	ListProperty PROP_PRODUCTIONNODES = new ListProperty(TYPE, "ProductionNodes");
+
+	ElementList<AlphaNode> getProductionNodes();
+	
 }
