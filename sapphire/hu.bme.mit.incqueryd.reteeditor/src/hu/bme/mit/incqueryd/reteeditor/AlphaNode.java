@@ -23,8 +23,7 @@ import org.eclipse.sapphire.modeling.annotations.Required;
 import org.eclipse.sapphire.modeling.annotations.Type;
 
 /**
- * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin
- *         Komissarchik</a>
+ * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
  */
 
 public interface AlphaNode extends ReteNode {
@@ -59,28 +58,12 @@ public interface AlphaNode extends ReteNode {
 
 	void setKind(String value);
 
-//	void setKind(Kind value);
-
-	// *** Fields ***
-
-	@Type(base = Field.class)
-	@Label(standard = "fields")
-	ListProperty PROP_FIELDS = new ListProperty(TYPE, "Fields");
-
-	ElementList<Field> getFields();
-
-	// *** Methods ***
-
-	@Type(base = Method.class)
-	@Label(standard = "methods")
-	ListProperty PROP_METHODS = new ListProperty(TYPE, "Methods");
-
-	ElementList<Method> getMethods();
+	// void setKind(Kind value);
 
 	// *** ExtendedEntities ***
 
 	@Type(base = AlphaNodeRef.class)
-	@Label(standard = "extended entities")
+	@Label(standard = "child nodes")
 	ListProperty PROP_CHILDNODES = new ListProperty(TYPE, "ChildNodes");
 
 	ElementList<AlphaNodeRef> getChildNodes();
