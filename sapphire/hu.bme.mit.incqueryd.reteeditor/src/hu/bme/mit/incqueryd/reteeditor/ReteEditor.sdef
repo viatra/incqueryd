@@ -32,9 +32,9 @@
 			<connection-binding>
 				<connection-id>Child</connection-id>
 				<property>ChildNodes</property>
-				<instance-id>${ AlphaNode }</instance-id>
+				<instance-id>${ ReteNode }</instance-id>
 				<endpoint2>
-					<property>AlphaNode</property>
+					<property>ReteNode</property>
 					<value>${ Name }</value>
 				</endpoint2>
 			</connection-binding>

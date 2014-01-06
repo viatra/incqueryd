@@ -18,15 +18,10 @@ import org.eclipse.sapphire.ListProperty;
 import org.eclipse.sapphire.modeling.annotations.Label;
 import org.eclipse.sapphire.modeling.annotations.Type;
 
-/**
- * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
- */
-
 public interface ReteNetwork extends Element {
 	ElementType TYPE = new ElementType(ReteNetwork.class);
 
 	// *** AlphaNodes ***
-
 	@Type(base = AlphaNode.class)
 	@Label(standard = "nodes")
 	ListProperty PROP_ALPHANODES = new ListProperty(TYPE, "AlphaNodes");

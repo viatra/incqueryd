@@ -23,7 +23,7 @@ public interface ReteNode extends Element {
 	void setName(String value);
 
 	// *** ChildNodes ***
-	@Type(base = AlphaNodeRef.class)
+	@Type(base = ReteNodeRef.class)
 	@Label(standard = "child nodes")
 	ListProperty PROP_CHILDNODES = new ListProperty(TYPE, "ChildNodes");
 
