@@ -11,15 +11,12 @@
 
 package hu.bme.mit.incqueryd.reteeditor;
 
-import org.eclipse.sapphire.ElementList;
 import org.eclipse.sapphire.ElementType;
-import org.eclipse.sapphire.ListProperty;
 import org.eclipse.sapphire.Value;
 import org.eclipse.sapphire.ValueProperty;
 import org.eclipse.sapphire.modeling.annotations.DefaultValue;
 import org.eclipse.sapphire.modeling.annotations.EnumSerialization;
 import org.eclipse.sapphire.modeling.annotations.Label;
-import org.eclipse.sapphire.modeling.annotations.Required;
 import org.eclipse.sapphire.modeling.annotations.Type;
 
 /**
@@ -59,13 +56,5 @@ public interface AlphaNode extends ReteNode {
 	void setKind(String value);
 
 	// void setKind(Kind value);
-
-	// *** ChildNodes ***
-
-	@Type(base = AlphaNodeRef.class)
-	@Label(standard = "child nodes")
-	ListProperty PROP_CHILDNODES = new ListProperty(TYPE, "ChildNodes");
-
-	ElementList<AlphaNodeRef> getChildNodes();
 
 }
