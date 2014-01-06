@@ -42,6 +42,4 @@ public interface AlphaNodeRef extends Element
     ReferenceValue<String,AlphaNode> getAlphaNode();
     void setAlphaNode( String value );
     
-    
-    
 }
