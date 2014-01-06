@@ -27,5 +27,5 @@ public interface ReteNode extends Element {
 	@Label(standard = "child nodes")
 	ListProperty PROP_CHILDNODES = new ListProperty(TYPE, "ChildNodes");
 
-	ElementList<AlphaNodeRef> getChildNodes();
+	ElementList<ReteNodeRef> getChildNodes();
 }
