@@ -61,7 +61,7 @@
 										<path>${ Kind }.png</path>
 									</image>
 									<validation-marker>
-										<size>small</size>
+										<size>large</size>
 										<sequence-layout-constraint>
 											<vertical-alignment>bottom</vertical-alignment>
 										</sequence-layout-constraint>
@@ -117,7 +117,6 @@
 					<label>production node</label>
 					<content>
 						<property-editor>Name</property-editor>
-						<property-editor>Kind</property-editor>
 					</content>
 				</page>
 			</properties-view>
@@ -149,11 +148,8 @@
 						<content>
 							<rectangle>
 								<content>
-									<image>
-										<path>${ Kind }.png</path>
-									</image>
 									<validation-marker>
-										<size>small</size>
+										<size>large</size>
 										<sequence-layout-constraint>
 											<vertical-alignment>bottom</vertical-alignment>
 										</sequence-layout-constraint>

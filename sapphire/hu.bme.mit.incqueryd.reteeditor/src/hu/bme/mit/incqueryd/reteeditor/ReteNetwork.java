@@ -17,6 +17,13 @@ public interface ReteNetwork extends Element {
 
 	ElementList<ReteNode> getAlphaNodes();
 
+//	// *** BetaNodes ***
+//	@Type(base = AlphaNode.class)
+//	@Label(standard = "nodes")
+//	ListProperty PROP_BETANODES = new ListProperty(TYPE, "BetaNodes");
+//
+//	ElementList<ReteNode> getBetaNodes();
+
 	// *** ProductionNodes ***
 	@Type(base = ProductionNode.class)
 	@Label(standard = "nodes")
