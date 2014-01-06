@@ -26,12 +26,12 @@ import org.eclipse.sapphire.modeling.annotations.Type;
 public interface System extends Element {
 	ElementType TYPE = new ElementType(System.class);
 
-	// *** Entities ***
+	// *** AlphaNodes ***
 
 	@Type(base = AlphaNode.class)
 	@Label(standard = "nodes")
-	ListProperty PROP_NODES = new ListProperty(TYPE, "Nodes");
+	ListProperty PROP_ALPHANODES = new ListProperty(TYPE, "AlphaNodes");
 
-	ElementList<AlphaNode> getNodes();
-
+	ElementList<AlphaNode> getAlphaNodes();
+	
 }

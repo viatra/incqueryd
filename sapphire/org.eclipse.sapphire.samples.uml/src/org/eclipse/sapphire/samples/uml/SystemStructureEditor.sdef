@@ -13,7 +13,7 @@
 		<node>
 			<instance-id>${ Name }</instance-id>
 			<id>AlphaNode</id>
-			<property>Nodes</property>
+			<property>AlphaNodes</property>
 			<tool-palette-label>alpha node</tool-palette-label>
 			<properties-view>
 				<page>
@@ -95,8 +95,6 @@
 				</sequence-layout>
 			</rectangle>
 		</node>
-
-
 
 
 

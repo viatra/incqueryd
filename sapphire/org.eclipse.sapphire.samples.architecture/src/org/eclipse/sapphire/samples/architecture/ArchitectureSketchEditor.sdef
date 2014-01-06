@@ -200,6 +200,13 @@
 
 
 
+
+
+
+
+
+
+
 		<node>
 			<instance-id>${ Name }</instance-id>
 			<rectangle>
@@ -315,6 +322,9 @@
 			<width>80</width>
 			<visible-when>${Root().DetailLevel &gt; 0}</visible-when>
 		</node>
+
+
+
 
 
 

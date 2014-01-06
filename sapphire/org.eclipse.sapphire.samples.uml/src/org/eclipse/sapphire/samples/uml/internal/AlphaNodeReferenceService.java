@@ -25,7 +25,7 @@ public final class AlphaNodeReferenceService extends ReferenceService
     {
         if( reference != null )
         {
-            for( final AlphaNode alphaNode : context( org.eclipse.sapphire.samples.uml.System.class ).getNodes() )
+            for( final AlphaNode alphaNode : context( org.eclipse.sapphire.samples.uml.System.class ).getAlphaNodes() )
             {
                 if( reference.equals( alphaNode.getName().text() ) )
                 {
