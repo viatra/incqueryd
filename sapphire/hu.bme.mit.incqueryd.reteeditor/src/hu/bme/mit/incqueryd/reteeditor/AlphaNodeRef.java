@@ -35,7 +35,7 @@ public interface AlphaNodeRef extends Element
     @Reference( target = AlphaNode.class )
     @Service( impl = AlphaNodeReferenceService.class )
     @Required
-    @PossibleValues( property = "/Entities/Name" )
+    @PossibleValues( property = "/AlphaNodes/Name" )
 
     ValueProperty PROP_ALPHANODE = new ValueProperty( TYPE, "AlphaNode" );
 

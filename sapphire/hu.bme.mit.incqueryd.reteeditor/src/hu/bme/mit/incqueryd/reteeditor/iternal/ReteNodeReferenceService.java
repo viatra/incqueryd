@@ -11,7 +11,6 @@
 
 package hu.bme.mit.incqueryd.reteeditor.iternal;
 
-import hu.bme.mit.incqueryd.reteeditor.AlphaNode;
 import hu.bme.mit.incqueryd.reteeditor.ReteNode;
 
 import org.eclipse.sapphire.services.ReferenceService;
@@ -27,13 +26,13 @@ public final class ReteNodeReferenceService extends ReferenceService
     {
         if( reference != null )
         {
-//            for( final ReteNode reteNode : context( hu.bme.mit.incqueryd.reteeditor.System.class ).getReteNodes() )
-//            {
-//                if( reference.equals( reteNode.getName().text() ) )
-//                {
-//                    return reteNode;
-//                }
-//            }
+            for( final ReteNode reteNode : context( hu.bme.mit.incqueryd.reteeditor.System.class ).getAlphaNodes() )
+            {
+                if( reference.equals( reteNode.getName().text() ) )
+                {
+                    return reteNode;
+                }
+            }
         }
         
         return null;

@@ -17,8 +17,8 @@
 
   <extension point="org.eclipse.ui.editors">
     <editor
-      id="hu.bme.mit.incqueryd.reteeditor.SystemStructureEditor"
-      class="hu.bme.mit.incqueryd.reteeditor.SystemStructureEditor"
+      id="hu.bme.mit.incqueryd.reteeditor.ReteEditor"
+      class="hu.bme.mit.incqueryd.reteeditor.ReteEditor"
       default="true"
       filenames="rete.xml"
       name="Rete Editor"

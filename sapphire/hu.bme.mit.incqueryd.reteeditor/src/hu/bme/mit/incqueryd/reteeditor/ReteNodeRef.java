@@ -19,7 +19,7 @@ public interface ReteNodeRef extends Element {
 	@Reference(target = ReteNode.class)
 	@Service(impl = ReteNodeReferenceService.class)
 	@Required
-	@PossibleValues(property = "/Entities/Name")
+	@PossibleValues(property = "/AlphaNodes/Name")
 	ValueProperty PROP_RETENODE = new ValueProperty(TYPE, "ReteNode");
 
 	ReferenceValue<String, ReteNode> getReteNode();

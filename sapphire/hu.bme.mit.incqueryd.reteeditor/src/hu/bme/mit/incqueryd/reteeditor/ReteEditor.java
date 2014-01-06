@@ -25,7 +25,7 @@ import org.eclipse.wst.sse.ui.StructuredTextEditor;
  * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
  */
 
-public class SystemStructureEditor extends SapphireEditor 
+public class ReteEditor extends SapphireEditor 
 {
     private System model;
     private StructuredTextEditor sourceEditorPage;

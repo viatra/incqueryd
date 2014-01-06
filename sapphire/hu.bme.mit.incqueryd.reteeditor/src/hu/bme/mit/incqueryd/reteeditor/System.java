@@ -19,8 +19,7 @@ import org.eclipse.sapphire.modeling.annotations.Label;
 import org.eclipse.sapphire.modeling.annotations.Type;
 
 /**
- * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin
- *         Komissarchik</a>
+ * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
  */
 
 public interface System extends Element {
@@ -33,7 +32,7 @@ public interface System extends Element {
 	ListProperty PROP_ALPHANODES = new ListProperty(TYPE, "AlphaNodes");
 
 	ElementList<AlphaNode> getAlphaNodes();
-	
+
 	// *** ProductionNodes ***
 
 	@Type(base = AlphaNode.class)
@@ -41,5 +40,5 @@ public interface System extends Element {
 	ListProperty PROP_PRODUCTIONNODES = new ListProperty(TYPE, "ProductionNodes");
 
 	ElementList<AlphaNode> getProductionNodes();
-	
+
 }
