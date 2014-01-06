@@ -115,7 +115,7 @@
 
 
 
-		<element-type>org.eclipse.sapphire.samples.uml.System</element-type>
+		<element-type>hu.bme.mit.incqueryd.reteeditor.System</element-type>
 		<page-name>diagram</page-name>
 		<page-header-text>diagram</page-header-text>
 		<id>DiagramPage</id>

@@ -1,4 +1,4 @@
-package org.eclipse.sapphire.samples.uml;
+package hu.bme.mit.incqueryd.reteeditor;
 
 import org.eclipse.sapphire.Element;
 import org.eclipse.sapphire.ElementType;

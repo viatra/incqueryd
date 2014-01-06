@@ -9,7 +9,7 @@
  *    Konstantin Komissarchik - initial implementation and ongoing maintenance
  ******************************************************************************/
 
-package org.eclipse.sapphire.samples.uml;
+package hu.bme.mit.incqueryd.reteeditor;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.sapphire.Element;

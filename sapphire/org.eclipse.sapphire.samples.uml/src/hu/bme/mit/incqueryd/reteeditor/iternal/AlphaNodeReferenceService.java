@@ -9,9 +9,10 @@
  *    Konstantin Komissarchik - initial implementation and ongoing maintenance
  ******************************************************************************/
 
-package org.eclipse.sapphire.samples.uml.internal;
+package hu.bme.mit.incqueryd.reteeditor.iternal;
 
-import org.eclipse.sapphire.samples.uml.AlphaNode;
+import hu.bme.mit.incqueryd.reteeditor.AlphaNode;
+
 import org.eclipse.sapphire.services.ReferenceService;
 
 /**
@@ -25,7 +26,7 @@ public final class AlphaNodeReferenceService extends ReferenceService
     {
         if( reference != null )
         {
-            for( final AlphaNode alphaNode : context( org.eclipse.sapphire.samples.uml.System.class ).getAlphaNodes() )
+            for( final AlphaNode alphaNode : context( hu.bme.mit.incqueryd.reteeditor.System.class ).getAlphaNodes() )
             {
                 if( reference.equals( alphaNode.getName().text() ) )
                 {

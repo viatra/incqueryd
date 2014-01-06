@@ -9,9 +9,8 @@
  *    Konstantin Komissarchik - initial implementation and ongoing maintenance
  ******************************************************************************/
 
-package org.eclipse.sapphire.samples.uml;
+package hu.bme.mit.incqueryd.reteeditor;
 
-import org.eclipse.sapphire.Element;
 import org.eclipse.sapphire.ElementList;
 import org.eclipse.sapphire.ElementType;
 import org.eclipse.sapphire.ListProperty;
@@ -28,18 +27,8 @@ import org.eclipse.sapphire.modeling.annotations.Type;
  *         Komissarchik</a>
  */
 
-public interface ProductionNode extends Element {
-	ElementType TYPE = new ElementType(ProductionNode.class);
-
-	// *** Name ***
-
-	@Label(standard = "name")
-	@Required
-	ValueProperty PROP_NAME = new ValueProperty(TYPE, "Name");
-
-	Value<String> getName();
-
-	void setName(String value);
+public interface AlphaNode extends ReteNode {
+	ElementType TYPE = new ElementType(AlphaNode.class);
 
 	// *** Kind ***
 
@@ -51,14 +40,14 @@ public interface ProductionNode extends Element {
 		@Label(standard = "predicateevaluator")
 		@EnumSerialization(primary = "predicateevaluator")
 		PREDICATEEVALUATOR,
-		
+
 		@Label(standard = "equality")
 		@EnumSerialization(primary = "equality")
 		EQUALITY,
-		
+
 		@Label(standard = "inequality")
 		@EnumSerialization(primary = "inequality")
-		INEQUALITY,		
+		INEQUALITY,
 	}
 
 	@Type(base = Kind.class)
@@ -70,7 +59,7 @@ public interface ProductionNode extends Element {
 
 	void setKind(String value);
 
-	void setKind(Kind value);
+//	void setKind(Kind value);
 
 	// *** Fields ***
 
@@ -92,9 +81,8 @@ public interface ProductionNode extends Element {
 
 	@Type(base = AlphaNodeRef.class)
 	@Label(standard = "extended entities")
-	ListProperty PROP_EXTENDED_NODES = new ListProperty(TYPE,
-			"ExtendedNodes");
+	ListProperty PROP_CHILDNODES = new ListProperty(TYPE, "ChildNodes");
 
-	ElementList<AlphaNodeRef> getExtendedNodes();
+	ElementList<AlphaNodeRef> getChildNodes();
 
 }

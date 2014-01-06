@@ -9,9 +9,11 @@
  *    Konstantin Komissarchik - initial implementation and ongoing maintenance
  ******************************************************************************/
 
-package org.eclipse.sapphire.samples.uml;
+package hu.bme.mit.incqueryd.reteeditor;
 
+import org.eclipse.sapphire.ElementList;
 import org.eclipse.sapphire.ElementType;
+import org.eclipse.sapphire.ListProperty;
 import org.eclipse.sapphire.Value;
 import org.eclipse.sapphire.ValueProperty;
 import org.eclipse.sapphire.modeling.annotations.DefaultValue;
@@ -24,9 +26,9 @@ import org.eclipse.sapphire.modeling.annotations.Type;
  * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
  */
 
-public interface Field extends Accessible
+public interface Method extends Accessible
 {
-    ElementType TYPE = new ElementType( Field.class );
+    ElementType TYPE = new ElementType( Method.class );
     
     // *** Name ***
     
@@ -38,15 +40,24 @@ public interface Field extends Accessible
     Value<String> getName();
     void setName( String value );
     
-    // *** Type ***
+    // *** ReturnType ***
     
-    @Label( standard = "type" )
+    @Label( standard = "return type" )
     @Required
     
-    ValueProperty PROP_TYPE = new ValueProperty( TYPE, "Type" );
+    ValueProperty PROP_RETURN_TYPE = new ValueProperty( TYPE, "ReturnType" );
     
-    Value<String> getType();
-    void setType( String value );
+    Value<String> getReturnType();
+    void setReturnType( String value );
+    
+    // *** Parameters ***
+    
+    @Type( base = Parameter.class )
+    @Label( standard = "parameters" )
+    
+    ListProperty PROP_PARAMETERS = new ListProperty( TYPE, "Parameters" );
+    
+    ElementList<Parameter> getParameters();
     
     // *** Static ***
     
@@ -61,6 +72,19 @@ public interface Field extends Accessible
     void setStatic( String value );
     void setStatic( Boolean value );
     
+    // *** Abstract ***
+    
+    @Type( base = Boolean.class )
+    @Label( standard = "abstract" )
+    @DefaultValue( text = "false" )
+    @Enablement( expr = "${ Parent.Kind == 'class' }" )
+    
+    ValueProperty PROP_ABSTRACT = new ValueProperty( TYPE, "Abstract" );
+    
+    Value<Boolean> getAbstract();
+    void setAbstract( String value );
+    void setAbstract( Boolean value );
+    
     // *** Final ***
     
     @Type( base = Boolean.class )
@@ -74,5 +98,19 @@ public interface Field extends Accessible
     
     void setFinal( String value );
     void setFinal( Boolean value );
+    
+    // *** Overrides ***
+    
+    @Type( base = Boolean.class )
+    @Label( standard = "overrides" )
+    @DefaultValue( text = "false" )
+    
+    // TODO: This should be a derived property.
+    
+    ValueProperty PROP_OVERRIDES = new ValueProperty( TYPE, "Overrides" );
+    
+    Value<Boolean> getOverrides();
+    void setOverrides( String value );
+    void setOverrides( Boolean value );
     
 }
