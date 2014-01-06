@@ -11,7 +11,7 @@
 
 package hu.bme.mit.incqueryd.reteeditor.iternal;
 
-import hu.bme.mit.incqueryd.reteeditor.AlphaNode;
+import hu.bme.mit.incqueryd.reteeditor.ReteNode;
 
 import org.eclipse.sapphire.services.ReferenceService;
 
@@ -23,9 +23,9 @@ public final class AlphaNodeReferenceService extends ReferenceService {
 	@Override
 	public Object resolve(final String reference) {
 		if (reference != null) {
-			for (final AlphaNode alphaNode : context(hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class).getAlphaNodes()) {
-				if (reference.equals(alphaNode.getName().text())) {
-					return alphaNode;
+			for (final ReteNode reteNode : context(hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class).getAlphaNodes()) {
+				if (reference.equals(reteNode.getName().text())) {
+					return reteNode;
 				}
 			}
 		}

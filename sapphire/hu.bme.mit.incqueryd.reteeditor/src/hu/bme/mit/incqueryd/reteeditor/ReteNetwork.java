@@ -31,14 +31,6 @@ public interface ReteNetwork extends Element {
 	@Label(standard = "nodes")
 	ListProperty PROP_ALPHANODES = new ListProperty(TYPE, "AlphaNodes");
 
-	ElementList<AlphaNode> getAlphaNodes();
-
-	// *** ProductionNodes ***
-
-	@Type(base = AlphaNode.class)
-	@Label(standard = "nodes")
-	ListProperty PROP_PRODUCTIONNODES = new ListProperty(TYPE, "ProductionNodes");
-
-	ElementList<AlphaNode> getProductionNodes();
+	ElementList<ReteNode> getAlphaNodes();
 
 }
