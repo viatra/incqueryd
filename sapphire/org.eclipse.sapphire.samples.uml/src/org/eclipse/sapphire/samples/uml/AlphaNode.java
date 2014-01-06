@@ -11,7 +11,6 @@
 
 package org.eclipse.sapphire.samples.uml;
 
-import org.eclipse.sapphire.Element;
 import org.eclipse.sapphire.ElementList;
 import org.eclipse.sapphire.ElementType;
 import org.eclipse.sapphire.ListProperty;
@@ -28,18 +27,9 @@ import org.eclipse.sapphire.modeling.annotations.Type;
  *         Komissarchik</a>
  */
 
-public interface AlphaNode extends Element {
+public interface AlphaNode extends ReteNode {
 	ElementType TYPE = new ElementType(AlphaNode.class);
 
-	// *** Name ***
-
-	@Label(standard = "name")
-	@Required
-	ValueProperty PROP_NAME = new ValueProperty(TYPE, "Name");
-
-	Value<String> getName();
-
-	void setName(String value);
 
 	// *** Kind ***
 
@@ -51,14 +41,14 @@ public interface AlphaNode extends Element {
 		@Label(standard = "predicateevaluator")
 		@EnumSerialization(primary = "predicateevaluator")
 		PREDICATEEVALUATOR,
-		
+
 		@Label(standard = "equality")
 		@EnumSerialization(primary = "equality")
 		EQUALITY,
-		
+
 		@Label(standard = "inequality")
 		@EnumSerialization(primary = "inequality")
-		INEQUALITY,		
+		INEQUALITY,
 	}
 
 	@Type(base = Kind.class)
@@ -92,8 +82,7 @@ public interface AlphaNode extends Element {
 
 	@Type(base = AlphaNodeRef.class)
 	@Label(standard = "extended entities")
-	ListProperty PROP_EXTENDED_NODES = new ListProperty(TYPE,
-			"ExtendedNodes");
+	ListProperty PROP_EXTENDED_NODES = new ListProperty(TYPE, "ExtendedNodes");
 
 	ElementList<AlphaNodeRef> getExtendedNodes();
 
