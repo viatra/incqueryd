@@ -28,6 +28,13 @@ public final class ReteNodeReferenceService extends ReferenceService {
 					return reteNode;
 				}
 			}
+			
+			for (final ReteNode reteNode : context(hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class).getProductionNodes()) {
+				if (reference.equals(reteNode.getName().text())) {
+					return reteNode;
+				}
+			}
+
 		}
 
 		return null;
