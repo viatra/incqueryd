@@ -22,8 +22,8 @@ import org.eclipse.sapphire.modeling.annotations.Type;
  * @author <a href="mailto:konstantin.komissarchik@oracle.com">Konstantin Komissarchik</a>
  */
 
-public interface System extends Element {
-	ElementType TYPE = new ElementType(System.class);
+public interface ReteNetwork extends Element {
+	ElementType TYPE = new ElementType(ReteNetwork.class);
 
 	// *** AlphaNodes ***
 

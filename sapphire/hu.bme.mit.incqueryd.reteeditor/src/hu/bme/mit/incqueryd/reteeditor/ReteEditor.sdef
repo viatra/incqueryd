@@ -120,7 +120,7 @@
 
 
 
-		<element-type>hu.bme.mit.incqueryd.reteeditor.System</element-type>
+		<element-type>hu.bme.mit.incqueryd.reteeditor.ReteNetwork</element-type>
 		<page-name>diagram</page-name>
 		<page-header-text>diagram</page-header-text>
 		<id>DiagramPage</id>

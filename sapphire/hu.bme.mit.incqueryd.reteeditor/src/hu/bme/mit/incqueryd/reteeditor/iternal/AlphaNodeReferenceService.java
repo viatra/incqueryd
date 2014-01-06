@@ -26,7 +26,7 @@ public final class AlphaNodeReferenceService extends ReferenceService
     {
         if( reference != null )
         {
-            for( final AlphaNode alphaNode : context( hu.bme.mit.incqueryd.reteeditor.System.class ).getAlphaNodes() )
+            for( final AlphaNode alphaNode : context( hu.bme.mit.incqueryd.reteeditor.ReteNetwork.class ).getAlphaNodes() )
             {
                 if( reference.equals( alphaNode.getName().text() ) )
                 {

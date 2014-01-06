@@ -27,7 +27,7 @@ import org.eclipse.wst.sse.ui.StructuredTextEditor;
 
 public class ReteEditor extends SapphireEditor 
 {
-    private System model;
+    private ReteNetwork model;
     private StructuredTextEditor sourceEditorPage;
     private SapphireDiagramEditor diagramEditorPage;
     //private MasterDetailsEditorPage schemaDetails;
@@ -45,7 +45,7 @@ public class ReteEditor extends SapphireEditor
     @Override
     protected Element createModel() 
     {
-        this.model = System.TYPE.instantiate( new RootXmlResource( new XmlEditorResourceStore( this, this.sourceEditorPage ) ) );
+        this.model = ReteNetwork.TYPE.instantiate( new RootXmlResource( new XmlEditorResourceStore( this, this.sourceEditorPage ) ) );
         return this.model;
     }
 
