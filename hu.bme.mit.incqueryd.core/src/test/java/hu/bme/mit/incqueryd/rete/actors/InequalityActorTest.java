@@ -7,8 +7,12 @@ import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.data.FilterNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.FilterTestHelper;
+import hu.bme.mit.incqueryd.test.util.GsonParser;
+import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Stack;
 
 import org.junit.AfterClass;
@@ -19,6 +23,10 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.testkit.JavaTestKit;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 
 /**
  * Test cases for the {@link InequalityActor} class.
@@ -39,8 +47,20 @@ public class InequalityActorTest {
     public static void teardown() {
         system.shutdown();
     }
+    
+	@Test
+	public void test() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
+		File[] files = TestCaseFinder.getTestCases("filternode-*.json");
 
-    public void test(final FilterNodeTestData data) {
+		for (File file : files) {
+			System.out.println(file);
+			Gson gson = GsonParser.getGsonParser();
+			FilterNodeTestData data = gson.fromJson(new FileReader(file), FilterNodeTestData.class);
+			filterInequality(data);
+		}
+	}
+
+    public void filterInequality(final FilterNodeTestData data) {
         new JavaTestKit(system) {
             {
                 // Arrange
@@ -74,11 +94,6 @@ public class InequalityActorTest {
                 assertEquals(data.getInequalityExpectedResults(), propagatedUpdateMessage.getChangeSet());
             }
         };
-    }
-
-    @Test
-    public void test1() {
-        test(FilterTestHelper.data1());
     }
 
 }

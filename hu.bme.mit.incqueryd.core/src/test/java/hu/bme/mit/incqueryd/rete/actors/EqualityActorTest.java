@@ -7,8 +7,12 @@ import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.data.FilterNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.FilterTestHelper;
+import hu.bme.mit.incqueryd.test.util.GsonParser;
+import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Stack;
 
 import org.junit.AfterClass;
@@ -19,6 +23,10 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.testkit.JavaTestKit;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 
 /**
  * Test cases for the {@link EqualityActor} class.
@@ -40,7 +48,19 @@ public class EqualityActorTest {
         system.shutdown();
     }
 
-    public void test(final FilterNodeTestData data) {
+	@Test
+	public void test() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
+		File[] files = TestCaseFinder.getTestCases("filternode-*.json");
+
+		for (File file : files) {
+			System.out.println(file);
+			Gson gson = GsonParser.getGsonParser();
+			FilterNodeTestData data = gson.fromJson(new FileReader(file), FilterNodeTestData.class);
+			filterEquality(data);
+		}
+	}
+    
+    public void filterEquality(final FilterNodeTestData data) {
         new JavaTestKit(system) {
             {
                 // Arrange
@@ -74,11 +94,6 @@ public class EqualityActorTest {
                 assertEquals(data.getEqualityExpectedResults(), propagatedUpdateMessage.getChangeSet());
             }
         };
-    }
-
-    @Test
-    public void test1() {
-        test(FilterTestHelper.data1());
     }
 
 }

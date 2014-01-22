@@ -1,6 +1,4 @@
-package hu.bme.mit.incqueryd.rete.nodes.helpers;
-
-import hu.bme.mit.incqueryd.test.constants.TestConstants;
+package hu.bme.mit.incqueryd.test.util;
 
 import java.io.File;
 import java.io.FileFilter;

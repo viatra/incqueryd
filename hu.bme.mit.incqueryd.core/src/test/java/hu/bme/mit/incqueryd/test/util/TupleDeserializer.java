@@ -1,11 +1,10 @@
 
-package hu.bme.mit.incqueryd.rete.nodes.helpers;
+package hu.bme.mit.incqueryd.test.util;
 
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
@@ -17,6 +16,7 @@ import com.google.gson.JsonPrimitive;
 
 public class TupleDeserializer implements JsonDeserializer<Tuple> {
 
+	@Override
 	public Tuple deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
 			throws JsonParseException {		
 		

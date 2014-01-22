@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.test.constants;
+package hu.bme.mit.incqueryd.test.util;
 
 public class TestConstants {
 	

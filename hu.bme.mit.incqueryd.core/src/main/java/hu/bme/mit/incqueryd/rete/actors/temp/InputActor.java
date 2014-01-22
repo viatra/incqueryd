@@ -8,7 +8,6 @@ import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
 import hu.bme.mit.incqueryd.rete.configuration.UniquenessEnforcerNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
 import hu.bme.mit.incqueryd.rete.messages.EditMessage;

@@ -7,13 +7,11 @@ import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.data.TrimmerNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.TrimmerTestHelper;
 
 import java.util.Stack;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -74,11 +72,6 @@ public class TrimmerActorTest {
                 assertEquals(data.getExpectedResults(), propagatedUpdateMessage.getChangeSet());
             }
         };
-    }
-
-    @Test
-    public void test1() {
-        test(TrimmerTestHelper.data1());
     }
 
 }

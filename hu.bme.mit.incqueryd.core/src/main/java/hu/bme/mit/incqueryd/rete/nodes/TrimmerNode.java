@@ -2,7 +2,6 @@ package hu.bme.mit.incqueryd.rete.nodes;
 
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
 import java.util.ArrayList;

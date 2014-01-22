@@ -3,8 +3,8 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import static org.junit.Assert.assertTrue;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.nodes.data.BetaNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.GsonParser;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.TestCaseFinder;
+import hu.bme.mit.incqueryd.test.util.GsonParser;
+import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -42,19 +42,5 @@ public class JoinNodeTest {
 				data.getSecondaryChangeSet());
 		assertTrue(resultChangeSet.equals(data.getJoinExpectedResults()));		
 	}
-
-	// @Test
-	// public void test1() throws JsonParseException, JsonMappingException, IOException {
-	// BetaNodeTestData data = BetaTestHelper.data1();
-	//
-	// @Test
-	// public void test2() {
-	// test(BetaTestHelper.data2());
-	// }
-	//
-	// @Test
-	// public void test3() {
-	// test(BetaTestHelper.data3());
-	// }
 
 }
