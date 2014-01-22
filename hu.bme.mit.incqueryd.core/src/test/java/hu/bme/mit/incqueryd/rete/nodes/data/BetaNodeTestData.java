@@ -17,7 +17,7 @@ public class BetaNodeTestData {
 
     protected ChangeSet antiJoinExpectedResults;
     protected ChangeSet joinExpectedResults;
-
+    
     public BetaNodeTestData(final ChangeSet primaryChangeSet, final ChangeSet secondaryChangeSet,
             final TupleMask primaryMask, final TupleMask secondaryMask, final ChangeSet expectedResults,
             final ChangeSet antiJoinExpectedResults) {

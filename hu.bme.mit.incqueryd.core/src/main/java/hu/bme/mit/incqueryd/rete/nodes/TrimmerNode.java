@@ -2,7 +2,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.rete.dataunits.TupleImpl;
+import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class TrimmerNode extends AlphaNode {
                 resultTupleList.add(incomingTuple.get(element));
             }
 
-            final TupleImpl tuple = new TupleImpl(resultTupleList.toArray());
+            final Tuple tuple = new Tuple(resultTupleList.toArray());
             resultTuples.add(tuple);
         }
 

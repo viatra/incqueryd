@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.io;
 
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.rete.dataunits.TupleImpl;
+import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -49,7 +49,7 @@ public class GraphSonLoader {
                     tupleItems.add(propertyValue);
                 }
 
-                final Tuple tuple = new TupleImpl(tupleItems.toArray());
+                final Tuple tuple = new Tuple(tupleItems.toArray());
                 tuples.add(tuple);
             }
 
@@ -71,7 +71,7 @@ public class GraphSonLoader {
 
                 // logResult(v1 + ": " + v2s);
                 for (final Object v2 : v2s) {
-                    final Tuple tuple = new TupleImpl(v1, v2);
+                    final Tuple tuple = new Tuple(v1, v2);
                     tuples.add(tuple);
                     // logResult(tuple.toString());
                     // System.out.println(tuple.toString() + ", ");

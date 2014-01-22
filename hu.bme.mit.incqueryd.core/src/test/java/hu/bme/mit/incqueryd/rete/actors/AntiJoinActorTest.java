@@ -8,13 +8,11 @@ import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.data.BetaNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.BetaTestHelper;
 
 import java.util.Stack;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -106,19 +104,19 @@ public class AntiJoinActorTest {
         };
     }
 
-    @Test
-    public void test1() {
-        test(BetaTestHelper.data1());
-    }
-
-    @Test
-    public void test2() {
-        test(BetaTestHelper.data2());
-    }
-
-    @Test
-    public void test3() {
-        test(BetaTestHelper.data3());
-    }
+//    @Test
+//    public void test1() {
+//        test(BetaTestHelper.data1());
+//    }
+//
+//    @Test
+//    public void test2() {
+//        test(BetaTestHelper.data2());
+//    }
+//
+//    @Test
+//    public void test3() {
+//        test(BetaTestHelper.data3());
+//    }
 
 }

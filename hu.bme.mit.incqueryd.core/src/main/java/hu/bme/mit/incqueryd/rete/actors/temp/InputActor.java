@@ -8,7 +8,7 @@ import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
 import hu.bme.mit.incqueryd.rete.configuration.UniquenessEnforcerNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.rete.dataunits.TupleImpl;
+import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
 import hu.bme.mit.incqueryd.rete.messages.EditMessage;
@@ -65,7 +65,7 @@ public class InputActor extends ReteActor {
                 final Collection<?> values = vertexPairs.get(key);
 
                 for (final Object value : values) {
-                    final Tuple tuple = new TupleImpl(key, value);
+                    final Tuple tuple = new Tuple(key, value);
                     tuples.add(tuple);
                 }
             }
@@ -160,7 +160,7 @@ public class InputActor extends ReteActor {
                 // deleteCandidates.put(routeId, sensorId);
 
                 // creating a tuple from the result row
-                final Tuple tuple = new TupleImpl(routeId, sensorId);
+                final Tuple tuple = new Tuple(routeId, sensorId);
 
                 // deleting from indexer
                 tuples.remove(tuple);

@@ -2,10 +2,25 @@ package hu.bme.mit.incqueryd.rete.nodes;
 
 import static org.junit.Assert.assertTrue;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
+import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.nodes.data.BetaNodeTestData;
-import hu.bme.mit.incqueryd.rete.nodes.helpers.BetaTestHelper;
+import hu.bme.mit.incqueryd.rete.nodes.helpers.GsonParser;
+import hu.bme.mit.incqueryd.rete.nodes.helpers.TestCaseFinder;
+import hu.bme.mit.incqueryd.rete.nodes.helpers.TupleDeserializer;
+import hu.bme.mit.incqueryd.test.constants.TestConstants;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.junit.Test;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 
 /**
  * Test cases for the {@link AntiJoinNode} class.
@@ -15,28 +30,41 @@ import org.junit.Test;
  */
 public class AntiJoinNodeTest {
 
-    public void test(final BetaNodeTestData data) {
-        final AntiJoinNode joinNode = new AntiJoinNode(data.getPrimaryMask(), data.getSecondaryMask());
-        final ChangeSet resultChangeSet = Algorithms.join(joinNode, data.getPrimaryChangeSet(),
-                data.getSecondaryChangeSet());
-        
-        System.out.println(resultChangeSet.getTuples());
-        assertTrue(resultChangeSet.equals(data.getAntiJoinExpectedResults()));
-    }
+	@Test
+	public void test() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
+		File[] files = TestCaseFinder.getTestCases("betanode-*.json");
 
-    @Test
-    public void test1() {
-        test(BetaTestHelper.data1());
-    }
+		for (File file : files) {
+			System.out.println(file);
+			Gson gson = GsonParser.getGsonParser();
+			BetaNodeTestData data = gson.fromJson(new FileReader(file), BetaNodeTestData.class);			
+			antiJoin(data);
+		}
+	}
 
-    @Test
-    public void test2() {
-        test(BetaTestHelper.data2());
-    }
-    
-    @Test
-    public void test3() {
-        test(BetaTestHelper.data3());
-    }
+	public void antiJoin(final BetaNodeTestData data) {
+		final AntiJoinNode joinNode = new AntiJoinNode(data.getPrimaryMask(), data.getSecondaryMask());
+		final ChangeSet resultChangeSet = Algorithms.join(joinNode, data.getPrimaryChangeSet(),
+				data.getSecondaryChangeSet());
+		assertTrue(resultChangeSet.equals(data.getAntiJoinExpectedResults()));
+	}
+
+//	@Test
+//	public void test1() {
+//		BetaNodeTestData data = BetaTestHelper.data1();
+//		Gson gson = new Gson();	System.out.println(gson.toJson(data));		
+//	}
+//
+//	@Test
+//	public void test2() {
+//		BetaNodeTestData data = BetaTestHelper.data2();
+//		Gson gson = new Gson();	System.out.println(gson.toJson(data));		
+//	}
+//
+//	@Test
+//	public void test3() {
+//		BetaNodeTestData data = BetaTestHelper.data3();
+//		Gson gson = new Gson();	System.out.println(gson.toJson(data));		
+//	}
 
 }

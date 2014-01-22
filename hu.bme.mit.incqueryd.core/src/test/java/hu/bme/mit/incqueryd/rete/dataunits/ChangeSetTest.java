@@ -21,8 +21,8 @@ public class ChangeSetTest {
         final Set<Tuple> tuples1 = new HashSet<>();
         final Set<Tuple> tuples2 = new HashSet<>();
 
-        tuples1.add(new TupleImpl(1, 2));
-        tuples2.add(new TupleImpl(1, 2));
+        tuples1.add(new Tuple(1, 2));
+        tuples2.add(new Tuple(1, 2));
 
         final ChangeSet changeSet1 = new ChangeSet(tuples1, ChangeType.POSITIVE);
         final ChangeSet changeSet2 = new ChangeSet(tuples2, ChangeType.POSITIVE);
@@ -36,11 +36,11 @@ public class ChangeSetTest {
         final Set<Tuple> tuples1 = new HashSet<>();
         final Set<Tuple> tuples2 = new HashSet<>();
 
-        tuples1.add(new TupleImpl(1, 2));
-        tuples1.add(new TupleImpl(3, 4));
+        tuples1.add(new Tuple(1, 2));
+        tuples1.add(new Tuple(3, 4));
 
-        tuples2.add(new TupleImpl(3, 4));
-        tuples2.add(new TupleImpl(1, 2));
+        tuples2.add(new Tuple(3, 4));
+        tuples2.add(new Tuple(1, 2));
 
         final ChangeSet changeSet1 = new ChangeSet(tuples1, ChangeType.POSITIVE);
         final ChangeSet changeSet2 = new ChangeSet(tuples2, ChangeType.POSITIVE);
@@ -54,10 +54,10 @@ public class ChangeSetTest {
         final Set<Tuple> tuples1 = new HashSet<>();
         final Set<Tuple> tuples2 = new HashSet<>();
 
-        tuples1.add(new TupleImpl(1, 2));
+        tuples1.add(new Tuple(1, 2));
 
-        tuples2.add(new TupleImpl(3, 4));
-        tuples2.add(new TupleImpl(1, 2));
+        tuples2.add(new Tuple(3, 4));
+        tuples2.add(new Tuple(1, 2));
 
         final ChangeSet changeSet1 = new ChangeSet(tuples1, ChangeType.POSITIVE);
         final ChangeSet changeSet2 = new ChangeSet(tuples2, ChangeType.POSITIVE);

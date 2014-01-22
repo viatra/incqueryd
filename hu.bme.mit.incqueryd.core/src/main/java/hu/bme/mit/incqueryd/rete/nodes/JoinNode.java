@@ -3,7 +3,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.rete.dataunits.TupleImpl;
+import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
 import java.util.HashSet;
@@ -64,7 +64,7 @@ public class JoinNode extends BetaNode {
                     }
                 }
 
-                final Tuple tuple = new TupleImpl(resultTuple);
+                final Tuple tuple = new Tuple(resultTuple);
                 resultTuples.add(tuple);
             }
         }

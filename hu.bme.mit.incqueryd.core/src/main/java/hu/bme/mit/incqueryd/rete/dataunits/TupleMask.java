@@ -21,7 +21,7 @@ public class TupleMask {
         for (int i = 0; i < mask.size(); i++) {
             result[i] = tuple.get(mask.get(i));
         }
-        return new TupleImpl(result);
+        return new Tuple(result);
     }
 
     public List<Integer> getMask() {
