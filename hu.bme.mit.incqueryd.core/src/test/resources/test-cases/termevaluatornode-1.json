@@ -1,0 +1,6 @@
+{
+  "changeSet":{"tuples":[{"tuple":[3,4]},{"tuple":[1,4]},{"tuple":[3,6]},{"tuple":[1,6]}],"changeType":"POSITIVE"},
+  "conditionExpressions":[{"index":0,"comparisonOperator":"GREATER_THAN_OR_EQUAL","operand":2},
+  {"index":1,"comparisonOperator":"LESS_THAN_OR_EQUAL","operand":5}],
+  "expectedResults":{"tuples":[{"tuple":[3,4]}],"changeType":"POSITIVE"}
+}
