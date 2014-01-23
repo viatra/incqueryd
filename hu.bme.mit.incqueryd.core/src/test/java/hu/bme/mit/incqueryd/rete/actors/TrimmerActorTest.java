@@ -7,16 +7,26 @@ import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.data.TrimmerNodeTestData;
+import hu.bme.mit.incqueryd.test.util.GsonParser;
+import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Stack;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Test;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.testkit.JavaTestKit;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 
 /**
  * Test cases for the {@link TrimmerActor} class.
@@ -38,7 +48,20 @@ public class TrimmerActorTest {
         system.shutdown();
     }
 
-    public void test(final TrimmerNodeTestData data) {
+	@Test
+	public void test() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
+		File[] files = TestCaseFinder.getTestCases("trimmernode-*.json");
+
+		for (File file : files) {
+			System.out.println(file);
+			Gson gson = GsonParser.getGsonParser();
+			TrimmerNodeTestData data = gson.fromJson(new FileReader(file), TrimmerNodeTestData.class);
+			
+			trim(data);
+		}
+	}
+    
+    public void trim(final TrimmerNodeTestData data) {
         new JavaTestKit(system) {
             {
                 // Arrange
