@@ -1,5 +1,7 @@
 package hu.bme.mit.incqueryd.io;
 
+import hu.bme.mit.incqueryd.cache.DistributedMultiMap;
+import hu.bme.mit.incqueryd.cache.hazelcast.HazelcastCache;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 
 import java.io.IOException;
@@ -22,10 +24,9 @@ import com.hazelcast.core.MultiMap;
 
 public class GraphSonLoader {
 
-	private final Config cfg = new Config();
-    private final HazelcastInstance instance = Hazelcast.newHazelcastInstance(cfg);
-    final MultiMap<String, Tuple> vertexTuplesMap = instance.getMultiMap("vertexTuples");
-    final MultiMap<String, Tuple> edgeTuplesMap = instance.getMultiMap("edgeTuples");
+    private final HazelcastCache cache = new HazelcastCache();
+    final DistributedMultiMap<String, Tuple> vertexTuplesMap = cache.getMultiMap("vertexTuples");
+    final DistributedMultiMap<String, Tuple> edgeTuplesMap = cache.getMultiMap("edgeTuples");
 
 	public GraphSonLoader(final String pathName, final Map<String, Collection<String>> vertexTypesAndProperties,
 			final Collection<String> edgeLabels) throws IOException {
@@ -109,7 +110,7 @@ public class GraphSonLoader {
 		return result;
 	}
 
-    public static <K, V> Map<K, Set<V>> asMap(MultiMap<K, V> multiMap) {
+    public static <K, V> Map<K, Set<V>> asMap(DistributedMultiMap<K, V> multiMap) {
     	Map<K, Set<V>> result = Maps.newHashMap();
     	for (K key : multiMap.keySet()) {
 			result.put(key, Sets.newHashSet(multiMap.get(key)));

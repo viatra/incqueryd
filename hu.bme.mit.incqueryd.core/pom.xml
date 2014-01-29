@@ -141,11 +141,6 @@
 			<version>2.1.4</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.hazelcast</groupId>
-			<artifactId>hazelcast</artifactId>
-			<version>3.1.2</version>
-		</dependency>
 		<!-- test dependencies -->
 
 		<!-- <dependency> -->
@@ -160,6 +155,11 @@
 			<version>2.2.4</version>
 		</dependency>
 
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>incqueryd-cache-hazelcast</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 </project>
