@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FOURSTORE_CLUSTER_NAME="incqueryd_cluster"
+FOURSTORE_CLUSTER_NAME="trainbenchmark_cluster"
 SPARQL="SPARQL/$1.sparql"
 
 echo TrainBenchmark query: $1
