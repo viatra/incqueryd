@@ -13,7 +13,7 @@ public class HazelcastCache implements DistributedCache {
     private final HazelcastInstance instance = Hazelcast.newHazelcastInstance(cfg);
 
 	public <K, V> DistributedMultiMap<K, V> getMultiMap(String name) {
-		return new HazelcastMultiMap(instance.getMultiMap(name));
+		return new HazelcastMultiMap<K, V>(instance.<K, V>getMultiMap(name));
 	}
 
 }

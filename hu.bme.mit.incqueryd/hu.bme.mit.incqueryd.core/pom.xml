@@ -8,8 +8,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>hu.bme.mit.incqueryd.core</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<url>http://maven.apache.org</url>
 
 	<name>IncQuery-D Core</name>
 
@@ -92,10 +90,6 @@
 	</build>
 
 
-	<properties>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
-	</properties>
 
 
 	<dependencies>
