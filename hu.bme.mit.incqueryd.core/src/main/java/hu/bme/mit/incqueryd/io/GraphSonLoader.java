@@ -1,11 +1,12 @@
 package hu.bme.mit.incqueryd.io;
 
+import hu.bme.mit.incqueryd.cache.DistributedMultiMap;
+import hu.bme.mit.incqueryd.cache.hazelcast.HazelcastCache;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -13,12 +14,19 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
+import com.google.common.collect.Sets;
+import com.hazelcast.config.Config;
+import com.hazelcast.core.Hazelcast;
+import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.core.MultiMap;
 
 public class GraphSonLoader {
 
-	final Map<String, Set<Tuple>> vertexTuplesMap = new HashMap<>();
-	final Map<String, Set<Tuple>> edgeTuplesMap = new HashMap<>();
+    private final HazelcastCache cache = new HazelcastCache();
+    final DistributedMultiMap<String, Tuple> vertexTuplesMap = cache.getMultiMap("vertexTuples");
+    final DistributedMultiMap<String, Tuple> edgeTuplesMap = cache.getMultiMap("edgeTuples");
 
 	public GraphSonLoader(final String pathName, final Map<String, Collection<String>> vertexTypesAndProperties,
 			final Collection<String> edgeLabels) throws IOException {
@@ -36,7 +44,6 @@ public class GraphSonLoader {
 		// e.g. <id, Segment_length>
 		for (final String vertexType : vertexTypeVertexIdsMap.keySet()) {
 			final Collection<Object> verticesId = vertexTypeVertexIdsMap.get(vertexType);
-			final Set<Tuple> tuples = new HashSet<>();
 
 			for (final Object vertexId : verticesId) {
 				final List<Object> tupleItems = new LinkedList<>();
@@ -52,19 +59,15 @@ public class GraphSonLoader {
 				}
 
 				final Tuple tuple = new Tuple(tupleItems.toArray());
-				tuples.add(tuple);
+				vertexTuplesMap.put(vertexType, tuple);
 			}
 
-			vertexTuplesMap.put(vertexType, tuples);
 		}
 
 		// converting the edges to tuples
 		for (final Entry<String, Multimap<Object, Object>> entry : edgeLabelVertexPairsMap.entrySet()) {
 			final String edgeLabel = entry.getKey();
 			final Multimap<Object, Object> edges = entry.getValue();
-
-			final Set<Tuple> tuples = new HashSet<>();
-			edgeTuplesMap.put(edgeLabel, tuples);
 
 			// System.out.println(edgeLabel);
 
@@ -74,7 +77,7 @@ public class GraphSonLoader {
 				// logResult(v1 + ": " + v2s);
 				for (final Object v2 : v2s) {
 					final Tuple tuple = new Tuple(v1, v2);
-					tuples.add(tuple);
+					edgeTuplesMap.put(edgeLabel, tuple);
 					// logResult(tuple.toString());
 					// System.out.println(tuple.toString() + ", ");
 				}
@@ -107,12 +110,20 @@ public class GraphSonLoader {
 		return result;
 	}
 
-	public Map<String, Set<Tuple>> getVertexTuplesMap() {
-		return vertexTuplesMap;
-	}
+    public static <K, V> Map<K, Set<V>> asMap(DistributedMultiMap<K, V> multiMap) {
+    	Map<K, Set<V>> result = Maps.newHashMap();
+    	for (K key : multiMap.keySet()) {
+			result.put(key, Sets.newHashSet(multiMap.get(key)));
+		}
+    	return result;
+    }
 
-	public Map<String, Set<Tuple>> getEdgeTuplesMap() {
-		return edgeTuplesMap;
-	}
+    public Map<String,Set<Tuple>> getVertexTuplesMap() {
+        return asMap(vertexTuplesMap);
+    }
+
+    public Map<String,Set<Tuple>> getEdgeTuplesMap() {
+        return asMap(edgeTuplesMap);
+    }
 
 }
