@@ -21,7 +21,7 @@
 		</dependency>
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
-			<artifactId>incqueryd-cache</artifactId>
+			<artifactId>hu.bme.mit.incqueryd.cache</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
