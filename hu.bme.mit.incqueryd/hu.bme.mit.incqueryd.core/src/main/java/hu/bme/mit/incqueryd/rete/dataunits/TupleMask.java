@@ -3,14 +3,13 @@ package hu.bme.mit.incqueryd.rete.dataunits;
 import java.util.List;
 
 /**
- * 
+ *
  * @author szarnyasg
- * 
+ *
  */
 public class TupleMask {
 
     protected List<Integer> mask;
-    protected List<Integer> thresholds;
 
     public TupleMask(final List<Integer> mask) {
         this.mask = mask;
