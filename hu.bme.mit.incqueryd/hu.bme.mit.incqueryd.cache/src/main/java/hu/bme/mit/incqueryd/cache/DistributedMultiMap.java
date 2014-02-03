@@ -11,4 +11,6 @@ public interface DistributedMultiMap<K, V> {
 
 	boolean put(K key, V value);
 
+	int size();
+
 }

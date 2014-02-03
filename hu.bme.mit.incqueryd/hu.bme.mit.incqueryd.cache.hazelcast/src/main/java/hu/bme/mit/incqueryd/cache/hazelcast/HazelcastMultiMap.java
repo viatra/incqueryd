@@ -1,10 +1,10 @@
 package hu.bme.mit.incqueryd.cache.hazelcast;
+import hu.bme.mit.incqueryd.cache.DistributedMultiMap;
+
 import java.util.Collection;
 import java.util.Set;
 
 import com.hazelcast.core.MultiMap;
-
-import hu.bme.mit.incqueryd.cache.DistributedMultiMap;
 
 public class HazelcastMultiMap<K, V> implements DistributedMultiMap<K, V> {
 
@@ -24,6 +24,10 @@ public class HazelcastMultiMap<K, V> implements DistributedMultiMap<K, V> {
 
 	public Set<K> keySet() {
 		return multiMap.keySet();
+	}
+
+	public int size() {
+		return multiMap.size();
 	}
 
 }

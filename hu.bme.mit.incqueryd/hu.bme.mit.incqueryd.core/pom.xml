@@ -156,6 +156,11 @@
 			<artifactId>hu.bme.mit.incqueryd.cache.hazelcast</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.cache.local</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 </project>

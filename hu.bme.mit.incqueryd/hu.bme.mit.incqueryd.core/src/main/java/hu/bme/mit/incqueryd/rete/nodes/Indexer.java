@@ -1,26 +1,24 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
+import hu.bme.mit.incqueryd.cache.DistributedMultiMap;
+import hu.bme.mit.incqueryd.cache.local.LocalCache;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
-
 /**
  * Indexer node for the {@link BetaNode}s.
- * 
+ *
  * @author szarnyasg
- * 
+ *
  */
 public class Indexer {
 
-    protected Multimap<Tuple, Tuple> map = ArrayListMultimap.create();
-    // protected Multimap<Tuple, Tuple> map = TreeMultimap.create();
+    protected final DistributedMultiMap<Tuple, Tuple> map = new LocalCache().<Tuple, Tuple>getMultiMap("");
 
-    protected TupleMask joinMask;
+    protected final TupleMask joinMask;
 
     public Indexer(final TupleMask joinMask) {
         this.joinMask = joinMask;
@@ -48,10 +46,6 @@ public class Indexer {
 
     public int getSize() {
         return map.size();
-    }
-
-    public Multimap<Tuple, Tuple> getMap() {
-        return map;
     }
 
 }

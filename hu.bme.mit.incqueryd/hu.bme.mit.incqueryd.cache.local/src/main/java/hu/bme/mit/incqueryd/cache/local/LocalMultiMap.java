@@ -27,4 +27,9 @@ public class LocalMultiMap<K, V> implements DistributedMultiMap<K, V> {
 		return multimap.keySet();
 	}
 
+	@Override
+	public int size() {
+		return multimap.size();
+	}
+
 }
