@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class Indexer {
 
-    protected final DistributedMultiMap<Tuple, Tuple> map = new LocalCache().<Tuple, Tuple>getMultiMap("");
+    protected final DistributedMultiMap<Tuple, Tuple> map = new LocalCache().getMultiMap("");
 
     protected final TupleMask joinMask;
 

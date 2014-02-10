@@ -1,4 +1,5 @@
 package hu.bme.mit.incqueryd.cache.hazelcast;
+
 import hu.bme.mit.incqueryd.cache.DistributedMultiMap;
 
 import java.util.Collection;

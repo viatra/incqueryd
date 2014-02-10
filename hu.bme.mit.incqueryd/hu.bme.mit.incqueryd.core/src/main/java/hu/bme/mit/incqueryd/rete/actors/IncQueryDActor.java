@@ -13,9 +13,9 @@ import akka.event.Logging;
 import akka.event.LoggingAdapter;
 
 /**
- * 
+ *
  * @author szarnyasg
- * 
+ *
  */
 public abstract class IncQueryDActor extends UntypedActor {
 
@@ -53,6 +53,7 @@ public abstract class IncQueryDActor extends UntypedActor {
         }
     }
 
+    // TODO make generic
     protected abstract void configure(final IncQueryDConfiguration incQueryDConfiguration);
 
 //    protected void sendUpdateMessage(final Stack<ActorRef> source, final UpdateMessage message) {
@@ -80,7 +81,7 @@ public abstract class IncQueryDActor extends UntypedActor {
 
     /**
      * Sends a ready message immediately.
-     * 
+     *
      * @param receivedUpdateMessage
      */
     protected void readyImmediately(final UpdateMessage receivedUpdateMessage) {
@@ -94,7 +95,7 @@ public abstract class IncQueryDActor extends UntypedActor {
 
     /**
      * Propagates the ready message back on the Rete net.
-     * 
+     *
      * @param readyMessage
      */
     protected void readyByMessage(final ReadyMessage readyMessage) {
