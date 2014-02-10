@@ -1,6 +1,7 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
 import static org.junit.Assert.assertTrue;
+import hu.bme.mit.incqueryd.rete.configuration.TrimmerNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.nodes.data.TrimmerNodeTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
@@ -26,19 +27,21 @@ public class TrimmerNodeTest {
 
 	@Test
 	public void test() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
-		File[] files = TestCaseFinder.getTestCases("trimmernode-*.json");
+		final File[] files = TestCaseFinder.getTestCases("trimmernode-*.json");
 
-		for (File file : files) {
+		for (final File file : files) {
 			System.out.println(file);
-			Gson gson = GsonParser.getGsonParser();
-			TrimmerNodeTestData data = gson.fromJson(new FileReader(file), TrimmerNodeTestData.class);
+			final Gson gson = GsonParser.getGsonParser();
+			final TrimmerNodeTestData data = gson.fromJson(new FileReader(file), TrimmerNodeTestData.class);
 			
 			trim(data);
 		}
 	}
 	
     public void trim(final TrimmerNodeTestData data) {
-        final TrimmerNode trimmerNode = new TrimmerNode(data.getProjectionMask());
+    	final TrimmerNodeConfiguration configuration = new TrimmerNodeConfiguration(data.getProjectionMask());
+    	
+        final TrimmerNode trimmerNode = new TrimmerNode(configuration);
         final ChangeSet resultChangeSet = trimmerNode.update(data.getChangeSet());
         assertTrue(resultChangeSet.equals(data.getExpectedResults()));
     }

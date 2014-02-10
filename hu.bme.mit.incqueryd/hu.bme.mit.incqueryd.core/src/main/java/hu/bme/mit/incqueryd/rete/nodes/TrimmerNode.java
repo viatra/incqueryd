@@ -1,8 +1,8 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
+import hu.bme.mit.incqueryd.rete.configuration.TrimmerNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -22,15 +22,16 @@ import java.util.Set;
  */
 public class TrimmerNode extends AlphaNode {
 
-    protected TupleMask projectionMask;
+	protected TrimmerNodeConfiguration conf;
 
-    public TrimmerNode(final TupleMask projectionMask) {
-        this.projectionMask = projectionMask;
+    public TrimmerNode(final TrimmerNodeConfiguration conf) {
+        super();
+        this.conf = conf;
     }
 
     @Override
     public ChangeSet update(final ChangeSet incomingChangeSet) {
-        final List<Integer> mask = projectionMask.getMask();
+        final List<Integer> mask = conf.getProjectionMask().getMask();
 
         final Set<Tuple> incomingTuples = incomingChangeSet.getTuples();
 

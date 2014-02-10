@@ -1,6 +1,7 @@
 package hu.bme.mit.incqueryd.rete.dataunits;
 
 public enum ReteNodeSlot {
-    PRIMARY, // left on the figure
+    NONE,
+	PRIMARY, // left on the figure
     SECONDARY // right on the figure
 }

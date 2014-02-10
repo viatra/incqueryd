@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import hu.bme.mit.incqueryd.io.GraphSonLoader;
 import hu.bme.mit.incqueryd.rete.comparison.ComparisonOperator;
 import hu.bme.mit.incqueryd.rete.comparison.ConditionExpression;
+import hu.bme.mit.incqueryd.rete.configuration.TrimmerNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
@@ -145,7 +146,8 @@ public class TrainBenchmark {
         logMessage("Route_switchPosition JOIN SwitchPosition_switch JOIN TrackElement_sensor ANTIJOIN Route_routeDefinition");
         logMessage("<Route>");
         final TupleMask projectionMask = new TupleMask(ImmutableList.of(0));
-        final TrimmerNode trimmerNode = new TrimmerNode(projectionMask);
+        final TrimmerNodeConfiguration trimmerNodeConf = new TrimmerNodeConfiguration(projectionMask); 
+        final TrimmerNode trimmerNode = new TrimmerNode(trimmerNodeConf);
         final ChangeSet resultChangeSet4 = trimmerNode.update(resultChangeSet3);
         logResult(resultChangeSet4.getTuples().toString());
         logMessage(resultChangeSet4.getTuples().size() + " tuples");
@@ -240,7 +242,8 @@ public class TrainBenchmark {
         logMessage("PROJECTION_{1, 3} (TrackElement_sensor JOIN TrackElement_connectsTo JOIN TrackElement_sensor)");
         logMessage("<Sensor1, Sensor2>");
         final TupleMask projectionMask1 = new TupleMask(ImmutableList.of(1, 3));
-        final TrimmerNode trimmerNode1 = new TrimmerNode(projectionMask1);
+        final TrimmerNodeConfiguration trimmerNodeConf1 = new TrimmerNodeConfiguration(projectionMask1);
+        final TrimmerNode trimmerNode1 = new TrimmerNode(trimmerNodeConf1);
         final ChangeSet resultChangeSet5 = trimmerNode1.update(resultChangeSet4);
         logResult(resultChangeSet5.getTuples().toString());
         logMessage(resultChangeSet5.getTuples().size() + " tuples");
@@ -303,7 +306,8 @@ public class TrainBenchmark {
         logMessage(")");
         logMessage("<Route1>");
         final TupleMask projectionMask2 = new TupleMask(ImmutableList.of(0));
-        final TrimmerNode trimmerNode2 = new TrimmerNode(projectionMask2);
+        final TrimmerNodeConfiguration trimmerNodeConf2 = new TrimmerNodeConfiguration(projectionMask2);
+        final TrimmerNode trimmerNode2 = new TrimmerNode(trimmerNodeConf2);
         final ChangeSet resultChangeSet10 = trimmerNode2.update(resultChangeSet9);
         logResult(resultChangeSet10.getTuples().toString());
         logMessage(resultChangeSet10.getTuples().size() + " tuples");

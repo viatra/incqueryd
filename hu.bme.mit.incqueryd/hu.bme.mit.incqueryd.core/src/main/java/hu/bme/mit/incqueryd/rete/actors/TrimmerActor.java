@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
 import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
-import hu.bme.mit.incqueryd.rete.configuration.TrimmerActorConfiguration;
+import hu.bme.mit.incqueryd.rete.configuration.TrimmerNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.nodes.TrimmerNode;
 
 /**
@@ -11,16 +11,15 @@ import hu.bme.mit.incqueryd.rete.nodes.TrimmerNode;
  */
 public class TrimmerActor extends AlphaActor {
 
-    private TrimmerNode getTrimmerNode() {
-        return (TrimmerNode) reteNode;
-    }
+//    protected TrimmerNode getTrimmerNode() {
+//        return (TrimmerNode) reteNode;
+//    }
 
     @Override
     protected void configure(final IncQueryDConfiguration incQueryDConfiguration) {
-        final TrimmerActorConfiguration configuration = (TrimmerActorConfiguration) incQueryDConfiguration;
+        final TrimmerNodeConfiguration configuration = (TrimmerNodeConfiguration) incQueryDConfiguration;
 
-        reteNode = new TrimmerNode(configuration.getProjectionMask());
-        
+        reteNode = new TrimmerNode(configuration);        
         super.configure(configuration);
     }
 
