@@ -6,9 +6,7 @@ import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.AntiJoinNode;
 import hu.bme.mit.incqueryd.rete.nodes.FilterNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
-
-import java.util.Stack;
-
+import scala.collection.immutable.Stack;
 import akka.actor.ActorRef;
 
 /**

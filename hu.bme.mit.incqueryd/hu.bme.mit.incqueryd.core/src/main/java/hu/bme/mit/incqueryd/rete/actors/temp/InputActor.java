@@ -20,10 +20,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
-import java.util.Stack;
 
 import org.apache.cassandra.transport.messages.ReadyMessage;
 
+import scala.collection.immutable.Stack;
 import akka.actor.ActorRef;
 
 import com.google.common.collect.ArrayListMultimap;

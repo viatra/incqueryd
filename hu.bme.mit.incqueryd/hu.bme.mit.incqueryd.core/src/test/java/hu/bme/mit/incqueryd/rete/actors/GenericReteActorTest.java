@@ -46,9 +46,7 @@ public class GenericReteActorTest {
 				// Act
 				actor.tell(ActorMessage.SUBSCRIBE_SINGLE, probe2.getRef());
 				// Assert
-				probe2.expectMsgEquals(duration("1 second"), ActorReply.SUBSCRIBED);
-				
-				
+				probe2.expectMsgEquals(duration("1 second"), ActorReply.SUBSCRIBED);				
 			}
 		};
 	}

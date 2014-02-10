@@ -13,12 +13,12 @@ import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Stack;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import scala.collection.immutable.Stack;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
@@ -50,12 +50,12 @@ public class InequalityActorTest {
     
 	@Test
 	public void test() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
-		File[] files = TestCaseFinder.getTestCases("filternode-*.json");
+		final File[] files = TestCaseFinder.getTestCases("filternode-*.json");
 
-		for (File file : files) {
+		for (final File file : files) {
 			System.out.println(file);
-			Gson gson = GsonParser.getGsonParser();
-			FilterNodeTestData data = gson.fromJson(new FileReader(file), FilterNodeTestData.class);
+			final Gson gson = GsonParser.getGsonParser();
+			final FilterNodeTestData data = gson.fromJson(new FileReader(file), FilterNodeTestData.class);
 			filterInequality(data);
 		}
 	}
@@ -83,9 +83,8 @@ public class InequalityActorTest {
                 expectMsgEquals(duration("1 second"), ActorMessage.INITIALIZED);
 
                 // Act
-                final Stack<ActorRef> senderStack = new Stack<>();
-                senderStack.add(getRef());
-                final UpdateMessage updateMessage = new UpdateMessage(data.getChangeSet(), null, senderStack);
+                final Stack<ActorRef> senderStack = Stack.empty().push(getRef());
+                final UpdateMessage updateMessage = new UpdateMessage(data.getChangeSet(), ReteNodeSlot.SINGLE, senderStack);
                 filterActor.tell(updateMessage, getRef());
                 // Assert
                 // we expect a ReadyMessage with an empty stack as the sender route

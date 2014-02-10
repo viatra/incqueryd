@@ -4,9 +4,7 @@ import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
-
-import java.util.Stack;
-
+import scala.collection.immutable.Stack;
 import akka.actor.ActorRef;
 import akka.actor.UntypedActor;
 import akka.event.Logging;

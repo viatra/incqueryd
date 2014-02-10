@@ -10,38 +10,37 @@ import java.util.Set;
  */
 public class ChangeSet {
 
-    public ChangeSet(final Set<Tuple> tuples, final ChangeType changeType) {
-        super();
-        this.tuples = tuples;
-        this.changeType = changeType;
-    }
+	protected Set<Tuple> tuples;
+	protected ChangeType changeType;
 
-    protected Set<Tuple> tuples;
-    protected ChangeType changeType;
+	public ChangeSet(final Set<Tuple> tuples, final ChangeType changeType) {
+		super();
+		this.tuples = tuples;
+		this.changeType = changeType;
+	}
 
-    public Set<Tuple> getTuples() {
-        return tuples;
-    }
+	public Set<Tuple> getTuples() {
+		return tuples;
+	}
 
-    public ChangeType getChangeType() {
-        return changeType;
-    }
+	public ChangeType getChangeType() {
+		return changeType;
+	}
 
-    @Override
-    public String toString() {
-        return "ChangeSet, " + getTuples().size() + " tuples, [tuples=" + tuples + ", changeType=" + changeType + "]";
-    }
+	@Override
+	public String toString() {
+		return "ChangeSet, " + getTuples().size() + " tuples, [tuples=" + tuples + ", changeType=" + changeType + "]";
+	}
 
-    @Override
-    public boolean equals(final Object o) {
-        if (!(o instanceof ChangeSet))
-            return false;
-        final ChangeSet changeSet = (ChangeSet) o;
+	@Override
+	public boolean equals(final Object o) {
+		if (!(o instanceof ChangeSet))
+			return false;
+		final ChangeSet changeSet = (ChangeSet) o;
 
-        // comparing fields
-        if (getChangeType() != changeSet.getChangeType())
-            return false;
-        return getTuples().equals(changeSet.getTuples());
-    }
+		// comparing fields
+		return getChangeType().equals(changeSet.getChangeType()) //
+				&& getTuples().equals(changeSet.getTuples());
+	}
 
 }
