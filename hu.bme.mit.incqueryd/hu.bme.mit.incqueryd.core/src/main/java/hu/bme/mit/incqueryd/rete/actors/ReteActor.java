@@ -12,9 +12,9 @@ import java.util.Stack;
 import akka.actor.ActorRef;
 
 /**
- * 
+ *
  * @author szarnyasg
- * 
+ *
  */
 public abstract class ReteActor extends IncQueryDActor {
 
@@ -24,6 +24,8 @@ public abstract class ReteActor extends IncQueryDActor {
      * These nodes can be accessed by typesafe private getters in the descendants, e.g. an {@link AntiJoinActor} has a
      * getAntiJoinNode(), a {@link FilterActor} has a getFilterNode() method.
      */
+	// TODO make generic
+	// TODO make final
     protected ReteNode reteNode;
     // TODO a ReteActor may send the update message to multiple targets
     protected ActorRef targetActorRef;

@@ -7,9 +7,9 @@ import com.google.common.collect.ImmutableList;
 
 /**
  * Tuple implementation.
- * 
+ *
  * @author szarnyasg
- * 
+ *
  */
 public class Tuple implements Serializable, Comparable<Tuple> {
 
@@ -56,7 +56,7 @@ public class Tuple implements Serializable, Comparable<Tuple> {
     @Override
     public int compareTo(Tuple o) {
         for (int i = 0; i < o.size(); i++) {
-            Long l1 = (Long) get(i);
+            Long l1 = (Long) get(i); // TODO avoid cast (store Comparables)
             Long l2 = (Long) o.get(i);
 
             if (l1 != l2) {

@@ -106,7 +106,7 @@ public class GraphSonLoader {
 		return result;
 	}
 
-    public static <K, V> Map<K, Set<V>> asMap(DistributedMultiMap<K, V> multiMap) {
+    private static <K, V> Map<K, Set<V>> asMap(DistributedMultiMap<K, V> multiMap) {
     	Map<K, Set<V>> result = Maps.newHashMap();
     	for (K key : multiMap.keySet()) {
 			result.put(key, Sets.newHashSet(multiMap.get(key)));
