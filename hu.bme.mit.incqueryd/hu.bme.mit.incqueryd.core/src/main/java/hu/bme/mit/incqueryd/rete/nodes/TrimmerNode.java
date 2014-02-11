@@ -1,6 +1,5 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
-import hu.bme.mit.incqueryd.rete.configuration.TrimmerNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 
@@ -8,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
 
 /**
  * The TrimmerNode has a pattern mask and outputs the contents of its parent transformed by the mask. On receiving an
@@ -22,16 +23,16 @@ import java.util.Set;
  */
 public class TrimmerNode extends AlphaNode {
 
-	protected TrimmerNodeConfiguration conf;
+	protected TrimmerRecipe recipe;
 
-    public TrimmerNode(final TrimmerNodeConfiguration conf) {
+    public TrimmerNode(final TrimmerRecipe conf) {
         super();
-        this.conf = conf;
+        this.recipe = conf;
     }
 
     @Override
     public ChangeSet update(final ChangeSet incomingChangeSet) {
-        final List<Integer> mask = conf.getProjectionMask().getMask();
+        final List<Integer> mask = recipe.getMask().getSourceIndices();
 
         final Set<Tuple> incomingTuples = incomingChangeSet.getTuples();
 

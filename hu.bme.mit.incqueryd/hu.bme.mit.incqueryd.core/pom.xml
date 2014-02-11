@@ -11,6 +11,17 @@
 
 	<name>IncQuery-D Core</name>
 
+	<repositories>
+		<repository>
+			<id>emfjson-repository</id>
+			<url>http://repository-ghillairet.forge.cloudbees.com/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
@@ -51,7 +62,7 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -143,7 +154,7 @@
 			<version>2.1.4</version>
 		</dependency>
 
-		<!-- test dependencies -->
+		<!-- test -->
 
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -151,16 +162,36 @@
 			<version>2.2.4</version>
 		</dependency>
 
+		<!-- cache -->
+
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
 			<artifactId>hu.bme.mit.incqueryd.cache.hazelcast</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
 			<artifactId>hu.bme.mit.incqueryd.cache.local</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+		<!-- recipes -->
+
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.recipes</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- EMF Binding for JSON -->
+		
+		<dependency>
+			<groupId>org.eclipselabs</groupId>
+			<artifactId>org.eclipselabs.emfjson</artifactId>
+			<version>0.5.3-SNAPSHOT</version>
+		</dependency>
+		
 	</dependencies>
 
 </project>

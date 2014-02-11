@@ -1,7 +1,6 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
 import hu.bme.mit.incqueryd.rete.configuration.ReteNodeConfiguration;
-import hu.bme.mit.incqueryd.rete.configuration.TrimmerNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
@@ -15,6 +14,8 @@ import hu.bme.mit.incqueryd.rete.nodes.TrimmerNode;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
 
 import scala.Tuple2;
 import scala.collection.immutable.Stack;
@@ -41,9 +42,9 @@ public class GenericReteActor extends UntypedActor {
 			subscribeSender(ReteNodeSlot.SECONDARY);
 		} else if (message instanceof ReteNodeConfiguration) {
 			// ReteNodeConfigurations
-			if (message instanceof TrimmerNodeConfiguration) {
-				final TrimmerNodeConfiguration conf = (TrimmerNodeConfiguration) message;
-				reteNode = new TrimmerNode(conf);
+			if (message instanceof TrimmerRecipe) {
+				final TrimmerRecipe recipe = (TrimmerRecipe) message;
+				reteNode = new TrimmerNode(recipe);
 			} else if (message instanceof Object) { // more configuration coming...
 
 			}

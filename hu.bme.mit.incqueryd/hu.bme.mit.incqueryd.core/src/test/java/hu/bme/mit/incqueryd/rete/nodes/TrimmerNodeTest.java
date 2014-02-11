@@ -1,7 +1,6 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
 import static org.junit.Assert.assertTrue;
-import hu.bme.mit.incqueryd.rete.configuration.TrimmerNodeConfiguration;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.nodes.data.TrimmerNodeTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
@@ -11,6 +10,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import org.eclipse.incquery.runtime.rete.recipes.Mask;
+import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
+import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
 import org.junit.Test;
 
 import com.google.gson.Gson;
@@ -39,9 +41,12 @@ public class TrimmerNodeTest {
 	}
 	
     public void trim(final TrimmerNodeTestData data) {
-    	final TrimmerNodeConfiguration configuration = new TrimmerNodeConfiguration(data.getProjectionMask());
-    	
-        final TrimmerNode trimmerNode = new TrimmerNode(configuration);
+    	final TrimmerRecipe recipe = RecipesFactory.eINSTANCE.createTrimmerRecipe();
+    	final Mask mask = RecipesFactory.eINSTANCE.createMask();
+    	mask.getSourceIndices().addAll(data.getProjectionMask().getMask());
+		recipe.setMask(mask);		
+		
+        final TrimmerNode trimmerNode = new TrimmerNode(recipe);
         final ChangeSet resultChangeSet = trimmerNode.update(data.getChangeSet());
         assertTrue(resultChangeSet.equals(data.getExpectedResults()));
     }
