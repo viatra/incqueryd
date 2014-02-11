@@ -25,9 +25,9 @@ public class TrimmerNode extends AlphaNode {
 
 	protected TrimmerRecipe recipe;
 
-    public TrimmerNode(final TrimmerRecipe conf) {
+    public TrimmerNode(final TrimmerRecipe recipe) {
         super();
-        this.recipe = conf;
+        this.recipe = recipe;
     }
 
     @Override

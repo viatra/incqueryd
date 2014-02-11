@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import org.eclipse.incquery.runtime.rete.recipes.EqualityFilterRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
 import org.junit.Test;
 
 import com.google.gson.Gson;
@@ -26,18 +28,22 @@ public class EqualityNodeTest {
 
 	@Test
 	public void test() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
-		File[] files = TestCaseFinder.getTestCases("filternode-*.json");
+		final File[] files = TestCaseFinder.getTestCases("filternode-*.json");
 
-		for (File file : files) {
+		for (final File file : files) {
 			System.out.println(file);
-			Gson gson = GsonParser.getGsonParser();
-			FilterNodeTestData data = gson.fromJson(new FileReader(file), FilterNodeTestData.class);
+			final Gson gson = GsonParser.getGsonParser();
+			final FilterNodeTestData data = gson.fromJson(new FileReader(file), FilterNodeTestData.class);
+			
 			filterEquality(data);
 		}
 	}
 
 	public void filterEquality(final FilterNodeTestData data) {
-		final FilterNode filterNode = new EqualityNode(data.getTupleMask());
+    	final EqualityFilterRecipe recipe = RecipesFactory.eINSTANCE.createEqualityFilterRecipe();
+    	recipe.getIndices().addAll(data.getTupleMask().getMask());
+    	
+		final EqualityNode filterNode = new EqualityNode(recipe);
 		final ChangeSet resultChangeSet = filterNode.update(data.getChangeSet());
 
 		assertTrue(resultChangeSet.equals(data.getEqualityExpectedResults()));

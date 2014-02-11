@@ -1,6 +1,6 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.nodes.data.FilterNodeTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import org.eclipse.incquery.runtime.rete.recipes.InequalityFilterRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
 import org.junit.Test;
 
 import com.google.gson.Gson;
@@ -26,21 +28,30 @@ public class InequalityNodeTest {
 
 	@Test
 	public void test() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
-		File[] files = TestCaseFinder.getTestCases("filternode-*.json");
+		final File[] files = TestCaseFinder.getTestCases("filternode-*.json");
 
-		for (File file : files) {
+		for (final File file : files) {
 			System.out.println(file);
-			Gson gson = GsonParser.getGsonParser();
-			FilterNodeTestData data = gson.fromJson(new FileReader(file), FilterNodeTestData.class);
+			final Gson gson = GsonParser.getGsonParser();
+			final FilterNodeTestData data = gson.fromJson(new FileReader(file), FilterNodeTestData.class);
 			filterInequality(data);
 		}
 	}
 
 	public void filterInequality(final FilterNodeTestData data) {
-		final FilterNode filterNode = new InequalityNode(data.getTupleMask());
+    	final InequalityFilterRecipe recipe = RecipesFactory.eINSTANCE.createInequalityFilterRecipe();
+		
+    	// set the subject
+		recipe.setSubject(data.getTupleMask().getMask().get(0));		
+		// remove the head
+		data.getTupleMask().getMask().remove(0);
+		// get tha tail as inequals
+		recipe.getInequals().addAll(data.getTupleMask().getMask());
+    	
+		final InequalityNode filterNode = new InequalityNode(recipe);		
 		final ChangeSet resultChangeSet = filterNode.update(data.getChangeSet());
 
-		assertTrue(resultChangeSet.equals(data.getInequalityExpectedResults()));
+		assertEquals(data.getInequalityExpectedResults(), resultChangeSet);
 	}
 
 }

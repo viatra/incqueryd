@@ -1,3 +1,4 @@
+package hu.bme.mit.incqueryd.rete.temp;
 //package hu.bme.mit.incqueryd.rete.actors;
 //
 //import hu.bme.mit.incqueryd.rete.configuration.IncQueryDConfiguration;

@@ -1,6 +1,6 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
-import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
+import hu.bme.mit.incqueryd.rete.nodes.data.FilterNodeTestData;
 import hu.bme.mit.incqueryd.rete.nodes.data.TrimmerNodeTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
 import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
@@ -9,17 +9,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-import org.eclipse.incquery.runtime.rete.recipes.Mask;
-import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
-import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import akka.actor.Props;
-import akka.testkit.JavaTestKit;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
@@ -43,19 +37,6 @@ public class TrimmerActorTest {
 	@AfterClass
 	public static void teardown() {
 		system.shutdown();
-	}
-
-	@Test
-	public void test() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
-		final File[] files = TestCaseFinder.getTestCases("" + "trimmernode-*.json");
-
-		for (final File file : files) {
-			System.out.println(file);
-			final Gson gson = GsonParser.getGsonParser();
-			final TrimmerNodeTestData data = gson.fromJson(new FileReader(file), TrimmerNodeTestData.class);
-
-			trim(data);
-		}
 	}
 
 	/** @formatter:off
@@ -96,81 +77,31 @@ public class TrimmerActorTest {
 	 * 
 	 * @param data
 	 */
-	public void trim(final TrimmerNodeTestData data) {		
-		new JavaTestKit(system) {
-			{
-				// Arrange
-				final Props props = new Props(GenericReteActor.class);
-				final ActorRef trimmerActor = system.actorOf(props);
+	@Test
+	public void trimmerNodeTest() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
+		final File[] files = TestCaseFinder.getTestCases("" + "trimmernode-*.json");
 
-				// configuration
-				// ====================================================================================================
-				final JavaTestKit coordinatorActor = new JavaTestKit(system);
-				final JavaTestKit targetActor = new JavaTestKit(system);
+		for (final File file : files) {
+			System.out.println(file);
+			final Gson gson = GsonParser.getGsonParser();
+			final TrimmerNodeTestData data = gson.fromJson(new FileReader(file), TrimmerNodeTestData.class);
 
-				// Act
-				final TupleMask projectionMask = data.getProjectionMask();
-				
-				final TrimmerRecipe recipe = RecipesFactory.eINSTANCE.createTrimmerRecipe();
-				final Mask mask = RecipesFactory.eINSTANCE.createMask();
-				mask.getSourceIndices().addAll(projectionMask.getMask());
-				recipe.setMask(mask);
-				
-//				// message (1)
-//				trimmerActor.tell(recipe, coordinatorActor.getRef());
-//				// Assert
-//				// message (2)
-//				coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONFIGURATION_RECEIVED);
-//
-//				// subscription
-//				// ====================================================================================================
-//				// Act
-//				// message (3)
-//				trimmerActor.tell(ActorMessage.SUBSCRIBE_SINGLE, targetActor.getRef());
-//				// Assert
-//				// message (4)
-//				targetActor.expectMsgEquals(duration("1 second"), ActorReply.SUBSCRIBED);
-//
-//				// computation
-//				// ====================================================================================================
-//				// Act
-//				final Stack<ActorRef> message5Stack = Stack$.MODULE$.empty().push(getRef());
-//				final UpdateMessage updateMessage = new UpdateMessage(data.getChangeSet(), ReteNodeSlot.SINGLE, message5Stack);
-//
-//				// message (5)
-//				trimmerActor.tell(updateMessage, getRef());
-//
-//				// create the exptected senderStack
-//				final Stack<ActorRef> message6Stack = message5Stack.push(trimmerActor);
-//				
-//				// Assert				
-//				// message (6)
-//				final UpdateMessage propagatedUpdateMessage = targetActor.expectMsgClass(duration("1 second"), UpdateMessage.class);
-//				assertEquals(data.getExpectedResults(), propagatedUpdateMessage.getChangeSet());
-//				assertEquals(ReteNodeSlot.SINGLE, propagatedUpdateMessage.getNodeSlot());
-//				assertEquals(message6Stack, propagatedUpdateMessage.getSenderStack());
-//				
-//				// termination protocol
-//				// ====================================================================================================
-//				// Act
-//				final Stack<ActorRef> senderStack2 = propagatedUpdateMessage.getSenderStack();
-//				
-//				final Tuple2<ActorRef, Stack<ActorRef>> pair = senderStack2.pop2();
-//				final ActorRef terminationTrimmerActorRef = pair._1();
-//				final Stack<ActorRef> terminationSenderStack = pair._2();
-//				
-//				final ReadyMessage readyMessage = new ReadyMessage(terminationSenderStack);
-//				// message (7)
-//				terminationTrimmerActorRef.tell(readyMessage, targetActor.getRef());
-//
-//				// we expect a ReadyMessage with an empty stack as the sender route
-//				final ReadyMessage expectedReadyMessage = new ReadyMessage(Stack$.MODULE$.empty());
-//				// message (8)
-//				final ReadyMessage readyMessage2 = expectMsgClass(duration("1 second"), ReadyMessage.class);				
-//				
-//				assertEquals(expectedReadyMessage, readyMessage2);
-			}
-		};
+//			new AlphaActorTestKit(system, data);
+		}
+	}
+
+	@Test
+	public void test() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
+		final File[] files = TestCaseFinder.getTestCases("filternode-*.json");
+
+		for (final File file : files) {
+			System.out.println(file);
+			final Gson gson = GsonParser.getGsonParser();
+			final FilterNodeTestData data = gson.fromJson(new FileReader(file), FilterNodeTestData.class);
+
+			//			filterEquality(data);
+			new AlphaActorTestKit(system, data);
+		}
 	}
 
 }
