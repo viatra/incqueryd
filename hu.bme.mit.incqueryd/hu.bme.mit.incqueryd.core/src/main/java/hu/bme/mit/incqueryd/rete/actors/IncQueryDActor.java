@@ -84,8 +84,8 @@ public abstract class IncQueryDActor extends UntypedActor {
      */
     protected void readyImmediately(final UpdateMessage receivedUpdateMessage) {
         final Stack<ActorRef> route = receivedUpdateMessage.getSenderStack();
-        final ActorRef sender = route.pop();
-
+        final ActorRef sender = route.pop2()._1();
+        
         logger.info(actorString() + " Ready immediately. Sending ReadyMessage to " + sender
                 + " with the following route: " + route);
         sender.tell(new ReadyMessage(route), getSelf());
@@ -98,7 +98,7 @@ public abstract class IncQueryDActor extends UntypedActor {
      */
     protected void readyByMessage(final ReadyMessage readyMessage) {
         final Stack<ActorRef> route = readyMessage.getRoute();
-        final ActorRef sender = route.pop();
+        final ActorRef sender = route.pop2()._1();
 
         logger.info(actorString() + " Ready by message. Sending ReadyMessage to " + sender
                 + " with the following route: " + route);

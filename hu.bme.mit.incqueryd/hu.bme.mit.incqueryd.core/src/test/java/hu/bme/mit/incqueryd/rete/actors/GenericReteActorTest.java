@@ -27,7 +27,7 @@ public class GenericReteActorTest {
 	}
 
 	@Test
-	public void test() {
+	public void subscription() {
 		new JavaTestKit(system) {
 			{
 				// Arrange

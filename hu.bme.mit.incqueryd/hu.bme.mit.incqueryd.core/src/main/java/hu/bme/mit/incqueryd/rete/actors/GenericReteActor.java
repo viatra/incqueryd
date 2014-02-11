@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import scala.Tuple2;
 import scala.collection.immutable.Stack;
 import akka.actor.ActorRef;
 import akka.actor.UntypedActor;
@@ -57,13 +58,22 @@ public class GenericReteActor extends UntypedActor {
 			sendToSubscribers(changeSet, updateMessage.getSenderStack());
 		} else if (message instanceof ReadyMessage) {
 			final ReadyMessage readyMessage = (ReadyMessage) message;
-			final Stack<ActorRef> route = readyMessage.getRoute();
-			final ActorRef readyMessageTarget = route.pop();
-
-			final ReadyMessage propagatedReadyMessage = new ReadyMessage(route);
-			readyMessageTarget.tell(propagatedReadyMessage, getSelf());
+			terminationProtocol(readyMessage);
 		}
 
+	}
+
+	private void terminationProtocol(final ReadyMessage readyMessage) {
+		final Stack<ActorRef> route = readyMessage.getRoute();
+
+		final Tuple2<ActorRef, Stack<ActorRef>> pair = route.pop2();
+		final ActorRef readyMessageTarget = pair._1();
+		final Stack<ActorRef> readyMessageSenderStack = pair._2();
+		
+		final ReadyMessage propagatedReadyMessage = new ReadyMessage(readyMessageSenderStack);
+		readyMessageTarget.tell(propagatedReadyMessage, getSelf());
+		
+		System.out.println("Termination protocol sending: " + readyMessageSenderStack);
 	}
 
 	protected void subscribeSender(final ReteNodeSlot slot) {
@@ -79,8 +89,8 @@ public class GenericReteActor extends UntypedActor {
 			final ActorRef subscriber = entry.getKey();
 			final ReteNodeSlot slot = entry.getValue();
 
-			senderStack.push(getSelf());
-			final UpdateMessage updateMessage = new UpdateMessage(changeSet, slot, senderStack);
+			final Stack<ActorRef> propagatedSenderStack = senderStack.push(getSelf());
+			final UpdateMessage updateMessage = new UpdateMessage(changeSet, slot, propagatedSenderStack);
 			subscriber.tell(updateMessage, getSelf());
 		}
 	}
