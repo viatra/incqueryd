@@ -39,8 +39,8 @@ public class JsonSerializationTest {
 		final Resource resource = resourceSet.createResource(URI.createURI("model.json"));
 		final Map<String, Object> options = new HashMap<String, Object>();
 //		options.put(EMFJs.OPTION_INDENT_OUTPUT, true);
-		options.put(EMFJs.OPTION_INDENT_OUTPUT, false);
 //		options.put(EMFJs.OPTION_SERIALIZE_TYPE, true);
+		options.put(EMFJs.OPTION_INDENT_OUTPUT, false);
 		options.put(EMFJs.OPTION_SERIALIZE_TYPE, false);
 
 		resource.getContents().add(recipe);
