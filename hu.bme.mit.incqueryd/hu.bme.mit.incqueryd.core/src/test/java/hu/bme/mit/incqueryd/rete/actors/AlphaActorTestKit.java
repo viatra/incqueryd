@@ -1,115 +1,142 @@
-package hu.bme.mit.incqueryd.rete.actors;
-
-import static org.junit.Assert.assertEquals;
-import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
-import hu.bme.mit.incqueryd.rete.messages.ActorReply;
-import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
-import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
-import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
-import hu.bme.mit.incqueryd.rete.nodes.data.FilterNodeTestData;
-
-import org.eclipse.incquery.runtime.rete.recipes.InequalityFilterRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
-
-import scala.Tuple2;
-import scala.collection.immutable.Stack;
-import scala.collection.immutable.Stack$;
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
-import akka.actor.Props;
-import akka.testkit.JavaTestKit;
-
-public class AlphaActorTestKit extends JavaTestKit {
-
-	// public AlphaActorTestKit(final ActorSystem system, final TrimmerNodeTestData data) {
-	public AlphaActorTestKit(final ActorSystem system, final FilterNodeTestData data) {
-		super(system);
-
-		// Arrange
-		final Props props = new Props(ReteActor.class);
-		final ActorRef trimmerActor = system.actorOf(props);
-
-		// configuration
-		// ====================================================================================================
-		final JavaTestKit coordinatorActor = new JavaTestKit(system);
-		final JavaTestKit targetActor = new JavaTestKit(system);
-
-		// Act
-		// final TupleMask projectionMask = data.getProjectionMask();
-		// final TrimmerRecipe recipe = RecipesFactory.eINSTANCE.createTrimmerRecipe();
-		// final Mask mask = RecipesFactory.eINSTANCE.createMask();
-		// mask.getSourceIndices().addAll(projectionMask.getMask());
-		// recipe.setMask(mask);
-
-		// final EqualityFilterRecipe recipe = RecipesFactory.eINSTANCE.createEqualityFilterRecipe();
-		// recipe.getIndices().addAll(data.getTupleMask().getMask());
-
-		final InequalityFilterRecipe recipe = RecipesFactory.eINSTANCE.createInequalityFilterRecipe();
-		
-		// set the subject
-		recipe.setSubject(data.getTupleMask().getMask().get(0));		
-		// remove the head
-		data.getTupleMask().getMask().remove(0);
-		// get tha tail as inequals
-		recipe.getInequals().addAll(data.getTupleMask().getMask());
-
-		// message (1)
-		trimmerActor.tell(recipe, coordinatorActor.getRef());
-		// Assert
-		// message (2)
-		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONFIGURATION_RECEIVED);
-
-		// subscription
-		// ====================================================================================================
-		// Act
-		// message (3)
-		trimmerActor.tell(SubscriptionMessage.SUBSCRIBE_SINGLE, targetActor.getRef());
-		// Assert
-		// message (4)
-		targetActor.expectMsgEquals(duration("1 second"), ActorReply.SUBSCRIBED);
-
-		// computation
-		// ====================================================================================================
-		// Act
-		final Stack<ActorRef> message5Stack = Stack$.MODULE$.empty().push(getRef());
-		final UpdateMessage updateMessage = new UpdateMessage(data.getChangeSet(), ReteNodeSlot.SINGLE, message5Stack);
-
-		// message (5)
-		trimmerActor.tell(updateMessage, getRef());
-
-		// create the exptected senderStack
-		final Stack<ActorRef> message6Stack = message5Stack.push(trimmerActor);
-
-		// Assert
-		// message (6)
-		final UpdateMessage propagatedUpdateMessage = targetActor.expectMsgClass(duration("1 second"),
-				UpdateMessage.class);
-		// assertEquals(data.getExpectedResults(), propagatedUpdateMessage.getChangeSet());
-		// assertEquals(data.getEqualityExpectedResults(), propagatedUpdateMessage.getChangeSet());
-		assertEquals(data.getInequalityExpectedResults(), propagatedUpdateMessage.getChangeSet());
-
-		assertEquals(ReteNodeSlot.SINGLE, propagatedUpdateMessage.getNodeSlot());
-		assertEquals(message6Stack, propagatedUpdateMessage.getSenderStack());
-
-		// termination protocol
-		// ====================================================================================================
-		// Act
-		final Stack<ActorRef> senderStack2 = propagatedUpdateMessage.getSenderStack();
-
-		final Tuple2<ActorRef, Stack<ActorRef>> pair = senderStack2.pop2();
-		final ActorRef terminationTrimmerActorRef = pair._1();
-		final Stack<ActorRef> terminationSenderStack = pair._2();
-
-		final ReadyMessage readyMessage = new ReadyMessage(terminationSenderStack);
-		// message (7)
-		terminationTrimmerActorRef.tell(readyMessage, targetActor.getRef());
-
-		// we expect a ReadyMessage with an empty stack as the sender route
-		final ReadyMessage expectedReadyMessage = new ReadyMessage(Stack$.MODULE$.empty());
-		// message (8)
-		final ReadyMessage readyMessage2 = expectMsgClass(duration("1 second"), ReadyMessage.class);
-
-		assertEquals(expectedReadyMessage, readyMessage2);
-	}
-
-}
+//package hu.bme.mit.incqueryd.rete.actors;
+//
+//import static org.junit.Assert.assertEquals;
+//import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
+//import hu.bme.mit.incqueryd.rete.messages.ActorReply;
+//import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
+//import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
+//import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
+//
+//import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe;
+//
+//import scala.Tuple2;
+//import scala.collection.immutable.Stack;
+//import scala.collection.immutable.Stack$;
+//import akka.actor.ActorRef;
+//import akka.actor.ActorSystem;
+//import akka.actor.Props;
+//import akka.testkit.JavaTestKit;
+//
+///** @formatter:off
+// * 
+// * Test plan
+// * ---------
+// * 
+// *                                        (testKit)
+// *                                            ^
+// *                                            |
+// *                                            | (5) V
+// *                                            | (8) ^
+// *                                            |
+// *                                            |
+// *                                            V
+// *  (coordinatorActor) <--------------> (alphaActor)
+// *                           (1) >            ^
+// *                           (2) <            |
+// *                                            | (3) ^
+// *                                            | (4) V
+// *                                            |
+// *                                            | (6) V  
+// *                                            | (7) ^
+// *                                            |
+// *                                            V
+// *                                       (targetActor) 
+// * 
+// * 
+// * (1) ! TrimmerNodeConfiguration
+// * (2) ? CONFIGURATION_RECEIVED
+// * (3) ! SUBSCRIBE_SINGLE
+// * (4) ? SUBSCRIBED
+// * (5) ! UpdateMessage, stack: [testKit] 
+// * (6) ? UpdateMessage, stack: [testKit, trimmerActor]
+// * (7) ! ReadyMessage, stack: [testKit]
+// * (8) ? ReadyMessage, stack: []
+// * 
+// * Legend:
+// *  - [!] sent by the test framework, [?] expected by the test framework
+// *  - the stack is represented according to the immutable.Stack Scala class' toString() method: 
+// *    the top item in the stack is the _first_ in the list (unlike the java.util.Stack class' toString()) 
+// *
+// */
+//public class AlphaActorTestKit extends JavaTestKit {
+//
+//	ActorRef alphaActor;
+//	JavaTestKit coordinatorActor;
+//	JavaTestKit targetActor;
+//	
+//	// public AlphaActorTestKit(final ActorSystem system, final TrimmerNodeTestData data) {
+//	public AlphaActorTestKit(final ActorSystem system, final AlphaRecipe recipe) {
+//		super(system);
+//
+//		// Arrange
+//		final Props props = new Props(ReteActor.class);
+//		alphaActor = system.actorOf(props);
+//
+//		// configuration
+//		// ====================================================================================================
+//		coordinatorActor = new JavaTestKit(system);
+//		targetActor = new JavaTestKit(system);
+//
+//		// Act
+//		// message (1)
+//		alphaActor.tell(recipe, coordinatorActor.getRef());
+//		// Assert
+//		// message (2)
+//		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONFIGURATION_RECEIVED);
+//
+//		// subscription
+//		// ====================================================================================================
+//		// Act
+//		// message (3)
+//		alphaActor.tell(SubscriptionMessage.SUBSCRIBE_SINGLE, targetActor.getRef());
+//		// Assert
+//		// message (4)
+//		targetActor.expectMsgEquals(duration("1 second"), ActorReply.SUBSCRIBED);
+//	}
+//	
+//	public void compute(final AlphaNodeTestData data) {
+//		// computation
+//		// ====================================================================================================
+//		// Act
+//		final Stack<ActorRef> message5Stack = Stack$.MODULE$.empty().push(getRef());
+//		final UpdateMessage updateMessage = new UpdateMessage(data.getChangeSet(), ReteNodeSlot.SINGLE, message5Stack);
+//
+//		// message (5)
+//		alphaActor.tell(updateMessage, getRef());
+//
+//		// create the exptected senderStack
+//		final Stack<ActorRef> message6Stack = message5Stack.push(alphaActor);
+//
+//		// Assert
+//		// message (6)
+//		final UpdateMessage propagatedUpdateMessage = targetActor.expectMsgClass(duration("1 second"),
+//				UpdateMessage.class);
+//		 assertEquals(data.getExpectedResults(), propagatedUpdateMessage.getChangeSet());
+//		// assertEquals(data.getEqualityExpectedResults(), propagatedUpdateMessage.getChangeSet());
+////		assertEquals(data.getInequalityExpectedResults(), propagatedUpdateMessage.getChangeSet());
+//
+//		assertEquals(ReteNodeSlot.SINGLE, propagatedUpdateMessage.getNodeSlot());
+//		assertEquals(message6Stack, propagatedUpdateMessage.getSenderStack());
+//
+//		// termination protocol
+//		// ====================================================================================================
+//		// Act
+//		final Stack<ActorRef> senderStack2 = propagatedUpdateMessage.getSenderStack();
+//
+//		final Tuple2<ActorRef, Stack<ActorRef>> pair = senderStack2.pop2();
+//		final ActorRef terminationTrimmerActorRef = pair._1();
+//		final Stack<ActorRef> terminationSenderStack = pair._2();
+//
+//		final ReadyMessage readyMessage = new ReadyMessage(terminationSenderStack);
+//		// message (7)
+//		terminationTrimmerActorRef.tell(readyMessage, targetActor.getRef());
+//
+//		// we expect a ReadyMessage with an empty stack as the sender route
+//		final ReadyMessage expectedReadyMessage = new ReadyMessage(Stack$.MODULE$.empty());
+//		// message (8)
+//		final ReadyMessage readyMessage2 = expectMsgClass(duration("1 second"), ReadyMessage.class);
+//
+//		assertEquals(expectedReadyMessage, readyMessage2);
+//	}
+//
+//}

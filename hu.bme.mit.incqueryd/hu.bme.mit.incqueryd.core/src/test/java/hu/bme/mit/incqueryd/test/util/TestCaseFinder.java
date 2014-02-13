@@ -7,10 +7,10 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
 
 public class TestCaseFinder {
 
-	public static File[] getTestCases(String wildcard) {
-		File dir = new File(TestConstants.TEST_CASES_DIRECTORY);
-		FileFilter fileFilter = new WildcardFileFilter(wildcard);
-		File[] files = dir.listFiles(fileFilter);
+	public static File[] getTestCases(final String wildcard) {
+		final File dir = new File(TestConstants.TEST_CASES_DIRECTORY);
+		final FileFilter fileFilter = new WildcardFileFilter(wildcard);
+		final File[] files = dir.listFiles(fileFilter);
 		return files;
 	}
 	

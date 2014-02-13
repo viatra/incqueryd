@@ -1,0 +1,7 @@
+{
+  "eClass" : "http://www.eclipse.org/incquery/rete/recipes#//TrimmerRecipe",
+  "mask" : {
+    "eClass" : "http://www.eclipse.org/incquery/rete/recipes#//Mask",
+    "sourceIndices" : [ 2, 0 ]
+  }
+}

@@ -6,6 +6,7 @@ import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,13 +19,13 @@ public class Indexer {
 
     protected final DistributedMultiMap<Tuple, Tuple> map = new LocalCache().getMultiMap("");
 
-    protected final TupleMask joinMask;
+    protected final List<Integer> joinMask;
 
-    public Indexer(final TupleMask joinMask) {
+    public Indexer(final List<Integer> joinMask) {
         this.joinMask = joinMask;
     }
 
-    public TupleMask getJoinMask() {
+    public List<Integer> getJoinMask() {
         return joinMask;
     }
 
@@ -35,7 +36,7 @@ public class Indexer {
     }
 
     public void add(final Tuple tuple) {
-        final Tuple extractedTuple = joinMask.extract(tuple);
+        final Tuple extractedTuple = TupleMask.extract(tuple, joinMask);
         map.put(extractedTuple, tuple);
     }
 

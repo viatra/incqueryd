@@ -5,13 +5,13 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.nodes.data.FilterNodeTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
 import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
+import hu.bme.mit.incqueryd.util.RecipeSerializer;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 
 import org.eclipse.incquery.runtime.rete.recipes.InequalityFilterRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
 import org.junit.Test;
 
 import com.google.gson.Gson;
@@ -27,31 +27,24 @@ import com.google.gson.JsonSyntaxException;
 public class InequalityNodeTest {
 
 	@Test
-	public void test() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
-		final File[] files = TestCaseFinder.getTestCases("filternode-*.json");
+	public void test() throws JsonSyntaxException, JsonIOException, IOException {
+		final File[] files = TestCaseFinder.getTestCases("filter-test-*.json");
 
-		for (final File file : files) {
-			System.out.println(file);
+		for (final File testFile : files) {
+			final String recipeFile = testFile.getPath().replace("-test-", "-recipe-");
 			final Gson gson = GsonParser.getGsonParser();
-			final FilterNodeTestData data = gson.fromJson(new FileReader(file), FilterNodeTestData.class);
-			filterInequality(data);
+
+			final FilterNodeTestData data = gson.fromJson(new FileReader(testFile), FilterNodeTestData.class);
+			final InequalityFilterRecipe recipe = (InequalityFilterRecipe) (RecipeSerializer.deserialize(recipeFile));
+			filterInequality(data, recipe);
 		}
 	}
 
-	public void filterInequality(final FilterNodeTestData data) {
-    	final InequalityFilterRecipe recipe = RecipesFactory.eINSTANCE.createInequalityFilterRecipe();
-		
-    	// set the subject
-		recipe.setSubject(data.getTupleMask().getMask().get(0));		
-		// remove the head
-		data.getTupleMask().getMask().remove(0);
-		// get tha tail as inequals
-		recipe.getInequals().addAll(data.getTupleMask().getMask());
-    	
+	public void filterInequality(final FilterNodeTestData data, final InequalityFilterRecipe recipe) {
 		final InequalityNode filterNode = new InequalityNode(recipe);		
-		final ChangeSet resultChangeSet = filterNode.update(data.getChangeSet());
+		final ChangeSet resultChangeSet = filterNode.update(data.getIncomingChangeSet());
 
-		assertEquals(data.getInequalityExpectedResults(), resultChangeSet);
+		assertEquals(data.getExpectedChangeSet(), resultChangeSet);
 	}
 
 }

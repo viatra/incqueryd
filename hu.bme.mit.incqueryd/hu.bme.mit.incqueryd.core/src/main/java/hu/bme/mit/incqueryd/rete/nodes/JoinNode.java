@@ -16,7 +16,7 @@ import java.util.Set;
  */
 public class JoinNode extends BetaNode {
 
-    public JoinNode(final TupleMask primaryMask, final TupleMask secondaryMask) {
+    public JoinNode(final List<Integer> primaryMask, final List<Integer> secondaryMask) {
         super(primaryMask, secondaryMask);
     }
 
@@ -30,14 +30,11 @@ public class JoinNode extends BetaNode {
         // save the new tuples to the indexer's memory
         newTuplesIndexer.add(incomingTuples);
 
-        // TODO: investigate why using a HashSet introduces an ugly heisenbug in the code
         final Set<Tuple> resultTuples = new HashSet<>();
-        // Set<Tuple> resultTuples = new ArrayList<>();
-
-        final List<Integer> rightTupleMask = secondaryIndexer.getJoinMask().getMask();
+        final List<Integer> rightTupleMask = secondaryIndexer.getJoinMask();
 
         for (final Tuple newTuple : incomingTuples) {
-            final Tuple extractedTuple = newTuplesIndexer.getJoinMask().extract(newTuple);
+            final Tuple extractedTuple = TupleMask.extract(newTuple, newTuplesIndexer.getJoinMask());
             final Set<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
 
             // for each matching tuple, create a result tuple

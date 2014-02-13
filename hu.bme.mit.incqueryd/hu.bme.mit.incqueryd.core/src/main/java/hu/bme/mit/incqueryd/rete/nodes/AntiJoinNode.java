@@ -7,6 +7,7 @@ import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -60,7 +61,7 @@ import java.util.Set;
  */
 public class AntiJoinNode extends BetaNode {
 
-    public AntiJoinNode(final TupleMask primaryMask, final TupleMask secondaryMask) {
+    public AntiJoinNode(final List<Integer> primaryMask, final List<Integer> secondaryMask) {
         super(primaryMask, secondaryMask);
     }
 
@@ -92,7 +93,7 @@ public class AntiJoinNode extends BetaNode {
         newTuplesIndexer.add(incomingTuples);
 
         for (final Tuple newTuple : incomingTuples) {
-            final Tuple extractedTuple = newTuplesIndexer.getJoinMask().extract(newTuple);
+            final Tuple extractedTuple = TupleMask.extract(newTuple, newTuplesIndexer.getJoinMask());
             final Set<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
 
             // see the Javadoc for the class

@@ -1,7 +1,8 @@
 package hu.bme.mit.incqueryd.rete.nodes.data;
 
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
-import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
+
+import java.util.List;
 
 /**
  * 
@@ -12,14 +13,14 @@ public class BetaNodeTestData {
 
     protected ChangeSet primaryChangeSet;
     protected ChangeSet secondaryChangeSet;
-    protected TupleMask primaryMask;
-    protected TupleMask secondaryMask;
+    protected List<Integer> primaryMask;
+    protected List<Integer> secondaryMask;
 
     protected ChangeSet antiJoinExpectedResults;
     protected ChangeSet joinExpectedResults;
     
     public BetaNodeTestData(final ChangeSet primaryChangeSet, final ChangeSet secondaryChangeSet,
-            final TupleMask primaryMask, final TupleMask secondaryMask, final ChangeSet expectedResults,
+            final List<Integer> primaryMask, final List<Integer> secondaryMask, final ChangeSet expectedResults,
             final ChangeSet antiJoinExpectedResults) {
         super();
         this.primaryChangeSet = primaryChangeSet;
@@ -38,11 +39,11 @@ public class BetaNodeTestData {
         return secondaryChangeSet;
     }
 
-    public TupleMask getPrimaryMask() {
+    public List<Integer> getPrimaryMask() {
         return primaryMask;
     }
 
-    public TupleMask getSecondaryMask() {
+    public List<Integer> getSecondaryMask() {
         return secondaryMask;
     }
 
