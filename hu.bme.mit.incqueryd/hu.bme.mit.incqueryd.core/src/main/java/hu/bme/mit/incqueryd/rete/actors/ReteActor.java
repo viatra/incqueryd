@@ -35,7 +35,7 @@ public class ReteActor extends UntypedActor {
 	protected Map<ActorRef, ReteNodeSlot> subscribers = new HashMap<>();
 
 	public ReteActor() {
-		System.out.println("Trimmer node instantiated.");
+		System.out.println("Rete actor instantiated.");
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class ReteActor extends UntypedActor {
 				reteNode = new InequalityNode(recipe);
 			} else if (message instanceof JoinRecipe) {
 			} else if (message instanceof AntiJoinRecipe) {
-				
+
 			} else {
 				throw new NotImplementedException(message.getClass().getSimpleName() + " recipe class is not supported.");
 			}
@@ -86,10 +86,10 @@ public class ReteActor extends UntypedActor {
 		final Tuple2<ActorRef, Stack<ActorRef>> pair = route.pop2();
 		final ActorRef readyMessageTarget = pair._1();
 		final Stack<ActorRef> readyMessageSenderStack = pair._2();
-		
+
 		final ReadyMessage propagatedReadyMessage = new ReadyMessage(readyMessageSenderStack);
 		readyMessageTarget.tell(propagatedReadyMessage, getSelf());
-		
+
 		System.out.println("Termination protocol sending: " + readyMessageSenderStack);
 	}
 
