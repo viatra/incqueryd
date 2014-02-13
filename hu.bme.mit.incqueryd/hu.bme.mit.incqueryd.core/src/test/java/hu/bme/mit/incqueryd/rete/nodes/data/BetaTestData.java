@@ -7,13 +7,13 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
  * @author szarnyasg
  * 
  */
-public class BetaNodeTestData {
+public class BetaTestData {
 
 	protected ChangeSet primaryChangeSet;
 	protected ChangeSet secondaryChangeSet;
 	protected ChangeSet expectedChangeSet;
 
-	public BetaNodeTestData(final ChangeSet primaryChangeSet, final ChangeSet secondaryChangeSet,
+	public BetaTestData(final ChangeSet primaryChangeSet, final ChangeSet secondaryChangeSet,
 			final ChangeSet expectedChangeSet) {
 		super();
 		this.primaryChangeSet = primaryChangeSet;

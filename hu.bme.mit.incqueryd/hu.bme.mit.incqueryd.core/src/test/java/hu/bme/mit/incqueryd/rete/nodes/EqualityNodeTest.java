@@ -2,7 +2,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 
 import static org.junit.Assert.assertTrue;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
-import hu.bme.mit.incqueryd.rete.nodes.data.FilterNodeTestData;
+import hu.bme.mit.incqueryd.rete.nodes.data.AlphaTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
 import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
 import hu.bme.mit.incqueryd.util.RecipeSerializer;
@@ -34,13 +34,13 @@ public class EqualityNodeTest {
 			final String recipeFile = testFile.getPath().replace("-test-", "-recipe-");
 			final Gson gson = GsonParser.getGsonParser();
 
-			final FilterNodeTestData data = gson.fromJson(new FileReader(testFile), FilterNodeTestData.class);
+			final AlphaTestData data = gson.fromJson(new FileReader(testFile), AlphaTestData.class);
 			final EqualityFilterRecipe recipe = (EqualityFilterRecipe) (RecipeSerializer.deserialize(recipeFile));
 			filterEquality(data, recipe);
 		}
 	}
 
-	public void filterEquality(final FilterNodeTestData data, final EqualityFilterRecipe recipe) {
+	public void filterEquality(final AlphaTestData data, final EqualityFilterRecipe recipe) {
 		final EqualityNode filterNode = new EqualityNode(recipe);
 		final ChangeSet resultChangeSet = filterNode.update(data.getIncomingChangeSet());
 

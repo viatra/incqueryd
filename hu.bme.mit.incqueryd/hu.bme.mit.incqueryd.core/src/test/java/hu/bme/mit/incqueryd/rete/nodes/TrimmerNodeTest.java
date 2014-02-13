@@ -2,7 +2,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 
 import static org.junit.Assert.assertTrue;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
-import hu.bme.mit.incqueryd.rete.nodes.data.TrimmerNodeTestData;
+import hu.bme.mit.incqueryd.rete.nodes.data.AlphaTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
 import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
 import hu.bme.mit.incqueryd.util.RecipeSerializer;
@@ -34,13 +34,13 @@ public class TrimmerNodeTest {
 			final String recipeFile = testFile.getPath().replace("-test-", "-recipe-");
 			final Gson gson = GsonParser.getGsonParser();
 			
-			final TrimmerNodeTestData data = gson.fromJson(new FileReader(testFile), TrimmerNodeTestData.class);
+			final AlphaTestData data = gson.fromJson(new FileReader(testFile), AlphaTestData.class);
 			final TrimmerRecipe recipe = (TrimmerRecipe) (RecipeSerializer.deserialize(recipeFile));
 			trim(data, recipe);
 		}
 	}
 
-	public void trim(final TrimmerNodeTestData data, final TrimmerRecipe recipe) {
+	public void trim(final AlphaTestData data, final TrimmerRecipe recipe) {
 		final TrimmerNode trimmerNode = new TrimmerNode(recipe);
 		final ChangeSet resultChangeSet = trimmerNode.update(data.getIncomingChangeSet());
 		

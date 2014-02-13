@@ -7,8 +7,10 @@ import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.AlphaNode;
+import hu.bme.mit.incqueryd.rete.nodes.AntiJoinNode;
 import hu.bme.mit.incqueryd.rete.nodes.EqualityNode;
 import hu.bme.mit.incqueryd.rete.nodes.InequalityNode;
+import hu.bme.mit.incqueryd.rete.nodes.JoinNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
 import hu.bme.mit.incqueryd.rete.nodes.TrimmerNode;
 
@@ -48,21 +50,30 @@ public class ReteActor extends UntypedActor {
 		} else if (message == SubscriptionMessage.SUBSCRIBE_SECONDARY) {
 			subscribeSender(ReteNodeSlot.SECONDARY);
 		} else if (message instanceof ReteNodeRecipe) {
-			// ReteNodeRecipes
+
+			// Rete nodes
+
+			// Alpha node recipes
 			if (message instanceof TrimmerRecipe) {
 				final TrimmerRecipe recipe = (TrimmerRecipe) message;
 				reteNode = new TrimmerNode(recipe);
-			} else if (message instanceof EqualityFilterRecipe) { // more configuration coming...
+			} else if (message instanceof EqualityFilterRecipe) {
 				final EqualityFilterRecipe recipe = (EqualityFilterRecipe) message;
 				reteNode = new EqualityNode(recipe);
-			} else if (message instanceof InequalityFilterRecipe) { // more configuration coming...
+			} else if (message instanceof InequalityFilterRecipe) {
 				final InequalityFilterRecipe recipe = (InequalityFilterRecipe) message;
 				reteNode = new InequalityNode(recipe);
-			} else if (message instanceof JoinRecipe) {
+			} // Beta node recipes
+			else if (message instanceof JoinRecipe) {
+				final JoinRecipe recipe = (JoinRecipe) message;
+				reteNode = new JoinNode(recipe);
 			} else if (message instanceof AntiJoinRecipe) {
-
-			} else {
-				throw new NotImplementedException(message.getClass().getSimpleName() + " recipe class is not supported.");
+				final AntiJoinRecipe recipe = (AntiJoinRecipe) message;
+				reteNode = new AntiJoinNode(recipe);
+			} // unsupported recipe
+			else {
+				throw new NotImplementedException(message.getClass().getSimpleName()
+						+ " recipe class is not supported.");
 			}
 
 			getSender().tell(ActorReply.CONFIGURATION_RECEIVED, getSelf());
@@ -90,6 +101,7 @@ public class ReteActor extends UntypedActor {
 		final ReadyMessage propagatedReadyMessage = new ReadyMessage(readyMessageSenderStack);
 		readyMessageTarget.tell(propagatedReadyMessage, getSelf());
 
+		System.out.println();
 		System.out.println("Termination protocol sending: " + readyMessageSenderStack);
 	}
 

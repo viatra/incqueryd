@@ -1,10 +1,8 @@
 //package hu.bme.mit.incqueryd.rete.actors;
 //
 //import static org.junit.Assert.assertEquals;
-//import hu.bme.mit.incqueryd.rete.configuration.BetaActorConfiguration;
 //import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 //import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
-//import hu.bme.mit.incqueryd.rete.messages.ActorMessage;
 //import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
 //import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 //import hu.bme.mit.incqueryd.rete.nodes.data.BetaNodeTestData;

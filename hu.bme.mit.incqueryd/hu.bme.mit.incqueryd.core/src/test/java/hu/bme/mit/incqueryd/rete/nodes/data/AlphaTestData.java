@@ -2,12 +2,12 @@ package hu.bme.mit.incqueryd.rete.nodes.data;
 
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 
-public abstract class AlphaNodeTestData {
+public class AlphaTestData {
     
 	protected ChangeSet incomingChangeSet;
     protected ChangeSet expectedChangeSet;
     
-    public AlphaNodeTestData(final ChangeSet incomingChangeSet, final ChangeSet expectedChangeSet) {
+    public AlphaTestData(final ChangeSet incomingChangeSet, final ChangeSet expectedChangeSet) {
 		this.incomingChangeSet = incomingChangeSet;
 		this.expectedChangeSet = expectedChangeSet;
 	}
