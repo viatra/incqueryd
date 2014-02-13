@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
+import hu.bme.mit.incqueryd.cache.DistributedCache;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
@@ -29,12 +30,18 @@ import scala.collection.immutable.Stack;
 import akka.actor.ActorRef;
 import akka.actor.UntypedActor;
 
+import com.google.inject.Inject;
+
 public class ReteActor extends UntypedActor {
 
 	protected ReteNode reteNode;
 	protected Map<ActorRef, ReteNodeSlot> subscribers = new HashMap<>();
 
-	public ReteActor() {
+	private final DistributedCache cache;
+
+	@Inject
+	public ReteActor(DistributedCache cache) {
+		this.cache = cache;
 		System.out.println("Rete actor instantiated.");
 	}
 
