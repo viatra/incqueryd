@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
+import hu.bme.mit.incqueryd.rete.actors.testkits.AlphaActorTestKit;
 import hu.bme.mit.incqueryd.rete.nodes.data.AlphaTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
 import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
@@ -10,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import org.eclipse.incquery.runtime.rete.recipes.EqualityFilterRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.InequalityFilterRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -22,12 +24,12 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
 /**
- * Test cases for the {@link TrimmerActor} class.
+ * Test cases for the alpha nodes.
  * 
  * @author szarnyasg
  * 
  */
-public class TrimmerActorTest {
+public class AlphaActorTest {
 
 	static ActorSystem system;
 
@@ -72,6 +74,21 @@ public class TrimmerActorTest {
 			testKit.compute(data);
 		}
 	}
+	
+	@Test
+	public void inequalityNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
+		final File[] files = TestCaseFinder.getTestCases("inequality-test-*.json");
 
+		for (final File testFile : files) {
+			final String recipeFile = testFile.getPath().replace("-test-", "-recipe-");
+			final Gson gson = GsonParser.getGsonParser();
+			
+			final AlphaTestData data = gson.fromJson(new FileReader(testFile), AlphaTestData.class);
+			final InequalityFilterRecipe recipe = (InequalityFilterRecipe) (RecipeSerializer.deserialize(recipeFile));
+
+			final AlphaActorTestKit testKit = new AlphaActorTestKit(system, recipe);
+			testKit.compute(data);
+		}
+	}
 
 }

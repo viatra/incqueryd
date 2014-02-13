@@ -12,7 +12,7 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.testkit.JavaTestKit;
 
-public class GenericReteActorTest {
+public class ReteActorTest {
 
 	static ActorSystem system;
 

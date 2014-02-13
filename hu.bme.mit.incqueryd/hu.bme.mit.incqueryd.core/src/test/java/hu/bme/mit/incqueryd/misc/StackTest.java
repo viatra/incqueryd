@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.rete.actors;
+package hu.bme.mit.incqueryd.misc;
 
 import org.junit.Test;
 

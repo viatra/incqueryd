@@ -76,7 +76,7 @@ public class ReteActor extends UntypedActor {
 						+ " recipe class is not supported.");
 			}
 
-			getSender().tell(ActorReply.CONFIGURATION_RECEIVED, getSelf());
+			getSender().tell(ActorReply.RECIPE_RECEIVED, getSelf());
 		} else if (message instanceof UpdateMessage) {
 			final UpdateMessage updateMessage = (UpdateMessage) message;
 

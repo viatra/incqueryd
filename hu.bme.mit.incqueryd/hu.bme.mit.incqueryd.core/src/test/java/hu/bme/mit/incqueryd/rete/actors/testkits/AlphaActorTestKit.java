@@ -1,6 +1,7 @@
-package hu.bme.mit.incqueryd.rete.actors;
+package hu.bme.mit.incqueryd.rete.actors.testkits;
 
 import static org.junit.Assert.assertEquals;
+import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
 import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
@@ -44,12 +45,14 @@ import akka.testkit.JavaTestKit;
  *                                       (targetActor) 
  * 
  * 
- * (1) ! TrimmerNodeConfiguration
- * (2) ? CONFIGURATION_RECEIVED
+ * (1) ! AlphaRecipe
+ * (2) ? RECIPE_RECEIVED
+ * 
  * (3) ! SUBSCRIBE_SINGLE
  * (4) ? SUBSCRIBED
+ * 
  * (5) ! UpdateMessage, stack: [testKit] 
- * (6) ? UpdateMessage, stack: [testKit, trimmerActor]
+ * (6) ? UpdateMessage, stack: [testKit, alphaActor]
  * (7) ! ReadyMessage, stack: [testKit]
  * (8) ? ReadyMessage, stack: []
  * 
@@ -63,9 +66,9 @@ public class AlphaActorTestKit extends JavaTestKit {
 
 	ActorRef alphaActor;
 	JavaTestKit coordinatorActor;
+	JavaTestKit parentActor;
 	JavaTestKit targetActor;
 	
-	// public AlphaActorTestKit(final ActorSystem system, final TrimmerNodeTestData data) {
 	public AlphaActorTestKit(final ActorSystem system, final AlphaRecipe recipe) {
 		super(system);
 
@@ -75,6 +78,7 @@ public class AlphaActorTestKit extends JavaTestKit {
 
 		// configuration
 		// ====================================================================================================
+		parentActor = new JavaTestKit(system);
 		coordinatorActor = new JavaTestKit(system);
 		targetActor = new JavaTestKit(system);
 
@@ -83,7 +87,7 @@ public class AlphaActorTestKit extends JavaTestKit {
 		alphaActor.tell(recipe, coordinatorActor.getRef());
 		// Assert
 		// message (2)
-		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONFIGURATION_RECEIVED);
+		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.RECIPE_RECEIVED);
 
 		// subscription
 		// ====================================================================================================
@@ -99,11 +103,11 @@ public class AlphaActorTestKit extends JavaTestKit {
 		// computation
 		// ====================================================================================================
 		// Act
-		final Stack<ActorRef> message5Stack = Stack$.MODULE$.empty().push(getRef());
+		final Stack<ActorRef> message5Stack = Stack$.MODULE$.empty().push(parentActor.getRef());
 		final UpdateMessage updateMessage = new UpdateMessage(data.getIncomingChangeSet(), ReteNodeSlot.SINGLE, message5Stack);
 
 		// message (5)
-		alphaActor.tell(updateMessage, getRef());
+		alphaActor.tell(updateMessage, parentActor.getRef());
 
 		// create the exptected senderStack
 		final Stack<ActorRef> message6Stack = message5Stack.push(alphaActor);
@@ -112,10 +116,7 @@ public class AlphaActorTestKit extends JavaTestKit {
 		// message (6)
 		final UpdateMessage propagatedUpdateMessage = targetActor.expectMsgClass(duration("1 second"),
 				UpdateMessage.class);
-		 assertEquals(data.getExpectedChangeSet(), propagatedUpdateMessage.getChangeSet());
-		// assertEquals(data.getEqualityExpectedResults(), propagatedUpdateMessage.getChangeSet());
-//		assertEquals(data.getInequalityExpectedResults(), propagatedUpdateMessage.getChangeSet());
-
+		assertEquals(data.getExpectedChangeSet(), propagatedUpdateMessage.getChangeSet());
 		assertEquals(ReteNodeSlot.SINGLE, propagatedUpdateMessage.getNodeSlot());
 		assertEquals(message6Stack, propagatedUpdateMessage.getSenderStack());
 
@@ -125,17 +126,17 @@ public class AlphaActorTestKit extends JavaTestKit {
 		final Stack<ActorRef> senderStack2 = propagatedUpdateMessage.getSenderStack();
 
 		final Tuple2<ActorRef, Stack<ActorRef>> pair = senderStack2.pop2();
-		final ActorRef terminationTrimmerActorRef = pair._1();
+		final ActorRef terminationActorRef = pair._1();
 		final Stack<ActorRef> terminationSenderStack = pair._2();
 
 		final ReadyMessage readyMessage = new ReadyMessage(terminationSenderStack);
 		// message (7)
-		terminationTrimmerActorRef.tell(readyMessage, targetActor.getRef());
+		terminationActorRef.tell(readyMessage, targetActor.getRef());
 
 		// we expect a ReadyMessage with an empty stack as the sender route
 		final ReadyMessage expectedReadyMessage = new ReadyMessage(Stack$.MODULE$.empty());
 		// message (8)
-		final ReadyMessage readyMessage2 = expectMsgClass(duration("1 second"), ReadyMessage.class);
+		final ReadyMessage readyMessage2 = parentActor.expectMsgClass(duration("1 second"), ReadyMessage.class);
 
 		assertEquals(expectedReadyMessage, readyMessage2);
 		
