@@ -3,7 +3,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 
-import java.util.List;
+import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
 
 /**
  * The key components are the beta nodes, that have two separate input slots, each connected to a node in the network.
@@ -14,12 +14,14 @@ import java.util.List;
  */
 public abstract class BetaNode extends ReteNode {
 
+	protected BetaRecipe recipe; 
+	
     protected Indexer primaryIndexer;
     protected Indexer secondaryIndexer;
 
-    public BetaNode(final List<Integer> primaryMask, final List<Integer> secondaryMask) {
-        this.primaryIndexer = new Indexer(primaryMask);
-        this.secondaryIndexer = new Indexer(secondaryMask);
+    public BetaNode(final BetaRecipe recipe) {
+        this.primaryIndexer = new Indexer(recipe.getLeftParent().getMask().getSourceIndices());
+        this.secondaryIndexer = new Indexer(recipe.getRightParent().getMask().getSourceIndices());
     }
 
     abstract public ChangeSet update(final ChangeSet incomingChangeSet, final ReteNodeSlot slot);

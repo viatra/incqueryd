@@ -7,8 +7,9 @@ import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
+
+import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
 
 /**
  * The other kind of dual input nodes is the NotNode, that filters all tuples from its primary input slot that do NOT
@@ -61,11 +62,11 @@ import java.util.Set;
  */
 public class AntiJoinNode extends BetaNode {
 
-    public AntiJoinNode(final List<Integer> primaryMask, final List<Integer> secondaryMask) {
-        super(primaryMask, secondaryMask);
-    }
+    public AntiJoinNode(final BetaRecipe recipe) {
+		super(recipe);
+	}
 
-    @Override
+	@Override
     public ChangeSet update(final ChangeSet incomingChangeSet, final ReteNodeSlot slot) {
         final Set<Tuple> incomingTuples = incomingChangeSet.getTuples();
         final ChangeType changeType = incomingChangeSet.getChangeType();

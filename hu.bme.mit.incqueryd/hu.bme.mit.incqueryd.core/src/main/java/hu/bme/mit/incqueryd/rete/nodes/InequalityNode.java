@@ -22,7 +22,7 @@ import org.eclipse.incquery.runtime.rete.recipes.InequalityFilterRecipe;
  */
 public class InequalityNode extends AlphaNode {
 
-	InequalityFilterRecipe recipe;
+	protected InequalityFilterRecipe recipe;
 
 	public InequalityNode(final InequalityFilterRecipe recipe) {
 		super();

@@ -1,8 +1,0 @@
-{
-  "primaryChangeSet":{"tuples":[{"tuple":[1,5]},{"tuple":[2,6]}],"changeType":"POSITIVE"},
-  "secondaryChangeSet":{"tuples":[{"tuple":[5,10]}],"changeType":"POSITIVE"},
-  "primaryMask":[],
-  "secondaryMask":[],
-  "antiJoinExpectedResults":{"tuples":[],"changeType":"POSITIVE"},
-  "joinExpectedResults":{"tuples":[{"tuple":[1,5,5,10]},{"tuple":[2,6,5,10]}],"changeType":"POSITIVE"}
-}

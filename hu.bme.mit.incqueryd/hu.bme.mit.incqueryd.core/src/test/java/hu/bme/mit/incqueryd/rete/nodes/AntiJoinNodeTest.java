@@ -5,11 +5,13 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.nodes.data.BetaNodeTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
 import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
+import hu.bme.mit.incqueryd.util.RecipeSerializer;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 
+import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
 import org.junit.Test;
 
 import com.google.gson.Gson;
@@ -25,22 +27,27 @@ import com.google.gson.JsonSyntaxException;
 public class AntiJoinNodeTest {
 
 	@Test
-	public void test() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
-		File[] files = TestCaseFinder.getTestCases("betanode-*.json");
+	public void test() throws JsonSyntaxException, JsonIOException, IOException {
+		final File[] files = TestCaseFinder.getTestCases("antijoin-test-*.json");
 
-		for (File file : files) {
-			System.out.println(file);
-			Gson gson = GsonParser.getGsonParser();
-			BetaNodeTestData data = gson.fromJson(new FileReader(file), BetaNodeTestData.class);			
-			antiJoin(data);
+		for (final File testFile : files) {
+			System.out.println(testFile);
+			
+			final String recipeFile = testFile.getPath().replace("antijoin-test-", "beta-recipe-");
+			final Gson gson = GsonParser.getGsonParser();
+			
+			final BetaNodeTestData data = gson.fromJson(new FileReader(testFile), BetaNodeTestData.class);
+			final BetaRecipe recipe = (BetaRecipe) (RecipeSerializer.deserialize(recipeFile));
+			
+			antijoin(data, recipe);
 		}
 	}
 
-	public void antiJoin(final BetaNodeTestData data) {
-		final AntiJoinNode joinNode = new AntiJoinNode(data.getPrimaryMask(), data.getSecondaryMask());
+	private void antijoin(final BetaNodeTestData data, final BetaRecipe recipe) {
+		final AntiJoinNode joinNode = new AntiJoinNode(recipe);
 		final ChangeSet resultChangeSet = Algorithms.join(joinNode, data.getPrimaryChangeSet(),
 				data.getSecondaryChangeSet());
-		assertTrue(resultChangeSet.equals(data.getAntiJoinExpectedResults()));
+		assertTrue(resultChangeSet.equals(data.getExpectedChangeSet()));		
 	}
 
 }

@@ -22,7 +22,7 @@ import org.eclipse.incquery.runtime.rete.recipes.EqualityFilterRecipe;
  */
 public class EqualityNode extends AlphaNode {
 
-	EqualityFilterRecipe recipe;
+	protected EqualityFilterRecipe recipe;
 
 	public EqualityNode(final EqualityFilterRecipe recipe) {
 		super();

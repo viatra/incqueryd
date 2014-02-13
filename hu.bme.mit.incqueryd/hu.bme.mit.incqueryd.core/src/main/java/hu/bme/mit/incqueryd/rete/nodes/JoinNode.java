@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
+
 /**
  * 
  * @author szarnyasg
@@ -16,8 +18,8 @@ import java.util.Set;
  */
 public class JoinNode extends BetaNode {
 
-    public JoinNode(final List<Integer> primaryMask, final List<Integer> secondaryMask) {
-        super(primaryMask, secondaryMask);
+    public JoinNode(final BetaRecipe recipe) {
+        super(recipe);
     }
 
     @Override
