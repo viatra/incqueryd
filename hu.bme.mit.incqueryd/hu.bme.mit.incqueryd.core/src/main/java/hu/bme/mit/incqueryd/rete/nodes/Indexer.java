@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
+import hu.bme.mit.incqueryd.cache.DistributedCache;
 import hu.bme.mit.incqueryd.cache.DistributedMultiMap;
-import hu.bme.mit.incqueryd.cache.local.LocalCache;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
@@ -16,12 +16,13 @@ import java.util.Set;
  */
 public class Indexer {
 
-    protected final DistributedMultiMap<Tuple, Tuple> map = new LocalCache().getMultiMap("");
+    protected final DistributedMultiMap<Tuple, Tuple> map;
 
     protected final TupleMask joinMask;
 
-    public Indexer(final TupleMask joinMask) {
+    public Indexer(final TupleMask joinMask, DistributedCache cache, String key) {
         this.joinMask = joinMask;
+        map = cache.getMultiMap(key); // TODO
     }
 
     public TupleMask getJoinMask() {

@@ -1,6 +1,7 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
 import static org.junit.Assert.assertEquals;
+import hu.bme.mit.incqueryd.TestModule;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
 import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
@@ -19,6 +20,9 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.testkit.JavaTestKit;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+
 public class AlphaActorTestKit extends JavaTestKit {
 
 	// public AlphaActorTestKit(final ActorSystem system, final TrimmerNodeTestData data) {
@@ -26,7 +30,8 @@ public class AlphaActorTestKit extends JavaTestKit {
 		super(system);
 
 		// Arrange
-		final Props props = new Props(ReteActor.class);
+		Injector injector = Guice.createInjector(new TestModule());
+		final Props props = Props.create(GuiceActorProducer.class, injector, ReteActor.class);
 		final ActorRef trimmerActor = system.actorOf(props);
 
 		// configuration
@@ -45,9 +50,9 @@ public class AlphaActorTestKit extends JavaTestKit {
 		// recipe.getIndices().addAll(data.getTupleMask().getMask());
 
 		final InequalityFilterRecipe recipe = RecipesFactory.eINSTANCE.createInequalityFilterRecipe();
-		
+
 		// set the subject
-		recipe.setSubject(data.getTupleMask().getMask().get(0));		
+		recipe.setSubject(data.getTupleMask().getMask().get(0));
 		// remove the head
 		data.getTupleMask().getMask().remove(0);
 		// get tha tail as inequals

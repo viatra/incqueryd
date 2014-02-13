@@ -1,6 +1,8 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
 import static org.junit.Assert.assertTrue;
+import hu.bme.mit.incqueryd.cache.DistributedCache;
+import hu.bme.mit.incqueryd.cache.local.LocalCache;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.nodes.data.BetaNodeTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
@@ -18,9 +20,9 @@ import com.google.gson.JsonSyntaxException;
 
 /**
  * Test cases for the {@link JoinNode} class.
- * 
+ *
  * @author szarnyasg
- * 
+ *
  */
 public class JoinNodeTest {
 
@@ -31,16 +33,17 @@ public class JoinNodeTest {
 		for (File file : files) {
 			System.out.println(file);
 			Gson gson = GsonParser.getGsonParser();
-			BetaNodeTestData data = gson.fromJson(new FileReader(file), BetaNodeTestData.class);			
+			BetaNodeTestData data = gson.fromJson(new FileReader(file), BetaNodeTestData.class);
 			join(data);
 		}
 	}
 
 	public void join(final BetaNodeTestData data) {
-		final JoinNode joinNode = new JoinNode(data.getPrimaryMask(), data.getSecondaryMask());
+		DistributedCache cache = new LocalCache();
+		final JoinNode joinNode = new JoinNode(data.getPrimaryMask(), data.getSecondaryMask(), cache);
 		final ChangeSet resultChangeSet = Algorithms.join(joinNode, data.getPrimaryChangeSet(),
 				data.getSecondaryChangeSet());
-		assertTrue(resultChangeSet.equals(data.getJoinExpectedResults()));		
+		assertTrue(resultChangeSet.equals(data.getJoinExpectedResults()));
 	}
 
 }

@@ -21,7 +21,9 @@
 			</snapshots>
 		</repository>
 	</repositories>
-
+	<properties>
+		<akka-version>2.2.3</akka-version>
+	</properties>
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
@@ -62,7 +64,7 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
+				<!--This plugin's configuration is used to store Eclipse m2e settings
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -133,25 +135,25 @@
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
 			<artifactId>akka-actor_2.10</artifactId>
-			<version>2.1.4</version>
+			<version>${akka-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
 			<artifactId>akka-remote_2.10</artifactId>
-			<version>2.1.4</version>
+			<version>${akka-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
 			<artifactId>akka-kernel_2.10</artifactId>
-			<version>2.1.4</version>
+			<version>${akka-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
 			<artifactId>akka-testkit_2.10</artifactId>
-			<version>2.1.4</version>
+			<version>${akka-version}</version>
 		</dependency>
 
 		<!-- test -->
@@ -175,6 +177,11 @@
 			<artifactId>hu.bme.mit.incqueryd.cache.local</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>3.0</version>
+		</dependency>
 
 		<!-- recipes -->
 
@@ -185,13 +192,13 @@
 		</dependency>
 
 		<!-- EMF Binding for JSON -->
-		
+
 		<dependency>
 			<groupId>org.eclipselabs</groupId>
 			<artifactId>org.eclipselabs.emfjson</artifactId>
 			<version>0.5.3-SNAPSHOT</version>
 		</dependency>
-		
+
 	</dependencies>
 
 </project>

@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
+import hu.bme.mit.incqueryd.cache.DistributedCache;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
@@ -10,14 +11,14 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * 
+ *
  * @author szarnyasg
  *
  */
 public class JoinNode extends BetaNode {
 
-    public JoinNode(final TupleMask primaryMask, final TupleMask secondaryMask) {
-        super(primaryMask, secondaryMask);
+    public JoinNode(final TupleMask primaryMask, final TupleMask secondaryMask, DistributedCache cache) {
+        super(primaryMask, secondaryMask, cache);
     }
 
     @Override

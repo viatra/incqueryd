@@ -1,7 +1,8 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
-import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
+import hu.bme.mit.incqueryd.TestModule;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
+import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -11,6 +12,9 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.testkit.JavaTestKit;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 public class GenericReteActorTest {
 
@@ -31,7 +35,8 @@ public class GenericReteActorTest {
 		new JavaTestKit(system) {
 			{
 				// Arrange
-				final Props props = new Props(ReteActor.class);
+				Injector injector = Guice.createInjector(new TestModule());
+				final Props props = Props.create(GuiceActorProducer.class, injector, ReteActor.class);
 				final ActorRef actor = system.actorOf(props);
 
 				// create probes to check the propagated
@@ -46,7 +51,7 @@ public class GenericReteActorTest {
 				// Act
 				actor.tell(SubscriptionMessage.SUBSCRIBE_SINGLE, probe2.getRef());
 				// Assert
-				probe2.expectMsgEquals(duration("1 second"), ActorReply.SUBSCRIBED);				
+				probe2.expectMsgEquals(duration("1 second"), ActorReply.SUBSCRIBED);
 			}
 		};
 	}
