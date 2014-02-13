@@ -24,7 +24,7 @@ import akka.testkit.JavaTestKit;
  * Test plan
  * ---------
  * 
- *                                        (testKit)
+ *                                     (parentActor)
  *                                            ^
  *                                            |
  *                                            | (5) V
@@ -83,7 +83,7 @@ public class AlphaActorTestKit extends JavaTestKit {
 		targetActor = new JavaTestKit(system);
 
 		// Act
-		// message (1)
+		// message (1)		
 		alphaActor.tell(recipe, coordinatorActor.getRef());
 		// Assert
 		// message (2)

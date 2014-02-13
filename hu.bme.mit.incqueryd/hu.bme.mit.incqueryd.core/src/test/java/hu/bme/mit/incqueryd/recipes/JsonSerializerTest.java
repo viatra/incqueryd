@@ -5,6 +5,7 @@ import hu.bme.mit.incqueryd.util.RecipeSerializer;
 import java.io.IOException;
 import java.util.Arrays;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.Mask;
 import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexer;
@@ -34,19 +35,12 @@ public class JsonSerializerTest {
 		RecipeSerializer.serialize(recipe, "model.json");
 	}
 
-//	@Test
-//	public void deserialize() throws IOException {
-//		System.out.println("Deserialize.");
-//
-//		final EObject eObject = RecipeSerializer.deserialize("model.json");
-//		System.out.println(eObject);
-//	}
-	/**{
-  "primaryChangeSet":{"tuples":[{"tuple":[5,6,7]},{"tuple":[10,11,7]}],"changeType":"POSITIVE"},
-  "secondaryChangeSet":{"tuples":[{"tuple":[7,8]}],"changeType":"POSITIVE"},
-  "primaryMask":[2],
-  "secondaryMask":[0],
-  "antiJoinExpectedResults":{"tuples":[],"changeType":"POSITIVE"},
-  "joinExpectedResults":{"tuples":[{"tuple":[10,11,7,8]},{"tuple":[5,6,7,8]}],"changeType":"POSITIVE"}
-}*/
+	@Test
+	public void deserialize() throws IOException {
+		System.out.println("Deserialize.");
+
+		final EObject eObject = RecipeSerializer.deserialize("model.json");
+		System.out.println(eObject);
+	}
+
 }

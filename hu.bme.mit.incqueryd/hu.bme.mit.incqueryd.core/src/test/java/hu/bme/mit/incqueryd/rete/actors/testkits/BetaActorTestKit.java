@@ -25,21 +25,21 @@ import akka.testkit.JavaTestKit;
  * ---------
  * 
  *                                        
- *                          (primaryParent)      (secondaryParent)
- *                                 |                     |
- *                                 +-------+----------+
- *                                         |
- *                                   (5) V |  (9) V
- *                                   (8) ^ | (12) ^
- *                                         |
- *                                         V
+ *                       (primaryParentActorActor)  (secondaryParentActorActor)
+ *                                 |                    |
+ *                                 +-------+   +--------+
+ *                                         |   | 
+ *                                   (5) V |   |  (9) V
+ *                                   (8) ^ |   | (12) ^
+ *                                         |   |
+ *                                         V   V
  *  (coordinatorActor) <--------------> (betaActor)
- *                           (1) >            ^
- *                           (2) <            |
- *                                            | (3) ^   (6) V 
- *                                            | (4) V   (7) ^
- *                                            |
- *                                            V
+ *                           (1) >           ^
+ *                           (2) <           |
+ *                                           | (3) ^   (6) V   (10) V
+ *                                           | (4) V   (7) ^   (11) ^
+ *                                           |
+ *                                           V
  *                                      (targetActor) 
  * 
  * 
@@ -49,14 +49,14 @@ import akka.testkit.JavaTestKit;
  *  (3) ! SUBSCRIBE_SINGLE
  *  (4) ? SUBSCRIBED
  *  
- *  (5) ! UpdateMessage, stack: [secondaryParent] 
- *  (6) ? UpdateMessage, stack: [secondaryParent, betaActor]
- *  (7) ! ReadyMessage, stack: [secondaryParent]
+ *  (5) ! UpdateMessage, stack: [secondaryParentActor] 
+ *  (6) ? UpdateMessage, stack: [secondaryParentActor, betaActor]
+ *  (7) ! ReadyMessage, stack: [secondaryParentActor]
  *  (8) ? ReadyMessage, stack: []
  * 
- *  (9) ! UpdateMessage, stack: [primaryParent] 
- * (10) ? UpdateMessage, stack: [primaryParent, betaActor]
- * (11) ! ReadyMessage, stack: [primaryParent]
+ *  (9) ! UpdateMessage, stack: [primaryParentActor] 
+ * (10) ? UpdateMessage, stack: [primaryParentActor, betaActor]
+ * (11) ! ReadyMessage, stack: [primaryParentActor]
  * (12) ? ReadyMessage, stack: []
  * 
  * Legend:
@@ -72,8 +72,8 @@ public class BetaActorTestKit extends JavaTestKit {
 	JavaTestKit coordinatorActor;
 	JavaTestKit targetActor;
 	
-	JavaTestKit primaryParent;
-	JavaTestKit secondaryParent;
+	JavaTestKit primaryParentActor;
+	JavaTestKit secondaryParentActor;
 	
 	public BetaActorTestKit(final ActorSystem system, final BetaRecipe recipe) {
 		super(system);
@@ -87,8 +87,8 @@ public class BetaActorTestKit extends JavaTestKit {
 		coordinatorActor = new JavaTestKit(system);
 		targetActor = new JavaTestKit(system);
 		
-		primaryParent = new JavaTestKit(system);
-		secondaryParent = new JavaTestKit(system);
+		primaryParentActor = new JavaTestKit(system);
+		secondaryParentActor = new JavaTestKit(system);
 
 		// Act
 		// message (1)
