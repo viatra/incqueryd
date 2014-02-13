@@ -17,7 +17,7 @@ import com.google.common.collect.Multimap;
  * 
  */
 public class Main {
-
+ 
     public static void main(final String[] args) throws IOException {
         System.out.println("IncQuery-D main");
         System.out.println("===============");
