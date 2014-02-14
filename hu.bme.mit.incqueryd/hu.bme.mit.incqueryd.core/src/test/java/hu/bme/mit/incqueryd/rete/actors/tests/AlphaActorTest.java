@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.rete.actors;
+package hu.bme.mit.incqueryd.rete.actors.tests;
 
 import hu.bme.mit.incqueryd.rete.actors.testkits.AlphaActorTestKit;
 import hu.bme.mit.incqueryd.rete.nodes.data.AlphaTestData;
@@ -51,6 +51,7 @@ public class AlphaActorTest {
 			final String recipeFile = testFile.getPath().replace("-test-", "-recipe-");
 			final Gson gson = GsonParser.getGsonParser();
 			
+			System.out.println(recipeFile);
 			final AlphaTestData data = gson.fromJson(new FileReader(testFile), AlphaTestData.class);
 			final TrimmerRecipe recipe = (TrimmerRecipe) (RecipeSerializer.deserialize(recipeFile));
 

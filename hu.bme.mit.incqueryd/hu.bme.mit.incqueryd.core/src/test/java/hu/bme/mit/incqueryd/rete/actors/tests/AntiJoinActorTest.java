@@ -1,3 +1,4 @@
+package hu.bme.mit.incqueryd.rete.actors.tests;
 //package hu.bme.mit.incqueryd.rete.actors;
 //
 //import static org.junit.Assert.assertEquals;

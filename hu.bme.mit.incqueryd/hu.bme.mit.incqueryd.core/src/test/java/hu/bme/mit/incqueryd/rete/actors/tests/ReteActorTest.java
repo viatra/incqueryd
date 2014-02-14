@@ -1,5 +1,6 @@
-package hu.bme.mit.incqueryd.rete.actors;
+package hu.bme.mit.incqueryd.rete.actors.tests;
 
+import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
 
