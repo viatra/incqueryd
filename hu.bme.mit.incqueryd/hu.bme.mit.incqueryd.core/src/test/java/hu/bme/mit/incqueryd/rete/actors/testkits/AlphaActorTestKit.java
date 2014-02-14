@@ -8,8 +8,13 @@ import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.data.AlphaTestData;
+import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
+import hu.bme.mit.incqueryd.util.ReteNodeType;
 
-import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe;
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 
 import scala.Tuple2;
 import scala.collection.immutable.Stack;
@@ -69,7 +74,7 @@ public class AlphaActorTestKit extends JavaTestKit {
 	JavaTestKit parentActor;
 	JavaTestKit targetActor;
 	
-	public AlphaActorTestKit(final ActorSystem system, final AlphaRecipe recipe) {
+	public AlphaActorTestKit(final ActorSystem system, final ReteNodeType type, final String recipeFile) throws IOException {
 		super(system);
 
 		// Arrange
@@ -82,9 +87,12 @@ public class AlphaActorTestKit extends JavaTestKit {
 		coordinatorActor = new JavaTestKit(system);
 		targetActor = new JavaTestKit(system);
 
+		final String jsonRecipe = FileUtils.readFileToString(new File(recipeFile));
+		final ReteNodeConfiguration conf = new ReteNodeConfiguration(type, jsonRecipe);
+		
 		// Act
 		// message (1)		
-		alphaActor.tell(recipe, coordinatorActor.getRef());
+		alphaActor.tell(conf, coordinatorActor.getRef());
 		// Assert
 		// message (2)
 		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.RECIPE_RECEIVED);

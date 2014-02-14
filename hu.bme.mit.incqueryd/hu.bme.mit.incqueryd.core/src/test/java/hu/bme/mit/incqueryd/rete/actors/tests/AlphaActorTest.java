@@ -4,15 +4,12 @@ import hu.bme.mit.incqueryd.rete.actors.testkits.AlphaActorTestKit;
 import hu.bme.mit.incqueryd.rete.nodes.data.AlphaTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
 import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
-import hu.bme.mit.incqueryd.util.RecipeSerializer;
+import hu.bme.mit.incqueryd.util.ReteNodeType;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import org.eclipse.incquery.runtime.rete.recipes.EqualityFilterRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.InequalityFilterRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -53,9 +50,9 @@ public class AlphaActorTest {
 			
 			System.out.println(recipeFile);
 			final AlphaTestData data = gson.fromJson(new FileReader(testFile), AlphaTestData.class);
-			final TrimmerRecipe recipe = (TrimmerRecipe) (RecipeSerializer.deserialize(recipeFile));
+//			final TrimmerRecipe recipe = (TrimmerRecipe) (RecipeSerializer.deserialize(recipeFile));
 
-			final AlphaActorTestKit testKit = new AlphaActorTestKit(system, recipe);
+			final AlphaActorTestKit testKit = new AlphaActorTestKit(system, ReteNodeType.TRIMMER_NODE, recipeFile);
 			testKit.compute(data);
 		}
 	}
@@ -69,9 +66,9 @@ public class AlphaActorTest {
 			final Gson gson = GsonParser.getGsonParser();
 			
 			final AlphaTestData data = gson.fromJson(new FileReader(testFile), AlphaTestData.class);
-			final EqualityFilterRecipe recipe = (EqualityFilterRecipe) (RecipeSerializer.deserialize(recipeFile));
+//			final EqualityFilterRecipe recipe = (EqualityFilterRecipe) (RecipeSerializer.deserialize(recipeFile));
 
-			final AlphaActorTestKit testKit = new AlphaActorTestKit(system, recipe);
+			final AlphaActorTestKit testKit = new AlphaActorTestKit(system, ReteNodeType.EQUALITY_NODE, recipeFile);
 			testKit.compute(data);
 		}
 	}
@@ -85,9 +82,9 @@ public class AlphaActorTest {
 			final Gson gson = GsonParser.getGsonParser();
 			
 			final AlphaTestData data = gson.fromJson(new FileReader(testFile), AlphaTestData.class);
-			final InequalityFilterRecipe recipe = (InequalityFilterRecipe) (RecipeSerializer.deserialize(recipeFile));
+//			final InequalityFilterRecipe recipe = (InequalityFilterRecipe) (RecipeSerializer.deserialize(recipeFile));
 
-			final AlphaActorTestKit testKit = new AlphaActorTestKit(system, recipe);
+			final AlphaActorTestKit testKit = new AlphaActorTestKit(system, ReteNodeType.INEQUALITY_NODE, recipeFile);
 			testKit.compute(data);
 		}
 	}
