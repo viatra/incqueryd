@@ -38,7 +38,8 @@ public class RecipeSerializer {
 		final ResourceSet resourceSet = new ResourceSetImpl();
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("json", new JsResourceFactoryImpl());
 
-		// this line is necessary to evade the following exception:
+		// This line is necessary to register the resource factory.
+		// Without a resource factory, we would get the following exception:
 		// java.lang.RuntimeException: Cannot create a resource for 'http://www.eclipse.org/incquery/rete/recipes'; a
 		// registered resource factory is needed
 		RecipesPackage.eINSTANCE.getReteRecipe();

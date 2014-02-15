@@ -7,12 +7,8 @@ import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.AlphaNode;
-import hu.bme.mit.incqueryd.rete.nodes.AntiJoinNode;
-import hu.bme.mit.incqueryd.rete.nodes.EqualityNode;
-import hu.bme.mit.incqueryd.rete.nodes.InequalityNode;
-import hu.bme.mit.incqueryd.rete.nodes.JoinNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
-import hu.bme.mit.incqueryd.rete.nodes.TrimmerNode;
+import hu.bme.mit.incqueryd.rete.nodes.ReteNodeFactory;
 import hu.bme.mit.incqueryd.util.RecipeSerializer;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
 
@@ -20,13 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.EqualityFilterRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.InequalityFilterRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
 
 import scala.Tuple2;
 import scala.collection.immutable.Stack;
@@ -56,55 +46,9 @@ public class ReteActor extends UntypedActor {
 			final ReteNodeConfiguration conf = (ReteNodeConfiguration) message;
 			final EObject recipe = RecipeSerializer.deserializeFromString(conf.getJsonRecipe());
 						
-			switch (conf.getType()) {
-			case ANTIJOIN_NODE:
-				reteNode = new AntiJoinNode((BetaRecipe)recipe);
-				break;
-			case EQUALITY_NODE:
-				reteNode = new EqualityNode((EqualityFilterRecipe)recipe);
-				break;
-			case INEQUALITY_NODE:
-				reteNode = new InequalityNode((InequalityFilterRecipe)recipe);
-				break;
-			case JOIN_NODE:
-				reteNode = new JoinNode((JoinRecipe)recipe);
-				break;
-			case TRIMMER_NODE:
-				reteNode = new TrimmerNode((TrimmerRecipe)recipe);
-				break;
-			default:
-				throw new NotImplementedException(message.getClass().getSimpleName()
-						+ " recipe class is not supported.");
-			}
-			getSender().tell(ActorReply.RECIPE_RECEIVED, getSelf());
+			reteNode = ReteNodeFactory.createNode(conf, recipe);
+			getSender().tell(ActorReply.CONF_RECEIVED, getSelf());
 			
-//		} else if (message instanceof ReteNodeRecipe) {
-//			// Rete nodes
-//
-//			// Alpha node recipes
-//			if (message instanceof TrimmerRecipe) {
-//				final TrimmerRecipe recipe = (TrimmerRecipe) message;
-//				reteNode = new TrimmerNode(recipe);
-//			} else if (message instanceof EqualityFilterRecipe) {
-//				final EqualityFilterRecipe recipe = (EqualityFilterRecipe) message;
-//				reteNode = new EqualityNode(recipe);
-//			} else if (message instanceof InequalityFilterRecipe) {
-//				final InequalityFilterRecipe recipe = (InequalityFilterRecipe) message;
-//				reteNode = new InequalityNode(recipe);
-//			} // Beta node recipes
-//			else if (message instanceof JoinRecipe) {
-//				final JoinRecipe recipe = (JoinRecipe) message;
-//				reteNode = new JoinNode(recipe);
-//			} else if (message instanceof AntiJoinRecipe) {
-//				final AntiJoinRecipe recipe = (AntiJoinRecipe) message;
-//				reteNode = new AntiJoinNode(recipe);
-//			} // unsupported recipe
-//			else {
-//				throw new NotImplementedException(message.getClass().getSimpleName()
-//						+ " recipe class is not supported.");
-//			}
-//
-//			getSender().tell(ActorReply.RECIPE_RECEIVED, getSelf());
 		} else if (message instanceof UpdateMessage) {
 			final UpdateMessage updateMessage = (UpdateMessage) message;
 

@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.rete.actors.tests;
 
-import hu.bme.mit.incqueryd.rete.actors.testkits.AlphaActorTestKit;
-import hu.bme.mit.incqueryd.rete.nodes.data.AlphaTestData;
+import hu.bme.mit.incqueryd.rete.actors.testkits.BetaActorTestKit;
+import hu.bme.mit.incqueryd.rete.nodes.data.BetaTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
 import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
 import hu.bme.mit.incqueryd.util.ReteNodeType;
@@ -22,12 +22,12 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
 /**
- * Test cases for the alpha nodes.
+ * Test cases for the beta nodes.
  * 
  * @author szarnyasg
  * 
  */
-public class AlphaActorTest {
+public class BetaActorTest {
 
 	static ActorSystem system;
 
@@ -41,32 +41,27 @@ public class AlphaActorTest {
 		system.shutdown();
 	}
 
-	private void alphaNodeTest(final String name, final ReteNodeType type) throws FileNotFoundException, IOException {
+	private void betaNodeTest(final String name, final ReteNodeType type) throws FileNotFoundException, IOException {
 		final File[] files = TestCaseFinder.getTestCases(name + "-test-*.json");
 
 		for (final File testFile : files) {
 			final String recipeFile = testFile.getPath().replace("-test-", "-recipe-");
 			final Gson gson = GsonParser.getGsonParser();
-			final AlphaTestData data = gson.fromJson(new FileReader(testFile), AlphaTestData.class);
+			final BetaTestData data = gson.fromJson(new FileReader(testFile), BetaTestData.class);
 
-			final AlphaActorTestKit testKit = new AlphaActorTestKit(system, type, recipeFile);
+			final BetaActorTestKit testKit = new BetaActorTestKit(system, type, recipeFile);
 			testKit.compute(data);
 		}
 	}
 	
 	@Test
-	public void trimmerNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
-		alphaNodeTest("trimmer", ReteNodeType.TRIMMER_NODE);
+	public void joinNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
+		betaNodeTest("join", ReteNodeType.JOIN_NODE);
 	}
 
 	@Test
-	public void equalityNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
-		alphaNodeTest("equality", ReteNodeType.EQUALITY_NODE);
-	}
-	
-	@Test
-	public void inequalityNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
-		alphaNodeTest("inequality", ReteNodeType.INEQUALITY_NODE);
+	public void antiJoinNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
+		betaNodeTest("antijoin", ReteNodeType.ANTIJOIN_NODE);
 	}
 
 }

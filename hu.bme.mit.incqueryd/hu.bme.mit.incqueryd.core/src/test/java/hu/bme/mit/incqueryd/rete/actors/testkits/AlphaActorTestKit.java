@@ -47,7 +47,7 @@ import akka.testkit.JavaTestKit;
  *                                            | (7) ^
  *                                            |
  *                                            V
- *                                       (targetActor) 
+ *                                     (targetActor) 
  * 
  * 
  * (1) ! AlphaRecipe
@@ -95,7 +95,7 @@ public class AlphaActorTestKit extends JavaTestKit {
 		alphaActor.tell(conf, coordinatorActor.getRef());
 		// Assert
 		// message (2)
-		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.RECIPE_RECEIVED);
+		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONF_RECEIVED);
 
 		// subscription
 		// ====================================================================================================

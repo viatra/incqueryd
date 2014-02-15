@@ -7,9 +7,14 @@ import hu.bme.mit.incqueryd.rete.messages.ActorReply;
 import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
-import hu.bme.mit.incqueryd.rete.nodes.data.AlphaTestData;
+import hu.bme.mit.incqueryd.rete.nodes.data.BetaTestData;
+import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
+import hu.bme.mit.incqueryd.util.ReteNodeType;
 
-import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 
 import scala.Tuple2;
 import scala.collection.immutable.Stack;
@@ -25,7 +30,7 @@ import akka.testkit.JavaTestKit;
  * ---------
  * 
  *                                        
- *                       (primaryParentActorActor)  (secondaryParentActorActor)
+ *                  (primaryParentActorActor)  (secondaryParentActorActor)
  *                                 |                    |
  *                                 +-------+   +--------+
  *                                         |   | 
@@ -44,7 +49,7 @@ import akka.testkit.JavaTestKit;
  * 
  * 
  *  (1) ! BetaRecipe
- *  (2) ? RECIPE_RECEIVED
+ *  (2) ? CONF_RECEIVED
  *  
  *  (3) ! SUBSCRIBE_SINGLE
  *  (4) ? SUBSCRIBED
@@ -75,7 +80,7 @@ public class BetaActorTestKit extends JavaTestKit {
 	JavaTestKit primaryParentActor;
 	JavaTestKit secondaryParentActor;
 	
-	public BetaActorTestKit(final ActorSystem system, final BetaRecipe recipe) {
+	public BetaActorTestKit(final ActorSystem system, final ReteNodeType type, final String recipeFile) throws IOException {
 		super(system);
 
 		// Arrange
@@ -90,12 +95,15 @@ public class BetaActorTestKit extends JavaTestKit {
 		primaryParentActor = new JavaTestKit(system);
 		secondaryParentActor = new JavaTestKit(system);
 
+		final String jsonRecipe = FileUtils.readFileToString(new File(recipeFile));
+		final ReteNodeConfiguration conf = new ReteNodeConfiguration(type, jsonRecipe);
+		
 		// Act
 		// message (1)
-		betaActor.tell(recipe, coordinatorActor.getRef());
+		betaActor.tell(conf, coordinatorActor.getRef());
 		// Assert
 		// message (2)
-		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.RECIPE_RECEIVED);
+		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONF_RECEIVED);
 
 		// subscription
 		// ====================================================================================================
@@ -108,15 +116,19 @@ public class BetaActorTestKit extends JavaTestKit {
 		targetActor.expectMsgEquals(duration("1 second"), ActorReply.SUBSCRIBED);
 	}
 	
-	public void compute(final AlphaTestData data) {
+	public void compute(final BetaTestData data) {
 		// computation
 		// ====================================================================================================
 		// Act
 		final Stack<ActorRef> message5Stack = Stack$.MODULE$.empty().push(getRef());
-		final UpdateMessage updateMessage = new UpdateMessage(data.getIncomingChangeSet(), ReteNodeSlot.SINGLE, message5Stack);
+		final UpdateMessage primaryUpdateMessage = new UpdateMessage(data.getPrimaryChangeSet(), ReteNodeSlot.SINGLE, message5Stack);
+		
+		final UpdateMessage secondaryUpdateMessage = new UpdateMessage(data.getSecondaryChangeSet(), ReteNodeSlot.SINGLE, message5Stack);
 
+		
+		
 		// message (5)
-		betaActor.tell(updateMessage, getRef());
+		betaActor.tell(primaryUpdateMessage, getRef());
 
 		// create the exptected senderStack
 		final Stack<ActorRef> message6Stack = message5Stack.push(betaActor);
