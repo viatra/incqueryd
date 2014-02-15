@@ -49,8 +49,8 @@ public class AlphaActorTest {
 			final Gson gson = GsonParser.getGsonParser();
 			final AlphaTestData data = gson.fromJson(new FileReader(testFile), AlphaTestData.class);
 
-			final AlphaActorTestKit testKit = new AlphaActorTestKit(system, type, recipeFile);
-			testKit.compute(data);
+			final AlphaActorTestKit testKit = new AlphaActorTestKit(system);
+			testKit.test(type, recipeFile, data);
 		}
 	}
 	

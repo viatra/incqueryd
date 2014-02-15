@@ -93,7 +93,7 @@ public class ReteActor extends UntypedActor {
 		readyMessageTarget.tell(propagatedReadyMessage, getSelf());
 
 		System.out.println();
-		System.out.println("Termination protocol sending: " + readyMessageSenderStack);
+		System.out.println("Termination protocol sending: " + readyMessageSenderStack + " to " + readyMessageTarget);		
 	}
 
 	protected void subscribeSender(final ReteNodeSlot slot) {
