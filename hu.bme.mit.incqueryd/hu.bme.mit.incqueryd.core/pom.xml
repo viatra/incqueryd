@@ -185,13 +185,33 @@
 		</dependency>
 
 		<!-- EMF Binding for JSON -->
-		
+
 		<dependency>
 			<groupId>org.eclipselabs</groupId>
 			<artifactId>org.eclipselabs.emfjson</artifactId>
 			<version>0.5.3-SNAPSHOT</version>
 		</dependency>
+
+		<!-- EMF -->
 		
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>common</artifactId>
+			<version>2.9.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>ecore</artifactId>
+			<version>2.9.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.eclipse.emf.ecore</groupId>
+			<artifactId>xmi</artifactId>
+			<version>2.9.1</version>
+		</dependency>
+
 	</dependencies>
 
 </project>
