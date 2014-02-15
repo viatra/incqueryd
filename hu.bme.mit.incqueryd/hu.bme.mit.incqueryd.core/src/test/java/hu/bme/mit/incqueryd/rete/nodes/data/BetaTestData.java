@@ -11,14 +11,16 @@ public class BetaTestData {
 
 	protected ChangeSet primaryChangeSet;
 	protected ChangeSet secondaryChangeSet;
-	protected ChangeSet expectedChangeSet;
+	protected ChangeSet expectedFirstChangeSet;
+	protected ChangeSet expectedSecondChangeSet;
 
 	public BetaTestData(final ChangeSet primaryChangeSet, final ChangeSet secondaryChangeSet,
-			final ChangeSet expectedChangeSet) {
+			final ChangeSet expectedFirstChangeSet, final ChangeSet expectedSecondChangeSet) {
 		super();
 		this.primaryChangeSet = primaryChangeSet;
 		this.secondaryChangeSet = secondaryChangeSet;
-		this.expectedChangeSet = expectedChangeSet;
+		this.expectedFirstChangeSet = expectedFirstChangeSet;
+		this.expectedSecondChangeSet = expectedSecondChangeSet;
 	}
 
 	public ChangeSet getPrimaryChangeSet() {
@@ -29,8 +31,11 @@ public class BetaTestData {
 		return secondaryChangeSet;
 	}
 
-	public ChangeSet getExpectedChangeSet() {
-		return expectedChangeSet;
+	public ChangeSet getExpectedFirstChangeSet() {
+		return expectedFirstChangeSet;
 	}
 	
+	public ChangeSet getExpectedSecondChangeSet() {
+		return expectedSecondChangeSet;
+	}
 }

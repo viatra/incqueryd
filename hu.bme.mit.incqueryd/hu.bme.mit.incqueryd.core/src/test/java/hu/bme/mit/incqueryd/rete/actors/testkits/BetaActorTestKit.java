@@ -1,32 +1,16 @@
 package hu.bme.mit.incqueryd.rete.actors.testkits;
 
-import static org.junit.Assert.assertEquals;
-import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
-import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.rete.messages.ActorReply;
-import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
-import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
-import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.data.BetaTestData;
-import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
 import hu.bme.mit.incqueryd.util.ReteNodeType;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
 
-import org.apache.commons.io.FileUtils;
-
-import scala.Tuple2;
-import scala.collection.immutable.Stack;
-import scala.collection.immutable.Stack$;
-import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import akka.actor.Props;
 import akka.testkit.JavaTestKit;
 
-/** @formatter:off
+// @formatter:off
+/** 
  * 
  * Test plan
  * ---------
@@ -71,147 +55,28 @@ import akka.testkit.JavaTestKit;
  *    the top item in the stack is the _first_ in the list (unlike the java.util.Stack class' toString()) 
  *
  */
-public class BetaActorTestKit extends JavaTestKit {
+// @formatter:on
+public class BetaActorTestKit extends ReteActorTestKit {
 
-	ActorRef betaActor;
-	
-	JavaTestKit coordinatorActor;
-	JavaTestKit targetActor;
-	
-	JavaTestKit primaryParentActor;
-	JavaTestKit secondaryParentActor;
-	
-	public BetaActorTestKit(final ActorSystem system, final ReteNodeType type, final String recipeFile) throws IOException {
-		super(system);
+	protected final JavaTestKit primaryParentActor;
+	protected final JavaTestKit secondaryParentActor;
 
-		// Arrange
-		final Props props = new Props(ReteActor.class);
-		betaActor = system.actorOf(props);
+	public BetaActorTestKit(final ActorSystem system, final ReteNodeType type, final String recipeFile)
+			throws IOException {
+		super(system, type, recipeFile);
 
-		// configuration
-		// ====================================================================================================
-		coordinatorActor = new JavaTestKit(system);
-		targetActor = new JavaTestKit(system);
-		
 		primaryParentActor = new JavaTestKit(system);
 		secondaryParentActor = new JavaTestKit(system);
-
-		final String jsonRecipe = FileUtils.readFileToString(new File(recipeFile));
-		final ReteNodeConfiguration conf = new ReteNodeConfiguration(type, jsonRecipe);
-		
-		// Act
-		// message (1)
-		betaActor.tell(conf, coordinatorActor.getRef());
-		// Assert
-		// message (2)
-		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONFIGURATION_RECEIVED);
-
-		// subscription
-		// ====================================================================================================
-		// Act
-		// message (3)
-		betaActor.tell(SubscriptionMessage.SUBSCRIBE_SINGLE, targetActor.getRef());
-				
-		// Assert
-		// message (4)
-		targetActor.expectMsgEquals(duration("1 second"), ActorReply.SUBSCRIBED);
-	}
-	
-	public void compute(final BetaTestData data) {
-		computeOnSecondary(data);
-		computeOnPrimary(data);
-	}
-	
-	protected void computeOnPrimary(final BetaTestData data) {
-//		// computation
-//		// ====================================================================================================
-//		// Act
-//		final Stack<ActorRef> message5Stack = Stack$.MODULE$.empty().push(primaryParentActor.getRef());
-//		final UpdateMessage primaryUpdateMessage = new UpdateMessage(data.getPrimaryChangeSet(), ReteNodeSlot.PRIMARY, message5Stack);
-//		
-//		// message (5)
-//		betaActor.tell(primaryUpdateMessage, primaryParentActor.getRef());
-//
-//		// create the exptected senderStack
-//		final Stack<ActorRef> message6Stack = message5Stack.push(betaActor);
-//
-//		// Assert
-//		// message (6)
-//		final UpdateMessage propagatedUpdateMessage = targetActor.expectMsgClass(duration("1 second"),
-//				UpdateMessage.class);
-//		
-//		System.out.println("---------------------------------");
-//		System.out.println(primaryUpdateMessage.getChangeSet());
-//		System.out.println("---------------------------------");
-//		
-////		assertEquals(changeSet, propagatedUpdateMessage.getChangeSet());
-////		assertEquals(ReteNodeSlot.SINGLE, propagatedUpdateMessage.getNodeSlot());
-////		assertEquals(message6Stack, propagatedUpdateMessage.getSenderStack());
-//
-//		// termination protocol
-//		// ====================================================================================================
-//		// Act
-//		final Stack<ActorRef> senderStack2 = propagatedUpdateMessage.getSenderStack();
-//
-//		final Tuple2<ActorRef, Stack<ActorRef>> pair = senderStack2.pop2();
-//		final ActorRef terminationActorRef = pair._1();
-//		final Stack<ActorRef> terminationSenderStack = pair._2();
-//
-//		final ReadyMessage readyMessage = new ReadyMessage(terminationSenderStack);
-//		// message (7)
-//		terminationActorRef.tell(readyMessage, targetActor.getRef());
-//
-//		// we expect a ReadyMessage with an empty stack as the sender route
-//		final ReadyMessage expectedReadyMessage = new ReadyMessage(Stack$.MODULE$.empty());
-//		// message (8)
-//		final ReadyMessage readyMessage2 = expectMsgClass(duration("1 second"), ReadyMessage.class);
-//
-//		assertEquals(expectedReadyMessage, readyMessage2);
 	}
 
-	protected void computeOnSecondary(final BetaTestData data) {
-		// computation
-		// ====================================================================================================
-		// Act
-		final Stack<ActorRef> message9Stack = Stack$.MODULE$.empty().push(secondaryParentActor.getRef());
-		final UpdateMessage secondaryUpdateMessage = new UpdateMessage(data.getSecondaryChangeSet(), ReteNodeSlot.SECONDARY, message9Stack);
-		
-		// message (5)
-		betaActor.tell(secondaryUpdateMessage, primaryParentActor.getRef());
-
-		// create the exptected senderStack
-		final Stack<ActorRef> message6Stack = message9Stack.push(betaActor);
-
-		// Assert
-		// message (6)
-		final UpdateMessage propagatedUpdateMessage = targetActor.expectMsgClass(duration("1 second"),
-				UpdateMessage.class);
-					
-		final HashSet<Tuple> emptySet = new HashSet<Tuple>();
-		assertEquals(emptySet, propagatedUpdateMessage.getChangeSet().getTuples());
-		assertEquals(ReteNodeSlot.SINGLE, propagatedUpdateMessage.getNodeSlot());
-		assertEquals(message6Stack, propagatedUpdateMessage.getSenderStack());
-
-		// termination protocol
-		// ====================================================================================================
-		// Act
-		final Stack<ActorRef> senderStack2 = propagatedUpdateMessage.getSenderStack();
-
-		final Tuple2<ActorRef, Stack<ActorRef>> pair = senderStack2.pop2();
-		final ActorRef terminationActorRef = pair._1();
-		final Stack<ActorRef> terminationSenderStack = pair._2();
-
-		final ReadyMessage readyMessage = new ReadyMessage(terminationSenderStack);
-		// message (7)
-		terminationActorRef.tell(readyMessage, targetActor.getRef());
-
-		// we expect a ReadyMessage with an empty stack as the sender route
-		final ReadyMessage expectedReadyMessage = new ReadyMessage(Stack$.MODULE$.empty());
-		// message (8)
-		final ReadyMessage readyMessage2 = secondaryParentActor.expectMsgClass(duration("1 second"), ReadyMessage.class);
-
-		assertEquals(expectedReadyMessage, readyMessage2);
+	public void test(final BetaTestData data) throws IOException {
+		// Act and Assert
+		configure(coordinatorActor, reteActor, conf);
+		subscribe(targetActor, reteActor);
+		testComputation(secondaryParentActor, reteActor, targetActor, data.getSecondaryChangeSet(),
+				data.getExpectedFirstChangeSet(), ReteNodeSlot.SECONDARY);
+		testComputation(primaryParentActor, reteActor, targetActor, data.getPrimaryChangeSet(),
+				data.getExpectedSecondChangeSet(), ReteNodeSlot.PRIMARY);
 	}
-	
-	
+
 }

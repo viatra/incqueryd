@@ -52,7 +52,7 @@ public class BetaActorTest {
 			final BetaTestData data = gson.fromJson(new FileReader(testFile), BetaTestData.class);
 
 			final BetaActorTestKit testKit = new BetaActorTestKit(system, type, recipeFile);
-			testKit.compute(data);
+			testKit.test(data);
 		}
 	}
 	

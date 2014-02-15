@@ -1,21 +1,16 @@
 package hu.bme.mit.incqueryd.rete.actors.testkits;
 
-import hu.bme.mit.incqueryd.rete.actors.ReteActor;
+import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.nodes.data.AlphaTestData;
-import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
 import hu.bme.mit.incqueryd.util.ReteNodeType;
 
-import java.io.File;
 import java.io.IOException;
 
-import org.apache.commons.io.FileUtils;
-
-import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
-import akka.actor.Props;
 import akka.testkit.JavaTestKit;
 
-/** @formatter:off
+// @formatter:off
+/**
  * 
  * Test plan
  * ---------
@@ -54,29 +49,23 @@ import akka.testkit.JavaTestKit;
  *    the top item in the stack is the _first_ in the list (unlike the java.util.Stack class' toString()) 
  *
  */
+// @formatter:on
 public class AlphaActorTestKit extends ReteActorTestKit {
 	
-	protected final ActorSystem system;
+	protected final JavaTestKit parentActor;
 	
-	public AlphaActorTestKit(final ActorSystem system) throws IOException {
-		super(system);
-		this.system = system;
+	public AlphaActorTestKit(final ActorSystem system, final ReteNodeType type, final String recipeFile) throws IOException {
+		super(system, type, recipeFile);
+		
+		// alpha nodes have one parent
+		parentActor = new JavaTestKit(system);
 	}
 	
-	public void test(final ReteNodeType type, final String recipeFile, final AlphaTestData data) throws IOException {
-		// Arrange
-		final Props props = new Props(ReteActor.class);
-		final ActorRef alphaActor = system.actorOf(props);
-		final JavaTestKit coordinatorActor = new JavaTestKit(system);
-		final JavaTestKit parentActor = new JavaTestKit(system);
-		final JavaTestKit targetActor = new JavaTestKit(system);
-		final String jsonRecipe = FileUtils.readFileToString(new File(recipeFile));
-		final ReteNodeConfiguration conf = new ReteNodeConfiguration(type, jsonRecipe);		
-
+	public void test(final AlphaTestData data) throws IOException {
 		// Act and Assert		
-		configure(coordinatorActor, alphaActor, conf);
-		subscribe(targetActor, alphaActor);
-		testComputation(parentActor, alphaActor, targetActor, data.getIncomingChangeSet(), data.getExpectedChangeSet());
+		configure(coordinatorActor, reteActor, conf);
+		subscribe(targetActor, reteActor);
+		testComputation(parentActor, reteActor, targetActor, data.getIncomingChangeSet(), data.getExpectedChangeSet(), ReteNodeSlot.SINGLE);
 	}
 
 }
