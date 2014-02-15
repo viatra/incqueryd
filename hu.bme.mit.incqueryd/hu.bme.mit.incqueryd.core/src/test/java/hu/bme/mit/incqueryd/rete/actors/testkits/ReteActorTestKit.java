@@ -129,8 +129,11 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 		// Assert
 		// message (B) ?
 		final Stack<ActorRef> messageBStack = messageAStack.push(testedActor);
-		final UpdateMessage expectedMessageB = new UpdateMessage(expectedChangeSet, targetSlot, messageBStack);
+		final UpdateMessage expectedMessageB = new UpdateMessage(expectedChangeSet, ReteNodeSlot.SINGLE, messageBStack);
 		final UpdateMessage actualMessageB = targetActor.expectMsgClass(duration("1 second"), UpdateMessage.class);
+
+		// System.out.println("exp: " + expectedMessageB);
+		// System.out.println("act: " + actualMessageB);
 
 		assertEquals(expectedMessageB, actualMessageB);
 

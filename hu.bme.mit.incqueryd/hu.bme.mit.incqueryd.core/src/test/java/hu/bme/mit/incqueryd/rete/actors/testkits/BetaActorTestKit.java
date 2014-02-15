@@ -73,10 +73,10 @@ public class BetaActorTestKit extends ReteActorTestKit {
 		// Act and Assert
 		configure(coordinatorActor, reteActor, conf);
 		subscribe(targetActor, reteActor);
-		testComputation(secondaryParentActor, reteActor, targetActor, data.getSecondaryChangeSet(),
-				data.getExpectedFirstChangeSet(), ReteNodeSlot.SECONDARY);
 		testComputation(primaryParentActor, reteActor, targetActor, data.getPrimaryChangeSet(),
-				data.getExpectedSecondChangeSet(), ReteNodeSlot.PRIMARY);
+				data.getExpectedFirstChangeSet(), ReteNodeSlot.PRIMARY);
+		testComputation(secondaryParentActor, reteActor, targetActor, data.getSecondaryChangeSet(),
+				data.getExpectedSecondChangeSet(), ReteNodeSlot.SECONDARY);
 	}
 
 }
