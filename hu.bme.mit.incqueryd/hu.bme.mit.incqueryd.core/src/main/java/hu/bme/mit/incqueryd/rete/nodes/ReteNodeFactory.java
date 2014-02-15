@@ -14,15 +14,15 @@ public class ReteNodeFactory {
 
 	public static ReteNode createNode(final ReteNodeConfiguration conf, final EObject recipe) {
 		switch (conf.getType()) {
-		case ANTIJOIN_NODE:
+		case ANTIJOIN:
 			return new AntiJoinNode((BetaRecipe) recipe);
-		case EQUALITY_NODE:
+		case EQUALITY:
 			return new EqualityNode((EqualityFilterRecipe) recipe);
-		case INEQUALITY_NODE:
+		case INEQUALITY:
 			return new InequalityNode((InequalityFilterRecipe) recipe);
-		case JOIN_NODE:
+		case JOIN:
 			return new JoinNode((JoinRecipe) recipe);
-		case TRIMMER_NODE:
+		case TRIMMER:
 			return new TrimmerNode((TrimmerRecipe) recipe);
 		default:
 			throw new NotImplementedException(recipe.getClass().getSimpleName() + " recipe class is not supported.");

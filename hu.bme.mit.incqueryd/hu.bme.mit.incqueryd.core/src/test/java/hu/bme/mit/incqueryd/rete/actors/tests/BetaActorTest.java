@@ -41,11 +41,13 @@ public class BetaActorTest {
 		system.shutdown();
 	}
 
-	private void betaNodeTest(final String name, final ReteNodeType type) throws FileNotFoundException, IOException {
-		final File[] files = TestCaseFinder.getTestCases(name + "-test-*.json");
+	private void betaNodeTest(final ReteNodeType type) throws FileNotFoundException, IOException {
+		final String fileNamePrefix = type.toString().toLowerCase() + "-test-";
+		
+		final File[] files = TestCaseFinder.getTestCases(fileNamePrefix + "*.json");
 
 		for (final File testFile : files) {
-			final String recipeFile = testFile.getPath().replace("-test-", "-recipe-");
+			final String recipeFile = testFile.getPath().replace(fileNamePrefix, "beta-recipe-");
 			final Gson gson = GsonParser.getGsonParser();
 			final BetaTestData data = gson.fromJson(new FileReader(testFile), BetaTestData.class);
 
@@ -56,12 +58,12 @@ public class BetaActorTest {
 	
 	@Test
 	public void joinNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
-		betaNodeTest("join", ReteNodeType.JOIN_NODE);
+		betaNodeTest(ReteNodeType.JOIN);
 	}
 
 	@Test
 	public void antiJoinNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
-		betaNodeTest("antijoin", ReteNodeType.ANTIJOIN_NODE);
+		betaNodeTest(ReteNodeType.ANTIJOIN);
 	}
 
 }

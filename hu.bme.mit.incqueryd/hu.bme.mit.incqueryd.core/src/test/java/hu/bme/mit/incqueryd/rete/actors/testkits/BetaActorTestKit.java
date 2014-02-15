@@ -29,8 +29,7 @@ import akka.testkit.JavaTestKit;
  * Test plan
  * ---------
  * 
- *                                        
- *                  (primaryParentActorActor)  (secondaryParentActorActor)
+ *                       (primaryParentActor)  (secondaryParentActor)
  *                                 |                    |
  *                                 +-------+   +--------+
  *                                         |   | 
@@ -48,8 +47,8 @@ import akka.testkit.JavaTestKit;
  *                                      (targetActor) 
  * 
  * 
- *  (1) ! BetaRecipe
- *  (2) ? CONF_RECEIVED
+ *  (1) ! ReteNodeConfiguration
+ *  (2) ? CONFIGURATION_RECEIVED
  *  
  *  (3) ! SUBSCRIBE_SINGLE
  *  (4) ? SUBSCRIBED
@@ -103,7 +102,7 @@ public class BetaActorTestKit extends JavaTestKit {
 		betaActor.tell(conf, coordinatorActor.getRef());
 		// Assert
 		// message (2)
-		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONF_RECEIVED);
+		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONFIGURATION_RECEIVED);
 
 		// subscription
 		// ====================================================================================================
@@ -125,8 +124,6 @@ public class BetaActorTestKit extends JavaTestKit {
 		
 		final UpdateMessage secondaryUpdateMessage = new UpdateMessage(data.getSecondaryChangeSet(), ReteNodeSlot.SINGLE, message5Stack);
 
-		
-		
 		// message (5)
 		betaActor.tell(primaryUpdateMessage, getRef());
 

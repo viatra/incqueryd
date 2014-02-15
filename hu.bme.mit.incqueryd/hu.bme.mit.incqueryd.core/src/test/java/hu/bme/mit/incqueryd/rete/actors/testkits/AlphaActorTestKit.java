@@ -29,7 +29,7 @@ import akka.testkit.JavaTestKit;
  * Test plan
  * ---------
  * 
- *                                     (parentActor)
+ *                                      (parentActor)
  *                                            ^
  *                                            |
  *                                            | (5) V
@@ -40,26 +40,23 @@ import akka.testkit.JavaTestKit;
  *  (coordinatorActor) <--------------> (alphaActor)
  *                           (1) >            ^
  *                           (2) <            |
- *                                            | (3) ^
- *                                            | (4) V
- *                                            |
- *                                            | (6) V  
- *                                            | (7) ^
+ *                                            | (3) ^   (6) V
+ *                                            | (4) V   (7) ^
  *                                            |
  *                                            V
- *                                     (targetActor) 
+ *                                      (targetActor) 
  * 
  * 
- * (1) ! AlphaRecipe
- * (2) ? RECIPE_RECEIVED
- * 
- * (3) ! SUBSCRIBE_SINGLE
- * (4) ? SUBSCRIBED
- * 
- * (5) ! UpdateMessage, stack: [testKit] 
- * (6) ? UpdateMessage, stack: [testKit, alphaActor]
- * (7) ! ReadyMessage, stack: [testKit]
- * (8) ? ReadyMessage, stack: []
+ *  (1) ! ReteNodeConfiguration
+ *  (2) ? CONFIGURATION_RECEIVED
+ *  
+ *  (3) ! SUBSCRIBE_SINGLE
+ *  (4) ? SUBSCRIBED
+ *  
+ *  (5) ! UpdateMessage, stack: [testKit] 
+ *  (6) ? UpdateMessage, stack: [testKit, alphaActor]
+ *  (7) ! ReadyMessage, stack: [testKit]
+ *  (8) ? ReadyMessage, stack: []
  * 
  * Legend:
  *  - [!] sent by the test framework, [?] expected by the test framework
@@ -95,7 +92,7 @@ public class AlphaActorTestKit extends JavaTestKit {
 		alphaActor.tell(conf, coordinatorActor.getRef());
 		// Assert
 		// message (2)
-		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONF_RECEIVED);
+		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONFIGURATION_RECEIVED);
 
 		// subscription
 		// ====================================================================================================

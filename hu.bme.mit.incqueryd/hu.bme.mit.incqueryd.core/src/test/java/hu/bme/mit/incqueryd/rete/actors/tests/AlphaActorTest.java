@@ -41,8 +41,8 @@ public class AlphaActorTest {
 		system.shutdown();
 	}
 
-	private void alphaNodeTest(final String name, final ReteNodeType type) throws FileNotFoundException, IOException {
-		final File[] files = TestCaseFinder.getTestCases(name + "-test-*.json");
+	private void alphaNodeTest(final ReteNodeType type) throws FileNotFoundException, IOException {
+		final File[] files = TestCaseFinder.getTestCases(type.toString().toLowerCase() + "-test-*.json");
 
 		for (final File testFile : files) {
 			final String recipeFile = testFile.getPath().replace("-test-", "-recipe-");
@@ -55,18 +55,18 @@ public class AlphaActorTest {
 	}
 	
 	@Test
-	public void trimmerNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
-		alphaNodeTest("trimmer", ReteNodeType.TRIMMER_NODE);
+	public void trimmerNodeTest() throws JsonSyntaxException, JsonIOException, IOException {	
+		alphaNodeTest(ReteNodeType.TRIMMER);
 	}
 
 	@Test
 	public void equalityNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
-		alphaNodeTest("equality", ReteNodeType.EQUALITY_NODE);
+		alphaNodeTest(ReteNodeType.EQUALITY);
 	}
 	
 	@Test
 	public void inequalityNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
-		alphaNodeTest("inequality", ReteNodeType.INEQUALITY_NODE);
+		alphaNodeTest(ReteNodeType.INEQUALITY);
 	}
 
 }

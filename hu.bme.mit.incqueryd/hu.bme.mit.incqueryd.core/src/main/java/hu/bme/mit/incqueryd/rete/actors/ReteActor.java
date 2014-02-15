@@ -7,6 +7,7 @@ import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.nodes.AlphaNode;
+import hu.bme.mit.incqueryd.rete.nodes.BetaNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNodeFactory;
 import hu.bme.mit.incqueryd.util.RecipeSerializer;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.eclipse.emf.ecore.EObject;
 
 import scala.Tuple2;
@@ -47,20 +49,37 @@ public class ReteActor extends UntypedActor {
 			final EObject recipe = RecipeSerializer.deserializeFromString(conf.getJsonRecipe());
 						
 			reteNode = ReteNodeFactory.createNode(conf, recipe);
-			getSender().tell(ActorReply.CONF_RECEIVED, getSelf());
+			getSender().tell(ActorReply.CONFIGURATION_RECEIVED, getSelf());
 			
 		} else if (message instanceof UpdateMessage) {
 			final UpdateMessage updateMessage = (UpdateMessage) message;
-
-			// processing
-			final AlphaNode alphaNode = (AlphaNode) reteNode;
-			final ChangeSet changeSet = alphaNode.update(updateMessage.getChangeSet());
-			sendToSubscribers(changeSet, updateMessage.getSenderStack());
+			update(updateMessage);
 		} else if (message instanceof ReadyMessage) {
 			final ReadyMessage readyMessage = (ReadyMessage) message;
 			terminationProtocol(readyMessage);
 		}
 
+	}
+
+	private void update(final UpdateMessage updateMessage) {
+		ChangeSet changeSet;
+		
+		switch (updateMessage.getNodeSlot()) {
+		case SINGLE:
+			final AlphaNode alphaNode = (AlphaNode) reteNode;
+			changeSet = alphaNode.update(updateMessage.getChangeSet());
+			break;
+		case PRIMARY: // fall-through
+		case SECONDARY:
+			final BetaNode betaNode = (BetaNode) reteNode;
+			changeSet = betaNode.update(updateMessage.getChangeSet(), updateMessage.getNodeSlot());			
+			break;
+		default:
+			throw new NotImplementedException(updateMessage.getNodeSlot() + " slot is not supported.");		
+		}
+		
+		// processing
+		sendToSubscribers(changeSet, updateMessage.getSenderStack());		
 	}
 
 	private void terminationProtocol(final ReadyMessage readyMessage) {
