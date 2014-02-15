@@ -36,7 +36,6 @@ public class ReteActor extends UntypedActor {
 
 	@Override
 	public void onReceive(final Object message) throws Exception {
-
 		if (message == SubscriptionMessage.SUBSCRIBE_SINGLE) {
 			subscribeSender(ReteNodeSlot.SINGLE);
 		} else if (message == SubscriptionMessage.SUBSCRIBE_PRIMARY) {
@@ -58,7 +57,6 @@ public class ReteActor extends UntypedActor {
 			final ReadyMessage readyMessage = (ReadyMessage) message;
 			terminationProtocol(readyMessage);
 		}
-
 	}
 
 	private void update(final UpdateMessage updateMessage) {
