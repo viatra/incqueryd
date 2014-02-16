@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="infrastructure" nsURI="http://incquery.net/d/infrastructure"
+    nsPrefix="inf">
+  <eClassifiers xsi:type="ecore:EClass" name="Cluster" eSuperTypes="arch.ecore#//ElementWithTraceInfo">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="infrastructureNodes" upperBound="-1"
+        eType="#//InfrastructureNode" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="serviceNodes" upperBound="-1"
+        eType="#//ServiceNode" containment="true" resolveProxies="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Storage" eSuperTypes="#//InfrastructureNode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximum" unique="false"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="used" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="free" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" unique="false" eType="#//StorageKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="StorageKind">
+    <eLiterals name="Memory"/>
+    <eLiterals name="Harddrive"/>
+    <eLiterals name="SSD"/>
+    <eLiterals name="Network"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Machine" eSuperTypes="#//InfrastructureNode">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storage" upperBound="-1"
+        eType="#//Storage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="host" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ip" unique="false" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GraphStore" eSuperTypes="#//ServiceNode">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requiredStorage" upperBound="-1"
+        eType="#//Storage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usedStorage" upperBound="-1"
+        eType="#//Storage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="master" eType="#//Machine"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slave" eType="#//Machine"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InfrastructureNode" eSuperTypes="arch.ecore#//ElementWithTraceInfo"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceNode" eSuperTypes="arch.ecore#//ElementWithTraceInfo"/>
+</ecore:EPackage>

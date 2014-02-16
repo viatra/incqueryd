@@ -34,7 +34,7 @@ public class DemoCoordinator {
      *  recipes and arch: export | deployable plug-ins and fragments
      * 
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         // initialize extension to factory map
         Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
         // initialize package registry
@@ -43,15 +43,15 @@ public class DemoCoordinator {
         RecipesPackage.eINSTANCE.eClass();
         
         // load resource
-        ResourceSet rs = new ResourceSetImpl();
-        Resource res = rs.getResource(URI.createFileURI(args[0]), true);
+        final ResourceSet rs = new ResourceSetImpl();       
+        final Resource res = rs.getResource(URI.createFileURI(args[0]), true);
         
         // traverse model
-        EObject o = res.getContents().get(0);
+        final EObject o = res.getContents().get(0);
         if (o instanceof Configuration) {
-            for (ReteRecipe rc : ((Configuration)o).getReteRecipes()) {
+            for (final ReteRecipe rc : ((Configuration)o).getReteRecipes()) {
                 System.out.println("Processing rete recipe " + rc.toString());
-                for (ReteNodeRecipe r : rc.getRecipeNodes()) {
+                for (final ReteNodeRecipe r : rc.getRecipeNodes()) {
                     System.out.println("\t"+r.getTraceInfo());
                 }
             }

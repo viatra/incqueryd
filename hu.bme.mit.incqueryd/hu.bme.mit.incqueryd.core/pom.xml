@@ -193,7 +193,7 @@
 		</dependency>
 
 		<!-- EMF -->
-		
+
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>common</artifactId>
@@ -205,12 +205,24 @@
 			<artifactId>ecore</artifactId>
 			<version>2.9.1</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.eclipse.emf.ecore</groupId>
+			<artifactId>change</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.eclipse.emf.ecore</groupId>
 			<artifactId>xmi</artifactId>
 			<version>2.9.1</version>
 		</dependency>
+
+		<!-- <artifactId>org.eclipse.emf.common_2.9.1.v20130827-0309.jar</artifactId> -->
+		<!-- <artifactId>org.eclipse.emf.ecore_2.9.1.v20130827-0309.jar</artifactId> -->
+		<!-- <artifactId>org.eclipse.emf.ecore.change_2.9.0.v20130827-0309.jar</artifactId> -->
+		<!-- <artifactId>org.eclipse.emf.ecore.xmi_2.9.1.v20130827-0309.jar</artifactId> -->
+		<!-- <artifactId>org.eclipse.incquery.runtime.rete.recipes_0.1.0.201310041243.jar</artifactId> -->
 
 	</dependencies>
 
