@@ -5,7 +5,7 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.nodes.data.AlphaTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
 import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
-import hu.bme.mit.incqueryd.util.RecipeSerializer;
+import hu.bme.mit.incqueryd.util.RecipeDeserializer;
 
 import java.io.File;
 import java.io.FileReader;
@@ -35,7 +35,7 @@ public class EqualityNodeTest {
 			final Gson gson = GsonParser.getGsonParser();
 
 			final AlphaTestData data = gson.fromJson(new FileReader(testFile), AlphaTestData.class);
-			final EqualityFilterRecipe recipe = (EqualityFilterRecipe) (RecipeSerializer.deserialize(recipeFile));
+			final EqualityFilterRecipe recipe = (EqualityFilterRecipe) (RecipeDeserializer.deserializeFromFile(recipeFile));
 			filterEquality(data, recipe);
 		}
 	}

@@ -10,7 +10,7 @@ import hu.bme.mit.incqueryd.rete.nodes.AlphaNode;
 import hu.bme.mit.incqueryd.rete.nodes.BetaNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNodeFactory;
-import hu.bme.mit.incqueryd.util.RecipeSerializer;
+import hu.bme.mit.incqueryd.util.RecipeDeserializer;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
 
 import java.util.HashMap;
@@ -45,7 +45,7 @@ public class ReteActor extends UntypedActor {
 		} else if (message instanceof ReteNodeConfiguration) {
 			
 			final ReteNodeConfiguration conf = (ReteNodeConfiguration) message;
-			final EObject recipe = RecipeSerializer.deserializeFromString(conf.getJsonRecipe());
+			final EObject recipe = RecipeDeserializer.deserializeFromString(conf.getJsonRecipe());
 						
 			reteNode = ReteNodeFactory.createNode(conf, recipe);
 			getSender().tell(ActorReply.CONFIGURATION_RECEIVED, getSelf());

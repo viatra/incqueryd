@@ -6,7 +6,7 @@ import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.nodes.data.BetaTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
 import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
-import hu.bme.mit.incqueryd.util.RecipeSerializer;
+import hu.bme.mit.incqueryd.util.RecipeDeserializer;
 
 import java.io.File;
 import java.io.FileReader;
@@ -38,7 +38,7 @@ public abstract class BetaNodeTest {
 			final Gson gson = GsonParser.getGsonParser();
 
 			final BetaTestData data = gson.fromJson(new FileReader(testFile), BetaTestData.class);
-			final BetaRecipe recipe = (BetaRecipe) (RecipeSerializer.deserialize(recipeFile));
+			final BetaRecipe recipe = (BetaRecipe) (RecipeDeserializer.deserializeFromFile(recipeFile));
 
 			final BetaNode betaNode = createBetaNode(recipe);
 			testJoin(data, betaNode);

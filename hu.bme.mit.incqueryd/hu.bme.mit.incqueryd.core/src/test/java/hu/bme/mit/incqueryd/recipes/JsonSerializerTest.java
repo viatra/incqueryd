@@ -29,7 +29,7 @@ public class JsonSerializerTest {
 		secondaryParent.setMask(secondaryMask);
 		recipe.setRightParent(secondaryParent);
 
-		RecipeSerializer.serialize(recipe, "model.json");
+		RecipeSerializer.serializeToFile(recipe, "model.json");
 	}
 
 	@Test

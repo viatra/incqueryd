@@ -1,6 +1,6 @@
 package hu.bme.mit.incqueryd.recipes;
 
-import hu.bme.mit.incqueryd.util.RecipeSerializer;
+import hu.bme.mit.incqueryd.util.RecipeDeserializer;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import org.junit.Test;
 public class JsonDeserializerTest {
 	@Test
 	public void deserialize() throws IOException {		
-		final EObject eObject = RecipeSerializer.deserialize("model.json");
+		final EObject eObject = RecipeDeserializer.deserializeFromFile("model.json");
 		System.out.println(eObject);
 	}
 	
@@ -27,7 +27,7 @@ public class JsonDeserializerTest {
 				+ "    \"mask\" : {\n"
 				+ "      \"eClass\" : \"http://www.eclipse.org/incquery/rete/recipes#//Mask\",\n"
 				+ "      \"sourceIndices\" : [ 0 ]\n" + "    }\n" + "  }\n" + "}";
-		final EObject eObject = RecipeSerializer.deserializeFromString(model);
+		final EObject eObject = RecipeDeserializer.deserializeFromString(model);
 		final JoinRecipe recipe =  (JoinRecipe) eObject;
 		System.out.println(recipe.getLeftParent().getMask().getSourceIndices());
 		System.out.println(recipe.getRightParent().getMask().getSourceIndices());
