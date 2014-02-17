@@ -37,10 +37,16 @@ public class DemoCoordinator {
     public static void main(final String[] args) {
         // initialize extension to factory map
         Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
+        
         // initialize package registry
+
+        // load the RecipesPackage first, else you may get a java.lang.ExceptionInInitializerError at
+		// arch.impl.ArchPackageImpl.init(ArchPackageImpl.java:103)
+		// caused by a java.lang.NullPointerException at
+		// arch.impl.ArchPackageImpl.initializePackageContents(ArchPackageImpl.java:295)
+        RecipesPackage.eINSTANCE.eClass();
         ArchPackage.eINSTANCE.eClass();
         InfrastructurePackage.eINSTANCE.eClass();
-        RecipesPackage.eINSTANCE.eClass();
         
         // load resource
         final ResourceSet rs = new ResourceSetImpl();       
