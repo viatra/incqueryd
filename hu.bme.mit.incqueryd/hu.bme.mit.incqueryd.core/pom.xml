@@ -184,6 +184,14 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
+		<!-- architecture -->
+
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.architecture</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<!-- EMF Binding for JSON -->
 
 		<dependency>
@@ -217,12 +225,6 @@
 			<artifactId>xmi</artifactId>
 			<version>2.9.1</version>
 		</dependency>
-
-		<!-- <artifactId>org.eclipse.emf.common_2.9.1.v20130827-0309.jar</artifactId> -->
-		<!-- <artifactId>org.eclipse.emf.ecore_2.9.1.v20130827-0309.jar</artifactId> -->
-		<!-- <artifactId>org.eclipse.emf.ecore.change_2.9.0.v20130827-0309.jar</artifactId> -->
-		<!-- <artifactId>org.eclipse.emf.ecore.xmi_2.9.1.v20130827-0309.jar</artifactId> -->
-		<!-- <artifactId>org.eclipse.incquery.runtime.rete.recipes_0.1.0.201310041243.jar</artifactId> -->
 
 	</dependencies>
 

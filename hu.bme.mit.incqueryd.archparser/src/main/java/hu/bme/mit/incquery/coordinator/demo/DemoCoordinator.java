@@ -37,7 +37,7 @@ public class DemoCoordinator {
 		
 		// initialize package registries
 		
-		// load the RecipesPackage first, else you will get a java.lang.ExceptionInInitializerError at
+		// load the RecipesPackage first, else you may get a java.lang.ExceptionInInitializerError at
 		// arch.impl.ArchPackageImpl.init(ArchPackageImpl.java:103)
 		// caused by a java.lang.NullPointerException at
 		// arch.impl.ArchPackageImpl.initializePackageContents(ArchPackageImpl.java:295)
