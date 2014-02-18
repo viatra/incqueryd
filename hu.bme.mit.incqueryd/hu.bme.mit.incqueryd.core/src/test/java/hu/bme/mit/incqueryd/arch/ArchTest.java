@@ -94,15 +94,15 @@ public class ArchTest {
 				// create a clone, else we'd get a java.util.ConcurrentModificationException
 				final ReteNodeRecipe rnrClone = EcoreUtil.copy(rnr);
 
-				System.out.println("RNR:  " + EcoreUtil.getURI(rnr)       + "      --->     " + ips.get(rnr)     );
-//				System.out.println("RNRC: " + EcoreUtil.getURI(rnrClone)  + "           " + ips.get(rnrClone));
+				System.out.println("RNR:  " + EcoreUtil.getURI(rnr) + "      --->     " + ips.get(rnr));
+				// System.out.println("RNRC: " + EcoreUtil.getURI(rnrClone) + "           " + ips.get(rnrClone));
 				System.out.println();
 
-//				final String serialized = RecipeSerializer.serializeToString(rnrClone);
-//				System.out.println(serialized);
-//				System.out.println();
-//				System.out.println();
-//				System.out.println();
+				// final String serialized = RecipeSerializer.serializeToString(rnrClone);
+				// System.out.println(serialized);
+				// System.out.println();
+				// System.out.println();
+				// System.out.println();
 
 				// final EObject deserializeFromString = RecipeDeserializer.deserializeFromString(serialized);
 				// System.out.println(deserializeFromString);
