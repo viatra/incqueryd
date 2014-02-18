@@ -31,4 +31,9 @@ public class HazelcastMultiMap<K, V> implements DistributedMultiMap<K, V> {
 		return multiMap.size();
 	}
 
+	public void remove(K key, V value) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -13,4 +13,6 @@ public interface DistributedMultiMap<K, V> {
 
 	int size();
 
+	void remove(K key, V value);
+
 }

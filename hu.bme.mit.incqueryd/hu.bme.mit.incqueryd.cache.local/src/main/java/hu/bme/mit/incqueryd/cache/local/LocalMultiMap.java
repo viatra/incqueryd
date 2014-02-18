@@ -11,18 +11,21 @@ public class LocalMultiMap<K, V> implements DistributedMultiMap<K, V> {
 
 	private final Multimap<K, V> multimap;
 
-	public LocalMultiMap(Multimap<K, V> multimap) {
+	public LocalMultiMap(final Multimap<K, V> multimap) {
 		this.multimap = multimap;
 	}
 
-	public boolean put(K key, V value) {
+	@Override
+	public boolean put(final K key, final V value) {
 		return multimap.put(key, value);
 	}
 
-	public Collection<V> get(K key) {
+	@Override
+	public Collection<V> get(final K key) {
 		return multimap.get(key);
 	}
 
+	@Override
 	public Set<K> keySet() {
 		return multimap.keySet();
 	}
@@ -30,6 +33,11 @@ public class LocalMultiMap<K, V> implements DistributedMultiMap<K, V> {
 	@Override
 	public int size() {
 		return multimap.size();
+	}
+	
+	@Override
+	public void remove(final K key, final V value) {
+		multimap.remove(key, value);
 	}
 
 }

@@ -62,70 +62,100 @@ import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
  */
 public class AntiJoinNode extends BetaNode {
 
-    public AntiJoinNode(final BetaRecipe recipe) {
+	public AntiJoinNode(final BetaRecipe recipe) {
 		super(recipe);
 	}
 
 	@Override
-    public ChangeSet update(final ChangeSet incomingChangeSet, final ReteNodeSlot slot) {
-        final Set<Tuple> incomingTuples = incomingChangeSet.getTuples();
-        final ChangeType changeType = incomingChangeSet.getChangeType();
+	public ChangeSet update(final ChangeSet incomingChangeSet, final ReteNodeSlot slot) {
+		final Set<Tuple> incomingDelta = incomingChangeSet.getTuples();
+		final ChangeType incomingChangeType = incomingChangeSet.getChangeType();
 
-        ChangeType propagatedChangeType = null;
+		ChangeType propagatedChangeType = null;
 
-        // determining the propagated update's type (see the Javadoc for the class)
-        // remark: important updates are not yet implemented
-        switch (changeType) {
-        case POSITIVE:
-            propagatedChangeType = slot == ReteNodeSlot.PRIMARY ? ChangeType.POSITIVE : ChangeType.NEGATIVE;
-            break;
-        case NEGATIVE:
-            propagatedChangeType = slot == ReteNodeSlot.PRIMARY ? ChangeType.NEGATIVE : ChangeType.POSITIVE;
-            break;
-        }
+		// determining the propagated update's type (see the Javadoc for the class)
+		// remark: important updates are not yet implemented
+		switch (incomingChangeType) {
+		case POSITIVE:
+			propagatedChangeType = slot == ReteNodeSlot.PRIMARY ? ChangeType.POSITIVE : ChangeType.NEGATIVE;
+			break;
+		case NEGATIVE:
+			propagatedChangeType = slot == ReteNodeSlot.PRIMARY ? ChangeType.NEGATIVE : ChangeType.POSITIVE;
+			break;
+		}
 
-        // logger.info(actorString() + " ReteNodeSlot: " + ReteNodeSlot);
-        final Indexer newTuplesIndexer = slot == ReteNodeSlot.PRIMARY ? primaryIndexer : secondaryIndexer;
-        final Indexer existingTuplesIndexer = slot == ReteNodeSlot.PRIMARY ? secondaryIndexer : primaryIndexer;
+		final Set<Tuple> deltaT = new HashSet<>();
 
-        final Set<Tuple> resultTuples = new HashSet<>();
+		switch (slot) {
+		case PRIMARY:
+			final Set<Tuple> deltaP = incomingDelta;
 
-        // save the new tuples to the indexer's memory
-        newTuplesIndexer.add(incomingTuples);
+			System.out.println(deltaP);
+			for (final Tuple tuple : deltaP) {
+				System.out.println("Processing tuple: " + tuple);
 
-        for (final Tuple newTuple : incomingTuples) {
-            final Tuple extractedTuple = TupleMask.extract(newTuple, newTuplesIndexer.getJoinMask());
-            final Set<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
+				final Tuple projectedTuple = TupleMask.project(tuple, primaryIndexer.getJoinMask());
+				final Set<Tuple> matches = secondaryIndexer.get(projectedTuple);
 
-            // see the Javadoc for the class
-            switch (slot) {
-            case PRIMARY:
-                if ((changeType == ChangeType.POSITIVE && matchingTuples.isEmpty())
-                        || (changeType == ChangeType.NEGATIVE && !matchingTuples.isEmpty())) {
-                    resultTuples.add(newTuple);
-                }
-                break;
-            case SECONDARY:
-                if ((changeType == ChangeType.POSITIVE && !matchingTuples.isEmpty())
-                        || (changeType == ChangeType.NEGATIVE && !matchingTuples.isEmpty())) {
-                    for (final Tuple tuple : matchingTuples) {
-                        resultTuples.add(tuple);
-                    }
-                }
-                break;
-            default:
-                break;
-            }
-        }
+				System.out.println("Projected tuple: " + projectedTuple);
+				System.out.println("Matches: " + matches);
 
-        // UpdateMessage propagatedUpdateMessage = null;
-        // if (!result.isEmpty() && targetActor != null) {
-        // propagatedUpdateMessage = new UpdateMessage(propagatedChangeType,, result);
-        // }
-        // return propagatedUpdateMessage;
+				if (matches.isEmpty()) {
+					deltaT.add(tuple);
+				}
+			}
+			break;
+		case SECONDARY:
+			break;
+		default:
+			break;
+		}
 
-        final ChangeSet propagatedChangeSet = new ChangeSet(resultTuples, propagatedChangeType);
-        return propagatedChangeSet;
-    }
+		switch (slot) {
+		case PRIMARY:
+			primaryIndexer.add(incomingDelta, incomingChangeType);
+			break;
+		case SECONDARY:
+			secondaryIndexer.add(incomingDelta, incomingChangeType);
+			break;
+		default:
+			break;
+		}
+
+		// final Indexer newTuplesIndexer = slot == ReteNodeSlot.PRIMARY ? primaryIndexer : secondaryIndexer;
+		// final Indexer existingTuplesIndexer = slot == ReteNodeSlot.PRIMARY ? secondaryIndexer : primaryIndexer;
+		//
+		//
+		// // save the new tuples to the indexer's memory
+		// newTuplesIndexer.add(incomingTuples);
+		//
+		// for (final Tuple newTuple : incomingTuples) {
+		// final Tuple extractedTuple = TupleMask.extract(newTuple, newTuplesIndexer.getJoinMask());
+		// final Set<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
+		//
+		// // see the Javadoc for the class
+		// switch (slot) {
+		// case PRIMARY:
+		// if ((changeType == ChangeType.POSITIVE && matchingTuples.isEmpty())
+		// || (changeType == ChangeType.NEGATIVE && !matchingTuples.isEmpty())) {
+		// resultTuples.add(newTuple);
+		// }
+		// break;
+		// case SECONDARY:
+		// if ((changeType == ChangeType.POSITIVE && !matchingTuples.isEmpty())
+		// || (changeType == ChangeType.NEGATIVE && !matchingTuples.isEmpty())) {
+		// for (final Tuple tuple : matchingTuples) {
+		// resultTuples.add(tuple);
+		// }
+		// }
+		// break;
+		// default:
+		// break;
+		// }
+		// }
+
+		final ChangeSet propagatedChangeSet = new ChangeSet(deltaT, propagatedChangeType);
+		return propagatedChangeSet;
+	}
 
 }

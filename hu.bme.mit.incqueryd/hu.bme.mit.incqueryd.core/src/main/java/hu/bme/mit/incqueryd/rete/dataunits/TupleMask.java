@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class TupleMask {
 
-    public static Tuple extract(final Tuple tuple, final List<Integer> mask) {
+    public static Tuple project(final Tuple tuple, final List<Integer> mask) {
         final Object[] result = new Object[mask.size()];
         for (int i = 0; i < mask.size(); i++) {
             result[i] = tuple.get(mask.get(i));

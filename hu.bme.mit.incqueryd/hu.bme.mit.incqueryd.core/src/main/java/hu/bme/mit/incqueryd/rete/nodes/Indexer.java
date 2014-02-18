@@ -2,6 +2,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 
 import hu.bme.mit.incqueryd.cache.DistributedMultiMap;
 import hu.bme.mit.incqueryd.cache.local.LocalCache;
+import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
@@ -29,17 +30,26 @@ public class Indexer {
         return joinMask;
     }
 
-    public void add(final Set<Tuple> tuples) {
+    public void add(final Set<Tuple> tuples, final ChangeType changeType) {
         for (final Tuple tuple : tuples) {
-            add(tuple);
+            add(tuple, changeType);
         }
     }
 
-    public void add(final Tuple tuple) {
-        final Tuple extractedTuple = TupleMask.extract(tuple, joinMask);
-        map.put(extractedTuple, tuple);
+    public void add(final Tuple tuple, final ChangeType changeType) {
+        final Tuple extractedTuple = TupleMask.project(tuple, joinMask);
+        switch (changeType) {
+        case POSITIVE:
+            map.put(extractedTuple, tuple);        	
+        	break;
+        case NEGATIVE:
+        	map.remove(extractedTuple, tuple);
+        	break;
+        default:
+        	break;
+        }
     }
-
+    
     public Set<Tuple> get(final Tuple tuple) {
         // converting a Collection<Tuple> to Set<Tuple>
         return new HashSet<Tuple>(map.get(tuple));
