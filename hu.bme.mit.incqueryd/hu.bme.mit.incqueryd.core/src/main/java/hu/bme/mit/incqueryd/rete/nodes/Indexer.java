@@ -55,6 +55,10 @@ public class Indexer {
         return new HashSet<Tuple>(map.get(tuple));
     }
 
+    public DistributedMultiMap<Tuple, Tuple> getMap() {
+		return map;
+	}
+    
     public int getSize() {
         return map.size();
     }

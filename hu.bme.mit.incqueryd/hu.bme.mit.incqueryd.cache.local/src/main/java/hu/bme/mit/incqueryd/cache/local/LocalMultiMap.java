@@ -40,4 +40,9 @@ public class LocalMultiMap<K, V> implements DistributedMultiMap<K, V> {
 		multimap.remove(key, value);
 	}
 
+	@Override
+	public Collection<V> values() {
+		return multimap.values();
+	}
+
 }

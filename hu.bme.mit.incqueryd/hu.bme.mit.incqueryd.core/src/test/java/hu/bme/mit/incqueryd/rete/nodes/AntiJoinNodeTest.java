@@ -128,6 +128,181 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		System.out.println();
 
 	}
+	
+
+	@Test
+	public void antiJoinDeltaTest4() {
+		System.out.println("Test 4");
+		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
+		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		recipe.setLeftParent(leftParent);
+		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		recipe.setRightParent(rightParent);
+		final AntiJoinNode node = new AntiJoinNode(recipe);
+
+		final Set<Tuple> p = new HashSet<>();
+		p.add(new Tuple(1, 2));
+		p.add(new Tuple(1, 3));
+		update(node, p, ChangeType.POSITIVE, ReteNodeSlot.PRIMARY);
+
+		final Set<Tuple> s = new HashSet<>();
+		s.add(new Tuple(2, 5));
+		update(node, s, ChangeType.POSITIVE, ReteNodeSlot.SECONDARY);
+
+		
+		final Set<Tuple> deltaP = new HashSet<>();
+		deltaP.add(new Tuple(1, 3));
+		final ChangeSet resultChangeSet = update(node, deltaP, ChangeType.NEGATIVE, ReteNodeSlot.PRIMARY);
+		
+		final HashSet<Tuple> expectedTuples = new HashSet<>();
+		expectedTuples.add(new Tuple(1, 3));
+		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.NEGATIVE);
+		assertEquals(expectedChangeSet, resultChangeSet);
+		
+		System.out.println();
+	}
+	
+
+
+	@Test
+	public void antiJoinDeltaTest5() {
+		System.out.println("Test 5");
+		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
+		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		recipe.setLeftParent(leftParent);
+		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		recipe.setRightParent(rightParent);
+		final AntiJoinNode node = new AntiJoinNode(recipe);
+
+		final Set<Tuple> p = new HashSet<>();
+		p.add(new Tuple(1, 2));
+		p.add(new Tuple(1, 3));
+		update(node, p, ChangeType.POSITIVE, ReteNodeSlot.PRIMARY);
+
+		final Set<Tuple> s = new HashSet<>();
+		s.add(new Tuple(2, 5));
+		update(node, s, ChangeType.POSITIVE, ReteNodeSlot.SECONDARY);
+
+		
+		final Set<Tuple> deltaP = new HashSet<>();
+		deltaP.add(new Tuple(1, 2));
+		final ChangeSet resultChangeSet = update(node, deltaP, ChangeType.NEGATIVE, ReteNodeSlot.PRIMARY);
+		
+		final HashSet<Tuple> expectedTuples = new HashSet<>();
+		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.NEGATIVE);
+		assertEquals(expectedChangeSet, resultChangeSet);
+		
+		System.out.println();
+	}
+	
+
+	@Test
+	public void antiJoinDeltaTest6() {
+		System.out.println("Test 6");
+		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
+		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		recipe.setLeftParent(leftParent);
+		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		recipe.setRightParent(rightParent);
+		final AntiJoinNode node = new AntiJoinNode(recipe);
+
+		final Set<Tuple> p = new HashSet<>();
+		p.add(new Tuple(1, 2));
+		p.add(new Tuple(6, 2));
+		update(node, p, ChangeType.POSITIVE, ReteNodeSlot.PRIMARY);
+
+		final Set<Tuple> s = new HashSet<>();
+		update(node, s, ChangeType.POSITIVE, ReteNodeSlot.SECONDARY);
+
+		
+		final Set<Tuple> deltaP = new HashSet<>();
+		deltaP.add(new Tuple(2, 9));
+		final ChangeSet resultChangeSet = update(node, deltaP, ChangeType.POSITIVE, ReteNodeSlot.SECONDARY);
+		
+		final HashSet<Tuple> expectedTuples = new HashSet<>();
+		expectedTuples.add(new Tuple(1, 2));
+		expectedTuples.add(new Tuple(6, 2));
+		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.NEGATIVE);
+		
+		assertEquals(expectedChangeSet, resultChangeSet);
+		
+		System.out.println();
+	}
+	
+
+	@Test
+	public void antiJoinDeltaTest7() {
+		System.out.println("Test 7");
+		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
+		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		recipe.setLeftParent(leftParent);
+		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		recipe.setRightParent(rightParent);
+		final AntiJoinNode node = new AntiJoinNode(recipe);
+
+		final Set<Tuple> p = new HashSet<>();
+		p.add(new Tuple(1, 2));
+		p.add(new Tuple(3, 4));
+		update(node, p, ChangeType.POSITIVE, ReteNodeSlot.PRIMARY);
+
+		final Set<Tuple> s = new HashSet<>();
+		s.add(new Tuple(2, 3));
+		s.add(new Tuple(2, 4));
+		s.add(new Tuple(4, 5));
+		update(node, s, ChangeType.POSITIVE, ReteNodeSlot.SECONDARY);
+
+		
+		final Set<Tuple> deltaP = new HashSet<>();
+		deltaP.add(new Tuple(2, 3));
+		final ChangeSet resultChangeSet = update(node, deltaP, ChangeType.NEGATIVE, ReteNodeSlot.SECONDARY);
+		
+		final HashSet<Tuple> expectedTuples = new HashSet<>();
+		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.POSITIVE);
+		
+		assertEquals(expectedChangeSet, resultChangeSet);
+		
+		System.out.println();
+	}
+	
+
+	@Test
+	public void antiJoinDeltaTest8() {
+		System.out.println("Test 8");
+		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
+		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		recipe.setLeftParent(leftParent);
+		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		recipe.setRightParent(rightParent);
+		final AntiJoinNode node = new AntiJoinNode(recipe);
+
+		final Set<Tuple> p = new HashSet<>();
+		p.add(new Tuple(1, 2));
+		p.add(new Tuple(3, 4));
+		update(node, p, ChangeType.POSITIVE, ReteNodeSlot.PRIMARY);
+
+		final Set<Tuple> s = new HashSet<>();
+		s.add(new Tuple(2, 3));
+		s.add(new Tuple(2, 4));
+		s.add(new Tuple(4, 5));
+		update(node, s, ChangeType.POSITIVE, ReteNodeSlot.SECONDARY);
+
+		
+		final Set<Tuple> deltaP = new HashSet<>();
+		deltaP.add(new Tuple(4, 5));
+		final ChangeSet resultChangeSet = update(node, deltaP, ChangeType.NEGATIVE, ReteNodeSlot.SECONDARY);
+		
+		final HashSet<Tuple> expectedTuples = new HashSet<>();
+		expectedTuples.add(new Tuple(3, 4));
+		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.POSITIVE);
+		
+		assertEquals(expectedChangeSet, resultChangeSet);
+		
+		System.out.println();
+	}
+	
+	
+	
+	
 
 	private ProjectionIndexer createProjectionIndexer(final Collection<? extends Integer> mask) {
 		final Mask leftMask = RecipesFactory.eINSTANCE.createMask();

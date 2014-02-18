@@ -6,6 +6,7 @@ import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -82,6 +83,8 @@ public class AntiJoinNode extends BetaNode {
 		case NEGATIVE:
 			propagatedChangeType = slot == ReteNodeSlot.PRIMARY ? ChangeType.NEGATIVE : ChangeType.POSITIVE;
 			break;
+		default:
+			break;
 		}
 
 		final Set<Tuple> deltaT = new HashSet<>();
@@ -105,8 +108,59 @@ public class AntiJoinNode extends BetaNode {
 				}
 			}
 			break;
+			
 		case SECONDARY:
+			final Set<Tuple> deltaS = incomingDelta;
+			
+//			switch (incomingChangeType) {
+//			case POSITIVE:
+//			break;
+//			case NEGATIVE:
+//				
+//				
+//				break;
+//			default:
+//				break;
+//			}
+			
+			for (final Tuple tuple : deltaS) {
+				final Tuple projectedTuple = TupleMask.project(tuple, secondaryIndexer.getJoinMask());
+				System.out.println("Projected tuple: " + projectedTuple);
+				final Set<Tuple> matches = primaryIndexer.get(projectedTuple);
+				System.out.println("Matches: " + matches);
+
+				deltaT.addAll(matches);
+			}
+
+			if (incomingChangeType == ChangeType.NEGATIVE) {
+				final Set<Tuple> s = new HashSet<>();
+				s.addAll(secondaryIndexer.getMap().values());
+				s.removeAll(deltaS);
+				final Set<Tuple> sMinusDeltaS = s;
+				
+				System.out.println("s \\ /\\s = " + sMinusDeltaS);
+				
+				final Set<Tuple> projectedSMinusDeltaS = new HashSet<>();
+				for (final Tuple tuple : sMinusDeltaS) {
+					final Tuple projectedTuple  = TupleMask.project(tuple, secondaryIndexer.getJoinMask());
+					projectedSMinusDeltaS.add(projectedTuple);					
+				}
+				
+				System.out.println("projected s minus delta s: " + projectedSMinusDeltaS);
+								
+				final Collection<Tuple> p = primaryIndexer.getMap().values();
+				for (final Tuple tuple : p) {
+					final Tuple projectedP = TupleMask.project(tuple, primaryIndexer.getJoinMask());
+					if (projectedSMinusDeltaS.contains(projectedP)) {
+						System.out.println("p: " + p);
+						deltaT.remove(tuple);
+					}
+				}
+				
+				System.out.println("delta T: " + deltaT);
+			}
 			break;
+			
 		default:
 			break;
 		}
