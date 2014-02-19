@@ -57,11 +57,11 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		
 		final Set<Tuple> deltaP = new HashSet<>();
 		deltaP.add(new Tuple(6, 2));
-		final ChangeSet resultChangeSet = update(node, deltaP, ChangeType.POSITIVE, ReteNodeSlot.PRIMARY);
+		final ChangeSet actualChangeSet = update(node, deltaP, ChangeType.POSITIVE, ReteNodeSlot.PRIMARY);
 		
 		final HashSet<Tuple> expectedTuples = new HashSet<>();
 		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.POSITIVE);
-		assertEquals(expectedChangeSet, resultChangeSet);
+		assertEquals(expectedChangeSet, actualChangeSet);
 		
 		System.out.println();
 	}
@@ -88,12 +88,12 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		
 		final Set<Tuple> deltaP = new HashSet<>();
 		deltaP.add(new Tuple(6, 3));
-		final ChangeSet resultChangeSet = update(node, deltaP, ChangeType.POSITIVE, ReteNodeSlot.PRIMARY);
+		final ChangeSet actualChangeSet = update(node, deltaP, ChangeType.POSITIVE, ReteNodeSlot.PRIMARY);
 		
 		final HashSet<Tuple> expectedTuples = new HashSet<>();
 		expectedTuples.add(new Tuple(6, 3));
 		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.POSITIVE);
-		assertEquals(expectedChangeSet, resultChangeSet);
+		assertEquals(expectedChangeSet, actualChangeSet);
 		
 		System.out.println();
 	}
@@ -152,12 +152,12 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		
 		final Set<Tuple> deltaP = new HashSet<>();
 		deltaP.add(new Tuple(1, 3));
-		final ChangeSet resultChangeSet = update(node, deltaP, ChangeType.NEGATIVE, ReteNodeSlot.PRIMARY);
+		final ChangeSet actualChangeSet = update(node, deltaP, ChangeType.NEGATIVE, ReteNodeSlot.PRIMARY);
 		
 		final HashSet<Tuple> expectedTuples = new HashSet<>();
 		expectedTuples.add(new Tuple(1, 3));
 		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.NEGATIVE);
-		assertEquals(expectedChangeSet, resultChangeSet);
+		assertEquals(expectedChangeSet, actualChangeSet);
 		
 		System.out.println();
 	}
@@ -186,11 +186,11 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		
 		final Set<Tuple> deltaP = new HashSet<>();
 		deltaP.add(new Tuple(1, 2));
-		final ChangeSet resultChangeSet = update(node, deltaP, ChangeType.NEGATIVE, ReteNodeSlot.PRIMARY);
+		final ChangeSet actualChangeSet = update(node, deltaP, ChangeType.NEGATIVE, ReteNodeSlot.PRIMARY);
 		
 		final HashSet<Tuple> expectedTuples = new HashSet<>();
 		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.NEGATIVE);
-		assertEquals(expectedChangeSet, resultChangeSet);
+		assertEquals(expectedChangeSet, actualChangeSet);
 		
 		System.out.println();
 	}
@@ -217,14 +217,14 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		
 		final Set<Tuple> deltaP = new HashSet<>();
 		deltaP.add(new Tuple(2, 9));
-		final ChangeSet resultChangeSet = update(node, deltaP, ChangeType.POSITIVE, ReteNodeSlot.SECONDARY);
+		final ChangeSet actualChangeSet = update(node, deltaP, ChangeType.POSITIVE, ReteNodeSlot.SECONDARY);
 		
 		final HashSet<Tuple> expectedTuples = new HashSet<>();
 		expectedTuples.add(new Tuple(1, 2));
 		expectedTuples.add(new Tuple(6, 2));
 		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.NEGATIVE);
 		
-		assertEquals(expectedChangeSet, resultChangeSet);
+		assertEquals(expectedChangeSet, actualChangeSet);
 		
 		System.out.println();
 	}
@@ -254,12 +254,12 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		
 		final Set<Tuple> deltaP = new HashSet<>();
 		deltaP.add(new Tuple(2, 3));
-		final ChangeSet resultChangeSet = update(node, deltaP, ChangeType.NEGATIVE, ReteNodeSlot.SECONDARY);
+		final ChangeSet actualChangeSet = update(node, deltaP, ChangeType.NEGATIVE, ReteNodeSlot.SECONDARY);
 		
 		final HashSet<Tuple> expectedTuples = new HashSet<>();
 		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.POSITIVE);
 		
-		assertEquals(expectedChangeSet, resultChangeSet);
+		assertEquals(expectedChangeSet, actualChangeSet);
 		
 		System.out.println();
 	}
@@ -289,13 +289,13 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		
 		final Set<Tuple> deltaP = new HashSet<>();
 		deltaP.add(new Tuple(4, 5));
-		final ChangeSet resultChangeSet = update(node, deltaP, ChangeType.NEGATIVE, ReteNodeSlot.SECONDARY);
+		final ChangeSet actualChangeSet = update(node, deltaP, ChangeType.NEGATIVE, ReteNodeSlot.SECONDARY);
 		
 		final HashSet<Tuple> expectedTuples = new HashSet<>();
 		expectedTuples.add(new Tuple(3, 4));
 		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.POSITIVE);
 		
-		assertEquals(expectedChangeSet, resultChangeSet);
+		assertEquals(expectedChangeSet, actualChangeSet);
 		
 		System.out.println();
 	}
