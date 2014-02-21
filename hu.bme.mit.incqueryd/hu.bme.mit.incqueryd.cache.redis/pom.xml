@@ -7,15 +7,19 @@
 		<groupId>hu.bme.mit.incqueryd</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>hu.bme.mit.incqueryd.cache.local</artifactId>
-
-	<name>IncQuery-D Distributed Cache Local Implementation</name>
+	<artifactId>hu.bme.mit.incqueryd.cache.redis</artifactId>
+	<name>IncQuery-D Distributed Cache Redis Implementation</name>
 
 	<dependencies>
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
 			<artifactId>hu.bme.mit.incqueryd.cache</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.redisson</groupId>
+			<artifactId>redisson</artifactId>
+			<version>1.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
