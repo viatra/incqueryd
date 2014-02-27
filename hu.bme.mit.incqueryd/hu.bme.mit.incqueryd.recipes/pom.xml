@@ -9,18 +9,18 @@
 	<artifactId>hu.bme.mit.incqueryd.recipes</artifactId>
 
 	<name>IncQuery Recipes</name>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
-			<artifactId>common</artifactId>
-			<version>[2.9,)</version>
+			<artifactId>org.eclipse.emf.common</artifactId>
+			<version>${emf.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
-			<artifactId>ecore</artifactId>
-			<version>[2.9,)</version>
+			<artifactId>org.eclipse.emf.ecore</artifactId>
+			<version>${emf.version}</version>
 		</dependency>
 	</dependencies>
 </project>
