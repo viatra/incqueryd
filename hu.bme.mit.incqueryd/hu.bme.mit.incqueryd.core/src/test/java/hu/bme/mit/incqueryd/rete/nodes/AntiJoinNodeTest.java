@@ -7,16 +7,14 @@ import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.Mask;
 import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexer;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
 import org.junit.Test;
+
 
 /**
  * Test cases for the {@link AntiJoinNode} class.
@@ -31,8 +29,14 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 	}
 
 	@Override
-	protected BetaNode createBetaNode(final BetaRecipe recipe) {
-		return new AntiJoinNode(recipe);
+	protected BetaNode createBetaNode() {
+		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
+		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		recipe.setLeftParent(leftParent);
+		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		recipe.setRightParent(rightParent);
+		final AntiJoinNode node = new AntiJoinNode(recipe);
+		return node;
 	}
 
 	@Test
@@ -301,18 +305,6 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 	}
 	
 	
-	
-	
-
-	private ProjectionIndexer createProjectionIndexer(final Collection<? extends Integer> mask) {
-		final Mask leftMask = RecipesFactory.eINSTANCE.createMask();
-		leftMask.setSourceArity(mask.size());
-		leftMask.getSourceIndices().addAll(mask);
-		final ProjectionIndexer leftParent = RecipesFactory.eINSTANCE.createProjectionIndexer();
-		leftParent.setMask(leftMask);
-		return leftParent;
-	}
-
 	private ChangeSet update(final AntiJoinNode node, final Set<Tuple> tuples, final ChangeType changeType,
 			final ReteNodeSlot reteNodeSlot) {
 		final ChangeSet incomingChangeSet1 = new ChangeSet(tuples, changeType);
