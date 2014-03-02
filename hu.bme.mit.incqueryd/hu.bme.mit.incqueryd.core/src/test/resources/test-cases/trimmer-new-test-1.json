@@ -17,6 +17,6 @@
 	"expectedChangeSets":[
 		{"tuples":[{"tuple":[3,1]}],"changeType":"POSITIVE"},
 		{"tuples":[{"tuple":[12,10]}],"changeType":"POSITIVE"},
-		{"tuples":[],"changeType":"NEGATIVE"}
+		{"tuples":[{"tuple":[3,1]}],"changeType":"NEGATIVE"}
 	]
 }
