@@ -93,15 +93,10 @@ public class AntiJoinNode extends BetaNode {
 		case PRIMARY:
 			final Set<Tuple> deltaP = incomingDelta;
 
-			System.out.println(deltaP);
 			for (final Tuple tuple : deltaP) {
-				System.out.println("Processing tuple: " + tuple);
 
 				final Tuple projectedTuple = TupleMask.project(tuple, primaryIndexer.getJoinMask());
 				final Set<Tuple> matches = secondaryIndexer.get(projectedTuple);
-
-				System.out.println("Projected tuple: " + projectedTuple);
-				System.out.println("Matches: " + matches);
 
 				if (matches.isEmpty()) {
 					deltaT.add(tuple);
@@ -112,22 +107,10 @@ public class AntiJoinNode extends BetaNode {
 		case SECONDARY:
 			final Set<Tuple> deltaS = incomingDelta;
 			
-//			switch (incomingChangeType) {
-//			case POSITIVE:
-//			break;
-//			case NEGATIVE:
-//				
-//				
-//				break;
-//			default:
-//				break;
-//			}
 			
 			for (final Tuple tuple : deltaS) {
 				final Tuple projectedTuple = TupleMask.project(tuple, secondaryIndexer.getJoinMask());
-				System.out.println("Projected tuple: " + projectedTuple);
 				final Set<Tuple> matches = primaryIndexer.get(projectedTuple);
-				System.out.println("Matches: " + matches);
 
 				deltaT.addAll(matches);
 			}
@@ -138,26 +121,20 @@ public class AntiJoinNode extends BetaNode {
 				s.removeAll(deltaS);
 				final Set<Tuple> sMinusDeltaS = s;
 				
-				System.out.println("s \\ /\\s = " + sMinusDeltaS);
-				
 				final Set<Tuple> projectedSMinusDeltaS = new HashSet<>();
 				for (final Tuple tuple : sMinusDeltaS) {
 					final Tuple projectedTuple  = TupleMask.project(tuple, secondaryIndexer.getJoinMask());
 					projectedSMinusDeltaS.add(projectedTuple);					
 				}
-				
-				System.out.println("projected s minus delta s: " + projectedSMinusDeltaS);
 								
 				final Collection<Tuple> p = primaryIndexer.getMap().values();
 				for (final Tuple tuple : p) {
 					final Tuple projectedP = TupleMask.project(tuple, primaryIndexer.getJoinMask());
 					if (projectedSMinusDeltaS.contains(projectedP)) {
-						System.out.println("p: " + p);
 						deltaT.remove(tuple);
 					}
 				}
 				
-				System.out.println("delta T: " + deltaT);
 			}
 			break;
 			
@@ -176,37 +153,6 @@ public class AntiJoinNode extends BetaNode {
 			break;
 		}
 
-		// final Indexer newTuplesIndexer = slot == ReteNodeSlot.PRIMARY ? primaryIndexer : secondaryIndexer;
-		// final Indexer existingTuplesIndexer = slot == ReteNodeSlot.PRIMARY ? secondaryIndexer : primaryIndexer;
-		//
-		//
-		// // save the new tuples to the indexer's memory
-		// newTuplesIndexer.add(incomingTuples);
-		//
-		// for (final Tuple newTuple : incomingTuples) {
-		// final Tuple extractedTuple = TupleMask.extract(newTuple, newTuplesIndexer.getJoinMask());
-		// final Set<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
-		//
-		// // see the Javadoc for the class
-		// switch (slot) {
-		// case PRIMARY:
-		// if ((changeType == ChangeType.POSITIVE && matchingTuples.isEmpty())
-		// || (changeType == ChangeType.NEGATIVE && !matchingTuples.isEmpty())) {
-		// resultTuples.add(newTuple);
-		// }
-		// break;
-		// case SECONDARY:
-		// if ((changeType == ChangeType.POSITIVE && !matchingTuples.isEmpty())
-		// || (changeType == ChangeType.NEGATIVE && !matchingTuples.isEmpty())) {
-		// for (final Tuple tuple : matchingTuples) {
-		// resultTuples.add(tuple);
-		// }
-		// }
-		// break;
-		// default:
-		// break;
-		// }
-		// }
 
 		final ChangeSet propagatedChangeSet = new ChangeSet(deltaT, propagatedChangeType);
 		return propagatedChangeSet;

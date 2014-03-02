@@ -46,7 +46,8 @@ public abstract class BetaNodeTest {
 				throw new RuntimeException("You have to provide expected change sets for all the test change sets!");
 			}
 			
-			final BetaNode node = createBetaNode();
+			final String recipeFile = testFile.getPath().replace("-new-test-", "-recipe-");
+			final BetaNode node = createBetaNode(recipeFile);
 			
 			final Set<Tuple> p = data.getPrimarySet();
 			update(node, p, ChangeType.POSITIVE, ReteNodeSlot.PRIMARY);
@@ -65,7 +66,7 @@ public abstract class BetaNodeTest {
 		}
 	}
 
-	protected abstract BetaNode createBetaNode();
+	protected abstract BetaNode createBetaNode(String recipeFile) throws IOException;
 
 	protected ProjectionIndexer createProjectionIndexer(final Collection<? extends Integer> mask) {
 		final Mask leftMask = RecipesFactory.eINSTANCE.createMask();

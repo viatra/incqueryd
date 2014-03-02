@@ -5,7 +5,9 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
+import hu.bme.mit.incqueryd.util.RecipeDeserializer;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,12 +31,8 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 	}
 
 	@Override
-	protected BetaNode createBetaNode() {
-		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
-		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
-		recipe.setLeftParent(leftParent);
-		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
-		recipe.setRightParent(rightParent);
+	protected BetaNode createBetaNode(String recipeFile) throws IOException {
+		final AntiJoinRecipe recipe = (AntiJoinRecipe) (RecipeDeserializer.deserializeFromFile(recipeFile));
 		final AntiJoinNode node = new AntiJoinNode(recipe);
 		return node;
 	}
