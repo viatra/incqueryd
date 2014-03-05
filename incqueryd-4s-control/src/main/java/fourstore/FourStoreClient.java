@@ -88,6 +88,43 @@ public class FourStoreClient {
 		System.out.println(count + " matches.");
 		return count;
 	}
+	
+	public void edit() throws IOException, InterruptedException {
+		final String edgeLabel = "Route_routeDefinition";
+		final Multimap<Object, Object> routeAndSensorIds = collectEdges(edgeLabel);
+		
+		// swift move: get the set of the routeAndSensorIds multimap and create an ArrayList from them
+		final ArrayList<Object> routeIds = new ArrayList<>(routeAndSensorIds.keys().elementSet());
+
+		//System.out.println(routeIds);
+		
+		// randomly choosing some Routes to modify
+		final List<Object> routesToModify = new ArrayList<>();
+
+		final Random random = new Random(0);
+		final int nElemToModify = 10;
+		// choose nElemToModify elements to modify
+		for (int i = 0; i < nElemToModify; i++) {
+			final int rndTargetPosition = random.nextInt(routeIds.size());
+			final Object routeId = routeIds.get(rndTargetPosition);
+			routesToModify.add(routeId);
+
+			// small modification over the original TrainBenchmark: we always choose nElemToModify different Routes
+			routeIds.remove(routeId);
+		}
+
+		for (final Map.Entry<Object, Object> row : routeAndSensorIds.entries()) {
+			final Object routeId = row.getKey();
+			final Object sensorId = row.getValue();
+
+			if (routesToModify.contains(routeId)) {
+				routesToModify.remove(routeId);
+
+//				System.out.println("deleting edge: " + routeId + " --> " + sensorId);
+				deleteEdge(routeId, sensorId, edgeLabel);
+			}
+		}
+	}	
 
 	protected Multimap<Object, Object> collectEdges(final String edgeLabel) throws IOException, InterruptedException {
 		final Multimap<Object, Object> vertexPairs = ArrayListMultimap.create();
@@ -131,44 +168,6 @@ public class FourStoreClient {
 		
 		return vertexPairs;
 	}
-
-
-	public void edit() throws IOException, InterruptedException {
-		final String edgeLabel = "Route_routeDefinition";
-		final Multimap<Object, Object> routeAndSensorIds = collectEdges(edgeLabel);
-		
-		// swift move: get the set of the routeAndSensorIds multimap and create an ArrayList from them
-		final ArrayList<Object> routeIds = new ArrayList<>(routeAndSensorIds.keys().elementSet());
-
-		//System.out.println(routeIds);
-		
-		// randomly choosing some Routes to modify
-		final List<Object> routesToModify = new ArrayList<>();
-
-		final Random random = new Random(0);
-		final int nElemToModify = 10;
-		// choose nElemToModify elements to modify
-		for (int i = 0; i < nElemToModify; i++) {
-			final int rndTargetPosition = random.nextInt(routeIds.size());
-			final Object routeId = routeIds.get(rndTargetPosition);
-			routesToModify.add(routeId);
-
-			// small modification over the original TrainBenchmark: we always choose nElemToModify different Routes
-			routeIds.remove(routeId);
-		}
-
-		for (final Map.Entry<Object, Object> row : routeAndSensorIds.entries()) {
-			final Object routeId = row.getKey();
-			final Object sensorId = row.getValue();
-
-			if (routesToModify.contains(routeId)) {
-				routesToModify.remove(routeId);
-
-//				System.out.println("deleting edge: " + routeId + " --> " + sensorId);
-				deleteEdge(routeId, sensorId, edgeLabel);
-			}
-		}
-	}	
 	
 	protected void deleteEdge(final Object sourceVertexId, final Object destinationVertexId, final String edgeLabel) throws IOException, InterruptedException {
 		final String delete = String.format(
