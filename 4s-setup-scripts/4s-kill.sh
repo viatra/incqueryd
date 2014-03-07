@@ -1,3 +1,7 @@
 #!/bin/bash
-killall 4s-backend -v
-killall 4s-backend -v
+
+pkill -f 4s-backen[d]
+
+while [[ ! -z `ps auxw | grep 4s-backen[d]` ]]; do
+	sleep 1
+done
