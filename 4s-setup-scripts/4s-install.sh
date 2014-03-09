@@ -20,7 +20,7 @@ tar -xf rasqal-$rasqal_version.tar.gz
 tar -xf 4store-v$fourstore_version.tar.gz 
 
 # dependencies
-sudo apt-get -y install gcc make libxml2-dev uuid-dev avahi-discover libnss-mdns build-essential libpcre3-dev libtool libglib2.0-dev ncurses-dev libreadline-dev libavahi-client-dev libavahi-glib-dev
+sudo apt-get install -y gcc make libxml2-dev uuid-dev avahi-discover libnss-mdns build-essential libpcre3-dev libtool libglib2.0-dev ncurses-dev libreadline-dev libavahi-client-dev libavahi-glib-dev
 
 cd raptor2-$raptor_version
 ./configure
@@ -40,3 +40,4 @@ cd 4store-v$fourstore_version
 make
 sudo make install
 make test
+
