@@ -24,7 +24,7 @@ public class InequalityNode extends AlphaNode {
 
 	protected InequalityFilterRecipe recipe;
 
-	public InequalityNode(final InequalityFilterRecipe recipe) {
+	InequalityNode(final InequalityFilterRecipe recipe) {
 		super();
 		this.recipe = recipe;
 	}

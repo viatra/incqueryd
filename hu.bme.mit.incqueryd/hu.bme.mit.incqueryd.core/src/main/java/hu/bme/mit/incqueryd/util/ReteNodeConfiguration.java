@@ -2,14 +2,14 @@ package hu.bme.mit.incqueryd.util;
 
 public class ReteNodeConfiguration {
 
-	protected String jsonRecipe;
+	protected String recipeString;
 
-	public ReteNodeConfiguration(final String jsonRecipe) {
+	public ReteNodeConfiguration(final String recipeString) {
 		super();
-		this.jsonRecipe = jsonRecipe;
+		this.recipeString = recipeString;
 	}
 
-	public String getJsonRecipe() {
-		return jsonRecipe;
+	public String getRecipeString() {
+		return recipeString;
 	}
 }

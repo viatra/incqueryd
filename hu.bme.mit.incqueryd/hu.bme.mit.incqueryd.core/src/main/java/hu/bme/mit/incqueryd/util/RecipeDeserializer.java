@@ -30,14 +30,14 @@ public class RecipeDeserializer {
 
 		final Resource resource = resourceSet.createResource(URI.createURI(filename));
 		resource.load(options);
-
+		
 		return resource.getContents().get(0);
 	}
 
 	public static EObject deserializeFromString(final String model) throws IOException {
 		final File tempFile = File.createTempFile("recipe-", ".json");
-		FileUtils.writeStringToFile(tempFile, model);
-
+		FileUtils.writeStringToFile(tempFile, model);		
+		
 		return deserializeFromFile(tempFile.getPath());
 	}
 

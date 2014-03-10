@@ -2,7 +2,6 @@ package hu.bme.mit.incqueryd.rete.actors.testkits;
 
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.nodes.data.AlphaTestData;
-import hu.bme.mit.incqueryd.util.ReteNodeType;
 
 import java.io.IOException;
 
@@ -54,8 +53,8 @@ public class AlphaActorTestKit extends ReteActorTestKit {
 	
 	protected final JavaTestKit parentActor;
 	
-	public AlphaActorTestKit(final ActorSystem system, final ReteNodeType type, final String recipeFile) throws IOException {
-		super(system, type, recipeFile);
+	public AlphaActorTestKit(final ActorSystem system, final String recipeFile) throws IOException {
+		super(system, recipeFile);
 		
 		// alpha nodes have one parent
 		parentActor = new JavaTestKit(system);

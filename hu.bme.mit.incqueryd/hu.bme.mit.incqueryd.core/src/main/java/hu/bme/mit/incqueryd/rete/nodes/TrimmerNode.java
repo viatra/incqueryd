@@ -25,7 +25,7 @@ public class TrimmerNode extends AlphaNode {
 
 	protected TrimmerRecipe recipe;
 
-    public TrimmerNode(final TrimmerRecipe recipe) {
+    TrimmerNode(final TrimmerRecipe recipe) {
         super();
         this.recipe = recipe;
     }

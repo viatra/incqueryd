@@ -4,7 +4,6 @@ import hu.bme.mit.incqueryd.rete.actors.testkits.AlphaActorTestKit;
 import hu.bme.mit.incqueryd.rete.nodes.data.AlphaTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
 import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
-import hu.bme.mit.incqueryd.util.ReteNodeType;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -41,32 +40,32 @@ public class AlphaActorTest {
 		system.shutdown();
 	}
 
-	private void alphaNodeTest(final ReteNodeType type) throws FileNotFoundException, IOException {
-		final File[] files = TestCaseFinder.getTestCases(type.toString().toLowerCase() + "-test-*.json");
+	private void alphaNodeTest(final String typeString) throws FileNotFoundException, IOException {
+		final File[] files = TestCaseFinder.getTestCases(typeString + "-test-*.json");
 
 		for (final File testFile : files) {
 			final String recipeFile = testFile.getPath().replace("-test-", "-recipe-");
 			final Gson gson = GsonParser.getGsonParser();
 			final AlphaTestData data = gson.fromJson(new FileReader(testFile), AlphaTestData.class);
 
-			final AlphaActorTestKit testKit = new AlphaActorTestKit(system, type, recipeFile);
+			final AlphaActorTestKit testKit = new AlphaActorTestKit(system, recipeFile);
 			testKit.test(data);
 		}
 	}
 	
 	@Test
 	public void trimmerNodeTest() throws JsonSyntaxException, JsonIOException, IOException {	
-		alphaNodeTest(ReteNodeType.TRIMMER);
+		alphaNodeTest("trimmer");
 	}
 
 	@Test
 	public void equalityNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
-		alphaNodeTest(ReteNodeType.EQUALITY);
+		alphaNodeTest("equality");
 	}
 	
 	@Test
 	public void inequalityNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
-		alphaNodeTest(ReteNodeType.INEQUALITY);
+		alphaNodeTest("inequality");
 	}
 
 }

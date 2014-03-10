@@ -2,7 +2,6 @@ package hu.bme.mit.incqueryd.rete.actors.testkits;
 
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.nodes.data.BetaTestData;
-import hu.bme.mit.incqueryd.util.ReteNodeType;
 
 import java.io.IOException;
 
@@ -61,9 +60,9 @@ public class BetaActorTestKit extends ReteActorTestKit {
 	protected final JavaTestKit primaryParentActor;
 	protected final JavaTestKit secondaryParentActor;
 
-	public BetaActorTestKit(final ActorSystem system, final ReteNodeType type, final String recipeFile)
+	public BetaActorTestKit(final ActorSystem system, final String recipeFile)
 			throws IOException {
-		super(system, type, recipeFile);
+		super(system, recipeFile);
 
 		primaryParentActor = new JavaTestKit(system);
 		secondaryParentActor = new JavaTestKit(system);

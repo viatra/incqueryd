@@ -2,23 +2,19 @@ package hu.bme.mit.incqueryd.rete.nodes;
 
 import hu.bme.mit.incqueryd.rete.dataunits.GraphElement;
 
+import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
+
 public class InputNode extends ReteNode {
 
     protected String type;
     protected GraphElement graphElement;
 
-    public InputNode(final String type, final GraphElement graphElement) {
+    InputNode(final UniquenessEnforcerRecipe recipe) {
         super();
-        this.type = type;
-        this.graphElement = graphElement;
     }
 
     public String getType() {
         return type;
-    }
-
-    public GraphElement getGraphElement() {
-        return graphElement;
     }
 
 }

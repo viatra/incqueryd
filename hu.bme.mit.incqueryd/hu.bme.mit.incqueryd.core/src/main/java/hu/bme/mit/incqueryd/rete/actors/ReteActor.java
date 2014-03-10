@@ -1,11 +1,13 @@
 package hu.bme.mit.incqueryd.rete.actors;
 
+import hu.bme.mit.incqueryd.arch.ArchUtil;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
 import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
+import hu.bme.mit.incqueryd.rete.messages.YellowPages;
 import hu.bme.mit.incqueryd.rete.nodes.AlphaNode;
 import hu.bme.mit.incqueryd.rete.nodes.BetaNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
@@ -19,6 +21,9 @@ import java.util.Map.Entry;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 
 import scala.Tuple2;
 import scala.collection.immutable.Stack;
@@ -27,12 +32,13 @@ import akka.actor.UntypedActor;
 
 public class ReteActor extends UntypedActor {
 
+	protected EObject recipe;
 	protected ReteNode reteNode;
 	protected Map<ActorRef, ReteNodeSlot> subscribers = new HashMap<>();
 
 	public ReteActor() {
 		super();
-		System.out.println("Rete actor instantiated.");
+		System.out.println("[ReteActor] Rete actor instantiated.");
 	}
 
 	@Override
@@ -46,25 +52,47 @@ public class ReteActor extends UntypedActor {
 		} else if (message instanceof ReteNodeConfiguration) {
 
 			final ReteNodeConfiguration conf = (ReteNodeConfiguration) message;
-			final EObject recipe = RecipeDeserializer.deserializeFromString(conf.getJsonRecipe());
-						
+			recipe = RecipeDeserializer.deserializeFromString(conf.getRecipeString());
+
 			reteNode = ReteNodeFactory.createNode(recipe);
-			System.out.println(reteNode.getClass().getName());
-			
+			System.out.println("[ReteActor] " + reteNode.getClass().getName() + " configuration received.");
+
 			getSender().tell(ActorReply.CONFIGURATION_RECEIVED, getSelf());
-			
 		} else if (message instanceof UpdateMessage) {
 			final UpdateMessage updateMessage = (UpdateMessage) message;
 			update(updateMessage);
+		} else if (message instanceof YellowPages) {
+			final YellowPages yellowPages = (YellowPages) message;
+			subscribe(yellowPages);
+			getSender().tell(ActorReply.YELLOWPAGES_RECEIVED, getSelf());
 		} else if (message instanceof ReadyMessage) {
 			final ReadyMessage readyMessage = (ReadyMessage) message;
 			terminationProtocol(readyMessage);
 		}
 	}
 
+	private void subscribe(final YellowPages yellowPages) {
+		final Map<String, ActorRef> emfUriToActorRef = yellowPages.getEmfUriToActorRef();
+
+		EcoreUtil.resolveAll(recipe);
+
+		if (recipe instanceof BetaRecipe) {
+			final BetaRecipe betaRecipe = (BetaRecipe) recipe;
+			final ReteNodeRecipe primaryParent = betaRecipe.getLeftParent().getParent();
+			final ReteNodeRecipe secondaryParent = betaRecipe.getRightParent().getParent();
+
+			final String primaryParentUri = ArchUtil.getJsonEObjectUri(primaryParent);
+			System.out.println(primaryParentUri + " -> " + emfUriToActorRef.get(primaryParentUri));
+
+			final String secondaryParentUri = ArchUtil.getJsonEObjectUri(secondaryParent);
+			System.out.println(secondaryParentUri + " -> " + emfUriToActorRef.get(secondaryParentUri));
+		}
+
+	}
+
 	private void update(final UpdateMessage updateMessage) {
 		ChangeSet changeSet;
-		
+
 		switch (updateMessage.getNodeSlot()) {
 		case SINGLE:
 			final AlphaNode alphaNode = (AlphaNode) reteNode;
@@ -73,14 +101,14 @@ public class ReteActor extends UntypedActor {
 		case PRIMARY: // fall-through
 		case SECONDARY:
 			final BetaNode betaNode = (BetaNode) reteNode;
-			changeSet = betaNode.update(updateMessage.getChangeSet(), updateMessage.getNodeSlot());			
+			changeSet = betaNode.update(updateMessage.getChangeSet(), updateMessage.getNodeSlot());
 			break;
 		default:
-			throw new NotImplementedException(updateMessage.getNodeSlot() + " slot is not supported.");		
+			throw new NotImplementedException(updateMessage.getNodeSlot() + " slot is not supported.");
 		}
-		
+
 		// processing
-		sendToSubscribers(changeSet, updateMessage.getSenderStack());		
+		sendToSubscribers(changeSet, updateMessage.getSenderStack());
 	}
 
 	private void terminationProtocol(final ReadyMessage readyMessage) {
@@ -93,8 +121,8 @@ public class ReteActor extends UntypedActor {
 		final ReadyMessage propagatedReadyMessage = new ReadyMessage(readyMessageSenderStack);
 		readyMessageTarget.tell(propagatedReadyMessage, getSelf());
 
-		System.out.println();
-		System.out.println("Termination protocol sending: " + readyMessageSenderStack + " to " + readyMessageTarget);		
+		System.out.println("[ReteActor] Termination protocol sending: " + readyMessageSenderStack + " to "
+				+ readyMessageTarget);
 	}
 
 	protected void subscribeSender(final ReteNodeSlot slot) {
@@ -102,7 +130,7 @@ public class ReteActor extends UntypedActor {
 
 		subscribers.put(sender, slot);
 		sender.tell(ActorReply.SUBSCRIBED, getSelf());
-		System.out.println("Subscribed: " + sender);
+		System.out.println("[ReteActor] Subscribed: " + sender);
 	}
 
 	protected void sendToSubscribers(final ChangeSet changeSet, final Stack<ActorRef> senderStack) {

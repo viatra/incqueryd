@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
 
 /**
  * The other kind of dual input nodes is the NotNode, that filters all tuples from its primary input slot that do NOT
@@ -63,7 +63,7 @@ import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
  */
 public class AntiJoinNode extends BetaNode {
 
-	public AntiJoinNode(final BetaRecipe recipe) {
+	AntiJoinNode(final AntiJoinRecipe recipe) {
 		super(recipe);
 	}
 

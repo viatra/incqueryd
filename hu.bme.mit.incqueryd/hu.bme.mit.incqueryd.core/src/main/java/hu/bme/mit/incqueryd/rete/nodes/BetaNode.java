@@ -14,12 +14,11 @@ import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
  */
 public abstract class BetaNode extends ReteNode {
 
-	protected BetaRecipe recipe; 
-	
     protected Indexer primaryIndexer;
     protected Indexer secondaryIndexer;
 
-    public BetaNode(final BetaRecipe recipe) {
+    BetaNode(final BetaRecipe recipe) {
+    	super();
         this.primaryIndexer = new Indexer(recipe.getLeftParent().getMask().getSourceIndices());
         this.secondaryIndexer = new Indexer(recipe.getRightParent().getMask().getSourceIndices());
     }

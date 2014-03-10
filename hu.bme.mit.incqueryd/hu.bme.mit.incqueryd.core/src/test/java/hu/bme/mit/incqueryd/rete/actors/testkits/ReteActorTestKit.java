@@ -9,7 +9,6 @@ import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
-import hu.bme.mit.incqueryd.util.ReteNodeType;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +32,7 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 	protected final JavaTestKit targetActor;
 	protected final ReteNodeConfiguration conf;
 
-	public ReteActorTestKit(final ActorSystem system, final ReteNodeType type, final String recipeFile)
+	public ReteActorTestKit(final ActorSystem system, final String recipeFile)
 			throws IOException {
 		super(system);
 		this.system = system;
@@ -51,7 +50,7 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 	// @formatter:off
 	/**
 	 * 
-	 *  (coordinatorActor) <--------------> (betaActor)
+	 *  (coordinatorActor) <--------------> (reteActor)
      *                          (A) >
      *                          (B) <
      * 

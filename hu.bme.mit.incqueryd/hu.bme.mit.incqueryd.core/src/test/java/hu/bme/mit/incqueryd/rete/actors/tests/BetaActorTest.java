@@ -4,7 +4,6 @@ import hu.bme.mit.incqueryd.rete.actors.testkits.BetaActorTestKit;
 import hu.bme.mit.incqueryd.rete.nodes.data.BetaTestData;
 import hu.bme.mit.incqueryd.test.util.GsonParser;
 import hu.bme.mit.incqueryd.test.util.TestCaseFinder;
-import hu.bme.mit.incqueryd.util.ReteNodeType;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -41,8 +40,7 @@ public class BetaActorTest {
 		system.shutdown();
 	}
 
-	private void betaNodeTest(final ReteNodeType type) throws FileNotFoundException, IOException {
-		final String typeString = type.toString().toLowerCase();
+	private void betaNodeTest(final String typeString) throws FileNotFoundException, IOException {
 		final String fileNamePrefix = typeString + "-test-";
 		
 		final File[] files = TestCaseFinder.getTestCases(fileNamePrefix + "*.json");
@@ -52,19 +50,19 @@ public class BetaActorTest {
 			final Gson gson = GsonParser.getGsonParser();
 			final BetaTestData data = gson.fromJson(new FileReader(testFile), BetaTestData.class);
 
-			final BetaActorTestKit testKit = new BetaActorTestKit(system, type, recipeFile);
+			final BetaActorTestKit testKit = new BetaActorTestKit(system, recipeFile);
 			testKit.test(data);
 		}
 	}
 	
 	@Test
 	public void joinNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
-		betaNodeTest(ReteNodeType.JOIN);
+		betaNodeTest("join");
 	}
 
 	@Test
 	public void antiJoinNodeTest() throws JsonSyntaxException, JsonIOException, IOException {
-		betaNodeTest(ReteNodeType.ANTIJOIN);
+		betaNodeTest("antijoin");
 	}
 
 }

@@ -24,7 +24,7 @@ public class EqualityNode extends AlphaNode {
 
 	protected EqualityFilterRecipe recipe;
 
-	public EqualityNode(final EqualityFilterRecipe recipe) {
+	EqualityNode(final EqualityFilterRecipe recipe) {
 		super();
 		this.recipe = recipe;
 	}

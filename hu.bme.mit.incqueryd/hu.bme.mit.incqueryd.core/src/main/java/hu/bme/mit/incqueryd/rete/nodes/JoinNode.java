@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
 
 /**
  * 
@@ -19,7 +19,7 @@ import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
  */
 public class JoinNode extends BetaNode {
 
-    public JoinNode(final BetaRecipe recipe) {
+    JoinNode(final JoinRecipe recipe) {
         super(recipe);
     }
 

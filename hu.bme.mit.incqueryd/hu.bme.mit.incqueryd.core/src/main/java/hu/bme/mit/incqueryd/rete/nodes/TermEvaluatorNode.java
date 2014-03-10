@@ -23,7 +23,7 @@ public class TermEvaluatorNode extends AlphaNode {
 
     protected Collection<ConditionExpression> conditionExpressions;
 
-    public TermEvaluatorNode(final Collection<ConditionExpression> conditionExpressions) {
+    TermEvaluatorNode(final Collection<ConditionExpression> conditionExpressions) {
         this.conditionExpressions = conditionExpressions;
     }
 
