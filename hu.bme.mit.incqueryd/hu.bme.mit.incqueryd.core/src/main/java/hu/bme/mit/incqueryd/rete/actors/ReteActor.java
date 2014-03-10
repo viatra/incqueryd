@@ -48,7 +48,7 @@ public class ReteActor extends UntypedActor {
 			final ReteNodeConfiguration conf = (ReteNodeConfiguration) message;
 			final EObject recipe = RecipeDeserializer.deserializeFromString(conf.getJsonRecipe());
 						
-			reteNode = ReteNodeFactory.createNode(conf, recipe);
+			reteNode = ReteNodeFactory.createNode(recipe);
 			System.out.println(reteNode.getClass().getName());
 			
 			getSender().tell(ActorReply.CONFIGURATION_RECEIVED, getSelf());

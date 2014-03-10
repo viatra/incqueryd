@@ -45,7 +45,7 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 		targetActor = new JavaTestKit(system);
 
 		final String jsonRecipe = FileUtils.readFileToString(new File(recipeFile));
-		conf = new ReteNodeConfiguration(type, jsonRecipe);
+		conf = new ReteNodeConfiguration(jsonRecipe);
 	}
 
 	// @formatter:off

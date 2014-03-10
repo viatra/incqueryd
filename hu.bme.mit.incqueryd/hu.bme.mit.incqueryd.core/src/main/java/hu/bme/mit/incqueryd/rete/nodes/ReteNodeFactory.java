@@ -1,7 +1,5 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
-import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
-
 import org.apache.commons.lang.NotImplementedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
@@ -12,7 +10,12 @@ import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
 
 public class ReteNodeFactory {
 
-	public static ReteNode createNode(final ReteNodeConfiguration conf, final EObject recipe) {
+	/**
+	 * Creates a rete node from a Rete recipe
+	 * @param recipe
+	 * @return
+	 */
+	public static ReteNode createNode(final EObject recipe) {
 //		switch (conf.getType()) {
 //		case ANTIJOIN:
 //			return new AntiJoinNode((AntiJoinRecipe) recipe);
