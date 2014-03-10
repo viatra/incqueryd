@@ -10,9 +10,9 @@ public class ReteNodeConfiguration {
 		this.jsonRecipe = jsonRecipe;
 	}
 
-	public ReteNodeType getType() {
-		return type;
-	}
+//	public ReteNodeType getType() {
+//		return type;
+//	}
 
 	public String getJsonRecipe() {
 		return jsonRecipe;

@@ -1,5 +1,7 @@
 package hu.bme.mit.incqueryd.arch;
 
+import hu.bme.mit.incqueryd.rete.actors.ReteActor;
+import hu.bme.mit.incqueryd.util.RecipeSerializer;
 import infrastructure.InfrastructureNode;
 import infrastructure.InfrastructurePackage;
 import infrastructure.Machine;
@@ -7,7 +9,6 @@ import infrastructure.Machine;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -22,14 +23,25 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
 import org.junit.Test;
 
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import akka.actor.Props;
 import arch.ArchPackage;
 import arch.Configuration;
 import arch.InfrastructureMapping;
 
 public class ArchTest {
 
+	protected ActorSystem system;
+
 	@Test
 	public void test() throws IOException {
+		// Akka
+		system = ActorSystem.create();
+		
+		// EMF
+		final String architectureFile = "../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch/routeSensor.arch";
+
 		// initialize extension to factory map
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
 
@@ -38,8 +50,6 @@ public class ArchTest {
 		RecipesPackage.eINSTANCE.eClass();
 		InfrastructurePackage.eINSTANCE.eClass();
 		ArchPackage.eINSTANCE.eClass();
-
-		final String architectureFile = "src/test/resources/arch/routeSensor.arch";
 
 		// load resource
 		final ResourceSet resourceSet = new ResourceSetImpl();
@@ -55,9 +65,11 @@ public class ArchTest {
 
 	}
 
+	// @SuppressWarnings("null")
 	private void processConfiguration(final ResourceSet resourceSet, final Configuration conf) throws IOException {
 		// create a ReteNodeRecipe -> ip address mapping
-		final Map<ReteNodeRecipe, String> ips = new HashMap<>();
+		final Map<ReteNodeRecipe, String> actorToIp = new HashMap<>();
+		final Map<String, ReteNodeRecipe> emfURIToActor = new HashMap<>();
 
 		final EList<InfrastructureMapping> mappings = conf.getMappings();
 		for (final InfrastructureMapping mapping : mappings) {
@@ -67,7 +79,7 @@ public class ArchTest {
 			for (final ReteNodeRecipe reteNodeRecipe : mappedElements) {
 				if (targetElement instanceof Machine) {
 					final Machine machine = (Machine) targetElement;
-					ips.put(reteNodeRecipe, machine.getIp());
+					actorToIp.put(reteNodeRecipe, machine.getIp());
 				}
 			}
 		}
@@ -78,38 +90,47 @@ public class ArchTest {
 		// final String ip = ips.get(eObject);
 		// System.out.println(ip);
 
-		for (final Entry<ReteNodeRecipe, String> entry : ips.entrySet()) {
-			System.out.println(entry.getKey());
-			System.out.println("================================================");
-			System.out.println(entry.getValue());
-			System.out.println();
-			System.out.println();
-			System.out.println();
-		}
+		// for (final Entry<ReteNodeRecipe, String> entry : ips.entrySet()) {
+		// System.out.println("Recipe");
+		// System.out.println("======");
+		// System.out.println("trace info: " + entry.getKey());
+		// System.out.println("ip address: " + entry.getValue());
+		// System.out.println();
+		// }
+		// System.out.println();
+
+		// System.out.println("RNR:  " + EcoreUtil.getURI(rnr) + "        --->     " + address);
+		// System.out.println("RNRC: " + EcoreUtil.getURI(rnrClone) + "           " + ips.get(rnrClone));
+		// System.out.println(rnrClone);
 
 		for (final ReteRecipe rr : conf.getReteRecipes()) {
 			for (final ReteNodeRecipe rnr : rr.getRecipeNodes()) {
-				System.out.println(rnr);
+				System.out.println("Recipe: " + rnr.getClass().getName());
+
+				final String ipAddress = actorToIp.get(rnr);
+				final String emfURI = EcoreUtil.getURI(rnr).toString();
+				System.out.println("- IP address:  " + ipAddress);
+				System.out.println("- EMF address: " + emfURI);
+
+				emfURIToActor.put(emfURI, rnr);
 
 				// create a clone, else we'd get a java.util.ConcurrentModificationException
 				final ReteNodeRecipe rnrClone = EcoreUtil.copy(rnr);
+				final String recipeString = RecipeSerializer.serializeToString(rnrClone);
 
-				System.out.println("RNR:  " + EcoreUtil.getURI(rnr) + "      --->     " + ips.get(rnr));
-				// System.out.println("RNRC: " + EcoreUtil.getURI(rnrClone) + "           " + ips.get(rnrClone));
-				System.out.println();
+				final Props props = new Props(ReteActor.class);
+ 				final ActorRef actor = system.actorOf(props);
+ 				
+ 				configure(actor, recipeString);
+ 				
+ 				System.out.println(actor);
 
-				// final String serialized = RecipeSerializer.serializeToString(rnrClone);
+				
 				// System.out.println(serialized);
-				// System.out.println();
-				// System.out.println();
-				// System.out.println();
-
 				// final EObject deserializeFromString = RecipeDeserializer.deserializeFromString(serialized);
 				// System.out.println(deserializeFromString);
 
-				// if (rnr instanceof JoinRecipe) {
-				// System.out.println("JoinRecipe found");
-				// }
+				System.out.println();
 			}
 		}
 
@@ -336,6 +357,11 @@ public class ArchTest {
 		// }
 		// }
 
+	}
+
+	private void configure(final ActorRef actor, final String recipeString) {
+		
+		
 	}
 
 	private EObject getEObjectFromURI(final ResourceSet resourceSet, final String uriString) {

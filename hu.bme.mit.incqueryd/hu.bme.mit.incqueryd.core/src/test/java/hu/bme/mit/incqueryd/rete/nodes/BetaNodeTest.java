@@ -46,7 +46,7 @@ public abstract class BetaNodeTest {
 				throw new RuntimeException("You have to provide expected change sets for all the test change sets!");
 			}
 			
-			final String recipeFile = testFile.getPath().replace("-new-test-", "-recipe-");
+			final String recipeFile = testFile.getPath().replace("-new-test-", "-new-recipe-");
 			final BetaNode node = createBetaNode(recipeFile);
 			
 			final Set<Tuple> p = data.getPrimarySet();
@@ -57,7 +57,7 @@ public abstract class BetaNodeTest {
 
 			for(int i = 0; i < data.getChanges().size(); i++){
 				
-				Change change = data.getChanges().get(i);
+				final Change change = data.getChanges().get(i);
 				final ChangeSet actualChangeSet = update(node, change.getChangeSet().getTuples(), change.getChangeSet().getChangeType(), change.getChangeSlot());
 				final ChangeSet expectedChangeSet = data.getExpectedChangeSets().get(i);
 				assertEquals(expectedChangeSet, actualChangeSet);

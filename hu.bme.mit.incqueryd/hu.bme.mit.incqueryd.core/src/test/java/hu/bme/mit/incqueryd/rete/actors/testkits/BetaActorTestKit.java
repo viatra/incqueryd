@@ -69,7 +69,7 @@ public class BetaActorTestKit extends ReteActorTestKit {
 		secondaryParentActor = new JavaTestKit(system);
 	}
 
-	public void test(final BetaTestData data) throws IOException {
+	public void test(final BetaTestData data) throws IOException {		
 		// Act and Assert
 		configure(coordinatorActor, reteActor, conf);
 		subscribe(targetActor, reteActor);

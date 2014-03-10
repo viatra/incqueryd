@@ -16,6 +16,7 @@
 		<module>hu.bme.mit.incqueryd.cache.hazelcast</module>
 		<module>hu.bme.mit.incqueryd.cache.local</module>
 		<module>hu.bme.mit.incqueryd.recipes</module>
+		<module>hu.bme.mit.incqueryd.recipeinstances</module>
 		<module>hu.bme.mit.incqueryd.architecture</module>
 	</modules>
 

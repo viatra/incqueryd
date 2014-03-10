@@ -117,7 +117,6 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>15.0</version>
 		</dependency>
 
 		<!-- database-specific dependencies -->
@@ -213,13 +212,13 @@
 			<artifactId>org.eclipse.emf.ecore</artifactId>
 			<version>${emf.version}</version>
 		</dependency>
-			
+
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
 			<version>${emf.version}</version>
 		</dependency>
-		
+
 	</dependencies>
 
 </project>

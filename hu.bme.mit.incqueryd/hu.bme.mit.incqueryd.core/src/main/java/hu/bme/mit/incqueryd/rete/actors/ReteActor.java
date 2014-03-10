@@ -31,6 +31,7 @@ public class ReteActor extends UntypedActor {
 	protected Map<ActorRef, ReteNodeSlot> subscribers = new HashMap<>();
 
 	public ReteActor() {
+		super();
 		System.out.println("Rete actor instantiated.");
 	}
 
@@ -43,11 +44,13 @@ public class ReteActor extends UntypedActor {
 		} else if (message == SubscriptionMessage.SUBSCRIBE_SECONDARY) {
 			subscribeSender(ReteNodeSlot.SECONDARY);
 		} else if (message instanceof ReteNodeConfiguration) {
-			
+
 			final ReteNodeConfiguration conf = (ReteNodeConfiguration) message;
 			final EObject recipe = RecipeDeserializer.deserializeFromString(conf.getJsonRecipe());
 						
 			reteNode = ReteNodeFactory.createNode(conf, recipe);
+			System.out.println(reteNode.getClass().getName());
+			
 			getSender().tell(ActorReply.CONFIGURATION_RECEIVED, getSelf());
 			
 		} else if (message instanceof UpdateMessage) {

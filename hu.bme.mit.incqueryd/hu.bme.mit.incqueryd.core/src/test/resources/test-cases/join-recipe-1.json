@@ -4,7 +4,7 @@
     "eClass" : "http://www.eclipse.org/incquery/rete/recipes#//ProjectionIndexer",
     "mask" : {
       "eClass" : "http://www.eclipse.org/incquery/rete/recipes#//Mask",
-      "sourceIndices" : [ 1 ]
+      "sourceIndices" : [ 2 ]
     }
   },
   "rightParent" : {

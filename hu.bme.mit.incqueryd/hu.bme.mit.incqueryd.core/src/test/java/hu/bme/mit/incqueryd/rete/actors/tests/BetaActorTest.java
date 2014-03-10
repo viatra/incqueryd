@@ -42,12 +42,13 @@ public class BetaActorTest {
 	}
 
 	private void betaNodeTest(final ReteNodeType type) throws FileNotFoundException, IOException {
-		final String fileNamePrefix = type.toString().toLowerCase() + "-test-";
+		final String typeString = type.toString().toLowerCase();
+		final String fileNamePrefix = typeString + "-test-";
 		
 		final File[] files = TestCaseFinder.getTestCases(fileNamePrefix + "*.json");
 
 		for (final File testFile : files) {
-			final String recipeFile = testFile.getPath().replace(fileNamePrefix, "beta-recipe-");
+			final String recipeFile = testFile.getPath().replace(fileNamePrefix, typeString + "-recipe-");
 			final Gson gson = GsonParser.getGsonParser();
 			final BetaTestData data = gson.fromJson(new FileReader(testFile), BetaTestData.class);
 
