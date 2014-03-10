@@ -21,7 +21,7 @@ import java.util.Map.Entry;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 
@@ -74,20 +74,41 @@ public class ReteActor extends UntypedActor {
 	private void subscribe(final YellowPages yellowPages) {
 		final Map<String, ActorRef> emfUriToActorRef = yellowPages.getEmfUriToActorRef();
 
-		EcoreUtil.resolveAll(recipe);
+		System.out.println();
+		// EcoreUtil.resolveAll(recipe);
+		System.out.println("[ReteActor] " + getSelf() + ": " + ArchUtil.justFirstLine(recipe.toString()));
 
+		// alpha and production nodes
+		if (recipe instanceof AlphaRecipe) {
+			final AlphaRecipe alphaRecipe = (AlphaRecipe) recipe;
+			final ReteNodeRecipe parent = alphaRecipe.getParent();
+
+			final String parentUri = ArchUtil.getJsonEObjectUri(parent);
+			final ActorRef parentActorRef = emfUriToActorRef.get(parentUri);
+			System.out.println("[ReteActor] - parent: " + parentUri + " -> " + parentActorRef);
+
+			subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE);
+		}
+
+		// beta nodes
 		if (recipe instanceof BetaRecipe) {
 			final BetaRecipe betaRecipe = (BetaRecipe) recipe;
 			final ReteNodeRecipe primaryParent = betaRecipe.getLeftParent().getParent();
 			final ReteNodeRecipe secondaryParent = betaRecipe.getRightParent().getParent();
 
 			final String primaryParentUri = ArchUtil.getJsonEObjectUri(primaryParent);
-			System.out.println(primaryParentUri + " -> " + emfUriToActorRef.get(primaryParentUri));
+			System.out.println("[ReteActor] - primary parent URI: " + primaryParentUri + " -> "
+					+ emfUriToActorRef.get(primaryParentUri));
+			final ActorRef primaryParentActorRef = emfUriToActorRef.get(primaryParentUri);
 
 			final String secondaryParentUri = ArchUtil.getJsonEObjectUri(secondaryParent);
-			System.out.println(secondaryParentUri + " -> " + emfUriToActorRef.get(secondaryParentUri));
-		}
+			System.out.println("[ReteActor] - secondary parent URI: " + secondaryParentUri + " -> "
+					+ emfUriToActorRef.get(secondaryParentUri));
+			final ActorRef secondaryParentActorRef = emfUriToActorRef.get(secondaryParentUri);
 
+			subscribeToActor(primaryParentActorRef, ReteNodeSlot.PRIMARY);
+			subscribeToActor(secondaryParentActorRef, ReteNodeSlot.SECONDARY);
+		}
 	}
 
 	private void update(final UpdateMessage updateMessage) {
@@ -130,7 +151,17 @@ public class ReteActor extends UntypedActor {
 
 		subscribers.put(sender, slot);
 		sender.tell(ActorReply.SUBSCRIBED, getSelf());
-		System.out.println("[ReteActor] Subscribed: " + sender);
+		System.out.println("[ReteActor] " + getSelf() + ": Subscribed: " + sender + " on slot " + slot);
+	}
+
+	protected void subscribeToActor(final ActorRef actorRef, final ReteNodeSlot slot) {
+		final SubscriptionMessage message = ArchUtil.slotToMessage(slot);
+		actorRef.tell(message, getSelf());
+		try {
+			Thread.sleep(200);
+		} catch (final InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	protected void sendToSubscribers(final ChangeSet changeSet, final Stack<ActorRef> senderStack) {
