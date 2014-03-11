@@ -19,13 +19,29 @@ public class ArchUtil {
 	 * @return
 	 */
 	public static String extractType(final String traceInfo) {
-		final Pattern pattern = Pattern.compile("UniquenessEnforcerNode : (.*?) :.*");
+		final Pattern pattern = Pattern.compile(".*: (.*?) :.*");
 		final Matcher matcher = pattern.matcher(traceInfo);
-		String type = "";
 		if (matcher.find()) {
-			type = matcher.group(1);
+			return matcher.group(1);
+		} else {
+			return "";
 		}
-		return type;
+	}
+
+	public static boolean hasAttribute(final String traceInfo) {
+		final Pattern pattern = Pattern.compile(".* \\[(.*?)\\].*");
+		final Matcher matcher = pattern.matcher(traceInfo);
+		return matcher.find();
+	}
+
+	public static String extractAttribute(final String traceInfo) {
+		final Pattern pattern = Pattern.compile(".* \\[(.*?)\\].*");
+		final Matcher matcher = pattern.matcher(traceInfo);
+		if (matcher.find()) {
+			return matcher.group(1);
+		} else {
+			return "";
+		}
 	}
 
 	/**
@@ -69,12 +85,12 @@ public class ArchUtil {
 	 * @return
 	 */
 	public static String justFirstLine(final String string) {
-//		final int newLinePosition = string.indexOf("\n");
-//		if (newLinePosition < 0) {
-//			return string;
-//		} else {
-//			return string.substring(0, newLinePosition);
-//		}
+		// final int newLinePosition = string.indexOf("\n");
+		// if (newLinePosition < 0) {
+		// return string;
+		// } else {
+		// return string.substring(0, newLinePosition);
+		// }
 		return string.replaceAll("\n", "");
 	}
 
