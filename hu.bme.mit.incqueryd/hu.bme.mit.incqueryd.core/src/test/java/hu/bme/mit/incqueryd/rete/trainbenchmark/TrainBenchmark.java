@@ -4,7 +4,6 @@
 //import hu.bme.mit.incqueryd.io.GraphSonLoader;
 //import hu.bme.mit.incqueryd.rete.comparison.ComparisonOperator;
 //import hu.bme.mit.incqueryd.rete.comparison.ConditionExpression;
-//import hu.bme.mit.incqueryd.rete.configuration.TrimmerNodeConfiguration;
 //import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 //import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 //import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
@@ -58,7 +57,7 @@
 //
 //    // file path
 //    protected final int size = 1;
-//    protected final String pathName = "src/test/resources/testBig_User_" + size + ".faunus-graphson";
+//    protected final String pathName = "src/test/resources/models/railway-user-" + size + ".faunus-graphson";
 //
 //    // logging constants
 //    protected final boolean logResults = true;
