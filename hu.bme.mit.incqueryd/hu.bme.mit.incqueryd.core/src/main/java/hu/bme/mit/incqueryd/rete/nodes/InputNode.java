@@ -40,11 +40,6 @@ public class InputNode extends ReteNode {
 			graphElement = GraphElement.EDGE;
 		}
 		type = ArchUtil.extractType(recipe.getTraceInfo());
-
-		// System.out.println(traceInfo);
-		// System.out.println(graphElement);
-		// System.out.println(type);
-		// System.out.println(attribute);
 	}
 
 	public String getType() {
@@ -92,8 +87,6 @@ public class InputNode extends ReteNode {
 			}
 		}
 
-		
-		System.out.println(tuples);
 		return tuples;
 	}
 

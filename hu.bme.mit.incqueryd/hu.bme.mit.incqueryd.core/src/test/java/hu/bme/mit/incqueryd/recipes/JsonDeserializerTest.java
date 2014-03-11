@@ -11,7 +11,7 @@ import org.junit.Test;
 public class JsonDeserializerTest {
 	@Test
 	public void deserialize() throws IOException {		
-		final EObject eObject = RecipeDeserializer.deserializeFromFile("model.json");
+		final EObject eObject = RecipeDeserializer.deserializeFromFile("src/test/resources/recipe.json");
 		System.out.println(eObject);
 	}
 	
