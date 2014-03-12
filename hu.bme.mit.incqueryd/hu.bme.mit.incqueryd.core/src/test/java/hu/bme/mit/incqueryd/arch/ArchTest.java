@@ -31,12 +31,17 @@ public class ArchTest {
 		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient("src/main/resources/scripts");
 		client.start(false);
 		client.load("src/test/resources/models/railway-xform-1.owl");
-		
+
 		// Akka
 		system = ActorSystem.create();
 
-		final ArchTestKit testKit = new ArchTestKit(system, "../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch/routeSensor.arch");
-		testKit.test();
+		final ArchTestKit testKitPosLength = new ArchTestKit(system,
+				"../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch/posLength.arch");
+		testKitPosLength.test();
+
+		// final ArchTestKit testKitRouteSensor = new ArchTestKit(system,
+		// "../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch/routeSensor.arch");
+		// testKitRouteSensor.test();
 
 		// destroy the cluster
 		client.destroy(false);

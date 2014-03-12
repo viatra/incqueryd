@@ -20,7 +20,8 @@ public class ConditionExpression {
     }
 
     public boolean satisfiesCondition(final Tuple tuple) {
-        final Long tupleField = (Long) tuple.get(index);
+//        final Long tupleField = (Long) tuple.get(index);
+    	final Integer tupleField = (Integer) tuple.get(index);
         return Compare.compare(tupleField, operand, comparisonOperator);
     }
 

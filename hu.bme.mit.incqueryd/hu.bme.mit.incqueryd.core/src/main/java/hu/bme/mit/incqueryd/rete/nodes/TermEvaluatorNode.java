@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
+import hu.bme.mit.incqueryd.rete.comparison.ComparisonOperator;
 import hu.bme.mit.incqueryd.rete.comparison.ConditionExpression;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
@@ -7,6 +8,8 @@ import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe;
 
 /**
  * TermEvaluatorNode [...] deserves special mention because it diverges significantly from the classic RETE concept. It
@@ -23,8 +26,13 @@ public class TermEvaluatorNode extends AlphaNode {
 
     protected Collection<ConditionExpression> conditionExpressions;
 
-    TermEvaluatorNode(final Collection<ConditionExpression> conditionExpressions) {
-        this.conditionExpressions = conditionExpressions;
+    TermEvaluatorNode(final CheckRecipe recipe) {
+        System.out.println("TEN");
+    	System.out.println(recipe.getTraceInfo());
+    	conditionExpressions = new HashSet<>();
+    	// the arguments are set for the expression t[1] <= 0
+    	final ConditionExpression expression = new ConditionExpression(1, ComparisonOperator.LESS_THAN_OR_EQUAL, 0);
+		conditionExpressions.add(expression);
     }
 
     @Override

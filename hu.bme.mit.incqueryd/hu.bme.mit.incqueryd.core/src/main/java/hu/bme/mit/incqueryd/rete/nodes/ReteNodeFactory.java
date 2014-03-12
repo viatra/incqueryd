@@ -3,6 +3,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import org.apache.commons.lang.NotImplementedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.EqualityFilterRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.InequalityFilterRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
@@ -33,7 +34,10 @@ public class ReteNodeFactory {
 			return new InputNode((UniquenessEnforcerRecipe) recipe);
 		} else if (recipe instanceof ProductionRecipe) {
 			return new ProductionNode((ProductionRecipe) recipe);
-		} else {
+		} else if (recipe instanceof CheckRecipe) {
+			return new TermEvaluatorNode((CheckRecipe) recipe);
+		}
+		else {
 			throw new NotImplementedException(recipe.getClass().getSimpleName() + " recipe class is not supported.");
 		}
 	}
