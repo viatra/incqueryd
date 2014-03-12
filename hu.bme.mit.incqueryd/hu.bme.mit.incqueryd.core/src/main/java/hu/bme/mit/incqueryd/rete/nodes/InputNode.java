@@ -18,7 +18,7 @@ import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 
 import com.google.common.collect.Multimap;
 
-public class InputNode extends ReteNode {
+public class InputNode extends ReteNode implements InitializableReteNode {
 
 	protected final String type;
 	protected boolean hasAttribute = false;
@@ -50,6 +50,7 @@ public class InputNode extends ReteNode {
 		return graphElement;
 	}
 
+	@Override
 	public ChangeSet initialize() throws IOException {
 		Set<Tuple> tuples = null;
 
@@ -95,7 +96,7 @@ public class InputNode extends ReteNode {
 		final Multimap<Long, Long> edges = client.collectEdges(type);
 
 		final Set<Tuple> tuples = new HashSet<>();
-		for (final Map.Entry<Long, Long> entry : edges.entries()) {
+		for (final Entry<Long, Long> entry : edges.entries()) {
 			final Tuple tuple = new Tuple(entry.getKey(), entry.getValue());
 			tuples.add(tuple);
 		}

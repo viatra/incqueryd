@@ -3,6 +3,7 @@ package hu.bme.mit.incqueryd.rete.actors.testkits;
 import hu.bme.mit.incqueryd.arch.ArchUtil;
 import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
+import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
 import hu.bme.mit.incqueryd.rete.messages.YellowPages;
 import hu.bme.mit.incqueryd.util.RecipeSerializer;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
@@ -15,6 +16,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -27,6 +29,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -89,12 +92,17 @@ public class ArchTestKit extends JavaTestKit {
 	private void processConfiguration(final ResourceSet resourceSet, final Configuration conf) throws IOException {
 		// mapping
 		fillRecipeToIp(conf);
-		// phase one
+		
+		// phase 1
 		deployActors(conf);
-		// mapping
+		// create mapping based on the results of phase one mapping
 		fillEmfUriToActorRef();
-		// phase two
+		
+		// phase 2
 		subscribeActors(conf);
+		
+		// phase 3
+		initialize();
 	}
 
 	private void fillRecipeToIp(final Configuration conf) {
@@ -113,7 +121,7 @@ public class ArchTestKit extends JavaTestKit {
 	}
 
 	private void fillEmfUriToActorRef() {
-		for (final Map.Entry<String, ReteNodeRecipe> emfUriAndRecipe : emfUriToRecipe.entrySet()) {
+		for (final Entry<String, ReteNodeRecipe> emfUriAndRecipe : emfUriToRecipe.entrySet()) {
 			final String emfUri = emfUriAndRecipe.getKey();
 			final ReteNodeRecipe recipe = emfUriAndRecipe.getValue();
 
@@ -123,13 +131,18 @@ public class ArchTestKit extends JavaTestKit {
 			
 			System.out.println("EMF URI: " + emfUri + ", Akka URI: " + akkaUri + ", traceInfo " + ArchUtil.justFirstLine(recipe.getTraceInfo()));
 		}
-//		for (final Map.Entry<String, ActorRef> entry : emfUriToActorRef.entrySet()) {
+//		for (final Entry<String, ActorRef> entry : emfUriToActorRef.entrySet()) {
 //			System.out.println(entry.getKey() + " => " + entry.getValue());
 //		}
 		
 		System.out.println();
 	}
 
+	/**
+	 * Phase 1
+	 * @param conf
+	 * @throws IOException
+	 */
 	private void deployActors(final Configuration conf) throws IOException {
 		for (final ReteRecipe rr : conf.getReteRecipes()) {
 			for (final ReteNodeRecipe rnr : rr.getRecipeNodes()) {
@@ -166,6 +179,10 @@ public class ArchTestKit extends JavaTestKit {
 		System.out.println();
 	}
 
+	/**
+	 * Phase 2
+	 * @param conf
+	 */
 	private void subscribeActors(final Configuration conf) {
 		final YellowPages yellowPages = new YellowPages(emfUriToActorRef);
 
@@ -174,7 +191,34 @@ public class ArchTestKit extends JavaTestKit {
 			coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.YELLOWPAGES_RECEIVED);
 		}
 	}
+	
+	/**
+	 * Phase 3: initialize the Rete network.
+	 */
+	private void initialize() {
+		// send an INITIALIZE message to every "input actor"
+		// in the current implementation input actors are described by a UniquenessEnforcerRecipe
+		for (final Entry<ReteNodeRecipe, ActorRef> entry : recipeToActorRef.entrySet()) {
+			final ReteNodeRecipe recipe = entry.getKey();
+			if (recipe instanceof UniquenessEnforcerRecipe) {
+				final ActorRef actor = entry.getValue();
+				actor.tell(CoordinatorMessage.INITIALIZE, coordinatorActor.getRef());
+			}
+		}
+		
+		try {
+			Thread.sleep(5000);
+		} catch (final Exception e) {
+			e.printStackTrace();
+		};
+		
+	}
 
+	
+	
+	
+	
+	
 	private void configure(final ActorRef actor, final String recipeString) {
 		final ReteNodeConfiguration conf = new ReteNodeConfiguration(recipeString);
 		actor.tell(conf, coordinatorActor.getRef());

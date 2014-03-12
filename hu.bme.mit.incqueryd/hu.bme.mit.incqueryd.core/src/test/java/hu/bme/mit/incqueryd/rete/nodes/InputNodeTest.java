@@ -30,7 +30,6 @@ public class InputNodeTest {
 
 		// destroy the cluster
 		client.destroy(false);
-
 	}
 
 	@Test

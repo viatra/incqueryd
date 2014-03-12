@@ -4,12 +4,14 @@ import hu.bme.mit.incqueryd.arch.ArchUtil;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
+import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
 import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.messages.YellowPages;
 import hu.bme.mit.incqueryd.rete.nodes.AlphaNode;
 import hu.bme.mit.incqueryd.rete.nodes.BetaNode;
+import hu.bme.mit.incqueryd.rete.nodes.InitializableReteNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNodeFactory;
 import hu.bme.mit.incqueryd.util.RecipeDeserializer;
@@ -27,6 +29,7 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 
 import scala.Tuple2;
 import scala.collection.immutable.Stack;
+import scala.collection.immutable.Stack$;
 import akka.actor.ActorRef;
 import akka.actor.UntypedActor;
 
@@ -43,14 +46,15 @@ public class ReteActor extends UntypedActor {
 
 	@Override
 	public void onReceive(final Object message) throws Exception {
+		// subscription messages
 		if (message == SubscriptionMessage.SUBSCRIBE_SINGLE) {
 			subscribeSender(ReteNodeSlot.SINGLE);
 		} else if (message == SubscriptionMessage.SUBSCRIBE_PRIMARY) {
 			subscribeSender(ReteNodeSlot.PRIMARY);
 		} else if (message == SubscriptionMessage.SUBSCRIBE_SECONDARY) {
 			subscribeSender(ReteNodeSlot.SECONDARY);
-		} else if (message instanceof ReteNodeConfiguration) {
-
+		} // configuration
+		else if (message instanceof ReteNodeConfiguration) {
 			final ReteNodeConfiguration conf = (ReteNodeConfiguration) message;
 			recipe = RecipeDeserializer.deserializeFromString(conf.getRecipeString());
 
@@ -58,16 +62,27 @@ public class ReteActor extends UntypedActor {
 			System.out.println("[ReteActor] " + reteNode.getClass().getName() + " configuration received.");
 
 			getSender().tell(ActorReply.CONFIGURATION_RECEIVED, getSelf());
-		} else if (message instanceof UpdateMessage) {
+
+		} // update
+		else if (message instanceof UpdateMessage) {
 			final UpdateMessage updateMessage = (UpdateMessage) message;
 			update(updateMessage);
-		} else if (message instanceof YellowPages) {
+		} // yellowpages
+		else if (message instanceof YellowPages) {
 			final YellowPages yellowPages = (YellowPages) message;
 			subscribe(yellowPages);
 			getSender().tell(ActorReply.YELLOWPAGES_RECEIVED, getSelf());
-		} else if (message instanceof ReadyMessage) {
+		} // ready message
+		else if (message instanceof ReadyMessage) {
 			final ReadyMessage readyMessage = (ReadyMessage) message;
 			terminationProtocol(readyMessage);
+		} // intitialize
+		else if (message == CoordinatorMessage.INITIALIZE) {
+			System.out.println("[ReteActor] " + getSelf() + ": INITIALIZE received");
+			final InitializableReteNode node = (InitializableReteNode) reteNode;
+			final ChangeSet changeSet = node.initialize();
+			final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
+			sendToSubscribers(changeSet, emptyStack);
 		}
 	}
 
@@ -168,6 +183,12 @@ public class ReteActor extends UntypedActor {
 		for (final Entry<ActorRef, ReteNodeSlot> entry : subscribers.entrySet()) {
 			final ActorRef subscriber = entry.getKey();
 			final ReteNodeSlot slot = entry.getValue();
+
+			System.out.println("[ReteActor] " + getSelf() + ": Sending to " + subscriber
+			 + "\n"
+			 + "         changeset, tuple size: " + changeSet.getTuples().size()
+			// + "         changeset: " + changeSet
+					);
 
 			final Stack<ActorRef> propagatedSenderStack = senderStack.push(getSelf());
 			final UpdateMessage updateMessage = new UpdateMessage(changeSet, slot, propagatedSenderStack);
