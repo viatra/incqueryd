@@ -1,20 +1,42 @@
 <?xml version="1.0" encoding="ASCII"?>
 <arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://incquery.net/arch" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
+  <clusters>
+    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl0" ip="10.6.21.231"/>
+    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl1" ip="10.6.21.237"/>
+    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl2" ip="10.6.21.233"/>
+    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl3" ip="10.6.21.235"/>
+  </clusters>
   <reteRecipes>
-    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode [0]"/>
-    <recipeNodes xsi:type="recipes:UniquenessEnforcerRecipe" traceInfo="UniquenessEnforcerNode : Switch :  [0]"/>
-    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode [0]"/>
-    <recipeNodes xsi:type="recipes:UniquenessEnforcerRecipe" traceInfo="UniquenessEnforcerNode : TrackElement_sensor :  [0]"/>
-    <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;&lt;; >  " parent="//@reteRecipes.0/@recipeNodes.3">
+    <!-- 0 -->
+    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode" parents="//@reteRecipes.0/@recipeNodes.4"/>
+
+    <!-- 1 -->
+    <recipeNodes xsi:type="recipes:UniquenessEnforcerRecipe" traceInfo="UniquenessEnforcerNode#vertex : Switch :"/>
+
+    <!-- 2 -->
+    <recipeNodes xsi:type="recipes:UniquenessEnforcerRecipe" traceInfo="UniquenessEnforcerNode#edge : TrackElement_sensor :"/>
+
+    <!-- 3 -->
+    <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;&lt;; >" parent="//@reteRecipes.0/@recipeNodes.2">
       <mask sourceArity="1">
         <sourceIndices>0</sourceIndices>
       </mask>
     </recipeNodes>
-    <recipeNodes xsi:type="recipes:AntiJoinRecipe" traceInfo="ExistenceNode&#xA;&lt;; >  "/>
-    <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;&lt;; >  " parent="//@reteRecipes.0/@recipeNodes.5">
-      <mask sourceArity="1">
-        <sourceIndices>0</sourceIndices>
-      </mask>
+
+    <!-- 4 -->
+    <recipeNodes xsi:type="recipes:AntiJoinRecipe" traceInfo="ExistenceNode&#xA;&lt;; >">
+      <leftParent traceInfo="GenericProjectionIndexer [0 => 0]&#xA;" parent="//@reteRecipes.0/@recipeNodes.1">
+        <mask sourceArity="1">
+          <sourceIndices>0</sourceIndices>
+        </mask>
+      </leftParent>
+      <rightParent traceInfo="GenericProjectionIndexer [0 => 0]&#xA;" parent="//@reteRecipes.0/@recipeNodes.3">
+        <mask sourceArity="1">
+          <sourceIndices>0</sourceIndices>
+        </mask>
+      </rightParent>
     </recipeNodes>
   </reteRecipes>
+
+  <!-- mappings... -->
 </arch:Configuration>

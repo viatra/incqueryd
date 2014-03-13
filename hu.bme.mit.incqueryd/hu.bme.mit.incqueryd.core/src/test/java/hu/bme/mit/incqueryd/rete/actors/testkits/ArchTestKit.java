@@ -185,10 +185,16 @@ public class ArchTestKit extends JavaTestKit {
 	 */
 	private void subscribeActors(final Configuration conf) {
 		final YellowPages yellowPages = new YellowPages(emfUriToActorRef);
-
+		
 		for (final ActorRef actorRef : actorRefs) {
 			actorRef.tell(yellowPages, coordinatorActor.getRef());
 			coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.YELLOWPAGES_RECEIVED);
+		}
+		System.out.println();
+		System.out.println();
+		
+		for (final Entry<String, ActorRef> entry : yellowPages.getEmfUriToActorRef().entrySet()) {
+			System.out.println(entry);
 		}
 	}
 	

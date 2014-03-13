@@ -35,16 +35,24 @@ public class ArchTest {
 		// Akka
 		system = ActorSystem.create();
 
-		final ArchTestKit testKitPosLength = new ArchTestKit(system,
-				"../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch/posLength.arch");
-		testKitPosLength.test();
+		final String architecturePath = "../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch/";
 
-		// final ArchTestKit testKitRouteSensor = new ArchTestKit(system,
-		// "../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch/routeSensor.arch");
-		// testKitRouteSensor.test();
+		// PosLength, expected: 470 423
+		// final String architectureFile = architecturePath + "posLength.arch";
+
+		// RouteSensor, expected: 94 85
+		// final String architectureFile = architecturePath + "routeSensor.arch";
+
+		// SwitchSensor, expected: 19 18
+		// final String architectureFile = architecturePath + "switchSensor.arch";
+
+		// SignalNeighbor, expected: 3 2
+		final String architectureFile = architecturePath + "signalNeighbor.arch";
+
+		final ArchTestKit testKit = new ArchTestKit(system, architectureFile);
+		testKit.test();
 
 		// destroy the cluster
 		client.destroy(false);
 	}
-
 }

@@ -88,6 +88,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			}
 		}
 
+		System.out.println("intializeForNodes returns " + tuples.size() + " tuples");
 		return tuples;
 	}
 
@@ -100,6 +101,8 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			final Tuple tuple = new Tuple(entry.getKey(), entry.getValue());
 			tuples.add(tuple);
 		}
+		
+		System.out.println("intializeForEdges returns " + tuples.size() + " tuples");
 		return tuples;
 	}
 	

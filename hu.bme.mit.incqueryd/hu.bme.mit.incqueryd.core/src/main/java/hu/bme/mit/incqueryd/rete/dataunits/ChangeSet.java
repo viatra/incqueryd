@@ -29,7 +29,7 @@ public class ChangeSet {
 
 	@Override
 	public String toString() {
-		return "ChangeSet, " + getTuples().size() + " tuples, [tuples=" + tuples + ", changeType=" + changeType + "]";
+		return "ChangeSet, changeType=" + changeType + ", " + getTuples().size() + " tuples, [tuples=" + tuples + "]";
 	}
 
 	@Override

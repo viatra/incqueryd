@@ -8,7 +8,7 @@
   </clusters>
   <reteRecipes>
     <!-- 0 -->
-    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode [0]" parents="//@reteRecipes.0/@recipeNodes.8"/>
+    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode" parents="//@reteRecipes.0/@recipeNodes.8"/>
 
     <!-- 1 -->
     <recipeNodes xsi:type="recipes:UniquenessEnforcerRecipe" traceInfo="UniquenessEnforcerNode#edge : SwitchPosition_switch :"/>
@@ -69,7 +69,7 @@
     <!-- 8 -->
     <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="TrimmerNode&#xA;&lt;; ; ; ; >  " parent="//@reteRecipes.0/@recipeNodes.7">
       <mask sourceArity="1">
-        <sourceIndices>2</sourceIndices>
+        <sourceIndices>3</sourceIndices>
       </mask>
     </recipeNodes>
   </reteRecipes>

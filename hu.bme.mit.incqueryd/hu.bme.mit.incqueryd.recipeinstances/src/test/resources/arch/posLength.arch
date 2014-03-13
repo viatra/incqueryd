@@ -8,7 +8,7 @@
   </clusters>
   <reteRecipes>
     <!-- 0 -->
-    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode [0]" parents="//@reteRecipes.0/@recipeNodes.2"/>
+    <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="DefaultProductionNode" parents="//@reteRecipes.0/@recipeNodes.2"/>
     
     <!-- 1 -->
     <recipeNodes xsi:type="recipes:UniquenessEnforcerRecipe" traceInfo="UniquenessEnforcerNode#vertex : Segment : [Segment_length]"/>

@@ -22,9 +22,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 
 import scala.Tuple2;
@@ -35,7 +36,7 @@ import akka.actor.UntypedActor;
 
 public class ReteActor extends UntypedActor {
 
-	protected EObject recipe;
+	protected ReteNodeRecipe recipe;
 	protected ReteNode reteNode;
 	protected Map<ActorRef, ReteNodeSlot> subscribers = new HashMap<>();
 
@@ -56,7 +57,7 @@ public class ReteActor extends UntypedActor {
 		} // configuration
 		else if (message instanceof ReteNodeConfiguration) {
 			final ReteNodeConfiguration conf = (ReteNodeConfiguration) message;
-			recipe = RecipeDeserializer.deserializeFromString(conf.getRecipeString());
+			recipe = (ReteNodeRecipe) RecipeDeserializer.deserializeFromString(conf.getRecipeString());
 
 			reteNode = ReteNodeFactory.createNode(recipe);
 			System.out.println("[ReteActor] " + reteNode.getClass().getName() + " configuration received.");
@@ -91,9 +92,10 @@ public class ReteActor extends UntypedActor {
 
 		System.out.println();
 		// EcoreUtil.resolveAll(recipe);
-		System.out.println("[ReteActor] " + getSelf() + ": " + ArchUtil.justFirstLine(recipe.toString()));
+		System.out.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName() + ": "
+				+ ArchUtil.justFirstLine(recipe.toString()));
 
-		// alpha and production nodes
+		// alpha nodes
 		if (recipe instanceof AlphaRecipe) {
 			final AlphaRecipe alphaRecipe = (AlphaRecipe) recipe;
 			final ReteNodeRecipe parent = alphaRecipe.getParent();
@@ -112,21 +114,39 @@ public class ReteActor extends UntypedActor {
 			final ReteNodeRecipe secondaryParent = betaRecipe.getRightParent().getParent();
 
 			final String primaryParentUri = ArchUtil.getJsonEObjectUri(primaryParent);
-			System.out.println("[ReteActor] - primary parent URI: " + primaryParentUri + " -> "
-					+ emfUriToActorRef.get(primaryParentUri));
 			final ActorRef primaryParentActorRef = emfUriToActorRef.get(primaryParentUri);
+			System.out
+					.println("[ReteActor] - primary parent URI: " + primaryParentUri + " -> " + primaryParentActorRef);
 
 			final String secondaryParentUri = ArchUtil.getJsonEObjectUri(secondaryParent);
-			System.out.println("[ReteActor] - secondary parent URI: " + secondaryParentUri + " -> "
-					+ emfUriToActorRef.get(secondaryParentUri));
 			final ActorRef secondaryParentActorRef = emfUriToActorRef.get(secondaryParentUri);
+			System.out.println("[ReteActor] - secondary parent URI: " + secondaryParentUri + " -> "
+					+ secondaryParentActorRef);
 
 			subscribeToActor(primaryParentActorRef, ReteNodeSlot.PRIMARY);
 			subscribeToActor(secondaryParentActorRef, ReteNodeSlot.SECONDARY);
 		}
+
+		// production nodes
+		if (recipe instanceof ProductionRecipe) {
+			final ProductionRecipe productionRecipe = (ProductionRecipe) recipe;
+			final EList<ReteNodeRecipe> parents = productionRecipe.getParents();
+
+			for (final ReteNodeRecipe parent : parents) {
+				final String parentUri = ArchUtil.getJsonEObjectUri(parent);
+				final ActorRef parentActorRef = emfUriToActorRef.get(parentUri);
+				System.out.println("[ReteActor] - parent URI: " + parentUri + " -> " + parentActorRef);
+
+				subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE);
+			}
+		}
 	}
 
 	private void update(final UpdateMessage updateMessage) {
+		System.out.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName()
+				+ ": update message received, " + updateMessage.getChangeSet().getChangeType() + " "
+				+ updateMessage.getNodeSlot());
+
 		ChangeSet changeSet;
 
 		switch (updateMessage.getNodeSlot()) {
@@ -184,9 +204,9 @@ public class ReteActor extends UntypedActor {
 			final ActorRef subscriber = entry.getKey();
 			final ReteNodeSlot slot = entry.getValue();
 
-			System.out.println("[ReteActor] " + getSelf() + ": Sending to " + subscriber
-			 + "\n"
-			 + "         changeset, tuple size: " + changeSet.getTuples().size()
+			System.out.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName() + ", "
+					+ recipe.getTraceInfo() + ": Sending to " + subscriber + "\n"
+					+ "            - " + changeSet.getChangeType() + " changeset, tuple size: " + changeSet.getTuples().size()
 			// + "         changeset: " + changeSet
 					);
 
