@@ -30,7 +30,9 @@ public class ArchTest {
 		// start the cluster and load the model
 		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient("src/main/resources/scripts");
 		client.start(false);
-		client.load("src/test/resources/models/railway-xform-1.owl");
+		final String modelPath = "src/test/resources/models/railway-xform-1.owl";
+		// final String modelPath = "src/test/resources/models/railway-user-1.owl";
+		client.load(modelPath);
 
 		// Akka
 		system = ActorSystem.create();
