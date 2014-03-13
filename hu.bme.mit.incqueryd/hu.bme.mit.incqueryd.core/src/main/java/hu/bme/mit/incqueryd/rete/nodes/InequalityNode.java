@@ -51,23 +51,10 @@ public class InequalityNode extends AlphaNode {
 		}
 		final ChangeSet resultChangeSet = new ChangeSet(resultTuples, incomingChangeSet.getChangeType());
 
-//		System.out.println("<INEQ>");
-//		for (final Tuple tuple : resultChangeSet.getTuples()) {
-//			System.out.println(tuple);
-//		}
-//		System.out.println("</INEQ>");
-		
-
-		
 		return resultChangeSet;
 	}
 
 	protected boolean checkCondition(final Tuple tuple, final Integer subject, final List<Integer> inequals) {
-		
-		System.out.println(tuple);
-		System.out.println(subject);
-		System.out.println();
-		
 		// the mask's first item determines the reference value's index
 		final Object referenceValue = tuple.get(subject);
 		

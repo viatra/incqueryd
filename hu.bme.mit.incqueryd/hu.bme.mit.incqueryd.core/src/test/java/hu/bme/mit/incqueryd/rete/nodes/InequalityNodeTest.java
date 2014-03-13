@@ -35,8 +35,6 @@ public class InequalityNodeTest extends AlphaNodeTest {
 	@Override
 	@Test
 	public void test() {
-		//<3462, 3655, 3463, 3631, 3462>
-		//<814, 1061, 815, 1077, 1068>
 		final InequalityFilterRecipe recipe = RecipesFactory.eINSTANCE.createInequalityFilterRecipe();
 		recipe.setSubject(0);
 		recipe.getInequals().add(1);

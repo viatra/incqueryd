@@ -112,7 +112,7 @@
     <!-- 11 -->
     <!-- Route_exit JOIN Route_routeDefinition JOIN  -->
     <!--   PROJECTION_{1, 3} (TrackElement_sensor JOIN TrackElement_connectsTo JOIN TrackElement_sensor) -->
-    <!-- <Route1, Signal, Sensor1, Sensor2> -->
+    <!-- <Route1, Sensor1, Signal, Sensor2> -->
     <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="JoinNode: Route1, Signal, Sensor1, Sensor2">
       <leftParent traceInfo="GenericProjectionIndexer" parent="//@reteRecipes.0/@recipeNodes.6">
         <mask sourceArity="1">
