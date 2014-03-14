@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.rete.dataunits;
 
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -8,8 +9,9 @@ import java.util.Set;
  * @author szarnyasg
  * 
  */
-public class ChangeSet {
+public class ChangeSet implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	protected Set<Tuple> tuples;
 	protected ChangeType changeType;
 

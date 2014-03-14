@@ -1,7 +1,10 @@
 package hu.bme.mit.incqueryd.util;
 
-public class ReteNodeConfiguration {
+import java.io.Serializable;
 
+public class ReteNodeConfiguration implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	protected String recipeString;
 
 	public ReteNodeConfiguration(final String recipeString) {

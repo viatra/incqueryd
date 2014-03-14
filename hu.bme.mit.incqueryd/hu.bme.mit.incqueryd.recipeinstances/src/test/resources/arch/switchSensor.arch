@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://incquery.net/arch" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
+<arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://incquery.net/arch" xmlns:inf="http://incquery.net/d/infrastructure" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
   <clusters>
     <infrastructureNodes xsi:type="inf:Machine" traceInfo="vm0" ip="172.16.70.135"/>
     <infrastructureNodes xsi:type="inf:Machine" traceInfo="vm1" ip="172.16.70.137"/>

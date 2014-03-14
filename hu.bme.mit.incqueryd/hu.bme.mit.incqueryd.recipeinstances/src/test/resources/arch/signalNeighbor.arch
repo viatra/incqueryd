@@ -198,21 +198,21 @@
       </mask>
     </recipeNodes>
 
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.0" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.1" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.2" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.3" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.4" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.5" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.6" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.7" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.8" targetElement="//@clusters.0/@infrastructureNodes."/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.9" targetElement="//@clusters.0/@infrastructureNodes."/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.10" targetElement="//@clusters.0/@infrastructureNodes."/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.11" targetElement="//@clusters.0/@infrastructureNodes."/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.12" targetElement="//@clusters.0/@infrastructureNodes."/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.13" targetElement="//@clusters.0/@infrastructureNodes."/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.14" targetElement="//@clusters.0/@infrastructureNodes."/>
-    <mappings mappedElements="//@reteRecipes.0/@recipeNodes.15" targetElement="//@clusters.0/@infrastructureNodes."/>
   </reteRecipes>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.0" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.1" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.2" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.3" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.4" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.5" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.6" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.7" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.8" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.9" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.10" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.11" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.12" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.13" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.14" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.15" targetElement="//@clusters.0/@infrastructureNodes.0"/>
 </arch:Configuration>

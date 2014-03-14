@@ -16,14 +16,18 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.util.Timeout;
 
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
+
 public class ArchTest {
 
 	protected static ActorSystem system;
-	protected final Timeout timeout = new Timeout(Duration.create(3600, "seconds"));
+	protected final Timeout timeout = new Timeout(Duration.create(15, "seconds"));
 
 	@BeforeClass
 	public static void setup() {
-		system = ActorSystem.create();
+		final Config config = ConfigFactory.parseString("akka.actor.provider = akka.remote.RemoteActorRefProvider");
+		system = ActorSystem.create("test", config);
 	}
 
 	@AfterClass
@@ -39,19 +43,19 @@ public class ArchTest {
 		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient("src/main/resources/scripts");
 		client.start(cluster);
 		// final String modelPath = "src/test/resources/models/railway-user-1-no-metamodel.owl";
-		final String modelPath = "src/test/resources/models/railway-xform-1-no-metamodel.owl";
+		final String modelLocation = "/home/szarnyasg/git/incqueryd/hu.bme.mit.incqueryd/hu.bme.mit.incqueryd.core";
+		// final String modelLocation =
+		// "/home/szarnyasg/mondo-trainbenchmark/src/hu.bme.mit.trainbenchmark.instancemodels";
+		final String modelPath = modelLocation + "/src/test/resources/models/railway-xform-1-no-metamodel.owl";
 		client.load(modelPath);
-
-		// Akka
-		system = ActorSystem.create();
 
 		final String architecturePath = "../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch/";
 
 		// PosLength, expected: 470 423
-		final String architectureFile = architecturePath + "posLength.arch";
+		// final String architectureFile = architecturePath + "posLength.arch";
 
 		// RouteSensor, expected: 94 85
-		// final String architectureFile = architecturePath + "routeSensor.arch";
+		final String architectureFile = architecturePath + "routeSensor.arch";
 
 		// SwitchSensor, expected: 19 18
 		// final String architectureFile = architecturePath + "switchSensor.arch";
@@ -63,7 +67,7 @@ public class ArchTest {
 		final ActorRef coordinator = system.actorOf(props);
 		final Future<Object> result = ask(coordinator, CoordinatorCommand.START, timeout);
 		Await.result(result, timeout.duration());
-		
+
 		// destroy the cluster
 		client.destroy(cluster);
 	}

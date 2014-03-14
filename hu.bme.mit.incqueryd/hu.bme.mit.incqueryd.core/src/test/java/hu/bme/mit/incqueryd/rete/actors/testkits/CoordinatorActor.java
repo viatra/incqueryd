@@ -2,6 +2,7 @@ package hu.bme.mit.incqueryd.rete.actors.testkits;
 
 import static akka.pattern.Patterns.ask;
 import hu.bme.mit.incqueryd.arch.ArchUtil;
+import hu.bme.mit.incqueryd.rete.actors.IncQueryDMicrokernel;
 import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
@@ -35,8 +36,11 @@ import scala.concurrent.Await;
 import scala.concurrent.Future;
 import scala.concurrent.duration.Duration;
 import akka.actor.ActorRef;
+import akka.actor.Address;
+import akka.actor.Deploy;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
+import akka.remote.RemoteScope;
 import akka.util.Timeout;
 import arch.ArchPackage;
 import arch.Configuration;
@@ -155,8 +159,19 @@ public class CoordinatorActor extends UntypedActor {
 				final String recipeString = RecipeSerializer.serializeToString(rnrClone);
 
 				// TODO programmatic remote deployment goes here
-				final Props props = new Props(ReteActor.class);
+//				final Props props = new Props(ReteActor.class);
+//				final ActorRef actorRef = getContext().actorOf(props);
+				
+				
+				
+				
+				
+				final Props props = new Props(ReteActor.class).withDeploy(new Deploy(new RemoteScope(new Address(
+						"akka", IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))));
 				final ActorRef actorRef = getContext().actorOf(props);
+				
+				
+				
 				configure(actorRef, recipeString);
 
 				actorRefs.add(actorRef);
@@ -209,7 +224,7 @@ public class CoordinatorActor extends UntypedActor {
 			if (recipe instanceof UniquenessEnforcerRecipe) {
 				final ActorRef actorRef = entry.getValue();
 				final Future<Object> future = ask(actorRef, CoordinatorMessage.INITIALIZE, timeout);
-				final Object result = Await.result(future, timeout.duration());
+//				final Object result = Await.result(future, timeout.duration());
 			}
 		}
 
@@ -226,26 +241,6 @@ public class CoordinatorActor extends UntypedActor {
 		final ReteNodeConfiguration conf = new ReteNodeConfiguration(recipeString);
 		final Future<Object> future = ask(actorRef, conf, timeout);
 		final Object result = Await.result(future, timeout.duration());
-	}
-
-	// @formatter:off
-	/**
-	 * 
-	 *  (coordinatorActor) <--------------> (reteActor)
-     *                          (A) >
-     *                          (B) <
-     * 
-     *  (A) ! ReteNodeConfiguration
-     *  (B) ? CONFIGURATION_RECEIVED
-	 */
-	// @formatter:on
-	public void configure(final ActorRef testedActor, final ReteNodeConfiguration conf) {
-		// Act
-		// message (A)
-//		testedActor.tell(conf, coordinatorActor.getRef());
-		// Assert
-		// message (B)
-//		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONFIGURATION_RECEIVED);
 	}
 
 	@Override
