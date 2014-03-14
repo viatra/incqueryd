@@ -3,8 +3,6 @@ package hu.bme.mit.incqueryd.arch;
 import hu.bme.mit.incqueryd.databases.CoordinatorFourStoreClient;
 import hu.bme.mit.incqueryd.rete.actors.testkits.ArchTestKit;
 
-import java.io.IOException;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,12 +24,14 @@ public class ArchTest {
 	}
 
 	@Test
-	public void test() throws IOException {
+	public void test() throws Exception {
+		final boolean cluster = true;
+		
 		// start the cluster and load the model
 		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient("src/main/resources/scripts");
-		client.start(false);
-		final String modelPath = "src/test/resources/models/railway-xform-1.owl";
-		// final String modelPath = "src/test/resources/models/railway-user-1.owl";
+		client.start(cluster);
+		// final String modelPath = "src/test/resources/models/railway-user-1-no-metamodel.owl";
+		final String modelPath = "src/test/resources/models/railway-xform-1-no-metamodel.owl";
 		client.load(modelPath);
 
 		// Akka
@@ -55,6 +55,6 @@ public class ArchTest {
 		testKit.test();
 
 		// destroy the cluster
-		client.destroy(false);
+		client.destroy(cluster);
 	}
 }

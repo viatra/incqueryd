@@ -12,7 +12,7 @@ import org.junit.Test;
 
 public class InputNodeTest {
 
-	protected static final String modelPath = "src/test/resources/models/railway-xform-1.owl";
+	protected static final String modelPath = "src/test/resources/models/railway-xform-1-no-metamodel.owl";
 
 	@Test
 	public void testEdge() throws IOException {

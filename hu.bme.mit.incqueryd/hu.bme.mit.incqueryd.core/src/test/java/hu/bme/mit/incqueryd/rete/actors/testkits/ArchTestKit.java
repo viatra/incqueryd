@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.rete.actors.testkits;
 
+import static akka.pattern.Patterns.ask;
 import hu.bme.mit.incqueryd.arch.ArchUtil;
 import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
@@ -31,10 +32,14 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 
+import scala.concurrent.Await;
+import scala.concurrent.Future;
+import scala.concurrent.duration.Duration;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.testkit.JavaTestKit;
+import akka.util.Timeout;
 import arch.ArchPackage;
 import arch.Configuration;
 import arch.InfrastructureMapping;
@@ -55,7 +60,7 @@ public class ArchTestKit extends JavaTestKit {
 		targetActor = new JavaTestKit(system);
 	}
 
-	public void test() throws IOException {
+	public void test() throws Exception {
 		// initialize extension to factory map
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
 
@@ -89,18 +94,18 @@ public class ArchTestKit extends JavaTestKit {
 	// collection of ActorRefs
 	final Collection<ActorRef> actorRefs = new HashSet<>();
 
-	private void processConfiguration(final ResourceSet resourceSet, final Configuration conf) throws IOException {
+	private void processConfiguration(final ResourceSet resourceSet, final Configuration conf) throws Exception {
 		// mapping
 		fillRecipeToIp(conf);
-		
+
 		// phase 1
 		deployActors(conf);
 		// create mapping based on the results of phase one mapping
 		fillEmfUriToActorRef();
-		
+
 		// phase 2
 		subscribeActors(conf);
-		
+
 		// phase 3
 		initialize();
 	}
@@ -128,15 +133,17 @@ public class ArchTestKit extends JavaTestKit {
 			final ActorRef akkaUri = recipeToActorRef.get(recipe);
 
 			emfUriToActorRef.put(emfUri, akkaUri);
-			
-			System.out.println("EMF URI: " + emfUri + ", Akka URI: " + akkaUri + ", traceInfo " + ArchUtil.justFirstLine(recipe.getTraceInfo()));
+
+			System.out.println("EMF URI: " + emfUri + ", Akka URI: " + akkaUri + ", traceInfo "
+					+ ArchUtil.justFirstLine(recipe.getTraceInfo()));
 		}
-		
+
 		System.out.println();
 	}
 
 	/**
 	 * Phase 1
+	 * 
 	 * @param conf
 	 * @throws IOException
 	 */
@@ -178,23 +185,27 @@ public class ArchTestKit extends JavaTestKit {
 
 	/**
 	 * Phase 2
+	 * 
 	 * @param conf
+	 * @throws Exception 
 	 */
-	private void subscribeActors(final Configuration conf) {
+	private void subscribeActors(final Configuration conf) throws Exception {
 		final YellowPages yellowPages = new YellowPages(emfUriToActorRef);
-		
+
 		for (final ActorRef actorRef : actorRefs) {
-			actorRef.tell(yellowPages, coordinatorActor.getRef());
-			coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.YELLOWPAGES_RECEIVED);
+			final Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+			final Future<Object> future = ask(actorRef, yellowPages, timeout);
+			Await.result(future, timeout.duration());
 		}
+
 		System.out.println();
 		System.out.println();
-		
+
 		for (final Entry<String, ActorRef> entry : yellowPages.getEmfUriToActorRef().entrySet()) {
 			System.out.println(entry);
 		}
 	}
-	
+
 	/**
 	 * Phase 3: initialize the Rete network.
 	 */
@@ -208,20 +219,16 @@ public class ArchTestKit extends JavaTestKit {
 				actor.tell(CoordinatorMessage.INITIALIZE, coordinatorActor.getRef());
 			}
 		}
-		
+
 		try {
 			Thread.sleep(5000);
 		} catch (final Exception e) {
 			e.printStackTrace();
-		};
-		
+		}
+		;
+
 	}
 
-	
-	
-	
-	
-	
 	private void configure(final ActorRef actor, final String recipeString) {
 		final ReteNodeConfiguration conf = new ReteNodeConfiguration(recipeString);
 		actor.tell(conf, coordinatorActor.getRef());
@@ -247,5 +254,5 @@ public class ArchTestKit extends JavaTestKit {
 		// message (B)
 		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONFIGURATION_RECEIVED);
 	}
-	
+
 }

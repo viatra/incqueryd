@@ -11,7 +11,7 @@ import com.google.common.collect.Multimap;
 
 public class FourStoreClientTest {
 
-	protected static final String modelPath = "src/test/resources/models/railway-xform-1.owl";
+	protected static final String modelPath = "src/test/resources/models/railway-xform-1-no-metamodel.owl";
 	
 	@Test
 	public void testFourStoreSingle() throws IOException {		
