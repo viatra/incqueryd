@@ -17,20 +17,22 @@ import com.typesafe.config.ConfigFactory;
 
 public class RemoteReteActorExample {
 
-	public static void main(String[] args) {
-		final Config config = ConfigFactory.parseString(
-				"akka.actor.provider = akka.remote.RemoteActorRefProvider");
+	public static void main(final String[] args) {
+		final Config config = ConfigFactory.parseString("akka.actor.provider = akka.remote.RemoteActorRefProvider");
 		final ActorSystem system = ActorSystem.create("test", config);
 		new JavaTestKit(system) {
 			{
 				// Arrange
-				final Props props = new Props(ReteActor.class).withDeploy(new Deploy(new RemoteScope(new Address("akka", IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, System.getenv("remoteHost"), 2552))));
+				final Props props = new Props(ReteActor.class).withDeploy(new Deploy(new RemoteScope(new Address(
+						"akka", IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, System.getenv("remoteHost"), 2552))));
 				final ActorRef actor = system.actorOf(props);
 
 				// create probes to check the propagated
 				final JavaTestKit probe1 = new JavaTestKit(system);
 				final JavaTestKit probe2 = new JavaTestKit(system);
 
+				System.out.println(actor);
+				
 				// Act
 				actor.tell(SubscriptionMessage.SUBSCRIBE_SINGLE, probe1.getRef());
 				// Assert

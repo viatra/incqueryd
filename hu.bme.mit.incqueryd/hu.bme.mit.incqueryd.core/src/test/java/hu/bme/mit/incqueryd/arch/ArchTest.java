@@ -40,7 +40,7 @@ public class ArchTest {
 		final String architecturePath = "../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch/";
 
 		// PosLength, expected: 470 423
-		// final String architectureFile = architecturePath + "posLength.arch";
+		final String architectureFile = architecturePath + "posLength.arch";
 
 		// RouteSensor, expected: 94 85
 		// final String architectureFile = architecturePath + "routeSensor.arch";
@@ -49,7 +49,7 @@ public class ArchTest {
 		// final String architectureFile = architecturePath + "switchSensor.arch";
 
 		// SignalNeighbor, expected: 3 2
-		final String architectureFile = architecturePath + "signalNeighbor.arch";
+		// final String architectureFile = architecturePath + "signalNeighbor.arch";
 
 		final ArchTestKit testKit = new ArchTestKit(system, architectureFile);
 		testKit.test();

@@ -131,9 +131,6 @@ public class ArchTestKit extends JavaTestKit {
 			
 			System.out.println("EMF URI: " + emfUri + ", Akka URI: " + akkaUri + ", traceInfo " + ArchUtil.justFirstLine(recipe.getTraceInfo()));
 		}
-//		for (final Entry<String, ActorRef> entry : emfUriToActorRef.entrySet()) {
-//			System.out.println(entry.getKey() + " => " + entry.getValue());
-//		}
 		
 		System.out.println();
 	}
