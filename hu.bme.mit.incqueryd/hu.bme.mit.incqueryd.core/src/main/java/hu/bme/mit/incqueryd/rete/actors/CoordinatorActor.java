@@ -1,8 +1,7 @@
-package hu.bme.mit.incqueryd.rete.actors.testkits;
+package hu.bme.mit.incqueryd.rete.actors;
 
 import static akka.pattern.Patterns.ask;
 import hu.bme.mit.incqueryd.arch.ArchUtil;
-import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
 import hu.bme.mit.incqueryd.rete.messages.YellowPages;
@@ -35,8 +34,11 @@ import scala.concurrent.Await;
 import scala.concurrent.Future;
 import scala.concurrent.duration.Duration;
 import akka.actor.ActorRef;
+import akka.actor.Address;
+import akka.actor.Deploy;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
+import akka.remote.RemoteScope;
 import akka.util.Timeout;
 import arch.ArchPackage;
 import arch.Configuration;
@@ -44,6 +46,7 @@ import arch.InfrastructureMapping;
 
 public class CoordinatorActor extends UntypedActor {
 
+	protected boolean remoting;
 	protected final String architectureFile;
 	protected final Timeout timeout = new Timeout(Duration.create(5, "seconds"));
 
@@ -154,11 +157,13 @@ public class CoordinatorActor extends UntypedActor {
 				final ReteNodeRecipe rnrClone = EcoreUtil.copy(rnr);
 				final String recipeString = RecipeSerializer.serializeToString(rnrClone);
 
-				// TODO programmatic remote deployment goes here
-				final Props props = new Props(ReteActor.class);
-				// final Props props = new Props(ReteActor.class).withDeploy(new Deploy(new RemoteScope(new Address(
-				// "akka", IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))));
-				
+				final Props props;
+				if (remoting) {
+					props = new Props(ReteActor.class).withDeploy(new Deploy(new RemoteScope(new Address("akka",
+							IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))));
+				} else {
+					props = new Props(ReteActor.class);
+				}
 				final ActorRef actorRef = getContext().actorOf(props);
 
 				configure(actorRef, recipeString);
@@ -166,11 +171,6 @@ public class CoordinatorActor extends UntypedActor {
 				actorRefs.add(actorRef);
 				recipeToActorRef.put(rnr, actorRef);
 				System.out.println("[TestKit] Actor configured.");
-
-				// System.out.println(serialized);
-				// final EObject deserializeFromString = RecipeDeserializer.deserializeFromString(serialized);
-				// System.out.println(deserializeFromString);
-
 				System.out.println();
 			}
 
@@ -235,7 +235,10 @@ public class CoordinatorActor extends UntypedActor {
 
 	@Override
 	public void onReceive(final Object message) throws Exception {
-		if (message == CoordinatorCommand.START) {
+		if (message == CoordinatorCommand.START_LOCAL || message == CoordinatorCommand.START_REMOTE) {
+			// remoting true for START_REMOTE and false for START_LOCAL 
+			remoting = (message == CoordinatorCommand.START_REMOTE);
+			
 			start();
 			getSender().tell(CoordinatorMessage.DONE, getSelf());
 		}

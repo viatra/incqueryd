@@ -2,6 +2,7 @@ package hu.bme.mit.incqueryd.arch;
 
 import static akka.pattern.Patterns.ask;
 import hu.bme.mit.incqueryd.databases.CoordinatorFourStoreClient;
+import hu.bme.mit.incqueryd.rete.actors.CoordinatorActorFactory;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand;
 
 import org.junit.AfterClass;
@@ -65,7 +66,7 @@ public class ArchTest {
 
 		final Props props = new Props().withCreator(new CoordinatorActorFactory(architectureFile));
 		final ActorRef coordinator = system.actorOf(props);
-		final Future<Object> result = ask(coordinator, CoordinatorCommand.START, timeout);
+		final Future<Object> result = ask(coordinator, CoordinatorCommand.START_LOCAL, timeout);
 		Await.result(result, timeout.duration());
 
 		// destroy the cluster

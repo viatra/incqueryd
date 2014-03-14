@@ -1,5 +1,5 @@
 package hu.bme.mit.incqueryd.rete.messages;
 
 public enum CoordinatorCommand {
-	START
+	START_LOCAL, START_REMOTE
 }
