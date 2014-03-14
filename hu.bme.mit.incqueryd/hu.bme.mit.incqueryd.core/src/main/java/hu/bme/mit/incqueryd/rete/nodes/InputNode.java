@@ -102,7 +102,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			tuples.add(tuple);
 		}
 		
-		System.out.println("intializeForeEdges returns " + tuples.size() + " " + type + " tuples");
+		System.out.println("intializeForEdges returns " + tuples.size() + " " + type + " tuples");
 		return tuples;
 	}
 	

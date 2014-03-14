@@ -12,6 +12,7 @@ import hu.bme.mit.incqueryd.rete.messages.YellowPages;
 import hu.bme.mit.incqueryd.rete.nodes.AlphaNode;
 import hu.bme.mit.incqueryd.rete.nodes.BetaNode;
 import hu.bme.mit.incqueryd.rete.nodes.InitializableReteNode;
+import hu.bme.mit.incqueryd.rete.nodes.ProductionNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNodeFactory;
 import hu.bme.mit.incqueryd.util.RecipeDeserializer;
@@ -68,6 +69,10 @@ public class ReteActor extends UntypedActor {
 		else if (message instanceof UpdateMessage) {
 			final UpdateMessage updateMessage = (UpdateMessage) message;
 			update(updateMessage);
+			
+			if (reteNode instanceof ProductionNode) {
+				terminationProtocol(new ReadyMessage(updateMessage.getSenderStack()));
+			}
 		} // yellowpages
 		else if (message instanceof YellowPages) {
 			final YellowPages yellowPages = (YellowPages) message;
@@ -212,6 +217,8 @@ public class ReteActor extends UntypedActor {
 
 			final Stack<ActorRef> propagatedSenderStack = senderStack.push(getSelf());
 			final UpdateMessage updateMessage = new UpdateMessage(changeSet, slot, propagatedSenderStack);
+			
+			System.out.println("termination protocol sends: " + propagatedSenderStack);
 			subscriber.tell(updateMessage, getSelf());
 		}
 	}
