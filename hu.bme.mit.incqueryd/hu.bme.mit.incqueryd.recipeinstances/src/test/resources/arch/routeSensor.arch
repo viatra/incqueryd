@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
 <arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://incquery.net/arch" xmlns:inf="http://incquery.net/d/infrastructure" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
   <clusters>
-    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl0" ip="10.6.21.231"/>
-    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl1" ip="10.6.21.237"/>
-    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl2" ip="10.6.21.233"/>
-    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl3" ip="10.6.21.235"/>
+    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vm0" ip="172.16.70.135"/>
+    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vm1" ip="172.16.70.137"/>
   </clusters>
   <reteRecipes>
     <!-- 0 -->
@@ -75,12 +73,12 @@
   </reteRecipes>
 
   <mappings mappedElements="//@reteRecipes.0/@recipeNodes.0" targetElement="//@clusters.0/@infrastructureNodes.0"/>   
-  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.1" targetElement="//@clusters.0/@infrastructureNodes.2"/>
-  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.2" targetElement="//@clusters.0/@infrastructureNodes.1"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.1" targetElement="//@clusters.0/@infrastructureNodes.1"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.2" targetElement="//@clusters.0/@infrastructureNodes.0"/>
   <mappings mappedElements="//@reteRecipes.0/@recipeNodes.3" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.4" targetElement="//@clusters.0/@infrastructureNodes.1"/>
-  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.5" targetElement="//@clusters.0/@infrastructureNodes.2"/>
-  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.6" targetElement="//@clusters.0/@infrastructureNodes.3"/>
-  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.7" targetElement="//@clusters.0/@infrastructureNodes.3"/>
-  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.8" targetElement="//@clusters.0/@infrastructureNodes.3"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.4" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.5" targetElement="//@clusters.0/@infrastructureNodes.1"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.6" targetElement="//@clusters.0/@infrastructureNodes.1"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.7" targetElement="//@clusters.0/@infrastructureNodes.1"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.8" targetElement="//@clusters.0/@infrastructureNodes.1"/>
 </arch:Configuration>

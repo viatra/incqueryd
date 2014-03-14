@@ -1,17 +1,25 @@
 package hu.bme.mit.incqueryd.arch;
 
+import static akka.pattern.Patterns.ask;
 import hu.bme.mit.incqueryd.databases.CoordinatorFourStoreClient;
-import hu.bme.mit.incqueryd.rete.actors.testkits.ArchTestKit;
+import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import scala.concurrent.Await;
+import scala.concurrent.Future;
+import scala.concurrent.duration.Duration;
+import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import akka.actor.Props;
+import akka.util.Timeout;
 
 public class ArchTest {
 
 	protected static ActorSystem system;
+	protected final Timeout timeout = new Timeout(Duration.create(3600, "seconds"));
 
 	@BeforeClass
 	public static void setup() {
@@ -26,7 +34,7 @@ public class ArchTest {
 	@Test
 	public void test() throws Exception {
 		final boolean cluster = true;
-		
+
 		// start the cluster and load the model
 		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient("src/main/resources/scripts");
 		client.start(cluster);
@@ -51,9 +59,11 @@ public class ArchTest {
 		// SignalNeighbor, expected: 3 2
 		// final String architectureFile = architecturePath + "signalNeighbor.arch";
 
-		final ArchTestKit testKit = new ArchTestKit(system, architectureFile);
-		testKit.test();
-
+		final Props props = new Props().withCreator(new CoordinatorActorFactory(architectureFile));
+		final ActorRef coordinator = system.actorOf(props);
+		final Future<Object> result = ask(coordinator, CoordinatorCommand.START, timeout);
+		Await.result(result, timeout.duration());
+		
 		// destroy the cluster
 		client.destroy(cluster);
 	}

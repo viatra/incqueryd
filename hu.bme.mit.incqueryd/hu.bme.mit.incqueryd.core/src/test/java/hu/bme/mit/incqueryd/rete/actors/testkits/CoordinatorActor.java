@@ -3,7 +3,7 @@ package hu.bme.mit.incqueryd.rete.actors.testkits;
 import static akka.pattern.Patterns.ask;
 import hu.bme.mit.incqueryd.arch.ArchUtil;
 import hu.bme.mit.incqueryd.rete.actors.ReteActor;
-import hu.bme.mit.incqueryd.rete.messages.ActorReply;
+import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
 import hu.bme.mit.incqueryd.rete.messages.YellowPages;
 import hu.bme.mit.incqueryd.util.RecipeSerializer;
@@ -12,7 +12,6 @@ import infrastructure.InfrastructureNode;
 import infrastructure.InfrastructurePackage;
 import infrastructure.Machine;
 
-import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -36,31 +35,24 @@ import scala.concurrent.Await;
 import scala.concurrent.Future;
 import scala.concurrent.duration.Duration;
 import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
 import akka.actor.Props;
-import akka.testkit.JavaTestKit;
+import akka.actor.UntypedActor;
 import akka.util.Timeout;
 import arch.ArchPackage;
 import arch.Configuration;
 import arch.InfrastructureMapping;
 
-public class ArchTestKit extends JavaTestKit {
+public class CoordinatorActor extends UntypedActor {
 
-	protected final ActorSystem system;
 	protected final String architectureFile;
-	protected final JavaTestKit coordinatorActor;
-	protected final JavaTestKit targetActor;
+	protected final Timeout timeout = new Timeout(Duration.create(5, "seconds"));
 
-	public ArchTestKit(final ActorSystem system, final String architectureFile) throws IOException {
-		super(system);
-		this.system = system;
+	public CoordinatorActor(final String architectureFile) {
+		super();
 		this.architectureFile = architectureFile;
-
-		coordinatorActor = new JavaTestKit(system);
-		targetActor = new JavaTestKit(system);
 	}
 
-	public void test() throws Exception {
+	public void start() throws Exception {
 		// initialize extension to factory map
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
 
@@ -145,9 +137,9 @@ public class ArchTestKit extends JavaTestKit {
 	 * Phase 1
 	 * 
 	 * @param conf
-	 * @throws IOException
+	 * @throws Exception 
 	 */
-	private void deployActors(final Configuration conf) throws IOException {
+	private void deployActors(final Configuration conf) throws Exception {
 		for (final ReteRecipe rr : conf.getReteRecipes()) {
 			for (final ReteNodeRecipe rnr : rr.getRecipeNodes()) {
 				System.out.println("[TestKit] Recipe: " + rnr.getClass().getName());
@@ -164,7 +156,7 @@ public class ArchTestKit extends JavaTestKit {
 
 				// TODO programmatic remote deployment goes here
 				final Props props = new Props(ReteActor.class);
-				final ActorRef actorRef = system.actorOf(props);
+				final ActorRef actorRef = getContext().actorOf(props);
 				configure(actorRef, recipeString);
 
 				actorRefs.add(actorRef);
@@ -193,9 +185,8 @@ public class ArchTestKit extends JavaTestKit {
 		final YellowPages yellowPages = new YellowPages(emfUriToActorRef);
 
 		for (final ActorRef actorRef : actorRefs) {
-			final Timeout timeout = new Timeout(Duration.create(5, "seconds"));
 			final Future<Object> future = ask(actorRef, yellowPages, timeout);
-			Await.result(future, timeout.duration());
+			final Object result = Await.result(future, timeout.duration());
 		}
 
 		System.out.println();
@@ -208,15 +199,17 @@ public class ArchTestKit extends JavaTestKit {
 
 	/**
 	 * Phase 3: initialize the Rete network.
+	 * @throws Exception 
 	 */
-	private void initialize() {
+	private void initialize() throws Exception {
 		// send an INITIALIZE message to every "input actor"
 		// in the current implementation input actors are described by a UniquenessEnforcerRecipe
 		for (final Entry<ReteNodeRecipe, ActorRef> entry : recipeToActorRef.entrySet()) {
 			final ReteNodeRecipe recipe = entry.getKey();
 			if (recipe instanceof UniquenessEnforcerRecipe) {
-				final ActorRef actor = entry.getValue();
-				actor.tell(CoordinatorMessage.INITIALIZE, coordinatorActor.getRef());
+				final ActorRef actorRef = entry.getValue();
+				final Future<Object> future = ask(actorRef, CoordinatorMessage.INITIALIZE, timeout);
+				final Object result = Await.result(future, timeout.duration());
 			}
 		}
 
@@ -229,10 +222,10 @@ public class ArchTestKit extends JavaTestKit {
 
 	}
 
-	private void configure(final ActorRef actor, final String recipeString) {
+	private void configure(final ActorRef actorRef, final String recipeString) throws Exception {
 		final ReteNodeConfiguration conf = new ReteNodeConfiguration(recipeString);
-		actor.tell(conf, coordinatorActor.getRef());
-		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONFIGURATION_RECEIVED);
+		final Future<Object> future = ask(actorRef, conf, timeout);
+		final Object result = Await.result(future, timeout.duration());
 	}
 
 	// @formatter:off
@@ -249,10 +242,19 @@ public class ArchTestKit extends JavaTestKit {
 	public void configure(final ActorRef testedActor, final ReteNodeConfiguration conf) {
 		// Act
 		// message (A)
-		testedActor.tell(conf, coordinatorActor.getRef());
+//		testedActor.tell(conf, coordinatorActor.getRef());
 		// Assert
 		// message (B)
-		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONFIGURATION_RECEIVED);
+//		coordinatorActor.expectMsgEquals(duration("1 second"), ActorReply.CONFIGURATION_RECEIVED);
+	}
+
+	@Override
+	public void onReceive(final Object message) throws Exception {
+		if (message == CoordinatorCommand.START) {
+			start();
+			getSender().tell(CoordinatorMessage.DONE, getSelf());
+		}
+		
 	}
 
 }
