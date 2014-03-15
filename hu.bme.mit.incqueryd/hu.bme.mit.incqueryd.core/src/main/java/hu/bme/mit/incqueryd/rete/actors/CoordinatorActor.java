@@ -209,7 +209,7 @@ public class CoordinatorActor extends UntypedActor {
 	 */
 	private void initialize() throws Exception {
 		final Collection<Future<Object>> futures = new HashSet<>();
-		
+
 		// send an INITIALIZE message to every "input actor"
 		// in the current implementation input actors are described by a UniquenessEnforcerRecipe
 		for (final Entry<ReteNodeRecipe, ActorRef> entry : recipeToActorRef.entrySet()) {
@@ -217,7 +217,7 @@ public class CoordinatorActor extends UntypedActor {
 			if (recipe instanceof UniquenessEnforcerRecipe) {
 				final ActorRef actorRef = entry.getValue();
 				final Future<Object> future = ask(actorRef, CoordinatorMessage.INITIALIZE, timeout);
-				futures.add(future); 
+				futures.add(future);
 			}
 		}
 
@@ -228,7 +228,15 @@ public class CoordinatorActor extends UntypedActor {
 			System.out.println(result);
 		}
 		System.out.println("</AWAIT>");
-		System.exit(0);
+
+		for (final Entry<ReteNodeRecipe, ActorRef> entry : recipeToActorRef.entrySet()) {
+			final ReteNodeRecipe recipe = entry.getKey();
+			if (recipe instanceof UniquenessEnforcerRecipe) {
+				final Future<Object> future = ask(entry.getValue(), CoordinatorCommand.POSLENGTH_TRANSFORMATION, timeout);
+				Await.result(future, timeout.duration());
+			}
+		}
+
 	}
 
 	private void configure(final ActorRef actorRef, final String recipeString) throws Exception {
@@ -242,10 +250,7 @@ public class CoordinatorActor extends UntypedActor {
 		if (message == CoordinatorCommand.START) {
 			start();
 			getSender().tell(CoordinatorMessage.DONE, getSelf());
-		} else if (message == CoordinatorMessage.TERMINATED) {
-			System.out.println(":))))))))))))))))))))))))))))))))))))");
 		}
-
 	}
 
 }

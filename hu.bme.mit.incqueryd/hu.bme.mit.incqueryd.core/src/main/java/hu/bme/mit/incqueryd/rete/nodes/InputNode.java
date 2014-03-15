@@ -24,6 +24,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	protected boolean hasAttribute = false;
 	protected String attribute;
 	protected final GraphElement graphElement;
+	protected final Set<Tuple> tuples = new HashSet<>();
 
 	InputNode(final UniquenessEnforcerRecipe recipe) {
 		super();
@@ -52,14 +53,12 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 
 	@Override
 	public ChangeSet initialize() throws IOException {
-		Set<Tuple> tuples = null;
-
 		switch (graphElement) {
 		case EDGE:
-			tuples = initializeForEdges();
+			initializeForEdges();
 			break;
 		case NODE:
-			tuples = initializeForNodes();
+			initializeForNodes();
 			break;
 		default:
 			break;
@@ -69,10 +68,9 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		return changeSet;
 	}
 
-	private Set<Tuple> initializeForNodes() throws IOException {
+	private void initializeForNodes() throws IOException {
 		final FourStoreClient client = new FourStoreClient();
 
-		final Set<Tuple> tuples = new HashSet<>();
 		if (hasAttribute) {
 			final Map<Long, Integer> verticesWithProperty = client.collectVerticesWithProperty(attribute);
 			for (final Entry<Long, Integer> vertexWithProperty : verticesWithProperty.entrySet()) {
@@ -89,47 +87,35 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		}
 
 		System.out.println("intializeForNodes returns " + tuples.size() + " tuples");
-		return tuples;
 	}
 
-	private Set<Tuple> initializeForEdges() throws IOException {
+	private void initializeForEdges() throws IOException {
 		final FourStoreClient client = new FourStoreClient();
 		final Multimap<Long, Long> edges = client.collectEdges(type);
 
-		final Set<Tuple> tuples = new HashSet<>();
 		for (final Entry<Long, Long> entry : edges.entries()) {
 			final Tuple tuple = new Tuple(entry.getKey(), entry.getValue());
 			tuples.add(tuple);
 		}
-		
+
 		System.out.println("intializeForEdges returns " + tuples.size() + " " + type + " tuples");
-		return tuples;
 	}
-	
-	
 
-	// @Override
-	// public ChangeSet update(final ChangeSet incomingChangeSet) {
-	// final EList<Integer> indices = recipe.getIndices();
-	//
-	// final Set<Tuple> incomingTuples = incomingChangeSet.getTuples();
-	// Set<Tuple> resultTuples;
-	//
-	// if (indices.size() <= 1) {
-	// // nothing to compare
-	// resultTuples = incomingTuples;
-	// } else {
-	// resultTuples = new HashSet<Tuple>();
-	//
-	// for (final Tuple tuple : incomingTuples) {
-	// if (checkCondition(tuple, indices)) {
-	// resultTuples.add(tuple);
-	// }
-	// }
-	// }
-	// final ChangeSet resultChangeSet = new ChangeSet(resultTuples, incomingChangeSet.getChangeType());
-	//
-	// return resultChangeSet;
-	// }
-
+	public ChangeSet transform() {
+		final Set<Tuple> changeSetTuples = new HashSet<>();
+		final ChangeSet changeSet = new ChangeSet(changeSetTuples, ChangeType.NEGATIVE);
+		for (final Tuple tuple : tuples) {
+			System.out.println(tuple);
+			
+			final int length = (int)tuple.get(1);
+			if (length < 0) {
+				final int newLength = -length + 1;
+				System.out.println(newLength);
+				
+				changeSetTuples.add(tuple);
+				return changeSet;
+			}
+		}
+		return null;
+	}
 }

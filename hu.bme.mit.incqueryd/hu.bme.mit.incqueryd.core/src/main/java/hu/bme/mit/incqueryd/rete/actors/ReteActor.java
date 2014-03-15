@@ -4,6 +4,7 @@ import hu.bme.mit.incqueryd.arch.ArchUtil;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
+import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.TerminationMessage;
@@ -19,6 +20,7 @@ import hu.bme.mit.incqueryd.rete.nodes.ReteNodeFactory;
 import hu.bme.mit.incqueryd.util.RecipeDeserializer;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -38,6 +40,7 @@ import akka.actor.UntypedActor;
 
 public class ReteActor extends UntypedActor {
 
+	private static final ReteNode InputNode = null;
 	protected ReteNodeRecipe recipe;
 	protected ReteNode reteNode;
 	protected Map<ActorRef, ReteNodeSlot> subscribers = new HashMap<>();
@@ -61,7 +64,7 @@ public class ReteActor extends UntypedActor {
 		} // configuration
 		else if (message instanceof ReteNodeConfiguration) {
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>> Self: " + getSelf() + "; coordinator: " + getSender());
-			
+
 			final ReteNodeConfiguration conf = (ReteNodeConfiguration) message;
 			recipe = (ReteNodeRecipe) RecipeDeserializer.deserializeFromString(conf.getRecipeString());
 
@@ -89,13 +92,10 @@ public class ReteActor extends UntypedActor {
 			terminationProtocol(terminationMessage);
 		} // initialize
 		else if (message == CoordinatorMessage.INITIALIZE) {
-			coordinatorRef = getSender();
-			
-			System.out.println("[ReteActor] " + getSelf() + ": INITIALIZE received");
-			final InitializableReteNode node = (InitializableReteNode) reteNode;
-			final ChangeSet changeSet = node.initialize();
-			final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
-			sendToSubscribers(changeSet, emptyStack);			
+			initialize();
+		} // PosLength transformation
+		else if (message == CoordinatorCommand.POSLENGTH_TRANSFORMATION) {
+			posLengthTransformation();
 		}
 	}
 
@@ -191,12 +191,12 @@ public class ReteActor extends UntypedActor {
 				coordinatorRef.tell(CoordinatorMessage.TERMINATED, getSelf());
 
 				System.out.println(coordinatorRef);
-				
+
 				System.out.println("+======================================+");
 				System.out.println("|          you're terminated           |");
 				System.out.println("+======================================+");
 			}
-			
+
 			return;
 		}
 
@@ -236,7 +236,7 @@ public class ReteActor extends UntypedActor {
 		if (reteNode instanceof InputNode) {
 			pendingTerminationMessages = subscribers.entrySet().size();
 		}
-		
+
 		for (final Entry<ActorRef, ReteNodeSlot> entry : subscribers.entrySet()) {
 			final ActorRef subscriber = entry.getKey();
 			final ReteNodeSlot slot = entry.getValue();
@@ -246,10 +246,33 @@ public class ReteActor extends UntypedActor {
 
 			System.out.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName() + ", "
 					+ ArchUtil.oneLiner(recipe.getTraceInfo()) + ": Sending to " + subscriber + "\n" + "            - "
-					+ changeSet.getChangeType() + " changeset, tuple size: " + changeSet.getTuples().size() + "\n"
+					+ changeSet.getChangeType() + " changeset, " + changeSet.getTuples().size() + "tuples\n"
 					+ "            - with sender stack: " + propagatedSenderStack + "\n" + "            - "
 					+ pendingTerminationMessages + " pending");
 			subscriber.tell(updateMessage, getSelf());
 		}
+	}
+
+	private void initialize() throws IOException {
+		coordinatorRef = getSender();
+		System.out.println("[ReteActor] " + getSelf() + ": INITIALIZE received");
+		final InitializableReteNode node = (InitializableReteNode) reteNode;
+		final ChangeSet changeSet = node.initialize();
+		final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
+		sendToSubscribers(changeSet, emptyStack);
+	}
+
+	private void posLengthTransformation() {
+		coordinatorRef = getSender();
+		System.out.println("[ReteActor] " + getSelf() + ": POSLENGTH_TRANSFORMATION received");
+		final InitializableReteNode node = (InitializableReteNode) reteNode;
+
+		final InputNode inputNode = (InputNode) reteNode;
+		final ChangeSet changeSet = inputNode.transform();
+
+		System.out.println(changeSet + " is the changeset.");
+		
+		final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
+		sendToSubscribers(changeSet, emptyStack);		
 	}
 }
