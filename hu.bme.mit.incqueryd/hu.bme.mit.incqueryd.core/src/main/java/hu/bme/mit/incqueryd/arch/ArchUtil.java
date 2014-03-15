@@ -84,7 +84,7 @@ public class ArchUtil {
 	 * @param string
 	 * @return
 	 */
-	public static String justFirstLine(final String string) {
+	public static String oneLiner(final String string) {
 		// final int newLinePosition = string.indexOf("\n");
 		// if (newLinePosition < 0) {
 		// return string;

@@ -5,13 +5,14 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
-import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
+import hu.bme.mit.incqueryd.rete.messages.TerminationMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.messages.YellowPages;
 import hu.bme.mit.incqueryd.rete.nodes.AlphaNode;
 import hu.bme.mit.incqueryd.rete.nodes.BetaNode;
 import hu.bme.mit.incqueryd.rete.nodes.InitializableReteNode;
+import hu.bme.mit.incqueryd.rete.nodes.InputNode;
 import hu.bme.mit.incqueryd.rete.nodes.ProductionNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNodeFactory;
@@ -40,6 +41,8 @@ public class ReteActor extends UntypedActor {
 	protected ReteNodeRecipe recipe;
 	protected ReteNode reteNode;
 	protected Map<ActorRef, ReteNodeSlot> subscribers = new HashMap<>();
+	protected int pendingTerminationMessages;
+	protected ActorRef coordinatorRef;
 
 	public ReteActor() {
 		super();
@@ -57,21 +60,23 @@ public class ReteActor extends UntypedActor {
 			subscribeSender(ReteNodeSlot.SECONDARY);
 		} // configuration
 		else if (message instanceof ReteNodeConfiguration) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>> Self: " + getSelf() + "; coordinator: " + getSender());
+			
 			final ReteNodeConfiguration conf = (ReteNodeConfiguration) message;
 			recipe = (ReteNodeRecipe) RecipeDeserializer.deserializeFromString(conf.getRecipeString());
 
 			reteNode = ReteNodeFactory.createNode(recipe);
 			System.out.println("[ReteActor] " + reteNode.getClass().getName() + " configuration received.");
 
+			// sending CONFIGURATION_RECEIVED to the coordinator
 			getSender().tell(ActorReply.CONFIGURATION_RECEIVED, getSelf());
-
 		} // update
 		else if (message instanceof UpdateMessage) {
 			final UpdateMessage updateMessage = (UpdateMessage) message;
 			update(updateMessage);
-			
+
 			if (reteNode instanceof ProductionNode) {
-				terminationProtocol(new ReadyMessage(updateMessage.getSenderStack()));
+				terminationProtocol(new TerminationMessage(updateMessage.getSenderStack()));
 			}
 		} // yellowpages
 		else if (message instanceof YellowPages) {
@@ -79,16 +84,18 @@ public class ReteActor extends UntypedActor {
 			subscribe(yellowPages);
 			getSender().tell(ActorReply.YELLOWPAGES_RECEIVED, getSelf());
 		} // ready message
-		else if (message instanceof ReadyMessage) {
-			final ReadyMessage readyMessage = (ReadyMessage) message;
-			terminationProtocol(readyMessage);
-		} // intitialize
+		else if (message instanceof TerminationMessage) {
+			final TerminationMessage terminationMessage = (TerminationMessage) message;
+			terminationProtocol(terminationMessage);
+		} // initialize
 		else if (message == CoordinatorMessage.INITIALIZE) {
+			coordinatorRef = getSender();
+			
 			System.out.println("[ReteActor] " + getSelf() + ": INITIALIZE received");
 			final InitializableReteNode node = (InitializableReteNode) reteNode;
 			final ChangeSet changeSet = node.initialize();
 			final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
-			sendToSubscribers(changeSet, emptyStack);
+			sendToSubscribers(changeSet, emptyStack);			
 		}
 	}
 
@@ -98,7 +105,7 @@ public class ReteActor extends UntypedActor {
 		System.out.println();
 		// EcoreUtil.resolveAll(recipe);
 		System.out.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName() + ": "
-				+ ArchUtil.justFirstLine(recipe.toString()));
+				+ ArchUtil.oneLiner(recipe.toString()));
 
 		// alpha nodes
 		if (recipe instanceof AlphaRecipe) {
@@ -172,18 +179,39 @@ public class ReteActor extends UntypedActor {
 		sendToSubscribers(changeSet, updateMessage.getSenderStack());
 	}
 
-	private void terminationProtocol(final ReadyMessage readyMessage) {
+	private void terminationProtocol(final TerminationMessage readyMessage) {
 		final Stack<ActorRef> route = readyMessage.getRoute();
+
+		if (reteNode instanceof InputNode) {
+			if (route.isEmpty()) {
+				pendingTerminationMessages--;
+			}
+
+			if (pendingTerminationMessages == 0) {
+				coordinatorRef.tell(CoordinatorMessage.TERMINATED, getSelf());
+
+				System.out.println(coordinatorRef);
+				
+				System.out.println("+======================================+");
+				System.out.println("|          you're terminated           |");
+				System.out.println("+======================================+");
+			}
+			
+			return;
+		}
 
 		final Tuple2<ActorRef, Stack<ActorRef>> pair = route.pop2();
 		final ActorRef readyMessageTarget = pair._1();
 		final Stack<ActorRef> readyMessageSenderStack = pair._2();
 
-		final ReadyMessage propagatedReadyMessage = new ReadyMessage(readyMessageSenderStack);
+		final TerminationMessage propagatedReadyMessage = new TerminationMessage(readyMessageSenderStack);
 		readyMessageTarget.tell(propagatedReadyMessage, getSelf());
 
 		System.out.println("[ReteActor] Termination protocol sending: " + readyMessageSenderStack + " to "
 				+ readyMessageTarget);
+
+		return;
+
 	}
 
 	protected void subscribeSender(final ReteNodeSlot slot) {
@@ -205,22 +233,23 @@ public class ReteActor extends UntypedActor {
 	}
 
 	protected void sendToSubscribers(final ChangeSet changeSet, final Stack<ActorRef> senderStack) {
+		if (reteNode instanceof InputNode) {
+			pendingTerminationMessages = subscribers.entrySet().size();
+		}
+		
 		for (final Entry<ActorRef, ReteNodeSlot> entry : subscribers.entrySet()) {
 			final ActorRef subscriber = entry.getKey();
 			final ReteNodeSlot slot = entry.getValue();
 
-			System.out.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName() + ", "
-					+ recipe.getTraceInfo() + ": Sending to " + subscriber + "\n"
-					+ "            - " + changeSet.getChangeType() + " changeset, tuple size: " + changeSet.getTuples().size()
-			// + "         changeset: " + changeSet
-					);
-
 			final Stack<ActorRef> propagatedSenderStack = senderStack.push(getSelf());
 			final UpdateMessage updateMessage = new UpdateMessage(changeSet, slot, propagatedSenderStack);
-			
-			System.out.println("termination protocol sends: " + propagatedSenderStack);
+
+			System.out.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName() + ", "
+					+ ArchUtil.oneLiner(recipe.getTraceInfo()) + ": Sending to " + subscriber + "\n" + "            - "
+					+ changeSet.getChangeType() + " changeset, tuple size: " + changeSet.getTuples().size() + "\n"
+					+ "            - with sender stack: " + propagatedSenderStack + "\n" + "            - "
+					+ pendingTerminationMessages + " pending");
 			subscriber.tell(updateMessage, getSelf());
 		}
 	}
-
 }

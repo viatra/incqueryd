@@ -131,7 +131,7 @@ public class CoordinatorActor extends UntypedActor {
 			emfUriToActorRef.put(emfUri, akkaUri);
 
 			System.out.println("EMF URI: " + emfUri + ", Akka URI: " + akkaUri + ", traceInfo "
-					+ ArchUtil.justFirstLine(recipe.getTraceInfo()));
+					+ ArchUtil.oneLiner(recipe.getTraceInfo()));
 		}
 
 		System.out.println();
@@ -208,6 +208,8 @@ public class CoordinatorActor extends UntypedActor {
 	 * @throws Exception
 	 */
 	private void initialize() throws Exception {
+		final Collection<Future<Object>> futures = new HashSet<>();
+		
 		// send an INITIALIZE message to every "input actor"
 		// in the current implementation input actors are described by a UniquenessEnforcerRecipe
 		for (final Entry<ReteNodeRecipe, ActorRef> entry : recipeToActorRef.entrySet()) {
@@ -215,17 +217,18 @@ public class CoordinatorActor extends UntypedActor {
 			if (recipe instanceof UniquenessEnforcerRecipe) {
 				final ActorRef actorRef = entry.getValue();
 				final Future<Object> future = ask(actorRef, CoordinatorMessage.INITIALIZE, timeout);
-				// final Object result = Await.result(future, timeout.duration());
+				futures.add(future); 
 			}
 		}
 
-		try {
-			Thread.sleep(5000);
-		} catch (final Exception e) {
-			e.printStackTrace();
+		System.out.println("<AWAIT>");
+		for (final Future<Object> future : futures) {
+			System.out.println("await for " + future);
+			final Object result = Await.result(future, timeout.duration());
+			System.out.println(result);
 		}
-		;
-
+		System.out.println("</AWAIT>");
+		System.exit(0);
 	}
 
 	private void configure(final ActorRef actorRef, final String recipeString) throws Exception {
@@ -239,6 +242,8 @@ public class CoordinatorActor extends UntypedActor {
 		if (message == CoordinatorCommand.START) {
 			start();
 			getSender().tell(CoordinatorMessage.DONE, getSelf());
+		} else if (message == CoordinatorMessage.TERMINATED) {
+			System.out.println(":))))))))))))))))))))))))))))))))))))");
 		}
 
 	}

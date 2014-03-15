@@ -1,6 +1,7 @@
 package hu.bme.mit.incqueryd.main;
 
 import static akka.pattern.Patterns.ask;
+import hu.bme.mit.incqueryd.databases.CoordinatorFourStoreClient;
 import hu.bme.mit.incqueryd.rete.actors.CoordinatorActorFactory;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand;
 import hu.bme.mit.trainbenchmark.benchmark.config.IncQueryDBenchmarkConfig;
@@ -30,7 +31,8 @@ public class IncQueryDWorker {
 	// SwitchSensor, expected: 19 18
 	public void work() throws Exception {
 		final boolean cluster = false;
-		
+		final boolean initialize4s = true;
+
 		final String testCase = bc.getTestCases().get(0);
 		final int size = bc.getSizes().get(0);
 
@@ -38,16 +40,17 @@ public class IncQueryDWorker {
 				+ testCase.toLowerCase() + ".arch";
 
 		// initialize 4store
-		// final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient("src/main/resources/scripts");
-		// client.start(bc.isCluster());
+		final CoordinatorFourStoreClient client;
+		if (initialize4s) {
+			client = new CoordinatorFourStoreClient("src/main/resources/scripts");
+			client.start(bc.isCluster());
 
-		// final String modelLocation = "/home/szarnyasg/git/incqueryd/hu.bme.mit.incqueryd/hu.bme.mit.incqueryd.core";
-		// final String modelLocation =
-		// "/home/szarnyasg/mondo-trainbenchmark/src/hu.bme.mit.trainbenchmark.instancemodels";
-
-		final String modelPath = bc.getInstanceModelPath() + "/src/test/resources/models/railway-"
-				+ bc.getScenario().toLowerCase() + "-" + size + "-no-metamodel.owl";
-		// client.load(modelPath);
+			// load the model
+			// src/test/resources/models/
+			final String modelPath = bc.getInstanceModelPath() + "/railway-" + bc.getScenario().toLowerCase() + "-"
+					+ size + "-no-metamodel.owl";
+			client.load(modelPath);
+		}
 
 		// initialize Akka
 		final ActorSystem system;
@@ -64,7 +67,9 @@ public class IncQueryDWorker {
 		Await.result(result, timeout.duration());
 
 		// destroy the 4store backend(s)
-		// client.destroy(bc.isCluster());
+		if (initialize4s) {
+			client.destroy(bc.isCluster());
+		}
 
 		system.shutdown();
 	}

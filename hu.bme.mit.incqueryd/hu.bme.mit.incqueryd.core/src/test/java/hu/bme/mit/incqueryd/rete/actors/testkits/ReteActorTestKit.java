@@ -5,7 +5,7 @@ import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
-import hu.bme.mit.incqueryd.rete.messages.ReadyMessage;
+import hu.bme.mit.incqueryd.rete.messages.TerminationMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
@@ -142,14 +142,14 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 		final Tuple2<ActorRef, Stack<ActorRef>> pair = actualMessageB.getSenderStack().pop2();
 		final ActorRef terminationActorRef = pair._1();
 		final Stack<ActorRef> messageCStack = pair._2();
-		final ReadyMessage messageC = new ReadyMessage(messageCStack);
+		final TerminationMessage messageC = new TerminationMessage(messageCStack);
 		terminationActorRef.tell(messageC, targetActor.getRef());
 
 		// Assert
 		// message (D) ?
 		// we expect a ReadyMessage with an empty stack as the sender route
-		final ReadyMessage expectedMessageD = new ReadyMessage(Stack$.MODULE$.empty());
-		final ReadyMessage actualMessageD = parentActor.expectMsgClass(duration("1 second"), ReadyMessage.class);
+		final TerminationMessage expectedMessageD = new TerminationMessage(Stack$.MODULE$.empty());
+		final TerminationMessage actualMessageD = parentActor.expectMsgClass(duration("1 second"), TerminationMessage.class);
 		assertEquals(expectedMessageD, actualMessageD);
 	}
 

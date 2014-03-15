@@ -27,8 +27,6 @@ public class TermEvaluatorNode extends AlphaNode {
     protected Collection<ConditionExpression> conditionExpressions;
 
     TermEvaluatorNode(final CheckRecipe recipe) {
-        System.out.println("TEN");
-    	System.out.println(recipe.getTraceInfo());
     	conditionExpressions = new HashSet<>();
     	// the arguments are set for the expression t[1] <= 0
     	final ConditionExpression expression = new ConditionExpression(1, ComparisonOperator.LESS_THAN_OR_EQUAL, 0);
