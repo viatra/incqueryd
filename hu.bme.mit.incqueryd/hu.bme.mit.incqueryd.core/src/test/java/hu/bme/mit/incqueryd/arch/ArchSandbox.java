@@ -37,6 +37,5 @@ public class ArchSandbox {
 		}
 		
 		System.out.println(parents);
-
 	}
 }

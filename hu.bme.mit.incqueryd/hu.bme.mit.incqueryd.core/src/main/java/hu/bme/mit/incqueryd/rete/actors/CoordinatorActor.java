@@ -46,13 +46,14 @@ import arch.InfrastructureMapping;
 
 public class CoordinatorActor extends UntypedActor {
 
-	protected boolean remoting;
+	protected final boolean remoting;
 	protected final String architectureFile;
 	protected final Timeout timeout = new Timeout(Duration.create(5, "seconds"));
 
-	public CoordinatorActor(final String architectureFile) {
+	public CoordinatorActor(final String architectureFile, final boolean remoting) {
 		super();
 		this.architectureFile = architectureFile;
+		this.remoting = remoting;
 	}
 
 	public void start() throws Exception {
@@ -235,10 +236,7 @@ public class CoordinatorActor extends UntypedActor {
 
 	@Override
 	public void onReceive(final Object message) throws Exception {
-		if (message == CoordinatorCommand.START_LOCAL || message == CoordinatorCommand.START_REMOTE) {
-			// remoting true for START_REMOTE and false for START_LOCAL 
-			remoting = (message == CoordinatorCommand.START_REMOTE);
-			
+		if (message == CoordinatorCommand.START) {
 			start();
 			getSender().tell(CoordinatorMessage.DONE, getSelf());
 		}
