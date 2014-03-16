@@ -25,15 +25,15 @@ cd hu.bme.mit.incqueryd.core/
 
 rm executables.txt results.txt results_err.txt series.txt 2> /dev/null
 
-minSize=128
-maxSize=512
-#seriesCount=2
-#queries="PosLength RouteSensor SignalNeighbor SwitchSensor"
-seriesCount=1
-queries="PosLength"
+minSize=1
+maxSize=4
+#seriesCount=1
+seriesCount=2
+#queries="PosLength"
+queries="PosLength RouteSensor SignalNeighbor SwitchSensor"
 timeout="12m"
 scenario="XForm"
-workspacePath="/home/szarnyasg/git/mondo-trainbenchmark/src/"
+workspacePath="/home/szarnyasg/mondo-trainbenchmark/src/"
 xmx=4G
 maxPermSize=256M
 
