@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
 <arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://incquery.net/arch" xmlns:inf="http://incquery.net/d/infrastructure" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
   <clusters>
-    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl0" ip="10.6.21.231"/>
-    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl1" ip="10.6.21.237"/>
-    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl2" ip="10.6.21.233"/>
-    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl3" ip="10.6.21.235"/>
+    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vm0" ip="172.16.70.135"/>
+    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vm1" ip="172.16.70.137"/>
   </clusters>
   <reteRecipes>
     <!-- 0 -->
