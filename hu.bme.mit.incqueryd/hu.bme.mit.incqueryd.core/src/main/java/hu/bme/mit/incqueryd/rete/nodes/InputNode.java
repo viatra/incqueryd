@@ -6,12 +6,15 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.GraphElement;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
+import hu.bme.mit.incqueryd.rete.messages.Transformation;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Random;
 import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
@@ -101,21 +104,45 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		System.out.println("intializeForEdges returns " + tuples.size() + " " + type + " tuples");
 	}
 
-	public ChangeSet transform() {
-		final Set<Tuple> changeSetTuples = new HashSet<>();
-		final ChangeSet changeSet = new ChangeSet(changeSetTuples, ChangeType.NEGATIVE);
+	public ChangeSet transform(final Transformation transformation) {
+		final List<Tuple> invalids = new ArrayList<>(transformation.getInvalids());
+		final int size = invalids.size();
+
+		final Set<Tuple> tuplesToRemove = new HashSet<>();
+		
+		final Set<Long> sensorsToRemove = new HashSet<>();
+		final Random random = new Random(0);
+		final int nElemToModify = size / 10;
+		for (int i = 0; i < nElemToModify; i++) {
+			final int rndTarget = random.nextInt(size);
+			final Long sensor = (Long) invalids.get(rndTarget).get(0);
+			sensorsToRemove.add(sensor);
+		}
+		System.out.println(sensorsToRemove);
+
 		for (final Tuple tuple : tuples) {
-			System.out.println(tuple);
-			
-			final int length = (int)tuple.get(1);
-			if (length < 0) {
-				final int newLength = -length + 1;
-				System.out.println(newLength);
-				
-				changeSetTuples.add(tuple);
-				return changeSet;
+			final Long sensor = (Long) tuple.get(1);
+			if (sensorsToRemove.contains(sensor)) {
+				tuplesToRemove.add(tuple);
 			}
 		}
-		return null;
+		final ChangeSet changeSet = new ChangeSet(tuplesToRemove, ChangeType.NEGATIVE);
+		return changeSet;
+		
+
+		// final ChangeSet changeSet = new ChangeSet(changeSetTuples, ChangeType.NEGATIVE);
+		// for (final Tuple tuple : tuples) {
+		// System.out.println(tuple);
+		//
+		// final long length = (long)tuple.get(1);
+		// if (length < 0) {
+		// final long newLength = -length + 1;
+		// System.out.println(newLength);
+		//
+		// changeSetTuples.add(tuple);
+		// return changeSet;
+		// }
+		// }
+//		return null;
 	}
 }

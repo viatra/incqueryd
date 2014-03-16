@@ -40,5 +40,9 @@ public class ProductionNode extends AlphaNode {
 		System.out.println("Production memory size: " + memory.size());
     	return null;
     }
+    
+    public Set<Tuple> getMemory() {
+		return memory;
+	}
 
 }

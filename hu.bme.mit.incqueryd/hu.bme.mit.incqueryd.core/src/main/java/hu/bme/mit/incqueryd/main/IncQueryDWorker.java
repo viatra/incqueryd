@@ -31,7 +31,7 @@ public class IncQueryDWorker {
 	// SwitchSensor, expected: 19 18
 	public void work() throws Exception {
 		final boolean cluster = false;
-		final boolean initialize4s = false;
+		final boolean initialize4s = bc.isInitialize4s();
 
 		final String testCase = bc.getTestCases().get(0);
 		final int size = bc.getSizes().get(0);
@@ -40,7 +40,7 @@ public class IncQueryDWorker {
 				+ testCase.toLowerCase() + ".arch";
 
 		// initialize 4store
-		final CoordinatorFourStoreClient client;
+		CoordinatorFourStoreClient client = null;
 		if (initialize4s) {
 			client = new CoordinatorFourStoreClient("src/main/resources/scripts");
 			client.start(bc.isCluster());
@@ -57,8 +57,6 @@ public class IncQueryDWorker {
 		final Timeout timeout = new Timeout(Duration.create(15, "seconds"));
 		final Config config = ConfigFactory.parseString("akka.actor.provider = akka.remote.RemoteActorRefProvider");
 		system = ActorSystem.create("test", config);
-
-		// final String modelPath = "src/test/resources/models/railway-user-1-no-metamodel.owl";
 
 		final Props props = new Props().withCreator(new CoordinatorActorFactory(architectureFile, cluster));
 		final ActorRef coordinator = system.actorOf(props);

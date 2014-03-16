@@ -2,8 +2,10 @@ package hu.bme.mit.incqueryd.rete.actors;
 
 import static akka.pattern.Patterns.ask;
 import hu.bme.mit.incqueryd.arch.ArchUtil;
+import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
+import hu.bme.mit.incqueryd.rete.messages.Transformation;
 import hu.bme.mit.incqueryd.rete.messages.YellowPages;
 import hu.bme.mit.incqueryd.util.RecipeSerializer;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
@@ -16,6 +18,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -25,6 +28,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
@@ -49,6 +53,7 @@ public class CoordinatorActor extends UntypedActor {
 	protected final boolean remoting;
 	protected final String architectureFile;
 	protected final Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+	protected ActorRef productionActorRef;
 
 	public CoordinatorActor(final String architectureFile, final boolean remoting) {
 		super();
@@ -171,6 +176,11 @@ public class CoordinatorActor extends UntypedActor {
 
 				actorRefs.add(actorRef);
 				recipeToActorRef.put(rnr, actorRef);
+				
+				if (rnr instanceof ProductionRecipe) {
+					productionActorRef = actorRef;
+				}
+				
 				System.out.println("[TestKit] Actor configured.");
 				System.out.println();
 			}
@@ -228,21 +238,34 @@ public class CoordinatorActor extends UntypedActor {
 			System.out.println(result);
 		}
 		System.out.println("</AWAIT>");
-
+		
+		final Future<Object> queryResultFuture = ask(productionActorRef, CoordinatorMessage.GETQUERYRESULTS, timeout);
+		final Set<Tuple> result = (Set<Tuple>) Await.result(queryResultFuture, timeout.duration());
+		
 		for (final Entry<ReteNodeRecipe, ActorRef> entry : recipeToActorRef.entrySet()) {
 			final ReteNodeRecipe recipe = entry.getKey();
-			if (recipe instanceof UniquenessEnforcerRecipe) {
-				final Future<Object> future = ask(entry.getValue(), CoordinatorCommand.POSLENGTH_TRANSFORMATION, timeout);
-				Await.result(future, timeout.duration());
+			if (recipe instanceof UniquenessEnforcerRecipe) {			
+				final UniquenessEnforcerRecipe uer = (UniquenessEnforcerRecipe) recipe;
+				
+				if (uer.getTraceInfo().contains("TrackElement_sensor")) {
+					System.out.println("trf");
+					final Transformation transformation = new Transformation(result, "RouteSensor");
+					final ActorRef actorRef = entry.getValue();
+					final Future<Object> future = ask(actorRef, transformation, timeout);
+					Await.result(future, timeout.duration());
+				}
+				
 			}
 		}
+		
+		System.exit(0);
 
 	}
 
 	private void configure(final ActorRef actorRef, final String recipeString) throws Exception {
 		final ReteNodeConfiguration conf = new ReteNodeConfiguration(recipeString);
 		final Future<Object> future = ask(actorRef, conf, timeout);
-		final Object result = Await.result(future, timeout.duration());
+		final Object object = Await.result(future, timeout.duration());
 	}
 
 	@Override

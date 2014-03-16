@@ -3,11 +3,12 @@ package hu.bme.mit.incqueryd.rete.actors;
 import hu.bme.mit.incqueryd.arch.ArchUtil;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
+import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
-import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.TerminationMessage;
+import hu.bme.mit.incqueryd.rete.messages.Transformation;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.rete.messages.YellowPages;
 import hu.bme.mit.incqueryd.rete.nodes.AlphaNode;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.eclipse.emf.common.util.EList;
@@ -63,8 +65,6 @@ public class ReteActor extends UntypedActor {
 			subscribeSender(ReteNodeSlot.SECONDARY);
 		} // configuration
 		else if (message instanceof ReteNodeConfiguration) {
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>> Self: " + getSelf() + "; coordinator: " + getSender());
-
 			final ReteNodeConfiguration conf = (ReteNodeConfiguration) message;
 			recipe = (ReteNodeRecipe) RecipeDeserializer.deserializeFromString(conf.getRecipeString());
 
@@ -93,9 +93,16 @@ public class ReteActor extends UntypedActor {
 		} // initialize
 		else if (message == CoordinatorMessage.INITIALIZE) {
 			initialize();
-		} // PosLength transformation
-		else if (message == CoordinatorCommand.POSLENGTH_TRANSFORMATION) {
-			posLengthTransformation();
+		} // get results
+		else if (message == CoordinatorMessage.GETQUERYRESULTS) {
+			final ProductionNode productionNode = (ProductionNode) reteNode;
+			final Set<Tuple> memory = productionNode.getMemory();
+			getSender().tell(memory, getSelf());
+		}
+		// PosLength transformation
+		else if (message instanceof Transformation) {
+			final Transformation transformation = (Transformation) message;
+			doTransformation(transformation);
 		}
 	}
 
@@ -244,11 +251,13 @@ public class ReteActor extends UntypedActor {
 			final Stack<ActorRef> propagatedSenderStack = senderStack.push(getSelf());
 			final UpdateMessage updateMessage = new UpdateMessage(changeSet, slot, propagatedSenderStack);
 
+			// @formatter:off
 			System.out.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName() + ", "
-					+ ArchUtil.oneLiner(recipe.getTraceInfo()) + ": Sending to " + subscriber + "\n" + "            - "
-					+ changeSet.getChangeType() + " changeset, " + changeSet.getTuples().size() + "tuples\n"
-					+ "            - with sender stack: " + propagatedSenderStack + "\n" + "            - "
-					+ pendingTerminationMessages + " pending");
+					+ ArchUtil.oneLiner(recipe.getTraceInfo()) + ": Sending to " + subscriber + "\n" 
+					+ "            - " + changeSet.getChangeType() + " changeset, " + changeSet.getTuples().size() + " tuples\n"
+					+ "            - " + "with sender stack: " + propagatedSenderStack + "\n" 
+					+ "            - " + pendingTerminationMessages + " pending");
+			// @formatter:on
 			subscriber.tell(updateMessage, getSelf());
 		}
 	}
@@ -262,17 +271,43 @@ public class ReteActor extends UntypedActor {
 		sendToSubscribers(changeSet, emptyStack);
 	}
 
-	private void posLengthTransformation() {
+	private void doTransformation(final Transformation transformation) {
+		switch (transformation.getTestCase()) {
+		case "PosLength":
+			posLengthTransformation(transformation);
+			break;
+		case "RouteSensor":
+			routeSensorTransformation(transformation);
+			break;
+		default:
+			break;
+		}
+
+	}
+
+	private void posLengthTransformation(final Transformation transformation) {
 		coordinatorRef = getSender();
-		System.out.println("[ReteActor] " + getSelf() + ": POSLENGTH_TRANSFORMATION received");
-		final InitializableReteNode node = (InitializableReteNode) reteNode;
+		System.out.println("[ReteActor] " + getSelf() + ": PosLength transformation");
 
 		final InputNode inputNode = (InputNode) reteNode;
-		final ChangeSet changeSet = inputNode.transform();
+		final ChangeSet changeSet = inputNode.transform(transformation);
 
 		System.out.println(changeSet + " is the changeset.");
-		
+
 		final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
-		sendToSubscribers(changeSet, emptyStack);		
+		sendToSubscribers(changeSet, emptyStack);
+	}
+
+	private void routeSensorTransformation(final Transformation transformation) {
+		coordinatorRef = getSender();
+		System.out.println("[ReteActor] " + getSelf() + ": RouteSensor transformation");
+
+		final InputNode inputNode = (InputNode) reteNode;
+		final ChangeSet changeSet = inputNode.transform(transformation);
+
+		System.out.println(changeSet + " is the changeset.");
+
+		final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
+		sendToSubscribers(changeSet, emptyStack);
 	}
 }
