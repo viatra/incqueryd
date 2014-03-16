@@ -31,7 +31,7 @@ public class FourStoreClient {
 	static final String SPARQL_RDF_PREFIX = "PREFIX rdf: <" + RDF_PREFIX + "> ";
 	
 	protected final String clustername = "trainbenchmark_cluster";
-	protected final boolean showCommandOutput = true;
+	protected final boolean showCommandOutput = false;
 	protected final boolean showUpdateCommands = false;
 	
 	protected long uniqueId = 1000000000;

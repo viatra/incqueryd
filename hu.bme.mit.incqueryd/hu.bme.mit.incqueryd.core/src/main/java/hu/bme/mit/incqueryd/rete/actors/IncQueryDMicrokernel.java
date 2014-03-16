@@ -15,7 +15,8 @@ public class IncQueryDMicrokernel implements Bootable {
 	public void startup() {
 		system = ActorSystem.create(ACTOR_SYSTEM_NAME, ConfigFactory.parseString(
 				"akka.actor.provider = akka.remote.RemoteActorRefProvider\n" +
-				"akka.remote.netty.hostname = \"" + System.getenv("localHost") + "\""));
+				"akka.remote.netty.hostname = \"" + System.getenv("localHost") + "\"\n" + 
+				"akka.remote.netty.message-frame-size = 10000000000"));
 	}
 
 	@Override

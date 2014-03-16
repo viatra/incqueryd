@@ -31,7 +31,8 @@ public class IncQueryDWorker {
 	// SignalNeighbor, expected: 3 2
 	// SwitchSensor, expected: 19 18
 	public void work() throws Exception {
-		final boolean cluster = false;
+		// final boolean cluster = bc.isCluster();
+		final boolean cluster = true;
 		// final boolean initialize4s = bc.isInitialize4s();
 		final boolean initialize4s = true;
 
@@ -70,8 +71,9 @@ public class IncQueryDWorker {
 		// initialize Akka
 		final ActorSystem system;
 		final Timeout timeout = new Timeout(Duration.create(15, "seconds"));
-		final Config config = ConfigFactory
-				.parseString("akka.actor.provider = akka.remote.RemoteActorRefProvider, akka.remote.netty.message-frame-size = 10000000000");
+		final Config config = ConfigFactory.parseString("akka.actor.provider = akka.remote.RemoteActorRefProvider\n"
+				+ "akka.remote.netty.message-frame-size = 10000000000\n"
+				+ "akka.loglevel = \"ERROR\"");
 
 		system = ActorSystem.create("test", config);
 
