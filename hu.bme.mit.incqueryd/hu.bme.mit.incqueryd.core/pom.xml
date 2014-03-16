@@ -34,7 +34,8 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>hu.bme.mit.incqueryd.main.Main</mainClass>
+							<mainClass>hu.bme.mit.incqueryd.main.IncQueryDMain</mainClass>
+							<useUniqueVersions>false</useUniqueVersions>
 						</manifest>
 					</archive>
 				</configuration>
@@ -200,7 +201,7 @@
 		<dependency>
 			<groupId>org.eclipselabs</groupId>
 			<artifactId>org.eclipselabs.emfjson</artifactId>
-			<version>0.5.3-SNAPSHOT</version>
+			<version>0.7.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- EMF -->

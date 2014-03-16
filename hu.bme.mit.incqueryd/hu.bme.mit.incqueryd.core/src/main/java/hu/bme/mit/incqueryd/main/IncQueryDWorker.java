@@ -31,8 +31,8 @@ public class IncQueryDWorker {
 	// SignalNeighbor, expected: 3 2
 	// SwitchSensor, expected: 19 18
 	public void work() throws Exception {
-		// final boolean cluster = bc.isCluster();
-		final boolean cluster = true;
+		final boolean cluster = bc.isCluster();
+		// final boolean cluster = false;
 		// final boolean initialize4s = bc.isInitialize4s();
 		final boolean initialize4s = true;
 
@@ -43,9 +43,9 @@ public class IncQueryDWorker {
 				+ testCase.toLowerCase() + ".arch";
 
 		final int size = bc.getSizes().get(0);
-		final String modelFileName = "/railway-" + bc.getScenario().toLowerCase() + "-" + size + "-no-metamodel.owl";
+		final String modelFileName = "railway-" + bc.getScenario().toLowerCase() + "-" + size + "-no-metamodel.owl";
 
-		final BenchmarkResult bmr = new BenchmarkResult("IQD", testCase, size, seriesCount);
+		final BenchmarkResult bmr = new BenchmarkResult("IncQueryD", testCase, size, seriesCount);
 		bmr.setBenchmarkConfig(bc);
 		bmr.setSize(size);
 		bmr.setFileName(modelFileName);
@@ -70,10 +70,9 @@ public class IncQueryDWorker {
 
 		// initialize Akka
 		final ActorSystem system;
-		final Timeout timeout = new Timeout(Duration.create(15, "seconds"));
+		final Timeout timeout = new Timeout(Duration.create(3600, "seconds"));
 		final Config config = ConfigFactory.parseString("akka.actor.provider = akka.remote.RemoteActorRefProvider\n"
-				+ "akka.remote.netty.message-frame-size = 10000000000\n"
-				+ "akka.loglevel = \"ERROR\"");
+				+ "akka.remote.netty.message-frame-size = 10000000000\n" + "akka.loglevel = \"ERROR\"");
 
 		system = ActorSystem.create("test", config);
 

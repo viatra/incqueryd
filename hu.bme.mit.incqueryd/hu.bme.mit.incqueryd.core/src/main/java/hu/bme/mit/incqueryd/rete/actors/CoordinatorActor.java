@@ -52,7 +52,7 @@ public class CoordinatorActor extends UntypedActor {
 
 	protected final boolean remoting;
 	protected final String architectureFile;
-	protected final Timeout timeout = new Timeout(Duration.create(5, "seconds"));
+	protected final Timeout timeout = new Timeout(Duration.create(3600, "seconds"));
 	protected ActorRef productionActorRef;
 	protected BenchmarkResult bmr;
 	protected String query;

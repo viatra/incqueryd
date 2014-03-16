@@ -212,9 +212,7 @@ public class FourStoreClient {
 
 	// insertions
 
-	public long insertVertex(final String vertexType) throws IOException {
-		final long vertexId = uniqueId++;
-
+	public long insertVertex(final String vertexType, final long vertexId) throws IOException {
 		final String insertQuery = String.format(SPARQL_BASE_PREFIX + SPARQL_RDF_PREFIX + "INSERT DATA { base:%d rdf:type base:%s }",
 				vertexId, vertexType);
 		update(insertQuery);

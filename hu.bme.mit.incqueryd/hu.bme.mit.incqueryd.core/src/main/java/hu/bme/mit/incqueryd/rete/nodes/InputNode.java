@@ -108,23 +108,23 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 
 	final Random random = new Random(0);
 
-	public Collection<ChangeSet> transform(final Transformation transformation) {
+	public Collection<ChangeSet> transform(final Transformation transformation) throws IOException {
 		final List<Tuple> invalids = new ArrayList<>(transformation.getInvalids());
-		final int size = invalids.size();
 
+		final FourStoreClient client = new FourStoreClient();
 		Collection<ChangeSet> changeSet = null;
 		switch (transformation.getTestCase()) {
 		case "PosLength":
-			changeSet = posLengthTransformation(invalids, size);
+			changeSet = posLengthTransformation(invalids, client);
 			break;
 		case "RouteSensor":
-			changeSet = routeSensorTransformation(invalids, size);
+			changeSet = routeSensorTransformation(invalids, client);
 			break;
 		case "SignalNeighbor":
-			changeSet = signalNeighborTransformation(invalids, size);
+			changeSet = signalNeighborTransformation(invalids, client);
 			break;
 		case "SwitchSensor":
-			changeSet = switchSensorTransformation(invalids, size);
+			changeSet = switchSensorTransformation(invalids, client);
 			break;
 		default:
 			break;
@@ -133,14 +133,14 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		return changeSet;
 	}
 
-	private Collection<ChangeSet> posLengthTransformation(final List<Tuple> invalids, final int size) {
+	private Collection<ChangeSet> posLengthTransformation(final List<Tuple> invalids, final FourStoreClient client) throws IOException {
+		final int size = invalids.size();
 		final Set<Tuple> negativeTuples = new HashSet<>();
 		final Set<Tuple> positiveTuples = new HashSet<>();
-
 		final Set<Long> segmentsToFix = new HashSet<>();
 
 		final int nElemToModify = size / 10;
-		//for (int i = 0; i < nElemToModify; i++) {
+		// for (int i = 0; i < nElemToModify; i++) {
 		while (segmentsToFix.size() < nElemToModify) {
 			final int rndTarget = random.nextInt(size);
 			final Long segment = (Long) invalids.get(rndTarget).get(0);
@@ -155,6 +155,9 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 				final int newLength = -length + 1;
 				negativeTuples.add(tuple);
 				positiveTuples.add(new Tuple(segment, newLength));
+				
+				// 4s persistence
+				client.updateProperty(segment, "Segment_length", newLength);
 			}
 		}
 
@@ -165,7 +168,8 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		return Arrays.asList(negativeChangeSet, positiveChangeSet);
 	}
 
-	private Collection<ChangeSet> routeSensorTransformation(final List<Tuple> invalids, final int size) {
+	private Collection<ChangeSet> routeSensorTransformation(final List<Tuple> invalids, final FourStoreClient client) throws IOException {
+		final int size = invalids.size();
 		final Set<Tuple> tuplesToRemove = new HashSet<>();
 		final Set<Long> sensorsToRemove = new HashSet<>();
 		final int nElemToModify = size / 10;
@@ -173,6 +177,9 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			final int rndTarget = random.nextInt(size);
 			final Long sensor = (Long) invalids.get(rndTarget).get(0);
 			sensorsToRemove.add(sensor);
+			
+			// 4s persistence
+			client.deleteVertex(sensor);
 		}
 		// System.out.println(sensorsToRemove);
 
@@ -186,7 +193,8 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		return Arrays.asList(changeSet);
 	}
 
-	private Collection<ChangeSet> signalNeighborTransformation(final List<Tuple> invalids, final int size) {
+	private Collection<ChangeSet> signalNeighborTransformation(final List<Tuple> invalids, final FourStoreClient client) throws IOException {
+		final int size = invalids.size();
 		final Set<Tuple> tuplesToRemove = new HashSet<>();
 		final Collection<Long> selectedRoutes = new HashSet<>();
 		final int nElemToModify = size / 3;
@@ -201,6 +209,10 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			final Long route = (Long) tuple.get(0);
 			if (selectedRoutes.contains(route)) {
 				tuplesToRemove.add(tuple);
+								
+				// 4s persistence
+				final Long signal = (Long) tuple.get(1);
+				client.deleteEdge(route, signal, "Route_exit");
 			}
 		}
 
@@ -208,16 +220,21 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		return Arrays.asList(changeSet);
 	}
 
-	private Collection<ChangeSet> switchSensorTransformation(final List<Tuple> invalids, final int size) {
+	private Collection<ChangeSet> switchSensorTransformation(final List<Tuple> invalids, final FourStoreClient client) throws IOException {
+		final int size = invalids.size();
 		final Set<Tuple> changeSetTuples = new HashSet<>();
 		final int nElemToModify = size / 10;
 
-		long x = 1000000000;
+		long id = 1000000000;
 		for (int i = 0; i < nElemToModify; i++) {
 			final int rndTarget = random.nextInt(size);
 			final Long aSwitch = (Long) invalids.get(rndTarget).get(0);
 			// new edge
-			changeSetTuples.add(new Tuple(aSwitch, x++));
+			changeSetTuples.add(new Tuple(aSwitch, id++));
+			
+			// 4s persistence
+			final long sensor = client.insertVertex("Sensor", id);
+			client.insertEdge(aSwitch, sensor, "TrackElement_sensor");
 		}
 
 		final ChangeSet changeSet = new ChangeSet(changeSetTuples, ChangeType.POSITIVE);

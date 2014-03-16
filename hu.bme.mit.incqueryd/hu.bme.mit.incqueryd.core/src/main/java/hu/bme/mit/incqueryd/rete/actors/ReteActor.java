@@ -272,7 +272,7 @@ public class ReteActor extends UntypedActor {
 		sendToSubscribers(changeSet, emptyStack);
 	}
 
-	private void doTransformation(final Transformation transformation) {
+	private void doTransformation(final Transformation transformation) throws IOException {
 		coordinatorRef = getSender();
 		System.out.println("[ReteActor] " + getSelf() + ": PosLength transformation");
 

@@ -38,7 +38,7 @@
 
   <mappings mappedElements="//@reteRecipes.0/@recipeNodes.0" targetElement="//@clusters.0/@infrastructureNodes.0"/>
   <mappings mappedElements="//@reteRecipes.0/@recipeNodes.1" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.2" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.3" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.2" targetElement="//@clusters.0/@infrastructureNodes.1"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.3" targetElement="//@clusters.0/@infrastructureNodes.1"/>
   <mappings mappedElements="//@reteRecipes.0/@recipeNodes.4" targetElement="//@clusters.0/@infrastructureNodes.0"/>
 </arch:Configuration>
