@@ -10,6 +10,7 @@ import hu.bme.mit.incqueryd.rete.messages.Transformation;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -107,11 +108,11 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 
 	final Random random = new Random(0);
 
-	public ChangeSet transform(final Transformation transformation) {
+	public Collection<ChangeSet> transform(final Transformation transformation) {
 		final List<Tuple> invalids = new ArrayList<>(transformation.getInvalids());
 		final int size = invalids.size();
 
-		ChangeSet changeSet = null;
+		Collection<ChangeSet> changeSet = null;
 		switch (transformation.getTestCase()) {
 		case "PosLength":
 			changeSet = posLengthTransformation(invalids, size);
@@ -132,25 +133,39 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		return changeSet;
 	}
 
-	private ChangeSet posLengthTransformation(final List<Tuple> invalids, final int size) {
-		final Set<Tuple> changeSetTuples = new HashSet<>();
+	private Collection<ChangeSet> posLengthTransformation(final List<Tuple> invalids, final int size) {
+		final Set<Tuple> negativeTuples = new HashSet<>();
+		final Set<Tuple> positiveTuples = new HashSet<>();
 
-		final ChangeSet changeSet = new ChangeSet(changeSetTuples, ChangeType.NEGATIVE);
+		final Set<Long> segmentsToFix = new HashSet<>();
+
+		final int nElemToModify = size / 10;
+		//for (int i = 0; i < nElemToModify; i++) {
+		while (segmentsToFix.size() < nElemToModify) {
+			final int rndTarget = random.nextInt(size);
+			final Long segment = (Long) invalids.get(rndTarget).get(0);
+			segmentsToFix.add(segment);
+		}
+
 		for (final Tuple tuple : tuples) {
-			System.out.println(tuple);
+			final long segment = (long) tuple.get(0);
 
-			final long length = (long) tuple.get(1);
-			if (length < 0) {
-				final long newLength = -length + 1;
-				System.out.println(newLength);
-
-				changeSetTuples.add(tuple);
+			if (segmentsToFix.contains(segment)) {
+				final int length = (int) tuple.get(1);
+				final int newLength = -length + 1;
+				negativeTuples.add(tuple);
+				positiveTuples.add(new Tuple(segment, newLength));
 			}
 		}
-		return changeSet;
+
+		final ChangeSet negativeChangeSet = new ChangeSet(negativeTuples, ChangeType.NEGATIVE);
+		final ChangeSet positiveChangeSet = new ChangeSet(positiveTuples, ChangeType.POSITIVE);
+		System.out.println(negativeTuples.size());
+		System.out.println(positiveTuples.size());
+		return Arrays.asList(negativeChangeSet, positiveChangeSet);
 	}
 
-	private ChangeSet routeSensorTransformation(final List<Tuple> invalids, final int size) {
+	private Collection<ChangeSet> routeSensorTransformation(final List<Tuple> invalids, final int size) {
 		final Set<Tuple> tuplesToRemove = new HashSet<>();
 		final Set<Long> sensorsToRemove = new HashSet<>();
 		final int nElemToModify = size / 10;
@@ -168,48 +183,44 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			}
 		}
 		final ChangeSet changeSet = new ChangeSet(tuplesToRemove, ChangeType.NEGATIVE);
-		return changeSet;
+		return Arrays.asList(changeSet);
 	}
 
-	private ChangeSet signalNeighborTransformation(final List<Tuple> invalids, final int size) {
+	private Collection<ChangeSet> signalNeighborTransformation(final List<Tuple> invalids, final int size) {
 		final Set<Tuple> tuplesToRemove = new HashSet<>();
 		final Collection<Long> selectedRoutes = new HashSet<>();
 		final int nElemToModify = size / 3;
-		
+
 		for (int i = 0; i < nElemToModify; i++) {
 			final int rndTarget = random.nextInt(size);
 			final Long route = (Long) invalids.get(rndTarget).get(0);
-			selectedRoutes.add(route);			
+			selectedRoutes.add(route);
 		}
 
 		for (final Tuple tuple : tuples) {
 			final Long route = (Long) tuple.get(0);
 			if (selectedRoutes.contains(route)) {
-				tuplesToRemove.add(tuple);				
+				tuplesToRemove.add(tuple);
 			}
 		}
 
 		final ChangeSet changeSet = new ChangeSet(tuplesToRemove, ChangeType.NEGATIVE);
-		return changeSet;
+		return Arrays.asList(changeSet);
 	}
 
-	private ChangeSet switchSensorTransformation(final List<Tuple> invalids, final int size) {
+	private Collection<ChangeSet> switchSensorTransformation(final List<Tuple> invalids, final int size) {
 		final Set<Tuple> changeSetTuples = new HashSet<>();
 		final int nElemToModify = size / 10;
-		
+
 		long x = 1000000000;
 		for (int i = 0; i < nElemToModify; i++) {
 			final int rndTarget = random.nextInt(size);
 			final Long aSwitch = (Long) invalids.get(rndTarget).get(0);
 			// new edge
-			changeSetTuples.add(new Tuple(aSwitch, x++));			
-		}		
+			changeSetTuples.add(new Tuple(aSwitch, x++));
+		}
 
-		System.out.println("tuples: " + tuples);
-		System.out.println("invalids: " + invalids);
-		System.out.println(changeSetTuples + "                             <<<<<<<<<<<<<<<<<<<<");
-		
 		final ChangeSet changeSet = new ChangeSet(changeSetTuples, ChangeType.POSITIVE);
-		return changeSet; 
+		return Arrays.asList(changeSet);
 	}
 }

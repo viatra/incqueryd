@@ -249,6 +249,14 @@ public class CoordinatorActor extends UntypedActor {
 
 				final ActorRef actorRef = entry.getValue();
 
+				if (architectureFile.contains("poslength")) {
+					if (uer.getTraceInfo().contains("Segment")) {
+						final Transformation transformation = new Transformation(result, "PosLength");
+						final Future<Object> future = ask(actorRef, transformation, timeout);
+						Await.result(future, timeout.duration());
+					}
+				}
+				
 				if (architectureFile.contains("routesensor")) {
 					if (uer.getTraceInfo().contains("TrackElement_sensor")) {
 						final Transformation transformation = new Transformation(result, "RouteSensor");

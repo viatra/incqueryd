@@ -22,6 +22,7 @@ import hu.bme.mit.incqueryd.util.RecipeDeserializer;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -272,66 +273,16 @@ public class ReteActor extends UntypedActor {
 	}
 
 	private void doTransformation(final Transformation transformation) {
-		switch (transformation.getTestCase()) {
-		case "PosLength":
-			posLengthTransformation(transformation);
-			break;
-		case "RouteSensor":
-			routeSensorTransformation(transformation);
-			break;
-		case "SignalNeighbor":
-			signalNeighborTransformation(transformation);
-			break;
-		case "SwitchSensor":
-			switchSensorTransformation(transformation);
-			break;
-		default:
-			break;
-		}
-
-	}
-
-	private void posLengthTransformation(final Transformation transformation) {
 		coordinatorRef = getSender();
 		System.out.println("[ReteActor] " + getSelf() + ": PosLength transformation");
 
 		final InputNode inputNode = (InputNode) reteNode;
-		final ChangeSet changeSet = inputNode.transform(transformation);
-
-		System.out.println(changeSet + " is the changeset.");
+		final Collection<ChangeSet> changeSets = inputNode.transform(transformation);
 
 		final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
-		sendToSubscribers(changeSet, emptyStack);
+
+		for (final ChangeSet changeSet : changeSets) {
+			sendToSubscribers(changeSet, emptyStack);	
+		}		
 	}
-
-	private void routeSensorTransformation(final Transformation transformation) {
-		coordinatorRef = getSender();
-		final InputNode inputNode = (InputNode) reteNode;
-		final ChangeSet changeSet = inputNode.transform(transformation);
-		
-		final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
-		sendToSubscribers(changeSet, emptyStack);
-	}
-
-	private void signalNeighborTransformation(final Transformation transformation) {
-		coordinatorRef = getSender();
-
-		final InputNode inputNode = (InputNode) reteNode;
-		final ChangeSet changeSet = inputNode.transform(transformation);
-		
-		final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
-		sendToSubscribers(changeSet, emptyStack);
-	}
-
-	private void switchSensorTransformation(final Transformation transformation) {
-		coordinatorRef = getSender();
-
-		final InputNode inputNode = (InputNode) reteNode;
-		final ChangeSet changeSet = inputNode.transform(transformation);
-		
-		final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
-		sendToSubscribers(changeSet, emptyStack);
-	}
-
-
 }
