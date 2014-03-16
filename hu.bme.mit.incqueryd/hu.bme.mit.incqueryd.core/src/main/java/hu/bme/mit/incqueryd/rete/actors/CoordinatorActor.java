@@ -3,12 +3,12 @@ package hu.bme.mit.incqueryd.rete.actors;
 import static akka.pattern.Patterns.ask;
 import hu.bme.mit.incqueryd.arch.ArchUtil;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
 import hu.bme.mit.incqueryd.rete.messages.Transformation;
 import hu.bme.mit.incqueryd.rete.messages.YellowPages;
 import hu.bme.mit.incqueryd.util.RecipeSerializer;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
+import hu.bme.mit.trainbenchmark.benchmark.util.BenchmarkResult;
 import infrastructure.InfrastructureNode;
 import infrastructure.InfrastructurePackage;
 import infrastructure.Machine;
@@ -54,14 +54,30 @@ public class CoordinatorActor extends UntypedActor {
 	protected final String architectureFile;
 	protected final Timeout timeout = new Timeout(Duration.create(5, "seconds"));
 	protected ActorRef productionActorRef;
+	protected BenchmarkResult bmr;
+	protected String query;
 
 	public CoordinatorActor(final String architectureFile, final boolean remoting) {
 		super();
 		this.architectureFile = architectureFile;
 		this.remoting = remoting;
+
+		if (architectureFile.contains("poslength")) {
+			query = "PosLength";
+		}
+		if (architectureFile.contains("routesensor")) {
+			query = "RouteSensor";
+		}
+		if (architectureFile.contains("signalneighbor")) {
+			query = "SignalNeighbor";
+		}
+		if (architectureFile.contains("switchsensor")) {
+			query = "SwitchSensor";
+		}
+
 	}
 
-	public void start() throws Exception {
+	public void start(final BenchmarkResult bmr) throws Exception {
 		// initialize extension to factory map
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
 
@@ -201,7 +217,7 @@ public class CoordinatorActor extends UntypedActor {
 
 		for (final ActorRef actorRef : actorRefs) {
 			final Future<Object> future = ask(actorRef, yellowPages, timeout);
-			final Object result = Await.result(future, timeout.duration());
+			Await.result(future, timeout.duration());
 		}
 
 		System.out.println();
@@ -239,8 +255,13 @@ public class CoordinatorActor extends UntypedActor {
 		}
 		System.out.println("</AWAIT>");
 
-		final Future<Object> queryResultFuture = ask(productionActorRef, CoordinatorMessage.GETQUERYRESULTS, timeout);
-		final Set<Tuple> result = (Set<Tuple>) Await.result(queryResultFuture, timeout.duration());
+		bmr.startStopper();
+		final Set<Tuple> results1 = getQueryResults();
+		System.out.println("Results 1: " + results1.size());
+		bmr.addInvalid(results1.size());
+		bmr.addCheckTime();
+
+		final long start = System.nanoTime();
 
 		for (final Entry<ReteNodeRecipe, ActorRef> entry : recipeToActorRef.entrySet()) {
 			final ReteNodeRecipe recipe = entry.getKey();
@@ -249,55 +270,71 @@ public class CoordinatorActor extends UntypedActor {
 
 				final ActorRef actorRef = entry.getValue();
 
-				if (architectureFile.contains("poslength")) {
+				switch (query) {
+				case "PosLength":
 					if (uer.getTraceInfo().contains("Segment")) {
-						final Transformation transformation = new Transformation(result, "PosLength");
+						final Transformation transformation = new Transformation(results1, query);
 						final Future<Object> future = ask(actorRef, transformation, timeout);
 						Await.result(future, timeout.duration());
 					}
-				}
-				
-				if (architectureFile.contains("routesensor")) {
+					break;
+				case "RouteSensor":
 					if (uer.getTraceInfo().contains("TrackElement_sensor")) {
-						final Transformation transformation = new Transformation(result, "RouteSensor");
+						final Transformation transformation = new Transformation(results1, query);
 						final Future<Object> future = ask(actorRef, transformation, timeout);
 						Await.result(future, timeout.duration());
 					}
-				}
-				
-				if (architectureFile.contains("signalneighbor")) {				
+					break;
+				case "SignalNeighbor":
 					if (uer.getTraceInfo().contains("Route_exit")) {
-						final Transformation transformation = new Transformation(result, "SignalNeighbor");
+						final Transformation transformation = new Transformation(results1, query);
 						final Future<Object> future = ask(actorRef, transformation, timeout);
 						Await.result(future, timeout.duration());
 					}
-				}
-				
-				if (architectureFile.contains("switchsensor")) {				
+					break;
+				case "SwitchSensor":
 					if (uer.getTraceInfo().contains("TrackElement_sensor")) {
-						final Transformation transformation = new Transformation(result, "SwitchSensor");
+						final Transformation transformation = new Transformation(results1, query);
 						final Future<Object> future = ask(actorRef, transformation, timeout);
 						Await.result(future, timeout.duration());
 					}
+					break;
 				}
+
 			}
 		}
 
-		System.exit(0);
+		final long end = System.nanoTime();
+		bmr.addEditTime(end - start);
+		bmr.addModificationTime(end - start);
 
+		bmr.startStopper();
+		final Set<Tuple> results2 = getQueryResults();
+		bmr.addCheckTime();
+
+		System.out.println("Results 2: " + results2.size());
+
+		bmr.addInvalid(results2.size());
+	}
+
+	private Set<Tuple> getQueryResults() throws Exception {
+		final Future<Object> queryResultFuture = ask(productionActorRef, CoordinatorMessage.GETQUERYRESULTS, timeout);
+		final Set<Tuple> result = (Set<Tuple>) Await.result(queryResultFuture, timeout.duration());
+		return result;
 	}
 
 	private void configure(final ActorRef actorRef, final String recipeString) throws Exception {
 		final ReteNodeConfiguration conf = new ReteNodeConfiguration(recipeString);
 		final Future<Object> future = ask(actorRef, conf, timeout);
-		final Object object = Await.result(future, timeout.duration());
+		Await.result(future, timeout.duration());
 	}
 
 	@Override
 	public void onReceive(final Object message) throws Exception {
-		if (message == CoordinatorCommand.START) {
-			start();
-			getSender().tell(CoordinatorMessage.DONE, getSelf());
+		if (message instanceof BenchmarkResult) {
+			bmr = (BenchmarkResult) message;
+			start(bmr);
+			getSender().tell(bmr, getSelf());
 		}
 	}
 
