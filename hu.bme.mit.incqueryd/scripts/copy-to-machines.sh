@@ -2,7 +2,7 @@
 
 cd "$( cd "$( dirname "$0" )" && pwd )/.."
 
-machines="vm0 vm1"
+machines="vcl0 vcl1 vcl2 vcl3"
 
 for machine in ${machines[@]}; do
   echo $machine

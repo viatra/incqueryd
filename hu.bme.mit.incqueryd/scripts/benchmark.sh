@@ -33,7 +33,7 @@ seriesCount=2
 queries="PosLength RouteSensor SignalNeighbor SwitchSensor"
 timeout="12m"
 scenario="XForm"
-workspacePath="/home/szarnyasg/git/mondo-trainbenchmark/src/"
+workspacePath="/home/szarnyasg/mondo-trainbenchmark/src/"
 xmx=4G
 maxPermSize=256M
 
