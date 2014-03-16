@@ -176,11 +176,11 @@ public class CoordinatorActor extends UntypedActor {
 
 				actorRefs.add(actorRef);
 				recipeToActorRef.put(rnr, actorRef);
-				
+
 				if (rnr instanceof ProductionRecipe) {
 					productionActorRef = actorRef;
 				}
-				
+
 				System.out.println("[TestKit] Actor configured.");
 				System.out.println();
 			}
@@ -238,26 +238,36 @@ public class CoordinatorActor extends UntypedActor {
 			System.out.println(result);
 		}
 		System.out.println("</AWAIT>");
-		
+
 		final Future<Object> queryResultFuture = ask(productionActorRef, CoordinatorMessage.GETQUERYRESULTS, timeout);
 		final Set<Tuple> result = (Set<Tuple>) Await.result(queryResultFuture, timeout.duration());
-		
+
 		for (final Entry<ReteNodeRecipe, ActorRef> entry : recipeToActorRef.entrySet()) {
 			final ReteNodeRecipe recipe = entry.getKey();
-			if (recipe instanceof UniquenessEnforcerRecipe) {			
+			if (recipe instanceof UniquenessEnforcerRecipe) {
 				final UniquenessEnforcerRecipe uer = (UniquenessEnforcerRecipe) recipe;
-				
-				if (uer.getTraceInfo().contains("TrackElement_sensor")) {
-					System.out.println("trf");
-					final Transformation transformation = new Transformation(result, "RouteSensor");
-					final ActorRef actorRef = entry.getValue();
-					final Future<Object> future = ask(actorRef, transformation, timeout);
-					Await.result(future, timeout.duration());
+
+				final ActorRef actorRef = entry.getValue();
+
+				if (architectureFile.contains("routesensor")) {
+					if (uer.getTraceInfo().contains("TrackElement_sensor")) {
+						final Transformation transformation = new Transformation(result, "RouteSensor");
+						final Future<Object> future = ask(actorRef, transformation, timeout);
+						Await.result(future, timeout.duration());
+					}
 				}
 				
+				if (architectureFile.contains("signalneighbor")) {				
+					if (uer.getTraceInfo().contains("Route_exit")) {
+						final Transformation transformation = new Transformation(result, "SignalNeighbor");
+						final Future<Object> future = ask(actorRef, transformation, timeout);
+						Await.result(future, timeout.duration());
+					}
+				}
+
 			}
 		}
-		
+
 		System.exit(0);
 
 	}

@@ -279,6 +279,12 @@ public class ReteActor extends UntypedActor {
 		case "RouteSensor":
 			routeSensorTransformation(transformation);
 			break;
+		case "SignalNeighbor":
+			signalNeighborTransformation(transformation);
+			break;
+		case "SwitchSensor":
+			switchSensorTransformation(transformation);
+			break;
 		default:
 			break;
 		}
@@ -306,8 +312,28 @@ public class ReteActor extends UntypedActor {
 		final ChangeSet changeSet = inputNode.transform(transformation);
 
 		System.out.println(changeSet + " is the changeset.");
-
+		
 		final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
 		sendToSubscribers(changeSet, emptyStack);
 	}
+
+	private void signalNeighborTransformation(final Transformation transformation) {
+		coordinatorRef = getSender();
+		System.out.println("[ReteActor] " + getSelf() + ": SignalNeighbor transformation");
+
+		final InputNode inputNode = (InputNode) reteNode;
+		final ChangeSet changeSet = inputNode.transform(transformation);
+
+		System.out.println(changeSet + " is the changeset.");
+		
+		final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
+		sendToSubscribers(changeSet, emptyStack);
+	}
+
+	private void switchSensorTransformation(final Transformation transformation) {
+		
+		
+	}
+
+
 }

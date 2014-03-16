@@ -31,7 +31,8 @@ public class IncQueryDWorker {
 	// SwitchSensor, expected: 19 18
 	public void work() throws Exception {
 		final boolean cluster = false;
-		final boolean initialize4s = bc.isInitialize4s();
+//		final boolean initialize4s = bc.isInitialize4s();
+		final boolean initialize4s = false;
 
 		final String testCase = bc.getTestCases().get(0);
 		final int size = bc.getSizes().get(0);
