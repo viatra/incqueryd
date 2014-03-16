@@ -264,7 +264,14 @@ public class CoordinatorActor extends UntypedActor {
 						Await.result(future, timeout.duration());
 					}
 				}
-
+				
+				if (architectureFile.contains("switchsensor")) {				
+					if (uer.getTraceInfo().contains("TrackElement_sensor")) {
+						final Transformation transformation = new Transformation(result, "SwitchSensor");
+						final Future<Object> future = ask(actorRef, transformation, timeout);
+						Await.result(future, timeout.duration());
+					}
+				}
 			}
 		}
 

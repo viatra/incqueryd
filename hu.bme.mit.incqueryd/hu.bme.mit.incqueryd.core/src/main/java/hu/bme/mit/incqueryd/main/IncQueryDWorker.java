@@ -32,7 +32,7 @@ public class IncQueryDWorker {
 	public void work() throws Exception {
 		final boolean cluster = false;
 //		final boolean initialize4s = bc.isInitialize4s();
-		final boolean initialize4s = false;
+		final boolean initialize4s = true;
 
 		final String testCase = bc.getTestCases().get(0);
 		final int size = bc.getSizes().get(0);

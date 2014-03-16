@@ -111,21 +111,19 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		final List<Tuple> invalids = new ArrayList<>(transformation.getInvalids());
 		final int size = invalids.size();
 
-		final Set<Tuple> tuplesToRemove = new HashSet<>();
-
 		ChangeSet changeSet = null;
 		switch (transformation.getTestCase()) {
 		case "PosLength":
-			changeSet = posLengthTransformation(invalids, size, tuplesToRemove);
+			changeSet = posLengthTransformation(invalids, size);
 			break;
 		case "RouteSensor":
-			changeSet = routeSensorTransformation(invalids, size, tuplesToRemove);
+			changeSet = routeSensorTransformation(invalids, size);
 			break;
 		case "SignalNeighbor":
-			changeSet = signalNeighborTransformation(invalids, size, tuplesToRemove);
+			changeSet = signalNeighborTransformation(invalids, size);
 			break;
 		case "SwitchSensor":
-			changeSet = switchSensorTransformation(invalids, size, tuplesToRemove);
+			changeSet = switchSensorTransformation(invalids, size);
 			break;
 		default:
 			break;
@@ -134,8 +132,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		return changeSet;
 	}
 
-	private ChangeSet posLengthTransformation(final List<Tuple> invalids, final int size,
-			final Set<Tuple> tuplesToRemove) {
+	private ChangeSet posLengthTransformation(final List<Tuple> invalids, final int size) {
 		final Set<Tuple> changeSetTuples = new HashSet<>();
 
 		final ChangeSet changeSet = new ChangeSet(changeSetTuples, ChangeType.NEGATIVE);
@@ -153,8 +150,8 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		return changeSet;
 	}
 
-	private ChangeSet routeSensorTransformation(final List<Tuple> invalids, final int size,
-			final Set<Tuple> tuplesToRemove) {
+	private ChangeSet routeSensorTransformation(final List<Tuple> invalids, final int size) {
+		final Set<Tuple> tuplesToRemove = new HashSet<>();
 		final Set<Long> sensorsToRemove = new HashSet<>();
 		final int nElemToModify = size / 10;
 		for (int i = 0; i < nElemToModify; i++) {
@@ -174,8 +171,8 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		return changeSet;
 	}
 
-	private ChangeSet signalNeighborTransformation(final List<Tuple> invalids, final int size,
-			final Set<Tuple> tuplesToRemove) {	
+	private ChangeSet signalNeighborTransformation(final List<Tuple> invalids, final int size) {
+		final Set<Tuple> tuplesToRemove = new HashSet<>();
 		final Collection<Long> selectedRoutes = new HashSet<>();
 		final int nElemToModify = size / 3;
 		
@@ -190,15 +187,29 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			if (selectedRoutes.contains(route)) {
 				tuplesToRemove.add(tuple);				
 			}
-
 		}
 
 		final ChangeSet changeSet = new ChangeSet(tuplesToRemove, ChangeType.NEGATIVE);
 		return changeSet;
 	}
 
-	private ChangeSet switchSensorTransformation(final List<Tuple> invalids, final int size,
-			final Set<Tuple> tuplesToRemove) {
-		return null;
+	private ChangeSet switchSensorTransformation(final List<Tuple> invalids, final int size) {
+		final Set<Tuple> changeSetTuples = new HashSet<>();
+		final int nElemToModify = size / 10;
+		
+		long x = 1000000000;
+		for (int i = 0; i < nElemToModify; i++) {
+			final int rndTarget = random.nextInt(size);
+			final Long aSwitch = (Long) invalids.get(rndTarget).get(0);
+			// new edge
+			changeSetTuples.add(new Tuple(aSwitch, x++));			
+		}		
+
+		System.out.println("tuples: " + tuples);
+		System.out.println("invalids: " + invalids);
+		System.out.println(changeSetTuples + "                             <<<<<<<<<<<<<<<<<<<<");
+		
+		final ChangeSet changeSet = new ChangeSet(changeSetTuples, ChangeType.POSITIVE);
+		return changeSet; 
 	}
 }
