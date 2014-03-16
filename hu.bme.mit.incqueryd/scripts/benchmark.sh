@@ -25,12 +25,12 @@ cd hu.bme.mit.incqueryd.core/
 
 rm executables.txt results.txt results_err.txt series.txt 2> /dev/null
 
-minSize=128
-maxSize=512
-#seriesCount=2
-#queries="PosLength RouteSensor SignalNeighbor SwitchSensor"
-seriesCount=1
-queries="PosLength"
+minSize=1
+maxSize=4
+#seriesCount=1
+seriesCount=2
+#queries="PosLength"
+queries="PosLength RouteSensor SignalNeighbor SwitchSensor"
 timeout="12m"
 scenario="XForm"
 workspacePath="/home/szarnyasg/git/mondo-trainbenchmark/src/"
@@ -47,23 +47,19 @@ for query in ${queries[@]}; do
   for ((size = $minSize; size <= $maxSize; size *= 2)); do
     echo `date` " 4store " $size $query
 
-    #sudo sync
-    #sudo bash -c "echo 3 > /proc/sys/vm/drop_caches"
+    sudo sync
+    sudo bash -c "echo 3 > /proc/sys/vm/drop_caches"
     
-    # sending KILL signal to Akka and waiting to finish
-    #echo "killing Akka processes"
-
     4s-ssh-all "~/init.sh"
-    #echo "waiting for Akka to start"
-    #sleep 5
+    echo "waiting for Akka to start"
+    sleep 5
 
     vmargs="-XX:+UseCompressedOops -XX:MaxPermSize=$maxPermSize -Xmx$xmx"
     args="$defaultArgs -scenario $scenario -workspacePath $workspacePath -sizes $size -queries $query -seriesCount $i"
     args="$args -cluster"
     executable="java $vmargs -jar target/hu.bme.mit.incqueryd.core-0.0.1-SNAPSHOT.jar $args"
 
-    echo $executable
-    echo $executable >> executables.txt
+    echo $executable | tee -a executables.txt
     timeout -s KILL $timeout $executable | tee -a results.txt 2>> results_err.txt
     
     # do not try for larger sizes if this one timed out
