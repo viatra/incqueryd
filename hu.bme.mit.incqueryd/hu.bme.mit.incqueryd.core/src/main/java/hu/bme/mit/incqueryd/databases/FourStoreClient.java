@@ -187,8 +187,44 @@ public class FourStoreClient {
 		update(insertQuery);
 	}
 
-	public void updateProperties(final Map<Long, Integer> value, final String propertyName) throws IOException {
+	public void updateProperties(final Map<Long, Integer> vertexIdAndPropertyValues, final String propertyName)
+			throws IOException {
+		if (vertexIdAndPropertyValues.isEmpty()) {
+			return;
+		}
+		
+		final StringBuilder updateQueryBuilder = new StringBuilder(SPARQL_BASE_PREFIX + SPARQL_RDF_PREFIX);
+		int i = 0;
 
+		// delete
+		for (final Entry<Long, Integer> idAndPropertyValue : vertexIdAndPropertyValues.entrySet()) {
+			final Long vertexId = idAndPropertyValue.getKey();
+
+			i++;
+			updateQueryBuilder.append(String.format("DELETE { base:%d base:%s ?x%d } WHERE { base:%d base:%s ?x%d }; ",
+					vertexId, propertyName, i, vertexId, propertyName, i));
+		}
+
+		// insert
+		boolean first = true;
+		updateQueryBuilder.append("INSERT DATA {");
+		for (final Entry<Long, Integer> idAndPropertyValue : vertexIdAndPropertyValues.entrySet()) {
+			if (first) {
+				first = false;
+			} else {
+				updateQueryBuilder.append(".");
+			}
+			final Long vertexId = idAndPropertyValue.getKey();
+			final Integer value = idAndPropertyValue.getValue();
+
+			updateQueryBuilder
+					.append(String.format(" base:%s base:%s \"%d\"^^<http://www.w3.org/2001/XMLSchema#int> ",
+							vertexId, propertyName, value));
+		}
+		updateQueryBuilder.append("}");
+		
+		// run the update
+		update(updateQueryBuilder.toString());
 	}
 
 	// deletions
@@ -214,8 +250,6 @@ public class FourStoreClient {
 		}
 
 		final StringBuilder deleteQueryBuilder = new StringBuilder(SPARQL_BASE_PREFIX);
-		final boolean first = true;
-
 		long i = 0;
 		for (final Long vertexId : vertexIds) {
 			i++;
@@ -274,9 +308,31 @@ public class FourStoreClient {
 		final StringBuilder insertQueryBuilder = new StringBuilder(SPARQL_BASE_PREFIX + "INSERT DATA {");
 		edgesToTriples(edges, edgeLabel, insertQueryBuilder);
 		insertQueryBuilder.append("}");
-		update(insertQueryBuilder.toString());
 		
+		// run the update
+		update(insertQueryBuilder.toString());
+
 	}
+
+	public void insertEdgesWithVertex(final Multimap<Long, Long> edges, final String edgeLabel, final String vertexType)
+			throws IOException {
+		if (edges.isEmpty()) {
+			return;
+		}
+
+		final StringBuilder insertQueryBuilder = new StringBuilder(SPARQL_BASE_PREFIX + SPARQL_RDF_PREFIX);
+		insertQueryBuilder.append("INSERT DATA {");
+		edgesToTriples(edges, edgeLabel, insertQueryBuilder);
+		for (final Long targetVertex : edges.values()) {
+			insertQueryBuilder.append(String.format(". base:%d rdf:type base:%s", targetVertex, vertexType));
+		}
+		insertQueryBuilder.append("}");
+
+		// run the update
+		update(insertQueryBuilder.toString());
+	}
+	
+
 
 	private void edgesToTriples(final Multimap<Long, Long> edges, final String edgeLabel,
 			final StringBuilder insertQueryBuilder) {
@@ -294,9 +350,4 @@ public class FourStoreClient {
 					targetVertexId));
 		}
 	}
-
-	public void insertEdgesWithVertex(final Multimap<Long, Long> edges, final String edgelabel) throws IOException {
-
-	}
-
 }
