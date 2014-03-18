@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,8 @@ import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 
 public class InputNode extends ReteNode implements InitializableReteNode {
@@ -133,7 +136,8 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		return changeSet;
 	}
 
-	private Collection<ChangeSet> posLengthTransformation(final List<Tuple> invalids, final FourStoreClient client) throws IOException {
+	private Collection<ChangeSet> posLengthTransformation(final List<Tuple> invalids, final FourStoreClient client)
+			throws IOException {
 		final int size = invalids.size();
 		final Set<Tuple> negativeTuples = new HashSet<>();
 		final Set<Tuple> positiveTuples = new HashSet<>();
@@ -147,6 +151,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			segmentsToFix.add(segment);
 		}
 
+		final Map<Long, Integer> vertexIdAndPropertyValues = new HashMap<>();
 		for (final Tuple tuple : tuples) {
 			final long segment = (long) tuple.get(0);
 
@@ -155,11 +160,26 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 				final int newLength = -length + 1;
 				negativeTuples.add(tuple);
 				positiveTuples.add(new Tuple(segment, newLength));
-				
-				// 4s persistence
-				client.updateProperty(segment, "Segment_length", newLength);
+
+				vertexIdAndPropertyValues.put(segment, newLength);
 			}
 		}
+		
+		// 4s persistence
+		// partitioning
+		final ArrayList<Long> ids = new ArrayList<>(vertexIdAndPropertyValues.keySet());
+		final List<List<Long>> partition = Lists.partition(ids, 500);
+		for (final List<Long> list : partition) {
+
+			final Map<Long, Integer> vertexIdAndPropertyValuesChunk = new HashMap<>();
+			for (final Long vertexId : list) {
+				final Integer value = vertexIdAndPropertyValues.get(vertexId);
+				vertexIdAndPropertyValuesChunk.put(vertexId, value);
+			}
+
+			client.updateProperties(vertexIdAndPropertyValuesChunk, "Segment_length");
+		}
+		// --
 
 		final ChangeSet negativeChangeSet = new ChangeSet(negativeTuples, ChangeType.NEGATIVE);
 		final ChangeSet positiveChangeSet = new ChangeSet(positiveTuples, ChangeType.POSITIVE);
@@ -168,21 +188,25 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		return Arrays.asList(negativeChangeSet, positiveChangeSet);
 	}
 
-	private Collection<ChangeSet> routeSensorTransformation(final List<Tuple> invalids, final FourStoreClient client) throws IOException {
+	private Collection<ChangeSet> routeSensorTransformation(final List<Tuple> invalids, final FourStoreClient client)
+			throws IOException {
 		final int size = invalids.size();
 		final Set<Tuple> tuplesToRemove = new HashSet<>();
-		final Set<Long> sensorsToRemove = new HashSet<>();
+		final List<Long> sensorsToRemove = new ArrayList<>();
 		final int nElemToModify = size / 10;
 		for (int i = 0; i < nElemToModify; i++) {
 			final int rndTarget = random.nextInt(size);
 			final Long sensor = (Long) invalids.get(rndTarget).get(0);
 			sensorsToRemove.add(sensor);
-			
-			// 4s persistence
-			client.deleteVertex(sensor);
 		}
-		// System.out.println(sensorsToRemove);
 
+		// 4s persistence
+		// partitioning
+		final List<List<Long>> partition = Lists.partition(sensorsToRemove, 500);
+		for (final List<Long> sensorsToRemoveChunk : partition) {
+			client.deleteVertices(sensorsToRemoveChunk);	
+		}
+		
 		for (final Tuple tuple : tuples) {
 			final Long sensor = (Long) tuple.get(1);
 			if (sensorsToRemove.contains(sensor)) {
@@ -193,7 +217,8 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		return Arrays.asList(changeSet);
 	}
 
-	private Collection<ChangeSet> signalNeighborTransformation(final List<Tuple> invalids, final FourStoreClient client) throws IOException {
+	private Collection<ChangeSet> signalNeighborTransformation(final List<Tuple> invalids, final FourStoreClient client)
+			throws IOException {
 		final int size = invalids.size();
 		final Set<Tuple> tuplesToRemove = new HashSet<>();
 		final Collection<Long> selectedRoutes = new HashSet<>();
@@ -205,37 +230,71 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			selectedRoutes.add(route);
 		}
 
+		final Multimap<Long, Long> edgesToRemove = ArrayListMultimap.create();
 		for (final Tuple tuple : tuples) {
 			final Long route = (Long) tuple.get(0);
 			if (selectedRoutes.contains(route)) {
 				tuplesToRemove.add(tuple);
-								
+
 				// 4s persistence
 				final Long signal = (Long) tuple.get(1);
-				client.deleteEdge(route, signal, "Route_exit");
+				edgesToRemove.put(route, signal);
 			}
+		}
+		
+		// partitioning
+		final ArrayList<Long> sourceVertices = new ArrayList<>(edgesToRemove.keySet());		
+		final List<List<Long>> partition = Lists.partition(sourceVertices, 500);
+		for (final List<Long> sourceVerticesChunk : partition) {
+			
+			final Multimap<Long, Long> edgesToRemoveChunk = ArrayListMultimap.create();
+			for (final Long sourceVertexId : sourceVerticesChunk) {
+				final Collection<Long> targetVertexIds = edgesToRemove.get(sourceVertexId);
+				edgesToRemoveChunk.putAll(sourceVertexId, targetVertexIds);
+			}
+						
+			client.deleteEdges(edgesToRemoveChunk, "Route_exit");
 		}
 
 		final ChangeSet changeSet = new ChangeSet(tuplesToRemove, ChangeType.NEGATIVE);
 		return Arrays.asList(changeSet);
 	}
 
-	private Collection<ChangeSet> switchSensorTransformation(final List<Tuple> invalids, final FourStoreClient client) throws IOException {
+	private Collection<ChangeSet> switchSensorTransformation(final List<Tuple> invalids, final FourStoreClient client)
+			throws IOException {
 		final int size = invalids.size();
 		final Set<Tuple> changeSetTuples = new HashSet<>();
 		final int nElemToModify = size / 10;
 
+		// TODO will work only for a single transformation
 		long id = 1000000000;
+
+		final Multimap<Long, Long> edges = ArrayListMultimap.create();
 		for (int i = 0; i < nElemToModify; i++) {
 			final int rndTarget = random.nextInt(size);
-			final Long aSwitch = (Long) invalids.get(rndTarget).get(0);
+			final Long switchId = (Long) invalids.get(rndTarget).get(0);
 			// new edge
-			changeSetTuples.add(new Tuple(aSwitch, id++));
-			
+			final long sensorId = id++;
+			changeSetTuples.add(new Tuple(switchId, sensorId));
+
 			// 4s persistence
-			final long sensor = client.insertVertex("Sensor", id);
-			client.insertEdge(aSwitch, sensor, "TrackElement_sensor");
+			edges.put(switchId, sensorId);
 		}
+		
+		// partitioning
+		final ArrayList<Long> sourceVertices = new ArrayList<>(edges.keySet());		
+		final List<List<Long>> partition = Lists.partition(sourceVertices, 500);
+		for (final List<Long> sourceVerticesChunk : partition) {
+			
+			final Multimap<Long, Long> edgesChunk = ArrayListMultimap.create();
+			for (final Long sourceVertexId : sourceVerticesChunk) {
+				final Collection<Long> targetVertexIds = edges.get(sourceVertexId);
+				edgesChunk.putAll(sourceVertexId, targetVertexIds);
+			}
+						
+			client.insertEdgesWithVertex(edgesChunk, "TrackElement_sensor", "Sensor");
+		}
+		
 
 		final ChangeSet changeSet = new ChangeSet(changeSetTuples, ChangeType.POSITIVE);
 		return Arrays.asList(changeSet);
