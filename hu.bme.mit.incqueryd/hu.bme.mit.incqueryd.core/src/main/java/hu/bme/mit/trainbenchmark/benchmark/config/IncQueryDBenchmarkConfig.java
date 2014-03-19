@@ -207,7 +207,7 @@ public class IncQueryDBenchmarkConfig {
 		if (timeoutString != null) {
 			timeout = new Long(timeoutString);
 		} else {
-			timeout = 600000;
+			timeout = 60000000;
 		}
 		
 		final String createSandboxString = cmd.getOptionValue("createSandbox");

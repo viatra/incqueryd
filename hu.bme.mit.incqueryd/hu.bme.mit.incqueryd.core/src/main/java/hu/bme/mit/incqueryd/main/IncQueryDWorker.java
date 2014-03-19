@@ -70,7 +70,7 @@ public class IncQueryDWorker {
 
 		// initialize Akka
 		final ActorSystem system;
-		final Timeout timeout = new Timeout(Duration.create(3600, "seconds"));
+		final Timeout timeout = new Timeout(Duration.create(14400, "seconds"));
 		final Config config = ConfigFactory.parseString("akka.actor.provider = akka.remote.RemoteActorRefProvider\n"
 				+ "akka.remote.netty.message-frame-size = 10000000000\n" + "akka.loglevel = \"ERROR\"");
 
