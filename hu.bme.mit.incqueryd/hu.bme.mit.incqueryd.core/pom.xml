@@ -96,8 +96,8 @@
 		<!-- big model dependencies -->
 		
 		<dependency>
-			<groupId>hu.bme.mit.inf.bigmodel</groupId>
-			<artifactId>hu.bme.mit.inf.bigmodel.4store-graph-client</artifactId>
+			<groupId>hu.bme.mit.bigmodel</groupId>
+			<artifactId>hu.bme.mit.bigmodel.4store-graph-client</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 

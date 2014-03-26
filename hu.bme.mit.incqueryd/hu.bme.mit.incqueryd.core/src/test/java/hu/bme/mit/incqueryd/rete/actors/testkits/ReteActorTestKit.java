@@ -5,8 +5,8 @@ import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
-import hu.bme.mit.incqueryd.rete.messages.TerminationMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
+import hu.bme.mit.incqueryd.rete.messages.TerminationMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
 

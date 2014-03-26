@@ -4,6 +4,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import hu.bme.mit.incqueryd.util.RecipeDeserializer;
 
 import java.io.IOException;
+
 import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
 
 

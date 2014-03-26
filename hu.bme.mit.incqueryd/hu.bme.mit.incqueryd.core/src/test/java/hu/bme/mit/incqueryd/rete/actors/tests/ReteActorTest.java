@@ -1,8 +1,8 @@
 package hu.bme.mit.incqueryd.rete.actors.tests;
 
 import hu.bme.mit.incqueryd.rete.actors.ReteActor;
-import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
+import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

@@ -1,12 +1,12 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
+import hu.bme.mit.bigmodel.fourstore.FourStoreClient;
 import hu.bme.mit.incqueryd.arch.ArchUtil;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.GraphElement;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.messages.Transformation;
-import hu.bme.mit.inf.bigmodel.fourstore.FourStoreClient;
 
 import java.io.IOException;
 import java.util.ArrayList;

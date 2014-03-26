@@ -3,8 +3,8 @@ package hu.bme.mit.incqueryd.rete.nodes.data;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 
-import java.util.Set;
 import java.util.List;
+import java.util.Set;
 
 public class TestData {
 
