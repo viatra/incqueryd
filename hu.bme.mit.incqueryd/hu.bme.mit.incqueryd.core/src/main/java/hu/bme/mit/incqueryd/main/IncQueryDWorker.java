@@ -1,8 +1,8 @@
 package hu.bme.mit.incqueryd.main;
 
 import static akka.pattern.Patterns.ask;
-import hu.bme.mit.incqueryd.databases.CoordinatorFourStoreClient;
 import hu.bme.mit.incqueryd.rete.actors.CoordinatorActorFactory;
+import hu.bme.mit.inf.bigmodel.fourstore.CoordinatorFourStoreClient;
 import hu.bme.mit.trainbenchmark.benchmark.config.IncQueryDBenchmarkConfig;
 import hu.bme.mit.trainbenchmark.benchmark.util.BenchmarkResult;
 import hu.bme.mit.trainbenchmark.benchmark.util.Util;

@@ -1,8 +1,8 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
 import static org.junit.Assert.assertEquals;
-import hu.bme.mit.incqueryd.databases.CoordinatorFourStoreClient;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
+import hu.bme.mit.inf.bigmodel.fourstore.CoordinatorFourStoreClient;
 
 import java.io.IOException;
 
