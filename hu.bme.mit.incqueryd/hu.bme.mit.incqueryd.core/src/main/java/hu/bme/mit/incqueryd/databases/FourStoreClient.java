@@ -175,60 +175,60 @@ public class FourStoreClient {
 
 	
 	
-//	// modifications
-//
-//	public void updateProperty(final Long vertexId, final String propertyName, final int value) throws IOException {
-//		final String deleteQuery = String.format(SPARQL_BASE_PREFIX
-//				+ "DELETE { base:%d base:%s ?y } WHERE { base:%d base:%s ?y }", vertexId, propertyName, vertexId,
-//				propertyName);
-//		update(deleteQuery);
-//
-//		final String insertQuery = String.format(SPARQL_BASE_PREFIX
-//				+ "INSERT DATA { base:%s base:%s \"%d\"^^<http://www.w3.org/2001/XMLSchema#int> }", vertexId,
-//				propertyName, value);
-//		update(insertQuery);
-//	}
-//
-//	// deletions
-//
-//	public void deleteVertex(final Long id) throws IOException {
-//		// if we try to use DELETE DATA (as in the deleteEdge() method), 4store throws an error:
-//		// DELETE WHERE { x } not yet supported, use DELETE { x } WHERE { x }
-//
-//		// delete "incoming edges"
-//		final String deleteQuery1 = String.format(SPARQL_BASE_PREFIX
-//				+ " DELETE { ?x ?y base:%d } WHERE { ?x ?y base:%d }", id, id);
-//		// delete "outgoing edges" and "properties"
-//		final String deleteQuery2 = String.format(SPARQL_BASE_PREFIX
-//				+ " DELETE { base:%d ?x ?y } WHERE { base:%d ?x ?y }", id, id);
-//
-//		update(deleteQuery1);
-//		update(deleteQuery2);
-//	}
-//
-//	public void deleteEdge(final Long sourceVertexId, final Long destinationVertexId, final String edgeLabel)
-//			throws IOException {
-//		final String deleteQuery = String.format(SPARQL_BASE_PREFIX + "DELETE DATA { base:%s base:%s base:%s }",
-//				sourceVertexId, edgeLabel, destinationVertexId);
-//		update(deleteQuery);
-//	}
-//
-//	// insertions
-//
-//	public long insertVertex(final String vertexType, final long vertexId) throws IOException {
-//		final String insertQuery = String.format(SPARQL_BASE_PREFIX + SPARQL_RDF_PREFIX
-//				+ "INSERT DATA { base:%d rdf:type base:%s }", vertexId, vertexType);
-//		update(insertQuery);
-//
-//		return vertexId;
-//	}
-//
-//	public void insertEdge(final long sourceVertexId, final long destinationVertexId, final String edgeLabel)
-//			throws IOException {
-//		final String insertQuery = String.format(SPARQL_BASE_PREFIX + "INSERT DATA { base:%d base:%s base:%d }",
-//				sourceVertexId, edgeLabel, destinationVertexId);
-//		update(insertQuery);
-//	}
+	// modifications
+
+	public void updateProperty(final Long vertexId, final String propertyName, final int value) throws IOException {
+		final String deleteQuery = String.format(SPARQL_BASE_PREFIX
+				+ "DELETE { base:%d base:%s ?y } WHERE { base:%d base:%s ?y }", vertexId, propertyName, vertexId,
+				propertyName);
+		update(deleteQuery);
+
+		final String insertQuery = String.format(SPARQL_BASE_PREFIX
+				+ "INSERT DATA { base:%s base:%s \"%d\"^^<http://www.w3.org/2001/XMLSchema#int> }", vertexId,
+				propertyName, value);
+		update(insertQuery);
+	}
+
+	// deletions
+
+	public void deleteVertex(final Long id) throws IOException {
+		// if we try to use DELETE DATA (as in the deleteEdge() method), 4store throws an error:
+		// DELETE WHERE { x } not yet supported, use DELETE { x } WHERE { x }
+
+		// delete "incoming edges"
+		final String deleteQuery1 = String.format(SPARQL_BASE_PREFIX
+				+ " DELETE { ?x ?y base:%d } WHERE { ?x ?y base:%d }", id, id);
+		// delete "outgoing edges" and "properties"
+		final String deleteQuery2 = String.format(SPARQL_BASE_PREFIX
+				+ " DELETE { base:%d ?x ?y } WHERE { base:%d ?x ?y }", id, id);
+
+		update(deleteQuery1);
+		update(deleteQuery2);
+	}
+
+	public void deleteEdge(final Long sourceVertexId, final Long destinationVertexId, final String edgeLabel)
+			throws IOException {
+		final String deleteQuery = String.format(SPARQL_BASE_PREFIX + "DELETE DATA { base:%s base:%s base:%s }",
+				sourceVertexId, edgeLabel, destinationVertexId);
+		update(deleteQuery);
+	}
+
+	// insertions
+
+	public long insertVertex(final String vertexType, final long vertexId) throws IOException {
+		final String insertQuery = String.format(SPARQL_BASE_PREFIX + SPARQL_RDF_PREFIX
+				+ "INSERT DATA { base:%d rdf:type base:%s }", vertexId, vertexType);
+		update(insertQuery);
+
+		return vertexId;
+	}
+
+	public void insertEdge(final long sourceVertexId, final long destinationVertexId, final String edgeLabel)
+			throws IOException {
+		final String insertQuery = String.format(SPARQL_BASE_PREFIX + "INSERT DATA { base:%d base:%s base:%d }",
+				sourceVertexId, edgeLabel, destinationVertexId);
+		update(insertQuery);
+	}
 
 	
 	

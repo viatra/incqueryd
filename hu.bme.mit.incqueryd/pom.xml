@@ -27,6 +27,7 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<emf.version>2.9.1-v20130827-0309</emf.version>
 	</properties>
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -44,6 +45,18 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>emfjson-repository</id>
+			<url>http://repository-ghillairet.forge.cloudbees.com/snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>

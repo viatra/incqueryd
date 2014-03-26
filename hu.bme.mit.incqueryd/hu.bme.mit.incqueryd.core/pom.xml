@@ -11,17 +11,6 @@
 
 	<name>IncQuery-D Core</name>
 
-	<repositories>
-		<repository>
-			<id>emfjson-repository</id>
-			<url>http://repository-ghillairet.forge.cloudbees.com/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</repository>
-	</repositories>
-
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
