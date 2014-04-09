@@ -1,0 +1,64 @@
+grammar org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguage with org.eclipse.incquery.patternlanguage.PatternLanguage
+
+import "http://www.eclipse.org/incquery/patternlanguage/PatternLanguage" as core
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+generate rdfPatternLanguage "http://www.eclipse.org/incquery/patternlanguage/rdf/RdfPatternLanguage"
+
+RdfPatternModel returns core::PatternModel:
+	{PatternModel}
+	base=Base?
+	prefixes+=Prefix*
+	patterns+=Pattern*;
+
+Base:
+	'base' iri=IRIREF
+;
+
+Prefix:
+	'prefix' name=ID ':' iri=IRIREF
+;
+
+Iri:
+	FullIri | PrefixedName
+;
+
+FullIri:
+	iri=IRIREF
+;
+
+PrefixedName:
+	prefix=[Prefix] ':' postfix=IRIREF // TODO use http://www.w3.org/TR/2014/REC-turtle-20140225/#grammar-production-PN_LOCAL for postfix
+;
+
+Constraint returns core::Constraint:
+	CheckConstraint	| CompareConstraint | PatternCompositionConstraint | PathExpressionConstraint // Copied from PatternLanguage
+	| TypeConstraint // TODO move to PatternLanguage
+;
+
+TypeConstraint:
+	type = Type  '(' var = VariableReference ')'
+;
+
+Type returns core::EntityType:
+	{Class}
+	class=Iri
+;
+
+RefType returns core::RelationType:
+	{Property}
+	property=Iri
+;
+
+LiteralValueReference returns core::ValueReference:
+	IntValue | StringValue | DoubleValue | BoolValue // Copied from PatternLanguage
+	| RdfLiteral // Additions
+;
+
+RdfLiteral:
+	lexicalForm=STRING (('^^' datatype=Iri) | ('@' language=ID))
+;
+
+terminal IRIREF:
+	'<' ('\\>' | !'>')* '>'
+;

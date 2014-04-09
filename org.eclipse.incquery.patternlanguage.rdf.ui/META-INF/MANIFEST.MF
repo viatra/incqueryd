@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eclipse.incquery.patternlanguage.rdf.ui
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.eclipse.incquery.patternlanguage.rdf.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.incquery.patternlanguage.rdf;visibility:=reexport,
+ org.eclipse.xtext.ui,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.xtext.xbase.ui,
+ org.eclipse.ui,
+ org.eclipse.xtext.builder,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types.ui,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipse.compare,
+ org.eclipse.incquery.patternlanguage;bundle-version="0.8.0",
+ org.eclipse.incquery.patternlanguage.ui;bundle-version="0.8.0"
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.incquery.patternlanguage.rdf.ui.quickfix,
+ org.eclipse.incquery.patternlanguage.rdf.ui.contentassist,
+ org.eclipse.incquery.patternlanguage.rdf.ui.contentassist.antlr,
+ org.eclipse.incquery.patternlanguage.rdf.ui.internal
+Bundle-Activator: org.eclipse.incquery.patternlanguage.rdf.ui.internal.RdfPatternLanguageActivator
