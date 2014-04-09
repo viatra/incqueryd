@@ -19,9 +19,18 @@ class ParserTest {
 	ParseHelper<PatternModel> parser
 
 	@Test
-	def void base() {
+	def void posLength() {
 		val expectedBaseIri = "<http://example.org/>"
-		val model = parser.parse('''base «expectedBaseIri»''')
+		val model = parser.parse('''
+base «expectedBaseIri»
+prefix train: <http://train.org/>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+pattern posLength(Source, Target) = {
+	<Segment>(Source);
+	train:<Segment_length>(Source, Target);
+	check((Target as Integer) <= 0);
+}
+''')
 		assertEquals(expectedBaseIri, model.base.iri)
 	}
 

@@ -434,11 +434,11 @@ ruleConstraint returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getConstraintAccess().getPathExpressionConstraintParserRuleCall_3()); 
+        newCompositeNode(grammarAccess.getConstraintAccess().getRdfPathExpressionConstraintParserRuleCall_3()); 
     }
-    this_PathExpressionConstraint_3=rulePathExpressionConstraint
+    this_RdfPathExpressionConstraint_3=ruleRdfPathExpressionConstraint
     { 
-        $current = $this_PathExpressionConstraint_3.current; 
+        $current = $this_RdfPathExpressionConstraint_3.current; 
         afterParserOrEnumRuleCall();
     }
 
@@ -450,6 +450,93 @@ ruleConstraint returns [EObject current=null]
     { 
         $current = $this_TypeConstraint_4.current; 
         afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleRdfPathExpressionConstraint
+entryRuleRdfPathExpressionConstraint returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getRdfPathExpressionConstraintRule()); }
+	 iv_ruleRdfPathExpressionConstraint=ruleRdfPathExpressionConstraint 
+	 { $current=$iv_ruleRdfPathExpressionConstraint.current; } 
+	 EOF 
+;
+
+// Rule RdfPathExpressionConstraint
+ruleRdfPathExpressionConstraint returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRdfPathExpressionConstraintAccess().getPathExpressionPathExpressionTailParserRuleCall_0_0()); 
+	    }
+		lv_pathExpression_0_0=rulePathExpressionTail		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRdfPathExpressionConstraintRule());
+	        }
+       		set(
+       			$current, 
+       			"pathExpression",
+        		lv_pathExpression_0_0, 
+        		"PathExpressionTail");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_1='(' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getRdfPathExpressionConstraintAccess().getLeftParenthesisKeyword_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRdfPathExpressionConstraintAccess().getSrcVariableReferenceParserRuleCall_2_0()); 
+	    }
+		lv_src_2_0=ruleVariableReference		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRdfPathExpressionConstraintRule());
+	        }
+       		set(
+       			$current, 
+       			"src",
+        		lv_src_2_0, 
+        		"VariableReference");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_3=',' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getRdfPathExpressionConstraintAccess().getCommaKeyword_3());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRdfPathExpressionConstraintAccess().getDstValueReferenceParserRuleCall_4_0()); 
+	    }
+		lv_dst_4_0=ruleValueReference		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRdfPathExpressionConstraintRule());
+	        }
+       		set(
+       			$current, 
+       			"dst",
+        		lv_dst_4_0, 
+        		"ValueReference");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_5=')' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getRdfPathExpressionConstraintAccess().getRightParenthesisKeyword_5());
     }
 )
 ;
@@ -1607,49 +1694,6 @@ ruleCheckConstraint returns [EObject current=null]
 ;
 
 
-
-
-
-// Entry rule entryRulePathExpressionConstraint
-entryRulePathExpressionConstraint returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getPathExpressionConstraintRule()); }
-	 iv_rulePathExpressionConstraint=rulePathExpressionConstraint 
-	 { $current=$iv_rulePathExpressionConstraint.current; } 
-	 EOF 
-;
-
-// Rule PathExpressionConstraint
-rulePathExpressionConstraint returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getPathExpressionConstraintAccess().getPathExpressionConstraintAction_0(),
-            $current);
-    }
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getPathExpressionConstraintAccess().getHeadPathExpressionHeadParserRuleCall_1_0()); 
-	    }
-		lv_head_1_0=rulePathExpressionHead		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPathExpressionConstraintRule());
-	        }
-       		set(
-       			$current, 
-       			"head",
-        		lv_head_1_0, 
-        		"PathExpressionHead");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-;
 
 
 

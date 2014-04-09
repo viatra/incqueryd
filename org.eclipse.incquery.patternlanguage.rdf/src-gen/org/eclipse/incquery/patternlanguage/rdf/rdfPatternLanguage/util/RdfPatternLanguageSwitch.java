@@ -21,6 +21,7 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PrefixedName;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint;
 
@@ -121,6 +122,14 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
         PrefixedName prefixedName = (PrefixedName)theEObject;
         T result = casePrefixedName(prefixedName);
         if (result == null) result = caseIri(prefixedName);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RdfPatternLanguagePackage.RDF_PATH_EXPRESSION_CONSTRAINT:
+      {
+        RdfPathExpressionConstraint rdfPathExpressionConstraint = (RdfPathExpressionConstraint)theEObject;
+        T result = caseRdfPathExpressionConstraint(rdfPathExpressionConstraint);
+        if (result == null) result = caseConstraint(rdfPathExpressionConstraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -246,6 +255,22 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePrefixedName(PrefixedName object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rdf Path Expression Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rdf Path Expression Constraint</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRdfPathExpressionConstraint(RdfPathExpressionConstraint object)
   {
     return null;
   }

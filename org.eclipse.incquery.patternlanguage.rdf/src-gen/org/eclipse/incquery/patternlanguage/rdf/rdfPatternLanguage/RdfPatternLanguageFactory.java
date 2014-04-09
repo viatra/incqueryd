@@ -68,6 +68,15 @@ public interface RdfPatternLanguageFactory extends EFactory
   PrefixedName createPrefixedName();
 
   /**
+   * Returns a new object of class '<em>Rdf Path Expression Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rdf Path Expression Constraint</em>'.
+   * @generated
+   */
+  RdfPathExpressionConstraint createRdfPathExpressionConstraint();
+
+  /**
    * Returns a new object of class '<em>Type Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

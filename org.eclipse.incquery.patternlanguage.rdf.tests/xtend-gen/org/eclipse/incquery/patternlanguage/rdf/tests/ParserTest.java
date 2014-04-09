@@ -21,12 +21,30 @@ public class ParserTest {
   private ParseHelper<PatternModel> parser;
   
   @Test
-  public void base() {
+  public void posLength() {
     try {
       final String expectedBaseIri = "<http://example.org/>";
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("base ");
       _builder.append(expectedBaseIri, "");
+      _builder.newLineIfNotEmpty();
+      _builder.append("prefix train: <http://train.org/>");
+      _builder.newLine();
+      _builder.append("prefix xsd: <http://www.w3.org/2001/XMLSchema#>");
+      _builder.newLine();
+      _builder.append("pattern posLength(Source, Target) = {");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("<Segment>(Source);");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("train:<Segment_length>(Source, Target);");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("check((Target as Integer) <= 0);");
+      _builder.newLine();
+      _builder.append("}");
+      _builder.newLine();
       final PatternModel model = this.parser.parse(_builder);
       Base _base = model.getBase();
       String _iri = _base.getIri();

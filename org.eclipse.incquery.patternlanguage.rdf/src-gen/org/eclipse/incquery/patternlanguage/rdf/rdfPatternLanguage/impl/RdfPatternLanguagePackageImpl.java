@@ -19,6 +19,7 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PrefixedName;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguageFactory;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint;
@@ -65,6 +66,13 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
    * @generated
    */
   private EClass prefixedNameEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass rdfPathExpressionConstraintEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -282,6 +290,46 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getRdfPathExpressionConstraint()
+  {
+    return rdfPathExpressionConstraintEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRdfPathExpressionConstraint_PathExpression()
+  {
+    return (EReference)rdfPathExpressionConstraintEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRdfPathExpressionConstraint_Src()
+  {
+    return (EReference)rdfPathExpressionConstraintEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRdfPathExpressionConstraint_Dst()
+  {
+    return (EReference)rdfPathExpressionConstraintEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getTypeConstraint()
   {
     return typeConstraintEClass;
@@ -463,6 +511,11 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
     createEReference(prefixedNameEClass, PREFIXED_NAME__PREFIX);
     createEAttribute(prefixedNameEClass, PREFIXED_NAME__POSTFIX);
 
+    rdfPathExpressionConstraintEClass = createEClass(RDF_PATH_EXPRESSION_CONSTRAINT);
+    createEReference(rdfPathExpressionConstraintEClass, RDF_PATH_EXPRESSION_CONSTRAINT__PATH_EXPRESSION);
+    createEReference(rdfPathExpressionConstraintEClass, RDF_PATH_EXPRESSION_CONSTRAINT__SRC);
+    createEReference(rdfPathExpressionConstraintEClass, RDF_PATH_EXPRESSION_CONSTRAINT__DST);
+
     typeConstraintEClass = createEClass(TYPE_CONSTRAINT);
     createEReference(typeConstraintEClass, TYPE_CONSTRAINT__TYPE);
     createEReference(typeConstraintEClass, TYPE_CONSTRAINT__VAR);
@@ -517,6 +570,7 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
     // Add supertypes to classes
     fullIriEClass.getESuperTypes().add(this.getIri());
     prefixedNameEClass.getESuperTypes().add(this.getIri());
+    rdfPathExpressionConstraintEClass.getESuperTypes().add(thePatternLanguagePackage.getConstraint());
     typeConstraintEClass.getESuperTypes().add(thePatternLanguagePackage.getConstraint());
     rdfLiteralEClass.getESuperTypes().add(thePatternLanguagePackage.getValueReference());
     patternModelEClass.getESuperTypes().add(thePatternLanguagePackage.getPatternModel());
@@ -539,6 +593,11 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
     initEClass(prefixedNameEClass, PrefixedName.class, "PrefixedName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getPrefixedName_Prefix(), this.getPrefix(), null, "prefix", null, 0, 1, PrefixedName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPrefixedName_Postfix(), ecorePackage.getEString(), "postfix", null, 0, 1, PrefixedName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(rdfPathExpressionConstraintEClass, RdfPathExpressionConstraint.class, "RdfPathExpressionConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRdfPathExpressionConstraint_PathExpression(), thePatternLanguagePackage.getPathExpressionElement(), null, "pathExpression", null, 0, 1, RdfPathExpressionConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRdfPathExpressionConstraint_Src(), thePatternLanguagePackage.getVariableReference(), null, "src", null, 0, 1, RdfPathExpressionConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRdfPathExpressionConstraint_Dst(), thePatternLanguagePackage.getValueReference(), null, "dst", null, 0, 1, RdfPathExpressionConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(typeConstraintEClass, TypeConstraint.class, "TypeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTypeConstraint_Type(), thePatternLanguagePackage.getEntityType(), null, "type", null, 0, 1, TypeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

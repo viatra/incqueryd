@@ -87,6 +87,7 @@ public class RdfPatternLanguageParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBaseAccess().getGroup(), "rule__Base__Group__0");
 					put(grammarAccess.getPrefixAccess().getGroup(), "rule__Prefix__Group__0");
 					put(grammarAccess.getPrefixedNameAccess().getGroup(), "rule__PrefixedName__Group__0");
+					put(grammarAccess.getRdfPathExpressionConstraintAccess().getGroup(), "rule__RdfPathExpressionConstraint__Group__0");
 					put(grammarAccess.getTypeConstraintAccess().getGroup(), "rule__TypeConstraint__Group__0");
 					put(grammarAccess.getTypeAccess().getGroup(), "rule__Type__Group__0");
 					put(grammarAccess.getRefTypeAccess().getGroup(), "rule__RefType__Group__0");
@@ -298,6 +299,9 @@ public class RdfPatternLanguageParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFullIriAccess().getIriAssignment(), "rule__FullIri__IriAssignment");
 					put(grammarAccess.getPrefixedNameAccess().getPrefixAssignment_0(), "rule__PrefixedName__PrefixAssignment_0");
 					put(grammarAccess.getPrefixedNameAccess().getPostfixAssignment_2(), "rule__PrefixedName__PostfixAssignment_2");
+					put(grammarAccess.getRdfPathExpressionConstraintAccess().getPathExpressionAssignment_0(), "rule__RdfPathExpressionConstraint__PathExpressionAssignment_0");
+					put(grammarAccess.getRdfPathExpressionConstraintAccess().getSrcAssignment_2(), "rule__RdfPathExpressionConstraint__SrcAssignment_2");
+					put(grammarAccess.getRdfPathExpressionConstraintAccess().getDstAssignment_4(), "rule__RdfPathExpressionConstraint__DstAssignment_4");
 					put(grammarAccess.getTypeConstraintAccess().getTypeAssignment_0(), "rule__TypeConstraint__TypeAssignment_0");
 					put(grammarAccess.getTypeConstraintAccess().getVarAssignment_2(), "rule__TypeConstraint__VarAssignment_2");
 					put(grammarAccess.getTypeAccess().getClassAssignment_1(), "rule__Type__ClassAssignment_1");

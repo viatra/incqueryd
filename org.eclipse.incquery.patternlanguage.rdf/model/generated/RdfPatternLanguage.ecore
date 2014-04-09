@@ -17,6 +17,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="prefix" eType="#//Prefix"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="postfix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RdfPathExpressionConstraint" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//Constraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pathExpression" eType="ecore:EClass ../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//PathExpressionElement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" eType="ecore:EClass ../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//VariableReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dst" eType="ecore:EClass ../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//ValueReference"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeConstraint" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//Constraint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass ../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//EntityType"
         containment="true"/>

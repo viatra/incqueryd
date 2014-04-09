@@ -23,6 +23,7 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PrefixedName;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint;
 
@@ -113,6 +114,11 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
       public Adapter casePrefixedName(PrefixedName object)
       {
         return createPrefixedNameAdapter();
+      }
+      @Override
+      public Adapter caseRdfPathExpressionConstraint(RdfPathExpressionConstraint object)
+      {
+        return createRdfPathExpressionConstraintAdapter();
       }
       @Override
       public Adapter caseTypeConstraint(TypeConstraint object)
@@ -262,6 +268,21 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPrefixedNameAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint <em>Rdf Path Expression Constraint</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint
+   * @generated
+   */
+  public Adapter createRdfPathExpressionConstraintAdapter()
   {
     return null;
   }

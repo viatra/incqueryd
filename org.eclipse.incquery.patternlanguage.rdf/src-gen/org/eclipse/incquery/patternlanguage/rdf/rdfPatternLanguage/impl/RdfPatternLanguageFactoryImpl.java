@@ -18,6 +18,7 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PrefixedName;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguageFactory;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint;
@@ -79,6 +80,7 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
       case RdfPatternLanguagePackage.IRI: return createIri();
       case RdfPatternLanguagePackage.FULL_IRI: return createFullIri();
       case RdfPatternLanguagePackage.PREFIXED_NAME: return createPrefixedName();
+      case RdfPatternLanguagePackage.RDF_PATH_EXPRESSION_CONSTRAINT: return createRdfPathExpressionConstraint();
       case RdfPatternLanguagePackage.TYPE_CONSTRAINT: return createTypeConstraint();
       case RdfPatternLanguagePackage.RDF_LITERAL: return createRdfLiteral();
       case RdfPatternLanguagePackage.PATTERN_MODEL: return createPatternModel();
@@ -142,6 +144,17 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
   {
     PrefixedNameImpl prefixedName = new PrefixedNameImpl();
     return prefixedName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RdfPathExpressionConstraint createRdfPathExpressionConstraint()
+  {
+    RdfPathExpressionConstraintImpl rdfPathExpressionConstraint = new RdfPathExpressionConstraintImpl();
+    return rdfPathExpressionConstraint;
   }
 
   /**

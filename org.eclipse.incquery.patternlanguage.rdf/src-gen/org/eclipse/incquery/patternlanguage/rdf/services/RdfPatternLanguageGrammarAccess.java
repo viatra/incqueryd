@@ -202,18 +202,14 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		private final RuleCall cCheckConstraintParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cCompareConstraintParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cPatternCompositionConstraintParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cPathExpressionConstraintParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cRdfPathExpressionConstraintParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cTypeConstraintParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//Constraint returns core::Constraint:
-		//	CheckConstraint | CompareConstraint | PatternCompositionConstraint | // Copied from PatternLanguage
-		//	PathExpressionConstraint | // TODO move to PatternLanguage
-		//	TypeConstraint;
+		//	CheckConstraint | CompareConstraint | PatternCompositionConstraint | RdfPathExpressionConstraint | TypeConstraint;
 		public ParserRule getRule() { return rule; }
 
-		//CheckConstraint | CompareConstraint | PatternCompositionConstraint | // Copied from PatternLanguage
-		//PathExpressionConstraint | // TODO move to PatternLanguage
-		//TypeConstraint
+		//CheckConstraint | CompareConstraint | PatternCompositionConstraint | RdfPathExpressionConstraint | TypeConstraint
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//CheckConstraint
@@ -225,13 +221,59 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		//PatternCompositionConstraint
 		public RuleCall getPatternCompositionConstraintParserRuleCall_2() { return cPatternCompositionConstraintParserRuleCall_2; }
 
-		//// Copied from PatternLanguage
-		//PathExpressionConstraint
-		public RuleCall getPathExpressionConstraintParserRuleCall_3() { return cPathExpressionConstraintParserRuleCall_3; }
+		//RdfPathExpressionConstraint
+		public RuleCall getRdfPathExpressionConstraintParserRuleCall_3() { return cRdfPathExpressionConstraintParserRuleCall_3; }
 
-		//// TODO move to PatternLanguage
 		//TypeConstraint
 		public RuleCall getTypeConstraintParserRuleCall_4() { return cTypeConstraintParserRuleCall_4; }
+	}
+
+	public class RdfPathExpressionConstraintElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RdfPathExpressionConstraint");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cPathExpressionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cPathExpressionPathExpressionTailParserRuleCall_0_0 = (RuleCall)cPathExpressionAssignment_0.eContents().get(0);
+		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cSrcAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cSrcVariableReferenceParserRuleCall_2_0 = (RuleCall)cSrcAssignment_2.eContents().get(0);
+		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cDstAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cDstValueReferenceParserRuleCall_4_0 = (RuleCall)cDstAssignment_4.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		//RdfPathExpressionConstraint:
+		//	pathExpression=PathExpressionTail "(" src=VariableReference "," dst=ValueReference ")";
+		public ParserRule getRule() { return rule; }
+
+		//pathExpression=PathExpressionTail "(" src=VariableReference "," dst=ValueReference ")"
+		public Group getGroup() { return cGroup; }
+
+		//pathExpression=PathExpressionTail
+		public Assignment getPathExpressionAssignment_0() { return cPathExpressionAssignment_0; }
+
+		//PathExpressionTail
+		public RuleCall getPathExpressionPathExpressionTailParserRuleCall_0_0() { return cPathExpressionPathExpressionTailParserRuleCall_0_0; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
+
+		//src=VariableReference
+		public Assignment getSrcAssignment_2() { return cSrcAssignment_2; }
+
+		//VariableReference
+		public RuleCall getSrcVariableReferenceParserRuleCall_2_0() { return cSrcVariableReferenceParserRuleCall_2_0; }
+
+		//","
+		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
+
+		//dst=ValueReference
+		public Assignment getDstAssignment_4() { return cDstAssignment_4; }
+
+		//ValueReference
+		public RuleCall getDstValueReferenceParserRuleCall_4_0() { return cDstValueReferenceParserRuleCall_4_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 	}
 
 	public class TypeConstraintElements extends AbstractParserRuleElementFinder {
@@ -420,6 +462,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	private FullIriElements pFullIri;
 	private PrefixedNameElements pPrefixedName;
 	private ConstraintElements pConstraint;
+	private RdfPathExpressionConstraintElements pRdfPathExpressionConstraint;
 	private TypeConstraintElements pTypeConstraint;
 	private TypeElements pType;
 	private RefTypeElements pRefType;
@@ -527,15 +570,23 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//Constraint returns core::Constraint:
-	//	CheckConstraint | CompareConstraint | PatternCompositionConstraint | // Copied from PatternLanguage
-	//	PathExpressionConstraint | // TODO move to PatternLanguage
-	//	TypeConstraint;
+	//	CheckConstraint | CompareConstraint | PatternCompositionConstraint | RdfPathExpressionConstraint | TypeConstraint;
 	public ConstraintElements getConstraintAccess() {
 		return (pConstraint != null) ? pConstraint : (pConstraint = new ConstraintElements());
 	}
 	
 	public ParserRule getConstraintRule() {
 		return getConstraintAccess().getRule();
+	}
+
+	//RdfPathExpressionConstraint:
+	//	pathExpression=PathExpressionTail "(" src=VariableReference "," dst=ValueReference ")";
+	public RdfPathExpressionConstraintElements getRdfPathExpressionConstraintAccess() {
+		return (pRdfPathExpressionConstraint != null) ? pRdfPathExpressionConstraint : (pRdfPathExpressionConstraint = new RdfPathExpressionConstraintElements());
+	}
+	
+	public ParserRule getRdfPathExpressionConstraintRule() {
+		return getRdfPathExpressionConstraintAccess().getRule();
 	}
 
 	//TypeConstraint:

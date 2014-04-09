@@ -32,12 +32,17 @@ PrefixedName:
 ;
 
 Constraint returns core::Constraint:
-	CheckConstraint	| CompareConstraint | PatternCompositionConstraint | PathExpressionConstraint // Copied from PatternLanguage
-	| TypeConstraint // TODO move to PatternLanguage
+	CheckConstraint	| CompareConstraint | PatternCompositionConstraint
+	| RdfPathExpressionConstraint
+	| TypeConstraint
+;
+
+RdfPathExpressionConstraint:
+	pathExpression=PathExpressionTail '(' src=VariableReference ',' dst=ValueReference ')'
 ;
 
 TypeConstraint:
-	type = Type  '(' var = VariableReference ')'
+	type = Type '(' var=VariableReference ')'
 ;
 
 Type returns core::EntityType:

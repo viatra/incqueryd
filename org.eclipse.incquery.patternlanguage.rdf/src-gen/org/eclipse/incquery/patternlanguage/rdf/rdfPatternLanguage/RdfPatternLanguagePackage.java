@@ -208,6 +208,52 @@ public interface RdfPatternLanguagePackage extends EPackage
   int PREFIXED_NAME_FEATURE_COUNT = IRI_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPathExpressionConstraintImpl <em>Rdf Path Expression Constraint</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPathExpressionConstraintImpl
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfPathExpressionConstraint()
+   * @generated
+   */
+  int RDF_PATH_EXPRESSION_CONSTRAINT = 5;
+
+  /**
+   * The feature id for the '<em><b>Path Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RDF_PATH_EXPRESSION_CONSTRAINT__PATH_EXPRESSION = PatternLanguagePackage.CONSTRAINT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Src</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RDF_PATH_EXPRESSION_CONSTRAINT__SRC = PatternLanguagePackage.CONSTRAINT_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Dst</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RDF_PATH_EXPRESSION_CONSTRAINT__DST = PatternLanguagePackage.CONSTRAINT_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Rdf Path Expression Constraint</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RDF_PATH_EXPRESSION_CONSTRAINT_FEATURE_COUNT = PatternLanguagePackage.CONSTRAINT_FEATURE_COUNT + 3;
+
+  /**
    * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.TypeConstraintImpl <em>Type Constraint</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -215,7 +261,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getTypeConstraint()
    * @generated
    */
-  int TYPE_CONSTRAINT = 5;
+  int TYPE_CONSTRAINT = 6;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -252,7 +298,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfLiteral()
    * @generated
    */
-  int RDF_LITERAL = 6;
+  int RDF_LITERAL = 7;
 
   /**
    * The feature id for the '<em><b>Lexical Form</b></em>' attribute.
@@ -298,7 +344,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getPatternModel()
    * @generated
    */
-  int PATTERN_MODEL = 7;
+  int PATTERN_MODEL = 8;
 
   /**
    * The feature id for the '<em><b>Package Name</b></em>' attribute.
@@ -353,7 +399,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getClass_()
    * @generated
    */
-  int CLASS = 8;
+  int CLASS = 9;
 
   /**
    * The feature id for the '<em><b>Typename</b></em>' attribute.
@@ -390,7 +436,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getProperty()
    * @generated
    */
-  int PROPERTY = 9;
+  int PROPERTY = 10;
 
   /**
    * The feature id for the '<em><b>Typename</b></em>' attribute.
@@ -535,6 +581,49 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    */
   EAttribute getPrefixedName_Postfix();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint <em>Rdf Path Expression Constraint</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Rdf Path Expression Constraint</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint
+   * @generated
+   */
+  EClass getRdfPathExpressionConstraint();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint#getPathExpression <em>Path Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Path Expression</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint#getPathExpression()
+   * @see #getRdfPathExpressionConstraint()
+   * @generated
+   */
+  EReference getRdfPathExpressionConstraint_PathExpression();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint#getSrc <em>Src</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Src</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint#getSrc()
+   * @see #getRdfPathExpressionConstraint()
+   * @generated
+   */
+  EReference getRdfPathExpressionConstraint_Src();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint#getDst <em>Dst</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Dst</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint#getDst()
+   * @see #getRdfPathExpressionConstraint()
+   * @generated
+   */
+  EReference getRdfPathExpressionConstraint_Dst();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint <em>Type Constraint</em>}'.
@@ -805,6 +894,40 @@ public interface RdfPatternLanguagePackage extends EPackage
      * @generated
      */
     EAttribute PREFIXED_NAME__POSTFIX = eINSTANCE.getPrefixedName_Postfix();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPathExpressionConstraintImpl <em>Rdf Path Expression Constraint</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPathExpressionConstraintImpl
+     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfPathExpressionConstraint()
+     * @generated
+     */
+    EClass RDF_PATH_EXPRESSION_CONSTRAINT = eINSTANCE.getRdfPathExpressionConstraint();
+
+    /**
+     * The meta object literal for the '<em><b>Path Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RDF_PATH_EXPRESSION_CONSTRAINT__PATH_EXPRESSION = eINSTANCE.getRdfPathExpressionConstraint_PathExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Src</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RDF_PATH_EXPRESSION_CONSTRAINT__SRC = eINSTANCE.getRdfPathExpressionConstraint_Src();
+
+    /**
+     * The meta object literal for the '<em><b>Dst</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RDF_PATH_EXPRESSION_CONSTRAINT__DST = eINSTANCE.getRdfPathExpressionConstraint_Dst();
 
     /**
      * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.TypeConstraintImpl <em>Type Constraint</em>}' class.
