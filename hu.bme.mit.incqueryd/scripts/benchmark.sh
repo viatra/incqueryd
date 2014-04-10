@@ -18,7 +18,7 @@ trap control_c SIGINT
 
 cd "$( cd "$( dirname "$0" )" && pwd )"
 
-./copy-to-machines.sh
+./deploy.sh --light
 
 cd ..
 cd hu.bme.mit.incqueryd.core/
@@ -51,12 +51,12 @@ for query in ${queries[@]}; do
     sudo bash -c "echo 3 > /proc/sys/vm/drop_caches"
     
     4s-ssh-all "~/init.sh"
-    echo "waiting for Akka to start"
+    echo "Waiting for Akka to start."
     sleep 5
 
     vmargs="-XX:+UseCompressedOops -XX:MaxPermSize=$maxPermSize -Xmx$xmx"
     args="$defaultArgs -scenario $scenario -workspacePath $workspacePath -sizes $size -queries $query -seriesCount $i"
-    args="$args -cluster"
+    args="$args -clusterName localvm"
     executable="java $vmargs -jar target/hu.bme.mit.incqueryd.core-0.0.1-SNAPSHOT.jar $args"
 
     echo $executable | tee -a executables.txt
