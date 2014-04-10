@@ -35,6 +35,7 @@ public class IncQueryDBenchmarkConfig {
 	protected int seriesCount;
 
 	protected boolean cluster;
+	protected String clusterName;
 	protected boolean initialize4s;
 	
 	public int getSeriesCount() {
@@ -89,7 +90,7 @@ public class IncQueryDBenchmarkConfig {
 
 
 	protected void initOptions() {
-		options.addOption("cluster", false, "run IncQuery-D in a cluster");
+		options.addOption("clusterName", true, "the name of the cluster (used to determine the path to the arch file)");
 		options.addOption("initialize4s", false, "initialize 4store");
 		
 		options.addOption("help", false, "displays this text");
@@ -250,7 +251,11 @@ public class IncQueryDBenchmarkConfig {
 			inferencing = -1;
 		}
 		
-		cluster = cmd.hasOption("cluster");
+		cluster = cmd.hasOption("clusterName");
+		if (cluster) {
+			clusterName = cmd.getOptionValue("clusterName");
+		}
+		
 		initialize4s = cmd.hasOption("initialize4s");
 	}
 
@@ -368,6 +373,10 @@ public class IncQueryDBenchmarkConfig {
 
 	public boolean isInitialize4s() {
 		return initialize4s;
+	}
+	
+	public String getClusterName() {
+		return clusterName;
 	}
 	
 }

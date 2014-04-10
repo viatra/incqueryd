@@ -39,11 +39,13 @@ public class IncQueryDWorker {
 		final String testCase = bc.getTestCases().get(0);
 		final int seriesCount = bc.getSeriesCount();
 
-		final String architectureFile = "../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch/"
-				+ testCase.toLowerCase() + ".arch";
+		// if IncQuery-D runs in development mode, use the arch files from the localvm setup
+		final String architectureFile = "../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch" + 
+				(cluster ? ("-" + bc.getClusterName()) : "-localvm") +
+				"/" + testCase.toLowerCase() + ".arch";
 
 		final int size = bc.getSizes().get(0);
-		final String modelFileName = "railway-" + bc.getScenario().toLowerCase() + "-" + size + "-no-metamodel.owl";
+		final String modelFileName = "railway-" + bc.getScenario().toLowerCase() + "-" + size + ".ttl";
 
 		final BenchmarkResult bmr = new BenchmarkResult("IncQueryD", testCase, size, seriesCount);
 		bmr.setBenchmarkConfig(bc);
