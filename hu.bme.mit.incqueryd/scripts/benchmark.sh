@@ -17,25 +17,13 @@ control_c()
 trap control_c SIGINT
 
 cd "$( cd "$( dirname "$0" )" && pwd )"
-
+. config.sh
 ./deploy.sh --light
 
 cd ..
 cd hu.bme.mit.incqueryd.core/
 
 rm executables.txt results.txt results_err.txt series.txt 2> /dev/null
-
-minSize=1
-maxSize=4
-#seriesCount=1
-seriesCount=2
-#queries="PosLength"
-queries="PosLength RouteSensor SignalNeighbor SwitchSensor"
-timeout="12m"
-scenario="XForm"
-workspacePath="/home/szarnyasg/mondo-trainbenchmark/src/"
-xmx=4G
-maxPermSize=256M
 
 rm results.txt 2> /dev/null
 for i in `seq $seriesCount`; do

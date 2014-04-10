@@ -1,5 +1,8 @@
 #!/bin/bash
 
+cd "$( cd "$( dirname "$0" )" && pwd )"
+. config.sh
+
 while [ "$1" != "" ]; do
 	case $1 in
 		"--light")
@@ -10,9 +13,6 @@ while [ "$1" != "" ]; do
 done
 
 cd "$( cd "$( dirname "$0" )" && pwd )/.."
-
-machines="172.16.70.135 172.16.70.137"
-#machines="vcl0 vcl1 vcl2 vcl3"
 
 for machine in ${machines[@]}; do
   echo $machine
@@ -27,7 +27,7 @@ for machine in ${machines[@]}; do
     # third party dependencies
     scp hu.bme.mit.incqueryd.core/target/lib/* $machine:akka-2.1.4/deploy
   fi
-  
+
   # IncQuery-D's main JAR
   scp hu.bme.mit.incqueryd.core/target/hu.bme.mit.incqueryd.core-*-SNAPSHOT.jar $machine:akka-2.1.4/deploy/
 done
