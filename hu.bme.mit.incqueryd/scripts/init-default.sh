@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export localHost=""
-export JAVA_OPTS="-Xms10G -Xmx10G"
+export localHost=
+export JAVA_OPTS="-Xms1G -Xmx1G"
 
 killall -9 java
 while [[ ! -z `ps auxw | grep akk[a]` ]]; do
