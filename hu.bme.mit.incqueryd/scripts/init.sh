@@ -5,7 +5,7 @@ export JAVA_OPTS="-Xms10G -Xmx10G"
 
 killall -9 java
 while [[ ! -z `ps auxw | grep akk[a]` ]]; do
-  echo Waiting for Akka to finish.Â
+  echo Waiting for Akka to finish.
   sleep 1
 done
 
