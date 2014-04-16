@@ -11,11 +11,9 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.FullIri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PrefixedName;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
@@ -78,8 +76,6 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
       case RdfPatternLanguagePackage.BASE: return createBase();
       case RdfPatternLanguagePackage.PREFIX: return createPrefix();
       case RdfPatternLanguagePackage.IRI: return createIri();
-      case RdfPatternLanguagePackage.FULL_IRI: return createFullIri();
-      case RdfPatternLanguagePackage.PREFIXED_NAME: return createPrefixedName();
       case RdfPatternLanguagePackage.RDF_PATH_EXPRESSION_CONSTRAINT: return createRdfPathExpressionConstraint();
       case RdfPatternLanguagePackage.TYPE_CONSTRAINT: return createTypeConstraint();
       case RdfPatternLanguagePackage.RDF_LITERAL: return createRdfLiteral();
@@ -122,28 +118,6 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
   {
     IriImpl iri = new IriImpl();
     return iri;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public FullIri createFullIri()
-  {
-    FullIriImpl fullIri = new FullIriImpl();
-    return fullIri;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PrefixedName createPrefixedName()
-  {
-    PrefixedNameImpl prefixedName = new PrefixedNameImpl();
-    return prefixedName;
   }
 
   /**

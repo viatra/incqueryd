@@ -14,11 +14,9 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.FullIri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PrefixedName;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
@@ -106,22 +104,6 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
       {
         Iri iri = (Iri)theEObject;
         T result = caseIri(iri);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RdfPatternLanguagePackage.FULL_IRI:
-      {
-        FullIri fullIri = (FullIri)theEObject;
-        T result = caseFullIri(fullIri);
-        if (result == null) result = caseIri(fullIri);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RdfPatternLanguagePackage.PREFIXED_NAME:
-      {
-        PrefixedName prefixedName = (PrefixedName)theEObject;
-        T result = casePrefixedName(prefixedName);
-        if (result == null) result = caseIri(prefixedName);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -223,38 +205,6 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseIri(Iri object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Full Iri</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Full Iri</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseFullIri(FullIri object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Prefixed Name</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Prefixed Name</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePrefixedName(PrefixedName object)
   {
     return null;
   }

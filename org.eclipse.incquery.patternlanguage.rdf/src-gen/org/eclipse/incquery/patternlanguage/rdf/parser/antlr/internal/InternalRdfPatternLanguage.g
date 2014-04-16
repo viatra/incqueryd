@@ -165,19 +165,19 @@ ruleBase returns [EObject current=null]
     }
 (
 (
-		lv_iri_1_0=RULE_IRIREF
-		{
-			newLeafNode(lv_iri_1_0, grammarAccess.getBaseAccess().getIriIRIREFTerminalRuleCall_1_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getBaseAccess().getIriRawIriParserRuleCall_1_0()); 
+	    }
+		lv_iri_1_0=ruleRawIri		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getBaseRule());
+	            $current = createModelElementForParent(grammarAccess.getBaseRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"iri",
         		lv_iri_1_0, 
-        		"IRIREF");
+        		"RawIri");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -230,19 +230,19 @@ rulePrefix returns [EObject current=null]
     }
 (
 (
-		lv_iri_3_0=RULE_IRIREF
-		{
-			newLeafNode(lv_iri_3_0, grammarAccess.getPrefixAccess().getIriIRIREFTerminalRuleCall_3_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getPrefixAccess().getIriRawIriParserRuleCall_3_0()); 
+	    }
+		lv_iri_3_0=ruleRawIri		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPrefixRule());
+	            $current = createModelElementForParent(grammarAccess.getPrefixRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"iri",
         		lv_iri_3_0, 
-        		"IRIREF");
+        		"RawIri");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -267,117 +267,38 @@ ruleIri returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(
-    { 
-        newCompositeNode(grammarAccess.getIriAccess().getFullIriParserRuleCall_0()); 
-    }
-    this_FullIri_0=ruleFullIri
-    { 
-        $current = $this_FullIri_0.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getIriAccess().getPrefixedNameParserRuleCall_1()); 
-    }
-    this_PrefixedName_1=rulePrefixedName
-    { 
-        $current = $this_PrefixedName_1.current; 
-        afterParserOrEnumRuleCall();
-    }
-)
-;
-
-
-
-
-
-// Entry rule entryRuleFullIri
-entryRuleFullIri returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getFullIriRule()); }
-	 iv_ruleFullIri=ruleFullIri 
-	 { $current=$iv_ruleFullIri.current; } 
-	 EOF 
-;
-
-// Rule FullIri
-ruleFullIri returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		lv_iri_0_0=RULE_IRIREF
-		{
-			newLeafNode(lv_iri_0_0, grammarAccess.getFullIriAccess().getIriIRIREFTerminalRuleCall_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getFullIriRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"iri",
-        		lv_iri_0_0, 
-        		"IRIREF");
-	    }
-
-)
-)
-;
-
-
-
-
-
-// Entry rule entryRulePrefixedName
-entryRulePrefixedName returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getPrefixedNameRule()); }
-	 iv_rulePrefixedName=rulePrefixedName 
-	 { $current=$iv_rulePrefixedName.current; } 
-	 EOF 
-;
-
-// Rule PrefixedName
-rulePrefixedName returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
+(((
 (
 		{
 			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPrefixedNameRule());
+	            $current = createModelElement(grammarAccess.getIriRule());
 	        }
         }
 	otherlv_0=RULE_ID
 	{
-		newLeafNode(otherlv_0, grammarAccess.getPrefixedNameAccess().getPrefixPrefixCrossReference_0_0()); 
+		newLeafNode(otherlv_0, grammarAccess.getIriAccess().getPrefixPrefixCrossReference_0_0_0()); 
 	}
 
 )
 )	otherlv_1=':' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getPrefixedNameAccess().getColonKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getIriAccess().getColonKeyword_0_1());
     }
+)?(
 (
-(
-		lv_postfix_2_0=RULE_IRIREF
-		{
-			newLeafNode(lv_postfix_2_0, grammarAccess.getPrefixedNameAccess().getPostfixIRIREFTerminalRuleCall_2_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getIriAccess().getIriRawIriParserRuleCall_1_0()); 
+	    }
+		lv_iri_2_0=ruleRawIri		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPrefixedNameRule());
+	            $current = createModelElementForParent(grammarAccess.getIriRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
-       			"postfix",
-        		lv_postfix_2_0, 
-        		"IRIREF");
+       			"iri",
+        		lv_iri_2_0, 
+        		"RawIri");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -849,6 +770,42 @@ ruleRdfLiteral returns [EObject current=null]
 )
 ))))
 ;
+
+
+
+
+
+// Entry rule entryRuleRawIri
+entryRuleRawIri returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getRawIriRule()); } 
+	 iv_ruleRawIri=ruleRawIri 
+	 { $current=$iv_ruleRawIri.current.getText(); }  
+	 EOF 
+;
+
+// Rule RawIri
+ruleRawIri returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(    this_ID_0=RULE_ID    {
+		$current.merge(this_ID_0);
+    }
+
+    { 
+    newLeafNode(this_ID_0, grammarAccess.getRawIriAccess().getIDTerminalRuleCall_0()); 
+    }
+
+    |    this_ESCAPED_IRI_1=RULE_ESCAPED_IRI    {
+		$current.merge(this_ESCAPED_IRI_1);
+    }
+
+    { 
+    newLeafNode(this_ESCAPED_IRI_1, grammarAccess.getRawIriAccess().getESCAPED_IRITerminalRuleCall_1()); 
+    }
+)
+    ;
 
 
 
@@ -7892,7 +7849,7 @@ ruleCompareFeature returns [Enumerator current=null]
 
 
 
-RULE_IRIREF : '<' ('\\>'|~('>'))* '>';
+RULE_ESCAPED_IRI : '<' ('\\>'|~('>'))* '>';
 
 RULE_HEX : ('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F'|'_')+ ('#' (('b'|'B') ('i'|'I')|('l'|'L')))?;
 

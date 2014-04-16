@@ -9,13 +9,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="iri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Iri"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FullIri" eSuperTypes="#//Iri">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrefixedName" eSuperTypes="#//Iri">
+  <eClassifiers xsi:type="ecore:EClass" name="Iri">
     <eStructuralFeatures xsi:type="ecore:EReference" name="prefix" eType="#//Prefix"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="postfix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RdfPathExpressionConstraint" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//Constraint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pathExpression" eType="ecore:EClass ../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//PathExpressionElement"

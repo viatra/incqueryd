@@ -12,11 +12,9 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternLanguagePackage;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.FullIri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PrefixedName;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
@@ -52,20 +50,6 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
    * @generated
    */
   private EClass iriEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass fullIriEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass prefixedNameEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -240,9 +224,9 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getFullIri()
+  public EReference getIri_Prefix()
   {
-    return fullIriEClass;
+    return (EReference)iriEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -250,39 +234,9 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFullIri_Iri()
+  public EAttribute getIri_Iri()
   {
-    return (EAttribute)fullIriEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getPrefixedName()
-  {
-    return prefixedNameEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPrefixedName_Prefix()
-  {
-    return (EReference)prefixedNameEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPrefixedName_Postfix()
-  {
-    return (EAttribute)prefixedNameEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)iriEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -503,13 +457,8 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
     createEAttribute(prefixEClass, PREFIX__IRI);
 
     iriEClass = createEClass(IRI);
-
-    fullIriEClass = createEClass(FULL_IRI);
-    createEAttribute(fullIriEClass, FULL_IRI__IRI);
-
-    prefixedNameEClass = createEClass(PREFIXED_NAME);
-    createEReference(prefixedNameEClass, PREFIXED_NAME__PREFIX);
-    createEAttribute(prefixedNameEClass, PREFIXED_NAME__POSTFIX);
+    createEReference(iriEClass, IRI__PREFIX);
+    createEAttribute(iriEClass, IRI__IRI);
 
     rdfPathExpressionConstraintEClass = createEClass(RDF_PATH_EXPRESSION_CONSTRAINT);
     createEReference(rdfPathExpressionConstraintEClass, RDF_PATH_EXPRESSION_CONSTRAINT__PATH_EXPRESSION);
@@ -568,8 +517,6 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    fullIriEClass.getESuperTypes().add(this.getIri());
-    prefixedNameEClass.getESuperTypes().add(this.getIri());
     rdfPathExpressionConstraintEClass.getESuperTypes().add(thePatternLanguagePackage.getConstraint());
     typeConstraintEClass.getESuperTypes().add(thePatternLanguagePackage.getConstraint());
     rdfLiteralEClass.getESuperTypes().add(thePatternLanguagePackage.getValueReference());
@@ -586,13 +533,8 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
     initEAttribute(getPrefix_Iri(), ecorePackage.getEString(), "iri", null, 0, 1, Prefix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(iriEClass, Iri.class, "Iri", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(fullIriEClass, FullIri.class, "FullIri", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFullIri_Iri(), ecorePackage.getEString(), "iri", null, 0, 1, FullIri.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(prefixedNameEClass, PrefixedName.class, "PrefixedName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPrefixedName_Prefix(), this.getPrefix(), null, "prefix", null, 0, 1, PrefixedName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPrefixedName_Postfix(), ecorePackage.getEString(), "postfix", null, 0, 1, PrefixedName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIri_Prefix(), this.getPrefix(), null, "prefix", null, 0, 1, Iri.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getIri_Iri(), ecorePackage.getEString(), "iri", null, 0, 1, Iri.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(rdfPathExpressionConstraintEClass, RdfPathExpressionConstraint.class, "RdfPathExpressionConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRdfPathExpressionConstraint_PathExpression(), thePatternLanguagePackage.getPathExpressionElement(), null, "pathExpression", null, 0, 1, RdfPathExpressionConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

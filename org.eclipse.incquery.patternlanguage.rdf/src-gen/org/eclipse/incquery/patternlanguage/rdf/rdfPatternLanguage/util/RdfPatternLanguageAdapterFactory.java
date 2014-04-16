@@ -16,11 +16,9 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.FullIri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PrefixedName;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
@@ -104,16 +102,6 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
       public Adapter caseIri(Iri object)
       {
         return createIriAdapter();
-      }
-      @Override
-      public Adapter caseFullIri(FullIri object)
-      {
-        return createFullIriAdapter();
-      }
-      @Override
-      public Adapter casePrefixedName(PrefixedName object)
-      {
-        return createPrefixedNameAdapter();
       }
       @Override
       public Adapter caseRdfPathExpressionConstraint(RdfPathExpressionConstraint object)
@@ -238,36 +226,6 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIriAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.FullIri <em>Full Iri</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.FullIri
-   * @generated
-   */
-  public Adapter createFullIriAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PrefixedName <em>Prefixed Name</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PrefixedName
-   * @generated
-   */
-  public Adapter createPrefixedNameAdapter()
   {
     return null;
   }

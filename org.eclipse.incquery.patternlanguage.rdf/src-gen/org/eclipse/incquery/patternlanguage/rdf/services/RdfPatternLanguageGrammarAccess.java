@@ -65,23 +65,23 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cBaseKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cIriAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cIriIRIREFTerminalRuleCall_1_0 = (RuleCall)cIriAssignment_1.eContents().get(0);
+		private final RuleCall cIriRawIriParserRuleCall_1_0 = (RuleCall)cIriAssignment_1.eContents().get(0);
 		
 		//Base:
-		//	"base" iri=IRIREF;
+		//	"base" iri=RawIri;
 		public ParserRule getRule() { return rule; }
 
-		//"base" iri=IRIREF
+		//"base" iri=RawIri
 		public Group getGroup() { return cGroup; }
 
 		//"base"
 		public Keyword getBaseKeyword_0() { return cBaseKeyword_0; }
 
-		//iri=IRIREF
+		//iri=RawIri
 		public Assignment getIriAssignment_1() { return cIriAssignment_1; }
 
-		//IRIREF
-		public RuleCall getIriIRIREFTerminalRuleCall_1_0() { return cIriIRIREFTerminalRuleCall_1_0; }
+		//RawIri
+		public RuleCall getIriRawIriParserRuleCall_1_0() { return cIriRawIriParserRuleCall_1_0; }
 	}
 
 	public class PrefixElements extends AbstractParserRuleElementFinder {
@@ -92,13 +92,13 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cIriAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cIriIRIREFTerminalRuleCall_3_0 = (RuleCall)cIriAssignment_3.eContents().get(0);
+		private final RuleCall cIriRawIriParserRuleCall_3_0 = (RuleCall)cIriAssignment_3.eContents().get(0);
 		
 		//Prefix:
-		//	"prefix" name=ID ":" iri=IRIREF;
+		//	"prefix" name=ID ":" iri=RawIri;
 		public ParserRule getRule() { return rule; }
 
-		//"prefix" name=ID ":" iri=IRIREF
+		//"prefix" name=ID ":" iri=RawIri
 		public Group getGroup() { return cGroup; }
 
 		//"prefix"
@@ -113,87 +113,51 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		//":"
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 
-		//iri=IRIREF
+		//iri=RawIri
 		public Assignment getIriAssignment_3() { return cIriAssignment_3; }
 
-		//IRIREF
-		public RuleCall getIriIRIREFTerminalRuleCall_3_0() { return cIriIRIREFTerminalRuleCall_3_0; }
+		//RawIri
+		public RuleCall getIriRawIriParserRuleCall_3_0() { return cIriRawIriParserRuleCall_3_0; }
 	}
 
 	public class IriElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Iri");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cFullIriParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cPrefixedNameParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Assignment cPrefixAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
+		private final CrossReference cPrefixPrefixCrossReference_0_0_0 = (CrossReference)cPrefixAssignment_0_0.eContents().get(0);
+		private final RuleCall cPrefixPrefixIDTerminalRuleCall_0_0_0_1 = (RuleCall)cPrefixPrefixCrossReference_0_0_0.eContents().get(1);
+		private final Keyword cColonKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
+		private final Assignment cIriAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cIriRawIriParserRuleCall_1_0 = (RuleCall)cIriAssignment_1.eContents().get(0);
 		
 		//Iri:
-		//	FullIri | PrefixedName;
+		//	(prefix=[Prefix] ":")? iri=RawIri;
 		public ParserRule getRule() { return rule; }
 
-		//FullIri | PrefixedName
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//FullIri
-		public RuleCall getFullIriParserRuleCall_0() { return cFullIriParserRuleCall_0; }
-
-		//PrefixedName
-		public RuleCall getPrefixedNameParserRuleCall_1() { return cPrefixedNameParserRuleCall_1; }
-	}
-
-	public class FullIriElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FullIri");
-		private final Assignment cIriAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cIriIRIREFTerminalRuleCall_0 = (RuleCall)cIriAssignment.eContents().get(0);
-		
-		//FullIri:
-		//	iri=IRIREF;
-		public ParserRule getRule() { return rule; }
-
-		//iri=IRIREF
-		public Assignment getIriAssignment() { return cIriAssignment; }
-
-		//IRIREF
-		public RuleCall getIriIRIREFTerminalRuleCall_0() { return cIriIRIREFTerminalRuleCall_0; }
-	}
-
-	public class PrefixedNameElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PrefixedName");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cPrefixAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cPrefixPrefixCrossReference_0_0 = (CrossReference)cPrefixAssignment_0.eContents().get(0);
-		private final RuleCall cPrefixPrefixIDTerminalRuleCall_0_0_1 = (RuleCall)cPrefixPrefixCrossReference_0_0.eContents().get(1);
-		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cPostfixAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cPostfixIRIREFTerminalRuleCall_2_0 = (RuleCall)cPostfixAssignment_2.eContents().get(0);
-		
-		//PrefixedName:
-		//	prefix=[Prefix] ":" postfix= // TODO use http://www.w3.org/TR/2014/REC-turtle-20140225/#grammar-production-PN_LOCAL for postfix
-		//	IRIREF;
-		public ParserRule getRule() { return rule; }
-
-		//prefix=[Prefix] ":" postfix= // TODO use http://www.w3.org/TR/2014/REC-turtle-20140225/#grammar-production-PN_LOCAL for postfix
-		//IRIREF
+		//(prefix=[Prefix] ":")? iri=RawIri
 		public Group getGroup() { return cGroup; }
 
+		//(prefix=[Prefix] ":")?
+		public Group getGroup_0() { return cGroup_0; }
+
 		//prefix=[Prefix]
-		public Assignment getPrefixAssignment_0() { return cPrefixAssignment_0; }
+		public Assignment getPrefixAssignment_0_0() { return cPrefixAssignment_0_0; }
 
 		//[Prefix]
-		public CrossReference getPrefixPrefixCrossReference_0_0() { return cPrefixPrefixCrossReference_0_0; }
+		public CrossReference getPrefixPrefixCrossReference_0_0_0() { return cPrefixPrefixCrossReference_0_0_0; }
 
 		//ID
-		public RuleCall getPrefixPrefixIDTerminalRuleCall_0_0_1() { return cPrefixPrefixIDTerminalRuleCall_0_0_1; }
+		public RuleCall getPrefixPrefixIDTerminalRuleCall_0_0_0_1() { return cPrefixPrefixIDTerminalRuleCall_0_0_0_1; }
 
 		//":"
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+		public Keyword getColonKeyword_0_1() { return cColonKeyword_0_1; }
 
-		//postfix= // TODO use http://www.w3.org/TR/2014/REC-turtle-20140225/#grammar-production-PN_LOCAL for postfix
-		//IRIREF
-		public Assignment getPostfixAssignment_2() { return cPostfixAssignment_2; }
+		//iri=RawIri
+		public Assignment getIriAssignment_1() { return cIriAssignment_1; }
 
-		//// TODO use http://www.w3.org/TR/2014/REC-turtle-20140225/#grammar-production-PN_LOCAL for postfix
-		//IRIREF
-		public RuleCall getPostfixIRIREFTerminalRuleCall_2_0() { return cPostfixIRIREFTerminalRuleCall_2_0; }
+		//RawIri
+		public RuleCall getIriRawIriParserRuleCall_1_0() { return cIriRawIriParserRuleCall_1_0; }
 	}
 
 	public class ConstraintElements extends AbstractParserRuleElementFinder {
@@ -453,14 +417,32 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		//ID
 		public RuleCall getLanguageIDTerminalRuleCall_1_1_1_0() { return cLanguageIDTerminalRuleCall_1_1_1_0; }
 	}
+
+	public class RawIriElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RawIri");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cESCAPED_IRITerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//RawIri returns ecore::EString:
+		//	ID | ESCAPED_IRI;
+		public ParserRule getRule() { return rule; }
+
+		//ID | ESCAPED_IRI
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//ID
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+
+		//ESCAPED_IRI
+		public RuleCall getESCAPED_IRITerminalRuleCall_1() { return cESCAPED_IRITerminalRuleCall_1; }
+	}
 	
 	
 	private RdfPatternModelElements pRdfPatternModel;
 	private BaseElements pBase;
 	private PrefixElements pPrefix;
 	private IriElements pIri;
-	private FullIriElements pFullIri;
-	private PrefixedNameElements pPrefixedName;
 	private ConstraintElements pConstraint;
 	private RdfPathExpressionConstraintElements pRdfPathExpressionConstraint;
 	private TypeConstraintElements pTypeConstraint;
@@ -468,7 +450,8 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	private RefTypeElements pRefType;
 	private LiteralValueReferenceElements pLiteralValueReference;
 	private RdfLiteralElements pRdfLiteral;
-	private TerminalRule tIRIREF;
+	private RawIriElements pRawIri;
+	private TerminalRule tESCAPED_IRI;
 	
 	private final Grammar grammar;
 
@@ -519,7 +502,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//Base:
-	//	"base" iri=IRIREF;
+	//	"base" iri=RawIri;
 	public BaseElements getBaseAccess() {
 		return (pBase != null) ? pBase : (pBase = new BaseElements());
 	}
@@ -529,7 +512,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//Prefix:
-	//	"prefix" name=ID ":" iri=IRIREF;
+	//	"prefix" name=ID ":" iri=RawIri;
 	public PrefixElements getPrefixAccess() {
 		return (pPrefix != null) ? pPrefix : (pPrefix = new PrefixElements());
 	}
@@ -539,34 +522,13 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//Iri:
-	//	FullIri | PrefixedName;
+	//	(prefix=[Prefix] ":")? iri=RawIri;
 	public IriElements getIriAccess() {
 		return (pIri != null) ? pIri : (pIri = new IriElements());
 	}
 	
 	public ParserRule getIriRule() {
 		return getIriAccess().getRule();
-	}
-
-	//FullIri:
-	//	iri=IRIREF;
-	public FullIriElements getFullIriAccess() {
-		return (pFullIri != null) ? pFullIri : (pFullIri = new FullIriElements());
-	}
-	
-	public ParserRule getFullIriRule() {
-		return getFullIriAccess().getRule();
-	}
-
-	//PrefixedName:
-	//	prefix=[Prefix] ":" postfix= // TODO use http://www.w3.org/TR/2014/REC-turtle-20140225/#grammar-production-PN_LOCAL for postfix
-	//	IRIREF;
-	public PrefixedNameElements getPrefixedNameAccess() {
-		return (pPrefixedName != null) ? pPrefixedName : (pPrefixedName = new PrefixedNameElements());
-	}
-	
-	public ParserRule getPrefixedNameRule() {
-		return getPrefixedNameAccess().getRule();
 	}
 
 	//Constraint returns core::Constraint:
@@ -641,10 +603,20 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		return getRdfLiteralAccess().getRule();
 	}
 
-	//terminal IRIREF:
+	//RawIri returns ecore::EString:
+	//	ID | ESCAPED_IRI;
+	public RawIriElements getRawIriAccess() {
+		return (pRawIri != null) ? pRawIri : (pRawIri = new RawIriElements());
+	}
+	
+	public ParserRule getRawIriRule() {
+		return getRawIriAccess().getRule();
+	}
+
+	//terminal ESCAPED_IRI:
 	//	"<" ("\\>" | !">")* ">";
-	public TerminalRule getIRIREFRule() {
-		return (tIRIREF != null) ? tIRIREF : (tIRIREF = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IRIREF"));
+	public TerminalRule getESCAPED_IRIRule() {
+		return (tESCAPED_IRI != null) ? tESCAPED_IRI : (tESCAPED_IRI = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESCAPED_IRI"));
 	} 
 
 	//PatternModel:

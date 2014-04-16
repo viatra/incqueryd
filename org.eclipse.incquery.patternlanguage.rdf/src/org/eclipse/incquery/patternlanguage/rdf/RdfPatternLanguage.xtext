@@ -12,23 +12,15 @@ RdfPatternModel returns core::PatternModel:
 	patterns+=Pattern*;
 
 Base:
-	'base' iri=IRIREF
+	'base' iri=RawIri
 ;
 
 Prefix:
-	'prefix' name=ID ':' iri=IRIREF
+	'prefix' name=ID ':' iri=RawIri
 ;
 
 Iri:
-	FullIri | PrefixedName
-;
-
-FullIri:
-	iri=IRIREF
-;
-
-PrefixedName:
-	prefix=[Prefix] ':' postfix=IRIREF // TODO use http://www.w3.org/TR/2014/REC-turtle-20140225/#grammar-production-PN_LOCAL for postfix
+	(prefix=[Prefix] ':')? iri=RawIri
 ;
 
 Constraint returns core::Constraint:
@@ -64,6 +56,10 @@ RdfLiteral:
 	lexicalForm=STRING (('^^' datatype=Iri) | ('@' language=ID))
 ;
 
-terminal IRIREF:
+RawIri returns ecore::EString:
+	ID | ESCAPED_IRI
+;
+
+terminal ESCAPED_IRI:
 	'<' ('\\>' | !'>')* '>'
 ;

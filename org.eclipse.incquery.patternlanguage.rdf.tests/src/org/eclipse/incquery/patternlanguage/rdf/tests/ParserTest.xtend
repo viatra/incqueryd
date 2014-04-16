@@ -20,18 +20,17 @@ class ParserTest {
 
 	@Test
 	def void posLength() {
-		val expectedBaseIri = "<http://example.org/>"
 		val model = parser.parse('''
-base «expectedBaseIri»
-prefix train: <http://train.org/>
+base <http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
-pattern posLength(Source, Target) = {
-	<Segment>(Source);
-	train:<Segment_length>(Source, Target);
-	check((Target as Integer) <= 0);
+
+pattern posLength(Segment, SegmentLength) {
+	Segment(Segment);
+	Segment_length(Segment, SegmentLength);
+	check(SegmentLength <= "0"^^xsd:integer);
 }
 ''')
-		assertEquals(expectedBaseIri, model.base.iri)
+		assertEquals("<http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#>", model.base.iri)
 	}
 
 }

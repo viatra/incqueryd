@@ -50,24 +50,6 @@ public interface RdfPatternLanguageFactory extends EFactory
   Iri createIri();
 
   /**
-   * Returns a new object of class '<em>Full Iri</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Full Iri</em>'.
-   * @generated
-   */
-  FullIri createFullIri();
-
-  /**
-   * Returns a new object of class '<em>Prefixed Name</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Prefixed Name</em>'.
-   * @generated
-   */
-  PrefixedName createPrefixedName();
-
-  /**
    * Returns a new object of class '<em>Rdf Path Expression Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

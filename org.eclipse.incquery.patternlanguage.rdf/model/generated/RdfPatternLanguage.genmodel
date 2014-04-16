@@ -16,13 +16,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfPatternLanguage.ecore#//Prefix/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfPatternLanguage.ecore#//Prefix/iri"/>
     </genClasses>
-    <genClasses ecoreClass="RdfPatternLanguage.ecore#//Iri"/>
-    <genClasses ecoreClass="RdfPatternLanguage.ecore#//FullIri">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfPatternLanguage.ecore#//FullIri/iri"/>
-    </genClasses>
-    <genClasses ecoreClass="RdfPatternLanguage.ecore#//PrefixedName">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//PrefixedName/prefix"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfPatternLanguage.ecore#//PrefixedName/postfix"/>
+    <genClasses ecoreClass="RdfPatternLanguage.ecore#//Iri">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//Iri/prefix"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfPatternLanguage.ecore#//Iri/iri"/>
     </genClasses>
     <genClasses ecoreClass="RdfPatternLanguage.ecore#//RdfPathExpressionConstraint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfPathExpressionConstraint/pathExpression"/>
