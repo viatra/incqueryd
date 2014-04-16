@@ -163,33 +163,69 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	public class ConstraintElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Constraint");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cCheckConstraintParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cCompareConstraintParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cPatternCompositionConstraintParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cCompareConstraintParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cPatternCompositionConstraintParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cTypeConstraintParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cRdfPathExpressionConstraintParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cTypeConstraintParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cRdfCheckConstraintParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//Constraint returns core::Constraint:
-		//	CheckConstraint | CompareConstraint | PatternCompositionConstraint | RdfPathExpressionConstraint | TypeConstraint;
+		//	CompareConstraint | PatternCompositionConstraint | TypeConstraint | RdfPathExpressionConstraint | RdfCheckConstraint;
 		public ParserRule getRule() { return rule; }
 
-		//CheckConstraint | CompareConstraint | PatternCompositionConstraint | RdfPathExpressionConstraint | TypeConstraint
+		//CompareConstraint | PatternCompositionConstraint | TypeConstraint | RdfPathExpressionConstraint | RdfCheckConstraint
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//CheckConstraint
-		public RuleCall getCheckConstraintParserRuleCall_0() { return cCheckConstraintParserRuleCall_0; }
-
 		//CompareConstraint
-		public RuleCall getCompareConstraintParserRuleCall_1() { return cCompareConstraintParserRuleCall_1; }
+		public RuleCall getCompareConstraintParserRuleCall_0() { return cCompareConstraintParserRuleCall_0; }
 
 		//PatternCompositionConstraint
-		public RuleCall getPatternCompositionConstraintParserRuleCall_2() { return cPatternCompositionConstraintParserRuleCall_2; }
+		public RuleCall getPatternCompositionConstraintParserRuleCall_1() { return cPatternCompositionConstraintParserRuleCall_1; }
+
+		//TypeConstraint
+		public RuleCall getTypeConstraintParserRuleCall_2() { return cTypeConstraintParserRuleCall_2; }
 
 		//RdfPathExpressionConstraint
 		public RuleCall getRdfPathExpressionConstraintParserRuleCall_3() { return cRdfPathExpressionConstraintParserRuleCall_3; }
 
-		//TypeConstraint
-		public RuleCall getTypeConstraintParserRuleCall_4() { return cTypeConstraintParserRuleCall_4; }
+		//RdfCheckConstraint
+		public RuleCall getRdfCheckConstraintParserRuleCall_4() { return cRdfCheckConstraintParserRuleCall_4; }
+	}
+
+	public class RdfCheckConstraintElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RdfCheckConstraint");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cRdfCheckConstraintAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cCheckKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cExpressionSTRINGTerminalRuleCall_3_0 = (RuleCall)cExpressionAssignment_3.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//RdfCheckConstraint returns Constraint:
+		//	{RdfCheckConstraint} "check" "(" expression=STRING ")";
+		public ParserRule getRule() { return rule; }
+
+		//{RdfCheckConstraint} "check" "(" expression=STRING ")"
+		public Group getGroup() { return cGroup; }
+
+		//{RdfCheckConstraint}
+		public Action getRdfCheckConstraintAction_0() { return cRdfCheckConstraintAction_0; }
+
+		//"check"
+		public Keyword getCheckKeyword_1() { return cCheckKeyword_1; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
+
+		//expression=STRING
+		public Assignment getExpressionAssignment_3() { return cExpressionAssignment_3; }
+
+		//STRING
+		public RuleCall getExpressionSTRINGTerminalRuleCall_3_0() { return cExpressionSTRINGTerminalRuleCall_3_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
 	}
 
 	public class RdfPathExpressionConstraintElements extends AbstractParserRuleElementFinder {
@@ -444,6 +480,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	private PrefixElements pPrefix;
 	private IriElements pIri;
 	private ConstraintElements pConstraint;
+	private RdfCheckConstraintElements pRdfCheckConstraint;
 	private RdfPathExpressionConstraintElements pRdfPathExpressionConstraint;
 	private TypeConstraintElements pTypeConstraint;
 	private TypeElements pType;
@@ -532,13 +569,23 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//Constraint returns core::Constraint:
-	//	CheckConstraint | CompareConstraint | PatternCompositionConstraint | RdfPathExpressionConstraint | TypeConstraint;
+	//	CompareConstraint | PatternCompositionConstraint | TypeConstraint | RdfPathExpressionConstraint | RdfCheckConstraint;
 	public ConstraintElements getConstraintAccess() {
 		return (pConstraint != null) ? pConstraint : (pConstraint = new ConstraintElements());
 	}
 	
 	public ParserRule getConstraintRule() {
 		return getConstraintAccess().getRule();
+	}
+
+	//RdfCheckConstraint returns Constraint:
+	//	{RdfCheckConstraint} "check" "(" expression=STRING ")";
+	public RdfCheckConstraintElements getRdfCheckConstraintAccess() {
+		return (pRdfCheckConstraint != null) ? pRdfCheckConstraint : (pRdfCheckConstraint = new RdfCheckConstraintElements());
+	}
+	
+	public ParserRule getRdfCheckConstraintRule() {
+		return getRdfCheckConstraintAccess().getRule();
 	}
 
 	//RdfPathExpressionConstraint:

@@ -34,6 +34,7 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
@@ -130,8 +131,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 				}
 				else break;
 			case PatternLanguagePackage.CHECK_CONSTRAINT:
-				if(context == grammarAccess.getCheckConstraintRule() ||
-				   context == grammarAccess.getConstraintRule()) {
+				if(context == grammarAccess.getCheckConstraintRule()) {
 					sequence_CheckConstraint(context, (CheckConstraint) semanticObject); 
 					return; 
 				}
@@ -318,6 +318,13 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 			case RdfPatternLanguagePackage.PROPERTY:
 				if(context == grammarAccess.getRefTypeRule()) {
 					sequence_RefType(context, (Property) semanticObject); 
+					return; 
+				}
+				else break;
+			case RdfPatternLanguagePackage.RDF_CHECK_CONSTRAINT:
+				if(context == grammarAccess.getConstraintRule() ||
+				   context == grammarAccess.getRdfCheckConstraintRule()) {
+					sequence_RdfCheckConstraint(context, (RdfCheckConstraint) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1326,6 +1333,22 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getPrefixAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getPrefixAccess().getIriRawIriParserRuleCall_3_0(), semanticObject.getIri());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     expression=STRING
+	 */
+	protected void sequence_RdfCheckConstraint(EObject context, RdfCheckConstraint semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RdfPatternLanguagePackage.Literals.RDF_CHECK_CONSTRAINT__EXPRESSION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RdfPatternLanguagePackage.Literals.RDF_CHECK_CONSTRAINT__EXPRESSION));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getRdfCheckConstraintAccess().getExpressionSTRINGTerminalRuleCall_3_0(), semanticObject.getExpression());
 		feeder.finish();
 	}
 	

@@ -38,7 +38,7 @@ public class ParserTest {
       _builder.append("Segment_length(Segment, SegmentLength);");
       _builder.newLine();
       _builder.append("\t");
-      _builder.append("check(SegmentLength <= \"0\"^^xsd:integer);");
+      _builder.append("check(\'SegmentLength <= \"0\"^^xsd:integer\');");
       _builder.newLine();
       _builder.append("}");
       _builder.newLine();

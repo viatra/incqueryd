@@ -325,31 +325,31 @@ ruleConstraint returns [EObject current=null]
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getConstraintAccess().getCheckConstraintParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getConstraintAccess().getCompareConstraintParserRuleCall_0()); 
     }
-    this_CheckConstraint_0=ruleCheckConstraint
+    this_CompareConstraint_0=ruleCompareConstraint
     { 
-        $current = $this_CheckConstraint_0.current; 
+        $current = $this_CompareConstraint_0.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getConstraintAccess().getCompareConstraintParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getConstraintAccess().getPatternCompositionConstraintParserRuleCall_1()); 
     }
-    this_CompareConstraint_1=ruleCompareConstraint
+    this_PatternCompositionConstraint_1=rulePatternCompositionConstraint
     { 
-        $current = $this_CompareConstraint_1.current; 
+        $current = $this_PatternCompositionConstraint_1.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getConstraintAccess().getPatternCompositionConstraintParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getConstraintAccess().getTypeConstraintParserRuleCall_2()); 
     }
-    this_PatternCompositionConstraint_2=rulePatternCompositionConstraint
+    this_TypeConstraint_2=ruleTypeConstraint
     { 
-        $current = $this_PatternCompositionConstraint_2.current; 
+        $current = $this_TypeConstraint_2.current; 
         afterParserOrEnumRuleCall();
     }
 
@@ -365,12 +365,69 @@ ruleConstraint returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getConstraintAccess().getTypeConstraintParserRuleCall_4()); 
+        newCompositeNode(grammarAccess.getConstraintAccess().getRdfCheckConstraintParserRuleCall_4()); 
     }
-    this_TypeConstraint_4=ruleTypeConstraint
+    this_RdfCheckConstraint_4=ruleRdfCheckConstraint
     { 
-        $current = $this_TypeConstraint_4.current; 
+        $current = $this_RdfCheckConstraint_4.current; 
         afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleRdfCheckConstraint
+entryRuleRdfCheckConstraint returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getRdfCheckConstraintRule()); }
+	 iv_ruleRdfCheckConstraint=ruleRdfCheckConstraint 
+	 { $current=$iv_ruleRdfCheckConstraint.current; } 
+	 EOF 
+;
+
+// Rule RdfCheckConstraint
+ruleRdfCheckConstraint returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getRdfCheckConstraintAccess().getRdfCheckConstraintAction_0(),
+            $current);
+    }
+)	otherlv_1='check' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getRdfCheckConstraintAccess().getCheckKeyword_1());
+    }
+	otherlv_2='(' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getRdfCheckConstraintAccess().getLeftParenthesisKeyword_2());
+    }
+(
+(
+		lv_expression_3_0=RULE_STRING
+		{
+			newLeafNode(lv_expression_3_0, grammarAccess.getRdfCheckConstraintAccess().getExpressionSTRINGTerminalRuleCall_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getRdfCheckConstraintRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"expression",
+        		lv_expression_3_0, 
+        		"STRING");
+	    }
+
+)
+)	otherlv_4=')' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getRdfCheckConstraintAccess().getRightParenthesisKeyword_4());
     }
 )
 ;
@@ -1594,61 +1651,6 @@ ruleCompareConstraint returns [EObject current=null]
 ;
 
 
-
-
-
-// Entry rule entryRuleCheckConstraint
-entryRuleCheckConstraint returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getCheckConstraintRule()); }
-	 iv_ruleCheckConstraint=ruleCheckConstraint 
-	 { $current=$iv_ruleCheckConstraint.current; } 
-	 EOF 
-;
-
-// Rule CheckConstraint
-ruleCheckConstraint returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getCheckConstraintAccess().getCheckConstraintAction_0(),
-            $current);
-    }
-)	otherlv_1='check' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getCheckConstraintAccess().getCheckKeyword_1());
-    }
-	otherlv_2='(' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getCheckConstraintAccess().getLeftParenthesisKeyword_2());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getCheckConstraintAccess().getExpressionXExpressionParserRuleCall_3_0()); 
-	    }
-		lv_expression_3_0=ruleXExpression		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getCheckConstraintRule());
-	        }
-       		set(
-       			$current, 
-       			"expression",
-        		lv_expression_3_0, 
-        		"XExpression");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)	otherlv_4=')' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getCheckConstraintAccess().getRightParenthesisKeyword_4());
-    }
-)
-;
 
 
 

@@ -24,9 +24,15 @@ Iri:
 ;
 
 Constraint returns core::Constraint:
-	CheckConstraint	| CompareConstraint | PatternCompositionConstraint
-	| RdfPathExpressionConstraint
+	CompareConstraint | PatternCompositionConstraint
 	| TypeConstraint
+	| RdfPathExpressionConstraint
+	| RdfCheckConstraint
+;
+
+RdfCheckConstraint returns Constraint:
+	{RdfCheckConstraint}
+	'check' '(' expression=STRING ')'
 ;
 
 RdfPathExpressionConstraint:
