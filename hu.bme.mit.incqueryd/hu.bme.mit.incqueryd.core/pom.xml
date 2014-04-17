@@ -189,7 +189,7 @@
 
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
-			<artifactId>hu.bme.mit.incqueryd.architecture</artifactId>
+			<artifactId>hu.bme.mit.incqueryd.arch</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
