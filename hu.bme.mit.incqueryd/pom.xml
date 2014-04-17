@@ -11,13 +11,13 @@
 	<name>IncQuery-D</name>
 
 	<modules>
+		<module>hu.bme.mit.incqueryd.arch</module>
 		<module>hu.bme.mit.incqueryd.core</module>
 		<module>hu.bme.mit.incqueryd.cache</module>
 		<module>hu.bme.mit.incqueryd.cache.hazelcast</module>
 		<module>hu.bme.mit.incqueryd.cache.local</module>
 		<module>hu.bme.mit.incqueryd.recipes</module>
 		<module>hu.bme.mit.incqueryd.recipeinstances</module>
-		<module>hu.bme.mit.incqueryd.architecture</module>
 	</modules>
 
 	<properties>
