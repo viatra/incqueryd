@@ -1,0 +1,320 @@
+@Ecore(nsURI="http://www.eclipse.org/incquery/rete/recipes")
+package org.eclipse.incquery.runtime.rete.recipes
+
+// TODO missing things:
+// - transitive closure - DONE
+// - more / better traceability to pattern language, expressions
+
+// Base concepts
+
+/*
+ * Container for Rete recipes.
+ */
+class ReteRecipe {
+	contains ReteNodeRecipe[] recipeNodes
+}
+
+/*
+ * Abstract base class for model elements that represent "Rete node recipes",
+ * that is DTOs that carry information for Rete network construction.
+ */
+abstract class ReteNodeRecipe {
+	/*
+	 * Temporary construct for storing traceability information.
+	 */
+	String traceInfo
+	/* 
+	 *  The width of tuples contained by this node.
+	 */
+	op int getArity() {
+		throw new UnsupportedOperationException;
+	}
+}
+
+/*
+ * Abstract base class for single-parent node recipes.
+ */
+abstract class SingleParentNodeRecipe extends ReteNodeRecipe {
+	refers ReteNodeRecipe parent
+}
+
+/*
+ * Abstract base class for alpha node recipes.
+ */
+abstract class AlphaRecipe extends SingleParentNodeRecipe {
+		
+	
+}
+
+
+abstract class MultiParentNodeRecipe extends ReteNodeRecipe {
+	refers ReteNodeRecipe[] parents
+	op int getArity() {
+		// not recursion-friendly
+		//Preconditions::checkState(parents.transform[arity].asSet.size == 1);
+		parents.get(0).getArity()
+	}	
+}
+
+/*
+ * Represents nodes that enforce tuple uniqueness, i.e. filter out
+ * duplicate input tuples for output.
+ */
+class UniquenessEnforcerRecipe extends MultiParentNodeRecipe { 
+} 
+
+/*
+ * The production node represents the output of the Rete network,
+ * from which the results of a query can be read.
+ */
+class ProductionRecipe extends MultiParentNodeRecipe {
+	/*
+	 * String -> Index map.
+	 * Indicates the positions of parameters.
+	 */
+	contains StringIndexMapEntry[] mappedIndices
+	/*
+	 * Traceability link to defining pattern object (from EMFPatternLanguage)
+	 * TODO unused?
+	 */
+	Object pattern
+}
+
+
+/*
+ * Represents a node that indexes the contents of a parent based on a projection defined by a Mask.
+ */
+abstract class IndexerRecipe extends SingleParentNodeRecipe {
+	contains Mask mask
+	op int getArity() {mask.sourceArity}	
+}
+/*
+ * Represents helper nodes that provide projection indexing for Beta nodes and user queries.
+ */
+class ProjectionIndexerRecipe extends IndexerRecipe {}
+/*
+ * Attached to an aggregator node, provides the aggregated values for outer join.
+ */
+class AggregatorIndexerRecipe extends IndexerRecipe {}
+
+/*
+ * Abstract base class for Beta node recipes.
+ */
+abstract class BetaRecipe extends ReteNodeRecipe {
+	contains ProjectionIndexerRecipe leftParent
+	
+	/* can be an AggregatorIndexer */
+	contains IndexerRecipe rightParent 
+}
+
+
+// helper concepts: masks and indices
+
+/*
+ * A mask defines the set of tuple variables that need to be taken into consideration for operations.
+ */
+class Mask {
+	/*
+	 * The indices that are relevant for tuple operations.
+	 */
+	Index[] sourceIndices
+	/*
+	 * The arity of tuples.
+	 */
+	int sourceArity // TODO move to NodeRecipe instead?
+}
+/*
+ * Indexes tell which variable of tuples are relevant for a given operation.
+ * TODO: is this necessary at all?
+ */
+type Index wraps Integer
+
+class StringIndexMapEntry wraps java.util.Map$Entry{
+	String key
+	Index value
+}
+
+// Input and output
+
+/*
+ * Represents input nodes for the Rete network, i.e. nodes
+ * that generate input tuples for processing.
+ */
+abstract class InputRecipe extends ReteNodeRecipe {}
+
+/* 
+ * Represents type-based input constraints.
+ */
+abstract class TypeInputRecipe extends InputRecipe {
+	/* 
+	 * The original type of this input.
+	 */	
+	Object typeKey
+	/*
+	 * Temporary construct for identifying types over the wire.
+	 * TODO improve type references
+	 */
+	String typeName
+}
+
+class UnaryInputRecipe extends TypeInputRecipe {
+	op int getArity() {1}	
+}
+
+class BinaryInputRecipe extends TypeInputRecipe {
+	op int getArity() {2}	
+}
+
+/*
+ * Simple node that stores constant values.
+ */
+class ConstantRecipe extends ReteNodeRecipe {
+	/*
+	 * Stores constant values. May be empty.
+	 * 
+	 * TODO store constants as strings instead? (for easier serialization)
+	 */
+	Object[] constantValues
+	
+	op int getArity() {constantValues.length}		
+}
+
+// Simple nodes
+
+/*
+ * Represents transitive closure.
+ */
+class TransitiveClosureRecipe extends AlphaRecipe {
+		/// TODO: non-binary transitive closure?
+		op int getArity() {2}	
+}
+
+/*
+ * Abstract base class for nodes that implement filtering operations.
+ */
+abstract class FilterRecipe extends AlphaRecipe { 
+	op int getArity() {parent.getArity()}	
+}
+class InequalityFilterRecipe extends FilterRecipe {
+	Index subject
+	Index[] inequals
+}
+class EqualityFilterRecipe extends FilterRecipe {
+	Index[] indices
+}
+class TransparentRecipe extends FilterRecipe {}
+
+/*
+ * Implements projection without uniqueness checking.
+ */
+class TrimmerRecipe extends AlphaRecipe {
+	contains Mask mask
+	op int getArity() {mask.sourceIndices.length}		
+}
+
+// Expressions
+
+abstract class ExpressionDefinition { 
+	Object evaluator	
+} 
+
+/*
+type RuntimeExpressionEvaluator wraps org.eclipse.incquery.runtime.matchers.psystem.IExpressionEvaluator
+class RuntimeExpressionDefinition extends ExpressionDefinition {
+	RuntimeExpressionEvaluator evaluator
+}
+*/ 
+
+
+/*
+ * Abstract base class for Rete nodes that evaluate an expression.
+ */
+abstract class ExpressionEnforcerRecipe extends AlphaRecipe {
+	/*
+	 * Provides traceability to expression representation.
+	 */
+	contains ExpressionDefinition expression
+	/*
+	 * String -> Index map.
+	 * Maps variable names in the expression to tuple indices.
+	 */
+	contains StringIndexMapEntry[] mappedIndices
+}
+/*
+ * Computes the result of the boolean expression evaluation and
+ * only passes tuples for which the result is true.
+ */
+class CheckRecipe extends ExpressionEnforcerRecipe {
+		op int getArity() {parent.getArity()}	
+}
+/*
+ * Computes the result of expression evaluation and suffixes the result
+ * to output tuples as the last element.
+ */
+class EvalRecipe extends ExpressionEnforcerRecipe {
+		op int getArity() {1 + parent.getArity()}	
+}
+
+
+
+// Aggregators
+
+/*
+ * Represents a (compound) node that performs an aggregation operation. 
+ * Parent must be a ProjectionIndexer, which defines how tuples are to be aggregated.
+ * Usable only through an Join with an AggregatorIndexer as the right parent
+ */
+abstract class AggregatorRecipe extends ReteNodeRecipe {
+	contains ProjectionIndexerRecipe parent
+	op int getArity() {1 + parent.mask.sourceIndices.length}			
+}
+
+/*
+ * The count aggregator node represents a "count find" operation.
+ */
+class CountAggregatorRecipe extends AggregatorRecipe {}
+
+// Joins 
+
+/*
+ * The most basic beta operation, the join node performs a join operation over two input tuple sets.
+ */
+class JoinRecipe extends BetaRecipe {
+	contains Mask rightParentComplementaryMask
+	op int getArity() {leftParent.getArity() + rightParent.getArity() - /*common columns count once*/rightParent.mask.sourceIndices.length}		
+}
+
+/*
+ * Existence joins are TODO
+ * 
+ * See http://en.wikipedia.org/wiki/Relational_algebra
+ */
+abstract class ExistenceJoinRecipe extends BetaRecipe  {
+	op int getArity() {leftParent.getArity()}		
+}
+
+/*
+ * A semi-join is TODO
+ * 
+ * See http://en.wikipedia.org/wiki/Relational_algebra
+ */
+class SemiJoinRecipe extends ExistenceJoinRecipe {}
+
+/*
+ * An anti-join is TODO
+ * 
+ * See http://en.wikipedia.org/wiki/Relational_algebra 
+ */
+class AntiJoinRecipe extends ExistenceJoinRecipe {}
+
+//// Safe aggregator compounds
+//
+///*
+// * An aggregator join node is a beta node that performs an aggregation operation.
+// */
+//class AggregatorJoinRecipe extends BetaRecipe {
+//	contains AggregatorRecipe aggregator
+//	op int getArity() {1 + leftParent.getArity()}		
+//	// invariant: rightParent.parent == aggregator
+//}
+
