@@ -1,5 +1,7 @@
 package hu.bme.mit.incqueryd.cache.hazelcast;
 
+import java.util.Set;
+
 import hu.bme.mit.incqueryd.cache.DistributedCache;
 import hu.bme.mit.incqueryd.cache.DistributedMultiMap;
 
@@ -14,6 +16,11 @@ public class HazelcastCache implements DistributedCache {
 
 	public <K, V> DistributedMultiMap<K, V> getMultiMap(String name) {
 		return new HazelcastMultiMap<K, V>(instance.<K, V> getMultiMap(name));
+	}
+
+	@Override
+	public <E> Set<E> getSet(String name) {
+		return instance.getSet(name);
 	}
 
 }
