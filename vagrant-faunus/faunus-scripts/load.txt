@@ -1,4 +1,0 @@
-hdfs.ls();
-hdfs.copyFromLocal('/vagrant/data/testBig_User_SIZE.graphson', 'graph-of-the-gods.json');
-g = FaunusFactory.open('bin/titan-cassandra-output.properties');
-g.V;

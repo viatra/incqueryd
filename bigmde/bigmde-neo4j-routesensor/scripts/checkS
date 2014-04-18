@@ -1,3 +1,0 @@
-#!/bin/bash
-
-ps uaxwf | grep [j]ava

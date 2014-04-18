@@ -1,6 +1,0 @@
-conf = new BaseConfiguration();
-conf.setProperty("storage.backend","cassandra");
-conf.setProperty("storage.hostname","vcl0");
-g = TitanFactory.open(conf);
-g.E("type", "<TYPE>");
-y
