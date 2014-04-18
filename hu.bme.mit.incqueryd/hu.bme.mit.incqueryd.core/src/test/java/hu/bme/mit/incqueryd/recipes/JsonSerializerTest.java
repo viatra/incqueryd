@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.recipes;
 
+import hu.bme.mit.incqueryd.util.RecipeDeserializer;
 import hu.bme.mit.incqueryd.util.RecipeSerializer;
 
 import java.io.IOException;
@@ -7,7 +8,7 @@ import java.util.Arrays;
 
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.Mask;
-import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexer;
+import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexerRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
 import org.junit.Test;
 
@@ -21,15 +22,20 @@ public class JsonSerializerTest {
 		final Mask secondaryMask = RecipesFactory.eINSTANCE.createMask();
 		secondaryMask.getSourceIndices().addAll(Arrays.asList(0));
 
-		final ProjectionIndexer primaryParent = RecipesFactory.eINSTANCE.createProjectionIndexer();
+		final ProjectionIndexerRecipe primaryParent = RecipesFactory.eINSTANCE.createProjectionIndexerRecipe();
 		primaryParent.setMask(primaryMask);
 		recipe.setLeftParent(primaryParent);
 
-		final ProjectionIndexer secondaryParent = RecipesFactory.eINSTANCE.createProjectionIndexer();
+		final ProjectionIndexerRecipe secondaryParent = RecipesFactory.eINSTANCE.createProjectionIndexerRecipe();
 		secondaryParent.setMask(secondaryMask);
 		recipe.setRightParent(secondaryParent);
 
 		RecipeSerializer.serializeToFile(recipe, "src/test/resources/recipe.json");
+		final BetaRecipe br = (BetaRecipe) RecipeDeserializer.deserializeFromFile("src/test/resources/recipe.json");
+
+		System.out.println(br.getLeftParent());
+		System.out.println(br.getRightParent());
+
 	}
 
 	@Test
@@ -40,11 +46,11 @@ public class JsonSerializerTest {
 		final Mask secondaryMask = RecipesFactory.eINSTANCE.createMask();
 		secondaryMask.getSourceIndices().addAll(Arrays.asList(0));
 
-		final ProjectionIndexer primaryParent = RecipesFactory.eINSTANCE.createProjectionIndexer();
+		final ProjectionIndexerRecipe primaryParent = RecipesFactory.eINSTANCE.createProjectionIndexerRecipe();
 		primaryParent.setMask(primaryMask);
 		recipe.setLeftParent(primaryParent);
 
-		final ProjectionIndexer secondaryParent = RecipesFactory.eINSTANCE.createProjectionIndexer();
+		final ProjectionIndexerRecipe secondaryParent = RecipesFactory.eINSTANCE.createProjectionIndexerRecipe();
 		secondaryParent.setMask(secondaryMask);
 		recipe.setRightParent(secondaryParent);
 

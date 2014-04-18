@@ -10,7 +10,7 @@ public class Memory {
 	public long getRss() {
 		return rss;
 	}
-	public void setRss(long rss) {
+	public void setRss(final long rss) {
 		this.rss = rss;
 	}
 	
