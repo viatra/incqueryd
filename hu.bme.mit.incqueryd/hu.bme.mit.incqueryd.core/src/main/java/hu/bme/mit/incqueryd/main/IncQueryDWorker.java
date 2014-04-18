@@ -1,11 +1,12 @@
 package hu.bme.mit.incqueryd.main;
 
 import static akka.pattern.Patterns.ask;
-import hu.bme.mit.bigmodel.fourstore.CoordinatorFourStoreClient;
 import hu.bme.mit.incqueryd.rete.actors.CoordinatorActorFactory;
-import hu.bme.mit.trainbenchmark.benchmark.config.IncQueryDBenchmarkConfig;
 import hu.bme.mit.trainbenchmark.benchmark.util.BenchmarkResult;
-import hu.bme.mit.trainbenchmark.benchmark.util.Util;
+
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipselabs.emfjson.resource.JsResourceFactoryImpl;
+
 import scala.concurrent.Await;
 import scala.concurrent.Future;
 import scala.concurrent.duration.Duration;
@@ -19,57 +20,14 @@ import com.typesafe.config.ConfigFactory;
 
 public class IncQueryDWorker {
 
-	private final IncQueryDBenchmarkConfig bc;
-
-	public IncQueryDWorker(final IncQueryDBenchmarkConfig bc) {
+	public IncQueryDWorker() {
 		super();
-		this.bc = bc;
+		
+		// initialize EMF
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("json", new JsResourceFactoryImpl());
 	}
 
-	// PosLength, expected: 470 423
-	// RouteSensor, expected: 94 85
-	// SignalNeighbor, expected: 3 2
-	// SwitchSensor, expected: 19 18
-	public void work() throws Exception {
-		final boolean cluster = bc.isCluster();
-		// final boolean cluster = false;
-		// final boolean initialize4s = bc.isInitialize4s();
-		final boolean initialize4s = true;
-
-		final String testCase = bc.getTestCases().get(0);
-		final int seriesCount = bc.getSeriesCount();
-
-		// if IncQuery-D runs in development mode, use the arch files from the localvm setup
-		final String architectureFile = "../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch" + 
-				(cluster ? ("-" + bc.getClusterName()) : "-localvm") +
-				"/" + testCase.toLowerCase() + ".arch";
-
-		final int size = bc.getSizes().get(0);
-		final String modelFileName = "railway-" + bc.getScenario().toLowerCase() + "-" + size + ".ttl";
-
-		final BenchmarkResult bmr = new BenchmarkResult("IncQueryD", testCase, size, seriesCount);
-		bmr.setBenchmarkConfig(bc);
-		bmr.setSize(size);
-		bmr.setFileName(modelFileName);
-		Util.runGC();
-		if (bc.isBenchmarkMode()) {
-			Util.freeCache(bc);
-		}
-
-		// initialize 4store
-		CoordinatorFourStoreClient client = null;
-
-		bmr.startStopper();
-		if (initialize4s) {
-			client = new CoordinatorFourStoreClient("src/main/resources/scripts");
-			client.start(bc.isCluster());
-
-			// load the model
-			final String modelPath = bc.getInstanceModelPath() + modelFileName;
-			client.load(modelPath);
-		}
-		bmr.setReadTime();
-
+	public void work(final BenchmarkResult bmr, final String architectureFile, final boolean cluster) throws Exception {
 		// initialize Akka
 		final ActorSystem system;
 		final Timeout timeout = new Timeout(Duration.create(14400, "seconds"));
@@ -78,6 +36,7 @@ public class IncQueryDWorker {
 
 		system = ActorSystem.create("test", config);
 
+		// this should run on the client's side
 		final Props props = new Props().withCreator(new CoordinatorActorFactory(architectureFile, cluster));
 		final ActorRef coordinator = system.actorOf(props);
 
@@ -85,11 +44,6 @@ public class IncQueryDWorker {
 		final Future<Object> result = ask(coordinator, bmr, timeout);
 		final BenchmarkResult bmr2 = (BenchmarkResult) Await.result(result, timeout.duration());
 		System.out.println(bmr2);
-
-		// destroy the 4store backend(s)
-		if (initialize4s) {
-			client.destroy(bc.isCluster());
-		}
 
 		system.shutdown();
 	}

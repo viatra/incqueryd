@@ -9,12 +9,12 @@ public class StampedValue<T> {
 		value = null;
 	}
 	
-	public StampedValue(T value) {
+	public StampedValue(final T value) {
 		timeStamp = System.nanoTime();
 		this.value = value;
 	}
 	
-	public void setValue(T value) {
+	public void setValue(final T value) {
 		timeStamp = System.nanoTime();
 		this.value = value;
 	}
