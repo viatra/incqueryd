@@ -17,7 +17,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.Mask;
-import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexer;
+import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexerRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
 import org.junit.Test;
 
@@ -68,11 +68,11 @@ public abstract class BetaNodeTest {
 
 	protected abstract BetaNode createBetaNode(String recipeFile) throws IOException;
 
-	protected ProjectionIndexer createProjectionIndexer(final Collection<? extends Integer> mask) {
+	protected ProjectionIndexerRecipe createProjectionIndexer(final Collection<? extends Integer> mask) {
 		final Mask leftMask = RecipesFactory.eINSTANCE.createMask();
 		leftMask.setSourceArity(mask.size());
 		leftMask.getSourceIndices().addAll(mask);
-		final ProjectionIndexer leftParent = RecipesFactory.eINSTANCE.createProjectionIndexer();
+		final ProjectionIndexerRecipe leftParent = RecipesFactory.eINSTANCE.createProjectionIndexerRecipe();
 		leftParent.setMask(leftMask);
 		return leftParent;
 	}

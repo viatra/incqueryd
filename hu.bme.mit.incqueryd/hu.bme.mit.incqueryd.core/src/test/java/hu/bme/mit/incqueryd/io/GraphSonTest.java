@@ -15,10 +15,7 @@ public class GraphSonTest {
 
 	@Test
 	public void test() throws IOException {
-		System.out.println("IncQuery-D main");
-		System.out.println("===============");
-
-		final String pathName = "/home/szarnyasg/hdd/models/faunus-graphson/testBig_User_1.faunus-graphson";
+		final String pathName = "/home/szarnyasg/hdd/models/faunus-graphson/railway-user-1.faunus-graphson";
 
 		final Map<String, Collection<String>> vertexTypesAndProperties = new HashMap<>();
 		vertexTypesAndProperties.put("Segment", ImmutableList.<String> of());

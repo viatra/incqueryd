@@ -99,9 +99,6 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
 
     isInited = true;
 
-    // Initialize simple dependencies
-    RecipesPackage.eINSTANCE.eClass();
-
     // Obtain or create and register interdependencies
     InfrastructurePackageImpl theInfrastructurePackage = (InfrastructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(InfrastructurePackage.eNS_URI) instanceof InfrastructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(InfrastructurePackage.eNS_URI) : InfrastructurePackage.eINSTANCE);
 

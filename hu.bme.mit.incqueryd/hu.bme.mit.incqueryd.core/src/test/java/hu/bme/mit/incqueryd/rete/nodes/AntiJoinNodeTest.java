@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexer;
+import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexerRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
 import org.junit.Test;
 
@@ -31,7 +31,7 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 	}
 
 	@Override
-	protected BetaNode createBetaNode(String recipeFile) throws IOException {
+	protected BetaNode createBetaNode(final String recipeFile) throws IOException {
 		final AntiJoinRecipe recipe = (AntiJoinRecipe) (RecipeDeserializer.deserializeFromFile(recipeFile));
 		final AntiJoinNode node = new AntiJoinNode(recipe);
 		return node;
@@ -41,9 +41,9 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 	public void antiJoinDeltaTest1() {
 		System.out.println("Test 1");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
-		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
-		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
 		final AntiJoinNode node = new AntiJoinNode(recipe);
 
@@ -72,9 +72,9 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 	public void antiJoinDeltaTest2() {
 		System.out.println("Test 2");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
-		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
-		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
 		final AntiJoinNode node = new AntiJoinNode(recipe);
 
@@ -104,9 +104,9 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 	public void antiJoinDeltaTest3() {
 		System.out.println("Test 3");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
-		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
-		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
 		final AntiJoinNode node = new AntiJoinNode(recipe);
 
@@ -136,9 +136,9 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 	public void antiJoinDeltaTest4() {
 		System.out.println("Test 4");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
-		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
-		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
 		final AntiJoinNode node = new AntiJoinNode(recipe);
 
@@ -170,9 +170,9 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 	public void antiJoinDeltaTest5() {
 		System.out.println("Test 5");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
-		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
-		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
 		final AntiJoinNode node = new AntiJoinNode(recipe);
 
@@ -202,9 +202,9 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 	public void antiJoinDeltaTest6() {
 		System.out.println("Test 6");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
-		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
-		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
 		final AntiJoinNode node = new AntiJoinNode(recipe);
 
@@ -236,9 +236,9 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 	public void antiJoinDeltaTest7() {
 		System.out.println("Test 7");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
-		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
-		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
 		final AntiJoinNode node = new AntiJoinNode(recipe);
 
@@ -271,9 +271,9 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 	public void antiJoinDeltaTest8() {
 		System.out.println("Test 8");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
-		final ProjectionIndexer leftParent = createProjectionIndexer(Arrays.asList(1));
+		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
-		final ProjectionIndexer rightParent = createProjectionIndexer(Arrays.asList(0));
+		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
 		final AntiJoinNode node = new AntiJoinNode(recipe);
 

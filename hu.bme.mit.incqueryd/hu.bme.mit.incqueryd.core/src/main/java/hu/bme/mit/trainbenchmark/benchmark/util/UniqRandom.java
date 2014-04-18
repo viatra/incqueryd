@@ -9,12 +9,12 @@ public class UniqRandom extends Random {
 	
 	ArrayList<Integer> ints = new ArrayList<Integer>();
 	
-	public UniqRandom(long random) {
+	public UniqRandom(final long random) {
 		super(random);
 	}
 	
 	@Override
-	public int nextInt(int n) {
+	public int nextInt(final int n) {
 		int newInt = super.nextInt(n);
 		if (ints.size() == n)
 			ints = new ArrayList<Integer>();
