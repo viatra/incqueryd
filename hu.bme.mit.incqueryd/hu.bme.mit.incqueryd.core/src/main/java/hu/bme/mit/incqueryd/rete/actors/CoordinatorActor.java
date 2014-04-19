@@ -3,19 +3,21 @@ package hu.bme.mit.incqueryd.rete.actors;
 import static akka.pattern.Patterns.ask;
 import hu.bme.mit.incqueryd.arch.ArchUtil;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
+import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
 import hu.bme.mit.incqueryd.rete.messages.Transformation;
 import hu.bme.mit.incqueryd.rete.messages.YellowPages;
 import hu.bme.mit.incqueryd.util.RecipeSerializer;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
-import hu.bme.mit.trainbenchmark.benchmark.util.BenchmarkResult;
 import infrastructure.InfrastructureNode;
 import infrastructure.InfrastructurePackage;
 import infrastructure.Machine;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -54,13 +56,12 @@ public class CoordinatorActor extends UntypedActor {
 	protected final String architectureFile;
 	protected final Timeout timeout = new Timeout(Duration.create(14400, "seconds"));
 	protected ActorRef productionActorRef;
-	protected BenchmarkResult bmr;
 	protected String query;
 	protected boolean debug = false;
+	protected Set<Tuple> latestResults;
 	
 	public CoordinatorActor(final String architectureFile, final boolean remoting) {
-		super();
-		this.architectureFile = architectureFile;
+		super(); this.architectureFile = architectureFile;
 		this.remoting = remoting;
 
 		if (architectureFile.contains("poslength")) {
@@ -75,10 +76,9 @@ public class CoordinatorActor extends UntypedActor {
 		if (architectureFile.contains("switchsensor")) {
 			query = "SwitchSensor";
 		}
-
 	}
 
-	public void start(final BenchmarkResult bmr) throws Exception {
+	public void start() throws Exception {
 		// initialize extension to factory map
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
 
@@ -91,7 +91,7 @@ public class CoordinatorActor extends UntypedActor {
 		// load resource
 		final ResourceSet resourceSet = new ResourceSetImpl();
 		final Resource resource = resourceSet.getResource(URI.createFileURI(architectureFile), true);
-
+		
 		// traverse model
 		final EObject o = resource.getContents().get(0);
 
@@ -255,13 +255,26 @@ public class CoordinatorActor extends UntypedActor {
 			if (debug) System.out.println(result);
 		}
 		if (debug) System.out.println("</AWAIT>");
-
-		bmr.startStopper();
-		final Set<Tuple> results1 = getQueryResults();
-		if (debug) System.out.println("Results 1: " + results1.size());
-		bmr.addInvalid(results1.size());
-		bmr.addCheckTime();
-
+	}
+	
+	/**
+	 * Phase 4: retrieve the results
+	 * @return 
+	 * 
+	 * @throws Exception
+	 */
+	public Set<Tuple> check() throws Exception {
+		latestResults = getQueryResults();
+		if (debug) System.out.println("Results: " + latestResults.size());
+		return latestResults;
+	}
+		
+	/**
+	 * Phase 5: do the transformation
+	 * 
+	 * @throws Exception
+	 */
+	public void transform() throws Exception {
 		final long start = System.nanoTime();
 
 		for (final Entry<ReteNodeRecipe, ActorRef> entry : recipeToActorRef.entrySet()) {
@@ -274,48 +287,35 @@ public class CoordinatorActor extends UntypedActor {
 				switch (query) {
 				case "PosLength":
 					if (uer.getTraceInfo().contains("Segment")) {
-						final Transformation transformation = new Transformation(results1, query);
+						final Transformation transformation = new Transformation(latestResults, query);
 						final Future<Object> future = ask(actorRef, transformation, timeout);
 						Await.result(future, timeout.duration());
 					}
 					break;
 				case "RouteSensor":
 					if (uer.getTraceInfo().contains("TrackElement_sensor")) {
-						final Transformation transformation = new Transformation(results1, query);
+						final Transformation transformation = new Transformation(latestResults, query);
 						final Future<Object> future = ask(actorRef, transformation, timeout);
 						Await.result(future, timeout.duration());
 					}
 					break;
 				case "SignalNeighbor":
 					if (uer.getTraceInfo().contains("Route_exit")) {
-						final Transformation transformation = new Transformation(results1, query);
+						final Transformation transformation = new Transformation(latestResults, query);
 						final Future<Object> future = ask(actorRef, transformation, timeout);
 						Await.result(future, timeout.duration());
 					}
 					break;
 				case "SwitchSensor":
 					if (uer.getTraceInfo().contains("TrackElement_sensor")) {
-						final Transformation transformation = new Transformation(results1, query);
+						final Transformation transformation = new Transformation(latestResults, query);
 						final Future<Object> future = ask(actorRef, transformation, timeout);
 						Await.result(future, timeout.duration());
 					}
 					break;
 				}
-
 			}
 		}
-
-		final long end = System.nanoTime();
-		bmr.addEditTime(end - start);
-		bmr.addModificationTime(end - start);
-
-		bmr.startStopper();
-		final Set<Tuple> results2 = getQueryResults();
-		bmr.addCheckTime();
-
-		if (debug) System.out.println("Results 2: " + results2.size());
-
-		bmr.addInvalid(results2.size());
 	}
 
 	private Set<Tuple> getQueryResults() throws Exception {
@@ -332,10 +332,15 @@ public class CoordinatorActor extends UntypedActor {
 
 	@Override
 	public void onReceive(final Object message) throws Exception {
-		if (message instanceof BenchmarkResult) {
-			bmr = (BenchmarkResult) message;
-			start(bmr);
-			getSender().tell(bmr, getSelf());
+		if (message == CoordinatorCommand.START) {
+			start();
+			getSender().tell(CoordinatorMessage.DONE, getSelf());
+		} else if (message == CoordinatorCommand.CHECK) {
+			final List<Tuple> results = new ArrayList<>(check());
+			getSender().tell(results, getSelf());
+		} else if (message == CoordinatorCommand.TRANSFORM) {
+			transform();
+			getSender().tell(CoordinatorMessage.DONE, getSelf());
 		}
 	}
 
