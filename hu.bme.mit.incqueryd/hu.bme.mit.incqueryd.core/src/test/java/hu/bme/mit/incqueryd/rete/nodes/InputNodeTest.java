@@ -17,7 +17,7 @@ public class InputNodeTest {
 	@Test
 	public void testEdge() throws IOException {
 		// start the cluster and load the model
-		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient("src/main/resources/scripts");
+		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient();
 		client.start(false);
 		client.load(modelPath);
 
@@ -35,7 +35,7 @@ public class InputNodeTest {
 	@Test
 	public void testVertex() throws IOException {
 		// start the cluster and load the model
-		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient("src/main/resources/scripts");
+		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient();
 		client.start(false);
 		client.load(modelPath);
 
@@ -54,7 +54,7 @@ public class InputNodeTest {
 	@Test
 	public void testVertexWithProperties() throws IOException {
 		// start the cluster and load the model
-		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient("src/main/resources/scripts");
+		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient();
 		client.start(false);
 		client.load(modelPath);
 

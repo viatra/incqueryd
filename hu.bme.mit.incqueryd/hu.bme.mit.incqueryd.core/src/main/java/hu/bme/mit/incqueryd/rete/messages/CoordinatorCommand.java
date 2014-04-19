@@ -1,5 +1,7 @@
 package hu.bme.mit.incqueryd.rete.messages;
 
 public enum CoordinatorCommand {
-	START
+	START,
+	CHECK,
+	TRANSFORM,
 }

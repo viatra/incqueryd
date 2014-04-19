@@ -37,6 +37,7 @@ public class RecipeSerializer {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("json", new JsResourceFactoryImpl());
 
 		final File tempFile = File.createTempFile("recipe-", ".json");
+		tempFile.deleteOnExit();
 		serializeToFile(eObject, tempFile.getAbsolutePath());
 		final String modelString = FileUtils.readFileToString(tempFile);
 

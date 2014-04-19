@@ -36,6 +36,7 @@ public class RecipeDeserializer {
 
 	public static EObject deserializeFromString(final String model) throws IOException {
 		final File tempFile = File.createTempFile("recipe-", ".json");
+		tempFile.deleteOnExit();
 		FileUtils.writeStringToFile(tempFile, model);		
 		
 		return deserializeFromFile(tempFile.getPath());
