@@ -131,7 +131,7 @@
 							</descriptorRefs>
 							<archive>
 								<manifest>
-									<mainClass>monitoring.test.OSMonitor</mainClass>
+									<mainClass>hu.bme.mit.incqueryd.osmonitoragent.OSMonitor</mainClass>
 								</manifest>
 							</archive>
 						</configuration>

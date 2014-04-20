@@ -1,5 +1,10 @@
 package hu.bme.mit.incqueryd.osmonitoragent;
 
+import hu.bme.mit.incqueryd.osmonitoringagent.metrics.CPUUsage;
+import hu.bme.mit.incqueryd.osmonitoringagent.metrics.DiskUsage;
+import hu.bme.mit.incqueryd.osmonitoringagent.metrics.MemoryUsage;
+import hu.bme.mit.incqueryd.osmonitoringagent.metrics.NetworkUsage;
+
 import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +26,7 @@ import org.hyperic.sigar.SigarException;
 
 public class OSMonitor extends Thread {
 
-	private static Sigar sigar = new Sigar();
+	private final static Sigar sigar = new Sigar();
 
 	private StopWatch timer = new StopWatch();
 
@@ -84,8 +89,29 @@ public class OSMonitor extends Thread {
 	 * Collects network usage data for the MBean
 	 */
 	private List<NetworkUsage> netUsages;
+	
+	/**
+	 * Data collecting OS level memory usage
+	 */
+	private MemoryUsage memoryUsage;
+	
+	/**
+	 * Data collecting OS level CPU usage
+	 */
+	private CPUUsage cpuUsage;
 
+	/**
+	 * Constructor
+	 * @throws SigarException
+	 */
 	protected OSMonitor() throws SigarException {
+		
+		memoryUsage = new MemoryUsage();
+		cpuUsage = new CPUUsage();
+		
+		measureMemory();
+		measureCPU();
+		
 		diskList = new ArrayList<FileSystem>();
 
 		for (FileSystem fileSystem : sigar.getFileSystemList()) {
@@ -155,6 +181,10 @@ public class OSMonitor extends Thread {
 		timer.start();
 	}
 
+	/**
+	 * Thread running method
+	 * That does the periodic measurement
+	 */
 	public void run() {
 
 		long diskRead = 0;
@@ -227,15 +257,22 @@ public class OSMonitor extends Thread {
 					NetworkUsage netUsage = netUsages.get(i);
 					
 					netUsage.setRxPackets(RXPacket - previousRXPackets[i]);
-					netUsage.setRxTraffic((double) (RXBytes - previousRXBytes[i]) / (1024 * elapsedTimeInSec)); // in Kbps
+					netUsage.setRxTraffic((double) ((RXBytes - previousRXBytes[i])*8) / (1024 * elapsedTimeInSec)); // in Kbps
 					netUsage.setTxPackets(TXPacket - previousTXPackets[i]);
-					netUsage.setTxTraffic((double) (TXBytes - previousTXBytes[i]) / (1024 * elapsedTimeInSec)); // in Kbps
+					netUsage.setTxTraffic((double) ((TXBytes - previousTXBytes[i])*8) / (1024 * elapsedTimeInSec)); // in Kbps
 				}
 				
 				previousRXPackets[i] = RXPacket;
 				previousRXBytes[i] = RXBytes;
 				previousTXPackets[i] = TXPacket;
 				previousTXBytes[i] = TXBytes;
+			}
+			
+			try {
+				measureMemory();
+				measureCPU();
+			} catch (SigarException e) {
+				System.exit(1);
 			}
 
 			timer.reset();
@@ -244,18 +281,55 @@ public class OSMonitor extends Thread {
 		}
 	}
 
+	/*GETTER METHODS FOR MEASURED METRICS*/
+	
+	/**
+	 * Get the metrics for each measured disks
+	 * @return
+	 */
 	public List<DiskUsage> getDisks() {
 		synchronized (diskUsages) {
 			return diskUsages;
 		}
 	}
 	
+	/**
+	 * Get the metrics for each measured network interfaces
+	 * @return
+	 */
 	public List<NetworkUsage> getNetUsages() {
 		synchronized (netUsages) {
 			return netUsages;
 		}
 	}
+	
+	/**
+	 * Get the memory metrics
+	 * @return
+	 */
+	public MemoryUsage getMemoryUsage(){
+		synchronized (memoryUsage) {
+			return memoryUsage;
+		}
+	}
+	
+	/**
+	 * Get the cpu metrics
+	 * @return
+	 */
+	public CPUUsage getCPUUsage(){
+		synchronized (cpuUsage) {
+			return cpuUsage;
+		}
+	}
+	
+	/*GETTER METHODS FOR MEASURED METRICS*/
 
+	/**
+	 * Main method
+	 * @param args
+	 * @throws SigarException
+	 */
 	public static void main(String[] args) throws SigarException {
 
 		OSMonitor mon = new OSMonitor();
@@ -282,6 +356,32 @@ public class OSMonitor extends Thread {
 			System.exit(1);
 		}
 
+	}
+	
+	
+	/*PRIVATE METHODS*/
+	
+	private int toGig = 1024 * 1024 * 1024;
+	
+	private void measureMemory() throws SigarException{
+		
+		synchronized (memoryUsage) {
+			memoryUsage.setTotalMemory((double) sigar.getMem().getTotal() / toGig);
+			memoryUsage.setUsedMemory((double) sigar.getMem().getUsed() / toGig);
+			memoryUsage.setFreeMemory((double) sigar.getMem().getFree() / toGig);
+			memoryUsage.setUsedMemoryPercent(sigar.getMem().getUsedPercent());
+			memoryUsage.setFreeMemoryPercent(sigar.getMem().getFreePercent());
+		}
+		
+	}
+	
+	private void measureCPU() throws SigarException{
+		
+		synchronized (cpuUsage) {
+			cpuUsage.setUsedCPUPercent((sigar.getCpuPerc().getCombined()) * 100);
+		}
+		
+		
 	}
 
 }
