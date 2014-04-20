@@ -91,7 +91,11 @@ public class ArchUtil {
 		// } else {
 		// return string.substring(0, newLinePosition);
 		// }
-		return string.replaceAll("\n", "");
+		if (string == null) {
+			return "";
+		} else {
+			return string.replaceAll("\n", "");
+		}
 	}
 
 }
