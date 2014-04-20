@@ -139,6 +139,7 @@ public class ReteActor extends UntypedActor {
 					.println("[ReteActor] - primary parent URI: " + primaryParentUri + " -> " + primaryParentActorRef);
 
 			final String secondaryParentUri = ArchUtil.getJsonEObjectUri(secondaryParent);
+			
 			final ActorRef secondaryParentActorRef = emfUriToActorRef.get(secondaryParentUri);
 			System.out.println("[ReteActor] - secondary parent URI: " + secondaryParentUri + " -> "
 					+ secondaryParentActorRef);
@@ -251,7 +252,7 @@ public class ReteActor extends UntypedActor {
 
 			final Stack<ActorRef> propagatedSenderStack = senderStack.push(getSelf());
 			final UpdateMessage updateMessage = new UpdateMessage(changeSet, slot, propagatedSenderStack);
-
+			
 			// @formatter:off
 			System.out.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName() + ", "
 					+ ArchUtil.oneLiner(recipe.getTraceInfo()) + ": Sending to " + subscriber + "\n" 
