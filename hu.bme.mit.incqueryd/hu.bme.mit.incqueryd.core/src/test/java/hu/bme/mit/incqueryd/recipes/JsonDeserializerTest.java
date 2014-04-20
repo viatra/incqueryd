@@ -23,7 +23,7 @@ public class JsonDeserializerTest {
 				+ "    \"mask\" : {\n"
 				+ "      \"eClass\" : \"http://www.eclipse.org/incquery/rete/recipes#//Mask\",\n"
 				+ "      \"sourceIndices\" : [ 2 ]\n" + "    }\n" + "  },\n" + "  \"rightParent\" : {\n"
-				+ "    \"eClass\" : \"http://www.eclipse.org/incquery/rete/recipes#//ProjectionIndexer\",\n"
+				+ "    \"eClass\" : \"http://www.eclipse.org/incquery/rete/recipes#//ProjectionIndexerRecipe\",\n"
 				+ "    \"mask\" : {\n"
 				+ "      \"eClass\" : \"http://www.eclipse.org/incquery/rete/recipes#//Mask\",\n"
 				+ "      \"sourceIndices\" : [ 0 ]\n" + "    }\n" + "  }\n" + "}";
