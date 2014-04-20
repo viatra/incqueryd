@@ -54,9 +54,11 @@ public class ArchUtil {
 		final Pattern pattern = Pattern.compile(".*json#(.*)");
 		final Matcher matcher = pattern.matcher(emfUri);
 		if (matcher.matches()) {
+			// for relative URIs
 			return matcher.group(1);
 		} else {
-			return null;
+			// for absoluti URIs
+			return emfUri;
 		}
 	}
 

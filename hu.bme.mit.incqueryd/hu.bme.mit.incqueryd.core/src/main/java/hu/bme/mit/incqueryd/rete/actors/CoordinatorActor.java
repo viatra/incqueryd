@@ -61,7 +61,8 @@ public class CoordinatorActor extends UntypedActor {
 	protected Set<Tuple> latestResults;
 	
 	public CoordinatorActor(final String architectureFile, final boolean remoting) {
-		super(); this.architectureFile = architectureFile;
+		super();
+		this.architectureFile = architectureFile;
 		this.remoting = remoting;
 
 		if (architectureFile.contains("poslength")) {
