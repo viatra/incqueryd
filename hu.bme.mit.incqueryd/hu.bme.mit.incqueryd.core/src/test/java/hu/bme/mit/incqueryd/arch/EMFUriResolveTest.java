@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-public class GrepTest {
+public class EMFUriResolveTest {
 
 	@Test
 	public void test() {
@@ -13,8 +13,9 @@ public class GrepTest {
 	}
 
 	@Test
-	public void testResolve() {
-		final String emfUri = "/tmp/recipe-2598314555665286111.json#../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch/routeSensor.arch#//@reteRecipes.0/@recipeNodes.5";
+	public void testRelativeResolve() {
+		final String emfUri = 
+				"/tmp/recipe-2598314555665286111.json#../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch/routeSensor.arch#//@reteRecipes.0/@recipeNodes.5";
 		assertEquals(
 				"../hu.bme.mit.incqueryd.recipeinstances/src/test/resources/arch/routeSensor.arch#//@reteRecipes.0/@recipeNodes.5",
 				ArchUtil.cutProxyName(emfUri));
