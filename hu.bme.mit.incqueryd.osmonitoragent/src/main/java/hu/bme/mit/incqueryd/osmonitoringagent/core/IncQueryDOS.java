@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.osmonitoragent;
+package hu.bme.mit.incqueryd.osmonitoringagent.core;
 
 import hu.bme.mit.incqueryd.osmonitoringagent.metrics.CPUUsage;
 import hu.bme.mit.incqueryd.osmonitoringagent.metrics.DiskUsage;
