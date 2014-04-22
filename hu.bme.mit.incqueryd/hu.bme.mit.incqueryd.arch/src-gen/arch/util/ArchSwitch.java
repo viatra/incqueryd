@@ -4,6 +4,8 @@ package arch.util;
 
 import arch.*;
 
+import infrastructure.ElementWithTraceInfo;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -85,13 +87,6 @@ public class ArchSwitch<T> extends Switch<T>
         InfrastructureMapping infrastructureMapping = (InfrastructureMapping)theEObject;
         T result = caseInfrastructureMapping(infrastructureMapping);
         if (result == null) result = caseElementWithTraceInfo(infrastructureMapping);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ArchPackage.ELEMENT_WITH_TRACE_INFO:
-      {
-        ElementWithTraceInfo elementWithTraceInfo = (ElementWithTraceInfo)theEObject;
-        T result = caseElementWithTraceInfo(elementWithTraceInfo);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

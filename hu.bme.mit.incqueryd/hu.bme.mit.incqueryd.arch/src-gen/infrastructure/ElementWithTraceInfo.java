@@ -1,6 +1,6 @@
 /**
  */
-package arch;
+package infrastructure;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -12,11 +12,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link arch.ElementWithTraceInfo#getTraceInfo <em>Trace Info</em>}</li>
+ *   <li>{@link infrastructure.ElementWithTraceInfo#getTraceInfo <em>Trace Info</em>}</li>
  * </ul>
  * </p>
  *
- * @see arch.ArchPackage#getElementWithTraceInfo()
+ * @see infrastructure.InfrastructurePackage#getElementWithTraceInfo()
  * @model interface="true" abstract="true"
  * @generated
  */
@@ -32,14 +32,14 @@ public interface ElementWithTraceInfo extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Trace Info</em>' attribute.
    * @see #setTraceInfo(String)
-   * @see arch.ArchPackage#getElementWithTraceInfo_TraceInfo()
+   * @see infrastructure.InfrastructurePackage#getElementWithTraceInfo_TraceInfo()
    * @model unique="false"
    * @generated
    */
   String getTraceInfo();
 
   /**
-   * Sets the value of the '{@link arch.ElementWithTraceInfo#getTraceInfo <em>Trace Info</em>}' attribute.
+   * Sets the value of the '{@link infrastructure.ElementWithTraceInfo#getTraceInfo <em>Trace Info</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Trace Info</em>' attribute.

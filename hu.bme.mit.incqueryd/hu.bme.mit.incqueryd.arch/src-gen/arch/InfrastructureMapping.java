@@ -2,7 +2,8 @@
  */
 package arch;
 
-import infrastructure.InfrastructureNode;
+import infrastructure.ElementWithTraceInfo;
+import infrastructure.Machine;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -52,12 +53,12 @@ public interface InfrastructureMapping extends ElementWithTraceInfo
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Target Element</em>' reference.
-   * @see #setTargetElement(InfrastructureNode)
+   * @see #setTargetElement(Machine)
    * @see arch.ArchPackage#getInfrastructureMapping_TargetElement()
    * @model
    * @generated
    */
-  InfrastructureNode getTargetElement();
+  Machine getTargetElement();
 
   /**
    * Sets the value of the '{@link arch.InfrastructureMapping#getTargetElement <em>Target Element</em>}' reference.
@@ -67,6 +68,6 @@ public interface InfrastructureMapping extends ElementWithTraceInfo
    * @see #getTargetElement()
    * @generated
    */
-  void setTargetElement(InfrastructureNode value);
+  void setTargetElement(Machine value);
 
 } // InfrastructureMapping

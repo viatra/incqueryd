@@ -2,8 +2,6 @@
  */
 package infrastructure.util;
 
-import arch.ElementWithTraceInfo;
-
 import infrastructure.*;
 
 import org.eclipse.emf.ecore.EObject;
@@ -82,46 +80,18 @@ public class InfrastructureSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case InfrastructurePackage.STORAGE:
-      {
-        Storage storage = (Storage)theEObject;
-        T result = caseStorage(storage);
-        if (result == null) result = caseInfrastructureNode(storage);
-        if (result == null) result = caseElementWithTraceInfo(storage);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case InfrastructurePackage.MACHINE:
       {
         Machine machine = (Machine)theEObject;
         T result = caseMachine(machine);
-        if (result == null) result = caseInfrastructureNode(machine);
         if (result == null) result = caseElementWithTraceInfo(machine);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case InfrastructurePackage.GRAPH_STORE:
+      case InfrastructurePackage.ELEMENT_WITH_TRACE_INFO:
       {
-        GraphStore graphStore = (GraphStore)theEObject;
-        T result = caseGraphStore(graphStore);
-        if (result == null) result = caseServiceNode(graphStore);
-        if (result == null) result = caseElementWithTraceInfo(graphStore);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case InfrastructurePackage.INFRASTRUCTURE_NODE:
-      {
-        InfrastructureNode infrastructureNode = (InfrastructureNode)theEObject;
-        T result = caseInfrastructureNode(infrastructureNode);
-        if (result == null) result = caseElementWithTraceInfo(infrastructureNode);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case InfrastructurePackage.SERVICE_NODE:
-      {
-        ServiceNode serviceNode = (ServiceNode)theEObject;
-        T result = caseServiceNode(serviceNode);
-        if (result == null) result = caseElementWithTraceInfo(serviceNode);
+        ElementWithTraceInfo elementWithTraceInfo = (ElementWithTraceInfo)theEObject;
+        T result = caseElementWithTraceInfo(elementWithTraceInfo);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -146,22 +116,6 @@ public class InfrastructureSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Storage</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Storage</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseStorage(Storage object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Machine</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -173,54 +127,6 @@ public class InfrastructureSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseMachine(Machine object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Graph Store</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Graph Store</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseGraphStore(GraphStore object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Node</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Node</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseInfrastructureNode(InfrastructureNode object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Service Node</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Service Node</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseServiceNode(ServiceNode object)
   {
     return null;
   }

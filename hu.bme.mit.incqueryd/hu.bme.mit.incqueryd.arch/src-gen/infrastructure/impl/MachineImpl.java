@@ -4,19 +4,13 @@ package infrastructure.impl;
 
 import infrastructure.InfrastructurePackage;
 import infrastructure.Machine;
-import infrastructure.Storage;
-
-import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,45 +19,34 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link infrastructure.impl.MachineImpl#getStorage <em>Storage</em>}</li>
- *   <li>{@link infrastructure.impl.MachineImpl#getHost <em>Host</em>}</li>
+ *   <li>{@link infrastructure.impl.MachineImpl#getTraceInfo <em>Trace Info</em>}</li>
  *   <li>{@link infrastructure.impl.MachineImpl#getIp <em>Ip</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MachineImpl extends InfrastructureNodeImpl implements Machine
+public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
 {
   /**
-   * The cached value of the '{@link #getStorage() <em>Storage</em>}' reference list.
+   * The default value of the '{@link #getTraceInfo() <em>Trace Info</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getStorage()
+   * @see #getTraceInfo()
    * @generated
    * @ordered
    */
-  protected EList<Storage> storage;
+  protected static final String TRACE_INFO_EDEFAULT = null;
 
   /**
-   * The default value of the '{@link #getHost() <em>Host</em>}' attribute.
+   * The cached value of the '{@link #getTraceInfo() <em>Trace Info</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getHost()
+   * @see #getTraceInfo()
    * @generated
    * @ordered
    */
-  protected static final String HOST_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getHost() <em>Host</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getHost()
-   * @generated
-   * @ordered
-   */
-  protected String host = HOST_EDEFAULT;
+  protected String traceInfo = TRACE_INFO_EDEFAULT;
 
   /**
    * The default value of the '{@link #getIp() <em>Ip</em>}' attribute.
@@ -111,13 +94,9 @@ public class MachineImpl extends InfrastructureNodeImpl implements Machine
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Storage> getStorage()
+  public String getTraceInfo()
   {
-    if (storage == null)
-    {
-      storage = new EObjectResolvingEList<Storage>(Storage.class, this, InfrastructurePackage.MACHINE__STORAGE);
-    }
-    return storage;
+    return traceInfo;
   }
 
   /**
@@ -125,22 +104,12 @@ public class MachineImpl extends InfrastructureNodeImpl implements Machine
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getHost()
+  public void setTraceInfo(String newTraceInfo)
   {
-    return host;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setHost(String newHost)
-  {
-    String oldHost = host;
-    host = newHost;
+    String oldTraceInfo = traceInfo;
+    traceInfo = newTraceInfo;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, InfrastructurePackage.MACHINE__HOST, oldHost, host));
+      eNotify(new ENotificationImpl(this, Notification.SET, InfrastructurePackage.MACHINE__TRACE_INFO, oldTraceInfo, traceInfo));
   }
 
   /**
@@ -176,10 +145,8 @@ public class MachineImpl extends InfrastructureNodeImpl implements Machine
   {
     switch (featureID)
     {
-      case InfrastructurePackage.MACHINE__STORAGE:
-        return getStorage();
-      case InfrastructurePackage.MACHINE__HOST:
-        return getHost();
+      case InfrastructurePackage.MACHINE__TRACE_INFO:
+        return getTraceInfo();
       case InfrastructurePackage.MACHINE__IP:
         return getIp();
     }
@@ -191,18 +158,13 @@ public class MachineImpl extends InfrastructureNodeImpl implements Machine
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case InfrastructurePackage.MACHINE__STORAGE:
-        getStorage().clear();
-        getStorage().addAll((Collection<? extends Storage>)newValue);
-        return;
-      case InfrastructurePackage.MACHINE__HOST:
-        setHost((String)newValue);
+      case InfrastructurePackage.MACHINE__TRACE_INFO:
+        setTraceInfo((String)newValue);
         return;
       case InfrastructurePackage.MACHINE__IP:
         setIp((String)newValue);
@@ -221,11 +183,8 @@ public class MachineImpl extends InfrastructureNodeImpl implements Machine
   {
     switch (featureID)
     {
-      case InfrastructurePackage.MACHINE__STORAGE:
-        getStorage().clear();
-        return;
-      case InfrastructurePackage.MACHINE__HOST:
-        setHost(HOST_EDEFAULT);
+      case InfrastructurePackage.MACHINE__TRACE_INFO:
+        setTraceInfo(TRACE_INFO_EDEFAULT);
         return;
       case InfrastructurePackage.MACHINE__IP:
         setIp(IP_EDEFAULT);
@@ -244,10 +203,8 @@ public class MachineImpl extends InfrastructureNodeImpl implements Machine
   {
     switch (featureID)
     {
-      case InfrastructurePackage.MACHINE__STORAGE:
-        return storage != null && !storage.isEmpty();
-      case InfrastructurePackage.MACHINE__HOST:
-        return HOST_EDEFAULT == null ? host != null : !HOST_EDEFAULT.equals(host);
+      case InfrastructurePackage.MACHINE__TRACE_INFO:
+        return TRACE_INFO_EDEFAULT == null ? traceInfo != null : !TRACE_INFO_EDEFAULT.equals(traceInfo);
       case InfrastructurePackage.MACHINE__IP:
         return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
     }
@@ -265,8 +222,8 @@ public class MachineImpl extends InfrastructureNodeImpl implements Machine
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (host: ");
-    result.append(host);
+    result.append(" (traceInfo: ");
+    result.append(traceInfo);
     result.append(", ip: ");
     result.append(ip);
     result.append(')');

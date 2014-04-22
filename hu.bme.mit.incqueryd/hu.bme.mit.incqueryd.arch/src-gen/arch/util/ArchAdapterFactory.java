@@ -4,6 +4,8 @@ package arch.util;
 
 import arch.*;
 
+import infrastructure.ElementWithTraceInfo;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -142,13 +144,13 @@ public class ArchAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link arch.ElementWithTraceInfo <em>Element With Trace Info</em>}'.
+   * Creates a new adapter for an object of class '{@link infrastructure.ElementWithTraceInfo <em>Element With Trace Info</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see arch.ElementWithTraceInfo
+   * @see infrastructure.ElementWithTraceInfo
    * @generated
    */
   public Adapter createElementWithTraceInfoAdapter()
