@@ -2,23 +2,14 @@
  */
 package infrastructure.impl;
 
-import arch.ArchPackage;
-
-import arch.impl.ArchPackageImpl;
-
 import infrastructure.Cluster;
-import infrastructure.GraphStore;
+import infrastructure.ElementWithTraceInfo;
 import infrastructure.InfrastructureFactory;
-import infrastructure.InfrastructureNode;
 import infrastructure.InfrastructurePackage;
 import infrastructure.Machine;
-import infrastructure.ServiceNode;
-import infrastructure.Storage;
-import infrastructure.StorageKind;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -45,13 +36,6 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass storageEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass machineEClass = null;
 
   /**
@@ -59,28 +43,7 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass graphStoreEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass infrastructureNodeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass serviceNodeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EEnum storageKindEEnum = null;
+  private EClass elementWithTraceInfoEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -130,16 +93,14 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
 
     isInited = true;
 
-    // Obtain or create and register interdependencies
-    ArchPackageImpl theArchPackage = (ArchPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ArchPackage.eNS_URI) instanceof ArchPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ArchPackage.eNS_URI) : ArchPackage.eINSTANCE);
+    // Initialize simple dependencies
+    EcorePackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theInfrastructurePackage.createPackageContents();
-    theArchPackage.createPackageContents();
 
     // Initialize created meta-data
     theInfrastructurePackage.initializePackageContents();
-    theArchPackage.initializePackageContents();
 
     // Mark meta-data to indicate it can't be changed
     theInfrastructurePackage.freeze();
@@ -165,7 +126,7 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCluster_InfrastructureNodes()
+  public EReference getCluster_ReteMachines()
   {
     return (EReference)clusterEClass.getEStructuralFeatures().get(0);
   }
@@ -175,59 +136,9 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCluster_ServiceNodes()
+  public EReference getCluster_CacheMachines()
   {
     return (EReference)clusterEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getStorage()
-  {
-    return storageEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getStorage_Maximum()
-  {
-    return (EAttribute)storageEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getStorage_Used()
-  {
-    return (EAttribute)storageEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getStorage_Free()
-  {
-    return (EAttribute)storageEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getStorage_Kind()
-  {
-    return (EAttribute)storageEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -245,29 +156,9 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getMachine_Storage()
-  {
-    return (EReference)machineEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getMachine_Host()
-  {
-    return (EAttribute)machineEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getMachine_Ip()
   {
-    return (EAttribute)machineEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)machineEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -275,9 +166,9 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getGraphStore()
+  public EClass getElementWithTraceInfo()
   {
-    return graphStoreEClass;
+    return elementWithTraceInfoEClass;
   }
 
   /**
@@ -285,69 +176,9 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getGraphStore_RequiredStorage()
+  public EAttribute getElementWithTraceInfo_TraceInfo()
   {
-    return (EReference)graphStoreEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getGraphStore_UsedStorage()
-  {
-    return (EReference)graphStoreEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getGraphStore_Master()
-  {
-    return (EReference)graphStoreEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getGraphStore_Slave()
-  {
-    return (EReference)graphStoreEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getInfrastructureNode()
-  {
-    return infrastructureNodeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getServiceNode()
-  {
-    return serviceNodeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EEnum getStorageKind()
-  {
-    return storageKindEEnum;
+    return (EAttribute)elementWithTraceInfoEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -381,32 +212,14 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
 
     // Create classes and their features
     clusterEClass = createEClass(CLUSTER);
-    createEReference(clusterEClass, CLUSTER__INFRASTRUCTURE_NODES);
-    createEReference(clusterEClass, CLUSTER__SERVICE_NODES);
-
-    storageEClass = createEClass(STORAGE);
-    createEAttribute(storageEClass, STORAGE__MAXIMUM);
-    createEAttribute(storageEClass, STORAGE__USED);
-    createEAttribute(storageEClass, STORAGE__FREE);
-    createEAttribute(storageEClass, STORAGE__KIND);
+    createEReference(clusterEClass, CLUSTER__RETE_MACHINES);
+    createEReference(clusterEClass, CLUSTER__CACHE_MACHINES);
 
     machineEClass = createEClass(MACHINE);
-    createEReference(machineEClass, MACHINE__STORAGE);
-    createEAttribute(machineEClass, MACHINE__HOST);
     createEAttribute(machineEClass, MACHINE__IP);
 
-    graphStoreEClass = createEClass(GRAPH_STORE);
-    createEReference(graphStoreEClass, GRAPH_STORE__REQUIRED_STORAGE);
-    createEReference(graphStoreEClass, GRAPH_STORE__USED_STORAGE);
-    createEReference(graphStoreEClass, GRAPH_STORE__MASTER);
-    createEReference(graphStoreEClass, GRAPH_STORE__SLAVE);
-
-    infrastructureNodeEClass = createEClass(INFRASTRUCTURE_NODE);
-
-    serviceNodeEClass = createEClass(SERVICE_NODE);
-
-    // Create enums
-    storageKindEEnum = createEEnum(STORAGE_KIND);
+    elementWithTraceInfoEClass = createEClass(ELEMENT_WITH_TRACE_INFO);
+    createEAttribute(elementWithTraceInfoEClass, ELEMENT_WITH_TRACE_INFO__TRACE_INFO);
   }
 
   /**
@@ -434,7 +247,6 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
     setNsURI(eNS_URI);
 
     // Obtain other dependent packages
-    ArchPackage theArchPackage = (ArchPackage)EPackage.Registry.INSTANCE.getEPackage(ArchPackage.eNS_URI);
     EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
     // Create type parameters
@@ -442,45 +254,19 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    clusterEClass.getESuperTypes().add(theArchPackage.getElementWithTraceInfo());
-    storageEClass.getESuperTypes().add(this.getInfrastructureNode());
-    machineEClass.getESuperTypes().add(this.getInfrastructureNode());
-    graphStoreEClass.getESuperTypes().add(this.getServiceNode());
-    infrastructureNodeEClass.getESuperTypes().add(theArchPackage.getElementWithTraceInfo());
-    serviceNodeEClass.getESuperTypes().add(theArchPackage.getElementWithTraceInfo());
+    clusterEClass.getESuperTypes().add(this.getElementWithTraceInfo());
+    machineEClass.getESuperTypes().add(this.getElementWithTraceInfo());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(clusterEClass, Cluster.class, "Cluster", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCluster_InfrastructureNodes(), this.getInfrastructureNode(), null, "infrastructureNodes", null, 0, -1, Cluster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCluster_ServiceNodes(), this.getServiceNode(), null, "serviceNodes", null, 0, -1, Cluster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(storageEClass, Storage.class, "Storage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStorage_Maximum(), theEcorePackage.getELong(), "maximum", null, 0, 1, Storage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getStorage_Used(), theEcorePackage.getELong(), "used", null, 0, 1, Storage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getStorage_Free(), theEcorePackage.getELong(), "free", null, 0, 1, Storage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getStorage_Kind(), this.getStorageKind(), "kind", null, 0, 1, Storage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCluster_ReteMachines(), this.getMachine(), null, "reteMachines", null, 0, -1, Cluster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCluster_CacheMachines(), this.getMachine(), null, "cacheMachines", null, 0, -1, Cluster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(machineEClass, Machine.class, "Machine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMachine_Storage(), this.getStorage(), null, "storage", null, 0, -1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMachine_Host(), theEcorePackage.getEString(), "host", null, 0, 1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMachine_Ip(), theEcorePackage.getEString(), "ip", null, 0, 1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(graphStoreEClass, GraphStore.class, "GraphStore", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getGraphStore_RequiredStorage(), this.getStorage(), null, "requiredStorage", null, 0, -1, GraphStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getGraphStore_UsedStorage(), this.getStorage(), null, "usedStorage", null, 0, -1, GraphStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getGraphStore_Master(), this.getMachine(), null, "master", null, 0, 1, GraphStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getGraphStore_Slave(), this.getMachine(), null, "slave", null, 0, 1, GraphStore.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(infrastructureNodeEClass, InfrastructureNode.class, "InfrastructureNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(serviceNodeEClass, ServiceNode.class, "ServiceNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    // Initialize enums and add enum literals
-    initEEnum(storageKindEEnum, StorageKind.class, "StorageKind");
-    addEEnumLiteral(storageKindEEnum, StorageKind.MEMORY);
-    addEEnumLiteral(storageKindEEnum, StorageKind.HARDDRIVE);
-    addEEnumLiteral(storageKindEEnum, StorageKind.SSD);
-    addEEnumLiteral(storageKindEEnum, StorageKind.NETWORK);
+    initEClass(elementWithTraceInfoEClass, ElementWithTraceInfo.class, "ElementWithTraceInfo", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getElementWithTraceInfo_TraceInfo(), theEcorePackage.getEString(), "traceInfo", null, 0, 1, ElementWithTraceInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

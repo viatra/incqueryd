@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ASCII"?>
 <arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://incquery.net/arch" xmlns:inf="http://incquery.net/d/infrastructure" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
   <clusters>
-    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl0" ip="10.6.17.231"/>
-    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl1" ip="10.6.17.237"/>
-    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl2" ip="10.6.17.233"/>
-    <infrastructureNodes xsi:type="inf:Machine" traceInfo="vcl3" ip="10.6.17.235"/>
+    <reteMachines xsi:type="inf:Machine" traceInfo="vcl0" ip="10.6.17.231"/>
+    <reteMachines xsi:type="inf:Machine" traceInfo="vcl1" ip="10.6.17.237"/>
+    <reteMachines xsi:type="inf:Machine" traceInfo="vcl2" ip="10.6.17.233"/>
+    <reteMachines xsi:type="inf:Machine" traceInfo="vcl3" ip="10.6.17.235"/>
   </clusters>
   <reteRecipes>
     <!-- 0 -->
@@ -24,8 +24,8 @@
     </recipeNodes>
   </reteRecipes>
 
-  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.0" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.1" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.2" targetElement="//@clusters.0/@infrastructureNodes.0"/>
-  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.3" targetElement="//@clusters.0/@infrastructureNodes.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.0" targetElement="//@clusters.0/@reteMachines.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.1" targetElement="//@clusters.0/@reteMachines.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.2" targetElement="//@clusters.0/@reteMachines.0"/>
+  <mappings mappedElements="//@reteRecipes.0/@recipeNodes.3" targetElement="//@clusters.0/@reteMachines.0"/>
 </arch:Configuration>

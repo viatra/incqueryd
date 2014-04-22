@@ -3,9 +3,8 @@
 package infrastructure.impl;
 
 import infrastructure.Cluster;
-import infrastructure.InfrastructureNode;
 import infrastructure.InfrastructurePackage;
-import infrastructure.ServiceNode;
+import infrastructure.Machine;
 
 import java.util.Collection;
 
@@ -31,8 +30,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link infrastructure.impl.ClusterImpl#getTraceInfo <em>Trace Info</em>}</li>
- *   <li>{@link infrastructure.impl.ClusterImpl#getInfrastructureNodes <em>Infrastructure Nodes</em>}</li>
- *   <li>{@link infrastructure.impl.ClusterImpl#getServiceNodes <em>Service Nodes</em>}</li>
+ *   <li>{@link infrastructure.impl.ClusterImpl#getReteMachines <em>Rete Machines</em>}</li>
+ *   <li>{@link infrastructure.impl.ClusterImpl#getCacheMachines <em>Cache Machines</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,24 +60,24 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
   protected String traceInfo = TRACE_INFO_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getInfrastructureNodes() <em>Infrastructure Nodes</em>}' containment reference list.
+   * The cached value of the '{@link #getReteMachines() <em>Rete Machines</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getInfrastructureNodes()
+   * @see #getReteMachines()
    * @generated
    * @ordered
    */
-  protected EList<InfrastructureNode> infrastructureNodes;
+  protected EList<Machine> reteMachines;
 
   /**
-   * The cached value of the '{@link #getServiceNodes() <em>Service Nodes</em>}' containment reference list.
+   * The cached value of the '{@link #getCacheMachines() <em>Cache Machines</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getServiceNodes()
+   * @see #getCacheMachines()
    * @generated
    * @ordered
    */
-  protected EList<ServiceNode> serviceNodes;
+  protected EList<Machine> cacheMachines;
 
   /**
    * <!-- begin-user-doc -->
@@ -129,13 +128,13 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<InfrastructureNode> getInfrastructureNodes()
+  public EList<Machine> getReteMachines()
   {
-    if (infrastructureNodes == null)
+    if (reteMachines == null)
     {
-      infrastructureNodes = new EObjectContainmentEList<InfrastructureNode>(InfrastructureNode.class, this, InfrastructurePackage.CLUSTER__INFRASTRUCTURE_NODES);
+      reteMachines = new EObjectContainmentEList<Machine>(Machine.class, this, InfrastructurePackage.CLUSTER__RETE_MACHINES);
     }
-    return infrastructureNodes;
+    return reteMachines;
   }
 
   /**
@@ -143,13 +142,13 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ServiceNode> getServiceNodes()
+  public EList<Machine> getCacheMachines()
   {
-    if (serviceNodes == null)
+    if (cacheMachines == null)
     {
-      serviceNodes = new EObjectContainmentEList<ServiceNode>(ServiceNode.class, this, InfrastructurePackage.CLUSTER__SERVICE_NODES);
+      cacheMachines = new EObjectContainmentEList<Machine>(Machine.class, this, InfrastructurePackage.CLUSTER__CACHE_MACHINES);
     }
-    return serviceNodes;
+    return cacheMachines;
   }
 
   /**
@@ -162,10 +161,10 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
   {
     switch (featureID)
     {
-      case InfrastructurePackage.CLUSTER__INFRASTRUCTURE_NODES:
-        return ((InternalEList<?>)getInfrastructureNodes()).basicRemove(otherEnd, msgs);
-      case InfrastructurePackage.CLUSTER__SERVICE_NODES:
-        return ((InternalEList<?>)getServiceNodes()).basicRemove(otherEnd, msgs);
+      case InfrastructurePackage.CLUSTER__RETE_MACHINES:
+        return ((InternalEList<?>)getReteMachines()).basicRemove(otherEnd, msgs);
+      case InfrastructurePackage.CLUSTER__CACHE_MACHINES:
+        return ((InternalEList<?>)getCacheMachines()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -182,10 +181,10 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
     {
       case InfrastructurePackage.CLUSTER__TRACE_INFO:
         return getTraceInfo();
-      case InfrastructurePackage.CLUSTER__INFRASTRUCTURE_NODES:
-        return getInfrastructureNodes();
-      case InfrastructurePackage.CLUSTER__SERVICE_NODES:
-        return getServiceNodes();
+      case InfrastructurePackage.CLUSTER__RETE_MACHINES:
+        return getReteMachines();
+      case InfrastructurePackage.CLUSTER__CACHE_MACHINES:
+        return getCacheMachines();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -204,13 +203,13 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
       case InfrastructurePackage.CLUSTER__TRACE_INFO:
         setTraceInfo((String)newValue);
         return;
-      case InfrastructurePackage.CLUSTER__INFRASTRUCTURE_NODES:
-        getInfrastructureNodes().clear();
-        getInfrastructureNodes().addAll((Collection<? extends InfrastructureNode>)newValue);
+      case InfrastructurePackage.CLUSTER__RETE_MACHINES:
+        getReteMachines().clear();
+        getReteMachines().addAll((Collection<? extends Machine>)newValue);
         return;
-      case InfrastructurePackage.CLUSTER__SERVICE_NODES:
-        getServiceNodes().clear();
-        getServiceNodes().addAll((Collection<? extends ServiceNode>)newValue);
+      case InfrastructurePackage.CLUSTER__CACHE_MACHINES:
+        getCacheMachines().clear();
+        getCacheMachines().addAll((Collection<? extends Machine>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -229,11 +228,11 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
       case InfrastructurePackage.CLUSTER__TRACE_INFO:
         setTraceInfo(TRACE_INFO_EDEFAULT);
         return;
-      case InfrastructurePackage.CLUSTER__INFRASTRUCTURE_NODES:
-        getInfrastructureNodes().clear();
+      case InfrastructurePackage.CLUSTER__RETE_MACHINES:
+        getReteMachines().clear();
         return;
-      case InfrastructurePackage.CLUSTER__SERVICE_NODES:
-        getServiceNodes().clear();
+      case InfrastructurePackage.CLUSTER__CACHE_MACHINES:
+        getCacheMachines().clear();
         return;
     }
     super.eUnset(featureID);
@@ -251,10 +250,10 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
     {
       case InfrastructurePackage.CLUSTER__TRACE_INFO:
         return TRACE_INFO_EDEFAULT == null ? traceInfo != null : !TRACE_INFO_EDEFAULT.equals(traceInfo);
-      case InfrastructurePackage.CLUSTER__INFRASTRUCTURE_NODES:
-        return infrastructureNodes != null && !infrastructureNodes.isEmpty();
-      case InfrastructurePackage.CLUSTER__SERVICE_NODES:
-        return serviceNodes != null && !serviceNodes.isEmpty();
+      case InfrastructurePackage.CLUSTER__RETE_MACHINES:
+        return reteMachines != null && !reteMachines.isEmpty();
+      case InfrastructurePackage.CLUSTER__CACHE_MACHINES:
+        return cacheMachines != null && !cacheMachines.isEmpty();
     }
     return super.eIsSet(featureID);
   }

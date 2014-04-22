@@ -5,7 +5,6 @@ package infrastructure.impl;
 import infrastructure.*;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -66,47 +65,9 @@ public class InfrastructureFactoryImpl extends EFactoryImpl implements Infrastru
     switch (eClass.getClassifierID())
     {
       case InfrastructurePackage.CLUSTER: return createCluster();
-      case InfrastructurePackage.STORAGE: return createStorage();
       case InfrastructurePackage.MACHINE: return createMachine();
-      case InfrastructurePackage.GRAPH_STORE: return createGraphStore();
-      case InfrastructurePackage.INFRASTRUCTURE_NODE: return createInfrastructureNode();
-      case InfrastructurePackage.SERVICE_NODE: return createServiceNode();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object createFromString(EDataType eDataType, String initialValue)
-  {
-    switch (eDataType.getClassifierID())
-    {
-      case InfrastructurePackage.STORAGE_KIND:
-        return createStorageKindFromString(eDataType, initialValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String convertToString(EDataType eDataType, Object instanceValue)
-  {
-    switch (eDataType.getClassifierID())
-    {
-      case InfrastructurePackage.STORAGE_KIND:
-        return convertStorageKindToString(eDataType, instanceValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -126,76 +87,10 @@ public class InfrastructureFactoryImpl extends EFactoryImpl implements Infrastru
    * <!-- end-user-doc -->
    * @generated
    */
-  public Storage createStorage()
-  {
-    StorageImpl storage = new StorageImpl();
-    return storage;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public Machine createMachine()
   {
     MachineImpl machine = new MachineImpl();
     return machine;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public GraphStore createGraphStore()
-  {
-    GraphStoreImpl graphStore = new GraphStoreImpl();
-    return graphStore;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public InfrastructureNode createInfrastructureNode()
-  {
-    InfrastructureNodeImpl infrastructureNode = new InfrastructureNodeImpl();
-    return infrastructureNode;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ServiceNode createServiceNode()
-  {
-    ServiceNodeImpl serviceNode = new ServiceNodeImpl();
-    return serviceNode;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public StorageKind createStorageKindFromString(EDataType eDataType, String initialValue)
-  {
-    StorageKind result = StorageKind.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertStorageKindToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

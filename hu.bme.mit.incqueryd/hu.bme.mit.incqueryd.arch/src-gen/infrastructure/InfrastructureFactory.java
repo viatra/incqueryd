@@ -32,15 +32,6 @@ public interface InfrastructureFactory extends EFactory
   Cluster createCluster();
 
   /**
-   * Returns a new object of class '<em>Storage</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Storage</em>'.
-   * @generated
-   */
-  Storage createStorage();
-
-  /**
    * Returns a new object of class '<em>Machine</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -48,33 +39,6 @@ public interface InfrastructureFactory extends EFactory
    * @generated
    */
   Machine createMachine();
-
-  /**
-   * Returns a new object of class '<em>Graph Store</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Graph Store</em>'.
-   * @generated
-   */
-  GraphStore createGraphStore();
-
-  /**
-   * Returns a new object of class '<em>Node</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Node</em>'.
-   * @generated
-   */
-  InfrastructureNode createInfrastructureNode();
-
-  /**
-   * Returns a new object of class '<em>Service Node</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Service Node</em>'.
-   * @generated
-   */
-  ServiceNode createServiceNode();
 
   /**
    * Returns the package supported by this factory.

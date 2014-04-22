@@ -3,6 +3,7 @@
 package arch;
 
 import infrastructure.Cluster;
+import infrastructure.ElementWithTraceInfo;
 
 import org.eclipse.emf.common.util.EList;
 

@@ -2,10 +2,10 @@
 package arch
 
 import infrastructure.Cluster
-import infrastructure.InfrastructureNode
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
-
+import infrastructure.Machine
+import infrastructure.ElementWithTraceInfo
 
 class Configuration extends ElementWithTraceInfo {
 	contains Cluster[] clusters
@@ -15,9 +15,5 @@ class Configuration extends ElementWithTraceInfo {
 
 class InfrastructureMapping extends ElementWithTraceInfo {
 	refers ReteNodeRecipe[] mappedElements
-	refers InfrastructureNode targetElement
-}
-
-interface ElementWithTraceInfo {
-	String traceInfo
+	refers Machine targetElement
 }

@@ -2,8 +2,6 @@
  */
 package infrastructure.util;
 
-import arch.ElementWithTraceInfo;
-
 import infrastructure.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -82,29 +80,9 @@ public class InfrastructureAdapterFactory extends AdapterFactoryImpl
         return createClusterAdapter();
       }
       @Override
-      public Adapter caseStorage(Storage object)
-      {
-        return createStorageAdapter();
-      }
-      @Override
       public Adapter caseMachine(Machine object)
       {
         return createMachineAdapter();
-      }
-      @Override
-      public Adapter caseGraphStore(GraphStore object)
-      {
-        return createGraphStoreAdapter();
-      }
-      @Override
-      public Adapter caseInfrastructureNode(InfrastructureNode object)
-      {
-        return createInfrastructureNodeAdapter();
-      }
-      @Override
-      public Adapter caseServiceNode(ServiceNode object)
-      {
-        return createServiceNodeAdapter();
       }
       @Override
       public Adapter caseElementWithTraceInfo(ElementWithTraceInfo object)
@@ -149,21 +127,6 @@ public class InfrastructureAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link infrastructure.Storage <em>Storage</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see infrastructure.Storage
-   * @generated
-   */
-  public Adapter createStorageAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link infrastructure.Machine <em>Machine</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -179,58 +142,13 @@ public class InfrastructureAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link infrastructure.GraphStore <em>Graph Store</em>}'.
+   * Creates a new adapter for an object of class '{@link infrastructure.ElementWithTraceInfo <em>Element With Trace Info</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see infrastructure.GraphStore
-   * @generated
-   */
-  public Adapter createGraphStoreAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link infrastructure.InfrastructureNode <em>Node</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see infrastructure.InfrastructureNode
-   * @generated
-   */
-  public Adapter createInfrastructureNodeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link infrastructure.ServiceNode <em>Service Node</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see infrastructure.ServiceNode
-   * @generated
-   */
-  public Adapter createServiceNodeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link arch.ElementWithTraceInfo <em>Element With Trace Info</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see arch.ElementWithTraceInfo
+   * @see infrastructure.ElementWithTraceInfo
    * @generated
    */
   public Adapter createElementWithTraceInfoAdapter()

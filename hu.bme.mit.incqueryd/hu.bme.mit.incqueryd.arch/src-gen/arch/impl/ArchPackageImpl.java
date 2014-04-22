@@ -5,18 +5,13 @@ package arch.impl;
 import arch.ArchFactory;
 import arch.ArchPackage;
 import arch.Configuration;
-import arch.ElementWithTraceInfo;
 import arch.InfrastructureMapping;
 
 import infrastructure.InfrastructurePackage;
 
-import infrastructure.impl.InfrastructurePackageImpl;
-
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -43,13 +38,6 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
    * @generated
    */
   private EClass infrastructureMappingEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass elementWithTraceInfoEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -99,16 +87,15 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
 
     isInited = true;
 
-    // Obtain or create and register interdependencies
-    InfrastructurePackageImpl theInfrastructurePackage = (InfrastructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(InfrastructurePackage.eNS_URI) instanceof InfrastructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(InfrastructurePackage.eNS_URI) : InfrastructurePackage.eINSTANCE);
+    // Initialize simple dependencies
+    RecipesPackage.eINSTANCE.eClass();
+    InfrastructurePackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theArchPackage.createPackageContents();
-    theInfrastructurePackage.createPackageContents();
 
     // Initialize created meta-data
     theArchPackage.initializePackageContents();
-    theInfrastructurePackage.initializePackageContents();
 
     // Mark meta-data to indicate it can't be changed
     theArchPackage.freeze();
@@ -194,26 +181,6 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getElementWithTraceInfo()
-  {
-    return elementWithTraceInfoEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getElementWithTraceInfo_TraceInfo()
-  {
-    return (EAttribute)elementWithTraceInfoEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public ArchFactory getArchFactory()
   {
     return (ArchFactory)getEFactoryInstance();
@@ -247,9 +214,6 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
     infrastructureMappingEClass = createEClass(INFRASTRUCTURE_MAPPING);
     createEReference(infrastructureMappingEClass, INFRASTRUCTURE_MAPPING__MAPPED_ELEMENTS);
     createEReference(infrastructureMappingEClass, INFRASTRUCTURE_MAPPING__TARGET_ELEMENT);
-
-    elementWithTraceInfoEClass = createEClass(ELEMENT_WITH_TRACE_INFO);
-    createEAttribute(elementWithTraceInfoEClass, ELEMENT_WITH_TRACE_INFO__TRACE_INFO);
   }
 
   /**
@@ -279,15 +243,14 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
     // Obtain other dependent packages
     InfrastructurePackage theInfrastructurePackage = (InfrastructurePackage)EPackage.Registry.INSTANCE.getEPackage(InfrastructurePackage.eNS_URI);
     RecipesPackage theRecipesPackage = (RecipesPackage)EPackage.Registry.INSTANCE.getEPackage(RecipesPackage.eNS_URI);
-    EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
     // Create type parameters
 
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    configurationEClass.getESuperTypes().add(this.getElementWithTraceInfo());
-    infrastructureMappingEClass.getESuperTypes().add(this.getElementWithTraceInfo());
+    configurationEClass.getESuperTypes().add(theInfrastructurePackage.getElementWithTraceInfo());
+    infrastructureMappingEClass.getESuperTypes().add(theInfrastructurePackage.getElementWithTraceInfo());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -297,10 +260,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
 
     initEClass(infrastructureMappingEClass, InfrastructureMapping.class, "InfrastructureMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getInfrastructureMapping_MappedElements(), theRecipesPackage.getReteNodeRecipe(), null, "mappedElements", null, 0, -1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInfrastructureMapping_TargetElement(), theInfrastructurePackage.getInfrastructureNode(), null, "targetElement", null, 0, 1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(elementWithTraceInfoEClass, ElementWithTraceInfo.class, "ElementWithTraceInfo", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getElementWithTraceInfo_TraceInfo(), theEcorePackage.getEString(), "traceInfo", null, 0, 1, ElementWithTraceInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInfrastructureMapping_TargetElement(), theInfrastructurePackage.getMachine(), null, "targetElement", null, 0, 1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);
