@@ -407,11 +407,33 @@ ruleRdfCheckConstraint returns [EObject current=null]
     {
     	newLeafNode(otherlv_2, grammarAccess.getRdfCheckConstraintAccess().getLeftParenthesisKeyword_2());
     }
+((
 (
+		{ 
+	        newCompositeNode(grammarAccess.getRdfCheckConstraintAccess().getVariablesVariableReferenceParserRuleCall_3_0_0()); 
+	    }
+		lv_variables_3_0=ruleVariableReference		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRdfCheckConstraintRule());
+	        }
+       		add(
+       			$current, 
+       			"variables",
+        		lv_variables_3_0, 
+        		"VariableReference");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_4=',' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getRdfCheckConstraintAccess().getCommaKeyword_3_1());
+    }
+)*(
 (
-		lv_expression_3_0=RULE_STRING
+		lv_expression_5_0=RULE_STRING
 		{
-			newLeafNode(lv_expression_3_0, grammarAccess.getRdfCheckConstraintAccess().getExpressionSTRINGTerminalRuleCall_3_0()); 
+			newLeafNode(lv_expression_5_0, grammarAccess.getRdfCheckConstraintAccess().getExpressionSTRINGTerminalRuleCall_4_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -420,14 +442,14 @@ ruleRdfCheckConstraint returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"expression",
-        		lv_expression_3_0, 
+        		lv_expression_5_0, 
         		"STRING");
 	    }
 
 )
-)	otherlv_4=')' 
+)	otherlv_6=')' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getRdfCheckConstraintAccess().getRightParenthesisKeyword_4());
+    	newLeafNode(otherlv_6, grammarAccess.getRdfCheckConstraintAccess().getRightParenthesisKeyword_5());
     }
 )
 ;

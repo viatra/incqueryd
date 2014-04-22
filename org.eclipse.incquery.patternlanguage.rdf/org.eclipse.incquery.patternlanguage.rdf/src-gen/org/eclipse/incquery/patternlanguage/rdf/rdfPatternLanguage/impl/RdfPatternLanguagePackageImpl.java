@@ -420,9 +420,19 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getRdfCheckConstraint_Variables()
+  {
+    return (EReference)rdfCheckConstraintEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getRdfCheckConstraint_Expression()
   {
-    return (EAttribute)rdfCheckConstraintEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)rdfCheckConstraintEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -527,6 +537,7 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
     createEReference(patternModelEClass, PATTERN_MODEL__PREFIXES);
 
     rdfCheckConstraintEClass = createEClass(RDF_CHECK_CONSTRAINT);
+    createEReference(rdfCheckConstraintEClass, RDF_CHECK_CONSTRAINT__VARIABLES);
     createEAttribute(rdfCheckConstraintEClass, RDF_CHECK_CONSTRAINT__EXPRESSION);
 
     classEClass = createEClass(CLASS);
@@ -610,6 +621,7 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
     initEReference(getPatternModel_Prefixes(), this.getPrefix(), null, "prefixes", null, 0, -1, PatternModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(rdfCheckConstraintEClass, RdfCheckConstraint.class, "RdfCheckConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRdfCheckConstraint_Variables(), thePatternLanguagePackage.getVariableReference(), null, "variables", null, 0, -1, RdfCheckConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRdfCheckConstraint_Expression(), ecorePackage.getEString(), "expression", null, 0, 1, RdfCheckConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(classEClass, org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
