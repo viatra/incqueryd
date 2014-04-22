@@ -2,7 +2,8 @@
  */
 package arch;
 
-import org.eclipse.emf.ecore.EAttribute;
+import infrastructure.InfrastructurePackage;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -58,43 +59,6 @@ public interface ArchPackage extends EPackage
   ArchPackage eINSTANCE = arch.impl.ArchPackageImpl.init();
 
   /**
-   * The meta object id for the '{@link arch.ElementWithTraceInfo <em>Element With Trace Info</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see arch.ElementWithTraceInfo
-   * @see arch.impl.ArchPackageImpl#getElementWithTraceInfo()
-   * @generated
-   */
-  int ELEMENT_WITH_TRACE_INFO = 2;
-
-  /**
-   * The feature id for the '<em><b>Trace Info</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ELEMENT_WITH_TRACE_INFO__TRACE_INFO = 0;
-
-  /**
-   * The number of structural features of the '<em>Element With Trace Info</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT = 1;
-
-  /**
-   * The number of operations of the '<em>Element With Trace Info</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT = 0;
-
-  /**
    * The meta object id for the '{@link arch.impl.ConfigurationImpl <em>Configuration</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -111,7 +75,7 @@ public interface ArchPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONFIGURATION__TRACE_INFO = ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
+  int CONFIGURATION__TRACE_INFO = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
 
   /**
    * The feature id for the '<em><b>Clusters</b></em>' containment reference list.
@@ -120,7 +84,7 @@ public interface ArchPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONFIGURATION__CLUSTERS = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
+  int CONFIGURATION__CLUSTERS = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Rete Recipes</b></em>' containment reference list.
@@ -129,7 +93,7 @@ public interface ArchPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONFIGURATION__RETE_RECIPES = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
+  int CONFIGURATION__RETE_RECIPES = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
@@ -138,7 +102,7 @@ public interface ArchPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONFIGURATION__MAPPINGS = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 2;
+  int CONFIGURATION__MAPPINGS = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Configuration</em>' class.
@@ -147,7 +111,7 @@ public interface ArchPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONFIGURATION_FEATURE_COUNT = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 3;
+  int CONFIGURATION_FEATURE_COUNT = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 3;
 
   /**
    * The number of operations of the '<em>Configuration</em>' class.
@@ -156,7 +120,7 @@ public interface ArchPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONFIGURATION_OPERATION_COUNT = ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT + 0;
+  int CONFIGURATION_OPERATION_COUNT = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link arch.impl.InfrastructureMappingImpl <em>Infrastructure Mapping</em>}' class.
@@ -175,7 +139,7 @@ public interface ArchPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INFRASTRUCTURE_MAPPING__TRACE_INFO = ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
+  int INFRASTRUCTURE_MAPPING__TRACE_INFO = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
 
   /**
    * The feature id for the '<em><b>Mapped Elements</b></em>' reference list.
@@ -184,7 +148,7 @@ public interface ArchPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INFRASTRUCTURE_MAPPING__MAPPED_ELEMENTS = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
+  int INFRASTRUCTURE_MAPPING__MAPPED_ELEMENTS = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Target Element</b></em>' reference.
@@ -193,7 +157,7 @@ public interface ArchPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INFRASTRUCTURE_MAPPING__TARGET_ELEMENT = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
+  int INFRASTRUCTURE_MAPPING__TARGET_ELEMENT = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Infrastructure Mapping</em>' class.
@@ -202,7 +166,7 @@ public interface ArchPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INFRASTRUCTURE_MAPPING_FEATURE_COUNT = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 2;
+  int INFRASTRUCTURE_MAPPING_FEATURE_COUNT = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 2;
 
   /**
    * The number of operations of the '<em>Infrastructure Mapping</em>' class.
@@ -211,7 +175,7 @@ public interface ArchPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INFRASTRUCTURE_MAPPING_OPERATION_COUNT = ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT + 0;
+  int INFRASTRUCTURE_MAPPING_OPERATION_COUNT = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT + 0;
 
 
   /**
@@ -288,27 +252,6 @@ public interface ArchPackage extends EPackage
    * @generated
    */
   EReference getInfrastructureMapping_TargetElement();
-
-  /**
-   * Returns the meta object for class '{@link arch.ElementWithTraceInfo <em>Element With Trace Info</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Element With Trace Info</em>'.
-   * @see arch.ElementWithTraceInfo
-   * @generated
-   */
-  EClass getElementWithTraceInfo();
-
-  /**
-   * Returns the meta object for the attribute '{@link arch.ElementWithTraceInfo#getTraceInfo <em>Trace Info</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Trace Info</em>'.
-   * @see arch.ElementWithTraceInfo#getTraceInfo()
-   * @see #getElementWithTraceInfo()
-   * @generated
-   */
-  EAttribute getElementWithTraceInfo_TraceInfo();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -393,24 +336,6 @@ public interface ArchPackage extends EPackage
      * @generated
      */
     EReference INFRASTRUCTURE_MAPPING__TARGET_ELEMENT = eINSTANCE.getInfrastructureMapping_TargetElement();
-
-    /**
-     * The meta object literal for the '{@link arch.ElementWithTraceInfo <em>Element With Trace Info</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see arch.ElementWithTraceInfo
-     * @see arch.impl.ArchPackageImpl#getElementWithTraceInfo()
-     * @generated
-     */
-    EClass ELEMENT_WITH_TRACE_INFO = eINSTANCE.getElementWithTraceInfo();
-
-    /**
-     * The meta object literal for the '<em><b>Trace Info</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ELEMENT_WITH_TRACE_INFO__TRACE_INFO = eINSTANCE.getElementWithTraceInfo_TraceInfo();
 
   }
 

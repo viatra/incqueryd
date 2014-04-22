@@ -5,7 +5,7 @@ package arch.impl;
 import arch.ArchPackage;
 import arch.InfrastructureMapping;
 
-import infrastructure.InfrastructureNode;
+import infrastructure.Machine;
 
 import java.util.Collection;
 
@@ -78,7 +78,7 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
    * @generated
    * @ordered
    */
-  protected InfrastructureNode targetElement;
+  protected Machine targetElement;
 
   /**
    * <!-- begin-user-doc -->
@@ -143,12 +143,12 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public InfrastructureNode getTargetElement()
+  public Machine getTargetElement()
   {
     if (targetElement != null && targetElement.eIsProxy())
     {
       InternalEObject oldTargetElement = (InternalEObject)targetElement;
-      targetElement = (InfrastructureNode)eResolveProxy(oldTargetElement);
+      targetElement = (Machine)eResolveProxy(oldTargetElement);
       if (targetElement != oldTargetElement)
       {
         if (eNotificationRequired())
@@ -163,7 +163,7 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public InfrastructureNode basicGetTargetElement()
+  public Machine basicGetTargetElement()
   {
     return targetElement;
   }
@@ -173,9 +173,9 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTargetElement(InfrastructureNode newTargetElement)
+  public void setTargetElement(Machine newTargetElement)
   {
-    InfrastructureNode oldTargetElement = targetElement;
+    Machine oldTargetElement = targetElement;
     targetElement = newTargetElement;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ArchPackage.INFRASTRUCTURE_MAPPING__TARGET_ELEMENT, oldTargetElement, targetElement));
@@ -221,7 +221,7 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
         getMappedElements().addAll((Collection<? extends ReteNodeRecipe>)newValue);
         return;
       case ArchPackage.INFRASTRUCTURE_MAPPING__TARGET_ELEMENT:
-        setTargetElement((InfrastructureNode)newValue);
+        setTargetElement((Machine)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -244,7 +244,7 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
         getMappedElements().clear();
         return;
       case ArchPackage.INFRASTRUCTURE_MAPPING__TARGET_ELEMENT:
-        setTargetElement((InfrastructureNode)null);
+        setTargetElement((Machine)null);
         return;
     }
     super.eUnset(featureID);

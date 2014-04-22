@@ -2,8 +2,6 @@
  */
 package infrastructure;
 
-import arch.ElementWithTraceInfo;
-
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -14,8 +12,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link infrastructure.Cluster#getInfrastructureNodes <em>Infrastructure Nodes</em>}</li>
- *   <li>{@link infrastructure.Cluster#getServiceNodes <em>Service Nodes</em>}</li>
+ *   <li>{@link infrastructure.Cluster#getReteMachines <em>Rete Machines</em>}</li>
+ *   <li>{@link infrastructure.Cluster#getCacheMachines <em>Cache Machines</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,35 +24,35 @@ import org.eclipse.emf.common.util.EList;
 public interface Cluster extends ElementWithTraceInfo
 {
   /**
-   * Returns the value of the '<em><b>Infrastructure Nodes</b></em>' containment reference list.
-   * The list contents are of type {@link infrastructure.InfrastructureNode}.
+   * Returns the value of the '<em><b>Rete Machines</b></em>' containment reference list.
+   * The list contents are of type {@link infrastructure.Machine}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Infrastructure Nodes</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Rete Machines</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Infrastructure Nodes</em>' containment reference list.
-   * @see infrastructure.InfrastructurePackage#getCluster_InfrastructureNodes()
+   * @return the value of the '<em>Rete Machines</em>' containment reference list.
+   * @see infrastructure.InfrastructurePackage#getCluster_ReteMachines()
    * @model containment="true"
    * @generated
    */
-  EList<InfrastructureNode> getInfrastructureNodes();
+  EList<Machine> getReteMachines();
 
   /**
-   * Returns the value of the '<em><b>Service Nodes</b></em>' containment reference list.
-   * The list contents are of type {@link infrastructure.ServiceNode}.
+   * Returns the value of the '<em><b>Cache Machines</b></em>' containment reference list.
+   * The list contents are of type {@link infrastructure.Machine}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Service Nodes</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Cache Machines</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Service Nodes</em>' containment reference list.
-   * @see infrastructure.InfrastructurePackage#getCluster_ServiceNodes()
+   * @return the value of the '<em>Cache Machines</em>' containment reference list.
+   * @see infrastructure.InfrastructurePackage#getCluster_CacheMachines()
    * @model containment="true"
    * @generated
    */
-  EList<ServiceNode> getServiceNodes();
+  EList<Machine> getCacheMachines();
 
 } // Cluster

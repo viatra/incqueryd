@@ -9,7 +9,6 @@ import hu.bme.mit.incqueryd.rete.messages.Transformation;
 import hu.bme.mit.incqueryd.rete.messages.YellowPages;
 import hu.bme.mit.incqueryd.util.RecipeSerializer;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
-import infrastructure.InfrastructureNode;
 import infrastructure.InfrastructurePackage;
 import infrastructure.Machine;
 
@@ -59,7 +58,7 @@ public class CoordinatorActor extends UntypedActor {
 	protected String query;
 	protected boolean debug = false;
 	protected Set<Tuple> latestResults;
-	
+
 	public CoordinatorActor(final String architectureFile, final boolean remoting) {
 		super();
 		this.architectureFile = architectureFile;
@@ -92,7 +91,7 @@ public class CoordinatorActor extends UntypedActor {
 		// load resource
 		final ResourceSet resourceSet = new ResourceSetImpl();
 		final Resource resource = resourceSet.getResource(URI.createFileURI(architectureFile), true);
-		
+
 		// traverse model
 		final EObject o = resource.getContents().get(0);
 
@@ -132,14 +131,11 @@ public class CoordinatorActor extends UntypedActor {
 	private void fillRecipeToIp(final Configuration conf) {
 		final EList<InfrastructureMapping> mappings = conf.getMappings();
 		for (final InfrastructureMapping mapping : mappings) {
-			final InfrastructureNode targetElement = mapping.getTargetElement();
+			final Machine machine = mapping.getTargetElement();
 
 			final EList<ReteNodeRecipe> mappedElements = mapping.getMappedElements();
 			for (final ReteNodeRecipe reteNodeRecipe : mappedElements) {
-				if (targetElement instanceof Machine) {
-					final Machine machine = (Machine) targetElement;
-					recipeToIp.put(reteNodeRecipe, machine.getIp());
-				}
+				recipeToIp.put(reteNodeRecipe, machine.getIp());
 			}
 		}
 	}
@@ -162,7 +158,7 @@ public class CoordinatorActor extends UntypedActor {
 
 	/**
 	 * Phase 1
-	 * 
+	 *
 	 * @param conf
 	 * @throws Exception
 	 */
@@ -210,7 +206,7 @@ public class CoordinatorActor extends UntypedActor {
 
 	/**
 	 * Phase 2
-	 * 
+	 *
 	 * @param conf
 	 * @throws Exception
 	 */
@@ -232,7 +228,7 @@ public class CoordinatorActor extends UntypedActor {
 
 	/**
 	 * Phase 3: initialize the Rete network.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	private void initialize() throws Exception {
@@ -257,11 +253,11 @@ public class CoordinatorActor extends UntypedActor {
 		}
 		if (debug) System.out.println("</AWAIT>");
 	}
-	
+
 	/**
 	 * Phase 4: retrieve the results
-	 * @return 
-	 * 
+	 * @return
+	 *
 	 * @throws Exception
 	 */
 	public Set<Tuple> check() throws Exception {
@@ -269,10 +265,10 @@ public class CoordinatorActor extends UntypedActor {
 		if (debug) System.out.println("Results: " + latestResults.size());
 		return latestResults;
 	}
-		
+
 	/**
 	 * Phase 5: do the transformation
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	public void transform() throws Exception {

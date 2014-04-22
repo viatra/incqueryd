@@ -2,11 +2,8 @@
  */
 package infrastructure;
 
-import arch.ArchPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -61,6 +58,43 @@ public interface InfrastructurePackage extends EPackage
   InfrastructurePackage eINSTANCE = infrastructure.impl.InfrastructurePackageImpl.init();
 
   /**
+   * The meta object id for the '{@link infrastructure.ElementWithTraceInfo <em>Element With Trace Info</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see infrastructure.ElementWithTraceInfo
+   * @see infrastructure.impl.InfrastructurePackageImpl#getElementWithTraceInfo()
+   * @generated
+   */
+  int ELEMENT_WITH_TRACE_INFO = 2;
+
+  /**
+   * The feature id for the '<em><b>Trace Info</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ELEMENT_WITH_TRACE_INFO__TRACE_INFO = 0;
+
+  /**
+   * The number of structural features of the '<em>Element With Trace Info</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT = 1;
+
+  /**
+   * The number of operations of the '<em>Element With Trace Info</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link infrastructure.impl.ClusterImpl <em>Cluster</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -77,25 +111,25 @@ public interface InfrastructurePackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLUSTER__TRACE_INFO = ArchPackage.ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
+  int CLUSTER__TRACE_INFO = ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
 
   /**
-   * The feature id for the '<em><b>Infrastructure Nodes</b></em>' containment reference list.
+   * The feature id for the '<em><b>Rete Machines</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLUSTER__INFRASTRUCTURE_NODES = ArchPackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
+  int CLUSTER__RETE_MACHINES = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Service Nodes</b></em>' containment reference list.
+   * The feature id for the '<em><b>Cache Machines</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLUSTER__SERVICE_NODES = ArchPackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
+  int CLUSTER__CACHE_MACHINES = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Cluster</em>' class.
@@ -104,7 +138,7 @@ public interface InfrastructurePackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLUSTER_FEATURE_COUNT = ArchPackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 2;
+  int CLUSTER_FEATURE_COUNT = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 2;
 
   /**
    * The number of operations of the '<em>Cluster</em>' class.
@@ -113,117 +147,7 @@ public interface InfrastructurePackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLUSTER_OPERATION_COUNT = ArchPackage.ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link infrastructure.impl.InfrastructureNodeImpl <em>Node</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see infrastructure.impl.InfrastructureNodeImpl
-   * @see infrastructure.impl.InfrastructurePackageImpl#getInfrastructureNode()
-   * @generated
-   */
-  int INFRASTRUCTURE_NODE = 4;
-
-  /**
-   * The feature id for the '<em><b>Trace Info</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INFRASTRUCTURE_NODE__TRACE_INFO = ArchPackage.ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
-
-  /**
-   * The number of structural features of the '<em>Node</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INFRASTRUCTURE_NODE_FEATURE_COUNT = ArchPackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
-
-  /**
-   * The number of operations of the '<em>Node</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INFRASTRUCTURE_NODE_OPERATION_COUNT = ArchPackage.ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link infrastructure.impl.StorageImpl <em>Storage</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see infrastructure.impl.StorageImpl
-   * @see infrastructure.impl.InfrastructurePackageImpl#getStorage()
-   * @generated
-   */
-  int STORAGE = 1;
-
-  /**
-   * The feature id for the '<em><b>Trace Info</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STORAGE__TRACE_INFO = INFRASTRUCTURE_NODE__TRACE_INFO;
-
-  /**
-   * The feature id for the '<em><b>Maximum</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STORAGE__MAXIMUM = INFRASTRUCTURE_NODE_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Used</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STORAGE__USED = INFRASTRUCTURE_NODE_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Free</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STORAGE__FREE = INFRASTRUCTURE_NODE_FEATURE_COUNT + 2;
-
-  /**
-   * The feature id for the '<em><b>Kind</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STORAGE__KIND = INFRASTRUCTURE_NODE_FEATURE_COUNT + 3;
-
-  /**
-   * The number of structural features of the '<em>Storage</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STORAGE_FEATURE_COUNT = INFRASTRUCTURE_NODE_FEATURE_COUNT + 4;
-
-  /**
-   * The number of operations of the '<em>Storage</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STORAGE_OPERATION_COUNT = INFRASTRUCTURE_NODE_OPERATION_COUNT + 0;
+  int CLUSTER_OPERATION_COUNT = ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT + 0;
 
   /**
    * The meta object id for the '{@link infrastructure.impl.MachineImpl <em>Machine</em>}' class.
@@ -233,7 +157,7 @@ public interface InfrastructurePackage extends EPackage
    * @see infrastructure.impl.InfrastructurePackageImpl#getMachine()
    * @generated
    */
-  int MACHINE = 2;
+  int MACHINE = 1;
 
   /**
    * The feature id for the '<em><b>Trace Info</b></em>' attribute.
@@ -242,25 +166,7 @@ public interface InfrastructurePackage extends EPackage
    * @generated
    * @ordered
    */
-  int MACHINE__TRACE_INFO = INFRASTRUCTURE_NODE__TRACE_INFO;
-
-  /**
-   * The feature id for the '<em><b>Storage</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MACHINE__STORAGE = INFRASTRUCTURE_NODE_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Host</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MACHINE__HOST = INFRASTRUCTURE_NODE_FEATURE_COUNT + 1;
+  int MACHINE__TRACE_INFO = ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
 
   /**
    * The feature id for the '<em><b>Ip</b></em>' attribute.
@@ -269,7 +175,7 @@ public interface InfrastructurePackage extends EPackage
    * @generated
    * @ordered
    */
-  int MACHINE__IP = INFRASTRUCTURE_NODE_FEATURE_COUNT + 2;
+  int MACHINE__IP = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Machine</em>' class.
@@ -278,7 +184,7 @@ public interface InfrastructurePackage extends EPackage
    * @generated
    * @ordered
    */
-  int MACHINE_FEATURE_COUNT = INFRASTRUCTURE_NODE_FEATURE_COUNT + 3;
+  int MACHINE_FEATURE_COUNT = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
 
   /**
    * The number of operations of the '<em>Machine</em>' class.
@@ -287,127 +193,7 @@ public interface InfrastructurePackage extends EPackage
    * @generated
    * @ordered
    */
-  int MACHINE_OPERATION_COUNT = INFRASTRUCTURE_NODE_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link infrastructure.impl.ServiceNodeImpl <em>Service Node</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see infrastructure.impl.ServiceNodeImpl
-   * @see infrastructure.impl.InfrastructurePackageImpl#getServiceNode()
-   * @generated
-   */
-  int SERVICE_NODE = 5;
-
-  /**
-   * The feature id for the '<em><b>Trace Info</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SERVICE_NODE__TRACE_INFO = ArchPackage.ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
-
-  /**
-   * The number of structural features of the '<em>Service Node</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SERVICE_NODE_FEATURE_COUNT = ArchPackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
-
-  /**
-   * The number of operations of the '<em>Service Node</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SERVICE_NODE_OPERATION_COUNT = ArchPackage.ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link infrastructure.impl.GraphStoreImpl <em>Graph Store</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see infrastructure.impl.GraphStoreImpl
-   * @see infrastructure.impl.InfrastructurePackageImpl#getGraphStore()
-   * @generated
-   */
-  int GRAPH_STORE = 3;
-
-  /**
-   * The feature id for the '<em><b>Trace Info</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GRAPH_STORE__TRACE_INFO = SERVICE_NODE__TRACE_INFO;
-
-  /**
-   * The feature id for the '<em><b>Required Storage</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GRAPH_STORE__REQUIRED_STORAGE = SERVICE_NODE_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Used Storage</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GRAPH_STORE__USED_STORAGE = SERVICE_NODE_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Master</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GRAPH_STORE__MASTER = SERVICE_NODE_FEATURE_COUNT + 2;
-
-  /**
-   * The feature id for the '<em><b>Slave</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GRAPH_STORE__SLAVE = SERVICE_NODE_FEATURE_COUNT + 3;
-
-  /**
-   * The number of structural features of the '<em>Graph Store</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GRAPH_STORE_FEATURE_COUNT = SERVICE_NODE_FEATURE_COUNT + 4;
-
-  /**
-   * The number of operations of the '<em>Graph Store</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int GRAPH_STORE_OPERATION_COUNT = SERVICE_NODE_OPERATION_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link infrastructure.StorageKind <em>Storage Kind</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see infrastructure.StorageKind
-   * @see infrastructure.impl.InfrastructurePackageImpl#getStorageKind()
-   * @generated
-   */
-  int STORAGE_KIND = 6;
+  int MACHINE_OPERATION_COUNT = ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT + 0;
 
 
   /**
@@ -421,80 +207,26 @@ public interface InfrastructurePackage extends EPackage
   EClass getCluster();
 
   /**
-   * Returns the meta object for the containment reference list '{@link infrastructure.Cluster#getInfrastructureNodes <em>Infrastructure Nodes</em>}'.
+   * Returns the meta object for the containment reference list '{@link infrastructure.Cluster#getReteMachines <em>Rete Machines</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Infrastructure Nodes</em>'.
-   * @see infrastructure.Cluster#getInfrastructureNodes()
+   * @return the meta object for the containment reference list '<em>Rete Machines</em>'.
+   * @see infrastructure.Cluster#getReteMachines()
    * @see #getCluster()
    * @generated
    */
-  EReference getCluster_InfrastructureNodes();
+  EReference getCluster_ReteMachines();
 
   /**
-   * Returns the meta object for the containment reference list '{@link infrastructure.Cluster#getServiceNodes <em>Service Nodes</em>}'.
+   * Returns the meta object for the containment reference list '{@link infrastructure.Cluster#getCacheMachines <em>Cache Machines</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Service Nodes</em>'.
-   * @see infrastructure.Cluster#getServiceNodes()
+   * @return the meta object for the containment reference list '<em>Cache Machines</em>'.
+   * @see infrastructure.Cluster#getCacheMachines()
    * @see #getCluster()
    * @generated
    */
-  EReference getCluster_ServiceNodes();
-
-  /**
-   * Returns the meta object for class '{@link infrastructure.Storage <em>Storage</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Storage</em>'.
-   * @see infrastructure.Storage
-   * @generated
-   */
-  EClass getStorage();
-
-  /**
-   * Returns the meta object for the attribute '{@link infrastructure.Storage#getMaximum <em>Maximum</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Maximum</em>'.
-   * @see infrastructure.Storage#getMaximum()
-   * @see #getStorage()
-   * @generated
-   */
-  EAttribute getStorage_Maximum();
-
-  /**
-   * Returns the meta object for the attribute '{@link infrastructure.Storage#getUsed <em>Used</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Used</em>'.
-   * @see infrastructure.Storage#getUsed()
-   * @see #getStorage()
-   * @generated
-   */
-  EAttribute getStorage_Used();
-
-  /**
-   * Returns the meta object for the attribute '{@link infrastructure.Storage#getFree <em>Free</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Free</em>'.
-   * @see infrastructure.Storage#getFree()
-   * @see #getStorage()
-   * @generated
-   */
-  EAttribute getStorage_Free();
-
-  /**
-   * Returns the meta object for the attribute '{@link infrastructure.Storage#getKind <em>Kind</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Kind</em>'.
-   * @see infrastructure.Storage#getKind()
-   * @see #getStorage()
-   * @generated
-   */
-  EAttribute getStorage_Kind();
+  EReference getCluster_CacheMachines();
 
   /**
    * Returns the meta object for class '{@link infrastructure.Machine <em>Machine</em>}'.
@@ -505,28 +237,6 @@ public interface InfrastructurePackage extends EPackage
    * @generated
    */
   EClass getMachine();
-
-  /**
-   * Returns the meta object for the reference list '{@link infrastructure.Machine#getStorage <em>Storage</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Storage</em>'.
-   * @see infrastructure.Machine#getStorage()
-   * @see #getMachine()
-   * @generated
-   */
-  EReference getMachine_Storage();
-
-  /**
-   * Returns the meta object for the attribute '{@link infrastructure.Machine#getHost <em>Host</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Host</em>'.
-   * @see infrastructure.Machine#getHost()
-   * @see #getMachine()
-   * @generated
-   */
-  EAttribute getMachine_Host();
 
   /**
    * Returns the meta object for the attribute '{@link infrastructure.Machine#getIp <em>Ip</em>}'.
@@ -540,88 +250,25 @@ public interface InfrastructurePackage extends EPackage
   EAttribute getMachine_Ip();
 
   /**
-   * Returns the meta object for class '{@link infrastructure.GraphStore <em>Graph Store</em>}'.
+   * Returns the meta object for class '{@link infrastructure.ElementWithTraceInfo <em>Element With Trace Info</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Graph Store</em>'.
-   * @see infrastructure.GraphStore
+   * @return the meta object for class '<em>Element With Trace Info</em>'.
+   * @see infrastructure.ElementWithTraceInfo
    * @generated
    */
-  EClass getGraphStore();
+  EClass getElementWithTraceInfo();
 
   /**
-   * Returns the meta object for the reference list '{@link infrastructure.GraphStore#getRequiredStorage <em>Required Storage</em>}'.
+   * Returns the meta object for the attribute '{@link infrastructure.ElementWithTraceInfo#getTraceInfo <em>Trace Info</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Required Storage</em>'.
-   * @see infrastructure.GraphStore#getRequiredStorage()
-   * @see #getGraphStore()
+   * @return the meta object for the attribute '<em>Trace Info</em>'.
+   * @see infrastructure.ElementWithTraceInfo#getTraceInfo()
+   * @see #getElementWithTraceInfo()
    * @generated
    */
-  EReference getGraphStore_RequiredStorage();
-
-  /**
-   * Returns the meta object for the reference list '{@link infrastructure.GraphStore#getUsedStorage <em>Used Storage</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Used Storage</em>'.
-   * @see infrastructure.GraphStore#getUsedStorage()
-   * @see #getGraphStore()
-   * @generated
-   */
-  EReference getGraphStore_UsedStorage();
-
-  /**
-   * Returns the meta object for the reference '{@link infrastructure.GraphStore#getMaster <em>Master</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Master</em>'.
-   * @see infrastructure.GraphStore#getMaster()
-   * @see #getGraphStore()
-   * @generated
-   */
-  EReference getGraphStore_Master();
-
-  /**
-   * Returns the meta object for the reference '{@link infrastructure.GraphStore#getSlave <em>Slave</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Slave</em>'.
-   * @see infrastructure.GraphStore#getSlave()
-   * @see #getGraphStore()
-   * @generated
-   */
-  EReference getGraphStore_Slave();
-
-  /**
-   * Returns the meta object for class '{@link infrastructure.InfrastructureNode <em>Node</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Node</em>'.
-   * @see infrastructure.InfrastructureNode
-   * @generated
-   */
-  EClass getInfrastructureNode();
-
-  /**
-   * Returns the meta object for class '{@link infrastructure.ServiceNode <em>Service Node</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Service Node</em>'.
-   * @see infrastructure.ServiceNode
-   * @generated
-   */
-  EClass getServiceNode();
-
-  /**
-   * Returns the meta object for enum '{@link infrastructure.StorageKind <em>Storage Kind</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Storage Kind</em>'.
-   * @see infrastructure.StorageKind
-   * @generated
-   */
-  EEnum getStorageKind();
+  EAttribute getElementWithTraceInfo_TraceInfo();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -658,62 +305,20 @@ public interface InfrastructurePackage extends EPackage
     EClass CLUSTER = eINSTANCE.getCluster();
 
     /**
-     * The meta object literal for the '<em><b>Infrastructure Nodes</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Rete Machines</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CLUSTER__INFRASTRUCTURE_NODES = eINSTANCE.getCluster_InfrastructureNodes();
+    EReference CLUSTER__RETE_MACHINES = eINSTANCE.getCluster_ReteMachines();
 
     /**
-     * The meta object literal for the '<em><b>Service Nodes</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Cache Machines</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CLUSTER__SERVICE_NODES = eINSTANCE.getCluster_ServiceNodes();
-
-    /**
-     * The meta object literal for the '{@link infrastructure.impl.StorageImpl <em>Storage</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see infrastructure.impl.StorageImpl
-     * @see infrastructure.impl.InfrastructurePackageImpl#getStorage()
-     * @generated
-     */
-    EClass STORAGE = eINSTANCE.getStorage();
-
-    /**
-     * The meta object literal for the '<em><b>Maximum</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute STORAGE__MAXIMUM = eINSTANCE.getStorage_Maximum();
-
-    /**
-     * The meta object literal for the '<em><b>Used</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute STORAGE__USED = eINSTANCE.getStorage_Used();
-
-    /**
-     * The meta object literal for the '<em><b>Free</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute STORAGE__FREE = eINSTANCE.getStorage_Free();
-
-    /**
-     * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute STORAGE__KIND = eINSTANCE.getStorage_Kind();
+    EReference CLUSTER__CACHE_MACHINES = eINSTANCE.getCluster_CacheMachines();
 
     /**
      * The meta object literal for the '{@link infrastructure.impl.MachineImpl <em>Machine</em>}' class.
@@ -726,22 +331,6 @@ public interface InfrastructurePackage extends EPackage
     EClass MACHINE = eINSTANCE.getMachine();
 
     /**
-     * The meta object literal for the '<em><b>Storage</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MACHINE__STORAGE = eINSTANCE.getMachine_Storage();
-
-    /**
-     * The meta object literal for the '<em><b>Host</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MACHINE__HOST = eINSTANCE.getMachine_Host();
-
-    /**
      * The meta object literal for the '<em><b>Ip</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -750,76 +339,22 @@ public interface InfrastructurePackage extends EPackage
     EAttribute MACHINE__IP = eINSTANCE.getMachine_Ip();
 
     /**
-     * The meta object literal for the '{@link infrastructure.impl.GraphStoreImpl <em>Graph Store</em>}' class.
+     * The meta object literal for the '{@link infrastructure.ElementWithTraceInfo <em>Element With Trace Info</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see infrastructure.impl.GraphStoreImpl
-     * @see infrastructure.impl.InfrastructurePackageImpl#getGraphStore()
+     * @see infrastructure.ElementWithTraceInfo
+     * @see infrastructure.impl.InfrastructurePackageImpl#getElementWithTraceInfo()
      * @generated
      */
-    EClass GRAPH_STORE = eINSTANCE.getGraphStore();
+    EClass ELEMENT_WITH_TRACE_INFO = eINSTANCE.getElementWithTraceInfo();
 
     /**
-     * The meta object literal for the '<em><b>Required Storage</b></em>' reference list feature.
+     * The meta object literal for the '<em><b>Trace Info</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference GRAPH_STORE__REQUIRED_STORAGE = eINSTANCE.getGraphStore_RequiredStorage();
-
-    /**
-     * The meta object literal for the '<em><b>Used Storage</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference GRAPH_STORE__USED_STORAGE = eINSTANCE.getGraphStore_UsedStorage();
-
-    /**
-     * The meta object literal for the '<em><b>Master</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference GRAPH_STORE__MASTER = eINSTANCE.getGraphStore_Master();
-
-    /**
-     * The meta object literal for the '<em><b>Slave</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference GRAPH_STORE__SLAVE = eINSTANCE.getGraphStore_Slave();
-
-    /**
-     * The meta object literal for the '{@link infrastructure.impl.InfrastructureNodeImpl <em>Node</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see infrastructure.impl.InfrastructureNodeImpl
-     * @see infrastructure.impl.InfrastructurePackageImpl#getInfrastructureNode()
-     * @generated
-     */
-    EClass INFRASTRUCTURE_NODE = eINSTANCE.getInfrastructureNode();
-
-    /**
-     * The meta object literal for the '{@link infrastructure.impl.ServiceNodeImpl <em>Service Node</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see infrastructure.impl.ServiceNodeImpl
-     * @see infrastructure.impl.InfrastructurePackageImpl#getServiceNode()
-     * @generated
-     */
-    EClass SERVICE_NODE = eINSTANCE.getServiceNode();
-
-    /**
-     * The meta object literal for the '{@link infrastructure.StorageKind <em>Storage Kind</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see infrastructure.StorageKind
-     * @see infrastructure.impl.InfrastructurePackageImpl#getStorageKind()
-     * @generated
-     */
-    EEnum STORAGE_KIND = eINSTANCE.getStorageKind();
+    EAttribute ELEMENT_WITH_TRACE_INFO__TRACE_INFO = eINSTANCE.getElementWithTraceInfo_TraceInfo();
 
   }
 
