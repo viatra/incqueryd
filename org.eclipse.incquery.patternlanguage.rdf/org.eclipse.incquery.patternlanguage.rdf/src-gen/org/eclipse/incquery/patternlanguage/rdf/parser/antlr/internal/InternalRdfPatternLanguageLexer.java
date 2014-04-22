@@ -229,10 +229,10 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:16:7: ( ')' )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:16:9: ')'
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:16:7: ( ',' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:16:9: ','
             {
-            match(')'); 
+            match(','); 
 
             }
 
@@ -249,10 +249,10 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:17:7: ( ',' )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:17:9: ','
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:17:7: ( ')' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:17:9: ')'
             {
-            match(','); 
+            match(')'); 
 
             }
 
@@ -1866,11 +1866,11 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = RULE_ESCAPED_IRI;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7854:18: ( '<' ( '\\\\>' | ~ ( '>' ) )* '>' )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7854:20: '<' ( '\\\\>' | ~ ( '>' ) )* '>'
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7876:18: ( '<' ( '\\\\>' | ~ ( '>' ) )* '>' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7876:20: '<' ( '\\\\>' | ~ ( '>' ) )* '>'
             {
             match('<'); 
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7854:24: ( '\\\\>' | ~ ( '>' ) )*
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7876:24: ( '\\\\>' | ~ ( '>' ) )*
             loop1:
             do {
                 int alt1=3;
@@ -1904,7 +1904,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7854:25: '\\\\>'
+            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7876:25: '\\\\>'
             	    {
             	    match("\\>"); 
 
@@ -1912,7 +1912,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7854:31: ~ ( '>' )
+            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7876:31: ~ ( '>' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='=')||(input.LA(1)>='?' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1949,10 +1949,10 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = RULE_HEX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7856:10: ( ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )? )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7856:12: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7878:10: ( ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )? )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7878:12: ( '0x' | '0X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+ ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7856:12: ( '0x' | '0X' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7878:12: ( '0x' | '0X' )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -1980,7 +1980,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7856:13: '0x'
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7878:13: '0x'
                     {
                     match("0x"); 
 
@@ -1988,7 +1988,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7856:18: '0X'
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7878:18: '0X'
                     {
                     match("0X"); 
 
@@ -1998,7 +1998,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7856:24: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7878:24: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' | '_' )+
             int cnt3=0;
             loop3:
             do {
@@ -2036,7 +2036,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
                 cnt3++;
             } while (true);
 
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7856:58: ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7878:58: ( '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) ) )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -2045,10 +2045,10 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7856:59: '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7878:59: '#' ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
                     {
                     match('#'); 
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7856:63: ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7878:63: ( ( 'b' | 'B' ) ( 'i' | 'I' ) | ( 'l' | 'L' ) )
                     int alt4=2;
                     int LA4_0 = input.LA(1);
 
@@ -2066,7 +2066,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
                     }
                     switch (alt4) {
                         case 1 :
-                            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7856:64: ( 'b' | 'B' ) ( 'i' | 'I' )
+                            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7878:64: ( 'b' | 'B' ) ( 'i' | 'I' )
                             {
                             if ( input.LA(1)=='B'||input.LA(1)=='b' ) {
                                 input.consume();
@@ -2090,7 +2090,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7856:84: ( 'l' | 'L' )
+                            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7878:84: ( 'l' | 'L' )
                             {
                             if ( input.LA(1)=='L'||input.LA(1)=='l' ) {
                                 input.consume();
@@ -2129,11 +2129,11 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7858:10: ( '0' .. '9' ( '0' .. '9' | '_' )* )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7858:12: '0' .. '9' ( '0' .. '9' | '_' )*
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7880:10: ( '0' .. '9' ( '0' .. '9' | '_' )* )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7880:12: '0' .. '9' ( '0' .. '9' | '_' )*
             {
             matchRange('0','9'); 
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7858:21: ( '0' .. '9' | '_' )*
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7880:21: ( '0' .. '9' | '_' )*
             loop6:
             do {
                 int alt6=2;
@@ -2182,11 +2182,11 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = RULE_DECIMAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7860:14: ( RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )? )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7860:16: RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7882:14: ( RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )? )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7882:16: RULE_INT ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )? ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
             {
             mRULE_INT(); 
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7860:25: ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )?
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7882:25: ( ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -2195,7 +2195,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7860:26: ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7882:26: ( 'e' | 'E' ) ( '+' | '-' )? RULE_INT
                     {
                     if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                         input.consume();
@@ -2206,7 +2206,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
                         recover(mse);
                         throw mse;}
 
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7860:36: ( '+' | '-' )?
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7882:36: ( '+' | '-' )?
                     int alt7=2;
                     int LA7_0 = input.LA(1);
 
@@ -2239,7 +2239,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7860:58: ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7882:58: ( ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' ) | ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' ) )?
             int alt9=3;
             int LA9_0 = input.LA(1);
 
@@ -2251,7 +2251,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7860:59: ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' )
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7882:59: ( 'b' | 'B' ) ( 'i' | 'I' | 'd' | 'D' )
                     {
                     if ( input.LA(1)=='B'||input.LA(1)=='b' ) {
                         input.consume();
@@ -2275,7 +2275,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7860:87: ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' )
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7882:87: ( 'l' | 'L' | 'd' | 'D' | 'f' | 'F' )
                     {
                     if ( input.LA(1)=='D'||input.LA(1)=='F'||input.LA(1)=='L'||input.LA(1)=='d'||input.LA(1)=='f'||input.LA(1)=='l' ) {
                         input.consume();
@@ -2308,10 +2308,10 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7862:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7862:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7884:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7884:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7862:11: ( '^' )?
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7884:11: ( '^' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -2320,7 +2320,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7862:11: '^'
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7884:11: '^'
                     {
                     match('^'); 
 
@@ -2338,7 +2338,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7862:44: ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7884:44: ( 'a' .. 'z' | 'A' .. 'Z' | '$' | '_' | '0' .. '9' )*
             loop11:
             do {
                 int alt11=2;
@@ -2387,10 +2387,10 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7864:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7864:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7886:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7886:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7864:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7886:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -2408,10 +2408,10 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
             }
             switch (alt14) {
                 case 1 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7864:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7886:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7864:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7886:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop12:
                     do {
                         int alt12=3;
@@ -2427,7 +2427,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7864:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7886:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -2443,7 +2443,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7864:66: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7886:66: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2468,10 +2468,10 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7864:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7886:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7864:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7886:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop13:
                     do {
                         int alt13=3;
@@ -2487,7 +2487,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7864:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7886:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -2503,7 +2503,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7864:137: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7886:137: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2546,12 +2546,12 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7866:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7866:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7888:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7888:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7866:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7888:24: ( options {greedy=false; } : . )*
             loop15:
             do {
                 int alt15=2;
@@ -2576,7 +2576,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7866:52: .
+            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7888:52: .
             	    {
             	    matchAny(); 
 
@@ -2606,12 +2606,12 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7868:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7868:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7890:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7890:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7868:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7890:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop16:
             do {
                 int alt16=2;
@@ -2624,7 +2624,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7868:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7890:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2644,7 +2644,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7868:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7890:40: ( ( '\\r' )? '\\n' )?
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -2653,9 +2653,9 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
             }
             switch (alt18) {
                 case 1 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7868:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7890:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7868:41: ( '\\r' )?
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7890:41: ( '\\r' )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -2664,7 +2664,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
                     }
                     switch (alt17) {
                         case 1 :
-                            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7868:41: '\\r'
+                            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7890:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2696,10 +2696,10 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7870:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7870:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7892:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7892:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7870:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7892:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt19=0;
             loop19:
             do {
@@ -2753,8 +2753,8 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7872:16: ( . )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7872:18: .
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7894:16: ( . )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7894:18: .
             {
             matchAny(); 
 
@@ -3524,7 +3524,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         "\1\3\37\uffff\1\2\15\uffff\1\4\1\1\72\uffff\1\0\u00b5\uffff}>";
     static final String[] DFA20_transitionS = {
             "\11\61\2\60\2\61\1\60\22\61\1\60\1\35\1\56\1\45\1\55\1\43\1"+
-            "\34\1\57\1\5\1\6\1\25\1\21\1\7\1\26\1\22\1\42\1\53\11\54\1\3"+
+            "\34\1\57\1\5\1\7\1\25\1\21\1\6\1\26\1\22\1\42\1\53\11\54\1\3"+
             "\1\15\1\40\1\12\1\37\1\41\1\11\5\55\1\31\15\55\1\30\6\55\1\23"+
             "\1\61\1\24\1\10\1\55\1\61\1\44\1\1\1\4\1\47\1\32\1\20\2\55\1"+
             "\36\4\55\1\17\1\13\1\2\1\55\1\52\1\46\1\27\1\55\1\51\1\50\3"+
@@ -3949,9 +3949,9 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
 
                         else if ( (LA20_0=='(') ) {s = 5;}
 
-                        else if ( (LA20_0==')') ) {s = 6;}
+                        else if ( (LA20_0==',') ) {s = 6;}
 
-                        else if ( (LA20_0==',') ) {s = 7;}
+                        else if ( (LA20_0==')') ) {s = 7;}
 
                         else if ( (LA20_0=='^') ) {s = 8;}
 

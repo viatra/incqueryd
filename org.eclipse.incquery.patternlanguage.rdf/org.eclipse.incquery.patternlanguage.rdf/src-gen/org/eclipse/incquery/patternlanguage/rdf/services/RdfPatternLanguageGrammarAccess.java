@@ -198,15 +198,19 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		private final Action cRdfCheckConstraintAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cCheckKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cExpressionAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cExpressionSTRINGTerminalRuleCall_3_0 = (RuleCall)cExpressionAssignment_3.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Assignment cVariablesAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final RuleCall cVariablesVariableReferenceParserRuleCall_3_0_0 = (RuleCall)cVariablesAssignment_3_0.eContents().get(0);
+		private final Keyword cCommaKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Assignment cExpressionAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cExpressionSTRINGTerminalRuleCall_4_0 = (RuleCall)cExpressionAssignment_4.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//RdfCheckConstraint returns Constraint:
-		//	{RdfCheckConstraint} "check" "(" expression=STRING ")";
+		//	{RdfCheckConstraint} "check" "(" (variables+=VariableReference ",")* expression=STRING ")";
 		public ParserRule getRule() { return rule; }
 
-		//{RdfCheckConstraint} "check" "(" expression=STRING ")"
+		//{RdfCheckConstraint} "check" "(" (variables+=VariableReference ",")* expression=STRING ")"
 		public Group getGroup() { return cGroup; }
 
 		//{RdfCheckConstraint}
@@ -218,14 +222,26 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		//"("
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
 
+		//(variables+=VariableReference ",")*
+		public Group getGroup_3() { return cGroup_3; }
+
+		//variables+=VariableReference
+		public Assignment getVariablesAssignment_3_0() { return cVariablesAssignment_3_0; }
+
+		//VariableReference
+		public RuleCall getVariablesVariableReferenceParserRuleCall_3_0_0() { return cVariablesVariableReferenceParserRuleCall_3_0_0; }
+
+		//","
+		public Keyword getCommaKeyword_3_1() { return cCommaKeyword_3_1; }
+
 		//expression=STRING
-		public Assignment getExpressionAssignment_3() { return cExpressionAssignment_3; }
+		public Assignment getExpressionAssignment_4() { return cExpressionAssignment_4; }
 
 		//STRING
-		public RuleCall getExpressionSTRINGTerminalRuleCall_3_0() { return cExpressionSTRINGTerminalRuleCall_3_0; }
+		public RuleCall getExpressionSTRINGTerminalRuleCall_4_0() { return cExpressionSTRINGTerminalRuleCall_4_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 	}
 
 	public class RdfPathExpressionConstraintElements extends AbstractParserRuleElementFinder {
@@ -579,7 +595,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//RdfCheckConstraint returns Constraint:
-	//	{RdfCheckConstraint} "check" "(" expression=STRING ")";
+	//	{RdfCheckConstraint} "check" "(" (variables+=VariableReference ",")* expression=STRING ")";
 	public RdfCheckConstraintElements getRdfCheckConstraintAccess() {
 		return (pRdfCheckConstraint != null) ? pRdfCheckConstraint : (pRdfCheckConstraint = new RdfCheckConstraintElements());
 	}
