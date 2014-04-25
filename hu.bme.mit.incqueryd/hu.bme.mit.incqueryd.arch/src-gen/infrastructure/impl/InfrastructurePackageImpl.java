@@ -156,9 +156,19 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getMachine_Ip()
+  public EAttribute getMachine_Name()
   {
     return (EAttribute)machineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getMachine_Ip()
+  {
+    return (EAttribute)machineEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -216,6 +226,7 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
     createEReference(clusterEClass, CLUSTER__CACHE_MACHINES);
 
     machineEClass = createEClass(MACHINE);
+    createEAttribute(machineEClass, MACHINE__NAME);
     createEAttribute(machineEClass, MACHINE__IP);
 
     elementWithTraceInfoEClass = createEClass(ELEMENT_WITH_TRACE_INFO);
@@ -263,6 +274,7 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
     initEReference(getCluster_CacheMachines(), this.getMachine(), null, "cacheMachines", null, 0, -1, Cluster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(machineEClass, Machine.class, "Machine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMachine_Name(), theEcorePackage.getEString(), "name", null, 0, 1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMachine_Ip(), theEcorePackage.getEString(), "ip", null, 0, 1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(elementWithTraceInfoEClass, ElementWithTraceInfo.class, "ElementWithTraceInfo", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
