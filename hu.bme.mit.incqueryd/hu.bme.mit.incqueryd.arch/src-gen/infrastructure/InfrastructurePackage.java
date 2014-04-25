@@ -169,13 +169,22 @@ public interface InfrastructurePackage extends EPackage
   int MACHINE__TRACE_INFO = ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
 
   /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MACHINE__NAME = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Ip</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MACHINE__IP = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
+  int MACHINE__IP = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Machine</em>' class.
@@ -184,7 +193,7 @@ public interface InfrastructurePackage extends EPackage
    * @generated
    * @ordered
    */
-  int MACHINE_FEATURE_COUNT = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
+  int MACHINE_FEATURE_COUNT = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 2;
 
   /**
    * The number of operations of the '<em>Machine</em>' class.
@@ -237,6 +246,17 @@ public interface InfrastructurePackage extends EPackage
    * @generated
    */
   EClass getMachine();
+
+  /**
+   * Returns the meta object for the attribute '{@link infrastructure.Machine#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see infrastructure.Machine#getName()
+   * @see #getMachine()
+   * @generated
+   */
+  EAttribute getMachine_Name();
 
   /**
    * Returns the meta object for the attribute '{@link infrastructure.Machine#getIp <em>Ip</em>}'.
@@ -329,6 +349,14 @@ public interface InfrastructurePackage extends EPackage
      * @generated
      */
     EClass MACHINE = eINSTANCE.getMachine();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MACHINE__NAME = eINSTANCE.getMachine_Name();
 
     /**
      * The meta object literal for the '<em><b>Ip</b></em>' attribute feature.

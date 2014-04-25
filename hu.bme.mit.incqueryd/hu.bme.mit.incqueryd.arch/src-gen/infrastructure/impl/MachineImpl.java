@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link infrastructure.impl.MachineImpl#getTraceInfo <em>Trace Info</em>}</li>
+ *   <li>{@link infrastructure.impl.MachineImpl#getName <em>Name</em>}</li>
  *   <li>{@link infrastructure.impl.MachineImpl#getIp <em>Ip</em>}</li>
  * </ul>
  * </p>
@@ -47,6 +48,26 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
    * @ordered
    */
   protected String traceInfo = TRACE_INFO_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
 
   /**
    * The default value of the '{@link #getIp() <em>Ip</em>}' attribute.
@@ -117,6 +138,29 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, InfrastructurePackage.MACHINE__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getIp()
   {
     return ip;
@@ -147,6 +191,8 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
     {
       case InfrastructurePackage.MACHINE__TRACE_INFO:
         return getTraceInfo();
+      case InfrastructurePackage.MACHINE__NAME:
+        return getName();
       case InfrastructurePackage.MACHINE__IP:
         return getIp();
     }
@@ -165,6 +211,9 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
     {
       case InfrastructurePackage.MACHINE__TRACE_INFO:
         setTraceInfo((String)newValue);
+        return;
+      case InfrastructurePackage.MACHINE__NAME:
+        setName((String)newValue);
         return;
       case InfrastructurePackage.MACHINE__IP:
         setIp((String)newValue);
@@ -186,6 +235,9 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
       case InfrastructurePackage.MACHINE__TRACE_INFO:
         setTraceInfo(TRACE_INFO_EDEFAULT);
         return;
+      case InfrastructurePackage.MACHINE__NAME:
+        setName(NAME_EDEFAULT);
+        return;
       case InfrastructurePackage.MACHINE__IP:
         setIp(IP_EDEFAULT);
         return;
@@ -205,6 +257,8 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
     {
       case InfrastructurePackage.MACHINE__TRACE_INFO:
         return TRACE_INFO_EDEFAULT == null ? traceInfo != null : !TRACE_INFO_EDEFAULT.equals(traceInfo);
+      case InfrastructurePackage.MACHINE__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case InfrastructurePackage.MACHINE__IP:
         return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
     }
@@ -224,6 +278,8 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (traceInfo: ");
     result.append(traceInfo);
+    result.append(", name: ");
+    result.append(name);
     result.append(", ip: ");
     result.append(ip);
     result.append(')');
