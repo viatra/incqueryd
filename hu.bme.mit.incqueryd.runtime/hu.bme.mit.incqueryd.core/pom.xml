@@ -180,9 +180,9 @@
 		<!-- recipes -->
 
 		<dependency>
-			<groupId>hu.bme.mit.incqueryd</groupId>
-			<artifactId>hu.bme.mit.incqueryd.recipes</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>org.eclipse.incquery</groupId>
+			<artifactId>org.eclipse.incquery.runtime.rete.recipes</artifactId>
+			<version>0.8.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- architecture -->
