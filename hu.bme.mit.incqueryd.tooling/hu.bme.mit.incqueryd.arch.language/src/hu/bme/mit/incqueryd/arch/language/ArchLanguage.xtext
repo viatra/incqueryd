@@ -1,0 +1,145 @@
+grammar hu.bme.mit.incqueryd.arch.language.ArchLanguage with org.eclipse.xtext.common.Terminals
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "http://www.eclipse.org/incquery/rete/recipes" as recipes
+import "http://incquery.net/d/infrastructure" as inf
+import "http://incquery.net/arch" as arch
+
+Configuration returns arch::Configuration:
+	{arch::Configuration}
+	('clusters' ':' '['
+		clusters+=Cluster*
+	']')?
+	('recipes' ':' '['
+		reteRecipes+=ReteRecipe*
+	']')?
+	('mappings' ':' '['
+		mappings+=InfrastructureMapping*
+	']')?
+;
+
+Cluster returns inf::Cluster:
+	{inf::Cluster}
+	'{'
+		('reteMachines' ':' '['
+			reteMachines+=Machine*
+		']')?
+		('cacheMachines' ':' '['
+			cacheMachines+=Machine*
+		']')?
+	'}'
+;
+
+Machine returns inf::Machine:
+	'{'
+		'id' ':' name=ID
+		'traceInfo' ':' traceInfo=STRING
+		'ip' ':' ip=IP
+	'}'
+;
+
+ReteRecipe returns recipes::ReteRecipe:
+	{recipes::ReteRecipe}
+	'{'
+		'nodes' ':' '['
+			recipeNodes+=ReteNodeRecipe*
+		']'
+	'}'
+;
+
+ReteNodeRecipe returns recipes::ReteNodeRecipe:
+	ProductionRecipe |
+	UniquenessEnforcerRecipe |
+	CheckRecipe |
+	TrimmerRecipe |
+	JoinRecipe |
+	AntiJoinRecipe
+;
+
+ProductionRecipe returns recipes::ProductionRecipe:
+	'Production' '{'
+		'traceInfo' ':' traceInfo=STRING
+		'parents' ':' '['
+			parents+=[recipes::ReteNodeRecipe]*
+		']'
+	'}'
+;
+
+UniquenessEnforcerRecipe returns recipes::UniquenessEnforcerRecipe:
+	'UniquenessEnforcer' '{'
+		'traceInfo' ':' traceInfo=STRING
+		'parents' ':' '['
+			parents+=[recipes::ReteNodeRecipe]*
+		']'
+	'}'
+;
+
+CheckRecipe returns recipes::CheckRecipe:
+	'Check' '{'
+		'traceInfo' ':' traceInfo=STRING
+		'parent' ':' parent=[recipes::ReteNodeRecipe]
+	'}'
+;
+
+TrimmerRecipe returns recipes::TrimmerRecipe:
+	'Trimmer' '{'
+		'traceInfo' ':' traceInfo=STRING
+		'mask' ':' mask=Mask
+		'parent' ':' parent=[recipes::ReteNodeRecipe]
+	'}'
+;
+
+JoinRecipe returns recipes::JoinRecipe:
+	'Join' '{'
+		'traceInfo' ':' traceInfo=STRING
+		'leftParent' ':' leftParent=ProjectionIndexerRecipe
+		'rightParent' ':' rightParent=IndexerRecipe
+		rightParentComplementaryMask=Mask?
+	'}'
+;
+
+AntiJoinRecipe returns recipes::AntiJoinRecipe:
+	'AntiJoin' '{'
+		'traceInfo' ':' traceInfo=STRING
+		'leftParent' ':' leftParent=ProjectionIndexerRecipe
+		'rightParent' ':' rightParent=IndexerRecipe
+	'}'
+;
+
+IndexerRecipe returns recipes::IndexerRecipe:
+	'{'
+		'traceInfo' ':' traceInfo=STRING
+		'mask' ':' mask=Mask
+		'parent' ':' parent=[recipes::ReteNodeRecipe]
+	'}'
+;
+
+ProjectionIndexerRecipe returns recipes::ProjectionIndexerRecipe:
+	'{'
+		'traceInfo' ':' traceInfo=STRING
+		'mask' ':' mask=Mask
+		'parent' ':' parent=[recipes::ReteNodeRecipe]
+	'}'
+;
+
+Mask returns recipes::Mask:
+	'{'
+		'sourceArity' ':' sourceArity=INT
+		('sourceIndices' ':' '['
+			sourceIndices+=INT*
+		']')*
+	'}'
+;
+
+InfrastructureMapping returns arch::InfrastructureMapping:
+	'{'
+		'from' ':' '['
+			mappedElements+=[recipes::ReteNodeRecipe]*
+		']'
+		'to' ':' targetElement=[inf::Machine]
+	'}'
+;
+
+terminal IP:
+	INT '.' INT '.' INT '.' INT
+;
