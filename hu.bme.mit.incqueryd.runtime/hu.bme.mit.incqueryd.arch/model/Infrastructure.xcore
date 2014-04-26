@@ -7,6 +7,7 @@ class Cluster extends ElementWithTraceInfo {
 }
 
 class Machine extends ElementWithTraceInfo {
+	String name
 	String ip
 }
 
