@@ -16,7 +16,6 @@
 		<module>hu.bme.mit.incqueryd.cache</module>
 		<module>hu.bme.mit.incqueryd.cache.hazelcast</module>
 		<module>hu.bme.mit.incqueryd.cache.local</module>
-		<module>hu.bme.mit.incqueryd.recipes</module>
 		<module>hu.bme.mit.incqueryd.recipeinstances</module>
 	</modules>
 
@@ -56,10 +55,10 @@
 			</snapshots>
 		</repository>
 
-<!-- 		<repository> -->
-<!-- 			<id>emf-incquery</id> -->
-<!-- 			<url>https://repo.eclipse.org/content/repositories/emf-incquery-snapshots/</url> -->
-<!-- 		</repository> -->
+		<repository>
+			<id>emf-incquery</id>
+			<url>https://repo.eclipse.org/content/repositories/emf-incquery-snapshots/</url>
+		</repository>
 	</repositories>
 
 	<dependencyManagement>
