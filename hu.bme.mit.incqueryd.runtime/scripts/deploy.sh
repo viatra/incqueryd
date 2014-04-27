@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Script for deploying the IncQuery-D on the cloud. This includes:
+# * light mode
+#   * IncQuery-D core JAR file
+#   * start-akka.sh
+# * full mode
+#   * all of the above
+#   * the dependencies of IncQuery-D core
+
 cd "$( cd "$( dirname "$0" )" && pwd )"
 . config.sh
 
@@ -12,16 +20,13 @@ while [ "$1" != "" ]; do
 	shift
 done
 
-cd "$( cd "$( dirname "$0" )" && pwd )/.."
-
 for machine in ${machines[@]}; do
-  echo $machine
+  echo "Deploying IncQuery-D on $machine"
 
-  cat scripts/init-default.sh | sed "s/export localHost=/export localHost=$machine/" > init.sh
-
-  chmod +x init.sh
-  scp init.sh $machine:
-  rm init.sh
+  cat scripts/start-akka-default.sh | sed "s/export localHost=/export localHost=$machine/" > start-akka.sh
+  chmod +x start-akka.sh
+  scp start-akka.sh $machine:
+  rm start-akka.sh
 
   if [ ! $light ]; then
     # third party dependencies
@@ -32,4 +37,3 @@ for machine in ${machines[@]}; do
   scp hu.bme.mit.incqueryd.core/target/hu.bme.mit.incqueryd.core-*-SNAPSHOT.jar $machine:akka-2.1.4/deploy/
 done
 
-4s-ssh-all "~/init.sh"
