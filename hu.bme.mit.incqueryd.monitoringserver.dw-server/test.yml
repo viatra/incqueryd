@@ -1,0 +1,10 @@
+atmosHost: 192.168.241.128
+
+atmosPort: 8660
+
+hosts:
+  - hostName: localhost
+    port: 7777
+  - hostName: 192.168.241.128
+    port: 7777
+
