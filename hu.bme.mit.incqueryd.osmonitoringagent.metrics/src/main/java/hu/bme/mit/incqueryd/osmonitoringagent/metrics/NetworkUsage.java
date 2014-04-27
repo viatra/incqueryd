@@ -4,18 +4,18 @@ public class NetworkUsage {
 	
 	private String name;
 	private String address;
-	private double RxTraffic;
-	private long RxPackets;
-	private double TxTraffic;
-	private long TxPackets;
+	private double rxTraffic;
+	private long rxPackets;
+	private double txTraffic;
+	private long txPackets;
 
 	public NetworkUsage(String name, String address) {
 		this.name = name;
 		this.address = address;
-		RxTraffic = 0;
-		RxPackets = 0;
-		TxTraffic = 0;
-		TxPackets = 0;
+		rxTraffic = 0;
+		rxPackets = 0;
+		txTraffic = 0;
+		txPackets = 0;
 	}
 	
 	public String getName() {
@@ -35,34 +35,34 @@ public class NetworkUsage {
 	}
 
 	public double getRxTraffic() {
-		return RxTraffic;
+		return rxTraffic;
 	}
 	
 	public void setRxTraffic(double rxTraffic) {
-		RxTraffic = rxTraffic;
+		this.rxTraffic = rxTraffic;
 	}
 	
 	public long getRxPackets() {
-		return RxPackets;
+		return rxPackets;
 	}
 	
 	public void setRxPackets(long rxPackets) {
-		RxPackets = rxPackets;
+		this.rxPackets = rxPackets;
 	}
 	
 	public double getTxTraffic() {
-		return TxTraffic;
+		return txTraffic;
 	}
 	
 	public void setTxTraffic(double txTraffic) {
-		TxTraffic = txTraffic;
+		this.txTraffic = txTraffic;
 	}
 	
 	public long getTxPackets() {
-		return TxPackets;
+		return txPackets;
 	}
 	
 	public void setTxPackets(long txPackets) {
-		TxPackets = txPackets;
+		this.txPackets = txPackets;
 	}
 }

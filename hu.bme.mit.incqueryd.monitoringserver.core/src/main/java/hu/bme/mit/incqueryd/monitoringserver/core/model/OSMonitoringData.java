@@ -1,12 +1,12 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import hu.bme.mit.incqueryd.osmonitoringagent.metrics.CPUUsage;
 import hu.bme.mit.incqueryd.osmonitoringagent.metrics.DiskUsage;
 import hu.bme.mit.incqueryd.osmonitoringagent.metrics.MemoryUsage;
 import hu.bme.mit.incqueryd.osmonitoringagent.metrics.NetworkUsage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OSMonitoringData {
 
@@ -14,6 +14,7 @@ public class OSMonitoringData {
 	private CPUUsage Cpu;
 	private List<DiskUsage> Disks;
 	private List<NetworkUsage> NetInterfaces;
+	private String Host;
 	
 	
 	
@@ -41,4 +42,11 @@ public class OSMonitoringData {
 		return NetInterfaces;
 	}
 	
+	public String getHostName() {
+		return Host;
+	}
+	
+	public void setHostName(String hostName) {
+		this.Host = hostName;
+	}
 }

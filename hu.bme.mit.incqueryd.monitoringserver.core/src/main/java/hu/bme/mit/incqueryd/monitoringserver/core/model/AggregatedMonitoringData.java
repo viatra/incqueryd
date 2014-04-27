@@ -7,8 +7,11 @@ public class AggregatedMonitoringData {
 
 	private List<OSMonitoringData> os;
 	
+	private List<AkkaNodeMonitoringData> akka;
+	
 	public AggregatedMonitoringData(){
-		os = new ArrayList<>();
+		os = new ArrayList<OSMonitoringData>();
+		akka = new ArrayList<AkkaNodeMonitoringData>();
 	}
 	
 	public List<OSMonitoringData> getOs() {
@@ -19,4 +22,11 @@ public class AggregatedMonitoringData {
 		os.add(osData);
 	}
 	
+	public List<AkkaNodeMonitoringData> getAkka() {
+		return akka;
+	}
+	
+	public void setAkka(List<AkkaNodeMonitoringData> akka) {
+		this.akka.addAll(akka);
+	}
 }

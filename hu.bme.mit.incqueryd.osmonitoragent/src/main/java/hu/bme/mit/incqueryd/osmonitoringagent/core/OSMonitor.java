@@ -99,12 +99,25 @@ public class OSMonitor extends Thread {
 	 * Data collecting OS level CPU usage
 	 */
 	private CPUUsage cpuUsage;
+	
+	/**
+	 * Name of the host to be monitored
+	 */
+	private String hostName;
 
 	/**
 	 * Constructor
 	 * @throws SigarException
 	 */
 	protected OSMonitor() throws SigarException {
+		
+		hostName = System.getenv("HOSTNAME");
+		if (hostName == null) {
+			hostName = System.getenv("COMPUTERNAME");
+		}
+		if (hostName != null) {
+			hostName = hostName.toLowerCase();
+		}
 		
 		memoryUsage = new MemoryUsage();
 		cpuUsage = new CPUUsage();
@@ -321,6 +334,14 @@ public class OSMonitor extends Thread {
 		synchronized (cpuUsage) {
 			return cpuUsage;
 		}
+	}
+	
+	/**
+	 * Get the hostname
+	 * @return
+	 */
+	public String getHostName() {
+		return hostName;
 	}
 	
 	/*GETTER METHODS FOR MEASURED METRICS*/

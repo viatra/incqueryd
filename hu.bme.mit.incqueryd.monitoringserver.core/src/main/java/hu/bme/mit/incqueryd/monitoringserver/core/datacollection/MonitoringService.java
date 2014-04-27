@@ -1,14 +1,14 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.datacollection;
 
+import hu.bme.mit.incqueryd.monitoringserver.core.deserialization.OSMonitoringDataDeserializer;
+import hu.bme.mit.incqueryd.monitoringserver.core.model.OSMonitoringData;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import hu.bme.mit.incqueryd.monitoringserver.core.deserialization.OSMonitoringDataDeserializer;
-import hu.bme.mit.incqueryd.monitoringserver.core.model.OSMonitoringData;
 
 public class MonitoringService {
 
@@ -34,7 +34,9 @@ public class MonitoringService {
 		gsonBuilder.registerTypeAdapter(OSMonitoringData.class, new OSMonitoringDataDeserializer());
 		Gson gson = gsonBuilder.create();
 		
-		return gson.fromJson(json, OSMonitoringData.class);
+		OSMonitoringData data = gson.fromJson(json, OSMonitoringData.class);
+		
+		return data;
 		
 	}
 	

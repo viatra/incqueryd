@@ -40,4 +40,9 @@ public class IncQueryDOS implements IncQueryDOSMBean {
 		return monitor.getNetUsages();
 	}
 
+	@Override
+	public String getHost() {
+		return monitor.getHostName();
+	}
+
 }

@@ -15,4 +15,6 @@ public interface IncQueryDOSMBean {
 	public List<DiskUsage> getDisks();
 	public List<NetworkUsage> getNetInterfaces();
 	
+	public String getHost();
+	
 }
