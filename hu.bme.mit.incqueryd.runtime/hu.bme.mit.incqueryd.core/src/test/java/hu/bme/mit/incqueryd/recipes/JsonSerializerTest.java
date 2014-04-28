@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.recipes;
 
 import hu.bme.mit.incqueryd.util.RecipeDeserializer;
-import hu.bme.mit.incqueryd.util.RecipeSerializer;
+import hu.bme.mit.incqueryd.util.EObjectSerializer;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -30,7 +30,7 @@ public class JsonSerializerTest {
 		secondaryParent.setMask(secondaryMask);
 		recipe.setRightParent(secondaryParent);
 
-		RecipeSerializer.serializeToFile(recipe, "src/test/resources/recipe.json");
+		EObjectSerializer.serializeToFile(recipe, "src/test/resources/recipe.json");
 		final BetaRecipe br = (BetaRecipe) RecipeDeserializer.deserializeFromFile("src/test/resources/recipe.json");
 
 		System.err.println(br.getLeftParent());
@@ -54,7 +54,7 @@ public class JsonSerializerTest {
 		secondaryParent.setMask(secondaryMask);
 		recipe.setRightParent(secondaryParent);
 
-		final String model = RecipeSerializer.serializeToString(recipe);
+		final String model = EObjectSerializer.serializeToString(recipe);
 		System.err.println(model);
 	}
 
