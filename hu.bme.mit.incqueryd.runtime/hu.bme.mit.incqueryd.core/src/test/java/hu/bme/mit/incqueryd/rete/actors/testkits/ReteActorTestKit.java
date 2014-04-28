@@ -12,6 +12,7 @@ import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 
 import org.apache.commons.io.FileUtils;
 
@@ -44,7 +45,7 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 		targetActor = new JavaTestKit(system);
 
 		final String jsonRecipe = FileUtils.readFileToString(new File(recipeFile));
-		conf = new ReteNodeConfiguration(jsonRecipe);
+		conf = new ReteNodeConfiguration(jsonRecipe, Collections.EMPTY_SET);
 	}
 
 	// @formatter:off
