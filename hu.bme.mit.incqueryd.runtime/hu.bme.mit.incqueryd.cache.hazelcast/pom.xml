@@ -10,16 +10,19 @@
 	<artifactId>hu.bme.mit.incqueryd.cache.hazelcast</artifactId>
 	<name>IncQuery-D Distributed Cache Hazelcast Implementation</name>
 
+	<properties>
+		<hazelcast.version>3.2</hazelcast.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.hazelcast</groupId>
 			<artifactId>hazelcast</artifactId>
-			<version>3.2</version>
+			<version>${hazelcast.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.hazelcast</groupId>
 			<artifactId>hazelcast-client</artifactId>
-			<version>3.2</version>
+			<version>${hazelcast.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
