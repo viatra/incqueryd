@@ -23,6 +23,7 @@ import java.util.Set;
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 
 import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 import com.hazelcast.client.HazelcastClient;
@@ -35,6 +36,8 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	protected String attribute;
 	protected final GraphElement graphElement;
 	protected final Set<Tuple> tuples;
+	protected final boolean distributedCache;
+	protected final Random random = new Random(0);
 
 	InputNode(final UniquenessEnforcerRecipe recipe, final Collection<String> cacheMachineIps) {
 		super();
@@ -57,11 +60,12 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		type = ArchUtil.extractType(recipe.getTraceInfo());
 		typename += type;
 
-		if (cacheMachineIps.isEmpty()) {
+		distributedCache = cacheMachineIps.isEmpty();
+		if (distributedCache) {
 			tuples = new HashSet<>();
 		} else {
 			final ClientConfig clientConfig = new ClientConfig();
-	        clientConfig.addAddress(cacheMachineIps.toArray(new String[] {}));
+	        clientConfig.getNetworkConfig().addAddress(cacheMachineIps.toArray(new String[] {}));
 			tuples = HazelcastClient.newHazelcastClient(clientConfig).getSet(typename);
 		}
 	}
@@ -87,7 +91,9 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			break;
 		}
 
-		final ChangeSet changeSet = new ChangeSet(tuples, ChangeType.POSITIVE);
+		final Set<Tuple> tuplesToSend = distributedCache ? ImmutableSet.copyOf(tuples) : tuples;
+			
+		final ChangeSet changeSet = new ChangeSet(tuplesToSend, ChangeType.POSITIVE);
 		return changeSet;
 	}
 
@@ -123,8 +129,6 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 
 		System.err.println("intializeForEdges returns " + tuples.size() + " " + type + " tuples");
 	}
-
-	final Random random = new Random(0);
 
 	public Collection<ChangeSet> transform(final Transformation transformation) throws IOException {
 		final List<Tuple> invalids = new ArrayList<>(transformation.getInvalids());

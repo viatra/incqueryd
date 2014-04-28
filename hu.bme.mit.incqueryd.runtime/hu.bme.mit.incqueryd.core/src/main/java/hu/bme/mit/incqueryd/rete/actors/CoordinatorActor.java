@@ -145,7 +145,7 @@ public class CoordinatorActor extends UntypedActor {
 		final Collection<String> cacheMachineIps = new HashSet<>(); 
 		for (final Machine machine : cacheMachines) {
 			cacheMachineIps.add(machine.getIp());
-		}		
+		}
 		
 		for (final ReteRecipe rr : conf.getReteRecipes()) {
 			for (final ReteNodeRecipe rnr : rr.getRecipeNodes()) {
