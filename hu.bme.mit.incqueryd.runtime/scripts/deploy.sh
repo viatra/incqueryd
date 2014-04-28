@@ -10,6 +10,7 @@
 
 cd "$( cd "$( dirname "$0" )" && pwd )"
 . config.sh
+cd ..
 
 while [ "$1" != "" ]; do
 	case $1 in
