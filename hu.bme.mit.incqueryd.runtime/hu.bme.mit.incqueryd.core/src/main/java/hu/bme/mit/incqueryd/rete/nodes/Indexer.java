@@ -1,14 +1,17 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
 import hu.bme.mit.incqueryd.cache.DistributedMultiMap;
-import hu.bme.mit.incqueryd.cache.local.LocalCache;
+import hu.bme.mit.incqueryd.cache.TupleCache;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
+
+import com.google.common.collect.ImmutableSet;
 
 /**
  * Indexer node for the {@link BetaNode}s.
@@ -18,12 +21,13 @@ import java.util.Set;
  */
 public class Indexer {
 
-    protected final DistributedMultiMap<Tuple, Tuple> map = new LocalCache().getMultiMap("");
+    protected final DistributedMultiMap<Tuple, Tuple> map;
 
     protected final List<Integer> joinMask;
 
     public Indexer(final List<Integer> joinMask) {
         this.joinMask = joinMask;
+        map = new TupleCache(Collections.<String>emptyList()).getMultiMap(UUID.randomUUID().toString());
     }
 
     public List<Integer> getJoinMask() {
@@ -52,7 +56,7 @@ public class Indexer {
     
     public Set<Tuple> get(final Tuple tuple) {
         // converting a Collection<Tuple> to Set<Tuple>
-        return new HashSet<Tuple>(map.get(tuple));
+        return ImmutableSet.copyOf(map.get(tuple));
     }
 
     public DistributedMultiMap<Tuple, Tuple> getMap() {
