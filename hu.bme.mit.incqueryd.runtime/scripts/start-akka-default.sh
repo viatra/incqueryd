@@ -4,7 +4,7 @@ export localHost=
 export JAVA_OPTS="-Xms1G -Xmx1G"
 
 killall -9 java
-while [[ ! -z `ps auxw | grep akk[a]` ]]; do
+while [[ ! -z `ps auxw | grep ^akk[a]` ]]; do
   echo Waiting for Akka to finish.
   sleep 1
 done
