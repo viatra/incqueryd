@@ -52,7 +52,7 @@ public class ReteActor extends UntypedActor {
 
 	public ReteActor() {
 		super();
-		System.out.println("[ReteActor] Rete actor instantiated.");
+		System.err.println("[ReteActor] Rete actor instantiated.");
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class ReteActor extends UntypedActor {
 			recipe = (ReteNodeRecipe) RecipeDeserializer.deserializeFromString(conf.getRecipeString());
 
 			reteNode = ReteNodeFactory.createNode(recipe);
-			System.out.println("[ReteActor] " + reteNode.getClass().getName() + " configuration received.");
+			System.err.println("[ReteActor] " + reteNode.getClass().getName() + " configuration received.");
 
 			// sending CONFIGURATION_RECEIVED to the coordinator
 			getSender().tell(ActorReply.CONFIGURATION_RECEIVED, getSelf());
@@ -110,9 +110,9 @@ public class ReteActor extends UntypedActor {
 	private void subscribe(final YellowPages yellowPages) {
 		final Map<String, ActorRef> emfUriToActorRef = yellowPages.getEmfUriToActorRef();
 
-		System.out.println();
+		System.err.println();
 		// EcoreUtil.resolveAll(recipe);
-		System.out.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName() + ": "
+		System.err.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName() + ": "
 				+ ArchUtil.oneLiner(recipe.toString()));
 
 		// alpha nodes
@@ -122,7 +122,7 @@ public class ReteActor extends UntypedActor {
 
 			final String parentUri = ArchUtil.getJsonEObjectUri(parent);
 			final ActorRef parentActorRef = emfUriToActorRef.get(parentUri);
-			System.out.println("[ReteActor] - parent: " + parentUri + " -> " + parentActorRef);
+			System.err.println("[ReteActor] - parent: " + parentUri + " -> " + parentActorRef);
 
 			subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE);
 		}
@@ -135,13 +135,13 @@ public class ReteActor extends UntypedActor {
 
 			final String primaryParentUri = ArchUtil.getJsonEObjectUri(primaryParent);
 			final ActorRef primaryParentActorRef = emfUriToActorRef.get(primaryParentUri);
-			System.out
+			System.err
 					.println("[ReteActor] - primary parent URI: " + primaryParentUri + " -> " + primaryParentActorRef);
 
 			final String secondaryParentUri = ArchUtil.getJsonEObjectUri(secondaryParent);
 			
 			final ActorRef secondaryParentActorRef = emfUriToActorRef.get(secondaryParentUri);
-			System.out.println("[ReteActor] - secondary parent URI: " + secondaryParentUri + " -> "
+			System.err.println("[ReteActor] - secondary parent URI: " + secondaryParentUri + " -> "
 					+ secondaryParentActorRef);
 
 			subscribeToActor(primaryParentActorRef, ReteNodeSlot.PRIMARY);
@@ -156,7 +156,7 @@ public class ReteActor extends UntypedActor {
 			for (final ReteNodeRecipe parent : parents) {
 				final String parentUri = ArchUtil.getJsonEObjectUri(parent);
 				final ActorRef parentActorRef = emfUriToActorRef.get(parentUri);
-				System.out.println("[ReteActor] - parent URI: " + parentUri + " -> " + parentActorRef);
+				System.err.println("[ReteActor] - parent URI: " + parentUri + " -> " + parentActorRef);
 
 				subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE);
 			}
@@ -164,7 +164,7 @@ public class ReteActor extends UntypedActor {
 	}
 
 	private void update(final UpdateMessage updateMessage) {
-		System.out.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName()
+		System.err.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName()
 				+ ": update message received, " + updateMessage.getChangeSet().getChangeType() + " "
 				+ updateMessage.getNodeSlot());
 
@@ -199,11 +199,11 @@ public class ReteActor extends UntypedActor {
 			if (pendingTerminationMessages == 0) {
 				coordinatorRef.tell(CoordinatorMessage.TERMINATED, getSelf());
 
-				System.out.println(coordinatorRef);
+				System.err.println(coordinatorRef);
 
-				System.out.println("+======================================+");
-				System.out.println("|          you're terminated           |");
-				System.out.println("+======================================+");
+				System.err.println("+======================================+");
+				System.err.println("|          you're terminated           |");
+				System.err.println("+======================================+");
 			}
 
 			return;
@@ -216,7 +216,7 @@ public class ReteActor extends UntypedActor {
 		final TerminationMessage propagatedReadyMessage = new TerminationMessage(readyMessageSenderStack);
 		readyMessageTarget.tell(propagatedReadyMessage, getSelf());
 
-		System.out.println("[ReteActor] Termination protocol sending: " + readyMessageSenderStack + " to "
+		System.err.println("[ReteActor] Termination protocol sending: " + readyMessageSenderStack + " to "
 				+ readyMessageTarget);
 
 		return;
@@ -228,7 +228,7 @@ public class ReteActor extends UntypedActor {
 
 		subscribers.put(sender, slot);
 		sender.tell(ActorReply.SUBSCRIBED, getSelf());
-		System.out.println("[ReteActor] " + getSelf() + ": Subscribed: " + sender + " on slot " + slot);
+		System.err.println("[ReteActor] " + getSelf() + ": Subscribed: " + sender + " on slot " + slot);
 	}
 
 	protected void subscribeToActor(final ActorRef actorRef, final ReteNodeSlot slot) {
@@ -254,7 +254,7 @@ public class ReteActor extends UntypedActor {
 			final UpdateMessage updateMessage = new UpdateMessage(changeSet, slot, propagatedSenderStack);
 			
 			// @formatter:off
-			System.out.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName() + ", "
+			System.err.println("[ReteActor] " + getSelf() + ", " + reteNode.getClass().getName() + ", "
 					+ ArchUtil.oneLiner(recipe.getTraceInfo()) + ": Sending to " + subscriber + "\n" 
 					+ "            - " + changeSet.getChangeType() + " changeset, " + changeSet.getTuples().size() + " tuples\n"
 					+ "            - " + "with sender stack: " + propagatedSenderStack + "\n" 
@@ -266,7 +266,7 @@ public class ReteActor extends UntypedActor {
 
 	private void initialize() throws IOException {
 		coordinatorRef = getSender();
-		System.out.println("[ReteActor] " + getSelf() + ": INITIALIZE received");
+		System.err.println("[ReteActor] " + getSelf() + ": INITIALIZE received");
 		final InitializableReteNode node = (InitializableReteNode) reteNode;
 		final ChangeSet changeSet = node.initialize();
 		final Stack<ActorRef> emptyStack = Stack$.MODULE$.<ActorRef> empty();
@@ -275,7 +275,7 @@ public class ReteActor extends UntypedActor {
 
 	private void doTransformation(final Transformation transformation) throws IOException {
 		coordinatorRef = getSender();
-		System.out.println("[ReteActor] " + getSelf() + ": PosLength transformation");
+		System.err.println("[ReteActor] " + getSelf() + ": PosLength transformation");
 
 		final InputNode inputNode = (InputNode) reteNode;
 		final Collection<ChangeSet> changeSets = inputNode.transform(transformation);

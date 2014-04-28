@@ -94,7 +94,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			}
 		}
 
-		System.out.println("intializeForNodes returns " + tuples.size() + " tuples");
+		System.err.println("intializeForNodes returns " + tuples.size() + " tuples");
 	}
 
 	private void initializeForEdges() throws IOException {
@@ -106,7 +106,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			tuples.add(tuple);
 		}
 
-		System.out.println("intializeForEdges returns " + tuples.size() + " " + type + " tuples");
+		System.err.println("intializeForEdges returns " + tuples.size() + " " + type + " tuples");
 	}
 
 	final Random random = new Random(0);
@@ -183,8 +183,8 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 
 		final ChangeSet negativeChangeSet = new ChangeSet(negativeTuples, ChangeType.NEGATIVE);
 		final ChangeSet positiveChangeSet = new ChangeSet(positiveTuples, ChangeType.POSITIVE);
-		System.out.println(negativeTuples.size());
-		System.out.println(positiveTuples.size());
+		System.err.println(negativeTuples.size());
+		System.err.println(positiveTuples.size());
 		return Arrays.asList(negativeChangeSet, positiveChangeSet);
 	}
 

@@ -70,7 +70,7 @@
 //    }
 //
 //    public void initialize() {
-//        System.out.println("<initialize>");
+//        System.err.println("<initialize>");
 //
 //        final String scriptPath = "scripts/faunus-initialize.txt";
 //        final Bindings bindings = engine.createBindings();
@@ -80,11 +80,11 @@
 //            final String load = FileUtils.readFileToString(scriptFile);
 //            engine.eval(load, bindings);
 //        } catch (final Exception e) {
-//            System.out.println("Error during initialization.");
+//            System.err.println("Error during initialization.");
 //            e.printStackTrace();
 //        }
 //
-//        System.out.println("</initialize>");
+//        System.err.println("</initialize>");
 //    }
 //
 //    @Override
@@ -125,7 +125,7 @@
 //        }
 //
 //        if (edgeLabel.equals("ROUTE_ROUTEDEFINITION")) {
-//            System.out.println(vertexPairs);
+//            System.err.println(vertexPairs);
 //        }
 //
 //        return vertexPairs;
@@ -150,8 +150,8 @@
 //        // Titan (and the property graph domain) uses uppercase edge labels
 //        final String titanEdgeLabel = edgeLabel.toUpperCase();
 //
-//        System.out.println("deleting edge: " + sourceVertexId + "->" + destinationVertexId);
-//        System.out.println("<deleteEdges>");
+//        System.err.println("deleting edge: " + sourceVertexId + "->" + destinationVertexId);
+//        System.err.println("<deleteEdges>");
 //
 //        final Bindings bindings = engine.createBindings();
 //        bindings.put("hostname", hostname);
@@ -170,7 +170,7 @@
 //        } catch (final ScriptException e) {
 //            e.printStackTrace();
 //        }
-//        System.out.println("result: " + result);
+//        System.err.println("result: " + result);
 //
 //        // final String script2 = String.format(""
 //        // + "conf = new BaseConfiguration();\n"
@@ -185,9 +185,9 @@
 //        // } catch (final ScriptException e) {
 //        // e.printStackTrace();
 //        // }
-//        // System.out.println("count: " + result2);
+//        // System.err.println("count: " + result2);
 //
-//        System.out.println("</deleteEdges>");
+//        System.err.println("</deleteEdges>");
 //    }
 //
 //    @Override

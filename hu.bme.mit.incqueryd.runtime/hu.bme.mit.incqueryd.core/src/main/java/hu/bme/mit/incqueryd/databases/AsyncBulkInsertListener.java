@@ -13,15 +13,15 @@ package hu.bme.mit.incqueryd.databases;
 //		synchronized (this) {
 //			n++;
 //		}
-////		System.out.println("insert: " + n);
+////		System.err.println("insert: " + n);
 //	}
 //
 //	public void run() {
 //		synchronized (this) {
 //			n--;
-////			System.out.println("done: " + n);
+////			System.err.println("done: " + n);
 //			if (n == 0) {
-////				System.out.println("notifying");
+////				System.err.println("notifying");
 //				this.notify();
 //			}
 //		}

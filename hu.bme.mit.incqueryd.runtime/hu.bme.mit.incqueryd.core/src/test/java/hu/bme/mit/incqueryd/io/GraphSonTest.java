@@ -35,8 +35,8 @@ public class GraphSonTest {
 		GraphSonFormat.indexGraph(pathName, vertexTypesAndProperties, vertexTypeVertexIdsMap,
 				vertexIdVertexPropertiesMap, edgeLabels, edgeLabelVertexPairsMap);
 
-		System.out.println(vertexTypeVertexIdsMap.size());
-		System.out.println(vertexIdVertexPropertiesMap.size());
-		System.out.println(edgeLabelVertexPairsMap.size());
+		System.err.println(vertexTypeVertexIdsMap.size());
+		System.err.println(vertexIdVertexPropertiesMap.size());
+		System.err.println(edgeLabelVertexPairsMap.size());
 	}
 }
