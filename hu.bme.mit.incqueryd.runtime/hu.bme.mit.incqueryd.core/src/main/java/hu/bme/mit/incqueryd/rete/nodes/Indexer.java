@@ -6,7 +6,6 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -25,9 +24,9 @@ public class Indexer {
 
     protected final List<Integer> joinMask;
 
-    public Indexer(final List<Integer> joinMask) {
+    public Indexer(final List<Integer> joinMask, final List<String> cacheMachineIps) {
         this.joinMask = joinMask;
-        map = new TupleCache(Collections.<String>emptyList()).getMultiMap(UUID.randomUUID().toString());
+        map = new TupleCache(cacheMachineIps).getMultiMap(UUID.randomUUID().toString());
     }
 
     public List<Integer> getJoinMask() {
