@@ -14,13 +14,14 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 
 public class GraphSonLoader {
 
-    private final HazelcastCache cache = new HazelcastCache();
+    private final HazelcastCache cache = new HazelcastCache(ImmutableList.<String>of());
     final DistributedMultiMap<String, Tuple> vertexTuplesMap = cache.getMultiMap("vertexTuples");
     final DistributedMultiMap<String, Tuple> edgeTuplesMap = cache.getMultiMap("edgeTuples");
 
