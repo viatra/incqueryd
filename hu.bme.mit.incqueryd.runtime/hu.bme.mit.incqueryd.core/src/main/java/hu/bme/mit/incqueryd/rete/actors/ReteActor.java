@@ -42,7 +42,6 @@ import akka.actor.UntypedActor;
 
 public class ReteActor extends UntypedActor {
 
-	private static final ReteNode InputNode = null;
 	protected ReteNodeRecipe recipe;
 	protected ReteNode reteNode;
 	protected Map<ActorRef, ReteNodeSlot> subscribers = new HashMap<>();
@@ -97,6 +96,8 @@ public class ReteActor extends UntypedActor {
 	}
 
 	private void configure(final ReteNodeConfiguration conf) throws IOException {
+		recipe = conf.getReteNodeRecipe();
+		
 		reteNode = ReteNodeFactory.createNode(conf);
 		System.err.println("[ReteActor] " + reteNode.getClass().getName() + " configuration received.");
 		

@@ -1,7 +1,10 @@
 package hu.bme.mit.incqueryd.util;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Collection;
+
+import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 
 public class ReteNodeConfiguration implements Serializable {
 
@@ -21,5 +24,9 @@ public class ReteNodeConfiguration implements Serializable {
 	
 	public Collection<String> getCacheMachines() {
 		return cacheMachines;
+	}
+	
+	public ReteNodeRecipe getReteNodeRecipe() throws IOException {
+		return (ReteNodeRecipe) RecipeDeserializer.deserializeFromString(getRecipeString());	
 	}
 }
