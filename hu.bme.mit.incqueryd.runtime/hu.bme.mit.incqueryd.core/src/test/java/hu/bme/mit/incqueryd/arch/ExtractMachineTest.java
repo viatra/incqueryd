@@ -1,6 +1,6 @@
 package hu.bme.mit.incqueryd.arch;
 
-import hu.bme.mit.incqueryd.util.RecipeSerializer;
+import hu.bme.mit.incqueryd.util.EObjectSerializer;
 import infrastructure.Cluster;
 import infrastructure.Machine;
 
@@ -20,9 +20,7 @@ public class ExtractMachineTest {
 		
 		final Cluster cluster = conf.getClusters().get(0);
 		final EList<Machine> reteMachines = cluster.getReteMachines();
-				
-		final String clusterJSON = RecipeSerializer.serializeToString(cluster);
-		System.out.println(clusterJSON);
+		final String clusterJSON = EObjectSerializer.serializeToString(cluster);
 	}
 	
 }
