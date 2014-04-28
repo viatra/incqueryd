@@ -49,6 +49,7 @@ public class MonitoringWorker extends Thread {
 		
 		collectedData.setAkka(akkaCollector.collectNodeData());
 		
+		
 		synchronized (monitoredData) {
 			monitoredData = collectedData;
 		}
@@ -63,6 +64,7 @@ public class MonitoringWorker extends Thread {
 	public void run() {
 		
 		while (!exit) {
+			
 			monitor(); // what if starts lately -> think about it
 			try {
 				Thread.sleep(10000);

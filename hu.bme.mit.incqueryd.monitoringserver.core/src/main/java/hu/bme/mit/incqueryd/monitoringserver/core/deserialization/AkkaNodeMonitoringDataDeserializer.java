@@ -22,7 +22,21 @@ public class AkkaNodeMonitoringDataDeserializer implements JsonDeserializer<Akka
 		JsonObject jsonObject = json.getAsJsonObject();
 		
 		JsonArray points = jsonObject.getAsJsonArray("points");
-		JsonElement data = points.get(0);
+		
+		JsonElement data = null;
+		
+		if (points.size() == 0) {
+			return null;
+		}
+		
+		if (points.size() == 1) {
+			data = points.get(0);
+		}
+		
+		if (points.size() == 2) {
+			data = points.get(1);
+		}
+		
 		
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		Gson gson = gsonBuilder.create();

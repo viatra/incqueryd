@@ -67,25 +67,40 @@ public class AkkaMonitoringDataCollector {
 			URL url = null;
 			
 			try {
-				url = new URL("http://" + atmosHost +":"+ atmosPort + "/monitoring/systemmetrics/timeseries/" + node + "?rolling=1minutes&maxPoints=1");
+				url = new URL("http://" + atmosHost +":"+ atmosPort + "/monitoring/systemmetrics/timeseries/" + node + "?rolling=1minutes&maxPoints=2");
 			} catch (MalformedURLException e) {
 				
 			}
-
-			String json = null;
 			
-			try {
-				json = HttpService.getJson(url);
-			} catch (IOException e) {
+			AkkaNodeMonitoringData nodeData = null;
+			do {
+				String json = null;
 				
-			}
+				try {
+					json = HttpService.getJson(url);
+				} catch (IOException e) {
+					
+				}
+				
+				GsonBuilder gsonBuilder = new GsonBuilder();
+				gsonBuilder.registerTypeAdapter(AkkaNodeMonitoringData.class,
+						new AkkaNodeMonitoringDataDeserializer());
+				Gson gson = gsonBuilder.create();
+				nodeData = gson.fromJson(json, AkkaNodeMonitoringData.class);
+				
+				if(nodeData == null) {
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e) {
+						
+					}
+				}
+			} while (nodeData == null);
 			
-			GsonBuilder gsonBuilder = new GsonBuilder();
-			gsonBuilder.registerTypeAdapter(AkkaNodeMonitoringData.class, new AkkaNodeMonitoringDataDeserializer());
-			Gson gson = gsonBuilder.create();
-			
-			AkkaNodeMonitoringData nodeData = gson.fromJson(json, AkkaNodeMonitoringData.class);
 			nodeData.setName(node);
+			
+			
+			// Actors on node
 			
 			URL actorUrl = null;
 			

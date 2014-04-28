@@ -26,7 +26,7 @@ public class IncquerydMonitoringApplication extends
 	public void run(IncquerydMonitoringConfiguration configuration, Environment environment)
 			throws Exception {
 		
-		Map<String, Integer> monitoredHosts = new HashMap<>();
+		Map<String, Integer> monitoredHosts = new HashMap<String, Integer>();
 		
 		for (MonitoredHostInfo host : configuration.getMonitoredHosts()) {
 			monitoredHosts.put(host.getHostName(), host.getPort());

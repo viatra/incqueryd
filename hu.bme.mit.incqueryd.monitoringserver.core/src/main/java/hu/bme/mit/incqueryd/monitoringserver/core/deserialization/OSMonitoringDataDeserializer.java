@@ -25,7 +25,7 @@ public class OSMonitoringDataDeserializer implements JsonDeserializer<OSMonitori
 		Gson gson = gsonBuilder.create();
 
 		OSMonitoringData osData = gson.fromJson( data.toString(), OSMonitoringData.class);
-		System.out.println(data.toString());
+
 		return osData;
 		
 	}
