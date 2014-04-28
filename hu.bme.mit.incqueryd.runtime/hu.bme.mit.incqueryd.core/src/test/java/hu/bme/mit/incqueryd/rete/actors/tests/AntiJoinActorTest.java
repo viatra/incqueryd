@@ -53,7 +53,7 @@ package hu.bme.mit.incqueryd.rete.actors.tests;
 //		final File[] files = TestCaseFinder.getTestCases("betanode-*.json");
 //
 //		for (final File file : files) {
-//			System.out.println(file);
+//			System.err.println(file);
 //			final Gson gson = GsonParser.getGsonParser();
 //			final BetaNodeTestData data = gson.fromJson(new FileReader(file), BetaNodeTestData.class);
 //			antijoin(data);
@@ -62,8 +62,8 @@ package hu.bme.mit.incqueryd.rete.actors.tests;
 //
 //	public void antijoin(final BetaNodeTestData data) {
 //
-//		System.out.println();
-//		System.out.println();
+//		System.err.println();
+//		System.err.println();
 //
 //		new JavaTestKit(system) {
 //			{

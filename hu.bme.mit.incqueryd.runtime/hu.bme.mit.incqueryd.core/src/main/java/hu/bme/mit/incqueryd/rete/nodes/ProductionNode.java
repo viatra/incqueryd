@@ -37,7 +37,7 @@ public class ProductionNode extends AlphaNode {
         	break;
         }
 
-		System.out.println("Production memory size: " + memory.size());
+		System.err.println("Production memory size: " + memory.size());
     	return null;
     }
     

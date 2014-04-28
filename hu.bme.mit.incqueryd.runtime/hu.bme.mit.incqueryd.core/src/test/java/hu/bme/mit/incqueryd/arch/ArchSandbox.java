@@ -36,6 +36,6 @@ public class ArchSandbox {
 			e.printStackTrace();
 		}
 		
-		System.out.println(parents);
+		System.err.println(parents);
 	}
 }

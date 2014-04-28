@@ -65,7 +65,7 @@ public class GraphSonLoader {
 			final String edgeLabel = entry.getKey();
 			final Multimap<Object, Object> edges = entry.getValue();
 
-			// System.out.println(edgeLabel);
+			// System.err.println(edgeLabel);
 
 			for (final Object v1 : edges.keySet()) {
 				final Collection<Object> v2s = edges.get(v1);
@@ -75,11 +75,11 @@ public class GraphSonLoader {
 					final Tuple tuple = new Tuple(v1, v2);
 					edgeTuplesMap.put(edgeLabel, tuple);
 					// logResult(tuple.toString());
-					// System.out.println(tuple.toString() + ", ");
+					// System.err.println(tuple.toString() + ", ");
 				}
 			}
 
-			// System.out.println();
+			// System.err.println();
 		}
 	}
 
