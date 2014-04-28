@@ -8,6 +8,7 @@ import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
@@ -63,8 +64,8 @@ import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
  */
 public class AntiJoinNode extends BetaNode {
 
-	AntiJoinNode(final AntiJoinRecipe recipe) {
-		super(recipe);
+	AntiJoinNode(final AntiJoinRecipe recipe, final List<String> cacheMachineIps) {
+		super(recipe, cacheMachineIps);
 	}
 
 	@Override

@@ -4,6 +4,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import hu.bme.mit.incqueryd.util.RecipeDeserializer;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
 
@@ -23,7 +24,7 @@ public class JoinNodeTest extends BetaNodeTest {
 	@Override
 	protected BetaNode createBetaNode(String recipeFile) throws IOException {
 		final JoinRecipe recipe = (JoinRecipe) (RecipeDeserializer.deserializeFromFile(recipeFile));
-		final JoinNode node = new JoinNode(recipe);
+		final JoinNode node = new JoinNode(recipe, Collections.<String>emptyList());
 		return node;
 	}
 

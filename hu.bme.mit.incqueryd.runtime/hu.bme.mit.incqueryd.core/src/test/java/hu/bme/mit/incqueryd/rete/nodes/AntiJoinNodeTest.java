@@ -9,6 +9,7 @@ import hu.bme.mit.incqueryd.util.RecipeDeserializer;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,7 +34,7 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 	@Override
 	protected BetaNode createBetaNode(final String recipeFile) throws IOException {
 		final AntiJoinRecipe recipe = (AntiJoinRecipe) (RecipeDeserializer.deserializeFromFile(recipeFile));
-		final AntiJoinNode node = new AntiJoinNode(recipe);
+		final AntiJoinNode node = new AntiJoinNode(recipe, Collections.<String>emptyList());
 		return node;
 	}
 
@@ -45,7 +46,7 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		recipe.setLeftParent(leftParent);
 		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
-		final AntiJoinNode node = new AntiJoinNode(recipe);
+		final AntiJoinNode node = new AntiJoinNode(recipe, Collections.<String>emptyList());
 
 		final Set<Tuple> p = new HashSet<>();
 		p.add(new Tuple(1, 2));
@@ -76,7 +77,7 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		recipe.setLeftParent(leftParent);
 		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
-		final AntiJoinNode node = new AntiJoinNode(recipe);
+		final AntiJoinNode node = new AntiJoinNode(recipe, Collections.<String>emptyList());
 
 		final Set<Tuple> p = new HashSet<>();
 		p.add(new Tuple(1, 2));
@@ -108,7 +109,7 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		recipe.setLeftParent(leftParent);
 		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
-		final AntiJoinNode node = new AntiJoinNode(recipe);
+		final AntiJoinNode node = new AntiJoinNode(recipe, Collections.<String>emptyList());
 
 		final Set<Tuple> p = new HashSet<>();
 		p.add(new Tuple(1, 2));
@@ -140,7 +141,7 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		recipe.setLeftParent(leftParent);
 		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
-		final AntiJoinNode node = new AntiJoinNode(recipe);
+		final AntiJoinNode node = new AntiJoinNode(recipe, Collections.<String>emptyList());
 
 		final Set<Tuple> p = new HashSet<>();
 		p.add(new Tuple(1, 2));
@@ -174,7 +175,7 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		recipe.setLeftParent(leftParent);
 		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
-		final AntiJoinNode node = new AntiJoinNode(recipe);
+		final AntiJoinNode node = new AntiJoinNode(recipe, Collections.<String>emptyList());
 
 		final Set<Tuple> p = new HashSet<>();
 		p.add(new Tuple(1, 2));
@@ -206,7 +207,7 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		recipe.setLeftParent(leftParent);
 		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
-		final AntiJoinNode node = new AntiJoinNode(recipe);
+		final AntiJoinNode node = new AntiJoinNode(recipe, Collections.<String>emptyList());
 
 		final Set<Tuple> p = new HashSet<>();
 		p.add(new Tuple(1, 2));
@@ -240,7 +241,7 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		recipe.setLeftParent(leftParent);
 		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
-		final AntiJoinNode node = new AntiJoinNode(recipe);
+		final AntiJoinNode node = new AntiJoinNode(recipe, Collections.<String>emptyList());
 
 		final Set<Tuple> p = new HashSet<>();
 		p.add(new Tuple(1, 2));
@@ -275,7 +276,7 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		recipe.setLeftParent(leftParent);
 		final ProjectionIndexerRecipe rightParent = createProjectionIndexer(Arrays.asList(0));
 		recipe.setRightParent(rightParent);
-		final AntiJoinNode node = new AntiJoinNode(recipe);
+		final AntiJoinNode node = new AntiJoinNode(recipe, Collections.<String>emptyList());
 
 		final Set<Tuple> p = new HashSet<>();
 		p.add(new Tuple(1, 2));

@@ -30,9 +30,9 @@ public class ReteNodeFactory {
 		final List<String> cacheMachineIps = conf.getCacheMachineIps();
 		
 		if (recipe instanceof AntiJoinRecipe) {
-			return new AntiJoinNode((AntiJoinRecipe) recipe);
+			return new AntiJoinNode((AntiJoinRecipe) recipe, cacheMachineIps);
 		} else if (recipe instanceof JoinRecipe) {
-			return new JoinNode((JoinRecipe) recipe);
+			return new JoinNode((JoinRecipe) recipe, cacheMachineIps);
 		} else if (recipe instanceof EqualityFilterRecipe) {
 			return new EqualityNode((EqualityFilterRecipe) recipe);
 		} else if (recipe instanceof InequalityFilterRecipe) {
