@@ -9,6 +9,7 @@ import hu.bme.mit.incqueryd.rete.messages.Transformation;
 import hu.bme.mit.incqueryd.rete.messages.YellowPages;
 import hu.bme.mit.incqueryd.util.RecipeSerializer;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
+import infrastructure.Cluster;
 import infrastructure.Machine;
 
 import java.util.ArrayList;
@@ -138,6 +139,14 @@ public class CoordinatorActor extends UntypedActor {
 	 * @throws Exception
 	 */
 	private void deployActors(final Configuration conf) throws Exception {
+		final Cluster cluster = conf.getClusters().get(0);
+		final EList<Machine> cacheMachines = cluster.getCacheMachines();
+		
+		final Collection<String> cacheMachineIps = new HashSet<>(); 
+		for (final Machine machine : cacheMachines) {
+			cacheMachineIps.add(machine.getIp());
+		}		
+		
 		for (final ReteRecipe rr : conf.getReteRecipes()) {
 			for (final ReteNodeRecipe rnr : rr.getRecipeNodes()) {
 				if (debug)
@@ -164,7 +173,7 @@ public class CoordinatorActor extends UntypedActor {
 				}
 				final ActorRef actorRef = getContext().actorOf(props);
 
-				configure(actorRef, recipeString);
+				configure(actorRef, recipeString, cacheMachineIps);
 
 				actorRefs.add(actorRef);
 				recipeToActorRef.put(rnr, actorRef);
@@ -312,8 +321,8 @@ public class CoordinatorActor extends UntypedActor {
 		return result;
 	}
 
-	private void configure(final ActorRef actorRef, final String recipeString) throws Exception {
-		final ReteNodeConfiguration conf = new ReteNodeConfiguration(recipeString);
+	private void configure(final ActorRef actorRef, final String recipeString, final Collection<String> cacheMachineIps) throws Exception {
+		final ReteNodeConfiguration conf = new ReteNodeConfiguration(recipeString, cacheMachineIps);
 		final Future<Object> future = ask(actorRef, conf, timeout);
 		Await.result(future, timeout.duration());
 	}

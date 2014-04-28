@@ -5,6 +5,7 @@ import hu.bme.mit.bigmodel.fourstore.CoordinatorFourStoreClient;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
@@ -24,7 +25,7 @@ public class InputNodeTest {
 		final UniquenessEnforcerRecipe recipe = RecipesFactory.eINSTANCE.createUniquenessEnforcerRecipe();
 		recipe.setTraceInfo("UniquenessEnforcerNode#edge : Route_routeDefinition : ");
 
-		final InputNode inputNode = (InputNode) ReteNodeFactory.createNode(recipe);
+		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptySet());
 		final ChangeSet changeSet = inputNode.initialize();
 		assertEquals(843, changeSet.getTuples().size());
 
@@ -42,13 +43,12 @@ public class InputNodeTest {
 		final UniquenessEnforcerRecipe recipe = RecipesFactory.eINSTANCE.createUniquenessEnforcerRecipe();
 		recipe.setTraceInfo("UniquenessEnforcerNode#vertex : Route :");
 
-		final InputNode inputNode = (InputNode) ReteNodeFactory.createNode(recipe);
+		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptySet());
 		final ChangeSet changeSet = inputNode.initialize();
 		assertEquals(20, changeSet.getTuples().size());
 
 		// destroy the cluster
 		client.destroy(false);
-
 	}
 
 	@Test
@@ -61,7 +61,7 @@ public class InputNodeTest {
 		final UniquenessEnforcerRecipe recipe = RecipesFactory.eINSTANCE.createUniquenessEnforcerRecipe();
 		recipe.setTraceInfo("UniquenessEnforcerNode#vertex : Segment : [Segment_length]");
 
-		final InputNode inputNode = (InputNode) ReteNodeFactory.createNode(recipe);
+		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptySet());
 		final ChangeSet changeSet = inputNode.initialize();
 		assertEquals(4835, changeSet.getTuples().size());
 

@@ -20,8 +20,7 @@ public class ExtractMachineTest {
 		
 		final Cluster cluster = conf.getClusters().get(0);
 		final EList<Machine> reteMachines = cluster.getReteMachines();
-		
-		
+				
 		final String clusterJSON = RecipeSerializer.serializeToString(cluster);
 		System.out.println(clusterJSON);
 	}

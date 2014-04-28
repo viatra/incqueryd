@@ -1,13 +1,18 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
+import hu.bme.mit.incqueryd.util.RecipeDeserializer;
+import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
+
+import java.io.IOException;
+
 import org.apache.commons.lang.NotImplementedException;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.EqualityFilterRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.InequalityFilterRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 
@@ -18,8 +23,11 @@ public class ReteNodeFactory {
 	 * 
 	 * @param recipe
 	 * @return An instantiated ReteNode.
+	 * @throws IOException 
 	 */
-	public static ReteNode createNode(final EObject recipe) {
+	public static ReteNode createNode(final ReteNodeConfiguration conf) throws IOException {		
+		final ReteNodeRecipe recipe = (ReteNodeRecipe) RecipeDeserializer.deserializeFromString(conf.getRecipeString());
+		
 		if (recipe instanceof AntiJoinRecipe) {
 			return new AntiJoinNode((AntiJoinRecipe) recipe);
 		} else if (recipe instanceof JoinRecipe) {
@@ -31,7 +39,7 @@ public class ReteNodeFactory {
 		} else if (recipe instanceof TrimmerRecipe) {
 			return new TrimmerNode((TrimmerRecipe) recipe);
 		} else if (recipe instanceof UniquenessEnforcerRecipe) {
-			return new InputNode((UniquenessEnforcerRecipe) recipe);
+			return new InputNode((UniquenessEnforcerRecipe) recipe, conf.getCacheMachines());
 		} else if (recipe instanceof ProductionRecipe) {
 			return new ProductionNode((ProductionRecipe) recipe);
 		} else if (recipe instanceof CheckRecipe) {

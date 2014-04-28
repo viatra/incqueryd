@@ -18,7 +18,6 @@ import hu.bme.mit.incqueryd.rete.nodes.InputNode;
 import hu.bme.mit.incqueryd.rete.nodes.ProductionNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode;
 import hu.bme.mit.incqueryd.rete.nodes.ReteNodeFactory;
-import hu.bme.mit.incqueryd.util.RecipeDeserializer;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
 
 import java.io.IOException;
@@ -67,21 +66,11 @@ public class ReteActor extends UntypedActor {
 		} // configuration
 		else if (message instanceof ReteNodeConfiguration) {
 			final ReteNodeConfiguration conf = (ReteNodeConfiguration) message;
-			recipe = (ReteNodeRecipe) RecipeDeserializer.deserializeFromString(conf.getRecipeString());
-
-			reteNode = ReteNodeFactory.createNode(recipe);
-			System.err.println("[ReteActor] " + reteNode.getClass().getName() + " configuration received.");
-
-			// sending CONFIGURATION_RECEIVED to the coordinator
-			getSender().tell(ActorReply.CONFIGURATION_RECEIVED, getSelf());
+			configure(conf);
 		} // update
 		else if (message instanceof UpdateMessage) {
 			final UpdateMessage updateMessage = (UpdateMessage) message;
 			update(updateMessage);
-
-			if (reteNode instanceof ProductionNode) {
-				terminationProtocol(new TerminationMessage(updateMessage.getSenderStack()));
-			}
 		} // yellowpages
 		else if (message instanceof YellowPages) {
 			final YellowPages yellowPages = (YellowPages) message;
@@ -100,11 +89,19 @@ public class ReteActor extends UntypedActor {
 			final Set<Tuple> memory = productionNode.getMemory();
 			getSender().tell(memory, getSelf());
 		}
-		// PosLength transformation
+		// transformation
 		else if (message instanceof Transformation) {
 			final Transformation transformation = (Transformation) message;
 			doTransformation(transformation);
 		}
+	}
+
+	private void configure(final ReteNodeConfiguration conf) throws IOException {
+		reteNode = ReteNodeFactory.createNode(conf);
+		System.err.println("[ReteActor] " + reteNode.getClass().getName() + " configuration received.");
+		
+		// sending CONFIGURATION_RECEIVED to the coordinator
+		getSender().tell(ActorReply.CONFIGURATION_RECEIVED, getSelf());
 	}
 
 	private void subscribe(final YellowPages yellowPages) {
@@ -186,6 +183,10 @@ public class ReteActor extends UntypedActor {
 
 		// processing
 		sendToSubscribers(changeSet, updateMessage.getSenderStack());
+		
+		if (reteNode instanceof ProductionNode) {
+			terminationProtocol(new TerminationMessage(updateMessage.getSenderStack()));
+		}
 	}
 
 	private void terminationProtocol(final TerminationMessage readyMessage) {

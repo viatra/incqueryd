@@ -25,6 +25,8 @@ import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
+import com.hazelcast.client.HazelcastClient;
+import com.hazelcast.client.config.ClientConfig;
 
 public class InputNode extends ReteNode implements InitializableReteNode {
 
@@ -32,11 +34,12 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	protected boolean hasAttribute = false;
 	protected String attribute;
 	protected final GraphElement graphElement;
-	protected final Set<Tuple> tuples = new HashSet<>();
+	protected final Set<Tuple> tuples;
 
-	InputNode(final UniquenessEnforcerRecipe recipe) {
+	InputNode(final UniquenessEnforcerRecipe recipe, final Collection<String> cacheMachineIps) {
 		super();
 
+		String typename;
 		final String traceInfo = recipe.getTraceInfo();
 		if (traceInfo.startsWith("UniquenessEnforcerNode#vertex")) {
 			graphElement = GraphElement.NODE;
@@ -45,10 +48,22 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 				hasAttribute = true;
 				attribute = ArchUtil.extractAttribute(traceInfo);
 			}
+			
+			typename = "node";
 		} else {
 			graphElement = GraphElement.EDGE;
+			typename = "edge";
 		}
 		type = ArchUtil.extractType(recipe.getTraceInfo());
+		typename += type;
+
+		if (cacheMachineIps.isEmpty()) {
+			tuples = new HashSet<>();
+		} else {
+			final ClientConfig clientConfig = new ClientConfig();
+	        clientConfig.addAddress(cacheMachineIps.toArray(new String[] {}));
+			tuples = HazelcastClient.newHazelcastClient(clientConfig).getSet(typename);
+		}
 	}
 
 	public String getType() {
@@ -164,7 +179,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 				vertexIdAndPropertyValues.put(segment, newLength);
 			}
 		}
-		
+
 		// 4s persistence
 		// partitioning
 		final ArrayList<Long> ids = new ArrayList<>(vertexIdAndPropertyValues.keySet());
@@ -204,9 +219,9 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		// partitioning
 		final List<List<Long>> partition = Lists.partition(sensorsToRemove, 500);
 		for (final List<Long> sensorsToRemoveChunk : partition) {
-			client.deleteVertices(sensorsToRemoveChunk);	
+			client.deleteVertices(sensorsToRemoveChunk);
 		}
-		
+
 		for (final Tuple tuple : tuples) {
 			final Long sensor = (Long) tuple.get(1);
 			if (sensorsToRemove.contains(sensor)) {
@@ -241,18 +256,18 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 				edgesToRemove.put(route, signal);
 			}
 		}
-		
+
 		// partitioning
-		final ArrayList<Long> sourceVertices = new ArrayList<>(edgesToRemove.keySet());		
+		final ArrayList<Long> sourceVertices = new ArrayList<>(edgesToRemove.keySet());
 		final List<List<Long>> partition = Lists.partition(sourceVertices, 500);
 		for (final List<Long> sourceVerticesChunk : partition) {
-			
+
 			final Multimap<Long, Long> edgesToRemoveChunk = ArrayListMultimap.create();
 			for (final Long sourceVertexId : sourceVerticesChunk) {
 				final Collection<Long> targetVertexIds = edgesToRemove.get(sourceVertexId);
 				edgesToRemoveChunk.putAll(sourceVertexId, targetVertexIds);
 			}
-						
+
 			client.deleteEdges(edgesToRemoveChunk, "Route_exit");
 		}
 
@@ -280,21 +295,20 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			// 4s persistence
 			edges.put(switchId, sensorId);
 		}
-		
+
 		// partitioning
-		final ArrayList<Long> sourceVertices = new ArrayList<>(edges.keySet());		
+		final ArrayList<Long> sourceVertices = new ArrayList<>(edges.keySet());
 		final List<List<Long>> partition = Lists.partition(sourceVertices, 500);
 		for (final List<Long> sourceVerticesChunk : partition) {
-			
+
 			final Multimap<Long, Long> edgesChunk = ArrayListMultimap.create();
 			for (final Long sourceVertexId : sourceVerticesChunk) {
 				final Collection<Long> targetVertexIds = edges.get(sourceVertexId);
 				edgesChunk.putAll(sourceVertexId, targetVertexIds);
 			}
-						
+
 			client.insertEdgesWithVertex(edgesChunk, "TrackElement_sensor", "Sensor");
 		}
-		
 
 		final ChangeSet changeSet = new ChangeSet(changeSetTuples, ChangeType.POSITIVE);
 		return Arrays.asList(changeSet);
