@@ -7,7 +7,7 @@ import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand;
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage;
 import hu.bme.mit.incqueryd.rete.messages.Transformation;
 import hu.bme.mit.incqueryd.rete.messages.YellowPages;
-import hu.bme.mit.incqueryd.util.RecipeSerializer;
+import hu.bme.mit.incqueryd.util.EObjectSerializer;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
 import infrastructure.Cluster;
 import infrastructure.Machine;
@@ -162,7 +162,7 @@ public class CoordinatorActor extends UntypedActor {
 
 				// create a clone, else we would get a java.util.ConcurrentModificationException
 				final ReteNodeRecipe rnrClone = EcoreUtil.copy(rnr);
-				final String recipeString = RecipeSerializer.serializeToString(rnrClone);
+				final String recipeString = EObjectSerializer.serializeToString(rnrClone);
 
 				final Props props;
 				if (remoting) {
