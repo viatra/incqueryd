@@ -2,6 +2,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 
 import hu.bme.mit.bigmodel.fourstore.FourStoreClient;
 import hu.bme.mit.incqueryd.arch.ArchUtil;
+import hu.bme.mit.incqueryd.cache.TupleCache;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.GraphElement;
@@ -26,8 +27,6 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
-import com.hazelcast.client.HazelcastClient;
-import com.hazelcast.client.config.ClientConfig;
 
 public class InputNode extends ReteNode implements InitializableReteNode {
 
@@ -36,10 +35,10 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	protected String attribute;
 	protected final GraphElement graphElement;
 	protected final Set<Tuple> tuples;
-	protected final boolean distributedCache;
+	protected final TupleCache cache;
 	protected final Random random = new Random(0);
 
-	InputNode(final UniquenessEnforcerRecipe recipe, final Collection<String> cacheMachineIps) {
+	InputNode(final UniquenessEnforcerRecipe recipe, final List<String> cacheMachineIps) {
 		super();
 
 		String typename;
@@ -60,14 +59,8 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		type = ArchUtil.extractType(recipe.getTraceInfo());
 		typename += type;
 
-		distributedCache = cacheMachineIps.isEmpty();
-		if (distributedCache) {
-			tuples = new HashSet<>();
-		} else {
-			final ClientConfig clientConfig = new ClientConfig();
-	        clientConfig.getNetworkConfig().addAddress(cacheMachineIps.toArray(new String[] {}));
-			tuples = HazelcastClient.newHazelcastClient(clientConfig).getSet(typename);
-		}
+		cache = new TupleCache(cacheMachineIps);
+		tuples = cache.getSet(typename);
 	}
 
 	public String getType() {
@@ -91,7 +84,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			break;
 		}
 
-		final Set<Tuple> tuplesToSend = distributedCache ? ImmutableSet.copyOf(tuples) : tuples;
+		final Set<Tuple> tuplesToSend = cache.isDistributed() ? ImmutableSet.copyOf(tuples) : tuples;
 			
 		final ChangeSet changeSet = new ChangeSet(tuplesToSend, ChangeType.POSITIVE);
 		return changeSet;

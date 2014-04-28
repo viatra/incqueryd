@@ -41,6 +41,8 @@ import akka.util.Timeout;
 import arch.Configuration;
 import arch.InfrastructureMapping;
 
+import com.google.common.collect.Lists;
+
 public class CoordinatorActor extends UntypedActor {
 
 	protected final boolean remoting;
@@ -142,7 +144,7 @@ public class CoordinatorActor extends UntypedActor {
 		final Cluster cluster = conf.getClusters().get(0);
 		final EList<Machine> cacheMachines = cluster.getCacheMachines();
 		
-		final Collection<String> cacheMachineIps = new HashSet<>(); 
+		final List<String> cacheMachineIps = Lists.newArrayList(); 
 		for (final Machine machine : cacheMachines) {
 			cacheMachineIps.add(machine.getIp());
 		}
@@ -272,8 +274,6 @@ public class CoordinatorActor extends UntypedActor {
 	 * @throws Exception
 	 */
 	public void transform() throws Exception {
-		final long start = System.nanoTime();
-
 		for (final Entry<ReteNodeRecipe, ActorRef> entry : recipeToActorRef.entrySet()) {
 			final ReteNodeRecipe recipe = entry.getKey();
 			if (recipe instanceof UniquenessEnforcerRecipe) {
@@ -321,7 +321,7 @@ public class CoordinatorActor extends UntypedActor {
 		return result;
 	}
 
-	private void configure(final ActorRef actorRef, final String recipeString, final Collection<String> cacheMachineIps) throws Exception {
+	private void configure(final ActorRef actorRef, final String recipeString, final List<String> cacheMachineIps) throws Exception {
 		final ReteNodeConfiguration conf = new ReteNodeConfiguration(recipeString, cacheMachineIps);
 		final Future<Object> future = ask(actorRef, conf, timeout);
 		Await.result(future, timeout.duration());
