@@ -149,11 +149,11 @@ public class CoordinatorActor extends UntypedActor {
 
 			emfUriToActorRef.put(emfUri, akkaUri);
 
-			if (debug) System.out.println("EMF URI: " + emfUri + ", Akka URI: " + akkaUri + ", traceInfo "
+			if (debug) System.err.println("EMF URI: " + emfUri + ", Akka URI: " + akkaUri + ", traceInfo "
 					+ ArchUtil.oneLiner(recipe.getTraceInfo()));
 		}
 
-		if (debug) System.out.println();
+		if (debug) System.err.println();
 	}
 
 	/**
@@ -165,12 +165,12 @@ public class CoordinatorActor extends UntypedActor {
 	private void deployActors(final Configuration conf) throws Exception {
 		for (final ReteRecipe rr : conf.getReteRecipes()) {
 			for (final ReteNodeRecipe rnr : rr.getRecipeNodes()) {
-				if (debug) System.out.println("[TestKit] Recipe: " + rnr.getClass().getName());
+				if (debug) System.err.println("[TestKit] Recipe: " + rnr.getClass().getName());
 
 				final String ipAddress = recipeToIp.get(rnr);
 				final String emfUri = EcoreUtil.getURI(rnr).toString();
-				if (debug) System.out.println("[TestKit] - IP address:  " + ipAddress);
-				if (debug) System.out.println("[TestKit] - EMF address: " + emfUri);
+				if (debug) System.err.println("[TestKit] - IP address:  " + ipAddress);
+				if (debug) System.err.println("[TestKit] - EMF address: " + emfUri);
 				emfUriToRecipe.put(emfUri, rnr);
 
 				// create a clone, else we would get a java.util.ConcurrentModificationException
@@ -195,13 +195,13 @@ public class CoordinatorActor extends UntypedActor {
 					productionActorRef = actorRef;
 				}
 
-				if (debug) System.out.println("[TestKit] Actor configured.");
-				if (debug) System.out.println();
+				if (debug) System.err.println("[TestKit] Actor configured.");
+				if (debug) System.err.println();
 			}
 
 		}
-		if (debug) System.out.println("[ReteActor] All actors deployed and configured.");
-		if (debug) System.out.println();
+		if (debug) System.err.println("[ReteActor] All actors deployed and configured.");
+		if (debug) System.err.println();
 	}
 
 	/**
@@ -218,11 +218,11 @@ public class CoordinatorActor extends UntypedActor {
 			Await.result(future, timeout.duration());
 		}
 
-		if (debug) System.out.println();
-		if (debug) System.out.println();
+		if (debug) System.err.println();
+		if (debug) System.err.println();
 
 		for (final Entry<String, ActorRef> entry : yellowPages.getEmfUriToActorRef().entrySet()) {
-			if (debug) System.out.println(entry);
+			if (debug) System.err.println(entry);
 		}
 	}
 
@@ -245,13 +245,13 @@ public class CoordinatorActor extends UntypedActor {
 			}
 		}
 
-		if (debug) System.out.println("<AWAIT>");
+		if (debug) System.err.println("<AWAIT>");
 		for (final Future<Object> future : futures) {
-			if (debug) System.out.println("await for " + future);
+			if (debug) System.err.println("await for " + future);
 			final Object result = Await.result(future, timeout.duration());
-			if (debug) System.out.println(result);
+			if (debug) System.err.println(result);
 		}
-		if (debug) System.out.println("</AWAIT>");
+		if (debug) System.err.println("</AWAIT>");
 	}
 
 	/**
@@ -262,7 +262,7 @@ public class CoordinatorActor extends UntypedActor {
 	 */
 	public Set<Tuple> check() throws Exception {
 		latestResults = getQueryResults();
-		if (debug) System.out.println("Results: " + latestResults.size());
+		if (debug) System.err.println("Results: " + latestResults.size());
 		return latestResults;
 	}
 

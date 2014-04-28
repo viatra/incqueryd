@@ -12,7 +12,7 @@ public class JsonDeserializerTest {
 	@Test
 	public void deserialize() throws IOException {		
 		final EObject eObject = RecipeDeserializer.deserializeFromFile("src/test/resources/recipe.json");
-		System.out.println(eObject);
+		System.err.println(eObject);
 	}
 	
 	@Test
@@ -29,7 +29,7 @@ public class JsonDeserializerTest {
 				+ "      \"sourceIndices\" : [ 0 ]\n" + "    }\n" + "  }\n" + "}";
 		final EObject eObject = RecipeDeserializer.deserializeFromString(model);
 		final JoinRecipe recipe =  (JoinRecipe) eObject;
-		System.out.println(recipe.getLeftParent().getMask().getSourceIndices());
-		System.out.println(recipe.getRightParent().getMask().getSourceIndices());
+		System.err.println(recipe.getLeftParent().getMask().getSourceIndices());
+		System.err.println(recipe.getRightParent().getMask().getSourceIndices());
 	}
 }

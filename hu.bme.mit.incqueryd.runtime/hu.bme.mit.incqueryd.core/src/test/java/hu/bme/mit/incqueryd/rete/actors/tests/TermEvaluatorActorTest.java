@@ -52,7 +52,7 @@ package hu.bme.mit.incqueryd.rete.actors.tests;
 //		File[] files = TestCaseFinder.getTestCases("termevaluatornode-*.json");
 //
 //		for (File file : files) {
-//			System.out.println(file);
+//			System.err.println(file);
 //			Gson gson = GsonParser.getGsonParser();
 //			TermEvaluatorNodeTestData data = gson.fromJson(new FileReader(file), TermEvaluatorNodeTestData.class);
 //			

@@ -47,9 +47,9 @@ public class DemoCoordinator {
 		final EObject o = res.getContents().get(0);
 		if (o instanceof Configuration) {
 			for (final ReteRecipe rc : ((Configuration) o).getReteRecipes()) {
-				System.out.println("Processing rete recipe " + rc.toString());
+				System.err.println("Processing rete recipe " + rc.toString());
 				for (final ReteNodeRecipe r : rc.getRecipeNodes()) {
-					System.out.println("\t" + r.getTraceInfo());
+					System.err.println("\t" + r.getTraceInfo());
 				}
 			}
 		}
