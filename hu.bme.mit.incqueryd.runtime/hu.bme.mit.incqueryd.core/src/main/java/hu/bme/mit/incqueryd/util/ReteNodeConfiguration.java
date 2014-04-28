@@ -2,7 +2,7 @@ package hu.bme.mit.incqueryd.util;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 
@@ -10,20 +10,20 @@ public class ReteNodeConfiguration implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	protected String recipeString;
-	protected Collection<String> cacheMachines; 
+	protected List<String> cacheMachineIps;
 
-	public ReteNodeConfiguration(final String recipeString, final Collection<String> cacheMachines) {
+	public ReteNodeConfiguration(final String recipeString, final List<String> cacheMachineIps) {
 		super();
 		this.recipeString = recipeString;
-		this.cacheMachines = cacheMachines;
+		this.cacheMachineIps = cacheMachineIps;
 	}
 
 	public String getRecipeString() {
 		return recipeString;
 	}
 	
-	public Collection<String> getCacheMachines() {
-		return cacheMachines;
+	public List<String> getCacheMachineIps() {
+		return cacheMachineIps;
 	}
 	
 	public ReteNodeRecipe getReteNodeRecipe() throws IOException {
