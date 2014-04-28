@@ -9,7 +9,6 @@ import hu.bme.mit.incqueryd.rete.messages.Transformation;
 import hu.bme.mit.incqueryd.rete.messages.YellowPages;
 import hu.bme.mit.incqueryd.util.RecipeSerializer;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
-import infrastructure.InfrastructurePackage;
 import infrastructure.Machine;
 
 import java.util.ArrayList;
@@ -22,15 +21,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
@@ -45,7 +37,6 @@ import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.remote.RemoteScope;
 import akka.util.Timeout;
-import arch.ArchPackage;
 import arch.Configuration;
 import arch.InfrastructureMapping;
 
@@ -79,26 +70,8 @@ public class CoordinatorActor extends UntypedActor {
 	}
 
 	public void start() throws Exception {
-		// initialize extension to factory map
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
-
-		// initialize package registry
-		// initialize the RecipesPackage before the others
-		RecipesPackage.eINSTANCE.eClass();
-		InfrastructurePackage.eINSTANCE.eClass();
-		ArchPackage.eINSTANCE.eClass();
-
-		// load resource
-		final ResourceSet resourceSet = new ResourceSetImpl();
-		final Resource resource = resourceSet.getResource(URI.createFileURI(architectureFile), true);
-
-		// traverse model
-		final EObject o = resource.getContents().get(0);
-
-		if (o instanceof Configuration) {
-			final Configuration conf = (Configuration) o;
-			processConfiguration(resourceSet, conf);
-		}
+		final Configuration conf = ArchUtil.loadConfiguration(architectureFile);
+		processConfiguration(conf);
 	}
 
 	// Rete recipe <-> IP address mapping
@@ -112,7 +85,7 @@ public class CoordinatorActor extends UntypedActor {
 	// collection of ActorRefs
 	final Collection<ActorRef> actorRefs = new HashSet<>();
 
-	private void processConfiguration(final ResourceSet resourceSet, final Configuration conf) throws Exception {
+	private void processConfiguration(final Configuration conf) throws Exception {
 		// mapping
 		fillRecipeToIp(conf);
 
@@ -149,28 +122,33 @@ public class CoordinatorActor extends UntypedActor {
 
 			emfUriToActorRef.put(emfUri, akkaUri);
 
-			if (debug) System.err.println("EMF URI: " + emfUri + ", Akka URI: " + akkaUri + ", traceInfo "
-					+ ArchUtil.oneLiner(recipe.getTraceInfo()));
+			if (debug)
+				System.err.println("EMF URI: " + emfUri + ", Akka URI: " + akkaUri + ", traceInfo "
+						+ ArchUtil.oneLiner(recipe.getTraceInfo()));
 		}
 
-		if (debug) System.err.println();
+		if (debug)
+			System.err.println();
 	}
 
 	/**
 	 * Phase 1
-	 *
+	 * 
 	 * @param conf
 	 * @throws Exception
 	 */
 	private void deployActors(final Configuration conf) throws Exception {
 		for (final ReteRecipe rr : conf.getReteRecipes()) {
 			for (final ReteNodeRecipe rnr : rr.getRecipeNodes()) {
-				if (debug) System.err.println("[TestKit] Recipe: " + rnr.getClass().getName());
+				if (debug)
+					System.err.println("[TestKit] Recipe: " + rnr.getClass().getName());
 
 				final String ipAddress = recipeToIp.get(rnr);
 				final String emfUri = EcoreUtil.getURI(rnr).toString();
-				if (debug) System.err.println("[TestKit] - IP address:  " + ipAddress);
-				if (debug) System.err.println("[TestKit] - EMF address: " + emfUri);
+				if (debug)
+					System.err.println("[TestKit] - IP address:  " + ipAddress);
+				if (debug)
+					System.err.println("[TestKit] - EMF address: " + emfUri);
 				emfUriToRecipe.put(emfUri, rnr);
 
 				// create a clone, else we would get a java.util.ConcurrentModificationException
@@ -195,18 +173,22 @@ public class CoordinatorActor extends UntypedActor {
 					productionActorRef = actorRef;
 				}
 
-				if (debug) System.err.println("[TestKit] Actor configured.");
-				if (debug) System.err.println();
+				if (debug)
+					System.err.println("[TestKit] Actor configured.");
+				if (debug)
+					System.err.println();
 			}
 
 		}
-		if (debug) System.err.println("[ReteActor] All actors deployed and configured.");
-		if (debug) System.err.println();
+		if (debug)
+			System.err.println("[ReteActor] All actors deployed and configured.");
+		if (debug)
+			System.err.println();
 	}
 
 	/**
 	 * Phase 2
-	 *
+	 * 
 	 * @param conf
 	 * @throws Exception
 	 */
@@ -218,17 +200,20 @@ public class CoordinatorActor extends UntypedActor {
 			Await.result(future, timeout.duration());
 		}
 
-		if (debug) System.err.println();
-		if (debug) System.err.println();
+		if (debug)
+			System.err.println();
+		if (debug)
+			System.err.println();
 
 		for (final Entry<String, ActorRef> entry : yellowPages.getEmfUriToActorRef().entrySet()) {
-			if (debug) System.err.println(entry);
+			if (debug)
+				System.err.println(entry);
 		}
 	}
 
 	/**
 	 * Phase 3: initialize the Rete network.
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	private void initialize() throws Exception {
@@ -245,30 +230,36 @@ public class CoordinatorActor extends UntypedActor {
 			}
 		}
 
-		if (debug) System.err.println("<AWAIT>");
+		if (debug)
+			System.err.println("<AWAIT>");
 		for (final Future<Object> future : futures) {
-			if (debug) System.err.println("await for " + future);
+			if (debug)
+				System.err.println("await for " + future);
 			final Object result = Await.result(future, timeout.duration());
-			if (debug) System.err.println(result);
+			if (debug)
+				System.err.println(result);
 		}
-		if (debug) System.err.println("</AWAIT>");
+		if (debug)
+			System.err.println("</AWAIT>");
 	}
 
 	/**
 	 * Phase 4: retrieve the results
+	 * 
 	 * @return
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	public Set<Tuple> check() throws Exception {
 		latestResults = getQueryResults();
-		if (debug) System.err.println("Results: " + latestResults.size());
+		if (debug)
+			System.err.println("Results: " + latestResults.size());
 		return latestResults;
 	}
 
 	/**
 	 * Phase 5: do the transformation
-	 *
+	 * 
 	 * @throws Exception
 	 */
 	public void transform() throws Exception {
