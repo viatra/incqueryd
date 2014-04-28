@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipselabs.emfjson.EMFJs;
 import org.eclipselabs.emfjson.resource.JsResourceFactoryImpl;
 
-public class RecipeSerializer {
+public class EObjectSerializer {
 
 	public static void serializeToFile(final EObject eObject, final String modelFile) throws IOException {
 		final ResourceSet resourceSet = new ResourceSetImpl();
@@ -26,9 +26,6 @@ public class RecipeSerializer {
 		options.put(EMFJs.OPTION_INDENT_OUTPUT, true);
 		options.put(EMFJs.OPTION_SERIALIZE_TYPE, true);
 
-		// options.put(EMFJs.OPTION_INDENT_OUTPUT, false);
-		// options.put(EMFJs.OPTION_SERIALIZE_TYPE, false);
-
 		resource.getContents().add(eObject);
 		resource.save(options);
 	}
@@ -36,12 +33,17 @@ public class RecipeSerializer {
 	public static String serializeToString(final EObject eObject) throws IOException {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("json", new JsResourceFactoryImpl());
 
-		final File tempFile = File.createTempFile("recipe-", ".json");
-		tempFile.deleteOnExit();
+		final File tempFile = createTempFile();
 		serializeToFile(eObject, tempFile.getAbsolutePath());
 		final String modelString = FileUtils.readFileToString(tempFile);
 
 		return modelString;
+	}
+
+	public static File createTempFile() throws IOException {
+		final File tempFile = File.createTempFile("temp-", ".json");
+		tempFile.deleteOnExit();
+		return tempFile;
 	}
 
 }
