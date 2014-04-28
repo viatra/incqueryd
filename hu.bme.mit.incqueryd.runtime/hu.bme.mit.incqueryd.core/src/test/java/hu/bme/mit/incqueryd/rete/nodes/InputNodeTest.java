@@ -25,7 +25,7 @@ public class InputNodeTest {
 		final UniquenessEnforcerRecipe recipe = RecipesFactory.eINSTANCE.createUniquenessEnforcerRecipe();
 		recipe.setTraceInfo("UniquenessEnforcerNode#edge : Route_routeDefinition : ");
 
-		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptySet());
+		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList());
 		final ChangeSet changeSet = inputNode.initialize();
 		assertEquals(843, changeSet.getTuples().size());
 
@@ -43,7 +43,7 @@ public class InputNodeTest {
 		final UniquenessEnforcerRecipe recipe = RecipesFactory.eINSTANCE.createUniquenessEnforcerRecipe();
 		recipe.setTraceInfo("UniquenessEnforcerNode#vertex : Route :");
 
-		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptySet());
+		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList());
 		final ChangeSet changeSet = inputNode.initialize();
 		assertEquals(20, changeSet.getTuples().size());
 
@@ -61,7 +61,7 @@ public class InputNodeTest {
 		final UniquenessEnforcerRecipe recipe = RecipesFactory.eINSTANCE.createUniquenessEnforcerRecipe();
 		recipe.setTraceInfo("UniquenessEnforcerNode#vertex : Segment : [Segment_length]");
 
-		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptySet());
+		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList());
 		final ChangeSet changeSet = inputNode.initialize();
 		assertEquals(4835, changeSet.getTuples().size());
 

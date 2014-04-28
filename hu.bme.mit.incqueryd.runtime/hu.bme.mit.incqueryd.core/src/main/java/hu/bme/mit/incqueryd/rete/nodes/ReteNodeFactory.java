@@ -3,7 +3,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration;
 
 import java.io.IOException;
-import java.util.Collection;
+import java.util.List;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
@@ -27,7 +27,7 @@ public class ReteNodeFactory {
 	 */
 	public static ReteNode createNode(final ReteNodeConfiguration conf) throws IOException {		
 		final ReteNodeRecipe recipe = conf.getReteNodeRecipe();
-		final Collection<String> cacheMachines = conf.getCacheMachines();
+		final List<String> cacheMachineIps = conf.getCacheMachineIps();
 		
 		if (recipe instanceof AntiJoinRecipe) {
 			return new AntiJoinNode((AntiJoinRecipe) recipe);
@@ -40,7 +40,7 @@ public class ReteNodeFactory {
 		} else if (recipe instanceof TrimmerRecipe) {
 			return new TrimmerNode((TrimmerRecipe) recipe);
 		} else if (recipe instanceof UniquenessEnforcerRecipe) {
-			return new InputNode((UniquenessEnforcerRecipe) recipe, cacheMachines);
+			return new InputNode((UniquenessEnforcerRecipe) recipe, cacheMachineIps);
 		} else if (recipe instanceof ProductionRecipe) {
 			return new ProductionNode((ProductionRecipe) recipe);
 		} else if (recipe instanceof CheckRecipe) {
