@@ -18,7 +18,7 @@ Require-Bundle: hu.bme.mit.incqueryd.arch.language;visibility:=reexport,
  org.eclipse.compare
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: hu.bme.mit.incqueryd.arch.language.ui.quickfix,
  hu.bme.mit.incqueryd.arch.language.ui.contentassist,
  hu.bme.mit.incqueryd.arch.language.ui.contentassist.antlr,
