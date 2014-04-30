@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: hu.bme.mit.incqueryd.arch.language
-Bundle-Vendor: My Company
+Bundle-Name: IncQuery-D Architecture Language
+Bundle-Vendor: IncQuery Labs Ltd.
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: hu.bme.mit.incqueryd.arch.language; singleton:=true
 Bundle-ActivationPolicy: lazy
@@ -12,7 +12,6 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
  org.eclipse.emf.mwe.utils;resolution:=optional,
  org.eclipse.emf.mwe2.launch;resolution:=optional,
- org.eclipse.incquery.runtime.rete.recipes,
  org.eclipse.emf.ecore.xcore;bundle-version="1.1.1",
  hu.bme.mit.incqueryd.arch;bundle-version="0.2.0",
  org.eclipse.xtext.util,
@@ -20,7 +19,7 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.common.types
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: hu.bme.mit.incqueryd.arch.language,
  hu.bme.mit.incqueryd.arch.language.services,
  hu.bme.mit.incqueryd.arch.language.serializer,
