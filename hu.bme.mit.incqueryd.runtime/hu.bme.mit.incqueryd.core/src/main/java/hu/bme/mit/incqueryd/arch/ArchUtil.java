@@ -10,8 +10,6 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.Resource.Factory;
-import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -25,7 +23,7 @@ public class ArchUtil {
 
 	/**
 	 * Extract the type name from the trace info.
-	 * 
+	 *
 	 * @param traceInfo
 	 * @return
 	 */
@@ -57,7 +55,7 @@ public class ArchUtil {
 
 	/**
 	 * Cut the proxy's name from the EMF URI.
-	 * 
+	 *
 	 * @param emfUri
 	 * @return
 	 */
@@ -93,7 +91,7 @@ public class ArchUtil {
 
 	/**
 	 * Returns just the first line of a string.
-	 * 
+	 *
 	 * @param string
 	 * @return
 	 */
@@ -114,17 +112,17 @@ public class ArchUtil {
 	public static Configuration loadConfiguration(final String architectureFile) {
 		// initialize extension to factory map
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
-	
+
 		// initialize package registry
 		// initialize the RecipesPackage before the others
 		RecipesPackage.eINSTANCE.eClass();
 		InfrastructurePackage.eINSTANCE.eClass();
 		ArchPackage.eINSTANCE.eClass();
-	
+
 		// load resource
 		final ResourceSet resourceSet = new ResourceSetImpl();
 		final Resource resource = resourceSet.getResource(URI.createFileURI(architectureFile), true);
-	
+
 		// traverse model
 		final EObject o = resource.getContents().get(0);
 		return (Configuration) o;
