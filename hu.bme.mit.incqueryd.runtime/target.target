@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="IncQuery-D" sequenceNumber="3">
+<?pde version="3.8"?><target name="IncQuery-D" sequenceNumber="4">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.incquery.sdk.feature.source.feature.group" version="0.8.0.201404261208"/>
@@ -8,6 +8,7 @@
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.emf.ecore.xcore.sdk.feature.group" version="1.1.1.v20130903-0948"/>
 <unit id="org.eclipse.emf.ecore.feature.group" version="2.9.2.v20131212-0545"/>
+<unit id="org.eclipse.xtext.sdk.feature.group" version="2.4.3.v201309030823"/>
 <unit id="org.eclipse.platform.feature.group" version="4.3.2.v20140221-1852"/>
 <repository location="http://download.eclipse.org/releases/kepler"/>
 </location>
