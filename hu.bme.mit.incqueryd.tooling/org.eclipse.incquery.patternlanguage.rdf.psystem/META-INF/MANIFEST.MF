@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RDFPL to PSystem Mapping
+Bundle-SymbolicName: org.eclipse.incquery.patternlanguage.rdf.psystem
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.xtext.xbase.lib;bundle-version="2.4.3",
+ org.eclipse.incquery.runtime.matchers;bundle-version="0.8.0",
+ org.eclipse.incquery.patternlanguage;bundle-version="0.8.0",
+ org.eclipse.incquery.patternlanguage.rdf;bundle-version="1.0.0"
