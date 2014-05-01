@@ -192,6 +192,14 @@
 			<artifactId>hu.bme.mit.incqueryd.arch</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<!-- monitoring extensions -->
+
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.monitoring</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<!-- EMF Binding for JSON -->
 

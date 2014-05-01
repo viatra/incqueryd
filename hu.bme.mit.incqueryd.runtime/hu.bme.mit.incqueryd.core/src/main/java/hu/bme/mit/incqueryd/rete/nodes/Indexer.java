@@ -2,6 +2,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 
 import hu.bme.mit.incqueryd.cache.DistributedMultiMap;
 import hu.bme.mit.incqueryd.cache.TupleCache;
+import hu.bme.mit.incqueryd.monitoring.MonitoringRegistry;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.dataunits.TupleMask;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import com.codahale.metrics.Gauge;
 import com.google.common.collect.ImmutableSet;
 
 /**
@@ -27,6 +29,11 @@ public class Indexer {
     public Indexer(final List<Integer> joinMask, final List<String> cacheMachineIps) {
         this.joinMask = joinMask;
         map = new TupleCache(cacheMachineIps).getMultiMap(UUID.randomUUID().toString());
+        MonitoringRegistry.getInstance().registerGauge("test_"+1, new Gauge<Integer>() {
+			public Integer getValue() {
+				return map.size();
+			}
+		});
     }
 
     public List<Integer> getJoinMask() {

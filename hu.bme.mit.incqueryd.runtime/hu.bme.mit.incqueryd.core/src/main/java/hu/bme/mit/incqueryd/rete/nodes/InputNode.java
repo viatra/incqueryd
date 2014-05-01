@@ -3,6 +3,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import hu.bme.mit.bigmodel.fourstore.FourStoreClient;
 import hu.bme.mit.incqueryd.arch.ArchUtil;
 import hu.bme.mit.incqueryd.cache.TupleCache;
+import hu.bme.mit.incqueryd.monitoring.MonitoringRegistry;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.GraphElement;
@@ -23,6 +24,7 @@ import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 
+import com.codahale.metrics.Gauge;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -61,6 +63,13 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 
 		cache = new TupleCache(cacheMachineIps);
 		tuples = cache.getSet(typename);
+		
+		MonitoringRegistry.getInstance().registerGauge("test_"+random.nextInt(), new Gauge<Integer>() {
+					public Integer getValue() {
+						return tuples.size();
+					}
+				});
+		
 	}
 
 	public String getType() {

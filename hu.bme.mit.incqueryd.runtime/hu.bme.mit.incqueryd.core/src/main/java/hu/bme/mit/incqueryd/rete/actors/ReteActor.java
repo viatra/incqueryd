@@ -247,7 +247,7 @@ public class ReteActor extends UntypedActor {
 		if (reteNode instanceof InputNode) {
 			pendingTerminationMessages = subscribers.entrySet().size();
 		}
-
+		
 		for (final Entry<ActorRef, ReteNodeSlot> entry : subscribers.entrySet()) {
 			final ActorRef subscriber = entry.getKey();
 			final ReteNodeSlot slot = entry.getValue();
@@ -264,6 +264,7 @@ public class ReteActor extends UntypedActor {
 			// @formatter:on
 			subscriber.tell(updateMessage, getSelf());
 		}
+		
 	}
 
 	private void initialize() throws IOException {
