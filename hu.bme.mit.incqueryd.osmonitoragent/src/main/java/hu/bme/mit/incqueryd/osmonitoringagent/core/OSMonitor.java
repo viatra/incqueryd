@@ -6,6 +6,8 @@ import hu.bme.mit.incqueryd.osmonitoringagent.metrics.MemoryUsage;
 import hu.bme.mit.incqueryd.osmonitoringagent.metrics.NetworkUsage;
 
 import java.lang.management.ManagementFactory;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,16 +110,13 @@ public class OSMonitor extends Thread {
 	/**
 	 * Constructor
 	 * @throws SigarException
+	 * @throws UnknownHostException 
 	 */
-	protected OSMonitor() throws SigarException {
+	protected OSMonitor() throws SigarException, UnknownHostException {
 		
 		hostName = System.getenv("HOSTNAME");
-		if (hostName == null) {
-			hostName = System.getenv("COMPUTERNAME");
-		}
-		if (hostName != null) {
-			hostName = hostName.toLowerCase();
-		}
+		InetAddress iAddress = InetAddress.getLocalHost();
+		hostName = iAddress.getHostName();
 		
 		memoryUsage = new MemoryUsage();
 		cpuUsage = new CPUUsage();
@@ -350,8 +349,9 @@ public class OSMonitor extends Thread {
 	 * Main method
 	 * @param args
 	 * @throws SigarException
+	 * @throws UnknownHostException 
 	 */
-	public static void main(String[] args) throws SigarException {
+	public static void main(String[] args) throws SigarException, UnknownHostException {
 
 		OSMonitor mon = new OSMonitor();
 		mon.start();
