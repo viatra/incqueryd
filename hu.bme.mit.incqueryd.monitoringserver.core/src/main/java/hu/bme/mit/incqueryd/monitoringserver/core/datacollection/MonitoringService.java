@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.datacollection;
 
-import hu.bme.mit.incqueryd.monitoringserver.core.deserialization.OSMonitoringDataDeserializer;
-import hu.bme.mit.incqueryd.monitoringserver.core.model.OSMonitoringData;
+import hu.bme.mit.incqueryd.monitoringserver.core.deserialization.MachineMonitoringDataDeserializer;
+import hu.bme.mit.incqueryd.monitoringserver.core.model.MachineMonitoringData;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -12,7 +12,7 @@ import com.google.gson.GsonBuilder;
 
 public class MonitoringService {
 
-	public static OSMonitoringData getOSMonitoringData (String host, int port){
+	public static MachineMonitoringData getMachineMonitoringData (String host, int port){
 		
 		URL url = null;
 		
@@ -31,10 +31,10 @@ public class MonitoringService {
 		}
 		
 		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonBuilder.registerTypeAdapter(OSMonitoringData.class, new OSMonitoringDataDeserializer());
+		gsonBuilder.registerTypeAdapter(MachineMonitoringData.class, new MachineMonitoringDataDeserializer());
 		Gson gson = gsonBuilder.create();
 		
-		OSMonitoringData data = gson.fromJson(json, OSMonitoringData.class);
+		MachineMonitoringData data = gson.fromJson(json, MachineMonitoringData.class);
 		
 		return data;
 		

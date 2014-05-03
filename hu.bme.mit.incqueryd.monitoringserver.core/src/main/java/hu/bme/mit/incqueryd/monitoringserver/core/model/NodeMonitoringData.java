@@ -1,7 +1,9 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.model;
 
+import java.util.List;
 
-public class AkkaNodeMonitoringData {
+
+public class NodeMonitoringData {
 
 	private int upTime;
 	
@@ -39,14 +41,14 @@ public class AkkaNodeMonitoringData {
 	
 	private String name;
 	
-	private AkkaActorsOnNodeData actorsData;
+	private List<AkkaActorMonitoringData> actors;
 	
-	public AkkaActorsOnNodeData getActorsData() {
-		return actorsData;
+	public List<AkkaActorMonitoringData> getActors() {
+		return actors;
 	}
 	
-	public void setActorsData(AkkaActorsOnNodeData actorsData) {
-		this.actorsData = actorsData;
+	public void setActors(List<AkkaActorMonitoringData> actors) {
+		this.actors = actors;
 	}
 	
 	public double getCpuCombined() {

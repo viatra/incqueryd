@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.deserialization;
 
+import hu.bme.mit.incqueryd.monitoringserver.core.model.MachineMonitoringData;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.OSMonitoringData;
 
 import java.lang.reflect.Type;
@@ -12,9 +13,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
-public class OSMonitoringDataDeserializer implements JsonDeserializer<OSMonitoringData> {
+public class MachineMonitoringDataDeserializer implements JsonDeserializer<MachineMonitoringData> {
 
-	public OSMonitoringData deserialize(JsonElement json, Type typeOfT,
+	public MachineMonitoringData deserialize(JsonElement json, Type typeOfT,
 			JsonDeserializationContext context) throws JsonParseException {
 
 
@@ -25,8 +26,13 @@ public class OSMonitoringDataDeserializer implements JsonDeserializer<OSMonitori
 		Gson gson = gsonBuilder.create();
 
 		OSMonitoringData osData = gson.fromJson( data.toString(), OSMonitoringData.class);
+		
+		MachineMonitoringData mData = new MachineMonitoringData();
+		mData.setOs(osData);
+		
+		mData.setHost(data.getAsJsonPrimitive("Host").getAsString());
 
-		return osData;
+		return mData;
 		
 	}
 

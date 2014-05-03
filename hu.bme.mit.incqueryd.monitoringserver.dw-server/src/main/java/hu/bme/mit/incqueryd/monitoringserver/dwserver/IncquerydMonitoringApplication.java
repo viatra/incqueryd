@@ -9,6 +9,8 @@ import io.dropwizard.setup.Environment;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.bazaarvoice.dropwizard.assets.ConfiguredAssetsBundle;
+
 public class IncquerydMonitoringApplication extends
 		Application<IncquerydMonitoringConfiguration> {
 	
@@ -18,8 +20,8 @@ public class IncquerydMonitoringApplication extends
 
 	@Override
 	public void initialize(Bootstrap<IncquerydMonitoringConfiguration> bootstrap) {
-		// TODO Auto-generated method stub
-
+		bootstrap.addBundle( new ConfiguredAssetsBundle("/html/", "/dashboard/"));
+		
 	}
 
 	@Override

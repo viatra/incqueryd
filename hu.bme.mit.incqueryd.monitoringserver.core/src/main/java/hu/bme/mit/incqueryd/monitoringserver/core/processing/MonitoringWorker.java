@@ -3,8 +3,11 @@ package hu.bme.mit.incqueryd.monitoringserver.core.processing;
 import hu.bme.mit.incqueryd.monitoringserver.core.datacollection.AkkaMonitoringDataCollector;
 import hu.bme.mit.incqueryd.monitoringserver.core.datacollection.MonitoringService;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.AggregatedMonitoringData;
-import hu.bme.mit.incqueryd.monitoringserver.core.model.OSMonitoringData;
+import hu.bme.mit.incqueryd.monitoringserver.core.model.MachineMonitoringData;
+import hu.bme.mit.incqueryd.monitoringserver.core.model.NodeMonitoringData;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class MonitoringWorker extends Thread {
@@ -40,15 +43,25 @@ public class MonitoringWorker extends Thread {
 	private void monitor() {
 		AggregatedMonitoringData collectedData = new AggregatedMonitoringData();
 		
+		List<MachineMonitoringData> machines = new ArrayList<>();
+		
 		for (String host : monitoredHosts.keySet()) {
-			OSMonitoringData osData = MonitoringService.getOSMonitoringData(host, monitoredHosts.get(host));
-			collectedData.addOS(osData);
+			MachineMonitoringData machineData = MonitoringService.getMachineMonitoringData(host, monitoredHosts.get(host));
+			machines.add(machineData);
 		}
 		
 		AkkaMonitoringDataCollector akkaCollector = new  AkkaMonitoringDataCollector(atmosHost, atmosPort);
+		List<NodeMonitoringData> nodes = akkaCollector.collectNodeData();
 		
-		collectedData.setAkka(akkaCollector.collectNodeData());
+		for (MachineMonitoringData machineMonitoringData : machines) {
+			for (NodeMonitoringData nodeData : nodes) {
+				if (machineMonitoringData.getHost().equals(nodeData.getName().split("@")[1])) {
+					machineMonitoringData.addNode(nodeData);
+				}
+			}
+		}
 		
+		collectedData.setMachines(machines);
 		
 		synchronized (monitoredData) {
 			monitoredData = collectedData;

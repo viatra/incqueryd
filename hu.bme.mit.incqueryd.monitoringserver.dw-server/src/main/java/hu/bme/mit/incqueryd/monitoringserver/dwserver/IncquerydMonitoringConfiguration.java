@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.bazaarvoice.dropwizard.assets.AssetsBundleConfiguration;
+import com.bazaarvoice.dropwizard.assets.AssetsConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class IncquerydMonitoringConfiguration extends Configuration {
+public class IncquerydMonitoringConfiguration extends Configuration implements AssetsBundleConfiguration {
 
 	@NotEmpty
 	private List<MonitoredHostInfo> monitoredHosts;
@@ -46,6 +48,11 @@ public class IncquerydMonitoringConfiguration extends Configuration {
 	@JsonProperty
 	public void setAtmosPort(int atmosPort) {
 		this.atmosPort = atmosPort;
+	}
+
+	public AssetsConfiguration getAssetsConfiguration() {
+		// TODO Auto-generated method stub
+		return new AssetsConfiguration();
 	}
 	
 }

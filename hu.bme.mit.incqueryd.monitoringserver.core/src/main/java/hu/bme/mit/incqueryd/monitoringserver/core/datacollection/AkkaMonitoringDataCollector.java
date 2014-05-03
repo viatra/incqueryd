@@ -3,9 +3,9 @@ package hu.bme.mit.incqueryd.monitoringserver.core.datacollection;
 import hu.bme.mit.incqueryd.monitoringserver.core.akkahelper.AkkaNodeNames;
 import hu.bme.mit.incqueryd.monitoringserver.core.akkahelper.AkkaNodeNamesDeserializer;
 import hu.bme.mit.incqueryd.monitoringserver.core.deserialization.AkkaActorsOnNodeDataDeserializer;
-import hu.bme.mit.incqueryd.monitoringserver.core.deserialization.AkkaNodeMonitoringDataDeserializer;
+import hu.bme.mit.incqueryd.monitoringserver.core.deserialization.NodeMonitoringDataDeserializer;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.AkkaActorsOnNodeData;
-import hu.bme.mit.incqueryd.monitoringserver.core.model.AkkaNodeMonitoringData;
+import hu.bme.mit.incqueryd.monitoringserver.core.model.NodeMonitoringData;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -51,15 +51,15 @@ public class AkkaMonitoringDataCollector {
 		gsonBuilder.registerTypeAdapter(AkkaNodeNames.class, new AkkaNodeNamesDeserializer());
 		Gson gson = gsonBuilder.create();
 		
-		AkkaNodeNames data = gson.fromJson(json, AkkaNodeNames.class);
+		AkkaNodeNames data = gson.fromJson(json, AkkaNodeNames.class); // To get the name of the monitored nodes from Atmos
 
 		nodes.addAll(data.getNodeNames());
 		
 	}
 	
-	public List<AkkaNodeMonitoringData> collectNodeData() {
+	public List<NodeMonitoringData> collectNodeData() {
 		
-		List<AkkaNodeMonitoringData> nodeDataList = new ArrayList<AkkaNodeMonitoringData>();
+		List<NodeMonitoringData> nodeDataList = new ArrayList<NodeMonitoringData>();
 		
 		collectNodes();
 		
@@ -72,7 +72,7 @@ public class AkkaMonitoringDataCollector {
 				
 			}
 			
-			AkkaNodeMonitoringData nodeData = null;
+			NodeMonitoringData nodeData = null;
 			do {
 				String json = null;
 				
@@ -83,10 +83,10 @@ public class AkkaMonitoringDataCollector {
 				}
 				
 				GsonBuilder gsonBuilder = new GsonBuilder();
-				gsonBuilder.registerTypeAdapter(AkkaNodeMonitoringData.class,
-						new AkkaNodeMonitoringDataDeserializer());
+				gsonBuilder.registerTypeAdapter(NodeMonitoringData.class,
+						new NodeMonitoringDataDeserializer());
 				Gson gson = gsonBuilder.create();
-				nodeData = gson.fromJson(json, AkkaNodeMonitoringData.class);
+				nodeData = gson.fromJson(json, NodeMonitoringData.class);
 				
 				if(nodeData == null) {
 					try {
@@ -126,7 +126,7 @@ public class AkkaMonitoringDataCollector {
 			
 			actorData.setNode(node);
 			
-			nodeData.setActorsData(actorData);
+			nodeData.setActors(actorData.getActors());
 			
 			nodeDataList.add(nodeData);
 			

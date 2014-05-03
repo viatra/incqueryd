@@ -14,8 +14,6 @@ public class OSMonitoringData {
 	private CPUUsage Cpu;
 	private List<DiskUsage> Disks;
 	private List<NetworkUsage> NetInterfaces;
-	private String Host;
-	
 	
 	
 	public OSMonitoringData() {
@@ -42,11 +40,4 @@ public class OSMonitoringData {
 		return NetInterfaces;
 	}
 	
-	public String getHostName() {
-		return Host;
-	}
-	
-	public void setHostName(String hostName) {
-		this.Host = hostName;
-	}
 }
