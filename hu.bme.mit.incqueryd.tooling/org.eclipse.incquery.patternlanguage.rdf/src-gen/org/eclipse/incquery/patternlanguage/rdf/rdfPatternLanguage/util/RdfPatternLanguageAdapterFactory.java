@@ -9,13 +9,13 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
 import org.eclipse.incquery.patternlanguage.patternLanguage.EntityType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.RelationType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Constraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
@@ -105,9 +105,9 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
         return createIriAdapter();
       }
       @Override
-      public Adapter caseConstraint(Constraint object)
+      public Adapter caseRdfCheckConstraint(RdfCheckConstraint object)
       {
-        return createConstraintAdapter();
+        return createRdfCheckConstraintAdapter();
       }
       @Override
       public Adapter caseRdfPathExpressionConstraint(RdfPathExpressionConstraint object)
@@ -130,11 +130,6 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
         return createPatternModelAdapter();
       }
       @Override
-      public Adapter caseRdfCheckConstraint(RdfCheckConstraint object)
-      {
-        return createRdfCheckConstraintAdapter();
-      }
-      @Override
       public Adapter caseClass(org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class object)
       {
         return createClassAdapter();
@@ -145,9 +140,9 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
         return createPropertyAdapter();
       }
       @Override
-      public Adapter casePatternLanguage_Constraint(org.eclipse.incquery.patternlanguage.patternLanguage.Constraint object)
+      public Adapter caseConstraint(Constraint object)
       {
-        return createPatternLanguage_ConstraintAdapter();
+        return createConstraintAdapter();
       }
       @Override
       public Adapter caseValueReference(ValueReference object)
@@ -242,16 +237,16 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Constraint <em>Constraint</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint <em>Rdf Check Constraint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Constraint
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint
    * @generated
    */
-  public Adapter createConstraintAdapter()
+  public Adapter createRdfCheckConstraintAdapter()
   {
     return null;
   }
@@ -317,21 +312,6 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint <em>Rdf Check Constraint</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint
-   * @generated
-   */
-  public Adapter createRdfCheckConstraintAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class <em>Class</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -371,7 +351,7 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
    * @see org.eclipse.incquery.patternlanguage.patternLanguage.Constraint
    * @generated
    */
-  public Adapter createPatternLanguage_ConstraintAdapter()
+  public Adapter createConstraintAdapter()
   {
     return null;
   }

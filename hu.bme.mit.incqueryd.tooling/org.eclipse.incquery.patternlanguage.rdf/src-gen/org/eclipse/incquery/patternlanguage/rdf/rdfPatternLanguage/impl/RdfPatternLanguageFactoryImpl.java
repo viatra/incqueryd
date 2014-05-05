@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Constraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
@@ -78,12 +77,11 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
       case RdfPatternLanguagePackage.BASE: return createBase();
       case RdfPatternLanguagePackage.PREFIX: return createPrefix();
       case RdfPatternLanguagePackage.IRI: return createIri();
-      case RdfPatternLanguagePackage.CONSTRAINT: return createConstraint();
+      case RdfPatternLanguagePackage.RDF_CHECK_CONSTRAINT: return createRdfCheckConstraint();
       case RdfPatternLanguagePackage.RDF_PATH_EXPRESSION_CONSTRAINT: return createRdfPathExpressionConstraint();
       case RdfPatternLanguagePackage.TYPE_CONSTRAINT: return createTypeConstraint();
       case RdfPatternLanguagePackage.RDF_LITERAL: return createRdfLiteral();
       case RdfPatternLanguagePackage.PATTERN_MODEL: return createPatternModel();
-      case RdfPatternLanguagePackage.RDF_CHECK_CONSTRAINT: return createRdfCheckConstraint();
       case RdfPatternLanguagePackage.CLASS: return createClass();
       case RdfPatternLanguagePackage.PROPERTY: return createProperty();
       default:
@@ -129,10 +127,10 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  public Constraint createConstraint()
+  public RdfCheckConstraint createRdfCheckConstraint()
   {
-    ConstraintImpl constraint = new ConstraintImpl();
-    return constraint;
+    RdfCheckConstraintImpl rdfCheckConstraint = new RdfCheckConstraintImpl();
+    return rdfCheckConstraint;
   }
 
   /**
@@ -177,17 +175,6 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
   {
     PatternModelImpl patternModel = new PatternModelImpl();
     return patternModel;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public RdfCheckConstraint createRdfCheckConstraint()
-  {
-    RdfCheckConstraintImpl rdfCheckConstraint = new RdfCheckConstraintImpl();
-    return rdfCheckConstraint;
   }
 
   /**

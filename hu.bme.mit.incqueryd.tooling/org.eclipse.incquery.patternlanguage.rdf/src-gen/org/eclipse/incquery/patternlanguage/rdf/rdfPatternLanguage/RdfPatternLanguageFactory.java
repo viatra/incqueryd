@@ -50,13 +50,13 @@ public interface RdfPatternLanguageFactory extends EFactory
   Iri createIri();
 
   /**
-   * Returns a new object of class '<em>Constraint</em>'.
+   * Returns a new object of class '<em>Rdf Check Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Constraint</em>'.
+   * @return a new object of class '<em>Rdf Check Constraint</em>'.
    * @generated
    */
-  Constraint createConstraint();
+  RdfCheckConstraint createRdfCheckConstraint();
 
   /**
    * Returns a new object of class '<em>Rdf Path Expression Constraint</em>'.
@@ -93,15 +93,6 @@ public interface RdfPatternLanguageFactory extends EFactory
    * @generated
    */
   PatternModel createPatternModel();
-
-  /**
-   * Returns a new object of class '<em>Rdf Check Constraint</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Rdf Check Constraint</em>'.
-   * @generated
-   */
-  RdfCheckConstraint createRdfCheckConstraint();
 
   /**
    * Returns a new object of class '<em>Class</em>'.
