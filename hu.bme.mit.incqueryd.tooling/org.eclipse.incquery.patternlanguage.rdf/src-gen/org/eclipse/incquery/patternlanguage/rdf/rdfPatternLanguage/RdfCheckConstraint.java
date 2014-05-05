@@ -4,6 +4,7 @@ package org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 
 /**

@@ -206,7 +206,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		private final RuleCall cExpressionSTRINGTerminalRuleCall_4_0 = (RuleCall)cExpressionAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		//RdfCheckConstraint returns Constraint:
+		//RdfCheckConstraint:
 		//	{RdfCheckConstraint} "check" "(" (variables+=VariableReference ",")* expression=STRING ")";
 		public ParserRule getRule() { return rule; }
 
@@ -594,7 +594,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		return getConstraintAccess().getRule();
 	}
 
-	//RdfCheckConstraint returns Constraint:
+	//RdfCheckConstraint:
 	//	{RdfCheckConstraint} "check" "(" (variables+=VariableReference ",")* expression=STRING ")";
 	public RdfCheckConstraintElements getRdfCheckConstraintAccess() {
 		return (pRdfCheckConstraint != null) ? pRdfCheckConstraint : (pRdfCheckConstraint = new RdfCheckConstraintElements());

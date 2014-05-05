@@ -7,13 +7,13 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
 import org.eclipse.incquery.patternlanguage.patternLanguage.EntityType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.RelationType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Constraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
@@ -108,11 +108,11 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RdfPatternLanguagePackage.CONSTRAINT:
+      case RdfPatternLanguagePackage.RDF_CHECK_CONSTRAINT:
       {
-        Constraint constraint = (Constraint)theEObject;
-        T result = caseConstraint(constraint);
-        if (result == null) result = casePatternLanguage_Constraint(constraint);
+        RdfCheckConstraint rdfCheckConstraint = (RdfCheckConstraint)theEObject;
+        T result = caseRdfCheckConstraint(rdfCheckConstraint);
+        if (result == null) result = caseConstraint(rdfCheckConstraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -120,7 +120,7 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
       {
         RdfPathExpressionConstraint rdfPathExpressionConstraint = (RdfPathExpressionConstraint)theEObject;
         T result = caseRdfPathExpressionConstraint(rdfPathExpressionConstraint);
-        if (result == null) result = casePatternLanguage_Constraint(rdfPathExpressionConstraint);
+        if (result == null) result = caseConstraint(rdfPathExpressionConstraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -128,7 +128,7 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
       {
         TypeConstraint typeConstraint = (TypeConstraint)theEObject;
         T result = caseTypeConstraint(typeConstraint);
-        if (result == null) result = casePatternLanguage_Constraint(typeConstraint);
+        if (result == null) result = caseConstraint(typeConstraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -145,15 +145,6 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
         PatternModel patternModel = (PatternModel)theEObject;
         T result = casePatternModel(patternModel);
         if (result == null) result = casePatternLanguage_PatternModel(patternModel);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RdfPatternLanguagePackage.RDF_CHECK_CONSTRAINT:
-      {
-        RdfCheckConstraint rdfCheckConstraint = (RdfCheckConstraint)theEObject;
-        T result = caseRdfCheckConstraint(rdfCheckConstraint);
-        if (result == null) result = caseConstraint(rdfCheckConstraint);
-        if (result == null) result = casePatternLanguage_Constraint(rdfCheckConstraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -228,17 +219,17 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Rdf Check Constraint</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Rdf Check Constraint</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseConstraint(Constraint object)
+  public T caseRdfCheckConstraint(RdfCheckConstraint object)
   {
     return null;
   }
@@ -308,22 +299,6 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Rdf Check Constraint</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Rdf Check Constraint</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseRdfCheckConstraint(RdfCheckConstraint object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Class</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -366,7 +341,7 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePatternLanguage_Constraint(org.eclipse.incquery.patternlanguage.patternLanguage.Constraint object)
+  public T caseConstraint(Constraint object)
   {
     return null;
   }

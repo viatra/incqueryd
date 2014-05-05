@@ -161,23 +161,41 @@ public interface RdfPatternLanguagePackage extends EPackage
   int IRI_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.ConstraintImpl <em>Constraint</em>}' class.
+   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfCheckConstraintImpl <em>Rdf Check Constraint</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.ConstraintImpl
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getConstraint()
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfCheckConstraintImpl
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfCheckConstraint()
    * @generated
    */
-  int CONSTRAINT = 3;
+  int RDF_CHECK_CONSTRAINT = 3;
 
   /**
-   * The number of structural features of the '<em>Constraint</em>' class.
+   * The feature id for the '<em><b>Variables</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONSTRAINT_FEATURE_COUNT = PatternLanguagePackage.CONSTRAINT_FEATURE_COUNT + 0;
+  int RDF_CHECK_CONSTRAINT__VARIABLES = PatternLanguagePackage.CONSTRAINT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RDF_CHECK_CONSTRAINT__EXPRESSION = PatternLanguagePackage.CONSTRAINT_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Rdf Check Constraint</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RDF_CHECK_CONSTRAINT_FEATURE_COUNT = PatternLanguagePackage.CONSTRAINT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPathExpressionConstraintImpl <em>Rdf Path Expression Constraint</em>}' class.
@@ -364,43 +382,6 @@ public interface RdfPatternLanguagePackage extends EPackage
   int PATTERN_MODEL_FEATURE_COUNT = PatternLanguagePackage.PATTERN_MODEL_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfCheckConstraintImpl <em>Rdf Check Constraint</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfCheckConstraintImpl
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfCheckConstraint()
-   * @generated
-   */
-  int RDF_CHECK_CONSTRAINT = 8;
-
-  /**
-   * The feature id for the '<em><b>Variables</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RDF_CHECK_CONSTRAINT__VARIABLES = CONSTRAINT_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Expression</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RDF_CHECK_CONSTRAINT__EXPRESSION = CONSTRAINT_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Rdf Check Constraint</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RDF_CHECK_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 2;
-
-  /**
    * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.ClassImpl <em>Class</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -408,7 +389,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getClass_()
    * @generated
    */
-  int CLASS = 9;
+  int CLASS = 8;
 
   /**
    * The feature id for the '<em><b>Typename</b></em>' attribute.
@@ -445,7 +426,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getProperty()
    * @generated
    */
-  int PROPERTY = 10;
+  int PROPERTY = 9;
 
   /**
    * The feature id for the '<em><b>Typename</b></em>' attribute.
@@ -561,14 +542,36 @@ public interface RdfPatternLanguagePackage extends EPackage
   EAttribute getIri_Iri();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Constraint <em>Constraint</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint <em>Rdf Check Constraint</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Constraint</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Constraint
+   * @return the meta object for class '<em>Rdf Check Constraint</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint
    * @generated
    */
-  EClass getConstraint();
+  EClass getRdfCheckConstraint();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint#getVariables <em>Variables</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Variables</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint#getVariables()
+   * @see #getRdfCheckConstraint()
+   * @generated
+   */
+  EReference getRdfCheckConstraint_Variables();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Expression</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint#getExpression()
+   * @see #getRdfCheckConstraint()
+   * @generated
+   */
+  EAttribute getRdfCheckConstraint_Expression();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint <em>Rdf Path Expression Constraint</em>}'.
@@ -721,38 +724,6 @@ public interface RdfPatternLanguagePackage extends EPackage
   EReference getPatternModel_Prefixes();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint <em>Rdf Check Constraint</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Rdf Check Constraint</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint
-   * @generated
-   */
-  EClass getRdfCheckConstraint();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint#getVariables <em>Variables</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Variables</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint#getVariables()
-   * @see #getRdfCheckConstraint()
-   * @generated
-   */
-  EReference getRdfCheckConstraint_Variables();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint#getExpression <em>Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Expression</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint#getExpression()
-   * @see #getRdfCheckConstraint()
-   * @generated
-   */
-  EAttribute getRdfCheckConstraint_Expression();
-
-  /**
    * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class <em>Class</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -888,14 +859,30 @@ public interface RdfPatternLanguagePackage extends EPackage
     EAttribute IRI__IRI = eINSTANCE.getIri_Iri();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.ConstraintImpl <em>Constraint</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfCheckConstraintImpl <em>Rdf Check Constraint</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.ConstraintImpl
-     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getConstraint()
+     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfCheckConstraintImpl
+     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfCheckConstraint()
      * @generated
      */
-    EClass CONSTRAINT = eINSTANCE.getConstraint();
+    EClass RDF_CHECK_CONSTRAINT = eINSTANCE.getRdfCheckConstraint();
+
+    /**
+     * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RDF_CHECK_CONSTRAINT__VARIABLES = eINSTANCE.getRdfCheckConstraint_Variables();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RDF_CHECK_CONSTRAINT__EXPRESSION = eINSTANCE.getRdfCheckConstraint_Expression();
 
     /**
      * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPathExpressionConstraintImpl <em>Rdf Path Expression Constraint</em>}' class.
@@ -1016,32 +1003,6 @@ public interface RdfPatternLanguagePackage extends EPackage
      * @generated
      */
     EReference PATTERN_MODEL__PREFIXES = eINSTANCE.getPatternModel_Prefixes();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfCheckConstraintImpl <em>Rdf Check Constraint</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfCheckConstraintImpl
-     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfCheckConstraint()
-     * @generated
-     */
-    EClass RDF_CHECK_CONSTRAINT = eINSTANCE.getRdfCheckConstraint();
-
-    /**
-     * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RDF_CHECK_CONSTRAINT__VARIABLES = eINSTANCE.getRdfCheckConstraint_Variables();
-
-    /**
-     * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute RDF_CHECK_CONSTRAINT__EXPRESSION = eINSTANCE.getRdfCheckConstraint_Expression();
 
     /**
      * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.ClassImpl <em>Class</em>}' class.

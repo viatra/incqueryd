@@ -30,7 +30,7 @@ Constraint returns core::Constraint:
 	| RdfCheckConstraint
 ;
 
-RdfCheckConstraint returns Constraint:
+RdfCheckConstraint:
 	{RdfCheckConstraint}
 	'check' '(' (variables+=VariableReference ',')* expression=STRING ')'
 ;

@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 
+import org.eclipse.incquery.patternlanguage.patternLanguage.impl.ConstraintImpl;
+
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
 
