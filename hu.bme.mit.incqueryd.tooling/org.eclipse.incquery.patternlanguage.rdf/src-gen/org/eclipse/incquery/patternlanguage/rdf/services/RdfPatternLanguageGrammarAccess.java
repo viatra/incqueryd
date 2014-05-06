@@ -23,7 +23,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	public class RdfPatternModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RdfPatternModel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cPatternModelAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cRdfPatternModelAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cBaseAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cBaseBaseParserRuleCall_1_0 = (RuleCall)cBaseAssignment_1.eContents().get(0);
 		private final Assignment cPrefixesAssignment_2 = (Assignment)cGroup.eContents().get(2);
@@ -32,14 +32,14 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		private final RuleCall cPatternsPatternParserRuleCall_3_0 = (RuleCall)cPatternsAssignment_3.eContents().get(0);
 		
 		//RdfPatternModel returns core::PatternModel:
-		//	{PatternModel} base=Base? prefixes+=Prefix* patterns+=Pattern*;
+		//	{RdfPatternModel} base=Base? prefixes+=Prefix* patterns+=Pattern*;
 		public ParserRule getRule() { return rule; }
 
-		//{PatternModel} base=Base? prefixes+=Prefix* patterns+=Pattern*
+		//{RdfPatternModel} base=Base? prefixes+=Prefix* patterns+=Pattern*
 		public Group getGroup() { return cGroup; }
 
-		//{PatternModel}
-		public Action getPatternModelAction_0() { return cPatternModelAction_0; }
+		//{RdfPatternModel}
+		public Action getRdfPatternModelAction_0() { return cRdfPatternModelAction_0; }
 
 		//base=Base?
 		public Assignment getBaseAssignment_1() { return cBaseAssignment_1; }
@@ -545,7 +545,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 
 	
 	//RdfPatternModel returns core::PatternModel:
-	//	{PatternModel} base=Base? prefixes+=Prefix* patterns+=Pattern*;
+	//	{RdfPatternModel} base=Base? prefixes+=Prefix* patterns+=Pattern*;
 	public RdfPatternModelElements getRdfPatternModelAccess() {
 		return (pRdfPatternModel != null) ? pRdfPatternModel : (pRdfPatternModel = new RdfPatternModelElements());
 	}

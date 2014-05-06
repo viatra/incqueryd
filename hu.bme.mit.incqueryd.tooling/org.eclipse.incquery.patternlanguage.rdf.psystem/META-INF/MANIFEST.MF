@@ -8,3 +8,4 @@ Require-Bundle: org.eclipse.xtext.xbase.lib;bundle-version="2.4.3",
  org.eclipse.incquery.runtime.matchers;bundle-version="0.8.0",
  org.eclipse.incquery.patternlanguage;bundle-version="0.8.0",
  org.eclipse.incquery.patternlanguage.rdf;bundle-version="1.0.0"
+Export-Package: org.eclipse.incquery.patternlanguage.rdf.psystem

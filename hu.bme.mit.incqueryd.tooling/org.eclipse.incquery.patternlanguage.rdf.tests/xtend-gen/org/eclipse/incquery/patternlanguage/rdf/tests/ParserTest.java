@@ -3,7 +3,7 @@ package org.eclipse.incquery.patternlanguage.rdf.tests;
 import com.google.inject.Inject;
 import org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageInjectorProvider;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipse.xtext.junit4.XtextRunner;
@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
 @SuppressWarnings("all")
 public class ParserTest {
   @Inject
-  private ParseHelper<PatternModel> parser;
+  private ParseHelper<RdfPatternModel> parser;
   
   @Test
   public void posLength() {
@@ -42,7 +42,7 @@ public class ParserTest {
       _builder.newLine();
       _builder.append("}");
       _builder.newLine();
-      final PatternModel model = this.parser.parse(_builder);
+      final RdfPatternModel model = this.parser.parse(_builder);
       Base _base = model.getBase();
       String _iri = _base.getIri();
       Assert.assertEquals("<http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#>", _iri);

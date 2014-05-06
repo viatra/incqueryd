@@ -39,7 +39,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternModel" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//PatternModel">
+  <eClassifiers xsi:type="ecore:EClass" name="RdfPatternModel" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//PatternModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base" eType="#//Base" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="prefixes" upperBound="-1"
         eType="#//Prefix" containment="true"/>

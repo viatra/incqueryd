@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint;
@@ -20,6 +19,7 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguageFactory;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint;
 
 /**
@@ -81,7 +81,7 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
       case RdfPatternLanguagePackage.RDF_PATH_EXPRESSION_CONSTRAINT: return createRdfPathExpressionConstraint();
       case RdfPatternLanguagePackage.TYPE_CONSTRAINT: return createTypeConstraint();
       case RdfPatternLanguagePackage.RDF_LITERAL: return createRdfLiteral();
-      case RdfPatternLanguagePackage.PATTERN_MODEL: return createPatternModel();
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL: return createRdfPatternModel();
       case RdfPatternLanguagePackage.CLASS: return createClass();
       case RdfPatternLanguagePackage.PROPERTY: return createProperty();
       default:
@@ -171,10 +171,10 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  public PatternModel createPatternModel()
+  public RdfPatternModel createRdfPatternModel()
   {
-    PatternModelImpl patternModel = new PatternModelImpl();
-    return patternModel;
+    RdfPatternModelImpl rdfPatternModel = new RdfPatternModelImpl();
+    return rdfPatternModel;
   }
 
   /**
