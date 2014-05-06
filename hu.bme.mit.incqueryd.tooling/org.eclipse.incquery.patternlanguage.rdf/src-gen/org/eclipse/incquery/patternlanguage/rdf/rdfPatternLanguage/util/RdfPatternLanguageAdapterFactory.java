@@ -11,19 +11,20 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
 import org.eclipse.incquery.patternlanguage.patternLanguage.EntityType;
+import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel;
 import org.eclipse.incquery.patternlanguage.patternLanguage.RelationType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint;
 
 /**
@@ -125,9 +126,9 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
         return createRdfLiteralAdapter();
       }
       @Override
-      public Adapter casePatternModel(PatternModel object)
+      public Adapter caseRdfPatternModel(RdfPatternModel object)
       {
-        return createPatternModelAdapter();
+        return createRdfPatternModelAdapter();
       }
       @Override
       public Adapter caseClass(org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class object)
@@ -150,9 +151,9 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
         return createValueReferenceAdapter();
       }
       @Override
-      public Adapter casePatternLanguage_PatternModel(org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel object)
+      public Adapter casePatternModel(PatternModel object)
       {
-        return createPatternLanguage_PatternModelAdapter();
+        return createPatternModelAdapter();
       }
       @Override
       public Adapter caseType(Type object)
@@ -297,16 +298,16 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel <em>Pattern Model</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel <em>Rdf Pattern Model</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel
    * @generated
    */
-  public Adapter createPatternModelAdapter()
+  public Adapter createRdfPatternModelAdapter()
   {
     return null;
   }
@@ -381,7 +382,7 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
    * @see org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel
    * @generated
    */
-  public Adapter createPatternLanguage_PatternModelAdapter()
+  public Adapter createPatternModelAdapter()
   {
     return null;
   }

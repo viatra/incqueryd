@@ -17,26 +17,28 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.eclipse.incquery.patternlanguage.patternLanguage.impl.PatternModelImpl;
+
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Pattern Model</b></em>'.
+ * An implementation of the model object '<em><b>Rdf Pattern Model</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.PatternModelImpl#getBase <em>Base</em>}</li>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.PatternModelImpl#getPrefixes <em>Prefixes</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternModelImpl#getBase <em>Base</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternModelImpl#getPrefixes <em>Prefixes</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class PatternModelImpl extends org.eclipse.incquery.patternlanguage.patternLanguage.impl.PatternModelImpl implements PatternModel
+public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternModel
 {
   /**
    * The cached value of the '{@link #getBase() <em>Base</em>}' containment reference.
@@ -63,7 +65,7 @@ public class PatternModelImpl extends org.eclipse.incquery.patternlanguage.patte
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PatternModelImpl()
+  protected RdfPatternModelImpl()
   {
     super();
   }
@@ -76,7 +78,7 @@ public class PatternModelImpl extends org.eclipse.incquery.patternlanguage.patte
   @Override
   protected EClass eStaticClass()
   {
-    return RdfPatternLanguagePackage.Literals.PATTERN_MODEL;
+    return RdfPatternLanguagePackage.Literals.RDF_PATTERN_MODEL;
   }
 
   /**
@@ -100,7 +102,7 @@ public class PatternModelImpl extends org.eclipse.incquery.patternlanguage.patte
     base = newBase;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.PATTERN_MODEL__BASE, oldBase, newBase);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE, oldBase, newBase);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -117,14 +119,14 @@ public class PatternModelImpl extends org.eclipse.incquery.patternlanguage.patte
     {
       NotificationChain msgs = null;
       if (base != null)
-        msgs = ((InternalEObject)base).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.PATTERN_MODEL__BASE, null, msgs);
+        msgs = ((InternalEObject)base).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE, null, msgs);
       if (newBase != null)
-        msgs = ((InternalEObject)newBase).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.PATTERN_MODEL__BASE, null, msgs);
+        msgs = ((InternalEObject)newBase).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE, null, msgs);
       msgs = basicSetBase(newBase, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.PATTERN_MODEL__BASE, newBase, newBase));
+      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE, newBase, newBase));
   }
 
   /**
@@ -136,7 +138,7 @@ public class PatternModelImpl extends org.eclipse.incquery.patternlanguage.patte
   {
     if (prefixes == null)
     {
-      prefixes = new EObjectContainmentEList<Prefix>(Prefix.class, this, RdfPatternLanguagePackage.PATTERN_MODEL__PREFIXES);
+      prefixes = new EObjectContainmentEList<Prefix>(Prefix.class, this, RdfPatternLanguagePackage.RDF_PATTERN_MODEL__PREFIXES);
     }
     return prefixes;
   }
@@ -151,9 +153,9 @@ public class PatternModelImpl extends org.eclipse.incquery.patternlanguage.patte
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.PATTERN_MODEL__BASE:
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE:
         return basicSetBase(null, msgs);
-      case RdfPatternLanguagePackage.PATTERN_MODEL__PREFIXES:
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__PREFIXES:
         return ((InternalEList<?>)getPrefixes()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -169,9 +171,9 @@ public class PatternModelImpl extends org.eclipse.incquery.patternlanguage.patte
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.PATTERN_MODEL__BASE:
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE:
         return getBase();
-      case RdfPatternLanguagePackage.PATTERN_MODEL__PREFIXES:
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__PREFIXES:
         return getPrefixes();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -188,10 +190,10 @@ public class PatternModelImpl extends org.eclipse.incquery.patternlanguage.patte
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.PATTERN_MODEL__BASE:
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE:
         setBase((Base)newValue);
         return;
-      case RdfPatternLanguagePackage.PATTERN_MODEL__PREFIXES:
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__PREFIXES:
         getPrefixes().clear();
         getPrefixes().addAll((Collection<? extends Prefix>)newValue);
         return;
@@ -209,10 +211,10 @@ public class PatternModelImpl extends org.eclipse.incquery.patternlanguage.patte
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.PATTERN_MODEL__BASE:
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE:
         setBase((Base)null);
         return;
-      case RdfPatternLanguagePackage.PATTERN_MODEL__PREFIXES:
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__PREFIXES:
         getPrefixes().clear();
         return;
     }
@@ -229,12 +231,12 @@ public class PatternModelImpl extends org.eclipse.incquery.patternlanguage.patte
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.PATTERN_MODEL__BASE:
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE:
         return base != null;
-      case RdfPatternLanguagePackage.PATTERN_MODEL__PREFIXES:
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__PREFIXES:
         return prefixes != null && !prefixes.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //PatternModelImpl
+} //RdfPatternModelImpl

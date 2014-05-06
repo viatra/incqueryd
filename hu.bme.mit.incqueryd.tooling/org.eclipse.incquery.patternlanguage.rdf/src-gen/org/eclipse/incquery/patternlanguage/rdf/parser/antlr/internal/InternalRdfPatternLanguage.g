@@ -81,7 +81,7 @@ ruleRdfPatternModel returns [EObject current=null]
 ((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getRdfPatternModelAccess().getPatternModelAction_0(),
+            grammarAccess.getRdfPatternModelAccess().getRdfPatternModelAction_0(),
             $current);
     }
 )(

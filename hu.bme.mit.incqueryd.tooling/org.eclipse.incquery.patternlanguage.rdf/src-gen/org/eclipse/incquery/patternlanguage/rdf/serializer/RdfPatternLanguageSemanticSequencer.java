@@ -38,6 +38,7 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConst
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.services.RdfPatternLanguageGrammarAccess;
 import org.eclipse.incquery.patternlanguage.serializer.PatternLanguageSemanticSequencer;
@@ -303,12 +304,6 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 					return; 
 				}
 				else break;
-			case RdfPatternLanguagePackage.PATTERN_MODEL:
-				if(context == grammarAccess.getRdfPatternModelRule()) {
-					sequence_RdfPatternModel(context, (org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel) semanticObject); 
-					return; 
-				}
-				else break;
 			case RdfPatternLanguagePackage.PREFIX:
 				if(context == grammarAccess.getPrefixRule()) {
 					sequence_Prefix(context, (Prefix) semanticObject); 
@@ -341,6 +336,12 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 				if(context == grammarAccess.getConstraintRule() ||
 				   context == grammarAccess.getRdfPathExpressionConstraintRule()) {
 					sequence_RdfPathExpressionConstraint(context, (RdfPathExpressionConstraint) semanticObject); 
+					return; 
+				}
+				else break;
+			case RdfPatternLanguagePackage.RDF_PATTERN_MODEL:
+				if(context == grammarAccess.getRdfPatternModelRule()) {
+					sequence_RdfPatternModel(context, (RdfPatternModel) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1381,7 +1382,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 	 * Constraint:
 	 *     (base=Base? prefixes+=Prefix* patterns+=Pattern*)
 	 */
-	protected void sequence_RdfPatternModel(EObject context, org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel semanticObject) {
+	protected void sequence_RdfPatternModel(EObject context, RdfPatternModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

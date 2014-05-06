@@ -2,7 +2,7 @@ package org.eclipse.incquery.patternlanguage.rdf.tests
 
 import com.google.inject.Inject
 import org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageInjectorProvider
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.util.ParseHelper
@@ -16,7 +16,7 @@ import static org.junit.Assert.*
 class ParserTest {
 
 	@Inject
-	ParseHelper<PatternModel> parser
+	ParseHelper<RdfPatternModel> parser
 
 	@Test
 	def void posLength() {

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
+import org.eclipse.incquery.patternlanguage.patternLanguage.ParameterRef;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternBody;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
@@ -31,7 +32,7 @@ public class RdfPBody {
         EList<Variable> _parameters = pattern.getParameters();
         final Function1<Variable,ExportedParameter> _function = new Function1<Variable,ExportedParameter>() {
           public ExportedParameter apply(final Variable parameter) {
-            PVariable _pVariable = RdfPBody.toPVariable(parameter);
+            PVariable _pVariable = RdfPBody.toPVariable(parameter, pBody);
             String _name = parameter.getName();
             ExportedParameter _exportedParameter = new ExportedParameter(pBody, _pVariable, _name);
             return _exportedParameter;
@@ -72,7 +73,23 @@ public class RdfPBody {
     return _doubleArrow;
   }
   
-  public static PVariable toPVariable(final Variable variable) {
-    return null;
+  public static PVariable toPVariable(final Variable variable, final PBody pBody) {
+    PVariable _switchResult = null;
+    boolean _matched = false;
+    if (!_matched) {
+      if (variable instanceof ParameterRef) {
+        final ParameterRef _parameterRef = (ParameterRef)variable;
+        _matched=true;
+        Variable _referredParam = _parameterRef.getReferredParam();
+        PVariable _pVariable = RdfPBody.toPVariable(_referredParam, pBody);
+        _switchResult = _pVariable;
+      }
+    }
+    if (!_matched) {
+      String _name = variable.getName();
+      PVariable _orCreateVariableByName = pBody.getOrCreateVariableByName(_name);
+      _switchResult = _orCreateVariableByName;
+    }
+    return _switchResult;
   }
 }

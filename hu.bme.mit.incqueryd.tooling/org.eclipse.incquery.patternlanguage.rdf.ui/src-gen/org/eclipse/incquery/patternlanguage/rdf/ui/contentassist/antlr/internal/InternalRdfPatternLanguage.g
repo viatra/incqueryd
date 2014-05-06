@@ -4526,11 +4526,11 @@ rule__RdfPatternModel__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getRdfPatternModelAccess().getPatternModelAction_0()); }
+{ before(grammarAccess.getRdfPatternModelAccess().getRdfPatternModelAction_0()); }
 (
 
 )
-{ after(grammarAccess.getRdfPatternModelAccess().getPatternModelAction_0()); }
+{ after(grammarAccess.getRdfPatternModelAccess().getRdfPatternModelAction_0()); }
 )
 
 ;
