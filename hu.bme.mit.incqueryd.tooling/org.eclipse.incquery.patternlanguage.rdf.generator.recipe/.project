@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>hu.bme.mit.incqueryd.tooling.core</name>
+	<name>org.eclipse.incquery.patternlanguage.rdf.generator.recipe</name>
 	<comment></comment>
 	<projects>
 	</projects>

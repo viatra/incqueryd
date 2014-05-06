@@ -1,8 +1,10 @@
-package hu.bme.mit.incqueryd.tooling.core;
+package org.eclipse.incquery.patternlanguage.rdf.generator.recipe;
 
 import static com.google.common.base.Throwables.propagate;
 import static com.google.common.collect.ImmutableList.copyOf;
 import static com.google.common.collect.Iterables.filter;
+
+import java.io.IOException;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
@@ -12,7 +14,9 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternMod
 import org.eclipse.incquery.runtime.matchers.planning.QueryPlannerException;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.incquery.runtime.rete.construction.plancompiler.ReteRecipeCompiler;
+import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
 import org.eclipse.incquery.runtime.rete.util.Options;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
@@ -22,9 +26,7 @@ public class RecipeGenerator implements IGenerator {
 	private final ReteRecipeCompiler compiler;
 
 	public RecipeGenerator() {
-		compiler = new ReteRecipeCompiler(
-				Options.builderMethod.layoutStrategy(),
-				new RdfPatternMatcherContext());
+		compiler = new ReteRecipeCompiler(Options.builderMethod.layoutStrategy(), new RdfPatternMatcherContext());
 	}
 
 	private ReteNodeRecipe compile(PQuery query) throws QueryPlannerException {
@@ -33,16 +35,24 @@ public class RecipeGenerator implements IGenerator {
 
 	@Override
 	public void doGenerate(Resource input, IFileSystemAccess fsa) {
+		ReteRecipe recipe = RecipesFactory.eINSTANCE.createReteRecipe();
 		for (RdfPatternModel patternModel : filter(input.getContents(), RdfPatternModel.class)) {
 			for (Pattern pattern : filter(copyOf(input.getAllContents()), Pattern.class)) {
 				PQuery query = new RdfPQuery(pattern, patternModel);
 				try {
 					ReteNodeRecipe nodeRecipe = compile(query);
-					// TODO
+					recipe.getRecipeNodes().add(nodeRecipe);
 				} catch (QueryPlannerException e) {
 					propagate(e);
 				}
 			}
 		}
+		try {
+			String contents = EmfXmlConverter.convertToXml(recipe);
+			fsa.generateFile("recipe.xmi", contents);
+		} catch (IOException e) {
+			propagate(e);
+		}
 	}
+
 }

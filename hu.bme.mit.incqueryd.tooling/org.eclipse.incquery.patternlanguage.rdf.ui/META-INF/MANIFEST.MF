@@ -22,8 +22,9 @@ Require-Bundle: org.eclipse.incquery.patternlanguage.rdf;visibility:=reexport,
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: org.eclipse.incquery.patternlanguage.rdf.ui.quickfix,
+Export-Package: org.eclipse.incquery.patternlanguage.rdf.ui,
  org.eclipse.incquery.patternlanguage.rdf.ui.contentassist,
  org.eclipse.incquery.patternlanguage.rdf.ui.contentassist.antlr,
- org.eclipse.incquery.patternlanguage.rdf.ui.internal
+ org.eclipse.incquery.patternlanguage.rdf.ui.internal,
+ org.eclipse.incquery.patternlanguage.rdf.ui.quickfix
 Bundle-Activator: org.eclipse.incquery.patternlanguage.rdf.ui.internal.RdfPatternLanguageActivator

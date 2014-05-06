@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension
+        point="org.eclipse.xtext.builder.participant">
+     <participant
+           class="org.eclipse.incquery.patternlanguage.rdf.generator.recipe.ExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
+     </participant>
+  </extension>
+</plugin>
