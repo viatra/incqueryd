@@ -38,9 +38,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfLiteral/datatype"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfPatternLanguage.ecore#//RdfLiteral/language"/>
     </genClasses>
-    <genClasses ecoreClass="RdfPatternLanguage.ecore#//PatternModel">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//PatternModel/base"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//PatternModel/prefixes"/>
+    <genClasses ecoreClass="RdfPatternLanguage.ecore#//RdfPatternModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfPatternModel/base"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfPatternModel/prefixes"/>
     </genClasses>
     <genClasses ecoreClass="RdfPatternLanguage.ecore#//Class">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//Class/class"/>

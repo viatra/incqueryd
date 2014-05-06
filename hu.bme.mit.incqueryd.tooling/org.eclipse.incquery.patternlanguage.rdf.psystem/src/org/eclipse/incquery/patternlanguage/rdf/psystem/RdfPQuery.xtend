@@ -2,7 +2,6 @@ package org.eclipse.incquery.patternlanguage.rdf.psystem
 
 import java.util.List
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel
 import org.eclipse.incquery.runtime.matchers.psystem.annotations.PAnnotation
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PParameter
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
@@ -18,6 +17,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableValue
 import org.eclipse.incquery.patternlanguage.patternLanguage.ListValue
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel
 
 class RdfPQuery implements PQuery {
 
@@ -122,7 +122,7 @@ class RdfPQuery implements PQuery {
 		fullyQualifiedName
 	}
 
-	new(Pattern pattern, PatternModel patternModel) {
+	new(Pattern pattern, RdfPatternModel patternModel) {
 		parameters = pattern.parameters.map[toPParameter]
 		annotations = pattern.annotations.map[toPAnnotation]
 		disjunction = new PDisjunction(this, pattern.bodies.map[body | RdfPBody.create(body, pattern, this)].toSet)

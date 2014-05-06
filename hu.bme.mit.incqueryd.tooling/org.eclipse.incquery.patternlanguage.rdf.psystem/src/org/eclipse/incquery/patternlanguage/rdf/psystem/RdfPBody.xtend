@@ -7,13 +7,14 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExportedParameter
 import org.eclipse.incquery.runtime.matchers.psystem.PVariable
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable
+import org.eclipse.incquery.patternlanguage.patternLanguage.ParameterRef
 
 class RdfPBody {
 
 	static def PBody create(PatternBody body, Pattern pattern, PQuery query) {
 		new PBody(query) => [pBody |
 			pBody.exportedParameters = pattern.parameters.map[parameter |
-				new ExportedParameter(pBody, toPVariable(parameter), parameter.name)
+				new ExportedParameter(pBody, parameter.toPVariable(pBody), parameter.name)
 			]
 			pBody.constraints.addAll(pattern.parameters.filter[type != null].map[parameter |
 				// TODO type constraint
@@ -22,8 +23,11 @@ class RdfPBody {
 		]
 	}
 
-	static def PVariable toPVariable(Variable variable) {
-		// TODO
+	static def PVariable toPVariable(Variable variable, PBody pBody) { // TODO this code exists in EPMToBody, move it to generic pattern language project
+		switch variable {
+			ParameterRef: variable.referredParam.toPVariable(pBody)
+			default: pBody.getOrCreateVariableByName(variable.name)
+		}
 	}
 
 }

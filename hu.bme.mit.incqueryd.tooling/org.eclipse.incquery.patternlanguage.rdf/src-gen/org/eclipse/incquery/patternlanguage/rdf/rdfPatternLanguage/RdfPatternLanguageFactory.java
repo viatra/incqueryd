@@ -86,13 +86,13 @@ public interface RdfPatternLanguageFactory extends EFactory
   RdfLiteral createRdfLiteral();
 
   /**
-   * Returns a new object of class '<em>Pattern Model</em>'.
+   * Returns a new object of class '<em>Rdf Pattern Model</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Pattern Model</em>'.
+   * @return a new object of class '<em>Rdf Pattern Model</em>'.
    * @generated
    */
-  PatternModel createPatternModel();
+  RdfPatternModel createRdfPatternModel();
 
   /**
    * Returns a new object of class '<em>Class</em>'.

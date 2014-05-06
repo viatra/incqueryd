@@ -19,7 +19,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableValue;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPBody;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.PatternModel;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 import org.eclipse.incquery.runtime.matchers.psystem.PBody;
 import org.eclipse.incquery.runtime.matchers.psystem.annotations.PAnnotation;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PDisjunction;
@@ -235,7 +235,7 @@ public class RdfPQuery implements PQuery {
     return this.fullyQualifiedName;
   }
   
-  public RdfPQuery(final Pattern pattern, final PatternModel patternModel) {
+  public RdfPQuery(final Pattern pattern, final RdfPatternModel patternModel) {
     EList<Variable> _parameters = pattern.getParameters();
     final Function1<Variable,PParameter> _function = new Function1<Variable,PParameter>() {
       public PParameter apply(final Variable it) {

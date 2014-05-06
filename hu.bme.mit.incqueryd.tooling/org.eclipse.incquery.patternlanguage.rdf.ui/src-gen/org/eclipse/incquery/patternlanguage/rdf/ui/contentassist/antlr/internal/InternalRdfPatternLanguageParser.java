@@ -14910,7 +14910,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
             // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:4529:1: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRdfPatternModelAccess().getPatternModelAction_0()); 
+               before(grammarAccess.getRdfPatternModelAccess().getRdfPatternModelAction_0()); 
             }
             // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:4530:1: ()
             // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:4532:1: 
@@ -14918,7 +14918,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRdfPatternModelAccess().getPatternModelAction_0()); 
+               after(grammarAccess.getRdfPatternModelAccess().getRdfPatternModelAction_0()); 
             }
 
             }
