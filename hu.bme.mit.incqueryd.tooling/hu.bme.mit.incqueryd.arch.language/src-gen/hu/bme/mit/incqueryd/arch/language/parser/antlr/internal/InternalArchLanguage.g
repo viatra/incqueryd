@@ -313,9 +313,9 @@ ruleMachine returns [EObject current=null]
     {
     	newLeafNode(otherlv_0, grammarAccess.getMachineAccess().getLeftCurlyBracketKeyword_0());
     }
-	otherlv_1='traceInfo' 
+	otherlv_1='id' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getMachineAccess().getTraceInfoKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getMachineAccess().getIdKeyword_1());
     }
 	otherlv_2=':' 
     {
@@ -323,9 +323,35 @@ ruleMachine returns [EObject current=null]
     }
 (
 (
-		lv_traceInfo_3_0=RULE_STRING
+		lv_name_3_0=RULE_ID
 		{
-			newLeafNode(lv_traceInfo_3_0, grammarAccess.getMachineAccess().getTraceInfoSTRINGTerminalRuleCall_3_0()); 
+			newLeafNode(lv_name_3_0, grammarAccess.getMachineAccess().getNameIDTerminalRuleCall_3_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMachineRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_3_0, 
+        		"ID");
+	    }
+
+)
+)	otherlv_4='traceInfo' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getMachineAccess().getTraceInfoKeyword_4());
+    }
+	otherlv_5=':' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getMachineAccess().getColonKeyword_5());
+    }
+(
+(
+		lv_traceInfo_6_0=RULE_STRING
+		{
+			newLeafNode(lv_traceInfo_6_0, grammarAccess.getMachineAccess().getTraceInfoSTRINGTerminalRuleCall_6_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -334,24 +360,24 @@ ruleMachine returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"traceInfo",
-        		lv_traceInfo_3_0, 
+        		lv_traceInfo_6_0, 
         		"STRING");
 	    }
 
 )
-)	otherlv_4='ip' 
+)	otherlv_7='ip' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getMachineAccess().getIpKeyword_4());
+    	newLeafNode(otherlv_7, grammarAccess.getMachineAccess().getIpKeyword_7());
     }
-	otherlv_5=':' 
+	otherlv_8=':' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getMachineAccess().getColonKeyword_5());
+    	newLeafNode(otherlv_8, grammarAccess.getMachineAccess().getColonKeyword_8());
     }
 (
 (
-		lv_ip_6_0=RULE_IP
+		lv_ip_9_0=RULE_IP
 		{
-			newLeafNode(lv_ip_6_0, grammarAccess.getMachineAccess().getIpIPTerminalRuleCall_6_0()); 
+			newLeafNode(lv_ip_9_0, grammarAccess.getMachineAccess().getIpIPTerminalRuleCall_9_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -360,14 +386,14 @@ ruleMachine returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"ip",
-        		lv_ip_6_0, 
+        		lv_ip_9_0, 
         		"IP");
 	    }
 
 )
-)	otherlv_7='}' 
+)	otherlv_10='}' 
     {
-    	newLeafNode(otherlv_7, grammarAccess.getMachineAccess().getRightCurlyBracketKeyword_7());
+    	newLeafNode(otherlv_10, grammarAccess.getMachineAccess().getRightCurlyBracketKeyword_10());
     }
 )
 ;

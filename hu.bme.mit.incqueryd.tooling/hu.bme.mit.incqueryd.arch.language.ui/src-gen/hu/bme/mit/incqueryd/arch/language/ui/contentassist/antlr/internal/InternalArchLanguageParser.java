@@ -22,9 +22,10 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalArchLanguageParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_IP", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'clusters'", "':'", "'['", "']'", "'recipes'", "'mappings'", "'{'", "'}'", "'reteMachines'", "'cacheMachines'", "'traceInfo'", "'ip'", "'nodes'", "'Production'", "'parents'", "'UniquenessEnforcer'", "'Check'", "'parent'", "'Trimmer'", "'mask'", "'Join'", "'leftParent'", "'rightParent'", "'AntiJoin'", "'sourceArity'", "'sourceIndices'", "'from'", "'to'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_IP", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'clusters'", "':'", "'['", "']'", "'recipes'", "'mappings'", "'{'", "'}'", "'reteMachines'", "'cacheMachines'", "'id'", "'traceInfo'", "'ip'", "'nodes'", "'Production'", "'parents'", "'UniquenessEnforcer'", "'Check'", "'parent'", "'Trimmer'", "'mask'", "'Join'", "'leftParent'", "'rightParent'", "'AntiJoin'", "'sourceArity'", "'sourceIndices'", "'from'", "'to'"
     };
-    public static final int RULE_ID=6;
+    public static final int RULE_ID=4;
+    public static final int T__40=40;
     public static final int T__29=29;
     public static final int T__28=28;
     public static final int T__27=27;
@@ -42,7 +43,7 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
     public static final int T__30=30;
     public static final int T__19=19;
     public static final int T__31=31;
-    public static final int RULE_STRING=4;
+    public static final int RULE_STRING=5;
     public static final int T__32=32;
     public static final int T__33=33;
     public static final int T__16=16;
@@ -58,7 +59,7 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
     public static final int T__39=39;
     public static final int T__14=14;
     public static final int T__13=13;
-    public static final int RULE_IP=5;
+    public static final int RULE_IP=6;
     public static final int RULE_INT=7;
     public static final int RULE_WS=10;
 
@@ -1264,32 +1265,32 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
             // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:484:1: ( ( ruleProductionRecipe ) | ( ruleUniquenessEnforcerRecipe ) | ( ruleCheckRecipe ) | ( ruleTrimmerRecipe ) | ( ruleJoinRecipe ) | ( ruleAntiJoinRecipe ) )
             int alt1=6;
             switch ( input.LA(1) ) {
-            case 25:
+            case 26:
                 {
                 alt1=1;
                 }
                 break;
-            case 27:
+            case 28:
                 {
                 alt1=2;
                 }
                 break;
-            case 28:
+            case 29:
                 {
                 alt1=3;
                 }
                 break;
-            case 30:
+            case 31:
                 {
                 alt1=4;
                 }
                 break;
-            case 32:
+            case 33:
                 {
                 alt1=5;
                 }
                 break;
-            case 35:
+            case 36:
                 {
                 alt1=6;
                 }
@@ -4307,21 +4308,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Machine__Group__1__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1666:1: rule__Machine__Group__1__Impl : ( 'traceInfo' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1666:1: rule__Machine__Group__1__Impl : ( 'id' ) ;
     public final void rule__Machine__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1670:1: ( ( 'traceInfo' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1671:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1670:1: ( ( 'id' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1671:1: ( 'id' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1671:1: ( 'traceInfo' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1672:1: 'traceInfo'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1671:1: ( 'id' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1672:1: 'id'
             {
-             before(grammarAccess.getMachineAccess().getTraceInfoKeyword_1()); 
+             before(grammarAccess.getMachineAccess().getIdKeyword_1()); 
             match(input,22,FollowSets000.FOLLOW_22_in_rule__Machine__Group__1__Impl3321); 
-             after(grammarAccess.getMachineAccess().getTraceInfoKeyword_1()); 
+             after(grammarAccess.getMachineAccess().getIdKeyword_1()); 
 
             }
 
@@ -4457,31 +4458,31 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Machine__Group__3__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1728:1: rule__Machine__Group__3__Impl : ( ( rule__Machine__TraceInfoAssignment_3 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1728:1: rule__Machine__Group__3__Impl : ( ( rule__Machine__NameAssignment_3 ) ) ;
     public final void rule__Machine__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1732:1: ( ( ( rule__Machine__TraceInfoAssignment_3 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1733:1: ( ( rule__Machine__TraceInfoAssignment_3 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1732:1: ( ( ( rule__Machine__NameAssignment_3 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1733:1: ( ( rule__Machine__NameAssignment_3 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1733:1: ( ( rule__Machine__TraceInfoAssignment_3 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1734:1: ( rule__Machine__TraceInfoAssignment_3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1733:1: ( ( rule__Machine__NameAssignment_3 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1734:1: ( rule__Machine__NameAssignment_3 )
             {
-             before(grammarAccess.getMachineAccess().getTraceInfoAssignment_3()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1735:1: ( rule__Machine__TraceInfoAssignment_3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1735:2: rule__Machine__TraceInfoAssignment_3
+             before(grammarAccess.getMachineAccess().getNameAssignment_3()); 
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1735:1: ( rule__Machine__NameAssignment_3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1735:2: rule__Machine__NameAssignment_3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Machine__TraceInfoAssignment_3_in_rule__Machine__Group__3__Impl3444);
-            rule__Machine__TraceInfoAssignment_3();
+            pushFollow(FollowSets000.FOLLOW_rule__Machine__NameAssignment_3_in_rule__Machine__Group__3__Impl3444);
+            rule__Machine__NameAssignment_3();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getMachineAccess().getTraceInfoAssignment_3()); 
+             after(grammarAccess.getMachineAccess().getNameAssignment_3()); 
 
             }
 
@@ -4542,21 +4543,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Machine__Group__4__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1757:1: rule__Machine__Group__4__Impl : ( 'ip' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1757:1: rule__Machine__Group__4__Impl : ( 'traceInfo' ) ;
     public final void rule__Machine__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1761:1: ( ( 'ip' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1762:1: ( 'ip' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1761:1: ( ( 'traceInfo' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1762:1: ( 'traceInfo' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1762:1: ( 'ip' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1763:1: 'ip'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1762:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1763:1: 'traceInfo'
             {
-             before(grammarAccess.getMachineAccess().getIpKeyword_4()); 
+             before(grammarAccess.getMachineAccess().getTraceInfoKeyword_4()); 
             match(input,23,FollowSets000.FOLLOW_23_in_rule__Machine__Group__4__Impl3505); 
-             after(grammarAccess.getMachineAccess().getIpKeyword_4()); 
+             after(grammarAccess.getMachineAccess().getTraceInfoKeyword_4()); 
 
             }
 
@@ -4692,31 +4693,31 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Machine__Group__6__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1819:1: rule__Machine__Group__6__Impl : ( ( rule__Machine__IpAssignment_6 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1819:1: rule__Machine__Group__6__Impl : ( ( rule__Machine__TraceInfoAssignment_6 ) ) ;
     public final void rule__Machine__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1823:1: ( ( ( rule__Machine__IpAssignment_6 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1824:1: ( ( rule__Machine__IpAssignment_6 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1823:1: ( ( ( rule__Machine__TraceInfoAssignment_6 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1824:1: ( ( rule__Machine__TraceInfoAssignment_6 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1824:1: ( ( rule__Machine__IpAssignment_6 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1825:1: ( rule__Machine__IpAssignment_6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1824:1: ( ( rule__Machine__TraceInfoAssignment_6 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1825:1: ( rule__Machine__TraceInfoAssignment_6 )
             {
-             before(grammarAccess.getMachineAccess().getIpAssignment_6()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1826:1: ( rule__Machine__IpAssignment_6 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1826:2: rule__Machine__IpAssignment_6
+             before(grammarAccess.getMachineAccess().getTraceInfoAssignment_6()); 
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1826:1: ( rule__Machine__TraceInfoAssignment_6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1826:2: rule__Machine__TraceInfoAssignment_6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Machine__IpAssignment_6_in_rule__Machine__Group__6__Impl3628);
-            rule__Machine__IpAssignment_6();
+            pushFollow(FollowSets000.FOLLOW_rule__Machine__TraceInfoAssignment_6_in_rule__Machine__Group__6__Impl3628);
+            rule__Machine__TraceInfoAssignment_6();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getMachineAccess().getIpAssignment_6()); 
+             after(grammarAccess.getMachineAccess().getTraceInfoAssignment_6()); 
 
             }
 
@@ -4739,17 +4740,22 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Machine__Group__7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1836:1: rule__Machine__Group__7 : rule__Machine__Group__7__Impl ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1836:1: rule__Machine__Group__7 : rule__Machine__Group__7__Impl rule__Machine__Group__8 ;
     public final void rule__Machine__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1840:1: ( rule__Machine__Group__7__Impl )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1841:2: rule__Machine__Group__7__Impl
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1840:1: ( rule__Machine__Group__7__Impl rule__Machine__Group__8 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1841:2: rule__Machine__Group__7__Impl rule__Machine__Group__8
             {
             pushFollow(FollowSets000.FOLLOW_rule__Machine__Group__7__Impl_in_rule__Machine__Group__73658);
             rule__Machine__Group__7__Impl();
+
+            state._fsp--;
+
+            pushFollow(FollowSets000.FOLLOW_rule__Machine__Group__8_in_rule__Machine__Group__73661);
+            rule__Machine__Group__8();
 
             state._fsp--;
 
@@ -4772,21 +4778,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Machine__Group__7__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1847:1: rule__Machine__Group__7__Impl : ( '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1848:1: rule__Machine__Group__7__Impl : ( 'ip' ) ;
     public final void rule__Machine__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1851:1: ( ( '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1852:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1852:1: ( ( 'ip' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1853:1: ( 'ip' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1852:1: ( '}' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1853:1: '}'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1853:1: ( 'ip' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1854:1: 'ip'
             {
-             before(grammarAccess.getMachineAccess().getRightCurlyBracketKeyword_7()); 
-            match(input,19,FollowSets000.FOLLOW_19_in_rule__Machine__Group__7__Impl3686); 
-             after(grammarAccess.getMachineAccess().getRightCurlyBracketKeyword_7()); 
+             before(grammarAccess.getMachineAccess().getIpKeyword_7()); 
+            match(input,24,FollowSets000.FOLLOW_24_in_rule__Machine__Group__7__Impl3689); 
+             after(grammarAccess.getMachineAccess().getIpKeyword_7()); 
 
             }
 
@@ -4808,22 +4814,252 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
     // $ANTLR end "rule__Machine__Group__7__Impl"
 
 
+    // $ANTLR start "rule__Machine__Group__8"
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1867:1: rule__Machine__Group__8 : rule__Machine__Group__8__Impl rule__Machine__Group__9 ;
+    public final void rule__Machine__Group__8() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1871:1: ( rule__Machine__Group__8__Impl rule__Machine__Group__9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1872:2: rule__Machine__Group__8__Impl rule__Machine__Group__9
+            {
+            pushFollow(FollowSets000.FOLLOW_rule__Machine__Group__8__Impl_in_rule__Machine__Group__83720);
+            rule__Machine__Group__8__Impl();
+
+            state._fsp--;
+
+            pushFollow(FollowSets000.FOLLOW_rule__Machine__Group__9_in_rule__Machine__Group__83723);
+            rule__Machine__Group__9();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Machine__Group__8"
+
+
+    // $ANTLR start "rule__Machine__Group__8__Impl"
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1879:1: rule__Machine__Group__8__Impl : ( ':' ) ;
+    public final void rule__Machine__Group__8__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1883:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1884:1: ( ':' )
+            {
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1884:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1885:1: ':'
+            {
+             before(grammarAccess.getMachineAccess().getColonKeyword_8()); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__Machine__Group__8__Impl3751); 
+             after(grammarAccess.getMachineAccess().getColonKeyword_8()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Machine__Group__8__Impl"
+
+
+    // $ANTLR start "rule__Machine__Group__9"
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1898:1: rule__Machine__Group__9 : rule__Machine__Group__9__Impl rule__Machine__Group__10 ;
+    public final void rule__Machine__Group__9() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1902:1: ( rule__Machine__Group__9__Impl rule__Machine__Group__10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1903:2: rule__Machine__Group__9__Impl rule__Machine__Group__10
+            {
+            pushFollow(FollowSets000.FOLLOW_rule__Machine__Group__9__Impl_in_rule__Machine__Group__93782);
+            rule__Machine__Group__9__Impl();
+
+            state._fsp--;
+
+            pushFollow(FollowSets000.FOLLOW_rule__Machine__Group__10_in_rule__Machine__Group__93785);
+            rule__Machine__Group__10();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Machine__Group__9"
+
+
+    // $ANTLR start "rule__Machine__Group__9__Impl"
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1910:1: rule__Machine__Group__9__Impl : ( ( rule__Machine__IpAssignment_9 ) ) ;
+    public final void rule__Machine__Group__9__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1914:1: ( ( ( rule__Machine__IpAssignment_9 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1915:1: ( ( rule__Machine__IpAssignment_9 ) )
+            {
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1915:1: ( ( rule__Machine__IpAssignment_9 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1916:1: ( rule__Machine__IpAssignment_9 )
+            {
+             before(grammarAccess.getMachineAccess().getIpAssignment_9()); 
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1917:1: ( rule__Machine__IpAssignment_9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1917:2: rule__Machine__IpAssignment_9
+            {
+            pushFollow(FollowSets000.FOLLOW_rule__Machine__IpAssignment_9_in_rule__Machine__Group__9__Impl3812);
+            rule__Machine__IpAssignment_9();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getMachineAccess().getIpAssignment_9()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Machine__Group__9__Impl"
+
+
+    // $ANTLR start "rule__Machine__Group__10"
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1927:1: rule__Machine__Group__10 : rule__Machine__Group__10__Impl ;
+    public final void rule__Machine__Group__10() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1931:1: ( rule__Machine__Group__10__Impl )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1932:2: rule__Machine__Group__10__Impl
+            {
+            pushFollow(FollowSets000.FOLLOW_rule__Machine__Group__10__Impl_in_rule__Machine__Group__103842);
+            rule__Machine__Group__10__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Machine__Group__10"
+
+
+    // $ANTLR start "rule__Machine__Group__10__Impl"
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1938:1: rule__Machine__Group__10__Impl : ( '}' ) ;
+    public final void rule__Machine__Group__10__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1942:1: ( ( '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1943:1: ( '}' )
+            {
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1943:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1944:1: '}'
+            {
+             before(grammarAccess.getMachineAccess().getRightCurlyBracketKeyword_10()); 
+            match(input,19,FollowSets000.FOLLOW_19_in_rule__Machine__Group__10__Impl3870); 
+             after(grammarAccess.getMachineAccess().getRightCurlyBracketKeyword_10()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Machine__Group__10__Impl"
+
+
     // $ANTLR start "rule__ReteRecipe__Group__0"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1882:1: rule__ReteRecipe__Group__0 : rule__ReteRecipe__Group__0__Impl rule__ReteRecipe__Group__1 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1979:1: rule__ReteRecipe__Group__0 : rule__ReteRecipe__Group__0__Impl rule__ReteRecipe__Group__1 ;
     public final void rule__ReteRecipe__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1886:1: ( rule__ReteRecipe__Group__0__Impl rule__ReteRecipe__Group__1 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1887:2: rule__ReteRecipe__Group__0__Impl rule__ReteRecipe__Group__1
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1983:1: ( rule__ReteRecipe__Group__0__Impl rule__ReteRecipe__Group__1 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1984:2: rule__ReteRecipe__Group__0__Impl rule__ReteRecipe__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__0__Impl_in_rule__ReteRecipe__Group__03733);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__0__Impl_in_rule__ReteRecipe__Group__03923);
             rule__ReteRecipe__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__1_in_rule__ReteRecipe__Group__03736);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__1_in_rule__ReteRecipe__Group__03926);
             rule__ReteRecipe__Group__1();
 
             state._fsp--;
@@ -4847,21 +5083,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__0__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1894:1: rule__ReteRecipe__Group__0__Impl : ( () ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1991:1: rule__ReteRecipe__Group__0__Impl : ( () ) ;
     public final void rule__ReteRecipe__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1898:1: ( ( () ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1899:1: ( () )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1995:1: ( ( () ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1996:1: ( () )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1899:1: ( () )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1900:1: ()
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1996:1: ( () )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1997:1: ()
             {
              before(grammarAccess.getReteRecipeAccess().getReteRecipeAction_0()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1901:1: ()
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1903:1: 
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1998:1: ()
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2000:1: 
             {
             }
 
@@ -4884,21 +5120,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__1"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1913:1: rule__ReteRecipe__Group__1 : rule__ReteRecipe__Group__1__Impl rule__ReteRecipe__Group__2 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2010:1: rule__ReteRecipe__Group__1 : rule__ReteRecipe__Group__1__Impl rule__ReteRecipe__Group__2 ;
     public final void rule__ReteRecipe__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1917:1: ( rule__ReteRecipe__Group__1__Impl rule__ReteRecipe__Group__2 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1918:2: rule__ReteRecipe__Group__1__Impl rule__ReteRecipe__Group__2
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2014:1: ( rule__ReteRecipe__Group__1__Impl rule__ReteRecipe__Group__2 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2015:2: rule__ReteRecipe__Group__1__Impl rule__ReteRecipe__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__1__Impl_in_rule__ReteRecipe__Group__13794);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__1__Impl_in_rule__ReteRecipe__Group__13984);
             rule__ReteRecipe__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__2_in_rule__ReteRecipe__Group__13797);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__2_in_rule__ReteRecipe__Group__13987);
             rule__ReteRecipe__Group__2();
 
             state._fsp--;
@@ -4922,20 +5158,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__1__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1925:1: rule__ReteRecipe__Group__1__Impl : ( '{' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2022:1: rule__ReteRecipe__Group__1__Impl : ( '{' ) ;
     public final void rule__ReteRecipe__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1929:1: ( ( '{' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1930:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2026:1: ( ( '{' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2027:1: ( '{' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1930:1: ( '{' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1931:1: '{'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2027:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2028:1: '{'
             {
              before(grammarAccess.getReteRecipeAccess().getLeftCurlyBracketKeyword_1()); 
-            match(input,18,FollowSets000.FOLLOW_18_in_rule__ReteRecipe__Group__1__Impl3825); 
+            match(input,18,FollowSets000.FOLLOW_18_in_rule__ReteRecipe__Group__1__Impl4015); 
              after(grammarAccess.getReteRecipeAccess().getLeftCurlyBracketKeyword_1()); 
 
             }
@@ -4959,21 +5195,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__2"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1944:1: rule__ReteRecipe__Group__2 : rule__ReteRecipe__Group__2__Impl rule__ReteRecipe__Group__3 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2041:1: rule__ReteRecipe__Group__2 : rule__ReteRecipe__Group__2__Impl rule__ReteRecipe__Group__3 ;
     public final void rule__ReteRecipe__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1948:1: ( rule__ReteRecipe__Group__2__Impl rule__ReteRecipe__Group__3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1949:2: rule__ReteRecipe__Group__2__Impl rule__ReteRecipe__Group__3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2045:1: ( rule__ReteRecipe__Group__2__Impl rule__ReteRecipe__Group__3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2046:2: rule__ReteRecipe__Group__2__Impl rule__ReteRecipe__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__2__Impl_in_rule__ReteRecipe__Group__23856);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__2__Impl_in_rule__ReteRecipe__Group__24046);
             rule__ReteRecipe__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__3_in_rule__ReteRecipe__Group__23859);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__3_in_rule__ReteRecipe__Group__24049);
             rule__ReteRecipe__Group__3();
 
             state._fsp--;
@@ -4997,20 +5233,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__2__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1956:1: rule__ReteRecipe__Group__2__Impl : ( 'nodes' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2053:1: rule__ReteRecipe__Group__2__Impl : ( 'nodes' ) ;
     public final void rule__ReteRecipe__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1960:1: ( ( 'nodes' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1961:1: ( 'nodes' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2057:1: ( ( 'nodes' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2058:1: ( 'nodes' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1961:1: ( 'nodes' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1962:1: 'nodes'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2058:1: ( 'nodes' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2059:1: 'nodes'
             {
              before(grammarAccess.getReteRecipeAccess().getNodesKeyword_2()); 
-            match(input,24,FollowSets000.FOLLOW_24_in_rule__ReteRecipe__Group__2__Impl3887); 
+            match(input,25,FollowSets000.FOLLOW_25_in_rule__ReteRecipe__Group__2__Impl4077); 
              after(grammarAccess.getReteRecipeAccess().getNodesKeyword_2()); 
 
             }
@@ -5034,21 +5270,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1975:1: rule__ReteRecipe__Group__3 : rule__ReteRecipe__Group__3__Impl rule__ReteRecipe__Group__4 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2072:1: rule__ReteRecipe__Group__3 : rule__ReteRecipe__Group__3__Impl rule__ReteRecipe__Group__4 ;
     public final void rule__ReteRecipe__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1979:1: ( rule__ReteRecipe__Group__3__Impl rule__ReteRecipe__Group__4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1980:2: rule__ReteRecipe__Group__3__Impl rule__ReteRecipe__Group__4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2076:1: ( rule__ReteRecipe__Group__3__Impl rule__ReteRecipe__Group__4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2077:2: rule__ReteRecipe__Group__3__Impl rule__ReteRecipe__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__3__Impl_in_rule__ReteRecipe__Group__33918);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__3__Impl_in_rule__ReteRecipe__Group__34108);
             rule__ReteRecipe__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__4_in_rule__ReteRecipe__Group__33921);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__4_in_rule__ReteRecipe__Group__34111);
             rule__ReteRecipe__Group__4();
 
             state._fsp--;
@@ -5072,20 +5308,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__3__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1987:1: rule__ReteRecipe__Group__3__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2084:1: rule__ReteRecipe__Group__3__Impl : ( ':' ) ;
     public final void rule__ReteRecipe__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1991:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1992:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2088:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2089:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1992:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:1993:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2089:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2090:1: ':'
             {
              before(grammarAccess.getReteRecipeAccess().getColonKeyword_3()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__ReteRecipe__Group__3__Impl3949); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__ReteRecipe__Group__3__Impl4139); 
              after(grammarAccess.getReteRecipeAccess().getColonKeyword_3()); 
 
             }
@@ -5109,21 +5345,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2006:1: rule__ReteRecipe__Group__4 : rule__ReteRecipe__Group__4__Impl rule__ReteRecipe__Group__5 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2103:1: rule__ReteRecipe__Group__4 : rule__ReteRecipe__Group__4__Impl rule__ReteRecipe__Group__5 ;
     public final void rule__ReteRecipe__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2010:1: ( rule__ReteRecipe__Group__4__Impl rule__ReteRecipe__Group__5 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2011:2: rule__ReteRecipe__Group__4__Impl rule__ReteRecipe__Group__5
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2107:1: ( rule__ReteRecipe__Group__4__Impl rule__ReteRecipe__Group__5 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2108:2: rule__ReteRecipe__Group__4__Impl rule__ReteRecipe__Group__5
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__4__Impl_in_rule__ReteRecipe__Group__43980);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__4__Impl_in_rule__ReteRecipe__Group__44170);
             rule__ReteRecipe__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__5_in_rule__ReteRecipe__Group__43983);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__5_in_rule__ReteRecipe__Group__44173);
             rule__ReteRecipe__Group__5();
 
             state._fsp--;
@@ -5147,20 +5383,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__4__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2018:1: rule__ReteRecipe__Group__4__Impl : ( '[' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2115:1: rule__ReteRecipe__Group__4__Impl : ( '[' ) ;
     public final void rule__ReteRecipe__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2022:1: ( ( '[' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2023:1: ( '[' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2119:1: ( ( '[' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2120:1: ( '[' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2023:1: ( '[' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2024:1: '['
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2120:1: ( '[' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2121:1: '['
             {
              before(grammarAccess.getReteRecipeAccess().getLeftSquareBracketKeyword_4()); 
-            match(input,14,FollowSets000.FOLLOW_14_in_rule__ReteRecipe__Group__4__Impl4011); 
+            match(input,14,FollowSets000.FOLLOW_14_in_rule__ReteRecipe__Group__4__Impl4201); 
              after(grammarAccess.getReteRecipeAccess().getLeftSquareBracketKeyword_4()); 
 
             }
@@ -5184,21 +5420,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__5"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2037:1: rule__ReteRecipe__Group__5 : rule__ReteRecipe__Group__5__Impl rule__ReteRecipe__Group__6 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2134:1: rule__ReteRecipe__Group__5 : rule__ReteRecipe__Group__5__Impl rule__ReteRecipe__Group__6 ;
     public final void rule__ReteRecipe__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2041:1: ( rule__ReteRecipe__Group__5__Impl rule__ReteRecipe__Group__6 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2042:2: rule__ReteRecipe__Group__5__Impl rule__ReteRecipe__Group__6
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2138:1: ( rule__ReteRecipe__Group__5__Impl rule__ReteRecipe__Group__6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2139:2: rule__ReteRecipe__Group__5__Impl rule__ReteRecipe__Group__6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__5__Impl_in_rule__ReteRecipe__Group__54042);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__5__Impl_in_rule__ReteRecipe__Group__54232);
             rule__ReteRecipe__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__6_in_rule__ReteRecipe__Group__54045);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__6_in_rule__ReteRecipe__Group__54235);
             rule__ReteRecipe__Group__6();
 
             state._fsp--;
@@ -5222,35 +5458,35 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__5__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2049:1: rule__ReteRecipe__Group__5__Impl : ( ( rule__ReteRecipe__RecipeNodesAssignment_5 )* ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2146:1: rule__ReteRecipe__Group__5__Impl : ( ( rule__ReteRecipe__RecipeNodesAssignment_5 )* ) ;
     public final void rule__ReteRecipe__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2053:1: ( ( ( rule__ReteRecipe__RecipeNodesAssignment_5 )* ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2054:1: ( ( rule__ReteRecipe__RecipeNodesAssignment_5 )* )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2150:1: ( ( ( rule__ReteRecipe__RecipeNodesAssignment_5 )* ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2151:1: ( ( rule__ReteRecipe__RecipeNodesAssignment_5 )* )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2054:1: ( ( rule__ReteRecipe__RecipeNodesAssignment_5 )* )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2055:1: ( rule__ReteRecipe__RecipeNodesAssignment_5 )*
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2151:1: ( ( rule__ReteRecipe__RecipeNodesAssignment_5 )* )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2152:1: ( rule__ReteRecipe__RecipeNodesAssignment_5 )*
             {
              before(grammarAccess.getReteRecipeAccess().getRecipeNodesAssignment_5()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2056:1: ( rule__ReteRecipe__RecipeNodesAssignment_5 )*
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2153:1: ( rule__ReteRecipe__RecipeNodesAssignment_5 )*
             loop12:
             do {
                 int alt12=2;
                 int LA12_0 = input.LA(1);
 
-                if ( (LA12_0==25||(LA12_0>=27 && LA12_0<=28)||LA12_0==30||LA12_0==32||LA12_0==35) ) {
+                if ( (LA12_0==26||(LA12_0>=28 && LA12_0<=29)||LA12_0==31||LA12_0==33||LA12_0==36) ) {
                     alt12=1;
                 }
 
 
                 switch (alt12) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2056:2: rule__ReteRecipe__RecipeNodesAssignment_5
+            	    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2153:2: rule__ReteRecipe__RecipeNodesAssignment_5
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__RecipeNodesAssignment_5_in_rule__ReteRecipe__Group__5__Impl4072);
+            	    pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__RecipeNodesAssignment_5_in_rule__ReteRecipe__Group__5__Impl4262);
             	    rule__ReteRecipe__RecipeNodesAssignment_5();
 
             	    state._fsp--;
@@ -5287,21 +5523,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__6"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2066:1: rule__ReteRecipe__Group__6 : rule__ReteRecipe__Group__6__Impl rule__ReteRecipe__Group__7 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2163:1: rule__ReteRecipe__Group__6 : rule__ReteRecipe__Group__6__Impl rule__ReteRecipe__Group__7 ;
     public final void rule__ReteRecipe__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2070:1: ( rule__ReteRecipe__Group__6__Impl rule__ReteRecipe__Group__7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2071:2: rule__ReteRecipe__Group__6__Impl rule__ReteRecipe__Group__7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2167:1: ( rule__ReteRecipe__Group__6__Impl rule__ReteRecipe__Group__7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2168:2: rule__ReteRecipe__Group__6__Impl rule__ReteRecipe__Group__7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__6__Impl_in_rule__ReteRecipe__Group__64103);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__6__Impl_in_rule__ReteRecipe__Group__64293);
             rule__ReteRecipe__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__7_in_rule__ReteRecipe__Group__64106);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__7_in_rule__ReteRecipe__Group__64296);
             rule__ReteRecipe__Group__7();
 
             state._fsp--;
@@ -5325,20 +5561,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__6__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2078:1: rule__ReteRecipe__Group__6__Impl : ( ']' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2175:1: rule__ReteRecipe__Group__6__Impl : ( ']' ) ;
     public final void rule__ReteRecipe__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2082:1: ( ( ']' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2083:1: ( ']' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2179:1: ( ( ']' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2180:1: ( ']' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2083:1: ( ']' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2084:1: ']'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2180:1: ( ']' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2181:1: ']'
             {
              before(grammarAccess.getReteRecipeAccess().getRightSquareBracketKeyword_6()); 
-            match(input,15,FollowSets000.FOLLOW_15_in_rule__ReteRecipe__Group__6__Impl4134); 
+            match(input,15,FollowSets000.FOLLOW_15_in_rule__ReteRecipe__Group__6__Impl4324); 
              after(grammarAccess.getReteRecipeAccess().getRightSquareBracketKeyword_6()); 
 
             }
@@ -5362,16 +5598,16 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2097:1: rule__ReteRecipe__Group__7 : rule__ReteRecipe__Group__7__Impl ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2194:1: rule__ReteRecipe__Group__7 : rule__ReteRecipe__Group__7__Impl ;
     public final void rule__ReteRecipe__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2101:1: ( rule__ReteRecipe__Group__7__Impl )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2102:2: rule__ReteRecipe__Group__7__Impl
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2198:1: ( rule__ReteRecipe__Group__7__Impl )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2199:2: rule__ReteRecipe__Group__7__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__7__Impl_in_rule__ReteRecipe__Group__74165);
+            pushFollow(FollowSets000.FOLLOW_rule__ReteRecipe__Group__7__Impl_in_rule__ReteRecipe__Group__74355);
             rule__ReteRecipe__Group__7__Impl();
 
             state._fsp--;
@@ -5395,20 +5631,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ReteRecipe__Group__7__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2108:1: rule__ReteRecipe__Group__7__Impl : ( '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2205:1: rule__ReteRecipe__Group__7__Impl : ( '}' ) ;
     public final void rule__ReteRecipe__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2112:1: ( ( '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2113:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2209:1: ( ( '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2210:1: ( '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2113:1: ( '}' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2114:1: '}'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2210:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2211:1: '}'
             {
              before(grammarAccess.getReteRecipeAccess().getRightCurlyBracketKeyword_7()); 
-            match(input,19,FollowSets000.FOLLOW_19_in_rule__ReteRecipe__Group__7__Impl4193); 
+            match(input,19,FollowSets000.FOLLOW_19_in_rule__ReteRecipe__Group__7__Impl4383); 
              after(grammarAccess.getReteRecipeAccess().getRightCurlyBracketKeyword_7()); 
 
             }
@@ -5432,21 +5668,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__0"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2143:1: rule__ProductionRecipe__Group__0 : rule__ProductionRecipe__Group__0__Impl rule__ProductionRecipe__Group__1 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2240:1: rule__ProductionRecipe__Group__0 : rule__ProductionRecipe__Group__0__Impl rule__ProductionRecipe__Group__1 ;
     public final void rule__ProductionRecipe__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2147:1: ( rule__ProductionRecipe__Group__0__Impl rule__ProductionRecipe__Group__1 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2148:2: rule__ProductionRecipe__Group__0__Impl rule__ProductionRecipe__Group__1
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2244:1: ( rule__ProductionRecipe__Group__0__Impl rule__ProductionRecipe__Group__1 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2245:2: rule__ProductionRecipe__Group__0__Impl rule__ProductionRecipe__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__0__Impl_in_rule__ProductionRecipe__Group__04240);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__0__Impl_in_rule__ProductionRecipe__Group__04430);
             rule__ProductionRecipe__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__1_in_rule__ProductionRecipe__Group__04243);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__1_in_rule__ProductionRecipe__Group__04433);
             rule__ProductionRecipe__Group__1();
 
             state._fsp--;
@@ -5470,20 +5706,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__0__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2155:1: rule__ProductionRecipe__Group__0__Impl : ( 'Production' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2252:1: rule__ProductionRecipe__Group__0__Impl : ( 'Production' ) ;
     public final void rule__ProductionRecipe__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2159:1: ( ( 'Production' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2160:1: ( 'Production' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2256:1: ( ( 'Production' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2257:1: ( 'Production' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2160:1: ( 'Production' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2161:1: 'Production'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2257:1: ( 'Production' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2258:1: 'Production'
             {
              before(grammarAccess.getProductionRecipeAccess().getProductionKeyword_0()); 
-            match(input,25,FollowSets000.FOLLOW_25_in_rule__ProductionRecipe__Group__0__Impl4271); 
+            match(input,26,FollowSets000.FOLLOW_26_in_rule__ProductionRecipe__Group__0__Impl4461); 
              after(grammarAccess.getProductionRecipeAccess().getProductionKeyword_0()); 
 
             }
@@ -5507,21 +5743,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__1"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2174:1: rule__ProductionRecipe__Group__1 : rule__ProductionRecipe__Group__1__Impl rule__ProductionRecipe__Group__2 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2271:1: rule__ProductionRecipe__Group__1 : rule__ProductionRecipe__Group__1__Impl rule__ProductionRecipe__Group__2 ;
     public final void rule__ProductionRecipe__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2178:1: ( rule__ProductionRecipe__Group__1__Impl rule__ProductionRecipe__Group__2 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2179:2: rule__ProductionRecipe__Group__1__Impl rule__ProductionRecipe__Group__2
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2275:1: ( rule__ProductionRecipe__Group__1__Impl rule__ProductionRecipe__Group__2 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2276:2: rule__ProductionRecipe__Group__1__Impl rule__ProductionRecipe__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__1__Impl_in_rule__ProductionRecipe__Group__14302);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__1__Impl_in_rule__ProductionRecipe__Group__14492);
             rule__ProductionRecipe__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__2_in_rule__ProductionRecipe__Group__14305);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__2_in_rule__ProductionRecipe__Group__14495);
             rule__ProductionRecipe__Group__2();
 
             state._fsp--;
@@ -5545,20 +5781,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__1__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2186:1: rule__ProductionRecipe__Group__1__Impl : ( '{' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2283:1: rule__ProductionRecipe__Group__1__Impl : ( '{' ) ;
     public final void rule__ProductionRecipe__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2190:1: ( ( '{' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2191:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2287:1: ( ( '{' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2288:1: ( '{' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2191:1: ( '{' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2192:1: '{'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2288:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2289:1: '{'
             {
              before(grammarAccess.getProductionRecipeAccess().getLeftCurlyBracketKeyword_1()); 
-            match(input,18,FollowSets000.FOLLOW_18_in_rule__ProductionRecipe__Group__1__Impl4333); 
+            match(input,18,FollowSets000.FOLLOW_18_in_rule__ProductionRecipe__Group__1__Impl4523); 
              after(grammarAccess.getProductionRecipeAccess().getLeftCurlyBracketKeyword_1()); 
 
             }
@@ -5582,21 +5818,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__2"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2205:1: rule__ProductionRecipe__Group__2 : rule__ProductionRecipe__Group__2__Impl rule__ProductionRecipe__Group__3 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2302:1: rule__ProductionRecipe__Group__2 : rule__ProductionRecipe__Group__2__Impl rule__ProductionRecipe__Group__3 ;
     public final void rule__ProductionRecipe__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2209:1: ( rule__ProductionRecipe__Group__2__Impl rule__ProductionRecipe__Group__3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2210:2: rule__ProductionRecipe__Group__2__Impl rule__ProductionRecipe__Group__3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2306:1: ( rule__ProductionRecipe__Group__2__Impl rule__ProductionRecipe__Group__3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2307:2: rule__ProductionRecipe__Group__2__Impl rule__ProductionRecipe__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__2__Impl_in_rule__ProductionRecipe__Group__24364);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__2__Impl_in_rule__ProductionRecipe__Group__24554);
             rule__ProductionRecipe__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__3_in_rule__ProductionRecipe__Group__24367);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__3_in_rule__ProductionRecipe__Group__24557);
             rule__ProductionRecipe__Group__3();
 
             state._fsp--;
@@ -5620,20 +5856,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__2__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2217:1: rule__ProductionRecipe__Group__2__Impl : ( 'traceInfo' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2314:1: rule__ProductionRecipe__Group__2__Impl : ( 'traceInfo' ) ;
     public final void rule__ProductionRecipe__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2221:1: ( ( 'traceInfo' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2222:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2318:1: ( ( 'traceInfo' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2319:1: ( 'traceInfo' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2222:1: ( 'traceInfo' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2223:1: 'traceInfo'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2319:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2320:1: 'traceInfo'
             {
              before(grammarAccess.getProductionRecipeAccess().getTraceInfoKeyword_2()); 
-            match(input,22,FollowSets000.FOLLOW_22_in_rule__ProductionRecipe__Group__2__Impl4395); 
+            match(input,23,FollowSets000.FOLLOW_23_in_rule__ProductionRecipe__Group__2__Impl4585); 
              after(grammarAccess.getProductionRecipeAccess().getTraceInfoKeyword_2()); 
 
             }
@@ -5657,21 +5893,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2236:1: rule__ProductionRecipe__Group__3 : rule__ProductionRecipe__Group__3__Impl rule__ProductionRecipe__Group__4 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2333:1: rule__ProductionRecipe__Group__3 : rule__ProductionRecipe__Group__3__Impl rule__ProductionRecipe__Group__4 ;
     public final void rule__ProductionRecipe__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2240:1: ( rule__ProductionRecipe__Group__3__Impl rule__ProductionRecipe__Group__4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2241:2: rule__ProductionRecipe__Group__3__Impl rule__ProductionRecipe__Group__4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2337:1: ( rule__ProductionRecipe__Group__3__Impl rule__ProductionRecipe__Group__4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2338:2: rule__ProductionRecipe__Group__3__Impl rule__ProductionRecipe__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__3__Impl_in_rule__ProductionRecipe__Group__34426);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__3__Impl_in_rule__ProductionRecipe__Group__34616);
             rule__ProductionRecipe__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__4_in_rule__ProductionRecipe__Group__34429);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__4_in_rule__ProductionRecipe__Group__34619);
             rule__ProductionRecipe__Group__4();
 
             state._fsp--;
@@ -5695,20 +5931,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__3__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2248:1: rule__ProductionRecipe__Group__3__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2345:1: rule__ProductionRecipe__Group__3__Impl : ( ':' ) ;
     public final void rule__ProductionRecipe__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2252:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2253:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2349:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2350:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2253:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2254:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2350:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2351:1: ':'
             {
              before(grammarAccess.getProductionRecipeAccess().getColonKeyword_3()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__ProductionRecipe__Group__3__Impl4457); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__ProductionRecipe__Group__3__Impl4647); 
              after(grammarAccess.getProductionRecipeAccess().getColonKeyword_3()); 
 
             }
@@ -5732,21 +5968,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2267:1: rule__ProductionRecipe__Group__4 : rule__ProductionRecipe__Group__4__Impl rule__ProductionRecipe__Group__5 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2364:1: rule__ProductionRecipe__Group__4 : rule__ProductionRecipe__Group__4__Impl rule__ProductionRecipe__Group__5 ;
     public final void rule__ProductionRecipe__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2271:1: ( rule__ProductionRecipe__Group__4__Impl rule__ProductionRecipe__Group__5 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2272:2: rule__ProductionRecipe__Group__4__Impl rule__ProductionRecipe__Group__5
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2368:1: ( rule__ProductionRecipe__Group__4__Impl rule__ProductionRecipe__Group__5 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2369:2: rule__ProductionRecipe__Group__4__Impl rule__ProductionRecipe__Group__5
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__4__Impl_in_rule__ProductionRecipe__Group__44488);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__4__Impl_in_rule__ProductionRecipe__Group__44678);
             rule__ProductionRecipe__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__5_in_rule__ProductionRecipe__Group__44491);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__5_in_rule__ProductionRecipe__Group__44681);
             rule__ProductionRecipe__Group__5();
 
             state._fsp--;
@@ -5770,23 +6006,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__4__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2279:1: rule__ProductionRecipe__Group__4__Impl : ( ( rule__ProductionRecipe__TraceInfoAssignment_4 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2376:1: rule__ProductionRecipe__Group__4__Impl : ( ( rule__ProductionRecipe__TraceInfoAssignment_4 ) ) ;
     public final void rule__ProductionRecipe__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2283:1: ( ( ( rule__ProductionRecipe__TraceInfoAssignment_4 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2284:1: ( ( rule__ProductionRecipe__TraceInfoAssignment_4 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2380:1: ( ( ( rule__ProductionRecipe__TraceInfoAssignment_4 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2381:1: ( ( rule__ProductionRecipe__TraceInfoAssignment_4 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2284:1: ( ( rule__ProductionRecipe__TraceInfoAssignment_4 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2285:1: ( rule__ProductionRecipe__TraceInfoAssignment_4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2381:1: ( ( rule__ProductionRecipe__TraceInfoAssignment_4 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2382:1: ( rule__ProductionRecipe__TraceInfoAssignment_4 )
             {
              before(grammarAccess.getProductionRecipeAccess().getTraceInfoAssignment_4()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2286:1: ( rule__ProductionRecipe__TraceInfoAssignment_4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2286:2: rule__ProductionRecipe__TraceInfoAssignment_4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2383:1: ( rule__ProductionRecipe__TraceInfoAssignment_4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2383:2: rule__ProductionRecipe__TraceInfoAssignment_4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__TraceInfoAssignment_4_in_rule__ProductionRecipe__Group__4__Impl4518);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__TraceInfoAssignment_4_in_rule__ProductionRecipe__Group__4__Impl4708);
             rule__ProductionRecipe__TraceInfoAssignment_4();
 
             state._fsp--;
@@ -5817,21 +6053,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__5"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2296:1: rule__ProductionRecipe__Group__5 : rule__ProductionRecipe__Group__5__Impl rule__ProductionRecipe__Group__6 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2393:1: rule__ProductionRecipe__Group__5 : rule__ProductionRecipe__Group__5__Impl rule__ProductionRecipe__Group__6 ;
     public final void rule__ProductionRecipe__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2300:1: ( rule__ProductionRecipe__Group__5__Impl rule__ProductionRecipe__Group__6 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2301:2: rule__ProductionRecipe__Group__5__Impl rule__ProductionRecipe__Group__6
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2397:1: ( rule__ProductionRecipe__Group__5__Impl rule__ProductionRecipe__Group__6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2398:2: rule__ProductionRecipe__Group__5__Impl rule__ProductionRecipe__Group__6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__5__Impl_in_rule__ProductionRecipe__Group__54548);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__5__Impl_in_rule__ProductionRecipe__Group__54738);
             rule__ProductionRecipe__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__6_in_rule__ProductionRecipe__Group__54551);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__6_in_rule__ProductionRecipe__Group__54741);
             rule__ProductionRecipe__Group__6();
 
             state._fsp--;
@@ -5855,20 +6091,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__5__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2308:1: rule__ProductionRecipe__Group__5__Impl : ( 'parents' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2405:1: rule__ProductionRecipe__Group__5__Impl : ( 'parents' ) ;
     public final void rule__ProductionRecipe__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2312:1: ( ( 'parents' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2313:1: ( 'parents' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2409:1: ( ( 'parents' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2410:1: ( 'parents' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2313:1: ( 'parents' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2314:1: 'parents'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2410:1: ( 'parents' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2411:1: 'parents'
             {
              before(grammarAccess.getProductionRecipeAccess().getParentsKeyword_5()); 
-            match(input,26,FollowSets000.FOLLOW_26_in_rule__ProductionRecipe__Group__5__Impl4579); 
+            match(input,27,FollowSets000.FOLLOW_27_in_rule__ProductionRecipe__Group__5__Impl4769); 
              after(grammarAccess.getProductionRecipeAccess().getParentsKeyword_5()); 
 
             }
@@ -5892,21 +6128,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__6"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2327:1: rule__ProductionRecipe__Group__6 : rule__ProductionRecipe__Group__6__Impl rule__ProductionRecipe__Group__7 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2424:1: rule__ProductionRecipe__Group__6 : rule__ProductionRecipe__Group__6__Impl rule__ProductionRecipe__Group__7 ;
     public final void rule__ProductionRecipe__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2331:1: ( rule__ProductionRecipe__Group__6__Impl rule__ProductionRecipe__Group__7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2332:2: rule__ProductionRecipe__Group__6__Impl rule__ProductionRecipe__Group__7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2428:1: ( rule__ProductionRecipe__Group__6__Impl rule__ProductionRecipe__Group__7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2429:2: rule__ProductionRecipe__Group__6__Impl rule__ProductionRecipe__Group__7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__6__Impl_in_rule__ProductionRecipe__Group__64610);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__6__Impl_in_rule__ProductionRecipe__Group__64800);
             rule__ProductionRecipe__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__7_in_rule__ProductionRecipe__Group__64613);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__7_in_rule__ProductionRecipe__Group__64803);
             rule__ProductionRecipe__Group__7();
 
             state._fsp--;
@@ -5930,20 +6166,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__6__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2339:1: rule__ProductionRecipe__Group__6__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2436:1: rule__ProductionRecipe__Group__6__Impl : ( ':' ) ;
     public final void rule__ProductionRecipe__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2343:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2344:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2440:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2441:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2344:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2345:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2441:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2442:1: ':'
             {
              before(grammarAccess.getProductionRecipeAccess().getColonKeyword_6()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__ProductionRecipe__Group__6__Impl4641); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__ProductionRecipe__Group__6__Impl4831); 
              after(grammarAccess.getProductionRecipeAccess().getColonKeyword_6()); 
 
             }
@@ -5967,21 +6203,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2358:1: rule__ProductionRecipe__Group__7 : rule__ProductionRecipe__Group__7__Impl rule__ProductionRecipe__Group__8 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2455:1: rule__ProductionRecipe__Group__7 : rule__ProductionRecipe__Group__7__Impl rule__ProductionRecipe__Group__8 ;
     public final void rule__ProductionRecipe__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2362:1: ( rule__ProductionRecipe__Group__7__Impl rule__ProductionRecipe__Group__8 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2363:2: rule__ProductionRecipe__Group__7__Impl rule__ProductionRecipe__Group__8
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2459:1: ( rule__ProductionRecipe__Group__7__Impl rule__ProductionRecipe__Group__8 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2460:2: rule__ProductionRecipe__Group__7__Impl rule__ProductionRecipe__Group__8
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__7__Impl_in_rule__ProductionRecipe__Group__74672);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__7__Impl_in_rule__ProductionRecipe__Group__74862);
             rule__ProductionRecipe__Group__7__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__8_in_rule__ProductionRecipe__Group__74675);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__8_in_rule__ProductionRecipe__Group__74865);
             rule__ProductionRecipe__Group__8();
 
             state._fsp--;
@@ -6005,20 +6241,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__7__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2370:1: rule__ProductionRecipe__Group__7__Impl : ( '[' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2467:1: rule__ProductionRecipe__Group__7__Impl : ( '[' ) ;
     public final void rule__ProductionRecipe__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2374:1: ( ( '[' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2375:1: ( '[' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2471:1: ( ( '[' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2472:1: ( '[' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2375:1: ( '[' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2376:1: '['
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2472:1: ( '[' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2473:1: '['
             {
              before(grammarAccess.getProductionRecipeAccess().getLeftSquareBracketKeyword_7()); 
-            match(input,14,FollowSets000.FOLLOW_14_in_rule__ProductionRecipe__Group__7__Impl4703); 
+            match(input,14,FollowSets000.FOLLOW_14_in_rule__ProductionRecipe__Group__7__Impl4893); 
              after(grammarAccess.getProductionRecipeAccess().getLeftSquareBracketKeyword_7()); 
 
             }
@@ -6042,21 +6278,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__8"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2389:1: rule__ProductionRecipe__Group__8 : rule__ProductionRecipe__Group__8__Impl rule__ProductionRecipe__Group__9 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2486:1: rule__ProductionRecipe__Group__8 : rule__ProductionRecipe__Group__8__Impl rule__ProductionRecipe__Group__9 ;
     public final void rule__ProductionRecipe__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2393:1: ( rule__ProductionRecipe__Group__8__Impl rule__ProductionRecipe__Group__9 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2394:2: rule__ProductionRecipe__Group__8__Impl rule__ProductionRecipe__Group__9
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2490:1: ( rule__ProductionRecipe__Group__8__Impl rule__ProductionRecipe__Group__9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2491:2: rule__ProductionRecipe__Group__8__Impl rule__ProductionRecipe__Group__9
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__8__Impl_in_rule__ProductionRecipe__Group__84734);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__8__Impl_in_rule__ProductionRecipe__Group__84924);
             rule__ProductionRecipe__Group__8__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__9_in_rule__ProductionRecipe__Group__84737);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__9_in_rule__ProductionRecipe__Group__84927);
             rule__ProductionRecipe__Group__9();
 
             state._fsp--;
@@ -6080,20 +6316,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__8__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2401:1: rule__ProductionRecipe__Group__8__Impl : ( ( rule__ProductionRecipe__ParentsAssignment_8 )* ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2498:1: rule__ProductionRecipe__Group__8__Impl : ( ( rule__ProductionRecipe__ParentsAssignment_8 )* ) ;
     public final void rule__ProductionRecipe__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2405:1: ( ( ( rule__ProductionRecipe__ParentsAssignment_8 )* ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2406:1: ( ( rule__ProductionRecipe__ParentsAssignment_8 )* )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2502:1: ( ( ( rule__ProductionRecipe__ParentsAssignment_8 )* ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2503:1: ( ( rule__ProductionRecipe__ParentsAssignment_8 )* )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2406:1: ( ( rule__ProductionRecipe__ParentsAssignment_8 )* )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2407:1: ( rule__ProductionRecipe__ParentsAssignment_8 )*
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2503:1: ( ( rule__ProductionRecipe__ParentsAssignment_8 )* )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2504:1: ( rule__ProductionRecipe__ParentsAssignment_8 )*
             {
              before(grammarAccess.getProductionRecipeAccess().getParentsAssignment_8()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2408:1: ( rule__ProductionRecipe__ParentsAssignment_8 )*
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2505:1: ( rule__ProductionRecipe__ParentsAssignment_8 )*
             loop13:
             do {
                 int alt13=2;
@@ -6106,9 +6342,9 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
                 switch (alt13) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2408:2: rule__ProductionRecipe__ParentsAssignment_8
+            	    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2505:2: rule__ProductionRecipe__ParentsAssignment_8
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__ParentsAssignment_8_in_rule__ProductionRecipe__Group__8__Impl4764);
+            	    pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__ParentsAssignment_8_in_rule__ProductionRecipe__Group__8__Impl4954);
             	    rule__ProductionRecipe__ParentsAssignment_8();
 
             	    state._fsp--;
@@ -6145,21 +6381,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__9"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2418:1: rule__ProductionRecipe__Group__9 : rule__ProductionRecipe__Group__9__Impl rule__ProductionRecipe__Group__10 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2515:1: rule__ProductionRecipe__Group__9 : rule__ProductionRecipe__Group__9__Impl rule__ProductionRecipe__Group__10 ;
     public final void rule__ProductionRecipe__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2422:1: ( rule__ProductionRecipe__Group__9__Impl rule__ProductionRecipe__Group__10 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2423:2: rule__ProductionRecipe__Group__9__Impl rule__ProductionRecipe__Group__10
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2519:1: ( rule__ProductionRecipe__Group__9__Impl rule__ProductionRecipe__Group__10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2520:2: rule__ProductionRecipe__Group__9__Impl rule__ProductionRecipe__Group__10
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__9__Impl_in_rule__ProductionRecipe__Group__94795);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__9__Impl_in_rule__ProductionRecipe__Group__94985);
             rule__ProductionRecipe__Group__9__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__10_in_rule__ProductionRecipe__Group__94798);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__10_in_rule__ProductionRecipe__Group__94988);
             rule__ProductionRecipe__Group__10();
 
             state._fsp--;
@@ -6183,20 +6419,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__9__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2430:1: rule__ProductionRecipe__Group__9__Impl : ( ']' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2527:1: rule__ProductionRecipe__Group__9__Impl : ( ']' ) ;
     public final void rule__ProductionRecipe__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2434:1: ( ( ']' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2435:1: ( ']' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2531:1: ( ( ']' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2532:1: ( ']' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2435:1: ( ']' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2436:1: ']'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2532:1: ( ']' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2533:1: ']'
             {
              before(grammarAccess.getProductionRecipeAccess().getRightSquareBracketKeyword_9()); 
-            match(input,15,FollowSets000.FOLLOW_15_in_rule__ProductionRecipe__Group__9__Impl4826); 
+            match(input,15,FollowSets000.FOLLOW_15_in_rule__ProductionRecipe__Group__9__Impl5016); 
              after(grammarAccess.getProductionRecipeAccess().getRightSquareBracketKeyword_9()); 
 
             }
@@ -6220,16 +6456,16 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__10"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2449:1: rule__ProductionRecipe__Group__10 : rule__ProductionRecipe__Group__10__Impl ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2546:1: rule__ProductionRecipe__Group__10 : rule__ProductionRecipe__Group__10__Impl ;
     public final void rule__ProductionRecipe__Group__10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2453:1: ( rule__ProductionRecipe__Group__10__Impl )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2454:2: rule__ProductionRecipe__Group__10__Impl
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2550:1: ( rule__ProductionRecipe__Group__10__Impl )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2551:2: rule__ProductionRecipe__Group__10__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__10__Impl_in_rule__ProductionRecipe__Group__104857);
+            pushFollow(FollowSets000.FOLLOW_rule__ProductionRecipe__Group__10__Impl_in_rule__ProductionRecipe__Group__105047);
             rule__ProductionRecipe__Group__10__Impl();
 
             state._fsp--;
@@ -6253,20 +6489,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__Group__10__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2460:1: rule__ProductionRecipe__Group__10__Impl : ( '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2557:1: rule__ProductionRecipe__Group__10__Impl : ( '}' ) ;
     public final void rule__ProductionRecipe__Group__10__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2464:1: ( ( '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2465:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2561:1: ( ( '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2562:1: ( '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2465:1: ( '}' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2466:1: '}'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2562:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2563:1: '}'
             {
              before(grammarAccess.getProductionRecipeAccess().getRightCurlyBracketKeyword_10()); 
-            match(input,19,FollowSets000.FOLLOW_19_in_rule__ProductionRecipe__Group__10__Impl4885); 
+            match(input,19,FollowSets000.FOLLOW_19_in_rule__ProductionRecipe__Group__10__Impl5075); 
              after(grammarAccess.getProductionRecipeAccess().getRightCurlyBracketKeyword_10()); 
 
             }
@@ -6290,21 +6526,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__0"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2501:1: rule__UniquenessEnforcerRecipe__Group__0 : rule__UniquenessEnforcerRecipe__Group__0__Impl rule__UniquenessEnforcerRecipe__Group__1 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2598:1: rule__UniquenessEnforcerRecipe__Group__0 : rule__UniquenessEnforcerRecipe__Group__0__Impl rule__UniquenessEnforcerRecipe__Group__1 ;
     public final void rule__UniquenessEnforcerRecipe__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2505:1: ( rule__UniquenessEnforcerRecipe__Group__0__Impl rule__UniquenessEnforcerRecipe__Group__1 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2506:2: rule__UniquenessEnforcerRecipe__Group__0__Impl rule__UniquenessEnforcerRecipe__Group__1
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2602:1: ( rule__UniquenessEnforcerRecipe__Group__0__Impl rule__UniquenessEnforcerRecipe__Group__1 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2603:2: rule__UniquenessEnforcerRecipe__Group__0__Impl rule__UniquenessEnforcerRecipe__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__0__Impl_in_rule__UniquenessEnforcerRecipe__Group__04938);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__0__Impl_in_rule__UniquenessEnforcerRecipe__Group__05128);
             rule__UniquenessEnforcerRecipe__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__1_in_rule__UniquenessEnforcerRecipe__Group__04941);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__1_in_rule__UniquenessEnforcerRecipe__Group__05131);
             rule__UniquenessEnforcerRecipe__Group__1();
 
             state._fsp--;
@@ -6328,20 +6564,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__0__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2513:1: rule__UniquenessEnforcerRecipe__Group__0__Impl : ( 'UniquenessEnforcer' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2610:1: rule__UniquenessEnforcerRecipe__Group__0__Impl : ( 'UniquenessEnforcer' ) ;
     public final void rule__UniquenessEnforcerRecipe__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2517:1: ( ( 'UniquenessEnforcer' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2518:1: ( 'UniquenessEnforcer' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2614:1: ( ( 'UniquenessEnforcer' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2615:1: ( 'UniquenessEnforcer' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2518:1: ( 'UniquenessEnforcer' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2519:1: 'UniquenessEnforcer'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2615:1: ( 'UniquenessEnforcer' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2616:1: 'UniquenessEnforcer'
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getUniquenessEnforcerKeyword_0()); 
-            match(input,27,FollowSets000.FOLLOW_27_in_rule__UniquenessEnforcerRecipe__Group__0__Impl4969); 
+            match(input,28,FollowSets000.FOLLOW_28_in_rule__UniquenessEnforcerRecipe__Group__0__Impl5159); 
              after(grammarAccess.getUniquenessEnforcerRecipeAccess().getUniquenessEnforcerKeyword_0()); 
 
             }
@@ -6365,21 +6601,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__1"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2532:1: rule__UniquenessEnforcerRecipe__Group__1 : rule__UniquenessEnforcerRecipe__Group__1__Impl rule__UniquenessEnforcerRecipe__Group__2 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2629:1: rule__UniquenessEnforcerRecipe__Group__1 : rule__UniquenessEnforcerRecipe__Group__1__Impl rule__UniquenessEnforcerRecipe__Group__2 ;
     public final void rule__UniquenessEnforcerRecipe__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2536:1: ( rule__UniquenessEnforcerRecipe__Group__1__Impl rule__UniquenessEnforcerRecipe__Group__2 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2537:2: rule__UniquenessEnforcerRecipe__Group__1__Impl rule__UniquenessEnforcerRecipe__Group__2
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2633:1: ( rule__UniquenessEnforcerRecipe__Group__1__Impl rule__UniquenessEnforcerRecipe__Group__2 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2634:2: rule__UniquenessEnforcerRecipe__Group__1__Impl rule__UniquenessEnforcerRecipe__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__1__Impl_in_rule__UniquenessEnforcerRecipe__Group__15000);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__1__Impl_in_rule__UniquenessEnforcerRecipe__Group__15190);
             rule__UniquenessEnforcerRecipe__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__2_in_rule__UniquenessEnforcerRecipe__Group__15003);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__2_in_rule__UniquenessEnforcerRecipe__Group__15193);
             rule__UniquenessEnforcerRecipe__Group__2();
 
             state._fsp--;
@@ -6403,20 +6639,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__1__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2544:1: rule__UniquenessEnforcerRecipe__Group__1__Impl : ( '{' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2641:1: rule__UniquenessEnforcerRecipe__Group__1__Impl : ( '{' ) ;
     public final void rule__UniquenessEnforcerRecipe__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2548:1: ( ( '{' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2549:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2645:1: ( ( '{' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2646:1: ( '{' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2549:1: ( '{' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2550:1: '{'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2646:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2647:1: '{'
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getLeftCurlyBracketKeyword_1()); 
-            match(input,18,FollowSets000.FOLLOW_18_in_rule__UniquenessEnforcerRecipe__Group__1__Impl5031); 
+            match(input,18,FollowSets000.FOLLOW_18_in_rule__UniquenessEnforcerRecipe__Group__1__Impl5221); 
              after(grammarAccess.getUniquenessEnforcerRecipeAccess().getLeftCurlyBracketKeyword_1()); 
 
             }
@@ -6440,21 +6676,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__2"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2563:1: rule__UniquenessEnforcerRecipe__Group__2 : rule__UniquenessEnforcerRecipe__Group__2__Impl rule__UniquenessEnforcerRecipe__Group__3 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2660:1: rule__UniquenessEnforcerRecipe__Group__2 : rule__UniquenessEnforcerRecipe__Group__2__Impl rule__UniquenessEnforcerRecipe__Group__3 ;
     public final void rule__UniquenessEnforcerRecipe__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2567:1: ( rule__UniquenessEnforcerRecipe__Group__2__Impl rule__UniquenessEnforcerRecipe__Group__3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2568:2: rule__UniquenessEnforcerRecipe__Group__2__Impl rule__UniquenessEnforcerRecipe__Group__3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2664:1: ( rule__UniquenessEnforcerRecipe__Group__2__Impl rule__UniquenessEnforcerRecipe__Group__3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2665:2: rule__UniquenessEnforcerRecipe__Group__2__Impl rule__UniquenessEnforcerRecipe__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__2__Impl_in_rule__UniquenessEnforcerRecipe__Group__25062);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__2__Impl_in_rule__UniquenessEnforcerRecipe__Group__25252);
             rule__UniquenessEnforcerRecipe__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__3_in_rule__UniquenessEnforcerRecipe__Group__25065);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__3_in_rule__UniquenessEnforcerRecipe__Group__25255);
             rule__UniquenessEnforcerRecipe__Group__3();
 
             state._fsp--;
@@ -6478,20 +6714,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__2__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2575:1: rule__UniquenessEnforcerRecipe__Group__2__Impl : ( 'traceInfo' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2672:1: rule__UniquenessEnforcerRecipe__Group__2__Impl : ( 'traceInfo' ) ;
     public final void rule__UniquenessEnforcerRecipe__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2579:1: ( ( 'traceInfo' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2580:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2676:1: ( ( 'traceInfo' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2677:1: ( 'traceInfo' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2580:1: ( 'traceInfo' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2581:1: 'traceInfo'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2677:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2678:1: 'traceInfo'
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getTraceInfoKeyword_2()); 
-            match(input,22,FollowSets000.FOLLOW_22_in_rule__UniquenessEnforcerRecipe__Group__2__Impl5093); 
+            match(input,23,FollowSets000.FOLLOW_23_in_rule__UniquenessEnforcerRecipe__Group__2__Impl5283); 
              after(grammarAccess.getUniquenessEnforcerRecipeAccess().getTraceInfoKeyword_2()); 
 
             }
@@ -6515,21 +6751,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2594:1: rule__UniquenessEnforcerRecipe__Group__3 : rule__UniquenessEnforcerRecipe__Group__3__Impl rule__UniquenessEnforcerRecipe__Group__4 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2691:1: rule__UniquenessEnforcerRecipe__Group__3 : rule__UniquenessEnforcerRecipe__Group__3__Impl rule__UniquenessEnforcerRecipe__Group__4 ;
     public final void rule__UniquenessEnforcerRecipe__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2598:1: ( rule__UniquenessEnforcerRecipe__Group__3__Impl rule__UniquenessEnforcerRecipe__Group__4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2599:2: rule__UniquenessEnforcerRecipe__Group__3__Impl rule__UniquenessEnforcerRecipe__Group__4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2695:1: ( rule__UniquenessEnforcerRecipe__Group__3__Impl rule__UniquenessEnforcerRecipe__Group__4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2696:2: rule__UniquenessEnforcerRecipe__Group__3__Impl rule__UniquenessEnforcerRecipe__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__3__Impl_in_rule__UniquenessEnforcerRecipe__Group__35124);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__3__Impl_in_rule__UniquenessEnforcerRecipe__Group__35314);
             rule__UniquenessEnforcerRecipe__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__4_in_rule__UniquenessEnforcerRecipe__Group__35127);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__4_in_rule__UniquenessEnforcerRecipe__Group__35317);
             rule__UniquenessEnforcerRecipe__Group__4();
 
             state._fsp--;
@@ -6553,20 +6789,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__3__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2606:1: rule__UniquenessEnforcerRecipe__Group__3__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2703:1: rule__UniquenessEnforcerRecipe__Group__3__Impl : ( ':' ) ;
     public final void rule__UniquenessEnforcerRecipe__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2610:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2611:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2707:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2708:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2611:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2612:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2708:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2709:1: ':'
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getColonKeyword_3()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__UniquenessEnforcerRecipe__Group__3__Impl5155); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__UniquenessEnforcerRecipe__Group__3__Impl5345); 
              after(grammarAccess.getUniquenessEnforcerRecipeAccess().getColonKeyword_3()); 
 
             }
@@ -6590,21 +6826,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2625:1: rule__UniquenessEnforcerRecipe__Group__4 : rule__UniquenessEnforcerRecipe__Group__4__Impl rule__UniquenessEnforcerRecipe__Group__5 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2722:1: rule__UniquenessEnforcerRecipe__Group__4 : rule__UniquenessEnforcerRecipe__Group__4__Impl rule__UniquenessEnforcerRecipe__Group__5 ;
     public final void rule__UniquenessEnforcerRecipe__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2629:1: ( rule__UniquenessEnforcerRecipe__Group__4__Impl rule__UniquenessEnforcerRecipe__Group__5 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2630:2: rule__UniquenessEnforcerRecipe__Group__4__Impl rule__UniquenessEnforcerRecipe__Group__5
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2726:1: ( rule__UniquenessEnforcerRecipe__Group__4__Impl rule__UniquenessEnforcerRecipe__Group__5 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2727:2: rule__UniquenessEnforcerRecipe__Group__4__Impl rule__UniquenessEnforcerRecipe__Group__5
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__4__Impl_in_rule__UniquenessEnforcerRecipe__Group__45186);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__4__Impl_in_rule__UniquenessEnforcerRecipe__Group__45376);
             rule__UniquenessEnforcerRecipe__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__5_in_rule__UniquenessEnforcerRecipe__Group__45189);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__5_in_rule__UniquenessEnforcerRecipe__Group__45379);
             rule__UniquenessEnforcerRecipe__Group__5();
 
             state._fsp--;
@@ -6628,23 +6864,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__4__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2637:1: rule__UniquenessEnforcerRecipe__Group__4__Impl : ( ( rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2734:1: rule__UniquenessEnforcerRecipe__Group__4__Impl : ( ( rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 ) ) ;
     public final void rule__UniquenessEnforcerRecipe__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2641:1: ( ( ( rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2642:1: ( ( rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2738:1: ( ( ( rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2739:1: ( ( rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2642:1: ( ( rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2643:1: ( rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2739:1: ( ( rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2740:1: ( rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 )
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getTraceInfoAssignment_4()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2644:1: ( rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2644:2: rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2741:1: ( rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2741:2: rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4_in_rule__UniquenessEnforcerRecipe__Group__4__Impl5216);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4_in_rule__UniquenessEnforcerRecipe__Group__4__Impl5406);
             rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4();
 
             state._fsp--;
@@ -6675,21 +6911,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__5"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2654:1: rule__UniquenessEnforcerRecipe__Group__5 : rule__UniquenessEnforcerRecipe__Group__5__Impl rule__UniquenessEnforcerRecipe__Group__6 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2751:1: rule__UniquenessEnforcerRecipe__Group__5 : rule__UniquenessEnforcerRecipe__Group__5__Impl rule__UniquenessEnforcerRecipe__Group__6 ;
     public final void rule__UniquenessEnforcerRecipe__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2658:1: ( rule__UniquenessEnforcerRecipe__Group__5__Impl rule__UniquenessEnforcerRecipe__Group__6 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2659:2: rule__UniquenessEnforcerRecipe__Group__5__Impl rule__UniquenessEnforcerRecipe__Group__6
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2755:1: ( rule__UniquenessEnforcerRecipe__Group__5__Impl rule__UniquenessEnforcerRecipe__Group__6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2756:2: rule__UniquenessEnforcerRecipe__Group__5__Impl rule__UniquenessEnforcerRecipe__Group__6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__5__Impl_in_rule__UniquenessEnforcerRecipe__Group__55246);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__5__Impl_in_rule__UniquenessEnforcerRecipe__Group__55436);
             rule__UniquenessEnforcerRecipe__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__6_in_rule__UniquenessEnforcerRecipe__Group__55249);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__6_in_rule__UniquenessEnforcerRecipe__Group__55439);
             rule__UniquenessEnforcerRecipe__Group__6();
 
             state._fsp--;
@@ -6713,20 +6949,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__5__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2666:1: rule__UniquenessEnforcerRecipe__Group__5__Impl : ( 'parents' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2763:1: rule__UniquenessEnforcerRecipe__Group__5__Impl : ( 'parents' ) ;
     public final void rule__UniquenessEnforcerRecipe__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2670:1: ( ( 'parents' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2671:1: ( 'parents' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2767:1: ( ( 'parents' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2768:1: ( 'parents' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2671:1: ( 'parents' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2672:1: 'parents'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2768:1: ( 'parents' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2769:1: 'parents'
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getParentsKeyword_5()); 
-            match(input,26,FollowSets000.FOLLOW_26_in_rule__UniquenessEnforcerRecipe__Group__5__Impl5277); 
+            match(input,27,FollowSets000.FOLLOW_27_in_rule__UniquenessEnforcerRecipe__Group__5__Impl5467); 
              after(grammarAccess.getUniquenessEnforcerRecipeAccess().getParentsKeyword_5()); 
 
             }
@@ -6750,21 +6986,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__6"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2685:1: rule__UniquenessEnforcerRecipe__Group__6 : rule__UniquenessEnforcerRecipe__Group__6__Impl rule__UniquenessEnforcerRecipe__Group__7 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2782:1: rule__UniquenessEnforcerRecipe__Group__6 : rule__UniquenessEnforcerRecipe__Group__6__Impl rule__UniquenessEnforcerRecipe__Group__7 ;
     public final void rule__UniquenessEnforcerRecipe__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2689:1: ( rule__UniquenessEnforcerRecipe__Group__6__Impl rule__UniquenessEnforcerRecipe__Group__7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2690:2: rule__UniquenessEnforcerRecipe__Group__6__Impl rule__UniquenessEnforcerRecipe__Group__7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2786:1: ( rule__UniquenessEnforcerRecipe__Group__6__Impl rule__UniquenessEnforcerRecipe__Group__7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2787:2: rule__UniquenessEnforcerRecipe__Group__6__Impl rule__UniquenessEnforcerRecipe__Group__7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__6__Impl_in_rule__UniquenessEnforcerRecipe__Group__65308);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__6__Impl_in_rule__UniquenessEnforcerRecipe__Group__65498);
             rule__UniquenessEnforcerRecipe__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__7_in_rule__UniquenessEnforcerRecipe__Group__65311);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__7_in_rule__UniquenessEnforcerRecipe__Group__65501);
             rule__UniquenessEnforcerRecipe__Group__7();
 
             state._fsp--;
@@ -6788,20 +7024,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__6__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2697:1: rule__UniquenessEnforcerRecipe__Group__6__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2794:1: rule__UniquenessEnforcerRecipe__Group__6__Impl : ( ':' ) ;
     public final void rule__UniquenessEnforcerRecipe__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2701:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2702:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2798:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2799:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2702:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2703:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2799:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2800:1: ':'
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getColonKeyword_6()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__UniquenessEnforcerRecipe__Group__6__Impl5339); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__UniquenessEnforcerRecipe__Group__6__Impl5529); 
              after(grammarAccess.getUniquenessEnforcerRecipeAccess().getColonKeyword_6()); 
 
             }
@@ -6825,21 +7061,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2716:1: rule__UniquenessEnforcerRecipe__Group__7 : rule__UniquenessEnforcerRecipe__Group__7__Impl rule__UniquenessEnforcerRecipe__Group__8 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2813:1: rule__UniquenessEnforcerRecipe__Group__7 : rule__UniquenessEnforcerRecipe__Group__7__Impl rule__UniquenessEnforcerRecipe__Group__8 ;
     public final void rule__UniquenessEnforcerRecipe__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2720:1: ( rule__UniquenessEnforcerRecipe__Group__7__Impl rule__UniquenessEnforcerRecipe__Group__8 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2721:2: rule__UniquenessEnforcerRecipe__Group__7__Impl rule__UniquenessEnforcerRecipe__Group__8
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2817:1: ( rule__UniquenessEnforcerRecipe__Group__7__Impl rule__UniquenessEnforcerRecipe__Group__8 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2818:2: rule__UniquenessEnforcerRecipe__Group__7__Impl rule__UniquenessEnforcerRecipe__Group__8
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__7__Impl_in_rule__UniquenessEnforcerRecipe__Group__75370);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__7__Impl_in_rule__UniquenessEnforcerRecipe__Group__75560);
             rule__UniquenessEnforcerRecipe__Group__7__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__8_in_rule__UniquenessEnforcerRecipe__Group__75373);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__8_in_rule__UniquenessEnforcerRecipe__Group__75563);
             rule__UniquenessEnforcerRecipe__Group__8();
 
             state._fsp--;
@@ -6863,20 +7099,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__7__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2728:1: rule__UniquenessEnforcerRecipe__Group__7__Impl : ( '[' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2825:1: rule__UniquenessEnforcerRecipe__Group__7__Impl : ( '[' ) ;
     public final void rule__UniquenessEnforcerRecipe__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2732:1: ( ( '[' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2733:1: ( '[' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2829:1: ( ( '[' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2830:1: ( '[' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2733:1: ( '[' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2734:1: '['
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2830:1: ( '[' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2831:1: '['
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getLeftSquareBracketKeyword_7()); 
-            match(input,14,FollowSets000.FOLLOW_14_in_rule__UniquenessEnforcerRecipe__Group__7__Impl5401); 
+            match(input,14,FollowSets000.FOLLOW_14_in_rule__UniquenessEnforcerRecipe__Group__7__Impl5591); 
              after(grammarAccess.getUniquenessEnforcerRecipeAccess().getLeftSquareBracketKeyword_7()); 
 
             }
@@ -6900,21 +7136,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__8"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2747:1: rule__UniquenessEnforcerRecipe__Group__8 : rule__UniquenessEnforcerRecipe__Group__8__Impl rule__UniquenessEnforcerRecipe__Group__9 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2844:1: rule__UniquenessEnforcerRecipe__Group__8 : rule__UniquenessEnforcerRecipe__Group__8__Impl rule__UniquenessEnforcerRecipe__Group__9 ;
     public final void rule__UniquenessEnforcerRecipe__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2751:1: ( rule__UniquenessEnforcerRecipe__Group__8__Impl rule__UniquenessEnforcerRecipe__Group__9 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2752:2: rule__UniquenessEnforcerRecipe__Group__8__Impl rule__UniquenessEnforcerRecipe__Group__9
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2848:1: ( rule__UniquenessEnforcerRecipe__Group__8__Impl rule__UniquenessEnforcerRecipe__Group__9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2849:2: rule__UniquenessEnforcerRecipe__Group__8__Impl rule__UniquenessEnforcerRecipe__Group__9
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__8__Impl_in_rule__UniquenessEnforcerRecipe__Group__85432);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__8__Impl_in_rule__UniquenessEnforcerRecipe__Group__85622);
             rule__UniquenessEnforcerRecipe__Group__8__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__9_in_rule__UniquenessEnforcerRecipe__Group__85435);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__9_in_rule__UniquenessEnforcerRecipe__Group__85625);
             rule__UniquenessEnforcerRecipe__Group__9();
 
             state._fsp--;
@@ -6938,20 +7174,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__8__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2759:1: rule__UniquenessEnforcerRecipe__Group__8__Impl : ( ( rule__UniquenessEnforcerRecipe__ParentsAssignment_8 )* ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2856:1: rule__UniquenessEnforcerRecipe__Group__8__Impl : ( ( rule__UniquenessEnforcerRecipe__ParentsAssignment_8 )* ) ;
     public final void rule__UniquenessEnforcerRecipe__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2763:1: ( ( ( rule__UniquenessEnforcerRecipe__ParentsAssignment_8 )* ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2764:1: ( ( rule__UniquenessEnforcerRecipe__ParentsAssignment_8 )* )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2860:1: ( ( ( rule__UniquenessEnforcerRecipe__ParentsAssignment_8 )* ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2861:1: ( ( rule__UniquenessEnforcerRecipe__ParentsAssignment_8 )* )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2764:1: ( ( rule__UniquenessEnforcerRecipe__ParentsAssignment_8 )* )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2765:1: ( rule__UniquenessEnforcerRecipe__ParentsAssignment_8 )*
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2861:1: ( ( rule__UniquenessEnforcerRecipe__ParentsAssignment_8 )* )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2862:1: ( rule__UniquenessEnforcerRecipe__ParentsAssignment_8 )*
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getParentsAssignment_8()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2766:1: ( rule__UniquenessEnforcerRecipe__ParentsAssignment_8 )*
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2863:1: ( rule__UniquenessEnforcerRecipe__ParentsAssignment_8 )*
             loop14:
             do {
                 int alt14=2;
@@ -6964,9 +7200,9 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
                 switch (alt14) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2766:2: rule__UniquenessEnforcerRecipe__ParentsAssignment_8
+            	    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2863:2: rule__UniquenessEnforcerRecipe__ParentsAssignment_8
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__ParentsAssignment_8_in_rule__UniquenessEnforcerRecipe__Group__8__Impl5462);
+            	    pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__ParentsAssignment_8_in_rule__UniquenessEnforcerRecipe__Group__8__Impl5652);
             	    rule__UniquenessEnforcerRecipe__ParentsAssignment_8();
 
             	    state._fsp--;
@@ -7003,21 +7239,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__9"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2776:1: rule__UniquenessEnforcerRecipe__Group__9 : rule__UniquenessEnforcerRecipe__Group__9__Impl rule__UniquenessEnforcerRecipe__Group__10 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2873:1: rule__UniquenessEnforcerRecipe__Group__9 : rule__UniquenessEnforcerRecipe__Group__9__Impl rule__UniquenessEnforcerRecipe__Group__10 ;
     public final void rule__UniquenessEnforcerRecipe__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2780:1: ( rule__UniquenessEnforcerRecipe__Group__9__Impl rule__UniquenessEnforcerRecipe__Group__10 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2781:2: rule__UniquenessEnforcerRecipe__Group__9__Impl rule__UniquenessEnforcerRecipe__Group__10
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2877:1: ( rule__UniquenessEnforcerRecipe__Group__9__Impl rule__UniquenessEnforcerRecipe__Group__10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2878:2: rule__UniquenessEnforcerRecipe__Group__9__Impl rule__UniquenessEnforcerRecipe__Group__10
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__9__Impl_in_rule__UniquenessEnforcerRecipe__Group__95493);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__9__Impl_in_rule__UniquenessEnforcerRecipe__Group__95683);
             rule__UniquenessEnforcerRecipe__Group__9__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__10_in_rule__UniquenessEnforcerRecipe__Group__95496);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__10_in_rule__UniquenessEnforcerRecipe__Group__95686);
             rule__UniquenessEnforcerRecipe__Group__10();
 
             state._fsp--;
@@ -7041,20 +7277,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__9__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2788:1: rule__UniquenessEnforcerRecipe__Group__9__Impl : ( ']' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2885:1: rule__UniquenessEnforcerRecipe__Group__9__Impl : ( ']' ) ;
     public final void rule__UniquenessEnforcerRecipe__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2792:1: ( ( ']' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2793:1: ( ']' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2889:1: ( ( ']' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2890:1: ( ']' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2793:1: ( ']' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2794:1: ']'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2890:1: ( ']' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2891:1: ']'
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getRightSquareBracketKeyword_9()); 
-            match(input,15,FollowSets000.FOLLOW_15_in_rule__UniquenessEnforcerRecipe__Group__9__Impl5524); 
+            match(input,15,FollowSets000.FOLLOW_15_in_rule__UniquenessEnforcerRecipe__Group__9__Impl5714); 
              after(grammarAccess.getUniquenessEnforcerRecipeAccess().getRightSquareBracketKeyword_9()); 
 
             }
@@ -7078,16 +7314,16 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__10"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2807:1: rule__UniquenessEnforcerRecipe__Group__10 : rule__UniquenessEnforcerRecipe__Group__10__Impl ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2904:1: rule__UniquenessEnforcerRecipe__Group__10 : rule__UniquenessEnforcerRecipe__Group__10__Impl ;
     public final void rule__UniquenessEnforcerRecipe__Group__10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2811:1: ( rule__UniquenessEnforcerRecipe__Group__10__Impl )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2812:2: rule__UniquenessEnforcerRecipe__Group__10__Impl
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2908:1: ( rule__UniquenessEnforcerRecipe__Group__10__Impl )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2909:2: rule__UniquenessEnforcerRecipe__Group__10__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__10__Impl_in_rule__UniquenessEnforcerRecipe__Group__105555);
+            pushFollow(FollowSets000.FOLLOW_rule__UniquenessEnforcerRecipe__Group__10__Impl_in_rule__UniquenessEnforcerRecipe__Group__105745);
             rule__UniquenessEnforcerRecipe__Group__10__Impl();
 
             state._fsp--;
@@ -7111,20 +7347,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__Group__10__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2818:1: rule__UniquenessEnforcerRecipe__Group__10__Impl : ( '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2915:1: rule__UniquenessEnforcerRecipe__Group__10__Impl : ( '}' ) ;
     public final void rule__UniquenessEnforcerRecipe__Group__10__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2822:1: ( ( '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2823:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2919:1: ( ( '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2920:1: ( '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2823:1: ( '}' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2824:1: '}'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2920:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2921:1: '}'
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getRightCurlyBracketKeyword_10()); 
-            match(input,19,FollowSets000.FOLLOW_19_in_rule__UniquenessEnforcerRecipe__Group__10__Impl5583); 
+            match(input,19,FollowSets000.FOLLOW_19_in_rule__UniquenessEnforcerRecipe__Group__10__Impl5773); 
              after(grammarAccess.getUniquenessEnforcerRecipeAccess().getRightCurlyBracketKeyword_10()); 
 
             }
@@ -7148,21 +7384,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__0"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2859:1: rule__CheckRecipe__Group__0 : rule__CheckRecipe__Group__0__Impl rule__CheckRecipe__Group__1 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2956:1: rule__CheckRecipe__Group__0 : rule__CheckRecipe__Group__0__Impl rule__CheckRecipe__Group__1 ;
     public final void rule__CheckRecipe__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2863:1: ( rule__CheckRecipe__Group__0__Impl rule__CheckRecipe__Group__1 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2864:2: rule__CheckRecipe__Group__0__Impl rule__CheckRecipe__Group__1
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2960:1: ( rule__CheckRecipe__Group__0__Impl rule__CheckRecipe__Group__1 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2961:2: rule__CheckRecipe__Group__0__Impl rule__CheckRecipe__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__0__Impl_in_rule__CheckRecipe__Group__05636);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__0__Impl_in_rule__CheckRecipe__Group__05826);
             rule__CheckRecipe__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__1_in_rule__CheckRecipe__Group__05639);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__1_in_rule__CheckRecipe__Group__05829);
             rule__CheckRecipe__Group__1();
 
             state._fsp--;
@@ -7186,20 +7422,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__0__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2871:1: rule__CheckRecipe__Group__0__Impl : ( 'Check' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2968:1: rule__CheckRecipe__Group__0__Impl : ( 'Check' ) ;
     public final void rule__CheckRecipe__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2875:1: ( ( 'Check' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2876:1: ( 'Check' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2972:1: ( ( 'Check' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2973:1: ( 'Check' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2876:1: ( 'Check' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2877:1: 'Check'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2973:1: ( 'Check' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2974:1: 'Check'
             {
              before(grammarAccess.getCheckRecipeAccess().getCheckKeyword_0()); 
-            match(input,28,FollowSets000.FOLLOW_28_in_rule__CheckRecipe__Group__0__Impl5667); 
+            match(input,29,FollowSets000.FOLLOW_29_in_rule__CheckRecipe__Group__0__Impl5857); 
              after(grammarAccess.getCheckRecipeAccess().getCheckKeyword_0()); 
 
             }
@@ -7223,21 +7459,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__1"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2890:1: rule__CheckRecipe__Group__1 : rule__CheckRecipe__Group__1__Impl rule__CheckRecipe__Group__2 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2987:1: rule__CheckRecipe__Group__1 : rule__CheckRecipe__Group__1__Impl rule__CheckRecipe__Group__2 ;
     public final void rule__CheckRecipe__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2894:1: ( rule__CheckRecipe__Group__1__Impl rule__CheckRecipe__Group__2 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2895:2: rule__CheckRecipe__Group__1__Impl rule__CheckRecipe__Group__2
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2991:1: ( rule__CheckRecipe__Group__1__Impl rule__CheckRecipe__Group__2 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2992:2: rule__CheckRecipe__Group__1__Impl rule__CheckRecipe__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__1__Impl_in_rule__CheckRecipe__Group__15698);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__1__Impl_in_rule__CheckRecipe__Group__15888);
             rule__CheckRecipe__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__2_in_rule__CheckRecipe__Group__15701);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__2_in_rule__CheckRecipe__Group__15891);
             rule__CheckRecipe__Group__2();
 
             state._fsp--;
@@ -7261,20 +7497,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__1__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2902:1: rule__CheckRecipe__Group__1__Impl : ( '{' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2999:1: rule__CheckRecipe__Group__1__Impl : ( '{' ) ;
     public final void rule__CheckRecipe__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2906:1: ( ( '{' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2907:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3003:1: ( ( '{' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3004:1: ( '{' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2907:1: ( '{' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2908:1: '{'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3004:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3005:1: '{'
             {
              before(grammarAccess.getCheckRecipeAccess().getLeftCurlyBracketKeyword_1()); 
-            match(input,18,FollowSets000.FOLLOW_18_in_rule__CheckRecipe__Group__1__Impl5729); 
+            match(input,18,FollowSets000.FOLLOW_18_in_rule__CheckRecipe__Group__1__Impl5919); 
              after(grammarAccess.getCheckRecipeAccess().getLeftCurlyBracketKeyword_1()); 
 
             }
@@ -7298,21 +7534,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__2"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2921:1: rule__CheckRecipe__Group__2 : rule__CheckRecipe__Group__2__Impl rule__CheckRecipe__Group__3 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3018:1: rule__CheckRecipe__Group__2 : rule__CheckRecipe__Group__2__Impl rule__CheckRecipe__Group__3 ;
     public final void rule__CheckRecipe__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2925:1: ( rule__CheckRecipe__Group__2__Impl rule__CheckRecipe__Group__3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2926:2: rule__CheckRecipe__Group__2__Impl rule__CheckRecipe__Group__3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3022:1: ( rule__CheckRecipe__Group__2__Impl rule__CheckRecipe__Group__3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3023:2: rule__CheckRecipe__Group__2__Impl rule__CheckRecipe__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__2__Impl_in_rule__CheckRecipe__Group__25760);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__2__Impl_in_rule__CheckRecipe__Group__25950);
             rule__CheckRecipe__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__3_in_rule__CheckRecipe__Group__25763);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__3_in_rule__CheckRecipe__Group__25953);
             rule__CheckRecipe__Group__3();
 
             state._fsp--;
@@ -7336,20 +7572,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__2__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2933:1: rule__CheckRecipe__Group__2__Impl : ( 'traceInfo' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3030:1: rule__CheckRecipe__Group__2__Impl : ( 'traceInfo' ) ;
     public final void rule__CheckRecipe__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2937:1: ( ( 'traceInfo' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2938:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3034:1: ( ( 'traceInfo' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3035:1: ( 'traceInfo' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2938:1: ( 'traceInfo' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2939:1: 'traceInfo'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3035:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3036:1: 'traceInfo'
             {
              before(grammarAccess.getCheckRecipeAccess().getTraceInfoKeyword_2()); 
-            match(input,22,FollowSets000.FOLLOW_22_in_rule__CheckRecipe__Group__2__Impl5791); 
+            match(input,23,FollowSets000.FOLLOW_23_in_rule__CheckRecipe__Group__2__Impl5981); 
              after(grammarAccess.getCheckRecipeAccess().getTraceInfoKeyword_2()); 
 
             }
@@ -7373,21 +7609,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2952:1: rule__CheckRecipe__Group__3 : rule__CheckRecipe__Group__3__Impl rule__CheckRecipe__Group__4 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3049:1: rule__CheckRecipe__Group__3 : rule__CheckRecipe__Group__3__Impl rule__CheckRecipe__Group__4 ;
     public final void rule__CheckRecipe__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2956:1: ( rule__CheckRecipe__Group__3__Impl rule__CheckRecipe__Group__4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2957:2: rule__CheckRecipe__Group__3__Impl rule__CheckRecipe__Group__4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3053:1: ( rule__CheckRecipe__Group__3__Impl rule__CheckRecipe__Group__4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3054:2: rule__CheckRecipe__Group__3__Impl rule__CheckRecipe__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__3__Impl_in_rule__CheckRecipe__Group__35822);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__3__Impl_in_rule__CheckRecipe__Group__36012);
             rule__CheckRecipe__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__4_in_rule__CheckRecipe__Group__35825);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__4_in_rule__CheckRecipe__Group__36015);
             rule__CheckRecipe__Group__4();
 
             state._fsp--;
@@ -7411,20 +7647,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__3__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2964:1: rule__CheckRecipe__Group__3__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3061:1: rule__CheckRecipe__Group__3__Impl : ( ':' ) ;
     public final void rule__CheckRecipe__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2968:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2969:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3065:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3066:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2969:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2970:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3066:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3067:1: ':'
             {
              before(grammarAccess.getCheckRecipeAccess().getColonKeyword_3()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__CheckRecipe__Group__3__Impl5853); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__CheckRecipe__Group__3__Impl6043); 
              after(grammarAccess.getCheckRecipeAccess().getColonKeyword_3()); 
 
             }
@@ -7448,21 +7684,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2983:1: rule__CheckRecipe__Group__4 : rule__CheckRecipe__Group__4__Impl rule__CheckRecipe__Group__5 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3080:1: rule__CheckRecipe__Group__4 : rule__CheckRecipe__Group__4__Impl rule__CheckRecipe__Group__5 ;
     public final void rule__CheckRecipe__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2987:1: ( rule__CheckRecipe__Group__4__Impl rule__CheckRecipe__Group__5 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2988:2: rule__CheckRecipe__Group__4__Impl rule__CheckRecipe__Group__5
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3084:1: ( rule__CheckRecipe__Group__4__Impl rule__CheckRecipe__Group__5 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3085:2: rule__CheckRecipe__Group__4__Impl rule__CheckRecipe__Group__5
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__4__Impl_in_rule__CheckRecipe__Group__45884);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__4__Impl_in_rule__CheckRecipe__Group__46074);
             rule__CheckRecipe__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__5_in_rule__CheckRecipe__Group__45887);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__5_in_rule__CheckRecipe__Group__46077);
             rule__CheckRecipe__Group__5();
 
             state._fsp--;
@@ -7486,23 +7722,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__4__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2995:1: rule__CheckRecipe__Group__4__Impl : ( ( rule__CheckRecipe__TraceInfoAssignment_4 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3092:1: rule__CheckRecipe__Group__4__Impl : ( ( rule__CheckRecipe__TraceInfoAssignment_4 ) ) ;
     public final void rule__CheckRecipe__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:2999:1: ( ( ( rule__CheckRecipe__TraceInfoAssignment_4 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3000:1: ( ( rule__CheckRecipe__TraceInfoAssignment_4 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3096:1: ( ( ( rule__CheckRecipe__TraceInfoAssignment_4 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3097:1: ( ( rule__CheckRecipe__TraceInfoAssignment_4 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3000:1: ( ( rule__CheckRecipe__TraceInfoAssignment_4 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3001:1: ( rule__CheckRecipe__TraceInfoAssignment_4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3097:1: ( ( rule__CheckRecipe__TraceInfoAssignment_4 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3098:1: ( rule__CheckRecipe__TraceInfoAssignment_4 )
             {
              before(grammarAccess.getCheckRecipeAccess().getTraceInfoAssignment_4()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3002:1: ( rule__CheckRecipe__TraceInfoAssignment_4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3002:2: rule__CheckRecipe__TraceInfoAssignment_4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3099:1: ( rule__CheckRecipe__TraceInfoAssignment_4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3099:2: rule__CheckRecipe__TraceInfoAssignment_4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__TraceInfoAssignment_4_in_rule__CheckRecipe__Group__4__Impl5914);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__TraceInfoAssignment_4_in_rule__CheckRecipe__Group__4__Impl6104);
             rule__CheckRecipe__TraceInfoAssignment_4();
 
             state._fsp--;
@@ -7533,21 +7769,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__5"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3012:1: rule__CheckRecipe__Group__5 : rule__CheckRecipe__Group__5__Impl rule__CheckRecipe__Group__6 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3109:1: rule__CheckRecipe__Group__5 : rule__CheckRecipe__Group__5__Impl rule__CheckRecipe__Group__6 ;
     public final void rule__CheckRecipe__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3016:1: ( rule__CheckRecipe__Group__5__Impl rule__CheckRecipe__Group__6 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3017:2: rule__CheckRecipe__Group__5__Impl rule__CheckRecipe__Group__6
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3113:1: ( rule__CheckRecipe__Group__5__Impl rule__CheckRecipe__Group__6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3114:2: rule__CheckRecipe__Group__5__Impl rule__CheckRecipe__Group__6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__5__Impl_in_rule__CheckRecipe__Group__55944);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__5__Impl_in_rule__CheckRecipe__Group__56134);
             rule__CheckRecipe__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__6_in_rule__CheckRecipe__Group__55947);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__6_in_rule__CheckRecipe__Group__56137);
             rule__CheckRecipe__Group__6();
 
             state._fsp--;
@@ -7571,20 +7807,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__5__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3024:1: rule__CheckRecipe__Group__5__Impl : ( 'parent' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3121:1: rule__CheckRecipe__Group__5__Impl : ( 'parent' ) ;
     public final void rule__CheckRecipe__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3028:1: ( ( 'parent' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3029:1: ( 'parent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3125:1: ( ( 'parent' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3126:1: ( 'parent' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3029:1: ( 'parent' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3030:1: 'parent'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3126:1: ( 'parent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3127:1: 'parent'
             {
              before(grammarAccess.getCheckRecipeAccess().getParentKeyword_5()); 
-            match(input,29,FollowSets000.FOLLOW_29_in_rule__CheckRecipe__Group__5__Impl5975); 
+            match(input,30,FollowSets000.FOLLOW_30_in_rule__CheckRecipe__Group__5__Impl6165); 
              after(grammarAccess.getCheckRecipeAccess().getParentKeyword_5()); 
 
             }
@@ -7608,21 +7844,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__6"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3043:1: rule__CheckRecipe__Group__6 : rule__CheckRecipe__Group__6__Impl rule__CheckRecipe__Group__7 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3140:1: rule__CheckRecipe__Group__6 : rule__CheckRecipe__Group__6__Impl rule__CheckRecipe__Group__7 ;
     public final void rule__CheckRecipe__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3047:1: ( rule__CheckRecipe__Group__6__Impl rule__CheckRecipe__Group__7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3048:2: rule__CheckRecipe__Group__6__Impl rule__CheckRecipe__Group__7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3144:1: ( rule__CheckRecipe__Group__6__Impl rule__CheckRecipe__Group__7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3145:2: rule__CheckRecipe__Group__6__Impl rule__CheckRecipe__Group__7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__6__Impl_in_rule__CheckRecipe__Group__66006);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__6__Impl_in_rule__CheckRecipe__Group__66196);
             rule__CheckRecipe__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__7_in_rule__CheckRecipe__Group__66009);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__7_in_rule__CheckRecipe__Group__66199);
             rule__CheckRecipe__Group__7();
 
             state._fsp--;
@@ -7646,20 +7882,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__6__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3055:1: rule__CheckRecipe__Group__6__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3152:1: rule__CheckRecipe__Group__6__Impl : ( ':' ) ;
     public final void rule__CheckRecipe__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3059:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3060:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3156:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3157:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3060:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3061:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3157:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3158:1: ':'
             {
              before(grammarAccess.getCheckRecipeAccess().getColonKeyword_6()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__CheckRecipe__Group__6__Impl6037); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__CheckRecipe__Group__6__Impl6227); 
              after(grammarAccess.getCheckRecipeAccess().getColonKeyword_6()); 
 
             }
@@ -7683,21 +7919,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3074:1: rule__CheckRecipe__Group__7 : rule__CheckRecipe__Group__7__Impl rule__CheckRecipe__Group__8 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3171:1: rule__CheckRecipe__Group__7 : rule__CheckRecipe__Group__7__Impl rule__CheckRecipe__Group__8 ;
     public final void rule__CheckRecipe__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3078:1: ( rule__CheckRecipe__Group__7__Impl rule__CheckRecipe__Group__8 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3079:2: rule__CheckRecipe__Group__7__Impl rule__CheckRecipe__Group__8
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3175:1: ( rule__CheckRecipe__Group__7__Impl rule__CheckRecipe__Group__8 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3176:2: rule__CheckRecipe__Group__7__Impl rule__CheckRecipe__Group__8
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__7__Impl_in_rule__CheckRecipe__Group__76068);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__7__Impl_in_rule__CheckRecipe__Group__76258);
             rule__CheckRecipe__Group__7__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__8_in_rule__CheckRecipe__Group__76071);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__8_in_rule__CheckRecipe__Group__76261);
             rule__CheckRecipe__Group__8();
 
             state._fsp--;
@@ -7721,23 +7957,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__7__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3086:1: rule__CheckRecipe__Group__7__Impl : ( ( rule__CheckRecipe__ParentAssignment_7 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3183:1: rule__CheckRecipe__Group__7__Impl : ( ( rule__CheckRecipe__ParentAssignment_7 ) ) ;
     public final void rule__CheckRecipe__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3090:1: ( ( ( rule__CheckRecipe__ParentAssignment_7 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3091:1: ( ( rule__CheckRecipe__ParentAssignment_7 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3187:1: ( ( ( rule__CheckRecipe__ParentAssignment_7 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3188:1: ( ( rule__CheckRecipe__ParentAssignment_7 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3091:1: ( ( rule__CheckRecipe__ParentAssignment_7 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3092:1: ( rule__CheckRecipe__ParentAssignment_7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3188:1: ( ( rule__CheckRecipe__ParentAssignment_7 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3189:1: ( rule__CheckRecipe__ParentAssignment_7 )
             {
              before(grammarAccess.getCheckRecipeAccess().getParentAssignment_7()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3093:1: ( rule__CheckRecipe__ParentAssignment_7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3093:2: rule__CheckRecipe__ParentAssignment_7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3190:1: ( rule__CheckRecipe__ParentAssignment_7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3190:2: rule__CheckRecipe__ParentAssignment_7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__ParentAssignment_7_in_rule__CheckRecipe__Group__7__Impl6098);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__ParentAssignment_7_in_rule__CheckRecipe__Group__7__Impl6288);
             rule__CheckRecipe__ParentAssignment_7();
 
             state._fsp--;
@@ -7768,16 +8004,16 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__8"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3103:1: rule__CheckRecipe__Group__8 : rule__CheckRecipe__Group__8__Impl ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3200:1: rule__CheckRecipe__Group__8 : rule__CheckRecipe__Group__8__Impl ;
     public final void rule__CheckRecipe__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3107:1: ( rule__CheckRecipe__Group__8__Impl )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3108:2: rule__CheckRecipe__Group__8__Impl
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3204:1: ( rule__CheckRecipe__Group__8__Impl )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3205:2: rule__CheckRecipe__Group__8__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__8__Impl_in_rule__CheckRecipe__Group__86128);
+            pushFollow(FollowSets000.FOLLOW_rule__CheckRecipe__Group__8__Impl_in_rule__CheckRecipe__Group__86318);
             rule__CheckRecipe__Group__8__Impl();
 
             state._fsp--;
@@ -7801,20 +8037,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__Group__8__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3114:1: rule__CheckRecipe__Group__8__Impl : ( '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3211:1: rule__CheckRecipe__Group__8__Impl : ( '}' ) ;
     public final void rule__CheckRecipe__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3118:1: ( ( '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3119:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3215:1: ( ( '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3216:1: ( '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3119:1: ( '}' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3120:1: '}'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3216:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3217:1: '}'
             {
              before(grammarAccess.getCheckRecipeAccess().getRightCurlyBracketKeyword_8()); 
-            match(input,19,FollowSets000.FOLLOW_19_in_rule__CheckRecipe__Group__8__Impl6156); 
+            match(input,19,FollowSets000.FOLLOW_19_in_rule__CheckRecipe__Group__8__Impl6346); 
              after(grammarAccess.getCheckRecipeAccess().getRightCurlyBracketKeyword_8()); 
 
             }
@@ -7838,21 +8074,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__0"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3151:1: rule__TrimmerRecipe__Group__0 : rule__TrimmerRecipe__Group__0__Impl rule__TrimmerRecipe__Group__1 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3248:1: rule__TrimmerRecipe__Group__0 : rule__TrimmerRecipe__Group__0__Impl rule__TrimmerRecipe__Group__1 ;
     public final void rule__TrimmerRecipe__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3155:1: ( rule__TrimmerRecipe__Group__0__Impl rule__TrimmerRecipe__Group__1 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3156:2: rule__TrimmerRecipe__Group__0__Impl rule__TrimmerRecipe__Group__1
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3252:1: ( rule__TrimmerRecipe__Group__0__Impl rule__TrimmerRecipe__Group__1 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3253:2: rule__TrimmerRecipe__Group__0__Impl rule__TrimmerRecipe__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__0__Impl_in_rule__TrimmerRecipe__Group__06205);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__0__Impl_in_rule__TrimmerRecipe__Group__06395);
             rule__TrimmerRecipe__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__1_in_rule__TrimmerRecipe__Group__06208);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__1_in_rule__TrimmerRecipe__Group__06398);
             rule__TrimmerRecipe__Group__1();
 
             state._fsp--;
@@ -7876,20 +8112,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__0__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3163:1: rule__TrimmerRecipe__Group__0__Impl : ( 'Trimmer' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3260:1: rule__TrimmerRecipe__Group__0__Impl : ( 'Trimmer' ) ;
     public final void rule__TrimmerRecipe__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3167:1: ( ( 'Trimmer' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3168:1: ( 'Trimmer' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3264:1: ( ( 'Trimmer' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3265:1: ( 'Trimmer' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3168:1: ( 'Trimmer' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3169:1: 'Trimmer'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3265:1: ( 'Trimmer' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3266:1: 'Trimmer'
             {
              before(grammarAccess.getTrimmerRecipeAccess().getTrimmerKeyword_0()); 
-            match(input,30,FollowSets000.FOLLOW_30_in_rule__TrimmerRecipe__Group__0__Impl6236); 
+            match(input,31,FollowSets000.FOLLOW_31_in_rule__TrimmerRecipe__Group__0__Impl6426); 
              after(grammarAccess.getTrimmerRecipeAccess().getTrimmerKeyword_0()); 
 
             }
@@ -7913,21 +8149,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__1"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3182:1: rule__TrimmerRecipe__Group__1 : rule__TrimmerRecipe__Group__1__Impl rule__TrimmerRecipe__Group__2 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3279:1: rule__TrimmerRecipe__Group__1 : rule__TrimmerRecipe__Group__1__Impl rule__TrimmerRecipe__Group__2 ;
     public final void rule__TrimmerRecipe__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3186:1: ( rule__TrimmerRecipe__Group__1__Impl rule__TrimmerRecipe__Group__2 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3187:2: rule__TrimmerRecipe__Group__1__Impl rule__TrimmerRecipe__Group__2
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3283:1: ( rule__TrimmerRecipe__Group__1__Impl rule__TrimmerRecipe__Group__2 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3284:2: rule__TrimmerRecipe__Group__1__Impl rule__TrimmerRecipe__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__1__Impl_in_rule__TrimmerRecipe__Group__16267);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__1__Impl_in_rule__TrimmerRecipe__Group__16457);
             rule__TrimmerRecipe__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__2_in_rule__TrimmerRecipe__Group__16270);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__2_in_rule__TrimmerRecipe__Group__16460);
             rule__TrimmerRecipe__Group__2();
 
             state._fsp--;
@@ -7951,20 +8187,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__1__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3194:1: rule__TrimmerRecipe__Group__1__Impl : ( '{' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3291:1: rule__TrimmerRecipe__Group__1__Impl : ( '{' ) ;
     public final void rule__TrimmerRecipe__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3198:1: ( ( '{' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3199:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3295:1: ( ( '{' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3296:1: ( '{' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3199:1: ( '{' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3200:1: '{'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3296:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3297:1: '{'
             {
              before(grammarAccess.getTrimmerRecipeAccess().getLeftCurlyBracketKeyword_1()); 
-            match(input,18,FollowSets000.FOLLOW_18_in_rule__TrimmerRecipe__Group__1__Impl6298); 
+            match(input,18,FollowSets000.FOLLOW_18_in_rule__TrimmerRecipe__Group__1__Impl6488); 
              after(grammarAccess.getTrimmerRecipeAccess().getLeftCurlyBracketKeyword_1()); 
 
             }
@@ -7988,21 +8224,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__2"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3213:1: rule__TrimmerRecipe__Group__2 : rule__TrimmerRecipe__Group__2__Impl rule__TrimmerRecipe__Group__3 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3310:1: rule__TrimmerRecipe__Group__2 : rule__TrimmerRecipe__Group__2__Impl rule__TrimmerRecipe__Group__3 ;
     public final void rule__TrimmerRecipe__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3217:1: ( rule__TrimmerRecipe__Group__2__Impl rule__TrimmerRecipe__Group__3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3218:2: rule__TrimmerRecipe__Group__2__Impl rule__TrimmerRecipe__Group__3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3314:1: ( rule__TrimmerRecipe__Group__2__Impl rule__TrimmerRecipe__Group__3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3315:2: rule__TrimmerRecipe__Group__2__Impl rule__TrimmerRecipe__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__2__Impl_in_rule__TrimmerRecipe__Group__26329);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__2__Impl_in_rule__TrimmerRecipe__Group__26519);
             rule__TrimmerRecipe__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__3_in_rule__TrimmerRecipe__Group__26332);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__3_in_rule__TrimmerRecipe__Group__26522);
             rule__TrimmerRecipe__Group__3();
 
             state._fsp--;
@@ -8026,20 +8262,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__2__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3225:1: rule__TrimmerRecipe__Group__2__Impl : ( 'traceInfo' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3322:1: rule__TrimmerRecipe__Group__2__Impl : ( 'traceInfo' ) ;
     public final void rule__TrimmerRecipe__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3229:1: ( ( 'traceInfo' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3230:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3326:1: ( ( 'traceInfo' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3327:1: ( 'traceInfo' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3230:1: ( 'traceInfo' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3231:1: 'traceInfo'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3327:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3328:1: 'traceInfo'
             {
              before(grammarAccess.getTrimmerRecipeAccess().getTraceInfoKeyword_2()); 
-            match(input,22,FollowSets000.FOLLOW_22_in_rule__TrimmerRecipe__Group__2__Impl6360); 
+            match(input,23,FollowSets000.FOLLOW_23_in_rule__TrimmerRecipe__Group__2__Impl6550); 
              after(grammarAccess.getTrimmerRecipeAccess().getTraceInfoKeyword_2()); 
 
             }
@@ -8063,21 +8299,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3244:1: rule__TrimmerRecipe__Group__3 : rule__TrimmerRecipe__Group__3__Impl rule__TrimmerRecipe__Group__4 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3341:1: rule__TrimmerRecipe__Group__3 : rule__TrimmerRecipe__Group__3__Impl rule__TrimmerRecipe__Group__4 ;
     public final void rule__TrimmerRecipe__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3248:1: ( rule__TrimmerRecipe__Group__3__Impl rule__TrimmerRecipe__Group__4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3249:2: rule__TrimmerRecipe__Group__3__Impl rule__TrimmerRecipe__Group__4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3345:1: ( rule__TrimmerRecipe__Group__3__Impl rule__TrimmerRecipe__Group__4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3346:2: rule__TrimmerRecipe__Group__3__Impl rule__TrimmerRecipe__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__3__Impl_in_rule__TrimmerRecipe__Group__36391);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__3__Impl_in_rule__TrimmerRecipe__Group__36581);
             rule__TrimmerRecipe__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__4_in_rule__TrimmerRecipe__Group__36394);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__4_in_rule__TrimmerRecipe__Group__36584);
             rule__TrimmerRecipe__Group__4();
 
             state._fsp--;
@@ -8101,20 +8337,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__3__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3256:1: rule__TrimmerRecipe__Group__3__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3353:1: rule__TrimmerRecipe__Group__3__Impl : ( ':' ) ;
     public final void rule__TrimmerRecipe__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3260:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3261:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3357:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3358:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3261:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3262:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3358:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3359:1: ':'
             {
              before(grammarAccess.getTrimmerRecipeAccess().getColonKeyword_3()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__TrimmerRecipe__Group__3__Impl6422); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__TrimmerRecipe__Group__3__Impl6612); 
              after(grammarAccess.getTrimmerRecipeAccess().getColonKeyword_3()); 
 
             }
@@ -8138,21 +8374,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3275:1: rule__TrimmerRecipe__Group__4 : rule__TrimmerRecipe__Group__4__Impl rule__TrimmerRecipe__Group__5 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3372:1: rule__TrimmerRecipe__Group__4 : rule__TrimmerRecipe__Group__4__Impl rule__TrimmerRecipe__Group__5 ;
     public final void rule__TrimmerRecipe__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3279:1: ( rule__TrimmerRecipe__Group__4__Impl rule__TrimmerRecipe__Group__5 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3280:2: rule__TrimmerRecipe__Group__4__Impl rule__TrimmerRecipe__Group__5
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3376:1: ( rule__TrimmerRecipe__Group__4__Impl rule__TrimmerRecipe__Group__5 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3377:2: rule__TrimmerRecipe__Group__4__Impl rule__TrimmerRecipe__Group__5
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__4__Impl_in_rule__TrimmerRecipe__Group__46453);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__4__Impl_in_rule__TrimmerRecipe__Group__46643);
             rule__TrimmerRecipe__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__5_in_rule__TrimmerRecipe__Group__46456);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__5_in_rule__TrimmerRecipe__Group__46646);
             rule__TrimmerRecipe__Group__5();
 
             state._fsp--;
@@ -8176,23 +8412,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__4__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3287:1: rule__TrimmerRecipe__Group__4__Impl : ( ( rule__TrimmerRecipe__TraceInfoAssignment_4 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3384:1: rule__TrimmerRecipe__Group__4__Impl : ( ( rule__TrimmerRecipe__TraceInfoAssignment_4 ) ) ;
     public final void rule__TrimmerRecipe__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3291:1: ( ( ( rule__TrimmerRecipe__TraceInfoAssignment_4 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3292:1: ( ( rule__TrimmerRecipe__TraceInfoAssignment_4 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3388:1: ( ( ( rule__TrimmerRecipe__TraceInfoAssignment_4 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3389:1: ( ( rule__TrimmerRecipe__TraceInfoAssignment_4 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3292:1: ( ( rule__TrimmerRecipe__TraceInfoAssignment_4 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3293:1: ( rule__TrimmerRecipe__TraceInfoAssignment_4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3389:1: ( ( rule__TrimmerRecipe__TraceInfoAssignment_4 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3390:1: ( rule__TrimmerRecipe__TraceInfoAssignment_4 )
             {
              before(grammarAccess.getTrimmerRecipeAccess().getTraceInfoAssignment_4()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3294:1: ( rule__TrimmerRecipe__TraceInfoAssignment_4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3294:2: rule__TrimmerRecipe__TraceInfoAssignment_4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3391:1: ( rule__TrimmerRecipe__TraceInfoAssignment_4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3391:2: rule__TrimmerRecipe__TraceInfoAssignment_4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__TraceInfoAssignment_4_in_rule__TrimmerRecipe__Group__4__Impl6483);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__TraceInfoAssignment_4_in_rule__TrimmerRecipe__Group__4__Impl6673);
             rule__TrimmerRecipe__TraceInfoAssignment_4();
 
             state._fsp--;
@@ -8223,21 +8459,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__5"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3304:1: rule__TrimmerRecipe__Group__5 : rule__TrimmerRecipe__Group__5__Impl rule__TrimmerRecipe__Group__6 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3401:1: rule__TrimmerRecipe__Group__5 : rule__TrimmerRecipe__Group__5__Impl rule__TrimmerRecipe__Group__6 ;
     public final void rule__TrimmerRecipe__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3308:1: ( rule__TrimmerRecipe__Group__5__Impl rule__TrimmerRecipe__Group__6 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3309:2: rule__TrimmerRecipe__Group__5__Impl rule__TrimmerRecipe__Group__6
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3405:1: ( rule__TrimmerRecipe__Group__5__Impl rule__TrimmerRecipe__Group__6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3406:2: rule__TrimmerRecipe__Group__5__Impl rule__TrimmerRecipe__Group__6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__5__Impl_in_rule__TrimmerRecipe__Group__56513);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__5__Impl_in_rule__TrimmerRecipe__Group__56703);
             rule__TrimmerRecipe__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__6_in_rule__TrimmerRecipe__Group__56516);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__6_in_rule__TrimmerRecipe__Group__56706);
             rule__TrimmerRecipe__Group__6();
 
             state._fsp--;
@@ -8261,20 +8497,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__5__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3316:1: rule__TrimmerRecipe__Group__5__Impl : ( 'mask' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3413:1: rule__TrimmerRecipe__Group__5__Impl : ( 'mask' ) ;
     public final void rule__TrimmerRecipe__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3320:1: ( ( 'mask' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3321:1: ( 'mask' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3417:1: ( ( 'mask' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3418:1: ( 'mask' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3321:1: ( 'mask' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3322:1: 'mask'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3418:1: ( 'mask' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3419:1: 'mask'
             {
              before(grammarAccess.getTrimmerRecipeAccess().getMaskKeyword_5()); 
-            match(input,31,FollowSets000.FOLLOW_31_in_rule__TrimmerRecipe__Group__5__Impl6544); 
+            match(input,32,FollowSets000.FOLLOW_32_in_rule__TrimmerRecipe__Group__5__Impl6734); 
              after(grammarAccess.getTrimmerRecipeAccess().getMaskKeyword_5()); 
 
             }
@@ -8298,21 +8534,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__6"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3335:1: rule__TrimmerRecipe__Group__6 : rule__TrimmerRecipe__Group__6__Impl rule__TrimmerRecipe__Group__7 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3432:1: rule__TrimmerRecipe__Group__6 : rule__TrimmerRecipe__Group__6__Impl rule__TrimmerRecipe__Group__7 ;
     public final void rule__TrimmerRecipe__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3339:1: ( rule__TrimmerRecipe__Group__6__Impl rule__TrimmerRecipe__Group__7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3340:2: rule__TrimmerRecipe__Group__6__Impl rule__TrimmerRecipe__Group__7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3436:1: ( rule__TrimmerRecipe__Group__6__Impl rule__TrimmerRecipe__Group__7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3437:2: rule__TrimmerRecipe__Group__6__Impl rule__TrimmerRecipe__Group__7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__6__Impl_in_rule__TrimmerRecipe__Group__66575);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__6__Impl_in_rule__TrimmerRecipe__Group__66765);
             rule__TrimmerRecipe__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__7_in_rule__TrimmerRecipe__Group__66578);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__7_in_rule__TrimmerRecipe__Group__66768);
             rule__TrimmerRecipe__Group__7();
 
             state._fsp--;
@@ -8336,20 +8572,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__6__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3347:1: rule__TrimmerRecipe__Group__6__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3444:1: rule__TrimmerRecipe__Group__6__Impl : ( ':' ) ;
     public final void rule__TrimmerRecipe__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3351:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3352:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3448:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3449:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3352:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3353:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3449:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3450:1: ':'
             {
              before(grammarAccess.getTrimmerRecipeAccess().getColonKeyword_6()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__TrimmerRecipe__Group__6__Impl6606); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__TrimmerRecipe__Group__6__Impl6796); 
              after(grammarAccess.getTrimmerRecipeAccess().getColonKeyword_6()); 
 
             }
@@ -8373,21 +8609,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3366:1: rule__TrimmerRecipe__Group__7 : rule__TrimmerRecipe__Group__7__Impl rule__TrimmerRecipe__Group__8 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3463:1: rule__TrimmerRecipe__Group__7 : rule__TrimmerRecipe__Group__7__Impl rule__TrimmerRecipe__Group__8 ;
     public final void rule__TrimmerRecipe__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3370:1: ( rule__TrimmerRecipe__Group__7__Impl rule__TrimmerRecipe__Group__8 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3371:2: rule__TrimmerRecipe__Group__7__Impl rule__TrimmerRecipe__Group__8
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3467:1: ( rule__TrimmerRecipe__Group__7__Impl rule__TrimmerRecipe__Group__8 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3468:2: rule__TrimmerRecipe__Group__7__Impl rule__TrimmerRecipe__Group__8
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__7__Impl_in_rule__TrimmerRecipe__Group__76637);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__7__Impl_in_rule__TrimmerRecipe__Group__76827);
             rule__TrimmerRecipe__Group__7__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__8_in_rule__TrimmerRecipe__Group__76640);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__8_in_rule__TrimmerRecipe__Group__76830);
             rule__TrimmerRecipe__Group__8();
 
             state._fsp--;
@@ -8411,23 +8647,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__7__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3378:1: rule__TrimmerRecipe__Group__7__Impl : ( ( rule__TrimmerRecipe__MaskAssignment_7 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3475:1: rule__TrimmerRecipe__Group__7__Impl : ( ( rule__TrimmerRecipe__MaskAssignment_7 ) ) ;
     public final void rule__TrimmerRecipe__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3382:1: ( ( ( rule__TrimmerRecipe__MaskAssignment_7 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3383:1: ( ( rule__TrimmerRecipe__MaskAssignment_7 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3479:1: ( ( ( rule__TrimmerRecipe__MaskAssignment_7 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3480:1: ( ( rule__TrimmerRecipe__MaskAssignment_7 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3383:1: ( ( rule__TrimmerRecipe__MaskAssignment_7 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3384:1: ( rule__TrimmerRecipe__MaskAssignment_7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3480:1: ( ( rule__TrimmerRecipe__MaskAssignment_7 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3481:1: ( rule__TrimmerRecipe__MaskAssignment_7 )
             {
              before(grammarAccess.getTrimmerRecipeAccess().getMaskAssignment_7()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3385:1: ( rule__TrimmerRecipe__MaskAssignment_7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3385:2: rule__TrimmerRecipe__MaskAssignment_7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3482:1: ( rule__TrimmerRecipe__MaskAssignment_7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3482:2: rule__TrimmerRecipe__MaskAssignment_7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__MaskAssignment_7_in_rule__TrimmerRecipe__Group__7__Impl6667);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__MaskAssignment_7_in_rule__TrimmerRecipe__Group__7__Impl6857);
             rule__TrimmerRecipe__MaskAssignment_7();
 
             state._fsp--;
@@ -8458,21 +8694,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__8"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3395:1: rule__TrimmerRecipe__Group__8 : rule__TrimmerRecipe__Group__8__Impl rule__TrimmerRecipe__Group__9 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3492:1: rule__TrimmerRecipe__Group__8 : rule__TrimmerRecipe__Group__8__Impl rule__TrimmerRecipe__Group__9 ;
     public final void rule__TrimmerRecipe__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3399:1: ( rule__TrimmerRecipe__Group__8__Impl rule__TrimmerRecipe__Group__9 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3400:2: rule__TrimmerRecipe__Group__8__Impl rule__TrimmerRecipe__Group__9
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3496:1: ( rule__TrimmerRecipe__Group__8__Impl rule__TrimmerRecipe__Group__9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3497:2: rule__TrimmerRecipe__Group__8__Impl rule__TrimmerRecipe__Group__9
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__8__Impl_in_rule__TrimmerRecipe__Group__86697);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__8__Impl_in_rule__TrimmerRecipe__Group__86887);
             rule__TrimmerRecipe__Group__8__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__9_in_rule__TrimmerRecipe__Group__86700);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__9_in_rule__TrimmerRecipe__Group__86890);
             rule__TrimmerRecipe__Group__9();
 
             state._fsp--;
@@ -8496,20 +8732,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__8__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3407:1: rule__TrimmerRecipe__Group__8__Impl : ( 'parent' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3504:1: rule__TrimmerRecipe__Group__8__Impl : ( 'parent' ) ;
     public final void rule__TrimmerRecipe__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3411:1: ( ( 'parent' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3412:1: ( 'parent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3508:1: ( ( 'parent' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3509:1: ( 'parent' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3412:1: ( 'parent' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3413:1: 'parent'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3509:1: ( 'parent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3510:1: 'parent'
             {
              before(grammarAccess.getTrimmerRecipeAccess().getParentKeyword_8()); 
-            match(input,29,FollowSets000.FOLLOW_29_in_rule__TrimmerRecipe__Group__8__Impl6728); 
+            match(input,30,FollowSets000.FOLLOW_30_in_rule__TrimmerRecipe__Group__8__Impl6918); 
              after(grammarAccess.getTrimmerRecipeAccess().getParentKeyword_8()); 
 
             }
@@ -8533,21 +8769,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__9"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3426:1: rule__TrimmerRecipe__Group__9 : rule__TrimmerRecipe__Group__9__Impl rule__TrimmerRecipe__Group__10 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3523:1: rule__TrimmerRecipe__Group__9 : rule__TrimmerRecipe__Group__9__Impl rule__TrimmerRecipe__Group__10 ;
     public final void rule__TrimmerRecipe__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3430:1: ( rule__TrimmerRecipe__Group__9__Impl rule__TrimmerRecipe__Group__10 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3431:2: rule__TrimmerRecipe__Group__9__Impl rule__TrimmerRecipe__Group__10
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3527:1: ( rule__TrimmerRecipe__Group__9__Impl rule__TrimmerRecipe__Group__10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3528:2: rule__TrimmerRecipe__Group__9__Impl rule__TrimmerRecipe__Group__10
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__9__Impl_in_rule__TrimmerRecipe__Group__96759);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__9__Impl_in_rule__TrimmerRecipe__Group__96949);
             rule__TrimmerRecipe__Group__9__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__10_in_rule__TrimmerRecipe__Group__96762);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__10_in_rule__TrimmerRecipe__Group__96952);
             rule__TrimmerRecipe__Group__10();
 
             state._fsp--;
@@ -8571,20 +8807,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__9__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3438:1: rule__TrimmerRecipe__Group__9__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3535:1: rule__TrimmerRecipe__Group__9__Impl : ( ':' ) ;
     public final void rule__TrimmerRecipe__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3442:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3443:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3539:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3540:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3443:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3444:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3540:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3541:1: ':'
             {
              before(grammarAccess.getTrimmerRecipeAccess().getColonKeyword_9()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__TrimmerRecipe__Group__9__Impl6790); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__TrimmerRecipe__Group__9__Impl6980); 
              after(grammarAccess.getTrimmerRecipeAccess().getColonKeyword_9()); 
 
             }
@@ -8608,21 +8844,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__10"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3457:1: rule__TrimmerRecipe__Group__10 : rule__TrimmerRecipe__Group__10__Impl rule__TrimmerRecipe__Group__11 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3554:1: rule__TrimmerRecipe__Group__10 : rule__TrimmerRecipe__Group__10__Impl rule__TrimmerRecipe__Group__11 ;
     public final void rule__TrimmerRecipe__Group__10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3461:1: ( rule__TrimmerRecipe__Group__10__Impl rule__TrimmerRecipe__Group__11 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3462:2: rule__TrimmerRecipe__Group__10__Impl rule__TrimmerRecipe__Group__11
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3558:1: ( rule__TrimmerRecipe__Group__10__Impl rule__TrimmerRecipe__Group__11 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3559:2: rule__TrimmerRecipe__Group__10__Impl rule__TrimmerRecipe__Group__11
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__10__Impl_in_rule__TrimmerRecipe__Group__106821);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__10__Impl_in_rule__TrimmerRecipe__Group__107011);
             rule__TrimmerRecipe__Group__10__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__11_in_rule__TrimmerRecipe__Group__106824);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__11_in_rule__TrimmerRecipe__Group__107014);
             rule__TrimmerRecipe__Group__11();
 
             state._fsp--;
@@ -8646,23 +8882,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__10__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3469:1: rule__TrimmerRecipe__Group__10__Impl : ( ( rule__TrimmerRecipe__ParentAssignment_10 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3566:1: rule__TrimmerRecipe__Group__10__Impl : ( ( rule__TrimmerRecipe__ParentAssignment_10 ) ) ;
     public final void rule__TrimmerRecipe__Group__10__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3473:1: ( ( ( rule__TrimmerRecipe__ParentAssignment_10 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3474:1: ( ( rule__TrimmerRecipe__ParentAssignment_10 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3570:1: ( ( ( rule__TrimmerRecipe__ParentAssignment_10 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3571:1: ( ( rule__TrimmerRecipe__ParentAssignment_10 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3474:1: ( ( rule__TrimmerRecipe__ParentAssignment_10 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3475:1: ( rule__TrimmerRecipe__ParentAssignment_10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3571:1: ( ( rule__TrimmerRecipe__ParentAssignment_10 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3572:1: ( rule__TrimmerRecipe__ParentAssignment_10 )
             {
              before(grammarAccess.getTrimmerRecipeAccess().getParentAssignment_10()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3476:1: ( rule__TrimmerRecipe__ParentAssignment_10 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3476:2: rule__TrimmerRecipe__ParentAssignment_10
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3573:1: ( rule__TrimmerRecipe__ParentAssignment_10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3573:2: rule__TrimmerRecipe__ParentAssignment_10
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__ParentAssignment_10_in_rule__TrimmerRecipe__Group__10__Impl6851);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__ParentAssignment_10_in_rule__TrimmerRecipe__Group__10__Impl7041);
             rule__TrimmerRecipe__ParentAssignment_10();
 
             state._fsp--;
@@ -8693,16 +8929,16 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__11"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3486:1: rule__TrimmerRecipe__Group__11 : rule__TrimmerRecipe__Group__11__Impl ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3583:1: rule__TrimmerRecipe__Group__11 : rule__TrimmerRecipe__Group__11__Impl ;
     public final void rule__TrimmerRecipe__Group__11() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3490:1: ( rule__TrimmerRecipe__Group__11__Impl )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3491:2: rule__TrimmerRecipe__Group__11__Impl
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3587:1: ( rule__TrimmerRecipe__Group__11__Impl )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3588:2: rule__TrimmerRecipe__Group__11__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__11__Impl_in_rule__TrimmerRecipe__Group__116881);
+            pushFollow(FollowSets000.FOLLOW_rule__TrimmerRecipe__Group__11__Impl_in_rule__TrimmerRecipe__Group__117071);
             rule__TrimmerRecipe__Group__11__Impl();
 
             state._fsp--;
@@ -8726,20 +8962,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__Group__11__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3497:1: rule__TrimmerRecipe__Group__11__Impl : ( '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3594:1: rule__TrimmerRecipe__Group__11__Impl : ( '}' ) ;
     public final void rule__TrimmerRecipe__Group__11__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3501:1: ( ( '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3502:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3598:1: ( ( '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3599:1: ( '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3502:1: ( '}' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3503:1: '}'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3599:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3600:1: '}'
             {
              before(grammarAccess.getTrimmerRecipeAccess().getRightCurlyBracketKeyword_11()); 
-            match(input,19,FollowSets000.FOLLOW_19_in_rule__TrimmerRecipe__Group__11__Impl6909); 
+            match(input,19,FollowSets000.FOLLOW_19_in_rule__TrimmerRecipe__Group__11__Impl7099); 
              after(grammarAccess.getTrimmerRecipeAccess().getRightCurlyBracketKeyword_11()); 
 
             }
@@ -8763,21 +8999,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__0"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3540:1: rule__JoinRecipe__Group__0 : rule__JoinRecipe__Group__0__Impl rule__JoinRecipe__Group__1 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3637:1: rule__JoinRecipe__Group__0 : rule__JoinRecipe__Group__0__Impl rule__JoinRecipe__Group__1 ;
     public final void rule__JoinRecipe__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3544:1: ( rule__JoinRecipe__Group__0__Impl rule__JoinRecipe__Group__1 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3545:2: rule__JoinRecipe__Group__0__Impl rule__JoinRecipe__Group__1
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3641:1: ( rule__JoinRecipe__Group__0__Impl rule__JoinRecipe__Group__1 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3642:2: rule__JoinRecipe__Group__0__Impl rule__JoinRecipe__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__0__Impl_in_rule__JoinRecipe__Group__06964);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__0__Impl_in_rule__JoinRecipe__Group__07154);
             rule__JoinRecipe__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__1_in_rule__JoinRecipe__Group__06967);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__1_in_rule__JoinRecipe__Group__07157);
             rule__JoinRecipe__Group__1();
 
             state._fsp--;
@@ -8801,20 +9037,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__0__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3552:1: rule__JoinRecipe__Group__0__Impl : ( 'Join' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3649:1: rule__JoinRecipe__Group__0__Impl : ( 'Join' ) ;
     public final void rule__JoinRecipe__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3556:1: ( ( 'Join' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3557:1: ( 'Join' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3653:1: ( ( 'Join' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3654:1: ( 'Join' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3557:1: ( 'Join' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3558:1: 'Join'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3654:1: ( 'Join' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3655:1: 'Join'
             {
              before(grammarAccess.getJoinRecipeAccess().getJoinKeyword_0()); 
-            match(input,32,FollowSets000.FOLLOW_32_in_rule__JoinRecipe__Group__0__Impl6995); 
+            match(input,33,FollowSets000.FOLLOW_33_in_rule__JoinRecipe__Group__0__Impl7185); 
              after(grammarAccess.getJoinRecipeAccess().getJoinKeyword_0()); 
 
             }
@@ -8838,21 +9074,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__1"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3571:1: rule__JoinRecipe__Group__1 : rule__JoinRecipe__Group__1__Impl rule__JoinRecipe__Group__2 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3668:1: rule__JoinRecipe__Group__1 : rule__JoinRecipe__Group__1__Impl rule__JoinRecipe__Group__2 ;
     public final void rule__JoinRecipe__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3575:1: ( rule__JoinRecipe__Group__1__Impl rule__JoinRecipe__Group__2 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3576:2: rule__JoinRecipe__Group__1__Impl rule__JoinRecipe__Group__2
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3672:1: ( rule__JoinRecipe__Group__1__Impl rule__JoinRecipe__Group__2 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3673:2: rule__JoinRecipe__Group__1__Impl rule__JoinRecipe__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__1__Impl_in_rule__JoinRecipe__Group__17026);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__1__Impl_in_rule__JoinRecipe__Group__17216);
             rule__JoinRecipe__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__2_in_rule__JoinRecipe__Group__17029);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__2_in_rule__JoinRecipe__Group__17219);
             rule__JoinRecipe__Group__2();
 
             state._fsp--;
@@ -8876,20 +9112,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__1__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3583:1: rule__JoinRecipe__Group__1__Impl : ( '{' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3680:1: rule__JoinRecipe__Group__1__Impl : ( '{' ) ;
     public final void rule__JoinRecipe__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3587:1: ( ( '{' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3588:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3684:1: ( ( '{' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3685:1: ( '{' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3588:1: ( '{' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3589:1: '{'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3685:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3686:1: '{'
             {
              before(grammarAccess.getJoinRecipeAccess().getLeftCurlyBracketKeyword_1()); 
-            match(input,18,FollowSets000.FOLLOW_18_in_rule__JoinRecipe__Group__1__Impl7057); 
+            match(input,18,FollowSets000.FOLLOW_18_in_rule__JoinRecipe__Group__1__Impl7247); 
              after(grammarAccess.getJoinRecipeAccess().getLeftCurlyBracketKeyword_1()); 
 
             }
@@ -8913,21 +9149,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__2"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3602:1: rule__JoinRecipe__Group__2 : rule__JoinRecipe__Group__2__Impl rule__JoinRecipe__Group__3 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3699:1: rule__JoinRecipe__Group__2 : rule__JoinRecipe__Group__2__Impl rule__JoinRecipe__Group__3 ;
     public final void rule__JoinRecipe__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3606:1: ( rule__JoinRecipe__Group__2__Impl rule__JoinRecipe__Group__3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3607:2: rule__JoinRecipe__Group__2__Impl rule__JoinRecipe__Group__3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3703:1: ( rule__JoinRecipe__Group__2__Impl rule__JoinRecipe__Group__3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3704:2: rule__JoinRecipe__Group__2__Impl rule__JoinRecipe__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__2__Impl_in_rule__JoinRecipe__Group__27088);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__2__Impl_in_rule__JoinRecipe__Group__27278);
             rule__JoinRecipe__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__3_in_rule__JoinRecipe__Group__27091);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__3_in_rule__JoinRecipe__Group__27281);
             rule__JoinRecipe__Group__3();
 
             state._fsp--;
@@ -8951,20 +9187,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__2__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3614:1: rule__JoinRecipe__Group__2__Impl : ( 'traceInfo' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3711:1: rule__JoinRecipe__Group__2__Impl : ( 'traceInfo' ) ;
     public final void rule__JoinRecipe__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3618:1: ( ( 'traceInfo' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3619:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3715:1: ( ( 'traceInfo' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3716:1: ( 'traceInfo' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3619:1: ( 'traceInfo' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3620:1: 'traceInfo'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3716:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3717:1: 'traceInfo'
             {
              before(grammarAccess.getJoinRecipeAccess().getTraceInfoKeyword_2()); 
-            match(input,22,FollowSets000.FOLLOW_22_in_rule__JoinRecipe__Group__2__Impl7119); 
+            match(input,23,FollowSets000.FOLLOW_23_in_rule__JoinRecipe__Group__2__Impl7309); 
              after(grammarAccess.getJoinRecipeAccess().getTraceInfoKeyword_2()); 
 
             }
@@ -8988,21 +9224,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3633:1: rule__JoinRecipe__Group__3 : rule__JoinRecipe__Group__3__Impl rule__JoinRecipe__Group__4 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3730:1: rule__JoinRecipe__Group__3 : rule__JoinRecipe__Group__3__Impl rule__JoinRecipe__Group__4 ;
     public final void rule__JoinRecipe__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3637:1: ( rule__JoinRecipe__Group__3__Impl rule__JoinRecipe__Group__4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3638:2: rule__JoinRecipe__Group__3__Impl rule__JoinRecipe__Group__4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3734:1: ( rule__JoinRecipe__Group__3__Impl rule__JoinRecipe__Group__4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3735:2: rule__JoinRecipe__Group__3__Impl rule__JoinRecipe__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__3__Impl_in_rule__JoinRecipe__Group__37150);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__3__Impl_in_rule__JoinRecipe__Group__37340);
             rule__JoinRecipe__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__4_in_rule__JoinRecipe__Group__37153);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__4_in_rule__JoinRecipe__Group__37343);
             rule__JoinRecipe__Group__4();
 
             state._fsp--;
@@ -9026,20 +9262,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__3__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3645:1: rule__JoinRecipe__Group__3__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3742:1: rule__JoinRecipe__Group__3__Impl : ( ':' ) ;
     public final void rule__JoinRecipe__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3649:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3650:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3746:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3747:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3650:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3651:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3747:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3748:1: ':'
             {
              before(grammarAccess.getJoinRecipeAccess().getColonKeyword_3()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__JoinRecipe__Group__3__Impl7181); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__JoinRecipe__Group__3__Impl7371); 
              after(grammarAccess.getJoinRecipeAccess().getColonKeyword_3()); 
 
             }
@@ -9063,21 +9299,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3664:1: rule__JoinRecipe__Group__4 : rule__JoinRecipe__Group__4__Impl rule__JoinRecipe__Group__5 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3761:1: rule__JoinRecipe__Group__4 : rule__JoinRecipe__Group__4__Impl rule__JoinRecipe__Group__5 ;
     public final void rule__JoinRecipe__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3668:1: ( rule__JoinRecipe__Group__4__Impl rule__JoinRecipe__Group__5 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3669:2: rule__JoinRecipe__Group__4__Impl rule__JoinRecipe__Group__5
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3765:1: ( rule__JoinRecipe__Group__4__Impl rule__JoinRecipe__Group__5 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3766:2: rule__JoinRecipe__Group__4__Impl rule__JoinRecipe__Group__5
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__4__Impl_in_rule__JoinRecipe__Group__47212);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__4__Impl_in_rule__JoinRecipe__Group__47402);
             rule__JoinRecipe__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__5_in_rule__JoinRecipe__Group__47215);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__5_in_rule__JoinRecipe__Group__47405);
             rule__JoinRecipe__Group__5();
 
             state._fsp--;
@@ -9101,23 +9337,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__4__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3676:1: rule__JoinRecipe__Group__4__Impl : ( ( rule__JoinRecipe__TraceInfoAssignment_4 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3773:1: rule__JoinRecipe__Group__4__Impl : ( ( rule__JoinRecipe__TraceInfoAssignment_4 ) ) ;
     public final void rule__JoinRecipe__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3680:1: ( ( ( rule__JoinRecipe__TraceInfoAssignment_4 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3681:1: ( ( rule__JoinRecipe__TraceInfoAssignment_4 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3777:1: ( ( ( rule__JoinRecipe__TraceInfoAssignment_4 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3778:1: ( ( rule__JoinRecipe__TraceInfoAssignment_4 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3681:1: ( ( rule__JoinRecipe__TraceInfoAssignment_4 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3682:1: ( rule__JoinRecipe__TraceInfoAssignment_4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3778:1: ( ( rule__JoinRecipe__TraceInfoAssignment_4 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3779:1: ( rule__JoinRecipe__TraceInfoAssignment_4 )
             {
              before(grammarAccess.getJoinRecipeAccess().getTraceInfoAssignment_4()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3683:1: ( rule__JoinRecipe__TraceInfoAssignment_4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3683:2: rule__JoinRecipe__TraceInfoAssignment_4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3780:1: ( rule__JoinRecipe__TraceInfoAssignment_4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3780:2: rule__JoinRecipe__TraceInfoAssignment_4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__TraceInfoAssignment_4_in_rule__JoinRecipe__Group__4__Impl7242);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__TraceInfoAssignment_4_in_rule__JoinRecipe__Group__4__Impl7432);
             rule__JoinRecipe__TraceInfoAssignment_4();
 
             state._fsp--;
@@ -9148,21 +9384,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__5"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3693:1: rule__JoinRecipe__Group__5 : rule__JoinRecipe__Group__5__Impl rule__JoinRecipe__Group__6 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3790:1: rule__JoinRecipe__Group__5 : rule__JoinRecipe__Group__5__Impl rule__JoinRecipe__Group__6 ;
     public final void rule__JoinRecipe__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3697:1: ( rule__JoinRecipe__Group__5__Impl rule__JoinRecipe__Group__6 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3698:2: rule__JoinRecipe__Group__5__Impl rule__JoinRecipe__Group__6
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3794:1: ( rule__JoinRecipe__Group__5__Impl rule__JoinRecipe__Group__6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3795:2: rule__JoinRecipe__Group__5__Impl rule__JoinRecipe__Group__6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__5__Impl_in_rule__JoinRecipe__Group__57272);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__5__Impl_in_rule__JoinRecipe__Group__57462);
             rule__JoinRecipe__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__6_in_rule__JoinRecipe__Group__57275);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__6_in_rule__JoinRecipe__Group__57465);
             rule__JoinRecipe__Group__6();
 
             state._fsp--;
@@ -9186,20 +9422,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__5__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3705:1: rule__JoinRecipe__Group__5__Impl : ( 'leftParent' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3802:1: rule__JoinRecipe__Group__5__Impl : ( 'leftParent' ) ;
     public final void rule__JoinRecipe__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3709:1: ( ( 'leftParent' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3710:1: ( 'leftParent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3806:1: ( ( 'leftParent' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3807:1: ( 'leftParent' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3710:1: ( 'leftParent' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3711:1: 'leftParent'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3807:1: ( 'leftParent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3808:1: 'leftParent'
             {
              before(grammarAccess.getJoinRecipeAccess().getLeftParentKeyword_5()); 
-            match(input,33,FollowSets000.FOLLOW_33_in_rule__JoinRecipe__Group__5__Impl7303); 
+            match(input,34,FollowSets000.FOLLOW_34_in_rule__JoinRecipe__Group__5__Impl7493); 
              after(grammarAccess.getJoinRecipeAccess().getLeftParentKeyword_5()); 
 
             }
@@ -9223,21 +9459,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__6"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3724:1: rule__JoinRecipe__Group__6 : rule__JoinRecipe__Group__6__Impl rule__JoinRecipe__Group__7 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3821:1: rule__JoinRecipe__Group__6 : rule__JoinRecipe__Group__6__Impl rule__JoinRecipe__Group__7 ;
     public final void rule__JoinRecipe__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3728:1: ( rule__JoinRecipe__Group__6__Impl rule__JoinRecipe__Group__7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3729:2: rule__JoinRecipe__Group__6__Impl rule__JoinRecipe__Group__7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3825:1: ( rule__JoinRecipe__Group__6__Impl rule__JoinRecipe__Group__7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3826:2: rule__JoinRecipe__Group__6__Impl rule__JoinRecipe__Group__7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__6__Impl_in_rule__JoinRecipe__Group__67334);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__6__Impl_in_rule__JoinRecipe__Group__67524);
             rule__JoinRecipe__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__7_in_rule__JoinRecipe__Group__67337);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__7_in_rule__JoinRecipe__Group__67527);
             rule__JoinRecipe__Group__7();
 
             state._fsp--;
@@ -9261,20 +9497,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__6__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3736:1: rule__JoinRecipe__Group__6__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3833:1: rule__JoinRecipe__Group__6__Impl : ( ':' ) ;
     public final void rule__JoinRecipe__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3740:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3741:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3837:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3838:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3741:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3742:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3838:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3839:1: ':'
             {
              before(grammarAccess.getJoinRecipeAccess().getColonKeyword_6()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__JoinRecipe__Group__6__Impl7365); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__JoinRecipe__Group__6__Impl7555); 
              after(grammarAccess.getJoinRecipeAccess().getColonKeyword_6()); 
 
             }
@@ -9298,21 +9534,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3755:1: rule__JoinRecipe__Group__7 : rule__JoinRecipe__Group__7__Impl rule__JoinRecipe__Group__8 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3852:1: rule__JoinRecipe__Group__7 : rule__JoinRecipe__Group__7__Impl rule__JoinRecipe__Group__8 ;
     public final void rule__JoinRecipe__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3759:1: ( rule__JoinRecipe__Group__7__Impl rule__JoinRecipe__Group__8 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3760:2: rule__JoinRecipe__Group__7__Impl rule__JoinRecipe__Group__8
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3856:1: ( rule__JoinRecipe__Group__7__Impl rule__JoinRecipe__Group__8 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3857:2: rule__JoinRecipe__Group__7__Impl rule__JoinRecipe__Group__8
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__7__Impl_in_rule__JoinRecipe__Group__77396);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__7__Impl_in_rule__JoinRecipe__Group__77586);
             rule__JoinRecipe__Group__7__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__8_in_rule__JoinRecipe__Group__77399);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__8_in_rule__JoinRecipe__Group__77589);
             rule__JoinRecipe__Group__8();
 
             state._fsp--;
@@ -9336,23 +9572,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__7__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3767:1: rule__JoinRecipe__Group__7__Impl : ( ( rule__JoinRecipe__LeftParentAssignment_7 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3864:1: rule__JoinRecipe__Group__7__Impl : ( ( rule__JoinRecipe__LeftParentAssignment_7 ) ) ;
     public final void rule__JoinRecipe__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3771:1: ( ( ( rule__JoinRecipe__LeftParentAssignment_7 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3772:1: ( ( rule__JoinRecipe__LeftParentAssignment_7 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3868:1: ( ( ( rule__JoinRecipe__LeftParentAssignment_7 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3869:1: ( ( rule__JoinRecipe__LeftParentAssignment_7 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3772:1: ( ( rule__JoinRecipe__LeftParentAssignment_7 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3773:1: ( rule__JoinRecipe__LeftParentAssignment_7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3869:1: ( ( rule__JoinRecipe__LeftParentAssignment_7 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3870:1: ( rule__JoinRecipe__LeftParentAssignment_7 )
             {
              before(grammarAccess.getJoinRecipeAccess().getLeftParentAssignment_7()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3774:1: ( rule__JoinRecipe__LeftParentAssignment_7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3774:2: rule__JoinRecipe__LeftParentAssignment_7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3871:1: ( rule__JoinRecipe__LeftParentAssignment_7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3871:2: rule__JoinRecipe__LeftParentAssignment_7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__LeftParentAssignment_7_in_rule__JoinRecipe__Group__7__Impl7426);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__LeftParentAssignment_7_in_rule__JoinRecipe__Group__7__Impl7616);
             rule__JoinRecipe__LeftParentAssignment_7();
 
             state._fsp--;
@@ -9383,21 +9619,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__8"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3784:1: rule__JoinRecipe__Group__8 : rule__JoinRecipe__Group__8__Impl rule__JoinRecipe__Group__9 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3881:1: rule__JoinRecipe__Group__8 : rule__JoinRecipe__Group__8__Impl rule__JoinRecipe__Group__9 ;
     public final void rule__JoinRecipe__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3788:1: ( rule__JoinRecipe__Group__8__Impl rule__JoinRecipe__Group__9 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3789:2: rule__JoinRecipe__Group__8__Impl rule__JoinRecipe__Group__9
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3885:1: ( rule__JoinRecipe__Group__8__Impl rule__JoinRecipe__Group__9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3886:2: rule__JoinRecipe__Group__8__Impl rule__JoinRecipe__Group__9
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__8__Impl_in_rule__JoinRecipe__Group__87456);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__8__Impl_in_rule__JoinRecipe__Group__87646);
             rule__JoinRecipe__Group__8__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__9_in_rule__JoinRecipe__Group__87459);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__9_in_rule__JoinRecipe__Group__87649);
             rule__JoinRecipe__Group__9();
 
             state._fsp--;
@@ -9421,20 +9657,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__8__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3796:1: rule__JoinRecipe__Group__8__Impl : ( 'rightParent' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3893:1: rule__JoinRecipe__Group__8__Impl : ( 'rightParent' ) ;
     public final void rule__JoinRecipe__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3800:1: ( ( 'rightParent' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3801:1: ( 'rightParent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3897:1: ( ( 'rightParent' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3898:1: ( 'rightParent' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3801:1: ( 'rightParent' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3802:1: 'rightParent'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3898:1: ( 'rightParent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3899:1: 'rightParent'
             {
              before(grammarAccess.getJoinRecipeAccess().getRightParentKeyword_8()); 
-            match(input,34,FollowSets000.FOLLOW_34_in_rule__JoinRecipe__Group__8__Impl7487); 
+            match(input,35,FollowSets000.FOLLOW_35_in_rule__JoinRecipe__Group__8__Impl7677); 
              after(grammarAccess.getJoinRecipeAccess().getRightParentKeyword_8()); 
 
             }
@@ -9458,21 +9694,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__9"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3815:1: rule__JoinRecipe__Group__9 : rule__JoinRecipe__Group__9__Impl rule__JoinRecipe__Group__10 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3912:1: rule__JoinRecipe__Group__9 : rule__JoinRecipe__Group__9__Impl rule__JoinRecipe__Group__10 ;
     public final void rule__JoinRecipe__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3819:1: ( rule__JoinRecipe__Group__9__Impl rule__JoinRecipe__Group__10 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3820:2: rule__JoinRecipe__Group__9__Impl rule__JoinRecipe__Group__10
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3916:1: ( rule__JoinRecipe__Group__9__Impl rule__JoinRecipe__Group__10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3917:2: rule__JoinRecipe__Group__9__Impl rule__JoinRecipe__Group__10
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__9__Impl_in_rule__JoinRecipe__Group__97518);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__9__Impl_in_rule__JoinRecipe__Group__97708);
             rule__JoinRecipe__Group__9__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__10_in_rule__JoinRecipe__Group__97521);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__10_in_rule__JoinRecipe__Group__97711);
             rule__JoinRecipe__Group__10();
 
             state._fsp--;
@@ -9496,20 +9732,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__9__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3827:1: rule__JoinRecipe__Group__9__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3924:1: rule__JoinRecipe__Group__9__Impl : ( ':' ) ;
     public final void rule__JoinRecipe__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3831:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3832:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3928:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3929:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3832:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3833:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3929:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3930:1: ':'
             {
              before(grammarAccess.getJoinRecipeAccess().getColonKeyword_9()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__JoinRecipe__Group__9__Impl7549); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__JoinRecipe__Group__9__Impl7739); 
              after(grammarAccess.getJoinRecipeAccess().getColonKeyword_9()); 
 
             }
@@ -9533,21 +9769,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__10"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3846:1: rule__JoinRecipe__Group__10 : rule__JoinRecipe__Group__10__Impl rule__JoinRecipe__Group__11 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3943:1: rule__JoinRecipe__Group__10 : rule__JoinRecipe__Group__10__Impl rule__JoinRecipe__Group__11 ;
     public final void rule__JoinRecipe__Group__10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3850:1: ( rule__JoinRecipe__Group__10__Impl rule__JoinRecipe__Group__11 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3851:2: rule__JoinRecipe__Group__10__Impl rule__JoinRecipe__Group__11
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3947:1: ( rule__JoinRecipe__Group__10__Impl rule__JoinRecipe__Group__11 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3948:2: rule__JoinRecipe__Group__10__Impl rule__JoinRecipe__Group__11
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__10__Impl_in_rule__JoinRecipe__Group__107580);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__10__Impl_in_rule__JoinRecipe__Group__107770);
             rule__JoinRecipe__Group__10__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__11_in_rule__JoinRecipe__Group__107583);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__11_in_rule__JoinRecipe__Group__107773);
             rule__JoinRecipe__Group__11();
 
             state._fsp--;
@@ -9571,23 +9807,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__10__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3858:1: rule__JoinRecipe__Group__10__Impl : ( ( rule__JoinRecipe__RightParentAssignment_10 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3955:1: rule__JoinRecipe__Group__10__Impl : ( ( rule__JoinRecipe__RightParentAssignment_10 ) ) ;
     public final void rule__JoinRecipe__Group__10__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3862:1: ( ( ( rule__JoinRecipe__RightParentAssignment_10 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3863:1: ( ( rule__JoinRecipe__RightParentAssignment_10 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3959:1: ( ( ( rule__JoinRecipe__RightParentAssignment_10 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3960:1: ( ( rule__JoinRecipe__RightParentAssignment_10 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3863:1: ( ( rule__JoinRecipe__RightParentAssignment_10 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3864:1: ( rule__JoinRecipe__RightParentAssignment_10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3960:1: ( ( rule__JoinRecipe__RightParentAssignment_10 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3961:1: ( rule__JoinRecipe__RightParentAssignment_10 )
             {
              before(grammarAccess.getJoinRecipeAccess().getRightParentAssignment_10()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3865:1: ( rule__JoinRecipe__RightParentAssignment_10 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3865:2: rule__JoinRecipe__RightParentAssignment_10
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3962:1: ( rule__JoinRecipe__RightParentAssignment_10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3962:2: rule__JoinRecipe__RightParentAssignment_10
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__RightParentAssignment_10_in_rule__JoinRecipe__Group__10__Impl7610);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__RightParentAssignment_10_in_rule__JoinRecipe__Group__10__Impl7800);
             rule__JoinRecipe__RightParentAssignment_10();
 
             state._fsp--;
@@ -9618,21 +9854,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__11"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3875:1: rule__JoinRecipe__Group__11 : rule__JoinRecipe__Group__11__Impl rule__JoinRecipe__Group__12 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3972:1: rule__JoinRecipe__Group__11 : rule__JoinRecipe__Group__11__Impl rule__JoinRecipe__Group__12 ;
     public final void rule__JoinRecipe__Group__11() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3879:1: ( rule__JoinRecipe__Group__11__Impl rule__JoinRecipe__Group__12 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3880:2: rule__JoinRecipe__Group__11__Impl rule__JoinRecipe__Group__12
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3976:1: ( rule__JoinRecipe__Group__11__Impl rule__JoinRecipe__Group__12 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3977:2: rule__JoinRecipe__Group__11__Impl rule__JoinRecipe__Group__12
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__11__Impl_in_rule__JoinRecipe__Group__117640);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__11__Impl_in_rule__JoinRecipe__Group__117830);
             rule__JoinRecipe__Group__11__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__12_in_rule__JoinRecipe__Group__117643);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__12_in_rule__JoinRecipe__Group__117833);
             rule__JoinRecipe__Group__12();
 
             state._fsp--;
@@ -9656,20 +9892,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__11__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3887:1: rule__JoinRecipe__Group__11__Impl : ( ( rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 )? ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3984:1: rule__JoinRecipe__Group__11__Impl : ( ( rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 )? ) ;
     public final void rule__JoinRecipe__Group__11__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3891:1: ( ( ( rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 )? ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3892:1: ( ( rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 )? )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3988:1: ( ( ( rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 )? ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3989:1: ( ( rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 )? )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3892:1: ( ( rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 )? )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3893:1: ( rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 )?
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3989:1: ( ( rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 )? )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3990:1: ( rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 )?
             {
              before(grammarAccess.getJoinRecipeAccess().getRightParentComplementaryMaskAssignment_11()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3894:1: ( rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 )?
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3991:1: ( rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -9678,9 +9914,9 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
             }
             switch (alt15) {
                 case 1 :
-                    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3894:2: rule__JoinRecipe__RightParentComplementaryMaskAssignment_11
+                    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3991:2: rule__JoinRecipe__RightParentComplementaryMaskAssignment_11
                     {
-                    pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__RightParentComplementaryMaskAssignment_11_in_rule__JoinRecipe__Group__11__Impl7670);
+                    pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__RightParentComplementaryMaskAssignment_11_in_rule__JoinRecipe__Group__11__Impl7860);
                     rule__JoinRecipe__RightParentComplementaryMaskAssignment_11();
 
                     state._fsp--;
@@ -9714,16 +9950,16 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__12"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3904:1: rule__JoinRecipe__Group__12 : rule__JoinRecipe__Group__12__Impl ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4001:1: rule__JoinRecipe__Group__12 : rule__JoinRecipe__Group__12__Impl ;
     public final void rule__JoinRecipe__Group__12() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3908:1: ( rule__JoinRecipe__Group__12__Impl )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3909:2: rule__JoinRecipe__Group__12__Impl
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4005:1: ( rule__JoinRecipe__Group__12__Impl )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4006:2: rule__JoinRecipe__Group__12__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__12__Impl_in_rule__JoinRecipe__Group__127701);
+            pushFollow(FollowSets000.FOLLOW_rule__JoinRecipe__Group__12__Impl_in_rule__JoinRecipe__Group__127891);
             rule__JoinRecipe__Group__12__Impl();
 
             state._fsp--;
@@ -9747,20 +9983,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__Group__12__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3915:1: rule__JoinRecipe__Group__12__Impl : ( '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4012:1: rule__JoinRecipe__Group__12__Impl : ( '}' ) ;
     public final void rule__JoinRecipe__Group__12__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3919:1: ( ( '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3920:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4016:1: ( ( '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4017:1: ( '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3920:1: ( '}' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3921:1: '}'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4017:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4018:1: '}'
             {
              before(grammarAccess.getJoinRecipeAccess().getRightCurlyBracketKeyword_12()); 
-            match(input,19,FollowSets000.FOLLOW_19_in_rule__JoinRecipe__Group__12__Impl7729); 
+            match(input,19,FollowSets000.FOLLOW_19_in_rule__JoinRecipe__Group__12__Impl7919); 
              after(grammarAccess.getJoinRecipeAccess().getRightCurlyBracketKeyword_12()); 
 
             }
@@ -9784,21 +10020,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__0"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3960:1: rule__AntiJoinRecipe__Group__0 : rule__AntiJoinRecipe__Group__0__Impl rule__AntiJoinRecipe__Group__1 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4057:1: rule__AntiJoinRecipe__Group__0 : rule__AntiJoinRecipe__Group__0__Impl rule__AntiJoinRecipe__Group__1 ;
     public final void rule__AntiJoinRecipe__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3964:1: ( rule__AntiJoinRecipe__Group__0__Impl rule__AntiJoinRecipe__Group__1 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3965:2: rule__AntiJoinRecipe__Group__0__Impl rule__AntiJoinRecipe__Group__1
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4061:1: ( rule__AntiJoinRecipe__Group__0__Impl rule__AntiJoinRecipe__Group__1 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4062:2: rule__AntiJoinRecipe__Group__0__Impl rule__AntiJoinRecipe__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__0__Impl_in_rule__AntiJoinRecipe__Group__07786);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__0__Impl_in_rule__AntiJoinRecipe__Group__07976);
             rule__AntiJoinRecipe__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__1_in_rule__AntiJoinRecipe__Group__07789);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__1_in_rule__AntiJoinRecipe__Group__07979);
             rule__AntiJoinRecipe__Group__1();
 
             state._fsp--;
@@ -9822,20 +10058,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__0__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3972:1: rule__AntiJoinRecipe__Group__0__Impl : ( 'AntiJoin' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4069:1: rule__AntiJoinRecipe__Group__0__Impl : ( 'AntiJoin' ) ;
     public final void rule__AntiJoinRecipe__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3976:1: ( ( 'AntiJoin' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3977:1: ( 'AntiJoin' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4073:1: ( ( 'AntiJoin' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4074:1: ( 'AntiJoin' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3977:1: ( 'AntiJoin' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3978:1: 'AntiJoin'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4074:1: ( 'AntiJoin' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4075:1: 'AntiJoin'
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getAntiJoinKeyword_0()); 
-            match(input,35,FollowSets000.FOLLOW_35_in_rule__AntiJoinRecipe__Group__0__Impl7817); 
+            match(input,36,FollowSets000.FOLLOW_36_in_rule__AntiJoinRecipe__Group__0__Impl8007); 
              after(grammarAccess.getAntiJoinRecipeAccess().getAntiJoinKeyword_0()); 
 
             }
@@ -9859,21 +10095,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__1"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3991:1: rule__AntiJoinRecipe__Group__1 : rule__AntiJoinRecipe__Group__1__Impl rule__AntiJoinRecipe__Group__2 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4088:1: rule__AntiJoinRecipe__Group__1 : rule__AntiJoinRecipe__Group__1__Impl rule__AntiJoinRecipe__Group__2 ;
     public final void rule__AntiJoinRecipe__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3995:1: ( rule__AntiJoinRecipe__Group__1__Impl rule__AntiJoinRecipe__Group__2 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:3996:2: rule__AntiJoinRecipe__Group__1__Impl rule__AntiJoinRecipe__Group__2
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4092:1: ( rule__AntiJoinRecipe__Group__1__Impl rule__AntiJoinRecipe__Group__2 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4093:2: rule__AntiJoinRecipe__Group__1__Impl rule__AntiJoinRecipe__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__1__Impl_in_rule__AntiJoinRecipe__Group__17848);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__1__Impl_in_rule__AntiJoinRecipe__Group__18038);
             rule__AntiJoinRecipe__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__2_in_rule__AntiJoinRecipe__Group__17851);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__2_in_rule__AntiJoinRecipe__Group__18041);
             rule__AntiJoinRecipe__Group__2();
 
             state._fsp--;
@@ -9897,20 +10133,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__1__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4003:1: rule__AntiJoinRecipe__Group__1__Impl : ( '{' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4100:1: rule__AntiJoinRecipe__Group__1__Impl : ( '{' ) ;
     public final void rule__AntiJoinRecipe__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4007:1: ( ( '{' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4008:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4104:1: ( ( '{' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4105:1: ( '{' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4008:1: ( '{' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4009:1: '{'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4105:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4106:1: '{'
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getLeftCurlyBracketKeyword_1()); 
-            match(input,18,FollowSets000.FOLLOW_18_in_rule__AntiJoinRecipe__Group__1__Impl7879); 
+            match(input,18,FollowSets000.FOLLOW_18_in_rule__AntiJoinRecipe__Group__1__Impl8069); 
              after(grammarAccess.getAntiJoinRecipeAccess().getLeftCurlyBracketKeyword_1()); 
 
             }
@@ -9934,21 +10170,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__2"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4022:1: rule__AntiJoinRecipe__Group__2 : rule__AntiJoinRecipe__Group__2__Impl rule__AntiJoinRecipe__Group__3 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4119:1: rule__AntiJoinRecipe__Group__2 : rule__AntiJoinRecipe__Group__2__Impl rule__AntiJoinRecipe__Group__3 ;
     public final void rule__AntiJoinRecipe__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4026:1: ( rule__AntiJoinRecipe__Group__2__Impl rule__AntiJoinRecipe__Group__3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4027:2: rule__AntiJoinRecipe__Group__2__Impl rule__AntiJoinRecipe__Group__3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4123:1: ( rule__AntiJoinRecipe__Group__2__Impl rule__AntiJoinRecipe__Group__3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4124:2: rule__AntiJoinRecipe__Group__2__Impl rule__AntiJoinRecipe__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__2__Impl_in_rule__AntiJoinRecipe__Group__27910);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__2__Impl_in_rule__AntiJoinRecipe__Group__28100);
             rule__AntiJoinRecipe__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__3_in_rule__AntiJoinRecipe__Group__27913);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__3_in_rule__AntiJoinRecipe__Group__28103);
             rule__AntiJoinRecipe__Group__3();
 
             state._fsp--;
@@ -9972,20 +10208,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__2__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4034:1: rule__AntiJoinRecipe__Group__2__Impl : ( 'traceInfo' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4131:1: rule__AntiJoinRecipe__Group__2__Impl : ( 'traceInfo' ) ;
     public final void rule__AntiJoinRecipe__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4038:1: ( ( 'traceInfo' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4039:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4135:1: ( ( 'traceInfo' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4136:1: ( 'traceInfo' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4039:1: ( 'traceInfo' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4040:1: 'traceInfo'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4136:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4137:1: 'traceInfo'
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getTraceInfoKeyword_2()); 
-            match(input,22,FollowSets000.FOLLOW_22_in_rule__AntiJoinRecipe__Group__2__Impl7941); 
+            match(input,23,FollowSets000.FOLLOW_23_in_rule__AntiJoinRecipe__Group__2__Impl8131); 
              after(grammarAccess.getAntiJoinRecipeAccess().getTraceInfoKeyword_2()); 
 
             }
@@ -10009,21 +10245,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4053:1: rule__AntiJoinRecipe__Group__3 : rule__AntiJoinRecipe__Group__3__Impl rule__AntiJoinRecipe__Group__4 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4150:1: rule__AntiJoinRecipe__Group__3 : rule__AntiJoinRecipe__Group__3__Impl rule__AntiJoinRecipe__Group__4 ;
     public final void rule__AntiJoinRecipe__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4057:1: ( rule__AntiJoinRecipe__Group__3__Impl rule__AntiJoinRecipe__Group__4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4058:2: rule__AntiJoinRecipe__Group__3__Impl rule__AntiJoinRecipe__Group__4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4154:1: ( rule__AntiJoinRecipe__Group__3__Impl rule__AntiJoinRecipe__Group__4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4155:2: rule__AntiJoinRecipe__Group__3__Impl rule__AntiJoinRecipe__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__3__Impl_in_rule__AntiJoinRecipe__Group__37972);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__3__Impl_in_rule__AntiJoinRecipe__Group__38162);
             rule__AntiJoinRecipe__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__4_in_rule__AntiJoinRecipe__Group__37975);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__4_in_rule__AntiJoinRecipe__Group__38165);
             rule__AntiJoinRecipe__Group__4();
 
             state._fsp--;
@@ -10047,20 +10283,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__3__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4065:1: rule__AntiJoinRecipe__Group__3__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4162:1: rule__AntiJoinRecipe__Group__3__Impl : ( ':' ) ;
     public final void rule__AntiJoinRecipe__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4069:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4070:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4166:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4167:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4070:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4071:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4167:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4168:1: ':'
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getColonKeyword_3()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__AntiJoinRecipe__Group__3__Impl8003); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__AntiJoinRecipe__Group__3__Impl8193); 
              after(grammarAccess.getAntiJoinRecipeAccess().getColonKeyword_3()); 
 
             }
@@ -10084,21 +10320,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4084:1: rule__AntiJoinRecipe__Group__4 : rule__AntiJoinRecipe__Group__4__Impl rule__AntiJoinRecipe__Group__5 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4181:1: rule__AntiJoinRecipe__Group__4 : rule__AntiJoinRecipe__Group__4__Impl rule__AntiJoinRecipe__Group__5 ;
     public final void rule__AntiJoinRecipe__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4088:1: ( rule__AntiJoinRecipe__Group__4__Impl rule__AntiJoinRecipe__Group__5 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4089:2: rule__AntiJoinRecipe__Group__4__Impl rule__AntiJoinRecipe__Group__5
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4185:1: ( rule__AntiJoinRecipe__Group__4__Impl rule__AntiJoinRecipe__Group__5 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4186:2: rule__AntiJoinRecipe__Group__4__Impl rule__AntiJoinRecipe__Group__5
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__4__Impl_in_rule__AntiJoinRecipe__Group__48034);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__4__Impl_in_rule__AntiJoinRecipe__Group__48224);
             rule__AntiJoinRecipe__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__5_in_rule__AntiJoinRecipe__Group__48037);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__5_in_rule__AntiJoinRecipe__Group__48227);
             rule__AntiJoinRecipe__Group__5();
 
             state._fsp--;
@@ -10122,23 +10358,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__4__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4096:1: rule__AntiJoinRecipe__Group__4__Impl : ( ( rule__AntiJoinRecipe__TraceInfoAssignment_4 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4193:1: rule__AntiJoinRecipe__Group__4__Impl : ( ( rule__AntiJoinRecipe__TraceInfoAssignment_4 ) ) ;
     public final void rule__AntiJoinRecipe__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4100:1: ( ( ( rule__AntiJoinRecipe__TraceInfoAssignment_4 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4101:1: ( ( rule__AntiJoinRecipe__TraceInfoAssignment_4 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4197:1: ( ( ( rule__AntiJoinRecipe__TraceInfoAssignment_4 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4198:1: ( ( rule__AntiJoinRecipe__TraceInfoAssignment_4 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4101:1: ( ( rule__AntiJoinRecipe__TraceInfoAssignment_4 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4102:1: ( rule__AntiJoinRecipe__TraceInfoAssignment_4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4198:1: ( ( rule__AntiJoinRecipe__TraceInfoAssignment_4 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4199:1: ( rule__AntiJoinRecipe__TraceInfoAssignment_4 )
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getTraceInfoAssignment_4()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4103:1: ( rule__AntiJoinRecipe__TraceInfoAssignment_4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4103:2: rule__AntiJoinRecipe__TraceInfoAssignment_4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4200:1: ( rule__AntiJoinRecipe__TraceInfoAssignment_4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4200:2: rule__AntiJoinRecipe__TraceInfoAssignment_4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__TraceInfoAssignment_4_in_rule__AntiJoinRecipe__Group__4__Impl8064);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__TraceInfoAssignment_4_in_rule__AntiJoinRecipe__Group__4__Impl8254);
             rule__AntiJoinRecipe__TraceInfoAssignment_4();
 
             state._fsp--;
@@ -10169,21 +10405,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__5"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4113:1: rule__AntiJoinRecipe__Group__5 : rule__AntiJoinRecipe__Group__5__Impl rule__AntiJoinRecipe__Group__6 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4210:1: rule__AntiJoinRecipe__Group__5 : rule__AntiJoinRecipe__Group__5__Impl rule__AntiJoinRecipe__Group__6 ;
     public final void rule__AntiJoinRecipe__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4117:1: ( rule__AntiJoinRecipe__Group__5__Impl rule__AntiJoinRecipe__Group__6 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4118:2: rule__AntiJoinRecipe__Group__5__Impl rule__AntiJoinRecipe__Group__6
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4214:1: ( rule__AntiJoinRecipe__Group__5__Impl rule__AntiJoinRecipe__Group__6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4215:2: rule__AntiJoinRecipe__Group__5__Impl rule__AntiJoinRecipe__Group__6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__5__Impl_in_rule__AntiJoinRecipe__Group__58094);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__5__Impl_in_rule__AntiJoinRecipe__Group__58284);
             rule__AntiJoinRecipe__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__6_in_rule__AntiJoinRecipe__Group__58097);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__6_in_rule__AntiJoinRecipe__Group__58287);
             rule__AntiJoinRecipe__Group__6();
 
             state._fsp--;
@@ -10207,20 +10443,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__5__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4125:1: rule__AntiJoinRecipe__Group__5__Impl : ( 'leftParent' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4222:1: rule__AntiJoinRecipe__Group__5__Impl : ( 'leftParent' ) ;
     public final void rule__AntiJoinRecipe__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4129:1: ( ( 'leftParent' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4130:1: ( 'leftParent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4226:1: ( ( 'leftParent' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4227:1: ( 'leftParent' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4130:1: ( 'leftParent' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4131:1: 'leftParent'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4227:1: ( 'leftParent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4228:1: 'leftParent'
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getLeftParentKeyword_5()); 
-            match(input,33,FollowSets000.FOLLOW_33_in_rule__AntiJoinRecipe__Group__5__Impl8125); 
+            match(input,34,FollowSets000.FOLLOW_34_in_rule__AntiJoinRecipe__Group__5__Impl8315); 
              after(grammarAccess.getAntiJoinRecipeAccess().getLeftParentKeyword_5()); 
 
             }
@@ -10244,21 +10480,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__6"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4144:1: rule__AntiJoinRecipe__Group__6 : rule__AntiJoinRecipe__Group__6__Impl rule__AntiJoinRecipe__Group__7 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4241:1: rule__AntiJoinRecipe__Group__6 : rule__AntiJoinRecipe__Group__6__Impl rule__AntiJoinRecipe__Group__7 ;
     public final void rule__AntiJoinRecipe__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4148:1: ( rule__AntiJoinRecipe__Group__6__Impl rule__AntiJoinRecipe__Group__7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4149:2: rule__AntiJoinRecipe__Group__6__Impl rule__AntiJoinRecipe__Group__7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4245:1: ( rule__AntiJoinRecipe__Group__6__Impl rule__AntiJoinRecipe__Group__7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4246:2: rule__AntiJoinRecipe__Group__6__Impl rule__AntiJoinRecipe__Group__7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__6__Impl_in_rule__AntiJoinRecipe__Group__68156);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__6__Impl_in_rule__AntiJoinRecipe__Group__68346);
             rule__AntiJoinRecipe__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__7_in_rule__AntiJoinRecipe__Group__68159);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__7_in_rule__AntiJoinRecipe__Group__68349);
             rule__AntiJoinRecipe__Group__7();
 
             state._fsp--;
@@ -10282,20 +10518,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__6__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4156:1: rule__AntiJoinRecipe__Group__6__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4253:1: rule__AntiJoinRecipe__Group__6__Impl : ( ':' ) ;
     public final void rule__AntiJoinRecipe__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4160:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4161:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4257:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4258:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4161:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4162:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4258:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4259:1: ':'
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getColonKeyword_6()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__AntiJoinRecipe__Group__6__Impl8187); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__AntiJoinRecipe__Group__6__Impl8377); 
              after(grammarAccess.getAntiJoinRecipeAccess().getColonKeyword_6()); 
 
             }
@@ -10319,21 +10555,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4175:1: rule__AntiJoinRecipe__Group__7 : rule__AntiJoinRecipe__Group__7__Impl rule__AntiJoinRecipe__Group__8 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4272:1: rule__AntiJoinRecipe__Group__7 : rule__AntiJoinRecipe__Group__7__Impl rule__AntiJoinRecipe__Group__8 ;
     public final void rule__AntiJoinRecipe__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4179:1: ( rule__AntiJoinRecipe__Group__7__Impl rule__AntiJoinRecipe__Group__8 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4180:2: rule__AntiJoinRecipe__Group__7__Impl rule__AntiJoinRecipe__Group__8
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4276:1: ( rule__AntiJoinRecipe__Group__7__Impl rule__AntiJoinRecipe__Group__8 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4277:2: rule__AntiJoinRecipe__Group__7__Impl rule__AntiJoinRecipe__Group__8
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__7__Impl_in_rule__AntiJoinRecipe__Group__78218);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__7__Impl_in_rule__AntiJoinRecipe__Group__78408);
             rule__AntiJoinRecipe__Group__7__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__8_in_rule__AntiJoinRecipe__Group__78221);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__8_in_rule__AntiJoinRecipe__Group__78411);
             rule__AntiJoinRecipe__Group__8();
 
             state._fsp--;
@@ -10357,23 +10593,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__7__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4187:1: rule__AntiJoinRecipe__Group__7__Impl : ( ( rule__AntiJoinRecipe__LeftParentAssignment_7 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4284:1: rule__AntiJoinRecipe__Group__7__Impl : ( ( rule__AntiJoinRecipe__LeftParentAssignment_7 ) ) ;
     public final void rule__AntiJoinRecipe__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4191:1: ( ( ( rule__AntiJoinRecipe__LeftParentAssignment_7 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4192:1: ( ( rule__AntiJoinRecipe__LeftParentAssignment_7 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4288:1: ( ( ( rule__AntiJoinRecipe__LeftParentAssignment_7 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4289:1: ( ( rule__AntiJoinRecipe__LeftParentAssignment_7 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4192:1: ( ( rule__AntiJoinRecipe__LeftParentAssignment_7 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4193:1: ( rule__AntiJoinRecipe__LeftParentAssignment_7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4289:1: ( ( rule__AntiJoinRecipe__LeftParentAssignment_7 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4290:1: ( rule__AntiJoinRecipe__LeftParentAssignment_7 )
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getLeftParentAssignment_7()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4194:1: ( rule__AntiJoinRecipe__LeftParentAssignment_7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4194:2: rule__AntiJoinRecipe__LeftParentAssignment_7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4291:1: ( rule__AntiJoinRecipe__LeftParentAssignment_7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4291:2: rule__AntiJoinRecipe__LeftParentAssignment_7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__LeftParentAssignment_7_in_rule__AntiJoinRecipe__Group__7__Impl8248);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__LeftParentAssignment_7_in_rule__AntiJoinRecipe__Group__7__Impl8438);
             rule__AntiJoinRecipe__LeftParentAssignment_7();
 
             state._fsp--;
@@ -10404,21 +10640,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__8"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4204:1: rule__AntiJoinRecipe__Group__8 : rule__AntiJoinRecipe__Group__8__Impl rule__AntiJoinRecipe__Group__9 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4301:1: rule__AntiJoinRecipe__Group__8 : rule__AntiJoinRecipe__Group__8__Impl rule__AntiJoinRecipe__Group__9 ;
     public final void rule__AntiJoinRecipe__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4208:1: ( rule__AntiJoinRecipe__Group__8__Impl rule__AntiJoinRecipe__Group__9 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4209:2: rule__AntiJoinRecipe__Group__8__Impl rule__AntiJoinRecipe__Group__9
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4305:1: ( rule__AntiJoinRecipe__Group__8__Impl rule__AntiJoinRecipe__Group__9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4306:2: rule__AntiJoinRecipe__Group__8__Impl rule__AntiJoinRecipe__Group__9
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__8__Impl_in_rule__AntiJoinRecipe__Group__88278);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__8__Impl_in_rule__AntiJoinRecipe__Group__88468);
             rule__AntiJoinRecipe__Group__8__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__9_in_rule__AntiJoinRecipe__Group__88281);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__9_in_rule__AntiJoinRecipe__Group__88471);
             rule__AntiJoinRecipe__Group__9();
 
             state._fsp--;
@@ -10442,20 +10678,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__8__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4216:1: rule__AntiJoinRecipe__Group__8__Impl : ( 'rightParent' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4313:1: rule__AntiJoinRecipe__Group__8__Impl : ( 'rightParent' ) ;
     public final void rule__AntiJoinRecipe__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4220:1: ( ( 'rightParent' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4221:1: ( 'rightParent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4317:1: ( ( 'rightParent' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4318:1: ( 'rightParent' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4221:1: ( 'rightParent' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4222:1: 'rightParent'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4318:1: ( 'rightParent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4319:1: 'rightParent'
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getRightParentKeyword_8()); 
-            match(input,34,FollowSets000.FOLLOW_34_in_rule__AntiJoinRecipe__Group__8__Impl8309); 
+            match(input,35,FollowSets000.FOLLOW_35_in_rule__AntiJoinRecipe__Group__8__Impl8499); 
              after(grammarAccess.getAntiJoinRecipeAccess().getRightParentKeyword_8()); 
 
             }
@@ -10479,21 +10715,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__9"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4235:1: rule__AntiJoinRecipe__Group__9 : rule__AntiJoinRecipe__Group__9__Impl rule__AntiJoinRecipe__Group__10 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4332:1: rule__AntiJoinRecipe__Group__9 : rule__AntiJoinRecipe__Group__9__Impl rule__AntiJoinRecipe__Group__10 ;
     public final void rule__AntiJoinRecipe__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4239:1: ( rule__AntiJoinRecipe__Group__9__Impl rule__AntiJoinRecipe__Group__10 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4240:2: rule__AntiJoinRecipe__Group__9__Impl rule__AntiJoinRecipe__Group__10
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4336:1: ( rule__AntiJoinRecipe__Group__9__Impl rule__AntiJoinRecipe__Group__10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4337:2: rule__AntiJoinRecipe__Group__9__Impl rule__AntiJoinRecipe__Group__10
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__9__Impl_in_rule__AntiJoinRecipe__Group__98340);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__9__Impl_in_rule__AntiJoinRecipe__Group__98530);
             rule__AntiJoinRecipe__Group__9__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__10_in_rule__AntiJoinRecipe__Group__98343);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__10_in_rule__AntiJoinRecipe__Group__98533);
             rule__AntiJoinRecipe__Group__10();
 
             state._fsp--;
@@ -10517,20 +10753,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__9__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4247:1: rule__AntiJoinRecipe__Group__9__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4344:1: rule__AntiJoinRecipe__Group__9__Impl : ( ':' ) ;
     public final void rule__AntiJoinRecipe__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4251:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4252:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4348:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4349:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4252:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4253:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4349:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4350:1: ':'
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getColonKeyword_9()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__AntiJoinRecipe__Group__9__Impl8371); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__AntiJoinRecipe__Group__9__Impl8561); 
              after(grammarAccess.getAntiJoinRecipeAccess().getColonKeyword_9()); 
 
             }
@@ -10554,21 +10790,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__10"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4266:1: rule__AntiJoinRecipe__Group__10 : rule__AntiJoinRecipe__Group__10__Impl rule__AntiJoinRecipe__Group__11 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4363:1: rule__AntiJoinRecipe__Group__10 : rule__AntiJoinRecipe__Group__10__Impl rule__AntiJoinRecipe__Group__11 ;
     public final void rule__AntiJoinRecipe__Group__10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4270:1: ( rule__AntiJoinRecipe__Group__10__Impl rule__AntiJoinRecipe__Group__11 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4271:2: rule__AntiJoinRecipe__Group__10__Impl rule__AntiJoinRecipe__Group__11
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4367:1: ( rule__AntiJoinRecipe__Group__10__Impl rule__AntiJoinRecipe__Group__11 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4368:2: rule__AntiJoinRecipe__Group__10__Impl rule__AntiJoinRecipe__Group__11
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__10__Impl_in_rule__AntiJoinRecipe__Group__108402);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__10__Impl_in_rule__AntiJoinRecipe__Group__108592);
             rule__AntiJoinRecipe__Group__10__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__11_in_rule__AntiJoinRecipe__Group__108405);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__11_in_rule__AntiJoinRecipe__Group__108595);
             rule__AntiJoinRecipe__Group__11();
 
             state._fsp--;
@@ -10592,23 +10828,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__10__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4278:1: rule__AntiJoinRecipe__Group__10__Impl : ( ( rule__AntiJoinRecipe__RightParentAssignment_10 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4375:1: rule__AntiJoinRecipe__Group__10__Impl : ( ( rule__AntiJoinRecipe__RightParentAssignment_10 ) ) ;
     public final void rule__AntiJoinRecipe__Group__10__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4282:1: ( ( ( rule__AntiJoinRecipe__RightParentAssignment_10 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4283:1: ( ( rule__AntiJoinRecipe__RightParentAssignment_10 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4379:1: ( ( ( rule__AntiJoinRecipe__RightParentAssignment_10 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4380:1: ( ( rule__AntiJoinRecipe__RightParentAssignment_10 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4283:1: ( ( rule__AntiJoinRecipe__RightParentAssignment_10 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4284:1: ( rule__AntiJoinRecipe__RightParentAssignment_10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4380:1: ( ( rule__AntiJoinRecipe__RightParentAssignment_10 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4381:1: ( rule__AntiJoinRecipe__RightParentAssignment_10 )
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getRightParentAssignment_10()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4285:1: ( rule__AntiJoinRecipe__RightParentAssignment_10 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4285:2: rule__AntiJoinRecipe__RightParentAssignment_10
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4382:1: ( rule__AntiJoinRecipe__RightParentAssignment_10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4382:2: rule__AntiJoinRecipe__RightParentAssignment_10
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__RightParentAssignment_10_in_rule__AntiJoinRecipe__Group__10__Impl8432);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__RightParentAssignment_10_in_rule__AntiJoinRecipe__Group__10__Impl8622);
             rule__AntiJoinRecipe__RightParentAssignment_10();
 
             state._fsp--;
@@ -10639,16 +10875,16 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__11"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4295:1: rule__AntiJoinRecipe__Group__11 : rule__AntiJoinRecipe__Group__11__Impl ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4392:1: rule__AntiJoinRecipe__Group__11 : rule__AntiJoinRecipe__Group__11__Impl ;
     public final void rule__AntiJoinRecipe__Group__11() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4299:1: ( rule__AntiJoinRecipe__Group__11__Impl )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4300:2: rule__AntiJoinRecipe__Group__11__Impl
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4396:1: ( rule__AntiJoinRecipe__Group__11__Impl )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4397:2: rule__AntiJoinRecipe__Group__11__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__11__Impl_in_rule__AntiJoinRecipe__Group__118462);
+            pushFollow(FollowSets000.FOLLOW_rule__AntiJoinRecipe__Group__11__Impl_in_rule__AntiJoinRecipe__Group__118652);
             rule__AntiJoinRecipe__Group__11__Impl();
 
             state._fsp--;
@@ -10672,20 +10908,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__Group__11__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4306:1: rule__AntiJoinRecipe__Group__11__Impl : ( '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4403:1: rule__AntiJoinRecipe__Group__11__Impl : ( '}' ) ;
     public final void rule__AntiJoinRecipe__Group__11__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4310:1: ( ( '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4311:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4407:1: ( ( '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4408:1: ( '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4311:1: ( '}' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4312:1: '}'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4408:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4409:1: '}'
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getRightCurlyBracketKeyword_11()); 
-            match(input,19,FollowSets000.FOLLOW_19_in_rule__AntiJoinRecipe__Group__11__Impl8490); 
+            match(input,19,FollowSets000.FOLLOW_19_in_rule__AntiJoinRecipe__Group__11__Impl8680); 
              after(grammarAccess.getAntiJoinRecipeAccess().getRightCurlyBracketKeyword_11()); 
 
             }
@@ -10709,21 +10945,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__0"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4349:1: rule__IndexerRecipe__Group__0 : rule__IndexerRecipe__Group__0__Impl rule__IndexerRecipe__Group__1 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4446:1: rule__IndexerRecipe__Group__0 : rule__IndexerRecipe__Group__0__Impl rule__IndexerRecipe__Group__1 ;
     public final void rule__IndexerRecipe__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4353:1: ( rule__IndexerRecipe__Group__0__Impl rule__IndexerRecipe__Group__1 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4354:2: rule__IndexerRecipe__Group__0__Impl rule__IndexerRecipe__Group__1
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4450:1: ( rule__IndexerRecipe__Group__0__Impl rule__IndexerRecipe__Group__1 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4451:2: rule__IndexerRecipe__Group__0__Impl rule__IndexerRecipe__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__0__Impl_in_rule__IndexerRecipe__Group__08545);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__0__Impl_in_rule__IndexerRecipe__Group__08735);
             rule__IndexerRecipe__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__1_in_rule__IndexerRecipe__Group__08548);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__1_in_rule__IndexerRecipe__Group__08738);
             rule__IndexerRecipe__Group__1();
 
             state._fsp--;
@@ -10747,20 +10983,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__0__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4361:1: rule__IndexerRecipe__Group__0__Impl : ( '{' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4458:1: rule__IndexerRecipe__Group__0__Impl : ( '{' ) ;
     public final void rule__IndexerRecipe__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4365:1: ( ( '{' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4366:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4462:1: ( ( '{' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4463:1: ( '{' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4366:1: ( '{' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4367:1: '{'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4463:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4464:1: '{'
             {
              before(grammarAccess.getIndexerRecipeAccess().getLeftCurlyBracketKeyword_0()); 
-            match(input,18,FollowSets000.FOLLOW_18_in_rule__IndexerRecipe__Group__0__Impl8576); 
+            match(input,18,FollowSets000.FOLLOW_18_in_rule__IndexerRecipe__Group__0__Impl8766); 
              after(grammarAccess.getIndexerRecipeAccess().getLeftCurlyBracketKeyword_0()); 
 
             }
@@ -10784,21 +11020,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__1"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4380:1: rule__IndexerRecipe__Group__1 : rule__IndexerRecipe__Group__1__Impl rule__IndexerRecipe__Group__2 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4477:1: rule__IndexerRecipe__Group__1 : rule__IndexerRecipe__Group__1__Impl rule__IndexerRecipe__Group__2 ;
     public final void rule__IndexerRecipe__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4384:1: ( rule__IndexerRecipe__Group__1__Impl rule__IndexerRecipe__Group__2 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4385:2: rule__IndexerRecipe__Group__1__Impl rule__IndexerRecipe__Group__2
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4481:1: ( rule__IndexerRecipe__Group__1__Impl rule__IndexerRecipe__Group__2 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4482:2: rule__IndexerRecipe__Group__1__Impl rule__IndexerRecipe__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__1__Impl_in_rule__IndexerRecipe__Group__18607);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__1__Impl_in_rule__IndexerRecipe__Group__18797);
             rule__IndexerRecipe__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__2_in_rule__IndexerRecipe__Group__18610);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__2_in_rule__IndexerRecipe__Group__18800);
             rule__IndexerRecipe__Group__2();
 
             state._fsp--;
@@ -10822,20 +11058,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__1__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4392:1: rule__IndexerRecipe__Group__1__Impl : ( 'traceInfo' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4489:1: rule__IndexerRecipe__Group__1__Impl : ( 'traceInfo' ) ;
     public final void rule__IndexerRecipe__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4396:1: ( ( 'traceInfo' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4397:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4493:1: ( ( 'traceInfo' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4494:1: ( 'traceInfo' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4397:1: ( 'traceInfo' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4398:1: 'traceInfo'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4494:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4495:1: 'traceInfo'
             {
              before(grammarAccess.getIndexerRecipeAccess().getTraceInfoKeyword_1()); 
-            match(input,22,FollowSets000.FOLLOW_22_in_rule__IndexerRecipe__Group__1__Impl8638); 
+            match(input,23,FollowSets000.FOLLOW_23_in_rule__IndexerRecipe__Group__1__Impl8828); 
              after(grammarAccess.getIndexerRecipeAccess().getTraceInfoKeyword_1()); 
 
             }
@@ -10859,21 +11095,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__2"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4411:1: rule__IndexerRecipe__Group__2 : rule__IndexerRecipe__Group__2__Impl rule__IndexerRecipe__Group__3 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4508:1: rule__IndexerRecipe__Group__2 : rule__IndexerRecipe__Group__2__Impl rule__IndexerRecipe__Group__3 ;
     public final void rule__IndexerRecipe__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4415:1: ( rule__IndexerRecipe__Group__2__Impl rule__IndexerRecipe__Group__3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4416:2: rule__IndexerRecipe__Group__2__Impl rule__IndexerRecipe__Group__3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4512:1: ( rule__IndexerRecipe__Group__2__Impl rule__IndexerRecipe__Group__3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4513:2: rule__IndexerRecipe__Group__2__Impl rule__IndexerRecipe__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__2__Impl_in_rule__IndexerRecipe__Group__28669);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__2__Impl_in_rule__IndexerRecipe__Group__28859);
             rule__IndexerRecipe__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__3_in_rule__IndexerRecipe__Group__28672);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__3_in_rule__IndexerRecipe__Group__28862);
             rule__IndexerRecipe__Group__3();
 
             state._fsp--;
@@ -10897,20 +11133,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__2__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4423:1: rule__IndexerRecipe__Group__2__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4520:1: rule__IndexerRecipe__Group__2__Impl : ( ':' ) ;
     public final void rule__IndexerRecipe__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4427:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4428:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4524:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4525:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4428:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4429:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4525:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4526:1: ':'
             {
              before(grammarAccess.getIndexerRecipeAccess().getColonKeyword_2()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__IndexerRecipe__Group__2__Impl8700); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__IndexerRecipe__Group__2__Impl8890); 
              after(grammarAccess.getIndexerRecipeAccess().getColonKeyword_2()); 
 
             }
@@ -10934,21 +11170,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4442:1: rule__IndexerRecipe__Group__3 : rule__IndexerRecipe__Group__3__Impl rule__IndexerRecipe__Group__4 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4539:1: rule__IndexerRecipe__Group__3 : rule__IndexerRecipe__Group__3__Impl rule__IndexerRecipe__Group__4 ;
     public final void rule__IndexerRecipe__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4446:1: ( rule__IndexerRecipe__Group__3__Impl rule__IndexerRecipe__Group__4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4447:2: rule__IndexerRecipe__Group__3__Impl rule__IndexerRecipe__Group__4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4543:1: ( rule__IndexerRecipe__Group__3__Impl rule__IndexerRecipe__Group__4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4544:2: rule__IndexerRecipe__Group__3__Impl rule__IndexerRecipe__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__3__Impl_in_rule__IndexerRecipe__Group__38731);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__3__Impl_in_rule__IndexerRecipe__Group__38921);
             rule__IndexerRecipe__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__4_in_rule__IndexerRecipe__Group__38734);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__4_in_rule__IndexerRecipe__Group__38924);
             rule__IndexerRecipe__Group__4();
 
             state._fsp--;
@@ -10972,23 +11208,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__3__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4454:1: rule__IndexerRecipe__Group__3__Impl : ( ( rule__IndexerRecipe__TraceInfoAssignment_3 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4551:1: rule__IndexerRecipe__Group__3__Impl : ( ( rule__IndexerRecipe__TraceInfoAssignment_3 ) ) ;
     public final void rule__IndexerRecipe__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4458:1: ( ( ( rule__IndexerRecipe__TraceInfoAssignment_3 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4459:1: ( ( rule__IndexerRecipe__TraceInfoAssignment_3 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4555:1: ( ( ( rule__IndexerRecipe__TraceInfoAssignment_3 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4556:1: ( ( rule__IndexerRecipe__TraceInfoAssignment_3 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4459:1: ( ( rule__IndexerRecipe__TraceInfoAssignment_3 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4460:1: ( rule__IndexerRecipe__TraceInfoAssignment_3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4556:1: ( ( rule__IndexerRecipe__TraceInfoAssignment_3 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4557:1: ( rule__IndexerRecipe__TraceInfoAssignment_3 )
             {
              before(grammarAccess.getIndexerRecipeAccess().getTraceInfoAssignment_3()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4461:1: ( rule__IndexerRecipe__TraceInfoAssignment_3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4461:2: rule__IndexerRecipe__TraceInfoAssignment_3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4558:1: ( rule__IndexerRecipe__TraceInfoAssignment_3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4558:2: rule__IndexerRecipe__TraceInfoAssignment_3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__TraceInfoAssignment_3_in_rule__IndexerRecipe__Group__3__Impl8761);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__TraceInfoAssignment_3_in_rule__IndexerRecipe__Group__3__Impl8951);
             rule__IndexerRecipe__TraceInfoAssignment_3();
 
             state._fsp--;
@@ -11019,21 +11255,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4471:1: rule__IndexerRecipe__Group__4 : rule__IndexerRecipe__Group__4__Impl rule__IndexerRecipe__Group__5 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4568:1: rule__IndexerRecipe__Group__4 : rule__IndexerRecipe__Group__4__Impl rule__IndexerRecipe__Group__5 ;
     public final void rule__IndexerRecipe__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4475:1: ( rule__IndexerRecipe__Group__4__Impl rule__IndexerRecipe__Group__5 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4476:2: rule__IndexerRecipe__Group__4__Impl rule__IndexerRecipe__Group__5
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4572:1: ( rule__IndexerRecipe__Group__4__Impl rule__IndexerRecipe__Group__5 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4573:2: rule__IndexerRecipe__Group__4__Impl rule__IndexerRecipe__Group__5
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__4__Impl_in_rule__IndexerRecipe__Group__48791);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__4__Impl_in_rule__IndexerRecipe__Group__48981);
             rule__IndexerRecipe__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__5_in_rule__IndexerRecipe__Group__48794);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__5_in_rule__IndexerRecipe__Group__48984);
             rule__IndexerRecipe__Group__5();
 
             state._fsp--;
@@ -11057,20 +11293,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__4__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4483:1: rule__IndexerRecipe__Group__4__Impl : ( 'mask' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4580:1: rule__IndexerRecipe__Group__4__Impl : ( 'mask' ) ;
     public final void rule__IndexerRecipe__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4487:1: ( ( 'mask' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4488:1: ( 'mask' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4584:1: ( ( 'mask' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4585:1: ( 'mask' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4488:1: ( 'mask' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4489:1: 'mask'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4585:1: ( 'mask' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4586:1: 'mask'
             {
              before(grammarAccess.getIndexerRecipeAccess().getMaskKeyword_4()); 
-            match(input,31,FollowSets000.FOLLOW_31_in_rule__IndexerRecipe__Group__4__Impl8822); 
+            match(input,32,FollowSets000.FOLLOW_32_in_rule__IndexerRecipe__Group__4__Impl9012); 
              after(grammarAccess.getIndexerRecipeAccess().getMaskKeyword_4()); 
 
             }
@@ -11094,21 +11330,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__5"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4502:1: rule__IndexerRecipe__Group__5 : rule__IndexerRecipe__Group__5__Impl rule__IndexerRecipe__Group__6 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4599:1: rule__IndexerRecipe__Group__5 : rule__IndexerRecipe__Group__5__Impl rule__IndexerRecipe__Group__6 ;
     public final void rule__IndexerRecipe__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4506:1: ( rule__IndexerRecipe__Group__5__Impl rule__IndexerRecipe__Group__6 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4507:2: rule__IndexerRecipe__Group__5__Impl rule__IndexerRecipe__Group__6
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4603:1: ( rule__IndexerRecipe__Group__5__Impl rule__IndexerRecipe__Group__6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4604:2: rule__IndexerRecipe__Group__5__Impl rule__IndexerRecipe__Group__6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__5__Impl_in_rule__IndexerRecipe__Group__58853);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__5__Impl_in_rule__IndexerRecipe__Group__59043);
             rule__IndexerRecipe__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__6_in_rule__IndexerRecipe__Group__58856);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__6_in_rule__IndexerRecipe__Group__59046);
             rule__IndexerRecipe__Group__6();
 
             state._fsp--;
@@ -11132,20 +11368,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__5__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4514:1: rule__IndexerRecipe__Group__5__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4611:1: rule__IndexerRecipe__Group__5__Impl : ( ':' ) ;
     public final void rule__IndexerRecipe__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4518:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4519:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4615:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4616:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4519:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4520:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4616:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4617:1: ':'
             {
              before(grammarAccess.getIndexerRecipeAccess().getColonKeyword_5()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__IndexerRecipe__Group__5__Impl8884); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__IndexerRecipe__Group__5__Impl9074); 
              after(grammarAccess.getIndexerRecipeAccess().getColonKeyword_5()); 
 
             }
@@ -11169,21 +11405,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__6"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4533:1: rule__IndexerRecipe__Group__6 : rule__IndexerRecipe__Group__6__Impl rule__IndexerRecipe__Group__7 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4630:1: rule__IndexerRecipe__Group__6 : rule__IndexerRecipe__Group__6__Impl rule__IndexerRecipe__Group__7 ;
     public final void rule__IndexerRecipe__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4537:1: ( rule__IndexerRecipe__Group__6__Impl rule__IndexerRecipe__Group__7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4538:2: rule__IndexerRecipe__Group__6__Impl rule__IndexerRecipe__Group__7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4634:1: ( rule__IndexerRecipe__Group__6__Impl rule__IndexerRecipe__Group__7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4635:2: rule__IndexerRecipe__Group__6__Impl rule__IndexerRecipe__Group__7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__6__Impl_in_rule__IndexerRecipe__Group__68915);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__6__Impl_in_rule__IndexerRecipe__Group__69105);
             rule__IndexerRecipe__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__7_in_rule__IndexerRecipe__Group__68918);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__7_in_rule__IndexerRecipe__Group__69108);
             rule__IndexerRecipe__Group__7();
 
             state._fsp--;
@@ -11207,23 +11443,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__6__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4545:1: rule__IndexerRecipe__Group__6__Impl : ( ( rule__IndexerRecipe__MaskAssignment_6 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4642:1: rule__IndexerRecipe__Group__6__Impl : ( ( rule__IndexerRecipe__MaskAssignment_6 ) ) ;
     public final void rule__IndexerRecipe__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4549:1: ( ( ( rule__IndexerRecipe__MaskAssignment_6 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4550:1: ( ( rule__IndexerRecipe__MaskAssignment_6 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4646:1: ( ( ( rule__IndexerRecipe__MaskAssignment_6 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4647:1: ( ( rule__IndexerRecipe__MaskAssignment_6 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4550:1: ( ( rule__IndexerRecipe__MaskAssignment_6 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4551:1: ( rule__IndexerRecipe__MaskAssignment_6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4647:1: ( ( rule__IndexerRecipe__MaskAssignment_6 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4648:1: ( rule__IndexerRecipe__MaskAssignment_6 )
             {
              before(grammarAccess.getIndexerRecipeAccess().getMaskAssignment_6()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4552:1: ( rule__IndexerRecipe__MaskAssignment_6 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4552:2: rule__IndexerRecipe__MaskAssignment_6
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4649:1: ( rule__IndexerRecipe__MaskAssignment_6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4649:2: rule__IndexerRecipe__MaskAssignment_6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__MaskAssignment_6_in_rule__IndexerRecipe__Group__6__Impl8945);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__MaskAssignment_6_in_rule__IndexerRecipe__Group__6__Impl9135);
             rule__IndexerRecipe__MaskAssignment_6();
 
             state._fsp--;
@@ -11254,21 +11490,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4562:1: rule__IndexerRecipe__Group__7 : rule__IndexerRecipe__Group__7__Impl rule__IndexerRecipe__Group__8 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4659:1: rule__IndexerRecipe__Group__7 : rule__IndexerRecipe__Group__7__Impl rule__IndexerRecipe__Group__8 ;
     public final void rule__IndexerRecipe__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4566:1: ( rule__IndexerRecipe__Group__7__Impl rule__IndexerRecipe__Group__8 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4567:2: rule__IndexerRecipe__Group__7__Impl rule__IndexerRecipe__Group__8
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4663:1: ( rule__IndexerRecipe__Group__7__Impl rule__IndexerRecipe__Group__8 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4664:2: rule__IndexerRecipe__Group__7__Impl rule__IndexerRecipe__Group__8
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__7__Impl_in_rule__IndexerRecipe__Group__78975);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__7__Impl_in_rule__IndexerRecipe__Group__79165);
             rule__IndexerRecipe__Group__7__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__8_in_rule__IndexerRecipe__Group__78978);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__8_in_rule__IndexerRecipe__Group__79168);
             rule__IndexerRecipe__Group__8();
 
             state._fsp--;
@@ -11292,20 +11528,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__7__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4574:1: rule__IndexerRecipe__Group__7__Impl : ( 'parent' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4671:1: rule__IndexerRecipe__Group__7__Impl : ( 'parent' ) ;
     public final void rule__IndexerRecipe__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4578:1: ( ( 'parent' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4579:1: ( 'parent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4675:1: ( ( 'parent' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4676:1: ( 'parent' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4579:1: ( 'parent' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4580:1: 'parent'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4676:1: ( 'parent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4677:1: 'parent'
             {
              before(grammarAccess.getIndexerRecipeAccess().getParentKeyword_7()); 
-            match(input,29,FollowSets000.FOLLOW_29_in_rule__IndexerRecipe__Group__7__Impl9006); 
+            match(input,30,FollowSets000.FOLLOW_30_in_rule__IndexerRecipe__Group__7__Impl9196); 
              after(grammarAccess.getIndexerRecipeAccess().getParentKeyword_7()); 
 
             }
@@ -11329,21 +11565,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__8"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4593:1: rule__IndexerRecipe__Group__8 : rule__IndexerRecipe__Group__8__Impl rule__IndexerRecipe__Group__9 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4690:1: rule__IndexerRecipe__Group__8 : rule__IndexerRecipe__Group__8__Impl rule__IndexerRecipe__Group__9 ;
     public final void rule__IndexerRecipe__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4597:1: ( rule__IndexerRecipe__Group__8__Impl rule__IndexerRecipe__Group__9 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4598:2: rule__IndexerRecipe__Group__8__Impl rule__IndexerRecipe__Group__9
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4694:1: ( rule__IndexerRecipe__Group__8__Impl rule__IndexerRecipe__Group__9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4695:2: rule__IndexerRecipe__Group__8__Impl rule__IndexerRecipe__Group__9
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__8__Impl_in_rule__IndexerRecipe__Group__89037);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__8__Impl_in_rule__IndexerRecipe__Group__89227);
             rule__IndexerRecipe__Group__8__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__9_in_rule__IndexerRecipe__Group__89040);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__9_in_rule__IndexerRecipe__Group__89230);
             rule__IndexerRecipe__Group__9();
 
             state._fsp--;
@@ -11367,20 +11603,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__8__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4605:1: rule__IndexerRecipe__Group__8__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4702:1: rule__IndexerRecipe__Group__8__Impl : ( ':' ) ;
     public final void rule__IndexerRecipe__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4609:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4610:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4706:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4707:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4610:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4611:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4707:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4708:1: ':'
             {
              before(grammarAccess.getIndexerRecipeAccess().getColonKeyword_8()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__IndexerRecipe__Group__8__Impl9068); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__IndexerRecipe__Group__8__Impl9258); 
              after(grammarAccess.getIndexerRecipeAccess().getColonKeyword_8()); 
 
             }
@@ -11404,21 +11640,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__9"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4624:1: rule__IndexerRecipe__Group__9 : rule__IndexerRecipe__Group__9__Impl rule__IndexerRecipe__Group__10 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4721:1: rule__IndexerRecipe__Group__9 : rule__IndexerRecipe__Group__9__Impl rule__IndexerRecipe__Group__10 ;
     public final void rule__IndexerRecipe__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4628:1: ( rule__IndexerRecipe__Group__9__Impl rule__IndexerRecipe__Group__10 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4629:2: rule__IndexerRecipe__Group__9__Impl rule__IndexerRecipe__Group__10
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4725:1: ( rule__IndexerRecipe__Group__9__Impl rule__IndexerRecipe__Group__10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4726:2: rule__IndexerRecipe__Group__9__Impl rule__IndexerRecipe__Group__10
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__9__Impl_in_rule__IndexerRecipe__Group__99099);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__9__Impl_in_rule__IndexerRecipe__Group__99289);
             rule__IndexerRecipe__Group__9__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__10_in_rule__IndexerRecipe__Group__99102);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__10_in_rule__IndexerRecipe__Group__99292);
             rule__IndexerRecipe__Group__10();
 
             state._fsp--;
@@ -11442,23 +11678,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__9__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4636:1: rule__IndexerRecipe__Group__9__Impl : ( ( rule__IndexerRecipe__ParentAssignment_9 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4733:1: rule__IndexerRecipe__Group__9__Impl : ( ( rule__IndexerRecipe__ParentAssignment_9 ) ) ;
     public final void rule__IndexerRecipe__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4640:1: ( ( ( rule__IndexerRecipe__ParentAssignment_9 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4641:1: ( ( rule__IndexerRecipe__ParentAssignment_9 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4737:1: ( ( ( rule__IndexerRecipe__ParentAssignment_9 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4738:1: ( ( rule__IndexerRecipe__ParentAssignment_9 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4641:1: ( ( rule__IndexerRecipe__ParentAssignment_9 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4642:1: ( rule__IndexerRecipe__ParentAssignment_9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4738:1: ( ( rule__IndexerRecipe__ParentAssignment_9 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4739:1: ( rule__IndexerRecipe__ParentAssignment_9 )
             {
              before(grammarAccess.getIndexerRecipeAccess().getParentAssignment_9()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4643:1: ( rule__IndexerRecipe__ParentAssignment_9 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4643:2: rule__IndexerRecipe__ParentAssignment_9
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4740:1: ( rule__IndexerRecipe__ParentAssignment_9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4740:2: rule__IndexerRecipe__ParentAssignment_9
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__ParentAssignment_9_in_rule__IndexerRecipe__Group__9__Impl9129);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__ParentAssignment_9_in_rule__IndexerRecipe__Group__9__Impl9319);
             rule__IndexerRecipe__ParentAssignment_9();
 
             state._fsp--;
@@ -11489,16 +11725,16 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__10"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4653:1: rule__IndexerRecipe__Group__10 : rule__IndexerRecipe__Group__10__Impl ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4750:1: rule__IndexerRecipe__Group__10 : rule__IndexerRecipe__Group__10__Impl ;
     public final void rule__IndexerRecipe__Group__10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4657:1: ( rule__IndexerRecipe__Group__10__Impl )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4658:2: rule__IndexerRecipe__Group__10__Impl
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4754:1: ( rule__IndexerRecipe__Group__10__Impl )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4755:2: rule__IndexerRecipe__Group__10__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__10__Impl_in_rule__IndexerRecipe__Group__109159);
+            pushFollow(FollowSets000.FOLLOW_rule__IndexerRecipe__Group__10__Impl_in_rule__IndexerRecipe__Group__109349);
             rule__IndexerRecipe__Group__10__Impl();
 
             state._fsp--;
@@ -11522,20 +11758,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__Group__10__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4664:1: rule__IndexerRecipe__Group__10__Impl : ( '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4761:1: rule__IndexerRecipe__Group__10__Impl : ( '}' ) ;
     public final void rule__IndexerRecipe__Group__10__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4668:1: ( ( '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4669:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4765:1: ( ( '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4766:1: ( '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4669:1: ( '}' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4670:1: '}'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4766:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4767:1: '}'
             {
              before(grammarAccess.getIndexerRecipeAccess().getRightCurlyBracketKeyword_10()); 
-            match(input,19,FollowSets000.FOLLOW_19_in_rule__IndexerRecipe__Group__10__Impl9187); 
+            match(input,19,FollowSets000.FOLLOW_19_in_rule__IndexerRecipe__Group__10__Impl9377); 
              after(grammarAccess.getIndexerRecipeAccess().getRightCurlyBracketKeyword_10()); 
 
             }
@@ -11559,21 +11795,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__0"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4705:1: rule__ProjectionIndexerRecipe__Group__0 : rule__ProjectionIndexerRecipe__Group__0__Impl rule__ProjectionIndexerRecipe__Group__1 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4802:1: rule__ProjectionIndexerRecipe__Group__0 : rule__ProjectionIndexerRecipe__Group__0__Impl rule__ProjectionIndexerRecipe__Group__1 ;
     public final void rule__ProjectionIndexerRecipe__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4709:1: ( rule__ProjectionIndexerRecipe__Group__0__Impl rule__ProjectionIndexerRecipe__Group__1 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4710:2: rule__ProjectionIndexerRecipe__Group__0__Impl rule__ProjectionIndexerRecipe__Group__1
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4806:1: ( rule__ProjectionIndexerRecipe__Group__0__Impl rule__ProjectionIndexerRecipe__Group__1 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4807:2: rule__ProjectionIndexerRecipe__Group__0__Impl rule__ProjectionIndexerRecipe__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__0__Impl_in_rule__ProjectionIndexerRecipe__Group__09240);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__0__Impl_in_rule__ProjectionIndexerRecipe__Group__09430);
             rule__ProjectionIndexerRecipe__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__1_in_rule__ProjectionIndexerRecipe__Group__09243);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__1_in_rule__ProjectionIndexerRecipe__Group__09433);
             rule__ProjectionIndexerRecipe__Group__1();
 
             state._fsp--;
@@ -11597,20 +11833,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__0__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4717:1: rule__ProjectionIndexerRecipe__Group__0__Impl : ( '{' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4814:1: rule__ProjectionIndexerRecipe__Group__0__Impl : ( '{' ) ;
     public final void rule__ProjectionIndexerRecipe__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4721:1: ( ( '{' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4722:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4818:1: ( ( '{' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4819:1: ( '{' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4722:1: ( '{' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4723:1: '{'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4819:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4820:1: '{'
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getLeftCurlyBracketKeyword_0()); 
-            match(input,18,FollowSets000.FOLLOW_18_in_rule__ProjectionIndexerRecipe__Group__0__Impl9271); 
+            match(input,18,FollowSets000.FOLLOW_18_in_rule__ProjectionIndexerRecipe__Group__0__Impl9461); 
              after(grammarAccess.getProjectionIndexerRecipeAccess().getLeftCurlyBracketKeyword_0()); 
 
             }
@@ -11634,21 +11870,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__1"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4736:1: rule__ProjectionIndexerRecipe__Group__1 : rule__ProjectionIndexerRecipe__Group__1__Impl rule__ProjectionIndexerRecipe__Group__2 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4833:1: rule__ProjectionIndexerRecipe__Group__1 : rule__ProjectionIndexerRecipe__Group__1__Impl rule__ProjectionIndexerRecipe__Group__2 ;
     public final void rule__ProjectionIndexerRecipe__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4740:1: ( rule__ProjectionIndexerRecipe__Group__1__Impl rule__ProjectionIndexerRecipe__Group__2 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4741:2: rule__ProjectionIndexerRecipe__Group__1__Impl rule__ProjectionIndexerRecipe__Group__2
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4837:1: ( rule__ProjectionIndexerRecipe__Group__1__Impl rule__ProjectionIndexerRecipe__Group__2 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4838:2: rule__ProjectionIndexerRecipe__Group__1__Impl rule__ProjectionIndexerRecipe__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__1__Impl_in_rule__ProjectionIndexerRecipe__Group__19302);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__1__Impl_in_rule__ProjectionIndexerRecipe__Group__19492);
             rule__ProjectionIndexerRecipe__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__2_in_rule__ProjectionIndexerRecipe__Group__19305);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__2_in_rule__ProjectionIndexerRecipe__Group__19495);
             rule__ProjectionIndexerRecipe__Group__2();
 
             state._fsp--;
@@ -11672,20 +11908,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__1__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4748:1: rule__ProjectionIndexerRecipe__Group__1__Impl : ( 'traceInfo' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4845:1: rule__ProjectionIndexerRecipe__Group__1__Impl : ( 'traceInfo' ) ;
     public final void rule__ProjectionIndexerRecipe__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4752:1: ( ( 'traceInfo' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4753:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4849:1: ( ( 'traceInfo' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4850:1: ( 'traceInfo' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4753:1: ( 'traceInfo' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4754:1: 'traceInfo'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4850:1: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4851:1: 'traceInfo'
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getTraceInfoKeyword_1()); 
-            match(input,22,FollowSets000.FOLLOW_22_in_rule__ProjectionIndexerRecipe__Group__1__Impl9333); 
+            match(input,23,FollowSets000.FOLLOW_23_in_rule__ProjectionIndexerRecipe__Group__1__Impl9523); 
              after(grammarAccess.getProjectionIndexerRecipeAccess().getTraceInfoKeyword_1()); 
 
             }
@@ -11709,21 +11945,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__2"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4767:1: rule__ProjectionIndexerRecipe__Group__2 : rule__ProjectionIndexerRecipe__Group__2__Impl rule__ProjectionIndexerRecipe__Group__3 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4864:1: rule__ProjectionIndexerRecipe__Group__2 : rule__ProjectionIndexerRecipe__Group__2__Impl rule__ProjectionIndexerRecipe__Group__3 ;
     public final void rule__ProjectionIndexerRecipe__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4771:1: ( rule__ProjectionIndexerRecipe__Group__2__Impl rule__ProjectionIndexerRecipe__Group__3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4772:2: rule__ProjectionIndexerRecipe__Group__2__Impl rule__ProjectionIndexerRecipe__Group__3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4868:1: ( rule__ProjectionIndexerRecipe__Group__2__Impl rule__ProjectionIndexerRecipe__Group__3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4869:2: rule__ProjectionIndexerRecipe__Group__2__Impl rule__ProjectionIndexerRecipe__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__2__Impl_in_rule__ProjectionIndexerRecipe__Group__29364);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__2__Impl_in_rule__ProjectionIndexerRecipe__Group__29554);
             rule__ProjectionIndexerRecipe__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__3_in_rule__ProjectionIndexerRecipe__Group__29367);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__3_in_rule__ProjectionIndexerRecipe__Group__29557);
             rule__ProjectionIndexerRecipe__Group__3();
 
             state._fsp--;
@@ -11747,20 +11983,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__2__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4779:1: rule__ProjectionIndexerRecipe__Group__2__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4876:1: rule__ProjectionIndexerRecipe__Group__2__Impl : ( ':' ) ;
     public final void rule__ProjectionIndexerRecipe__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4783:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4784:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4880:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4881:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4784:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4785:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4881:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4882:1: ':'
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getColonKeyword_2()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__ProjectionIndexerRecipe__Group__2__Impl9395); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__ProjectionIndexerRecipe__Group__2__Impl9585); 
              after(grammarAccess.getProjectionIndexerRecipeAccess().getColonKeyword_2()); 
 
             }
@@ -11784,21 +12020,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4798:1: rule__ProjectionIndexerRecipe__Group__3 : rule__ProjectionIndexerRecipe__Group__3__Impl rule__ProjectionIndexerRecipe__Group__4 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4895:1: rule__ProjectionIndexerRecipe__Group__3 : rule__ProjectionIndexerRecipe__Group__3__Impl rule__ProjectionIndexerRecipe__Group__4 ;
     public final void rule__ProjectionIndexerRecipe__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4802:1: ( rule__ProjectionIndexerRecipe__Group__3__Impl rule__ProjectionIndexerRecipe__Group__4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4803:2: rule__ProjectionIndexerRecipe__Group__3__Impl rule__ProjectionIndexerRecipe__Group__4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4899:1: ( rule__ProjectionIndexerRecipe__Group__3__Impl rule__ProjectionIndexerRecipe__Group__4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4900:2: rule__ProjectionIndexerRecipe__Group__3__Impl rule__ProjectionIndexerRecipe__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__3__Impl_in_rule__ProjectionIndexerRecipe__Group__39426);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__3__Impl_in_rule__ProjectionIndexerRecipe__Group__39616);
             rule__ProjectionIndexerRecipe__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__4_in_rule__ProjectionIndexerRecipe__Group__39429);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__4_in_rule__ProjectionIndexerRecipe__Group__39619);
             rule__ProjectionIndexerRecipe__Group__4();
 
             state._fsp--;
@@ -11822,23 +12058,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__3__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4810:1: rule__ProjectionIndexerRecipe__Group__3__Impl : ( ( rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4907:1: rule__ProjectionIndexerRecipe__Group__3__Impl : ( ( rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 ) ) ;
     public final void rule__ProjectionIndexerRecipe__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4814:1: ( ( ( rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4815:1: ( ( rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4911:1: ( ( ( rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4912:1: ( ( rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4815:1: ( ( rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4816:1: ( rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4912:1: ( ( rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4913:1: ( rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 )
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getTraceInfoAssignment_3()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4817:1: ( rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4817:2: rule__ProjectionIndexerRecipe__TraceInfoAssignment_3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4914:1: ( rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4914:2: rule__ProjectionIndexerRecipe__TraceInfoAssignment_3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__TraceInfoAssignment_3_in_rule__ProjectionIndexerRecipe__Group__3__Impl9456);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__TraceInfoAssignment_3_in_rule__ProjectionIndexerRecipe__Group__3__Impl9646);
             rule__ProjectionIndexerRecipe__TraceInfoAssignment_3();
 
             state._fsp--;
@@ -11869,21 +12105,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4827:1: rule__ProjectionIndexerRecipe__Group__4 : rule__ProjectionIndexerRecipe__Group__4__Impl rule__ProjectionIndexerRecipe__Group__5 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4924:1: rule__ProjectionIndexerRecipe__Group__4 : rule__ProjectionIndexerRecipe__Group__4__Impl rule__ProjectionIndexerRecipe__Group__5 ;
     public final void rule__ProjectionIndexerRecipe__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4831:1: ( rule__ProjectionIndexerRecipe__Group__4__Impl rule__ProjectionIndexerRecipe__Group__5 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4832:2: rule__ProjectionIndexerRecipe__Group__4__Impl rule__ProjectionIndexerRecipe__Group__5
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4928:1: ( rule__ProjectionIndexerRecipe__Group__4__Impl rule__ProjectionIndexerRecipe__Group__5 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4929:2: rule__ProjectionIndexerRecipe__Group__4__Impl rule__ProjectionIndexerRecipe__Group__5
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__4__Impl_in_rule__ProjectionIndexerRecipe__Group__49486);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__4__Impl_in_rule__ProjectionIndexerRecipe__Group__49676);
             rule__ProjectionIndexerRecipe__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__5_in_rule__ProjectionIndexerRecipe__Group__49489);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__5_in_rule__ProjectionIndexerRecipe__Group__49679);
             rule__ProjectionIndexerRecipe__Group__5();
 
             state._fsp--;
@@ -11907,20 +12143,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__4__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4839:1: rule__ProjectionIndexerRecipe__Group__4__Impl : ( 'mask' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4936:1: rule__ProjectionIndexerRecipe__Group__4__Impl : ( 'mask' ) ;
     public final void rule__ProjectionIndexerRecipe__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4843:1: ( ( 'mask' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4844:1: ( 'mask' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4940:1: ( ( 'mask' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4941:1: ( 'mask' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4844:1: ( 'mask' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4845:1: 'mask'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4941:1: ( 'mask' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4942:1: 'mask'
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getMaskKeyword_4()); 
-            match(input,31,FollowSets000.FOLLOW_31_in_rule__ProjectionIndexerRecipe__Group__4__Impl9517); 
+            match(input,32,FollowSets000.FOLLOW_32_in_rule__ProjectionIndexerRecipe__Group__4__Impl9707); 
              after(grammarAccess.getProjectionIndexerRecipeAccess().getMaskKeyword_4()); 
 
             }
@@ -11944,21 +12180,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__5"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4858:1: rule__ProjectionIndexerRecipe__Group__5 : rule__ProjectionIndexerRecipe__Group__5__Impl rule__ProjectionIndexerRecipe__Group__6 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4955:1: rule__ProjectionIndexerRecipe__Group__5 : rule__ProjectionIndexerRecipe__Group__5__Impl rule__ProjectionIndexerRecipe__Group__6 ;
     public final void rule__ProjectionIndexerRecipe__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4862:1: ( rule__ProjectionIndexerRecipe__Group__5__Impl rule__ProjectionIndexerRecipe__Group__6 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4863:2: rule__ProjectionIndexerRecipe__Group__5__Impl rule__ProjectionIndexerRecipe__Group__6
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4959:1: ( rule__ProjectionIndexerRecipe__Group__5__Impl rule__ProjectionIndexerRecipe__Group__6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4960:2: rule__ProjectionIndexerRecipe__Group__5__Impl rule__ProjectionIndexerRecipe__Group__6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__5__Impl_in_rule__ProjectionIndexerRecipe__Group__59548);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__5__Impl_in_rule__ProjectionIndexerRecipe__Group__59738);
             rule__ProjectionIndexerRecipe__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__6_in_rule__ProjectionIndexerRecipe__Group__59551);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__6_in_rule__ProjectionIndexerRecipe__Group__59741);
             rule__ProjectionIndexerRecipe__Group__6();
 
             state._fsp--;
@@ -11982,20 +12218,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__5__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4870:1: rule__ProjectionIndexerRecipe__Group__5__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4967:1: rule__ProjectionIndexerRecipe__Group__5__Impl : ( ':' ) ;
     public final void rule__ProjectionIndexerRecipe__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4874:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4875:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4971:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4972:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4875:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4876:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4972:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4973:1: ':'
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getColonKeyword_5()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__ProjectionIndexerRecipe__Group__5__Impl9579); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__ProjectionIndexerRecipe__Group__5__Impl9769); 
              after(grammarAccess.getProjectionIndexerRecipeAccess().getColonKeyword_5()); 
 
             }
@@ -12019,21 +12255,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__6"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4889:1: rule__ProjectionIndexerRecipe__Group__6 : rule__ProjectionIndexerRecipe__Group__6__Impl rule__ProjectionIndexerRecipe__Group__7 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4986:1: rule__ProjectionIndexerRecipe__Group__6 : rule__ProjectionIndexerRecipe__Group__6__Impl rule__ProjectionIndexerRecipe__Group__7 ;
     public final void rule__ProjectionIndexerRecipe__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4893:1: ( rule__ProjectionIndexerRecipe__Group__6__Impl rule__ProjectionIndexerRecipe__Group__7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4894:2: rule__ProjectionIndexerRecipe__Group__6__Impl rule__ProjectionIndexerRecipe__Group__7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4990:1: ( rule__ProjectionIndexerRecipe__Group__6__Impl rule__ProjectionIndexerRecipe__Group__7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4991:2: rule__ProjectionIndexerRecipe__Group__6__Impl rule__ProjectionIndexerRecipe__Group__7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__6__Impl_in_rule__ProjectionIndexerRecipe__Group__69610);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__6__Impl_in_rule__ProjectionIndexerRecipe__Group__69800);
             rule__ProjectionIndexerRecipe__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__7_in_rule__ProjectionIndexerRecipe__Group__69613);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__7_in_rule__ProjectionIndexerRecipe__Group__69803);
             rule__ProjectionIndexerRecipe__Group__7();
 
             state._fsp--;
@@ -12057,23 +12293,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__6__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4901:1: rule__ProjectionIndexerRecipe__Group__6__Impl : ( ( rule__ProjectionIndexerRecipe__MaskAssignment_6 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4998:1: rule__ProjectionIndexerRecipe__Group__6__Impl : ( ( rule__ProjectionIndexerRecipe__MaskAssignment_6 ) ) ;
     public final void rule__ProjectionIndexerRecipe__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4905:1: ( ( ( rule__ProjectionIndexerRecipe__MaskAssignment_6 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4906:1: ( ( rule__ProjectionIndexerRecipe__MaskAssignment_6 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5002:1: ( ( ( rule__ProjectionIndexerRecipe__MaskAssignment_6 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5003:1: ( ( rule__ProjectionIndexerRecipe__MaskAssignment_6 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4906:1: ( ( rule__ProjectionIndexerRecipe__MaskAssignment_6 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4907:1: ( rule__ProjectionIndexerRecipe__MaskAssignment_6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5003:1: ( ( rule__ProjectionIndexerRecipe__MaskAssignment_6 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5004:1: ( rule__ProjectionIndexerRecipe__MaskAssignment_6 )
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getMaskAssignment_6()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4908:1: ( rule__ProjectionIndexerRecipe__MaskAssignment_6 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4908:2: rule__ProjectionIndexerRecipe__MaskAssignment_6
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5005:1: ( rule__ProjectionIndexerRecipe__MaskAssignment_6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5005:2: rule__ProjectionIndexerRecipe__MaskAssignment_6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__MaskAssignment_6_in_rule__ProjectionIndexerRecipe__Group__6__Impl9640);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__MaskAssignment_6_in_rule__ProjectionIndexerRecipe__Group__6__Impl9830);
             rule__ProjectionIndexerRecipe__MaskAssignment_6();
 
             state._fsp--;
@@ -12104,21 +12340,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4918:1: rule__ProjectionIndexerRecipe__Group__7 : rule__ProjectionIndexerRecipe__Group__7__Impl rule__ProjectionIndexerRecipe__Group__8 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5015:1: rule__ProjectionIndexerRecipe__Group__7 : rule__ProjectionIndexerRecipe__Group__7__Impl rule__ProjectionIndexerRecipe__Group__8 ;
     public final void rule__ProjectionIndexerRecipe__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4922:1: ( rule__ProjectionIndexerRecipe__Group__7__Impl rule__ProjectionIndexerRecipe__Group__8 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4923:2: rule__ProjectionIndexerRecipe__Group__7__Impl rule__ProjectionIndexerRecipe__Group__8
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5019:1: ( rule__ProjectionIndexerRecipe__Group__7__Impl rule__ProjectionIndexerRecipe__Group__8 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5020:2: rule__ProjectionIndexerRecipe__Group__7__Impl rule__ProjectionIndexerRecipe__Group__8
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__7__Impl_in_rule__ProjectionIndexerRecipe__Group__79670);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__7__Impl_in_rule__ProjectionIndexerRecipe__Group__79860);
             rule__ProjectionIndexerRecipe__Group__7__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__8_in_rule__ProjectionIndexerRecipe__Group__79673);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__8_in_rule__ProjectionIndexerRecipe__Group__79863);
             rule__ProjectionIndexerRecipe__Group__8();
 
             state._fsp--;
@@ -12142,20 +12378,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__7__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4930:1: rule__ProjectionIndexerRecipe__Group__7__Impl : ( 'parent' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5027:1: rule__ProjectionIndexerRecipe__Group__7__Impl : ( 'parent' ) ;
     public final void rule__ProjectionIndexerRecipe__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4934:1: ( ( 'parent' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4935:1: ( 'parent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5031:1: ( ( 'parent' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5032:1: ( 'parent' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4935:1: ( 'parent' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4936:1: 'parent'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5032:1: ( 'parent' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5033:1: 'parent'
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getParentKeyword_7()); 
-            match(input,29,FollowSets000.FOLLOW_29_in_rule__ProjectionIndexerRecipe__Group__7__Impl9701); 
+            match(input,30,FollowSets000.FOLLOW_30_in_rule__ProjectionIndexerRecipe__Group__7__Impl9891); 
              after(grammarAccess.getProjectionIndexerRecipeAccess().getParentKeyword_7()); 
 
             }
@@ -12179,21 +12415,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__8"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4949:1: rule__ProjectionIndexerRecipe__Group__8 : rule__ProjectionIndexerRecipe__Group__8__Impl rule__ProjectionIndexerRecipe__Group__9 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5046:1: rule__ProjectionIndexerRecipe__Group__8 : rule__ProjectionIndexerRecipe__Group__8__Impl rule__ProjectionIndexerRecipe__Group__9 ;
     public final void rule__ProjectionIndexerRecipe__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4953:1: ( rule__ProjectionIndexerRecipe__Group__8__Impl rule__ProjectionIndexerRecipe__Group__9 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4954:2: rule__ProjectionIndexerRecipe__Group__8__Impl rule__ProjectionIndexerRecipe__Group__9
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5050:1: ( rule__ProjectionIndexerRecipe__Group__8__Impl rule__ProjectionIndexerRecipe__Group__9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5051:2: rule__ProjectionIndexerRecipe__Group__8__Impl rule__ProjectionIndexerRecipe__Group__9
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__8__Impl_in_rule__ProjectionIndexerRecipe__Group__89732);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__8__Impl_in_rule__ProjectionIndexerRecipe__Group__89922);
             rule__ProjectionIndexerRecipe__Group__8__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__9_in_rule__ProjectionIndexerRecipe__Group__89735);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__9_in_rule__ProjectionIndexerRecipe__Group__89925);
             rule__ProjectionIndexerRecipe__Group__9();
 
             state._fsp--;
@@ -12217,20 +12453,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__8__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4961:1: rule__ProjectionIndexerRecipe__Group__8__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5058:1: rule__ProjectionIndexerRecipe__Group__8__Impl : ( ':' ) ;
     public final void rule__ProjectionIndexerRecipe__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4965:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4966:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5062:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5063:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4966:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4967:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5063:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5064:1: ':'
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getColonKeyword_8()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__ProjectionIndexerRecipe__Group__8__Impl9763); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__ProjectionIndexerRecipe__Group__8__Impl9953); 
              after(grammarAccess.getProjectionIndexerRecipeAccess().getColonKeyword_8()); 
 
             }
@@ -12254,21 +12490,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__9"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4980:1: rule__ProjectionIndexerRecipe__Group__9 : rule__ProjectionIndexerRecipe__Group__9__Impl rule__ProjectionIndexerRecipe__Group__10 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5077:1: rule__ProjectionIndexerRecipe__Group__9 : rule__ProjectionIndexerRecipe__Group__9__Impl rule__ProjectionIndexerRecipe__Group__10 ;
     public final void rule__ProjectionIndexerRecipe__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4984:1: ( rule__ProjectionIndexerRecipe__Group__9__Impl rule__ProjectionIndexerRecipe__Group__10 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4985:2: rule__ProjectionIndexerRecipe__Group__9__Impl rule__ProjectionIndexerRecipe__Group__10
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5081:1: ( rule__ProjectionIndexerRecipe__Group__9__Impl rule__ProjectionIndexerRecipe__Group__10 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5082:2: rule__ProjectionIndexerRecipe__Group__9__Impl rule__ProjectionIndexerRecipe__Group__10
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__9__Impl_in_rule__ProjectionIndexerRecipe__Group__99794);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__9__Impl_in_rule__ProjectionIndexerRecipe__Group__99984);
             rule__ProjectionIndexerRecipe__Group__9__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__10_in_rule__ProjectionIndexerRecipe__Group__99797);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__10_in_rule__ProjectionIndexerRecipe__Group__99987);
             rule__ProjectionIndexerRecipe__Group__10();
 
             state._fsp--;
@@ -12292,23 +12528,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__9__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4992:1: rule__ProjectionIndexerRecipe__Group__9__Impl : ( ( rule__ProjectionIndexerRecipe__ParentAssignment_9 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5089:1: rule__ProjectionIndexerRecipe__Group__9__Impl : ( ( rule__ProjectionIndexerRecipe__ParentAssignment_9 ) ) ;
     public final void rule__ProjectionIndexerRecipe__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4996:1: ( ( ( rule__ProjectionIndexerRecipe__ParentAssignment_9 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4997:1: ( ( rule__ProjectionIndexerRecipe__ParentAssignment_9 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5093:1: ( ( ( rule__ProjectionIndexerRecipe__ParentAssignment_9 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5094:1: ( ( rule__ProjectionIndexerRecipe__ParentAssignment_9 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4997:1: ( ( rule__ProjectionIndexerRecipe__ParentAssignment_9 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4998:1: ( rule__ProjectionIndexerRecipe__ParentAssignment_9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5094:1: ( ( rule__ProjectionIndexerRecipe__ParentAssignment_9 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5095:1: ( rule__ProjectionIndexerRecipe__ParentAssignment_9 )
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getParentAssignment_9()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4999:1: ( rule__ProjectionIndexerRecipe__ParentAssignment_9 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:4999:2: rule__ProjectionIndexerRecipe__ParentAssignment_9
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5096:1: ( rule__ProjectionIndexerRecipe__ParentAssignment_9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5096:2: rule__ProjectionIndexerRecipe__ParentAssignment_9
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__ParentAssignment_9_in_rule__ProjectionIndexerRecipe__Group__9__Impl9824);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__ParentAssignment_9_in_rule__ProjectionIndexerRecipe__Group__9__Impl10014);
             rule__ProjectionIndexerRecipe__ParentAssignment_9();
 
             state._fsp--;
@@ -12339,16 +12575,16 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__10"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5009:1: rule__ProjectionIndexerRecipe__Group__10 : rule__ProjectionIndexerRecipe__Group__10__Impl ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5106:1: rule__ProjectionIndexerRecipe__Group__10 : rule__ProjectionIndexerRecipe__Group__10__Impl ;
     public final void rule__ProjectionIndexerRecipe__Group__10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5013:1: ( rule__ProjectionIndexerRecipe__Group__10__Impl )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5014:2: rule__ProjectionIndexerRecipe__Group__10__Impl
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5110:1: ( rule__ProjectionIndexerRecipe__Group__10__Impl )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5111:2: rule__ProjectionIndexerRecipe__Group__10__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__10__Impl_in_rule__ProjectionIndexerRecipe__Group__109854);
+            pushFollow(FollowSets000.FOLLOW_rule__ProjectionIndexerRecipe__Group__10__Impl_in_rule__ProjectionIndexerRecipe__Group__1010044);
             rule__ProjectionIndexerRecipe__Group__10__Impl();
 
             state._fsp--;
@@ -12372,20 +12608,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__Group__10__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5020:1: rule__ProjectionIndexerRecipe__Group__10__Impl : ( '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5117:1: rule__ProjectionIndexerRecipe__Group__10__Impl : ( '}' ) ;
     public final void rule__ProjectionIndexerRecipe__Group__10__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5024:1: ( ( '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5025:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5121:1: ( ( '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5122:1: ( '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5025:1: ( '}' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5026:1: '}'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5122:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5123:1: '}'
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getRightCurlyBracketKeyword_10()); 
-            match(input,19,FollowSets000.FOLLOW_19_in_rule__ProjectionIndexerRecipe__Group__10__Impl9882); 
+            match(input,19,FollowSets000.FOLLOW_19_in_rule__ProjectionIndexerRecipe__Group__10__Impl10072); 
              after(grammarAccess.getProjectionIndexerRecipeAccess().getRightCurlyBracketKeyword_10()); 
 
             }
@@ -12409,21 +12645,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group__0"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5061:1: rule__Mask__Group__0 : rule__Mask__Group__0__Impl rule__Mask__Group__1 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5158:1: rule__Mask__Group__0 : rule__Mask__Group__0__Impl rule__Mask__Group__1 ;
     public final void rule__Mask__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5065:1: ( rule__Mask__Group__0__Impl rule__Mask__Group__1 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5066:2: rule__Mask__Group__0__Impl rule__Mask__Group__1
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5162:1: ( rule__Mask__Group__0__Impl rule__Mask__Group__1 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5163:2: rule__Mask__Group__0__Impl rule__Mask__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__0__Impl_in_rule__Mask__Group__09935);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__0__Impl_in_rule__Mask__Group__010125);
             rule__Mask__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__1_in_rule__Mask__Group__09938);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__1_in_rule__Mask__Group__010128);
             rule__Mask__Group__1();
 
             state._fsp--;
@@ -12447,20 +12683,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group__0__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5073:1: rule__Mask__Group__0__Impl : ( '{' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5170:1: rule__Mask__Group__0__Impl : ( '{' ) ;
     public final void rule__Mask__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5077:1: ( ( '{' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5078:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5174:1: ( ( '{' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5175:1: ( '{' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5078:1: ( '{' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5079:1: '{'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5175:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5176:1: '{'
             {
              before(grammarAccess.getMaskAccess().getLeftCurlyBracketKeyword_0()); 
-            match(input,18,FollowSets000.FOLLOW_18_in_rule__Mask__Group__0__Impl9966); 
+            match(input,18,FollowSets000.FOLLOW_18_in_rule__Mask__Group__0__Impl10156); 
              after(grammarAccess.getMaskAccess().getLeftCurlyBracketKeyword_0()); 
 
             }
@@ -12484,21 +12720,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group__1"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5092:1: rule__Mask__Group__1 : rule__Mask__Group__1__Impl rule__Mask__Group__2 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5189:1: rule__Mask__Group__1 : rule__Mask__Group__1__Impl rule__Mask__Group__2 ;
     public final void rule__Mask__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5096:1: ( rule__Mask__Group__1__Impl rule__Mask__Group__2 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5097:2: rule__Mask__Group__1__Impl rule__Mask__Group__2
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5193:1: ( rule__Mask__Group__1__Impl rule__Mask__Group__2 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5194:2: rule__Mask__Group__1__Impl rule__Mask__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__1__Impl_in_rule__Mask__Group__19997);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__1__Impl_in_rule__Mask__Group__110187);
             rule__Mask__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__2_in_rule__Mask__Group__110000);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__2_in_rule__Mask__Group__110190);
             rule__Mask__Group__2();
 
             state._fsp--;
@@ -12522,20 +12758,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group__1__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5104:1: rule__Mask__Group__1__Impl : ( 'sourceArity' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5201:1: rule__Mask__Group__1__Impl : ( 'sourceArity' ) ;
     public final void rule__Mask__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5108:1: ( ( 'sourceArity' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5109:1: ( 'sourceArity' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5205:1: ( ( 'sourceArity' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5206:1: ( 'sourceArity' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5109:1: ( 'sourceArity' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5110:1: 'sourceArity'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5206:1: ( 'sourceArity' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5207:1: 'sourceArity'
             {
              before(grammarAccess.getMaskAccess().getSourceArityKeyword_1()); 
-            match(input,36,FollowSets000.FOLLOW_36_in_rule__Mask__Group__1__Impl10028); 
+            match(input,37,FollowSets000.FOLLOW_37_in_rule__Mask__Group__1__Impl10218); 
              after(grammarAccess.getMaskAccess().getSourceArityKeyword_1()); 
 
             }
@@ -12559,21 +12795,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group__2"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5123:1: rule__Mask__Group__2 : rule__Mask__Group__2__Impl rule__Mask__Group__3 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5220:1: rule__Mask__Group__2 : rule__Mask__Group__2__Impl rule__Mask__Group__3 ;
     public final void rule__Mask__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5127:1: ( rule__Mask__Group__2__Impl rule__Mask__Group__3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5128:2: rule__Mask__Group__2__Impl rule__Mask__Group__3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5224:1: ( rule__Mask__Group__2__Impl rule__Mask__Group__3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5225:2: rule__Mask__Group__2__Impl rule__Mask__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__2__Impl_in_rule__Mask__Group__210059);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__2__Impl_in_rule__Mask__Group__210249);
             rule__Mask__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__3_in_rule__Mask__Group__210062);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__3_in_rule__Mask__Group__210252);
             rule__Mask__Group__3();
 
             state._fsp--;
@@ -12597,20 +12833,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group__2__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5135:1: rule__Mask__Group__2__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5232:1: rule__Mask__Group__2__Impl : ( ':' ) ;
     public final void rule__Mask__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5139:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5140:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5236:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5237:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5140:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5141:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5237:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5238:1: ':'
             {
              before(grammarAccess.getMaskAccess().getColonKeyword_2()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__Mask__Group__2__Impl10090); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__Mask__Group__2__Impl10280); 
              after(grammarAccess.getMaskAccess().getColonKeyword_2()); 
 
             }
@@ -12634,21 +12870,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group__3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5154:1: rule__Mask__Group__3 : rule__Mask__Group__3__Impl rule__Mask__Group__4 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5251:1: rule__Mask__Group__3 : rule__Mask__Group__3__Impl rule__Mask__Group__4 ;
     public final void rule__Mask__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5158:1: ( rule__Mask__Group__3__Impl rule__Mask__Group__4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5159:2: rule__Mask__Group__3__Impl rule__Mask__Group__4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5255:1: ( rule__Mask__Group__3__Impl rule__Mask__Group__4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5256:2: rule__Mask__Group__3__Impl rule__Mask__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__3__Impl_in_rule__Mask__Group__310121);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__3__Impl_in_rule__Mask__Group__310311);
             rule__Mask__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__4_in_rule__Mask__Group__310124);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__4_in_rule__Mask__Group__310314);
             rule__Mask__Group__4();
 
             state._fsp--;
@@ -12672,23 +12908,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group__3__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5166:1: rule__Mask__Group__3__Impl : ( ( rule__Mask__SourceArityAssignment_3 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5263:1: rule__Mask__Group__3__Impl : ( ( rule__Mask__SourceArityAssignment_3 ) ) ;
     public final void rule__Mask__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5170:1: ( ( ( rule__Mask__SourceArityAssignment_3 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5171:1: ( ( rule__Mask__SourceArityAssignment_3 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5267:1: ( ( ( rule__Mask__SourceArityAssignment_3 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5268:1: ( ( rule__Mask__SourceArityAssignment_3 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5171:1: ( ( rule__Mask__SourceArityAssignment_3 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5172:1: ( rule__Mask__SourceArityAssignment_3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5268:1: ( ( rule__Mask__SourceArityAssignment_3 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5269:1: ( rule__Mask__SourceArityAssignment_3 )
             {
              before(grammarAccess.getMaskAccess().getSourceArityAssignment_3()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5173:1: ( rule__Mask__SourceArityAssignment_3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5173:2: rule__Mask__SourceArityAssignment_3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5270:1: ( rule__Mask__SourceArityAssignment_3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5270:2: rule__Mask__SourceArityAssignment_3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__SourceArityAssignment_3_in_rule__Mask__Group__3__Impl10151);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__SourceArityAssignment_3_in_rule__Mask__Group__3__Impl10341);
             rule__Mask__SourceArityAssignment_3();
 
             state._fsp--;
@@ -12719,21 +12955,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group__4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5183:1: rule__Mask__Group__4 : rule__Mask__Group__4__Impl rule__Mask__Group__5 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5280:1: rule__Mask__Group__4 : rule__Mask__Group__4__Impl rule__Mask__Group__5 ;
     public final void rule__Mask__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5187:1: ( rule__Mask__Group__4__Impl rule__Mask__Group__5 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5188:2: rule__Mask__Group__4__Impl rule__Mask__Group__5
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5284:1: ( rule__Mask__Group__4__Impl rule__Mask__Group__5 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5285:2: rule__Mask__Group__4__Impl rule__Mask__Group__5
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__4__Impl_in_rule__Mask__Group__410181);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__4__Impl_in_rule__Mask__Group__410371);
             rule__Mask__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__5_in_rule__Mask__Group__410184);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__5_in_rule__Mask__Group__410374);
             rule__Mask__Group__5();
 
             state._fsp--;
@@ -12757,35 +12993,35 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group__4__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5195:1: rule__Mask__Group__4__Impl : ( ( rule__Mask__Group_4__0 )* ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5292:1: rule__Mask__Group__4__Impl : ( ( rule__Mask__Group_4__0 )* ) ;
     public final void rule__Mask__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5199:1: ( ( ( rule__Mask__Group_4__0 )* ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5200:1: ( ( rule__Mask__Group_4__0 )* )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5296:1: ( ( ( rule__Mask__Group_4__0 )* ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5297:1: ( ( rule__Mask__Group_4__0 )* )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5200:1: ( ( rule__Mask__Group_4__0 )* )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5201:1: ( rule__Mask__Group_4__0 )*
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5297:1: ( ( rule__Mask__Group_4__0 )* )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5298:1: ( rule__Mask__Group_4__0 )*
             {
              before(grammarAccess.getMaskAccess().getGroup_4()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5202:1: ( rule__Mask__Group_4__0 )*
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5299:1: ( rule__Mask__Group_4__0 )*
             loop16:
             do {
                 int alt16=2;
                 int LA16_0 = input.LA(1);
 
-                if ( (LA16_0==37) ) {
+                if ( (LA16_0==38) ) {
                     alt16=1;
                 }
 
 
                 switch (alt16) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5202:2: rule__Mask__Group_4__0
+            	    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5299:2: rule__Mask__Group_4__0
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__0_in_rule__Mask__Group__4__Impl10211);
+            	    pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__0_in_rule__Mask__Group__4__Impl10401);
             	    rule__Mask__Group_4__0();
 
             	    state._fsp--;
@@ -12822,16 +13058,16 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group__5"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5212:1: rule__Mask__Group__5 : rule__Mask__Group__5__Impl ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5309:1: rule__Mask__Group__5 : rule__Mask__Group__5__Impl ;
     public final void rule__Mask__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5216:1: ( rule__Mask__Group__5__Impl )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5217:2: rule__Mask__Group__5__Impl
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5313:1: ( rule__Mask__Group__5__Impl )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5314:2: rule__Mask__Group__5__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__5__Impl_in_rule__Mask__Group__510242);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group__5__Impl_in_rule__Mask__Group__510432);
             rule__Mask__Group__5__Impl();
 
             state._fsp--;
@@ -12855,20 +13091,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group__5__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5223:1: rule__Mask__Group__5__Impl : ( '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5320:1: rule__Mask__Group__5__Impl : ( '}' ) ;
     public final void rule__Mask__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5227:1: ( ( '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5228:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5324:1: ( ( '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5325:1: ( '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5228:1: ( '}' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5229:1: '}'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5325:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5326:1: '}'
             {
              before(grammarAccess.getMaskAccess().getRightCurlyBracketKeyword_5()); 
-            match(input,19,FollowSets000.FOLLOW_19_in_rule__Mask__Group__5__Impl10270); 
+            match(input,19,FollowSets000.FOLLOW_19_in_rule__Mask__Group__5__Impl10460); 
              after(grammarAccess.getMaskAccess().getRightCurlyBracketKeyword_5()); 
 
             }
@@ -12892,21 +13128,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group_4__0"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5254:1: rule__Mask__Group_4__0 : rule__Mask__Group_4__0__Impl rule__Mask__Group_4__1 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5351:1: rule__Mask__Group_4__0 : rule__Mask__Group_4__0__Impl rule__Mask__Group_4__1 ;
     public final void rule__Mask__Group_4__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5258:1: ( rule__Mask__Group_4__0__Impl rule__Mask__Group_4__1 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5259:2: rule__Mask__Group_4__0__Impl rule__Mask__Group_4__1
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5355:1: ( rule__Mask__Group_4__0__Impl rule__Mask__Group_4__1 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5356:2: rule__Mask__Group_4__0__Impl rule__Mask__Group_4__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__0__Impl_in_rule__Mask__Group_4__010313);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__0__Impl_in_rule__Mask__Group_4__010503);
             rule__Mask__Group_4__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__1_in_rule__Mask__Group_4__010316);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__1_in_rule__Mask__Group_4__010506);
             rule__Mask__Group_4__1();
 
             state._fsp--;
@@ -12930,20 +13166,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group_4__0__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5266:1: rule__Mask__Group_4__0__Impl : ( 'sourceIndices' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5363:1: rule__Mask__Group_4__0__Impl : ( 'sourceIndices' ) ;
     public final void rule__Mask__Group_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5270:1: ( ( 'sourceIndices' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5271:1: ( 'sourceIndices' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5367:1: ( ( 'sourceIndices' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5368:1: ( 'sourceIndices' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5271:1: ( 'sourceIndices' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5272:1: 'sourceIndices'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5368:1: ( 'sourceIndices' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5369:1: 'sourceIndices'
             {
              before(grammarAccess.getMaskAccess().getSourceIndicesKeyword_4_0()); 
-            match(input,37,FollowSets000.FOLLOW_37_in_rule__Mask__Group_4__0__Impl10344); 
+            match(input,38,FollowSets000.FOLLOW_38_in_rule__Mask__Group_4__0__Impl10534); 
              after(grammarAccess.getMaskAccess().getSourceIndicesKeyword_4_0()); 
 
             }
@@ -12967,21 +13203,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group_4__1"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5285:1: rule__Mask__Group_4__1 : rule__Mask__Group_4__1__Impl rule__Mask__Group_4__2 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5382:1: rule__Mask__Group_4__1 : rule__Mask__Group_4__1__Impl rule__Mask__Group_4__2 ;
     public final void rule__Mask__Group_4__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5289:1: ( rule__Mask__Group_4__1__Impl rule__Mask__Group_4__2 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5290:2: rule__Mask__Group_4__1__Impl rule__Mask__Group_4__2
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5386:1: ( rule__Mask__Group_4__1__Impl rule__Mask__Group_4__2 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5387:2: rule__Mask__Group_4__1__Impl rule__Mask__Group_4__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__1__Impl_in_rule__Mask__Group_4__110375);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__1__Impl_in_rule__Mask__Group_4__110565);
             rule__Mask__Group_4__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__2_in_rule__Mask__Group_4__110378);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__2_in_rule__Mask__Group_4__110568);
             rule__Mask__Group_4__2();
 
             state._fsp--;
@@ -13005,20 +13241,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group_4__1__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5297:1: rule__Mask__Group_4__1__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5394:1: rule__Mask__Group_4__1__Impl : ( ':' ) ;
     public final void rule__Mask__Group_4__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5301:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5302:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5398:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5399:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5302:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5303:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5399:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5400:1: ':'
             {
              before(grammarAccess.getMaskAccess().getColonKeyword_4_1()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__Mask__Group_4__1__Impl10406); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__Mask__Group_4__1__Impl10596); 
              after(grammarAccess.getMaskAccess().getColonKeyword_4_1()); 
 
             }
@@ -13042,21 +13278,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group_4__2"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5316:1: rule__Mask__Group_4__2 : rule__Mask__Group_4__2__Impl rule__Mask__Group_4__3 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5413:1: rule__Mask__Group_4__2 : rule__Mask__Group_4__2__Impl rule__Mask__Group_4__3 ;
     public final void rule__Mask__Group_4__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5320:1: ( rule__Mask__Group_4__2__Impl rule__Mask__Group_4__3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5321:2: rule__Mask__Group_4__2__Impl rule__Mask__Group_4__3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5417:1: ( rule__Mask__Group_4__2__Impl rule__Mask__Group_4__3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5418:2: rule__Mask__Group_4__2__Impl rule__Mask__Group_4__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__2__Impl_in_rule__Mask__Group_4__210437);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__2__Impl_in_rule__Mask__Group_4__210627);
             rule__Mask__Group_4__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__3_in_rule__Mask__Group_4__210440);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__3_in_rule__Mask__Group_4__210630);
             rule__Mask__Group_4__3();
 
             state._fsp--;
@@ -13080,20 +13316,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group_4__2__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5328:1: rule__Mask__Group_4__2__Impl : ( '[' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5425:1: rule__Mask__Group_4__2__Impl : ( '[' ) ;
     public final void rule__Mask__Group_4__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5332:1: ( ( '[' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5333:1: ( '[' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5429:1: ( ( '[' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5430:1: ( '[' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5333:1: ( '[' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5334:1: '['
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5430:1: ( '[' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5431:1: '['
             {
              before(grammarAccess.getMaskAccess().getLeftSquareBracketKeyword_4_2()); 
-            match(input,14,FollowSets000.FOLLOW_14_in_rule__Mask__Group_4__2__Impl10468); 
+            match(input,14,FollowSets000.FOLLOW_14_in_rule__Mask__Group_4__2__Impl10658); 
              after(grammarAccess.getMaskAccess().getLeftSquareBracketKeyword_4_2()); 
 
             }
@@ -13117,21 +13353,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group_4__3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5347:1: rule__Mask__Group_4__3 : rule__Mask__Group_4__3__Impl rule__Mask__Group_4__4 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5444:1: rule__Mask__Group_4__3 : rule__Mask__Group_4__3__Impl rule__Mask__Group_4__4 ;
     public final void rule__Mask__Group_4__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5351:1: ( rule__Mask__Group_4__3__Impl rule__Mask__Group_4__4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5352:2: rule__Mask__Group_4__3__Impl rule__Mask__Group_4__4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5448:1: ( rule__Mask__Group_4__3__Impl rule__Mask__Group_4__4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5449:2: rule__Mask__Group_4__3__Impl rule__Mask__Group_4__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__3__Impl_in_rule__Mask__Group_4__310499);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__3__Impl_in_rule__Mask__Group_4__310689);
             rule__Mask__Group_4__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__4_in_rule__Mask__Group_4__310502);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__4_in_rule__Mask__Group_4__310692);
             rule__Mask__Group_4__4();
 
             state._fsp--;
@@ -13155,20 +13391,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group_4__3__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5359:1: rule__Mask__Group_4__3__Impl : ( ( rule__Mask__SourceIndicesAssignment_4_3 )* ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5456:1: rule__Mask__Group_4__3__Impl : ( ( rule__Mask__SourceIndicesAssignment_4_3 )* ) ;
     public final void rule__Mask__Group_4__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5363:1: ( ( ( rule__Mask__SourceIndicesAssignment_4_3 )* ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5364:1: ( ( rule__Mask__SourceIndicesAssignment_4_3 )* )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5460:1: ( ( ( rule__Mask__SourceIndicesAssignment_4_3 )* ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5461:1: ( ( rule__Mask__SourceIndicesAssignment_4_3 )* )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5364:1: ( ( rule__Mask__SourceIndicesAssignment_4_3 )* )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5365:1: ( rule__Mask__SourceIndicesAssignment_4_3 )*
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5461:1: ( ( rule__Mask__SourceIndicesAssignment_4_3 )* )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5462:1: ( rule__Mask__SourceIndicesAssignment_4_3 )*
             {
              before(grammarAccess.getMaskAccess().getSourceIndicesAssignment_4_3()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5366:1: ( rule__Mask__SourceIndicesAssignment_4_3 )*
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5463:1: ( rule__Mask__SourceIndicesAssignment_4_3 )*
             loop17:
             do {
                 int alt17=2;
@@ -13181,9 +13417,9 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
                 switch (alt17) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5366:2: rule__Mask__SourceIndicesAssignment_4_3
+            	    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5463:2: rule__Mask__SourceIndicesAssignment_4_3
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__Mask__SourceIndicesAssignment_4_3_in_rule__Mask__Group_4__3__Impl10529);
+            	    pushFollow(FollowSets000.FOLLOW_rule__Mask__SourceIndicesAssignment_4_3_in_rule__Mask__Group_4__3__Impl10719);
             	    rule__Mask__SourceIndicesAssignment_4_3();
 
             	    state._fsp--;
@@ -13220,16 +13456,16 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group_4__4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5376:1: rule__Mask__Group_4__4 : rule__Mask__Group_4__4__Impl ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5473:1: rule__Mask__Group_4__4 : rule__Mask__Group_4__4__Impl ;
     public final void rule__Mask__Group_4__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5380:1: ( rule__Mask__Group_4__4__Impl )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5381:2: rule__Mask__Group_4__4__Impl
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5477:1: ( rule__Mask__Group_4__4__Impl )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5478:2: rule__Mask__Group_4__4__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__4__Impl_in_rule__Mask__Group_4__410560);
+            pushFollow(FollowSets000.FOLLOW_rule__Mask__Group_4__4__Impl_in_rule__Mask__Group_4__410750);
             rule__Mask__Group_4__4__Impl();
 
             state._fsp--;
@@ -13253,20 +13489,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__Group_4__4__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5387:1: rule__Mask__Group_4__4__Impl : ( ']' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5484:1: rule__Mask__Group_4__4__Impl : ( ']' ) ;
     public final void rule__Mask__Group_4__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5391:1: ( ( ']' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5392:1: ( ']' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5488:1: ( ( ']' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5489:1: ( ']' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5392:1: ( ']' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5393:1: ']'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5489:1: ( ']' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5490:1: ']'
             {
              before(grammarAccess.getMaskAccess().getRightSquareBracketKeyword_4_4()); 
-            match(input,15,FollowSets000.FOLLOW_15_in_rule__Mask__Group_4__4__Impl10588); 
+            match(input,15,FollowSets000.FOLLOW_15_in_rule__Mask__Group_4__4__Impl10778); 
              after(grammarAccess.getMaskAccess().getRightSquareBracketKeyword_4_4()); 
 
             }
@@ -13290,21 +13526,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__0"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5416:1: rule__InfrastructureMapping__Group__0 : rule__InfrastructureMapping__Group__0__Impl rule__InfrastructureMapping__Group__1 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5513:1: rule__InfrastructureMapping__Group__0 : rule__InfrastructureMapping__Group__0__Impl rule__InfrastructureMapping__Group__1 ;
     public final void rule__InfrastructureMapping__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5420:1: ( rule__InfrastructureMapping__Group__0__Impl rule__InfrastructureMapping__Group__1 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5421:2: rule__InfrastructureMapping__Group__0__Impl rule__InfrastructureMapping__Group__1
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5517:1: ( rule__InfrastructureMapping__Group__0__Impl rule__InfrastructureMapping__Group__1 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5518:2: rule__InfrastructureMapping__Group__0__Impl rule__InfrastructureMapping__Group__1
             {
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__0__Impl_in_rule__InfrastructureMapping__Group__010629);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__0__Impl_in_rule__InfrastructureMapping__Group__010819);
             rule__InfrastructureMapping__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__1_in_rule__InfrastructureMapping__Group__010632);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__1_in_rule__InfrastructureMapping__Group__010822);
             rule__InfrastructureMapping__Group__1();
 
             state._fsp--;
@@ -13328,20 +13564,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__0__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5428:1: rule__InfrastructureMapping__Group__0__Impl : ( '{' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5525:1: rule__InfrastructureMapping__Group__0__Impl : ( '{' ) ;
     public final void rule__InfrastructureMapping__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5432:1: ( ( '{' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5433:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5529:1: ( ( '{' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5530:1: ( '{' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5433:1: ( '{' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5434:1: '{'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5530:1: ( '{' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5531:1: '{'
             {
              before(grammarAccess.getInfrastructureMappingAccess().getLeftCurlyBracketKeyword_0()); 
-            match(input,18,FollowSets000.FOLLOW_18_in_rule__InfrastructureMapping__Group__0__Impl10660); 
+            match(input,18,FollowSets000.FOLLOW_18_in_rule__InfrastructureMapping__Group__0__Impl10850); 
              after(grammarAccess.getInfrastructureMappingAccess().getLeftCurlyBracketKeyword_0()); 
 
             }
@@ -13365,21 +13601,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__1"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5447:1: rule__InfrastructureMapping__Group__1 : rule__InfrastructureMapping__Group__1__Impl rule__InfrastructureMapping__Group__2 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5544:1: rule__InfrastructureMapping__Group__1 : rule__InfrastructureMapping__Group__1__Impl rule__InfrastructureMapping__Group__2 ;
     public final void rule__InfrastructureMapping__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5451:1: ( rule__InfrastructureMapping__Group__1__Impl rule__InfrastructureMapping__Group__2 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5452:2: rule__InfrastructureMapping__Group__1__Impl rule__InfrastructureMapping__Group__2
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5548:1: ( rule__InfrastructureMapping__Group__1__Impl rule__InfrastructureMapping__Group__2 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5549:2: rule__InfrastructureMapping__Group__1__Impl rule__InfrastructureMapping__Group__2
             {
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__1__Impl_in_rule__InfrastructureMapping__Group__110691);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__1__Impl_in_rule__InfrastructureMapping__Group__110881);
             rule__InfrastructureMapping__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__2_in_rule__InfrastructureMapping__Group__110694);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__2_in_rule__InfrastructureMapping__Group__110884);
             rule__InfrastructureMapping__Group__2();
 
             state._fsp--;
@@ -13403,20 +13639,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__1__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5459:1: rule__InfrastructureMapping__Group__1__Impl : ( 'from' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5556:1: rule__InfrastructureMapping__Group__1__Impl : ( 'from' ) ;
     public final void rule__InfrastructureMapping__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5463:1: ( ( 'from' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5464:1: ( 'from' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5560:1: ( ( 'from' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5561:1: ( 'from' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5464:1: ( 'from' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5465:1: 'from'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5561:1: ( 'from' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5562:1: 'from'
             {
              before(grammarAccess.getInfrastructureMappingAccess().getFromKeyword_1()); 
-            match(input,38,FollowSets000.FOLLOW_38_in_rule__InfrastructureMapping__Group__1__Impl10722); 
+            match(input,39,FollowSets000.FOLLOW_39_in_rule__InfrastructureMapping__Group__1__Impl10912); 
              after(grammarAccess.getInfrastructureMappingAccess().getFromKeyword_1()); 
 
             }
@@ -13440,21 +13676,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__2"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5478:1: rule__InfrastructureMapping__Group__2 : rule__InfrastructureMapping__Group__2__Impl rule__InfrastructureMapping__Group__3 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5575:1: rule__InfrastructureMapping__Group__2 : rule__InfrastructureMapping__Group__2__Impl rule__InfrastructureMapping__Group__3 ;
     public final void rule__InfrastructureMapping__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5482:1: ( rule__InfrastructureMapping__Group__2__Impl rule__InfrastructureMapping__Group__3 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5483:2: rule__InfrastructureMapping__Group__2__Impl rule__InfrastructureMapping__Group__3
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5579:1: ( rule__InfrastructureMapping__Group__2__Impl rule__InfrastructureMapping__Group__3 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5580:2: rule__InfrastructureMapping__Group__2__Impl rule__InfrastructureMapping__Group__3
             {
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__2__Impl_in_rule__InfrastructureMapping__Group__210753);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__2__Impl_in_rule__InfrastructureMapping__Group__210943);
             rule__InfrastructureMapping__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__3_in_rule__InfrastructureMapping__Group__210756);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__3_in_rule__InfrastructureMapping__Group__210946);
             rule__InfrastructureMapping__Group__3();
 
             state._fsp--;
@@ -13478,20 +13714,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__2__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5490:1: rule__InfrastructureMapping__Group__2__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5587:1: rule__InfrastructureMapping__Group__2__Impl : ( ':' ) ;
     public final void rule__InfrastructureMapping__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5494:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5495:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5591:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5592:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5495:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5496:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5592:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5593:1: ':'
             {
              before(grammarAccess.getInfrastructureMappingAccess().getColonKeyword_2()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__InfrastructureMapping__Group__2__Impl10784); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__InfrastructureMapping__Group__2__Impl10974); 
              after(grammarAccess.getInfrastructureMappingAccess().getColonKeyword_2()); 
 
             }
@@ -13515,21 +13751,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5509:1: rule__InfrastructureMapping__Group__3 : rule__InfrastructureMapping__Group__3__Impl rule__InfrastructureMapping__Group__4 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5606:1: rule__InfrastructureMapping__Group__3 : rule__InfrastructureMapping__Group__3__Impl rule__InfrastructureMapping__Group__4 ;
     public final void rule__InfrastructureMapping__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5513:1: ( rule__InfrastructureMapping__Group__3__Impl rule__InfrastructureMapping__Group__4 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5514:2: rule__InfrastructureMapping__Group__3__Impl rule__InfrastructureMapping__Group__4
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5610:1: ( rule__InfrastructureMapping__Group__3__Impl rule__InfrastructureMapping__Group__4 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5611:2: rule__InfrastructureMapping__Group__3__Impl rule__InfrastructureMapping__Group__4
             {
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__3__Impl_in_rule__InfrastructureMapping__Group__310815);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__3__Impl_in_rule__InfrastructureMapping__Group__311005);
             rule__InfrastructureMapping__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__4_in_rule__InfrastructureMapping__Group__310818);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__4_in_rule__InfrastructureMapping__Group__311008);
             rule__InfrastructureMapping__Group__4();
 
             state._fsp--;
@@ -13553,20 +13789,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__3__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5521:1: rule__InfrastructureMapping__Group__3__Impl : ( '[' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5618:1: rule__InfrastructureMapping__Group__3__Impl : ( '[' ) ;
     public final void rule__InfrastructureMapping__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5525:1: ( ( '[' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5526:1: ( '[' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5622:1: ( ( '[' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5623:1: ( '[' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5526:1: ( '[' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5527:1: '['
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5623:1: ( '[' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5624:1: '['
             {
              before(grammarAccess.getInfrastructureMappingAccess().getLeftSquareBracketKeyword_3()); 
-            match(input,14,FollowSets000.FOLLOW_14_in_rule__InfrastructureMapping__Group__3__Impl10846); 
+            match(input,14,FollowSets000.FOLLOW_14_in_rule__InfrastructureMapping__Group__3__Impl11036); 
              after(grammarAccess.getInfrastructureMappingAccess().getLeftSquareBracketKeyword_3()); 
 
             }
@@ -13590,21 +13826,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5540:1: rule__InfrastructureMapping__Group__4 : rule__InfrastructureMapping__Group__4__Impl rule__InfrastructureMapping__Group__5 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5637:1: rule__InfrastructureMapping__Group__4 : rule__InfrastructureMapping__Group__4__Impl rule__InfrastructureMapping__Group__5 ;
     public final void rule__InfrastructureMapping__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5544:1: ( rule__InfrastructureMapping__Group__4__Impl rule__InfrastructureMapping__Group__5 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5545:2: rule__InfrastructureMapping__Group__4__Impl rule__InfrastructureMapping__Group__5
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5641:1: ( rule__InfrastructureMapping__Group__4__Impl rule__InfrastructureMapping__Group__5 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5642:2: rule__InfrastructureMapping__Group__4__Impl rule__InfrastructureMapping__Group__5
             {
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__4__Impl_in_rule__InfrastructureMapping__Group__410877);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__4__Impl_in_rule__InfrastructureMapping__Group__411067);
             rule__InfrastructureMapping__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__5_in_rule__InfrastructureMapping__Group__410880);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__5_in_rule__InfrastructureMapping__Group__411070);
             rule__InfrastructureMapping__Group__5();
 
             state._fsp--;
@@ -13628,20 +13864,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__4__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5552:1: rule__InfrastructureMapping__Group__4__Impl : ( ( rule__InfrastructureMapping__MappedElementsAssignment_4 )* ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5649:1: rule__InfrastructureMapping__Group__4__Impl : ( ( rule__InfrastructureMapping__MappedElementsAssignment_4 )* ) ;
     public final void rule__InfrastructureMapping__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5556:1: ( ( ( rule__InfrastructureMapping__MappedElementsAssignment_4 )* ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5557:1: ( ( rule__InfrastructureMapping__MappedElementsAssignment_4 )* )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5653:1: ( ( ( rule__InfrastructureMapping__MappedElementsAssignment_4 )* ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5654:1: ( ( rule__InfrastructureMapping__MappedElementsAssignment_4 )* )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5557:1: ( ( rule__InfrastructureMapping__MappedElementsAssignment_4 )* )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5558:1: ( rule__InfrastructureMapping__MappedElementsAssignment_4 )*
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5654:1: ( ( rule__InfrastructureMapping__MappedElementsAssignment_4 )* )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5655:1: ( rule__InfrastructureMapping__MappedElementsAssignment_4 )*
             {
              before(grammarAccess.getInfrastructureMappingAccess().getMappedElementsAssignment_4()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5559:1: ( rule__InfrastructureMapping__MappedElementsAssignment_4 )*
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5656:1: ( rule__InfrastructureMapping__MappedElementsAssignment_4 )*
             loop18:
             do {
                 int alt18=2;
@@ -13654,9 +13890,9 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
                 switch (alt18) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5559:2: rule__InfrastructureMapping__MappedElementsAssignment_4
+            	    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5656:2: rule__InfrastructureMapping__MappedElementsAssignment_4
             	    {
-            	    pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__MappedElementsAssignment_4_in_rule__InfrastructureMapping__Group__4__Impl10907);
+            	    pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__MappedElementsAssignment_4_in_rule__InfrastructureMapping__Group__4__Impl11097);
             	    rule__InfrastructureMapping__MappedElementsAssignment_4();
 
             	    state._fsp--;
@@ -13693,21 +13929,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__5"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5569:1: rule__InfrastructureMapping__Group__5 : rule__InfrastructureMapping__Group__5__Impl rule__InfrastructureMapping__Group__6 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5666:1: rule__InfrastructureMapping__Group__5 : rule__InfrastructureMapping__Group__5__Impl rule__InfrastructureMapping__Group__6 ;
     public final void rule__InfrastructureMapping__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5573:1: ( rule__InfrastructureMapping__Group__5__Impl rule__InfrastructureMapping__Group__6 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5574:2: rule__InfrastructureMapping__Group__5__Impl rule__InfrastructureMapping__Group__6
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5670:1: ( rule__InfrastructureMapping__Group__5__Impl rule__InfrastructureMapping__Group__6 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5671:2: rule__InfrastructureMapping__Group__5__Impl rule__InfrastructureMapping__Group__6
             {
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__5__Impl_in_rule__InfrastructureMapping__Group__510938);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__5__Impl_in_rule__InfrastructureMapping__Group__511128);
             rule__InfrastructureMapping__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__6_in_rule__InfrastructureMapping__Group__510941);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__6_in_rule__InfrastructureMapping__Group__511131);
             rule__InfrastructureMapping__Group__6();
 
             state._fsp--;
@@ -13731,20 +13967,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__5__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5581:1: rule__InfrastructureMapping__Group__5__Impl : ( ']' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5678:1: rule__InfrastructureMapping__Group__5__Impl : ( ']' ) ;
     public final void rule__InfrastructureMapping__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5585:1: ( ( ']' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5586:1: ( ']' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5682:1: ( ( ']' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5683:1: ( ']' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5586:1: ( ']' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5587:1: ']'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5683:1: ( ']' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5684:1: ']'
             {
              before(grammarAccess.getInfrastructureMappingAccess().getRightSquareBracketKeyword_5()); 
-            match(input,15,FollowSets000.FOLLOW_15_in_rule__InfrastructureMapping__Group__5__Impl10969); 
+            match(input,15,FollowSets000.FOLLOW_15_in_rule__InfrastructureMapping__Group__5__Impl11159); 
              after(grammarAccess.getInfrastructureMappingAccess().getRightSquareBracketKeyword_5()); 
 
             }
@@ -13768,21 +14004,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__6"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5600:1: rule__InfrastructureMapping__Group__6 : rule__InfrastructureMapping__Group__6__Impl rule__InfrastructureMapping__Group__7 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5697:1: rule__InfrastructureMapping__Group__6 : rule__InfrastructureMapping__Group__6__Impl rule__InfrastructureMapping__Group__7 ;
     public final void rule__InfrastructureMapping__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5604:1: ( rule__InfrastructureMapping__Group__6__Impl rule__InfrastructureMapping__Group__7 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5605:2: rule__InfrastructureMapping__Group__6__Impl rule__InfrastructureMapping__Group__7
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5701:1: ( rule__InfrastructureMapping__Group__6__Impl rule__InfrastructureMapping__Group__7 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5702:2: rule__InfrastructureMapping__Group__6__Impl rule__InfrastructureMapping__Group__7
             {
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__6__Impl_in_rule__InfrastructureMapping__Group__611000);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__6__Impl_in_rule__InfrastructureMapping__Group__611190);
             rule__InfrastructureMapping__Group__6__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__7_in_rule__InfrastructureMapping__Group__611003);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__7_in_rule__InfrastructureMapping__Group__611193);
             rule__InfrastructureMapping__Group__7();
 
             state._fsp--;
@@ -13806,20 +14042,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__6__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5612:1: rule__InfrastructureMapping__Group__6__Impl : ( 'to' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5709:1: rule__InfrastructureMapping__Group__6__Impl : ( 'to' ) ;
     public final void rule__InfrastructureMapping__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5616:1: ( ( 'to' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5617:1: ( 'to' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5713:1: ( ( 'to' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5714:1: ( 'to' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5617:1: ( 'to' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5618:1: 'to'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5714:1: ( 'to' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5715:1: 'to'
             {
              before(grammarAccess.getInfrastructureMappingAccess().getToKeyword_6()); 
-            match(input,39,FollowSets000.FOLLOW_39_in_rule__InfrastructureMapping__Group__6__Impl11031); 
+            match(input,40,FollowSets000.FOLLOW_40_in_rule__InfrastructureMapping__Group__6__Impl11221); 
              after(grammarAccess.getInfrastructureMappingAccess().getToKeyword_6()); 
 
             }
@@ -13843,21 +14079,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5631:1: rule__InfrastructureMapping__Group__7 : rule__InfrastructureMapping__Group__7__Impl rule__InfrastructureMapping__Group__8 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5728:1: rule__InfrastructureMapping__Group__7 : rule__InfrastructureMapping__Group__7__Impl rule__InfrastructureMapping__Group__8 ;
     public final void rule__InfrastructureMapping__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5635:1: ( rule__InfrastructureMapping__Group__7__Impl rule__InfrastructureMapping__Group__8 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5636:2: rule__InfrastructureMapping__Group__7__Impl rule__InfrastructureMapping__Group__8
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5732:1: ( rule__InfrastructureMapping__Group__7__Impl rule__InfrastructureMapping__Group__8 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5733:2: rule__InfrastructureMapping__Group__7__Impl rule__InfrastructureMapping__Group__8
             {
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__7__Impl_in_rule__InfrastructureMapping__Group__711062);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__7__Impl_in_rule__InfrastructureMapping__Group__711252);
             rule__InfrastructureMapping__Group__7__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__8_in_rule__InfrastructureMapping__Group__711065);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__8_in_rule__InfrastructureMapping__Group__711255);
             rule__InfrastructureMapping__Group__8();
 
             state._fsp--;
@@ -13881,20 +14117,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__7__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5643:1: rule__InfrastructureMapping__Group__7__Impl : ( ':' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5740:1: rule__InfrastructureMapping__Group__7__Impl : ( ':' ) ;
     public final void rule__InfrastructureMapping__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5647:1: ( ( ':' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5648:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5744:1: ( ( ':' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5745:1: ( ':' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5648:1: ( ':' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5649:1: ':'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5745:1: ( ':' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5746:1: ':'
             {
              before(grammarAccess.getInfrastructureMappingAccess().getColonKeyword_7()); 
-            match(input,13,FollowSets000.FOLLOW_13_in_rule__InfrastructureMapping__Group__7__Impl11093); 
+            match(input,13,FollowSets000.FOLLOW_13_in_rule__InfrastructureMapping__Group__7__Impl11283); 
              after(grammarAccess.getInfrastructureMappingAccess().getColonKeyword_7()); 
 
             }
@@ -13918,21 +14154,21 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__8"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5662:1: rule__InfrastructureMapping__Group__8 : rule__InfrastructureMapping__Group__8__Impl rule__InfrastructureMapping__Group__9 ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5759:1: rule__InfrastructureMapping__Group__8 : rule__InfrastructureMapping__Group__8__Impl rule__InfrastructureMapping__Group__9 ;
     public final void rule__InfrastructureMapping__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5666:1: ( rule__InfrastructureMapping__Group__8__Impl rule__InfrastructureMapping__Group__9 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5667:2: rule__InfrastructureMapping__Group__8__Impl rule__InfrastructureMapping__Group__9
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5763:1: ( rule__InfrastructureMapping__Group__8__Impl rule__InfrastructureMapping__Group__9 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5764:2: rule__InfrastructureMapping__Group__8__Impl rule__InfrastructureMapping__Group__9
             {
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__8__Impl_in_rule__InfrastructureMapping__Group__811124);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__8__Impl_in_rule__InfrastructureMapping__Group__811314);
             rule__InfrastructureMapping__Group__8__Impl();
 
             state._fsp--;
 
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__9_in_rule__InfrastructureMapping__Group__811127);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__9_in_rule__InfrastructureMapping__Group__811317);
             rule__InfrastructureMapping__Group__9();
 
             state._fsp--;
@@ -13956,23 +14192,23 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__8__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5674:1: rule__InfrastructureMapping__Group__8__Impl : ( ( rule__InfrastructureMapping__TargetElementAssignment_8 ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5771:1: rule__InfrastructureMapping__Group__8__Impl : ( ( rule__InfrastructureMapping__TargetElementAssignment_8 ) ) ;
     public final void rule__InfrastructureMapping__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5678:1: ( ( ( rule__InfrastructureMapping__TargetElementAssignment_8 ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5679:1: ( ( rule__InfrastructureMapping__TargetElementAssignment_8 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5775:1: ( ( ( rule__InfrastructureMapping__TargetElementAssignment_8 ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5776:1: ( ( rule__InfrastructureMapping__TargetElementAssignment_8 ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5679:1: ( ( rule__InfrastructureMapping__TargetElementAssignment_8 ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5680:1: ( rule__InfrastructureMapping__TargetElementAssignment_8 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5776:1: ( ( rule__InfrastructureMapping__TargetElementAssignment_8 ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5777:1: ( rule__InfrastructureMapping__TargetElementAssignment_8 )
             {
              before(grammarAccess.getInfrastructureMappingAccess().getTargetElementAssignment_8()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5681:1: ( rule__InfrastructureMapping__TargetElementAssignment_8 )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5681:2: rule__InfrastructureMapping__TargetElementAssignment_8
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5778:1: ( rule__InfrastructureMapping__TargetElementAssignment_8 )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5778:2: rule__InfrastructureMapping__TargetElementAssignment_8
             {
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__TargetElementAssignment_8_in_rule__InfrastructureMapping__Group__8__Impl11154);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__TargetElementAssignment_8_in_rule__InfrastructureMapping__Group__8__Impl11344);
             rule__InfrastructureMapping__TargetElementAssignment_8();
 
             state._fsp--;
@@ -14003,16 +14239,16 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__9"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5691:1: rule__InfrastructureMapping__Group__9 : rule__InfrastructureMapping__Group__9__Impl ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5788:1: rule__InfrastructureMapping__Group__9 : rule__InfrastructureMapping__Group__9__Impl ;
     public final void rule__InfrastructureMapping__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5695:1: ( rule__InfrastructureMapping__Group__9__Impl )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5696:2: rule__InfrastructureMapping__Group__9__Impl
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5792:1: ( rule__InfrastructureMapping__Group__9__Impl )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5793:2: rule__InfrastructureMapping__Group__9__Impl
             {
-            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__9__Impl_in_rule__InfrastructureMapping__Group__911184);
+            pushFollow(FollowSets000.FOLLOW_rule__InfrastructureMapping__Group__9__Impl_in_rule__InfrastructureMapping__Group__911374);
             rule__InfrastructureMapping__Group__9__Impl();
 
             state._fsp--;
@@ -14036,20 +14272,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__Group__9__Impl"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5702:1: rule__InfrastructureMapping__Group__9__Impl : ( '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5799:1: rule__InfrastructureMapping__Group__9__Impl : ( '}' ) ;
     public final void rule__InfrastructureMapping__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5706:1: ( ( '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5707:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5803:1: ( ( '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5804:1: ( '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5707:1: ( '}' )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5708:1: '}'
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5804:1: ( '}' )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5805:1: '}'
             {
              before(grammarAccess.getInfrastructureMappingAccess().getRightCurlyBracketKeyword_9()); 
-            match(input,19,FollowSets000.FOLLOW_19_in_rule__InfrastructureMapping__Group__9__Impl11212); 
+            match(input,19,FollowSets000.FOLLOW_19_in_rule__InfrastructureMapping__Group__9__Impl11402); 
              after(grammarAccess.getInfrastructureMappingAccess().getRightCurlyBracketKeyword_9()); 
 
             }
@@ -14073,20 +14309,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Configuration__ClustersAssignment_1_3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5742:1: rule__Configuration__ClustersAssignment_1_3 : ( ruleCluster ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5839:1: rule__Configuration__ClustersAssignment_1_3 : ( ruleCluster ) ;
     public final void rule__Configuration__ClustersAssignment_1_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5746:1: ( ( ruleCluster ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5747:1: ( ruleCluster )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5843:1: ( ( ruleCluster ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5844:1: ( ruleCluster )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5747:1: ( ruleCluster )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5748:1: ruleCluster
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5844:1: ( ruleCluster )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5845:1: ruleCluster
             {
              before(grammarAccess.getConfigurationAccess().getClustersClusterParserRuleCall_1_3_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleCluster_in_rule__Configuration__ClustersAssignment_1_311268);
+            pushFollow(FollowSets000.FOLLOW_ruleCluster_in_rule__Configuration__ClustersAssignment_1_311458);
             ruleCluster();
 
             state._fsp--;
@@ -14114,20 +14350,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Configuration__ReteRecipesAssignment_2_3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5757:1: rule__Configuration__ReteRecipesAssignment_2_3 : ( ruleReteRecipe ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5854:1: rule__Configuration__ReteRecipesAssignment_2_3 : ( ruleReteRecipe ) ;
     public final void rule__Configuration__ReteRecipesAssignment_2_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5761:1: ( ( ruleReteRecipe ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5762:1: ( ruleReteRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5858:1: ( ( ruleReteRecipe ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5859:1: ( ruleReteRecipe )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5762:1: ( ruleReteRecipe )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5763:1: ruleReteRecipe
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5859:1: ( ruleReteRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5860:1: ruleReteRecipe
             {
              before(grammarAccess.getConfigurationAccess().getReteRecipesReteRecipeParserRuleCall_2_3_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleReteRecipe_in_rule__Configuration__ReteRecipesAssignment_2_311299);
+            pushFollow(FollowSets000.FOLLOW_ruleReteRecipe_in_rule__Configuration__ReteRecipesAssignment_2_311489);
             ruleReteRecipe();
 
             state._fsp--;
@@ -14155,20 +14391,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Configuration__MappingsAssignment_3_3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5772:1: rule__Configuration__MappingsAssignment_3_3 : ( ruleInfrastructureMapping ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5869:1: rule__Configuration__MappingsAssignment_3_3 : ( ruleInfrastructureMapping ) ;
     public final void rule__Configuration__MappingsAssignment_3_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5776:1: ( ( ruleInfrastructureMapping ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5777:1: ( ruleInfrastructureMapping )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5873:1: ( ( ruleInfrastructureMapping ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5874:1: ( ruleInfrastructureMapping )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5777:1: ( ruleInfrastructureMapping )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5778:1: ruleInfrastructureMapping
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5874:1: ( ruleInfrastructureMapping )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5875:1: ruleInfrastructureMapping
             {
              before(grammarAccess.getConfigurationAccess().getMappingsInfrastructureMappingParserRuleCall_3_3_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleInfrastructureMapping_in_rule__Configuration__MappingsAssignment_3_311330);
+            pushFollow(FollowSets000.FOLLOW_ruleInfrastructureMapping_in_rule__Configuration__MappingsAssignment_3_311520);
             ruleInfrastructureMapping();
 
             state._fsp--;
@@ -14196,20 +14432,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Cluster__ReteMachinesAssignment_2_3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5787:1: rule__Cluster__ReteMachinesAssignment_2_3 : ( ruleMachine ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5884:1: rule__Cluster__ReteMachinesAssignment_2_3 : ( ruleMachine ) ;
     public final void rule__Cluster__ReteMachinesAssignment_2_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5791:1: ( ( ruleMachine ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5792:1: ( ruleMachine )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5888:1: ( ( ruleMachine ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5889:1: ( ruleMachine )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5792:1: ( ruleMachine )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5793:1: ruleMachine
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5889:1: ( ruleMachine )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5890:1: ruleMachine
             {
              before(grammarAccess.getClusterAccess().getReteMachinesMachineParserRuleCall_2_3_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMachine_in_rule__Cluster__ReteMachinesAssignment_2_311361);
+            pushFollow(FollowSets000.FOLLOW_ruleMachine_in_rule__Cluster__ReteMachinesAssignment_2_311551);
             ruleMachine();
 
             state._fsp--;
@@ -14237,20 +14473,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Cluster__CacheMachinesAssignment_3_3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5802:1: rule__Cluster__CacheMachinesAssignment_3_3 : ( ruleMachine ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5899:1: rule__Cluster__CacheMachinesAssignment_3_3 : ( ruleMachine ) ;
     public final void rule__Cluster__CacheMachinesAssignment_3_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5806:1: ( ( ruleMachine ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5807:1: ( ruleMachine )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5903:1: ( ( ruleMachine ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5904:1: ( ruleMachine )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5807:1: ( ruleMachine )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5808:1: ruleMachine
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5904:1: ( ruleMachine )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5905:1: ruleMachine
             {
              before(grammarAccess.getClusterAccess().getCacheMachinesMachineParserRuleCall_3_3_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMachine_in_rule__Cluster__CacheMachinesAssignment_3_311392);
+            pushFollow(FollowSets000.FOLLOW_ruleMachine_in_rule__Cluster__CacheMachinesAssignment_3_311582);
             ruleMachine();
 
             state._fsp--;
@@ -14277,22 +14513,22 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
     // $ANTLR end "rule__Cluster__CacheMachinesAssignment_3_3"
 
 
-    // $ANTLR start "rule__Machine__TraceInfoAssignment_3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5817:1: rule__Machine__TraceInfoAssignment_3 : ( RULE_STRING ) ;
-    public final void rule__Machine__TraceInfoAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__Machine__NameAssignment_3"
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5914:1: rule__Machine__NameAssignment_3 : ( RULE_ID ) ;
+    public final void rule__Machine__NameAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5821:1: ( ( RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5822:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5918:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5919:1: ( RULE_ID )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5822:1: ( RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5823:1: RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5919:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5920:1: RULE_ID
             {
-             before(grammarAccess.getMachineAccess().getTraceInfoSTRINGTerminalRuleCall_3_0()); 
-            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__Machine__TraceInfoAssignment_311423); 
-             after(grammarAccess.getMachineAccess().getTraceInfoSTRINGTerminalRuleCall_3_0()); 
+             before(grammarAccess.getMachineAccess().getNameIDTerminalRuleCall_3_0()); 
+            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__Machine__NameAssignment_311613); 
+             after(grammarAccess.getMachineAccess().getNameIDTerminalRuleCall_3_0()); 
 
             }
 
@@ -14311,25 +14547,25 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__Machine__TraceInfoAssignment_3"
+    // $ANTLR end "rule__Machine__NameAssignment_3"
 
 
-    // $ANTLR start "rule__Machine__IpAssignment_6"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5832:1: rule__Machine__IpAssignment_6 : ( RULE_IP ) ;
-    public final void rule__Machine__IpAssignment_6() throws RecognitionException {
+    // $ANTLR start "rule__Machine__TraceInfoAssignment_6"
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5929:1: rule__Machine__TraceInfoAssignment_6 : ( RULE_STRING ) ;
+    public final void rule__Machine__TraceInfoAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5836:1: ( ( RULE_IP ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5837:1: ( RULE_IP )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5933:1: ( ( RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5934:1: ( RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5837:1: ( RULE_IP )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5838:1: RULE_IP
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5934:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5935:1: RULE_STRING
             {
-             before(grammarAccess.getMachineAccess().getIpIPTerminalRuleCall_6_0()); 
-            match(input,RULE_IP,FollowSets000.FOLLOW_RULE_IP_in_rule__Machine__IpAssignment_611454); 
-             after(grammarAccess.getMachineAccess().getIpIPTerminalRuleCall_6_0()); 
+             before(grammarAccess.getMachineAccess().getTraceInfoSTRINGTerminalRuleCall_6_0()); 
+            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__Machine__TraceInfoAssignment_611644); 
+             after(grammarAccess.getMachineAccess().getTraceInfoSTRINGTerminalRuleCall_6_0()); 
 
             }
 
@@ -14348,24 +14584,61 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__Machine__IpAssignment_6"
+    // $ANTLR end "rule__Machine__TraceInfoAssignment_6"
+
+
+    // $ANTLR start "rule__Machine__IpAssignment_9"
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5944:1: rule__Machine__IpAssignment_9 : ( RULE_IP ) ;
+    public final void rule__Machine__IpAssignment_9() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5948:1: ( ( RULE_IP ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5949:1: ( RULE_IP )
+            {
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5949:1: ( RULE_IP )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5950:1: RULE_IP
+            {
+             before(grammarAccess.getMachineAccess().getIpIPTerminalRuleCall_9_0()); 
+            match(input,RULE_IP,FollowSets000.FOLLOW_RULE_IP_in_rule__Machine__IpAssignment_911675); 
+             after(grammarAccess.getMachineAccess().getIpIPTerminalRuleCall_9_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Machine__IpAssignment_9"
 
 
     // $ANTLR start "rule__ReteRecipe__RecipeNodesAssignment_5"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5847:1: rule__ReteRecipe__RecipeNodesAssignment_5 : ( ruleReteNodeRecipe ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5959:1: rule__ReteRecipe__RecipeNodesAssignment_5 : ( ruleReteNodeRecipe ) ;
     public final void rule__ReteRecipe__RecipeNodesAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5851:1: ( ( ruleReteNodeRecipe ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5852:1: ( ruleReteNodeRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5963:1: ( ( ruleReteNodeRecipe ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5964:1: ( ruleReteNodeRecipe )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5852:1: ( ruleReteNodeRecipe )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5853:1: ruleReteNodeRecipe
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5964:1: ( ruleReteNodeRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5965:1: ruleReteNodeRecipe
             {
              before(grammarAccess.getReteRecipeAccess().getRecipeNodesReteNodeRecipeParserRuleCall_5_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleReteNodeRecipe_in_rule__ReteRecipe__RecipeNodesAssignment_511485);
+            pushFollow(FollowSets000.FOLLOW_ruleReteNodeRecipe_in_rule__ReteRecipe__RecipeNodesAssignment_511706);
             ruleReteNodeRecipe();
 
             state._fsp--;
@@ -14393,20 +14666,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__TraceInfoAssignment_4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5862:1: rule__ProductionRecipe__TraceInfoAssignment_4 : ( RULE_STRING ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5974:1: rule__ProductionRecipe__TraceInfoAssignment_4 : ( RULE_STRING ) ;
     public final void rule__ProductionRecipe__TraceInfoAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5866:1: ( ( RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5867:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5978:1: ( ( RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5979:1: ( RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5867:1: ( RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5868:1: RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5979:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5980:1: RULE_STRING
             {
              before(grammarAccess.getProductionRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
-            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__ProductionRecipe__TraceInfoAssignment_411516); 
+            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__ProductionRecipe__TraceInfoAssignment_411737); 
              after(grammarAccess.getProductionRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
 
             }
@@ -14430,24 +14703,24 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProductionRecipe__ParentsAssignment_8"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5877:1: rule__ProductionRecipe__ParentsAssignment_8 : ( ( RULE_ID ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5989:1: rule__ProductionRecipe__ParentsAssignment_8 : ( ( RULE_ID ) ) ;
     public final void rule__ProductionRecipe__ParentsAssignment_8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5881:1: ( ( ( RULE_ID ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5882:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5993:1: ( ( ( RULE_ID ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5994:1: ( ( RULE_ID ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5882:1: ( ( RULE_ID ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5883:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5994:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5995:1: ( RULE_ID )
             {
              before(grammarAccess.getProductionRecipeAccess().getParentsReteNodeRecipeCrossReference_8_0()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5884:1: ( RULE_ID )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5885:1: RULE_ID
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5996:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5997:1: RULE_ID
             {
              before(grammarAccess.getProductionRecipeAccess().getParentsReteNodeRecipeIDTerminalRuleCall_8_0_1()); 
-            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__ProductionRecipe__ParentsAssignment_811551); 
+            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__ProductionRecipe__ParentsAssignment_811772); 
              after(grammarAccess.getProductionRecipeAccess().getParentsReteNodeRecipeIDTerminalRuleCall_8_0_1()); 
 
             }
@@ -14475,20 +14748,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5896:1: rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 : ( RULE_STRING ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6008:1: rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4 : ( RULE_STRING ) ;
     public final void rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5900:1: ( ( RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5901:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6012:1: ( ( RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6013:1: ( RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5901:1: ( RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5902:1: RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6013:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6014:1: RULE_STRING
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
-            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__UniquenessEnforcerRecipe__TraceInfoAssignment_411586); 
+            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__UniquenessEnforcerRecipe__TraceInfoAssignment_411807); 
              after(grammarAccess.getUniquenessEnforcerRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
 
             }
@@ -14512,24 +14785,24 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__UniquenessEnforcerRecipe__ParentsAssignment_8"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5911:1: rule__UniquenessEnforcerRecipe__ParentsAssignment_8 : ( ( RULE_ID ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6023:1: rule__UniquenessEnforcerRecipe__ParentsAssignment_8 : ( ( RULE_ID ) ) ;
     public final void rule__UniquenessEnforcerRecipe__ParentsAssignment_8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5915:1: ( ( ( RULE_ID ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5916:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6027:1: ( ( ( RULE_ID ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6028:1: ( ( RULE_ID ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5916:1: ( ( RULE_ID ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5917:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6028:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6029:1: ( RULE_ID )
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getParentsReteNodeRecipeCrossReference_8_0()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5918:1: ( RULE_ID )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5919:1: RULE_ID
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6030:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6031:1: RULE_ID
             {
              before(grammarAccess.getUniquenessEnforcerRecipeAccess().getParentsReteNodeRecipeIDTerminalRuleCall_8_0_1()); 
-            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__UniquenessEnforcerRecipe__ParentsAssignment_811621); 
+            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__UniquenessEnforcerRecipe__ParentsAssignment_811842); 
              after(grammarAccess.getUniquenessEnforcerRecipeAccess().getParentsReteNodeRecipeIDTerminalRuleCall_8_0_1()); 
 
             }
@@ -14557,20 +14830,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__TraceInfoAssignment_4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5930:1: rule__CheckRecipe__TraceInfoAssignment_4 : ( RULE_STRING ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6042:1: rule__CheckRecipe__TraceInfoAssignment_4 : ( RULE_STRING ) ;
     public final void rule__CheckRecipe__TraceInfoAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5934:1: ( ( RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5935:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6046:1: ( ( RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6047:1: ( RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5935:1: ( RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5936:1: RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6047:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6048:1: RULE_STRING
             {
              before(grammarAccess.getCheckRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
-            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__CheckRecipe__TraceInfoAssignment_411656); 
+            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__CheckRecipe__TraceInfoAssignment_411877); 
              after(grammarAccess.getCheckRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
 
             }
@@ -14594,24 +14867,24 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__CheckRecipe__ParentAssignment_7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5945:1: rule__CheckRecipe__ParentAssignment_7 : ( ( RULE_ID ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6057:1: rule__CheckRecipe__ParentAssignment_7 : ( ( RULE_ID ) ) ;
     public final void rule__CheckRecipe__ParentAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5949:1: ( ( ( RULE_ID ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5950:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6061:1: ( ( ( RULE_ID ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6062:1: ( ( RULE_ID ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5950:1: ( ( RULE_ID ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5951:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6062:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6063:1: ( RULE_ID )
             {
              before(grammarAccess.getCheckRecipeAccess().getParentReteNodeRecipeCrossReference_7_0()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5952:1: ( RULE_ID )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5953:1: RULE_ID
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6064:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6065:1: RULE_ID
             {
              before(grammarAccess.getCheckRecipeAccess().getParentReteNodeRecipeIDTerminalRuleCall_7_0_1()); 
-            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__CheckRecipe__ParentAssignment_711691); 
+            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__CheckRecipe__ParentAssignment_711912); 
              after(grammarAccess.getCheckRecipeAccess().getParentReteNodeRecipeIDTerminalRuleCall_7_0_1()); 
 
             }
@@ -14639,20 +14912,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__TraceInfoAssignment_4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5964:1: rule__TrimmerRecipe__TraceInfoAssignment_4 : ( RULE_STRING ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6076:1: rule__TrimmerRecipe__TraceInfoAssignment_4 : ( RULE_STRING ) ;
     public final void rule__TrimmerRecipe__TraceInfoAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5968:1: ( ( RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5969:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6080:1: ( ( RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6081:1: ( RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5969:1: ( RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5970:1: RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6081:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6082:1: RULE_STRING
             {
              before(grammarAccess.getTrimmerRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
-            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__TrimmerRecipe__TraceInfoAssignment_411726); 
+            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__TrimmerRecipe__TraceInfoAssignment_411947); 
              after(grammarAccess.getTrimmerRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
 
             }
@@ -14676,20 +14949,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__MaskAssignment_7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5979:1: rule__TrimmerRecipe__MaskAssignment_7 : ( ruleMask ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6091:1: rule__TrimmerRecipe__MaskAssignment_7 : ( ruleMask ) ;
     public final void rule__TrimmerRecipe__MaskAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5983:1: ( ( ruleMask ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5984:1: ( ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6095:1: ( ( ruleMask ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6096:1: ( ruleMask )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5984:1: ( ruleMask )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5985:1: ruleMask
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6096:1: ( ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6097:1: ruleMask
             {
              before(grammarAccess.getTrimmerRecipeAccess().getMaskMaskParserRuleCall_7_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMask_in_rule__TrimmerRecipe__MaskAssignment_711757);
+            pushFollow(FollowSets000.FOLLOW_ruleMask_in_rule__TrimmerRecipe__MaskAssignment_711978);
             ruleMask();
 
             state._fsp--;
@@ -14717,24 +14990,24 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__TrimmerRecipe__ParentAssignment_10"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5994:1: rule__TrimmerRecipe__ParentAssignment_10 : ( ( RULE_ID ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6106:1: rule__TrimmerRecipe__ParentAssignment_10 : ( ( RULE_ID ) ) ;
     public final void rule__TrimmerRecipe__ParentAssignment_10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5998:1: ( ( ( RULE_ID ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5999:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6110:1: ( ( ( RULE_ID ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6111:1: ( ( RULE_ID ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:5999:1: ( ( RULE_ID ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6000:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6111:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6112:1: ( RULE_ID )
             {
              before(grammarAccess.getTrimmerRecipeAccess().getParentReteNodeRecipeCrossReference_10_0()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6001:1: ( RULE_ID )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6002:1: RULE_ID
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6113:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6114:1: RULE_ID
             {
              before(grammarAccess.getTrimmerRecipeAccess().getParentReteNodeRecipeIDTerminalRuleCall_10_0_1()); 
-            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__TrimmerRecipe__ParentAssignment_1011792); 
+            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__TrimmerRecipe__ParentAssignment_1012013); 
              after(grammarAccess.getTrimmerRecipeAccess().getParentReteNodeRecipeIDTerminalRuleCall_10_0_1()); 
 
             }
@@ -14762,20 +15035,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__TraceInfoAssignment_4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6013:1: rule__JoinRecipe__TraceInfoAssignment_4 : ( RULE_STRING ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6125:1: rule__JoinRecipe__TraceInfoAssignment_4 : ( RULE_STRING ) ;
     public final void rule__JoinRecipe__TraceInfoAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6017:1: ( ( RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6018:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6129:1: ( ( RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6130:1: ( RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6018:1: ( RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6019:1: RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6130:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6131:1: RULE_STRING
             {
              before(grammarAccess.getJoinRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
-            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__JoinRecipe__TraceInfoAssignment_411827); 
+            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__JoinRecipe__TraceInfoAssignment_412048); 
              after(grammarAccess.getJoinRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
 
             }
@@ -14799,20 +15072,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__LeftParentAssignment_7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6028:1: rule__JoinRecipe__LeftParentAssignment_7 : ( ruleProjectionIndexerRecipe ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6140:1: rule__JoinRecipe__LeftParentAssignment_7 : ( ruleProjectionIndexerRecipe ) ;
     public final void rule__JoinRecipe__LeftParentAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6032:1: ( ( ruleProjectionIndexerRecipe ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6033:1: ( ruleProjectionIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6144:1: ( ( ruleProjectionIndexerRecipe ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6145:1: ( ruleProjectionIndexerRecipe )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6033:1: ( ruleProjectionIndexerRecipe )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6034:1: ruleProjectionIndexerRecipe
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6145:1: ( ruleProjectionIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6146:1: ruleProjectionIndexerRecipe
             {
              before(grammarAccess.getJoinRecipeAccess().getLeftParentProjectionIndexerRecipeParserRuleCall_7_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleProjectionIndexerRecipe_in_rule__JoinRecipe__LeftParentAssignment_711858);
+            pushFollow(FollowSets000.FOLLOW_ruleProjectionIndexerRecipe_in_rule__JoinRecipe__LeftParentAssignment_712079);
             ruleProjectionIndexerRecipe();
 
             state._fsp--;
@@ -14840,20 +15113,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__RightParentAssignment_10"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6043:1: rule__JoinRecipe__RightParentAssignment_10 : ( ruleIndexerRecipe ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6155:1: rule__JoinRecipe__RightParentAssignment_10 : ( ruleIndexerRecipe ) ;
     public final void rule__JoinRecipe__RightParentAssignment_10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6047:1: ( ( ruleIndexerRecipe ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6048:1: ( ruleIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6159:1: ( ( ruleIndexerRecipe ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6160:1: ( ruleIndexerRecipe )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6048:1: ( ruleIndexerRecipe )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6049:1: ruleIndexerRecipe
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6160:1: ( ruleIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6161:1: ruleIndexerRecipe
             {
              before(grammarAccess.getJoinRecipeAccess().getRightParentIndexerRecipeParserRuleCall_10_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleIndexerRecipe_in_rule__JoinRecipe__RightParentAssignment_1011889);
+            pushFollow(FollowSets000.FOLLOW_ruleIndexerRecipe_in_rule__JoinRecipe__RightParentAssignment_1012110);
             ruleIndexerRecipe();
 
             state._fsp--;
@@ -14881,20 +15154,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__JoinRecipe__RightParentComplementaryMaskAssignment_11"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6058:1: rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 : ( ruleMask ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6170:1: rule__JoinRecipe__RightParentComplementaryMaskAssignment_11 : ( ruleMask ) ;
     public final void rule__JoinRecipe__RightParentComplementaryMaskAssignment_11() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6062:1: ( ( ruleMask ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6063:1: ( ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6174:1: ( ( ruleMask ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6175:1: ( ruleMask )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6063:1: ( ruleMask )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6064:1: ruleMask
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6175:1: ( ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6176:1: ruleMask
             {
              before(grammarAccess.getJoinRecipeAccess().getRightParentComplementaryMaskMaskParserRuleCall_11_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMask_in_rule__JoinRecipe__RightParentComplementaryMaskAssignment_1111920);
+            pushFollow(FollowSets000.FOLLOW_ruleMask_in_rule__JoinRecipe__RightParentComplementaryMaskAssignment_1112141);
             ruleMask();
 
             state._fsp--;
@@ -14922,20 +15195,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__TraceInfoAssignment_4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6073:1: rule__AntiJoinRecipe__TraceInfoAssignment_4 : ( RULE_STRING ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6185:1: rule__AntiJoinRecipe__TraceInfoAssignment_4 : ( RULE_STRING ) ;
     public final void rule__AntiJoinRecipe__TraceInfoAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6077:1: ( ( RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6078:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6189:1: ( ( RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6190:1: ( RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6078:1: ( RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6079:1: RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6190:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6191:1: RULE_STRING
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
-            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__AntiJoinRecipe__TraceInfoAssignment_411951); 
+            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__AntiJoinRecipe__TraceInfoAssignment_412172); 
              after(grammarAccess.getAntiJoinRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
 
             }
@@ -14959,20 +15232,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__LeftParentAssignment_7"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6088:1: rule__AntiJoinRecipe__LeftParentAssignment_7 : ( ruleProjectionIndexerRecipe ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6200:1: rule__AntiJoinRecipe__LeftParentAssignment_7 : ( ruleProjectionIndexerRecipe ) ;
     public final void rule__AntiJoinRecipe__LeftParentAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6092:1: ( ( ruleProjectionIndexerRecipe ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6093:1: ( ruleProjectionIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6204:1: ( ( ruleProjectionIndexerRecipe ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6205:1: ( ruleProjectionIndexerRecipe )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6093:1: ( ruleProjectionIndexerRecipe )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6094:1: ruleProjectionIndexerRecipe
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6205:1: ( ruleProjectionIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6206:1: ruleProjectionIndexerRecipe
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getLeftParentProjectionIndexerRecipeParserRuleCall_7_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleProjectionIndexerRecipe_in_rule__AntiJoinRecipe__LeftParentAssignment_711982);
+            pushFollow(FollowSets000.FOLLOW_ruleProjectionIndexerRecipe_in_rule__AntiJoinRecipe__LeftParentAssignment_712203);
             ruleProjectionIndexerRecipe();
 
             state._fsp--;
@@ -15000,20 +15273,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__AntiJoinRecipe__RightParentAssignment_10"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6103:1: rule__AntiJoinRecipe__RightParentAssignment_10 : ( ruleIndexerRecipe ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6215:1: rule__AntiJoinRecipe__RightParentAssignment_10 : ( ruleIndexerRecipe ) ;
     public final void rule__AntiJoinRecipe__RightParentAssignment_10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6107:1: ( ( ruleIndexerRecipe ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6108:1: ( ruleIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6219:1: ( ( ruleIndexerRecipe ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6220:1: ( ruleIndexerRecipe )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6108:1: ( ruleIndexerRecipe )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6109:1: ruleIndexerRecipe
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6220:1: ( ruleIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6221:1: ruleIndexerRecipe
             {
              before(grammarAccess.getAntiJoinRecipeAccess().getRightParentIndexerRecipeParserRuleCall_10_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleIndexerRecipe_in_rule__AntiJoinRecipe__RightParentAssignment_1012013);
+            pushFollow(FollowSets000.FOLLOW_ruleIndexerRecipe_in_rule__AntiJoinRecipe__RightParentAssignment_1012234);
             ruleIndexerRecipe();
 
             state._fsp--;
@@ -15041,20 +15314,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__TraceInfoAssignment_3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6118:1: rule__IndexerRecipe__TraceInfoAssignment_3 : ( RULE_STRING ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6230:1: rule__IndexerRecipe__TraceInfoAssignment_3 : ( RULE_STRING ) ;
     public final void rule__IndexerRecipe__TraceInfoAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6122:1: ( ( RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6123:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6234:1: ( ( RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6235:1: ( RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6123:1: ( RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6124:1: RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6235:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6236:1: RULE_STRING
             {
              before(grammarAccess.getIndexerRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_3_0()); 
-            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__IndexerRecipe__TraceInfoAssignment_312044); 
+            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__IndexerRecipe__TraceInfoAssignment_312265); 
              after(grammarAccess.getIndexerRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_3_0()); 
 
             }
@@ -15078,20 +15351,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__MaskAssignment_6"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6133:1: rule__IndexerRecipe__MaskAssignment_6 : ( ruleMask ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6245:1: rule__IndexerRecipe__MaskAssignment_6 : ( ruleMask ) ;
     public final void rule__IndexerRecipe__MaskAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6137:1: ( ( ruleMask ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6138:1: ( ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6249:1: ( ( ruleMask ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6250:1: ( ruleMask )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6138:1: ( ruleMask )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6139:1: ruleMask
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6250:1: ( ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6251:1: ruleMask
             {
              before(grammarAccess.getIndexerRecipeAccess().getMaskMaskParserRuleCall_6_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMask_in_rule__IndexerRecipe__MaskAssignment_612075);
+            pushFollow(FollowSets000.FOLLOW_ruleMask_in_rule__IndexerRecipe__MaskAssignment_612296);
             ruleMask();
 
             state._fsp--;
@@ -15119,24 +15392,24 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__IndexerRecipe__ParentAssignment_9"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6148:1: rule__IndexerRecipe__ParentAssignment_9 : ( ( RULE_ID ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6260:1: rule__IndexerRecipe__ParentAssignment_9 : ( ( RULE_ID ) ) ;
     public final void rule__IndexerRecipe__ParentAssignment_9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6152:1: ( ( ( RULE_ID ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6153:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6264:1: ( ( ( RULE_ID ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6265:1: ( ( RULE_ID ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6153:1: ( ( RULE_ID ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6154:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6265:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6266:1: ( RULE_ID )
             {
              before(grammarAccess.getIndexerRecipeAccess().getParentReteNodeRecipeCrossReference_9_0()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6155:1: ( RULE_ID )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6156:1: RULE_ID
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6267:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6268:1: RULE_ID
             {
              before(grammarAccess.getIndexerRecipeAccess().getParentReteNodeRecipeIDTerminalRuleCall_9_0_1()); 
-            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__IndexerRecipe__ParentAssignment_912110); 
+            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__IndexerRecipe__ParentAssignment_912331); 
              after(grammarAccess.getIndexerRecipeAccess().getParentReteNodeRecipeIDTerminalRuleCall_9_0_1()); 
 
             }
@@ -15164,20 +15437,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__TraceInfoAssignment_3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6167:1: rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 : ( RULE_STRING ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6279:1: rule__ProjectionIndexerRecipe__TraceInfoAssignment_3 : ( RULE_STRING ) ;
     public final void rule__ProjectionIndexerRecipe__TraceInfoAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6171:1: ( ( RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6172:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6283:1: ( ( RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6284:1: ( RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6172:1: ( RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6173:1: RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6284:1: ( RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6285:1: RULE_STRING
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_3_0()); 
-            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__ProjectionIndexerRecipe__TraceInfoAssignment_312145); 
+            match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_rule__ProjectionIndexerRecipe__TraceInfoAssignment_312366); 
              after(grammarAccess.getProjectionIndexerRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_3_0()); 
 
             }
@@ -15201,20 +15474,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__MaskAssignment_6"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6182:1: rule__ProjectionIndexerRecipe__MaskAssignment_6 : ( ruleMask ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6294:1: rule__ProjectionIndexerRecipe__MaskAssignment_6 : ( ruleMask ) ;
     public final void rule__ProjectionIndexerRecipe__MaskAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6186:1: ( ( ruleMask ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6187:1: ( ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6298:1: ( ( ruleMask ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6299:1: ( ruleMask )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6187:1: ( ruleMask )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6188:1: ruleMask
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6299:1: ( ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6300:1: ruleMask
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getMaskMaskParserRuleCall_6_0()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMask_in_rule__ProjectionIndexerRecipe__MaskAssignment_612176);
+            pushFollow(FollowSets000.FOLLOW_ruleMask_in_rule__ProjectionIndexerRecipe__MaskAssignment_612397);
             ruleMask();
 
             state._fsp--;
@@ -15242,24 +15515,24 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__ProjectionIndexerRecipe__ParentAssignment_9"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6197:1: rule__ProjectionIndexerRecipe__ParentAssignment_9 : ( ( RULE_ID ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6309:1: rule__ProjectionIndexerRecipe__ParentAssignment_9 : ( ( RULE_ID ) ) ;
     public final void rule__ProjectionIndexerRecipe__ParentAssignment_9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6201:1: ( ( ( RULE_ID ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6202:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6313:1: ( ( ( RULE_ID ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6314:1: ( ( RULE_ID ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6202:1: ( ( RULE_ID ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6203:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6314:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6315:1: ( RULE_ID )
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getParentReteNodeRecipeCrossReference_9_0()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6204:1: ( RULE_ID )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6205:1: RULE_ID
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6316:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6317:1: RULE_ID
             {
              before(grammarAccess.getProjectionIndexerRecipeAccess().getParentReteNodeRecipeIDTerminalRuleCall_9_0_1()); 
-            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__ProjectionIndexerRecipe__ParentAssignment_912211); 
+            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__ProjectionIndexerRecipe__ParentAssignment_912432); 
              after(grammarAccess.getProjectionIndexerRecipeAccess().getParentReteNodeRecipeIDTerminalRuleCall_9_0_1()); 
 
             }
@@ -15287,20 +15560,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__SourceArityAssignment_3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6216:1: rule__Mask__SourceArityAssignment_3 : ( RULE_INT ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6328:1: rule__Mask__SourceArityAssignment_3 : ( RULE_INT ) ;
     public final void rule__Mask__SourceArityAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6220:1: ( ( RULE_INT ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6221:1: ( RULE_INT )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6332:1: ( ( RULE_INT ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6333:1: ( RULE_INT )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6221:1: ( RULE_INT )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6222:1: RULE_INT
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6333:1: ( RULE_INT )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6334:1: RULE_INT
             {
              before(grammarAccess.getMaskAccess().getSourceArityINTTerminalRuleCall_3_0()); 
-            match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_rule__Mask__SourceArityAssignment_312246); 
+            match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_rule__Mask__SourceArityAssignment_312467); 
              after(grammarAccess.getMaskAccess().getSourceArityINTTerminalRuleCall_3_0()); 
 
             }
@@ -15324,20 +15597,20 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Mask__SourceIndicesAssignment_4_3"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6231:1: rule__Mask__SourceIndicesAssignment_4_3 : ( RULE_INT ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6343:1: rule__Mask__SourceIndicesAssignment_4_3 : ( RULE_INT ) ;
     public final void rule__Mask__SourceIndicesAssignment_4_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6235:1: ( ( RULE_INT ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6236:1: ( RULE_INT )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6347:1: ( ( RULE_INT ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6348:1: ( RULE_INT )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6236:1: ( RULE_INT )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6237:1: RULE_INT
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6348:1: ( RULE_INT )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6349:1: RULE_INT
             {
              before(grammarAccess.getMaskAccess().getSourceIndicesINTTerminalRuleCall_4_3_0()); 
-            match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_rule__Mask__SourceIndicesAssignment_4_312277); 
+            match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_rule__Mask__SourceIndicesAssignment_4_312498); 
              after(grammarAccess.getMaskAccess().getSourceIndicesINTTerminalRuleCall_4_3_0()); 
 
             }
@@ -15361,24 +15634,24 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__MappedElementsAssignment_4"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6246:1: rule__InfrastructureMapping__MappedElementsAssignment_4 : ( ( RULE_ID ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6358:1: rule__InfrastructureMapping__MappedElementsAssignment_4 : ( ( RULE_ID ) ) ;
     public final void rule__InfrastructureMapping__MappedElementsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6250:1: ( ( ( RULE_ID ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6251:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6362:1: ( ( ( RULE_ID ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6363:1: ( ( RULE_ID ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6251:1: ( ( RULE_ID ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6252:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6363:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6364:1: ( RULE_ID )
             {
              before(grammarAccess.getInfrastructureMappingAccess().getMappedElementsReteNodeRecipeCrossReference_4_0()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6253:1: ( RULE_ID )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6254:1: RULE_ID
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6365:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6366:1: RULE_ID
             {
              before(grammarAccess.getInfrastructureMappingAccess().getMappedElementsReteNodeRecipeIDTerminalRuleCall_4_0_1()); 
-            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__InfrastructureMapping__MappedElementsAssignment_412312); 
+            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__InfrastructureMapping__MappedElementsAssignment_412533); 
              after(grammarAccess.getInfrastructureMappingAccess().getMappedElementsReteNodeRecipeIDTerminalRuleCall_4_0_1()); 
 
             }
@@ -15406,24 +15679,24 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__InfrastructureMapping__TargetElementAssignment_8"
-    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6265:1: rule__InfrastructureMapping__TargetElementAssignment_8 : ( ( RULE_ID ) ) ;
+    // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6377:1: rule__InfrastructureMapping__TargetElementAssignment_8 : ( ( RULE_ID ) ) ;
     public final void rule__InfrastructureMapping__TargetElementAssignment_8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6269:1: ( ( ( RULE_ID ) ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6270:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6381:1: ( ( ( RULE_ID ) ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6382:1: ( ( RULE_ID ) )
             {
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6270:1: ( ( RULE_ID ) )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6271:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6382:1: ( ( RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6383:1: ( RULE_ID )
             {
              before(grammarAccess.getInfrastructureMappingAccess().getTargetElementMachineCrossReference_8_0()); 
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6272:1: ( RULE_ID )
-            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6273:1: RULE_ID
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6384:1: ( RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language.ui/src-gen/hu/bme/mit/incqueryd/arch/language/ui/contentassist/antlr/internal/InternalArchLanguage.g:6385:1: RULE_ID
             {
              before(grammarAccess.getInfrastructureMappingAccess().getTargetElementMachineIDTerminalRuleCall_8_0_1()); 
-            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__InfrastructureMapping__TargetElementAssignment_812351); 
+            match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_rule__InfrastructureMapping__TargetElementAssignment_812572); 
              after(grammarAccess.getInfrastructureMappingAccess().getTargetElementMachineIDTerminalRuleCall_8_0_1()); 
 
             }
@@ -15611,396 +15884,406 @@ public class InternalArchLanguageParser extends AbstractInternalContentAssistPar
         public static final BitSet FOLLOW_13_in_rule__Machine__Group__2__Impl3383 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__Machine__Group__3__Impl_in_rule__Machine__Group__33414 = new BitSet(new long[]{0x0000000000800000L});
         public static final BitSet FOLLOW_rule__Machine__Group__4_in_rule__Machine__Group__33417 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Machine__TraceInfoAssignment_3_in_rule__Machine__Group__3__Impl3444 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Machine__NameAssignment_3_in_rule__Machine__Group__3__Impl3444 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__Machine__Group__4__Impl_in_rule__Machine__Group__43474 = new BitSet(new long[]{0x0000000000002000L});
         public static final BitSet FOLLOW_rule__Machine__Group__5_in_rule__Machine__Group__43477 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_23_in_rule__Machine__Group__4__Impl3505 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_rule__Machine__Group__5__Impl_in_rule__Machine__Group__53536 = new BitSet(new long[]{0x0000000000000020L});
         public static final BitSet FOLLOW_rule__Machine__Group__6_in_rule__Machine__Group__53539 = new BitSet(new long[]{0x0000000000000002L});
         public static final BitSet FOLLOW_13_in_rule__Machine__Group__5__Impl3567 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Machine__Group__6__Impl_in_rule__Machine__Group__63598 = new BitSet(new long[]{0x0000000000080000L});
+        public static final BitSet FOLLOW_rule__Machine__Group__6__Impl_in_rule__Machine__Group__63598 = new BitSet(new long[]{0x0000000001000000L});
         public static final BitSet FOLLOW_rule__Machine__Group__7_in_rule__Machine__Group__63601 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Machine__IpAssignment_6_in_rule__Machine__Group__6__Impl3628 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Machine__Group__7__Impl_in_rule__Machine__Group__73658 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_19_in_rule__Machine__Group__7__Impl3686 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__0__Impl_in_rule__ReteRecipe__Group__03733 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__1_in_rule__ReteRecipe__Group__03736 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__1__Impl_in_rule__ReteRecipe__Group__13794 = new BitSet(new long[]{0x0000000001000000L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__2_in_rule__ReteRecipe__Group__13797 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__ReteRecipe__Group__1__Impl3825 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__2__Impl_in_rule__ReteRecipe__Group__23856 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__3_in_rule__ReteRecipe__Group__23859 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_24_in_rule__ReteRecipe__Group__2__Impl3887 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__3__Impl_in_rule__ReteRecipe__Group__33918 = new BitSet(new long[]{0x0000000000004000L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__4_in_rule__ReteRecipe__Group__33921 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__ReteRecipe__Group__3__Impl3949 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__4__Impl_in_rule__ReteRecipe__Group__43980 = new BitSet(new long[]{0x000000095A008000L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__5_in_rule__ReteRecipe__Group__43983 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_14_in_rule__ReteRecipe__Group__4__Impl4011 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__5__Impl_in_rule__ReteRecipe__Group__54042 = new BitSet(new long[]{0x000000095A008000L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__6_in_rule__ReteRecipe__Group__54045 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__RecipeNodesAssignment_5_in_rule__ReteRecipe__Group__5__Impl4072 = new BitSet(new long[]{0x000000095A000002L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__6__Impl_in_rule__ReteRecipe__Group__64103 = new BitSet(new long[]{0x0000000000080000L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__7_in_rule__ReteRecipe__Group__64106 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_15_in_rule__ReteRecipe__Group__6__Impl4134 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ReteRecipe__Group__7__Impl_in_rule__ReteRecipe__Group__74165 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_19_in_rule__ReteRecipe__Group__7__Impl4193 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__0__Impl_in_rule__ProductionRecipe__Group__04240 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__1_in_rule__ProductionRecipe__Group__04243 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_25_in_rule__ProductionRecipe__Group__0__Impl4271 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__1__Impl_in_rule__ProductionRecipe__Group__14302 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__2_in_rule__ProductionRecipe__Group__14305 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__ProductionRecipe__Group__1__Impl4333 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__2__Impl_in_rule__ProductionRecipe__Group__24364 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__3_in_rule__ProductionRecipe__Group__24367 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_22_in_rule__ProductionRecipe__Group__2__Impl4395 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__3__Impl_in_rule__ProductionRecipe__Group__34426 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__4_in_rule__ProductionRecipe__Group__34429 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__ProductionRecipe__Group__3__Impl4457 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__4__Impl_in_rule__ProductionRecipe__Group__44488 = new BitSet(new long[]{0x0000000004000000L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__5_in_rule__ProductionRecipe__Group__44491 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__TraceInfoAssignment_4_in_rule__ProductionRecipe__Group__4__Impl4518 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__5__Impl_in_rule__ProductionRecipe__Group__54548 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__6_in_rule__ProductionRecipe__Group__54551 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_26_in_rule__ProductionRecipe__Group__5__Impl4579 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__6__Impl_in_rule__ProductionRecipe__Group__64610 = new BitSet(new long[]{0x0000000000004000L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__7_in_rule__ProductionRecipe__Group__64613 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__ProductionRecipe__Group__6__Impl4641 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__7__Impl_in_rule__ProductionRecipe__Group__74672 = new BitSet(new long[]{0x0000000000008040L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__8_in_rule__ProductionRecipe__Group__74675 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_14_in_rule__ProductionRecipe__Group__7__Impl4703 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__8__Impl_in_rule__ProductionRecipe__Group__84734 = new BitSet(new long[]{0x0000000000008040L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__9_in_rule__ProductionRecipe__Group__84737 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__ParentsAssignment_8_in_rule__ProductionRecipe__Group__8__Impl4764 = new BitSet(new long[]{0x0000000000000042L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__9__Impl_in_rule__ProductionRecipe__Group__94795 = new BitSet(new long[]{0x0000000000080000L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__10_in_rule__ProductionRecipe__Group__94798 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_15_in_rule__ProductionRecipe__Group__9__Impl4826 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__10__Impl_in_rule__ProductionRecipe__Group__104857 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_19_in_rule__ProductionRecipe__Group__10__Impl4885 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__0__Impl_in_rule__UniquenessEnforcerRecipe__Group__04938 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__1_in_rule__UniquenessEnforcerRecipe__Group__04941 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_27_in_rule__UniquenessEnforcerRecipe__Group__0__Impl4969 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__1__Impl_in_rule__UniquenessEnforcerRecipe__Group__15000 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__2_in_rule__UniquenessEnforcerRecipe__Group__15003 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__UniquenessEnforcerRecipe__Group__1__Impl5031 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__2__Impl_in_rule__UniquenessEnforcerRecipe__Group__25062 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__3_in_rule__UniquenessEnforcerRecipe__Group__25065 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_22_in_rule__UniquenessEnforcerRecipe__Group__2__Impl5093 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__3__Impl_in_rule__UniquenessEnforcerRecipe__Group__35124 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__4_in_rule__UniquenessEnforcerRecipe__Group__35127 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__UniquenessEnforcerRecipe__Group__3__Impl5155 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__4__Impl_in_rule__UniquenessEnforcerRecipe__Group__45186 = new BitSet(new long[]{0x0000000004000000L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__5_in_rule__UniquenessEnforcerRecipe__Group__45189 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4_in_rule__UniquenessEnforcerRecipe__Group__4__Impl5216 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__5__Impl_in_rule__UniquenessEnforcerRecipe__Group__55246 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__6_in_rule__UniquenessEnforcerRecipe__Group__55249 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_26_in_rule__UniquenessEnforcerRecipe__Group__5__Impl5277 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__6__Impl_in_rule__UniquenessEnforcerRecipe__Group__65308 = new BitSet(new long[]{0x0000000000004000L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__7_in_rule__UniquenessEnforcerRecipe__Group__65311 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__UniquenessEnforcerRecipe__Group__6__Impl5339 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__7__Impl_in_rule__UniquenessEnforcerRecipe__Group__75370 = new BitSet(new long[]{0x0000000000008040L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__8_in_rule__UniquenessEnforcerRecipe__Group__75373 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_14_in_rule__UniquenessEnforcerRecipe__Group__7__Impl5401 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__8__Impl_in_rule__UniquenessEnforcerRecipe__Group__85432 = new BitSet(new long[]{0x0000000000008040L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__9_in_rule__UniquenessEnforcerRecipe__Group__85435 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__ParentsAssignment_8_in_rule__UniquenessEnforcerRecipe__Group__8__Impl5462 = new BitSet(new long[]{0x0000000000000042L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__9__Impl_in_rule__UniquenessEnforcerRecipe__Group__95493 = new BitSet(new long[]{0x0000000000080000L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__10_in_rule__UniquenessEnforcerRecipe__Group__95496 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_15_in_rule__UniquenessEnforcerRecipe__Group__9__Impl5524 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__10__Impl_in_rule__UniquenessEnforcerRecipe__Group__105555 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_19_in_rule__UniquenessEnforcerRecipe__Group__10__Impl5583 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__0__Impl_in_rule__CheckRecipe__Group__05636 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__1_in_rule__CheckRecipe__Group__05639 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_28_in_rule__CheckRecipe__Group__0__Impl5667 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__1__Impl_in_rule__CheckRecipe__Group__15698 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__2_in_rule__CheckRecipe__Group__15701 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__CheckRecipe__Group__1__Impl5729 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__2__Impl_in_rule__CheckRecipe__Group__25760 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__3_in_rule__CheckRecipe__Group__25763 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_22_in_rule__CheckRecipe__Group__2__Impl5791 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__3__Impl_in_rule__CheckRecipe__Group__35822 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__4_in_rule__CheckRecipe__Group__35825 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__CheckRecipe__Group__3__Impl5853 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__4__Impl_in_rule__CheckRecipe__Group__45884 = new BitSet(new long[]{0x0000000020000000L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__5_in_rule__CheckRecipe__Group__45887 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__TraceInfoAssignment_4_in_rule__CheckRecipe__Group__4__Impl5914 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__5__Impl_in_rule__CheckRecipe__Group__55944 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__6_in_rule__CheckRecipe__Group__55947 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_29_in_rule__CheckRecipe__Group__5__Impl5975 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__6__Impl_in_rule__CheckRecipe__Group__66006 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__7_in_rule__CheckRecipe__Group__66009 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__CheckRecipe__Group__6__Impl6037 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__7__Impl_in_rule__CheckRecipe__Group__76068 = new BitSet(new long[]{0x0000000000080000L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__8_in_rule__CheckRecipe__Group__76071 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__ParentAssignment_7_in_rule__CheckRecipe__Group__7__Impl6098 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__CheckRecipe__Group__8__Impl_in_rule__CheckRecipe__Group__86128 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_19_in_rule__CheckRecipe__Group__8__Impl6156 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__0__Impl_in_rule__TrimmerRecipe__Group__06205 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__1_in_rule__TrimmerRecipe__Group__06208 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_30_in_rule__TrimmerRecipe__Group__0__Impl6236 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__1__Impl_in_rule__TrimmerRecipe__Group__16267 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__2_in_rule__TrimmerRecipe__Group__16270 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__TrimmerRecipe__Group__1__Impl6298 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__2__Impl_in_rule__TrimmerRecipe__Group__26329 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__3_in_rule__TrimmerRecipe__Group__26332 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_22_in_rule__TrimmerRecipe__Group__2__Impl6360 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__3__Impl_in_rule__TrimmerRecipe__Group__36391 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__4_in_rule__TrimmerRecipe__Group__36394 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__TrimmerRecipe__Group__3__Impl6422 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__4__Impl_in_rule__TrimmerRecipe__Group__46453 = new BitSet(new long[]{0x0000000080000000L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__5_in_rule__TrimmerRecipe__Group__46456 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__TraceInfoAssignment_4_in_rule__TrimmerRecipe__Group__4__Impl6483 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__5__Impl_in_rule__TrimmerRecipe__Group__56513 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__6_in_rule__TrimmerRecipe__Group__56516 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_31_in_rule__TrimmerRecipe__Group__5__Impl6544 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__6__Impl_in_rule__TrimmerRecipe__Group__66575 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__7_in_rule__TrimmerRecipe__Group__66578 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__TrimmerRecipe__Group__6__Impl6606 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__7__Impl_in_rule__TrimmerRecipe__Group__76637 = new BitSet(new long[]{0x0000000020000000L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__8_in_rule__TrimmerRecipe__Group__76640 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__MaskAssignment_7_in_rule__TrimmerRecipe__Group__7__Impl6667 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__8__Impl_in_rule__TrimmerRecipe__Group__86697 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__9_in_rule__TrimmerRecipe__Group__86700 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_29_in_rule__TrimmerRecipe__Group__8__Impl6728 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__9__Impl_in_rule__TrimmerRecipe__Group__96759 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__10_in_rule__TrimmerRecipe__Group__96762 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__TrimmerRecipe__Group__9__Impl6790 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__10__Impl_in_rule__TrimmerRecipe__Group__106821 = new BitSet(new long[]{0x0000000000080000L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__11_in_rule__TrimmerRecipe__Group__106824 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__ParentAssignment_10_in_rule__TrimmerRecipe__Group__10__Impl6851 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__11__Impl_in_rule__TrimmerRecipe__Group__116881 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_19_in_rule__TrimmerRecipe__Group__11__Impl6909 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__0__Impl_in_rule__JoinRecipe__Group__06964 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__1_in_rule__JoinRecipe__Group__06967 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_32_in_rule__JoinRecipe__Group__0__Impl6995 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__1__Impl_in_rule__JoinRecipe__Group__17026 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__2_in_rule__JoinRecipe__Group__17029 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__JoinRecipe__Group__1__Impl7057 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__2__Impl_in_rule__JoinRecipe__Group__27088 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__3_in_rule__JoinRecipe__Group__27091 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_22_in_rule__JoinRecipe__Group__2__Impl7119 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__3__Impl_in_rule__JoinRecipe__Group__37150 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__4_in_rule__JoinRecipe__Group__37153 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__JoinRecipe__Group__3__Impl7181 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__4__Impl_in_rule__JoinRecipe__Group__47212 = new BitSet(new long[]{0x0000000200000000L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__5_in_rule__JoinRecipe__Group__47215 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__TraceInfoAssignment_4_in_rule__JoinRecipe__Group__4__Impl7242 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__5__Impl_in_rule__JoinRecipe__Group__57272 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__6_in_rule__JoinRecipe__Group__57275 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_33_in_rule__JoinRecipe__Group__5__Impl7303 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__6__Impl_in_rule__JoinRecipe__Group__67334 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__7_in_rule__JoinRecipe__Group__67337 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__JoinRecipe__Group__6__Impl7365 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__7__Impl_in_rule__JoinRecipe__Group__77396 = new BitSet(new long[]{0x0000000400000000L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__8_in_rule__JoinRecipe__Group__77399 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__LeftParentAssignment_7_in_rule__JoinRecipe__Group__7__Impl7426 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__8__Impl_in_rule__JoinRecipe__Group__87456 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__9_in_rule__JoinRecipe__Group__87459 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_34_in_rule__JoinRecipe__Group__8__Impl7487 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__9__Impl_in_rule__JoinRecipe__Group__97518 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__10_in_rule__JoinRecipe__Group__97521 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__JoinRecipe__Group__9__Impl7549 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__10__Impl_in_rule__JoinRecipe__Group__107580 = new BitSet(new long[]{0x00000000000C0000L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__11_in_rule__JoinRecipe__Group__107583 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__RightParentAssignment_10_in_rule__JoinRecipe__Group__10__Impl7610 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__11__Impl_in_rule__JoinRecipe__Group__117640 = new BitSet(new long[]{0x00000000000C0000L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__12_in_rule__JoinRecipe__Group__117643 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__RightParentComplementaryMaskAssignment_11_in_rule__JoinRecipe__Group__11__Impl7670 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__JoinRecipe__Group__12__Impl_in_rule__JoinRecipe__Group__127701 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_19_in_rule__JoinRecipe__Group__12__Impl7729 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__0__Impl_in_rule__AntiJoinRecipe__Group__07786 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__1_in_rule__AntiJoinRecipe__Group__07789 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_35_in_rule__AntiJoinRecipe__Group__0__Impl7817 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__1__Impl_in_rule__AntiJoinRecipe__Group__17848 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__2_in_rule__AntiJoinRecipe__Group__17851 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__AntiJoinRecipe__Group__1__Impl7879 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__2__Impl_in_rule__AntiJoinRecipe__Group__27910 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__3_in_rule__AntiJoinRecipe__Group__27913 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_22_in_rule__AntiJoinRecipe__Group__2__Impl7941 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__3__Impl_in_rule__AntiJoinRecipe__Group__37972 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__4_in_rule__AntiJoinRecipe__Group__37975 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__AntiJoinRecipe__Group__3__Impl8003 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__4__Impl_in_rule__AntiJoinRecipe__Group__48034 = new BitSet(new long[]{0x0000000200000000L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__5_in_rule__AntiJoinRecipe__Group__48037 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__TraceInfoAssignment_4_in_rule__AntiJoinRecipe__Group__4__Impl8064 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__5__Impl_in_rule__AntiJoinRecipe__Group__58094 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__6_in_rule__AntiJoinRecipe__Group__58097 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_33_in_rule__AntiJoinRecipe__Group__5__Impl8125 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__6__Impl_in_rule__AntiJoinRecipe__Group__68156 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__7_in_rule__AntiJoinRecipe__Group__68159 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__AntiJoinRecipe__Group__6__Impl8187 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__7__Impl_in_rule__AntiJoinRecipe__Group__78218 = new BitSet(new long[]{0x0000000400000000L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__8_in_rule__AntiJoinRecipe__Group__78221 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__LeftParentAssignment_7_in_rule__AntiJoinRecipe__Group__7__Impl8248 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__8__Impl_in_rule__AntiJoinRecipe__Group__88278 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__9_in_rule__AntiJoinRecipe__Group__88281 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_34_in_rule__AntiJoinRecipe__Group__8__Impl8309 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__9__Impl_in_rule__AntiJoinRecipe__Group__98340 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__10_in_rule__AntiJoinRecipe__Group__98343 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__AntiJoinRecipe__Group__9__Impl8371 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__10__Impl_in_rule__AntiJoinRecipe__Group__108402 = new BitSet(new long[]{0x0000000000080000L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__11_in_rule__AntiJoinRecipe__Group__108405 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__RightParentAssignment_10_in_rule__AntiJoinRecipe__Group__10__Impl8432 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__11__Impl_in_rule__AntiJoinRecipe__Group__118462 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_19_in_rule__AntiJoinRecipe__Group__11__Impl8490 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__0__Impl_in_rule__IndexerRecipe__Group__08545 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__1_in_rule__IndexerRecipe__Group__08548 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__IndexerRecipe__Group__0__Impl8576 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__1__Impl_in_rule__IndexerRecipe__Group__18607 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__2_in_rule__IndexerRecipe__Group__18610 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_22_in_rule__IndexerRecipe__Group__1__Impl8638 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__2__Impl_in_rule__IndexerRecipe__Group__28669 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__3_in_rule__IndexerRecipe__Group__28672 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__IndexerRecipe__Group__2__Impl8700 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__3__Impl_in_rule__IndexerRecipe__Group__38731 = new BitSet(new long[]{0x0000000080000000L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__4_in_rule__IndexerRecipe__Group__38734 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__TraceInfoAssignment_3_in_rule__IndexerRecipe__Group__3__Impl8761 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__4__Impl_in_rule__IndexerRecipe__Group__48791 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__5_in_rule__IndexerRecipe__Group__48794 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_31_in_rule__IndexerRecipe__Group__4__Impl8822 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__5__Impl_in_rule__IndexerRecipe__Group__58853 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__6_in_rule__IndexerRecipe__Group__58856 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__IndexerRecipe__Group__5__Impl8884 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__6__Impl_in_rule__IndexerRecipe__Group__68915 = new BitSet(new long[]{0x0000000020000000L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__7_in_rule__IndexerRecipe__Group__68918 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__MaskAssignment_6_in_rule__IndexerRecipe__Group__6__Impl8945 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__7__Impl_in_rule__IndexerRecipe__Group__78975 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__8_in_rule__IndexerRecipe__Group__78978 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_29_in_rule__IndexerRecipe__Group__7__Impl9006 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__8__Impl_in_rule__IndexerRecipe__Group__89037 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__9_in_rule__IndexerRecipe__Group__89040 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__IndexerRecipe__Group__8__Impl9068 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__9__Impl_in_rule__IndexerRecipe__Group__99099 = new BitSet(new long[]{0x0000000000080000L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__10_in_rule__IndexerRecipe__Group__99102 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__ParentAssignment_9_in_rule__IndexerRecipe__Group__9__Impl9129 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__10__Impl_in_rule__IndexerRecipe__Group__109159 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_19_in_rule__IndexerRecipe__Group__10__Impl9187 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__0__Impl_in_rule__ProjectionIndexerRecipe__Group__09240 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__1_in_rule__ProjectionIndexerRecipe__Group__09243 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__ProjectionIndexerRecipe__Group__0__Impl9271 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__1__Impl_in_rule__ProjectionIndexerRecipe__Group__19302 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__2_in_rule__ProjectionIndexerRecipe__Group__19305 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_22_in_rule__ProjectionIndexerRecipe__Group__1__Impl9333 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__2__Impl_in_rule__ProjectionIndexerRecipe__Group__29364 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__3_in_rule__ProjectionIndexerRecipe__Group__29367 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__ProjectionIndexerRecipe__Group__2__Impl9395 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__3__Impl_in_rule__ProjectionIndexerRecipe__Group__39426 = new BitSet(new long[]{0x0000000080000000L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__4_in_rule__ProjectionIndexerRecipe__Group__39429 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__TraceInfoAssignment_3_in_rule__ProjectionIndexerRecipe__Group__3__Impl9456 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__4__Impl_in_rule__ProjectionIndexerRecipe__Group__49486 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__5_in_rule__ProjectionIndexerRecipe__Group__49489 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_31_in_rule__ProjectionIndexerRecipe__Group__4__Impl9517 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__5__Impl_in_rule__ProjectionIndexerRecipe__Group__59548 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__6_in_rule__ProjectionIndexerRecipe__Group__59551 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__ProjectionIndexerRecipe__Group__5__Impl9579 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__6__Impl_in_rule__ProjectionIndexerRecipe__Group__69610 = new BitSet(new long[]{0x0000000020000000L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__7_in_rule__ProjectionIndexerRecipe__Group__69613 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__MaskAssignment_6_in_rule__ProjectionIndexerRecipe__Group__6__Impl9640 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__7__Impl_in_rule__ProjectionIndexerRecipe__Group__79670 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__8_in_rule__ProjectionIndexerRecipe__Group__79673 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_29_in_rule__ProjectionIndexerRecipe__Group__7__Impl9701 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__8__Impl_in_rule__ProjectionIndexerRecipe__Group__89732 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__9_in_rule__ProjectionIndexerRecipe__Group__89735 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__ProjectionIndexerRecipe__Group__8__Impl9763 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__9__Impl_in_rule__ProjectionIndexerRecipe__Group__99794 = new BitSet(new long[]{0x0000000000080000L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__10_in_rule__ProjectionIndexerRecipe__Group__99797 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__ParentAssignment_9_in_rule__ProjectionIndexerRecipe__Group__9__Impl9824 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__10__Impl_in_rule__ProjectionIndexerRecipe__Group__109854 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_19_in_rule__ProjectionIndexerRecipe__Group__10__Impl9882 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Mask__Group__0__Impl_in_rule__Mask__Group__09935 = new BitSet(new long[]{0x0000001000000000L});
-        public static final BitSet FOLLOW_rule__Mask__Group__1_in_rule__Mask__Group__09938 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__Mask__Group__0__Impl9966 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Mask__Group__1__Impl_in_rule__Mask__Group__19997 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__Mask__Group__2_in_rule__Mask__Group__110000 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_36_in_rule__Mask__Group__1__Impl10028 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Mask__Group__2__Impl_in_rule__Mask__Group__210059 = new BitSet(new long[]{0x0000000000000080L});
-        public static final BitSet FOLLOW_rule__Mask__Group__3_in_rule__Mask__Group__210062 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__Mask__Group__2__Impl10090 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Mask__Group__3__Impl_in_rule__Mask__Group__310121 = new BitSet(new long[]{0x0000002000080000L});
-        public static final BitSet FOLLOW_rule__Mask__Group__4_in_rule__Mask__Group__310124 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Mask__SourceArityAssignment_3_in_rule__Mask__Group__3__Impl10151 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Mask__Group__4__Impl_in_rule__Mask__Group__410181 = new BitSet(new long[]{0x0000002000080000L});
-        public static final BitSet FOLLOW_rule__Mask__Group__5_in_rule__Mask__Group__410184 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Mask__Group_4__0_in_rule__Mask__Group__4__Impl10211 = new BitSet(new long[]{0x0000002000000002L});
-        public static final BitSet FOLLOW_rule__Mask__Group__5__Impl_in_rule__Mask__Group__510242 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_19_in_rule__Mask__Group__5__Impl10270 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Mask__Group_4__0__Impl_in_rule__Mask__Group_4__010313 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__Mask__Group_4__1_in_rule__Mask__Group_4__010316 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_37_in_rule__Mask__Group_4__0__Impl10344 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Mask__Group_4__1__Impl_in_rule__Mask__Group_4__110375 = new BitSet(new long[]{0x0000000000004000L});
-        public static final BitSet FOLLOW_rule__Mask__Group_4__2_in_rule__Mask__Group_4__110378 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__Mask__Group_4__1__Impl10406 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Mask__Group_4__2__Impl_in_rule__Mask__Group_4__210437 = new BitSet(new long[]{0x0000000000008080L});
-        public static final BitSet FOLLOW_rule__Mask__Group_4__3_in_rule__Mask__Group_4__210440 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_14_in_rule__Mask__Group_4__2__Impl10468 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Mask__Group_4__3__Impl_in_rule__Mask__Group_4__310499 = new BitSet(new long[]{0x0000000000008080L});
-        public static final BitSet FOLLOW_rule__Mask__Group_4__4_in_rule__Mask__Group_4__310502 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__Mask__SourceIndicesAssignment_4_3_in_rule__Mask__Group_4__3__Impl10529 = new BitSet(new long[]{0x0000000000000082L});
-        public static final BitSet FOLLOW_rule__Mask__Group_4__4__Impl_in_rule__Mask__Group_4__410560 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_15_in_rule__Mask__Group_4__4__Impl10588 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__0__Impl_in_rule__InfrastructureMapping__Group__010629 = new BitSet(new long[]{0x0000004000000000L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__1_in_rule__InfrastructureMapping__Group__010632 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_rule__InfrastructureMapping__Group__0__Impl10660 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__1__Impl_in_rule__InfrastructureMapping__Group__110691 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__2_in_rule__InfrastructureMapping__Group__110694 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_38_in_rule__InfrastructureMapping__Group__1__Impl10722 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__2__Impl_in_rule__InfrastructureMapping__Group__210753 = new BitSet(new long[]{0x0000000000004000L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__3_in_rule__InfrastructureMapping__Group__210756 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__InfrastructureMapping__Group__2__Impl10784 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__3__Impl_in_rule__InfrastructureMapping__Group__310815 = new BitSet(new long[]{0x0000000000008040L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__4_in_rule__InfrastructureMapping__Group__310818 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_14_in_rule__InfrastructureMapping__Group__3__Impl10846 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__4__Impl_in_rule__InfrastructureMapping__Group__410877 = new BitSet(new long[]{0x0000000000008040L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__5_in_rule__InfrastructureMapping__Group__410880 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__MappedElementsAssignment_4_in_rule__InfrastructureMapping__Group__4__Impl10907 = new BitSet(new long[]{0x0000000000000042L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__5__Impl_in_rule__InfrastructureMapping__Group__510938 = new BitSet(new long[]{0x0000008000000000L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__6_in_rule__InfrastructureMapping__Group__510941 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_15_in_rule__InfrastructureMapping__Group__5__Impl10969 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__6__Impl_in_rule__InfrastructureMapping__Group__611000 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__7_in_rule__InfrastructureMapping__Group__611003 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_39_in_rule__InfrastructureMapping__Group__6__Impl11031 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__7__Impl_in_rule__InfrastructureMapping__Group__711062 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__8_in_rule__InfrastructureMapping__Group__711065 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_13_in_rule__InfrastructureMapping__Group__7__Impl11093 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__8__Impl_in_rule__InfrastructureMapping__Group__811124 = new BitSet(new long[]{0x0000000000080000L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__9_in_rule__InfrastructureMapping__Group__811127 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__TargetElementAssignment_8_in_rule__InfrastructureMapping__Group__8__Impl11154 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__9__Impl_in_rule__InfrastructureMapping__Group__911184 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_19_in_rule__InfrastructureMapping__Group__9__Impl11212 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleCluster_in_rule__Configuration__ClustersAssignment_1_311268 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleReteRecipe_in_rule__Configuration__ReteRecipesAssignment_2_311299 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleInfrastructureMapping_in_rule__Configuration__MappingsAssignment_3_311330 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMachine_in_rule__Cluster__ReteMachinesAssignment_2_311361 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMachine_in_rule__Cluster__CacheMachinesAssignment_3_311392 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING_in_rule__Machine__TraceInfoAssignment_311423 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_IP_in_rule__Machine__IpAssignment_611454 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleReteNodeRecipe_in_rule__ReteRecipe__RecipeNodesAssignment_511485 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING_in_rule__ProductionRecipe__TraceInfoAssignment_411516 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_ID_in_rule__ProductionRecipe__ParentsAssignment_811551 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING_in_rule__UniquenessEnforcerRecipe__TraceInfoAssignment_411586 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_ID_in_rule__UniquenessEnforcerRecipe__ParentsAssignment_811621 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING_in_rule__CheckRecipe__TraceInfoAssignment_411656 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_ID_in_rule__CheckRecipe__ParentAssignment_711691 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING_in_rule__TrimmerRecipe__TraceInfoAssignment_411726 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMask_in_rule__TrimmerRecipe__MaskAssignment_711757 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_ID_in_rule__TrimmerRecipe__ParentAssignment_1011792 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING_in_rule__JoinRecipe__TraceInfoAssignment_411827 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleProjectionIndexerRecipe_in_rule__JoinRecipe__LeftParentAssignment_711858 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleIndexerRecipe_in_rule__JoinRecipe__RightParentAssignment_1011889 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMask_in_rule__JoinRecipe__RightParentComplementaryMaskAssignment_1111920 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING_in_rule__AntiJoinRecipe__TraceInfoAssignment_411951 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleProjectionIndexerRecipe_in_rule__AntiJoinRecipe__LeftParentAssignment_711982 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleIndexerRecipe_in_rule__AntiJoinRecipe__RightParentAssignment_1012013 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING_in_rule__IndexerRecipe__TraceInfoAssignment_312044 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMask_in_rule__IndexerRecipe__MaskAssignment_612075 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_ID_in_rule__IndexerRecipe__ParentAssignment_912110 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_STRING_in_rule__ProjectionIndexerRecipe__TraceInfoAssignment_312145 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMask_in_rule__ProjectionIndexerRecipe__MaskAssignment_612176 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_ID_in_rule__ProjectionIndexerRecipe__ParentAssignment_912211 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_rule__Mask__SourceArityAssignment_312246 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_INT_in_rule__Mask__SourceIndicesAssignment_4_312277 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_ID_in_rule__InfrastructureMapping__MappedElementsAssignment_412312 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_RULE_ID_in_rule__InfrastructureMapping__TargetElementAssignment_812351 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Machine__TraceInfoAssignment_6_in_rule__Machine__Group__6__Impl3628 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Machine__Group__7__Impl_in_rule__Machine__Group__73658 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__Machine__Group__8_in_rule__Machine__Group__73661 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_24_in_rule__Machine__Group__7__Impl3689 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Machine__Group__8__Impl_in_rule__Machine__Group__83720 = new BitSet(new long[]{0x0000000000000040L});
+        public static final BitSet FOLLOW_rule__Machine__Group__9_in_rule__Machine__Group__83723 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__Machine__Group__8__Impl3751 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Machine__Group__9__Impl_in_rule__Machine__Group__93782 = new BitSet(new long[]{0x0000000000080000L});
+        public static final BitSet FOLLOW_rule__Machine__Group__10_in_rule__Machine__Group__93785 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Machine__IpAssignment_9_in_rule__Machine__Group__9__Impl3812 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Machine__Group__10__Impl_in_rule__Machine__Group__103842 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_19_in_rule__Machine__Group__10__Impl3870 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__0__Impl_in_rule__ReteRecipe__Group__03923 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__1_in_rule__ReteRecipe__Group__03926 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__1__Impl_in_rule__ReteRecipe__Group__13984 = new BitSet(new long[]{0x0000000002000000L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__2_in_rule__ReteRecipe__Group__13987 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__ReteRecipe__Group__1__Impl4015 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__2__Impl_in_rule__ReteRecipe__Group__24046 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__3_in_rule__ReteRecipe__Group__24049 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_25_in_rule__ReteRecipe__Group__2__Impl4077 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__3__Impl_in_rule__ReteRecipe__Group__34108 = new BitSet(new long[]{0x0000000000004000L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__4_in_rule__ReteRecipe__Group__34111 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__ReteRecipe__Group__3__Impl4139 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__4__Impl_in_rule__ReteRecipe__Group__44170 = new BitSet(new long[]{0x00000012B4008000L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__5_in_rule__ReteRecipe__Group__44173 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_14_in_rule__ReteRecipe__Group__4__Impl4201 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__5__Impl_in_rule__ReteRecipe__Group__54232 = new BitSet(new long[]{0x00000012B4008000L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__6_in_rule__ReteRecipe__Group__54235 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__RecipeNodesAssignment_5_in_rule__ReteRecipe__Group__5__Impl4262 = new BitSet(new long[]{0x00000012B4000002L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__6__Impl_in_rule__ReteRecipe__Group__64293 = new BitSet(new long[]{0x0000000000080000L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__7_in_rule__ReteRecipe__Group__64296 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_15_in_rule__ReteRecipe__Group__6__Impl4324 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ReteRecipe__Group__7__Impl_in_rule__ReteRecipe__Group__74355 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_19_in_rule__ReteRecipe__Group__7__Impl4383 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__0__Impl_in_rule__ProductionRecipe__Group__04430 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__1_in_rule__ProductionRecipe__Group__04433 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_26_in_rule__ProductionRecipe__Group__0__Impl4461 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__1__Impl_in_rule__ProductionRecipe__Group__14492 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__2_in_rule__ProductionRecipe__Group__14495 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__ProductionRecipe__Group__1__Impl4523 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__2__Impl_in_rule__ProductionRecipe__Group__24554 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__3_in_rule__ProductionRecipe__Group__24557 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_23_in_rule__ProductionRecipe__Group__2__Impl4585 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__3__Impl_in_rule__ProductionRecipe__Group__34616 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__4_in_rule__ProductionRecipe__Group__34619 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__ProductionRecipe__Group__3__Impl4647 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__4__Impl_in_rule__ProductionRecipe__Group__44678 = new BitSet(new long[]{0x0000000008000000L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__5_in_rule__ProductionRecipe__Group__44681 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__TraceInfoAssignment_4_in_rule__ProductionRecipe__Group__4__Impl4708 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__5__Impl_in_rule__ProductionRecipe__Group__54738 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__6_in_rule__ProductionRecipe__Group__54741 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_27_in_rule__ProductionRecipe__Group__5__Impl4769 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__6__Impl_in_rule__ProductionRecipe__Group__64800 = new BitSet(new long[]{0x0000000000004000L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__7_in_rule__ProductionRecipe__Group__64803 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__ProductionRecipe__Group__6__Impl4831 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__7__Impl_in_rule__ProductionRecipe__Group__74862 = new BitSet(new long[]{0x0000000000008010L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__8_in_rule__ProductionRecipe__Group__74865 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_14_in_rule__ProductionRecipe__Group__7__Impl4893 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__8__Impl_in_rule__ProductionRecipe__Group__84924 = new BitSet(new long[]{0x0000000000008010L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__9_in_rule__ProductionRecipe__Group__84927 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__ParentsAssignment_8_in_rule__ProductionRecipe__Group__8__Impl4954 = new BitSet(new long[]{0x0000000000000012L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__9__Impl_in_rule__ProductionRecipe__Group__94985 = new BitSet(new long[]{0x0000000000080000L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__10_in_rule__ProductionRecipe__Group__94988 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_15_in_rule__ProductionRecipe__Group__9__Impl5016 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProductionRecipe__Group__10__Impl_in_rule__ProductionRecipe__Group__105047 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_19_in_rule__ProductionRecipe__Group__10__Impl5075 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__0__Impl_in_rule__UniquenessEnforcerRecipe__Group__05128 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__1_in_rule__UniquenessEnforcerRecipe__Group__05131 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_28_in_rule__UniquenessEnforcerRecipe__Group__0__Impl5159 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__1__Impl_in_rule__UniquenessEnforcerRecipe__Group__15190 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__2_in_rule__UniquenessEnforcerRecipe__Group__15193 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__UniquenessEnforcerRecipe__Group__1__Impl5221 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__2__Impl_in_rule__UniquenessEnforcerRecipe__Group__25252 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__3_in_rule__UniquenessEnforcerRecipe__Group__25255 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_23_in_rule__UniquenessEnforcerRecipe__Group__2__Impl5283 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__3__Impl_in_rule__UniquenessEnforcerRecipe__Group__35314 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__4_in_rule__UniquenessEnforcerRecipe__Group__35317 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__UniquenessEnforcerRecipe__Group__3__Impl5345 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__4__Impl_in_rule__UniquenessEnforcerRecipe__Group__45376 = new BitSet(new long[]{0x0000000008000000L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__5_in_rule__UniquenessEnforcerRecipe__Group__45379 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__TraceInfoAssignment_4_in_rule__UniquenessEnforcerRecipe__Group__4__Impl5406 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__5__Impl_in_rule__UniquenessEnforcerRecipe__Group__55436 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__6_in_rule__UniquenessEnforcerRecipe__Group__55439 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_27_in_rule__UniquenessEnforcerRecipe__Group__5__Impl5467 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__6__Impl_in_rule__UniquenessEnforcerRecipe__Group__65498 = new BitSet(new long[]{0x0000000000004000L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__7_in_rule__UniquenessEnforcerRecipe__Group__65501 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__UniquenessEnforcerRecipe__Group__6__Impl5529 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__7__Impl_in_rule__UniquenessEnforcerRecipe__Group__75560 = new BitSet(new long[]{0x0000000000008010L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__8_in_rule__UniquenessEnforcerRecipe__Group__75563 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_14_in_rule__UniquenessEnforcerRecipe__Group__7__Impl5591 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__8__Impl_in_rule__UniquenessEnforcerRecipe__Group__85622 = new BitSet(new long[]{0x0000000000008010L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__9_in_rule__UniquenessEnforcerRecipe__Group__85625 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__ParentsAssignment_8_in_rule__UniquenessEnforcerRecipe__Group__8__Impl5652 = new BitSet(new long[]{0x0000000000000012L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__9__Impl_in_rule__UniquenessEnforcerRecipe__Group__95683 = new BitSet(new long[]{0x0000000000080000L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__10_in_rule__UniquenessEnforcerRecipe__Group__95686 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_15_in_rule__UniquenessEnforcerRecipe__Group__9__Impl5714 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__UniquenessEnforcerRecipe__Group__10__Impl_in_rule__UniquenessEnforcerRecipe__Group__105745 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_19_in_rule__UniquenessEnforcerRecipe__Group__10__Impl5773 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__0__Impl_in_rule__CheckRecipe__Group__05826 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__1_in_rule__CheckRecipe__Group__05829 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_29_in_rule__CheckRecipe__Group__0__Impl5857 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__1__Impl_in_rule__CheckRecipe__Group__15888 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__2_in_rule__CheckRecipe__Group__15891 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__CheckRecipe__Group__1__Impl5919 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__2__Impl_in_rule__CheckRecipe__Group__25950 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__3_in_rule__CheckRecipe__Group__25953 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_23_in_rule__CheckRecipe__Group__2__Impl5981 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__3__Impl_in_rule__CheckRecipe__Group__36012 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__4_in_rule__CheckRecipe__Group__36015 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__CheckRecipe__Group__3__Impl6043 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__4__Impl_in_rule__CheckRecipe__Group__46074 = new BitSet(new long[]{0x0000000040000000L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__5_in_rule__CheckRecipe__Group__46077 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__TraceInfoAssignment_4_in_rule__CheckRecipe__Group__4__Impl6104 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__5__Impl_in_rule__CheckRecipe__Group__56134 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__6_in_rule__CheckRecipe__Group__56137 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_30_in_rule__CheckRecipe__Group__5__Impl6165 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__6__Impl_in_rule__CheckRecipe__Group__66196 = new BitSet(new long[]{0x0000000000000010L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__7_in_rule__CheckRecipe__Group__66199 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__CheckRecipe__Group__6__Impl6227 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__7__Impl_in_rule__CheckRecipe__Group__76258 = new BitSet(new long[]{0x0000000000080000L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__8_in_rule__CheckRecipe__Group__76261 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__ParentAssignment_7_in_rule__CheckRecipe__Group__7__Impl6288 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__CheckRecipe__Group__8__Impl_in_rule__CheckRecipe__Group__86318 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_19_in_rule__CheckRecipe__Group__8__Impl6346 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__0__Impl_in_rule__TrimmerRecipe__Group__06395 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__1_in_rule__TrimmerRecipe__Group__06398 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_31_in_rule__TrimmerRecipe__Group__0__Impl6426 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__1__Impl_in_rule__TrimmerRecipe__Group__16457 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__2_in_rule__TrimmerRecipe__Group__16460 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__TrimmerRecipe__Group__1__Impl6488 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__2__Impl_in_rule__TrimmerRecipe__Group__26519 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__3_in_rule__TrimmerRecipe__Group__26522 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_23_in_rule__TrimmerRecipe__Group__2__Impl6550 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__3__Impl_in_rule__TrimmerRecipe__Group__36581 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__4_in_rule__TrimmerRecipe__Group__36584 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__TrimmerRecipe__Group__3__Impl6612 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__4__Impl_in_rule__TrimmerRecipe__Group__46643 = new BitSet(new long[]{0x0000000100000000L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__5_in_rule__TrimmerRecipe__Group__46646 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__TraceInfoAssignment_4_in_rule__TrimmerRecipe__Group__4__Impl6673 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__5__Impl_in_rule__TrimmerRecipe__Group__56703 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__6_in_rule__TrimmerRecipe__Group__56706 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_32_in_rule__TrimmerRecipe__Group__5__Impl6734 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__6__Impl_in_rule__TrimmerRecipe__Group__66765 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__7_in_rule__TrimmerRecipe__Group__66768 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__TrimmerRecipe__Group__6__Impl6796 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__7__Impl_in_rule__TrimmerRecipe__Group__76827 = new BitSet(new long[]{0x0000000040000000L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__8_in_rule__TrimmerRecipe__Group__76830 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__MaskAssignment_7_in_rule__TrimmerRecipe__Group__7__Impl6857 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__8__Impl_in_rule__TrimmerRecipe__Group__86887 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__9_in_rule__TrimmerRecipe__Group__86890 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_30_in_rule__TrimmerRecipe__Group__8__Impl6918 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__9__Impl_in_rule__TrimmerRecipe__Group__96949 = new BitSet(new long[]{0x0000000000000010L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__10_in_rule__TrimmerRecipe__Group__96952 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__TrimmerRecipe__Group__9__Impl6980 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__10__Impl_in_rule__TrimmerRecipe__Group__107011 = new BitSet(new long[]{0x0000000000080000L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__11_in_rule__TrimmerRecipe__Group__107014 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__ParentAssignment_10_in_rule__TrimmerRecipe__Group__10__Impl7041 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__TrimmerRecipe__Group__11__Impl_in_rule__TrimmerRecipe__Group__117071 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_19_in_rule__TrimmerRecipe__Group__11__Impl7099 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__0__Impl_in_rule__JoinRecipe__Group__07154 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__1_in_rule__JoinRecipe__Group__07157 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_33_in_rule__JoinRecipe__Group__0__Impl7185 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__1__Impl_in_rule__JoinRecipe__Group__17216 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__2_in_rule__JoinRecipe__Group__17219 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__JoinRecipe__Group__1__Impl7247 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__2__Impl_in_rule__JoinRecipe__Group__27278 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__3_in_rule__JoinRecipe__Group__27281 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_23_in_rule__JoinRecipe__Group__2__Impl7309 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__3__Impl_in_rule__JoinRecipe__Group__37340 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__4_in_rule__JoinRecipe__Group__37343 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__JoinRecipe__Group__3__Impl7371 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__4__Impl_in_rule__JoinRecipe__Group__47402 = new BitSet(new long[]{0x0000000400000000L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__5_in_rule__JoinRecipe__Group__47405 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__TraceInfoAssignment_4_in_rule__JoinRecipe__Group__4__Impl7432 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__5__Impl_in_rule__JoinRecipe__Group__57462 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__6_in_rule__JoinRecipe__Group__57465 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_34_in_rule__JoinRecipe__Group__5__Impl7493 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__6__Impl_in_rule__JoinRecipe__Group__67524 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__7_in_rule__JoinRecipe__Group__67527 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__JoinRecipe__Group__6__Impl7555 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__7__Impl_in_rule__JoinRecipe__Group__77586 = new BitSet(new long[]{0x0000000800000000L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__8_in_rule__JoinRecipe__Group__77589 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__LeftParentAssignment_7_in_rule__JoinRecipe__Group__7__Impl7616 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__8__Impl_in_rule__JoinRecipe__Group__87646 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__9_in_rule__JoinRecipe__Group__87649 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_35_in_rule__JoinRecipe__Group__8__Impl7677 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__9__Impl_in_rule__JoinRecipe__Group__97708 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__10_in_rule__JoinRecipe__Group__97711 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__JoinRecipe__Group__9__Impl7739 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__10__Impl_in_rule__JoinRecipe__Group__107770 = new BitSet(new long[]{0x00000000000C0000L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__11_in_rule__JoinRecipe__Group__107773 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__RightParentAssignment_10_in_rule__JoinRecipe__Group__10__Impl7800 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__11__Impl_in_rule__JoinRecipe__Group__117830 = new BitSet(new long[]{0x00000000000C0000L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__12_in_rule__JoinRecipe__Group__117833 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__RightParentComplementaryMaskAssignment_11_in_rule__JoinRecipe__Group__11__Impl7860 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__JoinRecipe__Group__12__Impl_in_rule__JoinRecipe__Group__127891 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_19_in_rule__JoinRecipe__Group__12__Impl7919 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__0__Impl_in_rule__AntiJoinRecipe__Group__07976 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__1_in_rule__AntiJoinRecipe__Group__07979 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_36_in_rule__AntiJoinRecipe__Group__0__Impl8007 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__1__Impl_in_rule__AntiJoinRecipe__Group__18038 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__2_in_rule__AntiJoinRecipe__Group__18041 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__AntiJoinRecipe__Group__1__Impl8069 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__2__Impl_in_rule__AntiJoinRecipe__Group__28100 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__3_in_rule__AntiJoinRecipe__Group__28103 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_23_in_rule__AntiJoinRecipe__Group__2__Impl8131 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__3__Impl_in_rule__AntiJoinRecipe__Group__38162 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__4_in_rule__AntiJoinRecipe__Group__38165 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__AntiJoinRecipe__Group__3__Impl8193 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__4__Impl_in_rule__AntiJoinRecipe__Group__48224 = new BitSet(new long[]{0x0000000400000000L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__5_in_rule__AntiJoinRecipe__Group__48227 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__TraceInfoAssignment_4_in_rule__AntiJoinRecipe__Group__4__Impl8254 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__5__Impl_in_rule__AntiJoinRecipe__Group__58284 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__6_in_rule__AntiJoinRecipe__Group__58287 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_34_in_rule__AntiJoinRecipe__Group__5__Impl8315 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__6__Impl_in_rule__AntiJoinRecipe__Group__68346 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__7_in_rule__AntiJoinRecipe__Group__68349 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__AntiJoinRecipe__Group__6__Impl8377 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__7__Impl_in_rule__AntiJoinRecipe__Group__78408 = new BitSet(new long[]{0x0000000800000000L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__8_in_rule__AntiJoinRecipe__Group__78411 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__LeftParentAssignment_7_in_rule__AntiJoinRecipe__Group__7__Impl8438 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__8__Impl_in_rule__AntiJoinRecipe__Group__88468 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__9_in_rule__AntiJoinRecipe__Group__88471 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_35_in_rule__AntiJoinRecipe__Group__8__Impl8499 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__9__Impl_in_rule__AntiJoinRecipe__Group__98530 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__10_in_rule__AntiJoinRecipe__Group__98533 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__AntiJoinRecipe__Group__9__Impl8561 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__10__Impl_in_rule__AntiJoinRecipe__Group__108592 = new BitSet(new long[]{0x0000000000080000L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__11_in_rule__AntiJoinRecipe__Group__108595 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__RightParentAssignment_10_in_rule__AntiJoinRecipe__Group__10__Impl8622 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__AntiJoinRecipe__Group__11__Impl_in_rule__AntiJoinRecipe__Group__118652 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_19_in_rule__AntiJoinRecipe__Group__11__Impl8680 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__0__Impl_in_rule__IndexerRecipe__Group__08735 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__1_in_rule__IndexerRecipe__Group__08738 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__IndexerRecipe__Group__0__Impl8766 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__1__Impl_in_rule__IndexerRecipe__Group__18797 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__2_in_rule__IndexerRecipe__Group__18800 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_23_in_rule__IndexerRecipe__Group__1__Impl8828 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__2__Impl_in_rule__IndexerRecipe__Group__28859 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__3_in_rule__IndexerRecipe__Group__28862 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__IndexerRecipe__Group__2__Impl8890 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__3__Impl_in_rule__IndexerRecipe__Group__38921 = new BitSet(new long[]{0x0000000100000000L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__4_in_rule__IndexerRecipe__Group__38924 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__TraceInfoAssignment_3_in_rule__IndexerRecipe__Group__3__Impl8951 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__4__Impl_in_rule__IndexerRecipe__Group__48981 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__5_in_rule__IndexerRecipe__Group__48984 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_32_in_rule__IndexerRecipe__Group__4__Impl9012 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__5__Impl_in_rule__IndexerRecipe__Group__59043 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__6_in_rule__IndexerRecipe__Group__59046 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__IndexerRecipe__Group__5__Impl9074 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__6__Impl_in_rule__IndexerRecipe__Group__69105 = new BitSet(new long[]{0x0000000040000000L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__7_in_rule__IndexerRecipe__Group__69108 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__MaskAssignment_6_in_rule__IndexerRecipe__Group__6__Impl9135 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__7__Impl_in_rule__IndexerRecipe__Group__79165 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__8_in_rule__IndexerRecipe__Group__79168 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_30_in_rule__IndexerRecipe__Group__7__Impl9196 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__8__Impl_in_rule__IndexerRecipe__Group__89227 = new BitSet(new long[]{0x0000000000000010L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__9_in_rule__IndexerRecipe__Group__89230 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__IndexerRecipe__Group__8__Impl9258 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__9__Impl_in_rule__IndexerRecipe__Group__99289 = new BitSet(new long[]{0x0000000000080000L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__10_in_rule__IndexerRecipe__Group__99292 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__ParentAssignment_9_in_rule__IndexerRecipe__Group__9__Impl9319 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__IndexerRecipe__Group__10__Impl_in_rule__IndexerRecipe__Group__109349 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_19_in_rule__IndexerRecipe__Group__10__Impl9377 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__0__Impl_in_rule__ProjectionIndexerRecipe__Group__09430 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__1_in_rule__ProjectionIndexerRecipe__Group__09433 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__ProjectionIndexerRecipe__Group__0__Impl9461 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__1__Impl_in_rule__ProjectionIndexerRecipe__Group__19492 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__2_in_rule__ProjectionIndexerRecipe__Group__19495 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_23_in_rule__ProjectionIndexerRecipe__Group__1__Impl9523 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__2__Impl_in_rule__ProjectionIndexerRecipe__Group__29554 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__3_in_rule__ProjectionIndexerRecipe__Group__29557 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__ProjectionIndexerRecipe__Group__2__Impl9585 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__3__Impl_in_rule__ProjectionIndexerRecipe__Group__39616 = new BitSet(new long[]{0x0000000100000000L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__4_in_rule__ProjectionIndexerRecipe__Group__39619 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__TraceInfoAssignment_3_in_rule__ProjectionIndexerRecipe__Group__3__Impl9646 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__4__Impl_in_rule__ProjectionIndexerRecipe__Group__49676 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__5_in_rule__ProjectionIndexerRecipe__Group__49679 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_32_in_rule__ProjectionIndexerRecipe__Group__4__Impl9707 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__5__Impl_in_rule__ProjectionIndexerRecipe__Group__59738 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__6_in_rule__ProjectionIndexerRecipe__Group__59741 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__ProjectionIndexerRecipe__Group__5__Impl9769 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__6__Impl_in_rule__ProjectionIndexerRecipe__Group__69800 = new BitSet(new long[]{0x0000000040000000L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__7_in_rule__ProjectionIndexerRecipe__Group__69803 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__MaskAssignment_6_in_rule__ProjectionIndexerRecipe__Group__6__Impl9830 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__7__Impl_in_rule__ProjectionIndexerRecipe__Group__79860 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__8_in_rule__ProjectionIndexerRecipe__Group__79863 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_30_in_rule__ProjectionIndexerRecipe__Group__7__Impl9891 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__8__Impl_in_rule__ProjectionIndexerRecipe__Group__89922 = new BitSet(new long[]{0x0000000000000010L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__9_in_rule__ProjectionIndexerRecipe__Group__89925 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__ProjectionIndexerRecipe__Group__8__Impl9953 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__9__Impl_in_rule__ProjectionIndexerRecipe__Group__99984 = new BitSet(new long[]{0x0000000000080000L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__10_in_rule__ProjectionIndexerRecipe__Group__99987 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__ParentAssignment_9_in_rule__ProjectionIndexerRecipe__Group__9__Impl10014 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__ProjectionIndexerRecipe__Group__10__Impl_in_rule__ProjectionIndexerRecipe__Group__1010044 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_19_in_rule__ProjectionIndexerRecipe__Group__10__Impl10072 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Mask__Group__0__Impl_in_rule__Mask__Group__010125 = new BitSet(new long[]{0x0000002000000000L});
+        public static final BitSet FOLLOW_rule__Mask__Group__1_in_rule__Mask__Group__010128 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__Mask__Group__0__Impl10156 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Mask__Group__1__Impl_in_rule__Mask__Group__110187 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__Mask__Group__2_in_rule__Mask__Group__110190 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_37_in_rule__Mask__Group__1__Impl10218 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Mask__Group__2__Impl_in_rule__Mask__Group__210249 = new BitSet(new long[]{0x0000000000000080L});
+        public static final BitSet FOLLOW_rule__Mask__Group__3_in_rule__Mask__Group__210252 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__Mask__Group__2__Impl10280 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Mask__Group__3__Impl_in_rule__Mask__Group__310311 = new BitSet(new long[]{0x0000004000080000L});
+        public static final BitSet FOLLOW_rule__Mask__Group__4_in_rule__Mask__Group__310314 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Mask__SourceArityAssignment_3_in_rule__Mask__Group__3__Impl10341 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Mask__Group__4__Impl_in_rule__Mask__Group__410371 = new BitSet(new long[]{0x0000004000080000L});
+        public static final BitSet FOLLOW_rule__Mask__Group__5_in_rule__Mask__Group__410374 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Mask__Group_4__0_in_rule__Mask__Group__4__Impl10401 = new BitSet(new long[]{0x0000004000000002L});
+        public static final BitSet FOLLOW_rule__Mask__Group__5__Impl_in_rule__Mask__Group__510432 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_19_in_rule__Mask__Group__5__Impl10460 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Mask__Group_4__0__Impl_in_rule__Mask__Group_4__010503 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__Mask__Group_4__1_in_rule__Mask__Group_4__010506 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_38_in_rule__Mask__Group_4__0__Impl10534 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Mask__Group_4__1__Impl_in_rule__Mask__Group_4__110565 = new BitSet(new long[]{0x0000000000004000L});
+        public static final BitSet FOLLOW_rule__Mask__Group_4__2_in_rule__Mask__Group_4__110568 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__Mask__Group_4__1__Impl10596 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Mask__Group_4__2__Impl_in_rule__Mask__Group_4__210627 = new BitSet(new long[]{0x0000000000008080L});
+        public static final BitSet FOLLOW_rule__Mask__Group_4__3_in_rule__Mask__Group_4__210630 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_14_in_rule__Mask__Group_4__2__Impl10658 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Mask__Group_4__3__Impl_in_rule__Mask__Group_4__310689 = new BitSet(new long[]{0x0000000000008080L});
+        public static final BitSet FOLLOW_rule__Mask__Group_4__4_in_rule__Mask__Group_4__310692 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__Mask__SourceIndicesAssignment_4_3_in_rule__Mask__Group_4__3__Impl10719 = new BitSet(new long[]{0x0000000000000082L});
+        public static final BitSet FOLLOW_rule__Mask__Group_4__4__Impl_in_rule__Mask__Group_4__410750 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_15_in_rule__Mask__Group_4__4__Impl10778 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__0__Impl_in_rule__InfrastructureMapping__Group__010819 = new BitSet(new long[]{0x0000008000000000L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__1_in_rule__InfrastructureMapping__Group__010822 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_rule__InfrastructureMapping__Group__0__Impl10850 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__1__Impl_in_rule__InfrastructureMapping__Group__110881 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__2_in_rule__InfrastructureMapping__Group__110884 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_39_in_rule__InfrastructureMapping__Group__1__Impl10912 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__2__Impl_in_rule__InfrastructureMapping__Group__210943 = new BitSet(new long[]{0x0000000000004000L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__3_in_rule__InfrastructureMapping__Group__210946 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__InfrastructureMapping__Group__2__Impl10974 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__3__Impl_in_rule__InfrastructureMapping__Group__311005 = new BitSet(new long[]{0x0000000000008010L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__4_in_rule__InfrastructureMapping__Group__311008 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_14_in_rule__InfrastructureMapping__Group__3__Impl11036 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__4__Impl_in_rule__InfrastructureMapping__Group__411067 = new BitSet(new long[]{0x0000000000008010L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__5_in_rule__InfrastructureMapping__Group__411070 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__MappedElementsAssignment_4_in_rule__InfrastructureMapping__Group__4__Impl11097 = new BitSet(new long[]{0x0000000000000012L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__5__Impl_in_rule__InfrastructureMapping__Group__511128 = new BitSet(new long[]{0x0000010000000000L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__6_in_rule__InfrastructureMapping__Group__511131 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_15_in_rule__InfrastructureMapping__Group__5__Impl11159 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__6__Impl_in_rule__InfrastructureMapping__Group__611190 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__7_in_rule__InfrastructureMapping__Group__611193 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_40_in_rule__InfrastructureMapping__Group__6__Impl11221 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__7__Impl_in_rule__InfrastructureMapping__Group__711252 = new BitSet(new long[]{0x0000000000000010L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__8_in_rule__InfrastructureMapping__Group__711255 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_13_in_rule__InfrastructureMapping__Group__7__Impl11283 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__8__Impl_in_rule__InfrastructureMapping__Group__811314 = new BitSet(new long[]{0x0000000000080000L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__9_in_rule__InfrastructureMapping__Group__811317 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__TargetElementAssignment_8_in_rule__InfrastructureMapping__Group__8__Impl11344 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_rule__InfrastructureMapping__Group__9__Impl_in_rule__InfrastructureMapping__Group__911374 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_19_in_rule__InfrastructureMapping__Group__9__Impl11402 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleCluster_in_rule__Configuration__ClustersAssignment_1_311458 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleReteRecipe_in_rule__Configuration__ReteRecipesAssignment_2_311489 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleInfrastructureMapping_in_rule__Configuration__MappingsAssignment_3_311520 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleMachine_in_rule__Cluster__ReteMachinesAssignment_2_311551 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleMachine_in_rule__Cluster__CacheMachinesAssignment_3_311582 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_ID_in_rule__Machine__NameAssignment_311613 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_STRING_in_rule__Machine__TraceInfoAssignment_611644 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_IP_in_rule__Machine__IpAssignment_911675 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleReteNodeRecipe_in_rule__ReteRecipe__RecipeNodesAssignment_511706 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_STRING_in_rule__ProductionRecipe__TraceInfoAssignment_411737 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_ID_in_rule__ProductionRecipe__ParentsAssignment_811772 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_STRING_in_rule__UniquenessEnforcerRecipe__TraceInfoAssignment_411807 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_ID_in_rule__UniquenessEnforcerRecipe__ParentsAssignment_811842 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_STRING_in_rule__CheckRecipe__TraceInfoAssignment_411877 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_ID_in_rule__CheckRecipe__ParentAssignment_711912 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_STRING_in_rule__TrimmerRecipe__TraceInfoAssignment_411947 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleMask_in_rule__TrimmerRecipe__MaskAssignment_711978 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_ID_in_rule__TrimmerRecipe__ParentAssignment_1012013 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_STRING_in_rule__JoinRecipe__TraceInfoAssignment_412048 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleProjectionIndexerRecipe_in_rule__JoinRecipe__LeftParentAssignment_712079 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleIndexerRecipe_in_rule__JoinRecipe__RightParentAssignment_1012110 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleMask_in_rule__JoinRecipe__RightParentComplementaryMaskAssignment_1112141 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_STRING_in_rule__AntiJoinRecipe__TraceInfoAssignment_412172 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleProjectionIndexerRecipe_in_rule__AntiJoinRecipe__LeftParentAssignment_712203 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleIndexerRecipe_in_rule__AntiJoinRecipe__RightParentAssignment_1012234 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_STRING_in_rule__IndexerRecipe__TraceInfoAssignment_312265 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleMask_in_rule__IndexerRecipe__MaskAssignment_612296 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_ID_in_rule__IndexerRecipe__ParentAssignment_912331 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_STRING_in_rule__ProjectionIndexerRecipe__TraceInfoAssignment_312366 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleMask_in_rule__ProjectionIndexerRecipe__MaskAssignment_612397 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_ID_in_rule__ProjectionIndexerRecipe__ParentAssignment_912432 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_INT_in_rule__Mask__SourceArityAssignment_312467 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_INT_in_rule__Mask__SourceIndicesAssignment_4_312498 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_ID_in_rule__InfrastructureMapping__MappedElementsAssignment_412533 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_ID_in_rule__InfrastructureMapping__TargetElementAssignment_812572 = new BitSet(new long[]{0x0000000000000002L});
     }
 
 

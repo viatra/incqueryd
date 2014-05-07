@@ -21,9 +21,10 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_IP", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'clusters'", "':'", "'['", "']'", "'recipes'", "'mappings'", "'{'", "'reteMachines'", "'cacheMachines'", "'}'", "'traceInfo'", "'ip'", "'nodes'", "'Production'", "'parents'", "'UniquenessEnforcer'", "'Check'", "'parent'", "'Trimmer'", "'mask'", "'Join'", "'leftParent'", "'rightParent'", "'AntiJoin'", "'sourceArity'", "'sourceIndices'", "'from'", "'to'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_IP", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'clusters'", "':'", "'['", "']'", "'recipes'", "'mappings'", "'{'", "'reteMachines'", "'cacheMachines'", "'}'", "'id'", "'traceInfo'", "'ip'", "'nodes'", "'Production'", "'parents'", "'UniquenessEnforcer'", "'Check'", "'parent'", "'Trimmer'", "'mask'", "'Join'", "'leftParent'", "'rightParent'", "'AntiJoin'", "'sourceArity'", "'sourceIndices'", "'from'", "'to'"
     };
-    public static final int RULE_ID=6;
+    public static final int RULE_ID=4;
+    public static final int T__40=40;
     public static final int T__29=29;
     public static final int T__28=28;
     public static final int T__27=27;
@@ -41,7 +42,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
     public static final int T__30=30;
     public static final int T__19=19;
     public static final int T__31=31;
-    public static final int RULE_STRING=4;
+    public static final int RULE_STRING=5;
     public static final int T__32=32;
     public static final int T__33=33;
     public static final int T__16=16;
@@ -57,7 +58,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
     public static final int T__39=39;
     public static final int T__14=14;
     public static final int T__13=13;
-    public static final int RULE_IP=5;
+    public static final int RULE_IP=6;
     public static final int RULE_INT=7;
     public static final int RULE_WS=10;
 
@@ -750,27 +751,30 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMachine"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:308:1: ruleMachine returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'ip' otherlv_5= ':' ( (lv_ip_6_0= RULE_IP ) ) otherlv_7= '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:308:1: ruleMachine returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'id' otherlv_2= ':' ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'traceInfo' otherlv_5= ':' ( (lv_traceInfo_6_0= RULE_STRING ) ) otherlv_7= 'ip' otherlv_8= ':' ( (lv_ip_9_0= RULE_IP ) ) otherlv_10= '}' ) ;
     public final EObject ruleMachine() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_1=null;
         Token otherlv_2=null;
-        Token lv_traceInfo_3_0=null;
+        Token lv_name_3_0=null;
         Token otherlv_4=null;
         Token otherlv_5=null;
-        Token lv_ip_6_0=null;
+        Token lv_traceInfo_6_0=null;
         Token otherlv_7=null;
+        Token otherlv_8=null;
+        Token lv_ip_9_0=null;
+        Token otherlv_10=null;
 
          enterRule(); 
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:311:28: ( (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'ip' otherlv_5= ':' ( (lv_ip_6_0= RULE_IP ) ) otherlv_7= '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:312:1: (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'ip' otherlv_5= ':' ( (lv_ip_6_0= RULE_IP ) ) otherlv_7= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:311:28: ( (otherlv_0= '{' otherlv_1= 'id' otherlv_2= ':' ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'traceInfo' otherlv_5= ':' ( (lv_traceInfo_6_0= RULE_STRING ) ) otherlv_7= 'ip' otherlv_8= ':' ( (lv_ip_9_0= RULE_IP ) ) otherlv_10= '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:312:1: (otherlv_0= '{' otherlv_1= 'id' otherlv_2= ':' ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'traceInfo' otherlv_5= ':' ( (lv_traceInfo_6_0= RULE_STRING ) ) otherlv_7= 'ip' otherlv_8= ':' ( (lv_ip_9_0= RULE_IP ) ) otherlv_10= '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:312:1: (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'ip' otherlv_5= ':' ( (lv_ip_6_0= RULE_IP ) ) otherlv_7= '}' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:312:3: otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'ip' otherlv_5= ':' ( (lv_ip_6_0= RULE_IP ) ) otherlv_7= '}'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:312:1: (otherlv_0= '{' otherlv_1= 'id' otherlv_2= ':' ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'traceInfo' otherlv_5= ':' ( (lv_traceInfo_6_0= RULE_STRING ) ) otherlv_7= 'ip' otherlv_8= ':' ( (lv_ip_9_0= RULE_IP ) ) otherlv_10= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:312:3: otherlv_0= '{' otherlv_1= 'id' otherlv_2= ':' ( (lv_name_3_0= RULE_ID ) ) otherlv_4= 'traceInfo' otherlv_5= ':' ( (lv_traceInfo_6_0= RULE_STRING ) ) otherlv_7= 'ip' otherlv_8= ':' ( (lv_ip_9_0= RULE_IP ) ) otherlv_10= '}'
             {
             otherlv_0=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleMachine671); 
 
@@ -778,21 +782,21 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
                 
             otherlv_1=(Token)match(input,22,FollowSets000.FOLLOW_22_in_ruleMachine683); 
 
-                	newLeafNode(otherlv_1, grammarAccess.getMachineAccess().getTraceInfoKeyword_1());
+                	newLeafNode(otherlv_1, grammarAccess.getMachineAccess().getIdKeyword_1());
                 
             otherlv_2=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleMachine695); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getMachineAccess().getColonKeyword_2());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:324:1: ( (lv_traceInfo_3_0= RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:325:1: (lv_traceInfo_3_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:324:1: ( (lv_name_3_0= RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:325:1: (lv_name_3_0= RULE_ID )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:325:1: (lv_traceInfo_3_0= RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:326:3: lv_traceInfo_3_0= RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:325:1: (lv_name_3_0= RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:326:3: lv_name_3_0= RULE_ID
             {
-            lv_traceInfo_3_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleMachine712); 
+            lv_name_3_0=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleMachine712); 
 
-            			newLeafNode(lv_traceInfo_3_0, grammarAccess.getMachineAccess().getTraceInfoSTRINGTerminalRuleCall_3_0()); 
+            			newLeafNode(lv_name_3_0, grammarAccess.getMachineAccess().getNameIDTerminalRuleCall_3_0()); 
             		
 
             	        if (current==null) {
@@ -800,9 +804,9 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
             	        }
                    		setWithLastConsumed(
                    			current, 
-                   			"traceInfo",
-                    		lv_traceInfo_3_0, 
-                    		"STRING");
+                   			"name",
+                    		lv_name_3_0, 
+                    		"ID");
             	    
 
             }
@@ -812,21 +816,55 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             otherlv_4=(Token)match(input,23,FollowSets000.FOLLOW_23_in_ruleMachine729); 
 
-                	newLeafNode(otherlv_4, grammarAccess.getMachineAccess().getIpKeyword_4());
+                	newLeafNode(otherlv_4, grammarAccess.getMachineAccess().getTraceInfoKeyword_4());
                 
             otherlv_5=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleMachine741); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getMachineAccess().getColonKeyword_5());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:350:1: ( (lv_ip_6_0= RULE_IP ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:351:1: (lv_ip_6_0= RULE_IP )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:350:1: ( (lv_traceInfo_6_0= RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:351:1: (lv_traceInfo_6_0= RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:351:1: (lv_ip_6_0= RULE_IP )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:352:3: lv_ip_6_0= RULE_IP
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:351:1: (lv_traceInfo_6_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:352:3: lv_traceInfo_6_0= RULE_STRING
             {
-            lv_ip_6_0=(Token)match(input,RULE_IP,FollowSets000.FOLLOW_RULE_IP_in_ruleMachine758); 
+            lv_traceInfo_6_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleMachine758); 
 
-            			newLeafNode(lv_ip_6_0, grammarAccess.getMachineAccess().getIpIPTerminalRuleCall_6_0()); 
+            			newLeafNode(lv_traceInfo_6_0, grammarAccess.getMachineAccess().getTraceInfoSTRINGTerminalRuleCall_6_0()); 
+            		
+
+            	        if (current==null) {
+            	            current = createModelElement(grammarAccess.getMachineRule());
+            	        }
+                   		setWithLastConsumed(
+                   			current, 
+                   			"traceInfo",
+                    		lv_traceInfo_6_0, 
+                    		"STRING");
+            	    
+
+            }
+
+
+            }
+
+            otherlv_7=(Token)match(input,24,FollowSets000.FOLLOW_24_in_ruleMachine775); 
+
+                	newLeafNode(otherlv_7, grammarAccess.getMachineAccess().getIpKeyword_7());
+                
+            otherlv_8=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleMachine787); 
+
+                	newLeafNode(otherlv_8, grammarAccess.getMachineAccess().getColonKeyword_8());
+                
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:376:1: ( (lv_ip_9_0= RULE_IP ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:377:1: (lv_ip_9_0= RULE_IP )
+            {
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:377:1: (lv_ip_9_0= RULE_IP )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:378:3: lv_ip_9_0= RULE_IP
+            {
+            lv_ip_9_0=(Token)match(input,RULE_IP,FollowSets000.FOLLOW_RULE_IP_in_ruleMachine804); 
+
+            			newLeafNode(lv_ip_9_0, grammarAccess.getMachineAccess().getIpIPTerminalRuleCall_9_0()); 
             		
 
             	        if (current==null) {
@@ -835,7 +873,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
                    		setWithLastConsumed(
                    			current, 
                    			"ip",
-                    		lv_ip_6_0, 
+                    		lv_ip_9_0, 
                     		"IP");
             	    
 
@@ -844,9 +882,9 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleMachine775); 
+            otherlv_10=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleMachine821); 
 
-                	newLeafNode(otherlv_7, grammarAccess.getMachineAccess().getRightCurlyBracketKeyword_7());
+                	newLeafNode(otherlv_10, grammarAccess.getMachineAccess().getRightCurlyBracketKeyword_10());
                 
 
             }
@@ -869,7 +907,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleReteRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:380:1: entryRuleReteRecipe returns [EObject current=null] : iv_ruleReteRecipe= ruleReteRecipe EOF ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:406:1: entryRuleReteRecipe returns [EObject current=null] : iv_ruleReteRecipe= ruleReteRecipe EOF ;
     public final EObject entryRuleReteRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -877,17 +915,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:381:2: (iv_ruleReteRecipe= ruleReteRecipe EOF )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:382:2: iv_ruleReteRecipe= ruleReteRecipe EOF
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:407:2: (iv_ruleReteRecipe= ruleReteRecipe EOF )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:408:2: iv_ruleReteRecipe= ruleReteRecipe EOF
             {
              newCompositeNode(grammarAccess.getReteRecipeRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleReteRecipe_in_entryRuleReteRecipe811);
+            pushFollow(FollowSets000.FOLLOW_ruleReteRecipe_in_entryRuleReteRecipe857);
             iv_ruleReteRecipe=ruleReteRecipe();
 
             state._fsp--;
 
              current =iv_ruleReteRecipe; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleReteRecipe821); 
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleReteRecipe867); 
 
             }
 
@@ -905,7 +943,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleReteRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:389:1: ruleReteRecipe returns [EObject current=null] : ( () otherlv_1= '{' otherlv_2= 'nodes' otherlv_3= ':' otherlv_4= '[' ( (lv_recipeNodes_5_0= ruleReteNodeRecipe ) )* otherlv_6= ']' otherlv_7= '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:415:1: ruleReteRecipe returns [EObject current=null] : ( () otherlv_1= '{' otherlv_2= 'nodes' otherlv_3= ':' otherlv_4= '[' ( (lv_recipeNodes_5_0= ruleReteNodeRecipe ) )* otherlv_6= ']' otherlv_7= '}' ) ;
     public final EObject ruleReteRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -921,14 +959,14 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:392:28: ( ( () otherlv_1= '{' otherlv_2= 'nodes' otherlv_3= ':' otherlv_4= '[' ( (lv_recipeNodes_5_0= ruleReteNodeRecipe ) )* otherlv_6= ']' otherlv_7= '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:393:1: ( () otherlv_1= '{' otherlv_2= 'nodes' otherlv_3= ':' otherlv_4= '[' ( (lv_recipeNodes_5_0= ruleReteNodeRecipe ) )* otherlv_6= ']' otherlv_7= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:418:28: ( ( () otherlv_1= '{' otherlv_2= 'nodes' otherlv_3= ':' otherlv_4= '[' ( (lv_recipeNodes_5_0= ruleReteNodeRecipe ) )* otherlv_6= ']' otherlv_7= '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:419:1: ( () otherlv_1= '{' otherlv_2= 'nodes' otherlv_3= ':' otherlv_4= '[' ( (lv_recipeNodes_5_0= ruleReteNodeRecipe ) )* otherlv_6= ']' otherlv_7= '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:393:1: ( () otherlv_1= '{' otherlv_2= 'nodes' otherlv_3= ':' otherlv_4= '[' ( (lv_recipeNodes_5_0= ruleReteNodeRecipe ) )* otherlv_6= ']' otherlv_7= '}' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:393:2: () otherlv_1= '{' otherlv_2= 'nodes' otherlv_3= ':' otherlv_4= '[' ( (lv_recipeNodes_5_0= ruleReteNodeRecipe ) )* otherlv_6= ']' otherlv_7= '}'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:419:1: ( () otherlv_1= '{' otherlv_2= 'nodes' otherlv_3= ':' otherlv_4= '[' ( (lv_recipeNodes_5_0= ruleReteNodeRecipe ) )* otherlv_6= ']' otherlv_7= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:419:2: () otherlv_1= '{' otherlv_2= 'nodes' otherlv_3= ':' otherlv_4= '[' ( (lv_recipeNodes_5_0= ruleReteNodeRecipe ) )* otherlv_6= ']' otherlv_7= '}'
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:393:2: ()
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:394:5: 
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:419:2: ()
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:420:5: 
             {
 
                     current = forceCreateModelElement(
@@ -938,44 +976,44 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleReteRecipe867); 
+            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleReteRecipe913); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getReteRecipeAccess().getLeftCurlyBracketKeyword_1());
                 
-            otherlv_2=(Token)match(input,24,FollowSets000.FOLLOW_24_in_ruleReteRecipe879); 
+            otherlv_2=(Token)match(input,25,FollowSets000.FOLLOW_25_in_ruleReteRecipe925); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getReteRecipeAccess().getNodesKeyword_2());
                 
-            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleReteRecipe891); 
+            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleReteRecipe937); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getReteRecipeAccess().getColonKeyword_3());
                 
-            otherlv_4=(Token)match(input,14,FollowSets000.FOLLOW_14_in_ruleReteRecipe903); 
+            otherlv_4=(Token)match(input,14,FollowSets000.FOLLOW_14_in_ruleReteRecipe949); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getReteRecipeAccess().getLeftSquareBracketKeyword_4());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:415:1: ( (lv_recipeNodes_5_0= ruleReteNodeRecipe ) )*
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:441:1: ( (lv_recipeNodes_5_0= ruleReteNodeRecipe ) )*
             loop11:
             do {
                 int alt11=2;
                 int LA11_0 = input.LA(1);
 
-                if ( (LA11_0==25||(LA11_0>=27 && LA11_0<=28)||LA11_0==30||LA11_0==32||LA11_0==35) ) {
+                if ( (LA11_0==26||(LA11_0>=28 && LA11_0<=29)||LA11_0==31||LA11_0==33||LA11_0==36) ) {
                     alt11=1;
                 }
 
 
                 switch (alt11) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:416:1: (lv_recipeNodes_5_0= ruleReteNodeRecipe )
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:442:1: (lv_recipeNodes_5_0= ruleReteNodeRecipe )
             	    {
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:416:1: (lv_recipeNodes_5_0= ruleReteNodeRecipe )
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:417:3: lv_recipeNodes_5_0= ruleReteNodeRecipe
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:442:1: (lv_recipeNodes_5_0= ruleReteNodeRecipe )
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:443:3: lv_recipeNodes_5_0= ruleReteNodeRecipe
             	    {
             	     
             	    	        newCompositeNode(grammarAccess.getReteRecipeAccess().getRecipeNodesReteNodeRecipeParserRuleCall_5_0()); 
             	    	    
-            	    pushFollow(FollowSets000.FOLLOW_ruleReteNodeRecipe_in_ruleReteRecipe924);
+            	    pushFollow(FollowSets000.FOLLOW_ruleReteNodeRecipe_in_ruleReteRecipe970);
             	    lv_recipeNodes_5_0=ruleReteNodeRecipe();
 
             	    state._fsp--;
@@ -1003,11 +1041,11 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_6=(Token)match(input,15,FollowSets000.FOLLOW_15_in_ruleReteRecipe937); 
+            otherlv_6=(Token)match(input,15,FollowSets000.FOLLOW_15_in_ruleReteRecipe983); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getReteRecipeAccess().getRightSquareBracketKeyword_6());
                 
-            otherlv_7=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleReteRecipe949); 
+            otherlv_7=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleReteRecipe995); 
 
                 	newLeafNode(otherlv_7, grammarAccess.getReteRecipeAccess().getRightCurlyBracketKeyword_7());
                 
@@ -1032,7 +1070,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleReteNodeRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:449:1: entryRuleReteNodeRecipe returns [EObject current=null] : iv_ruleReteNodeRecipe= ruleReteNodeRecipe EOF ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:475:1: entryRuleReteNodeRecipe returns [EObject current=null] : iv_ruleReteNodeRecipe= ruleReteNodeRecipe EOF ;
     public final EObject entryRuleReteNodeRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -1040,17 +1078,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:450:2: (iv_ruleReteNodeRecipe= ruleReteNodeRecipe EOF )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:451:2: iv_ruleReteNodeRecipe= ruleReteNodeRecipe EOF
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:476:2: (iv_ruleReteNodeRecipe= ruleReteNodeRecipe EOF )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:477:2: iv_ruleReteNodeRecipe= ruleReteNodeRecipe EOF
             {
              newCompositeNode(grammarAccess.getReteNodeRecipeRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleReteNodeRecipe_in_entryRuleReteNodeRecipe985);
+            pushFollow(FollowSets000.FOLLOW_ruleReteNodeRecipe_in_entryRuleReteNodeRecipe1031);
             iv_ruleReteNodeRecipe=ruleReteNodeRecipe();
 
             state._fsp--;
 
              current =iv_ruleReteNodeRecipe; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleReteNodeRecipe995); 
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleReteNodeRecipe1041); 
 
             }
 
@@ -1068,7 +1106,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleReteNodeRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:458:1: ruleReteNodeRecipe returns [EObject current=null] : (this_ProductionRecipe_0= ruleProductionRecipe | this_UniquenessEnforcerRecipe_1= ruleUniquenessEnforcerRecipe | this_CheckRecipe_2= ruleCheckRecipe | this_TrimmerRecipe_3= ruleTrimmerRecipe | this_JoinRecipe_4= ruleJoinRecipe | this_AntiJoinRecipe_5= ruleAntiJoinRecipe ) ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:484:1: ruleReteNodeRecipe returns [EObject current=null] : (this_ProductionRecipe_0= ruleProductionRecipe | this_UniquenessEnforcerRecipe_1= ruleUniquenessEnforcerRecipe | this_CheckRecipe_2= ruleCheckRecipe | this_TrimmerRecipe_3= ruleTrimmerRecipe | this_JoinRecipe_4= ruleJoinRecipe | this_AntiJoinRecipe_5= ruleAntiJoinRecipe ) ;
     public final EObject ruleReteNodeRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -1088,38 +1126,38 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:461:28: ( (this_ProductionRecipe_0= ruleProductionRecipe | this_UniquenessEnforcerRecipe_1= ruleUniquenessEnforcerRecipe | this_CheckRecipe_2= ruleCheckRecipe | this_TrimmerRecipe_3= ruleTrimmerRecipe | this_JoinRecipe_4= ruleJoinRecipe | this_AntiJoinRecipe_5= ruleAntiJoinRecipe ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:462:1: (this_ProductionRecipe_0= ruleProductionRecipe | this_UniquenessEnforcerRecipe_1= ruleUniquenessEnforcerRecipe | this_CheckRecipe_2= ruleCheckRecipe | this_TrimmerRecipe_3= ruleTrimmerRecipe | this_JoinRecipe_4= ruleJoinRecipe | this_AntiJoinRecipe_5= ruleAntiJoinRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:487:28: ( (this_ProductionRecipe_0= ruleProductionRecipe | this_UniquenessEnforcerRecipe_1= ruleUniquenessEnforcerRecipe | this_CheckRecipe_2= ruleCheckRecipe | this_TrimmerRecipe_3= ruleTrimmerRecipe | this_JoinRecipe_4= ruleJoinRecipe | this_AntiJoinRecipe_5= ruleAntiJoinRecipe ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:488:1: (this_ProductionRecipe_0= ruleProductionRecipe | this_UniquenessEnforcerRecipe_1= ruleUniquenessEnforcerRecipe | this_CheckRecipe_2= ruleCheckRecipe | this_TrimmerRecipe_3= ruleTrimmerRecipe | this_JoinRecipe_4= ruleJoinRecipe | this_AntiJoinRecipe_5= ruleAntiJoinRecipe )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:462:1: (this_ProductionRecipe_0= ruleProductionRecipe | this_UniquenessEnforcerRecipe_1= ruleUniquenessEnforcerRecipe | this_CheckRecipe_2= ruleCheckRecipe | this_TrimmerRecipe_3= ruleTrimmerRecipe | this_JoinRecipe_4= ruleJoinRecipe | this_AntiJoinRecipe_5= ruleAntiJoinRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:488:1: (this_ProductionRecipe_0= ruleProductionRecipe | this_UniquenessEnforcerRecipe_1= ruleUniquenessEnforcerRecipe | this_CheckRecipe_2= ruleCheckRecipe | this_TrimmerRecipe_3= ruleTrimmerRecipe | this_JoinRecipe_4= ruleJoinRecipe | this_AntiJoinRecipe_5= ruleAntiJoinRecipe )
             int alt12=6;
             switch ( input.LA(1) ) {
-            case 25:
+            case 26:
                 {
                 alt12=1;
                 }
                 break;
-            case 27:
+            case 28:
                 {
                 alt12=2;
                 }
                 break;
-            case 28:
+            case 29:
                 {
                 alt12=3;
                 }
                 break;
-            case 30:
+            case 31:
                 {
                 alt12=4;
                 }
                 break;
-            case 32:
+            case 33:
                 {
                 alt12=5;
                 }
                 break;
-            case 35:
+            case 36:
                 {
                 alt12=6;
                 }
@@ -1133,12 +1171,12 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             switch (alt12) {
                 case 1 :
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:463:5: this_ProductionRecipe_0= ruleProductionRecipe
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:489:5: this_ProductionRecipe_0= ruleProductionRecipe
                     {
                      
                             newCompositeNode(grammarAccess.getReteNodeRecipeAccess().getProductionRecipeParserRuleCall_0()); 
                         
-                    pushFollow(FollowSets000.FOLLOW_ruleProductionRecipe_in_ruleReteNodeRecipe1042);
+                    pushFollow(FollowSets000.FOLLOW_ruleProductionRecipe_in_ruleReteNodeRecipe1088);
                     this_ProductionRecipe_0=ruleProductionRecipe();
 
                     state._fsp--;
@@ -1151,12 +1189,12 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:473:5: this_UniquenessEnforcerRecipe_1= ruleUniquenessEnforcerRecipe
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:499:5: this_UniquenessEnforcerRecipe_1= ruleUniquenessEnforcerRecipe
                     {
                      
                             newCompositeNode(grammarAccess.getReteNodeRecipeAccess().getUniquenessEnforcerRecipeParserRuleCall_1()); 
                         
-                    pushFollow(FollowSets000.FOLLOW_ruleUniquenessEnforcerRecipe_in_ruleReteNodeRecipe1069);
+                    pushFollow(FollowSets000.FOLLOW_ruleUniquenessEnforcerRecipe_in_ruleReteNodeRecipe1115);
                     this_UniquenessEnforcerRecipe_1=ruleUniquenessEnforcerRecipe();
 
                     state._fsp--;
@@ -1169,12 +1207,12 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:483:5: this_CheckRecipe_2= ruleCheckRecipe
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:509:5: this_CheckRecipe_2= ruleCheckRecipe
                     {
                      
                             newCompositeNode(grammarAccess.getReteNodeRecipeAccess().getCheckRecipeParserRuleCall_2()); 
                         
-                    pushFollow(FollowSets000.FOLLOW_ruleCheckRecipe_in_ruleReteNodeRecipe1096);
+                    pushFollow(FollowSets000.FOLLOW_ruleCheckRecipe_in_ruleReteNodeRecipe1142);
                     this_CheckRecipe_2=ruleCheckRecipe();
 
                     state._fsp--;
@@ -1187,12 +1225,12 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:493:5: this_TrimmerRecipe_3= ruleTrimmerRecipe
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:519:5: this_TrimmerRecipe_3= ruleTrimmerRecipe
                     {
                      
                             newCompositeNode(grammarAccess.getReteNodeRecipeAccess().getTrimmerRecipeParserRuleCall_3()); 
                         
-                    pushFollow(FollowSets000.FOLLOW_ruleTrimmerRecipe_in_ruleReteNodeRecipe1123);
+                    pushFollow(FollowSets000.FOLLOW_ruleTrimmerRecipe_in_ruleReteNodeRecipe1169);
                     this_TrimmerRecipe_3=ruleTrimmerRecipe();
 
                     state._fsp--;
@@ -1205,12 +1243,12 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:503:5: this_JoinRecipe_4= ruleJoinRecipe
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:529:5: this_JoinRecipe_4= ruleJoinRecipe
                     {
                      
                             newCompositeNode(grammarAccess.getReteNodeRecipeAccess().getJoinRecipeParserRuleCall_4()); 
                         
-                    pushFollow(FollowSets000.FOLLOW_ruleJoinRecipe_in_ruleReteNodeRecipe1150);
+                    pushFollow(FollowSets000.FOLLOW_ruleJoinRecipe_in_ruleReteNodeRecipe1196);
                     this_JoinRecipe_4=ruleJoinRecipe();
 
                     state._fsp--;
@@ -1223,12 +1261,12 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:513:5: this_AntiJoinRecipe_5= ruleAntiJoinRecipe
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:539:5: this_AntiJoinRecipe_5= ruleAntiJoinRecipe
                     {
                      
                             newCompositeNode(grammarAccess.getReteNodeRecipeAccess().getAntiJoinRecipeParserRuleCall_5()); 
                         
-                    pushFollow(FollowSets000.FOLLOW_ruleAntiJoinRecipe_in_ruleReteNodeRecipe1177);
+                    pushFollow(FollowSets000.FOLLOW_ruleAntiJoinRecipe_in_ruleReteNodeRecipe1223);
                     this_AntiJoinRecipe_5=ruleAntiJoinRecipe();
 
                     state._fsp--;
@@ -1261,7 +1299,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleProductionRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:529:1: entryRuleProductionRecipe returns [EObject current=null] : iv_ruleProductionRecipe= ruleProductionRecipe EOF ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:555:1: entryRuleProductionRecipe returns [EObject current=null] : iv_ruleProductionRecipe= ruleProductionRecipe EOF ;
     public final EObject entryRuleProductionRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -1269,17 +1307,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:530:2: (iv_ruleProductionRecipe= ruleProductionRecipe EOF )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:531:2: iv_ruleProductionRecipe= ruleProductionRecipe EOF
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:556:2: (iv_ruleProductionRecipe= ruleProductionRecipe EOF )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:557:2: iv_ruleProductionRecipe= ruleProductionRecipe EOF
             {
              newCompositeNode(grammarAccess.getProductionRecipeRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleProductionRecipe_in_entryRuleProductionRecipe1212);
+            pushFollow(FollowSets000.FOLLOW_ruleProductionRecipe_in_entryRuleProductionRecipe1258);
             iv_ruleProductionRecipe=ruleProductionRecipe();
 
             state._fsp--;
 
              current =iv_ruleProductionRecipe; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleProductionRecipe1222); 
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleProductionRecipe1268); 
 
             }
 
@@ -1297,7 +1335,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleProductionRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:538:1: ruleProductionRecipe returns [EObject current=null] : (otherlv_0= 'Production' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:564:1: ruleProductionRecipe returns [EObject current=null] : (otherlv_0= 'Production' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' ) ;
     public final EObject ruleProductionRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -1316,35 +1354,35 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:541:28: ( (otherlv_0= 'Production' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:542:1: (otherlv_0= 'Production' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:567:28: ( (otherlv_0= 'Production' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:568:1: (otherlv_0= 'Production' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:542:1: (otherlv_0= 'Production' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:542:3: otherlv_0= 'Production' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:568:1: (otherlv_0= 'Production' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:568:3: otherlv_0= 'Production' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}'
             {
-            otherlv_0=(Token)match(input,25,FollowSets000.FOLLOW_25_in_ruleProductionRecipe1259); 
+            otherlv_0=(Token)match(input,26,FollowSets000.FOLLOW_26_in_ruleProductionRecipe1305); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getProductionRecipeAccess().getProductionKeyword_0());
                 
-            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleProductionRecipe1271); 
+            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleProductionRecipe1317); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getProductionRecipeAccess().getLeftCurlyBracketKeyword_1());
                 
-            otherlv_2=(Token)match(input,22,FollowSets000.FOLLOW_22_in_ruleProductionRecipe1283); 
+            otherlv_2=(Token)match(input,23,FollowSets000.FOLLOW_23_in_ruleProductionRecipe1329); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getProductionRecipeAccess().getTraceInfoKeyword_2());
                 
-            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleProductionRecipe1295); 
+            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleProductionRecipe1341); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getProductionRecipeAccess().getColonKeyword_3());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:558:1: ( (lv_traceInfo_4_0= RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:559:1: (lv_traceInfo_4_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:584:1: ( (lv_traceInfo_4_0= RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:585:1: (lv_traceInfo_4_0= RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:559:1: (lv_traceInfo_4_0= RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:560:3: lv_traceInfo_4_0= RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:585:1: (lv_traceInfo_4_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:586:3: lv_traceInfo_4_0= RULE_STRING
             {
-            lv_traceInfo_4_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleProductionRecipe1312); 
+            lv_traceInfo_4_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleProductionRecipe1358); 
 
             			newLeafNode(lv_traceInfo_4_0, grammarAccess.getProductionRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
             		
@@ -1364,19 +1402,19 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,26,FollowSets000.FOLLOW_26_in_ruleProductionRecipe1329); 
+            otherlv_5=(Token)match(input,27,FollowSets000.FOLLOW_27_in_ruleProductionRecipe1375); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getProductionRecipeAccess().getParentsKeyword_5());
                 
-            otherlv_6=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleProductionRecipe1341); 
+            otherlv_6=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleProductionRecipe1387); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getProductionRecipeAccess().getColonKeyword_6());
                 
-            otherlv_7=(Token)match(input,14,FollowSets000.FOLLOW_14_in_ruleProductionRecipe1353); 
+            otherlv_7=(Token)match(input,14,FollowSets000.FOLLOW_14_in_ruleProductionRecipe1399); 
 
                 	newLeafNode(otherlv_7, grammarAccess.getProductionRecipeAccess().getLeftSquareBracketKeyword_7());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:588:1: ( (otherlv_8= RULE_ID ) )*
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:614:1: ( (otherlv_8= RULE_ID ) )*
             loop13:
             do {
                 int alt13=2;
@@ -1389,17 +1427,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
                 switch (alt13) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:589:1: (otherlv_8= RULE_ID )
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:615:1: (otherlv_8= RULE_ID )
             	    {
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:589:1: (otherlv_8= RULE_ID )
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:590:3: otherlv_8= RULE_ID
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:615:1: (otherlv_8= RULE_ID )
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:616:3: otherlv_8= RULE_ID
             	    {
 
             	    			if (current==null) {
             	    	            current = createModelElement(grammarAccess.getProductionRecipeRule());
             	    	        }
             	            
-            	    otherlv_8=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleProductionRecipe1373); 
+            	    otherlv_8=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleProductionRecipe1419); 
 
             	    		newLeafNode(otherlv_8, grammarAccess.getProductionRecipeAccess().getParentsReteNodeRecipeCrossReference_8_0()); 
             	    	
@@ -1415,11 +1453,11 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_9=(Token)match(input,15,FollowSets000.FOLLOW_15_in_ruleProductionRecipe1386); 
+            otherlv_9=(Token)match(input,15,FollowSets000.FOLLOW_15_in_ruleProductionRecipe1432); 
 
                 	newLeafNode(otherlv_9, grammarAccess.getProductionRecipeAccess().getRightSquareBracketKeyword_9());
                 
-            otherlv_10=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleProductionRecipe1398); 
+            otherlv_10=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleProductionRecipe1444); 
 
                 	newLeafNode(otherlv_10, grammarAccess.getProductionRecipeAccess().getRightCurlyBracketKeyword_10());
                 
@@ -1444,7 +1482,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUniquenessEnforcerRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:617:1: entryRuleUniquenessEnforcerRecipe returns [EObject current=null] : iv_ruleUniquenessEnforcerRecipe= ruleUniquenessEnforcerRecipe EOF ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:643:1: entryRuleUniquenessEnforcerRecipe returns [EObject current=null] : iv_ruleUniquenessEnforcerRecipe= ruleUniquenessEnforcerRecipe EOF ;
     public final EObject entryRuleUniquenessEnforcerRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -1452,17 +1490,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:618:2: (iv_ruleUniquenessEnforcerRecipe= ruleUniquenessEnforcerRecipe EOF )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:619:2: iv_ruleUniquenessEnforcerRecipe= ruleUniquenessEnforcerRecipe EOF
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:644:2: (iv_ruleUniquenessEnforcerRecipe= ruleUniquenessEnforcerRecipe EOF )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:645:2: iv_ruleUniquenessEnforcerRecipe= ruleUniquenessEnforcerRecipe EOF
             {
              newCompositeNode(grammarAccess.getUniquenessEnforcerRecipeRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleUniquenessEnforcerRecipe_in_entryRuleUniquenessEnforcerRecipe1434);
+            pushFollow(FollowSets000.FOLLOW_ruleUniquenessEnforcerRecipe_in_entryRuleUniquenessEnforcerRecipe1480);
             iv_ruleUniquenessEnforcerRecipe=ruleUniquenessEnforcerRecipe();
 
             state._fsp--;
 
              current =iv_ruleUniquenessEnforcerRecipe; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleUniquenessEnforcerRecipe1444); 
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleUniquenessEnforcerRecipe1490); 
 
             }
 
@@ -1480,7 +1518,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUniquenessEnforcerRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:626:1: ruleUniquenessEnforcerRecipe returns [EObject current=null] : (otherlv_0= 'UniquenessEnforcer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:652:1: ruleUniquenessEnforcerRecipe returns [EObject current=null] : (otherlv_0= 'UniquenessEnforcer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' ) ;
     public final EObject ruleUniquenessEnforcerRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -1499,35 +1537,35 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:629:28: ( (otherlv_0= 'UniquenessEnforcer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:630:1: (otherlv_0= 'UniquenessEnforcer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:655:28: ( (otherlv_0= 'UniquenessEnforcer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:656:1: (otherlv_0= 'UniquenessEnforcer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:630:1: (otherlv_0= 'UniquenessEnforcer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:630:3: otherlv_0= 'UniquenessEnforcer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:656:1: (otherlv_0= 'UniquenessEnforcer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:656:3: otherlv_0= 'UniquenessEnforcer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parents' otherlv_6= ':' otherlv_7= '[' ( (otherlv_8= RULE_ID ) )* otherlv_9= ']' otherlv_10= '}'
             {
-            otherlv_0=(Token)match(input,27,FollowSets000.FOLLOW_27_in_ruleUniquenessEnforcerRecipe1481); 
+            otherlv_0=(Token)match(input,28,FollowSets000.FOLLOW_28_in_ruleUniquenessEnforcerRecipe1527); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getUniquenessEnforcerRecipeAccess().getUniquenessEnforcerKeyword_0());
                 
-            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleUniquenessEnforcerRecipe1493); 
+            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleUniquenessEnforcerRecipe1539); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getUniquenessEnforcerRecipeAccess().getLeftCurlyBracketKeyword_1());
                 
-            otherlv_2=(Token)match(input,22,FollowSets000.FOLLOW_22_in_ruleUniquenessEnforcerRecipe1505); 
+            otherlv_2=(Token)match(input,23,FollowSets000.FOLLOW_23_in_ruleUniquenessEnforcerRecipe1551); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getUniquenessEnforcerRecipeAccess().getTraceInfoKeyword_2());
                 
-            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleUniquenessEnforcerRecipe1517); 
+            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleUniquenessEnforcerRecipe1563); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getUniquenessEnforcerRecipeAccess().getColonKeyword_3());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:646:1: ( (lv_traceInfo_4_0= RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:647:1: (lv_traceInfo_4_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:672:1: ( (lv_traceInfo_4_0= RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:673:1: (lv_traceInfo_4_0= RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:647:1: (lv_traceInfo_4_0= RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:648:3: lv_traceInfo_4_0= RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:673:1: (lv_traceInfo_4_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:674:3: lv_traceInfo_4_0= RULE_STRING
             {
-            lv_traceInfo_4_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleUniquenessEnforcerRecipe1534); 
+            lv_traceInfo_4_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleUniquenessEnforcerRecipe1580); 
 
             			newLeafNode(lv_traceInfo_4_0, grammarAccess.getUniquenessEnforcerRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
             		
@@ -1547,19 +1585,19 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,26,FollowSets000.FOLLOW_26_in_ruleUniquenessEnforcerRecipe1551); 
+            otherlv_5=(Token)match(input,27,FollowSets000.FOLLOW_27_in_ruleUniquenessEnforcerRecipe1597); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getUniquenessEnforcerRecipeAccess().getParentsKeyword_5());
                 
-            otherlv_6=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleUniquenessEnforcerRecipe1563); 
+            otherlv_6=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleUniquenessEnforcerRecipe1609); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getUniquenessEnforcerRecipeAccess().getColonKeyword_6());
                 
-            otherlv_7=(Token)match(input,14,FollowSets000.FOLLOW_14_in_ruleUniquenessEnforcerRecipe1575); 
+            otherlv_7=(Token)match(input,14,FollowSets000.FOLLOW_14_in_ruleUniquenessEnforcerRecipe1621); 
 
                 	newLeafNode(otherlv_7, grammarAccess.getUniquenessEnforcerRecipeAccess().getLeftSquareBracketKeyword_7());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:676:1: ( (otherlv_8= RULE_ID ) )*
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:702:1: ( (otherlv_8= RULE_ID ) )*
             loop14:
             do {
                 int alt14=2;
@@ -1572,17 +1610,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
                 switch (alt14) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:677:1: (otherlv_8= RULE_ID )
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:703:1: (otherlv_8= RULE_ID )
             	    {
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:677:1: (otherlv_8= RULE_ID )
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:678:3: otherlv_8= RULE_ID
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:703:1: (otherlv_8= RULE_ID )
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:704:3: otherlv_8= RULE_ID
             	    {
 
             	    			if (current==null) {
             	    	            current = createModelElement(grammarAccess.getUniquenessEnforcerRecipeRule());
             	    	        }
             	            
-            	    otherlv_8=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleUniquenessEnforcerRecipe1595); 
+            	    otherlv_8=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleUniquenessEnforcerRecipe1641); 
 
             	    		newLeafNode(otherlv_8, grammarAccess.getUniquenessEnforcerRecipeAccess().getParentsReteNodeRecipeCrossReference_8_0()); 
             	    	
@@ -1598,11 +1636,11 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_9=(Token)match(input,15,FollowSets000.FOLLOW_15_in_ruleUniquenessEnforcerRecipe1608); 
+            otherlv_9=(Token)match(input,15,FollowSets000.FOLLOW_15_in_ruleUniquenessEnforcerRecipe1654); 
 
                 	newLeafNode(otherlv_9, grammarAccess.getUniquenessEnforcerRecipeAccess().getRightSquareBracketKeyword_9());
                 
-            otherlv_10=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleUniquenessEnforcerRecipe1620); 
+            otherlv_10=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleUniquenessEnforcerRecipe1666); 
 
                 	newLeafNode(otherlv_10, grammarAccess.getUniquenessEnforcerRecipeAccess().getRightCurlyBracketKeyword_10());
                 
@@ -1627,7 +1665,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCheckRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:705:1: entryRuleCheckRecipe returns [EObject current=null] : iv_ruleCheckRecipe= ruleCheckRecipe EOF ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:731:1: entryRuleCheckRecipe returns [EObject current=null] : iv_ruleCheckRecipe= ruleCheckRecipe EOF ;
     public final EObject entryRuleCheckRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -1635,17 +1673,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:706:2: (iv_ruleCheckRecipe= ruleCheckRecipe EOF )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:707:2: iv_ruleCheckRecipe= ruleCheckRecipe EOF
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:732:2: (iv_ruleCheckRecipe= ruleCheckRecipe EOF )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:733:2: iv_ruleCheckRecipe= ruleCheckRecipe EOF
             {
              newCompositeNode(grammarAccess.getCheckRecipeRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleCheckRecipe_in_entryRuleCheckRecipe1656);
+            pushFollow(FollowSets000.FOLLOW_ruleCheckRecipe_in_entryRuleCheckRecipe1702);
             iv_ruleCheckRecipe=ruleCheckRecipe();
 
             state._fsp--;
 
              current =iv_ruleCheckRecipe; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleCheckRecipe1666); 
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleCheckRecipe1712); 
 
             }
 
@@ -1663,7 +1701,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCheckRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:714:1: ruleCheckRecipe returns [EObject current=null] : (otherlv_0= 'Check' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parent' otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:740:1: ruleCheckRecipe returns [EObject current=null] : (otherlv_0= 'Check' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parent' otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '}' ) ;
     public final EObject ruleCheckRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -1680,35 +1718,35 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:717:28: ( (otherlv_0= 'Check' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parent' otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:718:1: (otherlv_0= 'Check' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parent' otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:743:28: ( (otherlv_0= 'Check' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parent' otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:744:1: (otherlv_0= 'Check' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parent' otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:718:1: (otherlv_0= 'Check' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parent' otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '}' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:718:3: otherlv_0= 'Check' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parent' otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '}'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:744:1: (otherlv_0= 'Check' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parent' otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:744:3: otherlv_0= 'Check' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'parent' otherlv_6= ':' ( (otherlv_7= RULE_ID ) ) otherlv_8= '}'
             {
-            otherlv_0=(Token)match(input,28,FollowSets000.FOLLOW_28_in_ruleCheckRecipe1703); 
+            otherlv_0=(Token)match(input,29,FollowSets000.FOLLOW_29_in_ruleCheckRecipe1749); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getCheckRecipeAccess().getCheckKeyword_0());
                 
-            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleCheckRecipe1715); 
+            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleCheckRecipe1761); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getCheckRecipeAccess().getLeftCurlyBracketKeyword_1());
                 
-            otherlv_2=(Token)match(input,22,FollowSets000.FOLLOW_22_in_ruleCheckRecipe1727); 
+            otherlv_2=(Token)match(input,23,FollowSets000.FOLLOW_23_in_ruleCheckRecipe1773); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getCheckRecipeAccess().getTraceInfoKeyword_2());
                 
-            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleCheckRecipe1739); 
+            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleCheckRecipe1785); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getCheckRecipeAccess().getColonKeyword_3());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:734:1: ( (lv_traceInfo_4_0= RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:735:1: (lv_traceInfo_4_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:760:1: ( (lv_traceInfo_4_0= RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:761:1: (lv_traceInfo_4_0= RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:735:1: (lv_traceInfo_4_0= RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:736:3: lv_traceInfo_4_0= RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:761:1: (lv_traceInfo_4_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:762:3: lv_traceInfo_4_0= RULE_STRING
             {
-            lv_traceInfo_4_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleCheckRecipe1756); 
+            lv_traceInfo_4_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleCheckRecipe1802); 
 
             			newLeafNode(lv_traceInfo_4_0, grammarAccess.getCheckRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
             		
@@ -1728,26 +1766,26 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,29,FollowSets000.FOLLOW_29_in_ruleCheckRecipe1773); 
+            otherlv_5=(Token)match(input,30,FollowSets000.FOLLOW_30_in_ruleCheckRecipe1819); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getCheckRecipeAccess().getParentKeyword_5());
                 
-            otherlv_6=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleCheckRecipe1785); 
+            otherlv_6=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleCheckRecipe1831); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getCheckRecipeAccess().getColonKeyword_6());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:760:1: ( (otherlv_7= RULE_ID ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:761:1: (otherlv_7= RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:786:1: ( (otherlv_7= RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:787:1: (otherlv_7= RULE_ID )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:761:1: (otherlv_7= RULE_ID )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:762:3: otherlv_7= RULE_ID
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:787:1: (otherlv_7= RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:788:3: otherlv_7= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getCheckRecipeRule());
             	        }
                     
-            otherlv_7=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleCheckRecipe1805); 
+            otherlv_7=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleCheckRecipe1851); 
 
             		newLeafNode(otherlv_7, grammarAccess.getCheckRecipeAccess().getParentReteNodeRecipeCrossReference_7_0()); 
             	
@@ -1757,7 +1795,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_8=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleCheckRecipe1817); 
+            otherlv_8=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleCheckRecipe1863); 
 
                 	newLeafNode(otherlv_8, grammarAccess.getCheckRecipeAccess().getRightCurlyBracketKeyword_8());
                 
@@ -1782,7 +1820,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTrimmerRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:785:1: entryRuleTrimmerRecipe returns [EObject current=null] : iv_ruleTrimmerRecipe= ruleTrimmerRecipe EOF ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:811:1: entryRuleTrimmerRecipe returns [EObject current=null] : iv_ruleTrimmerRecipe= ruleTrimmerRecipe EOF ;
     public final EObject entryRuleTrimmerRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -1790,17 +1828,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:786:2: (iv_ruleTrimmerRecipe= ruleTrimmerRecipe EOF )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:787:2: iv_ruleTrimmerRecipe= ruleTrimmerRecipe EOF
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:812:2: (iv_ruleTrimmerRecipe= ruleTrimmerRecipe EOF )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:813:2: iv_ruleTrimmerRecipe= ruleTrimmerRecipe EOF
             {
              newCompositeNode(grammarAccess.getTrimmerRecipeRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleTrimmerRecipe_in_entryRuleTrimmerRecipe1853);
+            pushFollow(FollowSets000.FOLLOW_ruleTrimmerRecipe_in_entryRuleTrimmerRecipe1899);
             iv_ruleTrimmerRecipe=ruleTrimmerRecipe();
 
             state._fsp--;
 
              current =iv_ruleTrimmerRecipe; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTrimmerRecipe1863); 
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleTrimmerRecipe1909); 
 
             }
 
@@ -1818,7 +1856,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTrimmerRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:794:1: ruleTrimmerRecipe returns [EObject current=null] : (otherlv_0= 'Trimmer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'mask' otherlv_6= ':' ( (lv_mask_7_0= ruleMask ) ) otherlv_8= 'parent' otherlv_9= ':' ( (otherlv_10= RULE_ID ) ) otherlv_11= '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:820:1: ruleTrimmerRecipe returns [EObject current=null] : (otherlv_0= 'Trimmer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'mask' otherlv_6= ':' ( (lv_mask_7_0= ruleMask ) ) otherlv_8= 'parent' otherlv_9= ':' ( (otherlv_10= RULE_ID ) ) otherlv_11= '}' ) ;
     public final EObject ruleTrimmerRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -1839,35 +1877,35 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:797:28: ( (otherlv_0= 'Trimmer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'mask' otherlv_6= ':' ( (lv_mask_7_0= ruleMask ) ) otherlv_8= 'parent' otherlv_9= ':' ( (otherlv_10= RULE_ID ) ) otherlv_11= '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:798:1: (otherlv_0= 'Trimmer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'mask' otherlv_6= ':' ( (lv_mask_7_0= ruleMask ) ) otherlv_8= 'parent' otherlv_9= ':' ( (otherlv_10= RULE_ID ) ) otherlv_11= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:823:28: ( (otherlv_0= 'Trimmer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'mask' otherlv_6= ':' ( (lv_mask_7_0= ruleMask ) ) otherlv_8= 'parent' otherlv_9= ':' ( (otherlv_10= RULE_ID ) ) otherlv_11= '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:824:1: (otherlv_0= 'Trimmer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'mask' otherlv_6= ':' ( (lv_mask_7_0= ruleMask ) ) otherlv_8= 'parent' otherlv_9= ':' ( (otherlv_10= RULE_ID ) ) otherlv_11= '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:798:1: (otherlv_0= 'Trimmer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'mask' otherlv_6= ':' ( (lv_mask_7_0= ruleMask ) ) otherlv_8= 'parent' otherlv_9= ':' ( (otherlv_10= RULE_ID ) ) otherlv_11= '}' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:798:3: otherlv_0= 'Trimmer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'mask' otherlv_6= ':' ( (lv_mask_7_0= ruleMask ) ) otherlv_8= 'parent' otherlv_9= ':' ( (otherlv_10= RULE_ID ) ) otherlv_11= '}'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:824:1: (otherlv_0= 'Trimmer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'mask' otherlv_6= ':' ( (lv_mask_7_0= ruleMask ) ) otherlv_8= 'parent' otherlv_9= ':' ( (otherlv_10= RULE_ID ) ) otherlv_11= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:824:3: otherlv_0= 'Trimmer' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'mask' otherlv_6= ':' ( (lv_mask_7_0= ruleMask ) ) otherlv_8= 'parent' otherlv_9= ':' ( (otherlv_10= RULE_ID ) ) otherlv_11= '}'
             {
-            otherlv_0=(Token)match(input,30,FollowSets000.FOLLOW_30_in_ruleTrimmerRecipe1900); 
+            otherlv_0=(Token)match(input,31,FollowSets000.FOLLOW_31_in_ruleTrimmerRecipe1946); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getTrimmerRecipeAccess().getTrimmerKeyword_0());
                 
-            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleTrimmerRecipe1912); 
+            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleTrimmerRecipe1958); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getTrimmerRecipeAccess().getLeftCurlyBracketKeyword_1());
                 
-            otherlv_2=(Token)match(input,22,FollowSets000.FOLLOW_22_in_ruleTrimmerRecipe1924); 
+            otherlv_2=(Token)match(input,23,FollowSets000.FOLLOW_23_in_ruleTrimmerRecipe1970); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getTrimmerRecipeAccess().getTraceInfoKeyword_2());
                 
-            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleTrimmerRecipe1936); 
+            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleTrimmerRecipe1982); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getTrimmerRecipeAccess().getColonKeyword_3());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:814:1: ( (lv_traceInfo_4_0= RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:815:1: (lv_traceInfo_4_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:840:1: ( (lv_traceInfo_4_0= RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:841:1: (lv_traceInfo_4_0= RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:815:1: (lv_traceInfo_4_0= RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:816:3: lv_traceInfo_4_0= RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:841:1: (lv_traceInfo_4_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:842:3: lv_traceInfo_4_0= RULE_STRING
             {
-            lv_traceInfo_4_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleTrimmerRecipe1953); 
+            lv_traceInfo_4_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleTrimmerRecipe1999); 
 
             			newLeafNode(lv_traceInfo_4_0, grammarAccess.getTrimmerRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
             		
@@ -1887,24 +1925,24 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,31,FollowSets000.FOLLOW_31_in_ruleTrimmerRecipe1970); 
+            otherlv_5=(Token)match(input,32,FollowSets000.FOLLOW_32_in_ruleTrimmerRecipe2016); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getTrimmerRecipeAccess().getMaskKeyword_5());
                 
-            otherlv_6=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleTrimmerRecipe1982); 
+            otherlv_6=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleTrimmerRecipe2028); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getTrimmerRecipeAccess().getColonKeyword_6());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:840:1: ( (lv_mask_7_0= ruleMask ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:841:1: (lv_mask_7_0= ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:866:1: ( (lv_mask_7_0= ruleMask ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:867:1: (lv_mask_7_0= ruleMask )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:841:1: (lv_mask_7_0= ruleMask )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:842:3: lv_mask_7_0= ruleMask
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:867:1: (lv_mask_7_0= ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:868:3: lv_mask_7_0= ruleMask
             {
              
             	        newCompositeNode(grammarAccess.getTrimmerRecipeAccess().getMaskMaskParserRuleCall_7_0()); 
             	    
-            pushFollow(FollowSets000.FOLLOW_ruleMask_in_ruleTrimmerRecipe2003);
+            pushFollow(FollowSets000.FOLLOW_ruleMask_in_ruleTrimmerRecipe2049);
             lv_mask_7_0=ruleMask();
 
             state._fsp--;
@@ -1926,26 +1964,26 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_8=(Token)match(input,29,FollowSets000.FOLLOW_29_in_ruleTrimmerRecipe2015); 
+            otherlv_8=(Token)match(input,30,FollowSets000.FOLLOW_30_in_ruleTrimmerRecipe2061); 
 
                 	newLeafNode(otherlv_8, grammarAccess.getTrimmerRecipeAccess().getParentKeyword_8());
                 
-            otherlv_9=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleTrimmerRecipe2027); 
+            otherlv_9=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleTrimmerRecipe2073); 
 
                 	newLeafNode(otherlv_9, grammarAccess.getTrimmerRecipeAccess().getColonKeyword_9());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:866:1: ( (otherlv_10= RULE_ID ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:867:1: (otherlv_10= RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:892:1: ( (otherlv_10= RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:893:1: (otherlv_10= RULE_ID )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:867:1: (otherlv_10= RULE_ID )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:868:3: otherlv_10= RULE_ID
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:893:1: (otherlv_10= RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:894:3: otherlv_10= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getTrimmerRecipeRule());
             	        }
                     
-            otherlv_10=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleTrimmerRecipe2047); 
+            otherlv_10=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleTrimmerRecipe2093); 
 
             		newLeafNode(otherlv_10, grammarAccess.getTrimmerRecipeAccess().getParentReteNodeRecipeCrossReference_10_0()); 
             	
@@ -1955,7 +1993,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_11=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleTrimmerRecipe2059); 
+            otherlv_11=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleTrimmerRecipe2105); 
 
                 	newLeafNode(otherlv_11, grammarAccess.getTrimmerRecipeAccess().getRightCurlyBracketKeyword_11());
                 
@@ -1980,7 +2018,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleJoinRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:891:1: entryRuleJoinRecipe returns [EObject current=null] : iv_ruleJoinRecipe= ruleJoinRecipe EOF ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:917:1: entryRuleJoinRecipe returns [EObject current=null] : iv_ruleJoinRecipe= ruleJoinRecipe EOF ;
     public final EObject entryRuleJoinRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -1988,17 +2026,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:892:2: (iv_ruleJoinRecipe= ruleJoinRecipe EOF )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:893:2: iv_ruleJoinRecipe= ruleJoinRecipe EOF
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:918:2: (iv_ruleJoinRecipe= ruleJoinRecipe EOF )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:919:2: iv_ruleJoinRecipe= ruleJoinRecipe EOF
             {
              newCompositeNode(grammarAccess.getJoinRecipeRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleJoinRecipe_in_entryRuleJoinRecipe2095);
+            pushFollow(FollowSets000.FOLLOW_ruleJoinRecipe_in_entryRuleJoinRecipe2141);
             iv_ruleJoinRecipe=ruleJoinRecipe();
 
             state._fsp--;
 
              current =iv_ruleJoinRecipe; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleJoinRecipe2105); 
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleJoinRecipe2151); 
 
             }
 
@@ -2016,7 +2054,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleJoinRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:900:1: ruleJoinRecipe returns [EObject current=null] : (otherlv_0= 'Join' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) ( (lv_rightParentComplementaryMask_11_0= ruleMask ) )? otherlv_12= '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:926:1: ruleJoinRecipe returns [EObject current=null] : (otherlv_0= 'Join' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) ( (lv_rightParentComplementaryMask_11_0= ruleMask ) )? otherlv_12= '}' ) ;
     public final EObject ruleJoinRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -2040,35 +2078,35 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:903:28: ( (otherlv_0= 'Join' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) ( (lv_rightParentComplementaryMask_11_0= ruleMask ) )? otherlv_12= '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:904:1: (otherlv_0= 'Join' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) ( (lv_rightParentComplementaryMask_11_0= ruleMask ) )? otherlv_12= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:929:28: ( (otherlv_0= 'Join' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) ( (lv_rightParentComplementaryMask_11_0= ruleMask ) )? otherlv_12= '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:930:1: (otherlv_0= 'Join' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) ( (lv_rightParentComplementaryMask_11_0= ruleMask ) )? otherlv_12= '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:904:1: (otherlv_0= 'Join' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) ( (lv_rightParentComplementaryMask_11_0= ruleMask ) )? otherlv_12= '}' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:904:3: otherlv_0= 'Join' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) ( (lv_rightParentComplementaryMask_11_0= ruleMask ) )? otherlv_12= '}'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:930:1: (otherlv_0= 'Join' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) ( (lv_rightParentComplementaryMask_11_0= ruleMask ) )? otherlv_12= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:930:3: otherlv_0= 'Join' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) ( (lv_rightParentComplementaryMask_11_0= ruleMask ) )? otherlv_12= '}'
             {
-            otherlv_0=(Token)match(input,32,FollowSets000.FOLLOW_32_in_ruleJoinRecipe2142); 
+            otherlv_0=(Token)match(input,33,FollowSets000.FOLLOW_33_in_ruleJoinRecipe2188); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getJoinRecipeAccess().getJoinKeyword_0());
                 
-            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleJoinRecipe2154); 
+            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleJoinRecipe2200); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getJoinRecipeAccess().getLeftCurlyBracketKeyword_1());
                 
-            otherlv_2=(Token)match(input,22,FollowSets000.FOLLOW_22_in_ruleJoinRecipe2166); 
+            otherlv_2=(Token)match(input,23,FollowSets000.FOLLOW_23_in_ruleJoinRecipe2212); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getJoinRecipeAccess().getTraceInfoKeyword_2());
                 
-            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleJoinRecipe2178); 
+            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleJoinRecipe2224); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getJoinRecipeAccess().getColonKeyword_3());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:920:1: ( (lv_traceInfo_4_0= RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:921:1: (lv_traceInfo_4_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:946:1: ( (lv_traceInfo_4_0= RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:947:1: (lv_traceInfo_4_0= RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:921:1: (lv_traceInfo_4_0= RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:922:3: lv_traceInfo_4_0= RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:947:1: (lv_traceInfo_4_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:948:3: lv_traceInfo_4_0= RULE_STRING
             {
-            lv_traceInfo_4_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleJoinRecipe2195); 
+            lv_traceInfo_4_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleJoinRecipe2241); 
 
             			newLeafNode(lv_traceInfo_4_0, grammarAccess.getJoinRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
             		
@@ -2088,24 +2126,24 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,33,FollowSets000.FOLLOW_33_in_ruleJoinRecipe2212); 
+            otherlv_5=(Token)match(input,34,FollowSets000.FOLLOW_34_in_ruleJoinRecipe2258); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getJoinRecipeAccess().getLeftParentKeyword_5());
                 
-            otherlv_6=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleJoinRecipe2224); 
+            otherlv_6=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleJoinRecipe2270); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getJoinRecipeAccess().getColonKeyword_6());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:946:1: ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:947:1: (lv_leftParent_7_0= ruleProjectionIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:972:1: ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:973:1: (lv_leftParent_7_0= ruleProjectionIndexerRecipe )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:947:1: (lv_leftParent_7_0= ruleProjectionIndexerRecipe )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:948:3: lv_leftParent_7_0= ruleProjectionIndexerRecipe
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:973:1: (lv_leftParent_7_0= ruleProjectionIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:974:3: lv_leftParent_7_0= ruleProjectionIndexerRecipe
             {
              
             	        newCompositeNode(grammarAccess.getJoinRecipeAccess().getLeftParentProjectionIndexerRecipeParserRuleCall_7_0()); 
             	    
-            pushFollow(FollowSets000.FOLLOW_ruleProjectionIndexerRecipe_in_ruleJoinRecipe2245);
+            pushFollow(FollowSets000.FOLLOW_ruleProjectionIndexerRecipe_in_ruleJoinRecipe2291);
             lv_leftParent_7_0=ruleProjectionIndexerRecipe();
 
             state._fsp--;
@@ -2127,24 +2165,24 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_8=(Token)match(input,34,FollowSets000.FOLLOW_34_in_ruleJoinRecipe2257); 
+            otherlv_8=(Token)match(input,35,FollowSets000.FOLLOW_35_in_ruleJoinRecipe2303); 
 
                 	newLeafNode(otherlv_8, grammarAccess.getJoinRecipeAccess().getRightParentKeyword_8());
                 
-            otherlv_9=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleJoinRecipe2269); 
+            otherlv_9=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleJoinRecipe2315); 
 
                 	newLeafNode(otherlv_9, grammarAccess.getJoinRecipeAccess().getColonKeyword_9());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:972:1: ( (lv_rightParent_10_0= ruleIndexerRecipe ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:973:1: (lv_rightParent_10_0= ruleIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:998:1: ( (lv_rightParent_10_0= ruleIndexerRecipe ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:999:1: (lv_rightParent_10_0= ruleIndexerRecipe )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:973:1: (lv_rightParent_10_0= ruleIndexerRecipe )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:974:3: lv_rightParent_10_0= ruleIndexerRecipe
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:999:1: (lv_rightParent_10_0= ruleIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1000:3: lv_rightParent_10_0= ruleIndexerRecipe
             {
              
             	        newCompositeNode(grammarAccess.getJoinRecipeAccess().getRightParentIndexerRecipeParserRuleCall_10_0()); 
             	    
-            pushFollow(FollowSets000.FOLLOW_ruleIndexerRecipe_in_ruleJoinRecipe2290);
+            pushFollow(FollowSets000.FOLLOW_ruleIndexerRecipe_in_ruleJoinRecipe2336);
             lv_rightParent_10_0=ruleIndexerRecipe();
 
             state._fsp--;
@@ -2166,7 +2204,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:990:2: ( (lv_rightParentComplementaryMask_11_0= ruleMask ) )?
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1016:2: ( (lv_rightParentComplementaryMask_11_0= ruleMask ) )?
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -2175,15 +2213,15 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
             }
             switch (alt15) {
                 case 1 :
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:991:1: (lv_rightParentComplementaryMask_11_0= ruleMask )
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1017:1: (lv_rightParentComplementaryMask_11_0= ruleMask )
                     {
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:991:1: (lv_rightParentComplementaryMask_11_0= ruleMask )
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:992:3: lv_rightParentComplementaryMask_11_0= ruleMask
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1017:1: (lv_rightParentComplementaryMask_11_0= ruleMask )
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1018:3: lv_rightParentComplementaryMask_11_0= ruleMask
                     {
                      
                     	        newCompositeNode(grammarAccess.getJoinRecipeAccess().getRightParentComplementaryMaskMaskParserRuleCall_11_0()); 
                     	    
-                    pushFollow(FollowSets000.FOLLOW_ruleMask_in_ruleJoinRecipe2311);
+                    pushFollow(FollowSets000.FOLLOW_ruleMask_in_ruleJoinRecipe2357);
                     lv_rightParentComplementaryMask_11_0=ruleMask();
 
                     state._fsp--;
@@ -2208,7 +2246,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_12=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleJoinRecipe2324); 
+            otherlv_12=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleJoinRecipe2370); 
 
                 	newLeafNode(otherlv_12, grammarAccess.getJoinRecipeAccess().getRightCurlyBracketKeyword_12());
                 
@@ -2233,7 +2271,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleAntiJoinRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1020:1: entryRuleAntiJoinRecipe returns [EObject current=null] : iv_ruleAntiJoinRecipe= ruleAntiJoinRecipe EOF ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1046:1: entryRuleAntiJoinRecipe returns [EObject current=null] : iv_ruleAntiJoinRecipe= ruleAntiJoinRecipe EOF ;
     public final EObject entryRuleAntiJoinRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -2241,17 +2279,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1021:2: (iv_ruleAntiJoinRecipe= ruleAntiJoinRecipe EOF )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1022:2: iv_ruleAntiJoinRecipe= ruleAntiJoinRecipe EOF
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1047:2: (iv_ruleAntiJoinRecipe= ruleAntiJoinRecipe EOF )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1048:2: iv_ruleAntiJoinRecipe= ruleAntiJoinRecipe EOF
             {
              newCompositeNode(grammarAccess.getAntiJoinRecipeRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleAntiJoinRecipe_in_entryRuleAntiJoinRecipe2360);
+            pushFollow(FollowSets000.FOLLOW_ruleAntiJoinRecipe_in_entryRuleAntiJoinRecipe2406);
             iv_ruleAntiJoinRecipe=ruleAntiJoinRecipe();
 
             state._fsp--;
 
              current =iv_ruleAntiJoinRecipe; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleAntiJoinRecipe2370); 
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleAntiJoinRecipe2416); 
 
             }
 
@@ -2269,7 +2307,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAntiJoinRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1029:1: ruleAntiJoinRecipe returns [EObject current=null] : (otherlv_0= 'AntiJoin' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) otherlv_11= '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1055:1: ruleAntiJoinRecipe returns [EObject current=null] : (otherlv_0= 'AntiJoin' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) otherlv_11= '}' ) ;
     public final EObject ruleAntiJoinRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -2291,35 +2329,35 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1032:28: ( (otherlv_0= 'AntiJoin' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) otherlv_11= '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1033:1: (otherlv_0= 'AntiJoin' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) otherlv_11= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1058:28: ( (otherlv_0= 'AntiJoin' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) otherlv_11= '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1059:1: (otherlv_0= 'AntiJoin' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) otherlv_11= '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1033:1: (otherlv_0= 'AntiJoin' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) otherlv_11= '}' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1033:3: otherlv_0= 'AntiJoin' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) otherlv_11= '}'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1059:1: (otherlv_0= 'AntiJoin' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) otherlv_11= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1059:3: otherlv_0= 'AntiJoin' otherlv_1= '{' otherlv_2= 'traceInfo' otherlv_3= ':' ( (lv_traceInfo_4_0= RULE_STRING ) ) otherlv_5= 'leftParent' otherlv_6= ':' ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) ) otherlv_8= 'rightParent' otherlv_9= ':' ( (lv_rightParent_10_0= ruleIndexerRecipe ) ) otherlv_11= '}'
             {
-            otherlv_0=(Token)match(input,35,FollowSets000.FOLLOW_35_in_ruleAntiJoinRecipe2407); 
+            otherlv_0=(Token)match(input,36,FollowSets000.FOLLOW_36_in_ruleAntiJoinRecipe2453); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getAntiJoinRecipeAccess().getAntiJoinKeyword_0());
                 
-            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleAntiJoinRecipe2419); 
+            otherlv_1=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleAntiJoinRecipe2465); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getAntiJoinRecipeAccess().getLeftCurlyBracketKeyword_1());
                 
-            otherlv_2=(Token)match(input,22,FollowSets000.FOLLOW_22_in_ruleAntiJoinRecipe2431); 
+            otherlv_2=(Token)match(input,23,FollowSets000.FOLLOW_23_in_ruleAntiJoinRecipe2477); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getAntiJoinRecipeAccess().getTraceInfoKeyword_2());
                 
-            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleAntiJoinRecipe2443); 
+            otherlv_3=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleAntiJoinRecipe2489); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getAntiJoinRecipeAccess().getColonKeyword_3());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1049:1: ( (lv_traceInfo_4_0= RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1050:1: (lv_traceInfo_4_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1075:1: ( (lv_traceInfo_4_0= RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1076:1: (lv_traceInfo_4_0= RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1050:1: (lv_traceInfo_4_0= RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1051:3: lv_traceInfo_4_0= RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1076:1: (lv_traceInfo_4_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1077:3: lv_traceInfo_4_0= RULE_STRING
             {
-            lv_traceInfo_4_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleAntiJoinRecipe2460); 
+            lv_traceInfo_4_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleAntiJoinRecipe2506); 
 
             			newLeafNode(lv_traceInfo_4_0, grammarAccess.getAntiJoinRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_4_0()); 
             		
@@ -2339,24 +2377,24 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,33,FollowSets000.FOLLOW_33_in_ruleAntiJoinRecipe2477); 
+            otherlv_5=(Token)match(input,34,FollowSets000.FOLLOW_34_in_ruleAntiJoinRecipe2523); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getAntiJoinRecipeAccess().getLeftParentKeyword_5());
                 
-            otherlv_6=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleAntiJoinRecipe2489); 
+            otherlv_6=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleAntiJoinRecipe2535); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getAntiJoinRecipeAccess().getColonKeyword_6());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1075:1: ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1076:1: (lv_leftParent_7_0= ruleProjectionIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1101:1: ( (lv_leftParent_7_0= ruleProjectionIndexerRecipe ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1102:1: (lv_leftParent_7_0= ruleProjectionIndexerRecipe )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1076:1: (lv_leftParent_7_0= ruleProjectionIndexerRecipe )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1077:3: lv_leftParent_7_0= ruleProjectionIndexerRecipe
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1102:1: (lv_leftParent_7_0= ruleProjectionIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1103:3: lv_leftParent_7_0= ruleProjectionIndexerRecipe
             {
              
             	        newCompositeNode(grammarAccess.getAntiJoinRecipeAccess().getLeftParentProjectionIndexerRecipeParserRuleCall_7_0()); 
             	    
-            pushFollow(FollowSets000.FOLLOW_ruleProjectionIndexerRecipe_in_ruleAntiJoinRecipe2510);
+            pushFollow(FollowSets000.FOLLOW_ruleProjectionIndexerRecipe_in_ruleAntiJoinRecipe2556);
             lv_leftParent_7_0=ruleProjectionIndexerRecipe();
 
             state._fsp--;
@@ -2378,24 +2416,24 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_8=(Token)match(input,34,FollowSets000.FOLLOW_34_in_ruleAntiJoinRecipe2522); 
+            otherlv_8=(Token)match(input,35,FollowSets000.FOLLOW_35_in_ruleAntiJoinRecipe2568); 
 
                 	newLeafNode(otherlv_8, grammarAccess.getAntiJoinRecipeAccess().getRightParentKeyword_8());
                 
-            otherlv_9=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleAntiJoinRecipe2534); 
+            otherlv_9=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleAntiJoinRecipe2580); 
 
                 	newLeafNode(otherlv_9, grammarAccess.getAntiJoinRecipeAccess().getColonKeyword_9());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1101:1: ( (lv_rightParent_10_0= ruleIndexerRecipe ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1102:1: (lv_rightParent_10_0= ruleIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1127:1: ( (lv_rightParent_10_0= ruleIndexerRecipe ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1128:1: (lv_rightParent_10_0= ruleIndexerRecipe )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1102:1: (lv_rightParent_10_0= ruleIndexerRecipe )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1103:3: lv_rightParent_10_0= ruleIndexerRecipe
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1128:1: (lv_rightParent_10_0= ruleIndexerRecipe )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1129:3: lv_rightParent_10_0= ruleIndexerRecipe
             {
              
             	        newCompositeNode(grammarAccess.getAntiJoinRecipeAccess().getRightParentIndexerRecipeParserRuleCall_10_0()); 
             	    
-            pushFollow(FollowSets000.FOLLOW_ruleIndexerRecipe_in_ruleAntiJoinRecipe2555);
+            pushFollow(FollowSets000.FOLLOW_ruleIndexerRecipe_in_ruleAntiJoinRecipe2601);
             lv_rightParent_10_0=ruleIndexerRecipe();
 
             state._fsp--;
@@ -2417,7 +2455,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_11=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleAntiJoinRecipe2567); 
+            otherlv_11=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleAntiJoinRecipe2613); 
 
                 	newLeafNode(otherlv_11, grammarAccess.getAntiJoinRecipeAccess().getRightCurlyBracketKeyword_11());
                 
@@ -2442,7 +2480,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIndexerRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1131:1: entryRuleIndexerRecipe returns [EObject current=null] : iv_ruleIndexerRecipe= ruleIndexerRecipe EOF ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1157:1: entryRuleIndexerRecipe returns [EObject current=null] : iv_ruleIndexerRecipe= ruleIndexerRecipe EOF ;
     public final EObject entryRuleIndexerRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -2450,17 +2488,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1132:2: (iv_ruleIndexerRecipe= ruleIndexerRecipe EOF )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1133:2: iv_ruleIndexerRecipe= ruleIndexerRecipe EOF
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1158:2: (iv_ruleIndexerRecipe= ruleIndexerRecipe EOF )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1159:2: iv_ruleIndexerRecipe= ruleIndexerRecipe EOF
             {
              newCompositeNode(grammarAccess.getIndexerRecipeRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleIndexerRecipe_in_entryRuleIndexerRecipe2603);
+            pushFollow(FollowSets000.FOLLOW_ruleIndexerRecipe_in_entryRuleIndexerRecipe2649);
             iv_ruleIndexerRecipe=ruleIndexerRecipe();
 
             state._fsp--;
 
              current =iv_ruleIndexerRecipe; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleIndexerRecipe2613); 
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleIndexerRecipe2659); 
 
             }
 
@@ -2478,7 +2516,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIndexerRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1140:1: ruleIndexerRecipe returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1166:1: ruleIndexerRecipe returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' ) ;
     public final EObject ruleIndexerRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -2498,31 +2536,31 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1143:28: ( (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1144:1: (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1169:28: ( (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1170:1: (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1144:1: (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1144:3: otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1170:1: (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1170:3: otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}'
             {
-            otherlv_0=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleIndexerRecipe2650); 
+            otherlv_0=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleIndexerRecipe2696); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getIndexerRecipeAccess().getLeftCurlyBracketKeyword_0());
                 
-            otherlv_1=(Token)match(input,22,FollowSets000.FOLLOW_22_in_ruleIndexerRecipe2662); 
+            otherlv_1=(Token)match(input,23,FollowSets000.FOLLOW_23_in_ruleIndexerRecipe2708); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getIndexerRecipeAccess().getTraceInfoKeyword_1());
                 
-            otherlv_2=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleIndexerRecipe2674); 
+            otherlv_2=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleIndexerRecipe2720); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getIndexerRecipeAccess().getColonKeyword_2());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1156:1: ( (lv_traceInfo_3_0= RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1157:1: (lv_traceInfo_3_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1182:1: ( (lv_traceInfo_3_0= RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1183:1: (lv_traceInfo_3_0= RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1157:1: (lv_traceInfo_3_0= RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1158:3: lv_traceInfo_3_0= RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1183:1: (lv_traceInfo_3_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1184:3: lv_traceInfo_3_0= RULE_STRING
             {
-            lv_traceInfo_3_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleIndexerRecipe2691); 
+            lv_traceInfo_3_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleIndexerRecipe2737); 
 
             			newLeafNode(lv_traceInfo_3_0, grammarAccess.getIndexerRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_3_0()); 
             		
@@ -2542,24 +2580,24 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,31,FollowSets000.FOLLOW_31_in_ruleIndexerRecipe2708); 
+            otherlv_4=(Token)match(input,32,FollowSets000.FOLLOW_32_in_ruleIndexerRecipe2754); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getIndexerRecipeAccess().getMaskKeyword_4());
                 
-            otherlv_5=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleIndexerRecipe2720); 
+            otherlv_5=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleIndexerRecipe2766); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getIndexerRecipeAccess().getColonKeyword_5());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1182:1: ( (lv_mask_6_0= ruleMask ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1183:1: (lv_mask_6_0= ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1208:1: ( (lv_mask_6_0= ruleMask ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1209:1: (lv_mask_6_0= ruleMask )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1183:1: (lv_mask_6_0= ruleMask )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1184:3: lv_mask_6_0= ruleMask
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1209:1: (lv_mask_6_0= ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1210:3: lv_mask_6_0= ruleMask
             {
              
             	        newCompositeNode(grammarAccess.getIndexerRecipeAccess().getMaskMaskParserRuleCall_6_0()); 
             	    
-            pushFollow(FollowSets000.FOLLOW_ruleMask_in_ruleIndexerRecipe2741);
+            pushFollow(FollowSets000.FOLLOW_ruleMask_in_ruleIndexerRecipe2787);
             lv_mask_6_0=ruleMask();
 
             state._fsp--;
@@ -2581,26 +2619,26 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,29,FollowSets000.FOLLOW_29_in_ruleIndexerRecipe2753); 
+            otherlv_7=(Token)match(input,30,FollowSets000.FOLLOW_30_in_ruleIndexerRecipe2799); 
 
                 	newLeafNode(otherlv_7, grammarAccess.getIndexerRecipeAccess().getParentKeyword_7());
                 
-            otherlv_8=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleIndexerRecipe2765); 
+            otherlv_8=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleIndexerRecipe2811); 
 
                 	newLeafNode(otherlv_8, grammarAccess.getIndexerRecipeAccess().getColonKeyword_8());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1208:1: ( (otherlv_9= RULE_ID ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1209:1: (otherlv_9= RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1234:1: ( (otherlv_9= RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1235:1: (otherlv_9= RULE_ID )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1209:1: (otherlv_9= RULE_ID )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1210:3: otherlv_9= RULE_ID
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1235:1: (otherlv_9= RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1236:3: otherlv_9= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getIndexerRecipeRule());
             	        }
                     
-            otherlv_9=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleIndexerRecipe2785); 
+            otherlv_9=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleIndexerRecipe2831); 
 
             		newLeafNode(otherlv_9, grammarAccess.getIndexerRecipeAccess().getParentReteNodeRecipeCrossReference_9_0()); 
             	
@@ -2610,7 +2648,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_10=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleIndexerRecipe2797); 
+            otherlv_10=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleIndexerRecipe2843); 
 
                 	newLeafNode(otherlv_10, grammarAccess.getIndexerRecipeAccess().getRightCurlyBracketKeyword_10());
                 
@@ -2635,7 +2673,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleProjectionIndexerRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1233:1: entryRuleProjectionIndexerRecipe returns [EObject current=null] : iv_ruleProjectionIndexerRecipe= ruleProjectionIndexerRecipe EOF ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1259:1: entryRuleProjectionIndexerRecipe returns [EObject current=null] : iv_ruleProjectionIndexerRecipe= ruleProjectionIndexerRecipe EOF ;
     public final EObject entryRuleProjectionIndexerRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -2643,17 +2681,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1234:2: (iv_ruleProjectionIndexerRecipe= ruleProjectionIndexerRecipe EOF )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1235:2: iv_ruleProjectionIndexerRecipe= ruleProjectionIndexerRecipe EOF
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1260:2: (iv_ruleProjectionIndexerRecipe= ruleProjectionIndexerRecipe EOF )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1261:2: iv_ruleProjectionIndexerRecipe= ruleProjectionIndexerRecipe EOF
             {
              newCompositeNode(grammarAccess.getProjectionIndexerRecipeRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleProjectionIndexerRecipe_in_entryRuleProjectionIndexerRecipe2833);
+            pushFollow(FollowSets000.FOLLOW_ruleProjectionIndexerRecipe_in_entryRuleProjectionIndexerRecipe2879);
             iv_ruleProjectionIndexerRecipe=ruleProjectionIndexerRecipe();
 
             state._fsp--;
 
              current =iv_ruleProjectionIndexerRecipe; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleProjectionIndexerRecipe2843); 
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleProjectionIndexerRecipe2889); 
 
             }
 
@@ -2671,7 +2709,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleProjectionIndexerRecipe"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1242:1: ruleProjectionIndexerRecipe returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1268:1: ruleProjectionIndexerRecipe returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' ) ;
     public final EObject ruleProjectionIndexerRecipe() throws RecognitionException {
         EObject current = null;
 
@@ -2691,31 +2729,31 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1245:28: ( (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1246:1: (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1271:28: ( (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1272:1: (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1246:1: (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1246:3: otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1272:1: (otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1272:3: otherlv_0= '{' otherlv_1= 'traceInfo' otherlv_2= ':' ( (lv_traceInfo_3_0= RULE_STRING ) ) otherlv_4= 'mask' otherlv_5= ':' ( (lv_mask_6_0= ruleMask ) ) otherlv_7= 'parent' otherlv_8= ':' ( (otherlv_9= RULE_ID ) ) otherlv_10= '}'
             {
-            otherlv_0=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleProjectionIndexerRecipe2880); 
+            otherlv_0=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleProjectionIndexerRecipe2926); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getProjectionIndexerRecipeAccess().getLeftCurlyBracketKeyword_0());
                 
-            otherlv_1=(Token)match(input,22,FollowSets000.FOLLOW_22_in_ruleProjectionIndexerRecipe2892); 
+            otherlv_1=(Token)match(input,23,FollowSets000.FOLLOW_23_in_ruleProjectionIndexerRecipe2938); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getProjectionIndexerRecipeAccess().getTraceInfoKeyword_1());
                 
-            otherlv_2=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleProjectionIndexerRecipe2904); 
+            otherlv_2=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleProjectionIndexerRecipe2950); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getProjectionIndexerRecipeAccess().getColonKeyword_2());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1258:1: ( (lv_traceInfo_3_0= RULE_STRING ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1259:1: (lv_traceInfo_3_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1284:1: ( (lv_traceInfo_3_0= RULE_STRING ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1285:1: (lv_traceInfo_3_0= RULE_STRING )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1259:1: (lv_traceInfo_3_0= RULE_STRING )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1260:3: lv_traceInfo_3_0= RULE_STRING
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1285:1: (lv_traceInfo_3_0= RULE_STRING )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1286:3: lv_traceInfo_3_0= RULE_STRING
             {
-            lv_traceInfo_3_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleProjectionIndexerRecipe2921); 
+            lv_traceInfo_3_0=(Token)match(input,RULE_STRING,FollowSets000.FOLLOW_RULE_STRING_in_ruleProjectionIndexerRecipe2967); 
 
             			newLeafNode(lv_traceInfo_3_0, grammarAccess.getProjectionIndexerRecipeAccess().getTraceInfoSTRINGTerminalRuleCall_3_0()); 
             		
@@ -2735,24 +2773,24 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,31,FollowSets000.FOLLOW_31_in_ruleProjectionIndexerRecipe2938); 
+            otherlv_4=(Token)match(input,32,FollowSets000.FOLLOW_32_in_ruleProjectionIndexerRecipe2984); 
 
                 	newLeafNode(otherlv_4, grammarAccess.getProjectionIndexerRecipeAccess().getMaskKeyword_4());
                 
-            otherlv_5=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleProjectionIndexerRecipe2950); 
+            otherlv_5=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleProjectionIndexerRecipe2996); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getProjectionIndexerRecipeAccess().getColonKeyword_5());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1284:1: ( (lv_mask_6_0= ruleMask ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1285:1: (lv_mask_6_0= ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1310:1: ( (lv_mask_6_0= ruleMask ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1311:1: (lv_mask_6_0= ruleMask )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1285:1: (lv_mask_6_0= ruleMask )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1286:3: lv_mask_6_0= ruleMask
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1311:1: (lv_mask_6_0= ruleMask )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1312:3: lv_mask_6_0= ruleMask
             {
              
             	        newCompositeNode(grammarAccess.getProjectionIndexerRecipeAccess().getMaskMaskParserRuleCall_6_0()); 
             	    
-            pushFollow(FollowSets000.FOLLOW_ruleMask_in_ruleProjectionIndexerRecipe2971);
+            pushFollow(FollowSets000.FOLLOW_ruleMask_in_ruleProjectionIndexerRecipe3017);
             lv_mask_6_0=ruleMask();
 
             state._fsp--;
@@ -2774,26 +2812,26 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_7=(Token)match(input,29,FollowSets000.FOLLOW_29_in_ruleProjectionIndexerRecipe2983); 
+            otherlv_7=(Token)match(input,30,FollowSets000.FOLLOW_30_in_ruleProjectionIndexerRecipe3029); 
 
                 	newLeafNode(otherlv_7, grammarAccess.getProjectionIndexerRecipeAccess().getParentKeyword_7());
                 
-            otherlv_8=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleProjectionIndexerRecipe2995); 
+            otherlv_8=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleProjectionIndexerRecipe3041); 
 
                 	newLeafNode(otherlv_8, grammarAccess.getProjectionIndexerRecipeAccess().getColonKeyword_8());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1310:1: ( (otherlv_9= RULE_ID ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1311:1: (otherlv_9= RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1336:1: ( (otherlv_9= RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1337:1: (otherlv_9= RULE_ID )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1311:1: (otherlv_9= RULE_ID )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1312:3: otherlv_9= RULE_ID
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1337:1: (otherlv_9= RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1338:3: otherlv_9= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getProjectionIndexerRecipeRule());
             	        }
                     
-            otherlv_9=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleProjectionIndexerRecipe3015); 
+            otherlv_9=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleProjectionIndexerRecipe3061); 
 
             		newLeafNode(otherlv_9, grammarAccess.getProjectionIndexerRecipeAccess().getParentReteNodeRecipeCrossReference_9_0()); 
             	
@@ -2803,7 +2841,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_10=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleProjectionIndexerRecipe3027); 
+            otherlv_10=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleProjectionIndexerRecipe3073); 
 
                 	newLeafNode(otherlv_10, grammarAccess.getProjectionIndexerRecipeAccess().getRightCurlyBracketKeyword_10());
                 
@@ -2828,7 +2866,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMask"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1335:1: entryRuleMask returns [EObject current=null] : iv_ruleMask= ruleMask EOF ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1361:1: entryRuleMask returns [EObject current=null] : iv_ruleMask= ruleMask EOF ;
     public final EObject entryRuleMask() throws RecognitionException {
         EObject current = null;
 
@@ -2836,17 +2874,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1336:2: (iv_ruleMask= ruleMask EOF )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1337:2: iv_ruleMask= ruleMask EOF
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1362:2: (iv_ruleMask= ruleMask EOF )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1363:2: iv_ruleMask= ruleMask EOF
             {
              newCompositeNode(grammarAccess.getMaskRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleMask_in_entryRuleMask3063);
+            pushFollow(FollowSets000.FOLLOW_ruleMask_in_entryRuleMask3109);
             iv_ruleMask=ruleMask();
 
             state._fsp--;
 
              current =iv_ruleMask; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMask3073); 
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleMask3119); 
 
             }
 
@@ -2864,7 +2902,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMask"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1344:1: ruleMask returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'sourceArity' otherlv_2= ':' ( (lv_sourceArity_3_0= RULE_INT ) ) (otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']' )* otherlv_9= '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1370:1: ruleMask returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'sourceArity' otherlv_2= ':' ( (lv_sourceArity_3_0= RULE_INT ) ) (otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']' )* otherlv_9= '}' ) ;
     public final EObject ruleMask() throws RecognitionException {
         EObject current = null;
 
@@ -2882,31 +2920,31 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1347:28: ( (otherlv_0= '{' otherlv_1= 'sourceArity' otherlv_2= ':' ( (lv_sourceArity_3_0= RULE_INT ) ) (otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']' )* otherlv_9= '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1348:1: (otherlv_0= '{' otherlv_1= 'sourceArity' otherlv_2= ':' ( (lv_sourceArity_3_0= RULE_INT ) ) (otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']' )* otherlv_9= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1373:28: ( (otherlv_0= '{' otherlv_1= 'sourceArity' otherlv_2= ':' ( (lv_sourceArity_3_0= RULE_INT ) ) (otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']' )* otherlv_9= '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1374:1: (otherlv_0= '{' otherlv_1= 'sourceArity' otherlv_2= ':' ( (lv_sourceArity_3_0= RULE_INT ) ) (otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']' )* otherlv_9= '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1348:1: (otherlv_0= '{' otherlv_1= 'sourceArity' otherlv_2= ':' ( (lv_sourceArity_3_0= RULE_INT ) ) (otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']' )* otherlv_9= '}' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1348:3: otherlv_0= '{' otherlv_1= 'sourceArity' otherlv_2= ':' ( (lv_sourceArity_3_0= RULE_INT ) ) (otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']' )* otherlv_9= '}'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1374:1: (otherlv_0= '{' otherlv_1= 'sourceArity' otherlv_2= ':' ( (lv_sourceArity_3_0= RULE_INT ) ) (otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']' )* otherlv_9= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1374:3: otherlv_0= '{' otherlv_1= 'sourceArity' otherlv_2= ':' ( (lv_sourceArity_3_0= RULE_INT ) ) (otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']' )* otherlv_9= '}'
             {
-            otherlv_0=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleMask3110); 
+            otherlv_0=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleMask3156); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getMaskAccess().getLeftCurlyBracketKeyword_0());
                 
-            otherlv_1=(Token)match(input,36,FollowSets000.FOLLOW_36_in_ruleMask3122); 
+            otherlv_1=(Token)match(input,37,FollowSets000.FOLLOW_37_in_ruleMask3168); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getMaskAccess().getSourceArityKeyword_1());
                 
-            otherlv_2=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleMask3134); 
+            otherlv_2=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleMask3180); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getMaskAccess().getColonKeyword_2());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1360:1: ( (lv_sourceArity_3_0= RULE_INT ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1361:1: (lv_sourceArity_3_0= RULE_INT )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1386:1: ( (lv_sourceArity_3_0= RULE_INT ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1387:1: (lv_sourceArity_3_0= RULE_INT )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1361:1: (lv_sourceArity_3_0= RULE_INT )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1362:3: lv_sourceArity_3_0= RULE_INT
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1387:1: (lv_sourceArity_3_0= RULE_INT )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1388:3: lv_sourceArity_3_0= RULE_INT
             {
-            lv_sourceArity_3_0=(Token)match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_ruleMask3151); 
+            lv_sourceArity_3_0=(Token)match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_ruleMask3197); 
 
             			newLeafNode(lv_sourceArity_3_0, grammarAccess.getMaskAccess().getSourceArityINTTerminalRuleCall_3_0()); 
             		
@@ -2926,34 +2964,34 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1378:2: (otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']' )*
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1404:2: (otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']' )*
             loop17:
             do {
                 int alt17=2;
                 int LA17_0 = input.LA(1);
 
-                if ( (LA17_0==37) ) {
+                if ( (LA17_0==38) ) {
                     alt17=1;
                 }
 
 
                 switch (alt17) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1378:4: otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']'
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1404:4: otherlv_4= 'sourceIndices' otherlv_5= ':' otherlv_6= '[' ( (lv_sourceIndices_7_0= RULE_INT ) )* otherlv_8= ']'
             	    {
-            	    otherlv_4=(Token)match(input,37,FollowSets000.FOLLOW_37_in_ruleMask3169); 
+            	    otherlv_4=(Token)match(input,38,FollowSets000.FOLLOW_38_in_ruleMask3215); 
 
             	        	newLeafNode(otherlv_4, grammarAccess.getMaskAccess().getSourceIndicesKeyword_4_0());
             	        
-            	    otherlv_5=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleMask3181); 
+            	    otherlv_5=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleMask3227); 
 
             	        	newLeafNode(otherlv_5, grammarAccess.getMaskAccess().getColonKeyword_4_1());
             	        
-            	    otherlv_6=(Token)match(input,14,FollowSets000.FOLLOW_14_in_ruleMask3193); 
+            	    otherlv_6=(Token)match(input,14,FollowSets000.FOLLOW_14_in_ruleMask3239); 
 
             	        	newLeafNode(otherlv_6, grammarAccess.getMaskAccess().getLeftSquareBracketKeyword_4_2());
             	        
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1390:1: ( (lv_sourceIndices_7_0= RULE_INT ) )*
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1416:1: ( (lv_sourceIndices_7_0= RULE_INT ) )*
             	    loop16:
             	    do {
             	        int alt16=2;
@@ -2966,12 +3004,12 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             	        switch (alt16) {
             	    	case 1 :
-            	    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1391:1: (lv_sourceIndices_7_0= RULE_INT )
+            	    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1417:1: (lv_sourceIndices_7_0= RULE_INT )
             	    	    {
-            	    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1391:1: (lv_sourceIndices_7_0= RULE_INT )
-            	    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1392:3: lv_sourceIndices_7_0= RULE_INT
+            	    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1417:1: (lv_sourceIndices_7_0= RULE_INT )
+            	    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1418:3: lv_sourceIndices_7_0= RULE_INT
             	    	    {
-            	    	    lv_sourceIndices_7_0=(Token)match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_ruleMask3210); 
+            	    	    lv_sourceIndices_7_0=(Token)match(input,RULE_INT,FollowSets000.FOLLOW_RULE_INT_in_ruleMask3256); 
 
             	    	    			newLeafNode(lv_sourceIndices_7_0, grammarAccess.getMaskAccess().getSourceIndicesINTTerminalRuleCall_4_3_0()); 
             	    	    		
@@ -2997,7 +3035,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
             	        }
             	    } while (true);
 
-            	    otherlv_8=(Token)match(input,15,FollowSets000.FOLLOW_15_in_ruleMask3228); 
+            	    otherlv_8=(Token)match(input,15,FollowSets000.FOLLOW_15_in_ruleMask3274); 
 
             	        	newLeafNode(otherlv_8, grammarAccess.getMaskAccess().getRightSquareBracketKeyword_4_4());
             	        
@@ -3010,7 +3048,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_9=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleMask3242); 
+            otherlv_9=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleMask3288); 
 
                 	newLeafNode(otherlv_9, grammarAccess.getMaskAccess().getRightCurlyBracketKeyword_5());
                 
@@ -3035,7 +3073,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleInfrastructureMapping"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1424:1: entryRuleInfrastructureMapping returns [EObject current=null] : iv_ruleInfrastructureMapping= ruleInfrastructureMapping EOF ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1450:1: entryRuleInfrastructureMapping returns [EObject current=null] : iv_ruleInfrastructureMapping= ruleInfrastructureMapping EOF ;
     public final EObject entryRuleInfrastructureMapping() throws RecognitionException {
         EObject current = null;
 
@@ -3043,17 +3081,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1425:2: (iv_ruleInfrastructureMapping= ruleInfrastructureMapping EOF )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1426:2: iv_ruleInfrastructureMapping= ruleInfrastructureMapping EOF
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1451:2: (iv_ruleInfrastructureMapping= ruleInfrastructureMapping EOF )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1452:2: iv_ruleInfrastructureMapping= ruleInfrastructureMapping EOF
             {
              newCompositeNode(grammarAccess.getInfrastructureMappingRule()); 
-            pushFollow(FollowSets000.FOLLOW_ruleInfrastructureMapping_in_entryRuleInfrastructureMapping3278);
+            pushFollow(FollowSets000.FOLLOW_ruleInfrastructureMapping_in_entryRuleInfrastructureMapping3324);
             iv_ruleInfrastructureMapping=ruleInfrastructureMapping();
 
             state._fsp--;
 
              current =iv_ruleInfrastructureMapping; 
-            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleInfrastructureMapping3288); 
+            match(input,EOF,FollowSets000.FOLLOW_EOF_in_entryRuleInfrastructureMapping3334); 
 
             }
 
@@ -3071,7 +3109,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleInfrastructureMapping"
-    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1433:1: ruleInfrastructureMapping returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'from' otherlv_2= ':' otherlv_3= '[' ( (otherlv_4= RULE_ID ) )* otherlv_5= ']' otherlv_6= 'to' otherlv_7= ':' ( (otherlv_8= RULE_ID ) ) otherlv_9= '}' ) ;
+    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1459:1: ruleInfrastructureMapping returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'from' otherlv_2= ':' otherlv_3= '[' ( (otherlv_4= RULE_ID ) )* otherlv_5= ']' otherlv_6= 'to' otherlv_7= ':' ( (otherlv_8= RULE_ID ) ) otherlv_9= '}' ) ;
     public final EObject ruleInfrastructureMapping() throws RecognitionException {
         EObject current = null;
 
@@ -3089,29 +3127,29 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1436:28: ( (otherlv_0= '{' otherlv_1= 'from' otherlv_2= ':' otherlv_3= '[' ( (otherlv_4= RULE_ID ) )* otherlv_5= ']' otherlv_6= 'to' otherlv_7= ':' ( (otherlv_8= RULE_ID ) ) otherlv_9= '}' ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1437:1: (otherlv_0= '{' otherlv_1= 'from' otherlv_2= ':' otherlv_3= '[' ( (otherlv_4= RULE_ID ) )* otherlv_5= ']' otherlv_6= 'to' otherlv_7= ':' ( (otherlv_8= RULE_ID ) ) otherlv_9= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1462:28: ( (otherlv_0= '{' otherlv_1= 'from' otherlv_2= ':' otherlv_3= '[' ( (otherlv_4= RULE_ID ) )* otherlv_5= ']' otherlv_6= 'to' otherlv_7= ':' ( (otherlv_8= RULE_ID ) ) otherlv_9= '}' ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1463:1: (otherlv_0= '{' otherlv_1= 'from' otherlv_2= ':' otherlv_3= '[' ( (otherlv_4= RULE_ID ) )* otherlv_5= ']' otherlv_6= 'to' otherlv_7= ':' ( (otherlv_8= RULE_ID ) ) otherlv_9= '}' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1437:1: (otherlv_0= '{' otherlv_1= 'from' otherlv_2= ':' otherlv_3= '[' ( (otherlv_4= RULE_ID ) )* otherlv_5= ']' otherlv_6= 'to' otherlv_7= ':' ( (otherlv_8= RULE_ID ) ) otherlv_9= '}' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1437:3: otherlv_0= '{' otherlv_1= 'from' otherlv_2= ':' otherlv_3= '[' ( (otherlv_4= RULE_ID ) )* otherlv_5= ']' otherlv_6= 'to' otherlv_7= ':' ( (otherlv_8= RULE_ID ) ) otherlv_9= '}'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1463:1: (otherlv_0= '{' otherlv_1= 'from' otherlv_2= ':' otherlv_3= '[' ( (otherlv_4= RULE_ID ) )* otherlv_5= ']' otherlv_6= 'to' otherlv_7= ':' ( (otherlv_8= RULE_ID ) ) otherlv_9= '}' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1463:3: otherlv_0= '{' otherlv_1= 'from' otherlv_2= ':' otherlv_3= '[' ( (otherlv_4= RULE_ID ) )* otherlv_5= ']' otherlv_6= 'to' otherlv_7= ':' ( (otherlv_8= RULE_ID ) ) otherlv_9= '}'
             {
-            otherlv_0=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleInfrastructureMapping3325); 
+            otherlv_0=(Token)match(input,18,FollowSets000.FOLLOW_18_in_ruleInfrastructureMapping3371); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getInfrastructureMappingAccess().getLeftCurlyBracketKeyword_0());
                 
-            otherlv_1=(Token)match(input,38,FollowSets000.FOLLOW_38_in_ruleInfrastructureMapping3337); 
+            otherlv_1=(Token)match(input,39,FollowSets000.FOLLOW_39_in_ruleInfrastructureMapping3383); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getInfrastructureMappingAccess().getFromKeyword_1());
                 
-            otherlv_2=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleInfrastructureMapping3349); 
+            otherlv_2=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleInfrastructureMapping3395); 
 
                 	newLeafNode(otherlv_2, grammarAccess.getInfrastructureMappingAccess().getColonKeyword_2());
                 
-            otherlv_3=(Token)match(input,14,FollowSets000.FOLLOW_14_in_ruleInfrastructureMapping3361); 
+            otherlv_3=(Token)match(input,14,FollowSets000.FOLLOW_14_in_ruleInfrastructureMapping3407); 
 
                 	newLeafNode(otherlv_3, grammarAccess.getInfrastructureMappingAccess().getLeftSquareBracketKeyword_3());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1453:1: ( (otherlv_4= RULE_ID ) )*
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1479:1: ( (otherlv_4= RULE_ID ) )*
             loop18:
             do {
                 int alt18=2;
@@ -3124,17 +3162,17 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
                 switch (alt18) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1454:1: (otherlv_4= RULE_ID )
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1480:1: (otherlv_4= RULE_ID )
             	    {
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1454:1: (otherlv_4= RULE_ID )
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1455:3: otherlv_4= RULE_ID
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1480:1: (otherlv_4= RULE_ID )
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1481:3: otherlv_4= RULE_ID
             	    {
 
             	    			if (current==null) {
             	    	            current = createModelElement(grammarAccess.getInfrastructureMappingRule());
             	    	        }
             	            
-            	    otherlv_4=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleInfrastructureMapping3381); 
+            	    otherlv_4=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleInfrastructureMapping3427); 
 
             	    		newLeafNode(otherlv_4, grammarAccess.getInfrastructureMappingAccess().getMappedElementsReteNodeRecipeCrossReference_4_0()); 
             	    	
@@ -3150,30 +3188,30 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_5=(Token)match(input,15,FollowSets000.FOLLOW_15_in_ruleInfrastructureMapping3394); 
+            otherlv_5=(Token)match(input,15,FollowSets000.FOLLOW_15_in_ruleInfrastructureMapping3440); 
 
                 	newLeafNode(otherlv_5, grammarAccess.getInfrastructureMappingAccess().getRightSquareBracketKeyword_5());
                 
-            otherlv_6=(Token)match(input,39,FollowSets000.FOLLOW_39_in_ruleInfrastructureMapping3406); 
+            otherlv_6=(Token)match(input,40,FollowSets000.FOLLOW_40_in_ruleInfrastructureMapping3452); 
 
                 	newLeafNode(otherlv_6, grammarAccess.getInfrastructureMappingAccess().getToKeyword_6());
                 
-            otherlv_7=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleInfrastructureMapping3418); 
+            otherlv_7=(Token)match(input,13,FollowSets000.FOLLOW_13_in_ruleInfrastructureMapping3464); 
 
                 	newLeafNode(otherlv_7, grammarAccess.getInfrastructureMappingAccess().getColonKeyword_7());
                 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1478:1: ( (otherlv_8= RULE_ID ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1479:1: (otherlv_8= RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1504:1: ( (otherlv_8= RULE_ID ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1505:1: (otherlv_8= RULE_ID )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1479:1: (otherlv_8= RULE_ID )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1480:3: otherlv_8= RULE_ID
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1505:1: (otherlv_8= RULE_ID )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1506:3: otherlv_8= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getInfrastructureMappingRule());
             	        }
                     
-            otherlv_8=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleInfrastructureMapping3438); 
+            otherlv_8=(Token)match(input,RULE_ID,FollowSets000.FOLLOW_RULE_ID_in_ruleInfrastructureMapping3484); 
 
             		newLeafNode(otherlv_8, grammarAccess.getInfrastructureMappingAccess().getTargetElementMachineCrossReference_8_0()); 
             	
@@ -3183,7 +3221,7 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_9=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleInfrastructureMapping3450); 
+            otherlv_9=(Token)match(input,21,FollowSets000.FOLLOW_21_in_ruleInfrastructureMapping3496); 
 
                 	newLeafNode(otherlv_9, grammarAccess.getInfrastructureMappingAccess().getRightCurlyBracketKeyword_9());
                 
@@ -3249,158 +3287,161 @@ public class InternalArchLanguageParser extends AbstractInternalAntlrParser {
         public static final BitSet FOLLOW_18_in_ruleMachine671 = new BitSet(new long[]{0x0000000000400000L});
         public static final BitSet FOLLOW_22_in_ruleMachine683 = new BitSet(new long[]{0x0000000000002000L});
         public static final BitSet FOLLOW_13_in_ruleMachine695 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_RULE_STRING_in_ruleMachine712 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_RULE_ID_in_ruleMachine712 = new BitSet(new long[]{0x0000000000800000L});
         public static final BitSet FOLLOW_23_in_ruleMachine729 = new BitSet(new long[]{0x0000000000002000L});
         public static final BitSet FOLLOW_13_in_ruleMachine741 = new BitSet(new long[]{0x0000000000000020L});
-        public static final BitSet FOLLOW_RULE_IP_in_ruleMachine758 = new BitSet(new long[]{0x0000000000200000L});
-        public static final BitSet FOLLOW_21_in_ruleMachine775 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleReteRecipe_in_entryRuleReteRecipe811 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleReteRecipe821 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_ruleReteRecipe867 = new BitSet(new long[]{0x0000000001000000L});
-        public static final BitSet FOLLOW_24_in_ruleReteRecipe879 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleReteRecipe891 = new BitSet(new long[]{0x0000000000004000L});
-        public static final BitSet FOLLOW_14_in_ruleReteRecipe903 = new BitSet(new long[]{0x000000095A008000L});
-        public static final BitSet FOLLOW_ruleReteNodeRecipe_in_ruleReteRecipe924 = new BitSet(new long[]{0x000000095A008000L});
-        public static final BitSet FOLLOW_15_in_ruleReteRecipe937 = new BitSet(new long[]{0x0000000000200000L});
-        public static final BitSet FOLLOW_21_in_ruleReteRecipe949 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleReteNodeRecipe_in_entryRuleReteNodeRecipe985 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleReteNodeRecipe995 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleProductionRecipe_in_ruleReteNodeRecipe1042 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleUniquenessEnforcerRecipe_in_ruleReteNodeRecipe1069 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleCheckRecipe_in_ruleReteNodeRecipe1096 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTrimmerRecipe_in_ruleReteNodeRecipe1123 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleJoinRecipe_in_ruleReteNodeRecipe1150 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleAntiJoinRecipe_in_ruleReteNodeRecipe1177 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleProductionRecipe_in_entryRuleProductionRecipe1212 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleProductionRecipe1222 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_25_in_ruleProductionRecipe1259 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_18_in_ruleProductionRecipe1271 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_22_in_ruleProductionRecipe1283 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleProductionRecipe1295 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_RULE_STRING_in_ruleProductionRecipe1312 = new BitSet(new long[]{0x0000000004000000L});
-        public static final BitSet FOLLOW_26_in_ruleProductionRecipe1329 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleProductionRecipe1341 = new BitSet(new long[]{0x0000000000004000L});
-        public static final BitSet FOLLOW_14_in_ruleProductionRecipe1353 = new BitSet(new long[]{0x0000000000008040L});
-        public static final BitSet FOLLOW_RULE_ID_in_ruleProductionRecipe1373 = new BitSet(new long[]{0x0000000000008040L});
-        public static final BitSet FOLLOW_15_in_ruleProductionRecipe1386 = new BitSet(new long[]{0x0000000000200000L});
-        public static final BitSet FOLLOW_21_in_ruleProductionRecipe1398 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleUniquenessEnforcerRecipe_in_entryRuleUniquenessEnforcerRecipe1434 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleUniquenessEnforcerRecipe1444 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_27_in_ruleUniquenessEnforcerRecipe1481 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_18_in_ruleUniquenessEnforcerRecipe1493 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_22_in_ruleUniquenessEnforcerRecipe1505 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleUniquenessEnforcerRecipe1517 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_RULE_STRING_in_ruleUniquenessEnforcerRecipe1534 = new BitSet(new long[]{0x0000000004000000L});
-        public static final BitSet FOLLOW_26_in_ruleUniquenessEnforcerRecipe1551 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleUniquenessEnforcerRecipe1563 = new BitSet(new long[]{0x0000000000004000L});
-        public static final BitSet FOLLOW_14_in_ruleUniquenessEnforcerRecipe1575 = new BitSet(new long[]{0x0000000000008040L});
-        public static final BitSet FOLLOW_RULE_ID_in_ruleUniquenessEnforcerRecipe1595 = new BitSet(new long[]{0x0000000000008040L});
-        public static final BitSet FOLLOW_15_in_ruleUniquenessEnforcerRecipe1608 = new BitSet(new long[]{0x0000000000200000L});
-        public static final BitSet FOLLOW_21_in_ruleUniquenessEnforcerRecipe1620 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleCheckRecipe_in_entryRuleCheckRecipe1656 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleCheckRecipe1666 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_28_in_ruleCheckRecipe1703 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_18_in_ruleCheckRecipe1715 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_22_in_ruleCheckRecipe1727 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleCheckRecipe1739 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_RULE_STRING_in_ruleCheckRecipe1756 = new BitSet(new long[]{0x0000000020000000L});
-        public static final BitSet FOLLOW_29_in_ruleCheckRecipe1773 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleCheckRecipe1785 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_RULE_ID_in_ruleCheckRecipe1805 = new BitSet(new long[]{0x0000000000200000L});
-        public static final BitSet FOLLOW_21_in_ruleCheckRecipe1817 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleTrimmerRecipe_in_entryRuleTrimmerRecipe1853 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleTrimmerRecipe1863 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_30_in_ruleTrimmerRecipe1900 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_18_in_ruleTrimmerRecipe1912 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_22_in_ruleTrimmerRecipe1924 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleTrimmerRecipe1936 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_RULE_STRING_in_ruleTrimmerRecipe1953 = new BitSet(new long[]{0x0000000080000000L});
-        public static final BitSet FOLLOW_31_in_ruleTrimmerRecipe1970 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleTrimmerRecipe1982 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_ruleMask_in_ruleTrimmerRecipe2003 = new BitSet(new long[]{0x0000000020000000L});
-        public static final BitSet FOLLOW_29_in_ruleTrimmerRecipe2015 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleTrimmerRecipe2027 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_RULE_ID_in_ruleTrimmerRecipe2047 = new BitSet(new long[]{0x0000000000200000L});
-        public static final BitSet FOLLOW_21_in_ruleTrimmerRecipe2059 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleJoinRecipe_in_entryRuleJoinRecipe2095 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleJoinRecipe2105 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_32_in_ruleJoinRecipe2142 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_18_in_ruleJoinRecipe2154 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_22_in_ruleJoinRecipe2166 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleJoinRecipe2178 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_RULE_STRING_in_ruleJoinRecipe2195 = new BitSet(new long[]{0x0000000200000000L});
-        public static final BitSet FOLLOW_33_in_ruleJoinRecipe2212 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleJoinRecipe2224 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_ruleProjectionIndexerRecipe_in_ruleJoinRecipe2245 = new BitSet(new long[]{0x0000000400000000L});
-        public static final BitSet FOLLOW_34_in_ruleJoinRecipe2257 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleJoinRecipe2269 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_ruleIndexerRecipe_in_ruleJoinRecipe2290 = new BitSet(new long[]{0x0000000000240000L});
-        public static final BitSet FOLLOW_ruleMask_in_ruleJoinRecipe2311 = new BitSet(new long[]{0x0000000000200000L});
-        public static final BitSet FOLLOW_21_in_ruleJoinRecipe2324 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleAntiJoinRecipe_in_entryRuleAntiJoinRecipe2360 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleAntiJoinRecipe2370 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_35_in_ruleAntiJoinRecipe2407 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_18_in_ruleAntiJoinRecipe2419 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_22_in_ruleAntiJoinRecipe2431 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleAntiJoinRecipe2443 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_RULE_STRING_in_ruleAntiJoinRecipe2460 = new BitSet(new long[]{0x0000000200000000L});
-        public static final BitSet FOLLOW_33_in_ruleAntiJoinRecipe2477 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleAntiJoinRecipe2489 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_ruleProjectionIndexerRecipe_in_ruleAntiJoinRecipe2510 = new BitSet(new long[]{0x0000000400000000L});
-        public static final BitSet FOLLOW_34_in_ruleAntiJoinRecipe2522 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleAntiJoinRecipe2534 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_ruleIndexerRecipe_in_ruleAntiJoinRecipe2555 = new BitSet(new long[]{0x0000000000200000L});
-        public static final BitSet FOLLOW_21_in_ruleAntiJoinRecipe2567 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleIndexerRecipe_in_entryRuleIndexerRecipe2603 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleIndexerRecipe2613 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_ruleIndexerRecipe2650 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_22_in_ruleIndexerRecipe2662 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleIndexerRecipe2674 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_RULE_STRING_in_ruleIndexerRecipe2691 = new BitSet(new long[]{0x0000000080000000L});
-        public static final BitSet FOLLOW_31_in_ruleIndexerRecipe2708 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleIndexerRecipe2720 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_ruleMask_in_ruleIndexerRecipe2741 = new BitSet(new long[]{0x0000000020000000L});
-        public static final BitSet FOLLOW_29_in_ruleIndexerRecipe2753 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleIndexerRecipe2765 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_RULE_ID_in_ruleIndexerRecipe2785 = new BitSet(new long[]{0x0000000000200000L});
-        public static final BitSet FOLLOW_21_in_ruleIndexerRecipe2797 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleProjectionIndexerRecipe_in_entryRuleProjectionIndexerRecipe2833 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleProjectionIndexerRecipe2843 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_ruleProjectionIndexerRecipe2880 = new BitSet(new long[]{0x0000000000400000L});
-        public static final BitSet FOLLOW_22_in_ruleProjectionIndexerRecipe2892 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleProjectionIndexerRecipe2904 = new BitSet(new long[]{0x0000000000000010L});
-        public static final BitSet FOLLOW_RULE_STRING_in_ruleProjectionIndexerRecipe2921 = new BitSet(new long[]{0x0000000080000000L});
-        public static final BitSet FOLLOW_31_in_ruleProjectionIndexerRecipe2938 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleProjectionIndexerRecipe2950 = new BitSet(new long[]{0x0000000000040000L});
-        public static final BitSet FOLLOW_ruleMask_in_ruleProjectionIndexerRecipe2971 = new BitSet(new long[]{0x0000000020000000L});
-        public static final BitSet FOLLOW_29_in_ruleProjectionIndexerRecipe2983 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleProjectionIndexerRecipe2995 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_RULE_ID_in_ruleProjectionIndexerRecipe3015 = new BitSet(new long[]{0x0000000000200000L});
-        public static final BitSet FOLLOW_21_in_ruleProjectionIndexerRecipe3027 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleMask_in_entryRuleMask3063 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleMask3073 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_ruleMask3110 = new BitSet(new long[]{0x0000001000000000L});
-        public static final BitSet FOLLOW_36_in_ruleMask3122 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleMask3134 = new BitSet(new long[]{0x0000000000000080L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleMask3151 = new BitSet(new long[]{0x0000002000200000L});
-        public static final BitSet FOLLOW_37_in_ruleMask3169 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleMask3181 = new BitSet(new long[]{0x0000000000004000L});
-        public static final BitSet FOLLOW_14_in_ruleMask3193 = new BitSet(new long[]{0x0000000000008080L});
-        public static final BitSet FOLLOW_RULE_INT_in_ruleMask3210 = new BitSet(new long[]{0x0000000000008080L});
-        public static final BitSet FOLLOW_15_in_ruleMask3228 = new BitSet(new long[]{0x0000002000200000L});
-        public static final BitSet FOLLOW_21_in_ruleMask3242 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_ruleInfrastructureMapping_in_entryRuleInfrastructureMapping3278 = new BitSet(new long[]{0x0000000000000000L});
-        public static final BitSet FOLLOW_EOF_in_entryRuleInfrastructureMapping3288 = new BitSet(new long[]{0x0000000000000002L});
-        public static final BitSet FOLLOW_18_in_ruleInfrastructureMapping3325 = new BitSet(new long[]{0x0000004000000000L});
-        public static final BitSet FOLLOW_38_in_ruleInfrastructureMapping3337 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleInfrastructureMapping3349 = new BitSet(new long[]{0x0000000000004000L});
-        public static final BitSet FOLLOW_14_in_ruleInfrastructureMapping3361 = new BitSet(new long[]{0x0000000000008040L});
-        public static final BitSet FOLLOW_RULE_ID_in_ruleInfrastructureMapping3381 = new BitSet(new long[]{0x0000000000008040L});
-        public static final BitSet FOLLOW_15_in_ruleInfrastructureMapping3394 = new BitSet(new long[]{0x0000008000000000L});
-        public static final BitSet FOLLOW_39_in_ruleInfrastructureMapping3406 = new BitSet(new long[]{0x0000000000002000L});
-        public static final BitSet FOLLOW_13_in_ruleInfrastructureMapping3418 = new BitSet(new long[]{0x0000000000000040L});
-        public static final BitSet FOLLOW_RULE_ID_in_ruleInfrastructureMapping3438 = new BitSet(new long[]{0x0000000000200000L});
-        public static final BitSet FOLLOW_21_in_ruleInfrastructureMapping3450 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleMachine758 = new BitSet(new long[]{0x0000000001000000L});
+        public static final BitSet FOLLOW_24_in_ruleMachine775 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleMachine787 = new BitSet(new long[]{0x0000000000000040L});
+        public static final BitSet FOLLOW_RULE_IP_in_ruleMachine804 = new BitSet(new long[]{0x0000000000200000L});
+        public static final BitSet FOLLOW_21_in_ruleMachine821 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleReteRecipe_in_entryRuleReteRecipe857 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleReteRecipe867 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_ruleReteRecipe913 = new BitSet(new long[]{0x0000000002000000L});
+        public static final BitSet FOLLOW_25_in_ruleReteRecipe925 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleReteRecipe937 = new BitSet(new long[]{0x0000000000004000L});
+        public static final BitSet FOLLOW_14_in_ruleReteRecipe949 = new BitSet(new long[]{0x00000012B4008000L});
+        public static final BitSet FOLLOW_ruleReteNodeRecipe_in_ruleReteRecipe970 = new BitSet(new long[]{0x00000012B4008000L});
+        public static final BitSet FOLLOW_15_in_ruleReteRecipe983 = new BitSet(new long[]{0x0000000000200000L});
+        public static final BitSet FOLLOW_21_in_ruleReteRecipe995 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleReteNodeRecipe_in_entryRuleReteNodeRecipe1031 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleReteNodeRecipe1041 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleProductionRecipe_in_ruleReteNodeRecipe1088 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleUniquenessEnforcerRecipe_in_ruleReteNodeRecipe1115 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleCheckRecipe_in_ruleReteNodeRecipe1142 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTrimmerRecipe_in_ruleReteNodeRecipe1169 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleJoinRecipe_in_ruleReteNodeRecipe1196 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleAntiJoinRecipe_in_ruleReteNodeRecipe1223 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleProductionRecipe_in_entryRuleProductionRecipe1258 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleProductionRecipe1268 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_26_in_ruleProductionRecipe1305 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_18_in_ruleProductionRecipe1317 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_23_in_ruleProductionRecipe1329 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleProductionRecipe1341 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleProductionRecipe1358 = new BitSet(new long[]{0x0000000008000000L});
+        public static final BitSet FOLLOW_27_in_ruleProductionRecipe1375 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleProductionRecipe1387 = new BitSet(new long[]{0x0000000000004000L});
+        public static final BitSet FOLLOW_14_in_ruleProductionRecipe1399 = new BitSet(new long[]{0x0000000000008010L});
+        public static final BitSet FOLLOW_RULE_ID_in_ruleProductionRecipe1419 = new BitSet(new long[]{0x0000000000008010L});
+        public static final BitSet FOLLOW_15_in_ruleProductionRecipe1432 = new BitSet(new long[]{0x0000000000200000L});
+        public static final BitSet FOLLOW_21_in_ruleProductionRecipe1444 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleUniquenessEnforcerRecipe_in_entryRuleUniquenessEnforcerRecipe1480 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleUniquenessEnforcerRecipe1490 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_28_in_ruleUniquenessEnforcerRecipe1527 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_18_in_ruleUniquenessEnforcerRecipe1539 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_23_in_ruleUniquenessEnforcerRecipe1551 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleUniquenessEnforcerRecipe1563 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleUniquenessEnforcerRecipe1580 = new BitSet(new long[]{0x0000000008000000L});
+        public static final BitSet FOLLOW_27_in_ruleUniquenessEnforcerRecipe1597 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleUniquenessEnforcerRecipe1609 = new BitSet(new long[]{0x0000000000004000L});
+        public static final BitSet FOLLOW_14_in_ruleUniquenessEnforcerRecipe1621 = new BitSet(new long[]{0x0000000000008010L});
+        public static final BitSet FOLLOW_RULE_ID_in_ruleUniquenessEnforcerRecipe1641 = new BitSet(new long[]{0x0000000000008010L});
+        public static final BitSet FOLLOW_15_in_ruleUniquenessEnforcerRecipe1654 = new BitSet(new long[]{0x0000000000200000L});
+        public static final BitSet FOLLOW_21_in_ruleUniquenessEnforcerRecipe1666 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleCheckRecipe_in_entryRuleCheckRecipe1702 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleCheckRecipe1712 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_29_in_ruleCheckRecipe1749 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_18_in_ruleCheckRecipe1761 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_23_in_ruleCheckRecipe1773 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleCheckRecipe1785 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleCheckRecipe1802 = new BitSet(new long[]{0x0000000040000000L});
+        public static final BitSet FOLLOW_30_in_ruleCheckRecipe1819 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleCheckRecipe1831 = new BitSet(new long[]{0x0000000000000010L});
+        public static final BitSet FOLLOW_RULE_ID_in_ruleCheckRecipe1851 = new BitSet(new long[]{0x0000000000200000L});
+        public static final BitSet FOLLOW_21_in_ruleCheckRecipe1863 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleTrimmerRecipe_in_entryRuleTrimmerRecipe1899 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleTrimmerRecipe1909 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_31_in_ruleTrimmerRecipe1946 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_18_in_ruleTrimmerRecipe1958 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_23_in_ruleTrimmerRecipe1970 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleTrimmerRecipe1982 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleTrimmerRecipe1999 = new BitSet(new long[]{0x0000000100000000L});
+        public static final BitSet FOLLOW_32_in_ruleTrimmerRecipe2016 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleTrimmerRecipe2028 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_ruleMask_in_ruleTrimmerRecipe2049 = new BitSet(new long[]{0x0000000040000000L});
+        public static final BitSet FOLLOW_30_in_ruleTrimmerRecipe2061 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleTrimmerRecipe2073 = new BitSet(new long[]{0x0000000000000010L});
+        public static final BitSet FOLLOW_RULE_ID_in_ruleTrimmerRecipe2093 = new BitSet(new long[]{0x0000000000200000L});
+        public static final BitSet FOLLOW_21_in_ruleTrimmerRecipe2105 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleJoinRecipe_in_entryRuleJoinRecipe2141 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleJoinRecipe2151 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_33_in_ruleJoinRecipe2188 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_18_in_ruleJoinRecipe2200 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_23_in_ruleJoinRecipe2212 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleJoinRecipe2224 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleJoinRecipe2241 = new BitSet(new long[]{0x0000000400000000L});
+        public static final BitSet FOLLOW_34_in_ruleJoinRecipe2258 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleJoinRecipe2270 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_ruleProjectionIndexerRecipe_in_ruleJoinRecipe2291 = new BitSet(new long[]{0x0000000800000000L});
+        public static final BitSet FOLLOW_35_in_ruleJoinRecipe2303 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleJoinRecipe2315 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_ruleIndexerRecipe_in_ruleJoinRecipe2336 = new BitSet(new long[]{0x0000000000240000L});
+        public static final BitSet FOLLOW_ruleMask_in_ruleJoinRecipe2357 = new BitSet(new long[]{0x0000000000200000L});
+        public static final BitSet FOLLOW_21_in_ruleJoinRecipe2370 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleAntiJoinRecipe_in_entryRuleAntiJoinRecipe2406 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleAntiJoinRecipe2416 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_36_in_ruleAntiJoinRecipe2453 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_18_in_ruleAntiJoinRecipe2465 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_23_in_ruleAntiJoinRecipe2477 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleAntiJoinRecipe2489 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleAntiJoinRecipe2506 = new BitSet(new long[]{0x0000000400000000L});
+        public static final BitSet FOLLOW_34_in_ruleAntiJoinRecipe2523 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleAntiJoinRecipe2535 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_ruleProjectionIndexerRecipe_in_ruleAntiJoinRecipe2556 = new BitSet(new long[]{0x0000000800000000L});
+        public static final BitSet FOLLOW_35_in_ruleAntiJoinRecipe2568 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleAntiJoinRecipe2580 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_ruleIndexerRecipe_in_ruleAntiJoinRecipe2601 = new BitSet(new long[]{0x0000000000200000L});
+        public static final BitSet FOLLOW_21_in_ruleAntiJoinRecipe2613 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleIndexerRecipe_in_entryRuleIndexerRecipe2649 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleIndexerRecipe2659 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_ruleIndexerRecipe2696 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_23_in_ruleIndexerRecipe2708 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleIndexerRecipe2720 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleIndexerRecipe2737 = new BitSet(new long[]{0x0000000100000000L});
+        public static final BitSet FOLLOW_32_in_ruleIndexerRecipe2754 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleIndexerRecipe2766 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_ruleMask_in_ruleIndexerRecipe2787 = new BitSet(new long[]{0x0000000040000000L});
+        public static final BitSet FOLLOW_30_in_ruleIndexerRecipe2799 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleIndexerRecipe2811 = new BitSet(new long[]{0x0000000000000010L});
+        public static final BitSet FOLLOW_RULE_ID_in_ruleIndexerRecipe2831 = new BitSet(new long[]{0x0000000000200000L});
+        public static final BitSet FOLLOW_21_in_ruleIndexerRecipe2843 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleProjectionIndexerRecipe_in_entryRuleProjectionIndexerRecipe2879 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleProjectionIndexerRecipe2889 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_ruleProjectionIndexerRecipe2926 = new BitSet(new long[]{0x0000000000800000L});
+        public static final BitSet FOLLOW_23_in_ruleProjectionIndexerRecipe2938 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleProjectionIndexerRecipe2950 = new BitSet(new long[]{0x0000000000000020L});
+        public static final BitSet FOLLOW_RULE_STRING_in_ruleProjectionIndexerRecipe2967 = new BitSet(new long[]{0x0000000100000000L});
+        public static final BitSet FOLLOW_32_in_ruleProjectionIndexerRecipe2984 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleProjectionIndexerRecipe2996 = new BitSet(new long[]{0x0000000000040000L});
+        public static final BitSet FOLLOW_ruleMask_in_ruleProjectionIndexerRecipe3017 = new BitSet(new long[]{0x0000000040000000L});
+        public static final BitSet FOLLOW_30_in_ruleProjectionIndexerRecipe3029 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleProjectionIndexerRecipe3041 = new BitSet(new long[]{0x0000000000000010L});
+        public static final BitSet FOLLOW_RULE_ID_in_ruleProjectionIndexerRecipe3061 = new BitSet(new long[]{0x0000000000200000L});
+        public static final BitSet FOLLOW_21_in_ruleProjectionIndexerRecipe3073 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleMask_in_entryRuleMask3109 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleMask3119 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_ruleMask3156 = new BitSet(new long[]{0x0000002000000000L});
+        public static final BitSet FOLLOW_37_in_ruleMask3168 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleMask3180 = new BitSet(new long[]{0x0000000000000080L});
+        public static final BitSet FOLLOW_RULE_INT_in_ruleMask3197 = new BitSet(new long[]{0x0000004000200000L});
+        public static final BitSet FOLLOW_38_in_ruleMask3215 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleMask3227 = new BitSet(new long[]{0x0000000000004000L});
+        public static final BitSet FOLLOW_14_in_ruleMask3239 = new BitSet(new long[]{0x0000000000008080L});
+        public static final BitSet FOLLOW_RULE_INT_in_ruleMask3256 = new BitSet(new long[]{0x0000000000008080L});
+        public static final BitSet FOLLOW_15_in_ruleMask3274 = new BitSet(new long[]{0x0000004000200000L});
+        public static final BitSet FOLLOW_21_in_ruleMask3288 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_ruleInfrastructureMapping_in_entryRuleInfrastructureMapping3324 = new BitSet(new long[]{0x0000000000000000L});
+        public static final BitSet FOLLOW_EOF_in_entryRuleInfrastructureMapping3334 = new BitSet(new long[]{0x0000000000000002L});
+        public static final BitSet FOLLOW_18_in_ruleInfrastructureMapping3371 = new BitSet(new long[]{0x0000008000000000L});
+        public static final BitSet FOLLOW_39_in_ruleInfrastructureMapping3383 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleInfrastructureMapping3395 = new BitSet(new long[]{0x0000000000004000L});
+        public static final BitSet FOLLOW_14_in_ruleInfrastructureMapping3407 = new BitSet(new long[]{0x0000000000008010L});
+        public static final BitSet FOLLOW_RULE_ID_in_ruleInfrastructureMapping3427 = new BitSet(new long[]{0x0000000000008010L});
+        public static final BitSet FOLLOW_15_in_ruleInfrastructureMapping3440 = new BitSet(new long[]{0x0000010000000000L});
+        public static final BitSet FOLLOW_40_in_ruleInfrastructureMapping3452 = new BitSet(new long[]{0x0000000000002000L});
+        public static final BitSet FOLLOW_13_in_ruleInfrastructureMapping3464 = new BitSet(new long[]{0x0000000000000010L});
+        public static final BitSet FOLLOW_RULE_ID_in_ruleInfrastructureMapping3484 = new BitSet(new long[]{0x0000000000200000L});
+        public static final BitSet FOLLOW_21_in_ruleInfrastructureMapping3496 = new BitSet(new long[]{0x0000000000000002L});
     }
 
 
