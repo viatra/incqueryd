@@ -63,8 +63,9 @@ public class ArchLanguageParser extends AbstractContentAssistParser {
 					put(grammarAccess.getConfigurationAccess().getMappingsAssignment_3_3(), "rule__Configuration__MappingsAssignment_3_3");
 					put(grammarAccess.getClusterAccess().getReteMachinesAssignment_2_3(), "rule__Cluster__ReteMachinesAssignment_2_3");
 					put(grammarAccess.getClusterAccess().getCacheMachinesAssignment_3_3(), "rule__Cluster__CacheMachinesAssignment_3_3");
-					put(grammarAccess.getMachineAccess().getTraceInfoAssignment_3(), "rule__Machine__TraceInfoAssignment_3");
-					put(grammarAccess.getMachineAccess().getIpAssignment_6(), "rule__Machine__IpAssignment_6");
+					put(grammarAccess.getMachineAccess().getNameAssignment_3(), "rule__Machine__NameAssignment_3");
+					put(grammarAccess.getMachineAccess().getTraceInfoAssignment_6(), "rule__Machine__TraceInfoAssignment_6");
+					put(grammarAccess.getMachineAccess().getIpAssignment_9(), "rule__Machine__IpAssignment_9");
 					put(grammarAccess.getReteRecipeAccess().getRecipeNodesAssignment_5(), "rule__ReteRecipe__RecipeNodesAssignment_5");
 					put(grammarAccess.getProductionRecipeAccess().getTraceInfoAssignment_4(), "rule__ProductionRecipe__TraceInfoAssignment_4");
 					put(grammarAccess.getProductionRecipeAccess().getParentsAssignment_8(), "rule__ProductionRecipe__ParentsAssignment_8");
