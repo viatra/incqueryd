@@ -206,52 +206,68 @@ public class ArchLanguageGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Machine");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cTraceInfoKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cIdKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cTraceInfoAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cTraceInfoSTRINGTerminalRuleCall_3_0 = (RuleCall)cTraceInfoAssignment_3.eContents().get(0);
-		private final Keyword cIpKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cNameIDTerminalRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
+		private final Keyword cTraceInfoKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cColonKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Assignment cIpAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cIpIPTerminalRuleCall_6_0 = (RuleCall)cIpAssignment_6.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cTraceInfoAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cTraceInfoSTRINGTerminalRuleCall_6_0 = (RuleCall)cTraceInfoAssignment_6.eContents().get(0);
+		private final Keyword cIpKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cColonKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cIpAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cIpIPTerminalRuleCall_9_0 = (RuleCall)cIpAssignment_9.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		
 		//Machine returns inf::Machine:
-		//	"{" "traceInfo" ":" traceInfo=STRING "ip" ":" ip=IP "}";
+		//	"{" "id" ":" name=ID "traceInfo" ":" traceInfo=STRING "ip" ":" ip=IP "}";
 		public ParserRule getRule() { return rule; }
 
-		//"{" "traceInfo" ":" traceInfo=STRING "ip" ":" ip=IP "}"
+		//"{" "id" ":" name=ID "traceInfo" ":" traceInfo=STRING "ip" ":" ip=IP "}"
 		public Group getGroup() { return cGroup; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
 
-		//"traceInfo"
-		public Keyword getTraceInfoKeyword_1() { return cTraceInfoKeyword_1; }
+		//"id"
+		public Keyword getIdKeyword_1() { return cIdKeyword_1; }
 
 		//":"
 		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
 
-		//traceInfo=STRING
-		public Assignment getTraceInfoAssignment_3() { return cTraceInfoAssignment_3; }
+		//name=ID
+		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
 
-		//STRING
-		public RuleCall getTraceInfoSTRINGTerminalRuleCall_3_0() { return cTraceInfoSTRINGTerminalRuleCall_3_0; }
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_3_0() { return cNameIDTerminalRuleCall_3_0; }
 
-		//"ip"
-		public Keyword getIpKeyword_4() { return cIpKeyword_4; }
+		//"traceInfo"
+		public Keyword getTraceInfoKeyword_4() { return cTraceInfoKeyword_4; }
 
 		//":"
 		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
 
+		//traceInfo=STRING
+		public Assignment getTraceInfoAssignment_6() { return cTraceInfoAssignment_6; }
+
+		//STRING
+		public RuleCall getTraceInfoSTRINGTerminalRuleCall_6_0() { return cTraceInfoSTRINGTerminalRuleCall_6_0; }
+
+		//"ip"
+		public Keyword getIpKeyword_7() { return cIpKeyword_7; }
+
+		//":"
+		public Keyword getColonKeyword_8() { return cColonKeyword_8; }
+
 		//ip=IP
-		public Assignment getIpAssignment_6() { return cIpAssignment_6; }
+		public Assignment getIpAssignment_9() { return cIpAssignment_9; }
 
 		//IP
-		public RuleCall getIpIPTerminalRuleCall_6_0() { return cIpIPTerminalRuleCall_6_0; }
+		public RuleCall getIpIPTerminalRuleCall_9_0() { return cIpIPTerminalRuleCall_9_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+		public Keyword getRightCurlyBracketKeyword_10() { return cRightCurlyBracketKeyword_10; }
 	}
 
 	public class ReteRecipeElements extends AbstractParserRuleElementFinder {
@@ -1122,7 +1138,7 @@ public class ArchLanguageGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Machine returns inf::Machine:
-	//	"{" "traceInfo" ":" traceInfo=STRING "ip" ":" ip=IP "}";
+	//	"{" "id" ":" name=ID "traceInfo" ":" traceInfo=STRING "ip" ":" ip=IP "}";
 	public MachineElements getMachineAccess() {
 		return (pMachine != null) ? pMachine : (pMachine = new MachineElements());
 	}

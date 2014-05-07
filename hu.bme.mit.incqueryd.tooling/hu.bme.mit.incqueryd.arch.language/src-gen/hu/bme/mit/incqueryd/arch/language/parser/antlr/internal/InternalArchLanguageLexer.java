@@ -12,7 +12,8 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalArchLanguageLexer extends Lexer {
-    public static final int RULE_ID=6;
+    public static final int T__40=40;
+    public static final int RULE_ID=4;
     public static final int T__29=29;
     public static final int T__28=28;
     public static final int T__27=27;
@@ -31,7 +32,7 @@ public class InternalArchLanguageLexer extends Lexer {
     public static final int T__30=30;
     public static final int T__31=31;
     public static final int T__32=32;
-    public static final int RULE_STRING=4;
+    public static final int RULE_STRING=5;
     public static final int T__16=16;
     public static final int T__33=33;
     public static final int T__15=15;
@@ -46,7 +47,7 @@ public class InternalArchLanguageLexer extends Lexer {
     public static final int T__14=14;
     public static final int T__39=39;
     public static final int T__13=13;
-    public static final int RULE_IP=5;
+    public static final int RULE_IP=6;
     public static final int RULE_INT=7;
     public static final int RULE_WS=10;
 
@@ -273,10 +274,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:21:7: ( 'traceInfo' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:21:9: 'traceInfo'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:21:7: ( 'id' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:21:9: 'id'
             {
-            match("traceInfo"); 
+            match("id"); 
 
 
             }
@@ -294,10 +295,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:22:7: ( 'ip' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:22:9: 'ip'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:22:7: ( 'traceInfo' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:22:9: 'traceInfo'
             {
-            match("ip"); 
+            match("traceInfo"); 
 
 
             }
@@ -315,10 +316,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:23:7: ( 'nodes' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:23:9: 'nodes'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:23:7: ( 'ip' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:23:9: 'ip'
             {
-            match("nodes"); 
+            match("ip"); 
 
 
             }
@@ -336,10 +337,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:24:7: ( 'Production' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:24:9: 'Production'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:24:7: ( 'nodes' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:24:9: 'nodes'
             {
-            match("Production"); 
+            match("nodes"); 
 
 
             }
@@ -357,10 +358,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:25:7: ( 'parents' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:25:9: 'parents'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:25:7: ( 'Production' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:25:9: 'Production'
             {
-            match("parents"); 
+            match("Production"); 
 
 
             }
@@ -378,10 +379,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:26:7: ( 'UniquenessEnforcer' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:26:9: 'UniquenessEnforcer'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:26:7: ( 'parents' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:26:9: 'parents'
             {
-            match("UniquenessEnforcer"); 
+            match("parents"); 
 
 
             }
@@ -399,10 +400,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:27:7: ( 'Check' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:27:9: 'Check'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:27:7: ( 'UniquenessEnforcer' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:27:9: 'UniquenessEnforcer'
             {
-            match("Check"); 
+            match("UniquenessEnforcer"); 
 
 
             }
@@ -420,10 +421,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:28:7: ( 'parent' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:28:9: 'parent'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:28:7: ( 'Check' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:28:9: 'Check'
             {
-            match("parent"); 
+            match("Check"); 
 
 
             }
@@ -441,10 +442,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:29:7: ( 'Trimmer' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:29:9: 'Trimmer'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:29:7: ( 'parent' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:29:9: 'parent'
             {
-            match("Trimmer"); 
+            match("parent"); 
 
 
             }
@@ -462,10 +463,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:30:7: ( 'mask' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:30:9: 'mask'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:30:7: ( 'Trimmer' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:30:9: 'Trimmer'
             {
-            match("mask"); 
+            match("Trimmer"); 
 
 
             }
@@ -483,10 +484,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:31:7: ( 'Join' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:31:9: 'Join'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:31:7: ( 'mask' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:31:9: 'mask'
             {
-            match("Join"); 
+            match("mask"); 
 
 
             }
@@ -504,10 +505,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:32:7: ( 'leftParent' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:32:9: 'leftParent'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:32:7: ( 'Join' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:32:9: 'Join'
             {
-            match("leftParent"); 
+            match("Join"); 
 
 
             }
@@ -525,10 +526,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:33:7: ( 'rightParent' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:33:9: 'rightParent'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:33:7: ( 'leftParent' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:33:9: 'leftParent'
             {
-            match("rightParent"); 
+            match("leftParent"); 
 
 
             }
@@ -546,10 +547,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:34:7: ( 'AntiJoin' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:34:9: 'AntiJoin'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:34:7: ( 'rightParent' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:34:9: 'rightParent'
             {
-            match("AntiJoin"); 
+            match("rightParent"); 
 
 
             }
@@ -567,10 +568,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:35:7: ( 'sourceArity' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:35:9: 'sourceArity'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:35:7: ( 'AntiJoin' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:35:9: 'AntiJoin'
             {
-            match("sourceArity"); 
+            match("AntiJoin"); 
 
 
             }
@@ -588,10 +589,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:36:7: ( 'sourceIndices' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:36:9: 'sourceIndices'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:36:7: ( 'sourceArity' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:36:9: 'sourceArity'
             {
-            match("sourceIndices"); 
+            match("sourceArity"); 
 
 
             }
@@ -609,10 +610,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:37:7: ( 'from' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:37:9: 'from'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:37:7: ( 'sourceIndices' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:37:9: 'sourceIndices'
             {
-            match("from"); 
+            match("sourceIndices"); 
 
 
             }
@@ -630,10 +631,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:38:7: ( 'to' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:38:9: 'to'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:38:7: ( 'from' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:38:9: 'from'
             {
-            match("to"); 
+            match("from"); 
 
 
             }
@@ -646,13 +647,34 @@ public class InternalArchLanguageLexer extends Lexer {
     }
     // $ANTLR end "T__39"
 
+    // $ANTLR start "T__40"
+    public final void mT__40() throws RecognitionException {
+        try {
+            int _type = T__40;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:39:7: ( 'to' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:39:9: 'to'
+            {
+            match("to"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__40"
+
     // $ANTLR start "RULE_IP"
     public final void mRULE_IP() throws RecognitionException {
         try {
             int _type = RULE_IP;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1502:9: ( RULE_INT '.' RULE_INT '.' RULE_INT '.' RULE_INT )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1502:11: RULE_INT '.' RULE_INT '.' RULE_INT '.' RULE_INT
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1528:9: ( RULE_INT '.' RULE_INT '.' RULE_INT '.' RULE_INT )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1528:11: RULE_INT '.' RULE_INT '.' RULE_INT '.' RULE_INT
             {
             mRULE_INT(); 
             match('.'); 
@@ -677,10 +699,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1504:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1504:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1530:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1530:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1504:11: ( '^' )?
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1530:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -689,7 +711,7 @@ public class InternalArchLanguageLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1504:11: '^'
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1530:11: '^'
                     {
                     match('^'); 
 
@@ -707,7 +729,7 @@ public class InternalArchLanguageLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1504:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1530:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -756,10 +778,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1506:10: ( ( '0' .. '9' )+ )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1506:12: ( '0' .. '9' )+
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1532:10: ( ( '0' .. '9' )+ )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1532:12: ( '0' .. '9' )+
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1506:12: ( '0' .. '9' )+
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1532:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -773,7 +795,7 @@ public class InternalArchLanguageLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1506:13: '0' .. '9'
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1532:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -805,10 +827,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1508:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1508:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1534:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1534:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1508:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1534:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -826,10 +848,10 @@ public class InternalArchLanguageLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1508:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1534:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1508:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1534:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -845,7 +867,7 @@ public class InternalArchLanguageLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1508:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1534:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -861,7 +883,7 @@ public class InternalArchLanguageLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1508:66: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1534:66: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -886,10 +908,10 @@ public class InternalArchLanguageLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1508:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1534:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1508:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1534:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -905,7 +927,7 @@ public class InternalArchLanguageLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1508:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1534:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -921,7 +943,7 @@ public class InternalArchLanguageLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1508:137: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1534:137: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -964,12 +986,12 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1510:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1510:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1536:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1536:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1510:24: ( options {greedy=false; } : . )*
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1536:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -994,7 +1016,7 @@ public class InternalArchLanguageLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1510:52: .
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1536:52: .
             	    {
             	    matchAny(); 
 
@@ -1024,12 +1046,12 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1512:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1512:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1538:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1538:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1512:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1538:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -1042,7 +1064,7 @@ public class InternalArchLanguageLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1512:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1538:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1062,7 +1084,7 @@ public class InternalArchLanguageLexer extends Lexer {
                 }
             } while (true);
 
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1512:40: ( ( '\\r' )? '\\n' )?
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1538:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1071,9 +1093,9 @@ public class InternalArchLanguageLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1512:41: ( '\\r' )? '\\n'
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1538:41: ( '\\r' )? '\\n'
                     {
-                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1512:41: ( '\\r' )?
+                    // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1538:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1082,7 +1104,7 @@ public class InternalArchLanguageLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1512:41: '\\r'
+                            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1538:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1114,10 +1136,10 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1514:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1514:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1540:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1540:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1514:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1540:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -1171,8 +1193,8 @@ public class InternalArchLanguageLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1516:16: ( . )
-            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1516:18: .
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1542:16: ( . )
+            // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1542:18: .
             {
             matchAny(); 
 
@@ -1187,8 +1209,8 @@ public class InternalArchLanguageLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | RULE_IP | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=36;
+        // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:8: ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | RULE_IP | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=37;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
@@ -1388,56 +1410,63 @@ public class InternalArchLanguageLexer extends Lexer {
                 }
                 break;
             case 29 :
-                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:178: RULE_IP
+                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:178: T__40
+                {
+                mT__40(); 
+
+                }
+                break;
+            case 30 :
+                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:184: RULE_IP
                 {
                 mRULE_IP(); 
 
                 }
                 break;
-            case 30 :
-                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:186: RULE_ID
+            case 31 :
+                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:192: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 31 :
-                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:194: RULE_INT
+            case 32 :
+                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:200: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 32 :
-                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:203: RULE_STRING
+            case 33 :
+                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:209: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 33 :
-                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:215: RULE_ML_COMMENT
+            case 34 :
+                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:221: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 34 :
-                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:231: RULE_SL_COMMENT
+            case 35 :
+                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:237: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 35 :
-                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:247: RULE_WS
+            case 36 :
+                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:253: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 36 :
-                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:255: RULE_ANY_OTHER
+            case 37 :
+                // ../hu.bme.mit.incqueryd.arch.language/src-gen/hu/bme/mit/incqueryd/arch/language/parser/antlr/internal/InternalArchLanguage.g:1:261: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1451,75 +1480,76 @@ public class InternalArchLanguageLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\1\40\3\uffff\2\40\2\uffff\15\40\1\67\1\35\1\uffff\3\35"+
-        "\2\uffff\2\40\4\uffff\3\40\2\uffff\1\40\1\106\1\107\13\40\1\uffff"+
-        "\1\67\5\uffff\10\40\2\uffff\21\40\1\154\7\40\1\164\3\40\1\170\6"+
-        "\40\1\uffff\1\40\1\u0080\3\40\1\u0084\1\40\1\uffff\3\40\1\uffff"+
-        "\7\40\1\uffff\1\40\1\u0092\1\40\1\uffff\6\40\1\u009b\5\40\1\u00a1"+
-        "\1\uffff\1\40\1\u00a3\4\40\1\u00a8\1\40\1\uffff\2\40\1\u00ac\2\40"+
-        "\1\uffff\1\40\1\uffff\1\40\1\u00b1\2\40\1\uffff\3\40\1\uffff\1\u00b7"+
-        "\3\40\1\uffff\5\40\1\uffff\1\u00c0\1\40\1\u00c2\4\40\1\u00c7\1\uffff"+
-        "\1\40\1\uffff\1\u00c9\2\40\1\u00cc\1\uffff\1\40\1\uffff\1\40\1\u00cf"+
-        "\1\uffff\1\40\1\u00d1\1\uffff\1\40\1\uffff\3\40\1\u00d6\1\uffff";
+        "\1\uffff\1\40\3\uffff\2\40\2\uffff\15\40\1\70\1\35\1\uffff\3\35"+
+        "\2\uffff\2\40\4\uffff\3\40\2\uffff\1\106\1\107\1\40\1\111\13\40"+
+        "\2\uffff\1\70\4\uffff\7\40\2\uffff\1\40\1\uffff\21\40\1\156\7\40"+
+        "\1\166\3\40\1\172\6\40\1\uffff\1\40\1\u0082\3\40\1\u0086\1\40\1"+
+        "\uffff\3\40\1\uffff\7\40\1\uffff\1\40\1\u0094\1\40\1\uffff\6\40"+
+        "\1\u009d\5\40\1\u00a3\1\uffff\1\40\1\u00a5\4\40\1\u00aa\1\40\1\uffff"+
+        "\2\40\1\u00ae\2\40\1\uffff\1\40\1\uffff\1\40\1\u00b3\2\40\1\uffff"+
+        "\3\40\1\uffff\1\u00b9\3\40\1\uffff\5\40\1\uffff\1\u00c2\1\40\1\u00c4"+
+        "\4\40\1\u00c9\1\uffff\1\40\1\uffff\1\u00cb\2\40\1\u00ce\1\uffff"+
+        "\1\40\1\uffff\1\40\1\u00d1\1\uffff\1\40\1\u00d3\1\uffff\1\40\1\uffff"+
+        "\3\40\1\u00d8\1\uffff";
     static final String DFA12_eofS =
-        "\u00d7\uffff";
+        "\u00d9\uffff";
     static final String DFA12_minS =
-        "\1\0\1\141\3\uffff\1\145\1\141\2\uffff\1\157\1\160\1\157\1\162\1"+
-        "\141\1\156\1\150\1\162\1\157\1\145\1\156\1\157\1\162\1\56\1\101"+
-        "\1\uffff\2\0\1\52\2\uffff\1\165\1\143\4\uffff\1\143\1\147\1\160"+
-        "\2\uffff\1\141\2\60\1\144\1\157\1\162\1\151\1\145\2\151\1\146\1"+
-        "\164\1\165\1\157\1\uffff\1\56\5\uffff\1\163\1\150\1\151\1\145\1"+
-        "\150\1\160\1\153\1\143\2\uffff\1\145\1\144\1\145\1\161\1\143\1\155"+
-        "\1\156\1\164\1\151\1\162\1\155\1\164\1\145\1\160\1\115\1\164\1\151"+
-        "\1\60\1\145\1\163\1\165\1\156\1\165\1\153\1\155\1\60\1\120\1\112"+
-        "\1\143\1\60\1\145\1\115\1\145\1\141\1\120\1\156\1\uffff\1\111\1"+
-        "\60\1\143\1\164\1\145\1\60\1\145\1\uffff\1\141\1\157\1\145\1\uffff"+
-        "\1\162\1\141\1\163\1\143\1\141\1\147\1\156\1\uffff\1\164\1\60\1"+
-        "\156\1\uffff\2\162\1\151\1\101\1\163\1\143\1\60\1\150\1\162\1\163"+
-        "\1\146\1\151\1\60\1\uffff\1\145\1\60\1\145\1\156\1\162\1\156\1\60"+
-        "\1\150\1\uffff\1\151\1\145\1\60\2\157\1\uffff\1\163\1\uffff\1\156"+
-        "\1\60\1\151\1\144\1\uffff\1\151\2\156\1\uffff\1\60\1\156\1\163\1"+
-        "\164\1\uffff\1\164\1\151\1\156\1\145\1\164\1\uffff\1\60\1\105\1"+
-        "\60\1\171\1\143\1\145\1\163\1\60\1\uffff\1\156\1\uffff\1\60\1\145"+
-        "\1\163\1\60\1\uffff\1\146\1\uffff\1\163\1\60\1\uffff\1\157\1\60"+
-        "\1\uffff\1\162\1\uffff\1\143\1\145\1\162\1\60\1\uffff";
+        "\1\0\1\141\3\uffff\1\145\1\141\2\uffff\1\144\2\157\1\162\1\141\1"+
+        "\156\1\150\1\162\1\157\1\145\1\156\1\157\1\162\1\56\1\101\1\uffff"+
+        "\2\0\1\52\2\uffff\1\165\1\143\4\uffff\1\143\1\147\1\160\2\uffff"+
+        "\2\60\1\141\1\60\1\144\1\157\1\162\1\151\1\145\2\151\1\146\1\164"+
+        "\1\165\1\157\2\uffff\1\56\4\uffff\1\163\1\150\1\151\1\145\1\150"+
+        "\1\160\1\153\2\uffff\1\143\1\uffff\1\145\1\144\1\145\1\161\1\143"+
+        "\1\155\1\156\1\164\1\151\1\162\1\155\1\164\1\145\1\160\1\115\1\164"+
+        "\1\151\1\60\1\145\1\163\1\165\1\156\1\165\1\153\1\155\1\60\1\120"+
+        "\1\112\1\143\1\60\1\145\1\115\1\145\1\141\1\120\1\156\1\uffff\1"+
+        "\111\1\60\1\143\1\164\1\145\1\60\1\145\1\uffff\1\141\1\157\1\145"+
+        "\1\uffff\1\162\1\141\1\163\1\143\1\141\1\147\1\156\1\uffff\1\164"+
+        "\1\60\1\156\1\uffff\2\162\1\151\1\101\1\163\1\143\1\60\1\150\1\162"+
+        "\1\163\1\146\1\151\1\60\1\uffff\1\145\1\60\1\145\1\156\1\162\1\156"+
+        "\1\60\1\150\1\uffff\1\151\1\145\1\60\2\157\1\uffff\1\163\1\uffff"+
+        "\1\156\1\60\1\151\1\144\1\uffff\1\151\2\156\1\uffff\1\60\1\156\1"+
+        "\163\1\164\1\uffff\1\164\1\151\1\156\1\145\1\164\1\uffff\1\60\1"+
+        "\105\1\60\1\171\1\143\1\145\1\163\1\60\1\uffff\1\156\1\uffff\1\60"+
+        "\1\145\1\163\1\60\1\uffff\1\146\1\uffff\1\163\1\60\1\uffff\1\157"+
+        "\1\60\1\uffff\1\162\1\uffff\1\143\1\145\1\162\1\60\1\uffff";
     static final String DFA12_maxS =
-        "\1\uffff\1\154\3\uffff\1\151\1\141\2\uffff\1\162\1\160\1\157\1\162"+
+        "\1\uffff\1\154\3\uffff\1\151\1\141\2\uffff\1\160\1\162\1\157\1\162"+
         "\1\141\1\156\1\150\1\162\1\157\1\145\1\156\1\157\1\162\1\71\1\172"+
         "\1\uffff\2\uffff\1\57\2\uffff\1\165\1\143\4\uffff\1\164\1\147\1"+
-        "\163\2\uffff\1\141\2\172\1\144\1\157\1\162\1\151\1\145\2\151\1\146"+
-        "\1\164\1\165\1\157\1\uffff\1\71\5\uffff\1\163\1\150\1\151\1\145"+
-        "\1\150\1\160\1\153\1\143\2\uffff\1\145\1\144\1\145\1\161\1\143\1"+
-        "\155\1\156\1\164\1\151\1\162\1\155\1\164\1\145\1\160\1\115\1\164"+
-        "\1\151\1\172\1\145\1\163\1\165\1\156\1\165\1\153\1\155\1\172\1\120"+
-        "\1\112\1\143\1\172\1\145\1\115\1\145\1\141\1\120\1\156\1\uffff\1"+
-        "\111\1\172\1\143\1\164\1\145\1\172\1\145\1\uffff\1\141\1\157\1\145"+
-        "\1\uffff\1\162\1\141\1\163\1\143\1\141\1\147\1\156\1\uffff\1\164"+
-        "\1\172\1\156\1\uffff\2\162\1\151\1\111\1\163\1\143\1\172\1\150\1"+
-        "\162\1\163\1\146\1\151\1\172\1\uffff\1\145\1\172\1\145\1\156\1\162"+
-        "\1\156\1\172\1\150\1\uffff\1\151\1\145\1\172\2\157\1\uffff\1\163"+
-        "\1\uffff\1\156\1\172\1\151\1\144\1\uffff\1\151\2\156\1\uffff\1\172"+
-        "\1\156\1\163\1\164\1\uffff\1\164\1\151\1\156\1\145\1\164\1\uffff"+
-        "\1\172\1\105\1\172\1\171\1\143\1\145\1\163\1\172\1\uffff\1\156\1"+
-        "\uffff\1\172\1\145\1\163\1\172\1\uffff\1\146\1\uffff\1\163\1\172"+
-        "\1\uffff\1\157\1\172\1\uffff\1\162\1\uffff\1\143\1\145\1\162\1\172"+
-        "\1\uffff";
+        "\163\2\uffff\2\172\1\141\1\172\1\144\1\157\1\162\1\151\1\145\2\151"+
+        "\1\146\1\164\1\165\1\157\2\uffff\1\71\4\uffff\1\163\1\150\1\151"+
+        "\1\145\1\150\1\160\1\153\2\uffff\1\143\1\uffff\1\145\1\144\1\145"+
+        "\1\161\1\143\1\155\1\156\1\164\1\151\1\162\1\155\1\164\1\145\1\160"+
+        "\1\115\1\164\1\151\1\172\1\145\1\163\1\165\1\156\1\165\1\153\1\155"+
+        "\1\172\1\120\1\112\1\143\1\172\1\145\1\115\1\145\1\141\1\120\1\156"+
+        "\1\uffff\1\111\1\172\1\143\1\164\1\145\1\172\1\145\1\uffff\1\141"+
+        "\1\157\1\145\1\uffff\1\162\1\141\1\163\1\143\1\141\1\147\1\156\1"+
+        "\uffff\1\164\1\172\1\156\1\uffff\2\162\1\151\1\111\1\163\1\143\1"+
+        "\172\1\150\1\162\1\163\1\146\1\151\1\172\1\uffff\1\145\1\172\1\145"+
+        "\1\156\1\162\1\156\1\172\1\150\1\uffff\1\151\1\145\1\172\2\157\1"+
+        "\uffff\1\163\1\uffff\1\156\1\172\1\151\1\144\1\uffff\1\151\2\156"+
+        "\1\uffff\1\172\1\156\1\163\1\164\1\uffff\1\164\1\151\1\156\1\145"+
+        "\1\164\1\uffff\1\172\1\105\1\172\1\171\1\143\1\145\1\163\1\172\1"+
+        "\uffff\1\156\1\uffff\1\172\1\145\1\163\1\172\1\uffff\1\146\1\uffff"+
+        "\1\163\1\172\1\uffff\1\157\1\172\1\uffff\1\162\1\uffff\1\143\1\145"+
+        "\1\162\1\172\1\uffff";
     static final String DFA12_acceptS =
-        "\2\uffff\1\2\1\3\1\4\2\uffff\1\7\1\12\17\uffff\1\36\3\uffff\1\43"+
-        "\1\44\2\uffff\1\36\1\2\1\3\1\4\3\uffff\1\7\1\12\16\uffff\1\37\1"+
-        "\uffff\1\35\1\40\1\41\1\42\1\43\10\uffff\1\34\1\14\44\uffff\1\24"+
-        "\7\uffff\1\25\3\uffff\1\33\7\uffff\1\15\3\uffff\1\21\15\uffff\1"+
-        "\22\10\uffff\1\5\5\uffff\1\17\1\uffff\1\23\4\uffff\1\1\3\uffff\1"+
-        "\6\4\uffff\1\30\5\uffff\1\13\10\uffff\1\16\1\uffff\1\26\4\uffff"+
-        "\1\27\1\uffff\1\31\2\uffff\1\10\2\uffff\1\11\1\uffff\1\32\4\uffff"+
-        "\1\20";
+        "\2\uffff\1\2\1\3\1\4\2\uffff\1\7\1\12\17\uffff\1\37\3\uffff\1\44"+
+        "\1\45\2\uffff\1\37\1\2\1\3\1\4\3\uffff\1\7\1\12\17\uffff\1\40\1"+
+        "\36\1\uffff\1\41\1\42\1\43\1\44\7\uffff\1\13\1\15\1\uffff\1\35\44"+
+        "\uffff\1\25\7\uffff\1\26\3\uffff\1\34\7\uffff\1\16\3\uffff\1\22"+
+        "\15\uffff\1\23\10\uffff\1\5\5\uffff\1\20\1\uffff\1\24\4\uffff\1"+
+        "\1\3\uffff\1\6\4\uffff\1\31\5\uffff\1\14\10\uffff\1\17\1\uffff\1"+
+        "\27\4\uffff\1\30\1\uffff\1\32\2\uffff\1\10\2\uffff\1\11\1\uffff"+
+        "\1\33\4\uffff\1\21";
     static final String DFA12_specialS =
-        "\1\2\30\uffff\1\0\1\1\u00bc\uffff}>";
+        "\1\0\30\uffff\1\1\1\2\u00be\uffff}>";
     static final String[] DFA12_transitionS = {
             "\11\35\2\34\2\35\1\34\22\35\1\34\1\35\1\31\4\35\1\32\7\35\1"+
             "\33\12\26\1\2\6\35\1\23\1\30\1\17\6\30\1\21\5\30\1\14\3\30\1"+
             "\20\1\16\5\30\1\3\1\35\1\4\1\27\1\30\1\35\2\30\1\1\2\30\1\25"+
-            "\2\30\1\12\2\30\1\22\1\6\1\13\1\30\1\15\1\30\1\5\1\24\1\11\6"+
+            "\2\30\1\11\2\30\1\22\1\6\1\13\1\30\1\15\1\30\1\5\1\24\1\12\6"+
             "\30\1\7\1\35\1\10\uff82\35",
             "\1\37\12\uffff\1\36",
             "",
@@ -1529,9 +1559,8 @@ public class InternalArchLanguageLexer extends Lexer {
             "\1\46",
             "",
             "",
-            "\1\52\2\uffff\1\51",
-            "\1\53",
-            "\1\54",
+            "\1\51\13\uffff\1\52",
+            "\1\54\2\uffff\1\53",
             "\1\55",
             "\1\56",
             "\1\57",
@@ -1542,30 +1571,30 @@ public class InternalArchLanguageLexer extends Lexer {
             "\1\64",
             "\1\65",
             "\1\66",
-            "\1\71\1\uffff\12\70",
+            "\1\67",
+            "\1\71\1\uffff\12\72",
             "\32\40\4\uffff\1\40\1\uffff\32\40",
             "",
-            "\0\72",
-            "\0\72",
-            "\1\73\4\uffff\1\74",
+            "\0\73",
+            "\0\73",
+            "\1\74\4\uffff\1\75",
             "",
             "",
-            "\1\76",
             "\1\77",
+            "\1\100",
             "",
             "",
             "",
             "",
-            "\1\100\20\uffff\1\101",
-            "\1\102",
-            "\1\103\2\uffff\1\104",
+            "\1\101\20\uffff\1\102",
+            "\1\103",
+            "\1\104\2\uffff\1\105",
             "",
             "",
-            "\1\105",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\110",
-            "\1\111",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\112",
             "\1\113",
             "\1\114",
@@ -1575,25 +1604,26 @@ public class InternalArchLanguageLexer extends Lexer {
             "\1\120",
             "\1\121",
             "\1\122",
-            "",
-            "\1\71\1\uffff\12\70",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\123",
             "\1\124",
+            "",
+            "",
+            "\1\71\1\uffff\12\72",
+            "",
+            "",
+            "",
+            "",
             "\1\125",
             "\1\126",
             "\1\127",
             "\1\130",
             "\1\131",
             "\1\132",
-            "",
-            "",
             "\1\133",
+            "",
+            "",
             "\1\134",
+            "",
             "\1\135",
             "\1\136",
             "\1\137",
@@ -1609,130 +1639,132 @@ public class InternalArchLanguageLexer extends Lexer {
             "\1\151",
             "\1\152",
             "\1\153",
-            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\1\154",
             "\1\155",
-            "\1\156",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\157",
             "\1\160",
             "\1\161",
             "\1\162",
             "\1\163",
-            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\1\164",
             "\1\165",
-            "\1\166",
-            "\1\167",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\1\167",
+            "\1\170",
             "\1\171",
-            "\1\172",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\173",
             "\1\174",
             "\1\175",
             "\1\176",
-            "",
             "\1\177",
-            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\1\u0080",
+            "",
             "\1\u0081",
-            "\1\u0082",
-            "\1\u0083",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\1\u0083",
+            "\1\u0084",
             "\1\u0085",
-            "",
-            "\1\u0086",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\u0087",
-            "\1\u0088",
             "",
+            "\1\u0088",
             "\1\u0089",
             "\1\u008a",
+            "",
             "\1\u008b",
             "\1\u008c",
             "\1\u008d",
             "\1\u008e",
             "\1\u008f",
-            "",
             "\1\u0090",
-            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\22\40\1\u0091\7\40",
-            "\1\u0093",
+            "\1\u0091",
             "",
-            "\1\u0094",
+            "\1\u0092",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\22\40\1\u0093\7\40",
             "\1\u0095",
+            "",
             "\1\u0096",
-            "\1\u0097\7\uffff\1\u0098",
-            "\1\u0099",
-            "\1\u009a",
-            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\1\u0097",
+            "\1\u0098",
+            "\1\u0099\7\uffff\1\u009a",
+            "\1\u009b",
             "\1\u009c",
-            "\1\u009d",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\u009e",
             "\1\u009f",
             "\1\u00a0",
-            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
-            "",
+            "\1\u00a1",
             "\1\u00a2",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "",
             "\1\u00a4",
-            "\1\u00a5",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\u00a6",
             "\1\u00a7",
-            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\1\u00a8",
             "\1\u00a9",
-            "",
-            "\1\u00aa",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\u00ab",
-            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "",
+            "\1\u00ac",
             "\1\u00ad",
-            "\1\u00ae",
-            "",
-            "\1\u00af",
-            "",
-            "\1\u00b0",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
-            "\1\u00b2",
-            "\1\u00b3",
+            "\1\u00af",
+            "\1\u00b0",
             "",
+            "\1\u00b1",
+            "",
+            "\1\u00b2",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\u00b4",
             "\1\u00b5",
+            "",
             "\1\u00b6",
+            "\1\u00b7",
+            "\1\u00b8",
             "",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
-            "\1\u00b8",
-            "\1\u00b9",
             "\1\u00ba",
-            "",
             "\1\u00bb",
             "\1\u00bc",
+            "",
             "\1\u00bd",
             "\1\u00be",
             "\1\u00bf",
-            "",
-            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\1\u00c0",
             "\1\u00c1",
+            "",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\u00c3",
-            "\1\u00c4",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "\1\u00c5",
             "\1\u00c6",
-            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
-            "",
+            "\1\u00c7",
             "\1\u00c8",
-            "",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "",
             "\1\u00ca",
-            "\1\u00cb",
-            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "\1\u00cc",
             "\1\u00cd",
-            "",
-            "\1\u00ce",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
+            "",
+            "\1\u00cf",
             "",
             "\1\u00d0",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "",
             "\1\u00d2",
+            "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             "",
-            "\1\u00d3",
             "\1\u00d4",
+            "",
             "\1\u00d5",
+            "\1\u00d6",
+            "\1\u00d7",
             "\12\40\7\uffff\32\40\4\uffff\1\40\1\uffff\32\40",
             ""
     };
@@ -1767,33 +1799,13 @@ public class InternalArchLanguageLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | RULE_IP | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | RULE_IP | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_25 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA12_25>='\u0000' && LA12_25<='\uFFFF')) ) {s = 58;}
-
-                        else s = 29;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA12_26 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA12_26>='\u0000' && LA12_26<='\uFFFF')) ) {s = 58;}
-
-                        else s = 29;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
                         int LA12_0 = input.LA(1);
 
                         s = -1;
@@ -1813,9 +1825,9 @@ public class InternalArchLanguageLexer extends Lexer {
 
                         else if ( (LA12_0=='}') ) {s = 8;}
 
-                        else if ( (LA12_0=='t') ) {s = 9;}
+                        else if ( (LA12_0=='i') ) {s = 9;}
 
-                        else if ( (LA12_0=='i') ) {s = 10;}
+                        else if ( (LA12_0=='t') ) {s = 10;}
 
                         else if ( (LA12_0=='n') ) {s = 11;}
 
@@ -1854,6 +1866,26 @@ public class InternalArchLanguageLexer extends Lexer {
                         else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 28;}
 
                         else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||(LA12_0>='(' && LA12_0<='.')||(LA12_0>=';' && LA12_0<='@')||LA12_0=='\\'||LA12_0=='`'||LA12_0=='|'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 29;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA12_25 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA12_25>='\u0000' && LA12_25<='\uFFFF')) ) {s = 59;}
+
+                        else s = 29;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA12_26 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA12_26>='\u0000' && LA12_26<='\uFFFF')) ) {s = 59;}
+
+                        else s = 29;
 
                         if ( s>=0 ) return s;
                         break;

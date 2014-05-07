@@ -229,19 +229,22 @@ public abstract class AbstractArchLanguageSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     (traceInfo=STRING ip=IP)
+	 *     (name=ID traceInfo=STRING ip=IP)
 	 */
 	protected void sequence_Machine(EObject context, Machine semanticObject) {
 		if(errorAcceptor != null) {
 			if(transientValues.isValueTransient(semanticObject, InfrastructurePackage.Literals.ELEMENT_WITH_TRACE_INFO__TRACE_INFO) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, InfrastructurePackage.Literals.ELEMENT_WITH_TRACE_INFO__TRACE_INFO));
+			if(transientValues.isValueTransient(semanticObject, InfrastructurePackage.Literals.MACHINE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, InfrastructurePackage.Literals.MACHINE__NAME));
 			if(transientValues.isValueTransient(semanticObject, InfrastructurePackage.Literals.MACHINE__IP) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, InfrastructurePackage.Literals.MACHINE__IP));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getMachineAccess().getTraceInfoSTRINGTerminalRuleCall_3_0(), semanticObject.getTraceInfo());
-		feeder.accept(grammarAccess.getMachineAccess().getIpIPTerminalRuleCall_6_0(), semanticObject.getIp());
+		feeder.accept(grammarAccess.getMachineAccess().getNameIDTerminalRuleCall_3_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getMachineAccess().getTraceInfoSTRINGTerminalRuleCall_6_0(), semanticObject.getTraceInfo());
+		feeder.accept(grammarAccess.getMachineAccess().getIpIPTerminalRuleCall_9_0(), semanticObject.getIp());
 		feeder.finish();
 	}
 	
