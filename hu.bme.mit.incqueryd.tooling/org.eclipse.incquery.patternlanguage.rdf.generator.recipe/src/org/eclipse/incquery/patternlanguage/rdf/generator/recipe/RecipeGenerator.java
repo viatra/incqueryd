@@ -20,13 +20,15 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
 import org.eclipse.incquery.runtime.rete.util.Options;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.openrdf.model.Graph;
 
 public class RecipeGenerator implements IGenerator {
 
 	private final ReteRecipeCompiler compiler;
 
 	public RecipeGenerator() {
-		compiler = new ReteRecipeCompiler(Options.builderMethod.layoutStrategy(), new RdfPatternMatcherContext());
+		Graph metamodel = null; // TODO
+		compiler = new ReteRecipeCompiler(Options.builderMethod.layoutStrategy(), new RdfPatternMatcherContext(metamodel));
 	}
 
 	private ReteNodeRecipe compile(PQuery query) throws QueryPlannerException {
