@@ -17,6 +17,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.common,
  org.eclipse.xtext.ui.shared,
  org.eclipse.incquery.patternlanguage.rdf.ui,
- org.eclipse.incquery.runtime.rete.recipes;bundle-version="0.8.0"
+ org.eclipse.incquery.runtime.rete.recipes;bundle-version="0.8.0",
+ org.openrdf.sesame;bundle-version="2.7.10"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
