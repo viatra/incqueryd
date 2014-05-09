@@ -1,11 +1,24 @@
 package org.eclipse.incquery.patternlanguage.rdf.psystem
 
 import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext
+import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext.EdgeInterpretation
+import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext.GeneralizationQueryDirection
+import org.openrdf.model.Graph
 
 class RdfPatternMatcherContext implements IPatternMatcherContext {
 
+	val Graph metamodel
+
+	new(Graph metamodel) {
+		this.metamodel = metamodel
+	}
+
+	override edgeInterpretation() {
+		EdgeInterpretation.TERNARY
+	}
+
 	override allowedGeneralizationQueryDirection() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		GeneralizationQueryDirection.SUPERTYPE_ONLY_SMART_NOTIFICATIONS
 	}
 
 	override binaryEdgeSourceType(Object typeObject) {
@@ -13,10 +26,6 @@ class RdfPatternMatcherContext implements IPatternMatcherContext {
 	}
 
 	override binaryEdgeTargetType(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
-	override edgeInterpretation() {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 

@@ -4,12 +4,22 @@ import java.util.Collection;
 import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext;
 import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext.EdgeInterpretation;
 import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext.GeneralizationQueryDirection;
+import org.openrdf.model.Graph;
 
 @SuppressWarnings("all")
 public class RdfPatternMatcherContext implements IPatternMatcherContext {
+  private final Graph metamodel;
+  
+  public RdfPatternMatcherContext(final Graph metamodel) {
+    this.metamodel = metamodel;
+  }
+  
+  public EdgeInterpretation edgeInterpretation() {
+    return EdgeInterpretation.TERNARY;
+  }
+  
   public GeneralizationQueryDirection allowedGeneralizationQueryDirection() {
-    UnsupportedOperationException _unsupportedOperationException = new UnsupportedOperationException("TODO: auto-generated method stub");
-    throw _unsupportedOperationException;
+    return GeneralizationQueryDirection.SUPERTYPE_ONLY_SMART_NOTIFICATIONS;
   }
   
   public Object binaryEdgeSourceType(final Object typeObject) {
@@ -18,11 +28,6 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public Object binaryEdgeTargetType(final Object typeObject) {
-    UnsupportedOperationException _unsupportedOperationException = new UnsupportedOperationException("TODO: auto-generated method stub");
-    throw _unsupportedOperationException;
-  }
-  
-  public EdgeInterpretation edgeInterpretation() {
     UnsupportedOperationException _unsupportedOperationException = new UnsupportedOperationException("TODO: auto-generated method stub");
     throw _unsupportedOperationException;
   }
