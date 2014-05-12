@@ -1,14 +1,14 @@
 package sample.hello
 
+import akka.actor.Actor
+import akka.actor.ActorLogging
+import akka.actor.ActorRef
 import akka.actor.ActorSystem
 import akka.actor.Props
-import hu.bme.mit.rete.MaxNode
-import hu.bme.mit.rete.ChangeSet
 import akka.actor.Terminated
-import akka.actor.ActorLogging
-import akka.actor.Actor
-import akka.actor.ActorRef
-import hu.bme.mit.rete.Terminate
+import hu.bme.mit.scala.rete.ChangeSet
+import hu.bme.mit.scala.rete.MaxNode
+import hu.bme.mit.scala.rete.Terminate
 
 object Main {
 
@@ -25,7 +25,7 @@ object Main {
     maxNode ! cs2
     maxNode ! cs3
     
-    maxNode ! Terminate    
+    maxNode ! Terminate
   }
 
   class Terminator(ref: ActorRef) extends Actor with ActorLogging {

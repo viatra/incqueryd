@@ -1,4 +1,4 @@
-package hu.bme.mit.rete
+package hu.bme.mit.scala.rete
 
 class ChangeSet(val positiveChanges: Set[Int], val negativeChanges: Set[Int]) {
 	

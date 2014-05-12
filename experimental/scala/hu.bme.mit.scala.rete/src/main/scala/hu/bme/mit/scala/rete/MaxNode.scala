@@ -1,4 +1,4 @@
-package hu.bme.mit.rete
+package hu.bme.mit.scala.rete
 
 import akka.actor.Actor
 import scala.collection.Set
