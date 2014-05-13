@@ -9,19 +9,10 @@ import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Annotation;
-import org.eclipse.incquery.patternlanguage.patternLanguage.AnnotationParameter;
-import org.eclipse.incquery.patternlanguage.patternLanguage.BoolValue;
-import org.eclipse.incquery.patternlanguage.patternLanguage.DoubleValue;
-import org.eclipse.incquery.patternlanguage.patternLanguage.IntValue;
-import org.eclipse.incquery.patternlanguage.patternLanguage.ListValue;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternBody;
-import org.eclipse.incquery.patternlanguage.patternLanguage.StringValue;
-import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
-import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
-import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
-import org.eclipse.incquery.patternlanguage.patternLanguage.VariableValue;
+import org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPBody;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPatternMatcherContext;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
@@ -35,8 +26,6 @@ import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 @SuppressWarnings("all")
 public class RdfPQuery implements PQuery {
@@ -65,81 +54,6 @@ public class RdfPQuery implements PQuery {
       }
     };
     return IterableExtensions.<PAnnotation>findFirst(this.annotations, _function);
-  }
-  
-  public static PAnnotation toPAnnotation(final Annotation annotation) {
-    String _name = annotation.getName();
-    PAnnotation _pAnnotation = new PAnnotation(_name);
-    final Procedure1<PAnnotation> _function = new Procedure1<PAnnotation>() {
-      public void apply(final PAnnotation it) {
-        EList<AnnotationParameter> _parameters = annotation.getParameters();
-        for (final AnnotationParameter parameter : _parameters) {
-          String _name = parameter.getName();
-          ValueReference _value = parameter.getValue();
-          Object _value_1 = RdfPQuery.getValue(_value);
-          it.addAttribute(_name, _value_1);
-        }
-      }
-    };
-    return ObjectExtensions.<PAnnotation>operator_doubleArrow(_pAnnotation, _function);
-  }
-  
-  public static Object getValue(final ValueReference it) {
-    Object _switchResult = null;
-    boolean _matched = false;
-    if (!_matched) {
-      if (it instanceof BoolValue) {
-        _matched=true;
-        _switchResult = Boolean.valueOf(((BoolValue)it).isValue());
-      }
-    }
-    if (!_matched) {
-      if (it instanceof DoubleValue) {
-        _matched=true;
-        _switchResult = Double.valueOf(((DoubleValue)it).getValue());
-      }
-    }
-    if (!_matched) {
-      if (it instanceof IntValue) {
-        _matched=true;
-        _switchResult = Integer.valueOf(((IntValue)it).getValue());
-      }
-    }
-    if (!_matched) {
-      if (it instanceof StringValue) {
-        _matched=true;
-        _switchResult = ((StringValue)it).getValue();
-      }
-    }
-    if (!_matched) {
-      if (it instanceof VariableReference) {
-        _matched=true;
-        _switchResult = ((VariableReference)it).getVar();
-      }
-    }
-    if (!_matched) {
-      if (it instanceof VariableValue) {
-        _matched=true;
-        VariableReference _value = ((VariableValue)it).getValue();
-        _switchResult = _value.getVar();
-      }
-    }
-    if (!_matched) {
-      if (it instanceof ListValue) {
-        _matched=true;
-        EList<ValueReference> _values = ((ListValue)it).getValues();
-        final Function1<ValueReference,Object> _function = new Function1<ValueReference,Object>() {
-          public Object apply(final ValueReference it) {
-            return RdfPQuery.getValue(it);
-          }
-        };
-        _switchResult = ListExtensions.<ValueReference, Object>map(_values, _function);
-      }
-    }
-    if (!_matched) {
-      throw new IllegalArgumentException("Unknown attribute parameter type");
-    }
-    return _switchResult;
   }
   
   private final List<PParameter> parameters;
@@ -175,14 +89,7 @@ public class RdfPQuery implements PQuery {
     return _xblockexpression;
   }
   
-  public static PParameter toPParameter(final Variable parameter) {
-    String _name = parameter.getName();
-    Type _type = parameter.getType();
-    String _typename = _type.getTypename();
-    return new PParameter(_name, _typename);
-  }
-  
-  private final PQuery.PQueryStatus status;
+  private final PQuery.PQueryStatus status = PQuery.PQueryStatus.OK;
   
   public PQuery.PQueryStatus getStatus() {
     return this.status;
@@ -260,7 +167,7 @@ public class RdfPQuery implements PQuery {
     EList<Variable> _parameters = pattern.getParameters();
     final Function1<Variable,PParameter> _function = new Function1<Variable,PParameter>() {
       public PParameter apply(final Variable it) {
-        return RdfPQuery.toPParameter(it);
+        return PUtils.toPParameter(it);
       }
     };
     List<PParameter> _map = ListExtensions.<Variable, PParameter>map(_parameters, _function);
@@ -268,7 +175,7 @@ public class RdfPQuery implements PQuery {
     EList<Annotation> _annotations = pattern.getAnnotations();
     final Function1<Annotation,PAnnotation> _function_1 = new Function1<Annotation,PAnnotation>() {
       public PAnnotation apply(final Annotation it) {
-        return RdfPQuery.toPAnnotation(it);
+        return PUtils.toPAnnotation(it);
       }
     };
     List<PAnnotation> _map_1 = ListExtensions.<Annotation, PAnnotation>map(_annotations, _function_1);
@@ -283,7 +190,6 @@ public class RdfPQuery implements PQuery {
     Set<PBody> _set = IterableExtensions.<PBody>toSet(_map_2);
     PDisjunction _pDisjunction = new PDisjunction(this, _set);
     this.disjunction = _pDisjunction;
-    this.status = PQuery.PQueryStatus.OK;
     String _name = pattern.getName();
     this.fullyQualifiedName = _name;
   }

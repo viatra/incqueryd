@@ -117,7 +117,7 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public String printType(final Object typeObject) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    return typeObject.toString();
   }
   
   public void reportPatternDependency(final Object pattern) {
