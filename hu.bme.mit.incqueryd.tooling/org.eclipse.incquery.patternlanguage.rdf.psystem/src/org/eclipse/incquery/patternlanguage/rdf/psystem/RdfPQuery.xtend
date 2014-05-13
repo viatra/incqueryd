@@ -18,6 +18,8 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.VariableValue
 import org.eclipse.incquery.patternlanguage.patternLanguage.ListValue
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel
+import org.eclipse.incquery.runtime.matchers.psystem.IQueryReference
+import com.google.common.collect.Sets
 
 class RdfPQuery implements PQuery {
 
@@ -106,12 +108,27 @@ class RdfPQuery implements PQuery {
 
 	// Referred queries
 
-	override getAllReferredQueries() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override getDirectReferredQueries() { // TODO this code exists in BaseQuerySpecification, move it to generic pattern language project
+		disjunctBodies.bodies.map[body |
+			body.constraints.filter(IQueryReference).map[referredQuery]
+		].flatten.toSet
 	}
 
-	override getDirectReferredQueries() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override getAllReferredQueries() { // TODO this code exists in BaseQuerySpecification, move it to generic pattern language project
+		val processedQueries = Sets.newHashSet(this as PQuery)
+        val foundQueries = getDirectReferredQueries()
+        val newQueries = Sets.newHashSet(foundQueries)
+
+        while (!processedQueries.containsAll(newQueries)) {
+			val query = newQueries.iterator().next()
+			processedQueries.add(query)
+			newQueries.remove(query)
+			val referred = query.getDirectReferredQueries()
+			referred.removeAll(processedQueries)
+			foundQueries.addAll(referred)
+			newQueries.addAll(referred)
+		}
+        foundQueries
 	}
 
 	// Name

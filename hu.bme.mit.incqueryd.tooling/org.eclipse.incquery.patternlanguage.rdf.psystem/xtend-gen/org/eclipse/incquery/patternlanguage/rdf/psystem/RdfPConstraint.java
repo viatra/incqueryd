@@ -13,21 +13,18 @@ public class RdfPConstraint {
     boolean _matched = false;
     if (!_matched) {
       if (constraint instanceof TypeConstraint) {
-        final TypeConstraint _typeConstraint = (TypeConstraint)constraint;
         _matched=true;
         _switchResult = null;
       }
     }
     if (!_matched) {
       if (constraint instanceof RdfPathExpressionConstraint) {
-        final RdfPathExpressionConstraint _rdfPathExpressionConstraint = (RdfPathExpressionConstraint)constraint;
         _matched=true;
         _switchResult = null;
       }
     }
     if (!_matched) {
       if (constraint instanceof RdfCheckConstraint) {
-        final RdfCheckConstraint _rdfCheckConstraint = (RdfCheckConstraint)constraint;
         _matched=true;
         _switchResult = null;
       }

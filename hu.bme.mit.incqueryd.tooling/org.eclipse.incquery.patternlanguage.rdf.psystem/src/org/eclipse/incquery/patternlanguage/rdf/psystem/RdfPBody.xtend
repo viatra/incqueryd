@@ -8,6 +8,7 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExportedParam
 import org.eclipse.incquery.runtime.matchers.psystem.PVariable
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable
 import org.eclipse.incquery.patternlanguage.patternLanguage.ParameterRef
+import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary
 
 class RdfPBody {
 
@@ -16,9 +17,15 @@ class RdfPBody {
 			pBody.exportedParameters = pattern.parameters.map[parameter |
 				new ExportedParameter(pBody, parameter.toPVariable(pBody), parameter.name)
 			]
-			pBody.constraints.addAll(pattern.parameters.filter[type != null].map[parameter |
-				// TODO type constraint
-			])
+			pBody.constraints.addAll(pattern.parameters.map[parameter |
+				switch type : parameter.type {
+					org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class: {
+						val pVariable = parameter.toPVariable(pBody)
+						#[new TypeUnary(pBody, pVariable, type, type.class_.toString)]
+					}
+					default: #[]
+				}
+			].flatten)
 			pBody.constraints.addAll(body.constraints.map[RdfPConstraint.create(it)])
 		]
 	}
