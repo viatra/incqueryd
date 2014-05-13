@@ -1,25 +1,16 @@
 package org.eclipse.incquery.patternlanguage.rdf.psystem
 
+import com.google.common.collect.Sets
 import java.util.List
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern
-import org.eclipse.incquery.runtime.matchers.psystem.annotations.PAnnotation
-import org.eclipse.incquery.runtime.matchers.psystem.queries.PParameter
-import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
-import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery.PQueryStatus
-import org.eclipse.incquery.runtime.matchers.psystem.queries.PDisjunction
-import org.eclipse.incquery.patternlanguage.patternLanguage.Annotation
-import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference
-import org.eclipse.incquery.patternlanguage.patternLanguage.BoolValue
-import org.eclipse.incquery.patternlanguage.patternLanguage.DoubleValue
-import org.eclipse.incquery.patternlanguage.patternLanguage.IntValue
-import org.eclipse.incquery.patternlanguage.patternLanguage.StringValue
-import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference
-import org.eclipse.incquery.patternlanguage.patternLanguage.VariableValue
-import org.eclipse.incquery.patternlanguage.patternLanguage.ListValue
-import org.eclipse.incquery.patternlanguage.patternLanguage.Variable
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel
 import org.eclipse.incquery.runtime.matchers.psystem.IQueryReference
-import com.google.common.collect.Sets
+import org.eclipse.incquery.runtime.matchers.psystem.annotations.PAnnotation
+import org.eclipse.incquery.runtime.matchers.psystem.queries.PDisjunction
+import org.eclipse.incquery.runtime.matchers.psystem.queries.PParameter
+import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
+
+import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
 
 class RdfPQuery implements PQuery {
 
@@ -39,27 +30,6 @@ class RdfPQuery implements PQuery {
 		annotations.findFirst[name == annotationName]
 	}
 
-	static def PAnnotation toPAnnotation(Annotation annotation) {
-		new PAnnotation(annotation.name) => [
-			for (parameter : annotation.parameters) {
-				addAttribute(parameter.name, getValue(parameter.value))
-			}
-		]
-    }
-
-    static def Object getValue(ValueReference it) { // TODO this code exists in EPMToBody, move it to generic pattern language project
-    	switch it {
-    		BoolValue: value
-    		DoubleValue: value
-    		IntValue: value
-    		StringValue: value
-    		VariableReference: ^var
-    		VariableValue: value.^var
-    		ListValue: values.map[value]
-    		default: throw new IllegalArgumentException("Unknown attribute parameter type")
-    	}
-    }
-
 	// Parameters
 
 	val List<PParameter> parameters
@@ -77,13 +47,9 @@ class RdfPQuery implements PQuery {
 		if (index == -1) null else index
 	}
 
-	static def PParameter toPParameter(Variable parameter) {
-		new PParameter(parameter.name, parameter.type.typename)
-	}
-
 	// Status
 
-	val PQueryStatus status
+	val status = PQuery.PQueryStatus.OK
 
 	override getStatus() {
 		status
@@ -143,7 +109,6 @@ class RdfPQuery implements PQuery {
 		parameters = pattern.parameters.map[toPParameter]
 		annotations = pattern.annotations.map[toPAnnotation]
 		disjunction = new PDisjunction(this, pattern.bodies.map[body | RdfPBody.create(body, pattern, this, context)].toSet)
-		status = PQueryStatus.OK
 		fullyQualifiedName = pattern.name
 	}
 
