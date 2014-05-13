@@ -44,10 +44,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="prefixes" upperBound="-1"
         eType="#//Prefix" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//EntityType">
+  <eClassifiers xsi:type="ecore:EClass" name="RdfClass" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//EntityType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//Iri" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//RelationType">
+  <eClassifiers xsi:type="ecore:EClass" name="RdfProperty" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//RelationType">
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="#//Iri"
         containment="true"/>
   </eClassifiers>

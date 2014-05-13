@@ -17643,7 +17643,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
             // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:5542:1: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypeAccess().getClassAction_0()); 
+               before(grammarAccess.getTypeAccess().getRdfClassAction_0()); 
             }
             // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:5543:1: ()
             // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:5545:1: 
@@ -17651,7 +17651,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypeAccess().getClassAction_0()); 
+               after(grammarAccess.getTypeAccess().getRdfClassAction_0()); 
             }
 
             }
@@ -17806,7 +17806,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
             // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:5605:1: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRefTypeAccess().getPropertyAction_0()); 
+               before(grammarAccess.getRefTypeAccess().getRdfPropertyAction_0()); 
             }
             // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:5606:1: ()
             // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:5608:1: 
@@ -17814,7 +17814,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRefTypeAccess().getPropertyAction_0()); 
+               after(grammarAccess.getRefTypeAccess().getRdfPropertyAction_0()); 
             }
 
             }

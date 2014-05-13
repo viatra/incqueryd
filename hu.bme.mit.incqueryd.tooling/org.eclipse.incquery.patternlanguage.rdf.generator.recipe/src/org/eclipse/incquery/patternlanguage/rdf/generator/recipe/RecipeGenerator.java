@@ -25,10 +25,12 @@ import org.openrdf.model.Graph;
 public class RecipeGenerator implements IGenerator {
 
 	private final ReteRecipeCompiler compiler;
+	private final RdfPatternMatcherContext context;
 
 	public RecipeGenerator() {
 		Graph metamodel = null; // TODO
-		compiler = new ReteRecipeCompiler(Options.builderMethod.layoutStrategy(), new RdfPatternMatcherContext(metamodel));
+		context = new RdfPatternMatcherContext(metamodel);
+		compiler = new ReteRecipeCompiler(Options.builderMethod.layoutStrategy(), context);
 	}
 
 	private ReteNodeRecipe compile(PQuery query) throws QueryPlannerException {
@@ -40,7 +42,7 @@ public class RecipeGenerator implements IGenerator {
 		ReteRecipe recipe = RecipesFactory.eINSTANCE.createReteRecipe();
 		for (RdfPatternModel patternModel : filter(input.getContents(), RdfPatternModel.class)) {
 			for (Pattern pattern : filter(copyOf(input.getAllContents()), Pattern.class)) {
-				PQuery query = new RdfPQuery(pattern, patternModel);
+				PQuery query = new RdfPQuery(pattern, patternModel, context);
 				try {
 					ReteNodeRecipe nodeRecipe = compile(query);
 					recipe.getRecipeNodes().add(nodeRecipe);

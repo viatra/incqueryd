@@ -23,6 +23,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableValue;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPBody;
+import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPatternMatcherContext;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 import org.eclipse.incquery.runtime.matchers.psystem.IQueryReference;
 import org.eclipse.incquery.runtime.matchers.psystem.PBody;
@@ -255,7 +256,7 @@ public class RdfPQuery implements PQuery {
     return this.fullyQualifiedName;
   }
   
-  public RdfPQuery(final Pattern pattern, final RdfPatternModel patternModel) {
+  public RdfPQuery(final Pattern pattern, final RdfPatternModel patternModel, final RdfPatternMatcherContext context) {
     EList<Variable> _parameters = pattern.getParameters();
     final Function1<Variable,PParameter> _function = new Function1<Variable,PParameter>() {
       public PParameter apply(final Variable it) {
@@ -275,7 +276,7 @@ public class RdfPQuery implements PQuery {
     EList<PatternBody> _bodies = pattern.getBodies();
     final Function1<PatternBody,PBody> _function_2 = new Function1<PatternBody,PBody>() {
       public PBody apply(final PatternBody body) {
-        return RdfPBody.create(body, pattern, RdfPQuery.this);
+        return RdfPBody.create(body, pattern, RdfPQuery.this, context);
       }
     };
     List<PBody> _map_2 = ListExtensions.<PatternBody, PBody>map(_bodies, _function_2);

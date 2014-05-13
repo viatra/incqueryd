@@ -139,10 +139,10 @@ class RdfPQuery implements PQuery {
 		fullyQualifiedName
 	}
 
-	new(Pattern pattern, RdfPatternModel patternModel) {
+	new(Pattern pattern, RdfPatternModel patternModel, RdfPatternMatcherContext context) {
 		parameters = pattern.parameters.map[toPParameter]
 		annotations = pattern.annotations.map[toPAnnotation]
-		disjunction = new PDisjunction(this, pattern.bodies.map[body | RdfPBody.create(body, pattern, this)].toSet)
+		disjunction = new PDisjunction(this, pattern.bodies.map[body | RdfPBody.create(body, pattern, this, context)].toSet)
 		status = PQueryStatus.OK
 		fullyQualifiedName = pattern.name
 	}

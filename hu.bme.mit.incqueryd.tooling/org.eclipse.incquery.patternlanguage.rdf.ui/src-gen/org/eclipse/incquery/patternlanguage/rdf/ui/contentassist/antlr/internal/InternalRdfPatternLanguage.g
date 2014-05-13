@@ -5539,11 +5539,11 @@ rule__Type__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getTypeAccess().getClassAction_0()); }
+{ before(grammarAccess.getTypeAccess().getRdfClassAction_0()); }
 (
 
 )
-{ after(grammarAccess.getTypeAccess().getClassAction_0()); }
+{ after(grammarAccess.getTypeAccess().getRdfClassAction_0()); }
 )
 
 ;
@@ -5602,11 +5602,11 @@ rule__RefType__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getRefTypeAccess().getPropertyAction_0()); }
+{ before(grammarAccess.getRefTypeAccess().getRdfPropertyAction_0()); }
 (
 
 )
-{ after(grammarAccess.getRefTypeAccess().getPropertyAction_0()); }
+{ after(grammarAccess.getRefTypeAccess().getRdfPropertyAction_0()); }
 )
 
 ;

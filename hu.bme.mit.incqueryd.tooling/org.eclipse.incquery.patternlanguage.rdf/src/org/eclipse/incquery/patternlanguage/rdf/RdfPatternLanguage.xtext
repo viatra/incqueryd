@@ -40,16 +40,16 @@ RdfPathExpressionConstraint:
 ;
 
 TypeConstraint:
-	type = Type '(' var=VariableReference ')'
+	type=Type '(' var=VariableReference ')'
 ;
 
 Type returns core::EntityType:
-	{Class}
+	{RdfClass}
 	class=Iri
 ;
 
 RefType returns core::RelationType:
-	{Property}
+	{RdfProperty}
 	property=Iri
 ;
 

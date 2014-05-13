@@ -33,12 +33,13 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.VariableValue;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.services.RdfPatternLanguageGrammarAccess;
 import org.eclipse.incquery.patternlanguage.serializer.PatternLanguageSemanticSequencer;
@@ -292,12 +293,6 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 					return; 
 				}
 				else break;
-			case RdfPatternLanguagePackage.CLASS:
-				if(context == grammarAccess.getTypeRule()) {
-					sequence_Type(context, (org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class) semanticObject); 
-					return; 
-				}
-				else break;
 			case RdfPatternLanguagePackage.IRI:
 				if(context == grammarAccess.getIriRule()) {
 					sequence_Iri(context, (Iri) semanticObject); 
@@ -310,16 +305,16 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 					return; 
 				}
 				else break;
-			case RdfPatternLanguagePackage.PROPERTY:
-				if(context == grammarAccess.getRefTypeRule()) {
-					sequence_RefType(context, (Property) semanticObject); 
-					return; 
-				}
-				else break;
 			case RdfPatternLanguagePackage.RDF_CHECK_CONSTRAINT:
 				if(context == grammarAccess.getConstraintRule() ||
 				   context == grammarAccess.getRdfCheckConstraintRule()) {
 					sequence_RdfCheckConstraint(context, (RdfCheckConstraint) semanticObject); 
+					return; 
+				}
+				else break;
+			case RdfPatternLanguagePackage.RDF_CLASS:
+				if(context == grammarAccess.getTypeRule()) {
+					sequence_Type(context, (RdfClass) semanticObject); 
 					return; 
 				}
 				else break;
@@ -342,6 +337,12 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 			case RdfPatternLanguagePackage.RDF_PATTERN_MODEL:
 				if(context == grammarAccess.getRdfPatternModelRule()) {
 					sequence_RdfPatternModel(context, (RdfPatternModel) semanticObject); 
+					return; 
+				}
+				else break;
+			case RdfPatternLanguagePackage.RDF_PROPERTY:
+				if(context == grammarAccess.getRefTypeRule()) {
+					sequence_RefType(context, (RdfProperty) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1391,7 +1392,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 	 * Constraint:
 	 *     property=Iri
 	 */
-	protected void sequence_RefType(EObject context, Property semanticObject) {
+	protected void sequence_RefType(EObject context, RdfProperty semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1419,7 +1420,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 	 * Constraint:
 	 *     class=Iri
 	 */
-	protected void sequence_Type(EObject context, org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class semanticObject) {
+	protected void sequence_Type(EObject context, RdfClass semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 }

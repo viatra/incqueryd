@@ -95,22 +95,22 @@ public interface RdfPatternLanguageFactory extends EFactory
   RdfPatternModel createRdfPatternModel();
 
   /**
-   * Returns a new object of class '<em>Class</em>'.
+   * Returns a new object of class '<em>Rdf Class</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Class</em>'.
+   * @return a new object of class '<em>Rdf Class</em>'.
    * @generated
    */
-  Class createClass();
+  RdfClass createRdfClass();
 
   /**
-   * Returns a new object of class '<em>Property</em>'.
+   * Returns a new object of class '<em>Rdf Property</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Property</em>'.
+   * @return a new object of class '<em>Rdf Property</em>'.
    * @generated
    */
-  Property createProperty();
+  RdfProperty createRdfProperty();
 
   /**
    * Returns the package supported by this factory.
