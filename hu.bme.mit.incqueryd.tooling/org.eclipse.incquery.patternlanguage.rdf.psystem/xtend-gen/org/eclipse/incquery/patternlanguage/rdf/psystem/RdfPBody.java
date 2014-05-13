@@ -1,7 +1,8 @@
 package org.eclipse.incquery.patternlanguage.rdf.psystem;
 
-import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
@@ -12,13 +13,14 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.PatternBody;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPConstraint;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.runtime.matchers.psystem.PBody;
 import org.eclipse.incquery.runtime.matchers.psystem.PConstraint;
 import org.eclipse.incquery.runtime.matchers.psystem.PVariable;
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExportedParameter;
+import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
@@ -34,43 +36,54 @@ public class RdfPBody {
           public ExportedParameter apply(final Variable parameter) {
             PVariable _pVariable = RdfPBody.toPVariable(parameter, pBody);
             String _name = parameter.getName();
-            ExportedParameter _exportedParameter = new ExportedParameter(pBody, _pVariable, _name);
-            return _exportedParameter;
+            return new ExportedParameter(pBody, _pVariable, _name);
           }
         };
         List<ExportedParameter> _map = ListExtensions.<Variable, ExportedParameter>map(_parameters, _function);
         pBody.setExportedParameters(_map);
         Set<PConstraint> _constraints = pBody.getConstraints();
         EList<Variable> _parameters_1 = pattern.getParameters();
-        final Function1<Variable,Boolean> _function_1 = new Function1<Variable,Boolean>() {
-          public Boolean apply(final Variable it) {
-            Type _type = it.getType();
-            boolean _notEquals = (!Objects.equal(_type, null));
-            return Boolean.valueOf(_notEquals);
+        final Function1<Variable,List<TypeUnary>> _function_1 = new Function1<Variable,List<TypeUnary>>() {
+          public List<TypeUnary> apply(final Variable parameter) {
+            List<TypeUnary> _switchResult = null;
+            Type _type = parameter.getType();
+            final Type type = _type;
+            boolean _matched = false;
+            if (!_matched) {
+              if (type instanceof org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class) {
+                _matched=true;
+                List<TypeUnary> _xblockexpression = null;
+                {
+                  final PVariable pVariable = RdfPBody.toPVariable(parameter, pBody);
+                  Iri _class_ = ((org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class)type).getClass_();
+                  String _string = _class_.toString();
+                  TypeUnary _typeUnary = new TypeUnary(pBody, pVariable, type, _string);
+                  _xblockexpression = Collections.<TypeUnary>unmodifiableList(Lists.<TypeUnary>newArrayList(_typeUnary));
+                }
+                _switchResult = _xblockexpression;
+              }
+            }
+            if (!_matched) {
+              _switchResult = Collections.<TypeUnary>unmodifiableList(Lists.<TypeUnary>newArrayList());
+            }
+            return _switchResult;
           }
         };
-        Iterable<Variable> _filter = IterableExtensions.<Variable>filter(_parameters_1, _function_1);
-        final Function1<Variable,PConstraint> _function_2 = new Function1<Variable,PConstraint>() {
-          public PConstraint apply(final Variable parameter) {
-            return null;
-          }
-        };
-        Iterable<PConstraint> _map_1 = IterableExtensions.<Variable, PConstraint>map(_filter, _function_2);
-        Iterables.<PConstraint>addAll(_constraints, _map_1);
+        List<List<TypeUnary>> _map_1 = ListExtensions.<Variable, List<TypeUnary>>map(_parameters_1, _function_1);
+        Iterable<PConstraint> _flatten = Iterables.<PConstraint>concat(_map_1);
+        Iterables.<PConstraint>addAll(_constraints, _flatten);
         Set<PConstraint> _constraints_1 = pBody.getConstraints();
         EList<Constraint> _constraints_2 = body.getConstraints();
-        final Function1<Constraint,PConstraint> _function_3 = new Function1<Constraint,PConstraint>() {
+        final Function1<Constraint,PConstraint> _function_2 = new Function1<Constraint,PConstraint>() {
           public PConstraint apply(final Constraint it) {
-            PConstraint _create = RdfPConstraint.create(it);
-            return _create;
+            return RdfPConstraint.create(it);
           }
         };
-        List<PConstraint> _map_2 = ListExtensions.<Constraint, PConstraint>map(_constraints_2, _function_3);
+        List<PConstraint> _map_2 = ListExtensions.<Constraint, PConstraint>map(_constraints_2, _function_2);
         _constraints_1.addAll(_map_2);
       }
     };
-    PBody _doubleArrow = ObjectExtensions.<PBody>operator_doubleArrow(_pBody, _function);
-    return _doubleArrow;
+    return ObjectExtensions.<PBody>operator_doubleArrow(_pBody, _function);
   }
   
   public static PVariable toPVariable(final Variable variable, final PBody pBody) {
@@ -78,17 +91,14 @@ public class RdfPBody {
     boolean _matched = false;
     if (!_matched) {
       if (variable instanceof ParameterRef) {
-        final ParameterRef _parameterRef = (ParameterRef)variable;
         _matched=true;
-        Variable _referredParam = _parameterRef.getReferredParam();
-        PVariable _pVariable = RdfPBody.toPVariable(_referredParam, pBody);
-        _switchResult = _pVariable;
+        Variable _referredParam = ((ParameterRef)variable).getReferredParam();
+        _switchResult = RdfPBody.toPVariable(_referredParam, pBody);
       }
     }
     if (!_matched) {
       String _name = variable.getName();
-      PVariable _orCreateVariableByName = pBody.getOrCreateVariableByName(_name);
-      _switchResult = _orCreateVariableByName;
+      _switchResult = pBody.getOrCreateVariableByName(_name);
     }
     return _switchResult;
   }
