@@ -13,7 +13,8 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.PatternBody;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPConstraint;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
+import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPatternMatcherContext;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass;
 import org.eclipse.incquery.runtime.matchers.psystem.PBody;
 import org.eclipse.incquery.runtime.matchers.psystem.PConstraint;
 import org.eclipse.incquery.runtime.matchers.psystem.PVariable;
@@ -27,7 +28,7 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 @SuppressWarnings("all")
 public class RdfPBody {
-  public static PBody create(final PatternBody body, final Pattern pattern, final PQuery query) {
+  public static PBody create(final PatternBody body, final Pattern pattern, final PQuery query, final RdfPatternMatcherContext context) {
     PBody _pBody = new PBody(query);
     final Procedure1<PBody> _function = new Procedure1<PBody>() {
       public void apply(final PBody pBody) {
@@ -50,14 +51,13 @@ public class RdfPBody {
             final Type type = _type;
             boolean _matched = false;
             if (!_matched) {
-              if (type instanceof org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class) {
+              if (type instanceof RdfClass) {
                 _matched=true;
                 List<TypeUnary> _xblockexpression = null;
                 {
                   final PVariable pVariable = RdfPBody.toPVariable(parameter, pBody);
-                  Iri _class_ = ((org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class)type).getClass_();
-                  String _string = _class_.toString();
-                  TypeUnary _typeUnary = new TypeUnary(pBody, pVariable, type, _string);
+                  String _printType = context.printType(type);
+                  TypeUnary _typeUnary = new TypeUnary(pBody, pVariable, type, _printType);
                   _xblockexpression = Collections.<TypeUnary>unmodifiableList(Lists.<TypeUnary>newArrayList(_typeUnary));
                 }
                 _switchResult = _xblockexpression;

@@ -331,19 +331,19 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	public class TypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Type");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cClassAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cRdfClassAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cClassAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cClassIriParserRuleCall_1_0 = (RuleCall)cClassAssignment_1.eContents().get(0);
 		
 		//Type returns core::EntityType:
-		//	{Class} class=Iri;
+		//	{RdfClass} class=Iri;
 		public ParserRule getRule() { return rule; }
 
-		//{Class} class=Iri
+		//{RdfClass} class=Iri
 		public Group getGroup() { return cGroup; }
 
-		//{Class}
-		public Action getClassAction_0() { return cClassAction_0; }
+		//{RdfClass}
+		public Action getRdfClassAction_0() { return cRdfClassAction_0; }
 
 		//class=Iri
 		public Assignment getClassAssignment_1() { return cClassAssignment_1; }
@@ -355,19 +355,19 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	public class RefTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RefType");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cPropertyAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cRdfPropertyAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cPropertyAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cPropertyIriParserRuleCall_1_0 = (RuleCall)cPropertyAssignment_1.eContents().get(0);
 		
 		//RefType returns core::RelationType:
-		//	{Property} property=Iri;
+		//	{RdfProperty} property=Iri;
 		public ParserRule getRule() { return rule; }
 
-		//{Property} property=Iri
+		//{RdfProperty} property=Iri
 		public Group getGroup() { return cGroup; }
 
-		//{Property}
-		public Action getPropertyAction_0() { return cPropertyAction_0; }
+		//{RdfProperty}
+		public Action getRdfPropertyAction_0() { return cRdfPropertyAction_0; }
 
 		//property=Iri
 		public Assignment getPropertyAssignment_1() { return cPropertyAssignment_1; }
@@ -625,7 +625,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//Type returns core::EntityType:
-	//	{Class} class=Iri;
+	//	{RdfClass} class=Iri;
 	public TypeElements getTypeAccess() {
 		return (pType != null) ? pType : (pType = new TypeElements());
 	}
@@ -635,7 +635,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//RefType returns core::RelationType:
-	//	{Property} property=Iri;
+	//	{RdfProperty} property=Iri;
 	public RefTypeElements getRefTypeAccess() {
 		return (pRefType != null) ? pRefType : (pRefType = new RefTypeElements());
 	}

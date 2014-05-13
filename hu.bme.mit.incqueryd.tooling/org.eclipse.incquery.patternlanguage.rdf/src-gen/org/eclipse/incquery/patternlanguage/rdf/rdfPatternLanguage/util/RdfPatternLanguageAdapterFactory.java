@@ -16,16 +16,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.RelationType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -131,14 +122,14 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
         return createRdfPatternModelAdapter();
       }
       @Override
-      public Adapter caseClass(org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class object)
+      public Adapter caseRdfClass(RdfClass object)
       {
-        return createClassAdapter();
+        return createRdfClassAdapter();
       }
       @Override
-      public Adapter caseProperty(Property object)
+      public Adapter caseRdfProperty(RdfProperty object)
       {
-        return createPropertyAdapter();
+        return createRdfPropertyAdapter();
       }
       @Override
       public Adapter caseConstraint(Constraint object)
@@ -313,31 +304,31 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class <em>Class</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass <em>Rdf Class</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass
    * @generated
    */
-  public Adapter createClassAdapter()
+  public Adapter createRdfClassAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property <em>Property</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty <em>Rdf Property</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty
    * @generated
    */
-  public Adapter createPropertyAdapter()
+  public Adapter createRdfPropertyAdapter()
   {
     return null;
   }

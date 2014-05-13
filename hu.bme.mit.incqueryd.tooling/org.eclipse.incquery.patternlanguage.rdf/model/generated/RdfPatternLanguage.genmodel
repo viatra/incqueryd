@@ -42,11 +42,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfPatternModel/base"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfPatternModel/prefixes"/>
     </genClasses>
-    <genClasses ecoreClass="RdfPatternLanguage.ecore#//Class">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//Class/class"/>
+    <genClasses ecoreClass="RdfPatternLanguage.ecore#//RdfClass">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfClass/class"/>
     </genClasses>
-    <genClasses ecoreClass="RdfPatternLanguage.ecore#//Property">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//Property/property"/>
+    <genClasses ecoreClass="RdfPatternLanguage.ecore#//RdfProperty">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfProperty/property"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
