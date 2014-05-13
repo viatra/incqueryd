@@ -10,17 +10,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguageFactory;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -82,8 +72,8 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
       case RdfPatternLanguagePackage.TYPE_CONSTRAINT: return createTypeConstraint();
       case RdfPatternLanguagePackage.RDF_LITERAL: return createRdfLiteral();
       case RdfPatternLanguagePackage.RDF_PATTERN_MODEL: return createRdfPatternModel();
-      case RdfPatternLanguagePackage.CLASS: return createClass();
-      case RdfPatternLanguagePackage.PROPERTY: return createProperty();
+      case RdfPatternLanguagePackage.RDF_CLASS: return createRdfClass();
+      case RdfPatternLanguagePackage.RDF_PROPERTY: return createRdfProperty();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -182,10 +172,10 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  public org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class createClass()
+  public RdfClass createRdfClass()
   {
-    ClassImpl class_ = new ClassImpl();
-    return class_;
+    RdfClassImpl rdfClass = new RdfClassImpl();
+    return rdfClass;
   }
 
   /**
@@ -193,10 +183,10 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  public Property createProperty()
+  public RdfProperty createRdfProperty()
   {
-    PropertyImpl property = new PropertyImpl();
-    return property;
+    RdfPropertyImpl rdfProperty = new RdfPropertyImpl();
+    return rdfProperty;
   }
 
   /**

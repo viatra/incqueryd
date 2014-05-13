@@ -627,7 +627,7 @@ ruleType returns [EObject current=null]
 ((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getTypeAccess().getClassAction_0(),
+            grammarAccess.getTypeAccess().getRdfClassAction_0(),
             $current);
     }
 )(
@@ -672,7 +672,7 @@ ruleRefType returns [EObject current=null]
 ((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getRefTypeAccess().getPropertyAction_0(),
+            grammarAccess.getRefTypeAccess().getRdfPropertyAction_0(),
             $current);
     }
 )(

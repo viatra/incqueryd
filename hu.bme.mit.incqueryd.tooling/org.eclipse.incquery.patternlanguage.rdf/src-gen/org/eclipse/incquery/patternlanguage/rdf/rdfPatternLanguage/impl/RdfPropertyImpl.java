@@ -10,42 +10,43 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.incquery.patternlanguage.patternLanguage.impl.EntityTypeImpl;
+import org.eclipse.incquery.patternlanguage.patternLanguage.impl.RelationTypeImpl;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Class</b></em>'.
+ * An implementation of the model object '<em><b>Rdf Property</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.ClassImpl#getClass_ <em>Class</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPropertyImpl#getProperty <em>Property</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ClassImpl extends EntityTypeImpl implements org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class
+public class RdfPropertyImpl extends RelationTypeImpl implements RdfProperty
 {
   /**
-   * The cached value of the '{@link #getClass_() <em>Class</em>}' containment reference.
+   * The cached value of the '{@link #getProperty() <em>Property</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getClass_()
+   * @see #getProperty()
    * @generated
    * @ordered
    */
-  protected Iri class_;
+  protected Iri property;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ClassImpl()
+  protected RdfPropertyImpl()
   {
     super();
   }
@@ -58,7 +59,7 @@ public class ClassImpl extends EntityTypeImpl implements org.eclipse.incquery.pa
   @Override
   protected EClass eStaticClass()
   {
-    return RdfPatternLanguagePackage.Literals.CLASS;
+    return RdfPatternLanguagePackage.Literals.RDF_PROPERTY;
   }
 
   /**
@@ -66,9 +67,9 @@ public class ClassImpl extends EntityTypeImpl implements org.eclipse.incquery.pa
    * <!-- end-user-doc -->
    * @generated
    */
-  public Iri getClass_()
+  public Iri getProperty()
   {
-    return class_;
+    return property;
   }
 
   /**
@@ -76,13 +77,13 @@ public class ClassImpl extends EntityTypeImpl implements org.eclipse.incquery.pa
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetClass(Iri newClass, NotificationChain msgs)
+  public NotificationChain basicSetProperty(Iri newProperty, NotificationChain msgs)
   {
-    Iri oldClass = class_;
-    class_ = newClass;
+    Iri oldProperty = property;
+    property = newProperty;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.CLASS__CLASS, oldClass, newClass);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.RDF_PROPERTY__PROPERTY, oldProperty, newProperty);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -93,20 +94,20 @@ public class ClassImpl extends EntityTypeImpl implements org.eclipse.incquery.pa
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setClass(Iri newClass)
+  public void setProperty(Iri newProperty)
   {
-    if (newClass != class_)
+    if (newProperty != property)
     {
       NotificationChain msgs = null;
-      if (class_ != null)
-        msgs = ((InternalEObject)class_).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.CLASS__CLASS, null, msgs);
-      if (newClass != null)
-        msgs = ((InternalEObject)newClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.CLASS__CLASS, null, msgs);
-      msgs = basicSetClass(newClass, msgs);
+      if (property != null)
+        msgs = ((InternalEObject)property).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.RDF_PROPERTY__PROPERTY, null, msgs);
+      if (newProperty != null)
+        msgs = ((InternalEObject)newProperty).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.RDF_PROPERTY__PROPERTY, null, msgs);
+      msgs = basicSetProperty(newProperty, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.CLASS__CLASS, newClass, newClass));
+      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.RDF_PROPERTY__PROPERTY, newProperty, newProperty));
   }
 
   /**
@@ -119,8 +120,8 @@ public class ClassImpl extends EntityTypeImpl implements org.eclipse.incquery.pa
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.CLASS__CLASS:
-        return basicSetClass(null, msgs);
+      case RdfPatternLanguagePackage.RDF_PROPERTY__PROPERTY:
+        return basicSetProperty(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -135,8 +136,8 @@ public class ClassImpl extends EntityTypeImpl implements org.eclipse.incquery.pa
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.CLASS__CLASS:
-        return getClass_();
+      case RdfPatternLanguagePackage.RDF_PROPERTY__PROPERTY:
+        return getProperty();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -151,8 +152,8 @@ public class ClassImpl extends EntityTypeImpl implements org.eclipse.incquery.pa
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.CLASS__CLASS:
-        setClass((Iri)newValue);
+      case RdfPatternLanguagePackage.RDF_PROPERTY__PROPERTY:
+        setProperty((Iri)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -168,8 +169,8 @@ public class ClassImpl extends EntityTypeImpl implements org.eclipse.incquery.pa
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.CLASS__CLASS:
-        setClass((Iri)null);
+      case RdfPatternLanguagePackage.RDF_PROPERTY__PROPERTY:
+        setProperty((Iri)null);
         return;
     }
     super.eUnset(featureID);
@@ -185,10 +186,10 @@ public class ClassImpl extends EntityTypeImpl implements org.eclipse.incquery.pa
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.CLASS__CLASS:
-        return class_ != null;
+      case RdfPatternLanguagePackage.RDF_PROPERTY__PROPERTY:
+        return property != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ClassImpl
+} //RdfPropertyImpl

@@ -14,16 +14,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.RelationType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -149,21 +140,21 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RdfPatternLanguagePackage.CLASS:
+      case RdfPatternLanguagePackage.RDF_CLASS:
       {
-        org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class class_ = (org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class)theEObject;
-        T result = caseClass(class_);
-        if (result == null) result = caseEntityType(class_);
-        if (result == null) result = caseType(class_);
+        RdfClass rdfClass = (RdfClass)theEObject;
+        T result = caseRdfClass(rdfClass);
+        if (result == null) result = caseEntityType(rdfClass);
+        if (result == null) result = caseType(rdfClass);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RdfPatternLanguagePackage.PROPERTY:
+      case RdfPatternLanguagePackage.RDF_PROPERTY:
       {
-        Property property = (Property)theEObject;
-        T result = caseProperty(property);
-        if (result == null) result = caseRelationType(property);
-        if (result == null) result = caseType(property);
+        RdfProperty rdfProperty = (RdfProperty)theEObject;
+        T result = caseRdfProperty(rdfProperty);
+        if (result == null) result = caseRelationType(rdfProperty);
+        if (result == null) result = caseType(rdfProperty);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -300,33 +291,33 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Class</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Rdf Class</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Class</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Rdf Class</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseClass(org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Class object)
+  public T caseRdfClass(RdfClass object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Property</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Rdf Property</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Property</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Rdf Property</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseProperty(Property object)
+  public T caseRdfProperty(RdfProperty object)
   {
     return null;
   }

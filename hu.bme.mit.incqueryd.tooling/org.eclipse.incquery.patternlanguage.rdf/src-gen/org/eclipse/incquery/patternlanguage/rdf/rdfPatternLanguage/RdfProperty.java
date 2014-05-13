@@ -6,21 +6,21 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.RelationType;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Property</b></em>'.
+ * A representation of the model object '<em><b>Rdf Property</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property#getProperty <em>Property</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty#getProperty <em>Property</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getProperty()
+ * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfProperty()
  * @model
  * @generated
  */
-public interface Property extends RelationType
+public interface RdfProperty extends RelationType
 {
   /**
    * Returns the value of the '<em><b>Property</b></em>' containment reference.
@@ -32,14 +32,14 @@ public interface Property extends RelationType
    * <!-- end-user-doc -->
    * @return the value of the '<em>Property</em>' containment reference.
    * @see #setProperty(Iri)
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getProperty_Property()
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfProperty_Property()
    * @model containment="true"
    * @generated
    */
   Iri getProperty();
 
   /**
-   * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Property#getProperty <em>Property</em>}' containment reference.
+   * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty#getProperty <em>Property</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Property</em>' containment reference.
@@ -48,4 +48,4 @@ public interface Property extends RelationType
    */
   void setProperty(Iri value);
 
-} // Property
+} // RdfProperty

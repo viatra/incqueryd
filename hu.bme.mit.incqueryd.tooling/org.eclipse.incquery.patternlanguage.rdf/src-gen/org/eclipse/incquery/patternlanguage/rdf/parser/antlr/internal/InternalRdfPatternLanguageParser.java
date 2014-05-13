@@ -1700,7 +1700,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             if ( state.backtracking==0 ) {
 
                       current = forceCreateModelElement(
-                          grammarAccess.getTypeAccess().getClassAction_0(),
+                          grammarAccess.getTypeAccess().getRdfClassAction_0(),
                           current);
                   
             }
@@ -1827,7 +1827,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             if ( state.backtracking==0 ) {
 
                       current = forceCreateModelElement(
-                          grammarAccess.getRefTypeAccess().getPropertyAction_0(),
+                          grammarAccess.getRefTypeAccess().getRdfPropertyAction_0(),
                           current);
                   
             }
