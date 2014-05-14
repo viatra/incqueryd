@@ -31,9 +31,7 @@ public class RdfPBody {
         EList<Variable> _parameters = pattern.getParameters();
         final Function1<Variable,ExportedParameter> _function = new Function1<Variable,ExportedParameter>() {
           public ExportedParameter apply(final Variable parameter) {
-            PVariable _pVariable = PUtils.toPVariable(parameter, pBody);
-            String _name = parameter.getName();
-            return new ExportedParameter(pBody, _pVariable, _name);
+            return RdfPBody.toExportedParameter(parameter, pBody);
           }
         };
         List<ExportedParameter> _map = ListExtensions.<Variable, ExportedParameter>map(_parameters, _function);
@@ -42,14 +40,14 @@ public class RdfPBody {
         EList<Variable> _parameters_1 = pattern.getParameters();
         final Function1<Variable,TypeUnary> _function_1 = new Function1<Variable,TypeUnary>() {
           public TypeUnary apply(final Variable parameter) {
-            return RdfPConstraint.toTypeConstraint(parameter, pBody, context);
+            return RdfPConstraint.toPConstraint(parameter, pBody, context);
           }
         };
         List<TypeUnary> _map_1 = ListExtensions.<Variable, TypeUnary>map(_parameters_1, _function_1);
         EList<Constraint> _constraints_1 = body.getConstraints();
         final Function1<Constraint,PConstraint> _function_2 = new Function1<Constraint,PConstraint>() {
           public PConstraint apply(final Constraint constraint) {
-            return RdfPConstraint.create(constraint, pBody, context);
+            return RdfPConstraint.toPConstraint(constraint, pBody, context);
           }
         };
         List<PConstraint> _map_2 = ListExtensions.<Constraint, PConstraint>map(_constraints_1, _function_2);
@@ -58,5 +56,11 @@ public class RdfPBody {
       }
     };
     return ObjectExtensions.<PBody>operator_doubleArrow(_pBody, _function);
+  }
+  
+  public static ExportedParameter toExportedParameter(final Variable parameter, final PBody pBody) {
+    PVariable _pVariable = PUtils.toPVariable(parameter, pBody);
+    String _name = parameter.getName();
+    return new ExportedParameter(pBody, _pVariable, _name);
   }
 }
