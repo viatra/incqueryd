@@ -337,6 +337,34 @@ finally {
 
 
 
+// Entry rule entryRuleValueReference
+entryRuleValueReference 
+:
+{ before(grammarAccess.getValueReferenceRule()); }
+	 ruleValueReference
+{ after(grammarAccess.getValueReferenceRule()); } 
+	 EOF 
+;
+
+// Rule ValueReference
+ruleValueReference
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getValueReferenceAccess().getAlternatives()); }
+(rule__ValueReference__Alternatives)
+{ after(grammarAccess.getValueReferenceAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleLiteralValueReference
 entryRuleLiteralValueReference 
 :
@@ -769,34 +797,6 @@ finally {
 
 
 
-// Entry rule entryRuleValueReference
-entryRuleValueReference 
-:
-{ before(grammarAccess.getValueReferenceRule()); }
-	 ruleValueReference
-{ after(grammarAccess.getValueReferenceRule()); } 
-	 EOF 
-;
-
-// Rule ValueReference
-ruleValueReference
-    @init {
-		int stackSize = keepStackSize();
-    }
-	:
-(
-{ before(grammarAccess.getValueReferenceAccess().getAlternatives()); }
-(rule__ValueReference__Alternatives)
-{ after(grammarAccess.getValueReferenceAccess().getAlternatives()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
 // Entry rule entryRuleAnnotationValueReference
 entryRuleAnnotationValueReference 
 :
@@ -1076,32 +1076,6 @@ finally {
 }
 
 
-
-// Entry rule entryRuleComputationValue
-entryRuleComputationValue 
-:
-{ before(grammarAccess.getComputationValueRule()); }
-	 ruleComputationValue
-{ after(grammarAccess.getComputationValueRule()); } 
-	 EOF 
-;
-
-// Rule ComputationValue
-ruleComputationValue
-    @init {
-		int stackSize = keepStackSize();
-    }
-	:
-(
-{ before(grammarAccess.getComputationValueAccess().getAlternatives()); }
-(rule__ComputationValue__Alternatives)
-{ after(grammarAccess.getComputationValueAccess().getAlternatives()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
 
 
 
@@ -3201,6 +3175,34 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__ValueReference__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getValueReferenceAccess().getLiteralValueReferenceParserRuleCall_0()); }
+	ruleLiteralValueReference
+{ after(grammarAccess.getValueReferenceAccess().getLiteralValueReferenceParserRuleCall_0()); }
+)
+
+    |(
+{ before(grammarAccess.getValueReferenceAccess().getVariableValueParserRuleCall_1()); }
+	ruleVariableValue
+{ after(grammarAccess.getValueReferenceAccess().getVariableValueParserRuleCall_1()); }
+)
+
+    |(
+{ before(grammarAccess.getValueReferenceAccess().getAggregatedValueParserRuleCall_2()); }
+	ruleAggregatedValue
+{ after(grammarAccess.getValueReferenceAccess().getAggregatedValueParserRuleCall_2()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__LiteralValueReference__Alternatives
     @init {
 		int stackSize = keepStackSize();
@@ -3285,34 +3287,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ValueReference__Alternatives
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getValueReferenceAccess().getLiteralValueReferenceParserRuleCall_0()); }
-	ruleLiteralValueReference
-{ after(grammarAccess.getValueReferenceAccess().getLiteralValueReferenceParserRuleCall_0()); }
-)
-
-    |(
-{ before(grammarAccess.getValueReferenceAccess().getVariableValueParserRuleCall_1()); }
-	ruleVariableValue
-{ after(grammarAccess.getValueReferenceAccess().getVariableValueParserRuleCall_1()); }
-)
-
-    |(
-{ before(grammarAccess.getValueReferenceAccess().getComputationValueParserRuleCall_2()); }
-	ruleComputationValue
-{ after(grammarAccess.getValueReferenceAccess().getComputationValueParserRuleCall_2()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 rule__AnnotationValueReference__Alternatives
     @init {
 		int stackSize = keepStackSize();
@@ -3377,27 +3351,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ComputationValue__Alternatives
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getComputationValueAccess().getAggregatedValueParserRuleCall_0()); }
-	ruleAggregatedValue
-{ after(grammarAccess.getComputationValueAccess().getAggregatedValueParserRuleCall_0()); }
-)
-
-    |(
-{ before(grammarAccess.getComputationValueAccess().getFunctionEvaluationValueParserRuleCall_1()); }
-	ruleFunctionEvaluationValue
-{ after(grammarAccess.getComputationValueAccess().getFunctionEvaluationValueParserRuleCall_1()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
 
 rule__XAssignment__Alternatives
     @init {

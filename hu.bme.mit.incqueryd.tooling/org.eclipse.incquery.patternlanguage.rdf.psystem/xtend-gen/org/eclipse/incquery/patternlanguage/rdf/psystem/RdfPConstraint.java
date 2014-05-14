@@ -1,6 +1,5 @@
 package org.eclipse.incquery.patternlanguage.rdf.psystem;
 
-import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.incquery.patternlanguage.patternLanguage.CompareConstraint;
 import org.eclipse.incquery.patternlanguage.patternLanguage.CompareFeature;
@@ -14,6 +13,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils;
+import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPatternMatcherContext;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
@@ -35,11 +35,8 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.PositivePa
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeBinary;
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
-import org.eclipse.incquery.runtime.matchers.tuple.FlatTuple;
 import org.eclipse.incquery.runtime.matchers.tuple.Tuple;
 import org.eclipse.xtend2.lib.StringConcatenation;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.ListExtensions;
 
 @SuppressWarnings("all")
 public class RdfPConstraint {
@@ -90,9 +87,9 @@ public class RdfPConstraint {
     {
       final PatternCall call = constraint.getCall();
       final Pattern patternRef = call.getPatternRef();
-      final PQuery calledQuery = RdfPConstraint.findQuery(patternRef);
+      final PQuery calledQuery = RdfPUtils.findQueryOf(patternRef);
       EList<ValueReference> _parameters = call.getParameters();
-      final Tuple tuple = RdfPConstraint.toTuple(_parameters, pBody);
+      final Tuple tuple = RdfPUtils.toTuple(_parameters, pBody);
       BasePConstraint _xifexpression = null;
       boolean _isTransitive = call.isTransitive();
       boolean _not = (!_isTransitive);
@@ -126,24 +123,6 @@ public class RdfPConstraint {
       _xblockexpression = _xifexpression;
     }
     return ((BasePConstraint)_xblockexpression);
-  }
-  
-  public static PQuery findQuery(final Pattern pattern) {
-    return null;
-  }
-  
-  public static Tuple toTuple(final List<ValueReference> valueReferences, final PBody pBody) {
-    FlatTuple _xblockexpression = null;
-    {
-      final Function1<ValueReference,PVariable> _function = new Function1<ValueReference,PVariable>() {
-        public PVariable apply(final ValueReference it) {
-          return RdfPVariable.toPVariable(it, pBody);
-        }
-      };
-      final List<PVariable> elements = ListExtensions.<ValueReference, PVariable>map(valueReferences, _function);
-      _xblockexpression = new FlatTuple(elements);
-    }
-    return _xblockexpression;
   }
   
   public static PConstraint convertCompareConstraint(final CompareConstraint constraint, final PBody pBody) {

@@ -33,7 +33,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RdfLiteral" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//ValueReference">
+  <eClassifiers xsi:type="ecore:EClass" name="RdfLiteral" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//LiteralValueReference">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lexicalForm" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="datatype" eType="#//Iri"
         containment="true"/>

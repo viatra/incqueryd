@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.incquery.patternlanguage.patternLanguage.impl.ValueReferenceImpl;
+import org.eclipse.incquery.patternlanguage.patternLanguage.impl.LiteralValueReferenceImpl;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
@@ -31,7 +31,7 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLan
  *
  * @generated
  */
-public class RdfLiteralImpl extends ValueReferenceImpl implements RdfLiteral
+public class RdfLiteralImpl extends LiteralValueReferenceImpl implements RdfLiteral
 {
   /**
    * The default value of the '{@link #getLexicalForm() <em>Lexical Form</em>}' attribute.

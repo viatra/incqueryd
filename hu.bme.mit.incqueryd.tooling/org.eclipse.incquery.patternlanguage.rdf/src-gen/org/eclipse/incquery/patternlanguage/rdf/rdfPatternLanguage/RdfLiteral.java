@@ -2,7 +2,7 @@
  */
 package org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage;
 
-import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
+import org.eclipse.incquery.patternlanguage.patternLanguage.LiteralValueReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +22,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
  * @model
  * @generated
  */
-public interface RdfLiteral extends ValueReference
+public interface RdfLiteral extends LiteralValueReference
 {
   /**
    * Returns the value of the '<em><b>Lexical Form</b></em>' attribute.

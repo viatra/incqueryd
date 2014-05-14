@@ -55,10 +55,16 @@ RdfCheckConstraint:
 	'check' '(' (variables+=VariableReference ',')* expression=STRING ')' // TODO find a better solution
 ;
 
-LiteralValueReference returns core::ValueReference:
+ValueReference returns core::ValueReference:
+	LiteralValueReference |
+	VariableValue |
+	AggregatedValue
+;
+
+LiteralValueReference returns core::LiteralValueReference:
 	IntValue |
-	StringValue |
 	DoubleValue |
+	StringValue |
 	BoolValue |
 	RdfLiteral
 ;
