@@ -1,9 +1,11 @@
 package org.eclipse.incquery.patternlanguage.rdf.psystem
 
+import java.util.List
 import org.eclipse.incquery.patternlanguage.patternLanguage.CompareConstraint
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternCompositionConstraint
+import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass
@@ -20,35 +22,28 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.PositivePa
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeBinary
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
+import org.eclipse.incquery.runtime.matchers.tuple.FlatTuple
+import org.eclipse.incquery.runtime.matchers.tuple.Tuple
 
 import static org.eclipse.incquery.patternlanguage.patternLanguage.CompareFeature.*
 
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
+import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
 
 class RdfPConstraint {
 
-	static def PConstraint create(Constraint constraint, PBody pBody, RdfPatternMatcherContext context) {
-		switch constraint {
-			PatternCompositionConstraint: {
-				createPatternCompositionConstraint(constraint, pBody)
-			}
-			CompareConstraint: {
-				createCompareConstraint(constraint, pBody)
-			}
-			RdfClassConstraint: {
-				createClassConstraint(constraint, pBody, context)
-			}
-			RdfPropertyConstraint: {
-				createPropertyConstraint(constraint, pBody, context)
-			}
-			RdfCheckConstraint: {
-				createCheckConstraint(constraint)
-			}
-			default: throw new IllegalArgumentException('''Unhandled case «constraint»''')
+	static def PConstraint toPConstraint(Constraint it, PBody pBody, RdfPatternMatcherContext context) {
+		switch it {
+			PatternCompositionConstraint: convertPatternCompositionConstraint(pBody)
+			CompareConstraint: convertCompareConstraint(pBody)
+			RdfClassConstraint: convertClassConstraint(pBody, context)
+			RdfPropertyConstraint: convertPropertyConstraint(pBody, context)
+			RdfCheckConstraint: convertCheckConstraint
+			default: throw new IllegalArgumentException('''Unhandled case «it»''')
 		}
 	}
 
-	static def PConstraint createPatternCompositionConstraint(PatternCompositionConstraint constraint, PBody pBody) { // based on EPMToPBody
+	static def PConstraint convertPatternCompositionConstraint(PatternCompositionConstraint constraint, PBody pBody) { // based on EPMToPBody
 		val call = constraint.call
         val patternRef = call.patternRef
         val calledQuery = findQuery(patternRef)
@@ -74,7 +69,12 @@ class RdfPConstraint {
 		// TODO
 	}
 
-	static def PConstraint createCompareConstraint(CompareConstraint constraint, PBody pBody) {
+	static def Tuple toTuple(List<ValueReference> valueReferences, PBody pBody) {
+		val elements = valueReferences.map[toPVariable(pBody)]
+		new FlatTuple(elements)
+	}
+
+	static def PConstraint convertCompareConstraint(CompareConstraint constraint, PBody pBody) {
 		val left = constraint.leftOperand.toPVariable(pBody)
         val right = constraint.rightOperand.toPVariable(pBody)
         switch (constraint.feature) {
@@ -83,15 +83,15 @@ class RdfPConstraint {
 		}
 	}
 
-	static def TypeUnary createClassConstraint(RdfClassConstraint constraint, PBody pBody, RdfPatternMatcherContext context) {
-		val Variable variable = constraint.variable.resolve
-		variable.toTypeConstraint(pBody, context)
+	static def TypeUnary convertClassConstraint(RdfClassConstraint constraint, PBody pBody, RdfPatternMatcherContext context) {
+		val Variable variable = constraint.variable.variable
+		variable.toPConstraint(pBody, context)
 	}
 
-	static def PConstraint createPropertyConstraint(RdfPropertyConstraint constraint, PBody pBody, RdfPatternMatcherContext context) {
+	static def PConstraint convertPropertyConstraint(RdfPropertyConstraint constraint, PBody pBody, RdfPatternMatcherContext context) {
 		switch refType : constraint.refType {
 			RdfProperty: {
-				val source = constraint.source.resolve.toPVariable(pBody)
+				val source = constraint.source.variable.toPVariable(pBody)
 				val target = constraint.target.toPVariable(pBody)
 				val typeObject = refType.property
 				val typeString = context.printType(typeObject)
@@ -101,11 +101,11 @@ class RdfPConstraint {
 		}
 	}
 
-	static def PConstraint createCheckConstraint(RdfCheckConstraint constraint) {
+	static def PConstraint convertCheckConstraint(RdfCheckConstraint constraint) {
 		// TODO
 	}
 
-	static def TypeUnary toTypeConstraint(Variable parameter, PBody pBody, RdfPatternMatcherContext context) {
+	static def TypeUnary toPConstraint(Variable parameter, PBody pBody, RdfPatternMatcherContext context) {
 		switch type : parameter.type {
 			RdfClass: {
 				val pVariable = parameter.toPVariable(pBody)

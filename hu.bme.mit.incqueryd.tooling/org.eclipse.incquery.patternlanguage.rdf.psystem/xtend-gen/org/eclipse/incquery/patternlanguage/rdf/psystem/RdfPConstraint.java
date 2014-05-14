@@ -1,5 +1,6 @@
 package org.eclipse.incquery.patternlanguage.rdf.psystem;
 
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.incquery.patternlanguage.patternLanguage.CompareConstraint;
 import org.eclipse.incquery.patternlanguage.patternLanguage.CompareFeature;
@@ -13,6 +14,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils;
+import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPatternMatcherContext;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint;
@@ -33,61 +35,64 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.PositivePa
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeBinary;
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
+import org.eclipse.incquery.runtime.matchers.tuple.FlatTuple;
 import org.eclipse.incquery.runtime.matchers.tuple.Tuple;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 
 @SuppressWarnings("all")
 public class RdfPConstraint {
-  public static PConstraint create(final Constraint constraint, final PBody pBody, final RdfPatternMatcherContext context) {
+  public static PConstraint toPConstraint(final Constraint it, final PBody pBody, final RdfPatternMatcherContext context) {
     PConstraint _switchResult = null;
     boolean _matched = false;
     if (!_matched) {
-      if (constraint instanceof PatternCompositionConstraint) {
+      if (it instanceof PatternCompositionConstraint) {
         _matched=true;
-        _switchResult = RdfPConstraint.createPatternCompositionConstraint(((PatternCompositionConstraint)constraint), pBody);
+        _switchResult = RdfPConstraint.convertPatternCompositionConstraint(((PatternCompositionConstraint)it), pBody);
       }
     }
     if (!_matched) {
-      if (constraint instanceof CompareConstraint) {
+      if (it instanceof CompareConstraint) {
         _matched=true;
-        _switchResult = RdfPConstraint.createCompareConstraint(((CompareConstraint)constraint), pBody);
+        _switchResult = RdfPConstraint.convertCompareConstraint(((CompareConstraint)it), pBody);
       }
     }
     if (!_matched) {
-      if (constraint instanceof RdfClassConstraint) {
+      if (it instanceof RdfClassConstraint) {
         _matched=true;
-        _switchResult = RdfPConstraint.createClassConstraint(((RdfClassConstraint)constraint), pBody, context);
+        _switchResult = RdfPConstraint.convertClassConstraint(((RdfClassConstraint)it), pBody, context);
       }
     }
     if (!_matched) {
-      if (constraint instanceof RdfPropertyConstraint) {
+      if (it instanceof RdfPropertyConstraint) {
         _matched=true;
-        _switchResult = RdfPConstraint.createPropertyConstraint(((RdfPropertyConstraint)constraint), pBody, context);
+        _switchResult = RdfPConstraint.convertPropertyConstraint(((RdfPropertyConstraint)it), pBody, context);
       }
     }
     if (!_matched) {
-      if (constraint instanceof RdfCheckConstraint) {
+      if (it instanceof RdfCheckConstraint) {
         _matched=true;
-        _switchResult = RdfPConstraint.createCheckConstraint(((RdfCheckConstraint)constraint));
+        _switchResult = RdfPConstraint.convertCheckConstraint(((RdfCheckConstraint)it));
       }
     }
     if (!_matched) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("Unhandled case ");
-      _builder.append(constraint, "");
+      _builder.append(it, "");
       throw new IllegalArgumentException(_builder.toString());
     }
     return _switchResult;
   }
   
-  public static PConstraint createPatternCompositionConstraint(final PatternCompositionConstraint constraint, final PBody pBody) {
+  public static PConstraint convertPatternCompositionConstraint(final PatternCompositionConstraint constraint, final PBody pBody) {
     BasePConstraint _xblockexpression = null;
     {
       final PatternCall call = constraint.getCall();
       final Pattern patternRef = call.getPatternRef();
       final PQuery calledQuery = RdfPConstraint.findQuery(patternRef);
       EList<ValueReference> _parameters = call.getParameters();
-      final Tuple tuple = PUtils.toTuple(_parameters, pBody);
+      final Tuple tuple = RdfPConstraint.toTuple(_parameters, pBody);
       BasePConstraint _xifexpression = null;
       boolean _isTransitive = call.isTransitive();
       boolean _not = (!_isTransitive);
@@ -127,13 +132,27 @@ public class RdfPConstraint {
     return null;
   }
   
-  public static PConstraint createCompareConstraint(final CompareConstraint constraint, final PBody pBody) {
+  public static Tuple toTuple(final List<ValueReference> valueReferences, final PBody pBody) {
+    FlatTuple _xblockexpression = null;
+    {
+      final Function1<ValueReference,PVariable> _function = new Function1<ValueReference,PVariable>() {
+        public PVariable apply(final ValueReference it) {
+          return RdfPVariable.toPVariable(it, pBody);
+        }
+      };
+      final List<PVariable> elements = ListExtensions.<ValueReference, PVariable>map(valueReferences, _function);
+      _xblockexpression = new FlatTuple(elements);
+    }
+    return _xblockexpression;
+  }
+  
+  public static PConstraint convertCompareConstraint(final CompareConstraint constraint, final PBody pBody) {
     DeferredPConstraint _xblockexpression = null;
     {
       ValueReference _leftOperand = constraint.getLeftOperand();
-      final PVariable left = PUtils.toPVariable(_leftOperand, pBody);
+      final PVariable left = RdfPVariable.toPVariable(_leftOperand, pBody);
       ValueReference _rightOperand = constraint.getRightOperand();
-      final PVariable right = PUtils.toPVariable(_rightOperand, pBody);
+      final PVariable right = RdfPVariable.toPVariable(_rightOperand, pBody);
       DeferredPConstraint _switchResult = null;
       CompareFeature _feature = constraint.getFeature();
       if (_feature != null) {
@@ -153,17 +172,17 @@ public class RdfPConstraint {
     return _xblockexpression;
   }
   
-  public static TypeUnary createClassConstraint(final RdfClassConstraint constraint, final PBody pBody, final RdfPatternMatcherContext context) {
+  public static TypeUnary convertClassConstraint(final RdfClassConstraint constraint, final PBody pBody, final RdfPatternMatcherContext context) {
     TypeUnary _xblockexpression = null;
     {
       VariableReference _variable = constraint.getVariable();
-      final Variable variable = PUtils.resolve(_variable);
-      _xblockexpression = RdfPConstraint.toTypeConstraint(variable, pBody, context);
+      final Variable variable = _variable.getVariable();
+      _xblockexpression = RdfPConstraint.toPConstraint(variable, pBody, context);
     }
     return _xblockexpression;
   }
   
-  public static PConstraint createPropertyConstraint(final RdfPropertyConstraint constraint, final PBody pBody, final RdfPatternMatcherContext context) {
+  public static PConstraint convertPropertyConstraint(final RdfPropertyConstraint constraint, final PBody pBody, final RdfPatternMatcherContext context) {
     TypeBinary _switchResult = null;
     RelationType _refType = constraint.getRefType();
     final RelationType refType = _refType;
@@ -174,10 +193,10 @@ public class RdfPConstraint {
         TypeBinary _xblockexpression = null;
         {
           VariableReference _source = constraint.getSource();
-          Variable _resolve = PUtils.resolve(_source);
-          final PVariable source = PUtils.toPVariable(_resolve, pBody);
+          Variable _variable = _source.getVariable();
+          final PVariable source = PUtils.toPVariable(_variable, pBody);
           ValueReference _target = constraint.getTarget();
-          final PVariable target = PUtils.toPVariable(_target, pBody);
+          final PVariable target = RdfPVariable.toPVariable(_target, pBody);
           final Iri typeObject = ((RdfProperty)refType).getProperty();
           final String typeString = context.printType(typeObject);
           _xblockexpression = new TypeBinary(pBody, context, source, target, typeObject, typeString);
@@ -194,11 +213,11 @@ public class RdfPConstraint {
     return _switchResult;
   }
   
-  public static PConstraint createCheckConstraint(final RdfCheckConstraint constraint) {
+  public static PConstraint convertCheckConstraint(final RdfCheckConstraint constraint) {
     return null;
   }
   
-  public static TypeUnary toTypeConstraint(final Variable parameter, final PBody pBody, final RdfPatternMatcherContext context) {
+  public static TypeUnary toPConstraint(final Variable parameter, final PBody pBody, final RdfPatternMatcherContext context) {
     TypeUnary _switchResult = null;
     Type _type = parameter.getType();
     final Type type = _type;
