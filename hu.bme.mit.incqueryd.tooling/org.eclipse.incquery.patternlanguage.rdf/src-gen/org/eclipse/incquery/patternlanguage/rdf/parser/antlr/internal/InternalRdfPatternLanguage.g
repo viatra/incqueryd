@@ -700,6 +700,56 @@ ruleRdfCheckConstraint returns [EObject current=null]
 
 
 
+// Entry rule entryRuleValueReference
+entryRuleValueReference returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getValueReferenceRule()); }
+	 iv_ruleValueReference=ruleValueReference 
+	 { $current=$iv_ruleValueReference.current; } 
+	 EOF 
+;
+
+// Rule ValueReference
+ruleValueReference returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getValueReferenceAccess().getLiteralValueReferenceParserRuleCall_0()); 
+    }
+    this_LiteralValueReference_0=ruleLiteralValueReference
+    { 
+        $current = $this_LiteralValueReference_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getValueReferenceAccess().getVariableValueParserRuleCall_1()); 
+    }
+    this_VariableValue_1=ruleVariableValue
+    { 
+        $current = $this_VariableValue_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getValueReferenceAccess().getAggregatedValueParserRuleCall_2()); 
+    }
+    this_AggregatedValue_2=ruleAggregatedValue
+    { 
+        $current = $this_AggregatedValue_2.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
 // Entry rule entryRuleLiteralValueReference
 entryRuleLiteralValueReference returns [EObject current=null] 
 	:
@@ -1903,56 +1953,6 @@ rulePathExpressionTail returns [EObject current=null]
 
 
 
-// Entry rule entryRuleValueReference
-entryRuleValueReference returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getValueReferenceRule()); }
-	 iv_ruleValueReference=ruleValueReference 
-	 { $current=$iv_ruleValueReference.current; } 
-	 EOF 
-;
-
-// Rule ValueReference
-ruleValueReference returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-    { 
-        newCompositeNode(grammarAccess.getValueReferenceAccess().getLiteralValueReferenceParserRuleCall_0()); 
-    }
-    this_LiteralValueReference_0=ruleLiteralValueReference
-    { 
-        $current = $this_LiteralValueReference_0.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getValueReferenceAccess().getVariableValueParserRuleCall_1()); 
-    }
-    this_VariableValue_1=ruleVariableValue
-    { 
-        $current = $this_VariableValue_1.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getValueReferenceAccess().getComputationValueParserRuleCall_2()); 
-    }
-    this_ComputationValue_2=ruleComputationValue
-    { 
-        $current = $this_ComputationValue_2.current; 
-        afterParserOrEnumRuleCall();
-    }
-)
-;
-
-
-
-
-
 // Entry rule entryRuleAnnotationValueReference
 entryRuleAnnotationValueReference returns [EObject current=null] 
 	:
@@ -2419,44 +2419,6 @@ ruleListValue returns [EObject current=null]
 ;
 
 
-
-
-
-// Entry rule entryRuleComputationValue
-entryRuleComputationValue returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getComputationValueRule()); }
-	 iv_ruleComputationValue=ruleComputationValue 
-	 { $current=$iv_ruleComputationValue.current; } 
-	 EOF 
-;
-
-// Rule ComputationValue
-ruleComputationValue returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-    { 
-        newCompositeNode(grammarAccess.getComputationValueAccess().getAggregatedValueParserRuleCall_0()); 
-    }
-    this_AggregatedValue_0=ruleAggregatedValue
-    { 
-        $current = $this_AggregatedValue_0.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getComputationValueAccess().getFunctionEvaluationValueParserRuleCall_1()); 
-    }
-    this_FunctionEvaluationValue_1=ruleFunctionEvaluationValue
-    { 
-        $current = $this_FunctionEvaluationValue_1.current; 
-        afterParserOrEnumRuleCall();
-    }
-)
-;
 
 
 

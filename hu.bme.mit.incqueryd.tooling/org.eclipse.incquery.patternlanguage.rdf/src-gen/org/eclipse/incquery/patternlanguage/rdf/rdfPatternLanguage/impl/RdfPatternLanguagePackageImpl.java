@@ -563,7 +563,7 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
     rdfClassConstraintEClass.getESuperTypes().add(thePatternLanguagePackage.getConstraint());
     rdfPropertyConstraintEClass.getESuperTypes().add(thePatternLanguagePackage.getConstraint());
     rdfCheckConstraintEClass.getESuperTypes().add(thePatternLanguagePackage.getConstraint());
-    rdfLiteralEClass.getESuperTypes().add(thePatternLanguagePackage.getValueReference());
+    rdfLiteralEClass.getESuperTypes().add(thePatternLanguagePackage.getLiteralValueReference());
     rdfPatternModelEClass.getESuperTypes().add(thePatternLanguagePackage.getPatternModel());
     rdfClassEClass.getESuperTypes().add(thePatternLanguagePackage.getEntityType());
     rdfPropertyEClass.getESuperTypes().add(thePatternLanguagePackage.getRelationType());

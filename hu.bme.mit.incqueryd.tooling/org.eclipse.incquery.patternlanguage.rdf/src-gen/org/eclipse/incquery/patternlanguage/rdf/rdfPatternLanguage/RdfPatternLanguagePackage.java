@@ -297,7 +297,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int RDF_LITERAL__LEXICAL_FORM = PatternLanguagePackage.VALUE_REFERENCE_FEATURE_COUNT + 0;
+  int RDF_LITERAL__LEXICAL_FORM = PatternLanguagePackage.LITERAL_VALUE_REFERENCE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Datatype</b></em>' containment reference.
@@ -306,7 +306,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int RDF_LITERAL__DATATYPE = PatternLanguagePackage.VALUE_REFERENCE_FEATURE_COUNT + 1;
+  int RDF_LITERAL__DATATYPE = PatternLanguagePackage.LITERAL_VALUE_REFERENCE_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Language</b></em>' attribute.
@@ -315,7 +315,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int RDF_LITERAL__LANGUAGE = PatternLanguagePackage.VALUE_REFERENCE_FEATURE_COUNT + 2;
+  int RDF_LITERAL__LANGUAGE = PatternLanguagePackage.LITERAL_VALUE_REFERENCE_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Rdf Literal</em>' class.
@@ -324,7 +324,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int RDF_LITERAL_FEATURE_COUNT = PatternLanguagePackage.VALUE_REFERENCE_FEATURE_COUNT + 3;
+  int RDF_LITERAL_FEATURE_COUNT = PatternLanguagePackage.LITERAL_VALUE_REFERENCE_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternModelImpl <em>Rdf Pattern Model</em>}' class.

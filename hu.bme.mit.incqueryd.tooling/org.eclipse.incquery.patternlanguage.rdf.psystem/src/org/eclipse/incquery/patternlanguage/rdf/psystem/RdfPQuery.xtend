@@ -10,8 +10,8 @@ import org.eclipse.incquery.runtime.matchers.psystem.queries.PDisjunction
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PParameter
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
 
-import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPBody.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
+import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPBody.*
 
 class RdfPQuery implements PQuery {
 

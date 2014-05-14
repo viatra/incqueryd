@@ -161,10 +161,8 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 				}
 				else break;
 			case PatternLanguagePackage.FUNCTION_EVALUATION_VALUE:
-				if(context == grammarAccess.getAnnotationValueReferenceRule() ||
-				   context == grammarAccess.getComputationValueRule() ||
-				   context == grammarAccess.getFunctionEvaluationValueRule() ||
-				   context == grammarAccess.getValueReferenceRule()) {
+				if(context == grammarAccess.getComputationValueRule() ||
+				   context == grammarAccess.getFunctionEvaluationValueRule()) {
 					sequence_FunctionEvaluationValue(context, (FunctionEvaluationValue) semanticObject); 
 					return; 
 				}
