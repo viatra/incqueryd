@@ -7,20 +7,23 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExportedParam
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
 
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
+import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPConstraint.*
 
 class RdfPBody {
 
-	static def PBody create(PatternBody body, Pattern pattern, PQuery query, RdfPatternMatcherContext context) {
+	static def PBody toPBody(PatternBody body, Pattern pattern, PQuery query, RdfPatternMatcherContext context) {
 		new PBody(query) => [pBody |
 			pBody.exportedParameters = pattern.parameters.map[parameter |
 				new ExportedParameter(pBody, parameter.toPVariable(pBody), parameter.name)
 			]
-			pBody.constraints.addAll(pattern.parameters.map[parameter |
-				parameter.toTypeConstraint(pBody, context)
-			].filterNull)
-			pBody.constraints.addAll(body.constraints.map[constraint |
-				RdfPConstraint.create(constraint, pBody, context)
-			])
+			pBody.constraints.addAll(
+				pattern.parameters.map[parameter |
+					parameter.toTypeConstraint(pBody, context)
+				] +
+				body.constraints.map[constraint |
+					RdfPConstraint.create(constraint, pBody, context)
+				]
+			)
 		]
 	}
 

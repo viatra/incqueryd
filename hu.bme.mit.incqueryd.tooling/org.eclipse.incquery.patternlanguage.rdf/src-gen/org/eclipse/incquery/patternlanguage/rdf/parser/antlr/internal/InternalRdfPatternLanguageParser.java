@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_ESCAPED_IRI", "RULE_INT", "RULE_HEX", "RULE_DECIMAL", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'base'", "'prefix'", "':'", "'check'", "'('", "','", "')'", "'^^'", "'@'", "'pattern'", "'='", "'or'", "'private'", "'{'", "';'", "'}'", "'neg'", "'find'", "'+'", "'.'", "'['", "']'", "'*'", "'-'", "'true'", "'false'", "'TRUE'", "'FALSE'", "'eval'", "'count'", "'+='", "'-='", "'||'", "'&&'", "'=='", "'!='", "'==='", "'!=='", "'instanceof'", "'>='", "'<='", "'>'", "'<'", "'->'", "'..<'", "'..'", "'=>'", "'<>'", "'?:'", "'<=>'", "'**'", "'/'", "'%'", "'!'", "'as'", "'::'", "'?.'", "'#'", "'|'", "'if'", "'else'", "'switch'", "'default'", "'case'", "'for'", "'while'", "'do'", "'var'", "'val'", "'extends'", "'static'", "'import'", "'extension'", "'super'", "'new'", "'null'", "'typeof'", "'throw'", "'return'", "'try'", "'finally'", "'catch'", "'?'", "'&'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_ESCAPED_IRI", "RULE_INT", "RULE_HEX", "RULE_DECIMAL", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'base'", "'prefix'", "':'", "'('", "')'", "','", "'check'", "'^^'", "'@'", "'pattern'", "'='", "'or'", "'private'", "'{'", "';'", "'}'", "'neg'", "'find'", "'+'", "'.'", "'['", "']'", "'*'", "'-'", "'true'", "'false'", "'TRUE'", "'FALSE'", "'eval'", "'count'", "'+='", "'-='", "'||'", "'&&'", "'=='", "'!='", "'==='", "'!=='", "'instanceof'", "'>='", "'<='", "'>'", "'<'", "'->'", "'..<'", "'..'", "'=>'", "'<>'", "'?:'", "'<=>'", "'**'", "'/'", "'%'", "'!'", "'as'", "'::'", "'?.'", "'#'", "'|'", "'if'", "'else'", "'switch'", "'default'", "'case'", "'for'", "'while'", "'do'", "'var'", "'val'", "'extends'", "'static'", "'import'", "'extension'", "'super'", "'new'", "'null'", "'typeof'", "'throw'", "'return'", "'try'", "'finally'", "'catch'", "'?'", "'&'"
     };
     public static final int RULE_ID=4;
     public static final int T__29=29;
@@ -896,17 +896,17 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
 
     // $ANTLR start "ruleConstraint"
-    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:322:1: ruleConstraint returns [EObject current=null] : (this_CompareConstraint_0= ruleCompareConstraint | this_PatternCompositionConstraint_1= rulePatternCompositionConstraint | this_TypeConstraint_2= ruleTypeConstraint | this_RdfPathExpressionConstraint_3= ruleRdfPathExpressionConstraint | this_RdfCheckConstraint_4= ruleRdfCheckConstraint ) ;
+    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:322:1: ruleConstraint returns [EObject current=null] : (this_PatternCompositionConstraint_0= rulePatternCompositionConstraint | this_CompareConstraint_1= ruleCompareConstraint | this_RdfClassConstraint_2= ruleRdfClassConstraint | this_RdfPropertyConstraint_3= ruleRdfPropertyConstraint | this_RdfCheckConstraint_4= ruleRdfCheckConstraint ) ;
     public final EObject ruleConstraint() throws RecognitionException {
         EObject current = null;
 
-        EObject this_CompareConstraint_0 = null;
+        EObject this_PatternCompositionConstraint_0 = null;
 
-        EObject this_PatternCompositionConstraint_1 = null;
+        EObject this_CompareConstraint_1 = null;
 
-        EObject this_TypeConstraint_2 = null;
+        EObject this_RdfClassConstraint_2 = null;
 
-        EObject this_RdfPathExpressionConstraint_3 = null;
+        EObject this_RdfPropertyConstraint_3 = null;
 
         EObject this_RdfCheckConstraint_4 = null;
 
@@ -914,29 +914,29 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
          enterRule(); 
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:325:28: ( (this_CompareConstraint_0= ruleCompareConstraint | this_PatternCompositionConstraint_1= rulePatternCompositionConstraint | this_TypeConstraint_2= ruleTypeConstraint | this_RdfPathExpressionConstraint_3= ruleRdfPathExpressionConstraint | this_RdfCheckConstraint_4= ruleRdfCheckConstraint ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:326:1: (this_CompareConstraint_0= ruleCompareConstraint | this_PatternCompositionConstraint_1= rulePatternCompositionConstraint | this_TypeConstraint_2= ruleTypeConstraint | this_RdfPathExpressionConstraint_3= ruleRdfPathExpressionConstraint | this_RdfCheckConstraint_4= ruleRdfCheckConstraint )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:325:28: ( (this_PatternCompositionConstraint_0= rulePatternCompositionConstraint | this_CompareConstraint_1= ruleCompareConstraint | this_RdfClassConstraint_2= ruleRdfClassConstraint | this_RdfPropertyConstraint_3= ruleRdfPropertyConstraint | this_RdfCheckConstraint_4= ruleRdfCheckConstraint ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:326:1: (this_PatternCompositionConstraint_0= rulePatternCompositionConstraint | this_CompareConstraint_1= ruleCompareConstraint | this_RdfClassConstraint_2= ruleRdfClassConstraint | this_RdfPropertyConstraint_3= ruleRdfPropertyConstraint | this_RdfCheckConstraint_4= ruleRdfCheckConstraint )
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:326:1: (this_CompareConstraint_0= ruleCompareConstraint | this_PatternCompositionConstraint_1= rulePatternCompositionConstraint | this_TypeConstraint_2= ruleTypeConstraint | this_RdfPathExpressionConstraint_3= ruleRdfPathExpressionConstraint | this_RdfCheckConstraint_4= ruleRdfCheckConstraint )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:326:1: (this_PatternCompositionConstraint_0= rulePatternCompositionConstraint | this_CompareConstraint_1= ruleCompareConstraint | this_RdfClassConstraint_2= ruleRdfClassConstraint | this_RdfPropertyConstraint_3= ruleRdfPropertyConstraint | this_RdfCheckConstraint_4= ruleRdfCheckConstraint )
             int alt5=5;
             alt5 = dfa5.predict(input);
             switch (alt5) {
                 case 1 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:327:5: this_CompareConstraint_0= ruleCompareConstraint
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:327:5: this_PatternCompositionConstraint_0= rulePatternCompositionConstraint
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getConstraintAccess().getCompareConstraintParserRuleCall_0()); 
+                              newCompositeNode(grammarAccess.getConstraintAccess().getPatternCompositionConstraintParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleCompareConstraint_in_ruleConstraint647);
-                    this_CompareConstraint_0=ruleCompareConstraint();
+                    pushFollow(FOLLOW_rulePatternCompositionConstraint_in_ruleConstraint647);
+                    this_PatternCompositionConstraint_0=rulePatternCompositionConstraint();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_CompareConstraint_0; 
+                              current = this_PatternCompositionConstraint_0; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -944,21 +944,21 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:337:5: this_PatternCompositionConstraint_1= rulePatternCompositionConstraint
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:337:5: this_CompareConstraint_1= ruleCompareConstraint
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getConstraintAccess().getPatternCompositionConstraintParserRuleCall_1()); 
+                              newCompositeNode(grammarAccess.getConstraintAccess().getCompareConstraintParserRuleCall_1()); 
                           
                     }
-                    pushFollow(FOLLOW_rulePatternCompositionConstraint_in_ruleConstraint674);
-                    this_PatternCompositionConstraint_1=rulePatternCompositionConstraint();
+                    pushFollow(FOLLOW_ruleCompareConstraint_in_ruleConstraint674);
+                    this_CompareConstraint_1=ruleCompareConstraint();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_PatternCompositionConstraint_1; 
+                              current = this_CompareConstraint_1; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -966,21 +966,21 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:347:5: this_TypeConstraint_2= ruleTypeConstraint
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:347:5: this_RdfClassConstraint_2= ruleRdfClassConstraint
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getConstraintAccess().getTypeConstraintParserRuleCall_2()); 
+                              newCompositeNode(grammarAccess.getConstraintAccess().getRdfClassConstraintParserRuleCall_2()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleTypeConstraint_in_ruleConstraint701);
-                    this_TypeConstraint_2=ruleTypeConstraint();
+                    pushFollow(FOLLOW_ruleRdfClassConstraint_in_ruleConstraint701);
+                    this_RdfClassConstraint_2=ruleRdfClassConstraint();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_TypeConstraint_2; 
+                              current = this_RdfClassConstraint_2; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -988,21 +988,21 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:357:5: this_RdfPathExpressionConstraint_3= ruleRdfPathExpressionConstraint
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:357:5: this_RdfPropertyConstraint_3= ruleRdfPropertyConstraint
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getConstraintAccess().getRdfPathExpressionConstraintParserRuleCall_3()); 
+                              newCompositeNode(grammarAccess.getConstraintAccess().getRdfPropertyConstraintParserRuleCall_3()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleRdfPathExpressionConstraint_in_ruleConstraint728);
-                    this_RdfPathExpressionConstraint_3=ruleRdfPathExpressionConstraint();
+                    pushFollow(FOLLOW_ruleRdfPropertyConstraint_in_ruleConstraint728);
+                    this_RdfPropertyConstraint_3=ruleRdfPropertyConstraint();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_RdfPathExpressionConstraint_3; 
+                              current = this_RdfPropertyConstraint_3; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -1053,30 +1053,30 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     // $ANTLR end "ruleConstraint"
 
 
-    // $ANTLR start "entryRuleRdfCheckConstraint"
-    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:383:1: entryRuleRdfCheckConstraint returns [EObject current=null] : iv_ruleRdfCheckConstraint= ruleRdfCheckConstraint EOF ;
-    public final EObject entryRuleRdfCheckConstraint() throws RecognitionException {
+    // $ANTLR start "entryRuleRdfClassConstraint"
+    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:383:1: entryRuleRdfClassConstraint returns [EObject current=null] : iv_ruleRdfClassConstraint= ruleRdfClassConstraint EOF ;
+    public final EObject entryRuleRdfClassConstraint() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleRdfCheckConstraint = null;
+        EObject iv_ruleRdfClassConstraint = null;
 
 
         try {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:384:2: (iv_ruleRdfCheckConstraint= ruleRdfCheckConstraint EOF )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:385:2: iv_ruleRdfCheckConstraint= ruleRdfCheckConstraint EOF
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:384:2: (iv_ruleRdfClassConstraint= ruleRdfClassConstraint EOF )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:385:2: iv_ruleRdfClassConstraint= ruleRdfClassConstraint EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getRdfCheckConstraintRule()); 
+               newCompositeNode(grammarAccess.getRdfClassConstraintRule()); 
             }
-            pushFollow(FOLLOW_ruleRdfCheckConstraint_in_entryRuleRdfCheckConstraint790);
-            iv_ruleRdfCheckConstraint=ruleRdfCheckConstraint();
+            pushFollow(FOLLOW_ruleRdfClassConstraint_in_entryRuleRdfClassConstraint790);
+            iv_ruleRdfClassConstraint=ruleRdfClassConstraint();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleRdfCheckConstraint; 
+               current =iv_ruleRdfClassConstraint; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleRdfCheckConstraint800); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleRdfClassConstraint800); if (state.failed) return current;
 
             }
 
@@ -1090,461 +1090,42 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end "entryRuleRdfCheckConstraint"
+    // $ANTLR end "entryRuleRdfClassConstraint"
 
 
-    // $ANTLR start "ruleRdfCheckConstraint"
-    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:392:1: ruleRdfCheckConstraint returns [EObject current=null] : ( () otherlv_1= 'check' otherlv_2= '(' ( ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ',' )* ( (lv_expression_5_0= RULE_STRING ) ) otherlv_6= ')' ) ;
-    public final EObject ruleRdfCheckConstraint() throws RecognitionException {
-        EObject current = null;
-
-        Token otherlv_1=null;
-        Token otherlv_2=null;
-        Token otherlv_4=null;
-        Token lv_expression_5_0=null;
-        Token otherlv_6=null;
-        EObject lv_variables_3_0 = null;
-
-
-         enterRule(); 
-            
-        try {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:395:28: ( ( () otherlv_1= 'check' otherlv_2= '(' ( ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ',' )* ( (lv_expression_5_0= RULE_STRING ) ) otherlv_6= ')' ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:396:1: ( () otherlv_1= 'check' otherlv_2= '(' ( ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ',' )* ( (lv_expression_5_0= RULE_STRING ) ) otherlv_6= ')' )
-            {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:396:1: ( () otherlv_1= 'check' otherlv_2= '(' ( ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ',' )* ( (lv_expression_5_0= RULE_STRING ) ) otherlv_6= ')' )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:396:2: () otherlv_1= 'check' otherlv_2= '(' ( ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ',' )* ( (lv_expression_5_0= RULE_STRING ) ) otherlv_6= ')'
-            {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:396:2: ()
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:397:5: 
-            {
-            if ( state.backtracking==0 ) {
-
-                      current = forceCreateModelElement(
-                          grammarAccess.getRdfCheckConstraintAccess().getRdfCheckConstraintAction_0(),
-                          current);
-                  
-            }
-
-            }
-
-            otherlv_1=(Token)match(input,17,FOLLOW_17_in_ruleRdfCheckConstraint846); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-                  	newLeafNode(otherlv_1, grammarAccess.getRdfCheckConstraintAccess().getCheckKeyword_1());
-                  
-            }
-            otherlv_2=(Token)match(input,18,FOLLOW_18_in_ruleRdfCheckConstraint858); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-                  	newLeafNode(otherlv_2, grammarAccess.getRdfCheckConstraintAccess().getLeftParenthesisKeyword_2());
-                  
-            }
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:410:1: ( ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ',' )*
-            loop6:
-            do {
-                int alt6=2;
-                int LA6_0 = input.LA(1);
-
-                if ( (LA6_0==RULE_ID) ) {
-                    alt6=1;
-                }
-
-
-                switch (alt6) {
-            	case 1 :
-            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:410:2: ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ','
-            	    {
-            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:410:2: ( (lv_variables_3_0= ruleVariableReference ) )
-            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:411:1: (lv_variables_3_0= ruleVariableReference )
-            	    {
-            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:411:1: (lv_variables_3_0= ruleVariableReference )
-            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:412:3: lv_variables_3_0= ruleVariableReference
-            	    {
-            	    if ( state.backtracking==0 ) {
-            	       
-            	      	        newCompositeNode(grammarAccess.getRdfCheckConstraintAccess().getVariablesVariableReferenceParserRuleCall_3_0_0()); 
-            	      	    
-            	    }
-            	    pushFollow(FOLLOW_ruleVariableReference_in_ruleRdfCheckConstraint880);
-            	    lv_variables_3_0=ruleVariableReference();
-
-            	    state._fsp--;
-            	    if (state.failed) return current;
-            	    if ( state.backtracking==0 ) {
-
-            	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getRdfCheckConstraintRule());
-            	      	        }
-            	             		add(
-            	             			current, 
-            	             			"variables",
-            	              		lv_variables_3_0, 
-            	              		"VariableReference");
-            	      	        afterParserOrEnumRuleCall();
-            	      	    
-            	    }
-
-            	    }
-
-
-            	    }
-
-            	    otherlv_4=(Token)match(input,19,FOLLOW_19_in_ruleRdfCheckConstraint892); if (state.failed) return current;
-            	    if ( state.backtracking==0 ) {
-
-            	          	newLeafNode(otherlv_4, grammarAccess.getRdfCheckConstraintAccess().getCommaKeyword_3_1());
-            	          
-            	    }
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop6;
-                }
-            } while (true);
-
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:432:3: ( (lv_expression_5_0= RULE_STRING ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:433:1: (lv_expression_5_0= RULE_STRING )
-            {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:433:1: (lv_expression_5_0= RULE_STRING )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:434:3: lv_expression_5_0= RULE_STRING
-            {
-            lv_expression_5_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleRdfCheckConstraint911); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-              			newLeafNode(lv_expression_5_0, grammarAccess.getRdfCheckConstraintAccess().getExpressionSTRINGTerminalRuleCall_4_0()); 
-              		
-            }
-            if ( state.backtracking==0 ) {
-
-              	        if (current==null) {
-              	            current = createModelElement(grammarAccess.getRdfCheckConstraintRule());
-              	        }
-                     		setWithLastConsumed(
-                     			current, 
-                     			"expression",
-                      		lv_expression_5_0, 
-                      		"STRING");
-              	    
-            }
-
-            }
-
-
-            }
-
-            otherlv_6=(Token)match(input,20,FOLLOW_20_in_ruleRdfCheckConstraint928); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-                  	newLeafNode(otherlv_6, grammarAccess.getRdfCheckConstraintAccess().getRightParenthesisKeyword_5());
-                  
-            }
-
-            }
-
-
-            }
-
-            if ( state.backtracking==0 ) {
-               leaveRule(); 
-            }
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleRdfCheckConstraint"
-
-
-    // $ANTLR start "entryRuleRdfPathExpressionConstraint"
-    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:462:1: entryRuleRdfPathExpressionConstraint returns [EObject current=null] : iv_ruleRdfPathExpressionConstraint= ruleRdfPathExpressionConstraint EOF ;
-    public final EObject entryRuleRdfPathExpressionConstraint() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleRdfPathExpressionConstraint = null;
-
-
-        try {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:463:2: (iv_ruleRdfPathExpressionConstraint= ruleRdfPathExpressionConstraint EOF )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:464:2: iv_ruleRdfPathExpressionConstraint= ruleRdfPathExpressionConstraint EOF
-            {
-            if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getRdfPathExpressionConstraintRule()); 
-            }
-            pushFollow(FOLLOW_ruleRdfPathExpressionConstraint_in_entryRuleRdfPathExpressionConstraint964);
-            iv_ruleRdfPathExpressionConstraint=ruleRdfPathExpressionConstraint();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-               current =iv_ruleRdfPathExpressionConstraint; 
-            }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleRdfPathExpressionConstraint974); if (state.failed) return current;
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleRdfPathExpressionConstraint"
-
-
-    // $ANTLR start "ruleRdfPathExpressionConstraint"
-    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:471:1: ruleRdfPathExpressionConstraint returns [EObject current=null] : ( ( (lv_pathExpression_0_0= rulePathExpressionTail ) ) otherlv_1= '(' ( (lv_src_2_0= ruleVariableReference ) ) otherlv_3= ',' ( (lv_dst_4_0= ruleValueReference ) ) otherlv_5= ')' ) ;
-    public final EObject ruleRdfPathExpressionConstraint() throws RecognitionException {
-        EObject current = null;
-
-        Token otherlv_1=null;
-        Token otherlv_3=null;
-        Token otherlv_5=null;
-        EObject lv_pathExpression_0_0 = null;
-
-        EObject lv_src_2_0 = null;
-
-        EObject lv_dst_4_0 = null;
-
-
-         enterRule(); 
-            
-        try {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:474:28: ( ( ( (lv_pathExpression_0_0= rulePathExpressionTail ) ) otherlv_1= '(' ( (lv_src_2_0= ruleVariableReference ) ) otherlv_3= ',' ( (lv_dst_4_0= ruleValueReference ) ) otherlv_5= ')' ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:475:1: ( ( (lv_pathExpression_0_0= rulePathExpressionTail ) ) otherlv_1= '(' ( (lv_src_2_0= ruleVariableReference ) ) otherlv_3= ',' ( (lv_dst_4_0= ruleValueReference ) ) otherlv_5= ')' )
-            {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:475:1: ( ( (lv_pathExpression_0_0= rulePathExpressionTail ) ) otherlv_1= '(' ( (lv_src_2_0= ruleVariableReference ) ) otherlv_3= ',' ( (lv_dst_4_0= ruleValueReference ) ) otherlv_5= ')' )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:475:2: ( (lv_pathExpression_0_0= rulePathExpressionTail ) ) otherlv_1= '(' ( (lv_src_2_0= ruleVariableReference ) ) otherlv_3= ',' ( (lv_dst_4_0= ruleValueReference ) ) otherlv_5= ')'
-            {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:475:2: ( (lv_pathExpression_0_0= rulePathExpressionTail ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:476:1: (lv_pathExpression_0_0= rulePathExpressionTail )
-            {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:476:1: (lv_pathExpression_0_0= rulePathExpressionTail )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:477:3: lv_pathExpression_0_0= rulePathExpressionTail
-            {
-            if ( state.backtracking==0 ) {
-               
-              	        newCompositeNode(grammarAccess.getRdfPathExpressionConstraintAccess().getPathExpressionPathExpressionTailParserRuleCall_0_0()); 
-              	    
-            }
-            pushFollow(FOLLOW_rulePathExpressionTail_in_ruleRdfPathExpressionConstraint1020);
-            lv_pathExpression_0_0=rulePathExpressionTail();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-              	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getRdfPathExpressionConstraintRule());
-              	        }
-                     		set(
-                     			current, 
-                     			"pathExpression",
-                      		lv_pathExpression_0_0, 
-                      		"PathExpressionTail");
-              	        afterParserOrEnumRuleCall();
-              	    
-            }
-
-            }
-
-
-            }
-
-            otherlv_1=(Token)match(input,18,FOLLOW_18_in_ruleRdfPathExpressionConstraint1032); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-                  	newLeafNode(otherlv_1, grammarAccess.getRdfPathExpressionConstraintAccess().getLeftParenthesisKeyword_1());
-                  
-            }
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:497:1: ( (lv_src_2_0= ruleVariableReference ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:498:1: (lv_src_2_0= ruleVariableReference )
-            {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:498:1: (lv_src_2_0= ruleVariableReference )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:499:3: lv_src_2_0= ruleVariableReference
-            {
-            if ( state.backtracking==0 ) {
-               
-              	        newCompositeNode(grammarAccess.getRdfPathExpressionConstraintAccess().getSrcVariableReferenceParserRuleCall_2_0()); 
-              	    
-            }
-            pushFollow(FOLLOW_ruleVariableReference_in_ruleRdfPathExpressionConstraint1053);
-            lv_src_2_0=ruleVariableReference();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-              	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getRdfPathExpressionConstraintRule());
-              	        }
-                     		set(
-                     			current, 
-                     			"src",
-                      		lv_src_2_0, 
-                      		"VariableReference");
-              	        afterParserOrEnumRuleCall();
-              	    
-            }
-
-            }
-
-
-            }
-
-            otherlv_3=(Token)match(input,19,FOLLOW_19_in_ruleRdfPathExpressionConstraint1065); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-                  	newLeafNode(otherlv_3, grammarAccess.getRdfPathExpressionConstraintAccess().getCommaKeyword_3());
-                  
-            }
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:519:1: ( (lv_dst_4_0= ruleValueReference ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:520:1: (lv_dst_4_0= ruleValueReference )
-            {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:520:1: (lv_dst_4_0= ruleValueReference )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:521:3: lv_dst_4_0= ruleValueReference
-            {
-            if ( state.backtracking==0 ) {
-               
-              	        newCompositeNode(grammarAccess.getRdfPathExpressionConstraintAccess().getDstValueReferenceParserRuleCall_4_0()); 
-              	    
-            }
-            pushFollow(FOLLOW_ruleValueReference_in_ruleRdfPathExpressionConstraint1086);
-            lv_dst_4_0=ruleValueReference();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-              	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getRdfPathExpressionConstraintRule());
-              	        }
-                     		set(
-                     			current, 
-                     			"dst",
-                      		lv_dst_4_0, 
-                      		"ValueReference");
-              	        afterParserOrEnumRuleCall();
-              	    
-            }
-
-            }
-
-
-            }
-
-            otherlv_5=(Token)match(input,20,FOLLOW_20_in_ruleRdfPathExpressionConstraint1098); if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-                  	newLeafNode(otherlv_5, grammarAccess.getRdfPathExpressionConstraintAccess().getRightParenthesisKeyword_5());
-                  
-            }
-
-            }
-
-
-            }
-
-            if ( state.backtracking==0 ) {
-               leaveRule(); 
-            }
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleRdfPathExpressionConstraint"
-
-
-    // $ANTLR start "entryRuleTypeConstraint"
-    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:549:1: entryRuleTypeConstraint returns [EObject current=null] : iv_ruleTypeConstraint= ruleTypeConstraint EOF ;
-    public final EObject entryRuleTypeConstraint() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleTypeConstraint = null;
-
-
-        try {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:550:2: (iv_ruleTypeConstraint= ruleTypeConstraint EOF )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:551:2: iv_ruleTypeConstraint= ruleTypeConstraint EOF
-            {
-            if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getTypeConstraintRule()); 
-            }
-            pushFollow(FOLLOW_ruleTypeConstraint_in_entryRuleTypeConstraint1134);
-            iv_ruleTypeConstraint=ruleTypeConstraint();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-               current =iv_ruleTypeConstraint; 
-            }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTypeConstraint1144); if (state.failed) return current;
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleTypeConstraint"
-
-
-    // $ANTLR start "ruleTypeConstraint"
-    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:558:1: ruleTypeConstraint returns [EObject current=null] : ( ( (lv_type_0_0= ruleType ) ) otherlv_1= '(' ( (lv_var_2_0= ruleVariableReference ) ) otherlv_3= ')' ) ;
-    public final EObject ruleTypeConstraint() throws RecognitionException {
+    // $ANTLR start "ruleRdfClassConstraint"
+    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:392:1: ruleRdfClassConstraint returns [EObject current=null] : ( ( (lv_type_0_0= ruleType ) ) otherlv_1= '(' ( (lv_variable_2_0= ruleVariableReference ) ) otherlv_3= ')' ) ;
+    public final EObject ruleRdfClassConstraint() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
         Token otherlv_3=null;
         EObject lv_type_0_0 = null;
 
-        EObject lv_var_2_0 = null;
+        EObject lv_variable_2_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:561:28: ( ( ( (lv_type_0_0= ruleType ) ) otherlv_1= '(' ( (lv_var_2_0= ruleVariableReference ) ) otherlv_3= ')' ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:562:1: ( ( (lv_type_0_0= ruleType ) ) otherlv_1= '(' ( (lv_var_2_0= ruleVariableReference ) ) otherlv_3= ')' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:395:28: ( ( ( (lv_type_0_0= ruleType ) ) otherlv_1= '(' ( (lv_variable_2_0= ruleVariableReference ) ) otherlv_3= ')' ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:396:1: ( ( (lv_type_0_0= ruleType ) ) otherlv_1= '(' ( (lv_variable_2_0= ruleVariableReference ) ) otherlv_3= ')' )
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:562:1: ( ( (lv_type_0_0= ruleType ) ) otherlv_1= '(' ( (lv_var_2_0= ruleVariableReference ) ) otherlv_3= ')' )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:562:2: ( (lv_type_0_0= ruleType ) ) otherlv_1= '(' ( (lv_var_2_0= ruleVariableReference ) ) otherlv_3= ')'
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:396:1: ( ( (lv_type_0_0= ruleType ) ) otherlv_1= '(' ( (lv_variable_2_0= ruleVariableReference ) ) otherlv_3= ')' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:396:2: ( (lv_type_0_0= ruleType ) ) otherlv_1= '(' ( (lv_variable_2_0= ruleVariableReference ) ) otherlv_3= ')'
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:562:2: ( (lv_type_0_0= ruleType ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:563:1: (lv_type_0_0= ruleType )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:396:2: ( (lv_type_0_0= ruleType ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:397:1: (lv_type_0_0= ruleType )
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:563:1: (lv_type_0_0= ruleType )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:564:3: lv_type_0_0= ruleType
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:397:1: (lv_type_0_0= ruleType )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:398:3: lv_type_0_0= ruleType
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getTypeConstraintAccess().getTypeTypeParserRuleCall_0_0()); 
+              	        newCompositeNode(grammarAccess.getRdfClassConstraintAccess().getTypeTypeParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleType_in_ruleTypeConstraint1190);
+            pushFollow(FOLLOW_ruleType_in_ruleRdfClassConstraint846);
             lv_type_0_0=ruleType();
 
             state._fsp--;
@@ -1552,7 +1133,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getTypeConstraintRule());
+              	            current = createModelElementForParent(grammarAccess.getRdfClassConstraintRule());
               	        }
                      		set(
                      			current, 
@@ -1568,37 +1149,37 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_1=(Token)match(input,18,FOLLOW_18_in_ruleTypeConstraint1202); if (state.failed) return current;
+            otherlv_1=(Token)match(input,17,FOLLOW_17_in_ruleRdfClassConstraint858); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_1, grammarAccess.getTypeConstraintAccess().getLeftParenthesisKeyword_1());
+                  	newLeafNode(otherlv_1, grammarAccess.getRdfClassConstraintAccess().getLeftParenthesisKeyword_1());
                   
             }
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:584:1: ( (lv_var_2_0= ruleVariableReference ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:585:1: (lv_var_2_0= ruleVariableReference )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:418:1: ( (lv_variable_2_0= ruleVariableReference ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:419:1: (lv_variable_2_0= ruleVariableReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:585:1: (lv_var_2_0= ruleVariableReference )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:586:3: lv_var_2_0= ruleVariableReference
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:419:1: (lv_variable_2_0= ruleVariableReference )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:420:3: lv_variable_2_0= ruleVariableReference
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getTypeConstraintAccess().getVarVariableReferenceParserRuleCall_2_0()); 
+              	        newCompositeNode(grammarAccess.getRdfClassConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleVariableReference_in_ruleTypeConstraint1223);
-            lv_var_2_0=ruleVariableReference();
+            pushFollow(FOLLOW_ruleVariableReference_in_ruleRdfClassConstraint879);
+            lv_variable_2_0=ruleVariableReference();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getTypeConstraintRule());
+              	            current = createModelElementForParent(grammarAccess.getRdfClassConstraintRule());
               	        }
                      		set(
                      			current, 
-                     			"var",
-                      		lv_var_2_0, 
+                     			"variable",
+                      		lv_variable_2_0, 
                       		"VariableReference");
               	        afterParserOrEnumRuleCall();
               	    
@@ -1609,10 +1190,10 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_3=(Token)match(input,20,FOLLOW_20_in_ruleTypeConstraint1235); if (state.failed) return current;
+            otherlv_3=(Token)match(input,18,FOLLOW_18_in_ruleRdfClassConstraint891); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_3, grammarAccess.getTypeConstraintAccess().getRightParenthesisKeyword_3());
+                  	newLeafNode(otherlv_3, grammarAccess.getRdfClassConstraintAccess().getRightParenthesisKeyword_3());
                   
             }
 
@@ -1634,11 +1215,11 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
         }
         return current;
     }
-    // $ANTLR end "ruleTypeConstraint"
+    // $ANTLR end "ruleRdfClassConstraint"
 
 
     // $ANTLR start "entryRuleType"
-    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:614:1: entryRuleType returns [EObject current=null] : iv_ruleType= ruleType EOF ;
+    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:448:1: entryRuleType returns [EObject current=null] : iv_ruleType= ruleType EOF ;
     public final EObject entryRuleType() throws RecognitionException {
         EObject current = null;
 
@@ -1646,13 +1227,13 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:615:2: (iv_ruleType= ruleType EOF )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:616:2: iv_ruleType= ruleType EOF
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:449:2: (iv_ruleType= ruleType EOF )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:450:2: iv_ruleType= ruleType EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getTypeRule()); 
             }
-            pushFollow(FOLLOW_ruleType_in_entryRuleType1271);
+            pushFollow(FOLLOW_ruleType_in_entryRuleType927);
             iv_ruleType=ruleType();
 
             state._fsp--;
@@ -1660,7 +1241,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             if ( state.backtracking==0 ) {
                current =iv_ruleType; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleType1281); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleType937); if (state.failed) return current;
 
             }
 
@@ -1678,7 +1259,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
 
     // $ANTLR start "ruleType"
-    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:623:1: ruleType returns [EObject current=null] : ( () ( (lv_class_1_0= ruleIri ) ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:457:1: ruleType returns [EObject current=null] : ( () ( (lv_class_1_0= ruleIri ) ) ) ;
     public final EObject ruleType() throws RecognitionException {
         EObject current = null;
 
@@ -1688,14 +1269,14 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
          enterRule(); 
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:626:28: ( ( () ( (lv_class_1_0= ruleIri ) ) ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:627:1: ( () ( (lv_class_1_0= ruleIri ) ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:460:28: ( ( () ( (lv_class_1_0= ruleIri ) ) ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:461:1: ( () ( (lv_class_1_0= ruleIri ) ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:627:1: ( () ( (lv_class_1_0= ruleIri ) ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:627:2: () ( (lv_class_1_0= ruleIri ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:461:1: ( () ( (lv_class_1_0= ruleIri ) ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:461:2: () ( (lv_class_1_0= ruleIri ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:627:2: ()
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:628:5: 
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:461:2: ()
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:462:5: 
             {
             if ( state.backtracking==0 ) {
 
@@ -1707,18 +1288,18 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:633:2: ( (lv_class_1_0= ruleIri ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:634:1: (lv_class_1_0= ruleIri )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:467:2: ( (lv_class_1_0= ruleIri ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:468:1: (lv_class_1_0= ruleIri )
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:634:1: (lv_class_1_0= ruleIri )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:635:3: lv_class_1_0= ruleIri
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:468:1: (lv_class_1_0= ruleIri )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:469:3: lv_class_1_0= ruleIri
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getTypeAccess().getClassIriParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleIri_in_ruleType1336);
+            pushFollow(FOLLOW_ruleIri_in_ruleType992);
             lv_class_1_0=ruleIri();
 
             state._fsp--;
@@ -1764,8 +1345,217 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     // $ANTLR end "ruleType"
 
 
+    // $ANTLR start "entryRuleRdfPropertyConstraint"
+    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:493:1: entryRuleRdfPropertyConstraint returns [EObject current=null] : iv_ruleRdfPropertyConstraint= ruleRdfPropertyConstraint EOF ;
+    public final EObject entryRuleRdfPropertyConstraint() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleRdfPropertyConstraint = null;
+
+
+        try {
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:494:2: (iv_ruleRdfPropertyConstraint= ruleRdfPropertyConstraint EOF )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:495:2: iv_ruleRdfPropertyConstraint= ruleRdfPropertyConstraint EOF
+            {
+            if ( state.backtracking==0 ) {
+               newCompositeNode(grammarAccess.getRdfPropertyConstraintRule()); 
+            }
+            pushFollow(FOLLOW_ruleRdfPropertyConstraint_in_entryRuleRdfPropertyConstraint1028);
+            iv_ruleRdfPropertyConstraint=ruleRdfPropertyConstraint();
+
+            state._fsp--;
+            if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+               current =iv_ruleRdfPropertyConstraint; 
+            }
+            match(input,EOF,FOLLOW_EOF_in_entryRuleRdfPropertyConstraint1038); if (state.failed) return current;
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleRdfPropertyConstraint"
+
+
+    // $ANTLR start "ruleRdfPropertyConstraint"
+    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:502:1: ruleRdfPropertyConstraint returns [EObject current=null] : ( ( (lv_refType_0_0= ruleRefType ) ) otherlv_1= '(' ( (lv_source_2_0= ruleVariableReference ) ) otherlv_3= ',' ( (lv_target_4_0= ruleValueReference ) ) otherlv_5= ')' ) ;
+    public final EObject ruleRdfPropertyConstraint() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_1=null;
+        Token otherlv_3=null;
+        Token otherlv_5=null;
+        EObject lv_refType_0_0 = null;
+
+        EObject lv_source_2_0 = null;
+
+        EObject lv_target_4_0 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:505:28: ( ( ( (lv_refType_0_0= ruleRefType ) ) otherlv_1= '(' ( (lv_source_2_0= ruleVariableReference ) ) otherlv_3= ',' ( (lv_target_4_0= ruleValueReference ) ) otherlv_5= ')' ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:506:1: ( ( (lv_refType_0_0= ruleRefType ) ) otherlv_1= '(' ( (lv_source_2_0= ruleVariableReference ) ) otherlv_3= ',' ( (lv_target_4_0= ruleValueReference ) ) otherlv_5= ')' )
+            {
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:506:1: ( ( (lv_refType_0_0= ruleRefType ) ) otherlv_1= '(' ( (lv_source_2_0= ruleVariableReference ) ) otherlv_3= ',' ( (lv_target_4_0= ruleValueReference ) ) otherlv_5= ')' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:506:2: ( (lv_refType_0_0= ruleRefType ) ) otherlv_1= '(' ( (lv_source_2_0= ruleVariableReference ) ) otherlv_3= ',' ( (lv_target_4_0= ruleValueReference ) ) otherlv_5= ')'
+            {
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:506:2: ( (lv_refType_0_0= ruleRefType ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:507:1: (lv_refType_0_0= ruleRefType )
+            {
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:507:1: (lv_refType_0_0= ruleRefType )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:508:3: lv_refType_0_0= ruleRefType
+            {
+            if ( state.backtracking==0 ) {
+               
+              	        newCompositeNode(grammarAccess.getRdfPropertyConstraintAccess().getRefTypeRefTypeParserRuleCall_0_0()); 
+              	    
+            }
+            pushFollow(FOLLOW_ruleRefType_in_ruleRdfPropertyConstraint1084);
+            lv_refType_0_0=ruleRefType();
+
+            state._fsp--;
+            if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+              	        if (current==null) {
+              	            current = createModelElementForParent(grammarAccess.getRdfPropertyConstraintRule());
+              	        }
+                     		set(
+                     			current, 
+                     			"refType",
+                      		lv_refType_0_0, 
+                      		"RefType");
+              	        afterParserOrEnumRuleCall();
+              	    
+            }
+
+            }
+
+
+            }
+
+            otherlv_1=(Token)match(input,17,FOLLOW_17_in_ruleRdfPropertyConstraint1096); if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+                  	newLeafNode(otherlv_1, grammarAccess.getRdfPropertyConstraintAccess().getLeftParenthesisKeyword_1());
+                  
+            }
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:528:1: ( (lv_source_2_0= ruleVariableReference ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:529:1: (lv_source_2_0= ruleVariableReference )
+            {
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:529:1: (lv_source_2_0= ruleVariableReference )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:530:3: lv_source_2_0= ruleVariableReference
+            {
+            if ( state.backtracking==0 ) {
+               
+              	        newCompositeNode(grammarAccess.getRdfPropertyConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); 
+              	    
+            }
+            pushFollow(FOLLOW_ruleVariableReference_in_ruleRdfPropertyConstraint1117);
+            lv_source_2_0=ruleVariableReference();
+
+            state._fsp--;
+            if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+              	        if (current==null) {
+              	            current = createModelElementForParent(grammarAccess.getRdfPropertyConstraintRule());
+              	        }
+                     		set(
+                     			current, 
+                     			"source",
+                      		lv_source_2_0, 
+                      		"VariableReference");
+              	        afterParserOrEnumRuleCall();
+              	    
+            }
+
+            }
+
+
+            }
+
+            otherlv_3=(Token)match(input,19,FOLLOW_19_in_ruleRdfPropertyConstraint1129); if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+                  	newLeafNode(otherlv_3, grammarAccess.getRdfPropertyConstraintAccess().getCommaKeyword_3());
+                  
+            }
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:550:1: ( (lv_target_4_0= ruleValueReference ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:551:1: (lv_target_4_0= ruleValueReference )
+            {
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:551:1: (lv_target_4_0= ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:552:3: lv_target_4_0= ruleValueReference
+            {
+            if ( state.backtracking==0 ) {
+               
+              	        newCompositeNode(grammarAccess.getRdfPropertyConstraintAccess().getTargetValueReferenceParserRuleCall_4_0()); 
+              	    
+            }
+            pushFollow(FOLLOW_ruleValueReference_in_ruleRdfPropertyConstraint1150);
+            lv_target_4_0=ruleValueReference();
+
+            state._fsp--;
+            if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+              	        if (current==null) {
+              	            current = createModelElementForParent(grammarAccess.getRdfPropertyConstraintRule());
+              	        }
+                     		set(
+                     			current, 
+                     			"target",
+                      		lv_target_4_0, 
+                      		"ValueReference");
+              	        afterParserOrEnumRuleCall();
+              	    
+            }
+
+            }
+
+
+            }
+
+            otherlv_5=(Token)match(input,18,FOLLOW_18_in_ruleRdfPropertyConstraint1162); if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+                  	newLeafNode(otherlv_5, grammarAccess.getRdfPropertyConstraintAccess().getRightParenthesisKeyword_5());
+                  
+            }
+
+            }
+
+
+            }
+
+            if ( state.backtracking==0 ) {
+               leaveRule(); 
+            }
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleRdfPropertyConstraint"
+
+
     // $ANTLR start "entryRuleRefType"
-    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:659:1: entryRuleRefType returns [EObject current=null] : iv_ruleRefType= ruleRefType EOF ;
+    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:580:1: entryRuleRefType returns [EObject current=null] : iv_ruleRefType= ruleRefType EOF ;
     public final EObject entryRuleRefType() throws RecognitionException {
         EObject current = null;
 
@@ -1773,13 +1563,13 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
 
         try {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:660:2: (iv_ruleRefType= ruleRefType EOF )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:661:2: iv_ruleRefType= ruleRefType EOF
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:581:2: (iv_ruleRefType= ruleRefType EOF )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:582:2: iv_ruleRefType= ruleRefType EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getRefTypeRule()); 
             }
-            pushFollow(FOLLOW_ruleRefType_in_entryRuleRefType1372);
+            pushFollow(FOLLOW_ruleRefType_in_entryRuleRefType1198);
             iv_ruleRefType=ruleRefType();
 
             state._fsp--;
@@ -1787,7 +1577,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             if ( state.backtracking==0 ) {
                current =iv_ruleRefType; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleRefType1382); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleRefType1208); if (state.failed) return current;
 
             }
 
@@ -1805,7 +1595,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
 
     // $ANTLR start "ruleRefType"
-    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:668:1: ruleRefType returns [EObject current=null] : ( () ( (lv_property_1_0= ruleIri ) ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:589:1: ruleRefType returns [EObject current=null] : ( () ( (lv_property_1_0= ruleIri ) ) ) ;
     public final EObject ruleRefType() throws RecognitionException {
         EObject current = null;
 
@@ -1815,14 +1605,14 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
          enterRule(); 
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:671:28: ( ( () ( (lv_property_1_0= ruleIri ) ) ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:672:1: ( () ( (lv_property_1_0= ruleIri ) ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:592:28: ( ( () ( (lv_property_1_0= ruleIri ) ) ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:593:1: ( () ( (lv_property_1_0= ruleIri ) ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:672:1: ( () ( (lv_property_1_0= ruleIri ) ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:672:2: () ( (lv_property_1_0= ruleIri ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:593:1: ( () ( (lv_property_1_0= ruleIri ) ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:593:2: () ( (lv_property_1_0= ruleIri ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:672:2: ()
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:673:5: 
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:593:2: ()
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:594:5: 
             {
             if ( state.backtracking==0 ) {
 
@@ -1834,18 +1624,18 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:678:2: ( (lv_property_1_0= ruleIri ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:679:1: (lv_property_1_0= ruleIri )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:599:2: ( (lv_property_1_0= ruleIri ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:600:1: (lv_property_1_0= ruleIri )
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:679:1: (lv_property_1_0= ruleIri )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:680:3: lv_property_1_0= ruleIri
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:600:1: (lv_property_1_0= ruleIri )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:601:3: lv_property_1_0= ruleIri
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getRefTypeAccess().getPropertyIriParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleIri_in_ruleRefType1437);
+            pushFollow(FOLLOW_ruleIri_in_ruleRefType1263);
             lv_property_1_0=ruleIri();
 
             state._fsp--;
@@ -1889,6 +1679,216 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
         return current;
     }
     // $ANTLR end "ruleRefType"
+
+
+    // $ANTLR start "entryRuleRdfCheckConstraint"
+    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:625:1: entryRuleRdfCheckConstraint returns [EObject current=null] : iv_ruleRdfCheckConstraint= ruleRdfCheckConstraint EOF ;
+    public final EObject entryRuleRdfCheckConstraint() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleRdfCheckConstraint = null;
+
+
+        try {
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:626:2: (iv_ruleRdfCheckConstraint= ruleRdfCheckConstraint EOF )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:627:2: iv_ruleRdfCheckConstraint= ruleRdfCheckConstraint EOF
+            {
+            if ( state.backtracking==0 ) {
+               newCompositeNode(grammarAccess.getRdfCheckConstraintRule()); 
+            }
+            pushFollow(FOLLOW_ruleRdfCheckConstraint_in_entryRuleRdfCheckConstraint1299);
+            iv_ruleRdfCheckConstraint=ruleRdfCheckConstraint();
+
+            state._fsp--;
+            if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+               current =iv_ruleRdfCheckConstraint; 
+            }
+            match(input,EOF,FOLLOW_EOF_in_entryRuleRdfCheckConstraint1309); if (state.failed) return current;
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleRdfCheckConstraint"
+
+
+    // $ANTLR start "ruleRdfCheckConstraint"
+    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:634:1: ruleRdfCheckConstraint returns [EObject current=null] : ( () otherlv_1= 'check' otherlv_2= '(' ( ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ',' )* ( (lv_expression_5_0= RULE_STRING ) ) otherlv_6= ')' ) ;
+    public final EObject ruleRdfCheckConstraint() throws RecognitionException {
+        EObject current = null;
+
+        Token otherlv_1=null;
+        Token otherlv_2=null;
+        Token otherlv_4=null;
+        Token lv_expression_5_0=null;
+        Token otherlv_6=null;
+        EObject lv_variables_3_0 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:637:28: ( ( () otherlv_1= 'check' otherlv_2= '(' ( ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ',' )* ( (lv_expression_5_0= RULE_STRING ) ) otherlv_6= ')' ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:638:1: ( () otherlv_1= 'check' otherlv_2= '(' ( ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ',' )* ( (lv_expression_5_0= RULE_STRING ) ) otherlv_6= ')' )
+            {
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:638:1: ( () otherlv_1= 'check' otherlv_2= '(' ( ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ',' )* ( (lv_expression_5_0= RULE_STRING ) ) otherlv_6= ')' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:638:2: () otherlv_1= 'check' otherlv_2= '(' ( ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ',' )* ( (lv_expression_5_0= RULE_STRING ) ) otherlv_6= ')'
+            {
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:638:2: ()
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:639:5: 
+            {
+            if ( state.backtracking==0 ) {
+
+                      current = forceCreateModelElement(
+                          grammarAccess.getRdfCheckConstraintAccess().getRdfCheckConstraintAction_0(),
+                          current);
+                  
+            }
+
+            }
+
+            otherlv_1=(Token)match(input,20,FOLLOW_20_in_ruleRdfCheckConstraint1355); if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+                  	newLeafNode(otherlv_1, grammarAccess.getRdfCheckConstraintAccess().getCheckKeyword_1());
+                  
+            }
+            otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleRdfCheckConstraint1367); if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+                  	newLeafNode(otherlv_2, grammarAccess.getRdfCheckConstraintAccess().getLeftParenthesisKeyword_2());
+                  
+            }
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:652:1: ( ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ',' )*
+            loop6:
+            do {
+                int alt6=2;
+                int LA6_0 = input.LA(1);
+
+                if ( (LA6_0==RULE_ID) ) {
+                    alt6=1;
+                }
+
+
+                switch (alt6) {
+            	case 1 :
+            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:652:2: ( (lv_variables_3_0= ruleVariableReference ) ) otherlv_4= ','
+            	    {
+            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:652:2: ( (lv_variables_3_0= ruleVariableReference ) )
+            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:653:1: (lv_variables_3_0= ruleVariableReference )
+            	    {
+            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:653:1: (lv_variables_3_0= ruleVariableReference )
+            	    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:654:3: lv_variables_3_0= ruleVariableReference
+            	    {
+            	    if ( state.backtracking==0 ) {
+            	       
+            	      	        newCompositeNode(grammarAccess.getRdfCheckConstraintAccess().getVariablesVariableReferenceParserRuleCall_3_0_0()); 
+            	      	    
+            	    }
+            	    pushFollow(FOLLOW_ruleVariableReference_in_ruleRdfCheckConstraint1389);
+            	    lv_variables_3_0=ruleVariableReference();
+
+            	    state._fsp--;
+            	    if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      	        if (current==null) {
+            	      	            current = createModelElementForParent(grammarAccess.getRdfCheckConstraintRule());
+            	      	        }
+            	             		add(
+            	             			current, 
+            	             			"variables",
+            	              		lv_variables_3_0, 
+            	              		"VariableReference");
+            	      	        afterParserOrEnumRuleCall();
+            	      	    
+            	    }
+
+            	    }
+
+
+            	    }
+
+            	    otherlv_4=(Token)match(input,19,FOLLOW_19_in_ruleRdfCheckConstraint1401); if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	          	newLeafNode(otherlv_4, grammarAccess.getRdfCheckConstraintAccess().getCommaKeyword_3_1());
+            	          
+            	    }
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop6;
+                }
+            } while (true);
+
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:674:3: ( (lv_expression_5_0= RULE_STRING ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:675:1: (lv_expression_5_0= RULE_STRING )
+            {
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:675:1: (lv_expression_5_0= RULE_STRING )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:676:3: lv_expression_5_0= RULE_STRING
+            {
+            lv_expression_5_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleRdfCheckConstraint1420); if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+              			newLeafNode(lv_expression_5_0, grammarAccess.getRdfCheckConstraintAccess().getExpressionSTRINGTerminalRuleCall_4_0()); 
+              		
+            }
+            if ( state.backtracking==0 ) {
+
+              	        if (current==null) {
+              	            current = createModelElement(grammarAccess.getRdfCheckConstraintRule());
+              	        }
+                     		setWithLastConsumed(
+                     			current, 
+                     			"expression",
+                      		lv_expression_5_0, 
+                      		"STRING");
+              	    
+            }
+
+            }
+
+
+            }
+
+            otherlv_6=(Token)match(input,18,FOLLOW_18_in_ruleRdfCheckConstraint1437); if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+                  	newLeafNode(otherlv_6, grammarAccess.getRdfCheckConstraintAccess().getRightParenthesisKeyword_5());
+                  
+            }
+
+            }
+
+
+            }
+
+            if ( state.backtracking==0 ) {
+               leaveRule(); 
+            }
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleRdfCheckConstraint"
 
 
     // $ANTLR start "entryRuleLiteralValueReference"
@@ -1966,7 +1966,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     if ( (LA7_2==33) ) {
                         alt7=3;
                     }
-                    else if ( (LA7_2==EOF||(LA7_2>=19 && LA7_2<=20)||(LA7_2>=28 && LA7_2<=29)||(LA7_2>=48 && LA7_2<=49)) ) {
+                    else if ( (LA7_2==EOF||(LA7_2>=18 && LA7_2<=19)||(LA7_2>=28 && LA7_2<=29)||(LA7_2>=48 && LA7_2<=49)) ) {
                         alt7=1;
                     }
                     else {
@@ -1993,7 +1993,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 if ( (LA7_2==33) ) {
                     alt7=3;
                 }
-                else if ( (LA7_2==EOF||(LA7_2>=19 && LA7_2<=20)||(LA7_2>=28 && LA7_2<=29)||(LA7_2>=48 && LA7_2<=49)) ) {
+                else if ( (LA7_2==EOF||(LA7_2>=18 && LA7_2<=19)||(LA7_2>=28 && LA7_2<=29)||(LA7_2>=48 && LA7_2<=49)) ) {
                     alt7=1;
                 }
                 else {
@@ -2009,11 +2009,11 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 {
                 int LA7_3 = input.LA(2);
 
-                if ( (LA7_3==EOF||(LA7_3>=19 && LA7_3<=20)||(LA7_3>=28 && LA7_3<=29)||(LA7_3>=48 && LA7_3<=49)) ) {
-                    alt7=2;
-                }
-                else if ( ((LA7_3>=21 && LA7_3<=22)) ) {
+                if ( ((LA7_3>=21 && LA7_3<=22)) ) {
                     alt7=5;
+                }
+                else if ( (LA7_3==EOF||(LA7_3>=18 && LA7_3<=19)||(LA7_3>=28 && LA7_3<=29)||(LA7_3>=48 && LA7_3<=49)) ) {
+                    alt7=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
@@ -2752,7 +2752,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_4=(Token)match(input,18,FOLLOW_18_in_rulePattern2095); if (state.failed) return current;
+            otherlv_4=(Token)match(input,17,FOLLOW_17_in_rulePattern2095); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getPatternAccess().getLeftParenthesisKeyword_4());
@@ -2875,7 +2875,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_8=(Token)match(input,20,FOLLOW_20_in_rulePattern2167); if (state.failed) return current;
+            otherlv_8=(Token)match(input,18,FOLLOW_18_in_rulePattern2167); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_8, grammarAccess.getPatternAccess().getRightParenthesisKeyword_6());
@@ -3130,14 +3130,14 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             int alt17=2;
             int LA17_0 = input.LA(1);
 
-            if ( (LA17_0==18) ) {
+            if ( (LA17_0==17) ) {
                 alt17=1;
             }
             switch (alt17) {
                 case 1 :
                     // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:1102:4: otherlv_2= '(' ( (lv_parameters_3_0= ruleAnnotationParameter ) ) (otherlv_4= ',' ( (lv_parameters_5_0= ruleAnnotationParameter ) ) )* otherlv_6= ')'
                     {
-                    otherlv_2=(Token)match(input,18,FOLLOW_18_in_ruleAnnotation2357); if (state.failed) return current;
+                    otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleAnnotation2357); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_2, grammarAccess.getAnnotationAccess().getLeftParenthesisKeyword_2_0());
@@ -3243,7 +3243,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                         }
                     } while (true);
 
-                    otherlv_6=(Token)match(input,20,FOLLOW_20_in_ruleAnnotation2426); if (state.failed) return current;
+                    otherlv_6=(Token)match(input,18,FOLLOW_18_in_ruleAnnotation2426); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_6, grammarAccess.getAnnotationAccess().getRightParenthesisKeyword_2_3());
@@ -3925,7 +3925,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 int alt20=2;
                 int LA20_0 = input.LA(1);
 
-                if ( ((LA20_0>=RULE_ID && LA20_0<=RULE_INT)||LA20_0==17||(LA20_0>=30 && LA20_0<=31)||(LA20_0>=37 && LA20_0<=43)) ) {
+                if ( ((LA20_0>=RULE_ID && LA20_0<=RULE_INT)||LA20_0==20||(LA20_0>=30 && LA20_0<=31)||(LA20_0>=37 && LA20_0<=43)) ) {
                     alt20=1;
                 }
 
@@ -4318,7 +4318,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_3=(Token)match(input,18,FOLLOW_18_in_rulePatternCall3326); if (state.failed) return current;
+            otherlv_3=(Token)match(input,17,FOLLOW_17_in_rulePatternCall3326); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_3, grammarAccess.getPatternCallAccess().getLeftParenthesisKeyword_3());
@@ -4441,7 +4441,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_7=(Token)match(input,20,FOLLOW_20_in_rulePatternCall3398); if (state.failed) return current;
+            otherlv_7=(Token)match(input,18,FOLLOW_18_in_rulePatternCall3398); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_7, grammarAccess.getPatternCallAccess().getRightParenthesisKeyword_5());
@@ -4826,7 +4826,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_4=(Token)match(input,18,FOLLOW_18_in_rulePathExpressionHead3691); if (state.failed) return current;
+            otherlv_4=(Token)match(input,17,FOLLOW_17_in_rulePathExpressionHead3691); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getPathExpressionHeadAccess().getLeftParenthesisKeyword_4());
@@ -4908,7 +4908,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_8=(Token)match(input,20,FOLLOW_20_in_rulePathExpressionHead3757); if (state.failed) return current;
+            otherlv_8=(Token)match(input,18,FOLLOW_18_in_rulePathExpressionHead3757); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_8, grammarAccess.getPathExpressionHeadAccess().getRightParenthesisKeyword_8());
@@ -7007,7 +7007,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                   	newLeafNode(otherlv_1, grammarAccess.getFunctionEvaluationValueAccess().getEvalKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,18,FOLLOW_18_in_ruleFunctionEvaluationValue5536); if (state.failed) return current;
+            otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleFunctionEvaluationValue5536); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getFunctionEvaluationValueAccess().getLeftParenthesisKeyword_2());
@@ -7048,7 +7048,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_4=(Token)match(input,20,FOLLOW_20_in_ruleFunctionEvaluationValue5569); if (state.failed) return current;
+            otherlv_4=(Token)match(input,18,FOLLOW_18_in_ruleFunctionEvaluationValue5569); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getFunctionEvaluationValueAccess().getRightParenthesisKeyword_4());
@@ -7494,7 +7494,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 if ( (LA36_1==24) ) {
                     alt36=1;
                 }
-                else if ( (LA36_1==EOF||(LA36_1>=RULE_ID && LA36_1<=RULE_STRING)||(LA36_1>=RULE_INT && LA36_1<=RULE_DECIMAL)||LA36_1==16||(LA36_1>=18 && LA36_1<=20)||(LA36_1>=27 && LA36_1<=29)||(LA36_1>=32 && LA36_1<=39)||(LA36_1>=44 && LA36_1<=71)||(LA36_1>=73 && LA36_1<=95)) ) {
+                else if ( (LA36_1==EOF||(LA36_1>=RULE_ID && LA36_1<=RULE_STRING)||(LA36_1>=RULE_INT && LA36_1<=RULE_DECIMAL)||(LA36_1>=16 && LA36_1<=19)||(LA36_1>=27 && LA36_1<=29)||(LA36_1>=32 && LA36_1<=39)||(LA36_1>=44 && LA36_1<=71)||(LA36_1>=73 && LA36_1<=95)) ) {
                     alt36=2;
                 }
                 else {
@@ -7510,7 +7510,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 {
                 int LA36_2 = input.LA(2);
 
-                if ( (LA36_2==EOF||(LA36_2>=RULE_ID && LA36_2<=RULE_STRING)||(LA36_2>=RULE_INT && LA36_2<=RULE_DECIMAL)||LA36_2==16||(LA36_2>=18 && LA36_2<=20)||(LA36_2>=27 && LA36_2<=29)||(LA36_2>=32 && LA36_2<=39)||(LA36_2>=44 && LA36_2<=71)||(LA36_2>=73 && LA36_2<=95)) ) {
+                if ( (LA36_2==EOF||(LA36_2>=RULE_ID && LA36_2<=RULE_STRING)||(LA36_2>=RULE_INT && LA36_2<=RULE_DECIMAL)||(LA36_2>=16 && LA36_2<=19)||(LA36_2>=27 && LA36_2<=29)||(LA36_2>=32 && LA36_2<=39)||(LA36_2>=44 && LA36_2<=71)||(LA36_2>=73 && LA36_2<=95)) ) {
                     alt36=2;
                 }
                 else if ( (LA36_2==24) ) {
@@ -7529,7 +7529,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 {
                 int LA36_3 = input.LA(2);
 
-                if ( (LA36_3==EOF||(LA36_3>=RULE_ID && LA36_3<=RULE_STRING)||(LA36_3>=RULE_INT && LA36_3<=RULE_DECIMAL)||LA36_3==16||(LA36_3>=18 && LA36_3<=20)||(LA36_3>=27 && LA36_3<=29)||(LA36_3>=32 && LA36_3<=39)||(LA36_3>=44 && LA36_3<=71)||(LA36_3>=73 && LA36_3<=95)) ) {
+                if ( (LA36_3==EOF||(LA36_3>=RULE_ID && LA36_3<=RULE_STRING)||(LA36_3>=RULE_INT && LA36_3<=RULE_DECIMAL)||(LA36_3>=16 && LA36_3<=19)||(LA36_3>=27 && LA36_3<=29)||(LA36_3>=32 && LA36_3<=39)||(LA36_3>=44 && LA36_3<=71)||(LA36_3>=73 && LA36_3<=95)) ) {
                     alt36=2;
                 }
                 else if ( (LA36_3==24) ) {
@@ -7548,7 +7548,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 {
                 int LA36_4 = input.LA(2);
 
-                if ( (LA36_4==EOF||(LA36_4>=RULE_ID && LA36_4<=RULE_STRING)||(LA36_4>=RULE_INT && LA36_4<=RULE_DECIMAL)||LA36_4==16||(LA36_4>=18 && LA36_4<=20)||(LA36_4>=27 && LA36_4<=29)||(LA36_4>=32 && LA36_4<=39)||(LA36_4>=44 && LA36_4<=71)||(LA36_4>=73 && LA36_4<=95)) ) {
+                if ( (LA36_4==EOF||(LA36_4>=RULE_ID && LA36_4<=RULE_STRING)||(LA36_4>=RULE_INT && LA36_4<=RULE_DECIMAL)||(LA36_4>=16 && LA36_4<=19)||(LA36_4>=27 && LA36_4<=29)||(LA36_4>=32 && LA36_4<=39)||(LA36_4>=44 && LA36_4<=71)||(LA36_4>=73 && LA36_4<=95)) ) {
                     alt36=2;
                 }
                 else if ( (LA36_4==24) ) {
@@ -7567,7 +7567,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 {
                 int LA36_5 = input.LA(2);
 
-                if ( (LA36_5==EOF||(LA36_5>=RULE_ID && LA36_5<=RULE_STRING)||(LA36_5>=RULE_INT && LA36_5<=RULE_DECIMAL)||LA36_5==16||(LA36_5>=18 && LA36_5<=20)||(LA36_5>=27 && LA36_5<=29)||(LA36_5>=32 && LA36_5<=39)||(LA36_5>=44 && LA36_5<=71)||(LA36_5>=73 && LA36_5<=95)) ) {
+                if ( (LA36_5==EOF||(LA36_5>=RULE_ID && LA36_5<=RULE_STRING)||(LA36_5>=RULE_INT && LA36_5<=RULE_DECIMAL)||(LA36_5>=16 && LA36_5<=19)||(LA36_5>=27 && LA36_5<=29)||(LA36_5>=32 && LA36_5<=39)||(LA36_5>=44 && LA36_5<=71)||(LA36_5>=73 && LA36_5<=95)) ) {
                     alt36=2;
                 }
                 else if ( (LA36_5==24) ) {
@@ -7586,7 +7586,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             case RULE_INT:
             case RULE_HEX:
             case RULE_DECIMAL:
-            case 18:
+            case 17:
             case 27:
             case 32:
             case 34:
@@ -9992,7 +9992,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     if ( (LA45_0==55) ) {
                         int LA45_1 = input.LA(2);
 
-                        if ( (LA45_1==EOF||(LA45_1>=RULE_ID && LA45_1<=RULE_STRING)||(LA45_1>=RULE_INT && LA45_1<=RULE_DECIMAL)||LA45_1==18||LA45_1==27||LA45_1==32||LA45_1==34||(LA45_1>=37 && LA45_1<=39)||LA45_1==56||LA45_1==67||LA45_1==71||LA45_1==73||LA45_1==75||(LA45_1>=78 && LA45_1<=80)||(LA45_1>=83 && LA45_1<=93)) ) {
+                        if ( (LA45_1==EOF||(LA45_1>=RULE_ID && LA45_1<=RULE_STRING)||(LA45_1>=RULE_INT && LA45_1<=RULE_DECIMAL)||LA45_1==17||LA45_1==27||LA45_1==32||LA45_1==34||(LA45_1>=37 && LA45_1<=39)||LA45_1==56||LA45_1==67||LA45_1==71||LA45_1==73||LA45_1==75||(LA45_1>=78 && LA45_1<=80)||(LA45_1>=83 && LA45_1<=93)) ) {
                             alt45=2;
                         }
                         else if ( (LA45_1==55) && (synpred8_InternalRdfPatternLanguage())) {
@@ -11052,7 +11052,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             if ( (LA52_0==32||LA52_0==37||LA52_0==67) ) {
                 alt52=1;
             }
-            else if ( ((LA52_0>=RULE_ID && LA52_0<=RULE_STRING)||(LA52_0>=RULE_INT && LA52_0<=RULE_DECIMAL)||LA52_0==18||LA52_0==27||LA52_0==34||(LA52_0>=38 && LA52_0<=39)||LA52_0==56||LA52_0==71||LA52_0==73||LA52_0==75||(LA52_0>=78 && LA52_0<=80)||(LA52_0>=83 && LA52_0<=93)) ) {
+            else if ( ((LA52_0>=RULE_ID && LA52_0<=RULE_STRING)||(LA52_0>=RULE_INT && LA52_0<=RULE_DECIMAL)||LA52_0==17||LA52_0==27||LA52_0==34||(LA52_0>=38 && LA52_0<=39)||LA52_0==56||LA52_0==71||LA52_0==73||LA52_0==75||(LA52_0>=78 && LA52_0<=80)||(LA52_0>=83 && LA52_0<=93)) ) {
                 alt52=2;
             }
             else {
@@ -12181,7 +12181,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             	            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:4155:1: (lv_explicitOperationCall_17_0= '(' )
             	            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:4156:3: lv_explicitOperationCall_17_0= '('
             	            {
-            	            lv_explicitOperationCall_17_0=(Token)match(input,18,FOLLOW_18_in_ruleXMemberFeatureCall9724); if (state.failed) return current;
+            	            lv_explicitOperationCall_17_0=(Token)match(input,17,FOLLOW_17_in_ruleXMemberFeatureCall9724); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
             	                      newLeafNode(lv_explicitOperationCall_17_0, grammarAccess.getXMemberFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_1_1_3_0_0());
@@ -12361,7 +12361,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             	            }
 
-            	            otherlv_22=(Token)match(input,20,FOLLOW_20_in_ruleXMemberFeatureCall9888); if (state.failed) return current;
+            	            otherlv_22=(Token)match(input,18,FOLLOW_18_in_ruleXMemberFeatureCall9888); if (state.failed) return current;
             	            if ( state.backtracking==0 ) {
 
             	                  	newLeafNode(otherlv_22, grammarAccess.getXMemberFeatureCallAccess().getRightParenthesisKeyword_1_1_3_2());
@@ -13363,7 +13363,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             int alt68=2;
             int LA68_0 = input.LA(1);
 
-            if ( ((LA68_0>=RULE_ID && LA68_0<=RULE_STRING)||(LA68_0>=RULE_INT && LA68_0<=RULE_DECIMAL)||LA68_0==18||LA68_0==27||LA68_0==32||LA68_0==34||(LA68_0>=37 && LA68_0<=39)||LA68_0==56||LA68_0==67||LA68_0==71||LA68_0==73||LA68_0==75||(LA68_0>=78 && LA68_0<=80)||(LA68_0>=83 && LA68_0<=93)) ) {
+            if ( ((LA68_0>=RULE_ID && LA68_0<=RULE_STRING)||(LA68_0>=RULE_INT && LA68_0<=RULE_DECIMAL)||LA68_0==17||LA68_0==27||LA68_0==32||LA68_0==34||(LA68_0>=37 && LA68_0<=39)||LA68_0==56||LA68_0==67||LA68_0==71||LA68_0==73||LA68_0==75||(LA68_0>=78 && LA68_0<=80)||(LA68_0>=83 && LA68_0<=93)) ) {
                 alt68=1;
             }
             switch (alt68) {
@@ -13596,7 +13596,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             int alt70=2;
             int LA70_0 = input.LA(1);
 
-            if ( ((LA70_0>=RULE_ID && LA70_0<=RULE_STRING)||(LA70_0>=RULE_INT && LA70_0<=RULE_DECIMAL)||LA70_0==18||LA70_0==27||LA70_0==32||LA70_0==34||(LA70_0>=37 && LA70_0<=39)||LA70_0==56||LA70_0==67||LA70_0==71||LA70_0==73||LA70_0==75||(LA70_0>=78 && LA70_0<=80)||(LA70_0>=83 && LA70_0<=93)) ) {
+            if ( ((LA70_0>=RULE_ID && LA70_0<=RULE_STRING)||(LA70_0>=RULE_INT && LA70_0<=RULE_DECIMAL)||LA70_0==17||LA70_0==27||LA70_0==32||LA70_0==34||(LA70_0>=37 && LA70_0<=39)||LA70_0==56||LA70_0==67||LA70_0==71||LA70_0==73||LA70_0==75||(LA70_0>=78 && LA70_0<=80)||(LA70_0>=83 && LA70_0<=93)) ) {
                 alt70=1;
             }
             switch (alt70) {
@@ -13847,7 +13847,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     int alt72=2;
                     int LA72_0 = input.LA(1);
 
-                    if ( (LA72_0==RULE_ID||LA72_0==18||LA72_0==60) ) {
+                    if ( (LA72_0==RULE_ID||LA72_0==17||LA72_0==60) ) {
                         alt72=1;
                     }
                     switch (alt72) {
@@ -14135,7 +14135,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 int alt75=2;
                 int LA75_0 = input.LA(1);
 
-                if ( ((LA75_0>=RULE_ID && LA75_0<=RULE_STRING)||(LA75_0>=RULE_INT && LA75_0<=RULE_DECIMAL)||LA75_0==18||LA75_0==27||LA75_0==32||LA75_0==34||(LA75_0>=37 && LA75_0<=39)||LA75_0==56||LA75_0==67||LA75_0==71||LA75_0==73||LA75_0==75||(LA75_0>=78 && LA75_0<=93)) ) {
+                if ( ((LA75_0>=RULE_ID && LA75_0<=RULE_STRING)||(LA75_0>=RULE_INT && LA75_0<=RULE_DECIMAL)||LA75_0==17||LA75_0==27||LA75_0==32||LA75_0==34||(LA75_0>=37 && LA75_0<=39)||LA75_0==56||LA75_0==67||LA75_0==71||LA75_0==73||LA75_0==75||(LA75_0>=78 && LA75_0<=93)) ) {
                     alt75=1;
                 }
 
@@ -14319,7 +14319,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             int alt77=2;
             int LA77_0 = input.LA(1);
 
-            if ( (LA77_0==RULE_ID||LA77_0==18||LA77_0==60) ) {
+            if ( (LA77_0==RULE_ID||LA77_0==17||LA77_0==60) ) {
                 alt77=1;
             }
             switch (alt77) {
@@ -14580,7 +14580,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:5019:1: (otherlv_0= '(' this_XExpression_1= ruleXExpression otherlv_2= ')' )
             // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:5019:3: otherlv_0= '(' this_XExpression_1= ruleXExpression otherlv_2= ')'
             {
-            otherlv_0=(Token)match(input,18,FOLLOW_18_in_ruleXParenthesizedExpression11814); if (state.failed) return current;
+            otherlv_0=(Token)match(input,17,FOLLOW_17_in_ruleXParenthesizedExpression11814); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getXParenthesizedExpressionAccess().getLeftParenthesisKeyword_0());
@@ -14602,7 +14602,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                       afterParserOrEnumRuleCall();
                   
             }
-            otherlv_2=(Token)match(input,20,FOLLOW_20_in_ruleXParenthesizedExpression11847); if (state.failed) return current;
+            otherlv_2=(Token)match(input,18,FOLLOW_18_in_ruleXParenthesizedExpression11847); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXParenthesizedExpressionAccess().getRightParenthesisKeyword_2());
@@ -14714,7 +14714,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                   	newLeafNode(otherlv_1, grammarAccess.getXIfExpressionAccess().getIfKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,18,FOLLOW_18_in_ruleXIfExpression11951); if (state.failed) return current;
+            otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleXIfExpression11951); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXIfExpressionAccess().getLeftParenthesisKeyword_2());
@@ -14755,7 +14755,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_4=(Token)match(input,20,FOLLOW_20_in_ruleXIfExpression11984); if (state.failed) return current;
+            otherlv_4=(Token)match(input,18,FOLLOW_18_in_ruleXIfExpression11984); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getXIfExpressionAccess().getRightParenthesisKeyword_4());
@@ -14988,13 +14988,13 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             if ( ((LA80_0>=RULE_ID && LA80_0<=RULE_STRING)||(LA80_0>=RULE_INT && LA80_0<=RULE_DECIMAL)||LA80_0==27||LA80_0==32||LA80_0==34||(LA80_0>=37 && LA80_0<=39)||LA80_0==56||LA80_0==67||LA80_0==71||LA80_0==73||LA80_0==75||(LA80_0>=78 && LA80_0<=80)||(LA80_0>=83 && LA80_0<=93)) ) {
                 alt80=1;
             }
-            else if ( (LA80_0==18) ) {
+            else if ( (LA80_0==17) ) {
                 int LA80_2 = input.LA(2);
 
                 if ( (LA80_2==RULE_ID) ) {
                     int LA80_3 = input.LA(3);
 
-                    if ( (LA80_3==18||LA80_3==20||LA80_3==24||(LA80_3>=32 && LA80_3<=34)||(LA80_3>=36 && LA80_3<=37)||(LA80_3>=44 && LA80_3<=66)||(LA80_3>=68 && LA80_3<=70)) ) {
+                    if ( ((LA80_3>=17 && LA80_3<=18)||LA80_3==24||(LA80_3>=32 && LA80_3<=34)||(LA80_3>=36 && LA80_3<=37)||(LA80_3>=44 && LA80_3<=66)||(LA80_3>=68 && LA80_3<=70)) ) {
                         alt80=1;
                     }
                     else if ( (LA80_3==16) && (synpred24_InternalRdfPatternLanguage())) {
@@ -15008,7 +15008,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                         throw nvae;
                     }
                 }
-                else if ( (LA80_2==RULE_STRING||(LA80_2>=RULE_INT && LA80_2<=RULE_DECIMAL)||LA80_2==18||LA80_2==27||LA80_2==32||LA80_2==34||(LA80_2>=37 && LA80_2<=39)||LA80_2==56||LA80_2==67||LA80_2==71||LA80_2==73||LA80_2==75||(LA80_2>=78 && LA80_2<=80)||(LA80_2>=83 && LA80_2<=93)) ) {
+                else if ( (LA80_2==RULE_STRING||(LA80_2>=RULE_INT && LA80_2<=RULE_DECIMAL)||LA80_2==17||LA80_2==27||LA80_2==32||LA80_2==34||(LA80_2>=37 && LA80_2<=39)||LA80_2==56||LA80_2==67||LA80_2==71||LA80_2==73||LA80_2==75||(LA80_2>=78 && LA80_2<=80)||(LA80_2>=83 && LA80_2<=93)) ) {
                     alt80=1;
                 }
                 else {
@@ -15154,7 +15154,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:5217:5: (otherlv_5= '(' ( (lv_localVarName_6_0= ruleValidID ) ) otherlv_7= ':' )
                     // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:5217:7: otherlv_5= '(' ( (lv_localVarName_6_0= ruleValidID ) ) otherlv_7= ':'
                     {
-                    otherlv_5=(Token)match(input,18,FOLLOW_18_in_ruleXSwitchExpression12265); if (state.failed) return current;
+                    otherlv_5=(Token)match(input,17,FOLLOW_17_in_ruleXSwitchExpression12265); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_5, grammarAccess.getXSwitchExpressionAccess().getLeftParenthesisKeyword_2_1_0_0_0());
@@ -15242,7 +15242,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
                     }
 
-                    otherlv_9=(Token)match(input,20,FOLLOW_20_in_ruleXSwitchExpression12333); if (state.failed) return current;
+                    otherlv_9=(Token)match(input,18,FOLLOW_18_in_ruleXSwitchExpression12333); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_9, grammarAccess.getXSwitchExpressionAccess().getRightParenthesisKeyword_2_1_2());
@@ -15270,7 +15270,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 int alt81=2;
                 int LA81_0 = input.LA(1);
 
-                if ( (LA81_0==RULE_ID||LA81_0==16||LA81_0==18||LA81_0==60||LA81_0==77) ) {
+                if ( (LA81_0==RULE_ID||(LA81_0>=16 && LA81_0<=17)||LA81_0==60||LA81_0==77) ) {
                     alt81=1;
                 }
 
@@ -15481,7 +15481,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             int alt83=2;
             int LA83_0 = input.LA(1);
 
-            if ( (LA83_0==RULE_ID||LA83_0==18||LA83_0==60) ) {
+            if ( (LA83_0==RULE_ID||LA83_0==17||LA83_0==60) ) {
                 alt83=1;
             }
             switch (alt83) {
@@ -15728,7 +15728,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                   	newLeafNode(otherlv_1, grammarAccess.getXForLoopExpressionAccess().getForKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,18,FOLLOW_18_in_ruleXForLoopExpression12695); if (state.failed) return current;
+            otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleXForLoopExpression12695); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXForLoopExpressionAccess().getLeftParenthesisKeyword_2());
@@ -15810,7 +15810,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_6=(Token)match(input,20,FOLLOW_20_in_ruleXForLoopExpression12761); if (state.failed) return current;
+            otherlv_6=(Token)match(input,18,FOLLOW_18_in_ruleXForLoopExpression12761); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_6, grammarAccess.getXForLoopExpressionAccess().getRightParenthesisKeyword_6());
@@ -15954,7 +15954,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                   	newLeafNode(otherlv_1, grammarAccess.getXWhileExpressionAccess().getWhileKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,18,FOLLOW_18_in_ruleXWhileExpression12886); if (state.failed) return current;
+            otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleXWhileExpression12886); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXWhileExpressionAccess().getLeftParenthesisKeyword_2());
@@ -15995,7 +15995,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_4=(Token)match(input,20,FOLLOW_20_in_ruleXWhileExpression12919); if (state.failed) return current;
+            otherlv_4=(Token)match(input,18,FOLLOW_18_in_ruleXWhileExpression12919); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getXWhileExpressionAccess().getRightParenthesisKeyword_4());
@@ -16181,7 +16181,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                   	newLeafNode(otherlv_3, grammarAccess.getXDoWhileExpressionAccess().getWhileKeyword_3());
                   
             }
-            otherlv_4=(Token)match(input,18,FOLLOW_18_in_ruleXDoWhileExpression13077); if (state.failed) return current;
+            otherlv_4=(Token)match(input,17,FOLLOW_17_in_ruleXDoWhileExpression13077); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getXDoWhileExpressionAccess().getLeftParenthesisKeyword_4());
@@ -16222,7 +16222,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_6=(Token)match(input,20,FOLLOW_20_in_ruleXDoWhileExpression13110); if (state.failed) return current;
+            otherlv_6=(Token)match(input,18,FOLLOW_18_in_ruleXDoWhileExpression13110); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_6, grammarAccess.getXDoWhileExpressionAccess().getRightParenthesisKeyword_6());
@@ -16335,7 +16335,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 int alt86=2;
                 int LA86_0 = input.LA(1);
 
-                if ( ((LA86_0>=RULE_ID && LA86_0<=RULE_STRING)||(LA86_0>=RULE_INT && LA86_0<=RULE_DECIMAL)||LA86_0==18||LA86_0==27||LA86_0==32||LA86_0==34||(LA86_0>=37 && LA86_0<=39)||LA86_0==56||LA86_0==67||LA86_0==71||LA86_0==73||LA86_0==75||(LA86_0>=78 && LA86_0<=93)) ) {
+                if ( ((LA86_0>=RULE_ID && LA86_0<=RULE_STRING)||(LA86_0>=RULE_INT && LA86_0<=RULE_DECIMAL)||LA86_0==17||LA86_0==27||LA86_0==32||LA86_0==34||(LA86_0>=37 && LA86_0<=39)||LA86_0==56||LA86_0==67||LA86_0==71||LA86_0==73||LA86_0==75||(LA86_0>=78 && LA86_0<=93)) ) {
                     alt86=1;
                 }
 
@@ -16502,7 +16502,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             if ( ((LA87_0>=81 && LA87_0<=82)) ) {
                 alt87=1;
             }
-            else if ( ((LA87_0>=RULE_ID && LA87_0<=RULE_STRING)||(LA87_0>=RULE_INT && LA87_0<=RULE_DECIMAL)||LA87_0==18||LA87_0==27||LA87_0==32||LA87_0==34||(LA87_0>=37 && LA87_0<=39)||LA87_0==56||LA87_0==67||LA87_0==71||LA87_0==73||LA87_0==75||(LA87_0>=78 && LA87_0<=80)||(LA87_0>=83 && LA87_0<=93)) ) {
+            else if ( ((LA87_0>=RULE_ID && LA87_0<=RULE_STRING)||(LA87_0>=RULE_INT && LA87_0<=RULE_DECIMAL)||LA87_0==17||LA87_0==27||LA87_0==32||LA87_0==34||(LA87_0>=37 && LA87_0<=39)||LA87_0==56||LA87_0==67||LA87_0==71||LA87_0==73||LA87_0==75||(LA87_0>=78 && LA87_0<=80)||(LA87_0>=83 && LA87_0<=93)) ) {
                 alt87=2;
             }
             else {
@@ -16744,7 +16744,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     throw nvae;
                 }
             }
-            else if ( (LA89_0==18) && (synpred25_InternalRdfPatternLanguage())) {
+            else if ( (LA89_0==17) && (synpred25_InternalRdfPatternLanguage())) {
                 alt89=1;
             }
             else if ( (LA89_0==60) && (synpred25_InternalRdfPatternLanguage())) {
@@ -17040,7 +17040,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     alt91=1;
                 }
             }
-            else if ( (LA91_0==18||LA91_0==60) ) {
+            else if ( (LA91_0==17||LA91_0==60) ) {
                 alt91=1;
             }
             switch (alt91) {
@@ -17552,7 +17552,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:6091:1: (lv_explicitOperationCall_7_0= '(' )
                     // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:6092:3: lv_explicitOperationCall_7_0= '('
                     {
-                    lv_explicitOperationCall_7_0=(Token)match(input,18,FOLLOW_18_in_ruleXFeatureCall14085); if (state.failed) return current;
+                    lv_explicitOperationCall_7_0=(Token)match(input,17,FOLLOW_17_in_ruleXFeatureCall14085); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               newLeafNode(lv_explicitOperationCall_7_0, grammarAccess.getXFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_3_0_0());
@@ -17732,7 +17732,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
                     }
 
-                    otherlv_12=(Token)match(input,20,FOLLOW_20_in_ruleXFeatureCall14249); if (state.failed) return current;
+                    otherlv_12=(Token)match(input,18,FOLLOW_18_in_ruleXFeatureCall14249); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_12, grammarAccess.getXFeatureCallAccess().getRightParenthesisKeyword_3_2());
@@ -18402,7 +18402,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:6398:4: ( ( '(' )=>otherlv_8= '(' )
                     // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:6398:5: ( '(' )=>otherlv_8= '('
                     {
-                    otherlv_8=(Token)match(input,18,FOLLOW_18_in_ruleXConstructorCall14817); if (state.failed) return current;
+                    otherlv_8=(Token)match(input,17,FOLLOW_17_in_ruleXConstructorCall14817); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_8, grammarAccess.getXConstructorCallAccess().getLeftParenthesisKeyword_4_0());
@@ -18571,7 +18571,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
                     }
 
-                    otherlv_13=(Token)match(input,20,FOLLOW_20_in_ruleXConstructorCall14969); if (state.failed) return current;
+                    otherlv_13=(Token)match(input,18,FOLLOW_18_in_ruleXConstructorCall14969); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_13, grammarAccess.getXConstructorCallAccess().getRightParenthesisKeyword_4_2());
@@ -19228,7 +19228,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                   	newLeafNode(otherlv_1, grammarAccess.getXTypeLiteralAccess().getTypeofKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,18,FOLLOW_18_in_ruleXTypeLiteral15535); if (state.failed) return current;
+            otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleXTypeLiteral15535); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getXTypeLiteralAccess().getLeftParenthesisKeyword_2());
@@ -19321,7 +19321,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 }
             } while (true);
 
-            otherlv_5=(Token)match(input,20,FOLLOW_20_in_ruleXTypeLiteral15592); if (state.failed) return current;
+            otherlv_5=(Token)match(input,18,FOLLOW_18_in_ruleXTypeLiteral15592); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_5, grammarAccess.getXTypeLiteralAccess().getRightParenthesisKeyword_5());
@@ -20059,7 +20059,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_1=(Token)match(input,18,FOLLOW_18_in_ruleXCatchClause16165); if (state.failed) return current;
+            otherlv_1=(Token)match(input,17,FOLLOW_17_in_ruleXCatchClause16165); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getXCatchClauseAccess().getLeftParenthesisKeyword_1());
@@ -20100,7 +20100,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
             }
 
-            otherlv_3=(Token)match(input,20,FOLLOW_20_in_ruleXCatchClause16198); if (state.failed) return current;
+            otherlv_3=(Token)match(input,18,FOLLOW_18_in_ruleXCatchClause16198); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_3, grammarAccess.getXCatchClauseAccess().getRightParenthesisKeyword_3());
@@ -20672,7 +20672,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             if ( (LA118_0==RULE_ID) ) {
                 alt118=1;
             }
-            else if ( (LA118_0==18||LA118_0==60) ) {
+            else if ( (LA118_0==17||LA118_0==60) ) {
                 alt118=2;
             }
             else {
@@ -20986,14 +20986,14 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             int alt121=2;
             int LA121_0 = input.LA(1);
 
-            if ( (LA121_0==18) ) {
+            if ( (LA121_0==17) ) {
                 alt121=1;
             }
             switch (alt121) {
                 case 1 :
                     // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:7265:4: otherlv_0= '(' ( ( (lv_paramTypes_1_0= ruleJvmTypeReference ) ) (otherlv_2= ',' ( (lv_paramTypes_3_0= ruleJvmTypeReference ) ) )* )? otherlv_4= ')'
                     {
-                    otherlv_0=(Token)match(input,18,FOLLOW_18_in_ruleXFunctionTypeRef16956); if (state.failed) return current;
+                    otherlv_0=(Token)match(input,17,FOLLOW_17_in_ruleXFunctionTypeRef16956); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_0, grammarAccess.getXFunctionTypeRefAccess().getLeftParenthesisKeyword_0_0());
@@ -21003,7 +21003,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     int alt120=2;
                     int LA120_0 = input.LA(1);
 
-                    if ( (LA120_0==RULE_ID||LA120_0==18||LA120_0==60) ) {
+                    if ( (LA120_0==RULE_ID||LA120_0==17||LA120_0==60) ) {
                         alt120=1;
                     }
                     switch (alt120) {
@@ -21116,7 +21116,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
                     }
 
-                    otherlv_4=(Token)match(input,20,FOLLOW_20_in_ruleXFunctionTypeRef17028); if (state.failed) return current;
+                    otherlv_4=(Token)match(input,18,FOLLOW_18_in_ruleXFunctionTypeRef17028); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_4, grammarAccess.getXFunctionTypeRefAccess().getRightParenthesisKeyword_0_2());
@@ -21500,7 +21500,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             int alt124=2;
             int LA124_0 = input.LA(1);
 
-            if ( (LA124_0==RULE_ID||LA124_0==18||LA124_0==60) ) {
+            if ( (LA124_0==RULE_ID||LA124_0==17||LA124_0==60) ) {
                 alt124=1;
             }
             else if ( (LA124_0==96) ) {
@@ -23328,7 +23328,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
         // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:4149:1: ( '(' )
         // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:4150:2: '('
         {
-        match(input,18,FOLLOW_18_in_synpred15_InternalRdfPatternLanguage9706); if (state.failed) return ;
+        match(input,17,FOLLOW_17_in_synpred15_InternalRdfPatternLanguage9706); if (state.failed) return ;
 
         }
 
@@ -23354,7 +23354,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
         int alt133=2;
         int LA133_0 = input.LA(1);
 
-        if ( (LA133_0==RULE_ID||LA133_0==18||LA133_0==60) ) {
+        if ( (LA133_0==RULE_ID||LA133_0==17||LA133_0==60) ) {
             alt133=1;
         }
         switch (alt133) {
@@ -23503,7 +23503,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
         int alt135=2;
         int LA135_0 = input.LA(1);
 
-        if ( (LA135_0==RULE_ID||LA135_0==18||LA135_0==60) ) {
+        if ( (LA135_0==RULE_ID||LA135_0==17||LA135_0==60) ) {
             alt135=1;
         }
         switch (alt135) {
@@ -23649,7 +23649,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
         // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:5211:9: ( '(' ( ( ruleValidID ) ) ':' )
         // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:5211:11: '(' ( ( ruleValidID ) ) ':'
         {
-        match(input,18,FOLLOW_18_in_synpred24_InternalRdfPatternLanguage12242); if (state.failed) return ;
+        match(input,17,FOLLOW_17_in_synpred24_InternalRdfPatternLanguage12242); if (state.failed) return ;
         // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:5212:1: ( ( ruleValidID ) )
         // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:5213:1: ( ruleValidID )
         {
@@ -23734,7 +23734,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
         // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:6085:1: ( '(' )
         // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:6086:2: '('
         {
-        match(input,18,FOLLOW_18_in_synpred26_InternalRdfPatternLanguage14067); if (state.failed) return ;
+        match(input,17,FOLLOW_17_in_synpred26_InternalRdfPatternLanguage14067); if (state.failed) return ;
 
         }
 
@@ -23760,7 +23760,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
         int alt139=2;
         int LA139_0 = input.LA(1);
 
-        if ( (LA139_0==RULE_ID||LA139_0==18||LA139_0==60) ) {
+        if ( (LA139_0==RULE_ID||LA139_0==17||LA139_0==60) ) {
             alt139=1;
         }
         switch (alt139) {
@@ -23891,7 +23891,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
         // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:6398:5: ( '(' )
         // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:6398:7: '('
         {
-        match(input,18,FOLLOW_18_in_synpred30_InternalRdfPatternLanguage14809); if (state.failed) return ;
+        match(input,17,FOLLOW_17_in_synpred30_InternalRdfPatternLanguage14809); if (state.failed) return ;
 
         }
     }
@@ -23914,7 +23914,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
         int alt141=2;
         int LA141_0 = input.LA(1);
 
-        if ( (LA141_0==RULE_ID||LA141_0==18||LA141_0==60) ) {
+        if ( (LA141_0==RULE_ID||LA141_0==17||LA141_0==60) ) {
             alt141=1;
         }
         switch (alt141) {
@@ -24651,27 +24651,25 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA5_eofS =
         "\14\uffff";
     static final String DFA5_minS =
-        "\1\4\1\uffff\1\20\1\uffff\1\22\1\uffff\1\4\1\uffff\1\4\1\22\1\23"+
-        "\1\uffff";
+        "\1\4\2\uffff\1\20\1\21\1\uffff\2\4\1\22\1\21\2\uffff";
     static final String DFA5_maxS =
-        "\1\53\1\uffff\1\61\1\uffff\1\44\1\uffff\1\6\1\uffff\1\4\1\44\1\24"+
-        "\1\uffff";
+        "\1\53\2\uffff\1\61\1\21\1\uffff\1\4\1\6\1\23\1\21\2\uffff";
     static final String DFA5_acceptS =
-        "\1\uffff\1\1\1\uffff\1\2\1\uffff\1\5\1\uffff\1\4\3\uffff\1\3";
+        "\1\uffff\1\1\1\2\2\uffff\1\5\4\uffff\1\4\1\3";
     static final String DFA5_specialS =
         "\14\uffff}>";
     static final String[] DFA5_transitionS = {
-            "\1\2\1\1\1\4\1\1\11\uffff\1\5\14\uffff\2\3\5\uffff\7\1",
+            "\1\3\1\2\1\4\1\2\14\uffff\1\5\11\uffff\2\1\5\uffff\7\2",
             "",
-            "\1\6\1\uffff\1\10\16\uffff\2\7\1\uffff\1\7\13\uffff\2\1",
             "",
-            "\1\10\16\uffff\2\7\1\uffff\1\7",
+            "\1\7\1\6\36\uffff\2\2",
+            "\1\6",
             "",
+            "\1\10",
             "\1\11\1\uffff\1\4",
+            "\1\13\1\12",
+            "\1\6",
             "",
-            "\1\12",
-            "\1\10\16\uffff\2\7\1\uffff\1\7",
-            "\1\7\1\13",
             ""
     };
 
@@ -24705,7 +24703,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
             this.transition = DFA5_transition;
         }
         public String getDescription() {
-            return "326:1: (this_CompareConstraint_0= ruleCompareConstraint | this_PatternCompositionConstraint_1= rulePatternCompositionConstraint | this_TypeConstraint_2= ruleTypeConstraint | this_RdfPathExpressionConstraint_3= ruleRdfPathExpressionConstraint | this_RdfCheckConstraint_4= ruleRdfCheckConstraint )";
+            return "326:1: (this_PatternCompositionConstraint_0= rulePatternCompositionConstraint | this_CompareConstraint_1= ruleCompareConstraint | this_RdfClassConstraint_2= ruleRdfClassConstraint | this_RdfPropertyConstraint_3= ruleRdfPropertyConstraint | this_RdfCheckConstraint_4= ruleRdfCheckConstraint )";
         }
     }
     static final String DFA44_eotS =
@@ -24721,9 +24719,9 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA44_specialS =
         "\2\uffff\1\1\1\10\1\4\1\7\1\3\1\0\1\2\1\6\1\5\1\uffff}>";
     static final String[] DFA44_transitionS = {
-            "\2\1\1\uffff\3\1\6\uffff\1\1\1\uffff\3\1\6\uffff\3\1\2\uffff"+
-            "\10\1\4\uffff\13\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\10"+
-            "\1\1\uffff\27\1",
+            "\2\1\1\uffff\3\1\6\uffff\4\1\7\uffff\3\1\2\uffff\10\1\4\uffff"+
+            "\13\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\10\1\1\uffff\27"+
+            "\1",
             "",
             "\1\uffff",
             "\1\uffff",
@@ -24989,8 +24987,8 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA61_specialS =
         "\1\uffff\1\0\110\uffff}>";
     static final String[] DFA61_transitionS = {
-            "\2\2\1\uffff\3\2\6\uffff\1\2\1\uffff\1\1\2\2\6\uffff\3\2\2\uffff"+
-            "\10\2\4\uffff\34\2\1\uffff\27\2",
+            "\2\2\1\uffff\3\2\6\uffff\1\2\1\1\2\2\7\uffff\3\2\2\uffff\10"+
+            "\2\4\uffff\34\2\1\uffff\27\2",
             "\1\uffff",
             "",
             "",
@@ -25138,10 +25136,10 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA60_specialS =
         "\1\0\1\1\1\2\40\uffff}>";
     static final String[] DFA60_transitionS = {
-            "\1\1\1\5\1\uffff\3\5\10\uffff\1\2\1\uffff\1\42\6\uffff\1\5\4"+
-            "\uffff\1\5\1\uffff\1\5\2\uffff\3\5\20\uffff\1\5\3\uffff\1\3"+
-            "\6\uffff\1\5\3\uffff\1\5\1\4\1\5\1\uffff\1\5\2\uffff\3\5\2\uffff"+
-            "\13\5",
+            "\1\1\1\5\1\uffff\3\5\7\uffff\1\2\1\42\10\uffff\1\5\4\uffff\1"+
+            "\5\1\uffff\1\5\2\uffff\3\5\20\uffff\1\5\3\uffff\1\3\6\uffff"+
+            "\1\5\3\uffff\1\5\1\4\1\5\1\uffff\1\5\2\uffff\3\5\2\uffff\13"+
+            "\5",
             "\1\uffff",
             "\1\uffff",
             "",
@@ -25223,7 +25221,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                         s = -1;
                         if ( (LA60_0==RULE_ID) ) {s = 1;}
 
-                        else if ( (LA60_0==18) ) {s = 2;}
+                        else if ( (LA60_0==17) ) {s = 2;}
 
                         else if ( (LA60_0==60) && (synpred16_InternalRdfPatternLanguage())) {s = 3;}
 
@@ -25231,7 +25229,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
                         else if ( (LA60_0==RULE_STRING||(LA60_0>=RULE_INT && LA60_0<=RULE_DECIMAL)||LA60_0==27||LA60_0==32||LA60_0==34||(LA60_0>=37 && LA60_0<=39)||LA60_0==56||LA60_0==67||LA60_0==71||LA60_0==73||LA60_0==75||(LA60_0>=78 && LA60_0<=80)||(LA60_0>=83 && LA60_0<=93)) ) {s = 5;}
 
-                        else if ( (LA60_0==20) ) {s = 34;}
+                        else if ( (LA60_0==18) ) {s = 34;}
 
                          
                         input.seek(index60_0);
@@ -25288,8 +25286,8 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA62_specialS =
         "\1\uffff\1\0\110\uffff}>";
     static final String[] DFA62_transitionS = {
-            "\2\2\1\uffff\3\2\6\uffff\1\2\1\uffff\3\2\6\uffff\3\2\2\uffff"+
-            "\2\2\1\1\5\2\4\uffff\34\2\1\uffff\27\2",
+            "\2\2\1\uffff\3\2\6\uffff\4\2\7\uffff\3\2\2\uffff\2\2\1\1\5\2"+
+            "\4\uffff\34\2\1\uffff\27\2",
             "\1\uffff",
             "",
             "",
@@ -25438,9 +25436,9 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA64_specialS =
         "\16\uffff}>";
     static final String[] DFA64_transitionS = {
-            "\1\4\1\5\1\uffff\3\5\10\uffff\1\15\10\uffff\1\2\6\uffff\1\5"+
-            "\3\uffff\2\5\20\uffff\1\4\16\uffff\1\5\1\uffff\1\6\1\uffff\1"+
-            "\3\2\uffff\1\7\1\10\1\11\2\uffff\5\4\1\1\2\5\1\12\1\13\1\14",
+            "\1\4\1\5\1\uffff\3\5\7\uffff\1\15\11\uffff\1\2\6\uffff\1\5\3"+
+            "\uffff\2\5\20\uffff\1\4\16\uffff\1\5\1\uffff\1\6\1\uffff\1\3"+
+            "\2\uffff\1\7\1\10\1\11\2\uffff\5\4\1\1\2\5\1\12\1\13\1\14",
             "",
             "",
             "",
@@ -25502,7 +25500,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA73_specialS =
         "\1\0\1\1\1\2\42\uffff}>";
     static final String[] DFA73_transitionS = {
-            "\1\1\1\5\1\uffff\3\5\10\uffff\1\2\10\uffff\1\5\4\uffff\1\5\1"+
+            "\1\1\1\5\1\uffff\3\5\7\uffff\1\2\11\uffff\1\5\4\uffff\1\5\1"+
             "\uffff\2\5\1\uffff\3\5\20\uffff\1\5\3\uffff\1\3\6\uffff\1\5"+
             "\3\uffff\1\5\1\4\1\5\1\uffff\1\5\2\uffff\20\5",
             "\1\uffff",
@@ -25588,7 +25586,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                         s = -1;
                         if ( (LA73_0==RULE_ID) ) {s = 1;}
 
-                        else if ( (LA73_0==18) ) {s = 2;}
+                        else if ( (LA73_0==17) ) {s = 2;}
 
                         else if ( (LA73_0==60) && (synpred20_InternalRdfPatternLanguage())) {s = 3;}
 
@@ -25651,8 +25649,8 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA96_specialS =
         "\1\uffff\1\0\110\uffff}>";
     static final String[] DFA96_transitionS = {
-            "\2\2\1\uffff\3\2\6\uffff\1\2\1\uffff\1\1\2\2\6\uffff\3\2\2\uffff"+
-            "\10\2\4\uffff\34\2\1\uffff\27\2",
+            "\2\2\1\uffff\3\2\6\uffff\1\2\1\1\2\2\7\uffff\3\2\2\uffff\10"+
+            "\2\4\uffff\34\2\1\uffff\27\2",
             "\1\uffff",
             "",
             "",
@@ -25800,10 +25798,10 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA95_specialS =
         "\1\0\1\1\1\2\40\uffff}>";
     static final String[] DFA95_transitionS = {
-            "\1\1\1\5\1\uffff\3\5\10\uffff\1\2\1\uffff\1\42\6\uffff\1\5\4"+
-            "\uffff\1\5\1\uffff\1\5\2\uffff\3\5\20\uffff\1\5\3\uffff\1\3"+
-            "\6\uffff\1\5\3\uffff\1\5\1\4\1\5\1\uffff\1\5\2\uffff\3\5\2\uffff"+
-            "\13\5",
+            "\1\1\1\5\1\uffff\3\5\7\uffff\1\2\1\42\10\uffff\1\5\4\uffff\1"+
+            "\5\1\uffff\1\5\2\uffff\3\5\20\uffff\1\5\3\uffff\1\3\6\uffff"+
+            "\1\5\3\uffff\1\5\1\4\1\5\1\uffff\1\5\2\uffff\3\5\2\uffff\13"+
+            "\5",
             "\1\uffff",
             "\1\uffff",
             "",
@@ -25885,7 +25883,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                         s = -1;
                         if ( (LA95_0==RULE_ID) ) {s = 1;}
 
-                        else if ( (LA95_0==18) ) {s = 2;}
+                        else if ( (LA95_0==17) ) {s = 2;}
 
                         else if ( (LA95_0==60) && (synpred27_InternalRdfPatternLanguage())) {s = 3;}
 
@@ -25893,7 +25891,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
                         else if ( (LA95_0==RULE_STRING||(LA95_0>=RULE_INT && LA95_0<=RULE_DECIMAL)||LA95_0==27||LA95_0==32||LA95_0==34||(LA95_0>=37 && LA95_0<=39)||LA95_0==56||LA95_0==67||LA95_0==71||LA95_0==73||LA95_0==75||(LA95_0>=78 && LA95_0<=80)||(LA95_0>=83 && LA95_0<=93)) ) {s = 5;}
 
-                        else if ( (LA95_0==20) ) {s = 34;}
+                        else if ( (LA95_0==18) ) {s = 34;}
 
                          
                         input.seek(index95_0);
@@ -25950,8 +25948,8 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA97_specialS =
         "\1\uffff\1\0\110\uffff}>";
     static final String[] DFA97_transitionS = {
-            "\2\2\1\uffff\3\2\6\uffff\1\2\1\uffff\3\2\6\uffff\3\2\2\uffff"+
-            "\2\2\1\1\5\2\4\uffff\34\2\1\uffff\27\2",
+            "\2\2\1\uffff\3\2\6\uffff\4\2\7\uffff\3\2\2\uffff\2\2\1\1\5\2"+
+            "\4\uffff\34\2\1\uffff\27\2",
             "\1\uffff",
             "",
             "",
@@ -26099,8 +26097,8 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA101_specialS =
         "\1\uffff\1\0\110\uffff}>";
     static final String[] DFA101_transitionS = {
-            "\2\2\1\uffff\3\2\6\uffff\1\2\1\uffff\3\2\6\uffff\3\2\2\uffff"+
-            "\10\2\4\uffff\14\2\1\1\17\2\1\uffff\27\2",
+            "\2\2\1\uffff\3\2\6\uffff\4\2\7\uffff\3\2\2\uffff\10\2\4\uffff"+
+            "\14\2\1\1\17\2\1\uffff\27\2",
             "\1\uffff",
             "",
             "",
@@ -26248,8 +26246,8 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA104_specialS =
         "\1\uffff\1\0\110\uffff}>";
     static final String[] DFA104_transitionS = {
-            "\2\2\1\uffff\3\2\6\uffff\1\2\1\uffff\1\1\2\2\6\uffff\3\2\2\uffff"+
-            "\10\2\4\uffff\34\2\1\uffff\27\2",
+            "\2\2\1\uffff\3\2\6\uffff\1\2\1\1\2\2\7\uffff\3\2\2\uffff\10"+
+            "\2\4\uffff\34\2\1\uffff\27\2",
             "\1\uffff",
             "",
             "",
@@ -26397,10 +26395,10 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA103_specialS =
         "\1\0\1\1\1\2\40\uffff}>";
     static final String[] DFA103_transitionS = {
-            "\1\1\1\5\1\uffff\3\5\10\uffff\1\2\1\uffff\1\42\6\uffff\1\5\4"+
-            "\uffff\1\5\1\uffff\1\5\2\uffff\3\5\20\uffff\1\5\3\uffff\1\3"+
-            "\6\uffff\1\5\3\uffff\1\5\1\4\1\5\1\uffff\1\5\2\uffff\3\5\2\uffff"+
-            "\13\5",
+            "\1\1\1\5\1\uffff\3\5\7\uffff\1\2\1\42\10\uffff\1\5\4\uffff\1"+
+            "\5\1\uffff\1\5\2\uffff\3\5\20\uffff\1\5\3\uffff\1\3\6\uffff"+
+            "\1\5\3\uffff\1\5\1\4\1\5\1\uffff\1\5\2\uffff\3\5\2\uffff\13"+
+            "\5",
             "\1\uffff",
             "\1\uffff",
             "",
@@ -26482,7 +26480,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                         s = -1;
                         if ( (LA103_0==RULE_ID) ) {s = 1;}
 
-                        else if ( (LA103_0==18) ) {s = 2;}
+                        else if ( (LA103_0==17) ) {s = 2;}
 
                         else if ( (LA103_0==60) && (synpred31_InternalRdfPatternLanguage())) {s = 3;}
 
@@ -26490,7 +26488,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
                         else if ( (LA103_0==RULE_STRING||(LA103_0>=RULE_INT && LA103_0<=RULE_DECIMAL)||LA103_0==27||LA103_0==32||LA103_0==34||(LA103_0>=37 && LA103_0<=39)||LA103_0==56||LA103_0==67||LA103_0==71||LA103_0==73||LA103_0==75||(LA103_0>=78 && LA103_0<=80)||(LA103_0>=83 && LA103_0<=93)) ) {s = 5;}
 
-                        else if ( (LA103_0==20) ) {s = 34;}
+                        else if ( (LA103_0==18) ) {s = 34;}
 
                          
                         input.seek(index103_0);
@@ -26547,8 +26545,8 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA105_specialS =
         "\1\uffff\1\0\110\uffff}>";
     static final String[] DFA105_transitionS = {
-            "\2\2\1\uffff\3\2\6\uffff\1\2\1\uffff\3\2\6\uffff\3\2\2\uffff"+
-            "\2\2\1\1\5\2\4\uffff\34\2\1\uffff\27\2",
+            "\2\2\1\uffff\3\2\6\uffff\4\2\7\uffff\3\2\2\uffff\2\2\1\1\5\2"+
+            "\4\uffff\34\2\1\uffff\27\2",
             "\1\uffff",
             "",
             "",
@@ -26698,11 +26696,11 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
         "\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31"+
         "\1\32\1\33\1\34\1\35\1\36\52\uffff}>";
     static final String[] DFA108_transitionS = {
-            "\1\1\1\26\1\uffff\1\23\1\22\1\24\6\uffff\1\40\1\uffff\1\37\2"+
-            "\40\6\uffff\1\12\2\40\2\uffff\1\10\1\40\1\17\2\40\1\7\1\21\1"+
-            "\20\4\uffff\14\40\1\14\12\40\1\6\3\40\1\16\1\uffff\1\30\1\40"+
-            "\1\13\2\40\1\31\1\32\1\33\2\40\1\2\1\3\1\4\1\5\1\15\1\11\1\25"+
-            "\1\27\1\34\1\35\1\36\2\40",
+            "\1\1\1\26\1\uffff\1\23\1\22\1\24\6\uffff\1\40\1\37\2\40\7\uffff"+
+            "\1\12\2\40\2\uffff\1\10\1\40\1\17\2\40\1\7\1\21\1\20\4\uffff"+
+            "\14\40\1\14\12\40\1\6\3\40\1\16\1\uffff\1\30\1\40\1\13\2\40"+
+            "\1\31\1\32\1\33\2\40\1\2\1\3\1\4\1\5\1\15\1\11\1\25\1\27\1\34"+
+            "\1\35\1\36\2\40",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -27300,8 +27298,8 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     static final String DFA123_specialS =
         "\1\uffff\1\0\110\uffff}>";
     static final String[] DFA123_transitionS = {
-            "\2\2\1\uffff\3\2\6\uffff\1\2\1\uffff\3\2\6\uffff\3\2\2\uffff"+
-            "\10\2\4\uffff\14\2\1\1\17\2\1\uffff\27\2",
+            "\2\2\1\uffff\3\2\6\uffff\4\2\7\uffff\3\2\2\uffff\10\2\4\uffff"+
+            "\14\2\1\1\17\2\1\uffff\27\2",
             "\1\uffff",
             "",
             "",
@@ -27515,39 +27513,39 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleRawIri_in_ruleIri554 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleConstraint_in_entryRuleConstraint590 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleConstraint600 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCompareConstraint_in_ruleConstraint647 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePatternCompositionConstraint_in_ruleConstraint674 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTypeConstraint_in_ruleConstraint701 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRdfPathExpressionConstraint_in_ruleConstraint728 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePatternCompositionConstraint_in_ruleConstraint647 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCompareConstraint_in_ruleConstraint674 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRdfClassConstraint_in_ruleConstraint701 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRdfPropertyConstraint_in_ruleConstraint728 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRdfCheckConstraint_in_ruleConstraint755 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRdfCheckConstraint_in_entryRuleRdfCheckConstraint790 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleRdfCheckConstraint800 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_ruleRdfCheckConstraint846 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleRdfCheckConstraint858 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_ruleVariableReference_in_ruleRdfCheckConstraint880 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleRdfCheckConstraint892 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleRdfCheckConstraint911 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleRdfCheckConstraint928 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRdfPathExpressionConstraint_in_entryRuleRdfPathExpressionConstraint964 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleRdfPathExpressionConstraint974 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePathExpressionTail_in_ruleRdfPathExpressionConstraint1020 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleRdfPathExpressionConstraint1032 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleVariableReference_in_ruleRdfPathExpressionConstraint1053 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleRdfPathExpressionConstraint1065 = new BitSet(new long[]{0x00000FE0000000B0L});
-    public static final BitSet FOLLOW_ruleValueReference_in_ruleRdfPathExpressionConstraint1086 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleRdfPathExpressionConstraint1098 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTypeConstraint_in_entryRuleTypeConstraint1134 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTypeConstraint1144 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleType_in_ruleTypeConstraint1190 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleTypeConstraint1202 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleVariableReference_in_ruleTypeConstraint1223 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleTypeConstraint1235 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleType_in_entryRuleType1271 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleType1281 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIri_in_ruleType1336 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRefType_in_entryRuleRefType1372 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleRefType1382 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIri_in_ruleRefType1437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRdfClassConstraint_in_entryRuleRdfClassConstraint790 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleRdfClassConstraint800 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleType_in_ruleRdfClassConstraint846 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleRdfClassConstraint858 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleVariableReference_in_ruleRdfClassConstraint879 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleRdfClassConstraint891 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleType_in_entryRuleType927 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleType937 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIri_in_ruleType992 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRdfPropertyConstraint_in_entryRuleRdfPropertyConstraint1028 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleRdfPropertyConstraint1038 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRefType_in_ruleRdfPropertyConstraint1084 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleRdfPropertyConstraint1096 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleVariableReference_in_ruleRdfPropertyConstraint1117 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_ruleRdfPropertyConstraint1129 = new BitSet(new long[]{0x00000FE0000000B0L});
+    public static final BitSet FOLLOW_ruleValueReference_in_ruleRdfPropertyConstraint1150 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleRdfPropertyConstraint1162 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRefType_in_entryRuleRefType1198 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleRefType1208 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIri_in_ruleRefType1263 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRdfCheckConstraint_in_entryRuleRdfCheckConstraint1299 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleRdfCheckConstraint1309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_ruleRdfCheckConstraint1355 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleRdfCheckConstraint1367 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_ruleVariableReference_in_ruleRdfCheckConstraint1389 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_ruleRdfCheckConstraint1401 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleRdfCheckConstraint1420 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleRdfCheckConstraint1437 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLiteralValueReference_in_entryRuleLiteralValueReference1473 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLiteralValueReference1483 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIntValue_in_ruleLiteralValueReference1530 = new BitSet(new long[]{0x0000000000000002L});
@@ -27571,12 +27569,12 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleAnnotation_in_rulePattern2026 = new BitSet(new long[]{0x0000000004C00000L});
     public static final BitSet FOLLOW_ruleModifiers_in_rulePattern2048 = new BitSet(new long[]{0x0000000004800000L});
     public static final BitSet FOLLOW_23_in_rulePattern2061 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePattern2078 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_rulePattern2095 = new BitSet(new long[]{0x0000000000100010L});
-    public static final BitSet FOLLOW_ruleParameter_in_rulePattern2117 = new BitSet(new long[]{0x0000000000180000L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePattern2078 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_rulePattern2095 = new BitSet(new long[]{0x0000000000040010L});
+    public static final BitSet FOLLOW_ruleParameter_in_rulePattern2117 = new BitSet(new long[]{0x00000000000C0000L});
     public static final BitSet FOLLOW_19_in_rulePattern2130 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleParameter_in_rulePattern2151 = new BitSet(new long[]{0x0000000000180000L});
-    public static final BitSet FOLLOW_20_in_rulePattern2167 = new BitSet(new long[]{0x0000000009000010L});
+    public static final BitSet FOLLOW_ruleParameter_in_rulePattern2151 = new BitSet(new long[]{0x00000000000C0000L});
+    public static final BitSet FOLLOW_18_in_rulePattern2167 = new BitSet(new long[]{0x0000000009000010L});
     public static final BitSet FOLLOW_24_in_rulePattern2180 = new BitSet(new long[]{0x0000000009000010L});
     public static final BitSet FOLLOW_rulePatternBody_in_rulePattern2203 = new BitSet(new long[]{0x0000000002000002L});
     public static final BitSet FOLLOW_25_in_rulePattern2216 = new BitSet(new long[]{0x0000000009000010L});
@@ -27584,12 +27582,12 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleAnnotation_in_entryRuleAnnotation2275 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAnnotation2285 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_22_in_ruleAnnotation2322 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleAnnotation2339 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_18_in_ruleAnnotation2357 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleAnnotationParameter_in_ruleAnnotation2378 = new BitSet(new long[]{0x0000000000180000L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleAnnotation2339 = new BitSet(new long[]{0x0000000000020002L});
+    public static final BitSet FOLLOW_17_in_ruleAnnotation2357 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleAnnotationParameter_in_ruleAnnotation2378 = new BitSet(new long[]{0x00000000000C0000L});
     public static final BitSet FOLLOW_19_in_ruleAnnotation2391 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleAnnotationParameter_in_ruleAnnotation2412 = new BitSet(new long[]{0x0000000000180000L});
-    public static final BitSet FOLLOW_20_in_ruleAnnotation2426 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAnnotationParameter_in_ruleAnnotation2412 = new BitSet(new long[]{0x00000000000C0000L});
+    public static final BitSet FOLLOW_18_in_ruleAnnotation2426 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAnnotationParameter_in_entryRuleAnnotationParameter2464 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAnnotationParameter2474 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleAnnotationParameter2516 = new BitSet(new long[]{0x0000000001000000L});
@@ -27609,9 +27607,9 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_rulePatternBody_in_entryRulePatternBody2916 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePatternBody2926 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rulePatternBody2977 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_rulePatternBody2995 = new BitSet(new long[]{0x00000FE0E00200F0L});
+    public static final BitSet FOLLOW_27_in_rulePatternBody2995 = new BitSet(new long[]{0x00000FE0E01000F0L});
     public static final BitSet FOLLOW_ruleConstraint_in_rulePatternBody3017 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_rulePatternBody3029 = new BitSet(new long[]{0x00000FE0E00200F0L});
+    public static final BitSet FOLLOW_28_in_rulePatternBody3029 = new BitSet(new long[]{0x00000FE0E01000F0L});
     public static final BitSet FOLLOW_29_in_rulePatternBody3043 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePatternCompositionConstraint_in_entryRulePatternCompositionConstraint3079 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePatternCompositionConstraint3089 = new BitSet(new long[]{0x0000000000000002L});
@@ -27620,13 +27618,13 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_rulePatternCall_in_entryRulePatternCall3212 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePatternCall3222 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_31_in_rulePatternCall3259 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rulePatternCall3282 = new BitSet(new long[]{0x0000000100040000L});
-    public static final BitSet FOLLOW_32_in_rulePatternCall3300 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_rulePatternCall3326 = new BitSet(new long[]{0x00000FE0001000B0L});
-    public static final BitSet FOLLOW_ruleValueReference_in_rulePatternCall3348 = new BitSet(new long[]{0x0000000000180000L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rulePatternCall3282 = new BitSet(new long[]{0x0000000100020000L});
+    public static final BitSet FOLLOW_32_in_rulePatternCall3300 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_rulePatternCall3326 = new BitSet(new long[]{0x00000FE0000400B0L});
+    public static final BitSet FOLLOW_ruleValueReference_in_rulePatternCall3348 = new BitSet(new long[]{0x00000000000C0000L});
     public static final BitSet FOLLOW_19_in_rulePatternCall3361 = new BitSet(new long[]{0x00000FE0000000B0L});
-    public static final BitSet FOLLOW_ruleValueReference_in_rulePatternCall3382 = new BitSet(new long[]{0x0000000000180000L});
-    public static final BitSet FOLLOW_20_in_rulePatternCall3398 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueReference_in_rulePatternCall3382 = new BitSet(new long[]{0x00000000000C0000L});
+    public static final BitSet FOLLOW_18_in_rulePatternCall3398 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCompareConstraint_in_entryRuleCompareConstraint3434 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleCompareConstraint3444 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValueReference_in_ruleCompareConstraint3499 = new BitSet(new long[]{0x0003000000000000L});
@@ -27636,12 +27634,12 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_EOF_in_entryRulePathExpressionHead3591 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleType_in_rulePathExpressionHead3646 = new BitSet(new long[]{0x0000000200000000L});
     public static final BitSet FOLLOW_33_in_rulePathExpressionHead3658 = new BitSet(new long[]{0x0000000000000050L});
-    public static final BitSet FOLLOW_rulePathExpressionTail_in_rulePathExpressionHead3679 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_rulePathExpressionHead3691 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rulePathExpressionTail_in_rulePathExpressionHead3679 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_rulePathExpressionHead3691 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleVariableReference_in_rulePathExpressionHead3712 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_19_in_rulePathExpressionHead3724 = new BitSet(new long[]{0x00000FE0000000B0L});
-    public static final BitSet FOLLOW_ruleValueReference_in_rulePathExpressionHead3745 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_rulePathExpressionHead3757 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueReference_in_rulePathExpressionHead3745 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_rulePathExpressionHead3757 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePathExpressionTail_in_entryRulePathExpressionTail3793 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePathExpressionTail3803 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRefType_in_rulePathExpressionTail3858 = new BitSet(new long[]{0x0000001600000002L});
@@ -27704,10 +27702,10 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleFunctionEvaluationValue_in_ruleComputationValue5433 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFunctionEvaluationValue_in_entryRuleFunctionEvaluationValue5468 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFunctionEvaluationValue5478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_ruleFunctionEvaluationValue5524 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleFunctionEvaluationValue5536 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleFunctionEvaluationValue5557 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleFunctionEvaluationValue5569 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_ruleFunctionEvaluationValue5524 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleFunctionEvaluationValue5536 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleFunctionEvaluationValue5557 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleFunctionEvaluationValue5569 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAggregatedValue_in_entryRuleAggregatedValue5605 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAggregatedValue5615 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAggregatorExpression_in_ruleAggregatedValue5670 = new BitSet(new long[]{0x00000000C0000000L});
@@ -27721,10 +27719,10 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleXAssignment_in_entryRuleXAssignment5909 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXAssignment5919 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFeatureCallID_in_ruleXAssignment5977 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_ruleOpSingleAssign_in_ruleXAssignment5993 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleOpSingleAssign_in_ruleXAssignment5993 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXAssignment_in_ruleXAssignment6013 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXOrExpression_in_ruleXAssignment6043 = new BitSet(new long[]{0x0000300000000002L});
-    public static final BitSet FOLLOW_ruleOpMultiAssign_in_ruleXAssignment6096 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleOpMultiAssign_in_ruleXAssignment6096 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXAssignment_in_ruleXAssignment6119 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleOpSingleAssign_in_entryRuleOpSingleAssign6159 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleOpSingleAssign6170 = new BitSet(new long[]{0x0000000000000002L});
@@ -27736,7 +27734,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleXOrExpression_in_entryRuleXOrExpression6355 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXOrExpression6365 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXAndExpression_in_ruleXOrExpression6412 = new BitSet(new long[]{0x0000400000000002L});
-    public static final BitSet FOLLOW_ruleOpOr_in_ruleXOrExpression6465 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleOpOr_in_ruleXOrExpression6465 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXAndExpression_in_ruleXOrExpression6488 = new BitSet(new long[]{0x0000400000000002L});
     public static final BitSet FOLLOW_ruleOpOr_in_entryRuleOpOr6527 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleOpOr6538 = new BitSet(new long[]{0x0000000000000002L});
@@ -27744,7 +27742,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleXAndExpression_in_entryRuleXAndExpression6614 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXAndExpression6624 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXEqualityExpression_in_ruleXAndExpression6671 = new BitSet(new long[]{0x0000800000000002L});
-    public static final BitSet FOLLOW_ruleOpAnd_in_ruleXAndExpression6724 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleOpAnd_in_ruleXAndExpression6724 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXEqualityExpression_in_ruleXAndExpression6747 = new BitSet(new long[]{0x0000800000000002L});
     public static final BitSet FOLLOW_ruleOpAnd_in_entryRuleOpAnd6786 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleOpAnd6797 = new BitSet(new long[]{0x0000000000000002L});
@@ -27752,7 +27750,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleXEqualityExpression_in_entryRuleXEqualityExpression6873 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXEqualityExpression6883 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXRelationalExpression_in_ruleXEqualityExpression6930 = new BitSet(new long[]{0x000F000000000002L});
-    public static final BitSet FOLLOW_ruleOpEquality_in_ruleXEqualityExpression6983 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleOpEquality_in_ruleXEqualityExpression6983 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXRelationalExpression_in_ruleXEqualityExpression7006 = new BitSet(new long[]{0x000F000000000002L});
     public static final BitSet FOLLOW_ruleOpEquality_in_entryRuleOpEquality7045 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleOpEquality7056 = new BitSet(new long[]{0x0000000000000002L});
@@ -27763,9 +27761,9 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleXRelationalExpression_in_entryRuleXRelationalExpression7191 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXRelationalExpression7201 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXOtherOperatorExpression_in_ruleXRelationalExpression7248 = new BitSet(new long[]{0x01F0000000000002L});
-    public static final BitSet FOLLOW_52_in_ruleXRelationalExpression7284 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_52_in_ruleXRelationalExpression7284 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXRelationalExpression7307 = new BitSet(new long[]{0x01F0000000000002L});
-    public static final BitSet FOLLOW_ruleOpCompare_in_ruleXRelationalExpression7368 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleOpCompare_in_ruleXRelationalExpression7368 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXOtherOperatorExpression_in_ruleXRelationalExpression7391 = new BitSet(new long[]{0x01F0000000000002L});
     public static final BitSet FOLLOW_ruleOpCompare_in_entryRuleOpCompare7431 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleOpCompare7442 = new BitSet(new long[]{0x0000000000000002L});
@@ -27776,7 +27774,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleXOtherOperatorExpression_in_entryRuleXOtherOperatorExpression7577 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXOtherOperatorExpression7587 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXAdditiveExpression_in_ruleXOtherOperatorExpression7634 = new BitSet(new long[]{0xFF80000000000002L});
-    public static final BitSet FOLLOW_ruleOpOther_in_ruleXOtherOperatorExpression7687 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleOpOther_in_ruleXOtherOperatorExpression7687 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXAdditiveExpression_in_ruleXOtherOperatorExpression7710 = new BitSet(new long[]{0xFF80000000000002L});
     public static final BitSet FOLLOW_ruleOpOther_in_entryRuleOpOther7749 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleOpOther7760 = new BitSet(new long[]{0x0000000000000002L});
@@ -27800,7 +27798,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleXAdditiveExpression_in_entryRuleXAdditiveExpression8160 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXAdditiveExpression8170 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXMultiplicativeExpression_in_ruleXAdditiveExpression8217 = new BitSet(new long[]{0x0000002100000002L});
-    public static final BitSet FOLLOW_ruleOpAdd_in_ruleXAdditiveExpression8270 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleOpAdd_in_ruleXAdditiveExpression8270 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXMultiplicativeExpression_in_ruleXAdditiveExpression8293 = new BitSet(new long[]{0x0000002100000002L});
     public static final BitSet FOLLOW_ruleOpAdd_in_entryRuleOpAdd8332 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleOpAdd8343 = new BitSet(new long[]{0x0000000000000002L});
@@ -27809,7 +27807,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleXMultiplicativeExpression_in_entryRuleXMultiplicativeExpression8440 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXMultiplicativeExpression8450 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXUnaryOperation_in_ruleXMultiplicativeExpression8497 = new BitSet(new long[]{0x0000001000000002L,0x0000000000000007L});
-    public static final BitSet FOLLOW_ruleOpMulti_in_ruleXMultiplicativeExpression8550 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleOpMulti_in_ruleXMultiplicativeExpression8550 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXUnaryOperation_in_ruleXMultiplicativeExpression8573 = new BitSet(new long[]{0x0000001000000002L,0x0000000000000007L});
     public static final BitSet FOLLOW_ruleOpMulti_in_entryRuleOpMulti8612 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleOpMulti8623 = new BitSet(new long[]{0x0000000000000002L});
@@ -27819,7 +27817,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_66_in_ruleOpMulti8718 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXUnaryOperation_in_entryRuleXUnaryOperation8758 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXUnaryOperation8768 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpUnary_in_ruleXUnaryOperation8826 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleOpUnary_in_ruleXUnaryOperation8826 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXUnaryOperation_in_ruleXUnaryOperation8847 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXCastedExpression_in_ruleXUnaryOperation8876 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleOpUnary_in_entryRuleOpUnary8912 = new BitSet(new long[]{0x0000000000000000L});
@@ -27830,7 +27828,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleXCastedExpression_in_entryRuleXCastedExpression9039 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXCastedExpression9049 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXMemberFeatureCall_in_ruleXCastedExpression9096 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
-    public static final BitSet FOLLOW_68_in_ruleXCastedExpression9131 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_68_in_ruleXCastedExpression9131 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXCastedExpression9154 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000010L});
     public static final BitSet FOLLOW_ruleXMemberFeatureCall_in_entryRuleXMemberFeatureCall9192 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXMemberFeatureCall9202 = new BitSet(new long[]{0x0000000000000002L});
@@ -27838,23 +27836,23 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_33_in_ruleXMemberFeatureCall9321 = new BitSet(new long[]{0x0000000000000010L,0x0000000000780000L});
     public static final BitSet FOLLOW_69_in_ruleXMemberFeatureCall9345 = new BitSet(new long[]{0x0000000000000010L,0x0000000000780000L});
     public static final BitSet FOLLOW_ruleFeatureCallID_in_ruleXMemberFeatureCall9382 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_ruleOpSingleAssign_in_ruleXMemberFeatureCall9398 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleOpSingleAssign_in_ruleXMemberFeatureCall9398 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXAssignment_in_ruleXMemberFeatureCall9420 = new BitSet(new long[]{0x0000000200000002L,0x0000000000000060L});
     public static final BitSet FOLLOW_33_in_ruleXMemberFeatureCall9506 = new BitSet(new long[]{0x0100000000000010L,0x0000000000780000L});
     public static final BitSet FOLLOW_70_in_ruleXMemberFeatureCall9530 = new BitSet(new long[]{0x0100000000000010L,0x0000000000780000L});
     public static final BitSet FOLLOW_69_in_ruleXMemberFeatureCall9567 = new BitSet(new long[]{0x0100000000000010L,0x0000000000780000L});
-    public static final BitSet FOLLOW_56_in_ruleXMemberFeatureCall9596 = new BitSet(new long[]{0x1000000000040010L,0x0000000100000000L});
+    public static final BitSet FOLLOW_56_in_ruleXMemberFeatureCall9596 = new BitSet(new long[]{0x1000000000020010L,0x0000000100000000L});
     public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXMemberFeatureCall9617 = new BitSet(new long[]{0x0080000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleXMemberFeatureCall9630 = new BitSet(new long[]{0x1000000000040010L,0x0000000100000000L});
+    public static final BitSet FOLLOW_19_in_ruleXMemberFeatureCall9630 = new BitSet(new long[]{0x1000000000020010L,0x0000000100000000L});
     public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXMemberFeatureCall9651 = new BitSet(new long[]{0x0080000000080000L});
     public static final BitSet FOLLOW_55_in_ruleXMemberFeatureCall9665 = new BitSet(new long[]{0x0000000000000010L,0x0000000000780000L});
-    public static final BitSet FOLLOW_ruleFeatureCallID_in_ruleXMemberFeatureCall9690 = new BitSet(new long[]{0x0000000600040002L,0x0000000000000060L});
-    public static final BitSet FOLLOW_18_in_ruleXMemberFeatureCall9724 = new BitSet(new long[]{0x110000E5081403B0L,0x000000003FF9CB88L});
-    public static final BitSet FOLLOW_ruleXShortClosure_in_ruleXMemberFeatureCall9809 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXMemberFeatureCall9837 = new BitSet(new long[]{0x0000000000180000L});
-    public static final BitSet FOLLOW_19_in_ruleXMemberFeatureCall9850 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXMemberFeatureCall9871 = new BitSet(new long[]{0x0000000000180000L});
-    public static final BitSet FOLLOW_20_in_ruleXMemberFeatureCall9888 = new BitSet(new long[]{0x0000000600000002L,0x0000000000000060L});
+    public static final BitSet FOLLOW_ruleFeatureCallID_in_ruleXMemberFeatureCall9690 = new BitSet(new long[]{0x0000000600020002L,0x0000000000000060L});
+    public static final BitSet FOLLOW_17_in_ruleXMemberFeatureCall9724 = new BitSet(new long[]{0x110000E5080603B0L,0x000000003FF9CB88L});
+    public static final BitSet FOLLOW_ruleXShortClosure_in_ruleXMemberFeatureCall9809 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXMemberFeatureCall9837 = new BitSet(new long[]{0x00000000000C0000L});
+    public static final BitSet FOLLOW_19_in_ruleXMemberFeatureCall9850 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXMemberFeatureCall9871 = new BitSet(new long[]{0x00000000000C0000L});
+    public static final BitSet FOLLOW_18_in_ruleXMemberFeatureCall9888 = new BitSet(new long[]{0x0000000600000002L,0x0000000000000060L});
     public static final BitSet FOLLOW_ruleXClosure_in_ruleXMemberFeatureCall9923 = new BitSet(new long[]{0x0000000200000002L,0x0000000000000060L});
     public static final BitSet FOLLOW_ruleXPrimaryExpression_in_entryRuleXPrimaryExpression9963 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXPrimaryExpression9973 = new BitSet(new long[]{0x0000000000000002L});
@@ -27887,106 +27885,106 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleXSetLiteral_in_entryRuleXSetLiteral10766 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXSetLiteral10776 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_71_in_ruleXSetLiteral10822 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_ruleXSetLiteral10834 = new BitSet(new long[]{0x010000E5280403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_27_in_ruleXSetLiteral10834 = new BitSet(new long[]{0x010000E5280203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXSetLiteral10856 = new BitSet(new long[]{0x0000000020080000L});
-    public static final BitSet FOLLOW_19_in_ruleXSetLiteral10869 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_19_in_ruleXSetLiteral10869 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXSetLiteral10890 = new BitSet(new long[]{0x0000000020080000L});
     public static final BitSet FOLLOW_29_in_ruleXSetLiteral10906 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXListLiteral_in_entryRuleXListLiteral10942 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXListLiteral10952 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_71_in_ruleXListLiteral10998 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_ruleXListLiteral11010 = new BitSet(new long[]{0x010000ED080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_34_in_ruleXListLiteral11010 = new BitSet(new long[]{0x010000ED080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXListLiteral11032 = new BitSet(new long[]{0x0000000800080000L});
-    public static final BitSet FOLLOW_19_in_ruleXListLiteral11045 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_19_in_ruleXListLiteral11045 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXListLiteral11066 = new BitSet(new long[]{0x0000000800080000L});
     public static final BitSet FOLLOW_35_in_ruleXListLiteral11082 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXClosure_in_entryRuleXClosure11118 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXClosure11128 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleXClosure11188 = new BitSet(new long[]{0x110000ED080403B0L,0x000000003FFFCB88L});
+    public static final BitSet FOLLOW_34_in_ruleXClosure11188 = new BitSet(new long[]{0x110000ED080203B0L,0x000000003FFFCB88L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXClosure11261 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_19_in_ruleXClosure11274 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_19_in_ruleXClosure11274 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXClosure11295 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_72_in_ruleXClosure11317 = new BitSet(new long[]{0x010000ED080403B0L,0x000000003FFFCA88L});
+    public static final BitSet FOLLOW_72_in_ruleXClosure11317 = new BitSet(new long[]{0x010000ED080203B0L,0x000000003FFFCA88L});
     public static final BitSet FOLLOW_ruleXExpressionInClosure_in_ruleXClosure11354 = new BitSet(new long[]{0x0000000800000000L});
     public static final BitSet FOLLOW_35_in_ruleXClosure11366 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXExpressionInClosure_in_entryRuleXExpressionInClosure11402 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXExpressionInClosure11412 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionInsideBlock_in_ruleXExpressionInClosure11468 = new BitSet(new long[]{0x010000E5180403B2L,0x000000003FFFCA88L});
-    public static final BitSet FOLLOW_28_in_ruleXExpressionInClosure11481 = new BitSet(new long[]{0x010000E5080403B2L,0x000000003FFFCA88L});
+    public static final BitSet FOLLOW_ruleXExpressionInsideBlock_in_ruleXExpressionInClosure11468 = new BitSet(new long[]{0x010000E5180203B2L,0x000000003FFFCA88L});
+    public static final BitSet FOLLOW_28_in_ruleXExpressionInClosure11481 = new BitSet(new long[]{0x010000E5080203B2L,0x000000003FFFCA88L});
     public static final BitSet FOLLOW_ruleXShortClosure_in_entryRuleXShortClosure11521 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXShortClosure11531 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXShortClosure11639 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_19_in_ruleXShortClosure11652 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_19_in_ruleXShortClosure11652 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXShortClosure11673 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_72_in_ruleXShortClosure11695 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_72_in_ruleXShortClosure11695 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXShortClosure11731 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXParenthesizedExpression_in_entryRuleXParenthesizedExpression11767 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXParenthesizedExpression11777 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_ruleXParenthesizedExpression11814 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXParenthesizedExpression11836 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleXParenthesizedExpression11847 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_ruleXParenthesizedExpression11814 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXParenthesizedExpression11836 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleXParenthesizedExpression11847 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXIfExpression_in_entryRuleXIfExpression11883 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXIfExpression11893 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_73_in_ruleXIfExpression11939 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleXIfExpression11951 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXIfExpression11972 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleXIfExpression11984 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_73_in_ruleXIfExpression11939 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleXIfExpression11951 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXIfExpression11972 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleXIfExpression11984 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXIfExpression12005 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000400L});
-    public static final BitSet FOLLOW_74_in_ruleXIfExpression12026 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_74_in_ruleXIfExpression12026 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXIfExpression12048 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXSwitchExpression_in_entryRuleXSwitchExpression12086 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXSwitchExpression12096 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_75_in_ruleXSwitchExpression12142 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_75_in_ruleXSwitchExpression12142 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleXSwitchExpression12185 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleXSwitchExpression12197 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_16_in_ruleXSwitchExpression12197 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXSwitchExpression12221 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_18_in_ruleXSwitchExpression12265 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_17_in_ruleXSwitchExpression12265 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleXSwitchExpression12286 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleXSwitchExpression12298 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSwitchExpression12321 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleXSwitchExpression12333 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_27_in_ruleXSwitchExpression12347 = new BitSet(new long[]{0x1000000000050010L,0x0000000000002000L});
-    public static final BitSet FOLLOW_ruleXCasePart_in_ruleXSwitchExpression12368 = new BitSet(new long[]{0x1000000020050010L,0x0000000000003000L});
+    public static final BitSet FOLLOW_16_in_ruleXSwitchExpression12298 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXSwitchExpression12321 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleXSwitchExpression12333 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_ruleXSwitchExpression12347 = new BitSet(new long[]{0x1000000000030010L,0x0000000000002000L});
+    public static final BitSet FOLLOW_ruleXCasePart_in_ruleXSwitchExpression12368 = new BitSet(new long[]{0x1000000020030010L,0x0000000000003000L});
     public static final BitSet FOLLOW_76_in_ruleXSwitchExpression12382 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleXSwitchExpression12394 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_16_in_ruleXSwitchExpression12394 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXSwitchExpression12415 = new BitSet(new long[]{0x0000000020000000L});
     public static final BitSet FOLLOW_29_in_ruleXSwitchExpression12429 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXCasePart_in_entryRuleXCasePart12465 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXCasePart12475 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXCasePart12521 = new BitSet(new long[]{0x0000000000010000L,0x0000000000002000L});
-    public static final BitSet FOLLOW_77_in_ruleXCasePart12535 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_77_in_ruleXCasePart12535 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXCasePart12556 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleXCasePart12570 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_16_in_ruleXCasePart12570 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXCasePart12591 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXForLoopExpression_in_entryRuleXForLoopExpression12627 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXForLoopExpression12637 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_78_in_ruleXForLoopExpression12683 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleXForLoopExpression12695 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_78_in_ruleXForLoopExpression12683 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleXForLoopExpression12695 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_ruleXForLoopExpression12716 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleXForLoopExpression12728 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXForLoopExpression12749 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleXForLoopExpression12761 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_16_in_ruleXForLoopExpression12728 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXForLoopExpression12749 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleXForLoopExpression12761 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXForLoopExpression12782 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXWhileExpression_in_entryRuleXWhileExpression12818 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXWhileExpression12828 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_79_in_ruleXWhileExpression12874 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleXWhileExpression12886 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXWhileExpression12907 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleXWhileExpression12919 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_79_in_ruleXWhileExpression12874 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleXWhileExpression12886 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXWhileExpression12907 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleXWhileExpression12919 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXWhileExpression12940 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXDoWhileExpression_in_entryRuleXDoWhileExpression12976 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXDoWhileExpression12986 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_80_in_ruleXDoWhileExpression13032 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_80_in_ruleXDoWhileExpression13032 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXDoWhileExpression13053 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_ruleXDoWhileExpression13065 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleXDoWhileExpression13077 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXDoWhileExpression13098 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleXDoWhileExpression13110 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_79_in_ruleXDoWhileExpression13065 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleXDoWhileExpression13077 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXDoWhileExpression13098 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleXDoWhileExpression13110 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXBlockExpression_in_entryRuleXBlockExpression13146 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXBlockExpression13156 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_ruleXBlockExpression13202 = new BitSet(new long[]{0x010000E5280403B0L,0x000000003FFFCA88L});
-    public static final BitSet FOLLOW_ruleXExpressionInsideBlock_in_ruleXBlockExpression13224 = new BitSet(new long[]{0x010000E5380403B0L,0x000000003FFFCA88L});
-    public static final BitSet FOLLOW_28_in_ruleXBlockExpression13237 = new BitSet(new long[]{0x010000E5280403B0L,0x000000003FFFCA88L});
+    public static final BitSet FOLLOW_27_in_ruleXBlockExpression13202 = new BitSet(new long[]{0x010000E5280203B0L,0x000000003FFFCA88L});
+    public static final BitSet FOLLOW_ruleXExpressionInsideBlock_in_ruleXBlockExpression13224 = new BitSet(new long[]{0x010000E5380203B0L,0x000000003FFFCA88L});
+    public static final BitSet FOLLOW_28_in_ruleXBlockExpression13237 = new BitSet(new long[]{0x010000E5280203B0L,0x000000003FFFCA88L});
     public static final BitSet FOLLOW_29_in_ruleXBlockExpression13253 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXExpressionInsideBlock_in_entryRuleXExpressionInsideBlock13289 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXExpressionInsideBlock13299 = new BitSet(new long[]{0x0000000000000002L});
@@ -27994,12 +27992,12 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXExpressionInsideBlock13373 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXVariableDeclaration_in_entryRuleXVariableDeclaration13408 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXVariableDeclaration13418 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_ruleXVariableDeclaration13471 = new BitSet(new long[]{0x1000000000040010L});
-    public static final BitSet FOLLOW_82_in_ruleXVariableDeclaration13502 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_81_in_ruleXVariableDeclaration13471 = new BitSet(new long[]{0x1000000000020010L});
+    public static final BitSet FOLLOW_82_in_ruleXVariableDeclaration13502 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXVariableDeclaration13550 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleXVariableDeclaration13571 = new BitSet(new long[]{0x0000000001000002L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleXVariableDeclaration13600 = new BitSet(new long[]{0x0000000001000002L});
-    public static final BitSet FOLLOW_24_in_ruleXVariableDeclaration13614 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_24_in_ruleXVariableDeclaration13614 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXVariableDeclaration13635 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_entryRuleJvmFormalParameter13673 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleJvmFormalParameter13683 = new BitSet(new long[]{0x0000000000000002L});
@@ -28011,18 +28009,18 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleValidID_in_ruleFullJvmFormalParameter13864 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXFeatureCall_in_entryRuleXFeatureCall13900 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXFeatureCall13910 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_ruleXFeatureCall13957 = new BitSet(new long[]{0x1000000000040010L,0x0000000100000000L});
+    public static final BitSet FOLLOW_56_in_ruleXFeatureCall13957 = new BitSet(new long[]{0x1000000000020010L,0x0000000100000000L});
     public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXFeatureCall13978 = new BitSet(new long[]{0x0080000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleXFeatureCall13991 = new BitSet(new long[]{0x1000000000040010L,0x0000000100000000L});
+    public static final BitSet FOLLOW_19_in_ruleXFeatureCall13991 = new BitSet(new long[]{0x1000000000020010L,0x0000000100000000L});
     public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXFeatureCall14012 = new BitSet(new long[]{0x0080000000080000L});
     public static final BitSet FOLLOW_55_in_ruleXFeatureCall14026 = new BitSet(new long[]{0x0100000000000010L,0x0000000000F80000L});
-    public static final BitSet FOLLOW_ruleIdOrSuper_in_ruleXFeatureCall14051 = new BitSet(new long[]{0x0000000400040002L});
-    public static final BitSet FOLLOW_18_in_ruleXFeatureCall14085 = new BitSet(new long[]{0x110000E5081403B0L,0x000000003FF9CB88L});
-    public static final BitSet FOLLOW_ruleXShortClosure_in_ruleXFeatureCall14170 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXFeatureCall14198 = new BitSet(new long[]{0x0000000000180000L});
-    public static final BitSet FOLLOW_19_in_ruleXFeatureCall14211 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXFeatureCall14232 = new BitSet(new long[]{0x0000000000180000L});
-    public static final BitSet FOLLOW_20_in_ruleXFeatureCall14249 = new BitSet(new long[]{0x0000000400000002L});
+    public static final BitSet FOLLOW_ruleIdOrSuper_in_ruleXFeatureCall14051 = new BitSet(new long[]{0x0000000400020002L});
+    public static final BitSet FOLLOW_17_in_ruleXFeatureCall14085 = new BitSet(new long[]{0x110000E5080603B0L,0x000000003FF9CB88L});
+    public static final BitSet FOLLOW_ruleXShortClosure_in_ruleXFeatureCall14170 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXFeatureCall14198 = new BitSet(new long[]{0x00000000000C0000L});
+    public static final BitSet FOLLOW_19_in_ruleXFeatureCall14211 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXFeatureCall14232 = new BitSet(new long[]{0x00000000000C0000L});
+    public static final BitSet FOLLOW_18_in_ruleXFeatureCall14249 = new BitSet(new long[]{0x0000000400000002L});
     public static final BitSet FOLLOW_ruleXClosure_in_ruleXFeatureCall14284 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFeatureCallID_in_entryRuleFeatureCallID14322 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFeatureCallID14333 = new BitSet(new long[]{0x0000000000000002L});
@@ -28038,18 +28036,18 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleXConstructorCall_in_entryRuleXConstructorCall14624 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXConstructorCall14634 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_88_in_ruleXConstructorCall14680 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleXConstructorCall14703 = new BitSet(new long[]{0x0100000400040002L});
-    public static final BitSet FOLLOW_56_in_ruleXConstructorCall14724 = new BitSet(new long[]{0x1000000000040010L,0x0000000100000000L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleXConstructorCall14703 = new BitSet(new long[]{0x0100000400020002L});
+    public static final BitSet FOLLOW_56_in_ruleXConstructorCall14724 = new BitSet(new long[]{0x1000000000020010L,0x0000000100000000L});
     public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXConstructorCall14746 = new BitSet(new long[]{0x0080000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleXConstructorCall14759 = new BitSet(new long[]{0x1000000000040010L,0x0000000100000000L});
+    public static final BitSet FOLLOW_19_in_ruleXConstructorCall14759 = new BitSet(new long[]{0x1000000000020010L,0x0000000100000000L});
     public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleXConstructorCall14780 = new BitSet(new long[]{0x0080000000080000L});
-    public static final BitSet FOLLOW_55_in_ruleXConstructorCall14794 = new BitSet(new long[]{0x0000000400040002L});
-    public static final BitSet FOLLOW_18_in_ruleXConstructorCall14817 = new BitSet(new long[]{0x110000E5081403B0L,0x000000003FF9CB88L});
-    public static final BitSet FOLLOW_ruleXShortClosure_in_ruleXConstructorCall14890 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXConstructorCall14918 = new BitSet(new long[]{0x0000000000180000L});
-    public static final BitSet FOLLOW_19_in_ruleXConstructorCall14931 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
-    public static final BitSet FOLLOW_ruleXExpression_in_ruleXConstructorCall14952 = new BitSet(new long[]{0x0000000000180000L});
-    public static final BitSet FOLLOW_20_in_ruleXConstructorCall14969 = new BitSet(new long[]{0x0000000400000002L});
+    public static final BitSet FOLLOW_55_in_ruleXConstructorCall14794 = new BitSet(new long[]{0x0000000400020002L});
+    public static final BitSet FOLLOW_17_in_ruleXConstructorCall14817 = new BitSet(new long[]{0x110000E5080603B0L,0x000000003FF9CB88L});
+    public static final BitSet FOLLOW_ruleXShortClosure_in_ruleXConstructorCall14890 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXConstructorCall14918 = new BitSet(new long[]{0x00000000000C0000L});
+    public static final BitSet FOLLOW_19_in_ruleXConstructorCall14931 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_ruleXExpression_in_ruleXConstructorCall14952 = new BitSet(new long[]{0x00000000000C0000L});
+    public static final BitSet FOLLOW_18_in_ruleXConstructorCall14969 = new BitSet(new long[]{0x0000000400000002L});
     public static final BitSet FOLLOW_ruleXClosure_in_ruleXConstructorCall15004 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXBooleanLiteral_in_entryRuleXBooleanLiteral15041 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXBooleanLiteral15051 = new BitSet(new long[]{0x0000000000000002L});
@@ -28066,34 +28064,34 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_RULE_STRING_in_ruleXStringLiteral15426 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXTypeLiteral_in_entryRuleXTypeLiteral15467 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXTypeLiteral15477 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_90_in_ruleXTypeLiteral15523 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleXTypeLiteral15535 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleXTypeLiteral15558 = new BitSet(new long[]{0x0000000400100000L});
-    public static final BitSet FOLLOW_ruleArrayBrackets_in_ruleXTypeLiteral15579 = new BitSet(new long[]{0x0000000400100000L});
-    public static final BitSet FOLLOW_20_in_ruleXTypeLiteral15592 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_90_in_ruleXTypeLiteral15523 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleXTypeLiteral15535 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleXTypeLiteral15558 = new BitSet(new long[]{0x0000000400040000L});
+    public static final BitSet FOLLOW_ruleArrayBrackets_in_ruleXTypeLiteral15579 = new BitSet(new long[]{0x0000000400040000L});
+    public static final BitSet FOLLOW_18_in_ruleXTypeLiteral15592 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXThrowExpression_in_entryRuleXThrowExpression15628 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXThrowExpression15638 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_91_in_ruleXThrowExpression15684 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_91_in_ruleXThrowExpression15684 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXThrowExpression15705 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXReturnExpression_in_entryRuleXReturnExpression15741 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXReturnExpression15751 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_92_in_ruleXReturnExpression15797 = new BitSet(new long[]{0x010000E5080403B2L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_92_in_ruleXReturnExpression15797 = new BitSet(new long[]{0x010000E5080203B2L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXReturnExpression15828 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXTryCatchFinallyExpression_in_entryRuleXTryCatchFinallyExpression15865 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXTryCatchFinallyExpression15875 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_93_in_ruleXTryCatchFinallyExpression15921 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_93_in_ruleXTryCatchFinallyExpression15921 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression15942 = new BitSet(new long[]{0x0000000000000000L,0x00000000C0000000L});
     public static final BitSet FOLLOW_ruleXCatchClause_in_ruleXTryCatchFinallyExpression15972 = new BitSet(new long[]{0x0000000000000002L,0x00000000C0000000L});
-    public static final BitSet FOLLOW_94_in_ruleXTryCatchFinallyExpression15994 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_94_in_ruleXTryCatchFinallyExpression15994 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression16016 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_94_in_ruleXTryCatchFinallyExpression16038 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_94_in_ruleXTryCatchFinallyExpression16038 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXTryCatchFinallyExpression16059 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXCatchClause_in_entryRuleXCatchClause16097 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXCatchClause16107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_ruleXCatchClause16152 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleXCatchClause16165 = new BitSet(new long[]{0x1000000000040010L});
-    public static final BitSet FOLLOW_ruleFullJvmFormalParameter_in_ruleXCatchClause16186 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleXCatchClause16198 = new BitSet(new long[]{0x010000E5080403B0L,0x000000003FF9CA88L});
+    public static final BitSet FOLLOW_95_in_ruleXCatchClause16152 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleXCatchClause16165 = new BitSet(new long[]{0x1000000000020010L});
+    public static final BitSet FOLLOW_ruleFullJvmFormalParameter_in_ruleXCatchClause16186 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleXCatchClause16198 = new BitSet(new long[]{0x010000E5080203B0L,0x000000003FF9CA88L});
     public static final BitSet FOLLOW_ruleXExpression_in_ruleXCatchClause16219 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName16256 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName16267 = new BitSet(new long[]{0x0000000000000002L});
@@ -28119,19 +28117,19 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_35_in_ruleArrayBrackets16868 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleXFunctionTypeRef_in_entryRuleXFunctionTypeRef16908 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleXFunctionTypeRef16918 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_ruleXFunctionTypeRef16956 = new BitSet(new long[]{0x1000000000140010L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16978 = new BitSet(new long[]{0x0000000000180000L});
-    public static final BitSet FOLLOW_19_in_ruleXFunctionTypeRef16991 = new BitSet(new long[]{0x1000000000040010L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef17012 = new BitSet(new long[]{0x0000000000180000L});
-    public static final BitSet FOLLOW_20_in_ruleXFunctionTypeRef17028 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_60_in_ruleXFunctionTypeRef17042 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_17_in_ruleXFunctionTypeRef16956 = new BitSet(new long[]{0x1000000000060010L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef16978 = new BitSet(new long[]{0x00000000000C0000L});
+    public static final BitSet FOLLOW_19_in_ruleXFunctionTypeRef16991 = new BitSet(new long[]{0x1000000000020010L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef17012 = new BitSet(new long[]{0x00000000000C0000L});
+    public static final BitSet FOLLOW_18_in_ruleXFunctionTypeRef17028 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_60_in_ruleXFunctionTypeRef17042 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleXFunctionTypeRef17063 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmParameterizedTypeReference_in_entryRuleJvmParameterizedTypeReference17099 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleJvmParameterizedTypeReference17109 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleJvmParameterizedTypeReference17157 = new BitSet(new long[]{0x0100000000000002L});
-    public static final BitSet FOLLOW_56_in_ruleJvmParameterizedTypeReference17178 = new BitSet(new long[]{0x1000000000040010L,0x0000000100000000L});
+    public static final BitSet FOLLOW_56_in_ruleJvmParameterizedTypeReference17178 = new BitSet(new long[]{0x1000000000020010L,0x0000000100000000L});
     public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference17200 = new BitSet(new long[]{0x0080000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleJvmParameterizedTypeReference17213 = new BitSet(new long[]{0x1000000000040010L,0x0000000100000000L});
+    public static final BitSet FOLLOW_19_in_ruleJvmParameterizedTypeReference17213 = new BitSet(new long[]{0x1000000000020010L,0x0000000100000000L});
     public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_ruleJvmParameterizedTypeReference17234 = new BitSet(new long[]{0x0080000000080000L});
     public static final BitSet FOLLOW_55_in_ruleJvmParameterizedTypeReference17248 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_entryRuleJvmArgumentTypeReference17286 = new BitSet(new long[]{0x0000000000000000L});
@@ -28145,15 +28143,15 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleJvmLowerBound_in_ruleJvmWildcardTypeReference17510 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmUpperBound_in_entryRuleJvmUpperBound17548 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleJvmUpperBound17558 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_83_in_ruleJvmUpperBound17595 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_83_in_ruleJvmUpperBound17595 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmUpperBound17616 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmUpperBoundAnded_in_entryRuleJvmUpperBoundAnded17652 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleJvmUpperBoundAnded17662 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_97_in_ruleJvmUpperBoundAnded17699 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_97_in_ruleJvmUpperBoundAnded17699 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmUpperBoundAnded17720 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmLowerBound_in_entryRuleJvmLowerBound17756 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleJvmLowerBound17766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_87_in_ruleJvmLowerBound17803 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_87_in_ruleJvmLowerBound17803 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmTypeReference_in_ruleJvmLowerBound17824 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_entryRuleQualifiedNameWithWildcard17863 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedNameWithWildcard17874 = new BitSet(new long[]{0x0000000000000002L});
@@ -28197,35 +28195,35 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_33_in_synpred14_InternalRdfPatternLanguage9445 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_70_in_synpred14_InternalRdfPatternLanguage9459 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_69_in_synpred14_InternalRdfPatternLanguage9479 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_synpred15_InternalRdfPatternLanguage9706 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_synpred15_InternalRdfPatternLanguage9706 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred16_InternalRdfPatternLanguage9758 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_19_in_synpred16_InternalRdfPatternLanguage9765 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_19_in_synpred16_InternalRdfPatternLanguage9765 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred16_InternalRdfPatternLanguage9772 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000100L});
     public static final BitSet FOLLOW_72_in_synpred16_InternalRdfPatternLanguage9786 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_34_in_synpred17_InternalRdfPatternLanguage9906 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_34_in_synpred18_InternalRdfPatternLanguage10457 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred20_InternalRdfPatternLanguage11207 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_19_in_synpred20_InternalRdfPatternLanguage11214 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_19_in_synpred20_InternalRdfPatternLanguage11214 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred20_InternalRdfPatternLanguage11221 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000100L});
     public static final BitSet FOLLOW_72_in_synpred20_InternalRdfPatternLanguage11235 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_74_in_synpred22_InternalRdfPatternLanguage12018 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_synpred23_InternalRdfPatternLanguage12160 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_16_in_synpred23_InternalRdfPatternLanguage12166 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_synpred24_InternalRdfPatternLanguage12242 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_17_in_synpred24_InternalRdfPatternLanguage12242 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleValidID_in_synpred24_InternalRdfPatternLanguage12249 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_16_in_synpred24_InternalRdfPatternLanguage12255 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmTypeReference_in_synpred25_InternalRdfPatternLanguage13520 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_ruleValidID_in_synpred25_InternalRdfPatternLanguage13529 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_synpred26_InternalRdfPatternLanguage14067 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_synpred26_InternalRdfPatternLanguage14067 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred27_InternalRdfPatternLanguage14119 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_19_in_synpred27_InternalRdfPatternLanguage14126 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_19_in_synpred27_InternalRdfPatternLanguage14126 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred27_InternalRdfPatternLanguage14133 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000100L});
     public static final BitSet FOLLOW_72_in_synpred27_InternalRdfPatternLanguage14147 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_34_in_synpred28_InternalRdfPatternLanguage14267 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_56_in_synpred29_InternalRdfPatternLanguage14716 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_synpred30_InternalRdfPatternLanguage14809 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_synpred30_InternalRdfPatternLanguage14809 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred31_InternalRdfPatternLanguage14839 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_19_in_synpred31_InternalRdfPatternLanguage14846 = new BitSet(new long[]{0x1000000000040010L});
+    public static final BitSet FOLLOW_19_in_synpred31_InternalRdfPatternLanguage14846 = new BitSet(new long[]{0x1000000000020010L});
     public static final BitSet FOLLOW_ruleJvmFormalParameter_in_synpred31_InternalRdfPatternLanguage14853 = new BitSet(new long[]{0x0000000000080000L,0x0000000000000100L});
     public static final BitSet FOLLOW_72_in_synpred31_InternalRdfPatternLanguage14867 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_34_in_synpred32_InternalRdfPatternLanguage14987 = new BitSet(new long[]{0x0000000000000002L});

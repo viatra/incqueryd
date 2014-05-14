@@ -97,19 +97,19 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
         return createIriAdapter();
       }
       @Override
+      public Adapter caseRdfClassConstraint(RdfClassConstraint object)
+      {
+        return createRdfClassConstraintAdapter();
+      }
+      @Override
+      public Adapter caseRdfPropertyConstraint(RdfPropertyConstraint object)
+      {
+        return createRdfPropertyConstraintAdapter();
+      }
+      @Override
       public Adapter caseRdfCheckConstraint(RdfCheckConstraint object)
       {
         return createRdfCheckConstraintAdapter();
-      }
-      @Override
-      public Adapter caseRdfPathExpressionConstraint(RdfPathExpressionConstraint object)
-      {
-        return createRdfPathExpressionConstraintAdapter();
-      }
-      @Override
-      public Adapter caseTypeConstraint(TypeConstraint object)
-      {
-        return createTypeConstraintAdapter();
       }
       @Override
       public Adapter caseRdfLiteral(RdfLiteral object)
@@ -229,6 +229,36 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint <em>Rdf Class Constraint</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint
+   * @generated
+   */
+  public Adapter createRdfClassConstraintAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint <em>Rdf Property Constraint</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint
+   * @generated
+   */
+  public Adapter createRdfPropertyConstraintAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint <em>Rdf Check Constraint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -239,36 +269,6 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRdfCheckConstraintAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint <em>Rdf Path Expression Constraint</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPathExpressionConstraint
-   * @generated
-   */
-  public Adapter createRdfPathExpressionConstraintAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint <em>Type Constraint</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint
-   * @generated
-   */
-  public Adapter createTypeConstraintAdapter()
   {
     return null;
   }
