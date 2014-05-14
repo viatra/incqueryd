@@ -9,7 +9,8 @@ RdfPatternModel returns core::PatternModel:
 	{RdfPatternModel}
 	base=Base?
 	prefixes+=Prefix*
-	patterns+=Pattern*;
+	patterns+=Pattern*
+;
 
 Base:
 	'base' iri=RawIri
@@ -24,23 +25,15 @@ Iri:
 ;
 
 Constraint returns core::Constraint:
-	CompareConstraint | PatternCompositionConstraint
-	| TypeConstraint
-	| RdfPathExpressionConstraint
-	| RdfCheckConstraint
+	PatternCompositionConstraint |
+	CompareConstraint |
+	RdfClassConstraint |
+	RdfPropertyConstraint |
+	RdfCheckConstraint
 ;
 
-RdfCheckConstraint:
-	{RdfCheckConstraint}
-	'check' '(' (variables+=VariableReference ',')* expression=STRING ')'
-;
-
-RdfPathExpressionConstraint:
-	pathExpression=PathExpressionTail '(' src=VariableReference ',' dst=ValueReference ')'
-;
-
-TypeConstraint:
-	type=Type '(' var=VariableReference ')'
+RdfClassConstraint:
+	type=Type '(' variable=VariableReference ')'
 ;
 
 Type returns core::EntityType:
@@ -48,14 +41,26 @@ Type returns core::EntityType:
 	class=Iri
 ;
 
+RdfPropertyConstraint:
+	refType=RefType '(' source=VariableReference ',' target=ValueReference ')'
+;
+
 RefType returns core::RelationType:
 	{RdfProperty}
 	property=Iri
 ;
 
+RdfCheckConstraint:
+	{RdfCheckConstraint}
+	'check' '(' (variables+=VariableReference ',')* expression=STRING ')' // TODO find a better solution
+;
+
 LiteralValueReference returns core::ValueReference:
-	IntValue | StringValue | DoubleValue | BoolValue // Copied from PatternLanguage
-	| RdfLiteral // Additions
+	IntValue |
+	StringValue |
+	DoubleValue |
+	BoolValue |
+	RdfLiteral
 ;
 
 RdfLiteral:

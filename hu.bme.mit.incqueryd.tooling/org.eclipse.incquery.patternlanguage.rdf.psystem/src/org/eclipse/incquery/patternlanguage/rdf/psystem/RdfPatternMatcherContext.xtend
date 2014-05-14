@@ -14,7 +14,7 @@ class RdfPatternMatcherContext implements IPatternMatcherContext {
 	}
 
 	override edgeInterpretation() {
-		EdgeInterpretation.TERNARY
+		EdgeInterpretation.BINARY
 	}
 
 	override allowedGeneralizationQueryDirection() {

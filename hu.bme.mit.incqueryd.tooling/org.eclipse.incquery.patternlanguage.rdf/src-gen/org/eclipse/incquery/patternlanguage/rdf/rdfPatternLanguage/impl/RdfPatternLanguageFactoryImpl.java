@@ -67,9 +67,9 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
       case RdfPatternLanguagePackage.BASE: return createBase();
       case RdfPatternLanguagePackage.PREFIX: return createPrefix();
       case RdfPatternLanguagePackage.IRI: return createIri();
+      case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT: return createRdfClassConstraint();
+      case RdfPatternLanguagePackage.RDF_PROPERTY_CONSTRAINT: return createRdfPropertyConstraint();
       case RdfPatternLanguagePackage.RDF_CHECK_CONSTRAINT: return createRdfCheckConstraint();
-      case RdfPatternLanguagePackage.RDF_PATH_EXPRESSION_CONSTRAINT: return createRdfPathExpressionConstraint();
-      case RdfPatternLanguagePackage.TYPE_CONSTRAINT: return createTypeConstraint();
       case RdfPatternLanguagePackage.RDF_LITERAL: return createRdfLiteral();
       case RdfPatternLanguagePackage.RDF_PATTERN_MODEL: return createRdfPatternModel();
       case RdfPatternLanguagePackage.RDF_CLASS: return createRdfClass();
@@ -117,32 +117,32 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
+  public RdfClassConstraint createRdfClassConstraint()
+  {
+    RdfClassConstraintImpl rdfClassConstraint = new RdfClassConstraintImpl();
+    return rdfClassConstraint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public RdfPropertyConstraint createRdfPropertyConstraint()
+  {
+    RdfPropertyConstraintImpl rdfPropertyConstraint = new RdfPropertyConstraintImpl();
+    return rdfPropertyConstraint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public RdfCheckConstraint createRdfCheckConstraint()
   {
     RdfCheckConstraintImpl rdfCheckConstraint = new RdfCheckConstraintImpl();
     return rdfCheckConstraint;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public RdfPathExpressionConstraint createRdfPathExpressionConstraint()
-  {
-    RdfPathExpressionConstraintImpl rdfPathExpressionConstraint = new RdfPathExpressionConstraintImpl();
-    return rdfPathExpressionConstraint;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TypeConstraint createTypeConstraint()
-  {
-    TypeConstraintImpl typeConstraint = new TypeConstraintImpl();
-    return typeConstraint;
   }
 
   /**

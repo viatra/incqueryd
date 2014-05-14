@@ -188,11 +188,10 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:14:7: ( 'check' )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:14:9: 'check'
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:14:7: ( '(' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:14:9: '('
             {
-            match("check"); 
-
+            match('('); 
 
             }
 
@@ -209,10 +208,10 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:15:7: ( '(' )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:15:9: '('
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:15:7: ( ')' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:15:9: ')'
             {
-            match('('); 
+            match(')'); 
 
             }
 
@@ -249,10 +248,11 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:17:7: ( ')' )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:17:9: ')'
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:17:7: ( 'check' )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:17:9: 'check'
             {
-            match(')'); 
+            match("check"); 
+
 
             }
 
@@ -3439,10 +3439,10 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
 
     protected DFA20 dfa20 = new DFA20(this);
     static final String DFA20_eotS =
-        "\1\uffff\2\63\1\67\1\63\3\uffff\1\61\1\uffff\1\102\1\63\3\uffff"+
+        "\1\uffff\2\63\1\67\3\uffff\1\63\1\61\1\uffff\1\102\1\63\3\uffff"+
         "\2\63\1\115\1\117\2\uffff\1\123\1\126\4\63\1\140\1\142\1\144\1\63"+
         "\1\151\1\155\1\160\1\163\1\uffff\1\63\1\uffff\5\63\2\u0080\1\uffff"+
-        "\2\61\2\uffff\1\63\1\uffff\2\63\2\uffff\3\63\5\uffff\1\u008e\2\uffff"+
+        "\2\61\2\uffff\1\63\1\uffff\2\63\5\uffff\3\63\2\uffff\1\u008e\2\uffff"+
         "\1\u008f\3\uffff\5\63\2\uffff\1\u0097\10\uffff\10\63\4\uffff\1\u00a2"+
         "\1\uffff\1\63\1\u00a4\1\63\2\uffff\1\u00a7\12\uffff\1\u00a9\1\uffff"+
         "\4\63\1\u00ae\3\63\2\uffff\1\u0080\3\uffff\10\63\3\uffff\1\u00bb"+
@@ -3459,11 +3459,11 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
     static final String DFA20_eofS =
         "\u0120\uffff";
     static final String DFA20_minS =
-        "\1\0\2\141\1\72\1\141\3\uffff\1\44\1\uffff\1\75\1\162\3\uffff\1"+
+        "\1\0\2\141\1\72\3\uffff\1\141\1\44\1\uffff\1\75\1\162\3\uffff\1"+
         "\145\1\141\1\75\1\56\2\uffff\1\52\1\75\1\150\1\122\1\101\1\154\1"+
         "\174\1\46\1\75\1\146\1\75\1\0\1\56\1\52\1\uffff\1\163\1\uffff\1"+
         "\164\1\145\1\150\1\141\1\145\2\60\1\uffff\2\0\2\uffff\1\163\1\uffff"+
-        "\1\145\1\164\2\uffff\1\145\1\165\1\163\5\uffff\1\75\2\uffff\1\44"+
+        "\1\145\1\164\5\uffff\1\145\1\165\1\163\2\uffff\1\75\2\uffff\1\44"+
         "\3\uffff\1\147\1\154\1\156\1\154\1\162\2\uffff\1\74\10\uffff\1\165"+
         "\1\160\1\162\1\125\1\114\1\141\1\163\1\164\4\uffff\1\75\1\uffff"+
         "\1\163\1\44\1\160\2\uffff\1\0\12\uffff\1\44\1\uffff\1\151\1\141"+
@@ -3481,11 +3481,11 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         "\1\uffff\1\44\1\uffff\3\44\1\uffff\1\44\1\157\1\145\3\uffff\1\44"+
         "\5\uffff\1\156\1\157\1\uffff\1\44\1\146\1\uffff\1\44\1\uffff";
     static final String DFA20_maxS =
-        "\1\uffff\1\141\1\162\1\72\1\157\3\uffff\1\172\1\uffff\1\76\1\162"+
+        "\1\uffff\1\141\1\162\1\72\3\uffff\1\157\1\172\1\uffff\1\76\1\162"+
         "\3\uffff\1\165\1\157\1\75\1\56\2\uffff\1\52\1\76\1\171\1\122\1\101"+
         "\1\170\1\174\1\46\1\75\1\156\1\75\1\uffff\1\72\1\57\1\uffff\1\163"+
         "\1\uffff\1\167\1\157\1\150\1\141\1\145\1\170\1\154\1\uffff\2\uffff"+
-        "\2\uffff\1\163\1\uffff\1\151\1\164\2\uffff\1\145\1\165\1\164\5\uffff"+
+        "\2\uffff\1\163\1\uffff\1\151\1\164\5\uffff\1\145\1\165\1\164\2\uffff"+
         "\1\75\2\uffff\1\172\3\uffff\1\167\1\154\1\156\1\154\1\162\2\uffff"+
         "\1\74\10\uffff\1\171\1\160\1\162\1\125\1\114\1\141\1\163\1\164\4"+
         "\uffff\1\75\1\uffff\1\163\1\172\1\160\2\uffff\1\uffff\12\uffff\1"+
@@ -3504,9 +3504,9 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         "\1\uffff\1\172\1\157\1\145\3\uffff\1\172\5\uffff\1\156\1\157\1\uffff"+
         "\1\172\1\146\1\uffff\1\172\1\uffff";
     static final String DFA20_acceptS =
-        "\5\uffff\1\5\1\6\1\7\1\uffff\1\11\2\uffff\1\16\1\17\1\20\4\uffff"+
+        "\4\uffff\1\4\1\5\1\6\2\uffff\1\11\2\uffff\1\16\1\17\1\20\4\uffff"+
         "\1\25\1\26\16\uffff\1\65\1\uffff\1\72\7\uffff\1\131\2\uffff\1\135"+
-        "\1\136\1\uffff\1\131\2\uffff\1\70\1\3\3\uffff\1\5\1\6\1\7\1\10\1"+
+        "\1\136\1\uffff\1\131\2\uffff\1\70\1\3\1\4\1\5\1\6\3\uffff\1\10\1"+
         "\11\1\uffff\1\57\1\13\1\uffff\1\16\1\17\1\20\5\uffff\1\37\1\23\1"+
         "\uffff\1\24\1\25\1\26\1\63\1\27\1\40\1\54\1\30\10\uffff\1\41\1\73"+
         "\1\42\1\124\1\uffff\1\66\3\uffff\1\50\1\52\1\uffff\1\60\1\125\1"+
@@ -3516,7 +3516,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         "\51\1\60\1\67\4\uffff\1\103\14\uffff\1\21\1\113\4\uffff\1\101\1"+
         "\uffff\1\120\11\uffff\1\62\5\uffff\1\104\1\105\1\uffff\1\1\5\uffff"+
         "\1\100\1\uffff\1\114\1\22\2\uffff\1\31\2\uffff\1\33\1\uffff\1\35"+
-        "\1\75\14\uffff\1\4\1\36\1\122\1\uffff\1\32\1\uffff\1\116\1\34\6"+
+        "\1\75\14\uffff\1\7\1\36\1\122\1\uffff\1\32\1\uffff\1\116\1\34\6"+
         "\uffff\1\112\1\uffff\1\102\1\uffff\1\2\3\uffff\1\115\3\uffff\1\110"+
         "\1\76\1\107\1\uffff\1\117\1\15\1\12\1\121\1\106\2\uffff\1\77\2\uffff"+
         "\1\111\1\uffff\1\47";
@@ -3524,18 +3524,18 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
         "\1\3\37\uffff\1\2\15\uffff\1\4\1\1\72\uffff\1\0\u00b5\uffff}>";
     static final String[] DFA20_transitionS = {
             "\11\61\2\60\2\61\1\60\22\61\1\60\1\35\1\56\1\45\1\55\1\43\1"+
-            "\34\1\57\1\5\1\7\1\25\1\21\1\6\1\26\1\22\1\42\1\53\11\54\1\3"+
+            "\34\1\57\1\4\1\5\1\25\1\21\1\6\1\26\1\22\1\42\1\53\11\54\1\3"+
             "\1\15\1\40\1\12\1\37\1\41\1\11\5\55\1\31\15\55\1\30\6\55\1\23"+
-            "\1\61\1\24\1\10\1\55\1\61\1\44\1\1\1\4\1\47\1\32\1\20\2\55\1"+
+            "\1\61\1\24\1\10\1\55\1\61\1\44\1\1\1\7\1\47\1\32\1\20\2\55\1"+
             "\36\4\55\1\17\1\13\1\2\1\55\1\52\1\46\1\27\1\55\1\51\1\50\3"+
             "\55\1\14\1\33\1\16\uff82\61",
             "\1\62",
             "\1\65\20\uffff\1\64",
             "\1\66",
-            "\1\72\6\uffff\1\70\6\uffff\1\71",
             "",
             "",
             "",
+            "\1\75\6\uffff\1\73\6\uffff\1\74",
             "\1\63\34\uffff\32\63\3\uffff\1\76\1\63\1\uffff\32\63",
             "",
             "\1\100\1\101",
@@ -3588,12 +3588,12 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
             "\1\u0088",
             "",
             "",
+            "",
+            "",
+            "",
             "\1\u0089",
             "\1\u008a",
             "\1\u008b\1\u008c",
-            "",
-            "",
-            "",
             "",
             "",
             "\1\u008d",
@@ -3945,13 +3945,13 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
 
                         else if ( (LA20_0==':') ) {s = 3;}
 
-                        else if ( (LA20_0=='c') ) {s = 4;}
+                        else if ( (LA20_0=='(') ) {s = 4;}
 
-                        else if ( (LA20_0=='(') ) {s = 5;}
+                        else if ( (LA20_0==')') ) {s = 5;}
 
                         else if ( (LA20_0==',') ) {s = 6;}
 
-                        else if ( (LA20_0==')') ) {s = 7;}
+                        else if ( (LA20_0=='c') ) {s = 7;}
 
                         else if ( (LA20_0=='^') ) {s = 8;}
 

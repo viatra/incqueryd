@@ -100,27 +100,27 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT:
+      {
+        RdfClassConstraint rdfClassConstraint = (RdfClassConstraint)theEObject;
+        T result = caseRdfClassConstraint(rdfClassConstraint);
+        if (result == null) result = caseConstraint(rdfClassConstraint);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RdfPatternLanguagePackage.RDF_PROPERTY_CONSTRAINT:
+      {
+        RdfPropertyConstraint rdfPropertyConstraint = (RdfPropertyConstraint)theEObject;
+        T result = caseRdfPropertyConstraint(rdfPropertyConstraint);
+        if (result == null) result = caseConstraint(rdfPropertyConstraint);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RdfPatternLanguagePackage.RDF_CHECK_CONSTRAINT:
       {
         RdfCheckConstraint rdfCheckConstraint = (RdfCheckConstraint)theEObject;
         T result = caseRdfCheckConstraint(rdfCheckConstraint);
         if (result == null) result = caseConstraint(rdfCheckConstraint);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RdfPatternLanguagePackage.RDF_PATH_EXPRESSION_CONSTRAINT:
-      {
-        RdfPathExpressionConstraint rdfPathExpressionConstraint = (RdfPathExpressionConstraint)theEObject;
-        T result = caseRdfPathExpressionConstraint(rdfPathExpressionConstraint);
-        if (result == null) result = caseConstraint(rdfPathExpressionConstraint);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RdfPatternLanguagePackage.TYPE_CONSTRAINT:
-      {
-        TypeConstraint typeConstraint = (TypeConstraint)theEObject;
-        T result = caseTypeConstraint(typeConstraint);
-        if (result == null) result = caseConstraint(typeConstraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -211,6 +211,38 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Rdf Class Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rdf Class Constraint</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRdfClassConstraint(RdfClassConstraint object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rdf Property Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rdf Property Constraint</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRdfPropertyConstraint(RdfPropertyConstraint object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Rdf Check Constraint</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -222,38 +254,6 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRdfCheckConstraint(RdfCheckConstraint object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Rdf Path Expression Constraint</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Rdf Path Expression Constraint</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseRdfPathExpressionConstraint(RdfPathExpressionConstraint object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Type Constraint</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Type Constraint</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseTypeConstraint(TypeConstraint object)
   {
     return null;
   }

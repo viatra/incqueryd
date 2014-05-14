@@ -13,7 +13,7 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public IPatternMatcherContext.EdgeInterpretation edgeInterpretation() {
-    return IPatternMatcherContext.EdgeInterpretation.TERNARY;
+    return IPatternMatcherContext.EdgeInterpretation.BINARY;
   }
   
   public IPatternMatcherContext.GeneralizationQueryDirection allowedGeneralizationQueryDirection() {
