@@ -77,9 +77,7 @@ public class RdfPQuery implements PQuery {
       List<String> _parameterNames = this.getParameterNames();
       final int index = _parameterNames.indexOf(parameterName);
       Integer _xifexpression = null;
-      int _minus = (-1);
-      boolean _equals = (index == _minus);
-      if (_equals) {
+      if ((index == (-1))) {
         _xifexpression = null;
       } else {
         _xifexpression = Integer.valueOf(index);
@@ -182,13 +180,13 @@ public class RdfPQuery implements PQuery {
     this.annotations = _map_1;
     EList<PatternBody> _bodies = pattern.getBodies();
     final Function1<PatternBody,PBody> _function_2 = new Function1<PatternBody,PBody>() {
-      public PBody apply(final PatternBody body) {
-        return RdfPBody.create(body, pattern, RdfPQuery.this, context);
+      public PBody apply(final PatternBody it) {
+        return RdfPBody.toPBody(it, pattern, RdfPQuery.this, context);
       }
     };
     List<PBody> _map_2 = ListExtensions.<PatternBody, PBody>map(_bodies, _function_2);
-    Set<PBody> _set = IterableExtensions.<PBody>toSet(_map_2);
-    PDisjunction _pDisjunction = new PDisjunction(this, _set);
+    final Set<PBody> bodies = IterableExtensions.<PBody>toSet(_map_2);
+    PDisjunction _pDisjunction = new PDisjunction(this, bodies);
     this.disjunction = _pDisjunction;
     String _name = pattern.getName();
     this.fullyQualifiedName = _name;

@@ -10,6 +10,7 @@ import org.eclipse.incquery.runtime.matchers.psystem.queries.PDisjunction
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PParameter
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
 
+import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPBody.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
 
 class RdfPQuery implements PQuery {
@@ -22,11 +23,11 @@ class RdfPQuery implements PQuery {
 		annotations
 	}
 
-	override getAnnotationsByName(String annotationName) {
+	override getAnnotationsByName(String annotationName) { // TODO extract this unorthogonal logic
 		annotations.filter[name == annotationName].toList
 	}
 
-	override getFirstAnnotationByName(String annotationName) {
+	override getFirstAnnotationByName(String annotationName) { // TODO extract this unorthogonal logic
 		annotations.findFirst[name == annotationName]
 	}
 
@@ -38,11 +39,11 @@ class RdfPQuery implements PQuery {
 		parameters
 	}
 
-	override getParameterNames() {
+	override getParameterNames() { // TODO extract this unorthogonal logic
 		parameters.map[name]
 	}
 
-	override getPositionOfParameter(String parameterName) {
+	override getPositionOfParameter(String parameterName) { // TODO extract this unorthogonal logic
 		val index = parameterNames.indexOf(parameterName)
 		if (index == -1) null else index
 	}
@@ -74,22 +75,21 @@ class RdfPQuery implements PQuery {
 
 	// Referred queries
 
-	override getDirectReferredQueries() { // TODO this code exists in BaseQuerySpecification, move it to generic pattern language project
+	override getDirectReferredQueries() {  // TODO extract this unorthogonal logic
 		disjunctBodies.bodies.map[body |
 			body.constraints.filter(IQueryReference).map[referredQuery]
 		].flatten.toSet
 	}
 
-	override getAllReferredQueries() { // TODO this code exists in BaseQuerySpecification, move it to generic pattern language project
+	override getAllReferredQueries() { // TODO extract this unorthogonal logic
 		val processedQueries = Sets.newHashSet(this as PQuery)
-        val foundQueries = getDirectReferredQueries()
+        val foundQueries = directReferredQueries
         val newQueries = Sets.newHashSet(foundQueries)
-
         while (!processedQueries.containsAll(newQueries)) {
-			val query = newQueries.iterator().next()
+			val query = newQueries.iterator.next
 			processedQueries.add(query)
 			newQueries.remove(query)
-			val referred = query.getDirectReferredQueries()
+			val referred = query.directReferredQueries
 			referred.removeAll(processedQueries)
 			foundQueries.addAll(referred)
 			newQueries.addAll(referred)
@@ -108,7 +108,8 @@ class RdfPQuery implements PQuery {
 	new(Pattern pattern, RdfPatternModel patternModel, RdfPatternMatcherContext context) {
 		parameters = pattern.parameters.map[toPParameter]
 		annotations = pattern.annotations.map[toPAnnotation]
-		disjunction = new PDisjunction(this, pattern.bodies.map[body | RdfPBody.create(body, pattern, this, context)].toSet)
+		val bodies = pattern.bodies.map[toPBody(pattern, this, context)].toSet
+		disjunction = new PDisjunction(this, bodies)
 		fullyQualifiedName = pattern.name
 	}
 

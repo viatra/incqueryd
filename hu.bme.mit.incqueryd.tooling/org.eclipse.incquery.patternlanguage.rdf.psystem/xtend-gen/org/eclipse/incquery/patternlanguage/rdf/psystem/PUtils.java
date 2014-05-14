@@ -1,5 +1,6 @@
 package org.eclipse.incquery.patternlanguage.rdf.psystem;
 
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Annotation;
 import org.eclipse.incquery.patternlanguage.patternLanguage.AnnotationParameter;
@@ -14,13 +15,12 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableValue;
-import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPatternMatcherContext;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass;
 import org.eclipse.incquery.runtime.matchers.psystem.PBody;
 import org.eclipse.incquery.runtime.matchers.psystem.PVariable;
 import org.eclipse.incquery.runtime.matchers.psystem.annotations.PAnnotation;
-import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PParameter;
+import org.eclipse.incquery.runtime.matchers.tuple.FlatTuple;
+import org.eclipse.incquery.runtime.matchers.tuple.Tuple;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -52,26 +52,6 @@ public class PUtils {
   
   public static PVariable toPVariable(final ValueReference valueReference, final PBody pBody) {
     return null;
-  }
-  
-  public static TypeUnary toTypeConstraint(final Variable parameter, final PBody pBody, final RdfPatternMatcherContext context) {
-    TypeUnary _switchResult = null;
-    Type _type = parameter.getType();
-    final Type type = _type;
-    boolean _matched = false;
-    if (!_matched) {
-      if (type instanceof RdfClass) {
-        _matched=true;
-        TypeUnary _xblockexpression = null;
-        {
-          final PVariable pVariable = PUtils.toPVariable(parameter, pBody);
-          String _printType = context.printType(type);
-          _xblockexpression = new TypeUnary(pBody, pVariable, type, _printType);
-        }
-        _switchResult = _xblockexpression;
-      }
-    }
-    return _switchResult;
   }
   
   public static PAnnotation toPAnnotation(final Annotation annotation) {
@@ -157,5 +137,19 @@ public class PUtils {
     Type _type = parameter.getType();
     String _typename = _type.getTypename();
     return new PParameter(_name, _typename);
+  }
+  
+  public static Tuple toTuple(final List<ValueReference> valueReferences, final PBody pBody) {
+    FlatTuple _xblockexpression = null;
+    {
+      final Function1<ValueReference,PVariable> _function = new Function1<ValueReference,PVariable>() {
+        public PVariable apply(final ValueReference it) {
+          return PUtils.toPVariable(it, pBody);
+        }
+      };
+      final List<PVariable> elements = ListExtensions.<ValueReference, PVariable>map(valueReferences, _function);
+      _xblockexpression = new FlatTuple(elements);
+    }
+    return _xblockexpression;
   }
 }

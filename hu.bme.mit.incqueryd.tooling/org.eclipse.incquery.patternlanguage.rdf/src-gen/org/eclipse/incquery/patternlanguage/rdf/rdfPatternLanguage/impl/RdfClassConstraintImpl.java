@@ -15,24 +15,24 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.impl.ConstraintImpl;
 
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeConstraint;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Type Constraint</b></em>'.
+ * An implementation of the model object '<em><b>Rdf Class Constraint</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.TypeConstraintImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.TypeConstraintImpl#getVar <em>Var</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfClassConstraintImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfClassConstraintImpl#getVariable <em>Variable</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TypeConstraintImpl extends ConstraintImpl implements TypeConstraint
+public class RdfClassConstraintImpl extends ConstraintImpl implements RdfClassConstraint
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -45,21 +45,21 @@ public class TypeConstraintImpl extends ConstraintImpl implements TypeConstraint
   protected EntityType type;
 
   /**
-   * The cached value of the '{@link #getVar() <em>Var</em>}' containment reference.
+   * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVar()
+   * @see #getVariable()
    * @generated
    * @ordered
    */
-  protected VariableReference var;
+  protected VariableReference variable;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected TypeConstraintImpl()
+  protected RdfClassConstraintImpl()
   {
     super();
   }
@@ -72,7 +72,7 @@ public class TypeConstraintImpl extends ConstraintImpl implements TypeConstraint
   @Override
   protected EClass eStaticClass()
   {
-    return RdfPatternLanguagePackage.Literals.TYPE_CONSTRAINT;
+    return RdfPatternLanguagePackage.Literals.RDF_CLASS_CONSTRAINT;
   }
 
   /**
@@ -96,7 +96,7 @@ public class TypeConstraintImpl extends ConstraintImpl implements TypeConstraint
     type = newType;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.TYPE_CONSTRAINT__TYPE, oldType, newType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__TYPE, oldType, newType);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -113,14 +113,14 @@ public class TypeConstraintImpl extends ConstraintImpl implements TypeConstraint
     {
       NotificationChain msgs = null;
       if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.TYPE_CONSTRAINT__TYPE, null, msgs);
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__TYPE, null, msgs);
       if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.TYPE_CONSTRAINT__TYPE, null, msgs);
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__TYPE, null, msgs);
       msgs = basicSetType(newType, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.TYPE_CONSTRAINT__TYPE, newType, newType));
+      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__TYPE, newType, newType));
   }
 
   /**
@@ -128,9 +128,9 @@ public class TypeConstraintImpl extends ConstraintImpl implements TypeConstraint
    * <!-- end-user-doc -->
    * @generated
    */
-  public VariableReference getVar()
+  public VariableReference getVariable()
   {
-    return var;
+    return variable;
   }
 
   /**
@@ -138,13 +138,13 @@ public class TypeConstraintImpl extends ConstraintImpl implements TypeConstraint
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetVar(VariableReference newVar, NotificationChain msgs)
+  public NotificationChain basicSetVariable(VariableReference newVariable, NotificationChain msgs)
   {
-    VariableReference oldVar = var;
-    var = newVar;
+    VariableReference oldVariable = variable;
+    variable = newVariable;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.TYPE_CONSTRAINT__VAR, oldVar, newVar);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__VARIABLE, oldVariable, newVariable);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -155,20 +155,20 @@ public class TypeConstraintImpl extends ConstraintImpl implements TypeConstraint
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setVar(VariableReference newVar)
+  public void setVariable(VariableReference newVariable)
   {
-    if (newVar != var)
+    if (newVariable != variable)
     {
       NotificationChain msgs = null;
-      if (var != null)
-        msgs = ((InternalEObject)var).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.TYPE_CONSTRAINT__VAR, null, msgs);
-      if (newVar != null)
-        msgs = ((InternalEObject)newVar).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.TYPE_CONSTRAINT__VAR, null, msgs);
-      msgs = basicSetVar(newVar, msgs);
+      if (variable != null)
+        msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__VARIABLE, null, msgs);
+      if (newVariable != null)
+        msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__VARIABLE, null, msgs);
+      msgs = basicSetVariable(newVariable, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.TYPE_CONSTRAINT__VAR, newVar, newVar));
+      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__VARIABLE, newVariable, newVariable));
   }
 
   /**
@@ -181,10 +181,10 @@ public class TypeConstraintImpl extends ConstraintImpl implements TypeConstraint
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.TYPE_CONSTRAINT__TYPE:
+      case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__TYPE:
         return basicSetType(null, msgs);
-      case RdfPatternLanguagePackage.TYPE_CONSTRAINT__VAR:
-        return basicSetVar(null, msgs);
+      case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__VARIABLE:
+        return basicSetVariable(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -199,10 +199,10 @@ public class TypeConstraintImpl extends ConstraintImpl implements TypeConstraint
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.TYPE_CONSTRAINT__TYPE:
+      case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__TYPE:
         return getType();
-      case RdfPatternLanguagePackage.TYPE_CONSTRAINT__VAR:
-        return getVar();
+      case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__VARIABLE:
+        return getVariable();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -217,11 +217,11 @@ public class TypeConstraintImpl extends ConstraintImpl implements TypeConstraint
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.TYPE_CONSTRAINT__TYPE:
+      case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__TYPE:
         setType((EntityType)newValue);
         return;
-      case RdfPatternLanguagePackage.TYPE_CONSTRAINT__VAR:
-        setVar((VariableReference)newValue);
+      case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__VARIABLE:
+        setVariable((VariableReference)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -237,11 +237,11 @@ public class TypeConstraintImpl extends ConstraintImpl implements TypeConstraint
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.TYPE_CONSTRAINT__TYPE:
+      case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__TYPE:
         setType((EntityType)null);
         return;
-      case RdfPatternLanguagePackage.TYPE_CONSTRAINT__VAR:
-        setVar((VariableReference)null);
+      case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__VARIABLE:
+        setVariable((VariableReference)null);
         return;
     }
     super.eUnset(featureID);
@@ -257,12 +257,12 @@ public class TypeConstraintImpl extends ConstraintImpl implements TypeConstraint
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.TYPE_CONSTRAINT__TYPE:
+      case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__TYPE:
         return type != null;
-      case RdfPatternLanguagePackage.TYPE_CONSTRAINT__VAR:
-        return var != null;
+      case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__VARIABLE:
+        return variable != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //TypeConstraintImpl
+} //RdfClassConstraintImpl

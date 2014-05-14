@@ -18,14 +18,13 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExportedParam
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 @SuppressWarnings("all")
 public class RdfPBody {
-  public static PBody create(final PatternBody body, final Pattern pattern, final PQuery query, final RdfPatternMatcherContext context) {
+  public static PBody toPBody(final PatternBody body, final Pattern pattern, final PQuery query, final RdfPatternMatcherContext context) {
     PBody _pBody = new PBody(query);
     final Procedure1<PBody> _function = new Procedure1<PBody>() {
       public void apply(final PBody pBody) {
@@ -43,21 +42,19 @@ public class RdfPBody {
         EList<Variable> _parameters_1 = pattern.getParameters();
         final Function1<Variable,TypeUnary> _function_1 = new Function1<Variable,TypeUnary>() {
           public TypeUnary apply(final Variable parameter) {
-            return PUtils.toTypeConstraint(parameter, pBody, context);
+            return RdfPConstraint.toTypeConstraint(parameter, pBody, context);
           }
         };
         List<TypeUnary> _map_1 = ListExtensions.<Variable, TypeUnary>map(_parameters_1, _function_1);
-        Iterable<TypeUnary> _filterNull = IterableExtensions.<TypeUnary>filterNull(_map_1);
-        Iterables.<PConstraint>addAll(_constraints, _filterNull);
-        Set<PConstraint> _constraints_1 = pBody.getConstraints();
-        EList<Constraint> _constraints_2 = body.getConstraints();
+        EList<Constraint> _constraints_1 = body.getConstraints();
         final Function1<Constraint,PConstraint> _function_2 = new Function1<Constraint,PConstraint>() {
           public PConstraint apply(final Constraint constraint) {
             return RdfPConstraint.create(constraint, pBody, context);
           }
         };
-        List<PConstraint> _map_2 = ListExtensions.<Constraint, PConstraint>map(_constraints_2, _function_2);
-        _constraints_1.addAll(_map_2);
+        List<PConstraint> _map_2 = ListExtensions.<Constraint, PConstraint>map(_constraints_1, _function_2);
+        Iterable<PConstraint> _plus = Iterables.<PConstraint>concat(_map_1, _map_2);
+        Iterables.<PConstraint>addAll(_constraints, _plus);
       }
     };
     return ObjectExtensions.<PBody>operator_doubleArrow(_pBody, _function);

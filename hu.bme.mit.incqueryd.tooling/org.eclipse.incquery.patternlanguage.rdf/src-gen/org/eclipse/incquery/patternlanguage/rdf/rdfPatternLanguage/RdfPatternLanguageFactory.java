@@ -50,6 +50,24 @@ public interface RdfPatternLanguageFactory extends EFactory
   Iri createIri();
 
   /**
+   * Returns a new object of class '<em>Rdf Class Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rdf Class Constraint</em>'.
+   * @generated
+   */
+  RdfClassConstraint createRdfClassConstraint();
+
+  /**
+   * Returns a new object of class '<em>Rdf Property Constraint</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rdf Property Constraint</em>'.
+   * @generated
+   */
+  RdfPropertyConstraint createRdfPropertyConstraint();
+
+  /**
    * Returns a new object of class '<em>Rdf Check Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -57,24 +75,6 @@ public interface RdfPatternLanguageFactory extends EFactory
    * @generated
    */
   RdfCheckConstraint createRdfCheckConstraint();
-
-  /**
-   * Returns a new object of class '<em>Rdf Path Expression Constraint</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Rdf Path Expression Constraint</em>'.
-   * @generated
-   */
-  RdfPathExpressionConstraint createRdfPathExpressionConstraint();
-
-  /**
-   * Returns a new object of class '<em>Type Constraint</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Type Constraint</em>'.
-   * @generated
-   */
-  TypeConstraint createTypeConstraint();
 
   /**
    * Returns a new object of class '<em>Rdf Literal</em>'.
