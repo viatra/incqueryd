@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.util.Switch;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
 import org.eclipse.incquery.patternlanguage.patternLanguage.EntityType;
+import org.eclipse.incquery.patternlanguage.patternLanguage.LiteralValueReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel;
 import org.eclipse.incquery.patternlanguage.patternLanguage.RelationType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
@@ -128,6 +129,7 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
       {
         RdfLiteral rdfLiteral = (RdfLiteral)theEObject;
         T result = caseRdfLiteral(rdfLiteral);
+        if (result == null) result = caseLiteralValueReference(rdfLiteral);
         if (result == null) result = caseValueReference(rdfLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -350,6 +352,22 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseValueReference(ValueReference object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Literal Value Reference</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Literal Value Reference</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLiteralValueReference(LiteralValueReference object)
   {
     return null;
   }

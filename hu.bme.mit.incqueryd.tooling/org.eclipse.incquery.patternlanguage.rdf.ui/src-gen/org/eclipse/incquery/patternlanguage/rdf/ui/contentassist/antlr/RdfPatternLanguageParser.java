@@ -38,10 +38,10 @@ public class RdfPatternLanguageParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getConstraintAccess().getAlternatives(), "rule__Constraint__Alternatives");
+					put(grammarAccess.getValueReferenceAccess().getAlternatives(), "rule__ValueReference__Alternatives");
 					put(grammarAccess.getLiteralValueReferenceAccess().getAlternatives(), "rule__LiteralValueReference__Alternatives");
 					put(grammarAccess.getRdfLiteralAccess().getAlternatives_1(), "rule__RdfLiteral__Alternatives_1");
 					put(grammarAccess.getRawIriAccess().getAlternatives(), "rule__RawIri__Alternatives");
-					put(grammarAccess.getValueReferenceAccess().getAlternatives(), "rule__ValueReference__Alternatives");
 					put(grammarAccess.getAnnotationValueReferenceAccess().getAlternatives(), "rule__AnnotationValueReference__Alternatives");
 					put(grammarAccess.getBOOLEANAccess().getAlternatives(), "rule__BOOLEAN__Alternatives");
 					put(grammarAccess.getComputationValueAccess().getAlternatives(), "rule__ComputationValue__Alternatives");

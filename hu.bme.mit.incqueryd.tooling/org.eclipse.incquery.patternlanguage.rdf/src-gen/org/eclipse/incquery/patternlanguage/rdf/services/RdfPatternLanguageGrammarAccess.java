@@ -379,6 +379,30 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 	}
 
+	public class ValueReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValueReference");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cLiteralValueReferenceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cVariableValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cAggregatedValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//ValueReference returns core::ValueReference:
+		//	LiteralValueReference | VariableValue | AggregatedValue;
+		public ParserRule getRule() { return rule; }
+
+		//LiteralValueReference | VariableValue | AggregatedValue
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//LiteralValueReference
+		public RuleCall getLiteralValueReferenceParserRuleCall_0() { return cLiteralValueReferenceParserRuleCall_0; }
+
+		//VariableValue
+		public RuleCall getVariableValueParserRuleCall_1() { return cVariableValueParserRuleCall_1; }
+
+		//AggregatedValue
+		public RuleCall getAggregatedValueParserRuleCall_2() { return cAggregatedValueParserRuleCall_2; }
+	}
+
 	public class LiteralValueReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LiteralValueReference");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -388,7 +412,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		private final RuleCall cBoolValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cRdfLiteralParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
-		//LiteralValueReference returns core::ValueReference:
+		//LiteralValueReference returns core::LiteralValueReference:
 		//	IntValue | StringValue | DoubleValue | BoolValue | RdfLiteral;
 		public ParserRule getRule() { return rule; }
 
@@ -498,6 +522,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	private RdfPropertyConstraintElements pRdfPropertyConstraint;
 	private RefTypeElements pRefType;
 	private RdfCheckConstraintElements pRdfCheckConstraint;
+	private ValueReferenceElements pValueReference;
 	private LiteralValueReferenceElements pLiteralValueReference;
 	private RdfLiteralElements pRdfLiteral;
 	private RawIriElements pRawIri;
@@ -642,7 +667,17 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		return getRdfCheckConstraintAccess().getRule();
 	}
 
-	//LiteralValueReference returns core::ValueReference:
+	//ValueReference returns core::ValueReference:
+	//	LiteralValueReference | VariableValue | AggregatedValue;
+	public ValueReferenceElements getValueReferenceAccess() {
+		return (pValueReference != null) ? pValueReference : (pValueReference = new ValueReferenceElements());
+	}
+	
+	public ParserRule getValueReferenceRule() {
+		return getValueReferenceAccess().getRule();
+	}
+
+	//LiteralValueReference returns core::LiteralValueReference:
 	//	IntValue | StringValue | DoubleValue | BoolValue | RdfLiteral;
 	public LiteralValueReferenceElements getLiteralValueReferenceAccess() {
 		return (pLiteralValueReference != null) ? pLiteralValueReference : (pLiteralValueReference = new LiteralValueReferenceElements());
@@ -870,16 +905,6 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	
 	public ParserRule getPathExpressionTailRule() {
 		return getPathExpressionTailAccess().getRule();
-	}
-
-	//ValueReference:
-	//	LiteralValueReference | VariableValue | ComputationValue;
-	public PatternLanguageGrammarAccess.ValueReferenceElements getValueReferenceAccess() {
-		return gaPatternLanguage.getValueReferenceAccess();
-	}
-	
-	public ParserRule getValueReferenceRule() {
-		return getValueReferenceAccess().getRule();
 	}
 
 	//AnnotationValueReference returns ValueReference:
