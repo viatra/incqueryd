@@ -1,120 +1,125 @@
 package org.eclipse.incquery.patternlanguage.rdf.psystem
 
 import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext
-import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext.EdgeInterpretation
-import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext.GeneralizationQueryDirection
-import org.openrdf.model.Graph
+import org.openrdf.model.Model
+import org.openrdf.model.Resource
+import org.openrdf.model.vocabulary.RDF
+import org.openrdf.model.vocabulary.RDFS
+import org.apache.log4j.Logger
 
 class RdfPatternMatcherContext implements IPatternMatcherContext {
 
-	val Graph metamodel
+	val Model metamodel
+	val Logger logger = Logger.getLogger(RdfPatternMatcherContext)
 
-	new(Graph metamodel) {
+	new(Model metamodel) {
 		this.metamodel = metamodel
 	}
 
-	override edgeInterpretation() {
-		EdgeInterpretation.BINARY
-	}
+	// Unary
 
-	override allowedGeneralizationQueryDirection() {
-		GeneralizationQueryDirection.SUPERTYPE_ONLY_SMART_NOTIFICATIONS
-	}
-
-	override binaryEdgeSourceType(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
-	override binaryEdgeTargetType(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
-	override enumerateDirectBinaryEdgeSubtypes(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
-	override enumerateDirectBinaryEdgeSupertypes(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
-	override enumerateDirectSubtypes(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
-	override enumerateDirectSupertypes(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
-	override enumerateDirectTernaryEdgeSubtypes(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
-	override enumerateDirectTernaryEdgeSupertypes(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override isUnaryType(Object typeObject) {
+		metamodel.contains(typeObject as Resource, RDF.TYPE, RDFS.CLASS) // XXX eliminate casts?
 	}
 
 	override enumerateDirectUnarySubtypes(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		metamodel.filter(null, RDFS.SUBCLASSOF, typeObject as Resource).map[subject].toSet
 	}
 
 	override enumerateDirectUnarySupertypes(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		metamodel.filter(typeObject as Resource, RDFS.SUBCLASSOF, null).map[object].toSet
+	}
+
+	// Binary
+
+	override isBinaryEdgeType(Object typeObject) {
+		false
+	}
+
+	override binaryEdgeSourceType(Object typeObject) {
+		throw new UnsupportedOperationException
+	}
+
+	override binaryEdgeTargetType(Object typeObject) {
+		throw new UnsupportedOperationException
 	}
 
 	override isBinaryEdgeMultiplicityOneTo(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		throw new UnsupportedOperationException
 	}
 
 	override isBinaryEdgeMultiplicityToOne(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		throw new UnsupportedOperationException
 	}
 
-	override isBinaryEdgeType(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override enumerateDirectBinaryEdgeSubtypes(Object typeObject) {
+		throw new UnsupportedOperationException
+	}
+
+	override enumerateDirectBinaryEdgeSupertypes(Object typeObject) {
+		throw new UnsupportedOperationException
+	}
+
+	// Ternary
+
+	override isTernaryEdgeType(Object typeObject) {
+		metamodel.contains(typeObject as Resource, RDF.TYPE, RDF.PROPERTY)
+	}
+
+	override ternaryEdgeSourceType(Object typeObject) {
+		metamodel.filter(typeObject as Resource, RDFS.DOMAIN, null).map[object].head
+	}
+
+	override ternaryEdgeTargetType(Object typeObject) {
+		metamodel.filter(typeObject as Resource, RDFS.RANGE, null).map[object].head
 	}
 
 	override isTernaryEdgeMultiplicityOneTo(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		false // TODO SPARQL? based on http://www.w3.org/TR/owl-guide/#owl_cardinality
 	}
 
 	override isTernaryEdgeMultiplicityToOne(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		false // TODO SPARQL? based on http://www.w3.org/TR/owl-guide/#owl_cardinality
 	}
 
-	override isTernaryEdgeType(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override enumerateDirectTernaryEdgeSubtypes(Object typeObject) {
+		metamodel.filter(null, RDFS.SUBPROPERTYOF, typeObject as Resource).map[subject].toSet
 	}
 
-	override isUnaryType(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override enumerateDirectTernaryEdgeSupertypes(Object typeObject) {
+		metamodel.filter(typeObject as Resource, RDFS.SUBPROPERTYOF, null).map[object].toSet
 	}
 
-	override logDebug(String message) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	// Generic
+
+	override edgeInterpretation() {
+		IPatternMatcherContext.EdgeInterpretation.TERNARY
 	}
 
-	override logError(String message) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override allowedGeneralizationQueryDirection() {
+		IPatternMatcherContext.GeneralizationQueryDirection.BOTH
 	}
 
-	override logError(String message, Throwable cause) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	static val INVALID = "Invalid type object"
+
+	override enumerateDirectSubtypes(Object typeObject) { // TODO extract this unorthogonal logic
+		if (isUnaryType(typeObject)) {
+			enumerateDirectUnarySubtypes(typeObject)
+		} else if (isTernaryEdgeType(typeObject)) {
+			enumerateDirectTernaryEdgeSubtypes(typeObject)
+		} else {
+			throw new IllegalArgumentException(INVALID)
+		}
 	}
 
-	override logFatal(String message) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
-	override logFatal(String message, Throwable cause) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
-	override logWarning(String message) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
-
-	override logWarning(String message, Throwable cause) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override enumerateDirectSupertypes(Object typeObject) { // TODO extract this unorthogonal logic
+		if (isUnaryType(typeObject)) {
+			enumerateDirectUnarySupertypes(typeObject)
+		} else if (isTernaryEdgeType(typeObject)) {
+			enumerateDirectTernaryEdgeSupertypes(typeObject)
+		} else {
+			throw new IllegalArgumentException(INVALID)
+		}
 	}
 
 	override printType(Object typeObject) {
@@ -122,15 +127,36 @@ class RdfPatternMatcherContext implements IPatternMatcherContext {
 	}
 
 	override reportPatternDependency(Object pattern) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 
-	override ternaryEdgeSourceType(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	// Logging
+
+	override logDebug(String message) {
+		logger.debug(message)
 	}
 
-	override ternaryEdgeTargetType(Object typeObject) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	override logWarning(String message) {
+		logger.warn(message)
+	}
+
+	override logWarning(String message, Throwable cause) {
+		logger.warn(message, cause)
+	}
+
+	override logError(String message) {
+		logger.error(message)
+	}
+
+	override logError(String message, Throwable cause) {
+		logger.error(message, cause)
+	}
+
+	override logFatal(String message) {
+		logger.fatal(message)
+	}
+
+	override logFatal(String message, Throwable cause) {
+		logger.fatal(message, cause)
 	}
 
 }
