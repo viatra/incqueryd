@@ -179,7 +179,7 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public String printType(final Object typeObject) {
-    return typeObject.toString();
+    return ((Value) typeObject).stringValue();
   }
   
   public void reportPatternDependency(final Object pattern) {
