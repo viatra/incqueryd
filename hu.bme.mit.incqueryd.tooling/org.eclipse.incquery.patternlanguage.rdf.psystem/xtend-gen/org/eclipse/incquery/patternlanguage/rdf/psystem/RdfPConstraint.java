@@ -32,7 +32,7 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.Inequality;
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.NegativePatternCall;
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.BinaryTransitiveClosure;
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
-import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeBinary;
+import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeTernary;
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.incquery.runtime.matchers.tuple.Tuple;
@@ -162,14 +162,14 @@ public class RdfPConstraint {
   }
   
   public static PConstraint convertPropertyConstraint(final RdfPropertyConstraint constraint, final PBody pBody, final RdfPatternMatcherContext context) {
-    TypeBinary _switchResult = null;
+    TypeTernary _switchResult = null;
     RelationType _refType = constraint.getRefType();
     final RelationType refType = _refType;
     boolean _matched = false;
     if (!_matched) {
       if (refType instanceof RdfProperty) {
         _matched=true;
-        TypeBinary _xblockexpression = null;
+        TypeTernary _xblockexpression = null;
         {
           VariableReference _source = constraint.getSource();
           Variable _variable = _source.getVariable();
@@ -178,7 +178,8 @@ public class RdfPConstraint {
           final PVariable target = RdfPVariable.toPVariable(_target, pBody);
           final Iri typeObject = ((RdfProperty)refType).getProperty();
           final String typeString = context.printType(typeObject);
-          _xblockexpression = new TypeBinary(pBody, context, source, target, typeObject, typeString);
+          PVariable _newVirtualVariable = pBody.newVirtualVariable();
+          _xblockexpression = new TypeTernary(pBody, context, _newVirtualVariable, source, target, typeObject, typeString);
         }
         _switchResult = _xblockexpression;
       }

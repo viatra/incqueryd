@@ -20,7 +20,7 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
 import org.eclipse.incquery.runtime.rete.util.Options;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
-import org.openrdf.model.Graph;
+import org.openrdf.model.Model;
 
 public class RecipeGenerator implements IGenerator {
 
@@ -28,7 +28,7 @@ public class RecipeGenerator implements IGenerator {
 	private final RdfPatternMatcherContext context;
 
 	public RecipeGenerator() {
-		Graph metamodel = null; // TODO
+		Model metamodel = null; // TODO
 		context = new RdfPatternMatcherContext(metamodel);
 		compiler = new ReteRecipeCompiler(Options.builderMethod.layoutStrategy(), context);
 	}

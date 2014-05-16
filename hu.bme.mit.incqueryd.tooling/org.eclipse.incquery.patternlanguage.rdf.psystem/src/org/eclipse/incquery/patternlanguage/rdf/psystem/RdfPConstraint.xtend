@@ -16,7 +16,7 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.Inequality
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.NegativePatternCall
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.BinaryTransitiveClosure
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.PositivePatternCall
-import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeBinary
+import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeTernary
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary
 
 import static org.eclipse.incquery.patternlanguage.patternLanguage.CompareFeature.*
@@ -81,7 +81,7 @@ class RdfPConstraint {
 				val target = constraint.target.toPVariable(pBody)
 				val typeObject = refType.property
 				val typeString = context.printType(typeObject)
-				new TypeBinary(pBody, context, source, target, typeObject, typeString)
+				new TypeTernary(pBody, context, pBody.newVirtualVariable, source, target, typeObject, typeString)
 			}
 			default: throw new IllegalArgumentException('''Constraint's reference must be «RdfProperty»''')
 		}
