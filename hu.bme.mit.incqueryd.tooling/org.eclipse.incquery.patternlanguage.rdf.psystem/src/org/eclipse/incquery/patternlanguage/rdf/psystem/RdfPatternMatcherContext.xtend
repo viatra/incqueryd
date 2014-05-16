@@ -6,6 +6,7 @@ import org.openrdf.model.Resource
 import org.openrdf.model.vocabulary.RDF
 import org.openrdf.model.vocabulary.RDFS
 import org.apache.log4j.Logger
+import org.openrdf.model.Value
 
 class RdfPatternMatcherContext implements IPatternMatcherContext {
 
@@ -123,7 +124,7 @@ class RdfPatternMatcherContext implements IPatternMatcherContext {
 	}
 
 	override printType(Object typeObject) {
-		typeObject.toString
+		(typeObject as Value).stringValue
 	}
 
 	override reportPatternDependency(Object pattern) {

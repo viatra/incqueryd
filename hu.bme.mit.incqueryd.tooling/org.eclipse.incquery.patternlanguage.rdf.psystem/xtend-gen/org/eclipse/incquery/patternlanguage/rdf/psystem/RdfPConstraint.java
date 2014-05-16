@@ -12,6 +12,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
+import org.eclipse.incquery.patternlanguage.rdf.IriUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable;
@@ -37,6 +38,8 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.incquery.runtime.matchers.tuple.Tuple;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.openrdf.model.Resource;
+import org.openrdf.model.impl.URIImpl;
 
 @SuppressWarnings("all")
 public class RdfPConstraint {
@@ -176,7 +179,8 @@ public class RdfPConstraint {
           final PVariable source = PUtils.toPVariable(_variable, pBody);
           ValueReference _target = constraint.getTarget();
           final PVariable target = RdfPVariable.toPVariable(_target, pBody);
-          final Iri typeObject = ((RdfProperty)refType).getProperty();
+          Iri _property = ((RdfProperty)refType).getProperty();
+          final Resource typeObject = RdfPConstraint.toRdfResource(_property);
           final String typeString = context.printType(typeObject);
           PVariable _newVirtualVariable = pBody.newVirtualVariable();
           _xblockexpression = new TypeTernary(pBody, context, _newVirtualVariable, source, target, typeObject, typeString);
@@ -208,8 +212,10 @@ public class RdfPConstraint {
         TypeUnary _xblockexpression = null;
         {
           final PVariable pVariable = PUtils.toPVariable(parameter, pBody);
-          String _printType = context.printType(type);
-          _xblockexpression = new TypeUnary(pBody, pVariable, type, _printType);
+          Iri _class_ = ((RdfClass)type).getClass_();
+          final Resource typeObject = RdfPConstraint.toRdfResource(_class_);
+          final String typeString = context.printType(typeObject);
+          _xblockexpression = new TypeUnary(pBody, pVariable, typeObject, typeString);
         }
         _switchResult = _xblockexpression;
       }
@@ -221,5 +227,10 @@ public class RdfPConstraint {
       throw new IllegalArgumentException(_builder.toString());
     }
     return _switchResult;
+  }
+  
+  public static Resource toRdfResource(final Iri iri) {
+    String _value = IriUtils.getValue(iri);
+    return new URIImpl(_value);
   }
 }
