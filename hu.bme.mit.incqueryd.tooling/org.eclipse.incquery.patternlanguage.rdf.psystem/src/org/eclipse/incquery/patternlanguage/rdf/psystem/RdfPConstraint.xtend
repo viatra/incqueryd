@@ -24,6 +24,10 @@ import static org.eclipse.incquery.patternlanguage.patternLanguage.CompareFeatur
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
+import static extension org.eclipse.incquery.patternlanguage.rdf.IriUtils.*
+import org.openrdf.model.impl.URIImpl
+import org.openrdf.model.Resource
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri
 
 class RdfPConstraint {
 
@@ -79,7 +83,7 @@ class RdfPConstraint {
 			RdfProperty: {
 				val source = constraint.source.variable.toPVariable(pBody)
 				val target = constraint.target.toPVariable(pBody)
-				val typeObject = refType.property
+				val typeObject = refType.property.toRdfResource
 				val typeString = context.printType(typeObject)
 				new TypeTernary(pBody, context, pBody.newVirtualVariable, source, target, typeObject, typeString)
 			}
@@ -95,10 +99,16 @@ class RdfPConstraint {
 		switch type : parameter.type {
 			RdfClass: {
 				val pVariable = parameter.toPVariable(pBody)
-				new TypeUnary(pBody, pVariable, type, context.printType(type))
+				val typeObject = type.class_.toRdfResource
+				val typeString = context.printType(typeObject)
+				new TypeUnary(pBody, pVariable, typeObject, typeString)
 			}
 			default: throw new IllegalArgumentException('''Parameter's type must be «RdfClass»''')
 		}
+	}
+
+	static def Resource toRdfResource(Iri iri) {
+		new URIImpl(iri.value)
 	}
 
 }
