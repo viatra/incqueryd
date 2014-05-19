@@ -407,26 +407,26 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LiteralValueReference");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIntValueParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cStringValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cDoubleValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cDoubleValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cStringValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cBoolValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cRdfLiteralParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//LiteralValueReference returns core::LiteralValueReference:
-		//	IntValue | StringValue | DoubleValue | BoolValue | RdfLiteral;
+		//	IntValue | DoubleValue | StringValue | BoolValue | RdfLiteral;
 		public ParserRule getRule() { return rule; }
 
-		//IntValue | StringValue | DoubleValue | BoolValue | RdfLiteral
+		//IntValue | DoubleValue | StringValue | BoolValue | RdfLiteral
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//IntValue
 		public RuleCall getIntValueParserRuleCall_0() { return cIntValueParserRuleCall_0; }
 
-		//StringValue
-		public RuleCall getStringValueParserRuleCall_1() { return cStringValueParserRuleCall_1; }
-
 		//DoubleValue
-		public RuleCall getDoubleValueParserRuleCall_2() { return cDoubleValueParserRuleCall_2; }
+		public RuleCall getDoubleValueParserRuleCall_1() { return cDoubleValueParserRuleCall_1; }
+
+		//StringValue
+		public RuleCall getStringValueParserRuleCall_2() { return cStringValueParserRuleCall_2; }
 
 		//BoolValue
 		public RuleCall getBoolValueParserRuleCall_3() { return cBoolValueParserRuleCall_3; }
@@ -678,7 +678,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//LiteralValueReference returns core::LiteralValueReference:
-	//	IntValue | StringValue | DoubleValue | BoolValue | RdfLiteral;
+	//	IntValue | DoubleValue | StringValue | BoolValue | RdfLiteral;
 	public LiteralValueReferenceElements getLiteralValueReferenceAccess() {
 		return (pLiteralValueReference != null) ? pLiteralValueReference : (pLiteralValueReference = new LiteralValueReferenceElements());
 	}
