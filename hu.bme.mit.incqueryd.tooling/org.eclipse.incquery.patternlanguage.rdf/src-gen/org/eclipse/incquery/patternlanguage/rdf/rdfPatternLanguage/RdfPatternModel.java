@@ -14,8 +14,8 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getBase <em>Base</em>}</li>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getPrefixes <em>Prefixes</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getBaseIriValue <em>Base Iri Value</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getIriPrefixes <em>Iri Prefixes</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,45 +26,45 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel;
 public interface RdfPatternModel extends PatternModel
 {
   /**
-   * Returns the value of the '<em><b>Base</b></em>' containment reference.
+   * Returns the value of the '<em><b>Base Iri Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Base</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Base Iri Value</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Base</em>' containment reference.
-   * @see #setBase(Base)
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfPatternModel_Base()
-   * @model containment="true"
+   * @return the value of the '<em>Base Iri Value</em>' attribute.
+   * @see #setBaseIriValue(String)
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfPatternModel_BaseIriValue()
+   * @model
    * @generated
    */
-  Base getBase();
+  String getBaseIriValue();
 
   /**
-   * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getBase <em>Base</em>}' containment reference.
+   * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getBaseIriValue <em>Base Iri Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Base</em>' containment reference.
-   * @see #getBase()
+   * @param value the new value of the '<em>Base Iri Value</em>' attribute.
+   * @see #getBaseIriValue()
    * @generated
    */
-  void setBase(Base value);
+  void setBaseIriValue(String value);
 
   /**
-   * Returns the value of the '<em><b>Prefixes</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix}.
+   * Returns the value of the '<em><b>Iri Prefixes</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Prefixes</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Iri Prefixes</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Prefixes</em>' containment reference list.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfPatternModel_Prefixes()
+   * @return the value of the '<em>Iri Prefixes</em>' containment reference list.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfPatternModel_IriPrefixes()
    * @model containment="true"
    * @generated
    */
-  EList<Prefix> getPrefixes();
+  EList<IriPrefix> getIriPrefixes();
 
 } // RdfPatternModel

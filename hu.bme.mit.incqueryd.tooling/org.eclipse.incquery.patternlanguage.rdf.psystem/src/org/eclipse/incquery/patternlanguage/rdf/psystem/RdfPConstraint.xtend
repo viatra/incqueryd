@@ -108,7 +108,7 @@ class RdfPConstraint {
 	}
 
 	static def Resource toRdfResource(Iri iri) {
-		new URIImpl(iri.value)
+		new URIImpl(iri.asString)
 	}
 
 }

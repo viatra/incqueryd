@@ -83,14 +83,9 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
     new RdfPatternLanguageSwitch<Adapter>()
     {
       @Override
-      public Adapter caseBase(Base object)
+      public Adapter caseIriPrefix(IriPrefix object)
       {
-        return createBaseAdapter();
-      }
-      @Override
-      public Adapter casePrefix(Prefix object)
-      {
-        return createPrefixAdapter();
+        return createIriPrefixAdapter();
       }
       @Override
       public Adapter caseIri(Iri object)
@@ -190,31 +185,16 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
 
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base <em>Base</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix <em>Iri Prefix</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix
    * @generated
    */
-  public Adapter createBaseAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix <em>Prefix</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix
-   * @generated
-   */
-  public Adapter createPrefixAdapter()
+  public Adapter createIriPrefixAdapter()
   {
     return null;
   }

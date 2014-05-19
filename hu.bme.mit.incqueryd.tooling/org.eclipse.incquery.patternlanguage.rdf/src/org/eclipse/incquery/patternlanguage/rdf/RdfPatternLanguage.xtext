@@ -7,21 +7,21 @@ generate rdfPatternLanguage "http://www.eclipse.org/incquery/patternlanguage/rdf
 
 RdfPatternModel returns core::PatternModel:
 	{RdfPatternModel}
-	base=Base?
-	prefixes+=Prefix*
+	baseIriValue=BaseIriValue?
+	iriPrefixes+=IriPrefix*
 	patterns+=Pattern*
 ;
 
-Base:
-	'base' iri=RawIri
+BaseIriValue:
+	'base' RawIri
 ;
 
-Prefix:
-	'prefix' name=ID ':' iri=RawIri
+IriPrefix:
+	'prefix' name=ID ':' value=RawIri
 ;
 
 Iri:
-	(prefix=[Prefix] ':')? iri=RawIri
+	(prefix=[IriPrefix] ':')? value=RawIri
 ;
 
 Constraint returns core::Constraint:

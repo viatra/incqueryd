@@ -1,42 +1,37 @@
 package org.eclipse.incquery.patternlanguage.rdf;
 
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.EcoreUtil2;
 
 @SuppressWarnings("all")
 public class IriUtils {
-  public static String getValue(final Iri iri) {
+  public static String asString(final Iri iri) {
     String _xblockexpression = null;
     {
       String _elvis = null;
-      Prefix _prefix = iri.getPrefix();
-      String _iri = null;
+      IriPrefix _prefix = iri.getPrefix();
+      String _value = null;
       if (_prefix!=null) {
-        _iri=_prefix.getIri();
+        _value=_prefix.getValue();
       }
-      if (_iri != null) {
-        _elvis = _iri;
+      if (_value != null) {
+        _elvis = _value;
       } else {
         RdfPatternModel _containerOfType = EcoreUtil2.<RdfPatternModel>getContainerOfType(iri, RdfPatternModel.class);
-        Base _base = null;
+        String _baseIriValue = null;
         if (_containerOfType!=null) {
-          _base=_containerOfType.getBase();
+          _baseIriValue=_containerOfType.getBaseIriValue();
         }
-        String _iri_1 = null;
-        if (_base!=null) {
-          _iri_1=_base.getIri();
-        }
-        _elvis = _iri_1;
+        _elvis = _baseIriValue;
       }
       final String prefix = _elvis;
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(prefix, "");
-      String _iri_2 = iri.getIri();
-      _builder.append(_iri_2, "");
+      String _value_1 = iri.getValue();
+      _builder.append(_value_1, "");
       _xblockexpression = _builder.toString();
     }
     return _xblockexpression;

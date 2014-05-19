@@ -32,10 +32,10 @@ pattern posLength(Segment, SegmentLength) {
 	check('SegmentLength <= "0"^^xsd:integer');
 }
 ''')
-		assertEquals("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#", model.base.iri)
+		assertEquals("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#", model.baseIriValue)
 		switch firstConstraint : model.patterns.head.bodies.head.constraints.head {
 			RdfClassConstraint: switch type : firstConstraint.type {
-				RdfClass: assertEquals("Segment", type.class_.iri)
+				RdfClass: assertEquals("Segment", type.class_.value)
 				default: fail
 			}
 			default: fail

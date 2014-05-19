@@ -19,8 +19,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.impl.PatternModelImpl;
 
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 
@@ -31,8 +30,8 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternMod
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternModelImpl#getBase <em>Base</em>}</li>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternModelImpl#getPrefixes <em>Prefixes</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternModelImpl#getBaseIriValue <em>Base Iri Value</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternModelImpl#getIriPrefixes <em>Iri Prefixes</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,24 +40,34 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternMod
 public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternModel
 {
   /**
-   * The cached value of the '{@link #getBase() <em>Base</em>}' containment reference.
+   * The default value of the '{@link #getBaseIriValue() <em>Base Iri Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBase()
+   * @see #getBaseIriValue()
    * @generated
    * @ordered
    */
-  protected Base base;
+  protected static final String BASE_IRI_VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getPrefixes() <em>Prefixes</em>}' containment reference list.
+   * The cached value of the '{@link #getBaseIriValue() <em>Base Iri Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPrefixes()
+   * @see #getBaseIriValue()
    * @generated
    * @ordered
    */
-  protected EList<Prefix> prefixes;
+  protected String baseIriValue = BASE_IRI_VALUE_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getIriPrefixes() <em>Iri Prefixes</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getIriPrefixes()
+   * @generated
+   * @ordered
+   */
+  protected EList<IriPrefix> iriPrefixes;
 
   /**
    * <!-- begin-user-doc -->
@@ -86,9 +95,9 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
    * <!-- end-user-doc -->
    * @generated
    */
-  public Base getBase()
+  public String getBaseIriValue()
   {
-    return base;
+    return baseIriValue;
   }
 
   /**
@@ -96,16 +105,12 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetBase(Base newBase, NotificationChain msgs)
+  public void setBaseIriValue(String newBaseIriValue)
   {
-    Base oldBase = base;
-    base = newBase;
+    String oldBaseIriValue = baseIriValue;
+    baseIriValue = newBaseIriValue;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE, oldBase, newBase);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE_IRI_VALUE, oldBaseIriValue, baseIriValue));
   }
 
   /**
@@ -113,34 +118,13 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setBase(Base newBase)
+  public EList<IriPrefix> getIriPrefixes()
   {
-    if (newBase != base)
+    if (iriPrefixes == null)
     {
-      NotificationChain msgs = null;
-      if (base != null)
-        msgs = ((InternalEObject)base).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE, null, msgs);
-      if (newBase != null)
-        msgs = ((InternalEObject)newBase).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE, null, msgs);
-      msgs = basicSetBase(newBase, msgs);
-      if (msgs != null) msgs.dispatch();
+      iriPrefixes = new EObjectContainmentEList<IriPrefix>(IriPrefix.class, this, RdfPatternLanguagePackage.RDF_PATTERN_MODEL__IRI_PREFIXES);
     }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE, newBase, newBase));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Prefix> getPrefixes()
-  {
-    if (prefixes == null)
-    {
-      prefixes = new EObjectContainmentEList<Prefix>(Prefix.class, this, RdfPatternLanguagePackage.RDF_PATTERN_MODEL__PREFIXES);
-    }
-    return prefixes;
+    return iriPrefixes;
   }
 
   /**
@@ -153,10 +137,8 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE:
-        return basicSetBase(null, msgs);
-      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__PREFIXES:
-        return ((InternalEList<?>)getPrefixes()).basicRemove(otherEnd, msgs);
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__IRI_PREFIXES:
+        return ((InternalEList<?>)getIriPrefixes()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -171,10 +153,10 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE:
-        return getBase();
-      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__PREFIXES:
-        return getPrefixes();
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE_IRI_VALUE:
+        return getBaseIriValue();
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__IRI_PREFIXES:
+        return getIriPrefixes();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -190,12 +172,12 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE:
-        setBase((Base)newValue);
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE_IRI_VALUE:
+        setBaseIriValue((String)newValue);
         return;
-      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__PREFIXES:
-        getPrefixes().clear();
-        getPrefixes().addAll((Collection<? extends Prefix>)newValue);
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__IRI_PREFIXES:
+        getIriPrefixes().clear();
+        getIriPrefixes().addAll((Collection<? extends IriPrefix>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -211,11 +193,11 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE:
-        setBase((Base)null);
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE_IRI_VALUE:
+        setBaseIriValue(BASE_IRI_VALUE_EDEFAULT);
         return;
-      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__PREFIXES:
-        getPrefixes().clear();
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__IRI_PREFIXES:
+        getIriPrefixes().clear();
         return;
     }
     super.eUnset(featureID);
@@ -231,12 +213,29 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE:
-        return base != null;
-      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__PREFIXES:
-        return prefixes != null && !prefixes.isEmpty();
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE_IRI_VALUE:
+        return BASE_IRI_VALUE_EDEFAULT == null ? baseIriValue != null : !BASE_IRI_VALUE_EDEFAULT.equals(baseIriValue);
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__IRI_PREFIXES:
+        return iriPrefixes != null && !iriPrefixes.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (baseIriValue: ");
+    result.append(baseIriValue);
+    result.append(')');
+    return result.toString();
   }
 
 } //RdfPatternModelImpl

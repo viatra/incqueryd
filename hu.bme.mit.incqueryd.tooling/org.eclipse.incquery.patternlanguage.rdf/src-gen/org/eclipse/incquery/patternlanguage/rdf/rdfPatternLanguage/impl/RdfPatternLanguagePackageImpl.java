@@ -11,9 +11,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternLanguagePackage;
 
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint;
@@ -37,14 +36,7 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass baseEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass prefixEClass = null;
+  private EClass iriPrefixEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -173,9 +165,9 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getBase()
+  public EClass getIriPrefix()
   {
-    return baseEClass;
+    return iriPrefixEClass;
   }
 
   /**
@@ -183,9 +175,9 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getBase_Iri()
+  public EAttribute getIriPrefix_Name()
   {
-    return (EAttribute)baseEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)iriPrefixEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -193,29 +185,9 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getPrefix()
+  public EAttribute getIriPrefix_Value()
   {
-    return prefixEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPrefix_Name()
-  {
-    return (EAttribute)prefixEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPrefix_Iri()
-  {
-    return (EAttribute)prefixEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)iriPrefixEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -243,7 +215,7 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getIri_Iri()
+  public EAttribute getIri_Value()
   {
     return (EAttribute)iriEClass.getEStructuralFeatures().get(1);
   }
@@ -403,9 +375,9 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRdfPatternModel_Base()
+  public EAttribute getRdfPatternModel_BaseIriValue()
   {
-    return (EReference)rdfPatternModelEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)rdfPatternModelEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -413,7 +385,7 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRdfPatternModel_Prefixes()
+  public EReference getRdfPatternModel_IriPrefixes()
   {
     return (EReference)rdfPatternModelEClass.getEStructuralFeatures().get(1);
   }
@@ -488,16 +460,13 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
     isCreated = true;
 
     // Create classes and their features
-    baseEClass = createEClass(BASE);
-    createEAttribute(baseEClass, BASE__IRI);
-
-    prefixEClass = createEClass(PREFIX);
-    createEAttribute(prefixEClass, PREFIX__NAME);
-    createEAttribute(prefixEClass, PREFIX__IRI);
+    iriPrefixEClass = createEClass(IRI_PREFIX);
+    createEAttribute(iriPrefixEClass, IRI_PREFIX__NAME);
+    createEAttribute(iriPrefixEClass, IRI_PREFIX__VALUE);
 
     iriEClass = createEClass(IRI);
     createEReference(iriEClass, IRI__PREFIX);
-    createEAttribute(iriEClass, IRI__IRI);
+    createEAttribute(iriEClass, IRI__VALUE);
 
     rdfClassConstraintEClass = createEClass(RDF_CLASS_CONSTRAINT);
     createEReference(rdfClassConstraintEClass, RDF_CLASS_CONSTRAINT__TYPE);
@@ -518,8 +487,8 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
     createEAttribute(rdfLiteralEClass, RDF_LITERAL__LANGUAGE);
 
     rdfPatternModelEClass = createEClass(RDF_PATTERN_MODEL);
-    createEReference(rdfPatternModelEClass, RDF_PATTERN_MODEL__BASE);
-    createEReference(rdfPatternModelEClass, RDF_PATTERN_MODEL__PREFIXES);
+    createEAttribute(rdfPatternModelEClass, RDF_PATTERN_MODEL__BASE_IRI_VALUE);
+    createEReference(rdfPatternModelEClass, RDF_PATTERN_MODEL__IRI_PREFIXES);
 
     rdfClassEClass = createEClass(RDF_CLASS);
     createEReference(rdfClassEClass, RDF_CLASS__CLASS);
@@ -569,16 +538,13 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
     rdfPropertyEClass.getESuperTypes().add(thePatternLanguagePackage.getRelationType());
 
     // Initialize classes and features; add operations and parameters
-    initEClass(baseEClass, Base.class, "Base", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getBase_Iri(), ecorePackage.getEString(), "iri", null, 0, 1, Base.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(prefixEClass, Prefix.class, "Prefix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPrefix_Name(), ecorePackage.getEString(), "name", null, 0, 1, Prefix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPrefix_Iri(), ecorePackage.getEString(), "iri", null, 0, 1, Prefix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(iriPrefixEClass, IriPrefix.class, "IriPrefix", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIriPrefix_Name(), ecorePackage.getEString(), "name", null, 0, 1, IriPrefix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getIriPrefix_Value(), ecorePackage.getEString(), "value", null, 0, 1, IriPrefix.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(iriEClass, Iri.class, "Iri", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getIri_Prefix(), this.getPrefix(), null, "prefix", null, 0, 1, Iri.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getIri_Iri(), ecorePackage.getEString(), "iri", null, 0, 1, Iri.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIri_Prefix(), this.getIriPrefix(), null, "prefix", null, 0, 1, Iri.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getIri_Value(), ecorePackage.getEString(), "value", null, 0, 1, Iri.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(rdfClassConstraintEClass, RdfClassConstraint.class, "RdfClassConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRdfClassConstraint_Type(), thePatternLanguagePackage.getEntityType(), null, "type", null, 0, 1, RdfClassConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -599,8 +565,8 @@ public class RdfPatternLanguagePackageImpl extends EPackageImpl implements RdfPa
     initEAttribute(getRdfLiteral_Language(), ecorePackage.getEString(), "language", null, 0, 1, RdfLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(rdfPatternModelEClass, RdfPatternModel.class, "RdfPatternModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRdfPatternModel_Base(), this.getBase(), null, "base", null, 0, 1, RdfPatternModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRdfPatternModel_Prefixes(), this.getPrefix(), null, "prefixes", null, 0, -1, RdfPatternModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRdfPatternModel_BaseIriValue(), ecorePackage.getEString(), "baseIriValue", null, 0, 1, RdfPatternModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRdfPatternModel_IriPrefixes(), this.getIriPrefix(), null, "iriPrefixes", null, 0, -1, RdfPatternModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(rdfClassEClass, RdfClass.class, "RdfClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRdfClass_Class(), this.getIri(), null, "class", null, 0, 1, RdfClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
