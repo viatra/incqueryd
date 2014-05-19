@@ -1353,7 +1353,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 	
 	/**
 	 * Constraint:
-	 *     (baseIriValue=BaseIriValue? iriPrefixes+=IriPrefix* patterns+=Pattern*)
+	 *     (baseIriValue=RawIri? iriPrefixes+=IriPrefix* patterns+=Pattern*)
 	 */
 	protected void sequence_RdfPatternModel(EObject context, RdfPatternModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

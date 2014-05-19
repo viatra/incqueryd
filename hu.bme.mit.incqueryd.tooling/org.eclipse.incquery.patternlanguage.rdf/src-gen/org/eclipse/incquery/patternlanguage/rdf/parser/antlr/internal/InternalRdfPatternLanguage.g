@@ -84,37 +84,41 @@ ruleRdfPatternModel returns [EObject current=null]
             grammarAccess.getRdfPatternModelAccess().getRdfPatternModelAction_0(),
             $current);
     }
-)(
+)(	otherlv_1='base' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getRdfPatternModelAccess().getBaseKeyword_1_0());
+    }
+(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getBaseIriValueBaseIriValueParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getBaseIriValueRawIriParserRuleCall_1_1_0()); 
 	    }
-		lv_baseIriValue_1_0=ruleBaseIriValue		{
+		lv_baseIriValue_2_0=ruleRawIri		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRdfPatternModelRule());
 	        }
        		set(
        			$current, 
        			"baseIriValue",
-        		lv_baseIriValue_1_0, 
-        		"BaseIriValue");
+        		lv_baseIriValue_2_0, 
+        		"RawIri");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?(
+))?(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getIriPrefixesIriPrefixParserRuleCall_2_0()); 
 	    }
-		lv_iriPrefixes_2_0=ruleIriPrefix		{
+		lv_iriPrefixes_3_0=ruleIriPrefix		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRdfPatternModelRule());
 	        }
        		add(
        			$current, 
        			"iriPrefixes",
-        		lv_iriPrefixes_2_0, 
+        		lv_iriPrefixes_3_0, 
         		"IriPrefix");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -125,14 +129,14 @@ ruleRdfPatternModel returns [EObject current=null]
 		{ 
 	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getPatternsPatternParserRuleCall_3_0()); 
 	    }
-		lv_patterns_3_0=rulePattern		{
+		lv_patterns_4_0=rulePattern		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRdfPatternModelRule());
 	        }
        		add(
        			$current, 
        			"patterns",
-        		lv_patterns_3_0, 
+        		lv_patterns_4_0, 
         		"Pattern");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -140,44 +144,6 @@ ruleRdfPatternModel returns [EObject current=null]
 )
 )*)
 ;
-
-
-
-
-
-// Entry rule entryRuleBaseIriValue
-entryRuleBaseIriValue returns [String current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getBaseIriValueRule()); } 
-	 iv_ruleBaseIriValue=ruleBaseIriValue 
-	 { $current=$iv_ruleBaseIriValue.current.getText(); }  
-	 EOF 
-;
-
-// Rule BaseIriValue
-ruleBaseIriValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-	kw='base' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getBaseIriValueAccess().getBaseKeyword_0()); 
-    }
-
-    { 
-        newCompositeNode(grammarAccess.getBaseIriValueAccess().getRawIriParserRuleCall_1()); 
-    }
-    this_RawIri_1=ruleRawIri    {
-		$current.merge(this_RawIri_1);
-    }
-
-    { 
-        afterParserOrEnumRuleCall();
-    }
-)
-    ;
 
 
 
