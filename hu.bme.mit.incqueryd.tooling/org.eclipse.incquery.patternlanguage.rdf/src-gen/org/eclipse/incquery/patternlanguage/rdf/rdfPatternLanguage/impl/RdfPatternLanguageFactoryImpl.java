@@ -64,8 +64,7 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
   {
     switch (eClass.getClassifierID())
     {
-      case RdfPatternLanguagePackage.BASE: return createBase();
-      case RdfPatternLanguagePackage.PREFIX: return createPrefix();
+      case RdfPatternLanguagePackage.IRI_PREFIX: return createIriPrefix();
       case RdfPatternLanguagePackage.IRI: return createIri();
       case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT: return createRdfClassConstraint();
       case RdfPatternLanguagePackage.RDF_PROPERTY_CONSTRAINT: return createRdfPropertyConstraint();
@@ -84,21 +83,10 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
    * <!-- end-user-doc -->
    * @generated
    */
-  public Base createBase()
+  public IriPrefix createIriPrefix()
   {
-    BaseImpl base = new BaseImpl();
-    return base;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Prefix createPrefix()
-  {
-    PrefixImpl prefix = new PrefixImpl();
-    return prefix;
+    IriPrefixImpl iriPrefix = new IriPrefixImpl();
+    return iriPrefix;
   }
 
   /**

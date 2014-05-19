@@ -59,42 +59,14 @@ public interface RdfPatternLanguagePackage extends EPackage
   RdfPatternLanguagePackage eINSTANCE = org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl.init();
 
   /**
-   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.BaseImpl <em>Base</em>}' class.
+   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriPrefixImpl <em>Iri Prefix</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.BaseImpl
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getBase()
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriPrefixImpl
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getIriPrefix()
    * @generated
    */
-  int BASE = 0;
-
-  /**
-   * The feature id for the '<em><b>Iri</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BASE__IRI = 0;
-
-  /**
-   * The number of structural features of the '<em>Base</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BASE_FEATURE_COUNT = 1;
-
-  /**
-   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.PrefixImpl <em>Prefix</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.PrefixImpl
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getPrefix()
-   * @generated
-   */
-  int PREFIX = 1;
+  int IRI_PREFIX = 0;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -103,25 +75,25 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int PREFIX__NAME = 0;
+  int IRI_PREFIX__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Iri</b></em>' attribute.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PREFIX__IRI = 1;
+  int IRI_PREFIX__VALUE = 1;
 
   /**
-   * The number of structural features of the '<em>Prefix</em>' class.
+   * The number of structural features of the '<em>Iri Prefix</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PREFIX_FEATURE_COUNT = 2;
+  int IRI_PREFIX_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriImpl <em>Iri</em>}' class.
@@ -131,7 +103,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getIri()
    * @generated
    */
-  int IRI = 2;
+  int IRI = 1;
 
   /**
    * The feature id for the '<em><b>Prefix</b></em>' reference.
@@ -143,13 +115,13 @@ public interface RdfPatternLanguagePackage extends EPackage
   int IRI__PREFIX = 0;
 
   /**
-   * The feature id for the '<em><b>Iri</b></em>' attribute.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IRI__IRI = 1;
+  int IRI__VALUE = 1;
 
   /**
    * The number of structural features of the '<em>Iri</em>' class.
@@ -168,7 +140,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfClassConstraint()
    * @generated
    */
-  int RDF_CLASS_CONSTRAINT = 3;
+  int RDF_CLASS_CONSTRAINT = 2;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -205,7 +177,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfPropertyConstraint()
    * @generated
    */
-  int RDF_PROPERTY_CONSTRAINT = 4;
+  int RDF_PROPERTY_CONSTRAINT = 3;
 
   /**
    * The feature id for the '<em><b>Ref Type</b></em>' containment reference.
@@ -251,7 +223,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfCheckConstraint()
    * @generated
    */
-  int RDF_CHECK_CONSTRAINT = 5;
+  int RDF_CHECK_CONSTRAINT = 4;
 
   /**
    * The feature id for the '<em><b>Variables</b></em>' containment reference list.
@@ -288,7 +260,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfLiteral()
    * @generated
    */
-  int RDF_LITERAL = 6;
+  int RDF_LITERAL = 5;
 
   /**
    * The feature id for the '<em><b>Lexical Form</b></em>' attribute.
@@ -334,7 +306,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfPatternModel()
    * @generated
    */
-  int RDF_PATTERN_MODEL = 7;
+  int RDF_PATTERN_MODEL = 6;
 
   /**
    * The feature id for the '<em><b>Package Name</b></em>' attribute.
@@ -355,22 +327,22 @@ public interface RdfPatternLanguagePackage extends EPackage
   int RDF_PATTERN_MODEL__PATTERNS = PatternLanguagePackage.PATTERN_MODEL__PATTERNS;
 
   /**
-   * The feature id for the '<em><b>Base</b></em>' containment reference.
+   * The feature id for the '<em><b>Base Iri Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RDF_PATTERN_MODEL__BASE = PatternLanguagePackage.PATTERN_MODEL_FEATURE_COUNT + 0;
+  int RDF_PATTERN_MODEL__BASE_IRI_VALUE = PatternLanguagePackage.PATTERN_MODEL_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Prefixes</b></em>' containment reference list.
+   * The feature id for the '<em><b>Iri Prefixes</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RDF_PATTERN_MODEL__PREFIXES = PatternLanguagePackage.PATTERN_MODEL_FEATURE_COUNT + 1;
+  int RDF_PATTERN_MODEL__IRI_PREFIXES = PatternLanguagePackage.PATTERN_MODEL_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Rdf Pattern Model</em>' class.
@@ -389,7 +361,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfClass()
    * @generated
    */
-  int RDF_CLASS = 8;
+  int RDF_CLASS = 7;
 
   /**
    * The feature id for the '<em><b>Typename</b></em>' attribute.
@@ -426,7 +398,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfProperty()
    * @generated
    */
-  int RDF_PROPERTY = 9;
+  int RDF_PROPERTY = 8;
 
   /**
    * The feature id for the '<em><b>Typename</b></em>' attribute.
@@ -457,57 +429,36 @@ public interface RdfPatternLanguagePackage extends EPackage
 
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base <em>Base</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix <em>Iri Prefix</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Base</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base
+   * @return the meta object for class '<em>Iri Prefix</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix
    * @generated
    */
-  EClass getBase();
+  EClass getIriPrefix();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base#getIri <em>Iri</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Iri</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base#getIri()
-   * @see #getBase()
-   * @generated
-   */
-  EAttribute getBase_Iri();
-
-  /**
-   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix <em>Prefix</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Prefix</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix
-   * @generated
-   */
-  EClass getPrefix();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix#getName()
-   * @see #getPrefix()
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix#getName()
+   * @see #getIriPrefix()
    * @generated
    */
-  EAttribute getPrefix_Name();
+  EAttribute getIriPrefix_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix#getIri <em>Iri</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Iri</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix#getIri()
-   * @see #getPrefix()
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix#getValue()
+   * @see #getIriPrefix()
    * @generated
    */
-  EAttribute getPrefix_Iri();
+  EAttribute getIriPrefix_Value();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri <em>Iri</em>}'.
@@ -531,15 +482,15 @@ public interface RdfPatternLanguagePackage extends EPackage
   EReference getIri_Prefix();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getIri <em>Iri</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Iri</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getIri()
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getValue()
    * @see #getIri()
    * @generated
    */
-  EAttribute getIri_Iri();
+  EAttribute getIri_Value();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint <em>Rdf Class Constraint</em>}'.
@@ -702,26 +653,26 @@ public interface RdfPatternLanguagePackage extends EPackage
   EClass getRdfPatternModel();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getBase <em>Base</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getBaseIriValue <em>Base Iri Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Base</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getBase()
+   * @return the meta object for the attribute '<em>Base Iri Value</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getBaseIriValue()
    * @see #getRdfPatternModel()
    * @generated
    */
-  EReference getRdfPatternModel_Base();
+  EAttribute getRdfPatternModel_BaseIriValue();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getPrefixes <em>Prefixes</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getIriPrefixes <em>Iri Prefixes</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Prefixes</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getPrefixes()
+   * @return the meta object for the containment reference list '<em>Iri Prefixes</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getIriPrefixes()
    * @see #getRdfPatternModel()
    * @generated
    */
-  EReference getRdfPatternModel_Prefixes();
+  EReference getRdfPatternModel_IriPrefixes();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass <em>Rdf Class</em>}'.
@@ -789,32 +740,14 @@ public interface RdfPatternLanguagePackage extends EPackage
   interface Literals
   {
     /**
-     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.BaseImpl <em>Base</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriPrefixImpl <em>Iri Prefix</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.BaseImpl
-     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getBase()
+     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriPrefixImpl
+     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getIriPrefix()
      * @generated
      */
-    EClass BASE = eINSTANCE.getBase();
-
-    /**
-     * The meta object literal for the '<em><b>Iri</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BASE__IRI = eINSTANCE.getBase_Iri();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.PrefixImpl <em>Prefix</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.PrefixImpl
-     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getPrefix()
-     * @generated
-     */
-    EClass PREFIX = eINSTANCE.getPrefix();
+    EClass IRI_PREFIX = eINSTANCE.getIriPrefix();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -822,15 +755,15 @@ public interface RdfPatternLanguagePackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PREFIX__NAME = eINSTANCE.getPrefix_Name();
+    EAttribute IRI_PREFIX__NAME = eINSTANCE.getIriPrefix_Name();
 
     /**
-     * The meta object literal for the '<em><b>Iri</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PREFIX__IRI = eINSTANCE.getPrefix_Iri();
+    EAttribute IRI_PREFIX__VALUE = eINSTANCE.getIriPrefix_Value();
 
     /**
      * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriImpl <em>Iri</em>}' class.
@@ -851,12 +784,12 @@ public interface RdfPatternLanguagePackage extends EPackage
     EReference IRI__PREFIX = eINSTANCE.getIri_Prefix();
 
     /**
-     * The meta object literal for the '<em><b>Iri</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute IRI__IRI = eINSTANCE.getIri_Iri();
+    EAttribute IRI__VALUE = eINSTANCE.getIri_Value();
 
     /**
      * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfClassConstraintImpl <em>Rdf Class Constraint</em>}' class.
@@ -989,20 +922,20 @@ public interface RdfPatternLanguagePackage extends EPackage
     EClass RDF_PATTERN_MODEL = eINSTANCE.getRdfPatternModel();
 
     /**
-     * The meta object literal for the '<em><b>Base</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Base Iri Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RDF_PATTERN_MODEL__BASE = eINSTANCE.getRdfPatternModel_Base();
+    EAttribute RDF_PATTERN_MODEL__BASE_IRI_VALUE = eINSTANCE.getRdfPatternModel_BaseIriValue();
 
     /**
-     * The meta object literal for the '<em><b>Prefixes</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Iri Prefixes</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RDF_PATTERN_MODEL__PREFIXES = eINSTANCE.getRdfPatternModel_Prefixes();
+    EReference RDF_PATTERN_MODEL__IRI_PREFIXES = eINSTANCE.getRdfPatternModel_IriPrefixes();
 
     /**
      * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfClassImpl <em>Rdf Class</em>}' class.

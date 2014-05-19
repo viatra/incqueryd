@@ -9,24 +9,24 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Prefix</b></em>'.
+ * An implementation of the model object '<em><b>Iri Prefix</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.PrefixImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.PrefixImpl#getIri <em>Iri</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriPrefixImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriPrefixImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class PrefixImpl extends MinimalEObjectImpl.Container implements Prefix
+public class IriPrefixImpl extends MinimalEObjectImpl.Container implements IriPrefix
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -49,31 +49,31 @@ public class PrefixImpl extends MinimalEObjectImpl.Container implements Prefix
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getIri() <em>Iri</em>}' attribute.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIri()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final String IRI_EDEFAULT = null;
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIri() <em>Iri</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIri()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected String iri = IRI_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected PrefixImpl()
+  protected IriPrefixImpl()
   {
     super();
   }
@@ -86,7 +86,7 @@ public class PrefixImpl extends MinimalEObjectImpl.Container implements Prefix
   @Override
   protected EClass eStaticClass()
   {
-    return RdfPatternLanguagePackage.Literals.PREFIX;
+    return RdfPatternLanguagePackage.Literals.IRI_PREFIX;
   }
 
   /**
@@ -109,7 +109,7 @@ public class PrefixImpl extends MinimalEObjectImpl.Container implements Prefix
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.PREFIX__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.IRI_PREFIX__NAME, oldName, name));
   }
 
   /**
@@ -117,9 +117,9 @@ public class PrefixImpl extends MinimalEObjectImpl.Container implements Prefix
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIri()
+  public String getValue()
   {
-    return iri;
+    return value;
   }
 
   /**
@@ -127,12 +127,12 @@ public class PrefixImpl extends MinimalEObjectImpl.Container implements Prefix
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIri(String newIri)
+  public void setValue(String newValue)
   {
-    String oldIri = iri;
-    iri = newIri;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.PREFIX__IRI, oldIri, iri));
+      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.IRI_PREFIX__VALUE, oldValue, value));
   }
 
   /**
@@ -145,10 +145,10 @@ public class PrefixImpl extends MinimalEObjectImpl.Container implements Prefix
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.PREFIX__NAME:
+      case RdfPatternLanguagePackage.IRI_PREFIX__NAME:
         return getName();
-      case RdfPatternLanguagePackage.PREFIX__IRI:
-        return getIri();
+      case RdfPatternLanguagePackage.IRI_PREFIX__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -163,11 +163,11 @@ public class PrefixImpl extends MinimalEObjectImpl.Container implements Prefix
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.PREFIX__NAME:
+      case RdfPatternLanguagePackage.IRI_PREFIX__NAME:
         setName((String)newValue);
         return;
-      case RdfPatternLanguagePackage.PREFIX__IRI:
-        setIri((String)newValue);
+      case RdfPatternLanguagePackage.IRI_PREFIX__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -183,11 +183,11 @@ public class PrefixImpl extends MinimalEObjectImpl.Container implements Prefix
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.PREFIX__NAME:
+      case RdfPatternLanguagePackage.IRI_PREFIX__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case RdfPatternLanguagePackage.PREFIX__IRI:
-        setIri(IRI_EDEFAULT);
+      case RdfPatternLanguagePackage.IRI_PREFIX__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -203,10 +203,10 @@ public class PrefixImpl extends MinimalEObjectImpl.Container implements Prefix
   {
     switch (featureID)
     {
-      case RdfPatternLanguagePackage.PREFIX__NAME:
+      case RdfPatternLanguagePackage.IRI_PREFIX__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case RdfPatternLanguagePackage.PREFIX__IRI:
-        return IRI_EDEFAULT == null ? iri != null : !IRI_EDEFAULT.equals(iri);
+      case RdfPatternLanguagePackage.IRI_PREFIX__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
@@ -224,10 +224,10 @@ public class PrefixImpl extends MinimalEObjectImpl.Container implements Prefix
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", iri: ");
-    result.append(iri);
+    result.append(", value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }
 
-} //PrefixImpl
+} //IriPrefixImpl
