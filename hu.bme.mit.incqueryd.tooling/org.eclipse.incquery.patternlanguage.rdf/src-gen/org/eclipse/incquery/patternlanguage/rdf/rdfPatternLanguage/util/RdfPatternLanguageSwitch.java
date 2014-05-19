@@ -8,14 +8,13 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
-import org.eclipse.incquery.patternlanguage.patternLanguage.EntityType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.LiteralValueReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel;
-import org.eclipse.incquery.patternlanguage.patternLanguage.RelationType;
-import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.*;
+
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -94,6 +93,15 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case RdfPatternLanguagePackage.VARIABLE:
+      {
+        Variable variable = (Variable)theEObject;
+        T result = caseVariable(variable);
+        if (result == null) result = casePatternLanguage_Variable(variable);
+        if (result == null) result = caseJvmIdentifiableElement(variable);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT:
       {
         RdfClassConstraint rdfClassConstraint = (RdfClassConstraint)theEObject;
@@ -135,24 +143,6 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case RdfPatternLanguagePackage.RDF_CLASS:
-      {
-        RdfClass rdfClass = (RdfClass)theEObject;
-        T result = caseRdfClass(rdfClass);
-        if (result == null) result = caseEntityType(rdfClass);
-        if (result == null) result = caseType(rdfClass);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RdfPatternLanguagePackage.RDF_PROPERTY:
-      {
-        RdfProperty rdfProperty = (RdfProperty)theEObject;
-        T result = caseRdfProperty(rdfProperty);
-        if (result == null) result = caseRelationType(rdfProperty);
-        if (result == null) result = caseType(rdfProperty);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       default: return defaultCase(theEObject);
     }
   }
@@ -185,6 +175,22 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseIri(Iri object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVariable(Variable object)
   {
     return null;
   }
@@ -270,33 +276,33 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Rdf Class</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Jvm Identifiable Element</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Rdf Class</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Jvm Identifiable Element</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRdfClass(RdfClass object)
+  public T caseJvmIdentifiableElement(JvmIdentifiableElement object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Rdf Property</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Rdf Property</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRdfProperty(RdfProperty object)
+  public T casePatternLanguage_Variable(org.eclipse.incquery.patternlanguage.patternLanguage.Variable object)
   {
     return null;
   }
@@ -361,54 +367,6 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePatternModel(PatternModel object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseType(Type object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Entity Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Entity Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEntityType(EntityType object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Relation Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Relation Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseRelationType(RelationType object)
   {
     return null;
   }

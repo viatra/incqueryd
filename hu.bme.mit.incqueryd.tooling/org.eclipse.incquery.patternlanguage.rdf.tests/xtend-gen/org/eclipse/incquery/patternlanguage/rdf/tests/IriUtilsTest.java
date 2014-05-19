@@ -8,7 +8,6 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.PatternLanguageFacto
 import org.eclipse.incquery.patternlanguage.rdf.IriUtils;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguageFactory;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
@@ -66,7 +65,7 @@ public class IriUtilsTest {
   @Test
   public void base() {
     final String iriValue = "iri";
-    Iri _createIri = RdfPatternLanguageFactory.eINSTANCE.createIri();
+    Iri _createIri = this.rdfFactory.createIri();
     final Procedure1<Iri> _function = new Procedure1<Iri>() {
       public void apply(final Iri it) {
         it.setValue(iriValue);
@@ -90,14 +89,7 @@ public class IriUtilsTest {
                 RdfClassConstraint _createRdfClassConstraint = IriUtilsTest.this.rdfFactory.createRdfClassConstraint();
                 final Procedure1<RdfClassConstraint> _function = new Procedure1<RdfClassConstraint>() {
                   public void apply(final RdfClassConstraint it) {
-                    RdfClass _createRdfClass = IriUtilsTest.this.rdfFactory.createRdfClass();
-                    final Procedure1<RdfClass> _function = new Procedure1<RdfClass>() {
-                      public void apply(final RdfClass it) {
-                        it.setClass(iri);
-                      }
-                    };
-                    RdfClass _doubleArrow = ObjectExtensions.<RdfClass>operator_doubleArrow(_createRdfClass, _function);
-                    it.setType(_doubleArrow);
+                    it.setType(iri);
                   }
                 };
                 RdfClassConstraint _doubleArrow = ObjectExtensions.<RdfClassConstraint>operator_doubleArrow(_createRdfClassConstraint, _function);

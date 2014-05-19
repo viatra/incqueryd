@@ -41,6 +41,15 @@ public interface RdfPatternLanguageFactory extends EFactory
   Iri createIri();
 
   /**
+   * Returns a new object of class '<em>Variable</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Variable</em>'.
+   * @generated
+   */
+  Variable createVariable();
+
+  /**
    * Returns a new object of class '<em>Rdf Class Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -84,24 +93,6 @@ public interface RdfPatternLanguageFactory extends EFactory
    * @generated
    */
   RdfPatternModel createRdfPatternModel();
-
-  /**
-   * Returns a new object of class '<em>Rdf Class</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Rdf Class</em>'.
-   * @generated
-   */
-  RdfClass createRdfClass();
-
-  /**
-   * Returns a new object of class '<em>Rdf Property</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Rdf Property</em>'.
-   * @generated
-   */
-  RdfProperty createRdfProperty();
 
   /**
    * Returns the package supported by this factory.

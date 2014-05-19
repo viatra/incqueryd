@@ -6,7 +6,7 @@
     modelName="RdfPatternLanguage" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.incquery.patternlanguage.rdf.edit"
     editorPluginID="org.eclipse.incquery.patternlanguage.rdf.editor" runtimeVersion="2.9"
-    usedGenPackages="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.genmodel#//patternLanguage">
+    usedGenPackages="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.genmodel#//patternLanguage ../../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <genPackages prefix="RdfPatternLanguage" basePackage="org.eclipse.incquery.patternlanguage.rdf"
       disposableProviderFactory="true" fileExtensions="rdfiq" ecorePackage="RdfPatternLanguage.ecore#/">
     <genClasses ecoreClass="RdfPatternLanguage.ecore#//IriPrefix">
@@ -17,6 +17,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//Iri/prefix"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfPatternLanguage.ecore#//Iri/value"/>
     </genClasses>
+    <genClasses ecoreClass="RdfPatternLanguage.ecore#//Variable"/>
     <genClasses ecoreClass="RdfPatternLanguage.ecore#//RdfClassConstraint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfClassConstraint/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfClassConstraint/variable"/>
@@ -38,12 +39,6 @@
     <genClasses ecoreClass="RdfPatternLanguage.ecore#//RdfPatternModel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfPatternLanguage.ecore#//RdfPatternModel/baseIriValue"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfPatternModel/iriPrefixes"/>
-    </genClasses>
-    <genClasses ecoreClass="RdfPatternLanguage.ecore#//RdfClass">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfClass/class"/>
-    </genClasses>
-    <genClasses ecoreClass="RdfPatternLanguage.ecore#//RdfProperty">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfProperty/property"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -10,14 +10,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="prefix" eType="#//IriPrefix"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//Variable"/>
   <eClassifiers xsi:type="ecore:EClass" name="RdfClassConstraint" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//Constraint">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass ../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//EntityType"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Iri" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="ecore:EClass ../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//VariableReference"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RdfPropertyConstraint" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//Constraint">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="refType" eType="ecore:EClass ../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//RelationType"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refType" eType="#//Iri"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass ../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//VariableReference"
         containment="true"/>
@@ -40,12 +40,5 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="baseIriValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="iriPrefixes" upperBound="-1"
         eType="#//IriPrefix" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RdfClass" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//EntityType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="class" eType="#//Iri" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RdfProperty" eSuperTypes="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//RelationType">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="property" eType="#//Iri"
-        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

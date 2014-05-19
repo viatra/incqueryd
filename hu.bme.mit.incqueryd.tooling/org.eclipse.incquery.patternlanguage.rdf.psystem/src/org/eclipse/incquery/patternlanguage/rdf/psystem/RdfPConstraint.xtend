@@ -3,11 +3,9 @@ package org.eclipse.incquery.patternlanguage.rdf.psystem
 import org.eclipse.incquery.patternlanguage.patternLanguage.CompareConstraint
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternCompositionConstraint
-import org.eclipse.incquery.patternlanguage.patternLanguage.Variable
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint
 import org.eclipse.incquery.runtime.matchers.psystem.PBody
 import org.eclipse.incquery.runtime.matchers.psystem.PConstraint
@@ -18,16 +16,15 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.BinaryTran
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.PositivePatternCall
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeTernary
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary
+import org.openrdf.model.Resource
+import org.openrdf.model.impl.URIImpl
 
 import static org.eclipse.incquery.patternlanguage.patternLanguage.CompareFeature.*
 
+import static extension org.eclipse.incquery.patternlanguage.rdf.IriUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
-import static extension org.eclipse.incquery.patternlanguage.rdf.IriUtils.*
-import org.openrdf.model.impl.URIImpl
-import org.openrdf.model.Resource
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri
 
 class RdfPConstraint {
 
@@ -74,37 +71,24 @@ class RdfPConstraint {
 	}
 
 	static def TypeUnary convertClassConstraint(RdfClassConstraint constraint, PBody pBody, RdfPatternMatcherContext context) {
-		val Variable variable = constraint.variable.variable
-		variable.toPConstraint(pBody, context)
+		val variable = constraint.variable.variable
+		val pVariable = variable.toPVariable(pBody)
+		val typeObject = constraint.type.toRdfResource
+		val typeString = context.printType(typeObject)
+		new TypeUnary(pBody, pVariable, typeObject, typeString)
 	}
 
 	static def PConstraint convertPropertyConstraint(RdfPropertyConstraint constraint, PBody pBody, RdfPatternMatcherContext context) {
-		switch refType : constraint.refType {
-			RdfProperty: {
-				val source = constraint.source.variable.toPVariable(pBody)
-				val target = constraint.target.toPVariable(pBody)
-				val typeObject = refType.property.toRdfResource
-				val typeString = context.printType(typeObject)
-				new TypeTernary(pBody, context, pBody.newVirtualVariable, source, target, typeObject, typeString)
-			}
-			default: throw new IllegalArgumentException('''Constraint's reference must be «RdfProperty»''')
-		}
+		val refType = constraint.refType
+		val source = constraint.source.variable.toPVariable(pBody)
+		val target = constraint.target.toPVariable(pBody)
+		val typeObject = refType.toRdfResource
+		val typeString = context.printType(typeObject)
+		new TypeTernary(pBody, context, pBody.newVirtualVariable, source, target, typeObject, typeString)
 	}
 
 	static def PConstraint convertCheckConstraint(RdfCheckConstraint constraint) {
 		// TODO
-	}
-
-	static def TypeUnary toPConstraint(Variable parameter, PBody pBody, RdfPatternMatcherContext context) {
-		switch type : parameter.type {
-			RdfClass: {
-				val pVariable = parameter.toPVariable(pBody)
-				val typeObject = type.class_.toRdfResource
-				val typeString = context.printType(typeObject)
-				new TypeUnary(pBody, pVariable, typeObject, typeString)
-			}
-			default: throw new IllegalArgumentException('''Parameter's type must be «RdfClass»''')
-		}
 	}
 
 	static def Resource toRdfResource(Iri iri) {

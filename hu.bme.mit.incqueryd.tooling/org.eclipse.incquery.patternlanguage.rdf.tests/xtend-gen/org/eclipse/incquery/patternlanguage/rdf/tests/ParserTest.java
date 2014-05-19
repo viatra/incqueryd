@@ -4,12 +4,10 @@ import com.google.inject.Inject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
-import org.eclipse.incquery.patternlanguage.patternLanguage.EntityType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternBody;
 import org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageInjectorProvider;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -69,20 +67,9 @@ public class ParserTest {
       if (!_matched) {
         if (firstConstraint instanceof RdfClassConstraint) {
           _matched=true;
-          EntityType _type = ((RdfClassConstraint)firstConstraint).getType();
-          final EntityType type = _type;
-          boolean _matched_1 = false;
-          if (!_matched_1) {
-            if (type instanceof RdfClass) {
-              _matched_1=true;
-              Iri _class_ = ((RdfClass)type).getClass_();
-              String _value = _class_.getValue();
-              Assert.assertEquals("Segment", _value);
-            }
-          }
-          if (!_matched_1) {
-            Assert.fail();
-          }
+          Iri _type = ((RdfClassConstraint)firstConstraint).getType();
+          String _value = _type.getValue();
+          Assert.assertEquals("Segment", _value);
         }
       }
       if (!_matched) {
