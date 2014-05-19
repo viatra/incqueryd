@@ -29,9 +29,10 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 pattern posLength(Segment, SegmentLength) {
 	Segment(Segment);
 	Segment_length(Segment, SegmentLength);
-	check('SegmentLength <= "0"^^xsd:integer');
+	check(SegmentLength, 'SegmentLength <= "0"^^xsd:integer');
 }
 ''')
+		assertTrue(model.eResource.errors.empty)
 		assertEquals("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#", model.baseIriValue)
 		switch firstConstraint : model.patterns.head.bodies.head.constraints.head {
 			RdfClassConstraint: switch type : firstConstraint.type {
