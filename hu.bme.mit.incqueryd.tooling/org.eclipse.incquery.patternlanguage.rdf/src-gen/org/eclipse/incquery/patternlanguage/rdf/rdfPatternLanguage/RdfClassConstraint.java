@@ -3,7 +3,6 @@
 package org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
-import org.eclipse.incquery.patternlanguage.patternLanguage.EntityType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 
 /**
@@ -34,12 +33,12 @@ public interface RdfClassConstraint extends Constraint
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' containment reference.
-   * @see #setType(EntityType)
+   * @see #setType(Iri)
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfClassConstraint_Type()
    * @model containment="true"
    * @generated
    */
-  EntityType getType();
+  Iri getType();
 
   /**
    * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint#getType <em>Type</em>}' containment reference.
@@ -49,7 +48,7 @@ public interface RdfClassConstraint extends Constraint
    * @see #getType()
    * @generated
    */
-  void setType(EntityType value);
+  void setType(Iri value);
 
   /**
    * Returns the value of the '<em><b>Variable</b></em>' containment reference.

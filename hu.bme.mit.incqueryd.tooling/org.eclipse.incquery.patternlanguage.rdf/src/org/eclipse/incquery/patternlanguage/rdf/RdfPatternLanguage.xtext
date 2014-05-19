@@ -20,6 +20,10 @@ Iri:
 	(prefix=[IriPrefix] ':')? value=RawIri
 ;
 
+Parameter returns Variable:
+	name=ID
+;
+
 Constraint returns core::Constraint:
 	PatternCompositionConstraint |
 	CompareConstraint |
@@ -29,21 +33,11 @@ Constraint returns core::Constraint:
 ;
 
 RdfClassConstraint:
-	type=Type '(' variable=VariableReference ')'
-;
-
-Type returns core::EntityType:
-	{RdfClass}
-	class=Iri
+	type=Iri '(' variable=VariableReference ')'
 ;
 
 RdfPropertyConstraint:
-	refType=RefType '(' source=VariableReference ',' target=ValueReference ')'
-;
-
-RefType returns core::RelationType:
-	{RdfProperty}
-	property=Iri
+	refType=Iri '(' source=VariableReference ',' target=ValueReference ')'
 ;
 
 RdfCheckConstraint:

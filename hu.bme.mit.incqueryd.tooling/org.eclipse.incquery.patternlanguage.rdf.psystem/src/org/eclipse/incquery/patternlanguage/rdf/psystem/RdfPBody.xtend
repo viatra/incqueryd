@@ -18,9 +18,6 @@ class RdfPBody {
 				parameter.toExportedParameter(pBody)
 			]
 			pBody.constraints.addAll(
-				pattern.parameters.map[parameter |
-					parameter.toPConstraint(pBody, context)
-				] +
 				body.constraints.map[constraint |
 					constraint.toPConstraint(pBody, context)
 				]

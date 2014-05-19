@@ -37,7 +37,7 @@ class IriUtilsTest {
 	@Test
 	def void base() {
 		val iriValue = "iri"
-		val iri = RdfPatternLanguageFactory.eINSTANCE.createIri => [
+		val iri = createIri => [
 			value = iriValue
 		]
 		val modelBaseIriValue = "base"
@@ -46,9 +46,7 @@ class IriUtilsTest {
 			patterns.add(createPattern => [
 				bodies.add(createPatternBody => [
 					constraints.add(createRdfClassConstraint => [
-						type = createRdfClass => [
-							class = iri
-						]
+						type = iri
 					])
 				])
 			])

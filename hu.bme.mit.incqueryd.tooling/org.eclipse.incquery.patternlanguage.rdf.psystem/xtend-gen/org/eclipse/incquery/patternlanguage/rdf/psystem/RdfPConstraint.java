@@ -7,8 +7,6 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternCall;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternCompositionConstraint;
-import org.eclipse.incquery.patternlanguage.patternLanguage.RelationType;
-import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
@@ -19,9 +17,7 @@ import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPatternMatcherContext;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint;
 import org.eclipse.incquery.runtime.matchers.psystem.BasePConstraint;
 import org.eclipse.incquery.runtime.matchers.psystem.DeferredPConstraint;
@@ -159,74 +155,34 @@ public class RdfPConstraint {
     {
       VariableReference _variable = constraint.getVariable();
       final Variable variable = _variable.getVariable();
-      _xblockexpression = RdfPConstraint.toPConstraint(variable, pBody, context);
+      final PVariable pVariable = PUtils.toPVariable(variable, pBody);
+      Iri _type = constraint.getType();
+      final Resource typeObject = RdfPConstraint.toRdfResource(_type);
+      final String typeString = context.printType(typeObject);
+      _xblockexpression = new TypeUnary(pBody, pVariable, typeObject, typeString);
     }
     return _xblockexpression;
   }
   
   public static PConstraint convertPropertyConstraint(final RdfPropertyConstraint constraint, final PBody pBody, final RdfPatternMatcherContext context) {
-    TypeTernary _switchResult = null;
-    RelationType _refType = constraint.getRefType();
-    final RelationType refType = _refType;
-    boolean _matched = false;
-    if (!_matched) {
-      if (refType instanceof RdfProperty) {
-        _matched=true;
-        TypeTernary _xblockexpression = null;
-        {
-          VariableReference _source = constraint.getSource();
-          Variable _variable = _source.getVariable();
-          final PVariable source = PUtils.toPVariable(_variable, pBody);
-          ValueReference _target = constraint.getTarget();
-          final PVariable target = RdfPVariable.toPVariable(_target, pBody);
-          Iri _property = ((RdfProperty)refType).getProperty();
-          final Resource typeObject = RdfPConstraint.toRdfResource(_property);
-          final String typeString = context.printType(typeObject);
-          PVariable _newVirtualVariable = pBody.newVirtualVariable();
-          _xblockexpression = new TypeTernary(pBody, context, _newVirtualVariable, source, target, typeObject, typeString);
-        }
-        _switchResult = _xblockexpression;
-      }
+    TypeTernary _xblockexpression = null;
+    {
+      final Iri refType = constraint.getRefType();
+      VariableReference _source = constraint.getSource();
+      Variable _variable = _source.getVariable();
+      final PVariable source = PUtils.toPVariable(_variable, pBody);
+      ValueReference _target = constraint.getTarget();
+      final PVariable target = RdfPVariable.toPVariable(_target, pBody);
+      final Resource typeObject = RdfPConstraint.toRdfResource(refType);
+      final String typeString = context.printType(typeObject);
+      PVariable _newVirtualVariable = pBody.newVirtualVariable();
+      _xblockexpression = new TypeTernary(pBody, context, _newVirtualVariable, source, target, typeObject, typeString);
     }
-    if (!_matched) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Constraint\'s reference must be ");
-      _builder.append(RdfProperty.class, "");
-      throw new IllegalArgumentException(_builder.toString());
-    }
-    return _switchResult;
+    return _xblockexpression;
   }
   
   public static PConstraint convertCheckConstraint(final RdfCheckConstraint constraint) {
     return null;
-  }
-  
-  public static TypeUnary toPConstraint(final Variable parameter, final PBody pBody, final RdfPatternMatcherContext context) {
-    TypeUnary _switchResult = null;
-    Type _type = parameter.getType();
-    final Type type = _type;
-    boolean _matched = false;
-    if (!_matched) {
-      if (type instanceof RdfClass) {
-        _matched=true;
-        TypeUnary _xblockexpression = null;
-        {
-          final PVariable pVariable = PUtils.toPVariable(parameter, pBody);
-          Iri _class_ = ((RdfClass)type).getClass_();
-          final Resource typeObject = RdfPConstraint.toRdfResource(_class_);
-          final String typeString = context.printType(typeObject);
-          _xblockexpression = new TypeUnary(pBody, pVariable, typeObject, typeString);
-        }
-        _switchResult = _xblockexpression;
-      }
-    }
-    if (!_matched) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Parameter\'s type must be ");
-      _builder.append(RdfClass.class, "");
-      throw new IllegalArgumentException(_builder.toString());
-    }
-    return _switchResult;
   }
   
   public static Resource toRdfResource(final Iri iri) {

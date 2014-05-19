@@ -10,12 +10,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.incquery.patternlanguage.patternLanguage.RelationType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.impl.ConstraintImpl;
 
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint;
 
@@ -44,7 +44,7 @@ public class RdfPropertyConstraintImpl extends ConstraintImpl implements RdfProp
    * @generated
    * @ordered
    */
-  protected RelationType refType;
+  protected Iri refType;
 
   /**
    * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
@@ -92,7 +92,7 @@ public class RdfPropertyConstraintImpl extends ConstraintImpl implements RdfProp
    * <!-- end-user-doc -->
    * @generated
    */
-  public RelationType getRefType()
+  public Iri getRefType()
   {
     return refType;
   }
@@ -102,9 +102,9 @@ public class RdfPropertyConstraintImpl extends ConstraintImpl implements RdfProp
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetRefType(RelationType newRefType, NotificationChain msgs)
+  public NotificationChain basicSetRefType(Iri newRefType, NotificationChain msgs)
   {
-    RelationType oldRefType = refType;
+    Iri oldRefType = refType;
     refType = newRefType;
     if (eNotificationRequired())
     {
@@ -119,7 +119,7 @@ public class RdfPropertyConstraintImpl extends ConstraintImpl implements RdfProp
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRefType(RelationType newRefType)
+  public void setRefType(Iri newRefType)
   {
     if (newRefType != refType)
     {
@@ -282,7 +282,7 @@ public class RdfPropertyConstraintImpl extends ConstraintImpl implements RdfProp
     switch (featureID)
     {
       case RdfPatternLanguagePackage.RDF_PROPERTY_CONSTRAINT__REF_TYPE:
-        setRefType((RelationType)newValue);
+        setRefType((Iri)newValue);
         return;
       case RdfPatternLanguagePackage.RDF_PROPERTY_CONSTRAINT__SOURCE:
         setSource((VariableReference)newValue);
@@ -305,7 +305,7 @@ public class RdfPropertyConstraintImpl extends ConstraintImpl implements RdfProp
     switch (featureID)
     {
       case RdfPatternLanguagePackage.RDF_PROPERTY_CONSTRAINT__REF_TYPE:
-        setRefType((RelationType)null);
+        setRefType((Iri)null);
         return;
       case RdfPatternLanguagePackage.RDF_PROPERTY_CONSTRAINT__SOURCE:
         setSource((VariableReference)null);
