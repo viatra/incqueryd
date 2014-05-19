@@ -66,13 +66,12 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
     {
       case RdfPatternLanguagePackage.IRI_PREFIX: return createIriPrefix();
       case RdfPatternLanguagePackage.IRI: return createIri();
+      case RdfPatternLanguagePackage.VARIABLE: return createVariable();
       case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT: return createRdfClassConstraint();
       case RdfPatternLanguagePackage.RDF_PROPERTY_CONSTRAINT: return createRdfPropertyConstraint();
       case RdfPatternLanguagePackage.RDF_CHECK_CONSTRAINT: return createRdfCheckConstraint();
       case RdfPatternLanguagePackage.RDF_LITERAL: return createRdfLiteral();
       case RdfPatternLanguagePackage.RDF_PATTERN_MODEL: return createRdfPatternModel();
-      case RdfPatternLanguagePackage.RDF_CLASS: return createRdfClass();
-      case RdfPatternLanguagePackage.RDF_PROPERTY: return createRdfProperty();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -98,6 +97,17 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
   {
     IriImpl iri = new IriImpl();
     return iri;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Variable createVariable()
+  {
+    VariableImpl variable = new VariableImpl();
+    return variable;
   }
 
   /**
@@ -153,28 +163,6 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
   {
     RdfPatternModelImpl rdfPatternModel = new RdfPatternModelImpl();
     return rdfPatternModel;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public RdfClass createRdfClass()
-  {
-    RdfClassImpl rdfClass = new RdfClassImpl();
-    return rdfClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public RdfProperty createRdfProperty()
-  {
-    RdfPropertyImpl rdfProperty = new RdfPropertyImpl();
-    return rdfProperty;
   }
 
   /**

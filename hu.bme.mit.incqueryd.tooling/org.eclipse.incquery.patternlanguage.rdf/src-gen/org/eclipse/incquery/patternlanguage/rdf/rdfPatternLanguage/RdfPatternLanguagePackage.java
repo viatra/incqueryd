@@ -133,6 +133,52 @@ public interface RdfPatternLanguagePackage extends EPackage
   int IRI_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.VariableImpl <em>Variable</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.VariableImpl
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getVariable()
+   * @generated
+   */
+  int VARIABLE = 2;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIABLE__NAME = PatternLanguagePackage.VARIABLE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIABLE__TYPE = PatternLanguagePackage.VARIABLE__TYPE;
+
+  /**
+   * The feature id for the '<em><b>References</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIABLE__REFERENCES = PatternLanguagePackage.VARIABLE__REFERENCES;
+
+  /**
+   * The number of structural features of the '<em>Variable</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VARIABLE_FEATURE_COUNT = PatternLanguagePackage.VARIABLE_FEATURE_COUNT + 0;
+
+  /**
    * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfClassConstraintImpl <em>Rdf Class Constraint</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -140,7 +186,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfClassConstraint()
    * @generated
    */
-  int RDF_CLASS_CONSTRAINT = 2;
+  int RDF_CLASS_CONSTRAINT = 3;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -177,7 +223,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfPropertyConstraint()
    * @generated
    */
-  int RDF_PROPERTY_CONSTRAINT = 3;
+  int RDF_PROPERTY_CONSTRAINT = 4;
 
   /**
    * The feature id for the '<em><b>Ref Type</b></em>' containment reference.
@@ -223,7 +269,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfCheckConstraint()
    * @generated
    */
-  int RDF_CHECK_CONSTRAINT = 4;
+  int RDF_CHECK_CONSTRAINT = 5;
 
   /**
    * The feature id for the '<em><b>Variables</b></em>' containment reference list.
@@ -260,7 +306,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfLiteral()
    * @generated
    */
-  int RDF_LITERAL = 5;
+  int RDF_LITERAL = 6;
 
   /**
    * The feature id for the '<em><b>Lexical Form</b></em>' attribute.
@@ -306,7 +352,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfPatternModel()
    * @generated
    */
-  int RDF_PATTERN_MODEL = 6;
+  int RDF_PATTERN_MODEL = 7;
 
   /**
    * The feature id for the '<em><b>Package Name</b></em>' attribute.
@@ -352,80 +398,6 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @ordered
    */
   int RDF_PATTERN_MODEL_FEATURE_COUNT = PatternLanguagePackage.PATTERN_MODEL_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfClassImpl <em>Rdf Class</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfClassImpl
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfClass()
-   * @generated
-   */
-  int RDF_CLASS = 7;
-
-  /**
-   * The feature id for the '<em><b>Typename</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RDF_CLASS__TYPENAME = PatternLanguagePackage.ENTITY_TYPE__TYPENAME;
-
-  /**
-   * The feature id for the '<em><b>Class</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RDF_CLASS__CLASS = PatternLanguagePackage.ENTITY_TYPE_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Rdf Class</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RDF_CLASS_FEATURE_COUNT = PatternLanguagePackage.ENTITY_TYPE_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPropertyImpl <em>Rdf Property</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPropertyImpl
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfProperty()
-   * @generated
-   */
-  int RDF_PROPERTY = 8;
-
-  /**
-   * The feature id for the '<em><b>Typename</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RDF_PROPERTY__TYPENAME = PatternLanguagePackage.RELATION_TYPE__TYPENAME;
-
-  /**
-   * The feature id for the '<em><b>Property</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RDF_PROPERTY__PROPERTY = PatternLanguagePackage.RELATION_TYPE_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Rdf Property</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RDF_PROPERTY_FEATURE_COUNT = PatternLanguagePackage.RELATION_TYPE_FEATURE_COUNT + 1;
 
 
   /**
@@ -491,6 +463,16 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    */
   EAttribute getIri_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Variable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Variable</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Variable
+   * @generated
+   */
+  EClass getVariable();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint <em>Rdf Class Constraint</em>}'.
@@ -675,48 +657,6 @@ public interface RdfPatternLanguagePackage extends EPackage
   EReference getRdfPatternModel_IriPrefixes();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass <em>Rdf Class</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Rdf Class</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass
-   * @generated
-   */
-  EClass getRdfClass();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass#getClass_ <em>Class</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Class</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass#getClass_()
-   * @see #getRdfClass()
-   * @generated
-   */
-  EReference getRdfClass_Class();
-
-  /**
-   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty <em>Rdf Property</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Rdf Property</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty
-   * @generated
-   */
-  EClass getRdfProperty();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty#getProperty <em>Property</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Property</em>'.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty#getProperty()
-   * @see #getRdfProperty()
-   * @generated
-   */
-  EReference getRdfProperty_Property();
-
-  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -790,6 +730,16 @@ public interface RdfPatternLanguagePackage extends EPackage
      * @generated
      */
     EAttribute IRI__VALUE = eINSTANCE.getIri_Value();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.VariableImpl <em>Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.VariableImpl
+     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getVariable()
+     * @generated
+     */
+    EClass VARIABLE = eINSTANCE.getVariable();
 
     /**
      * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfClassConstraintImpl <em>Rdf Class Constraint</em>}' class.
@@ -936,42 +886,6 @@ public interface RdfPatternLanguagePackage extends EPackage
      * @generated
      */
     EReference RDF_PATTERN_MODEL__IRI_PREFIXES = eINSTANCE.getRdfPatternModel_IriPrefixes();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfClassImpl <em>Rdf Class</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfClassImpl
-     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfClass()
-     * @generated
-     */
-    EClass RDF_CLASS = eINSTANCE.getRdfClass();
-
-    /**
-     * The meta object literal for the '<em><b>Class</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RDF_CLASS__CLASS = eINSTANCE.getRdfClass_Class();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPropertyImpl <em>Rdf Property</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPropertyImpl
-     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfProperty()
-     * @generated
-     */
-    EClass RDF_PROPERTY = eINSTANCE.getRdfProperty();
-
-    /**
-     * The meta object literal for the '<em><b>Property</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RDF_PROPERTY__PROPERTY = eINSTANCE.getRdfProperty_Property();
 
   }
 

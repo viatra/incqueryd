@@ -10,14 +10,13 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
-import org.eclipse.incquery.patternlanguage.patternLanguage.EntityType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.LiteralValueReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel;
-import org.eclipse.incquery.patternlanguage.patternLanguage.RelationType;
-import org.eclipse.incquery.patternlanguage.patternLanguage.Type;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.*;
+
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -93,6 +92,11 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
         return createIriAdapter();
       }
       @Override
+      public Adapter caseVariable(Variable object)
+      {
+        return createVariableAdapter();
+      }
+      @Override
       public Adapter caseRdfClassConstraint(RdfClassConstraint object)
       {
         return createRdfClassConstraintAdapter();
@@ -118,14 +122,14 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
         return createRdfPatternModelAdapter();
       }
       @Override
-      public Adapter caseRdfClass(RdfClass object)
+      public Adapter caseJvmIdentifiableElement(JvmIdentifiableElement object)
       {
-        return createRdfClassAdapter();
+        return createJvmIdentifiableElementAdapter();
       }
       @Override
-      public Adapter caseRdfProperty(RdfProperty object)
+      public Adapter casePatternLanguage_Variable(org.eclipse.incquery.patternlanguage.patternLanguage.Variable object)
       {
-        return createRdfPropertyAdapter();
+        return createPatternLanguage_VariableAdapter();
       }
       @Override
       public Adapter caseConstraint(Constraint object)
@@ -146,21 +150,6 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
       public Adapter casePatternModel(PatternModel object)
       {
         return createPatternModelAdapter();
-      }
-      @Override
-      public Adapter caseType(Type object)
-      {
-        return createTypeAdapter();
-      }
-      @Override
-      public Adapter caseEntityType(EntityType object)
-      {
-        return createEntityTypeAdapter();
-      }
-      @Override
-      public Adapter caseRelationType(RelationType object)
-      {
-        return createRelationTypeAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -210,6 +199,21 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIriAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Variable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Variable
+   * @generated
+   */
+  public Adapter createVariableAdapter()
   {
     return null;
   }
@@ -290,31 +294,31 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass <em>Rdf Class</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.common.types.JvmIdentifiableElement <em>Jvm Identifiable Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass
+   * @see org.eclipse.xtext.common.types.JvmIdentifiableElement
    * @generated
    */
-  public Adapter createRdfClassAdapter()
+  public Adapter createJvmIdentifiableElementAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty <em>Rdf Property</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.patternLanguage.Variable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfProperty
+   * @see org.eclipse.incquery.patternlanguage.patternLanguage.Variable
    * @generated
    */
-  public Adapter createRdfPropertyAdapter()
+  public Adapter createPatternLanguage_VariableAdapter()
   {
     return null;
   }
@@ -375,51 +379,6 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPatternModelAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.patternLanguage.Type <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.patternLanguage.Type
-   * @generated
-   */
-  public Adapter createTypeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.patternLanguage.EntityType <em>Entity Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.patternLanguage.EntityType
-   * @generated
-   */
-  public Adapter createEntityTypeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.patternLanguage.RelationType <em>Relation Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.patternLanguage.RelationType
-   * @generated
-   */
-  public Adapter createRelationTypeAdapter()
   {
     return null;
   }

@@ -3,7 +3,6 @@
 package org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
-import org.eclipse.incquery.patternlanguage.patternLanguage.RelationType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 
@@ -36,12 +35,12 @@ public interface RdfPropertyConstraint extends Constraint
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Ref Type</em>' containment reference.
-   * @see #setRefType(RelationType)
+   * @see #setRefType(Iri)
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfPropertyConstraint_RefType()
    * @model containment="true"
    * @generated
    */
-  RelationType getRefType();
+  Iri getRefType();
 
   /**
    * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint#getRefType <em>Ref Type</em>}' containment reference.
@@ -51,7 +50,7 @@ public interface RdfPropertyConstraint extends Constraint
    * @see #getRefType()
    * @generated
    */
-  void setRefType(RelationType value);
+  void setRefType(Iri value);
 
   /**
    * Returns the value of the '<em><b>Source</b></em>' containment reference.
