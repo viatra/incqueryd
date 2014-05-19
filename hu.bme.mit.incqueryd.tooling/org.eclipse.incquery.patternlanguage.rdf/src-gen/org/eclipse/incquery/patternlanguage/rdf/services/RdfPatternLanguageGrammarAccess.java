@@ -24,28 +24,36 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RdfPatternModel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cRdfPatternModelAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cBaseIriValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cBaseIriValueBaseIriValueParserRuleCall_1_0 = (RuleCall)cBaseIriValueAssignment_1.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cBaseKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cBaseIriValueAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cBaseIriValueRawIriParserRuleCall_1_1_0 = (RuleCall)cBaseIriValueAssignment_1_1.eContents().get(0);
 		private final Assignment cIriPrefixesAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cIriPrefixesIriPrefixParserRuleCall_2_0 = (RuleCall)cIriPrefixesAssignment_2.eContents().get(0);
 		private final Assignment cPatternsAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cPatternsPatternParserRuleCall_3_0 = (RuleCall)cPatternsAssignment_3.eContents().get(0);
 		
 		//RdfPatternModel returns core::PatternModel:
-		//	{RdfPatternModel} baseIriValue=BaseIriValue? iriPrefixes+=IriPrefix* patterns+=Pattern*;
+		//	{RdfPatternModel} ("base" baseIriValue=RawIri)? iriPrefixes+=IriPrefix* patterns+=Pattern*;
 		public ParserRule getRule() { return rule; }
 
-		//{RdfPatternModel} baseIriValue=BaseIriValue? iriPrefixes+=IriPrefix* patterns+=Pattern*
+		//{RdfPatternModel} ("base" baseIriValue=RawIri)? iriPrefixes+=IriPrefix* patterns+=Pattern*
 		public Group getGroup() { return cGroup; }
 
 		//{RdfPatternModel}
 		public Action getRdfPatternModelAction_0() { return cRdfPatternModelAction_0; }
 
-		//baseIriValue=BaseIriValue?
-		public Assignment getBaseIriValueAssignment_1() { return cBaseIriValueAssignment_1; }
+		//("base" baseIriValue=RawIri)?
+		public Group getGroup_1() { return cGroup_1; }
 
-		//BaseIriValue
-		public RuleCall getBaseIriValueBaseIriValueParserRuleCall_1_0() { return cBaseIriValueBaseIriValueParserRuleCall_1_0; }
+		//"base"
+		public Keyword getBaseKeyword_1_0() { return cBaseKeyword_1_0; }
+
+		//baseIriValue=RawIri
+		public Assignment getBaseIriValueAssignment_1_1() { return cBaseIriValueAssignment_1_1; }
+
+		//RawIri
+		public RuleCall getBaseIriValueRawIriParserRuleCall_1_1_0() { return cBaseIriValueRawIriParserRuleCall_1_1_0; }
 
 		//iriPrefixes+=IriPrefix*
 		public Assignment getIriPrefixesAssignment_2() { return cIriPrefixesAssignment_2; }
@@ -58,26 +66,6 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 
 		//Pattern
 		public RuleCall getPatternsPatternParserRuleCall_3_0() { return cPatternsPatternParserRuleCall_3_0; }
-	}
-
-	public class BaseIriValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BaseIriValue");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cBaseKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final RuleCall cRawIriParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		
-		//BaseIriValue:
-		//	"base" RawIri;
-		public ParserRule getRule() { return rule; }
-
-		//"base" RawIri
-		public Group getGroup() { return cGroup; }
-
-		//"base"
-		public Keyword getBaseKeyword_0() { return cBaseKeyword_0; }
-
-		//RawIri
-		public RuleCall getRawIriParserRuleCall_1() { return cRawIriParserRuleCall_1; }
 	}
 
 	public class IriPrefixElements extends AbstractParserRuleElementFinder {
@@ -509,7 +497,6 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	
 	
 	private RdfPatternModelElements pRdfPatternModel;
-	private BaseIriValueElements pBaseIriValue;
 	private IriPrefixElements pIriPrefix;
 	private IriElements pIri;
 	private ConstraintElements pConstraint;
@@ -563,23 +550,13 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 
 	
 	//RdfPatternModel returns core::PatternModel:
-	//	{RdfPatternModel} baseIriValue=BaseIriValue? iriPrefixes+=IriPrefix* patterns+=Pattern*;
+	//	{RdfPatternModel} ("base" baseIriValue=RawIri)? iriPrefixes+=IriPrefix* patterns+=Pattern*;
 	public RdfPatternModelElements getRdfPatternModelAccess() {
 		return (pRdfPatternModel != null) ? pRdfPatternModel : (pRdfPatternModel = new RdfPatternModelElements());
 	}
 	
 	public ParserRule getRdfPatternModelRule() {
 		return getRdfPatternModelAccess().getRule();
-	}
-
-	//BaseIriValue:
-	//	"base" RawIri;
-	public BaseIriValueElements getBaseIriValueAccess() {
-		return (pBaseIriValue != null) ? pBaseIriValue : (pBaseIriValue = new BaseIriValueElements());
-	}
-	
-	public ParserRule getBaseIriValueRule() {
-		return getBaseIriValueAccess().getRule();
 	}
 
 	//IriPrefix:

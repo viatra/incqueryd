@@ -2,6 +2,7 @@ package org.eclipse.incquery.patternlanguage.rdf.tests;
 
 import com.google.inject.Inject;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
 import org.eclipse.incquery.patternlanguage.patternLanguage.EntityType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
@@ -46,11 +47,15 @@ public class ParserTest {
       _builder.append("Segment_length(Segment, SegmentLength);");
       _builder.newLine();
       _builder.append("\t");
-      _builder.append("check(\'SegmentLength <= \"0\"^^xsd:integer\');");
+      _builder.append("check(SegmentLength, \'SegmentLength <= \"0\"^^xsd:integer\');");
       _builder.newLine();
       _builder.append("}");
       _builder.newLine();
       final RdfPatternModel model = this.parser.parse(_builder);
+      Resource _eResource = model.eResource();
+      EList<Resource.Diagnostic> _errors = _eResource.getErrors();
+      boolean _isEmpty = _errors.isEmpty();
+      Assert.assertTrue(_isEmpty);
       String _baseIriValue = model.getBaseIriValue();
       Assert.assertEquals("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#", _baseIriValue);
       EList<Pattern> _patterns = model.getPatterns();
