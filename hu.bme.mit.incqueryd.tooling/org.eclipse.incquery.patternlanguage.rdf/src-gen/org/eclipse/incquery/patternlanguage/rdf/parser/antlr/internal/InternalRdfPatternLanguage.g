@@ -776,21 +776,21 @@ ruleLiteralValueReference returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getLiteralValueReferenceAccess().getStringValueParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getLiteralValueReferenceAccess().getDoubleValueParserRuleCall_1()); 
     }
-    this_StringValue_1=ruleStringValue
+    this_DoubleValue_1=ruleDoubleValue
     { 
-        $current = $this_StringValue_1.current; 
+        $current = $this_DoubleValue_1.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getLiteralValueReferenceAccess().getDoubleValueParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getLiteralValueReferenceAccess().getStringValueParserRuleCall_2()); 
     }
-    this_DoubleValue_2=ruleDoubleValue
+    this_StringValue_2=ruleStringValue
     { 
-        $current = $this_DoubleValue_2.current; 
+        $current = $this_StringValue_2.current; 
         afterParserOrEnumRuleCall();
     }
 

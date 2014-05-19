@@ -2111,15 +2111,15 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
 
 
     // $ANTLR start "ruleLiteralValueReference"
-    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:763:1: ruleLiteralValueReference returns [EObject current=null] : (this_IntValue_0= ruleIntValue | this_StringValue_1= ruleStringValue | this_DoubleValue_2= ruleDoubleValue | this_BoolValue_3= ruleBoolValue | this_RdfLiteral_4= ruleRdfLiteral ) ;
+    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:763:1: ruleLiteralValueReference returns [EObject current=null] : (this_IntValue_0= ruleIntValue | this_DoubleValue_1= ruleDoubleValue | this_StringValue_2= ruleStringValue | this_BoolValue_3= ruleBoolValue | this_RdfLiteral_4= ruleRdfLiteral ) ;
     public final EObject ruleLiteralValueReference() throws RecognitionException {
         EObject current = null;
 
         EObject this_IntValue_0 = null;
 
-        EObject this_StringValue_1 = null;
+        EObject this_DoubleValue_1 = null;
 
-        EObject this_DoubleValue_2 = null;
+        EObject this_StringValue_2 = null;
 
         EObject this_BoolValue_3 = null;
 
@@ -2129,10 +2129,10 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
          enterRule(); 
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:766:28: ( (this_IntValue_0= ruleIntValue | this_StringValue_1= ruleStringValue | this_DoubleValue_2= ruleDoubleValue | this_BoolValue_3= ruleBoolValue | this_RdfLiteral_4= ruleRdfLiteral ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:767:1: (this_IntValue_0= ruleIntValue | this_StringValue_1= ruleStringValue | this_DoubleValue_2= ruleDoubleValue | this_BoolValue_3= ruleBoolValue | this_RdfLiteral_4= ruleRdfLiteral )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:766:28: ( (this_IntValue_0= ruleIntValue | this_DoubleValue_1= ruleDoubleValue | this_StringValue_2= ruleStringValue | this_BoolValue_3= ruleBoolValue | this_RdfLiteral_4= ruleRdfLiteral ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:767:1: (this_IntValue_0= ruleIntValue | this_DoubleValue_1= ruleDoubleValue | this_StringValue_2= ruleStringValue | this_BoolValue_3= ruleBoolValue | this_RdfLiteral_4= ruleRdfLiteral )
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:767:1: (this_IntValue_0= ruleIntValue | this_StringValue_1= ruleStringValue | this_DoubleValue_2= ruleDoubleValue | this_BoolValue_3= ruleBoolValue | this_RdfLiteral_4= ruleRdfLiteral )
+            // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:767:1: (this_IntValue_0= ruleIntValue | this_DoubleValue_1= ruleDoubleValue | this_StringValue_2= ruleStringValue | this_BoolValue_3= ruleBoolValue | this_RdfLiteral_4= ruleRdfLiteral )
             int alt8=5;
             switch ( input.LA(1) ) {
             case 37:
@@ -2143,7 +2143,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     int LA8_2 = input.LA(3);
 
                     if ( (LA8_2==33) ) {
-                        alt8=3;
+                        alt8=2;
                     }
                     else if ( (LA8_2==EOF||(LA8_2>=18 && LA8_2<=19)||(LA8_2>=28 && LA8_2<=29)||(LA8_2>=48 && LA8_2<=49)) ) {
                         alt8=1;
@@ -2170,7 +2170,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 int LA8_2 = input.LA(2);
 
                 if ( (LA8_2==33) ) {
-                    alt8=3;
+                    alt8=2;
                 }
                 else if ( (LA8_2==EOF||(LA8_2>=18 && LA8_2<=19)||(LA8_2>=28 && LA8_2<=29)||(LA8_2>=48 && LA8_2<=49)) ) {
                     alt8=1;
@@ -2188,11 +2188,11 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                 {
                 int LA8_3 = input.LA(2);
 
-                if ( (LA8_3==EOF||(LA8_3>=18 && LA8_3<=19)||(LA8_3>=28 && LA8_3<=29)||(LA8_3>=48 && LA8_3<=49)) ) {
-                    alt8=2;
-                }
-                else if ( ((LA8_3>=21 && LA8_3<=22)) ) {
+                if ( ((LA8_3>=21 && LA8_3<=22)) ) {
                     alt8=5;
+                }
+                else if ( (LA8_3==EOF||(LA8_3>=18 && LA8_3<=19)||(LA8_3>=28 && LA8_3<=29)||(LA8_3>=48 && LA8_3<=49)) ) {
+                    alt8=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
@@ -2243,21 +2243,21 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:778:5: this_StringValue_1= ruleStringValue
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:778:5: this_DoubleValue_1= ruleDoubleValue
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getLiteralValueReferenceAccess().getStringValueParserRuleCall_1()); 
+                              newCompositeNode(grammarAccess.getLiteralValueReferenceAccess().getDoubleValueParserRuleCall_1()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleStringValue_in_ruleLiteralValueReference1703);
-                    this_StringValue_1=ruleStringValue();
+                    pushFollow(FOLLOW_ruleDoubleValue_in_ruleLiteralValueReference1703);
+                    this_DoubleValue_1=ruleDoubleValue();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_StringValue_1; 
+                              current = this_DoubleValue_1; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -2265,21 +2265,21 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:788:5: this_DoubleValue_2= ruleDoubleValue
+                    // ../org.eclipse.incquery.patternlanguage.rdf/src-gen/org/eclipse/incquery/patternlanguage/rdf/parser/antlr/internal/InternalRdfPatternLanguage.g:788:5: this_StringValue_2= ruleStringValue
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getLiteralValueReferenceAccess().getDoubleValueParserRuleCall_2()); 
+                              newCompositeNode(grammarAccess.getLiteralValueReferenceAccess().getStringValueParserRuleCall_2()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleDoubleValue_in_ruleLiteralValueReference1730);
-                    this_DoubleValue_2=ruleDoubleValue();
+                    pushFollow(FOLLOW_ruleStringValue_in_ruleLiteralValueReference1730);
+                    this_StringValue_2=ruleStringValue();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_DoubleValue_2; 
+                              current = this_StringValue_2; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -27414,8 +27414,8 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalAntlrParse
     public static final BitSet FOLLOW_ruleLiteralValueReference_in_entryRuleLiteralValueReference1619 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLiteralValueReference1629 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIntValue_in_ruleLiteralValueReference1676 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringValue_in_ruleLiteralValueReference1703 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDoubleValue_in_ruleLiteralValueReference1730 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDoubleValue_in_ruleLiteralValueReference1703 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringValue_in_ruleLiteralValueReference1730 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBoolValue_in_ruleLiteralValueReference1757 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRdfLiteral_in_ruleLiteralValueReference1784 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRdfLiteral_in_entryRuleRdfLiteral1819 = new BitSet(new long[]{0x0000000000000000L});
