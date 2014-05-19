@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Prefix;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
 
 /**
@@ -22,7 +22,7 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLan
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriImpl#getPrefix <em>Prefix</em>}</li>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriImpl#getIri <em>Iri</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,27 +38,27 @@ public class IriImpl extends MinimalEObjectImpl.Container implements Iri
    * @generated
    * @ordered
    */
-  protected Prefix prefix;
+  protected IriPrefix prefix;
 
   /**
-   * The default value of the '{@link #getIri() <em>Iri</em>}' attribute.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIri()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final String IRI_EDEFAULT = null;
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getIri() <em>Iri</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIri()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected String iri = IRI_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -86,12 +86,12 @@ public class IriImpl extends MinimalEObjectImpl.Container implements Iri
    * <!-- end-user-doc -->
    * @generated
    */
-  public Prefix getPrefix()
+  public IriPrefix getPrefix()
   {
     if (prefix != null && prefix.eIsProxy())
     {
       InternalEObject oldPrefix = (InternalEObject)prefix;
-      prefix = (Prefix)eResolveProxy(oldPrefix);
+      prefix = (IriPrefix)eResolveProxy(oldPrefix);
       if (prefix != oldPrefix)
       {
         if (eNotificationRequired())
@@ -106,7 +106,7 @@ public class IriImpl extends MinimalEObjectImpl.Container implements Iri
    * <!-- end-user-doc -->
    * @generated
    */
-  public Prefix basicGetPrefix()
+  public IriPrefix basicGetPrefix()
   {
     return prefix;
   }
@@ -116,9 +116,9 @@ public class IriImpl extends MinimalEObjectImpl.Container implements Iri
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPrefix(Prefix newPrefix)
+  public void setPrefix(IriPrefix newPrefix)
   {
-    Prefix oldPrefix = prefix;
+    IriPrefix oldPrefix = prefix;
     prefix = newPrefix;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.IRI__PREFIX, oldPrefix, prefix));
@@ -129,9 +129,9 @@ public class IriImpl extends MinimalEObjectImpl.Container implements Iri
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getIri()
+  public String getValue()
   {
-    return iri;
+    return value;
   }
 
   /**
@@ -139,12 +139,12 @@ public class IriImpl extends MinimalEObjectImpl.Container implements Iri
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setIri(String newIri)
+  public void setValue(String newValue)
   {
-    String oldIri = iri;
-    iri = newIri;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.IRI__IRI, oldIri, iri));
+      eNotify(new ENotificationImpl(this, Notification.SET, RdfPatternLanguagePackage.IRI__VALUE, oldValue, value));
   }
 
   /**
@@ -160,8 +160,8 @@ public class IriImpl extends MinimalEObjectImpl.Container implements Iri
       case RdfPatternLanguagePackage.IRI__PREFIX:
         if (resolve) return getPrefix();
         return basicGetPrefix();
-      case RdfPatternLanguagePackage.IRI__IRI:
-        return getIri();
+      case RdfPatternLanguagePackage.IRI__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -177,10 +177,10 @@ public class IriImpl extends MinimalEObjectImpl.Container implements Iri
     switch (featureID)
     {
       case RdfPatternLanguagePackage.IRI__PREFIX:
-        setPrefix((Prefix)newValue);
+        setPrefix((IriPrefix)newValue);
         return;
-      case RdfPatternLanguagePackage.IRI__IRI:
-        setIri((String)newValue);
+      case RdfPatternLanguagePackage.IRI__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -197,10 +197,10 @@ public class IriImpl extends MinimalEObjectImpl.Container implements Iri
     switch (featureID)
     {
       case RdfPatternLanguagePackage.IRI__PREFIX:
-        setPrefix((Prefix)null);
+        setPrefix((IriPrefix)null);
         return;
-      case RdfPatternLanguagePackage.IRI__IRI:
-        setIri(IRI_EDEFAULT);
+      case RdfPatternLanguagePackage.IRI__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -218,8 +218,8 @@ public class IriImpl extends MinimalEObjectImpl.Container implements Iri
     {
       case RdfPatternLanguagePackage.IRI__PREFIX:
         return prefix != null;
-      case RdfPatternLanguagePackage.IRI__IRI:
-        return IRI_EDEFAULT == null ? iri != null : !IRI_EDEFAULT.equals(iri);
+      case RdfPatternLanguagePackage.IRI__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
@@ -235,8 +235,8 @@ public class IriImpl extends MinimalEObjectImpl.Container implements Iri
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (iri: ");
-    result.append(iri);
+    result.append(" (value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }

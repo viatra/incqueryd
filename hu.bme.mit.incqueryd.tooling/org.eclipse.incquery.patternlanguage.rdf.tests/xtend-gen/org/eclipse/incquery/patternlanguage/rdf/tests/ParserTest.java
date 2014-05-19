@@ -7,7 +7,6 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.EntityType;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternBody;
 import org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageInjectorProvider;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Base;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClass;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint;
@@ -52,9 +51,8 @@ public class ParserTest {
       _builder.append("}");
       _builder.newLine();
       final RdfPatternModel model = this.parser.parse(_builder);
-      Base _base = model.getBase();
-      String _iri = _base.getIri();
-      Assert.assertEquals("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#", _iri);
+      String _baseIriValue = model.getBaseIriValue();
+      Assert.assertEquals("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#", _baseIriValue);
       EList<Pattern> _patterns = model.getPatterns();
       Pattern _head = IterableExtensions.<Pattern>head(_patterns);
       EList<PatternBody> _bodies = _head.getBodies();
@@ -73,8 +71,8 @@ public class ParserTest {
             if (type instanceof RdfClass) {
               _matched_1=true;
               Iri _class_ = ((RdfClass)type).getClass_();
-              String _iri_1 = _class_.getIri();
-              Assert.assertEquals("Segment", _iri_1);
+              String _value = _class_.getValue();
+              Assert.assertEquals("Segment", _value);
             }
           }
           if (!_matched_1) {

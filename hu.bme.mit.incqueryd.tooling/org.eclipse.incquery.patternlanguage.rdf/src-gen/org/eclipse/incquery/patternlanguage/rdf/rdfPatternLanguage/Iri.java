@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getPrefix <em>Prefix</em>}</li>
- *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getIri <em>Iri</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,12 +32,12 @@ public interface Iri extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Prefix</em>' reference.
-   * @see #setPrefix(Prefix)
+   * @see #setPrefix(IriPrefix)
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getIri_Prefix()
    * @model
    * @generated
    */
-  Prefix getPrefix();
+  IriPrefix getPrefix();
 
   /**
    * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getPrefix <em>Prefix</em>}' reference.
@@ -47,32 +47,32 @@ public interface Iri extends EObject
    * @see #getPrefix()
    * @generated
    */
-  void setPrefix(Prefix value);
+  void setPrefix(IriPrefix value);
 
   /**
-   * Returns the value of the '<em><b>Iri</b></em>' attribute.
+   * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Iri</em>' attribute isn't clear,
+   * If the meaning of the '<em>Value</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Iri</em>' attribute.
-   * @see #setIri(String)
-   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getIri_Iri()
+   * @return the value of the '<em>Value</em>' attribute.
+   * @see #setValue(String)
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getIri_Value()
    * @model
    * @generated
    */
-  String getIri();
+  String getValue();
 
   /**
-   * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getIri <em>Iri</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Iri</em>' attribute.
-   * @see #getIri()
+   * @param value the new value of the '<em>Value</em>' attribute.
+   * @see #getValue()
    * @generated
    */
-  void setIri(String value);
+  void setValue(String value);
 
 } // Iri

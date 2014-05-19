@@ -6,9 +6,9 @@ import static extension org.eclipse.xtext.EcoreUtil2.*
 
 class IriUtils {
 
-	static def String getValue(Iri iri) {
-		val prefix = iri.prefix?.iri ?: iri.getContainerOfType(RdfPatternModel)?.base?.iri
-		'''«prefix»«iri.iri»'''
+	static def String asString(Iri iri) {
+		val prefix = iri.prefix?.value ?: iri.getContainerOfType(RdfPatternModel)?.baseIriValue
+		'''«prefix»«iri.value»'''
 	}
 
 }

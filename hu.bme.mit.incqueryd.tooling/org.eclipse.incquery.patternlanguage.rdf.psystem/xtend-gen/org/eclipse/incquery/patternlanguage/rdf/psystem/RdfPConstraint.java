@@ -230,7 +230,7 @@ public class RdfPConstraint {
   }
   
   public static Resource toRdfResource(final Iri iri) {
-    String _value = IriUtils.getValue(iri);
-    return new URIImpl(_value);
+    String _asString = IriUtils.asString(iri);
+    return new URIImpl(_asString);
   }
 }

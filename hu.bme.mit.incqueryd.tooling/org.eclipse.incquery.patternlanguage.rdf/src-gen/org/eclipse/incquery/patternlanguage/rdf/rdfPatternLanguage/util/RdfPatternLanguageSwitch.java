@@ -80,17 +80,10 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
-      case RdfPatternLanguagePackage.BASE:
+      case RdfPatternLanguagePackage.IRI_PREFIX:
       {
-        Base base = (Base)theEObject;
-        T result = caseBase(base);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case RdfPatternLanguagePackage.PREFIX:
-      {
-        Prefix prefix = (Prefix)theEObject;
-        T result = casePrefix(prefix);
+        IriPrefix iriPrefix = (IriPrefix)theEObject;
+        T result = caseIriPrefix(iriPrefix);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -165,33 +158,17 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Base</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Iri Prefix</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Base</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Iri Prefix</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseBase(Base object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Prefix</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Prefix</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePrefix(Prefix object)
+  public T caseIriPrefix(IriPrefix object)
   {
     return null;
   }

@@ -87,17 +87,17 @@ ruleRdfPatternModel returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getBaseBaseParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getBaseIriValueBaseIriValueParserRuleCall_1_0()); 
 	    }
-		lv_base_1_0=ruleBase		{
+		lv_baseIriValue_1_0=ruleBaseIriValue		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRdfPatternModelRule());
 	        }
        		set(
        			$current, 
-       			"base",
-        		lv_base_1_0, 
-        		"Base");
+       			"baseIriValue",
+        		lv_baseIriValue_1_0, 
+        		"BaseIriValue");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -105,17 +105,17 @@ ruleRdfPatternModel returns [EObject current=null]
 )?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getPrefixesPrefixParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getIriPrefixesIriPrefixParserRuleCall_2_0()); 
 	    }
-		lv_prefixes_2_0=rulePrefix		{
+		lv_iriPrefixes_2_0=ruleIriPrefix		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRdfPatternModelRule());
 	        }
        		add(
        			$current, 
-       			"prefixes",
-        		lv_prefixes_2_0, 
-        		"Prefix");
+       			"iriPrefixes",
+        		lv_iriPrefixes_2_0, 
+        		"IriPrefix");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -145,76 +145,71 @@ ruleRdfPatternModel returns [EObject current=null]
 
 
 
-// Entry rule entryRuleBase
-entryRuleBase returns [EObject current=null] 
+// Entry rule entryRuleBaseIriValue
+entryRuleBaseIriValue returns [String current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getBaseRule()); }
-	 iv_ruleBase=ruleBase 
-	 { $current=$iv_ruleBase.current; } 
+	{ newCompositeNode(grammarAccess.getBaseIriValueRule()); } 
+	 iv_ruleBaseIriValue=ruleBaseIriValue 
+	 { $current=$iv_ruleBaseIriValue.current.getText(); }  
 	 EOF 
 ;
 
-// Rule Base
-ruleBase returns [EObject current=null] 
+// Rule BaseIriValue
+ruleBaseIriValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='base' 
+(
+	kw='base' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getBaseAccess().getBaseKeyword_0());
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getBaseIriValueAccess().getBaseKeyword_0()); 
     }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getBaseAccess().getIriRawIriParserRuleCall_1_0()); 
-	    }
-		lv_iri_1_0=ruleRawIri		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getBaseRule());
-	        }
-       		set(
-       			$current, 
-       			"iri",
-        		lv_iri_1_0, 
-        		"RawIri");
-	        afterParserOrEnumRuleCall();
-	    }
 
+    { 
+        newCompositeNode(grammarAccess.getBaseIriValueAccess().getRawIriParserRuleCall_1()); 
+    }
+    this_RawIri_1=ruleRawIri    {
+		$current.merge(this_RawIri_1);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
 )
-))
-;
+    ;
 
 
 
 
 
-// Entry rule entryRulePrefix
-entryRulePrefix returns [EObject current=null] 
+// Entry rule entryRuleIriPrefix
+entryRuleIriPrefix returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getPrefixRule()); }
-	 iv_rulePrefix=rulePrefix 
-	 { $current=$iv_rulePrefix.current; } 
+	{ newCompositeNode(grammarAccess.getIriPrefixRule()); }
+	 iv_ruleIriPrefix=ruleIriPrefix 
+	 { $current=$iv_ruleIriPrefix.current; } 
 	 EOF 
 ;
 
-// Rule Prefix
-rulePrefix returns [EObject current=null] 
+// Rule IriPrefix
+ruleIriPrefix returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 (	otherlv_0='prefix' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getPrefixAccess().getPrefixKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getIriPrefixAccess().getPrefixKeyword_0());
     }
 (
 (
 		lv_name_1_0=RULE_ID
 		{
-			newLeafNode(lv_name_1_0, grammarAccess.getPrefixAccess().getNameIDTerminalRuleCall_1_0()); 
+			newLeafNode(lv_name_1_0, grammarAccess.getIriPrefixAccess().getNameIDTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPrefixRule());
+	            $current = createModelElement(grammarAccess.getIriPrefixRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -226,21 +221,21 @@ rulePrefix returns [EObject current=null]
 )
 )	otherlv_2=':' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getPrefixAccess().getColonKeyword_2());
+    	newLeafNode(otherlv_2, grammarAccess.getIriPrefixAccess().getColonKeyword_2());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPrefixAccess().getIriRawIriParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getIriPrefixAccess().getValueRawIriParserRuleCall_3_0()); 
 	    }
-		lv_iri_3_0=ruleRawIri		{
+		lv_value_3_0=ruleRawIri		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPrefixRule());
+	            $current = createModelElementForParent(grammarAccess.getIriPrefixRule());
 	        }
        		set(
        			$current, 
-       			"iri",
-        		lv_iri_3_0, 
+       			"value",
+        		lv_value_3_0, 
         		"RawIri");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -276,7 +271,7 @@ ruleIri returns [EObject current=null]
         }
 	otherlv_0=RULE_ID
 	{
-		newLeafNode(otherlv_0, grammarAccess.getIriAccess().getPrefixPrefixCrossReference_0_0_0()); 
+		newLeafNode(otherlv_0, grammarAccess.getIriAccess().getPrefixIriPrefixCrossReference_0_0_0()); 
 	}
 
 )
@@ -287,16 +282,16 @@ ruleIri returns [EObject current=null]
 )?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getIriAccess().getIriRawIriParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getIriAccess().getValueRawIriParserRuleCall_1_0()); 
 	    }
-		lv_iri_2_0=ruleRawIri		{
+		lv_value_2_0=ruleRawIri		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getIriRule());
 	        }
        		set(
        			$current, 
-       			"iri",
-        		lv_iri_2_0, 
+       			"value",
+        		lv_value_2_0, 
         		"RawIri");
 	        afterParserOrEnumRuleCall();
 	    }
