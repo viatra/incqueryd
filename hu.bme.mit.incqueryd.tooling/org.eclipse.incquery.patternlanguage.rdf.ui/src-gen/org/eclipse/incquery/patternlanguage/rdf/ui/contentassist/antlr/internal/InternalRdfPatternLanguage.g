@@ -3215,15 +3215,15 @@ rule__LiteralValueReference__Alternatives
 )
 
     |(
-{ before(grammarAccess.getLiteralValueReferenceAccess().getStringValueParserRuleCall_1()); }
-	ruleStringValue
-{ after(grammarAccess.getLiteralValueReferenceAccess().getStringValueParserRuleCall_1()); }
+{ before(grammarAccess.getLiteralValueReferenceAccess().getDoubleValueParserRuleCall_1()); }
+	ruleDoubleValue
+{ after(grammarAccess.getLiteralValueReferenceAccess().getDoubleValueParserRuleCall_1()); }
 )
 
     |(
-{ before(grammarAccess.getLiteralValueReferenceAccess().getDoubleValueParserRuleCall_2()); }
-	ruleDoubleValue
-{ after(grammarAccess.getLiteralValueReferenceAccess().getDoubleValueParserRuleCall_2()); }
+{ before(grammarAccess.getLiteralValueReferenceAccess().getStringValueParserRuleCall_2()); }
+	ruleStringValue
+{ after(grammarAccess.getLiteralValueReferenceAccess().getStringValueParserRuleCall_2()); }
 )
 
     |(
