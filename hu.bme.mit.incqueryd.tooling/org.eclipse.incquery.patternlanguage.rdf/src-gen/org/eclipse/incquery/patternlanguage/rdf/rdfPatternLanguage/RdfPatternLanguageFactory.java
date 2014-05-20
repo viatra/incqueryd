@@ -23,6 +23,15 @@ public interface RdfPatternLanguageFactory extends EFactory
   RdfPatternLanguageFactory eINSTANCE = org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguageFactoryImpl.init();
 
   /**
+   * Returns a new object of class '<em>Vocabulary</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Vocabulary</em>'.
+   * @generated
+   */
+  Vocabulary createVocabulary();
+
+  /**
    * Returns a new object of class '<em>Iri Prefix</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

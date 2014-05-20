@@ -82,6 +82,11 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
     new RdfPatternLanguageSwitch<Adapter>()
     {
       @Override
+      public Adapter caseVocabulary(Vocabulary object)
+      {
+        return createVocabularyAdapter();
+      }
+      @Override
       public Adapter caseIriPrefix(IriPrefix object)
       {
         return createIriPrefixAdapter();
@@ -172,6 +177,21 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
     return modelSwitch.doSwitch((EObject)target);
   }
 
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Vocabulary <em>Vocabulary</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Vocabulary
+   * @generated
+   */
+  public Adapter createVocabularyAdapter()
+  {
+    return null;
+  }
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix <em>Iri Prefix</em>}'.

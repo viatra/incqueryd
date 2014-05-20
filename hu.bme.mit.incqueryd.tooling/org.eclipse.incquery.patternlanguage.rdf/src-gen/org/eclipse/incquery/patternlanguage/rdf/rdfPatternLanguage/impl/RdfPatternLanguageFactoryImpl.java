@@ -64,6 +64,7 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
   {
     switch (eClass.getClassifierID())
     {
+      case RdfPatternLanguagePackage.VOCABULARY: return createVocabulary();
       case RdfPatternLanguagePackage.IRI_PREFIX: return createIriPrefix();
       case RdfPatternLanguagePackage.IRI: return createIri();
       case RdfPatternLanguagePackage.VARIABLE: return createVariable();
@@ -75,6 +76,17 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Vocabulary createVocabulary()
+  {
+    VocabularyImpl vocabulary = new VocabularyImpl();
+    return vocabulary;
   }
 
   /**

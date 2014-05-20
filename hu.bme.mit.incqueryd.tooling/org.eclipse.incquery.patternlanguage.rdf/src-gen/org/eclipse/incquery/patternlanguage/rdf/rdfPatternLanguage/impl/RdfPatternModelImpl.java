@@ -22,6 +22,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.impl.PatternModelImp
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Vocabulary;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,6 +31,7 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternMod
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternModelImpl#getVocabularies <em>Vocabularies</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternModelImpl#getBaseIriValue <em>Base Iri Value</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternModelImpl#getIriPrefixes <em>Iri Prefixes</em>}</li>
  * </ul>
@@ -39,6 +41,16 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternMod
  */
 public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternModel
 {
+  /**
+   * The cached value of the '{@link #getVocabularies() <em>Vocabularies</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVocabularies()
+   * @generated
+   * @ordered
+   */
+  protected EList<Vocabulary> vocabularies;
+
   /**
    * The default value of the '{@link #getBaseIriValue() <em>Base Iri Value</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -95,6 +107,20 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Vocabulary> getVocabularies()
+  {
+    if (vocabularies == null)
+    {
+      vocabularies = new EObjectContainmentEList<Vocabulary>(Vocabulary.class, this, RdfPatternLanguagePackage.RDF_PATTERN_MODEL__VOCABULARIES);
+    }
+    return vocabularies;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getBaseIriValue()
   {
     return baseIriValue;
@@ -137,6 +163,8 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
   {
     switch (featureID)
     {
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__VOCABULARIES:
+        return ((InternalEList<?>)getVocabularies()).basicRemove(otherEnd, msgs);
       case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__IRI_PREFIXES:
         return ((InternalEList<?>)getIriPrefixes()).basicRemove(otherEnd, msgs);
     }
@@ -153,6 +181,8 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
   {
     switch (featureID)
     {
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__VOCABULARIES:
+        return getVocabularies();
       case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE_IRI_VALUE:
         return getBaseIriValue();
       case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__IRI_PREFIXES:
@@ -172,6 +202,10 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
   {
     switch (featureID)
     {
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__VOCABULARIES:
+        getVocabularies().clear();
+        getVocabularies().addAll((Collection<? extends Vocabulary>)newValue);
+        return;
       case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE_IRI_VALUE:
         setBaseIriValue((String)newValue);
         return;
@@ -193,6 +227,9 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
   {
     switch (featureID)
     {
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__VOCABULARIES:
+        getVocabularies().clear();
+        return;
       case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE_IRI_VALUE:
         setBaseIriValue(BASE_IRI_VALUE_EDEFAULT);
         return;
@@ -213,6 +250,8 @@ public class RdfPatternModelImpl extends PatternModelImpl implements RdfPatternM
   {
     switch (featureID)
     {
+      case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__VOCABULARIES:
+        return vocabularies != null && !vocabularies.isEmpty();
       case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__BASE_IRI_VALUE:
         return BASE_IRI_VALUE_EDEFAULT == null ? baseIriValue != null : !BASE_IRI_VALUE_EDEFAULT.equals(baseIriValue);
       case RdfPatternLanguagePackage.RDF_PATTERN_MODEL__IRI_PREFIXES:
