@@ -106,12 +106,18 @@ public class RdfPConstraint {
         int _size = tuple.getSize();
         boolean _notEquals = (_size != 2);
         if (_notEquals) {
-          throw new RuntimeException("Transitive closure only supported for binary patterns");
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("Transitive closure only supported for binary patterns ");
+          _builder.append(constraint, "");
+          throw new RuntimeException(_builder.toString());
         } else {
           BinaryTransitiveClosure _xifexpression_3 = null;
           boolean _isNegative_1 = constraint.isNegative();
           if (_isNegative_1) {
-            throw new RuntimeException("Unsupported negated transitive closure");
+            StringConcatenation _builder_1 = new StringConcatenation();
+            _builder_1.append("Unsupported negated transitive closure ");
+            _builder_1.append(constraint, "");
+            throw new RuntimeException(_builder_1.toString());
           } else {
             _xifexpression_3 = new BinaryTransitiveClosure(pBody, tuple, calledQuery);
           }

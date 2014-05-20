@@ -45,9 +45,9 @@ class RdfPVariable {
         val patternRef = call.patternRef
         val calledQuery = findQueryOf(patternRef)
         val tuple = call.parameters.toTuple(pBody)
-        switch aggregatedValue.aggregator {
+        switch aggregator : aggregatedValue.aggregator {
         	CountAggregator: new PatternMatchCounter(pBody, tuple, calledQuery, result) // XXX side-effect
-        	default: throw new RuntimeException("Unsupported aggregator expression")
+        	default: throw new RuntimeException('''Unsupported aggregator expression «aggregator»''')
         }
         result
 	}
