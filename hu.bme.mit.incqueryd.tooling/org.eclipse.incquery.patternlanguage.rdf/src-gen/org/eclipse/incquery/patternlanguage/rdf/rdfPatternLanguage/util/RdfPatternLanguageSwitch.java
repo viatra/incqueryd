@@ -79,6 +79,13 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
+      case RdfPatternLanguagePackage.VOCABULARY:
+      {
+        Vocabulary vocabulary = (Vocabulary)theEObject;
+        T result = caseVocabulary(vocabulary);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case RdfPatternLanguagePackage.IRI_PREFIX:
       {
         IriPrefix iriPrefix = (IriPrefix)theEObject;
@@ -145,6 +152,22 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
       }
       default: return defaultCase(theEObject);
     }
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Vocabulary</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Vocabulary</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVocabulary(Vocabulary object)
+  {
+    return null;
   }
 
   /**

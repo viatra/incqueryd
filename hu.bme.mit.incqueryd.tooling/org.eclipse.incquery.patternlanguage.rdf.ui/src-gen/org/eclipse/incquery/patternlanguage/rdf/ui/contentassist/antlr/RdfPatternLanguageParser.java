@@ -83,7 +83,8 @@ public class RdfPatternLanguageParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getAlternatives_1(), "rule__XImportDeclaration__Alternatives_1");
 					put(grammarAccess.getCompareFeatureAccess().getAlternatives(), "rule__CompareFeature__Alternatives");
 					put(grammarAccess.getRdfPatternModelAccess().getGroup(), "rule__RdfPatternModel__Group__0");
-					put(grammarAccess.getRdfPatternModelAccess().getGroup_1(), "rule__RdfPatternModel__Group_1__0");
+					put(grammarAccess.getRdfPatternModelAccess().getGroup_2(), "rule__RdfPatternModel__Group_2__0");
+					put(grammarAccess.getVocabularyAccess().getGroup(), "rule__Vocabulary__Group__0");
 					put(grammarAccess.getIriPrefixAccess().getGroup(), "rule__IriPrefix__Group__0");
 					put(grammarAccess.getIriAccess().getGroup(), "rule__Iri__Group__0");
 					put(grammarAccess.getIriAccess().getGroup_0(), "rule__Iri__Group_0__0");
@@ -290,9 +291,11 @@ public class RdfPatternLanguageParser extends AbstractContentAssistParser {
 					put(grammarAccess.getQualifiedNameWithWildcardAccess().getGroup(), "rule__QualifiedNameWithWildcard__Group__0");
 					put(grammarAccess.getXImportDeclarationAccess().getGroup(), "rule__XImportDeclaration__Group__0");
 					put(grammarAccess.getXImportDeclarationAccess().getGroup_1_0(), "rule__XImportDeclaration__Group_1_0__0");
-					put(grammarAccess.getRdfPatternModelAccess().getBaseIriValueAssignment_1_1(), "rule__RdfPatternModel__BaseIriValueAssignment_1_1");
-					put(grammarAccess.getRdfPatternModelAccess().getIriPrefixesAssignment_2(), "rule__RdfPatternModel__IriPrefixesAssignment_2");
-					put(grammarAccess.getRdfPatternModelAccess().getPatternsAssignment_3(), "rule__RdfPatternModel__PatternsAssignment_3");
+					put(grammarAccess.getRdfPatternModelAccess().getVocabulariesAssignment_1(), "rule__RdfPatternModel__VocabulariesAssignment_1");
+					put(grammarAccess.getRdfPatternModelAccess().getBaseIriValueAssignment_2_1(), "rule__RdfPatternModel__BaseIriValueAssignment_2_1");
+					put(grammarAccess.getRdfPatternModelAccess().getIriPrefixesAssignment_3(), "rule__RdfPatternModel__IriPrefixesAssignment_3");
+					put(grammarAccess.getRdfPatternModelAccess().getPatternsAssignment_4(), "rule__RdfPatternModel__PatternsAssignment_4");
+					put(grammarAccess.getVocabularyAccess().getLocationAssignment_1(), "rule__Vocabulary__LocationAssignment_1");
 					put(grammarAccess.getIriPrefixAccess().getNameAssignment_1(), "rule__IriPrefix__NameAssignment_1");
 					put(grammarAccess.getIriPrefixAccess().getValueAssignment_3(), "rule__IriPrefix__ValueAssignment_3");
 					put(grammarAccess.getIriAccess().getPrefixAssignment_0_0(), "rule__Iri__PrefixAssignment_0_0");

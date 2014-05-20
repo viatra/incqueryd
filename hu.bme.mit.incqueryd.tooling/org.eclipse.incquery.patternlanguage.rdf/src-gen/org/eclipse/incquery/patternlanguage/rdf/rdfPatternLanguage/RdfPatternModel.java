@@ -14,6 +14,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getVocabularies <em>Vocabularies</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getBaseIriValue <em>Base Iri Value</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getIriPrefixes <em>Iri Prefixes</em>}</li>
  * </ul>
@@ -25,6 +26,22 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel;
  */
 public interface RdfPatternModel extends PatternModel
 {
+  /**
+   * Returns the value of the '<em><b>Vocabularies</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Vocabulary}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Vocabularies</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Vocabularies</em>' containment reference list.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfPatternModel_Vocabularies()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Vocabulary> getVocabularies();
+
   /**
    * Returns the value of the '<em><b>Base Iri Value</b></em>' attribute.
    * <!-- begin-user-doc -->

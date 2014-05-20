@@ -84,23 +84,41 @@ ruleRdfPatternModel returns [EObject current=null]
             grammarAccess.getRdfPatternModelAccess().getRdfPatternModelAction_0(),
             $current);
     }
-)(	otherlv_1='base' 
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getVocabulariesVocabularyParserRuleCall_1_0()); 
+	    }
+		lv_vocabularies_1_0=ruleVocabulary		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRdfPatternModelRule());
+	        }
+       		add(
+       			$current, 
+       			"vocabularies",
+        		lv_vocabularies_1_0, 
+        		"Vocabulary");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*(	otherlv_2='base' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getRdfPatternModelAccess().getBaseKeyword_1_0());
+    	newLeafNode(otherlv_2, grammarAccess.getRdfPatternModelAccess().getBaseKeyword_2_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getBaseIriValueRawIriParserRuleCall_1_1_0()); 
+	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getBaseIriValueRawIriParserRuleCall_2_1_0()); 
 	    }
-		lv_baseIriValue_2_0=ruleRawIri		{
+		lv_baseIriValue_3_0=ruleRawIri		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRdfPatternModelRule());
 	        }
        		set(
        			$current, 
        			"baseIriValue",
-        		lv_baseIriValue_2_0, 
+        		lv_baseIriValue_3_0, 
         		"RawIri");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -109,16 +127,16 @@ ruleRdfPatternModel returns [EObject current=null]
 ))?(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getIriPrefixesIriPrefixParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getIriPrefixesIriPrefixParserRuleCall_3_0()); 
 	    }
-		lv_iriPrefixes_3_0=ruleIriPrefix		{
+		lv_iriPrefixes_4_0=ruleIriPrefix		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRdfPatternModelRule());
 	        }
        		add(
        			$current, 
        			"iriPrefixes",
-        		lv_iriPrefixes_3_0, 
+        		lv_iriPrefixes_4_0, 
         		"IriPrefix");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -127,22 +145,65 @@ ruleRdfPatternModel returns [EObject current=null]
 )*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getPatternsPatternParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getPatternsPatternParserRuleCall_4_0()); 
 	    }
-		lv_patterns_4_0=rulePattern		{
+		lv_patterns_5_0=rulePattern		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRdfPatternModelRule());
 	        }
        		add(
        			$current, 
        			"patterns",
-        		lv_patterns_4_0, 
+        		lv_patterns_5_0, 
         		"Pattern");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )*)
+;
+
+
+
+
+
+// Entry rule entryRuleVocabulary
+entryRuleVocabulary returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getVocabularyRule()); }
+	 iv_ruleVocabulary=ruleVocabulary 
+	 { $current=$iv_ruleVocabulary.current; } 
+	 EOF 
+;
+
+// Rule Vocabulary
+ruleVocabulary returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='vocabulary' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getVocabularyAccess().getVocabularyKeyword_0());
+    }
+(
+(
+		lv_location_1_0=RULE_STRING
+		{
+			newLeafNode(lv_location_1_0, grammarAccess.getVocabularyAccess().getLocationSTRINGTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getVocabularyRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"location",
+        		lv_location_1_0, 
+        		"STRING");
+	    }
+
+)
+))
 ;
 
 
