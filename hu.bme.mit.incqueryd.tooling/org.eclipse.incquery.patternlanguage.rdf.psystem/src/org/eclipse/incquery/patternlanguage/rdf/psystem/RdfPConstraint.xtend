@@ -52,9 +52,9 @@ class RdfPConstraint {
 			}
         } else {
             if (tuple.size != 2) {
-                throw new RuntimeException("Transitive closure only supported for binary patterns")
+                throw new RuntimeException('''Transitive closure only supported for binary patterns «constraint»''')
             } else if (constraint.negative) {
-                throw new RuntimeException("Unsupported negated transitive closure")
+                throw new RuntimeException('''Unsupported negated transitive closure «constraint»''')
             } else {
                 new BinaryTransitiveClosure(pBody, tuple, calledQuery)
             }
