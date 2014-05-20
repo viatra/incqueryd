@@ -7,9 +7,14 @@ generate rdfPatternLanguage "http://www.eclipse.org/incquery/patternlanguage/rdf
 
 RdfPatternModel returns core::PatternModel:
 	{RdfPatternModel}
+	vocabularies+=Vocabulary*
 	('base' baseIriValue=RawIri)?
 	iriPrefixes+=IriPrefix*
 	patterns+=Pattern*
+;
+
+Vocabulary:
+	'vocabulary' location=STRING
 ;
 
 IriPrefix:
