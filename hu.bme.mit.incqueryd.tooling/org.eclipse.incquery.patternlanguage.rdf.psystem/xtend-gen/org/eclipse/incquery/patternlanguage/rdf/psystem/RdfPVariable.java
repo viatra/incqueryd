@@ -15,7 +15,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableValue;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils;
-import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPUtils;
+import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPModel;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
 import org.eclipse.incquery.runtime.matchers.psystem.PBody;
 import org.eclipse.incquery.runtime.matchers.psystem.PVariable;
@@ -26,7 +26,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class RdfPVariable {
-  public static PVariable toPVariable(final ValueReference it, final PBody pBody) {
+  public static PVariable toPVariable(final ValueReference it, final PBody pBody, final RdfPModel model) {
     PVariable _switchResult = null;
     boolean _matched = false;
     if (!_matched) {
@@ -72,7 +72,7 @@ public class RdfPVariable {
     if (!_matched) {
       if (it instanceof AggregatedValue) {
         _matched=true;
-        _switchResult = RdfPVariable.convertAggregatedValue(((AggregatedValue)it), pBody);
+        _switchResult = RdfPVariable.convertAggregatedValue(((AggregatedValue)it), pBody, model);
       }
     }
     if (!_matched) {
@@ -94,15 +94,15 @@ public class RdfPVariable {
     return PUtils.toPVariable(_variable, pBody);
   }
   
-  public static PVariable convertAggregatedValue(final AggregatedValue aggregatedValue, final PBody pBody) {
+  public static PVariable convertAggregatedValue(final AggregatedValue aggregatedValue, final PBody pBody, final RdfPModel model) {
     PVariable _xblockexpression = null;
     {
       final PVariable result = pBody.newVirtualVariable();
       final PatternCall call = aggregatedValue.getCall();
       final Pattern patternRef = call.getPatternRef();
-      final PQuery calledQuery = RdfPUtils.findQueryOf(patternRef);
+      final PQuery calledQuery = model.findQueryOf(patternRef);
       EList<ValueReference> _parameters = call.getParameters();
-      final Tuple tuple = RdfPUtils.toTuple(_parameters, pBody);
+      final Tuple tuple = model.toTuple(_parameters, pBody);
       AggregatorExpression _aggregator = aggregatedValue.getAggregator();
       final AggregatorExpression aggregator = _aggregator;
       boolean _matched = false;

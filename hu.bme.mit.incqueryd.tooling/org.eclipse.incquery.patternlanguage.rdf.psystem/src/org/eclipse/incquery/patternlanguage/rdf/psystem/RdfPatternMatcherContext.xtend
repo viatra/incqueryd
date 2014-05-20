@@ -10,25 +10,25 @@ import org.openrdf.model.Value
 
 class RdfPatternMatcherContext implements IPatternMatcherContext {
 
-	val Model metamodel
+	val Model vocabulary
 	val Logger logger = Logger.getLogger(RdfPatternMatcherContext)
 
-	new(Model metamodel) {
-		this.metamodel = metamodel
+	new(Model vocabulary) {
+		this.vocabulary = vocabulary
 	}
 
 	// Unary
 
 	override isUnaryType(Object typeObject) {
-		metamodel.contains(typeObject as Resource, RDF.TYPE, RDFS.CLASS) // XXX eliminate casts?
+		vocabulary.contains(typeObject as Resource, RDF.TYPE, RDFS.CLASS) // XXX eliminate casts?
 	}
 
 	override enumerateDirectUnarySubtypes(Object typeObject) {
-		metamodel.filter(null, RDFS.SUBCLASSOF, typeObject as Resource).map[subject].toSet
+		vocabulary.filter(null, RDFS.SUBCLASSOF, typeObject as Resource).map[subject].toSet
 	}
 
 	override enumerateDirectUnarySupertypes(Object typeObject) {
-		metamodel.filter(typeObject as Resource, RDFS.SUBCLASSOF, null).map[object].toSet
+		vocabulary.filter(typeObject as Resource, RDFS.SUBCLASSOF, null).map[object].toSet
 	}
 
 	// Binary
@@ -64,15 +64,15 @@ class RdfPatternMatcherContext implements IPatternMatcherContext {
 	// Ternary
 
 	override isTernaryEdgeType(Object typeObject) {
-		metamodel.contains(typeObject as Resource, RDF.TYPE, RDF.PROPERTY)
+		vocabulary.contains(typeObject as Resource, RDF.TYPE, RDF.PROPERTY)
 	}
 
 	override ternaryEdgeSourceType(Object typeObject) {
-		metamodel.filter(typeObject as Resource, RDFS.DOMAIN, null).map[object].head
+		vocabulary.filter(typeObject as Resource, RDFS.DOMAIN, null).map[object].head
 	}
 
 	override ternaryEdgeTargetType(Object typeObject) {
-		metamodel.filter(typeObject as Resource, RDFS.RANGE, null).map[object].head
+		vocabulary.filter(typeObject as Resource, RDFS.RANGE, null).map[object].head
 	}
 
 	override isTernaryEdgeMultiplicityOneTo(Object typeObject) {
@@ -84,11 +84,11 @@ class RdfPatternMatcherContext implements IPatternMatcherContext {
 	}
 
 	override enumerateDirectTernaryEdgeSubtypes(Object typeObject) {
-		metamodel.filter(null, RDFS.SUBPROPERTYOF, typeObject as Resource).map[subject].toSet
+		vocabulary.filter(null, RDFS.SUBPROPERTYOF, typeObject as Resource).map[subject].toSet
 	}
 
 	override enumerateDirectTernaryEdgeSupertypes(Object typeObject) {
-		metamodel.filter(typeObject as Resource, RDFS.SUBPROPERTYOF, null).map[object].toSet
+		vocabulary.filter(typeObject as Resource, RDFS.SUBPROPERTYOF, null).map[object].toSet
 	}
 
 	// Generic
