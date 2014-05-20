@@ -14,11 +14,10 @@ import org.eclipse.incquery.runtime.matchers.psystem.PVariable
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.PatternMatchCounter
 
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
-import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPUtils.*
 
 class RdfPVariable {
 
-	static def PVariable toPVariable(ValueReference it, PBody pBody) {
+	static def PVariable toPVariable(ValueReference it, PBody pBody, RdfPModel model) {
 		switch it {
 			IntValue: convertLiteralValue(value, pBody)
 			DoubleValue: convertLiteralValue(value, pBody)
@@ -26,7 +25,7 @@ class RdfPVariable {
 			StringValue: convertLiteralValue(value, pBody)
 			RdfLiteral: convertLiteralValue(it, pBody)
 			VariableValue: convertVariableValue(pBody)
-			AggregatedValue: convertAggregatedValue(pBody)
+			AggregatedValue: convertAggregatedValue(pBody, model)
 			default: throw new IllegalArgumentException('''Unhandled case «it»''')
 		}
 	}
@@ -39,12 +38,12 @@ class RdfPVariable {
 		variableValue.value.variable.toPVariable(pBody)
 	}
 
-	static def PVariable convertAggregatedValue(AggregatedValue aggregatedValue, PBody pBody) {
+	static def PVariable convertAggregatedValue(AggregatedValue aggregatedValue, PBody pBody, RdfPModel model) {
 		val result = pBody.newVirtualVariable
         val call = aggregatedValue.call
         val patternRef = call.patternRef
-        val calledQuery = findQueryOf(patternRef)
-        val tuple = call.parameters.toTuple(pBody)
+        val calledQuery = model.findQueryOf(patternRef)
+        val tuple = model.toTuple(call.parameters, pBody)
         switch aggregator : aggregatedValue.aggregator {
         	CountAggregator: new PatternMatchCounter(pBody, tuple, calledQuery, result) // XXX side-effect
         	default: throw new RuntimeException('''Unsupported aggregator expression «aggregator»''')

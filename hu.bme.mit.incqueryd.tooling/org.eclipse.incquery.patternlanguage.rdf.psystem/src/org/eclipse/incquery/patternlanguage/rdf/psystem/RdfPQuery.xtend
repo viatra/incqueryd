@@ -3,7 +3,6 @@ package org.eclipse.incquery.patternlanguage.rdf.psystem
 import com.google.common.collect.Sets
 import java.util.List
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel
 import org.eclipse.incquery.runtime.matchers.psystem.IQueryReference
 import org.eclipse.incquery.runtime.matchers.psystem.annotations.PAnnotation
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PDisjunction
@@ -105,10 +104,10 @@ class RdfPQuery implements PQuery {
 		fullyQualifiedName
 	}
 
-	new(Pattern pattern, RdfPatternModel patternModel, RdfPatternMatcherContext context) {
+	new(Pattern pattern, RdfPModel model) {
 		parameters = pattern.parameters.map[toPParameter]
 		annotations = pattern.annotations.map[toPAnnotation]
-		val bodies = pattern.bodies.map[toPBody(pattern, this, context)].toSet
+		val bodies = pattern.bodies.map[toPBody(pattern, this, model)].toSet
 		disjunction = new PDisjunction(this, bodies)
 		fullyQualifiedName = pattern.name
 	}

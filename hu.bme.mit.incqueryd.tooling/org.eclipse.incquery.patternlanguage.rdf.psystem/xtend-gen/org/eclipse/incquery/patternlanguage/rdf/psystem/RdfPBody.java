@@ -9,7 +9,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.PatternBody;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPConstraint;
-import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPatternMatcherContext;
+import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPModel;
 import org.eclipse.incquery.runtime.matchers.psystem.PBody;
 import org.eclipse.incquery.runtime.matchers.psystem.PConstraint;
 import org.eclipse.incquery.runtime.matchers.psystem.PVariable;
@@ -22,7 +22,7 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 @SuppressWarnings("all")
 public class RdfPBody {
-  public static PBody toPBody(final PatternBody body, final Pattern pattern, final PQuery query, final RdfPatternMatcherContext context) {
+  public static PBody toPBody(final PatternBody body, final Pattern pattern, final PQuery query, final RdfPModel model) {
     PBody _pBody = new PBody(query);
     final Procedure1<PBody> _function = new Procedure1<PBody>() {
       public void apply(final PBody pBody) {
@@ -38,7 +38,7 @@ public class RdfPBody {
         EList<Constraint> _constraints_1 = body.getConstraints();
         final Function1<Constraint,PConstraint> _function_1 = new Function1<Constraint,PConstraint>() {
           public PConstraint apply(final Constraint constraint) {
-            return RdfPConstraint.toPConstraint(constraint, pBody, context);
+            return RdfPConstraint.toPConstraint(constraint, pBody, model);
           }
         };
         List<PConstraint> _map_1 = ListExtensions.<Constraint, PConstraint>map(_constraints_1, _function_1);
