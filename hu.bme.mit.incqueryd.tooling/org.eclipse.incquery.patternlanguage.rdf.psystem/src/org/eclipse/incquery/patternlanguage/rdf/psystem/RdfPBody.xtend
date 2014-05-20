@@ -12,14 +12,14 @@ import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPCon
 
 class RdfPBody {
 
-	static def PBody toPBody(PatternBody body, Pattern pattern, PQuery query, RdfPatternMatcherContext context) {
+	static def PBody toPBody(PatternBody body, Pattern pattern, PQuery query, RdfPModel model) {
 		new PBody(query) => [pBody |
 			pBody.exportedParameters = pattern.parameters.map[parameter |
 				parameter.toExportedParameter(pBody)
 			]
 			pBody.constraints.addAll(
 				body.constraints.map[constraint |
-					constraint.toPConstraint(pBody, context)
+					constraint.toPConstraint(pBody, model)
 				]
 			)
 		]

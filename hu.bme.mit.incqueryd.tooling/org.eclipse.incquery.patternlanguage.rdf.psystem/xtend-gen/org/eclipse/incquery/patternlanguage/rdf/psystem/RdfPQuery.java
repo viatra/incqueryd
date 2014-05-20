@@ -14,8 +14,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.PatternBody;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPBody;
-import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPatternMatcherContext;
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
+import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPModel;
 import org.eclipse.incquery.runtime.matchers.psystem.IQueryReference;
 import org.eclipse.incquery.runtime.matchers.psystem.PBody;
 import org.eclipse.incquery.runtime.matchers.psystem.PConstraint;
@@ -161,7 +160,7 @@ public class RdfPQuery implements PQuery {
     return this.fullyQualifiedName;
   }
   
-  public RdfPQuery(final Pattern pattern, final RdfPatternModel patternModel, final RdfPatternMatcherContext context) {
+  public RdfPQuery(final Pattern pattern, final RdfPModel model) {
     EList<Variable> _parameters = pattern.getParameters();
     final Function1<Variable,PParameter> _function = new Function1<Variable,PParameter>() {
       public PParameter apply(final Variable it) {
@@ -181,7 +180,7 @@ public class RdfPQuery implements PQuery {
     EList<PatternBody> _bodies = pattern.getBodies();
     final Function1<PatternBody,PBody> _function_2 = new Function1<PatternBody,PBody>() {
       public PBody apply(final PatternBody it) {
-        return RdfPBody.toPBody(it, pattern, RdfPQuery.this, context);
+        return RdfPBody.toPBody(it, pattern, RdfPQuery.this, model);
       }
     };
     List<PBody> _map_2 = ListExtensions.<PatternBody, PBody>map(_bodies, _function_2);

@@ -14,20 +14,20 @@ import org.openrdf.model.vocabulary.RDFS;
 
 @SuppressWarnings("all")
 public class RdfPatternMatcherContext implements IPatternMatcherContext {
-  private final Model metamodel;
+  private final Model vocabulary;
   
   private final Logger logger = Logger.getLogger(RdfPatternMatcherContext.class);
   
-  public RdfPatternMatcherContext(final Model metamodel) {
-    this.metamodel = metamodel;
+  public RdfPatternMatcherContext(final Model vocabulary) {
+    this.vocabulary = vocabulary;
   }
   
   public boolean isUnaryType(final Object typeObject) {
-    return this.metamodel.contains(((Resource) typeObject), RDF.TYPE, RDFS.CLASS);
+    return this.vocabulary.contains(((Resource) typeObject), RDF.TYPE, RDFS.CLASS);
   }
   
   public Collection<?> enumerateDirectUnarySubtypes(final Object typeObject) {
-    Model _filter = this.metamodel.filter(null, RDFS.SUBCLASSOF, ((Resource) typeObject));
+    Model _filter = this.vocabulary.filter(null, RDFS.SUBCLASSOF, ((Resource) typeObject));
     final Function1<Statement,Resource> _function = new Function1<Statement,Resource>() {
       public Resource apply(final Statement it) {
         return it.getSubject();
@@ -38,7 +38,7 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public Collection<?> enumerateDirectUnarySupertypes(final Object typeObject) {
-    Model _filter = this.metamodel.filter(((Resource) typeObject), RDFS.SUBCLASSOF, null);
+    Model _filter = this.vocabulary.filter(((Resource) typeObject), RDFS.SUBCLASSOF, null);
     final Function1<Statement,Value> _function = new Function1<Statement,Value>() {
       public Value apply(final Statement it) {
         return it.getObject();
@@ -77,11 +77,11 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public boolean isTernaryEdgeType(final Object typeObject) {
-    return this.metamodel.contains(((Resource) typeObject), RDF.TYPE, RDF.PROPERTY);
+    return this.vocabulary.contains(((Resource) typeObject), RDF.TYPE, RDF.PROPERTY);
   }
   
   public Object ternaryEdgeSourceType(final Object typeObject) {
-    Model _filter = this.metamodel.filter(((Resource) typeObject), RDFS.DOMAIN, null);
+    Model _filter = this.vocabulary.filter(((Resource) typeObject), RDFS.DOMAIN, null);
     final Function1<Statement,Value> _function = new Function1<Statement,Value>() {
       public Value apply(final Statement it) {
         return it.getObject();
@@ -92,7 +92,7 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public Object ternaryEdgeTargetType(final Object typeObject) {
-    Model _filter = this.metamodel.filter(((Resource) typeObject), RDFS.RANGE, null);
+    Model _filter = this.vocabulary.filter(((Resource) typeObject), RDFS.RANGE, null);
     final Function1<Statement,Value> _function = new Function1<Statement,Value>() {
       public Value apply(final Statement it) {
         return it.getObject();
@@ -111,7 +111,7 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public Collection<?> enumerateDirectTernaryEdgeSubtypes(final Object typeObject) {
-    Model _filter = this.metamodel.filter(null, RDFS.SUBPROPERTYOF, ((Resource) typeObject));
+    Model _filter = this.vocabulary.filter(null, RDFS.SUBPROPERTYOF, ((Resource) typeObject));
     final Function1<Statement,Resource> _function = new Function1<Statement,Resource>() {
       public Resource apply(final Statement it) {
         return it.getSubject();
@@ -122,7 +122,7 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public Collection<?> enumerateDirectTernaryEdgeSupertypes(final Object typeObject) {
-    Model _filter = this.metamodel.filter(((Resource) typeObject), RDFS.SUBPROPERTYOF, null);
+    Model _filter = this.vocabulary.filter(((Resource) typeObject), RDFS.SUBPROPERTYOF, null);
     final Function1<Statement,Value> _function = new Function1<Statement,Value>() {
       public Value apply(final Statement it) {
         return it.getObject();

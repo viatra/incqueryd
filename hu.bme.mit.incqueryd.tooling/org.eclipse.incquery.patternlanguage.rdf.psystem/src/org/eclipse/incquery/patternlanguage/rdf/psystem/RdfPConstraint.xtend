@@ -23,27 +23,26 @@ import static org.eclipse.incquery.patternlanguage.patternLanguage.CompareFeatur
 
 import static extension org.eclipse.incquery.patternlanguage.rdf.IriUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
-import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
 
 class RdfPConstraint {
 
-	static def PConstraint toPConstraint(Constraint it, PBody pBody, RdfPatternMatcherContext context) {
+	static def PConstraint toPConstraint(Constraint it, PBody pBody, RdfPModel model) {
 		switch it {
-			PatternCompositionConstraint: convertPatternCompositionConstraint(pBody)
-			CompareConstraint: convertCompareConstraint(pBody)
-			RdfClassConstraint: convertClassConstraint(pBody, context)
-			RdfPropertyConstraint: convertPropertyConstraint(pBody, context)
+			PatternCompositionConstraint: convertPatternCompositionConstraint(pBody, model)
+			CompareConstraint: convertCompareConstraint(pBody, model)
+			RdfClassConstraint: convertClassConstraint(pBody, model)
+			RdfPropertyConstraint: convertPropertyConstraint(pBody, model)
 			RdfCheckConstraint: convertCheckConstraint
 			default: throw new IllegalArgumentException('''Unhandled case «it»''')
 		}
 	}
 
-	static def PConstraint convertPatternCompositionConstraint(PatternCompositionConstraint constraint, PBody pBody) { // based on EPMToPBody
+	static def PConstraint convertPatternCompositionConstraint(PatternCompositionConstraint constraint, PBody pBody, RdfPModel model) { // based on EPMToPBody
 		val call = constraint.call
         val patternRef = call.patternRef
-        val calledQuery = findQueryOf(patternRef)
-        val tuple = call.parameters.toTuple(pBody)
+        val calledQuery = model.findQueryOf(patternRef)
+        val tuple = model.toTuple(call.parameters, pBody)
         if (!call.transitive) {
             if (constraint.negative) {
                 new NegativePatternCall(pBody, tuple, calledQuery)
@@ -61,30 +60,30 @@ class RdfPConstraint {
         }
 	}
 
-	static def PConstraint convertCompareConstraint(CompareConstraint constraint, PBody pBody) {
-		val left = constraint.leftOperand.toPVariable(pBody)
-        val right = constraint.rightOperand.toPVariable(pBody)
+	static def PConstraint convertCompareConstraint(CompareConstraint constraint, PBody pBody, RdfPModel model) {
+		val left = constraint.leftOperand.toPVariable(pBody, model)
+        val right = constraint.rightOperand.toPVariable(pBody, model)
         switch (constraint.feature) {
 			case EQUALITY: new Equality(pBody, left, right)
 			case INEQUALITY: new Inequality(pBody, left, right, false)
 		}
 	}
 
-	static def TypeUnary convertClassConstraint(RdfClassConstraint constraint, PBody pBody, RdfPatternMatcherContext context) {
+	static def TypeUnary convertClassConstraint(RdfClassConstraint constraint, PBody pBody, RdfPModel model) {
 		val variable = constraint.variable.variable
 		val pVariable = variable.toPVariable(pBody)
 		val typeObject = constraint.type.toRdfResource
-		val typeString = context.printType(typeObject)
+		val typeString = model.context.printType(typeObject)
 		new TypeUnary(pBody, pVariable, typeObject, typeString)
 	}
 
-	static def PConstraint convertPropertyConstraint(RdfPropertyConstraint constraint, PBody pBody, RdfPatternMatcherContext context) {
+	static def PConstraint convertPropertyConstraint(RdfPropertyConstraint constraint, PBody pBody, RdfPModel model) {
 		val refType = constraint.refType
 		val source = constraint.source.variable.toPVariable(pBody)
-		val target = constraint.target.toPVariable(pBody)
+		val target = constraint.target.toPVariable(pBody, model)
 		val typeObject = refType.toRdfResource
-		val typeString = context.printType(typeObject)
-		new TypeTernary(pBody, context, pBody.newVirtualVariable, source, target, typeObject, typeString)
+		val typeString = model.context.printType(typeObject)
+		new TypeTernary(pBody, model.context, pBody.newVirtualVariable, source, target, typeObject, typeString)
 	}
 
 	static def PConstraint convertCheckConstraint(RdfCheckConstraint constraint) {
