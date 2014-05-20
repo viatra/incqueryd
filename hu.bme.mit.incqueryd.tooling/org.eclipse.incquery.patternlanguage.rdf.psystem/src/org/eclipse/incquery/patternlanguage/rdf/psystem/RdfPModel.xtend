@@ -2,6 +2,8 @@ package org.eclipse.incquery.patternlanguage.rdf.psystem
 
 import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
+import hu.bme.mit.incqueryd.rdf.RdfUtils
+import java.net.URL
 import java.util.List
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference
@@ -10,7 +12,6 @@ import org.eclipse.incquery.runtime.matchers.psystem.PBody
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
 import org.eclipse.incquery.runtime.matchers.tuple.FlatTuple
 import org.eclipse.incquery.runtime.matchers.tuple.Tuple
-import org.openrdf.model.Model
 
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
 
@@ -30,7 +31,7 @@ class RdfPModel {
 
 	new(RdfPatternModel patternModel) {
 		this.patternModel = patternModel
-		val Model vocabulary = null // TODO load vocabularies from patternModel
+		val vocabulary = RdfUtils.load(patternModel.vocabularies.map[new URL(location)].toSet)
 		context = new RdfPatternMatcherContext(vocabulary)
 	}
 
