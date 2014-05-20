@@ -3,13 +3,18 @@ package org.eclipse.incquery.patternlanguage.rdf.psystem;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
+import hu.bme.mit.incqueryd.rdf.RdfUtils;
+import java.net.URL;
 import java.util.List;
+import java.util.Set;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPQuery;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPatternMatcherContext;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Vocabulary;
 import org.eclipse.incquery.runtime.matchers.psystem.PBody;
 import org.eclipse.incquery.runtime.matchers.psystem.PVariable;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
@@ -17,6 +22,7 @@ import org.eclipse.incquery.runtime.matchers.tuple.FlatTuple;
 import org.eclipse.incquery.runtime.matchers.tuple.Tuple;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.openrdf.model.Model;
 
@@ -42,10 +48,27 @@ public class RdfPModel {
   }
   
   public RdfPModel(final RdfPatternModel patternModel) {
-    this.patternModel = patternModel;
-    final Model vocabulary = null;
-    RdfPatternMatcherContext _rdfPatternMatcherContext = new RdfPatternMatcherContext(vocabulary);
-    this.context = _rdfPatternMatcherContext;
+    try {
+      this.patternModel = patternModel;
+      EList<Vocabulary> _vocabularies = patternModel.getVocabularies();
+      final Function1<Vocabulary,URL> _function = new Function1<Vocabulary,URL>() {
+        public URL apply(final Vocabulary it) {
+          try {
+            String _location = it.getLocation();
+            return new URL(_location);
+          } catch (Throwable _e) {
+            throw Exceptions.sneakyThrow(_e);
+          }
+        }
+      };
+      List<URL> _map = ListExtensions.<Vocabulary, URL>map(_vocabularies, _function);
+      Set<URL> _set = IterableExtensions.<URL>toSet(_map);
+      final Model vocabulary = RdfUtils.load(_set);
+      RdfPatternMatcherContext _rdfPatternMatcherContext = new RdfPatternMatcherContext(vocabulary);
+      this.context = _rdfPatternMatcherContext;
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   public Tuple toTuple(final List<ValueReference> valueReferences, final PBody pBody) {
