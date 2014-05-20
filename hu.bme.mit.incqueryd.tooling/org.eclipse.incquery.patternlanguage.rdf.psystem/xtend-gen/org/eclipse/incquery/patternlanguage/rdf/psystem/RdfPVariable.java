@@ -104,15 +104,19 @@ public class RdfPVariable {
       EList<ValueReference> _parameters = call.getParameters();
       final Tuple tuple = RdfPUtils.toTuple(_parameters, pBody);
       AggregatorExpression _aggregator = aggregatedValue.getAggregator();
+      final AggregatorExpression aggregator = _aggregator;
       boolean _matched = false;
       if (!_matched) {
-        if (_aggregator instanceof CountAggregator) {
+        if (aggregator instanceof CountAggregator) {
           _matched=true;
           new PatternMatchCounter(pBody, tuple, calledQuery, result);
         }
       }
       if (!_matched) {
-        throw new RuntimeException("Unsupported aggregator expression");
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Unsupported aggregator expression ");
+        _builder.append(aggregator, "");
+        throw new RuntimeException(_builder.toString());
       }
       _xblockexpression = result;
     }
