@@ -22,6 +22,8 @@ class ParserTest {
 	@Test
 	def void posLength() {
 		val model = parser.parse('''
+vocabulary <https://svn.apache.org/repos/asf/jena/trunk/jena-arq/Vocabularies/FOAF.ttl>
+
 base <http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#>
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
