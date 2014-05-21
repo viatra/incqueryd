@@ -14,7 +14,7 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.Inequality
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.NegativePatternCall
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.BinaryTransitiveClosure
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.PositivePatternCall
-import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeTernary
+import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeBinary
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary
 import org.openrdf.model.Resource
 import org.openrdf.model.impl.URIImpl
@@ -83,7 +83,7 @@ class RdfPConstraint {
 		val target = constraint.target.toPVariable(pBody, model)
 		val typeObject = refType.toRdfResource
 		val typeString = model.context.printType(typeObject)
-		new TypeTernary(pBody, model.context, pBody.newVirtualVariable, source, target, typeObject, typeString)
+		new TypeBinary(pBody, model.context, source, target, typeObject, typeString)
 	}
 
 	static def PConstraint convertCheckConstraint(RdfCheckConstraint constraint) {
