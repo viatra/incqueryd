@@ -1,5 +1,6 @@
 package org.eclipse.incquery.patternlanguage.rdf.psystem;
 
+import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Annotation;
 import org.eclipse.incquery.patternlanguage.patternLanguage.AnnotationParameter;
@@ -122,9 +123,18 @@ public class PUtils {
   }
   
   public static PParameter toPParameter(final Variable parameter) {
-    String _name = parameter.getName();
+    PParameter _xifexpression = null;
     Type _type = parameter.getType();
-    String _typename = _type.getTypename();
-    return new PParameter(_name, _typename);
+    boolean _equals = Objects.equal(_type, null);
+    if (_equals) {
+      String _name = parameter.getName();
+      _xifexpression = new PParameter(_name);
+    } else {
+      String _name_1 = parameter.getName();
+      Type _type_1 = parameter.getType();
+      String _typename = _type_1.getTypename();
+      _xifexpression = new PParameter(_name_1, _typename);
+    }
+    return _xifexpression;
   }
 }
