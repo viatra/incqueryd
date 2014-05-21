@@ -11,8 +11,9 @@ import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
 
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPBody.*
+import java.io.Serializable
 
-class RdfPQuery implements PQuery {
+class RdfPQuery implements PQuery, Serializable {
 
 	// Annotations
 

@@ -23,7 +23,7 @@ class RdfPModel {
 
 	val Cache<Pattern, PQuery> queries = CacheBuilder.newBuilder.build[pattern |
 		new RdfPQuery(pattern, this)
-	]
+	] // XXX due to this solution, recursive patterns are not supported
 
 	def PQuery findQueryOf(Pattern pattern) {
 		queries.get(pattern)

@@ -3,6 +3,7 @@ package org.eclipse.incquery.patternlanguage.rdf.psystem;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -27,7 +28,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 
 @SuppressWarnings("all")
-public class RdfPQuery implements PQuery {
+public class RdfPQuery implements PQuery, Serializable {
   private final List<PAnnotation> annotations;
   
   public List<PAnnotation> getAllAnnotations() {
