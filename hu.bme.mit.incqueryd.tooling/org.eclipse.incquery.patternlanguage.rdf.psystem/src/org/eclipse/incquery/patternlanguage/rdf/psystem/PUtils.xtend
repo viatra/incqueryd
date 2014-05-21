@@ -47,7 +47,11 @@ class PUtils { // TODO most of this code exists in EPMToBody, move it to generic
 	}
 
 	static def PParameter toPParameter(Variable parameter) {
-		new PParameter(parameter.name, parameter.type.typename)
+		if (parameter.type == null) {
+			new PParameter(parameter.name)
+		} else {
+			new PParameter(parameter.name, parameter.type.typename)
+		}
 	}
 
 }
