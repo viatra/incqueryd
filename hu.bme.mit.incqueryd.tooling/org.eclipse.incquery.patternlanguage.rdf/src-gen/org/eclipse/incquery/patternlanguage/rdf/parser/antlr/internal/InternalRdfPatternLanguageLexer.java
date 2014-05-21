@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalRdfPatternLanguageLexer extends Lexer {
-    public static final int RULE_ID=5;
+    public static final int RULE_ID=4;
     public static final int T__29=29;
     public static final int T__28=28;
     public static final int T__27=27;
@@ -53,7 +53,7 @@ public class InternalRdfPatternLanguageLexer extends Lexer {
     public static final int T__89=89;
     public static final int T__88=88;
     public static final int RULE_ML_COMMENT=10;
-    public static final int RULE_STRING=4;
+    public static final int RULE_STRING=5;
     public static final int T__71=71;
     public static final int T__72=72;
     public static final int T__70=70;

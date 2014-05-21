@@ -1402,7 +1402,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 	
 	/**
 	 * Constraint:
-	 *     location=STRING
+	 *     location=RawIri
 	 */
 	protected void sequence_Vocabulary(EObject context, Vocabulary semanticObject) {
 		if(errorAcceptor != null) {
@@ -1411,7 +1411,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getVocabularyAccess().getLocationSTRINGTerminalRuleCall_1_0(), semanticObject.getLocation());
+		feeder.accept(grammarAccess.getVocabularyAccess().getLocationRawIriParserRuleCall_1_0(), semanticObject.getLocation());
 		feeder.finish();
 	}
 }

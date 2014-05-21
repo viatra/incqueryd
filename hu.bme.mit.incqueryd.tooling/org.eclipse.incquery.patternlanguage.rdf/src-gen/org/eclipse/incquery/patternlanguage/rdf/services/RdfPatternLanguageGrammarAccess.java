@@ -81,23 +81,23 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cVocabularyKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cLocationAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cLocationSTRINGTerminalRuleCall_1_0 = (RuleCall)cLocationAssignment_1.eContents().get(0);
+		private final RuleCall cLocationRawIriParserRuleCall_1_0 = (RuleCall)cLocationAssignment_1.eContents().get(0);
 		
 		//Vocabulary:
-		//	"vocabulary" location=STRING;
+		//	"vocabulary" location=RawIri;
 		public ParserRule getRule() { return rule; }
 
-		//"vocabulary" location=STRING
+		//"vocabulary" location=RawIri
 		public Group getGroup() { return cGroup; }
 
 		//"vocabulary"
 		public Keyword getVocabularyKeyword_0() { return cVocabularyKeyword_0; }
 
-		//location=STRING
+		//location=RawIri
 		public Assignment getLocationAssignment_1() { return cLocationAssignment_1; }
 
-		//STRING
-		public RuleCall getLocationSTRINGTerminalRuleCall_1_0() { return cLocationSTRINGTerminalRuleCall_1_0; }
+		//RawIri
+		public RuleCall getLocationRawIriParserRuleCall_1_0() { return cLocationRawIriParserRuleCall_1_0; }
 	}
 
 	public class IriPrefixElements extends AbstractParserRuleElementFinder {
@@ -560,7 +560,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//Vocabulary:
-	//	"vocabulary" location=STRING;
+	//	"vocabulary" location=RawIri;
 	public VocabularyElements getVocabularyAccess() {
 		return (pVocabulary != null) ? pVocabulary : (pVocabulary = new VocabularyElements());
 	}

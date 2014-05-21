@@ -187,19 +187,19 @@ ruleVocabulary returns [EObject current=null]
     }
 (
 (
-		lv_location_1_0=RULE_STRING
-		{
-			newLeafNode(lv_location_1_0, grammarAccess.getVocabularyAccess().getLocationSTRINGTerminalRuleCall_1_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getVocabularyAccess().getLocationRawIriParserRuleCall_1_0()); 
+	    }
+		lv_location_1_0=ruleRawIri		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getVocabularyRule());
+	            $current = createModelElementForParent(grammarAccess.getVocabularyRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"location",
         		lv_location_1_0, 
-        		"STRING");
+        		"RawIri");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
