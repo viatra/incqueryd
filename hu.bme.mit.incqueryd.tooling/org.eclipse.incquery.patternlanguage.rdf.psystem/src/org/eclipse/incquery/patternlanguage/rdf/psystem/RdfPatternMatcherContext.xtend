@@ -34,67 +34,67 @@ class RdfPatternMatcherContext implements IPatternMatcherContext {
 	// Binary
 
 	override isBinaryEdgeType(Object typeObject) {
-		false
+		vocabulary.contains(typeObject as Resource, RDF.TYPE, RDF.PROPERTY)
 	}
 
 	override binaryEdgeSourceType(Object typeObject) {
-		throw new UnsupportedOperationException
+		vocabulary.filter(typeObject as Resource, RDFS.DOMAIN, null).map[object].head
 	}
 
 	override binaryEdgeTargetType(Object typeObject) {
-		throw new UnsupportedOperationException
+		vocabulary.filter(typeObject as Resource, RDFS.RANGE, null).map[object].head
 	}
 
 	override isBinaryEdgeMultiplicityOneTo(Object typeObject) {
-		throw new UnsupportedOperationException
+		false // TODO SPARQL? based on http://www.w3.org/TR/owl-guide/#owl_cardinality
 	}
 
 	override isBinaryEdgeMultiplicityToOne(Object typeObject) {
-		throw new UnsupportedOperationException
+		false // TODO SPARQL? based on http://www.w3.org/TR/owl-guide/#owl_cardinality
 	}
 
 	override enumerateDirectBinaryEdgeSubtypes(Object typeObject) {
-		throw new UnsupportedOperationException
+		vocabulary.filter(null, RDFS.SUBPROPERTYOF, typeObject as Resource).map[subject].toSet
 	}
 
 	override enumerateDirectBinaryEdgeSupertypes(Object typeObject) {
-		throw new UnsupportedOperationException
+		vocabulary.filter(typeObject as Resource, RDFS.SUBPROPERTYOF, null).map[object].toSet
 	}
 
 	// Ternary
 
 	override isTernaryEdgeType(Object typeObject) {
-		vocabulary.contains(typeObject as Resource, RDF.TYPE, RDF.PROPERTY)
+		false
 	}
 
 	override ternaryEdgeSourceType(Object typeObject) {
-		vocabulary.filter(typeObject as Resource, RDFS.DOMAIN, null).map[object].head
+		throw new UnsupportedOperationException
 	}
 
 	override ternaryEdgeTargetType(Object typeObject) {
-		vocabulary.filter(typeObject as Resource, RDFS.RANGE, null).map[object].head
+		throw new UnsupportedOperationException
 	}
 
 	override isTernaryEdgeMultiplicityOneTo(Object typeObject) {
-		false // TODO SPARQL? based on http://www.w3.org/TR/owl-guide/#owl_cardinality
+		throw new UnsupportedOperationException
 	}
 
 	override isTernaryEdgeMultiplicityToOne(Object typeObject) {
-		false // TODO SPARQL? based on http://www.w3.org/TR/owl-guide/#owl_cardinality
+		throw new UnsupportedOperationException
 	}
 
 	override enumerateDirectTernaryEdgeSubtypes(Object typeObject) {
-		vocabulary.filter(null, RDFS.SUBPROPERTYOF, typeObject as Resource).map[subject].toSet
+		throw new UnsupportedOperationException
 	}
 
 	override enumerateDirectTernaryEdgeSupertypes(Object typeObject) {
-		vocabulary.filter(typeObject as Resource, RDFS.SUBPROPERTYOF, null).map[object].toSet
+		throw new UnsupportedOperationException
 	}
 
 	// Generic
 
 	override edgeInterpretation() {
-		IPatternMatcherContext.EdgeInterpretation.TERNARY
+		IPatternMatcherContext.EdgeInterpretation.BINARY
 	}
 
 	override allowedGeneralizationQueryDirection() {

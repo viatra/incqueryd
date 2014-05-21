@@ -28,7 +28,7 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.Inequality;
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.NegativePatternCall;
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.BinaryTransitiveClosure;
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
-import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeTernary;
+import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeBinary;
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.incquery.runtime.matchers.tuple.Tuple;
@@ -170,7 +170,7 @@ public class RdfPConstraint {
   }
   
   public static PConstraint convertPropertyConstraint(final RdfPropertyConstraint constraint, final PBody pBody, final RdfPModel model) {
-    TypeTernary _xblockexpression = null;
+    TypeBinary _xblockexpression = null;
     {
       final Iri refType = constraint.getRefType();
       VariableReference _source = constraint.getSource();
@@ -180,8 +180,7 @@ public class RdfPConstraint {
       final PVariable target = RdfPVariable.toPVariable(_target, pBody, model);
       final Resource typeObject = RdfPConstraint.toRdfResource(refType);
       final String typeString = model.context.printType(typeObject);
-      PVariable _newVirtualVariable = pBody.newVirtualVariable();
-      _xblockexpression = new TypeTernary(pBody, model.context, _newVirtualVariable, source, target, typeObject, typeString);
+      _xblockexpression = new TypeBinary(pBody, model.context, source, target, typeObject, typeString);
     }
     return _xblockexpression;
   }
