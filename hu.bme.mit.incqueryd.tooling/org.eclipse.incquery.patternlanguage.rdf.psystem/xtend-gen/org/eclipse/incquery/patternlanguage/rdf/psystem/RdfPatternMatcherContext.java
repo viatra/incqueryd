@@ -49,38 +49,10 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public boolean isBinaryEdgeType(final Object typeObject) {
-    return false;
-  }
-  
-  public Object binaryEdgeSourceType(final Object typeObject) {
-    throw new UnsupportedOperationException();
-  }
-  
-  public Object binaryEdgeTargetType(final Object typeObject) {
-    throw new UnsupportedOperationException();
-  }
-  
-  public boolean isBinaryEdgeMultiplicityOneTo(final Object typeObject) {
-    throw new UnsupportedOperationException();
-  }
-  
-  public boolean isBinaryEdgeMultiplicityToOne(final Object typeObject) {
-    throw new UnsupportedOperationException();
-  }
-  
-  public Collection<?> enumerateDirectBinaryEdgeSubtypes(final Object typeObject) {
-    throw new UnsupportedOperationException();
-  }
-  
-  public Collection<?> enumerateDirectBinaryEdgeSupertypes(final Object typeObject) {
-    throw new UnsupportedOperationException();
-  }
-  
-  public boolean isTernaryEdgeType(final Object typeObject) {
     return this.vocabulary.contains(((Resource) typeObject), RDF.TYPE, RDF.PROPERTY);
   }
   
-  public Object ternaryEdgeSourceType(final Object typeObject) {
+  public Object binaryEdgeSourceType(final Object typeObject) {
     Model _filter = this.vocabulary.filter(((Resource) typeObject), RDFS.DOMAIN, null);
     final Function1<Statement,Value> _function = new Function1<Statement,Value>() {
       public Value apply(final Statement it) {
@@ -91,7 +63,7 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
     return IterableExtensions.<Value>head(_map);
   }
   
-  public Object ternaryEdgeTargetType(final Object typeObject) {
+  public Object binaryEdgeTargetType(final Object typeObject) {
     Model _filter = this.vocabulary.filter(((Resource) typeObject), RDFS.RANGE, null);
     final Function1<Statement,Value> _function = new Function1<Statement,Value>() {
       public Value apply(final Statement it) {
@@ -102,15 +74,15 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
     return IterableExtensions.<Value>head(_map);
   }
   
-  public boolean isTernaryEdgeMultiplicityOneTo(final Object typeObject) {
+  public boolean isBinaryEdgeMultiplicityOneTo(final Object typeObject) {
     return false;
   }
   
-  public boolean isTernaryEdgeMultiplicityToOne(final Object typeObject) {
+  public boolean isBinaryEdgeMultiplicityToOne(final Object typeObject) {
     return false;
   }
   
-  public Collection<?> enumerateDirectTernaryEdgeSubtypes(final Object typeObject) {
+  public Collection<?> enumerateDirectBinaryEdgeSubtypes(final Object typeObject) {
     Model _filter = this.vocabulary.filter(null, RDFS.SUBPROPERTYOF, ((Resource) typeObject));
     final Function1<Statement,Resource> _function = new Function1<Statement,Resource>() {
       public Resource apply(final Statement it) {
@@ -121,7 +93,7 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
     return IterableExtensions.<Resource>toSet(_map);
   }
   
-  public Collection<?> enumerateDirectTernaryEdgeSupertypes(final Object typeObject) {
+  public Collection<?> enumerateDirectBinaryEdgeSupertypes(final Object typeObject) {
     Model _filter = this.vocabulary.filter(((Resource) typeObject), RDFS.SUBPROPERTYOF, null);
     final Function1<Statement,Value> _function = new Function1<Statement,Value>() {
       public Value apply(final Statement it) {
@@ -132,8 +104,36 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
     return IterableExtensions.<Value>toSet(_map);
   }
   
+  public boolean isTernaryEdgeType(final Object typeObject) {
+    return false;
+  }
+  
+  public Object ternaryEdgeSourceType(final Object typeObject) {
+    throw new UnsupportedOperationException();
+  }
+  
+  public Object ternaryEdgeTargetType(final Object typeObject) {
+    throw new UnsupportedOperationException();
+  }
+  
+  public boolean isTernaryEdgeMultiplicityOneTo(final Object typeObject) {
+    throw new UnsupportedOperationException();
+  }
+  
+  public boolean isTernaryEdgeMultiplicityToOne(final Object typeObject) {
+    throw new UnsupportedOperationException();
+  }
+  
+  public Collection<?> enumerateDirectTernaryEdgeSubtypes(final Object typeObject) {
+    throw new UnsupportedOperationException();
+  }
+  
+  public Collection<?> enumerateDirectTernaryEdgeSupertypes(final Object typeObject) {
+    throw new UnsupportedOperationException();
+  }
+  
   public IPatternMatcherContext.EdgeInterpretation edgeInterpretation() {
-    return IPatternMatcherContext.EdgeInterpretation.TERNARY;
+    return IPatternMatcherContext.EdgeInterpretation.BINARY;
   }
   
   public IPatternMatcherContext.GeneralizationQueryDirection allowedGeneralizationQueryDirection() {
