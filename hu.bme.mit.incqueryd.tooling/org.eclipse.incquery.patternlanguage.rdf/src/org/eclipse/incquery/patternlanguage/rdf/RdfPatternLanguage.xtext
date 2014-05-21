@@ -14,7 +14,7 @@ RdfPatternModel returns core::PatternModel:
 ;
 
 Vocabulary:
-	'vocabulary' location=STRING
+	'vocabulary' location=RawIri
 ;
 
 IriPrefix:

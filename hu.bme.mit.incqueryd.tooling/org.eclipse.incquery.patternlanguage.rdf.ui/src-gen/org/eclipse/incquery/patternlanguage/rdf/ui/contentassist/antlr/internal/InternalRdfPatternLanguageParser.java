@@ -9638,11 +9638,11 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
                 if ( (LA3_1==RULE_INT) ) {
                     int LA3_2 = input.LA(3);
 
-                    if ( (LA3_2==45) ) {
-                        alt3=2;
-                    }
-                    else if ( (LA3_2==EOF||(LA3_2>=23 && LA3_2<=24)||(LA3_2>=57 && LA3_2<=58)||(LA3_2>=65 && LA3_2<=66)) ) {
+                    if ( (LA3_2==EOF||(LA3_2>=23 && LA3_2<=24)||(LA3_2>=57 && LA3_2<=58)||(LA3_2>=65 && LA3_2<=66)) ) {
                         alt3=1;
+                    }
+                    else if ( (LA3_2==45) ) {
+                        alt3=2;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return ;}
@@ -9665,11 +9665,11 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
                 {
                 int LA3_2 = input.LA(2);
 
-                if ( (LA3_2==45) ) {
-                    alt3=2;
-                }
-                else if ( (LA3_2==EOF||(LA3_2>=23 && LA3_2<=24)||(LA3_2>=57 && LA3_2<=58)||(LA3_2>=65 && LA3_2<=66)) ) {
+                if ( (LA3_2==EOF||(LA3_2>=23 && LA3_2<=24)||(LA3_2>=57 && LA3_2<=58)||(LA3_2>=65 && LA3_2<=66)) ) {
                     alt3=1;
+                }
+                else if ( (LA3_2==45) ) {
+                    alt3=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -10281,11 +10281,11 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
                 {
                 int LA8_2 = input.LA(2);
 
-                if ( (LA8_2==14) ) {
-                    alt8=1;
-                }
-                else if ( (LA8_2==EOF||LA8_2==RULE_ID||(LA8_2>=RULE_HEX && LA8_2<=RULE_STRING)||(LA8_2>=15 && LA8_2<=18)||(LA8_2>=21 && LA8_2<=51)||(LA8_2>=55 && LA8_2<=58)||(LA8_2>=64 && LA8_2<=66)||(LA8_2>=68 && LA8_2<=69)||(LA8_2>=72 && LA8_2<=90)||(LA8_2>=95 && LA8_2<=96)||LA8_2==98) ) {
+                if ( (LA8_2==EOF||LA8_2==RULE_ID||(LA8_2>=RULE_HEX && LA8_2<=RULE_STRING)||(LA8_2>=15 && LA8_2<=18)||(LA8_2>=21 && LA8_2<=51)||(LA8_2>=55 && LA8_2<=58)||(LA8_2>=64 && LA8_2<=66)||(LA8_2>=68 && LA8_2<=69)||(LA8_2>=72 && LA8_2<=90)||(LA8_2>=95 && LA8_2<=96)||LA8_2==98) ) {
                     alt8=2;
+                }
+                else if ( (LA8_2==14) ) {
+                    alt8=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -59266,24 +59266,28 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
 
 
     // $ANTLR start "rule__Vocabulary__LocationAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:20806:1: rule__Vocabulary__LocationAssignment_1 : ( RULE_STRING ) ;
+    // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:20806:1: rule__Vocabulary__LocationAssignment_1 : ( ruleRawIri ) ;
     public final void rule__Vocabulary__LocationAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:20810:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:20811:1: ( RULE_STRING )
+            // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:20810:1: ( ( ruleRawIri ) )
+            // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:20811:1: ( ruleRawIri )
             {
-            // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:20811:1: ( RULE_STRING )
-            // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:20812:1: RULE_STRING
+            // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:20811:1: ( ruleRawIri )
+            // ../org.eclipse.incquery.patternlanguage.rdf.ui/src-gen/org/eclipse/incquery/patternlanguage/rdf/ui/contentassist/antlr/internal/InternalRdfPatternLanguage.g:20812:1: ruleRawIri
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVocabularyAccess().getLocationSTRINGTerminalRuleCall_1_0()); 
+               before(grammarAccess.getVocabularyAccess().getLocationRawIriParserRuleCall_1_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Vocabulary__LocationAssignment_141819); if (state.failed) return ;
+            pushFollow(FOLLOW_ruleRawIri_in_rule__Vocabulary__LocationAssignment_141819);
+            ruleRawIri();
+
+            state._fsp--;
+            if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVocabularyAccess().getLocationSTRINGTerminalRuleCall_1_0()); 
+               after(grammarAccess.getVocabularyAccess().getLocationRawIriParserRuleCall_1_0()); 
             }
 
             }
@@ -68722,7 +68726,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
     static final String DFA1_maxS =
         "\1\136\2\uffff\2\70\1\uffff\1\4\1\5\1\72\1\70\2\uffff";
     static final String DFA1_acceptS =
-        "\1\uffff\1\1\1\2\2\uffff\1\5\4\uffff\1\4\1\3";
+        "\1\uffff\1\1\1\2\2\uffff\1\5\4\uffff\1\3\1\4";
     static final String DFA1_specialS =
         "\14\uffff}>";
     static final String[] DFA1_transitionS = {
@@ -68735,7 +68739,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
             "",
             "\1\10",
             "\1\11\1\4",
-            "\1\13\1\12",
+            "\1\12\1\13",
             "\1\6",
             "",
             ""
@@ -69280,23 +69284,23 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
     static final String DFA43_eotS =
         "\7\uffff";
     static final String DFA43_eofS =
-        "\2\uffff\1\4\2\uffff\1\4\1\uffff";
+        "\2\uffff\1\4\3\uffff\1\4";
     static final String DFA43_minS =
-        "\1\4\1\uffff\1\55\1\4\1\uffff\1\55\1\uffff";
+        "\1\4\1\uffff\1\55\1\4\2\uffff\1\55";
     static final String DFA43_maxS =
-        "\1\60\1\uffff\1\102\1\50\1\uffff\1\102\1\uffff";
+        "\1\60\1\uffff\1\102\1\50\2\uffff\1\102";
     static final String DFA43_acceptS =
-        "\1\uffff\1\1\2\uffff\1\2\1\uffff\1\3";
+        "\1\uffff\1\1\2\uffff\1\2\1\3\1\uffff";
     static final String DFA43_specialS =
         "\7\uffff}>";
     static final String[] DFA43_transitionS = {
             "\1\2\53\uffff\1\1",
             "",
             "\1\3\24\uffff\1\4",
-            "\1\5\43\uffff\1\6",
+            "\1\6\43\uffff\1\5",
             "",
-            "\1\3\24\uffff\1\4",
-            ""
+            "",
+            "\1\3\24\uffff\1\4"
     };
 
     static final short[] DFA43_eot = DFA.unpackEncodedString(DFA43_eotS);
@@ -69343,7 +69347,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
     static final String DFA76_acceptS =
         "\1\uffff\1\2\11\uffff\1\1";
     static final String DFA76_specialS =
-        "\2\uffff\1\1\1\5\1\4\1\6\1\3\1\2\1\0\1\7\1\10\1\uffff}>";
+        "\2\uffff\1\10\1\6\1\5\1\1\1\3\1\4\1\0\1\2\1\7\1\uffff}>";
     static final String[] DFA76_transitionS = {
             "\1\1\1\uffff\4\1\5\uffff\4\1\2\uffff\10\1\1\2\1\3\1\4\1\5\1"+
             "\6\1\7\1\10\1\11\1\12\16\1\3\uffff\4\1\5\uffff\3\1\1\uffff\2"+
@@ -69413,10 +69417,10 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA76_2 = input.LA(1);
+                        int LA76_5 = input.LA(1);
 
                          
-                        int index76_2 = input.index();
+                        int index76_5 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred121_InternalRdfPatternLanguage()) ) {s = 11;}
@@ -69424,14 +69428,14 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index76_2);
+                        input.seek(index76_5);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA76_7 = input.LA(1);
+                        int LA76_9 = input.LA(1);
 
                          
-                        int index76_7 = input.index();
+                        int index76_9 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred121_InternalRdfPatternLanguage()) ) {s = 11;}
@@ -69439,7 +69443,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
                         else if ( (true) ) {s = 1;}
 
                          
-                        input.seek(index76_7);
+                        input.seek(index76_9);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
@@ -69458,6 +69462,21 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
+                        int LA76_7 = input.LA(1);
+
+                         
+                        int index76_7 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred121_InternalRdfPatternLanguage()) ) {s = 11;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index76_7);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
                         int LA76_4 = input.LA(1);
 
                          
@@ -69472,7 +69491,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
                         input.seek(index76_4);
                         if ( s>=0 ) return s;
                         break;
-                    case 5 : 
+                    case 6 : 
                         int LA76_3 = input.LA(1);
 
                          
@@ -69487,37 +69506,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
                         input.seek(index76_3);
                         if ( s>=0 ) return s;
                         break;
-                    case 6 : 
-                        int LA76_5 = input.LA(1);
-
-                         
-                        int index76_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred121_InternalRdfPatternLanguage()) ) {s = 11;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index76_5);
-                        if ( s>=0 ) return s;
-                        break;
                     case 7 : 
-                        int LA76_9 = input.LA(1);
-
-                         
-                        int index76_9 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred121_InternalRdfPatternLanguage()) ) {s = 11;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index76_9);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
                         int LA76_10 = input.LA(1);
 
                          
@@ -69530,6 +69519,21 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
 
                          
                         input.seek(index76_10);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 8 : 
+                        int LA76_2 = input.LA(1);
+
+                         
+                        int index76_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred121_InternalRdfPatternLanguage()) ) {s = 11;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index76_2);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -71947,7 +71951,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_52_in_rule__RdfPatternModel__Group_2__0__Impl10059 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RdfPatternModel__Group_2__1__Impl_in_rule__RdfPatternModel__Group_2__110090 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RdfPatternModel__BaseIriValueAssignment_2_1_in_rule__RdfPatternModel__Group_2__1__Impl10117 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Vocabulary__Group__0__Impl_in_rule__Vocabulary__Group__010151 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_rule__Vocabulary__Group__0__Impl_in_rule__Vocabulary__Group__010151 = new BitSet(new long[]{0x0000000000000030L});
     public static final BitSet FOLLOW_rule__Vocabulary__Group__1_in_rule__Vocabulary__Group__010154 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_53_in_rule__Vocabulary__Group__0__Impl10182 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Vocabulary__Group__1__Impl_in_rule__Vocabulary__Group__110213 = new BitSet(new long[]{0x0000000000000002L});
@@ -73234,7 +73238,7 @@ public class InternalRdfPatternLanguageParser extends AbstractInternalContentAss
     public static final BitSet FOLLOW_ruleRawIri_in_rule__RdfPatternModel__BaseIriValueAssignment_2_141726 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIriPrefix_in_rule__RdfPatternModel__IriPrefixesAssignment_341757 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePattern_in_rule__RdfPatternModel__PatternsAssignment_441788 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Vocabulary__LocationAssignment_141819 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRawIri_in_rule__Vocabulary__LocationAssignment_141819 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__IriPrefix__NameAssignment_141850 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRawIri_in_rule__IriPrefix__ValueAssignment_341881 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__Iri__PrefixAssignment_0_041916 = new BitSet(new long[]{0x0000000000000002L});
