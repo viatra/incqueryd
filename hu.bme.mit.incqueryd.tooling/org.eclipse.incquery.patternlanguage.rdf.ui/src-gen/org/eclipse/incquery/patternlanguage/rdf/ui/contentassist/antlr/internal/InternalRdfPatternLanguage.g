@@ -20809,8 +20809,8 @@ rule__Vocabulary__LocationAssignment_1
     }
 :
 (
-{ before(grammarAccess.getVocabularyAccess().getLocationSTRINGTerminalRuleCall_1_0()); }
-	RULE_STRING{ after(grammarAccess.getVocabularyAccess().getLocationSTRINGTerminalRuleCall_1_0()); }
+{ before(grammarAccess.getVocabularyAccess().getLocationRawIriParserRuleCall_1_0()); }
+	ruleRawIri{ after(grammarAccess.getVocabularyAccess().getLocationRawIriParserRuleCall_1_0()); }
 )
 
 ;
