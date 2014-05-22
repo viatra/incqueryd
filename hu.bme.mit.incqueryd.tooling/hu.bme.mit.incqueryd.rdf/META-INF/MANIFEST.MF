@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Rdf
+Bundle-SymbolicName: hu.bme.mit.incqueryd.rdf
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.xtend.lib,
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ org.openrdf.sesame;bundle-version="2.7.10"
+Export-Package: hu.bme.mit.incqueryd.rdf
+
