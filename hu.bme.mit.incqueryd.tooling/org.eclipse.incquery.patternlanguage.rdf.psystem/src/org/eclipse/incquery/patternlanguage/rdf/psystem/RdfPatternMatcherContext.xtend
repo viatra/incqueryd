@@ -7,6 +7,7 @@ import org.openrdf.model.vocabulary.RDF
 import org.openrdf.model.vocabulary.RDFS
 import org.apache.log4j.Logger
 import org.openrdf.model.Value
+import org.openrdf.model.vocabulary.OWL
 
 class RdfPatternMatcherContext implements IPatternMatcherContext {
 
@@ -17,10 +18,13 @@ class RdfPatternMatcherContext implements IPatternMatcherContext {
 		this.vocabulary = vocabulary
 	}
 
+	// XXX eliminate casts?
+
 	// Unary
 
 	override isUnaryType(Object typeObject) {
-		vocabulary.contains(typeObject as Resource, RDF.TYPE, RDFS.CLASS) // XXX eliminate casts?
+		vocabulary.contains(typeObject as Resource, RDF.TYPE, RDFS.CLASS) ||
+		vocabulary.contains(typeObject as Resource, RDF.TYPE, OWL.CLASS)
 	}
 
 	override enumerateDirectUnarySubtypes(Object typeObject) {
