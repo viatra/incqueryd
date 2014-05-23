@@ -33,11 +33,12 @@ public class RecipeGenerator implements IGenerator {
 
 	@Override
 	public void doGenerate(Resource input, IFileSystemAccess fsa) {
-		XMLResourceImpl resource = new XMLResourceImpl();
-		resource.setEncoding("UTF-8");
-		ReteRecipe recipe = RecipesFactory.eINSTANCE.createReteRecipe();
-		resource.getContents().add(recipe);
+		XMLProcessor xmlProcessor = new XMLProcessor();
 		for (RdfPatternModel patternModel : filter(input.getContents(), RdfPatternModel.class)) {
+			XMLResourceImpl resource = new XMLResourceImpl();
+			resource.setEncoding("UTF-8");
+			ReteRecipe recipe = RecipesFactory.eINSTANCE.createReteRecipe();
+			resource.getContents().add(recipe);
 			RdfPModel model = new RdfPModel(patternModel);
 			ReteRecipeCompiler compiler = new ReteRecipeCompiler(Options.builderMethod.layoutStrategy(), model.context);
 			for (Pattern pattern : filter(copyOf(input.getAllContents()), Pattern.class)) {
@@ -55,12 +56,12 @@ public class RecipeGenerator implements IGenerator {
 					propagate(e);
 				}
 			}
-		}
-		try {
-			String contents = new XMLProcessor().saveToString(resource, null);
-			fsa.generateFile("recipe.xmi", contents);
-		} catch (IOException e) {
-			propagate(e);
+			try {
+				String contents = xmlProcessor.saveToString(resource, null);
+				fsa.generateFile(input.getURI().trimFileExtension().lastSegment() + ".xmi", contents);
+			} catch (IOException e) {
+				propagate(e);
+			}
 		}
 	}
 
