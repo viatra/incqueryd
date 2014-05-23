@@ -36,7 +36,7 @@ public class RawIriValueConverter extends AbstractLexerBasedConverter<String> {
     return string.replace(_builder, forbidden);
   }
   
-  protected String toEscapedString(final String value) {
+  public String toEscapedString(final String value) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<");
     String _escape = this.escape(value, "<");

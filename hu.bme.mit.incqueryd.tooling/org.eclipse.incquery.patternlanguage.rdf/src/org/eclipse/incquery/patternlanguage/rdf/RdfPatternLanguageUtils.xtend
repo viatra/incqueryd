@@ -2,7 +2,7 @@ package org.eclipse.incquery.patternlanguage.rdf
 
 import hu.bme.mit.incqueryd.rdf.RdfUtils
 import java.net.URL
-import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel
 import org.openrdf.model.Model
@@ -22,8 +22,8 @@ class RdfPatternLanguageUtils {
 		new URIImpl(iri.asString)
 	}
 
-	static def Model getVocabulary(Constraint constraint) {
-		val patternModel = constraint.getContainerOfType(RdfPatternModel)
+	static def Model getVocabulary(EObject object) {
+		val patternModel = object.getContainerOfType(RdfPatternModel)
 		RdfUtils.load(patternModel.vocabularies.map[new URL(location)].toSet)
 	}
 
