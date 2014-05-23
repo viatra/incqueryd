@@ -22,7 +22,7 @@ class RawIriValueConverter extends AbstractLexerBasedConverter<String> {
 		string.replace('''\\«forbidden»''', forbidden)
 	}
 
-	override protected toEscapedString(String value) {
+	override toEscapedString(String value) {
 		'''<«value.escape('<')»>'''
 	}
 

@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
@@ -56,11 +56,11 @@ public class RdfPatternLanguageUtils {
     return new URIImpl(_asString);
   }
   
-  public static Model getVocabulary(final Constraint constraint) {
+  public static Model getVocabulary(final EObject object) {
     try {
       Model _xblockexpression = null;
       {
-        final RdfPatternModel patternModel = EcoreUtil2.<RdfPatternModel>getContainerOfType(constraint, RdfPatternModel.class);
+        final RdfPatternModel patternModel = EcoreUtil2.<RdfPatternModel>getContainerOfType(object, RdfPatternModel.class);
         EList<Vocabulary> _vocabularies = patternModel.getVocabularies();
         final Function1<Vocabulary,URL> _function = new Function1<Vocabulary,URL>() {
           public URL apply(final Vocabulary it) {
