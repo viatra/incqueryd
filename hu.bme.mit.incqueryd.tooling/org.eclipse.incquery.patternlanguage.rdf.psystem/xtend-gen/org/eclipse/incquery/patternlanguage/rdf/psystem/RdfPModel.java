@@ -20,6 +20,7 @@ import org.eclipse.incquery.runtime.matchers.psystem.PVariable;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.incquery.runtime.matchers.tuple.FlatTuple;
 import org.eclipse.incquery.runtime.matchers.tuple.Tuple;
+import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -79,7 +80,7 @@ public class RdfPModel {
           return RdfPVariable.toPVariable(it, pBody, RdfPModel.this);
         }
       };
-      final List<PVariable> elements = ListExtensions.<ValueReference, PVariable>map(valueReferences, _function);
+      final PVariable[] elements = ((PVariable[])Conversions.unwrapArray(ListExtensions.<ValueReference, PVariable>map(valueReferences, _function), PVariable.class));
       _xblockexpression = new FlatTuple(elements);
     }
     return _xblockexpression;
