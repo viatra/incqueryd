@@ -1,12 +1,14 @@
 package org.eclipse.incquery.patternlanguage.rdf.tests
 
-import org.junit.Test
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguageFactory
-import static org.junit.Assert.*
-import static extension org.eclipse.incquery.patternlanguage.rdf.IriUtils.*
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternLanguageFactory
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguageFactory
+import org.junit.Test
 
-class IriUtilsTest {
+import static org.junit.Assert.*
+
+import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils.*
+
+class RdfPatternLanguageUtilsTest {
 
 	extension val PatternLanguageFactory factory = PatternLanguageFactory.eINSTANCE
 	extension val RdfPatternLanguageFactory rdfFactory = RdfPatternLanguageFactory.eINSTANCE

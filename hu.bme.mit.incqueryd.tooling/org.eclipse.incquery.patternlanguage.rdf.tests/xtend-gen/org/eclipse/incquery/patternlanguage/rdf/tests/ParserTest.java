@@ -31,7 +31,7 @@ public class ParserTest {
   public void posLength() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("vocabulary <https://svn.apache.org/repos/asf/jena/trunk/jena-arq/Vocabularies/FOAF.ttl>");
+      _builder.append("vocabulary <https://opensourceprojects.eu/p/mondo/trainbenchmark/ci/cf1bdd52087e7f5169aa1b1ee300b8eb6e6081b2/tree/src/hu.bme.mit.trainbenchmark.generator.rdf/src/main/resources/railway.owl.clear?format=raw>");
       _builder.newLine();
       _builder.newLine();
       _builder.append("base <http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#>");
