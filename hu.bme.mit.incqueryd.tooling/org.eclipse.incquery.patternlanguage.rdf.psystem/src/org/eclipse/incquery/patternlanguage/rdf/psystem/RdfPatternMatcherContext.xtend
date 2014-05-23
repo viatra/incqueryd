@@ -1,13 +1,12 @@
 package org.eclipse.incquery.patternlanguage.rdf.psystem
 
+import hu.bme.mit.incqueryd.rdf.RdfUtils
+import org.apache.log4j.Logger
 import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext
 import org.openrdf.model.Model
 import org.openrdf.model.Resource
-import org.openrdf.model.vocabulary.RDF
-import org.openrdf.model.vocabulary.RDFS
-import org.apache.log4j.Logger
 import org.openrdf.model.Value
-import org.openrdf.model.vocabulary.OWL
+import org.openrdf.model.vocabulary.RDFS
 
 class RdfPatternMatcherContext implements IPatternMatcherContext {
 
@@ -23,8 +22,7 @@ class RdfPatternMatcherContext implements IPatternMatcherContext {
 	// Unary
 
 	override isUnaryType(Object typeObject) {
-		vocabulary.contains(typeObject as Resource, RDF.TYPE, RDFS.CLASS) ||
-		vocabulary.contains(typeObject as Resource, RDF.TYPE, OWL.CLASS)
+		RdfUtils.isClass(typeObject as Resource, vocabulary)
 	}
 
 	override enumerateDirectUnarySubtypes(Object typeObject) {
@@ -38,7 +36,7 @@ class RdfPatternMatcherContext implements IPatternMatcherContext {
 	// Binary
 
 	override isBinaryEdgeType(Object typeObject) {
-		vocabulary.contains(typeObject as Resource, RDF.TYPE, RDF.PROPERTY)
+		RdfUtils.isProperty(typeObject as Resource, vocabulary)
 	}
 
 	override binaryEdgeSourceType(Object typeObject) {

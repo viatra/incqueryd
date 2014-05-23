@@ -1,5 +1,6 @@
 package org.eclipse.incquery.patternlanguage.rdf.psystem;
 
+import hu.bme.mit.incqueryd.rdf.RdfUtils;
 import java.util.Collection;
 import org.apache.log4j.Logger;
 import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext;
@@ -9,8 +10,6 @@ import org.openrdf.model.Model;
 import org.openrdf.model.Resource;
 import org.openrdf.model.Statement;
 import org.openrdf.model.Value;
-import org.openrdf.model.vocabulary.OWL;
-import org.openrdf.model.vocabulary.RDF;
 import org.openrdf.model.vocabulary.RDFS;
 
 @SuppressWarnings("all")
@@ -24,15 +23,7 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public boolean isUnaryType(final Object typeObject) {
-    boolean _or = false;
-    boolean _contains = this.vocabulary.contains(((Resource) typeObject), RDF.TYPE, RDFS.CLASS);
-    if (_contains) {
-      _or = true;
-    } else {
-      boolean _contains_1 = this.vocabulary.contains(((Resource) typeObject), RDF.TYPE, OWL.CLASS);
-      _or = _contains_1;
-    }
-    return _or;
+    return RdfUtils.isClass(((Resource) typeObject), this.vocabulary);
   }
   
   public Collection<?> enumerateDirectUnarySubtypes(final Object typeObject) {
@@ -58,7 +49,7 @@ public class RdfPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public boolean isBinaryEdgeType(final Object typeObject) {
-    return this.vocabulary.contains(((Resource) typeObject), RDF.TYPE, RDF.PROPERTY);
+    return RdfUtils.isProperty(((Resource) typeObject), this.vocabulary);
   }
   
   public Object binaryEdgeSourceType(final Object typeObject) {

@@ -3,7 +3,6 @@ package org.eclipse.incquery.patternlanguage.rdf.psystem
 import org.eclipse.incquery.patternlanguage.patternLanguage.CompareConstraint
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternCompositionConstraint
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint
@@ -16,12 +15,10 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.BinaryTran
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.PositivePatternCall
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeBinary
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary
-import org.openrdf.model.Resource
-import org.openrdf.model.impl.URIImpl
 
 import static org.eclipse.incquery.patternlanguage.patternLanguage.CompareFeature.*
 
-import static extension org.eclipse.incquery.patternlanguage.rdf.IriUtils.*
+import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
 
@@ -88,10 +85,6 @@ class RdfPConstraint {
 
 	static def PConstraint convertCheckConstraint(RdfCheckConstraint constraint) {
 		// TODO
-	}
-
-	static def Resource toRdfResource(Iri iri) {
-		new URIImpl(iri.asString)
 	}
 
 }

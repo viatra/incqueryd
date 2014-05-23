@@ -10,7 +10,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.PatternCompositionCo
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
-import org.eclipse.incquery.patternlanguage.rdf.IriUtils;
+import org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPModel;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable;
@@ -34,7 +34,6 @@ import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.incquery.runtime.matchers.tuple.Tuple;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.openrdf.model.Resource;
-import org.openrdf.model.impl.URIImpl;
 
 @SuppressWarnings("all")
 public class RdfPConstraint {
@@ -162,7 +161,7 @@ public class RdfPConstraint {
       final Variable variable = _variable.getVariable();
       final PVariable pVariable = PUtils.toPVariable(variable, pBody);
       Iri _type = constraint.getType();
-      final Resource typeObject = RdfPConstraint.toRdfResource(_type);
+      final Resource typeObject = RdfPatternLanguageUtils.toRdfResource(_type);
       final String typeString = model.context.printType(typeObject);
       _xblockexpression = new TypeUnary(pBody, pVariable, typeObject, typeString);
     }
@@ -178,7 +177,7 @@ public class RdfPConstraint {
       final PVariable source = PUtils.toPVariable(_variable, pBody);
       ValueReference _target = constraint.getTarget();
       final PVariable target = RdfPVariable.toPVariable(_target, pBody, model);
-      final Resource typeObject = RdfPConstraint.toRdfResource(refType);
+      final Resource typeObject = RdfPatternLanguageUtils.toRdfResource(refType);
       final String typeString = model.context.printType(typeObject);
       _xblockexpression = new TypeBinary(pBody, model.context, source, target, typeObject, typeString);
     }
@@ -187,10 +186,5 @@ public class RdfPConstraint {
   
   public static PConstraint convertCheckConstraint(final RdfCheckConstraint constraint) {
     return null;
-  }
-  
-  public static Resource toRdfResource(final Iri iri) {
-    String _asString = IriUtils.asString(iri);
-    return new URIImpl(_asString);
   }
 }
