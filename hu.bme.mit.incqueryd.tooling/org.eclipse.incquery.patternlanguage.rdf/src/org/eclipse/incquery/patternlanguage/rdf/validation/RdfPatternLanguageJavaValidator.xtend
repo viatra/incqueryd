@@ -12,8 +12,12 @@ import org.eclipse.xtext.validation.Check
 import org.openrdf.model.impl.URIImpl
 
 import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils.*
+import org.eclipse.xtext.validation.CheckType
+import org.apache.log4j.Logger
 
 public class RdfPatternLanguageJavaValidator extends AbstractRdfPatternLanguageJavaValidator {
+
+	static val logger = Logger.getLogger(RdfPatternLanguageJavaValidator)
 
 	override checkPackageDeclaration(PatternModel model) {
 		// Do not check
@@ -28,7 +32,7 @@ public class RdfPatternLanguageJavaValidator extends AbstractRdfPatternLanguageJ
 		}
 	}
 
-	@Check
+	@Check(CheckType.NORMAL)
 	def void checkVocabulary(Vocabulary vocabulary) {
 		try {
 			RdfUtils.load(#{new URL(vocabulary.location)})
@@ -37,21 +41,29 @@ public class RdfPatternLanguageJavaValidator extends AbstractRdfPatternLanguageJ
 		}
 	}
 
-	@Check
+	@Check(CheckType.NORMAL)
 	def void checkClassConstraint(RdfClassConstraint classConstraint) {
-		val vocabulary = classConstraint.vocabulary
-		val type = classConstraint.type.toRdfResource
-		if (!RdfUtils.isClass(type, vocabulary)) {
-			warning('''Class «classConstraint.type.asString» not found in any vocabulary''', classConstraint, RdfPatternLanguagePackage.eINSTANCE.rdfClassConstraint_Type)
+		try {
+			val vocabulary = classConstraint.vocabulary
+			val type = classConstraint.type.toRdfResource
+			if (!RdfUtils.isClass(type, vocabulary)) {
+				warning('''Class «classConstraint.type.asString» not found in any vocabulary''', classConstraint, RdfPatternLanguagePackage.eINSTANCE.rdfClassConstraint_Type)
+			}
+		} catch (Exception e) {
+			logger.warn(e)
 		}
 	}
 
-	@Check
+	@Check(CheckType.NORMAL)
 	def void checkPropertyConstraint(RdfPropertyConstraint propertyConstraint) {
-		val vocabulary = propertyConstraint.vocabulary
-		val refType = propertyConstraint.refType.toRdfResource
-		if (!RdfUtils.isProperty(refType, vocabulary)) {
-			warning('''Property «propertyConstraint.refType.asString» not found in any vocabulary''', propertyConstraint, RdfPatternLanguagePackage.eINSTANCE.rdfPropertyConstraint_RefType)
+		try {
+			val vocabulary = propertyConstraint.vocabulary
+			val refType = propertyConstraint.refType.toRdfResource
+			if (!RdfUtils.isProperty(refType, vocabulary)) {
+				warning('''Property «propertyConstraint.refType.asString» not found in any vocabulary''', propertyConstraint, RdfPatternLanguagePackage.eINSTANCE.rdfPropertyConstraint_RefType)
+			}
+		} catch (Exception e) {
+			logger.warn(e)
 		}
 	}
 
