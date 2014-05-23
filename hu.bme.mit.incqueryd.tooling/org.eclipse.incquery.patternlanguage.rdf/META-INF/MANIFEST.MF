@@ -25,14 +25,15 @@ Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.eclipse.incquery.patternlanguage.rdf,
- org.eclipse.incquery.patternlanguage.rdf.services,
+ org.eclipse.incquery.patternlanguage.rdf.conversion,
+ org.eclipse.incquery.patternlanguage.rdf.formatting,
+ org.eclipse.incquery.patternlanguage.rdf.jvmmodel,
+ org.eclipse.incquery.patternlanguage.rdf.parser.antlr,
+ org.eclipse.incquery.patternlanguage.rdf.parser.antlr.internal,
  org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage,
  org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl,
  org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.util,
  org.eclipse.incquery.patternlanguage.rdf.serializer,
- org.eclipse.incquery.patternlanguage.rdf.parser.antlr,
- org.eclipse.incquery.patternlanguage.rdf.parser.antlr.internal,
- org.eclipse.incquery.patternlanguage.rdf.validation,
- org.eclipse.incquery.patternlanguage.rdf.formatting,
- org.eclipse.incquery.patternlanguage.rdf.jvmmodel
+ org.eclipse.incquery.patternlanguage.rdf.services,
+ org.eclipse.incquery.patternlanguage.rdf.validation
 
