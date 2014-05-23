@@ -5,7 +5,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternBody;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternLanguageFactory;
-import org.eclipse.incquery.patternlanguage.rdf.IriUtils;
+import org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint;
@@ -18,7 +18,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 @SuppressWarnings("all")
-public class IriUtilsTest {
+public class RdfPatternLanguageUtilsTest {
   @Extension
   private final PatternLanguageFactory factory = PatternLanguageFactory.eINSTANCE;
   
@@ -35,7 +35,7 @@ public class IriUtilsTest {
       }
     };
     final Iri iri = ObjectExtensions.<Iri>operator_doubleArrow(_createIri, _function);
-    String _asString = IriUtils.asString(iri);
+    String _asString = RdfPatternLanguageUtils.asString(iri);
     Assert.assertEquals(iriValue, _asString);
   }
   
@@ -58,7 +58,7 @@ public class IriUtilsTest {
       }
     };
     final Iri iri = ObjectExtensions.<Iri>operator_doubleArrow(_createIri, _function_1);
-    String _asString = IriUtils.asString(iri);
+    String _asString = RdfPatternLanguageUtils.asString(iri);
     Assert.assertEquals((iriPrefixValue + iriValue), _asString);
   }
   
@@ -78,15 +78,15 @@ public class IriUtilsTest {
       public void apply(final RdfPatternModel it) {
         it.setBaseIriValue(modelBaseIriValue);
         EList<Pattern> _patterns = it.getPatterns();
-        Pattern _createPattern = IriUtilsTest.this.factory.createPattern();
+        Pattern _createPattern = RdfPatternLanguageUtilsTest.this.factory.createPattern();
         final Procedure1<Pattern> _function = new Procedure1<Pattern>() {
           public void apply(final Pattern it) {
             EList<PatternBody> _bodies = it.getBodies();
-            PatternBody _createPatternBody = IriUtilsTest.this.factory.createPatternBody();
+            PatternBody _createPatternBody = RdfPatternLanguageUtilsTest.this.factory.createPatternBody();
             final Procedure1<PatternBody> _function = new Procedure1<PatternBody>() {
               public void apply(final PatternBody it) {
                 EList<Constraint> _constraints = it.getConstraints();
-                RdfClassConstraint _createRdfClassConstraint = IriUtilsTest.this.rdfFactory.createRdfClassConstraint();
+                RdfClassConstraint _createRdfClassConstraint = RdfPatternLanguageUtilsTest.this.rdfFactory.createRdfClassConstraint();
                 final Procedure1<RdfClassConstraint> _function = new Procedure1<RdfClassConstraint>() {
                   public void apply(final RdfClassConstraint it) {
                     it.setType(iri);
@@ -105,7 +105,7 @@ public class IriUtilsTest {
       }
     };
     ObjectExtensions.<RdfPatternModel>operator_doubleArrow(_createRdfPatternModel, _function_1);
-    String _asString = IriUtils.asString(iri);
+    String _asString = RdfPatternLanguageUtils.asString(iri);
     Assert.assertEquals((modelBaseIriValue + iriValue), _asString);
   }
 }

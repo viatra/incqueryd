@@ -6,7 +6,11 @@ import java.net.URL;
 import java.util.Set;
 
 import org.openrdf.model.Model;
+import org.openrdf.model.Resource;
 import org.openrdf.model.impl.LinkedHashModel;
+import org.openrdf.model.vocabulary.OWL;
+import org.openrdf.model.vocabulary.RDF;
+import org.openrdf.model.vocabulary.RDFS;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.rio.RDFHandlerException;
 import org.openrdf.rio.RDFParseException;
@@ -27,6 +31,17 @@ public class RdfUtils {
 			parser.parse(inputStream, urlString);
 		}
 		return result;
+	}
+
+	public static boolean isClass(Resource resource, Model vocabulary) {
+		return vocabulary.contains(resource, RDF.TYPE, RDFS.CLASS) ||
+				vocabulary.contains(resource, RDF.TYPE, OWL.CLASS);
+	}
+
+	public static boolean isProperty(Resource resource, Model vocabulary) {
+		return vocabulary.contains(resource, RDF.TYPE, RDF.PROPERTY) ||
+				vocabulary.contains(resource, RDF.TYPE, OWL.OBJECTPROPERTY) ||
+				vocabulary.contains(resource, RDF.TYPE, OWL.DATATYPEPROPERTY);
 	}
 
 }
