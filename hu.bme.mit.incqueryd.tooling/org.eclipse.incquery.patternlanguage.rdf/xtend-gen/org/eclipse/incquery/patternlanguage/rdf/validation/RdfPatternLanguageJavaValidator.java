@@ -4,6 +4,7 @@ import com.google.common.collect.Sets;
 import hu.bme.mit.incqueryd.rdf.RdfUtils;
 import java.net.URL;
 import java.util.Collections;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel;
@@ -16,6 +17,7 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Vocabulary;
 import org.eclipse.incquery.patternlanguage.rdf.validation.AbstractRdfPatternLanguageJavaValidator;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.CheckType;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.openrdf.model.Model;
 import org.openrdf.model.Resource;
@@ -23,6 +25,8 @@ import org.openrdf.model.impl.URIImpl;
 
 @SuppressWarnings("all")
 public class RdfPatternLanguageJavaValidator extends AbstractRdfPatternLanguageJavaValidator {
+  private final static Logger logger = Logger.getLogger(RdfPatternLanguageJavaValidator.class);
+  
   public void checkPackageDeclaration(final PatternModel model) {
   }
   
@@ -42,7 +46,7 @@ public class RdfPatternLanguageJavaValidator extends AbstractRdfPatternLanguageJ
     }
   }
   
-  @Check
+  @Check(CheckType.NORMAL)
   public void checkVocabulary(final Vocabulary vocabulary) {
     try {
       String _location = vocabulary.getLocation();
@@ -59,41 +63,59 @@ public class RdfPatternLanguageJavaValidator extends AbstractRdfPatternLanguageJ
     }
   }
   
-  @Check
+  @Check(CheckType.NORMAL)
   public void checkClassConstraint(final RdfClassConstraint classConstraint) {
-    final Model vocabulary = RdfPatternLanguageUtils.getVocabulary(classConstraint);
-    Iri _type = classConstraint.getType();
-    final Resource type = RdfPatternLanguageUtils.toRdfResource(_type);
-    boolean _isClass = RdfUtils.isClass(type, vocabulary);
-    boolean _not = (!_isClass);
-    if (_not) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Class ");
-      Iri _type_1 = classConstraint.getType();
-      String _asString = RdfPatternLanguageUtils.asString(_type_1);
-      _builder.append(_asString, "");
-      _builder.append(" not found in any vocabulary");
-      EReference _rdfClassConstraint_Type = RdfPatternLanguagePackage.eINSTANCE.getRdfClassConstraint_Type();
-      this.warning(_builder.toString(), classConstraint, _rdfClassConstraint_Type);
+    try {
+      final Model vocabulary = RdfPatternLanguageUtils.getVocabulary(classConstraint);
+      Iri _type = classConstraint.getType();
+      final Resource type = RdfPatternLanguageUtils.toRdfResource(_type);
+      boolean _isClass = RdfUtils.isClass(type, vocabulary);
+      boolean _not = (!_isClass);
+      if (_not) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Class ");
+        Iri _type_1 = classConstraint.getType();
+        String _asString = RdfPatternLanguageUtils.asString(_type_1);
+        _builder.append(_asString, "");
+        _builder.append(" not found in any vocabulary");
+        EReference _rdfClassConstraint_Type = RdfPatternLanguagePackage.eINSTANCE.getRdfClassConstraint_Type();
+        this.warning(_builder.toString(), classConstraint, _rdfClassConstraint_Type);
+      }
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+        RdfPatternLanguageJavaValidator.logger.warn(e);
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
     }
   }
   
-  @Check
+  @Check(CheckType.NORMAL)
   public void checkPropertyConstraint(final RdfPropertyConstraint propertyConstraint) {
-    final Model vocabulary = RdfPatternLanguageUtils.getVocabulary(propertyConstraint);
-    Iri _refType = propertyConstraint.getRefType();
-    final Resource refType = RdfPatternLanguageUtils.toRdfResource(_refType);
-    boolean _isProperty = RdfUtils.isProperty(refType, vocabulary);
-    boolean _not = (!_isProperty);
-    if (_not) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Property ");
-      Iri _refType_1 = propertyConstraint.getRefType();
-      String _asString = RdfPatternLanguageUtils.asString(_refType_1);
-      _builder.append(_asString, "");
-      _builder.append(" not found in any vocabulary");
-      EReference _rdfPropertyConstraint_RefType = RdfPatternLanguagePackage.eINSTANCE.getRdfPropertyConstraint_RefType();
-      this.warning(_builder.toString(), propertyConstraint, _rdfPropertyConstraint_RefType);
+    try {
+      final Model vocabulary = RdfPatternLanguageUtils.getVocabulary(propertyConstraint);
+      Iri _refType = propertyConstraint.getRefType();
+      final Resource refType = RdfPatternLanguageUtils.toRdfResource(_refType);
+      boolean _isProperty = RdfUtils.isProperty(refType, vocabulary);
+      boolean _not = (!_isProperty);
+      if (_not) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("Property ");
+        Iri _refType_1 = propertyConstraint.getRefType();
+        String _asString = RdfPatternLanguageUtils.asString(_refType_1);
+        _builder.append(_asString, "");
+        _builder.append(" not found in any vocabulary");
+        EReference _rdfPropertyConstraint_RefType = RdfPatternLanguagePackage.eINSTANCE.getRdfPropertyConstraint_RefType();
+        this.warning(_builder.toString(), propertyConstraint, _rdfPropertyConstraint_RefType);
+      }
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+        RdfPatternLanguageJavaValidator.logger.warn(e);
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
     }
   }
 }
