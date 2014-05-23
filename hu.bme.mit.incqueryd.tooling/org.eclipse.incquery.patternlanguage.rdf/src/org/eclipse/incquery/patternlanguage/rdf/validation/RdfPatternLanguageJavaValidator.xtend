@@ -6,6 +6,9 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Vocabulary
 import org.eclipse.xtext.validation.Check
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri
+import static extension org.eclipse.incquery.patternlanguage.rdf.IriUtils.*
+import org.openrdf.model.impl.URIImpl
 
 public class RdfPatternLanguageJavaValidator extends AbstractRdfPatternLanguageJavaValidator {
 
@@ -19,6 +22,15 @@ public class RdfPatternLanguageJavaValidator extends AbstractRdfPatternLanguageJ
 			RdfUtils.load(#{new URL(vocabulary.location)})
 		} catch (Exception e) {
 			error("Invalid RDF vocabulary", vocabulary, RdfPatternLanguagePackage.eINSTANCE.vocabulary_Location)
+		}
+	}
+
+	@Check
+	def void checkIri(Iri iri) {
+		try {
+			new URIImpl(iri.asString)
+		} catch (Exception e) {
+			error("Invalid IRI, consider specifying a base IRI", iri, RdfPatternLanguagePackage.eINSTANCE.iri_Value)
 		}
 	}
 
