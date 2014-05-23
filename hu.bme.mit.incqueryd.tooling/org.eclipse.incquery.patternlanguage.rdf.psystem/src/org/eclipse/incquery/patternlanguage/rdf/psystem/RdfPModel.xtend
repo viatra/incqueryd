@@ -14,6 +14,7 @@ import org.eclipse.incquery.runtime.matchers.tuple.FlatTuple
 import org.eclipse.incquery.runtime.matchers.tuple.Tuple
 
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
+import org.eclipse.incquery.runtime.matchers.psystem.PVariable
 
 class RdfPModel {
 
@@ -36,7 +37,7 @@ class RdfPModel {
 	}
 
 	def Tuple toTuple(List<ValueReference> valueReferences, PBody pBody) {
-		val elements = valueReferences.map[toPVariable(pBody, this)]
+		val PVariable[] elements = valueReferences.map[toPVariable(pBody, this)]
 		new FlatTuple(elements)
 	}
 
