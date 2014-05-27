@@ -46,11 +46,7 @@ public class RecipeGenerator implements IGenerator {
 				try {
 					CompiledQuery compiledQuery = compiler.getCompiledForm(query);
 					for (ReteNodeRecipe nodeRecipe : collectRecipes(compiledQuery)) {
-						recipe.getRecipeNodes().add(nodeRecipe);
-						if (nodeRecipe instanceof ProductionRecipe) { // XXX
-							ProductionRecipe productionRecipe = (ProductionRecipe)nodeRecipe;
-							productionRecipe.setPattern(null);
-						}
+						processForSerialization(recipe, nodeRecipe);
 					}
 				} catch (QueryPlannerException e) {
 					propagate(e);
@@ -65,12 +61,22 @@ public class RecipeGenerator implements IGenerator {
 		}
 	}
 
+	private void processForSerialization(ReteRecipe recipe,	ReteNodeRecipe nodeRecipe) { // XXX
+		recipe.getRecipeNodes().add(nodeRecipe);
+		if (nodeRecipe instanceof ProductionRecipe) {
+			ProductionRecipe productionRecipe = (ProductionRecipe)nodeRecipe;
+			productionRecipe.setPattern(null);
+		}
+	}
+
 	private Set<ReteNodeRecipe> collectRecipes(RecipeTraceInfo recipeTraceInfo) {
 		Set<ReteNodeRecipe> result = Sets.newHashSet();
 		ReteNodeRecipe nodeRecipe = recipeTraceInfo.getRecipe();
 		result.add(nodeRecipe);
 		for (RecipeTraceInfo parentRecipeTrace : recipeTraceInfo.getParentRecipeTraces()) {
-			result.addAll(collectRecipes(parentRecipeTrace));
+			Set<ReteNodeRecipe> parentRecipes = collectRecipes(parentRecipeTrace);
+			parentRecipes.removeAll(nodeRecipe.eContents());
+			result.addAll(parentRecipes);
 		}
 		return result;
 	}
