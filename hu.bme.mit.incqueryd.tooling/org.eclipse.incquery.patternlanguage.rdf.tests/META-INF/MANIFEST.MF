@@ -20,4 +20,5 @@ Import-Package: org.apache.log4j,
  org.junit.runners.model;version="4.5.0",
  org.hamcrest.core
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: org.eclipse.incquery.patternlanguage.rdf
+Export-Package: org.eclipse.incquery.patternlanguage.rdf,
+ org.eclipse.incquery.patternlanguage.rdf.tests
