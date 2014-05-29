@@ -1,7 +1,7 @@
 package org.eclipse.incquery.patternlanguage.rdf.validation;
 
 import hu.bme.mit.incqueryd.rdf.RdfUtils
-import java.net.URL
+import org.apache.log4j.Logger
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint
@@ -9,11 +9,10 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLan
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Vocabulary
 import org.eclipse.xtext.validation.Check
+import org.eclipse.xtext.validation.CheckType
 import org.openrdf.model.impl.URIImpl
 
 import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils.*
-import org.eclipse.xtext.validation.CheckType
-import org.apache.log4j.Logger
 
 public class RdfPatternLanguageJavaValidator extends AbstractRdfPatternLanguageJavaValidator {
 
@@ -35,7 +34,7 @@ public class RdfPatternLanguageJavaValidator extends AbstractRdfPatternLanguageJ
 	@Check(CheckType.NORMAL)
 	def void checkVocabulary(Vocabulary vocabulary) {
 		try {
-			RdfUtils.load(#{new URL(vocabulary.location)})
+			RdfUtils.load(#{vocabulary.url})
 		} catch (Exception e) {
 			warning("Can't load RDF vocabulary", vocabulary, RdfPatternLanguagePackage.eINSTANCE.vocabulary_Location)
 		}
