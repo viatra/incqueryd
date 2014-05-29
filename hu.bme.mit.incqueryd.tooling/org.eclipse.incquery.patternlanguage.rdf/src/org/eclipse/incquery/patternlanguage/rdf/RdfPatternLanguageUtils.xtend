@@ -31,13 +31,13 @@ class RdfPatternLanguageUtils {
 	}
 
 	def static getUrl(Vocabulary vocabulary) {
-		if (vocabulary.eResource == null) {
-			new URL(vocabulary.location)
+		val uri = createURI(vocabulary.location)
+		val resolvedUri = if (vocabulary.eResource == null) {
+			uri
 		} else {
-			val resourceUri = vocabulary.eResource.URI
-			val uri = createURI(vocabulary.location).resolve(resourceUri)
-			new URL(uri.toString)
+			uri.resolve(vocabulary.eResource.URI)
 		}
+		new URL(resolvedUri.toString)
 	}
 
 }
