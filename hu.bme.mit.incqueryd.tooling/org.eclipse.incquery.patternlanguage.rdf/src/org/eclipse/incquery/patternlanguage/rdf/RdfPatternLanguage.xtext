@@ -46,8 +46,7 @@ RdfPropertyConstraint:
 ;
 
 RdfCheckConstraint:
-	{RdfCheckConstraint}
-	'check' '(' (variables+=VariableReference ',')* expression=STRING ')' // TODO find a better solution
+	'check' '(' expression=STRING ')'
 ;
 
 ValueReference returns core::ValueReference:
