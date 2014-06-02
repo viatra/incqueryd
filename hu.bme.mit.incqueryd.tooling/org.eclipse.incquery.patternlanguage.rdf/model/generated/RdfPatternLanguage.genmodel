@@ -31,7 +31,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfPropertyConstraint/target"/>
     </genClasses>
     <genClasses ecoreClass="RdfPatternLanguage.ecore#//RdfCheckConstraint">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RdfPatternLanguage.ecore#//RdfCheckConstraint/variables"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RdfPatternLanguage.ecore#//RdfCheckConstraint/expression"/>
     </genClasses>
     <genClasses ecoreClass="RdfPatternLanguage.ecore#//RdfLiteral">

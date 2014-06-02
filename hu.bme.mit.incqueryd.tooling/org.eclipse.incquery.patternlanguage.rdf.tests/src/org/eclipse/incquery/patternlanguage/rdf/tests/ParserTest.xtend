@@ -28,7 +28,7 @@ prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 pattern posLength(Segment, SegmentLength) {
 	Segment(Segment);
 	Segment_length(Segment, SegmentLength);
-	check(SegmentLength, 'SegmentLength <= "0"^^xsd:integer');
+	check('SegmentLength <= 0');
 }
 '''
 
