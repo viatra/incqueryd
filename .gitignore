@@ -7,3 +7,4 @@ tmp/
 *.synctex.gz
 .metadata
 runtimeInfo
+.cache
