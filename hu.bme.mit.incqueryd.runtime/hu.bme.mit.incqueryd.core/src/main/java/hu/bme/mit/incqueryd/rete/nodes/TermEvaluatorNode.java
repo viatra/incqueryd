@@ -1,15 +1,18 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
-import hu.bme.mit.incqueryd.rete.comparison.ComparisonOperator;
 import hu.bme.mit.incqueryd.rete.comparison.ConditionExpression;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe;
+
+import com.google.common.collect.Maps;
 
 /**
  * TermEvaluatorNode [...] deserves special mention because it diverges significantly from the classic RETE concept. It
@@ -24,13 +27,18 @@ import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe;
  */
 public class TermEvaluatorNode extends AlphaNode {
 
-    protected Collection<ConditionExpression> conditionExpressions;
+    protected ConditionExpression conditionExpression;
 
-    TermEvaluatorNode(final CheckRecipe recipe) {
-    	conditionExpressions = new HashSet<>();
-    	// the arguments are set for the expression t[1] <= 0
-    	final ConditionExpression expression = new ConditionExpression(1, ComparisonOperator.LESS_THAN_OR_EQUAL, 0);
-		conditionExpressions.add(expression);
+    TermEvaluatorNode(final CheckRecipe recipe) {    	
+    	final EMap<String, Integer> mappedIndices = recipe.getMappedIndices();
+    	final Map<String, Integer> parameterIndices = Maps.newHashMap();
+    	
+    	for (final Entry<String, Integer> entry : mappedIndices) {
+			parameterIndices.put(entry.getKey(), entry.getValue());
+		}
+    	
+    	final String expression = (String) recipe.getExpression().getEvaluator();
+    	conditionExpression = new ConditionExpression(expression, parameterIndices);
     }
 
     @Override
@@ -39,7 +47,7 @@ public class TermEvaluatorNode extends AlphaNode {
         final Set<Tuple> resultTuples = new HashSet<>();
 
         for (final Tuple tuple : incomingTuples) {
-            if (satisfiesConditions(tuple)) {
+            if (satisfiesCondition(tuple)) {
                 resultTuples.add(tuple);
             }
         }
@@ -48,12 +56,8 @@ public class TermEvaluatorNode extends AlphaNode {
         return resultChangeSet;
     }
 
-    public boolean satisfiesConditions(final Tuple tuple) {
-        boolean satisfiesConditions = true;
-        for (final ConditionExpression conditionExpression : conditionExpressions) {
-            satisfiesConditions &= conditionExpression.satisfiesCondition(tuple);
-        }
-        return satisfiesConditions;
+    public boolean satisfiesCondition(final Tuple tuple) {
+        return conditionExpression.satisfiesCondition(tuple);
     }
 
 }
