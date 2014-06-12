@@ -56,8 +56,7 @@ public class TermEvaluatorNode extends AlphaNode {
         try {
 			return (boolean) expressionEvaluator.evaluateExpression(new TupleValueProvider(tuple, parameterIndices));
 		} catch (Exception e) {
-			Throwables.propagate(e);
-			return false;
+			throw Throwables.propagate(e);
 		}
     }
 
