@@ -11,6 +11,10 @@
 
 	<name>IncQuery-D Core</name>
 
+	<properties>
+		<emf-incquery.version>0.8.0-SNAPSHOT</emf-incquery.version>
+	</properties>
+
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
@@ -92,11 +96,36 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+				</configuration>
+				<executions>
+					<execution>
+						<id>bundle-manifest</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>manifest</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestFile>META-INF/MANIFEST.MF</manifestFile>
+					</archive>
+				</configuration>
+			</plugin>
 		</plugins>
 
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
+				<!--This plugin's configuration is used to store Eclipse m2e settings
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -221,12 +250,18 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
-		<!-- recipes -->
+		<!-- EMF-IncQuery -->
 
 		<dependency>
 			<groupId>org.eclipse.incquery</groupId>
 			<artifactId>org.eclipse.incquery.runtime.rete.recipes</artifactId>
-			<version>0.8.0-SNAPSHOT</version>
+			<version>${emf-incquery.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.incquery</groupId>
+			<artifactId>org.eclipse.incquery.runtime.matchers</artifactId>
+			<version>${emf-incquery.version}</version>
 		</dependency>
 
 		<!-- architecture -->

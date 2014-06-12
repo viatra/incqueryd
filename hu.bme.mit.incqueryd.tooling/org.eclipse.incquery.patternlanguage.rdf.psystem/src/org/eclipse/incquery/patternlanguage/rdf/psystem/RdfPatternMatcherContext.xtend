@@ -22,7 +22,7 @@ class RdfPatternMatcherContext implements IPatternMatcherContext {
 	// Unary
 
 	override isUnaryType(Object typeObject) {
-		RdfUtils.isClass(typeObject as Resource, vocabulary)
+		RdfUtils.isClass(typeObject as Resource, vocabulary) || RdfUtils.isDatatype(typeObject as Resource, vocabulary)
 	}
 
 	override enumerateDirectUnarySubtypes(Object typeObject) {
