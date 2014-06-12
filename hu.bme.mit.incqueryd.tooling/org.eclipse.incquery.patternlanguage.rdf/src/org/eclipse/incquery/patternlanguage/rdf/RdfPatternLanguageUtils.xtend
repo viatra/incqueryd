@@ -32,10 +32,11 @@ class RdfPatternLanguageUtils {
 
 	def static getUrl(Vocabulary vocabulary) {
 		val uri = createURI(vocabulary.location)
-		val resolvedUri = if (vocabulary.eResource == null) {
+		val containingResource = vocabulary.eResource
+		val resolvedUri = if (!uri.relative || (containingResource == null)) {
 			uri
 		} else {
-			uri.resolve(vocabulary.eResource.URI)
+			uri.resolve(containingResource.URI)
 		}
 		new URL(resolvedUri.toString)
 	}
