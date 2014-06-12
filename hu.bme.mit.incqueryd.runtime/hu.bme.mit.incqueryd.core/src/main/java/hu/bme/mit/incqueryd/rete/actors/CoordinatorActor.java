@@ -168,10 +168,10 @@ public class CoordinatorActor extends UntypedActor {
 
 				final Props props;
 				if (remoting) {
-					props = new Props(ReteActor.class).withDeploy(new Deploy(new RemoteScope(new Address("akka",
+					props = new Props(ScalaReteActor.class).withDeploy(new Deploy(new RemoteScope(new Address("akka",
 							IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))));
 				} else {
-					props = new Props(ReteActor.class);
+					props = new Props(ScalaReteActor.class);
 				}
 				final ActorRef actorRef = getContext().actorOf(props);
 
