@@ -21,6 +21,8 @@ import static org.eclipse.incquery.patternlanguage.patternLanguage.CompareFeatur
 import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
+import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation
+import hu.bme.mit.incqueryd.rete.nodes.JavaScriptExpressionEvaluator
 
 class RdfPConstraint {
 
@@ -30,7 +32,7 @@ class RdfPConstraint {
 			CompareConstraint: convertCompareConstraint(pBody, model)
 			RdfClassConstraint: convertClassConstraint(pBody, model)
 			RdfPropertyConstraint: convertPropertyConstraint(pBody, model)
-			RdfCheckConstraint: convertCheckConstraint
+			RdfCheckConstraint: convertCheckConstraint(pBody)
 			default: throw new IllegalArgumentException('''Unhandled case «it»''')
 		}
 	}
@@ -83,8 +85,9 @@ class RdfPConstraint {
 		new TypeBinary(pBody, model.context, source, target, typeObject, typeString)
 	}
 
-	static def PConstraint convertCheckConstraint(RdfCheckConstraint constraint) {
-		// TODO
+	static def PConstraint convertCheckConstraint(RdfCheckConstraint constraint, PBody pBody) {
+		val evaluator = new JavaScriptExpressionEvaluator(constraint.expression, pBody.allVariables.map[name].toSet)
+		new ExpressionEvaluation(pBody, evaluator, null)
 	}
 
 }

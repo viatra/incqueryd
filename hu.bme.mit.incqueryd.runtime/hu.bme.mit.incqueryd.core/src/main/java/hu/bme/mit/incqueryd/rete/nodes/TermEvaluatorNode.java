@@ -1,6 +1,5 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
-import hu.bme.mit.incqueryd.rete.comparison.ConditionExpression;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 
@@ -9,8 +8,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe;
+import org.elasticsearch.common.base.Throwables;
 
 import com.google.common.collect.Maps;
 
@@ -19,26 +18,23 @@ import com.google.common.collect.Maps;
  * evaluates a GTASM expression on tuples and filters those tuples for which it evaluates to true. It is similar to an
  * alpha node, with one key difference: the filtering condition is not required to be constant. The filtering condition
  * is an arbitrary GTASM term, it is considered as a black box. [Bergmann's MSc thesis, p.41]
- * 
+ *
  * The current implementation is a simplified version of the one defined above.
- * 
+ *
  * @author szarnyasg
- * 
+ *
  */
 public class TermEvaluatorNode extends AlphaNode {
 
-    protected ConditionExpression conditionExpression;
+    private final JavaScriptExpressionEvaluator expressionEvaluator;
+	private final Map<String, Integer> parameterIndices;
 
-    TermEvaluatorNode(final CheckRecipe recipe) {    	
-    	final EMap<String, Integer> mappedIndices = recipe.getMappedIndices();
-    	final Map<String, Integer> parameterIndices = Maps.newHashMap();
-    	
-    	for (final Entry<String, Integer> entry : mappedIndices) {
+    TermEvaluatorNode(final CheckRecipe recipe) {
+    	expressionEvaluator = (JavaScriptExpressionEvaluator) recipe.getExpression().getEvaluator();
+    	parameterIndices = Maps.newHashMap();
+    	for (final Entry<String, Integer> entry : recipe.getMappedIndices()) {
 			parameterIndices.put(entry.getKey(), entry.getValue());
 		}
-    	
-    	final String expression = (String) recipe.getExpression().getEvaluator();
-    	conditionExpression = new ConditionExpression(expression, parameterIndices);
     }
 
     @Override
@@ -57,7 +53,12 @@ public class TermEvaluatorNode extends AlphaNode {
     }
 
     public boolean satisfiesCondition(final Tuple tuple) {
-        return conditionExpression.satisfiesCondition(tuple);
+        try {
+			return (boolean) expressionEvaluator.evaluateExpression(new TupleValueProvider(tuple, parameterIndices));
+		} catch (Exception e) {
+			Throwables.propagate(e);
+			return false;
+		}
     }
 
 }

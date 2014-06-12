@@ -38,6 +38,11 @@ public class RdfUtils {
 				vocabulary.contains(resource, RDF.TYPE, OWL.CLASS);
 	}
 
+	public static boolean isDatatype(Resource resource, Model vocabulary) {
+		return vocabulary.contains(resource, RDF.TYPE, RDFS.DATATYPE) ||
+				resource.stringValue().startsWith("http://www.w3.org/2001/XMLSchema#"); // XXX
+	}
+
 	public static boolean isProperty(Resource resource, Model vocabulary) {
 		return vocabulary.contains(resource, RDF.TYPE, RDF.PROPERTY) ||
 				vocabulary.contains(resource, RDF.TYPE, OWL.OBJECTPROPERTY) ||
