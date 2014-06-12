@@ -141,6 +141,13 @@ class ScalaReteActor extends Actor {
         throw new NotImplementedException(updateMessage.getNodeSlot() + " slot is not supported.")
       }
     }
+    
+    sendToSubscribers(changeSet, updateMessage.getSenderStack)
+    
+    reteNode match{
+      case node:ProductionNode => terminationProtocol(new TerminationMessage(updateMessage.getSenderStack()))
+      case _ => {}
+    }
   }
   
   protected def sendToSubscribers(changeSet: ChangeSet, senderStack: Stack[ActorRef]) = {
@@ -148,6 +155,7 @@ class ScalaReteActor extends Actor {
       case node:InputNode => {
         pendingTerminationMessages = subscribers.entrySet.size
       }
+      case _ => {}
     }
      
     subscribers.entrySet.foreach(entry => {
@@ -215,6 +223,7 @@ class ScalaReteActor extends Actor {
         
         return
       }
+      case _ => {}
     }
     
     val pair = route.pop2
@@ -248,6 +257,7 @@ class ScalaReteActor extends Actor {
       val memory = productionNode.getMemory()
       sender ! memory
     }
+    case _ => {}
   }
 
 }
