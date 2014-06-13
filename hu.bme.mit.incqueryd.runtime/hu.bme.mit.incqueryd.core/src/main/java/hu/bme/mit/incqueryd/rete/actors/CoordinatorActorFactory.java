@@ -16,7 +16,7 @@ public class CoordinatorActorFactory implements UntypedActorFactory {
 	
 	@Override
 	public Actor create() throws Exception {
-		return new CoordinatorActor(architectureFile, remoting);
+		return new ScalaCoordinatorActor(architectureFile, remoting);
 	}
 
 }
