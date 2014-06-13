@@ -97,6 +97,7 @@ class ScalaReteActor extends Actor {
         })
         
       }
+      case _ => {}
     }
     
   }
