@@ -255,7 +255,7 @@ class ScalaReteActor extends Actor {
     case CoordinatorMessage.INITIALIZE => initialize
     case CoordinatorMessage.GETQUERYRESULTS => {
       val productionNode = reteNode.asInstanceOf[ProductionNode]
-      val memory = productionNode.getMemory()
+      val memory = productionNode.getResults()
       sender ! memory
     }
     case _ => {}
