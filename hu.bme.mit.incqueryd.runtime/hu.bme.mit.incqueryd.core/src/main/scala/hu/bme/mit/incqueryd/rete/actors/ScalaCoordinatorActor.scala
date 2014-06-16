@@ -5,7 +5,6 @@ import akka.util.Timeout
 import scala.concurrent.duration.Duration
 import akka.actor.ActorRef
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple
-import arch.Configuration
 import hu.bme.mit.incqueryd.arch.ArchUtil
 import java.util.HashMap
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
@@ -30,6 +29,9 @@ import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
 import akka.pattern.Patterns.ask
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand
 import hu.bme.mit.incqueryd.rete.messages.Transformation
+import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet
+import arch.Configuration
+import hu.bme.mit.incqueryd.rete.dataunits.ChangeType
 
 class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor{
   
@@ -38,7 +40,8 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
   protected var productionActorRef: ActorRef = null
   protected var query: String = null
   protected var debug: Boolean = false
-  protected var latestResults: Set[Tuple] = null
+  protected var latestResults: Set[Tuple] = new HashSet[Tuple]
+  protected var latestChangeSet: ChangeSet = null
   
   if (architectureFile.contains("poslength")) {
     query = "PosLength";
@@ -205,10 +208,17 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
     })
   }
   
-  def check(): Set[Tuple] = {
-    latestResults = getQueryResults
+  def check(): ChangeSet = {
+    latestChangeSet = getQueryResults
+    
+    latestChangeSet.getChangeType match {
+      case ChangeType.NEGATIVE => latestResults.addAll(latestChangeSet.getTuples)
+      case ChangeType.POSITIVE => latestResults.removeAll(latestChangeSet.getTuples)
+      case _ => {}
+    }
+    
     if (debug) System.err.println("Results: " + latestResults.size)
-    latestResults
+    latestChangeSet
   }
   
   def transform = {
@@ -261,9 +271,9 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
     })
   }
   
-  private def getQueryResults(): Set[Tuple] = {
+  private def getQueryResults(): ChangeSet = {
     val queryResultFuture = ask(productionActorRef, CoordinatorMessage.GETQUERYRESULTS, timeout)
-    Await.result(queryResultFuture, timeout.duration).asInstanceOf[Set[Tuple]]
+    Await.result(queryResultFuture, timeout.duration).asInstanceOf[ChangeSet]
   }
   
   private def configure (actorRef: ActorRef, recipeString: String, cacheMachineIps: List[String]) = {
@@ -278,7 +288,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
       sender ! CoordinatorMessage.DONE
     }
     case CoordinatorCommand.CHECK => {
-      sender ! new ArrayList[Tuple](check())
+      sender ! check
     }
     case CoordinatorCommand.TRANSFORM => {
       transform

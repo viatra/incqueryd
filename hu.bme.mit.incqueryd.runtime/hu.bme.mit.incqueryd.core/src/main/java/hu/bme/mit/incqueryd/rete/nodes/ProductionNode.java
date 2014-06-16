@@ -18,6 +18,7 @@ public class ProductionNode extends AlphaNode {
 
 	protected final ProductionRecipe recipe;
 	protected final Set<Tuple> memory = new HashSet<>();
+	protected ChangeSet lastChangeSet = null;
 	
 	ProductionNode(final ProductionRecipe recipe) {
         super();
@@ -26,6 +27,10 @@ public class ProductionNode extends AlphaNode {
 	
     @Override
 	public ChangeSet update(final ChangeSet incomingChangeSet) {
+    	
+		lastChangeSet = incomingChangeSet;
+		System.err.println("ChangeSet size: " + lastChangeSet.getTuples().size());
+		
 		switch (incomingChangeSet.getChangeType()) {
         case POSITIVE:
             memory.addAll(incomingChangeSet.getTuples());        	
@@ -45,6 +50,8 @@ public class ProductionNode extends AlphaNode {
 		return memory;
 	}
     
-    
+    public ChangeSet getDeltaResults() {
+		return lastChangeSet;
+    }
 
 }
