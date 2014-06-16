@@ -85,7 +85,7 @@ public class ReteActor extends UntypedActor {
 		} // get results
 		else if (message == CoordinatorMessage.GETQUERYRESULTS) {
 			final ProductionNode productionNode = (ProductionNode) reteNode;
-			final Set<Tuple> memory = productionNode.getMemory();
+			final Set<Tuple> memory = productionNode.getResults();
 			getSender().tell(memory, getSelf());
 		}
 		// transformation

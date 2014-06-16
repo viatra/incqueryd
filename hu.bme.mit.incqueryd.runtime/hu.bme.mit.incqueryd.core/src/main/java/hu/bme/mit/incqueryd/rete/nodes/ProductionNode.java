@@ -41,8 +41,10 @@ public class ProductionNode extends AlphaNode {
     	return null;
     }
     
-    public Set<Tuple> getMemory() {
+    public Set<Tuple> getResults() {
 		return memory;
 	}
+    
+    
 
 }
