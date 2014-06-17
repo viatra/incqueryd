@@ -22,7 +22,6 @@ import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLangu
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation
-import hu.bme.mit.incqueryd.rete.nodes.JavaScriptExpressionEvaluator
 
 class RdfPConstraint {
 

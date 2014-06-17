@@ -97,23 +97,6 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-					<manifestLocation>META-INF</manifestLocation>
-				</configuration>
-				<executions>
-					<execution>
-						<id>bundle-manifest</id>
-						<phase>process-classes</phase>
-						<goals>
-							<goal>manifest</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
 					<archive>
