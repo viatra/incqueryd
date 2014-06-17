@@ -212,8 +212,8 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
     latestChangeSet = getQueryResults
     
     latestChangeSet.getChangeType match {
-      case ChangeType.NEGATIVE => latestResults.addAll(latestChangeSet.getTuples)
-      case ChangeType.POSITIVE => latestResults.removeAll(latestChangeSet.getTuples)
+      case ChangeType.POSITIVE => latestResults.addAll(latestChangeSet.getTuples)
+      case ChangeType.NEGATIVE => latestResults.removeAll(latestChangeSet.getTuples)
       case _ => {}
     }
     

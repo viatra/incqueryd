@@ -128,7 +128,7 @@ class ScalaReteActor extends Actor {
     System.err.println("[ReteActor] " + self + ", " + reteNode.getClass().getName()
 				+ ": update message received, " + updateMessage.getChangeSet().getChangeType() + " "
 				+ updateMessage.getNodeSlot())
-	
+				
 	var changeSet:ChangeSet = null
 				
 	updateMessage.getNodeSlot match {

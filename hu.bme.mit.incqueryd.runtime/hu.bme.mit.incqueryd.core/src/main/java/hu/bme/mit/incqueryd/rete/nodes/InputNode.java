@@ -201,7 +201,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	}
 
 	private Collection<ChangeSet> routeSensorTransformation(final List<Tuple> invalids, final FourStoreClient client)
-			throws IOException {
+			throws IOException {		
 		final int size = invalids.size();
 		final Set<Tuple> tuplesToRemove = new HashSet<>();
 		final List<Long> sensorsToRemove = new ArrayList<>();
