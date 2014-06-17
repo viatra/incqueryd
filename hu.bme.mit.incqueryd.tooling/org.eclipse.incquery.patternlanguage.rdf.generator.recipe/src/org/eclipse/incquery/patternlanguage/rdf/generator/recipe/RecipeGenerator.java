@@ -15,8 +15,10 @@ import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPModel;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPQuery;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 import org.eclipse.incquery.runtime.matchers.planning.QueryPlannerException;
+import org.eclipse.incquery.runtime.matchers.psystem.IExpressionEvaluator;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.incquery.runtime.rete.construction.plancompiler.ReteRecipeCompiler;
+import org.eclipse.incquery.runtime.rete.recipes.ExpressionEnforcerRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
@@ -66,6 +68,11 @@ public class RecipeGenerator implements IGenerator {
 		if (nodeRecipe instanceof ProductionRecipe) {
 			ProductionRecipe productionRecipe = (ProductionRecipe)nodeRecipe;
 			productionRecipe.setPattern(null);
+		} else if (nodeRecipe instanceof ExpressionEnforcerRecipe) {
+			ExpressionEnforcerRecipe expressionEnforcerRecipe = (ExpressionEnforcerRecipe) nodeRecipe;
+			IExpressionEvaluator evaluator = (IExpressionEvaluator) expressionEnforcerRecipe.getExpression().getEvaluator();
+			Object[] evaluationInfo = { evaluator.getShortDescription(), evaluator.getInputParameterNames() }; // XXX use an evaluator shared from runtime
+			expressionEnforcerRecipe.getExpression().setEvaluator(evaluationInfo);
 		}
 	}
 

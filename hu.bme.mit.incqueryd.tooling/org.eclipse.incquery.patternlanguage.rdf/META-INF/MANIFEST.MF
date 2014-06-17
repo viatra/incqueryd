@@ -1,7 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.incquery.patternlanguage.rdf
-Bundle-Vendor: My Company
+Bundle-Name: RDFPL
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: org.eclipse.incquery.patternlanguage.rdf; singleton:=true
 Bundle-ActivationPolicy: lazy

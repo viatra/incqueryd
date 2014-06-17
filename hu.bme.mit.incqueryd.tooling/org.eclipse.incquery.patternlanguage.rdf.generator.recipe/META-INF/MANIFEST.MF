@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: IncQuery-D Tooling
-Bundle-SymbolicName: hu.bme.mit.incqueryd.tooling;singleton:=true
+Bundle-Name: RDFPL -> Recipe Builder
+Bundle-SymbolicName: org.eclipse.incquery.patternlanguage.rdf.generator.recipe;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.incquery.patternlanguage.rdf.generator.recipe.Activator
 Require-Bundle: org.eclipse.ui,
