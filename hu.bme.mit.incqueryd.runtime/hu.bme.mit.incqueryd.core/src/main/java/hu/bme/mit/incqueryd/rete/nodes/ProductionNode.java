@@ -29,7 +29,6 @@ public class ProductionNode extends AlphaNode {
 	public ChangeSet update(final ChangeSet incomingChangeSet) {
     	
 		lastChangeSet = incomingChangeSet;
-		System.err.println("ChangeSet size: " + lastChangeSet.getTuples().size());
 		
 		switch (incomingChangeSet.getChangeType()) {
         case POSITIVE:
