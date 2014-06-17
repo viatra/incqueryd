@@ -1,16 +1,13 @@
-package hu.bme.mit.incqueryd.rete.nodes;
+package org.eclipse.incquery.patternlanguage.rdf.psystem;
 
 import static com.google.common.collect.ImmutableSet.copyOf;
-import static org.elasticsearch.common.collect.Sets.intersection;
+import static com.google.common.collect.Sets.intersection;
 
-import java.io.Serializable;
 import java.util.Set;
 
 import org.eclipse.incquery.runtime.matchers.psystem.IExpressionEvaluator;
 import org.eclipse.incquery.runtime.matchers.psystem.IValueProvider;
-import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Parser;
-import org.mozilla.javascript.Scriptable;
 import org.mozilla.javascript.ast.AstNode;
 import org.mozilla.javascript.ast.AstRoot;
 import org.mozilla.javascript.ast.Name;
@@ -18,9 +15,7 @@ import org.mozilla.javascript.ast.NodeVisitor;
 
 import com.google.common.collect.Sets;
 
-public class JavaScriptExpressionEvaluator implements IExpressionEvaluator, Serializable {
-
-	private static final long serialVersionUID = 3223013804728828212L;
+public class JavaScriptExpressionEvaluator implements IExpressionEvaluator {
 
 	private final String expression;
 
@@ -49,31 +44,16 @@ public class JavaScriptExpressionEvaluator implements IExpressionEvaluator, Seri
 	}
 
 	public Object evaluateExpression(final IValueProvider provider) throws Exception {
-		// Creates and enters a Context. The Context stores information
-		// about the execution environment of a script.
-		final Context cx = Context.enter();
-		try {
-			// Initialize the standard objects (Object, Function, etc.)
-			// This must be done before scripts can be executed. Returns
-			// a scope object that we use in later calls.
-			final Scriptable scope = cx.initStandardObjects();
-			for (String parameterName : inputParameterNames) {
-				scope.put(parameterName, scope, provider.getValue(parameterName));
-			}
-			// Now evaluate the string we've colected.
-			final Object result = cx.evaluateString(scope, expression, "<cmd>", 1, null);
-			return (boolean) result;
-		} finally {
-			Context.exit();
-		}
+		// Not used here
+		return null;
 	}
 
 	public Iterable<String> getInputParameterNames() {
-		return this.inputParameterNames;
+		return inputParameterNames;
 	}
 
 	public String getShortDescription() {
-		return this.expression;
+		return expression;
 	}
 
 }

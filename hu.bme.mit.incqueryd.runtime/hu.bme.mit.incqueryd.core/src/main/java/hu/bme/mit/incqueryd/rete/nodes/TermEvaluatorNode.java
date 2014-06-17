@@ -9,7 +9,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe;
-import org.elasticsearch.common.base.Throwables;
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.Scriptable;
 
 import com.google.common.collect.Maps;
 
@@ -26,11 +27,16 @@ import com.google.common.collect.Maps;
  */
 public class TermEvaluatorNode extends AlphaNode {
 
-    private final JavaScriptExpressionEvaluator expressionEvaluator;
+    private final String expression;
+    private final Set<String> inputParameterNames;
 	private final Map<String, Integer> parameterIndices;
 
     TermEvaluatorNode(final CheckRecipe recipe) {
-    	expressionEvaluator = (JavaScriptExpressionEvaluator) recipe.getExpression().getEvaluator();
+    	// XXX use an evaluator shared from runtime
+    	Object[] evaluationInfo = (Object[]) recipe.getExpression().getEvaluator();
+    	expression = (String) evaluationInfo[0];
+    	inputParameterNames = (Set<String>) evaluationInfo[1];
+
     	parameterIndices = Maps.newHashMap();
     	for (final Entry<String, Integer> entry : recipe.getMappedIndices()) {
 			parameterIndices.put(entry.getKey(), entry.getValue());
@@ -53,10 +59,18 @@ public class TermEvaluatorNode extends AlphaNode {
     }
 
     public boolean satisfiesCondition(final Tuple tuple) {
-        try {
-			return (boolean) expressionEvaluator.evaluateExpression(new TupleValueProvider(tuple, parameterIndices));
-		} catch (Exception e) {
-			throw Throwables.propagate(e);
+		final Context context = Context.enter();
+		try {
+			final Scriptable scope = context.initStandardObjects();
+			for (String parameterName : inputParameterNames) {
+		    	Integer index = parameterIndices.get(parameterName);
+		        Object value = tuple.get(index);
+				scope.put(parameterName, scope, value);
+			}
+			final Object result = context.evaluateString(scope, expression, "<cmd>", 1, null);
+			return (boolean) result;
+		} finally {
+			Context.exit();
 		}
     }
 
