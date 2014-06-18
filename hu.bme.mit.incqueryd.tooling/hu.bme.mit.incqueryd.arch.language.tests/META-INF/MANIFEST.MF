@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: hu.bme.mit.incqueryd.arch.language.tests
-Bundle-Vendor: My Company
+Bundle-Name: IncQuery-D Architecture Language Tests
+Bundle-Vendor: IncQuery Labs Ltd.
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: hu.bme.mit.incqueryd.arch.language.tests; singleton:=true
 Bundle-ActivationPolicy: lazy

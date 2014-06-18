@@ -3,9 +3,18 @@
  */
 package hu.bme.mit.incqueryd.arch.language;
 
+import hu.bme.mit.incqueryd.arch.language.scoping.ArchLanguageQualifiedNameProvider;
+
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 public class ArchLanguageRuntimeModule extends hu.bme.mit.incqueryd.arch.language.AbstractArchLanguageRuntimeModule {
+
+	@Override
+	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return ArchLanguageQualifiedNameProvider.class;
+	}
 
 }

@@ -3,8 +3,9 @@
 */
 package hu.bme.mit.incqueryd.arch.language;
 
+
 /**
- * Initialization support for running Xtext languages 
+ * Initialization support for running Xtext languages
  * without equinox extension registry
  */
 public class ArchLanguageStandaloneSetup extends ArchLanguageStandaloneSetupGenerated{
@@ -12,5 +13,6 @@ public class ArchLanguageStandaloneSetup extends ArchLanguageStandaloneSetupGene
 	public static void doSetup() {
 		new ArchLanguageStandaloneSetup().createInjectorAndDoEMFRegistration();
 	}
+
 }
 

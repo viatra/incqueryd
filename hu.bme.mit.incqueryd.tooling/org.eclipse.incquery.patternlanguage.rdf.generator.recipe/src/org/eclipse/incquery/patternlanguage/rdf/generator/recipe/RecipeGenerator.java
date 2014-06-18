@@ -56,7 +56,7 @@ public class RecipeGenerator implements IGenerator {
 			}
 			try {
 				String contents = xmlProcessor.saveToString(resource, null);
-				fsa.generateFile(input.getURI().trimFileExtension().lastSegment() + ".xmi", contents);
+				fsa.generateFile(input.getURI().trimFileExtension().appendFileExtension("recipe").lastSegment(), contents);
 			} catch (IOException e) {
 				propagate(e);
 			}
