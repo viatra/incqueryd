@@ -2,6 +2,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>hu.bme.mit.incqueryd.osmonitoringagent</groupId>
   <artifactId>metrics</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.1-SNAPSHOT</version>
   
 </project>

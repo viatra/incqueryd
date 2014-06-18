@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hu.bme.mit.incqueryd.monitoringserver</groupId>
 	<artifactId>dw-server</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
 		<dropwizard.version>0.7.0</dropwizard.version>
@@ -70,7 +70,7 @@
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd.monitoringserver</groupId>
 			<artifactId>core</artifactId>
-			<version>0.0.1</version>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
