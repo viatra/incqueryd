@@ -1,26 +1,27 @@
 package hu.bme.mit.incqueryd.arch;
 
-import hu.bme.mit.incqueryd.util.EObjectSerializer;
-import infrastructure.Cluster;
 import infrastructure.Machine;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 
 import arch.Configuration;
+import arch.InfrastructureMapping;
 
 public class ExtractMachineTest {
 
 	@Test
 	public void testMachine() throws IOException {
-		final String architectureFile = "src/test/resources/arch/routesensor.arch";
-		final Configuration conf = ArchUtil.loadConfiguration(architectureFile);	
-		
-		final Cluster cluster = conf.getClusters().get(0);
-		final EList<Machine> reteMachines = cluster.getReteMachines();
-		final String clusterJSON = EObjectSerializer.serializeToString(cluster);
+		final String architectureFile = "src/test/resources/arch/posLength.arch";
+		final Configuration conf = ArchUtil.loadConfiguration(architectureFile);
+
+		final List<Machine> machines = new ArrayList<>();
+		for (InfrastructureMapping mapping : conf.getMappings()) {
+			machines.add(mapping.getMachine());
+		}
 	}
-	
+
 }

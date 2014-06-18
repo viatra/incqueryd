@@ -89,19 +89,7 @@ public class ArchUtil {
 		}
 	}
 
-	/**
-	 * Returns just the first line of a string.
-	 *
-	 * @param string
-	 * @return
-	 */
-	public static String oneLiner(final String string) {
-		// final int newLinePosition = string.indexOf("\n");
-		// if (newLinePosition < 0) {
-		// return string;
-		// } else {
-		// return string.substring(0, newLinePosition);
-		// }
+	public static String removeLineBreaks(final String string) {
 		if (string == null) {
 			return "";
 		} else {

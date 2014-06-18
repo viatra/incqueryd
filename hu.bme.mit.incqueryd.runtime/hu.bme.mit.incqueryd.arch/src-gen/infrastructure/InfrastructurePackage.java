@@ -5,7 +5,6 @@ package infrastructure;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,7 +64,7 @@ public interface InfrastructurePackage extends EPackage
    * @see infrastructure.impl.InfrastructurePackageImpl#getElementWithTraceInfo()
    * @generated
    */
-  int ELEMENT_WITH_TRACE_INFO = 2;
+  int ELEMENT_WITH_TRACE_INFO = 1;
 
   /**
    * The feature id for the '<em><b>Trace Info</b></em>' attribute.
@@ -95,61 +94,6 @@ public interface InfrastructurePackage extends EPackage
   int ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link infrastructure.impl.ClusterImpl <em>Cluster</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see infrastructure.impl.ClusterImpl
-   * @see infrastructure.impl.InfrastructurePackageImpl#getCluster()
-   * @generated
-   */
-  int CLUSTER = 0;
-
-  /**
-   * The feature id for the '<em><b>Trace Info</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CLUSTER__TRACE_INFO = ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
-
-  /**
-   * The feature id for the '<em><b>Rete Machines</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CLUSTER__RETE_MACHINES = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Cache Machines</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CLUSTER__CACHE_MACHINES = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Cluster</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CLUSTER_FEATURE_COUNT = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 2;
-
-  /**
-   * The number of operations of the '<em>Cluster</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CLUSTER_OPERATION_COUNT = ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT + 0;
-
-  /**
    * The meta object id for the '{@link infrastructure.impl.MachineImpl <em>Machine</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -157,7 +101,7 @@ public interface InfrastructurePackage extends EPackage
    * @see infrastructure.impl.InfrastructurePackageImpl#getMachine()
    * @generated
    */
-  int MACHINE = 1;
+  int MACHINE = 0;
 
   /**
    * The feature id for the '<em><b>Trace Info</b></em>' attribute.
@@ -204,38 +148,6 @@ public interface InfrastructurePackage extends EPackage
    */
   int MACHINE_OPERATION_COUNT = ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT + 0;
 
-
-  /**
-   * Returns the meta object for class '{@link infrastructure.Cluster <em>Cluster</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Cluster</em>'.
-   * @see infrastructure.Cluster
-   * @generated
-   */
-  EClass getCluster();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link infrastructure.Cluster#getReteMachines <em>Rete Machines</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Rete Machines</em>'.
-   * @see infrastructure.Cluster#getReteMachines()
-   * @see #getCluster()
-   * @generated
-   */
-  EReference getCluster_ReteMachines();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link infrastructure.Cluster#getCacheMachines <em>Cache Machines</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Cache Machines</em>'.
-   * @see infrastructure.Cluster#getCacheMachines()
-   * @see #getCluster()
-   * @generated
-   */
-  EReference getCluster_CacheMachines();
 
   /**
    * Returns the meta object for class '{@link infrastructure.Machine <em>Machine</em>}'.
@@ -314,32 +226,6 @@ public interface InfrastructurePackage extends EPackage
    */
   interface Literals
   {
-    /**
-     * The meta object literal for the '{@link infrastructure.impl.ClusterImpl <em>Cluster</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see infrastructure.impl.ClusterImpl
-     * @see infrastructure.impl.InfrastructurePackageImpl#getCluster()
-     * @generated
-     */
-    EClass CLUSTER = eINSTANCE.getCluster();
-
-    /**
-     * The meta object literal for the '<em><b>Rete Machines</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CLUSTER__RETE_MACHINES = eINSTANCE.getCluster_ReteMachines();
-
-    /**
-     * The meta object literal for the '<em><b>Cache Machines</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CLUSTER__CACHE_MACHINES = eINSTANCE.getCluster_CacheMachines();
-
     /**
      * The meta object literal for the '{@link infrastructure.impl.MachineImpl <em>Machine</em>}' class.
      * <!-- begin-user-doc -->

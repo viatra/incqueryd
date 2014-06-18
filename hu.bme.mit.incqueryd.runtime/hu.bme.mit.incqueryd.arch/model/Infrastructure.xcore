@@ -1,11 +1,6 @@
 @Ecore(nsPrefix="inf", nsURI="http://incquery.net/d/infrastructure")
 package infrastructure
 
-class Cluster extends ElementWithTraceInfo {
-	contains Machine[] reteMachines
-	contains Machine[] cacheMachines
-}
-
 class Machine extends ElementWithTraceInfo {
 	String name
 	String ip

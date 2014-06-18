@@ -23,15 +23,6 @@ public interface InfrastructureFactory extends EFactory
   InfrastructureFactory eINSTANCE = infrastructure.impl.InfrastructureFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Cluster</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Cluster</em>'.
-   * @generated
-   */
-  Cluster createCluster();
-
-  /**
    * Returns a new object of class '<em>Machine</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

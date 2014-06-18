@@ -82,11 +82,41 @@ public class ArchSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case ArchPackage.RECIPE_IMPORT:
+      {
+        RecipeImport recipeImport = (RecipeImport)theEObject;
+        T result = caseRecipeImport(recipeImport);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case ArchPackage.INFRASTRUCTURE_MAPPING:
       {
         InfrastructureMapping infrastructureMapping = (InfrastructureMapping)theEObject;
         T result = caseInfrastructureMapping(infrastructureMapping);
         if (result == null) result = caseElementWithTraceInfo(infrastructureMapping);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ArchPackage.ROLE:
+      {
+        Role role = (Role)theEObject;
+        T result = caseRole(role);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ArchPackage.RETE_ROLE:
+      {
+        ReteRole reteRole = (ReteRole)theEObject;
+        T result = caseReteRole(reteRole);
+        if (result == null) result = caseRole(reteRole);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ArchPackage.CACHE_ROLE:
+      {
+        CacheRole cacheRole = (CacheRole)theEObject;
+        T result = caseCacheRole(cacheRole);
+        if (result == null) result = caseRole(cacheRole);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -111,6 +141,22 @@ public class ArchSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Recipe Import</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Recipe Import</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRecipeImport(RecipeImport object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Infrastructure Mapping</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -122,6 +168,54 @@ public class ArchSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseInfrastructureMapping(InfrastructureMapping object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Role</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Role</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRole(Role object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rete Role</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rete Role</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseReteRole(ReteRole object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Cache Role</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Cache Role</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCacheRole(CacheRole object)
   {
     return null;
   }

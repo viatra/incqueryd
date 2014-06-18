@@ -64,22 +64,10 @@ public class InfrastructureFactoryImpl extends EFactoryImpl implements Infrastru
   {
     switch (eClass.getClassifierID())
     {
-      case InfrastructurePackage.CLUSTER: return createCluster();
       case InfrastructurePackage.MACHINE: return createMachine();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Cluster createCluster()
-  {
-    ClusterImpl cluster = new ClusterImpl();
-    return cluster;
   }
 
   /**

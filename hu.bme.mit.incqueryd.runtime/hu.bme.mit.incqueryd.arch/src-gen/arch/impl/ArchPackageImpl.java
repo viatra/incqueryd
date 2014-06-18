@@ -4,14 +4,20 @@ package arch.impl;
 
 import arch.ArchFactory;
 import arch.ArchPackage;
+import arch.CacheRole;
 import arch.Configuration;
 import arch.InfrastructureMapping;
+import arch.RecipeImport;
+import arch.ReteRole;
+import arch.Role;
 
 import infrastructure.InfrastructurePackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -37,7 +43,35 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass recipeImportEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass infrastructureMappingEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass roleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass reteRoleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass cacheRoleEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -88,8 +122,8 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
     isInited = true;
 
     // Initialize simple dependencies
-    RecipesPackage.eINSTANCE.eClass();
     InfrastructurePackage.eINSTANCE.eClass();
+    RecipesPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theArchPackage.createPackageContents();
@@ -121,7 +155,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getConfiguration_Clusters()
+  public EReference getConfiguration_RecipeImports()
   {
     return (EReference)configurationEClass.getEStructuralFeatures().get(0);
   }
@@ -131,7 +165,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getConfiguration_ReteRecipes()
+  public EReference getConfiguration_Mappings()
   {
     return (EReference)configurationEClass.getEStructuralFeatures().get(1);
   }
@@ -141,9 +175,19 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getConfiguration_Mappings()
+  public EClass getRecipeImport()
   {
-    return (EReference)configurationEClass.getEStructuralFeatures().get(2);
+    return recipeImportEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getRecipeImport_ImportURI()
+  {
+    return (EAttribute)recipeImportEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -161,7 +205,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getInfrastructureMapping_MappedElements()
+  public EReference getInfrastructureMapping_Machine()
   {
     return (EReference)infrastructureMappingEClass.getEStructuralFeatures().get(0);
   }
@@ -171,9 +215,49 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getInfrastructureMapping_TargetElement()
+  public EReference getInfrastructureMapping_Roles()
   {
     return (EReference)infrastructureMappingEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRole()
+  {
+    return roleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getReteRole()
+  {
+    return reteRoleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getReteRole_NodeRecipe()
+  {
+    return (EReference)reteRoleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCacheRole()
+  {
+    return cacheRoleEClass;
   }
 
   /**
@@ -207,13 +291,22 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
 
     // Create classes and their features
     configurationEClass = createEClass(CONFIGURATION);
-    createEReference(configurationEClass, CONFIGURATION__CLUSTERS);
-    createEReference(configurationEClass, CONFIGURATION__RETE_RECIPES);
+    createEReference(configurationEClass, CONFIGURATION__RECIPE_IMPORTS);
     createEReference(configurationEClass, CONFIGURATION__MAPPINGS);
 
+    recipeImportEClass = createEClass(RECIPE_IMPORT);
+    createEAttribute(recipeImportEClass, RECIPE_IMPORT__IMPORT_URI);
+
     infrastructureMappingEClass = createEClass(INFRASTRUCTURE_MAPPING);
-    createEReference(infrastructureMappingEClass, INFRASTRUCTURE_MAPPING__MAPPED_ELEMENTS);
-    createEReference(infrastructureMappingEClass, INFRASTRUCTURE_MAPPING__TARGET_ELEMENT);
+    createEReference(infrastructureMappingEClass, INFRASTRUCTURE_MAPPING__MACHINE);
+    createEReference(infrastructureMappingEClass, INFRASTRUCTURE_MAPPING__ROLES);
+
+    roleEClass = createEClass(ROLE);
+
+    reteRoleEClass = createEClass(RETE_ROLE);
+    createEReference(reteRoleEClass, RETE_ROLE__NODE_RECIPE);
+
+    cacheRoleEClass = createEClass(CACHE_ROLE);
   }
 
   /**
@@ -242,6 +335,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
 
     // Obtain other dependent packages
     InfrastructurePackage theInfrastructurePackage = (InfrastructurePackage)EPackage.Registry.INSTANCE.getEPackage(InfrastructurePackage.eNS_URI);
+    EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
     RecipesPackage theRecipesPackage = (RecipesPackage)EPackage.Registry.INSTANCE.getEPackage(RecipesPackage.eNS_URI);
 
     // Create type parameters
@@ -251,16 +345,27 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
     // Add supertypes to classes
     configurationEClass.getESuperTypes().add(theInfrastructurePackage.getElementWithTraceInfo());
     infrastructureMappingEClass.getESuperTypes().add(theInfrastructurePackage.getElementWithTraceInfo());
+    reteRoleEClass.getESuperTypes().add(this.getRole());
+    cacheRoleEClass.getESuperTypes().add(this.getRole());
 
     // Initialize classes, features, and operations; add parameters
     initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getConfiguration_Clusters(), theInfrastructurePackage.getCluster(), null, "clusters", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getConfiguration_ReteRecipes(), theRecipesPackage.getReteRecipe(), null, "reteRecipes", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConfiguration_RecipeImports(), this.getRecipeImport(), null, "recipeImports", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConfiguration_Mappings(), this.getInfrastructureMapping(), null, "mappings", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(recipeImportEClass, RecipeImport.class, "RecipeImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRecipeImport_ImportURI(), theEcorePackage.getEString(), "importURI", null, 0, 1, RecipeImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(infrastructureMappingEClass, InfrastructureMapping.class, "InfrastructureMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getInfrastructureMapping_MappedElements(), theRecipesPackage.getReteNodeRecipe(), null, "mappedElements", null, 0, -1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getInfrastructureMapping_TargetElement(), theInfrastructurePackage.getMachine(), null, "targetElement", null, 0, 1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInfrastructureMapping_Machine(), theInfrastructurePackage.getMachine(), null, "machine", null, 0, 1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInfrastructureMapping_Roles(), this.getRole(), null, "roles", null, 0, -1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(roleEClass, Role.class, "Role", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(reteRoleEClass, ReteRole.class, "ReteRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getReteRole_NodeRecipe(), theRecipesPackage.getReteNodeRecipe(), null, "nodeRecipe", null, 0, 1, ReteRole.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(cacheRoleEClass, CacheRole.class, "CacheRole", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

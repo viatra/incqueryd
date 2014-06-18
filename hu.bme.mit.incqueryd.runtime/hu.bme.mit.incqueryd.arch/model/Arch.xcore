@@ -1,19 +1,30 @@
 @Ecore(nsPrefix="arch", nsURI="http://incquery.net/arch")
 package arch
 
-import infrastructure.Cluster
 import infrastructure.ElementWithTraceInfo
 import infrastructure.Machine
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
-import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 
 class Configuration extends ElementWithTraceInfo {
-	contains Cluster[] clusters
-	contains ReteRecipe[] reteRecipes
+	contains RecipeImport[] recipeImports
 	contains InfrastructureMapping[] mappings
 }
 
+class RecipeImport {
+	String importURI
+}
+
 class InfrastructureMapping extends ElementWithTraceInfo {
-	refers ReteNodeRecipe[] mappedElements
-	refers Machine targetElement
+	contains Machine machine
+	contains Role[] roles
+}
+
+abstract class Role {
+}
+
+class ReteRole extends Role {
+	refers ReteNodeRecipe nodeRecipe
+}
+
+class CacheRole extends Role {
 }
