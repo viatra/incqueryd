@@ -97,9 +97,6 @@ Workflow {
 			// rename refactoring
 			fragment = refactoring.RefactorElementNameFragment auto-inject {}
 
-			// provides the necessary bindings for java types integration
-			fragment = types.TypesGeneratorFragment auto-inject {}
-
 			// provides a preference page for template proposals
 			fragment = templates.CodetemplatesGeneratorFragment auto-inject {}
 
