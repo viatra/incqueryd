@@ -32,6 +32,15 @@ public interface ArchFactory extends EFactory
   Configuration createConfiguration();
 
   /**
+   * Returns a new object of class '<em>Recipe Import</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Recipe Import</em>'.
+   * @generated
+   */
+  RecipeImport createRecipeImport();
+
+  /**
    * Returns a new object of class '<em>Infrastructure Mapping</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -39,6 +48,24 @@ public interface ArchFactory extends EFactory
    * @generated
    */
   InfrastructureMapping createInfrastructureMapping();
+
+  /**
+   * Returns a new object of class '<em>Rete Role</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rete Role</em>'.
+   * @generated
+   */
+  ReteRole createReteRole();
+
+  /**
+   * Returns a new object of class '<em>Cache Role</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Cache Role</em>'.
+   * @generated
+   */
+  CacheRole createCacheRole();
 
   /**
    * Returns the package supported by this factory.

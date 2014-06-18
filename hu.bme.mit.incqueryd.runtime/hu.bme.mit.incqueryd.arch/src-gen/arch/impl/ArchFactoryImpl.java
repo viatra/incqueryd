@@ -65,7 +65,10 @@ public class ArchFactoryImpl extends EFactoryImpl implements ArchFactory
     switch (eClass.getClassifierID())
     {
       case ArchPackage.CONFIGURATION: return createConfiguration();
+      case ArchPackage.RECIPE_IMPORT: return createRecipeImport();
       case ArchPackage.INFRASTRUCTURE_MAPPING: return createInfrastructureMapping();
+      case ArchPackage.RETE_ROLE: return createReteRole();
+      case ArchPackage.CACHE_ROLE: return createCacheRole();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -87,10 +90,43 @@ public class ArchFactoryImpl extends EFactoryImpl implements ArchFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public RecipeImport createRecipeImport()
+  {
+    RecipeImportImpl recipeImport = new RecipeImportImpl();
+    return recipeImport;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public InfrastructureMapping createInfrastructureMapping()
   {
     InfrastructureMappingImpl infrastructureMapping = new InfrastructureMappingImpl();
     return infrastructureMapping;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ReteRole createReteRole()
+  {
+    ReteRoleImpl reteRole = new ReteRoleImpl();
+    return reteRole;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CacheRole createCacheRole()
+  {
+    CacheRoleImpl cacheRole = new CacheRoleImpl();
+    return cacheRole;
   }
 
   /**

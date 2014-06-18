@@ -82,9 +82,29 @@ public class ArchAdapterFactory extends AdapterFactoryImpl
         return createConfigurationAdapter();
       }
       @Override
+      public Adapter caseRecipeImport(RecipeImport object)
+      {
+        return createRecipeImportAdapter();
+      }
+      @Override
       public Adapter caseInfrastructureMapping(InfrastructureMapping object)
       {
         return createInfrastructureMappingAdapter();
+      }
+      @Override
+      public Adapter caseRole(Role object)
+      {
+        return createRoleAdapter();
+      }
+      @Override
+      public Adapter caseReteRole(ReteRole object)
+      {
+        return createReteRoleAdapter();
+      }
+      @Override
+      public Adapter caseCacheRole(CacheRole object)
+      {
+        return createCacheRoleAdapter();
       }
       @Override
       public Adapter caseElementWithTraceInfo(ElementWithTraceInfo object)
@@ -129,6 +149,21 @@ public class ArchAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link arch.RecipeImport <em>Recipe Import</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see arch.RecipeImport
+   * @generated
+   */
+  public Adapter createRecipeImportAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link arch.InfrastructureMapping <em>Infrastructure Mapping</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -139,6 +174,51 @@ public class ArchAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createInfrastructureMappingAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link arch.Role <em>Role</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see arch.Role
+   * @generated
+   */
+  public Adapter createRoleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link arch.ReteRole <em>Rete Role</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see arch.ReteRole
+   * @generated
+   */
+  public Adapter createReteRoleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link arch.CacheRole <em>Cache Role</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see arch.CacheRole
+   * @generated
+   */
+  public Adapter createCacheRoleAdapter()
   {
     return null;
   }

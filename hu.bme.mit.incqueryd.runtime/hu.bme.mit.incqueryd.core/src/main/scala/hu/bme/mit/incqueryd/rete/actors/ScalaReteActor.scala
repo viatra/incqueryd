@@ -49,12 +49,12 @@ class ScalaReteActor extends Actor {
   }
 
   private def subscribe(yellowPages: YellowPages) = {
-    
+
     val emfUriToActorRef = yellowPages.getEmfUriToActorRef()
 
     System.err.println();
     System.err.println("[ReteActor] " + self + ", " + reteNode.getClass().getName() + ": "
-      + ArchUtil.oneLiner(recipe.toString()))
+      + ArchUtil.removeLineBreaks(recipe.toString()))
 
     recipe match {
       case alphaRecipe: AlphaRecipe => {
@@ -90,47 +90,47 @@ class ScalaReteActor extends Actor {
         parents.foreach(parent => {
           val parentUri = ArchUtil.getJsonEObjectUri(parent)
           val parentActorRef = emfUriToActorRef.get(parentUri)
-          
+
           System.err.println("[ReteActor] - parent URI: " + parentUri + " -> " + parentActorRef)
-          
+
           subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE)
         })
-        
+
       }
       case _ => {}
     }
-    
+
   }
-  
+
   protected def subscribeToActor(actorRef: ActorRef, slot: ReteNodeSlot) = {
     val message = ArchUtil.slotToMessage(slot)
-    
+
     actorRef ! message
-    
+
     try {
       Thread.sleep(200)
     } catch {
       case e:InterruptedException => e.printStackTrace()
     }
   }
-  
+
   protected def subscribeSender(slot: ReteNodeSlot) = {
-    
+
     subscribers.put(sender, slot)
-    
+
     sender ! ActorReply.SUBSCRIBED
-    
+
     System.err.println("[ReteActor] " + self + ": Subscribed: " + sender + " on slot " + slot)
-    
+
   }
-  
+
   private def update(updateMessage: UpdateMessage) = {
     System.err.println("[ReteActor] " + self + ", " + reteNode.getClass().getName()
 				+ ": update message received, " + updateMessage.getChangeSet().getChangeType() + " "
 				+ updateMessage.getNodeSlot())
-				
+
 	var changeSet:ChangeSet = null
-				
+
 	updateMessage.getNodeSlot match {
       case ReteNodeSlot.SINGLE => {
         changeSet = reteNode.asInstanceOf[AlphaNode].update(updateMessage.getChangeSet)
@@ -142,15 +142,15 @@ class ScalaReteActor extends Actor {
         throw new NotImplementedException(updateMessage.getNodeSlot() + " slot is not supported.")
       }
     }
-    
+
     sendToSubscribers(changeSet, updateMessage.getSenderStack)
-    
+
     reteNode match{
       case node:ProductionNode => terminationProtocol(new TerminationMessage(updateMessage.getSenderStack()))
       case _ => {}
     }
   }
-  
+
   protected def sendToSubscribers(changeSet: ChangeSet, senderStack: Stack[ActorRef]) = {
     reteNode match{
       case node:InputNode => {
@@ -158,60 +158,60 @@ class ScalaReteActor extends Actor {
       }
       case _ => {}
     }
-     
+
     subscribers.entrySet.foreach(entry => {
         val subscriber = entry.getKey
         val slot = entry.getValue
-        
+
         val propagatedSenderStack = senderStack.push(self)
         val updateMessage = new UpdateMessage(changeSet, slot, propagatedSenderStack)
-        
+
         // @formatter:off
 			System.err.println("[ReteActor] " + self + ", " + reteNode.getClass().getName() + ", "
-					+ ArchUtil.oneLiner(recipe.getTraceInfo()) + ": Sending to " + subscriber + "\n" 
+					+ ArchUtil.removeLineBreaks(recipe.getTraceInfo()) + ": Sending to " + subscriber + "\n"
 					+ "            - " + changeSet.getChangeType() + " changeset, " + changeSet.getTuples().size() + " tuples\n"
-					+ "            - " + "with sender stack: " + propagatedSenderStack + "\n" 
+					+ "            - " + "with sender stack: " + propagatedSenderStack + "\n"
 					+ "            - " + pendingTerminationMessages + " pending")
 		// @formatter:on
-					
+
 		subscriber ! updateMessage
     })
   }
-  
+
   private def initialize = {
     coordinatorRef = sender
-    
+
     System.err.println("[ReteActor] " + self + ": INITIALIZE received")
-    
+
     val node = reteNode.asInstanceOf[InitializableReteNode]
     val changeSet = node.initialize
-    
+
     val emptyStack = Stack.empty[ActorRef]
     sendToSubscribers(changeSet, emptyStack)
   }
-  
+
   private def doTransformation(transformation: Transformation) = {
     coordinatorRef = sender
     System.err.println("[ReteActor] " + self + ": PosLength transformation")
-    
+
     val inputNode = reteNode.asInstanceOf[InputNode]
     val changeSets = inputNode.transform(transformation)
     val emptyStack = Stack.empty[ActorRef]
-    
+
     changeSets.foreach(changeSet => {
       sendToSubscribers(changeSet, emptyStack)
     })
   }
-  
+
   private def terminationProtocol (readyMessage:TerminationMessage):Unit = {
     val route = readyMessage.getRoute
-    
+
     reteNode match{
       case node:InputNode => {
         if (route.isEmpty()) {
 		  pendingTerminationMessages -= 1
 		}
-        
+
         if (pendingTerminationMessages == 0) {
 		  coordinatorRef ! CoordinatorMessage.TERMINATED
 
@@ -221,22 +221,22 @@ class ScalaReteActor extends Actor {
 		  System.err.println("|          you're terminated           |")
 		  System.err.println("+======================================+")
 		}
-        
+
         return
       }
       case _ => {}
     }
-    
+
     val pair = route.pop2
     val readyMessageTarget = pair._1
     val readyMessageSenderStack = pair._2
-    
+
     val propagatedReadyMessage = new TerminationMessage(readyMessageSenderStack)
     readyMessageTarget ! propagatedReadyMessage
-    
+
     System.err.println("[ReteActor] Termination protocol sending: " + readyMessageSenderStack + " to "
 				+ readyMessageTarget)
-				
+
 	return
   }
 

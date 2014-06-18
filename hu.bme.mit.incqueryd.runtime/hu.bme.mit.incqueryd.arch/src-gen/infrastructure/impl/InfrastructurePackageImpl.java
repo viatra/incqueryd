@@ -2,7 +2,6 @@
  */
 package infrastructure.impl;
 
-import infrastructure.Cluster;
 import infrastructure.ElementWithTraceInfo;
 import infrastructure.InfrastructureFactory;
 import infrastructure.InfrastructurePackage;
@@ -11,7 +10,6 @@ import infrastructure.Machine;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -24,13 +22,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  */
 public class InfrastructurePackageImpl extends EPackageImpl implements InfrastructurePackage
 {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass clusterEClass = null;
-
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -116,36 +107,6 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getCluster()
-  {
-    return clusterEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getCluster_ReteMachines()
-  {
-    return (EReference)clusterEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getCluster_CacheMachines()
-  {
-    return (EReference)clusterEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getMachine()
   {
     return machineEClass;
@@ -221,10 +182,6 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
     isCreated = true;
 
     // Create classes and their features
-    clusterEClass = createEClass(CLUSTER);
-    createEReference(clusterEClass, CLUSTER__RETE_MACHINES);
-    createEReference(clusterEClass, CLUSTER__CACHE_MACHINES);
-
     machineEClass = createEClass(MACHINE);
     createEAttribute(machineEClass, MACHINE__NAME);
     createEAttribute(machineEClass, MACHINE__IP);
@@ -265,14 +222,9 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    clusterEClass.getESuperTypes().add(this.getElementWithTraceInfo());
     machineEClass.getESuperTypes().add(this.getElementWithTraceInfo());
 
     // Initialize classes, features, and operations; add parameters
-    initEClass(clusterEClass, Cluster.class, "Cluster", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getCluster_ReteMachines(), this.getMachine(), null, "reteMachines", null, 0, -1, Cluster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCluster_CacheMachines(), this.getMachine(), null, "cacheMachines", null, 0, -1, Cluster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(machineEClass, Machine.class, "Machine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getMachine_Name(), theEcorePackage.getEString(), "name", null, 0, 1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMachine_Ip(), theEcorePackage.getEString(), "ip", null, 0, 1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

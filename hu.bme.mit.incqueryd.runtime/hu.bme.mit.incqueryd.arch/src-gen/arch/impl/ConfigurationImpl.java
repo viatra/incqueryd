@@ -5,8 +5,7 @@ package arch.impl;
 import arch.ArchPackage;
 import arch.Configuration;
 import arch.InfrastructureMapping;
-
-import infrastructure.Cluster;
+import arch.RecipeImport;
 
 import java.util.Collection;
 
@@ -24,8 +23,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
-
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Configuration</b></em>'.
@@ -34,8 +31,7 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
  * The following features are implemented:
  * <ul>
  *   <li>{@link arch.impl.ConfigurationImpl#getTraceInfo <em>Trace Info</em>}</li>
- *   <li>{@link arch.impl.ConfigurationImpl#getClusters <em>Clusters</em>}</li>
- *   <li>{@link arch.impl.ConfigurationImpl#getReteRecipes <em>Rete Recipes</em>}</li>
+ *   <li>{@link arch.impl.ConfigurationImpl#getRecipeImports <em>Recipe Imports</em>}</li>
  *   <li>{@link arch.impl.ConfigurationImpl#getMappings <em>Mappings</em>}</li>
  * </ul>
  * </p>
@@ -65,24 +61,14 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
   protected String traceInfo = TRACE_INFO_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getClusters() <em>Clusters</em>}' containment reference list.
+   * The cached value of the '{@link #getRecipeImports() <em>Recipe Imports</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getClusters()
+   * @see #getRecipeImports()
    * @generated
    * @ordered
    */
-  protected EList<Cluster> clusters;
-
-  /**
-   * The cached value of the '{@link #getReteRecipes() <em>Rete Recipes</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getReteRecipes()
-   * @generated
-   * @ordered
-   */
-  protected EList<ReteRecipe> reteRecipes;
+  protected EList<RecipeImport> recipeImports;
 
   /**
    * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
@@ -143,27 +129,13 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Cluster> getClusters()
+  public EList<RecipeImport> getRecipeImports()
   {
-    if (clusters == null)
+    if (recipeImports == null)
     {
-      clusters = new EObjectContainmentEList<Cluster>(Cluster.class, this, ArchPackage.CONFIGURATION__CLUSTERS);
+      recipeImports = new EObjectContainmentEList<RecipeImport>(RecipeImport.class, this, ArchPackage.CONFIGURATION__RECIPE_IMPORTS);
     }
-    return clusters;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<ReteRecipe> getReteRecipes()
-  {
-    if (reteRecipes == null)
-    {
-      reteRecipes = new EObjectContainmentEList<ReteRecipe>(ReteRecipe.class, this, ArchPackage.CONFIGURATION__RETE_RECIPES);
-    }
-    return reteRecipes;
+    return recipeImports;
   }
 
   /**
@@ -190,10 +162,8 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
   {
     switch (featureID)
     {
-      case ArchPackage.CONFIGURATION__CLUSTERS:
-        return ((InternalEList<?>)getClusters()).basicRemove(otherEnd, msgs);
-      case ArchPackage.CONFIGURATION__RETE_RECIPES:
-        return ((InternalEList<?>)getReteRecipes()).basicRemove(otherEnd, msgs);
+      case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
+        return ((InternalEList<?>)getRecipeImports()).basicRemove(otherEnd, msgs);
       case ArchPackage.CONFIGURATION__MAPPINGS:
         return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
     }
@@ -212,10 +182,8 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
     {
       case ArchPackage.CONFIGURATION__TRACE_INFO:
         return getTraceInfo();
-      case ArchPackage.CONFIGURATION__CLUSTERS:
-        return getClusters();
-      case ArchPackage.CONFIGURATION__RETE_RECIPES:
-        return getReteRecipes();
+      case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
+        return getRecipeImports();
       case ArchPackage.CONFIGURATION__MAPPINGS:
         return getMappings();
     }
@@ -236,13 +204,9 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
       case ArchPackage.CONFIGURATION__TRACE_INFO:
         setTraceInfo((String)newValue);
         return;
-      case ArchPackage.CONFIGURATION__CLUSTERS:
-        getClusters().clear();
-        getClusters().addAll((Collection<? extends Cluster>)newValue);
-        return;
-      case ArchPackage.CONFIGURATION__RETE_RECIPES:
-        getReteRecipes().clear();
-        getReteRecipes().addAll((Collection<? extends ReteRecipe>)newValue);
+      case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
+        getRecipeImports().clear();
+        getRecipeImports().addAll((Collection<? extends RecipeImport>)newValue);
         return;
       case ArchPackage.CONFIGURATION__MAPPINGS:
         getMappings().clear();
@@ -265,11 +229,8 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
       case ArchPackage.CONFIGURATION__TRACE_INFO:
         setTraceInfo(TRACE_INFO_EDEFAULT);
         return;
-      case ArchPackage.CONFIGURATION__CLUSTERS:
-        getClusters().clear();
-        return;
-      case ArchPackage.CONFIGURATION__RETE_RECIPES:
-        getReteRecipes().clear();
+      case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
+        getRecipeImports().clear();
         return;
       case ArchPackage.CONFIGURATION__MAPPINGS:
         getMappings().clear();
@@ -290,10 +251,8 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
     {
       case ArchPackage.CONFIGURATION__TRACE_INFO:
         return TRACE_INFO_EDEFAULT == null ? traceInfo != null : !TRACE_INFO_EDEFAULT.equals(traceInfo);
-      case ArchPackage.CONFIGURATION__CLUSTERS:
-        return clusters != null && !clusters.isEmpty();
-      case ArchPackage.CONFIGURATION__RETE_RECIPES:
-        return reteRecipes != null && !reteRecipes.isEmpty();
+      case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
+        return recipeImports != null && !recipeImports.isEmpty();
       case ArchPackage.CONFIGURATION__MAPPINGS:
         return mappings != null && !mappings.isEmpty();
     }

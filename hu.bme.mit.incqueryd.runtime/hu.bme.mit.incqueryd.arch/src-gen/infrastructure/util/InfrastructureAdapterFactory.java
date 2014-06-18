@@ -75,11 +75,6 @@ public class InfrastructureAdapterFactory extends AdapterFactoryImpl
     new InfrastructureSwitch<Adapter>()
     {
       @Override
-      public Adapter caseCluster(Cluster object)
-      {
-        return createClusterAdapter();
-      }
-      @Override
       public Adapter caseMachine(Machine object)
       {
         return createMachineAdapter();
@@ -110,21 +105,6 @@ public class InfrastructureAdapterFactory extends AdapterFactoryImpl
     return modelSwitch.doSwitch((EObject)target);
   }
 
-
-  /**
-   * Creates a new adapter for an object of class '{@link infrastructure.Cluster <em>Cluster</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see infrastructure.Cluster
-   * @generated
-   */
-  public Adapter createClusterAdapter()
-  {
-    return null;
-  }
 
   /**
    * Creates a new adapter for an object of class '{@link infrastructure.Machine <em>Machine</em>}'.

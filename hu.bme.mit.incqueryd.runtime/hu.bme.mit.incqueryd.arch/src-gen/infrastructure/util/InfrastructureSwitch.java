@@ -72,14 +72,6 @@ public class InfrastructureSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
-      case InfrastructurePackage.CLUSTER:
-      {
-        Cluster cluster = (Cluster)theEObject;
-        T result = caseCluster(cluster);
-        if (result == null) result = caseElementWithTraceInfo(cluster);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case InfrastructurePackage.MACHINE:
       {
         Machine machine = (Machine)theEObject;
@@ -97,22 +89,6 @@ public class InfrastructureSwitch<T> extends Switch<T>
       }
       default: return defaultCase(theEObject);
     }
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Cluster</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Cluster</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseCluster(Cluster object)
-  {
-    return null;
   }
 
   /**
