@@ -17,4 +17,11 @@
                 <module>hu.bme.mit.incqueryd.osmonitoringagent.metrics</module>
                 <module>hu.bme.mit.incqueryd.retemonitoring.metrics</module>
         </modules>
+        
+        <properties>
+        	<akka.actor.artifact>akka-actor_2.10</akka.actor.artifact>
+        	<akka.remote.artifact>akka-remote_2.10</akka.remote.artifact>
+        	<akka.version>2.1.4</akka.version>
+        </properties>
+        
 </project>

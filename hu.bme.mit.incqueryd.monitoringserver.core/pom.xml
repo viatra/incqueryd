@@ -3,7 +3,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hu.bme.mit.incqueryd.monitoringserver</groupId>
 	<artifactId>core</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 
 
 	<dependencies>
@@ -48,14 +47,14 @@
 
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
-			<artifactId>akka-actor_2.10</artifactId>
-			<version>2.1.4</version>
+			<artifactId>${akka.actor.artifact}</artifactId>
+			<version>${akka.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
-			<artifactId>akka-remote_2.10</artifactId>
-			<version>2.1.4</version>
+			<artifactId>${akka.remote.artifact}</artifactId>
+			<version>${akka.version}</version>
 		</dependency>
 
 	</dependencies>
@@ -100,4 +99,9 @@
 	</build>
 
 
+	<parent>
+		<groupId>hu.bme.mit.incqueryd.monitoring</groupId>
+		<artifactId>hu.bme.mit.incqueryd.monitoring</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 </project>
