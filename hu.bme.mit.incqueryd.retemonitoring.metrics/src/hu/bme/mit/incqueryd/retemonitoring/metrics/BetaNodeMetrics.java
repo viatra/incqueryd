@@ -12,8 +12,8 @@ public class BetaNodeMetrics extends ReteNodeMetrics {
 	private int rightIndexerSize;
 	
 	public BetaNodeMetrics(String reteNode, String hostName,
-			long updateMessagesSent, int leftIndexerSize, int rightIndexerSize) {
-		super(reteNode, hostName, updateMessagesSent);
+			int updateMessagesSent, int changesCount, int leftIndexerSize, int rightIndexerSize) {
+		super(reteNode, hostName, updateMessagesSent, changesCount);
 		this.leftIndexerSize = leftIndexerSize;
 		this.rightIndexerSize = rightIndexerSize;
 	}
