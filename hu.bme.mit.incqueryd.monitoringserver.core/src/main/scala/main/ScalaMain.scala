@@ -11,6 +11,13 @@ import hu.bme.mit.incqueryd.retemonitoring.metrics.BetaNodeMetrics
 import com.typesafe.config.ConfigFactory
 import scala.concurrent.ops._
 import akka.actor.Actor
+import akka.util.Timeout
+import scala.concurrent.duration.Duration
+import akka.pattern.Patterns.ask
+import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoringMessage
+import scala.concurrent.Future
+import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics
+import scala.concurrent.Await
 
 object ScalaMain {
 
@@ -34,9 +41,17 @@ object ScalaMain {
     val system = ActorSystem.create("monitoringserver", ConfigFactory.load(customConf))
     val collector = system.actorOf(Props[MonitoringDataCollectorActor], name = "collector")
 
+    Thread.sleep(10000)
     
+    val timeout: Timeout = new Timeout(Duration.create(14400, "seconds"))
 
-    //system.shutdown
+    ReteActorHandler.getActors.foreach(actorRef => {
+      val future = ask(actorRef, MonitoringMessage.MONITOR, timeout)
+      val result = Await.result(future, timeout.duration)
+      println(result)
+    })
+
+    system.shutdown
 
 
   }
