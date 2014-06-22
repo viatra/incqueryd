@@ -32,6 +32,7 @@ import hu.bme.mit.incqueryd.rete.messages.Transformation
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet
 import arch.Configuration
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType
+import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
 
 class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor{
   
@@ -79,6 +80,8 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
 
     // phase 2
     subscribeActors(conf)
+    
+    subscribeMonitoringService
 
     // phase 3
     initialize
@@ -280,6 +283,11 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
     val conf = new ReteNodeConfiguration(recipeString, cacheMachineIps)
     val future = ask(actorRef, conf, timeout)
     Await.result(future, timeout.duration)
+  }
+  
+  private def subscribeMonitoringService = {
+    val actor = context.actorFor("akka://monitoringserver@192.168.1.103:2552/user/collector")
+    actor ! new MonitoredActorCollection(actorRefs)
   }
   
   def receive = {

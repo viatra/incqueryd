@@ -28,6 +28,13 @@ import hu.bme.mit.incqueryd.rete.messages.TerminationMessage
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage
 import hu.bme.mit.incqueryd.rete.nodes.ProductionNode
+import scala.concurrent.ops._
+import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoringMessage
+import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics
+import hu.bme.mit.incqueryd.retemonitoring.metrics.InputNodeMetrics
+import hu.bme.mit.incqueryd.monitoring.HostNameService
+import hu.bme.mit.incqueryd.retemonitoring.metrics.AlphaNodeMetrics
+import hu.bme.mit.incqueryd.retemonitoring.metrics.BetaNodeMetrics
 
 class ScalaReteActor extends Actor {
 
@@ -36,6 +43,9 @@ class ScalaReteActor extends Actor {
   protected var subscribers = new HashMap[ActorRef, ReteNodeSlot]
   protected var pendingTerminationMessages = 0
   protected var coordinatorRef: ActorRef = null
+  
+  protected var updateMessageCount = 0  // To count how many update messages this actor sent
+  protected var changesCount = 0  // To count how many tuple changes it sent
 
   System.err.println("[ReteActor] Rete actor instantiated.")
 
@@ -130,7 +140,7 @@ class ScalaReteActor extends Actor {
 				+ updateMessage.getNodeSlot())
 				
 	var changeSet:ChangeSet = null
-				
+	
 	updateMessage.getNodeSlot match {
       case ReteNodeSlot.SINGLE => {
         changeSet = reteNode.asInstanceOf[AlphaNode].update(updateMessage.getChangeSet)
@@ -144,6 +154,7 @@ class ScalaReteActor extends Actor {
     }
     
     sendToSubscribers(changeSet, updateMessage.getSenderStack)
+    if(changeSet != null)updateMessageCount += 1
     
     reteNode match{
       case node:ProductionNode => terminationProtocol(new TerminationMessage(updateMessage.getSenderStack()))
@@ -158,7 +169,7 @@ class ScalaReteActor extends Actor {
       }
       case _ => {}
     }
-     
+    
     subscribers.entrySet.foreach(entry => {
         val subscriber = entry.getKey
         val slot = entry.getValue
@@ -176,6 +187,9 @@ class ScalaReteActor extends Actor {
 					
 		subscriber ! updateMessage
     })
+    
+    if(changeSet != null)changesCount += changeSet.getTuples.size // In case it's not a production node
+    
   }
   
   private def initialize = {
@@ -239,10 +253,21 @@ class ScalaReteActor extends Actor {
 				
 	return
   }
+  
+  private def monitor: ReteNodeMetrics = {
+    val clazz = reteNode.getClass.getName.split("\\.")
+    val nodeType = clazz(clazz.length - 1)
+    
+    reteNode match {
+      case inputNode: InputNode => new InputNodeMetrics(self.path.name, HostNameService hostName, nodeType, updateMessageCount, changesCount, inputNode tuples)
+      case alphaNode: AlphaNode => new AlphaNodeMetrics(self.path.name, HostNameService hostName, nodeType,  updateMessageCount, changesCount)
+      case betaNode: BetaNode => new BetaNodeMetrics(self.path.name, HostNameService hostName, nodeType, updateMessageCount, changesCount, betaNode leftIndexerSize, betaNode rightIndexerSize)
+    }
+  }
 
   def receive = {
     case conf: ReteNodeConfiguration => configure(conf)
-    case updateMessage: UpdateMessage => update(updateMessage)
+    case updateMessage: UpdateMessage => spawn { update(updateMessage) }
     case yellowPages: YellowPages => {
       subscribe(yellowPages)
       sender ! ActorReply.YELLOWPAGES_RECEIVED
@@ -257,6 +282,7 @@ class ScalaReteActor extends Actor {
       val productionNode = reteNode.asInstanceOf[ProductionNode]
       sender ! productionNode.getDeltaResults
     }
+    case MonitoringMessage.MONITOR => sender ! monitor
     case _ => {}
   }
 
