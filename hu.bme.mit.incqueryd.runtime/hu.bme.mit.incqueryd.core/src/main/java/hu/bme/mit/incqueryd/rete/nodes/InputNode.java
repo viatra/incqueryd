@@ -70,6 +70,10 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	public GraphElement getGraphElement() {
 		return graphElement;
 	}
+	
+	public int tuples() {
+		return tuples.size();
+	}
 
 	@Override
 	public ChangeSet initialize() throws IOException {
