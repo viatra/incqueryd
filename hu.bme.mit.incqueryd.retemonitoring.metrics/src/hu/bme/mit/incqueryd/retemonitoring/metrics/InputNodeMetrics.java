@@ -2,9 +2,9 @@ package hu.bme.mit.incqueryd.retemonitoring.metrics;
 
 public class InputNodeMetrics extends ReteNodeMetrics {
 
-	public InputNodeMetrics(String reteNode, String hostName,
+	public InputNodeMetrics(String reteNode, String hostName, String nodeType,
 			int updateMessagesSent, int changesCount, int tuples) {
-		super(reteNode, hostName, updateMessagesSent, changesCount);
+		super(reteNode, hostName, nodeType, updateMessagesSent, changesCount);
 		this.tuples = tuples;
 	}
 
@@ -17,6 +17,10 @@ public class InputNodeMetrics extends ReteNodeMetrics {
 	
 	public int getTuples() {
 		return tuples;
+	}
+	
+	public String toString() {
+		return super.toString() + ", Tuples: " + tuples;
 	}
 
 }

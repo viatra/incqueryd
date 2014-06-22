@@ -11,15 +11,17 @@ public class ReteNodeMetrics implements Serializable {
 	
 	private String reteNode;
 	private String hostName;
+	private String nodeType;
 	
 	private int updateMessagesSent;
 	private int changesCount;
 	
-	public ReteNodeMetrics(String reteNode, String hostName,
+	public ReteNodeMetrics(String reteNode, String hostName, String nodeType,
 			int updateMessagesSent, int changesCount) {
 		super();
 		this.reteNode = reteNode;
 		this.hostName = hostName;
+		this.nodeType = nodeType;
 		this.updateMessagesSent = updateMessagesSent;
 		this.changesCount = changesCount;
 	}
@@ -54,5 +56,13 @@ public class ReteNodeMetrics implements Serializable {
 	
 	public void setChangesCount(int changesCount) {
 		this.changesCount = changesCount;
+	}
+	
+	public String getNodeType() {
+		return nodeType;
+	}
+	
+	public String toString() {
+		return "Node: " + reteNode + ", Type: " + nodeType + ", Host:" + hostName + ", UpdateMessages: " + updateMessagesSent + ", Changes: " + changesCount;
 	}
 }

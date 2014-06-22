@@ -9,18 +9,19 @@ import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoringMessage
 import java.util.ArrayList
 import akka.actor.ActorRef
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
+import scala.collection.JavaConversions._
 
 class MonitoringDataCollectorActor extends Actor {
 
   def receive = {
 
-    case beta: BetaNodeMetrics => ReteMetricsCollector.putBetaMetrics(beta.getReteNode(), beta)
+    case beta: BetaNodeMetrics => println("beta")
 
-    case input: InputNodeMetrics => 
+    case input: InputNodeMetrics => println("input")
 
-    case alpha: AlphaNodeMetrics => ReteMetricsCollector.putAlphaMetrics(alpha.getReteNode(), alpha)
+    case alpha: AlphaNodeMetrics => println("alpha")
 
-    case actorRefs: MonitoredActorCollection => 
+    case actorRefs: MonitoredActorCollection => ReteActorHandler.putActors(actorRefs.getActorRefs)
     
     case _ => {}
 

@@ -11,9 +11,9 @@ public class BetaNodeMetrics extends ReteNodeMetrics {
 	private int leftIndexerSize;
 	private int rightIndexerSize;
 	
-	public BetaNodeMetrics(String reteNode, String hostName,
+	public BetaNodeMetrics(String reteNode, String hostName, String nodeType,
 			int updateMessagesSent, int changesCount, int leftIndexerSize, int rightIndexerSize) {
-		super(reteNode, hostName, updateMessagesSent, changesCount);
+		super(reteNode, hostName, nodeType, updateMessagesSent, changesCount);
 		this.leftIndexerSize = leftIndexerSize;
 		this.rightIndexerSize = rightIndexerSize;
 	}
@@ -32,6 +32,10 @@ public class BetaNodeMetrics extends ReteNodeMetrics {
 	
 	public void setRightIndexerSize(int rightSize) {
 		this.rightIndexerSize = rightSize;
+	}
+	
+	public String toString() {
+		return super.toString() + ", Primary indexer: " + leftIndexerSize + ", Secondary indexer: " + rightIndexerSize;
 	}
 	
 }
