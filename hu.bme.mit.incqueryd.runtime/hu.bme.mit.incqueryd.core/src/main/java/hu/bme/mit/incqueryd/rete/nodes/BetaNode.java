@@ -26,5 +26,13 @@ public abstract class BetaNode extends ReteNode {
     }
 
     abstract public ChangeSet update(final ChangeSet incomingChangeSet, final ReteNodeSlot slot);
+    
+    public int leftIndexerSize() {
+    	return primaryIndexer.getSize();
+    }
+    
+    public int rightIndexerSize() {
+    	return secondaryIndexer.getSize();
+    }
 
 }
