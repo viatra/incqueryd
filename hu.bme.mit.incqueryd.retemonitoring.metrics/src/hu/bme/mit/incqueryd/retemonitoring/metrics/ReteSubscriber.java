@@ -1,7 +1,13 @@
 package hu.bme.mit.incqueryd.retemonitoring.metrics;
 
-public class ReteSubscriber {
+import java.io.Serializable;
+
+public class ReteSubscriber implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String reteNode;
 	private String slot;
 	
