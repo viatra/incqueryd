@@ -1,5 +1,7 @@
 package hu.bme.mit.incqueryd.retemonitoring.metrics;
 
+import java.util.List;
+
 
 public class BetaNodeMetrics extends ReteNodeMetrics {
 
@@ -11,9 +13,9 @@ public class BetaNodeMetrics extends ReteNodeMetrics {
 	private int leftIndexerSize;
 	private int rightIndexerSize;
 	
-	public BetaNodeMetrics(String reteNode, String hostName, String nodeType,
-			int updateMessagesSent, int changesCount, int leftIndexerSize, int rightIndexerSize) {
-		super(reteNode, hostName, nodeType, updateMessagesSent, changesCount);
+	public BetaNodeMetrics(String reteNode, String hostName, String nodeType, String nodeclass,
+			String actorPath, int updateMessagesSent, int changesCount, int leftIndexerSize, int rightIndexerSize, List<ReteSubscriber> subscribers) {
+		super(reteNode, hostName, nodeType, nodeclass, actorPath, updateMessagesSent, changesCount, subscribers);
 		this.leftIndexerSize = leftIndexerSize;
 		this.rightIndexerSize = rightIndexerSize;
 	}

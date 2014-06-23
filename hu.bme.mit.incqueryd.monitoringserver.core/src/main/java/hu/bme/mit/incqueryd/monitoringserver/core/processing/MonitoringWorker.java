@@ -108,6 +108,7 @@ public class MonitoringWorker extends Thread {
 			}
 			
 			if(worker.successful()) {
+				monitoredData.setRete(worker.getReteMetrics());
 				for(ReteNodeMetrics metrics: worker.getReteMetrics()) {
 					System.out.println(metrics);
 				}

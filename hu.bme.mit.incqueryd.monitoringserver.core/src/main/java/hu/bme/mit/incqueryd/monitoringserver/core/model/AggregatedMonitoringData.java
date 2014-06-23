@@ -1,10 +1,13 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.model;
 
+import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics;
+
 import java.util.List;
 
 public class AggregatedMonitoringData {
 	
 	private List<MachineMonitoringData> machines;
+	private List<ReteNodeMetrics> rete;
 	
 	public void setMachines(List<MachineMonitoringData> machines) {
 		this.machines = machines;
@@ -12,5 +15,13 @@ public class AggregatedMonitoringData {
 	
 	public List<MachineMonitoringData> getMachines() {
 		return machines;
+	}
+	
+	public void setRete(List<ReteNodeMetrics> rete) {
+		this.rete = rete;
+	}
+	
+	public List<ReteNodeMetrics> getRete() {
+		return rete;
 	}
 }

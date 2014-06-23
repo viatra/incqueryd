@@ -1,6 +1,7 @@
 package hu.bme.mit.incqueryd.retemonitoring.metrics;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class ReteNodeMetrics implements Serializable {
 
@@ -12,18 +13,25 @@ public class ReteNodeMetrics implements Serializable {
 	private String reteNode;
 	private String hostName;
 	private String nodeType;
+	private String nodeClass;
+	private String actorPath;
 	
 	private int updateMessagesSent;
 	private int changesCount;
 	
-	public ReteNodeMetrics(String reteNode, String hostName, String nodeType,
-			int updateMessagesSent, int changesCount) {
+	private List<ReteSubscriber> subscribers;
+	
+	public ReteNodeMetrics(String reteNode, String hostName, String nodeType, String nodeclass,
+			String actorPath, int updateMessagesSent, int changesCount, List<ReteSubscriber> subscribers) {
 		super();
 		this.reteNode = reteNode;
 		this.hostName = hostName;
 		this.nodeType = nodeType;
 		this.updateMessagesSent = updateMessagesSent;
 		this.changesCount = changesCount;
+		this.nodeClass = nodeclass;
+		this.actorPath = actorPath;
+		this.subscribers = subscribers;
 	}
 
 	public String getReteNode() {
@@ -63,6 +71,10 @@ public class ReteNodeMetrics implements Serializable {
 	}
 	
 	public String toString() {
-		return "Node: " + reteNode + ", Type: " + nodeType + ", Host:" + hostName + ", UpdateMessages: " + updateMessagesSent + ", Changes: " + changesCount;
+		String str = "Node: " + reteNode + ", Type: " + nodeType + ", Class: " + nodeClass + ", Actor: " + actorPath + ", Host: " + hostName + ", UpdateMessages: " + updateMessagesSent + ", Changes: " + changesCount;
+		for(ReteSubscriber subscriber: subscribers) {
+			str += "\n\t - " + subscriber.getReteNode() + " : " + subscriber.getSlot();
+		}
+		return str;
 	}
 }

@@ -1,10 +1,12 @@
 package hu.bme.mit.incqueryd.retemonitoring.metrics;
 
+import java.util.List;
+
 public class InputNodeMetrics extends ReteNodeMetrics {
 
-	public InputNodeMetrics(String reteNode, String hostName, String nodeType,
-			int updateMessagesSent, int changesCount, int tuples) {
-		super(reteNode, hostName, nodeType, updateMessagesSent, changesCount);
+	public InputNodeMetrics(String reteNode, String hostName, String nodeType, String nodeclass,
+			String actorPath, int updateMessagesSent, int changesCount, int tuples, List<ReteSubscriber> subscribers) {
+		super(reteNode, hostName, nodeType, nodeclass, actorPath, updateMessagesSent, changesCount, subscribers);
 		this.tuples = tuples;
 	}
 
