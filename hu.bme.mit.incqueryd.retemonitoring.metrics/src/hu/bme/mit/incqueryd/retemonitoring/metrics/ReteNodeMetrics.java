@@ -70,6 +70,18 @@ public class ReteNodeMetrics implements Serializable {
 		return nodeType;
 	}
 	
+	public String getNodeClass() {
+		return nodeClass;
+	}
+	
+	public String getActorPath() {
+		return actorPath;
+	}
+	
+	public List<ReteSubscriber> getSubscribers() {
+		return subscribers;
+	}
+	
 	public String toString() {
 		String str = "Node: " + reteNode + ", Type: " + nodeType + ", Class: " + nodeClass + ", Actor: " + actorPath + ", Host: " + hostName + ", UpdateMessages: " + updateMessagesSent + ", Changes: " + changesCount;
 		for(ReteSubscriber subscriber: subscribers) {
