@@ -114,7 +114,7 @@ function drawHeatMap() {
 
     heatmap = {};
     heatmap.data = {};
-    heatmap.name = "Heatmap of resource usages";
+    heatmap.name = "Heatmap of OS-level resource usages";
     
     // if the selected node is a host computer
     if (selectedNode.data.nodetype == "machine") {
@@ -465,7 +465,7 @@ function drawSystem() {
     node.data.$color = "#83548B";
     node.data.$type = "circle";
     node.id = "graphnode0";
-    node.name = "graphnode0";
+    node.name = "";
 
     graph.push(node);
 

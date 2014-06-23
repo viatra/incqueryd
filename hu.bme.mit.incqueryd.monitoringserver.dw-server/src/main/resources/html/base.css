@@ -7,21 +7,6 @@ html, body {
     background-color:#23A4FF;
 }
 
-input, select {
-    font-size:0.9em;
-}
-
-table {
-    margin-top:-10px;
-    margin-left:7px;
-}
-
-h4 {
-    font-size:1.1em;
-    text-decoration:none;
-    font-weight:normal;
-    color:#23A4FF;
-}
 h1 {
 	text-shadow: 0px 0px 10px rgba(255,255,255,1), 0px 0px 30px rgba(255,255,255,1), 0px 0px 50px rgba(255,255,255,1), 0px 0px 180px rgba(255,255,255,1);
 	color: rgba(255,255,255,0.5);
@@ -29,25 +14,36 @@ h1 {
     background: linear-gradient(to right, grey , #23A4FF); /* Standard syntax */
 }
 
-a {
-    color:#23A4FF;
-}
-
 #container {
     width: 1620px;
-    height: 800px;
+    height: 2400px;
     margin:0 auto;
     position:relative;
 }
  
-#right-container, 
-#center-container {
-    height:100%;
+#heatmap-container-os,
+#heatmap-container-rete,
+#heatmap-container-jvm,
+#graph-container-rete, 
+#graph-container {
+    height:33%;
     position:absolute;
     top:0;
 }
 
-#right-container {
+#heatmap-container-os {
+    width:49%;
+    color:#686c70;
+    overflow: auto;
+    background-color:#fff;
+    background-repeat:no-repeat;
+    border-bottom:1px solid #ddd;
+    float:left;
+    border-right:1px solid #ddd;
+    margin-top:50%;
+}
+
+#heatmap-container-rete {
     width:49%;
     color:#686c70;
     overflow: auto;
@@ -57,20 +53,51 @@ a {
     float:right;
     border-right:1px solid #ddd;
     margin-left:50%;
+    margin-top:50%;
 }
 
-#center-container {
+#heatmap-container-jvm {
     width:49%;
-    height:100%;
+    color:#686c70;
+    overflow: auto;
+    background-color:#fff;
+    background-repeat:no-repeat;
+    border-bottom:1px solid #ddd;
+    float:right;
+    border-right:1px solid #ddd;
+    margin-left:25%;
+    margin-top:100%;
+}
+
+#graph-container {
+    width:49%;
     float:left;
     background-color:#1a1a1a;
     color:#ccc;
 }
 
-#separator {
+#graph-container-rete {
+    width:49%;
+    overflow: auto;
+    background-repeat:no-repeat;
+    border-bottom:1px solid #ddd;
+    float:right;
+    border-right:1px solid #ddd;
+    margin-left:50%;
+    background-color:#1a1a1a;
+    color:#ccc;
+}
+
+.separator-horizontal {
     background-color:inherit;
     height:100%;
     width:20px;
+}
+
+.separator-vertical {
+    background-color:inherit;
+    height:2%;
+    width:100%;
 }
 
 .text {
