@@ -1,10 +1,12 @@
 // Global variables
 var labelType, useGradients, nativeTextSupport, animate;
 var graph; // The grap object used for representing the system components in a graph structure
+var rete_graph; // The grap object used for representing the Rete node in a graph structure
 var heatmap; // The heatmap object to draw
 var tm; // The treemap object for the heatmap visualization
 var selectedNode; // The selected node to draw heatmap for
 var fd;
+var fd_rete;
 var jsonData; // The JSON data we get from the server
 var images; // Store the images
 
@@ -49,19 +51,69 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
     }
 });
 
+$jit.ForceDirected.Plot.NodeTypes.implement({
+    'beta': {
+        'render': function (node, canvas) {
+            var pos = node.pos.getc(true);
+            this.nodeHelper.rectangle.render('fill', pos, 80, 30, canvas);
+            this.nodeHelper.triangle.render('fill', { x: pos.x - 20, y: pos.y - 25 }, 10, canvas);
+            this.nodeHelper.triangle.render('fill', { x: pos.x + 20, y: pos.y - 25 }, 10, canvas);
+        },
+        'contains': function (node, pos) {
+            var npos = node.pos.getc(true);
+            return this.nodeHelper.rectangle.contains(npos, pos, 40, 80);
+        }
+    }
+});
+
 // Directed edge with label placed on it
 $jit.ForceDirected.Plot.EdgeTypes.implement({
     'label-arrow-line': {
         'render': function (adj, canvas) {
+
             //plot arrow edge
-            this.edgeTypes.arrow.render.call(this, adj, canvas);
+            //this.edgeTypes.arrow.render.call(this, adj, canvas);
+
+            var from = adj.nodeFrom.pos.getc(true),
+            to = adj.nodeTo.pos.getc(true),
+            dim = adj.getData('dim'),
+            direction = adj.data.$direction,
+            inv = (direction && direction.length > 1 && direction[0] != adj.nodeFrom.id);
+
+            var deltaX;
+            var deltaY;
+            if (adj.data.slot == "PRIMARY") {
+                deltaX = -20;
+                deltaY = -30;
+            }
+            else if (adj.data.slot == "SECONDARY") {
+                deltaX = 20;
+                deltaY = -30;
+            }
+            else {
+                deltaX = 0;
+                deltaY = -10;
+            }
+            
+            if (inv) {
+                var from2 = {};
+                from2.y = from.y + deltaY;
+                from2.x = from.x + deltaX;
+                this.edgeHelper.arrow.render(from2, to, dim, inv, canvas);
+            } else {
+                var to2 = {};
+                to2.y = to.y + deltaY;
+                to2.x = to.x + deltaX;;
+                this.edgeHelper.arrow.render(from, to2, dim, inv, canvas);
+            }
+            
             //get nodes cartesian coordinates
             var pos = adj.nodeFrom.pos.getc(true);
             var posChild = adj.nodeTo.pos.getc(true);
 
             //check for edge label in data
             var data = adj.data;
-            if (data.labelid && data.labeltext) {
+            if (data.labeltext) {
                 var x2 = Math.max(pos.x, posChild.x);
                 var x1 = Math.min(pos.x, posChild.x);
                 var y2 = Math.max(pos.y, posChild.y);
@@ -71,7 +123,7 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
                 var posx = x2 - (x2 - x1) / 2;
 
                 var ctx = canvas.getCtx();
-                ctx.font = "20pt Arial";
+                ctx.font = "10pt Arial";
                 ctx.fillText(data.labeltext, posx, posy);
 
             }
@@ -100,10 +152,16 @@ function update(object) {
         $jit.id('infovis').innerHTML = "";
         $jit.id('heatmap').innerHTML = "";
 
+        $jit.id('infovis-rete').innerHTML = "";
+
         if (graph != null) delete graph;
         graph = [];
 
+        if (rete_graph != null) delete rete_graph;
+        rete_graph = [];
+
         drawSystem();
+        drawReteNet();
     }
     
 }
@@ -667,24 +725,161 @@ function setDataForSelectedNode() {
 
 }
 
-//// Update the data of the graph nodes (system components)
-//function updateData(system) {
-    
-//    for (var i = 0; i < graph.length; i++) {
+// Rete network visualization functions ***************************************************
+// Drawing the system as a graph
+function drawReteNet() {
 
-//        // How to update the hosts
-//        if (graph[i].data.nodetype == "machine") {
-//            for (var j = 0; j < system.machines.length; j++) {
-//                if (system.machines[j].host == graph[i].id) {
-//                    graph[i].data.os = system.machines[j].os;
-//                    console.log(system.machines[j].os);
-//                    break;
-//                }
-//            }
-//        }
+    for (var i = 0; i < jsonData.rete.length; i++) {
+        var reteNode = jsonData.rete[i];
 
-//    }
-//}
+        var node = {};
+        node.data = {};
+
+        node.adjacencies = [];
+
+        if (reteNode.nodeClass == "Alpha") {
+            node.data.$type = "rectangle";
+            node.data.$color = "red";
+        }
+        else if(reteNode.nodeClass == "Beta"){
+            node.data.$type = "beta";
+            node.data.$color = "red";
+        }
+        else {
+            node.data.$type = "circle";
+            node.data.$dim = 10;
+        }
+
+        node.id = reteNode.reteNode;
+        node.name = reteNode.nodeType + " " + reteNode.reteNode + " on " + reteNode.hostName;
+        node.data.nodetype = "rete";
+
+        for (var j = 0; j < reteNode.subscribers.length; j++) {
+            var subsciber = reteNode.subscribers[j];
+
+            var edge = {};
+            edge.nodeTo = subsciber.reteNode;
+            edge.nodeFrom = reteNode.reteNode;
+            edge.data = {};
+            edge.data.$type = 'label-arrow-line';
+            edge.data.$direction = [];
+            edge.data.$direction.push(reteNode.reteNode);
+            edge.data.$direction.push(subsciber.reteNode);
+            edge.data.labeltext = "Updates:" + reteNode.updateMessagesSent + "/Changes:" + reteNode.changesCount;
+            edge.data.slot = subsciber.slot;
+
+            node.adjacencies.push(edge);
+        }
+
+        rete_graph.push(node);
+    }
+
+    // init ForceDirected
+    fd_rete = new $jit.ForceDirected({
+        //id of the visualization container
+        injectInto: 'infovis-rete',
+        //Enable zooming and panning
+        //with scrolling and DnD
+        width: 1024,
+        height: 900,
+        Navigation: {
+            enable: true,
+            type: 'Native',
+            //Enable panning events only if we're dragging the empty
+            //canvas (and not a node).
+            panning: 'avoid nodes',
+            zooming: 10 //zoom speed. higher is more sensible
+        },
+        // Change node and edge styles such as
+        // color and width.
+        // These properties are also set per node
+        // with dollar prefixed data-properties in the
+        // JSON structure.
+        Node: {
+            overridable: true,
+            dim: 7
+        },
+        Edge: {
+            overridable: true,
+            type: 'line',
+            color: '#23A4FF',
+            lineWidth: 4
+        },
+        // Add node events
+        Events: {
+            enable: true,
+            enableForEdges: true,
+            type: 'Native',
+            //Change cursor style when hovering a node
+            onMouseEnter: function () {
+                fd_rete.canvas.getElement().style.cursor = 'move';
+            },
+            onMouseLeave: function () {
+                fd_rete.canvas.getElement().style.cursor = '';
+            },
+            //Update node positions when dragged
+            onDragMove: function (node, eventInfo, e) {
+                var pos = eventInfo.getPos();
+                node.pos.setc(pos.x, pos.y);
+                fd_rete.plot();
+            },
+            //Implement the same handler for touchscreens
+            onTouchMove: function (node, eventInfo, e) {
+                $jit.util.event.stop(e); //stop default touchmove event
+                this.onDragMove(node, eventInfo, e);
+            }
+        },
+        //Number of iterations for the FD algorithm
+        iterations: 200,
+        //Edge length
+        levelDistance: 130,
+        // This method is only triggered
+        // on label creation and only for DOM labels (not native canvas ones).
+        onCreateLabel: function (domElement, node) {
+            // Create a 'name' and 'close' buttons and add them
+            // to the main node label
+            var nameContainer = document.createElement('span'),
+                style = nameContainer.style;
+            nameContainer.className = 'name';
+            nameContainer.innerHTML = node.name;
+            domElement.appendChild(nameContainer);
+            style.fontSize = "1.2em";
+            style.color = "#ddd";
+
+        },
+        // Change node styles when DOM labels are placed
+        // or moved.
+        onPlaceLabel: function (domElement, node) {
+            var style = domElement.style;
+            var left = parseInt(style.left);
+            var top = parseInt(style.top);
+            var w = domElement.offsetWidth;
+            style.left = (left - w / 2) + 'px';
+            style.top = (top - 32) + 'px';
+            style.display = '';
+        }
+    });
+    // load JSON data.
+    fd_rete.loadJSON(rete_graph);
+
+    // compute positions incrementally and animate.
+    fd_rete.computeIncremental({
+        iter: 40,
+        property: 'end',
+        onStep: function (perc) {
+
+        },
+        onComplete: function () {
+
+            fd_rete.animate({
+                modes: ['linear'],
+                transition: $jit.Trans.Elastic.easeOut,
+                duration: 2500
+            });
+        }
+    });
+    // end
+}
 
 // Other things **********************************************
 

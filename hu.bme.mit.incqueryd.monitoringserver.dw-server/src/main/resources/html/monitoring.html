@@ -11,13 +11,13 @@
     <script language="javascript" type="text/javascript" src="monitoring.js"></script>
     <script>
 
-        function hello() {
+        function visualizeSystem() {
 
             $.getJSON('test.json', function (data) {
                 update(data);
                 console.log('JSON data received:', data);
             });
-            //setTimeout("hello()",5000);
+            //setTimeout("hello()",15000);
         }
 
         $(function () {
@@ -28,7 +28,7 @@
 </head> 
 <body>
     <h1>IncQuery-D System Monitoring Overview</h1>
-    <button onclick="hello()">Click me</button> 
+    <button onclick="visualizeSystem()">Click me</button> 
 
     <div id="container">
        
