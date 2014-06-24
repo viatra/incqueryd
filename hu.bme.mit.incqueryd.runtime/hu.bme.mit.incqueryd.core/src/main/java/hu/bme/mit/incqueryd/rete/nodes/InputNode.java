@@ -1,7 +1,6 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
 import hu.bme.mit.bigmodel.fourstore.FourStoreClient;
-import hu.bme.mit.incqueryd.arch.ArchUtil;
 import hu.bme.mit.incqueryd.cache.TupleCache;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
@@ -21,7 +20,8 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 
-import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSet;
@@ -32,35 +32,18 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 
 	protected final String type;
 	protected boolean hasAttribute = false;
-	protected String attribute;
 	protected final GraphElement graphElement;
 	protected final Set<Tuple> tuples;
 	protected final TupleCache cache;
 	protected final Random random = new Random(0);
 
-	InputNode(final UniquenessEnforcerRecipe recipe, final List<String> cacheMachineIps) {
+	InputNode(final TypeInputRecipe recipe, final List<String> cacheMachineIps) {
 		super();
-
-		String typename;
-		final String traceInfo = recipe.getTraceInfo();
-		if (traceInfo.startsWith("UniquenessEnforcerNode#vertex")) {
-			graphElement = GraphElement.NODE;
-
-			if (ArchUtil.hasAttribute(traceInfo)) {
-				hasAttribute = true;
-				attribute = ArchUtil.extractAttribute(traceInfo);
-			}
-			
-			typename = "node";
-		} else {
-			graphElement = GraphElement.EDGE;
-			typename = "edge";
-		}
-		type = ArchUtil.extractType(recipe.getTraceInfo());
-		typename += type;
-
+		type = recipe.getTypeName();
+		graphElement = recipe instanceof UnaryInputRecipe ? GraphElement.NODE : GraphElement.EDGE;
+		String setName = graphElement.toString() + type;
 		cache = new TupleCache(cacheMachineIps);
-		tuples = cache.getSet(typename);
+		tuples = cache.getSet(setName);
 	}
 
 	public String getType() {
@@ -85,7 +68,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		}
 
 		final Set<Tuple> tuplesToSend = cache.isDistributed() ? ImmutableSet.copyOf(tuples) : tuples;
-			
+
 		final ChangeSet changeSet = new ChangeSet(tuplesToSend, ChangeType.POSITIVE);
 		return changeSet;
 	}
@@ -93,19 +76,10 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	private void initializeForNodes() throws IOException {
 		final FourStoreClient client = new FourStoreClient();
 
-		if (hasAttribute) {
-			final Map<Long, Integer> verticesWithProperty = client.collectVerticesWithProperty(attribute);
-			for (final Entry<Long, Integer> vertexWithProperty : verticesWithProperty.entrySet()) {
-				final Tuple tuple = new Tuple(vertexWithProperty.getKey(), vertexWithProperty.getValue());
-				tuples.add(tuple);
-			}
-
-		} else {
-			final List<Long> vertices = client.collectVertices(type);
-			for (final Long vertex : vertices) {
-				final Tuple tuple = new Tuple(vertex);
-				tuples.add(tuple);
-			}
+		final List<Long> vertices = client.collectVertices(type);
+		for (final Long vertex : vertices) {
+			final Tuple tuple = new Tuple(vertex);
+			tuples.add(tuple);
 		}
 
 		System.err.println("intializeForNodes returns " + tuples.size() + " tuples");
@@ -114,8 +88,13 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	private void initializeForEdges() throws IOException {
 		final FourStoreClient client = new FourStoreClient();
 		final Multimap<Long, Long> edges = client.collectEdges(type);
-
-		for (final Entry<Long, Long> entry : edges.entries()) {
+		if (hasAttribute) {
+			final Map<Long, Integer> verticesWithProperty = client.collectVerticesWithProperty(type);
+			for (final Entry<Long, Integer> vertexWithProperty : verticesWithProperty.entrySet()) {
+				final Tuple tuple = new Tuple(vertexWithProperty.getKey(), vertexWithProperty.getValue());
+				tuples.add(tuple);
+			}
+		} else for (final Entry<Long, Long> entry : edges.entries()) {
 			final Tuple tuple = new Tuple(entry.getKey(), entry.getValue());
 			tuples.add(tuple);
 		}
@@ -201,7 +180,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	}
 
 	private Collection<ChangeSet> routeSensorTransformation(final List<Tuple> invalids, final FourStoreClient client)
-			throws IOException {		
+			throws IOException {
 		final int size = invalids.size();
 		final Set<Tuple> tuplesToRemove = new HashSet<>();
 		final List<Long> sensorsToRemove = new ArrayList<>();

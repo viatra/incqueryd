@@ -14,21 +14,21 @@ import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
 
 public class ReteNodeFactory {
 
 	/**
 	 * Creates a Rete node from a Rete recipe
-	 * 
+	 *
 	 * @param recipe
 	 * @return An instantiated ReteNode.
-	 * @throws IOException 
+	 * @throws IOException
 	 */
-	public static ReteNode createNode(final ReteNodeConfiguration conf) throws IOException {		
+	public static ReteNode createNode(final ReteNodeConfiguration conf) throws IOException {
 		final ReteNodeRecipe recipe = conf.getReteNodeRecipe();
 		final List<String> cacheMachineIps = conf.getCacheMachineIps();
-		
+
 		if (recipe instanceof AntiJoinRecipe) {
 			return new AntiJoinNode((AntiJoinRecipe) recipe, cacheMachineIps);
 		} else if (recipe instanceof JoinRecipe) {
@@ -39,8 +39,8 @@ public class ReteNodeFactory {
 			return new InequalityNode((InequalityFilterRecipe) recipe);
 		} else if (recipe instanceof TrimmerRecipe) {
 			return new TrimmerNode((TrimmerRecipe) recipe);
-		} else if (recipe instanceof UniquenessEnforcerRecipe) {
-			return new InputNode((UniquenessEnforcerRecipe) recipe, cacheMachineIps);
+		} else if (recipe instanceof TypeInputRecipe) {
+			return new InputNode((TypeInputRecipe) recipe, cacheMachineIps);
 		} else if (recipe instanceof ProductionRecipe) {
 			return new ProductionNode((ProductionRecipe) recipe);
 		} else if (recipe instanceof CheckRecipe) {

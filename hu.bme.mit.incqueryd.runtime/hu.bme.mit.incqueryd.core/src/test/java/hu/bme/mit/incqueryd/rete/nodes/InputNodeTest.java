@@ -7,8 +7,9 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import java.io.IOException;
 import java.util.Collections;
 
+import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
-import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
 import org.junit.Test;
 
 public class InputNodeTest {
@@ -22,8 +23,8 @@ public class InputNodeTest {
 		client.start(false);
 		client.load(modelPath);
 
-		final UniquenessEnforcerRecipe recipe = RecipesFactory.eINSTANCE.createUniquenessEnforcerRecipe();
-		recipe.setTraceInfo("UniquenessEnforcerNode#edge : Route_routeDefinition : ");
+		final BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
+		recipe.setTypeName("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Route_routeDefinition");
 
 		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList());
 		final ChangeSet changeSet = inputNode.initialize();
@@ -40,8 +41,8 @@ public class InputNodeTest {
 		client.start(false);
 		client.load(modelPath);
 
-		final UniquenessEnforcerRecipe recipe = RecipesFactory.eINSTANCE.createUniquenessEnforcerRecipe();
-		recipe.setTraceInfo("UniquenessEnforcerNode#vertex : Route :");
+		final UnaryInputRecipe recipe = RecipesFactory.eINSTANCE.createUnaryInputRecipe();
+		recipe.setTypeName("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Route");
 
 		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList());
 		final ChangeSet changeSet = inputNode.initialize();
@@ -58,8 +59,8 @@ public class InputNodeTest {
 		client.start(false);
 		client.load(modelPath);
 
-		final UniquenessEnforcerRecipe recipe = RecipesFactory.eINSTANCE.createUniquenessEnforcerRecipe();
-		recipe.setTraceInfo("UniquenessEnforcerNode#vertex : Segment : [Segment_length]");
+		final BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
+		recipe.setTypeName("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Segment_length");
 
 		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList());
 		final ChangeSet changeSet = inputNode.initialize();
