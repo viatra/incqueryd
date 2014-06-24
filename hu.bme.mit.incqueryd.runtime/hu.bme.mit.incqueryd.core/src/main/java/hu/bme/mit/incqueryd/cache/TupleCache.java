@@ -25,12 +25,12 @@ public class TupleCache {
 		return distributed;
 	}
 	
-	public Set<Tuple> getSet(String typename) {
-		return cache.getSet(typename);
+	public Set<Tuple> getSet(String setName) {
+		return cache.getSet(setName);
 	}
 	
-	public DistributedMultiMap<Tuple, Tuple> getMultiMap(String nodeId) {
-		return cache.getMultiMap(nodeId);
+	public DistributedMultiMap<Tuple, Tuple> getMultiMap(String multiMapName) {
+		return cache.getMultiMap(multiMapName);
 	}
 
 }
