@@ -35,6 +35,8 @@ import hu.bme.mit.incqueryd.retemonitoring.metrics.InputNodeMetrics
 import hu.bme.mit.incqueryd.monitoring.HostNameService
 import hu.bme.mit.incqueryd.retemonitoring.metrics.AlphaNodeMetrics
 import hu.bme.mit.incqueryd.retemonitoring.metrics.BetaNodeMetrics
+import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteSubscriber
+import java.util.ArrayList
 
 class ScalaReteActor extends Actor {
 
@@ -258,10 +260,15 @@ class ScalaReteActor extends Actor {
     val clazz = reteNode.getClass.getName.split("\\.")
     val nodeType = clazz(clazz.length - 1)
     
+    val subscriberNodes: java.util.List[ReteSubscriber] = new ArrayList
+    subscribers.keySet().foreach(subscriber => {
+      subscriberNodes.add(new ReteSubscriber(subscriber.path.name, subscribers.get(subscriber).toString))
+    })
+    
     reteNode match {
-      case inputNode: InputNode => new InputNodeMetrics(self.path.name, HostNameService hostName, nodeType, updateMessageCount, changesCount, inputNode tuples)
-      case alphaNode: AlphaNode => new AlphaNodeMetrics(self.path.name, HostNameService hostName, nodeType,  updateMessageCount, changesCount)
-      case betaNode: BetaNode => new BetaNodeMetrics(self.path.name, HostNameService hostName, nodeType, updateMessageCount, changesCount, betaNode leftIndexerSize, betaNode rightIndexerSize)
+      case inputNode: InputNode => new InputNodeMetrics(self.path.name, HostNameService.hostName, nodeType, "Input", self.path.toString, updateMessageCount, changesCount, inputNode.tuples, subscriberNodes)
+      case alphaNode: AlphaNode => new AlphaNodeMetrics(self.path.name, HostNameService.hostName, nodeType, "Alpha", self.path.toString, updateMessageCount, changesCount, subscriberNodes)
+      case betaNode: BetaNode => new BetaNodeMetrics(self.path.name, HostNameService.hostName, nodeType, "Beta", self.path.toString, updateMessageCount, changesCount, betaNode.leftIndexerSize, betaNode.rightIndexerSize, subscriberNodes)
     }
   }
 

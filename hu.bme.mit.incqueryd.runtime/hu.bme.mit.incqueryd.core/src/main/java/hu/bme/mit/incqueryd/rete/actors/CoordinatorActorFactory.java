@@ -8,15 +8,17 @@ public class CoordinatorActorFactory implements UntypedActorFactory {
 	private static final long serialVersionUID = 1L;
 	private final String architectureFile;
 	private final boolean remoting;
+	private final String monitoringServerIPAddress;
 
-	public CoordinatorActorFactory(final String architectureFile, final boolean remoting) {
+	public CoordinatorActorFactory(final String architectureFile, final boolean remoting, final String monitoringServerIPAddress) {
 		this.architectureFile = architectureFile;
 		this.remoting = remoting;
+		this.monitoringServerIPAddress = monitoringServerIPAddress;
 	}
 	
 	@Override
 	public Actor create() throws Exception {
-		return new ScalaCoordinatorActor(architectureFile, remoting);
+		return new ScalaCoordinatorActor(architectureFile, remoting, monitoringServerIPAddress);
 	}
 
 }

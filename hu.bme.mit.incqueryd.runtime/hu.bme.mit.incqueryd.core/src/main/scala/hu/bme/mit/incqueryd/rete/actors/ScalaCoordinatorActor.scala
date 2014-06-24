@@ -34,7 +34,7 @@ import arch.Configuration
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
 
-class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor{
+class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean, val monitoringServerIPAddress: String) extends Actor{
   
   protected val timeout: Timeout = new Timeout(Duration.create(14400, "seconds"))
   //implicit val timeout: Timeout = Timeout(14400)
@@ -81,7 +81,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
     // phase 2
     subscribeActors(conf)
     
-    subscribeMonitoringService
+    if(monitoringServerIPAddress != null)subscribeMonitoringService
 
     // phase 3
     initialize
@@ -286,7 +286,8 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
   }
   
   private def subscribeMonitoringService = {
-    val actor = context.actorFor("akka://monitoringserver@192.168.1.103:2552/user/collector")
+    println(monitoringServerIPAddress)
+    val actor = context.actorFor("akka://monitoringserver@" + monitoringServerIPAddress + ":2552/user/collector")
     actor ! new MonitoredActorCollection(actorRefs)
   }
   
