@@ -11,7 +11,7 @@ h1 {
 	text-shadow: 0px 0px 10px rgba(255,255,255,1), 0px 0px 30px rgba(255,255,255,1), 0px 0px 50px rgba(255,255,255,1), 0px 0px 180px rgba(255,255,255,1);
 	color: rgba(255,255,255,0.5);
 	font: 80px 'ChunkFiveRegular';
-    background: linear-gradient(to right, grey , #23A4FF); /* Standard syntax */
+    background: linear-gradient(to right, #C0C0C0 , #23A4FF); /* Standard syntax */
 }
 
 #container {
@@ -114,4 +114,16 @@ h1 {
     height:100%;
     margin:auto;
     overflow:hidden;
+}
+
+/*TOOLTIPS*/
+.tip {
+    color: #fff;
+    width: 139px;
+    background-color: black;
+    opacity:0.9;
+    filter:alpha(opacity=90);
+    font-size:12px;
+    font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
+    padding:8px;
 }

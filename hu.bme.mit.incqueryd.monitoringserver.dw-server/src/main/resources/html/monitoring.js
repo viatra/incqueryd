@@ -57,18 +57,8 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
     'beta': {
         'render': function (node, canvas) {
             var pos = node.pos.getc(true);
-            var pos2 = {};
-            if (node.data.pos != null) {
-                pos2.x = node.data.pos.x;
-                pos2.y = node.data.pos.y;
-            }
-            else {
-                node.data.pos = {};
-                node.data.pos.x = pos.x;
-                node.data.pos.y = pos.y;
-            }
             
-            this.nodeHelper.rectangle.render('fill', pos2, 80, 30, canvas);
+            this.nodeHelper.rectangle.render('fill', pos, 80, 30, canvas);
             this.nodeHelper.triangle.render('fill', { x: pos.x - 20, y: pos.y - 25 }, 10, canvas);
             this.nodeHelper.triangle.render('fill', { x: pos.x + 20, y: pos.y - 25 }, 10, canvas);
         },
@@ -83,7 +73,6 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
 $jit.ForceDirected.Plot.EdgeTypes.implement({
     'label-arrow-line': {
         'render': function (adj, canvas) {
-            console.log("rendering");
             var from = adj.nodeFrom.pos.getc(true),
             to = adj.nodeTo.pos.getc(true),
             dim = adj.getData('dim'),
@@ -138,7 +127,6 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
                 var ctx = canvas.getCtx();
                 ctx.font = "11pt Arial";
                 ctx.fillStyle = "#FF8900";
-                //ctx.fillText(data.labeltext, posx, posy);
                 ctx.wrapText(data.labeltext, posx, posy, 120, 16);
 
             }
@@ -193,8 +181,7 @@ function update(object) {
 
         if (!hasReteNetworkChanged()) {
             updateReteHeatMap();
-            fd_rete.loadJSON(rete_graph);
-            fd_rete.refresh();
+            updateReteNetGraph();
         }
         else {
             $jit.id('infovis-rete').innerHTML = "";
@@ -827,12 +814,12 @@ function drawSystem() {
                 this.onDragMove(node, eventInfo, e);
             },
             onClick: function (node, eventInfo, e) {
-                if (!node) return;
-                if (node.nodeFrom) {
-                    console.log("target is an edge");
-                } else {
-                    console.log("target is a node");
-                }
+                //if (!node) return;
+                //if (node.nodeFrom) {
+                //    console.log("target is an edge");
+                //} else {
+                //    console.log("target is a node");
+                //}
             }
         },
         //Number of iterations for the FD algorithm
@@ -1016,18 +1003,21 @@ function drawReteNet() {
 
         if (reteNode.nodeClass == "Alpha") {
             node.data.$type = "rectangle";
+            node.data.nodetype = "alpha";
         }
         else if(reteNode.nodeClass == "Beta"){
             node.data.$type = "beta";
+            node.data.nodetype = "beta";
         }
         else {
             node.data.$type = "circle";
             node.data.$dim = 10;
+            node.data.nodetype = "input";
         }
 
         node.id = reteNode.reteNode;
         node.name = reteNode.nodeType + " " + reteNode.reteNode + " on " + reteNode.hostName;
-        node.data.nodetype = "rete";
+        
 
         for (var j = 0; j < reteNode.subscribers.length; j++) {
             var subsciber = reteNode.subscribers[j];
@@ -1104,6 +1094,36 @@ function drawReteNet() {
                 this.onDragMove(node, eventInfo, e);
             }
         },
+        Tips: {
+            enable: true,
+            //add positioning offsets
+            offsetX: 20,
+            offsetY: 20,
+            //implement the onShow method to
+            //add content to the tooltip when a node
+            //is hovered
+            onShow: function (tip, node, isLeaf, domElement) {
+                var html = "<div class=\"tip-title\">" + node.name
+                  + "</div><div class=\"tip-text\">";
+
+                var reteNode = null;
+                for (var i = 0; i < jsonData.rete.length; i++) {
+                    if (jsonData.rete[i].reteNode == node.id) {
+                        reteNode = jsonData.rete[i];
+                        break;
+                    }
+                }
+
+                if (reteNode.nodeClass == "Input") {
+                    html += "Memory: " + reteNode.tuples + "<br />";
+                }
+                else if (reteNode.nodeClass == "Beta") {
+                    html += "Left indexer: " + reteNode.leftIndexerSize + "<br />";
+                    html += "Right indexer: " + reteNode.rightIndexerSize;
+                }
+                tip.innerHTML = html;
+            }
+        },
         //Number of iterations for the FD algorithm
         iterations: 200,
         //Edge length
@@ -1154,6 +1174,27 @@ function drawReteNet() {
         }
     });
     // end
+}
+
+function updateReteNetGraph() {
+
+    fd_rete.graph.eachNode(function (node) {
+        var labeltext = "";
+
+        for (var i = 0; i < jsonData.rete.length; i++) {
+            var reteNode = jsonData.rete[i];
+            if (reteNode.reteNode == node.id) {
+                labeltext = "Updates:" + reteNode.updateMessagesSent + "\nChanges:" + reteNode.changesCount;
+                break;
+            }
+        }
+
+        node.eachAdjacency(function (adj) {
+            if (adj.data.$direction[0] == node.id) adj.data.labeltext = labeltext;
+        });
+    });
+
+    fd_rete.plot();
 }
 
 function hashCode(str) { // java String#hashCode
