@@ -33,16 +33,16 @@ public class IncQueryDEngine {
 		system = ActorSystem.create("test", config);
 	}
 
-	public ActorRef initialize(final String architectureFile, final boolean cluster) throws Exception {
+	public ActorRef initialize(final String architectureFile, final boolean cluster, String monitoringServerIPAddress) throws Exception {
 		// initialize the coordinator Actor
 		// the coordinator Actor runs on the client's side
-		final Props props = new Props().withCreator(new CoordinatorActorFactory(architectureFile, cluster));
+		final Props props = new Props().withCreator(new CoordinatorActorFactory(architectureFile, cluster, monitoringServerIPAddress));
 		coordinator = system.actorOf(props);
 		return coordinator;
 	}
 
 	public void shutdown() {
-		system.shutdown();
+		//system.shutdown();
 	}
 
 }
