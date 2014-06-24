@@ -94,17 +94,12 @@ h1 {
     width:20px;
 }
 
-.separator-vertical {
-    background-color:inherit;
-    height:2%;
-    width:100%;
-}
-
 .text {
     margin: 7px;
 }
 
-#infovis {
+#infovis,
+#infovis-rete {
     position:relative;
     width:100%;
     height:100%;
@@ -112,7 +107,8 @@ h1 {
     overflow:hidden;
 }
 
-#heatmap {
+#heatmap,
+#heatmap-rete {
     position:relative;
     width:100%;
     height:100%;

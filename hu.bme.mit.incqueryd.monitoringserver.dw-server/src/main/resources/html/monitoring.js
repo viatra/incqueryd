@@ -3,7 +3,9 @@ var labelType, useGradients, nativeTextSupport, animate;
 var graph; // The grap object used for representing the system components in a graph structure
 var rete_graph; // The grap object used for representing the Rete node in a graph structure
 var heatmap; // The heatmap object to draw
+var heatmap_rete; // The heatmap object to draw Rete heatmap
 var tm; // The treemap object for the heatmap visualization
+var tm_rete; // The treemap object for the Rete heatmap visualization
 var selectedNode; // The selected node to draw heatmap for
 var fd;
 var fd_rete;
@@ -25,7 +27,7 @@ var images; // Store the images
     animate = !(iStuff || !nativeCanvasSupport);
 })();
 
-// Own node types and edge types **********************************************
+// Own node types and edge types **********************************************************************************************************************************************
 
 // Node visualized with an image
 $jit.ForceDirected.Plot.NodeTypes.implement({
@@ -55,7 +57,18 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
     'beta': {
         'render': function (node, canvas) {
             var pos = node.pos.getc(true);
-            this.nodeHelper.rectangle.render('fill', pos, 80, 30, canvas);
+            var pos2 = {};
+            if (node.data.pos != null) {
+                pos2.x = node.data.pos.x;
+                pos2.y = node.data.pos.y;
+            }
+            else {
+                node.data.pos = {};
+                node.data.pos.x = pos.x;
+                node.data.pos.y = pos.y;
+            }
+            
+            this.nodeHelper.rectangle.render('fill', pos2, 80, 30, canvas);
             this.nodeHelper.triangle.render('fill', { x: pos.x - 20, y: pos.y - 25 }, 10, canvas);
             this.nodeHelper.triangle.render('fill', { x: pos.x + 20, y: pos.y - 25 }, 10, canvas);
         },
@@ -70,10 +83,7 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
 $jit.ForceDirected.Plot.EdgeTypes.implement({
     'label-arrow-line': {
         'render': function (adj, canvas) {
-
-            //plot arrow edge
-            //this.edgeTypes.arrow.render.call(this, adj, canvas);
-
+            console.log("rendering");
             var from = adj.nodeFrom.pos.getc(true),
             to = adj.nodeTo.pos.getc(true),
             dim = adj.getData('dim'),
@@ -92,7 +102,10 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
             }
             else {
                 deltaX = 0;
-                deltaY = -10;
+                if (from.y < to.y) {
+                    deltaY = -10;
+                }
+                else deltaY = 10;
             }
             
             if (inv) {
@@ -123,8 +136,10 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
                 var posx = x2 - (x2 - x1) / 2;
 
                 var ctx = canvas.getCtx();
-                ctx.font = "10pt Arial";
-                ctx.fillText(data.labeltext, posx, posy);
+                ctx.font = "11pt Arial";
+                ctx.fillStyle = "#FF8900";
+                //ctx.fillText(data.labeltext, posx, posy);
+                ctx.wrapText(data.labeltext, posx, posy, 120, 16);
 
             }
         },
@@ -135,49 +150,93 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
     }
 });
 
-// End of node types and edge types **********************************************
+//Extending the canvas object to draw multiline texts
+CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, lineHeight) {
+
+    var lines = text.split("\n");
+
+    for (var i = 0; i < lines.length; i++) {
+
+        var words = lines[i].split(' ');
+        var line = '';
+
+        for (var n = 0; n < words.length; n++) {
+            var testLine = line + words[n] + ' ';
+            var metrics = this.measureText(testLine);
+            var testWidth = metrics.width;
+            if (testWidth > maxWidth && n > 0) {
+                this.fillText(line, x, y);
+                line = words[n] + ' ';
+                y += lineHeight;
+            }
+            else {
+                line = testLine;
+            }
+        }
+
+        this.fillText(line, x, y);
+        y += lineHeight;
+    }
+}
+
+// End of node types and edge types **********************************************************************************************************************************************
 
 // Update the data from the new query
 function update(object) {
-
+    
     if (jsonData != null) delete jsonData;
     jsonData = object;
 
     if (!hasSystemChanged()) {
-        setDataForSelectedNode();
+        if (selectedNode != null) setDataForSelectedNode();
         updateHeatMap();
+
+        if (!hasReteNetworkChanged()) {
+            updateReteHeatMap();
+            fd_rete.loadJSON(rete_graph);
+            fd_rete.refresh();
+        }
+        else {
+            $jit.id('infovis-rete').innerHTML = "";
+            $jit.id('heatmap-rete').innerHTML = "";
+
+            if (rete_graph != null) delete rete_graph;
+            rete_graph = [];
+
+            drawReteNet();
+        }
     }
     // anyway if changed redraw the system, delete the heatmap
     else {
         $jit.id('infovis').innerHTML = "";
         $jit.id('heatmap').innerHTML = "";
 
-        $jit.id('infovis-rete').innerHTML = "";
-
         if (graph != null) delete graph;
         graph = [];
+
+        drawSystem();
+
+        $jit.id('infovis-rete').innerHTML = "";
+        $jit.id('heatmap-rete').innerHTML = "";
 
         if (rete_graph != null) delete rete_graph;
         rete_graph = [];
 
-        drawSystem();
         drawReteNet();
+        
     }
-    
+
 }
 
-// Heatmap related things **********************************************
+// Heatmap related things **********************************************************************************************************************************************
 // Initialize and draw heatmap object
 function drawHeatMap() {
 
     heatmap = {};
     heatmap.data = {};
     heatmap.name = "Heatmap of OS-level resource usages";
-    
-    // if the selected node is a host computer
-    if (selectedNode.data.nodetype == "machine") {
-        hostHeatMap();
-    }
+
+    hostHeatMap();
 
     $jit.id('heatmap').innerHTML = "";
 
@@ -228,18 +287,188 @@ function drawHeatMap() {
 
 }
 
+//How to draw the Rete heatmap
+function drawReteHeatMap() {
+
+    heatmap_rete = {};
+    heatmap_rete.data = {};
+    heatmap_rete.name = "Heatmap of Rete metrics and resource usages";
+    heatmap_rete.id = "rete_top";
+
+    reteHeatMap();
+
+    $jit.id('heatmap-rete').innerHTML = "";
+
+    tm_rete = new $jit.TM.Squarified({
+        //where to inject the visualization
+        injectInto: 'heatmap-rete',
+        //no parent frames
+        titleHeight: 20,
+        //enable animations
+        animate: animate,
+        //no box offsets
+        offset: 1,
+        //duration of the animation
+        duration: 1500,
+
+        //Add the name of the node in the correponding label
+        //This method is called once, on label creation.
+        onCreateLabel: function (domElement, node) {
+
+            var html = node.name;
+            if (node.data.value != null) {
+                html += "<div style=\"width: 100px;height: 30px;text-align: center;margin: auto;position: absolute;top: 0;left: 0;bottom: 0;right: 0;\">" + node.data.value + "</div>";
+            }
+
+            domElement.innerHTML = html;
+
+            var style = domElement.style;
+            style.color = "#ffffff";
+            style.display = '';
+            style.cursor = 'default';
+            style.border = '1px solid transparent';
+            style.textAlign = "center";
+            style.verticalAlign = "bottom";
+            style.fontFamily = "Impact,Charcoal,sans-serif";
+            style.fontSize = "medium";
+
+            domElement.onmouseover = function () {
+                style.border = '2px solid #0000FF';
+            };
+            domElement.onmouseout = function () {
+                style.border = '1px solid transparent';
+            };
+        }
+    });
+    
+    tm_rete.loadJSON(heatmap_rete);
+    tm_rete.refresh();
+
+}
+
 // Update the heat map with the new measurement data from the server 
 function updateHeatMap() {
 
-    // How to update for a host
-    if (selectedNode.data.nodetype == "machine") {
-        hostHeatMap();
-    }
+    hostHeatMap();
 
     // Set aniamtion duration to 0 and refresh the new data to the heatmap visualization treemap
     tm.config.duration = 0;
     tm.loadJSON(heatmap);
     tm.refresh();
+
+}
+
+function updateReteHeatMap() {
+    // Update the Rete heatmap as well
+    reteHeatMap();
+    tm_rete.config.duration = 0;
+    tm_rete.loadJSON(heatmap_rete);
+    tm_rete.refresh();
+}
+
+function reteHeatMap() {
+
+    // Clear the previous data
+    delete heatmap_rete.children;
+    heatmap_rete.children = [];
+
+    var host = selectedNode.id;
+
+    for (var i = 0; i < jsonData.rete.length; i++) {
+        var reteNode = jsonData.rete[i];
+        if (host == reteNode.hostName) {
+
+            var node = {};
+            node.name = reteNode.nodeType + " " + reteNode.reteNode;
+            node.id = selectedNode.id + reteNode.reteNode;
+            node.data = {};
+            node.data.$area = 200;
+            node.children = [];
+
+            var updates = {};
+            updates.name = "Sent updates";
+            updates.id = selectedNode.id + reteNode.reteNode + "_updates";
+            updates.data = {};
+            updates.data.$area = 200;
+            updates.children = [];
+
+            var message = {};
+            message.name = "Update messages sent";
+            message.id = selectedNode.id + reteNode.reteNode + "_updatemessages";
+            message.data = {};
+            message.data.$area = 100;
+            message.data.$color = percentToColor(Math.min((reteNode.updateMessagesSent / 100) * 100, 100));
+            message.data.value = reteNode.updateMessagesSent;
+
+            updates.children.push(message);
+
+            var changes = {};
+            changes.name = "Changes sent";
+            changes.id = selectedNode.id + reteNode.reteNode + "_changes";
+            changes.data = {};
+            changes.data.$area = 100;
+            changes.data.$color = percentToColor(Math.min((Math.log(reteNode.changesCount) / Math.log(10000000)) * 100, 100));
+            changes.data.value = reteNode.changesCount;
+
+            updates.children.push(changes);
+
+            node.children.push(updates);
+
+            if (reteNode.nodeClass == "Input") {
+                var memory = {};
+                memory.name = "Memory";
+                memory.id = selectedNode.id + reteNode.reteNode + "_memory";
+                memory.data = {};
+                memory.data.$area = 100;
+                memory.children = [];
+
+                var tuples = {};
+                tuples.name = "Tuples";
+                tuples.id = selectedNode.id + reteNode.reteNode + "_tuples";
+                tuples.data = {};
+                tuples.data.$area = 100;
+                tuples.data.$color = percentToColor(Math.min((Math.log(reteNode.tuples) / Math.log(10000000)) * 100, 100));
+                tuples.data.value = reteNode.tuples;
+
+                memory.children.push(tuples);
+
+                node.children.push(memory);
+            }
+
+            if (reteNode.nodeClass == "Beta") {
+                var indexer = {};
+                indexer.name = "Indexers";
+                indexer.id = selectedNode.id + reteNode.reteNode + "_indexer";
+                indexer.data = {};
+                indexer.data.$area = 200;
+                indexer.children = [];
+
+                var leftindexer = {};
+                leftindexer.name = "Left";
+                leftindexer.id = selectedNode.id + reteNode.reteNode + "_leftindexer";
+                leftindexer.data = {};
+                leftindexer.data.$area = 100;
+                leftindexer.data.$color = percentToColor(Math.min((Math.log(reteNode.leftIndexerSize) / Math.log(10000000)) * 100, 100));
+                leftindexer.data.value = reteNode.leftIndexerSize;
+
+                indexer.children.push(leftindexer);
+
+                var rightindexer = {};
+                rightindexer.name = "Right";
+                rightindexer.id = selectedNode.id + reteNode.reteNode + "_rightindexer";
+                rightindexer.data = {};
+                rightindexer.data.$area = 100;
+                rightindexer.data.$color = percentToColor(Math.min((Math.log(reteNode.rightIndexerSize) / Math.log(10000000)) * 100, 100));
+                rightindexer.data.value = reteNode.rightIndexerSize;
+
+                indexer.children.push(rightindexer);
+
+                node.children.push(indexer);
+            }
+
+            heatmap_rete.children.push(node);
+        }
+    }
 
 }
 
@@ -477,7 +706,7 @@ function rgbToHex(r, g, b) {
 truncateDecimals = function (number) {
     return Math[number < 0 ? 'ceil' : 'floor'](number);
 };
-// End of Heatmap related things **********************************************
+// End of Heatmap related things **********************************************************************************************************************************************
 
 
 // Check if the system structure has changed since the previous query
@@ -662,6 +891,7 @@ function drawSystem() {
                 selectedNode = node;
                 setDataForSelectedNode();
                 drawHeatMap(); // draw the heat map for the selected node
+                drawReteHeatMap();
 
             };
         },
@@ -715,17 +945,62 @@ function drawSystem() {
 // Set the measurement data from the server for the user selected node
 function setDataForSelectedNode() {
 
-    if (selectedNode.data.nodetype == "machine") {
-        for (var i = 0; i < jsonData.machines.length; i++) {
-            if (jsonData.machines[i].host == selectedNode.id) {
-                selectedNode.data.os = jsonData.machines[i].os;
-            }
+    for (var i = 0; i < jsonData.machines.length; i++) {
+        if (jsonData.machines[i].host == selectedNode.id) {
+            selectedNode.data.os = jsonData.machines[i].os;
         }
     }
 
 }
 
-// Rete network visualization functions ***************************************************
+//Check if the Rete network has been changed since the last query
+function hasReteNetworkChanged() {
+
+    for (var i = 0; i < jsonData.rete.length; i++) {
+        var reteNode = jsonData.rete[i];
+        var foundNode = false;
+
+        for (var j = 0; j < rete_graph.length; j++) {
+            var graphNode = rete_graph[j];
+            if (reteNode.reteNode == graphNode.id) {    // Then we found the graph node
+                foundNode = true;
+                for (var ii = 0; ii < reteNode.subscribers.length; ii++) {
+                    var edgeFound = false;
+                    for (var jj = 0; jj < graphNode.adjacencies.length; jj++) {
+                        if (reteNode.subscribers[ii].reteNode == graphNode.adjacencies[jj].nodeTo) edgeFound = true; // We found the edge
+                    }
+                    if (!edgeFound) return true;
+                }
+            }
+        }
+        if (!foundNode) return true;
+    }
+
+    for (var i = 0; i < rete_graph.length; i++) {
+        var graphNode = rete_graph[i];
+        var foundNode = false;
+
+        for (var j = 0; j < jsonData.rete.length; j++) {
+            var reteNode = jsonData.rete[j];
+            if (reteNode.reteNode == graphNode.id) {    // Then we found the Rete node
+                foundNode = true;
+                for (var ii = 0; ii < graphNode.adjacencies.length; ii++) {
+                    var edgeFound = false;
+                    for (var jj = 0; jj < reteNode.subscribers.length; jj++) {
+                        if (graphNode.adjacencies[ii].nodeTo == reteNode.subscribers[jj].reteNode) edgeFound = true; // We found the edge
+                    }
+                    if (!edgeFound) return true;
+                }
+            }
+        }
+        if (!foundNode) return true;
+    }
+
+    return false;
+
+}
+
+// Rete network visualization functions **********************************************************************************************************************************************
 // Drawing the system as a graph
 function drawReteNet() {
 
@@ -737,13 +1012,13 @@ function drawReteNet() {
 
         node.adjacencies = [];
 
+        node.data.$color = '#' + intToARGB(hashCode(reteNode.hostName));
+
         if (reteNode.nodeClass == "Alpha") {
             node.data.$type = "rectangle";
-            node.data.$color = "red";
         }
         else if(reteNode.nodeClass == "Beta"){
             node.data.$type = "beta";
-            node.data.$color = "red";
         }
         else {
             node.data.$type = "circle";
@@ -765,7 +1040,7 @@ function drawReteNet() {
             edge.data.$direction = [];
             edge.data.$direction.push(reteNode.reteNode);
             edge.data.$direction.push(subsciber.reteNode);
-            edge.data.labeltext = "Updates:" + reteNode.updateMessagesSent + "/Changes:" + reteNode.changesCount;
+            edge.data.labeltext = "Updates:" + reteNode.updateMessagesSent + "\nChanges:" + reteNode.changesCount;
             edge.data.slot = subsciber.slot;
 
             node.adjacencies.push(edge);
@@ -881,7 +1156,21 @@ function drawReteNet() {
     // end
 }
 
-// Other things **********************************************
+function hashCode(str) { // java String#hashCode
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return hash;
+}
+
+function intToARGB(i) {
+    return ((i >> 24) & 0xFF).toString(16) +
+           ((i >> 16) & 0xFF).toString(16) +
+           ((i >> 8) & 0xFF).toString(16);
+}
+
+// Other things **********************************************************************************************************************************************
 
 // Load the images when the document is ready
 function loadImages() {
