@@ -92,7 +92,7 @@ public class MonitoringWorker extends Thread {
 		while (!exit) {
 			System.out.println("Start");
 			try {
-				Thread.sleep(10000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				
 			}

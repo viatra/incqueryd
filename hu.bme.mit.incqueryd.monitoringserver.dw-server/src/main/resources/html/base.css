@@ -108,7 +108,8 @@ h1 {
 }
 
 #heatmap,
-#heatmap-rete {
+#heatmap-rete,
+#heatmap-jvm {
     position:relative;
     width:100%;
     height:100%;

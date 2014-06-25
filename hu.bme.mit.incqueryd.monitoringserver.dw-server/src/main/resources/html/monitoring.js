@@ -2,10 +2,12 @@
 var labelType, useGradients, nativeTextSupport, animate;
 var graph; // The grap object used for representing the system components in a graph structure
 var rete_graph; // The grap object used for representing the Rete node in a graph structure
-var heatmap; // The heatmap object to draw
-var heatmap_rete; // The heatmap object to draw Rete heatmap
+var heatmap = {}; // The heatmap object to draw
+var heatmap_rete = {}; // The heatmap object to draw Rete heatmap
+var heatmap_jvm = {}; // The heatmap object to draw JVM heatmap
 var tm; // The treemap object for the heatmap visualization
 var tm_rete; // The treemap object for the Rete heatmap visualization
+var tm_jvm; // The treemap object for the JVM heatmap visualization
 var selectedNode; // The selected node to draw heatmap for
 var fd;
 var fd_rete;
@@ -176,8 +178,9 @@ function update(object) {
     jsonData = object;
 
     if (!hasSystemChanged()) {
-        if (selectedNode != null) setDataForSelectedNode();
+        //if (selectedNode != null) setDataForSelectedNode();
         updateHeatMap();
+        updateJVMHeatMap();
 
         if (!hasReteNetworkChanged()) {
             updateReteHeatMap();
@@ -197,6 +200,7 @@ function update(object) {
     else {
         $jit.id('infovis').innerHTML = "";
         $jit.id('heatmap').innerHTML = "";
+        $jit.id('heatmap-jvm').innerHTML = "";
 
         if (graph != null) delete graph;
         graph = [];
@@ -333,6 +337,65 @@ function drawReteHeatMap() {
 
 }
 
+// Initialize and draw JVM heatmap object
+function drawJVMHeatMap() {
+
+    heatmap_jvm = {};
+    heatmap_jvm.data = {};
+    heatmap_jvm.name = "Heatmap of JVM-level resource usages";
+    heatmap_jvm.id = "jvm_top";
+
+    JVMHeatMap();
+
+    $jit.id('heatmap-jvm').innerHTML = "";
+
+    tm_jvm = new $jit.TM.Squarified({
+        //where to inject the visualization
+        injectInto: 'heatmap-jvm',
+        //no parent frames
+        titleHeight: 20,
+        //enable animations
+        animate: animate,
+        //no box offsets
+        offset: 1,
+        //duration of the animation
+        duration: 1500,
+
+        //Add the name of the node in the correponding label
+        //This method is called once, on label creation.
+        onCreateLabel: function (domElement, node) {
+
+            var html = node.name;
+            if (node.data.value != null) {
+                html += "<div style=\"width: 100px;height: 30px;text-align: center;margin: auto;position: absolute;top: 0;left: 0;bottom: 0;right: 0;\">" + node.data.value + "</div>";
+            }
+
+            domElement.innerHTML = html;
+
+            var style = domElement.style;
+            style.color = "#ffffff";
+            style.display = '';
+            style.cursor = 'default';
+            style.border = '1px solid transparent';
+            style.textAlign = "center";
+            style.verticalAlign = "bottom";
+            style.fontFamily = "Impact,Charcoal,sans-serif";
+            style.fontSize = "medium";
+
+            domElement.onmouseover = function () {
+                style.border = '2px solid #0000FF';
+            };
+            domElement.onmouseout = function () {
+                style.border = '1px solid transparent';
+            };
+        }
+    });
+
+    tm_jvm.loadJSON(heatmap_jvm);
+    tm_jvm.refresh();
+
+}
+
 // Update the heat map with the new measurement data from the server 
 function updateHeatMap() {
 
@@ -351,6 +414,14 @@ function updateReteHeatMap() {
     tm_rete.config.duration = 0;
     tm_rete.loadJSON(heatmap_rete);
     tm_rete.refresh();
+}
+
+function updateJVMHeatMap() {
+    // Update the JVM heatmap as well
+    JVMHeatMap();
+    tm_jvm.config.duration = 0;
+    tm_jvm.loadJSON(heatmap_jvm);
+    tm_jvm.refresh();
 }
 
 function reteHeatMap() {
@@ -465,6 +536,12 @@ function hostHeatMap() {
     // Clear the previous data
     delete heatmap.children;
     heatmap.children = [];
+
+    for (var i = 0; i < jsonData.machines.length; i++) {
+        if (jsonData.machines[i].host == selectedNode.id) {
+            selectedNode.data.os = jsonData.machines[i].os;
+        }
+    }
 
     // CPU part
     var cpu = {};
@@ -665,6 +742,202 @@ function hostHeatMap() {
     }
 
     heatmap.children.push(network);
+}
+
+// Construct the object necessary to draw the JVM heatmap object
+function JVMHeatMap() {
+
+    // Clear the previous data
+    delete heatmap_jvm.children;
+    heatmap_jvm.children = [];
+
+    var node = null;
+    for (var i = 0; i < jsonData.machines.length; i++) {
+        if (jsonData.machines[i].host == selectedNode.id) {
+            if (jsonData.machines[i].nodes.length == 0) return;
+            node = jsonData.machines[i].nodes[0];
+        }
+    }
+
+
+    // CPU and related part
+    var cpu = {};
+    cpu.name = "CPU, Threads, Uptime";
+    cpu.id = selectedNode.id + "_jvm_cpu";
+    cpu.data = {};
+    cpu.data.$area = 300;
+    cpu.children = [];
+
+    var cpuUsage = {};
+    cpuUsage.name = "CPU utilization";
+    cpuUsage.id = selectedNode.id + "_jvm_cpuusage";
+    cpuUsage.data = {};
+    cpuUsage.data.$area = 100;
+    cpuUsage.data.$color = percentToColor(node.cpuCombined);
+    cpuUsage.data.value = (truncateDecimals(node.cpuCombined * 100) / 100) + " %";
+
+    cpu.children.push(cpuUsage);
+
+    var threadCount = {};
+    threadCount.name = "Number of threads";
+    threadCount.id = selectedNode.id + "_jvm_threadcount";
+    threadCount.data = {};
+    threadCount.data.$area = 100;
+    threadCount.data.$color = percentToColor(Math.min((node.threadCount / 50) * 100, 100));
+    threadCount.data.value = node.threadCount + " threads";
+
+    cpu.children.push(threadCount);
+
+    var uptime = {};
+    uptime.name = "Uptime";
+    uptime.id = selectedNode.id + "_jvm_uptime";
+    uptime.data = {};
+    uptime.data.$area = 100;
+    uptime.data.$color = "#0000FF";
+
+    switch (node.upTimeUnit) {
+        case "milliseconds": {
+            uptime.data.value = (truncateDecimals((node.upTime / 60000) * 100) / 100) + " minutes";
+            break;
+        }
+        case "seconds": {
+            uptime.data.value = (truncateDecimals((node.upTime / 60) * 100) / 100) + " minutes";
+            break;
+        }
+        case "minutes": {
+            uptime.data.value = node.upTime + " minutes";
+            break;
+        }
+        default: {
+            uptime.data.value = node.upTime + " " + node.upTimeUnit;
+        }
+
+    }
+
+    cpu.children.push(uptime);
+
+    heatmap_jvm.children.push(cpu);
+
+
+    // Memory realted metrics
+    var memory = {};
+    memory.name = "Memory, GC";
+    memory.id = selectedNode.id + "_jvm_memory";
+    memory.data = {};
+    memory.data.$area = 600;
+    memory.children = [];
+
+    var maxHeap = {};
+    maxHeap.name = "Max heap size";
+    maxHeap.id = selectedNode.id + "_jvm_maxheap";
+    maxHeap.data = {};
+    maxHeap.data.$area = 100;
+    maxHeap.data.$color = "#0000FF";
+    maxHeap.data.value = node.maxHeap + " " + node.heapMemoryUnit;
+
+    memory.children.push(maxHeap);
+
+    var usedHeap = {};
+    usedHeap.name = "Used heap";
+    usedHeap.id = selectedNode.id + "_jvm_usedheap";
+    usedHeap.data = {};
+    usedHeap.data.$area = 100;
+
+    var usedHeapPercent = (node.usedHeap / node.maxHeap) * 100;
+
+    usedHeap.data.$color = percentToColor(usedHeapPercent);
+    usedHeap.data.value = (truncateDecimals(usedHeapPercent * 100) / 100) + " %<br/>(" +
+                (truncateDecimals(node.usedHeap * 100) / 100) + " " + node.heapMemoryUnit + ")";
+
+    memory.children.push(usedHeap);
+
+    var maxNonHeap = {};
+    maxNonHeap.name = "Max non-heap size";
+    maxNonHeap.id = selectedNode.id + "_jvm_maxnonheap";
+    maxNonHeap.data = {};
+    maxNonHeap.data.$area = 100;
+    maxNonHeap.data.$color = "#0000FF";
+    maxNonHeap.data.value = node.maxNonHeap + " " + node.heapMemoryUnit;
+
+    memory.children.push(maxNonHeap);
+
+    var usedNonHeap = {};
+    usedNonHeap.name = "Used non-heap";
+    usedNonHeap.id = selectedNode.id + "_jvm_usednonheap";
+    usedNonHeap.data = {};
+    usedNonHeap.data.$area = 100;
+
+    var usedNonHeapPercent = (node.usedNonHeap / node.maxNonHeap) * 100;
+
+    usedNonHeap.data.$color = percentToColor(usedNonHeapPercent);
+    usedNonHeap.data.value = (truncateDecimals(usedNonHeapPercent * 100) / 100) + " %<br/>(" +
+                (truncateDecimals(node.usedNonHeap * 100) / 100) + " " + node.heapMemoryUnit + ")";
+
+    memory.children.push(usedNonHeap);
+
+    var gcPerMin = {};
+    gcPerMin.name = "GC run per minute";
+    gcPerMin.id = selectedNode.id + "_jvm_gcpermin";
+    gcPerMin.data = {};
+    gcPerMin.data.$area = 100;
+    gcPerMin.data.$color = percentToColor(Math.min((node.gcCountPerMinute / 5) * 100, 100));
+    gcPerMin.data.value = node.gcCountPerMinute + " / minute";
+
+    memory.children.push(gcPerMin);
+
+    var gcTimePercent = {};
+    gcTimePercent.name = "GC time percent";
+    gcTimePercent.id = selectedNode.id + "_jvm_gcpercent";
+    gcTimePercent.data = {};
+    gcTimePercent.data.$area = 100;
+    gcTimePercent.data.$color = percentToColor(node.gcTimePercent);
+    gcTimePercent.data.value = node.gcTimePercent + " %";
+
+    memory.children.push(gcTimePercent);
+
+    heatmap_jvm.children.push(memory);
+
+    // Network realted metrics
+    var network = {};
+    network.name = "Network";
+    network.id = selectedNode.id + "_jvm_network";
+    network.data = {};
+    network.data.$area = 300;
+    network.children = [];
+
+    var tcpEstab = {};
+    tcpEstab.name = "Currently established TCP connections";
+    tcpEstab.id = selectedNode.id + "_jvm_tcpestab";
+    tcpEstab.data = {};
+    tcpEstab.data.$area = 100;
+    tcpEstab.data.$color = percentToColor(Math.min((node.tcpCurrEstab / 100) * 100, 100));
+    tcpEstab.data.value = node.tcpCurrEstab;
+
+    network.children.push(tcpEstab);
+
+    var rxBytes = {};
+    rxBytes.name = "Received bytes per second";
+    rxBytes.id = selectedNode.id + "_jvm_rxbytes";
+    rxBytes.data = {};
+    rxBytes.data.$area = 100;
+    rxBytes.data.$color = percentToColor(Math.min((node.netRxBytesRate / 50000) * 100, 100));
+    rxBytes.data.value = node.netRxBytesRate + " " + node.netRxBytesRateUnit;
+
+    network.children.push(rxBytes);
+
+    var txBytes = {};
+    txBytes.name = "Sent bytes per second";
+    txBytes.id = selectedNode.id + "_jvm_txbytes";
+    txBytes.data = {};
+    txBytes.data.$area = 100;
+    txBytes.data.$color = percentToColor(Math.min((node.netTxBytesRate / 50000) * 100, 100));
+    txBytes.data.value = node.netTxBytesRate + " " + node.netTxBytesRateUnit;
+
+    network.children.push(txBytes);
+
+    heatmap_jvm.children.push(network);
+
+
 }
 
 
@@ -874,12 +1147,11 @@ function drawSystem() {
                     duration: 500
                 });
                 
-                if (selectedNode) delete selectedNode;
+                if (selectedNode != null) delete selectedNode;
                 selectedNode = node;
-                setDataForSelectedNode();
-                drawHeatMap(); // draw the heat map for the selected node
-                drawReteHeatMap();
-
+                drawHeatMap(); // draw the heat map for the selected host machine
+                drawReteHeatMap(); // draw the heatmap for the Rete nodes on the selected host machine
+                drawJVMHeatMap(); // draw the heatmap for the JVM on the selcted host machine
             };
         },
         // Change node styles when DOM labels are placed
@@ -935,6 +1207,9 @@ function setDataForSelectedNode() {
     for (var i = 0; i < jsonData.machines.length; i++) {
         if (jsonData.machines[i].host == selectedNode.id) {
             selectedNode.data.os = jsonData.machines[i].os;
+            selectedNode.data.nodes = jsonData.machines[i].nodes;
+
+            break;
         }
     }
 

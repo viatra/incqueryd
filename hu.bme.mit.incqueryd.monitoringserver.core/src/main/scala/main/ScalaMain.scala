@@ -38,18 +38,68 @@ object ScalaMain {
     }
 """)
 
-    val system = ActorSystem.create("monitoringserver", ConfigFactory.load(customConf))
-    val collector = system.actorOf(Props[MonitoringDataCollectorActor], name = "collector")
+    //val system = ActorSystem.create("monitoringserver", ConfigFactory.load(customConf))
+    //val collector = system.actorOf(Props[MonitoringDataCollectorActor], name = "collector")
 
-    Thread.sleep(10000)
+//    Thread.sleep(10000)
+//    
+//    val timeout: Timeout = new Timeout(Duration.create(14400, "seconds"))
+//
+//    ReteActorHandler.getActors.foreach(actorRef => {
+//      val future = ask(actorRef, MonitoringMessage.MONITOR, timeout)
+//      val result = Await.result(future, timeout.duration)
+//      println(result)
+//    })
     
-    val timeout: Timeout = new Timeout(Duration.create(14400, "seconds"))
-
-    ReteActorHandler.getActors.foreach(actorRef => {
-      val future = ask(actorRef, MonitoringMessage.MONITOR, timeout)
-      val result = Await.result(future, timeout.duration)
-      println(result)
-    })
+val system = ActorSystem.create("monitoringserver")
+    val dummy = system.actorOf(Props[DummyActor], name = "dummy")
+    
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    dummy ! "work"
+    
+    Thread.sleep(100)
+    dummy ! "monitor"
+    
 
     system.shutdown
 
