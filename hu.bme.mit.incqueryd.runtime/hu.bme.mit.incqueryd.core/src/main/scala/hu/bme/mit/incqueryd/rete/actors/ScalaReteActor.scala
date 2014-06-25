@@ -156,7 +156,6 @@ class ScalaReteActor extends Actor {
     }
     
     sendToSubscribers(changeSet, updateMessage.getSenderStack)
-    if(changeSet != null)updateMessageCount += 1
     
     reteNode match{
       case node:ProductionNode => terminationProtocol(new TerminationMessage(updateMessage.getSenderStack()))
@@ -165,6 +164,10 @@ class ScalaReteActor extends Actor {
   }
   
   protected def sendToSubscribers(changeSet: ChangeSet, senderStack: Stack[ActorRef]) = {
+    if(changeSet != null) {
+      updateMessageCount += 1
+    }
+    
     reteNode match{
       case node:InputNode => {
         pendingTerminationMessages = subscribers.entrySet.size
@@ -284,7 +287,7 @@ class ScalaReteActor extends Actor {
     case SubscriptionMessage.SUBSCRIBE_SINGLE => subscribeSender(ReteNodeSlot.SINGLE)
     case SubscriptionMessage.SUBSCRIBE_PRIMARY => subscribeSender(ReteNodeSlot.PRIMARY)
     case SubscriptionMessage.SUBSCRIBE_SECONDARY => subscribeSender(ReteNodeSlot.SECONDARY)
-    case CoordinatorMessage.INITIALIZE => initialize
+    case CoordinatorMessage.INITIALIZE => spawn { initialize }
     case CoordinatorMessage.GETQUERYRESULTS => {
       val productionNode = reteNode.asInstanceOf[ProductionNode]
       sender ! productionNode.getDeltaResults
