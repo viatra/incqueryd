@@ -5,7 +5,6 @@ import hu.bme.mit.incqueryd.monitoringserver.core.datacollection.MonitoringServi
 import hu.bme.mit.incqueryd.monitoringserver.core.model.AggregatedMonitoringData;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.MachineMonitoringData;
 import hu.bme.mit.incqueryd.monitoringserver.core.network.NetworkAddressHelper;
-import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -102,9 +101,6 @@ public class MonitoringWorker extends Thread {
 			
 			if(worker.successful()) {
 				monitoredData.setRete(worker.getReteMetrics());
-				for(ReteNodeMetrics metrics: worker.getReteMetrics()) {
-					System.out.println(metrics);
-				}
 			}
 			
 		}
