@@ -53,7 +53,7 @@ public class AkkaMonitoringDataCollector {
 		
 		AkkaNodeNames data = gson.fromJson(json, AkkaNodeNames.class); // To get the name of the monitored nodes from Atmos
 
-		nodes.addAll(data.getNodeNames());
+		if(data != null)nodes.addAll(data.getNodeNames());
 		
 	}
 	

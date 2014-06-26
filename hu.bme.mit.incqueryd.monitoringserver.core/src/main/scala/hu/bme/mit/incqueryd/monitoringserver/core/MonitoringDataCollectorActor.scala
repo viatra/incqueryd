@@ -15,11 +15,11 @@ class MonitoringDataCollectorActor extends Actor {
 
   def receive = {
 
-    case beta: BetaNodeMetrics => println("beta")
+    case beta: BetaNodeMetrics => 
 
-    case input: InputNodeMetrics => println("input")
+    case input: InputNodeMetrics => 
 
-    case alpha: AlphaNodeMetrics => println("alpha")
+    case alpha: AlphaNodeMetrics => 
 
     case actorRefs: MonitoredActorCollection => ReteActorHandler.putActors(actorRefs.getActorRefs)
     

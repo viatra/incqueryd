@@ -13,11 +13,11 @@
 
         function visualizeSystem() {
 
-            $.getJSON('test.json', function (data) {
+            $.getJSON('/monitoring', function (data) {
                 update(data);
                 //console.log('JSON data received:', data);
             });
-            //setTimeout("hello()",15000);
+            setTimeout("visualizeSystem()", 3000);
         }
 
         $(function () {

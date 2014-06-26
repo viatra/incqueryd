@@ -13,6 +13,7 @@ object ReteActorHandler {
   
   def putActors(actors: Collection[ActorRef]) = {
     actorRefs.synchronized({
+      actorRefs.clear();
       actorRefs.addAll(actors)
     })
     

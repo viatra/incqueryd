@@ -178,23 +178,10 @@ function update(object) {
     jsonData = object;
 
     if (!hasSystemChanged()) {
-        //if (selectedNode != null) setDataForSelectedNode();
+        
         updateHeatMap();
         updateJVMHeatMap();
 
-        if (!hasReteNetworkChanged()) {
-            updateReteHeatMap();
-            updateReteNetGraph();
-        }
-        else {
-            $jit.id('infovis-rete').innerHTML = "";
-            $jit.id('heatmap-rete').innerHTML = "";
-
-            if (rete_graph != null) delete rete_graph;
-            rete_graph = [];
-
-            drawReteNet();
-        }
     }
     // anyway if changed redraw the system, delete the heatmap
     else {
@@ -202,19 +189,19 @@ function update(object) {
         $jit.id('heatmap').innerHTML = "";
         $jit.id('heatmap-jvm').innerHTML = "";
 
-        if (graph != null) delete graph;
-        graph = [];
-
         drawSystem();
 
+    }
+
+    if (!hasReteNetworkChanged()) {
+        updateReteHeatMap();
+        updateReteNetGraph();
+    }
+    else {
         $jit.id('infovis-rete').innerHTML = "";
         $jit.id('heatmap-rete').innerHTML = "";
 
-        if (rete_graph != null) delete rete_graph;
-        rete_graph = [];
-
         drawReteNet();
-        
     }
 
 }
@@ -399,6 +386,8 @@ function drawJVMHeatMap() {
 // Update the heat map with the new measurement data from the server 
 function updateHeatMap() {
 
+    if (tm == null) return;
+
     hostHeatMap();
 
     // Set aniamtion duration to 0 and refresh the new data to the heatmap visualization treemap
@@ -409,6 +398,7 @@ function updateHeatMap() {
 }
 
 function updateReteHeatMap() {
+    if (tm_rete == null) return;
     // Update the Rete heatmap as well
     reteHeatMap();
     tm_rete.config.duration = 0;
@@ -417,6 +407,7 @@ function updateReteHeatMap() {
 }
 
 function updateJVMHeatMap() {
+    if (tm_jvm == null) return;
     // Update the JVM heatmap as well
     JVMHeatMap();
     tm_jvm.config.duration = 0;
@@ -425,6 +416,8 @@ function updateJVMHeatMap() {
 }
 
 function reteHeatMap() {
+
+    if (selectedNode == null) return;
 
     // Clear the previous data
     delete heatmap_rete.children;
@@ -532,6 +525,8 @@ function reteHeatMap() {
 
 // How to draw the heatmap of host resources
 function hostHeatMap() {
+
+    if (selectedNode == null) return;
 
     // Clear the previous data
     delete heatmap.children;
@@ -746,6 +741,8 @@ function hostHeatMap() {
 
 // Construct the object necessary to draw the JVM heatmap object
 function JVMHeatMap() {
+
+    if (selectedNode == null) return;
 
     // Clear the previous data
     delete heatmap_jvm.children;
@@ -1006,6 +1003,13 @@ function hasSystemChanged() {
 // Drawing the system as a graph
 function drawSystem() {
 
+    if (jsonData.machines.length == 0) {
+        return; // If we didn't get machines then we don't draw anything
+    }
+
+    if (graph != null) delete graph;
+    graph = [];
+
     var node = {};
     node.data = {};
     node.adjacencies = [];
@@ -1218,6 +1222,8 @@ function setDataForSelectedNode() {
 //Check if the Rete network has been changed since the last query
 function hasReteNetworkChanged() {
 
+    if (rete_graph == null) return true;
+
     for (var i = 0; i < jsonData.rete.length; i++) {
         var reteNode = jsonData.rete[i];
         var foundNode = false;
@@ -1265,6 +1271,13 @@ function hasReteNetworkChanged() {
 // Rete network visualization functions **********************************************************************************************************************************************
 // Drawing the system as a graph
 function drawReteNet() {
+
+    if (jsonData.rete.length == 0) {
+        return;
+    }
+
+    if (rete_graph != null) delete rete_graph;
+    rete_graph = [];
 
     for (var i = 0; i < jsonData.rete.length; i++) {
         var reteNode = jsonData.rete[i];

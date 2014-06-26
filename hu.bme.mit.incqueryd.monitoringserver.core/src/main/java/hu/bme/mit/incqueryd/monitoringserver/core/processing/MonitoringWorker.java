@@ -60,7 +60,7 @@ public class MonitoringWorker extends Thread {
 		
 		for (String host : monitoredHosts.keySet()) {
 			MachineMonitoringData machineData = MonitoringService.getMachineMonitoringData(host, monitoredHosts.get(host));
-			machines.add(machineData);
+			if(machineData != null)machines.add(machineData);
 		}
 		
 		AkkaMonitoringDataCollector akkaCollector = new  AkkaMonitoringDataCollector(atmosHost, atmosPort);
@@ -100,7 +100,7 @@ public class MonitoringWorker extends Thread {
 			ReteMonitoringWorker worker = new ReteMonitoringWorker();
 			worker.start();
 			
-			//monitor(); // what if starts lately -> think about it
+			monitor(); // what if starts lately -> think about it
 			
 			try {
 				worker.join();
