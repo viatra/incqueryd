@@ -390,8 +390,9 @@ public class OSMonitor extends Thread {
 			memoryUsage.setTotalMemory((double) sigar.getMem().getTotal() / toGig);
 			memoryUsage.setUsedMemory((double) sigar.getMem().getUsed() / toGig);
 			memoryUsage.setFreeMemory((double) sigar.getMem().getFree() / toGig);
-			memoryUsage.setUsedMemoryPercent(sigar.getMem().getUsedPercent());
-			memoryUsage.setFreeMemoryPercent(sigar.getMem().getFreePercent());
+			double usedPercent = (memoryUsage.getUsedMemory() / memoryUsage.getTotalMemory()) * 100;
+			memoryUsage.setUsedMemoryPercent(usedPercent);
+			memoryUsage.setFreeMemoryPercent(100 - usedPercent);
 		}
 		
 	}

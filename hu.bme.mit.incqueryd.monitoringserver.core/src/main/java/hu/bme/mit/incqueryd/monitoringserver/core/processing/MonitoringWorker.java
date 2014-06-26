@@ -1,11 +1,9 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.processing;
 
 import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringDataCollectorActor;
-import hu.bme.mit.incqueryd.monitoringserver.core.datacollection.AkkaMonitoringDataCollector;
 import hu.bme.mit.incqueryd.monitoringserver.core.datacollection.MonitoringService;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.AggregatedMonitoringData;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.MachineMonitoringData;
-import hu.bme.mit.incqueryd.monitoringserver.core.model.NodeMonitoringData;
 import hu.bme.mit.incqueryd.monitoringserver.core.network.NetworkAddressHelper;
 import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics;
 
@@ -63,17 +61,17 @@ public class MonitoringWorker extends Thread {
 			if(machineData != null)machines.add(machineData);
 		}
 		
-		AkkaMonitoringDataCollector akkaCollector = new  AkkaMonitoringDataCollector(atmosHost, atmosPort);
-		List<NodeMonitoringData> nodes = akkaCollector.collectNodeData();
-		
-		for (MachineMonitoringData machineMonitoringData : machines) {
-			for (NodeMonitoringData nodeData : nodes) {
-				if (machineMonitoringData.getHost().equals(nodeData.getName().split("@")[1])) {
-					machineMonitoringData.addNode(nodeData);
-				}
-			}
-		}
-		
+//		AkkaMonitoringDataCollector akkaCollector = new  AkkaMonitoringDataCollector(atmosHost, atmosPort);
+//		List<NodeMonitoringData> nodes = akkaCollector.collectNodeData();
+//		
+//		for (MachineMonitoringData machineMonitoringData : machines) {
+//			for (NodeMonitoringData nodeData : nodes) {
+//				if (machineMonitoringData.getHost().equals(nodeData.getName().split("@")[1])) {
+//					machineMonitoringData.addNode(nodeData);
+//				}
+//			}
+//		}
+//		
 		collectedData.setMachines(machines);
 		
 		synchronized (monitoredData) {
@@ -91,16 +89,11 @@ public class MonitoringWorker extends Thread {
 		
 		while (!exit) {
 			System.out.println("Start");
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				
-			}
 			
 			ReteMonitoringWorker worker = new ReteMonitoringWorker();
 			worker.start();
 			
-			monitor(); // what if starts lately -> think about it
+			monitor(); 
 			
 			try {
 				worker.join();

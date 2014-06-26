@@ -1222,7 +1222,7 @@ function setDataForSelectedNode() {
 //Check if the Rete network has been changed since the last query
 function hasReteNetworkChanged() {
 
-    if (rete_graph == null) return true;
+    if (rete_graph == null ||jsonData.rete == null) return true;
 
     for (var i = 0; i < jsonData.rete.length; i++) {
         var reteNode = jsonData.rete[i];
