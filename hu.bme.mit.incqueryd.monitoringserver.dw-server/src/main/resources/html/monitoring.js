@@ -187,7 +187,7 @@ function update(object) {
     else {
         $jit.id('infovis').innerHTML = "";
         $jit.id('heatmap').innerHTML = "";
-        $jit.id('heatmap-jvm').innerHTML = "";
+        //$jit.id('heatmap-jvm').innerHTML = "";
 
         drawSystem();
 
