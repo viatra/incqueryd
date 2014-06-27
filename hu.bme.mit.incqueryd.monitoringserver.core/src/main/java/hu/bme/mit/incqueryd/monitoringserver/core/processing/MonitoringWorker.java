@@ -120,7 +120,6 @@ public class MonitoringWorker extends Thread {
 	public void run() {
 		
 		while (!exit) {
-			System.out.println("Start");
 			
 			ReteMonitoringWorker worker = new ReteMonitoringWorker();
 			worker.start();
