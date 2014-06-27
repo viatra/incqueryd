@@ -10,6 +10,8 @@ done
 
 cd
 
+rm ~/atmos.* ~/akka.* 2> /dev/null
+
 cd ~/typesafe-console-developer-1.3.1
 bin/typesafe-console atmos -port 8660 -interface $localHost > ~/atmos.out 2> ~/atmos.err < /dev/null &
 
