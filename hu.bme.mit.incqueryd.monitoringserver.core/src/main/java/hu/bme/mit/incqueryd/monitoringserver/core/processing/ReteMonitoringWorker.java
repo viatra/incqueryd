@@ -18,7 +18,7 @@ public class ReteMonitoringWorker extends Thread {
 	
 	private List<ReteNodeMetrics> reteMetrics;
 	
-	protected final Timeout timeout = new Timeout(Duration.create(14400, "seconds"));
+	protected final Timeout timeout = new Timeout(Duration.create(4, "seconds"));
 	
 	private boolean success;
 	
