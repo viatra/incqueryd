@@ -1,11 +1,9 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.processing;
 
 import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringDataCollectorActor;
-import hu.bme.mit.incqueryd.monitoringserver.core.datacollection.AkkaMonitoringDataCollector;
 import hu.bme.mit.incqueryd.monitoringserver.core.datacollection.MachineMonitoringWorker;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.AggregatedMonitoringData;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.MachineMonitoringData;
-import hu.bme.mit.incqueryd.monitoringserver.core.model.NodeMonitoringData;
 import hu.bme.mit.incqueryd.monitoringserver.core.network.NetworkAddressHelper;
 
 import java.net.UnknownHostException;
@@ -20,7 +18,7 @@ import com.typesafe.config.ConfigFactory;
 
 public class MonitoringWorker extends Thread {
 	
-	private static final int ATMOS_PORT = 8660;
+	//private static final int ATMOS_PORT = 8660;
 	private static final int OS_AGENT_PORT = 7777;
 	private Map<String, Integer> monitoredHosts;
 	private String atmosHost;
@@ -61,7 +59,7 @@ public class MonitoringWorker extends Thread {
 		
 		List<MachineMonitoringWorker> machineWorkers = new ArrayList<>();
 		
-		List<AkkaMonitoringDataCollector> akkaCollectors = new ArrayList<>();
+		//List<AkkaMonitoringDataCollector> akkaCollectors = new ArrayList<>();
 		
 		for (String host : monitoredHosts.keySet()) {
 			MachineMonitoringWorker mWorker = new MachineMonitoringWorker(host, OS_AGENT_PORT);
@@ -69,11 +67,11 @@ public class MonitoringWorker extends Thread {
 			mWorker.start();
 		}
 		
-		for (String host : monitoredHosts.keySet()) {
-			AkkaMonitoringDataCollector akkaCollector = new AkkaMonitoringDataCollector(host, ATMOS_PORT);
-			akkaCollectors.add(akkaCollector);
-			akkaCollector.start();
-		}
+//		for (String host : monitoredHosts.keySet()) {
+//			AkkaMonitoringDataCollector akkaCollector = new AkkaMonitoringDataCollector(host, ATMOS_PORT);
+//			akkaCollectors.add(akkaCollector);
+//			akkaCollector.start();
+//		}
 		
 		for (MachineMonitoringWorker machineMonitoringWorker : machineWorkers) {
 			try {
@@ -87,23 +85,23 @@ public class MonitoringWorker extends Thread {
 
 		}
 		
-		for (AkkaMonitoringDataCollector akkaMonitoringDataCollector : akkaCollectors) {
-			try {
-				akkaMonitoringDataCollector.join();
-			} catch (InterruptedException e) {
-				
-			}
-			
-			List<NodeMonitoringData> nodes = akkaMonitoringDataCollector.getNodeDataList();
-			
-			for (MachineMonitoringData machineMonitoringData : machines) {
-				for (NodeMonitoringData nodeData : nodes) {
-					if (machineMonitoringData.getHost().equals(nodeData.getName().split("@")[1])) {
-						machineMonitoringData.addNode(nodeData);
-					}
-				}
-			}
-		}
+//		for (AkkaMonitoringDataCollector akkaMonitoringDataCollector : akkaCollectors) {
+//			try {
+//				akkaMonitoringDataCollector.join();
+//			} catch (InterruptedException e) {
+//				
+//			}
+//			
+//			List<NodeMonitoringData> nodes = akkaMonitoringDataCollector.getNodeDataList();
+//			
+//			for (MachineMonitoringData machineMonitoringData : machines) {
+//				for (NodeMonitoringData nodeData : nodes) {
+//					if (machineMonitoringData.getHost().equals(nodeData.getName().split("@")[1])) {
+//						machineMonitoringData.addNode(nodeData);
+//					}
+//				}
+//			}
+//		}
 		
 		
 		collectedData.setMachines(machines);

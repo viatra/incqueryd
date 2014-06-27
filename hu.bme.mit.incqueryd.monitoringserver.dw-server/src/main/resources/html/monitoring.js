@@ -180,7 +180,7 @@ function update(object) {
     if (!hasSystemChanged()) {
         
         updateHeatMap();
-        updateJVMHeatMap();
+       // updateJVMHeatMap();
 
     }
     // anyway if changed redraw the system, delete the heatmap
@@ -1155,7 +1155,7 @@ function drawSystem() {
                 selectedNode = node;
                 drawHeatMap(); // draw the heat map for the selected host machine
                 drawReteHeatMap(); // draw the heatmap for the Rete nodes on the selected host machine
-                drawJVMHeatMap(); // draw the heatmap for the JVM on the selcted host machine
+                //drawJVMHeatMap(); // draw the heatmap for the JVM on the selcted host machine
             };
         },
         // Change node styles when DOM labels are placed
