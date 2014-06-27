@@ -13,6 +13,6 @@ done
 killall -9 java
 ./start-akka.sh
 
-if $hazelcast; then
+if [ $hazelcast ]; then
 	./start-hazelcast.sh
 fi
