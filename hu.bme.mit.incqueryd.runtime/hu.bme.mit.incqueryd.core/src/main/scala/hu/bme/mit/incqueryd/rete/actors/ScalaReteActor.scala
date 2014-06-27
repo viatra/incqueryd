@@ -287,7 +287,7 @@ class ScalaReteActor extends Actor {
     case SubscriptionMessage.SUBSCRIBE_SINGLE => subscribeSender(ReteNodeSlot.SINGLE)
     case SubscriptionMessage.SUBSCRIBE_PRIMARY => subscribeSender(ReteNodeSlot.PRIMARY)
     case SubscriptionMessage.SUBSCRIBE_SECONDARY => subscribeSender(ReteNodeSlot.SECONDARY)
-    case CoordinatorMessage.INITIALIZE => spawn { initialize }
+    case CoordinatorMessage.INITIALIZE => initialize
     case CoordinatorMessage.GETQUERYRESULTS => {
       val productionNode = reteNode.asInstanceOf[ProductionNode]
       sender ! productionNode.getDeltaResults
