@@ -215,13 +215,15 @@ class ScalaReteActor extends Actor {
     coordinatorRef = sender
     System.err.println("[ReteActor] " + self + ": PosLength transformation")
 
-    val inputNode = reteNode.asInstanceOf[InputNode]
-    val changeSets = inputNode.transform(transformation)
-    val emptyStack = Stack.empty[ActorRef]
+    spawn {
+      val inputNode = reteNode.asInstanceOf[InputNode]
+      val changeSets = inputNode.transform(transformation)
+      val emptyStack = Stack.empty[ActorRef]
 
-    changeSets.foreach(changeSet => {
-      sendToSubscribers(changeSet, emptyStack)
-    })
+      changeSets.foreach(changeSet => {
+        sendToSubscribers(changeSet, emptyStack)
+      })
+    }
   }
 
   private def terminationProtocol(readyMessage: TerminationMessage): Unit = {
