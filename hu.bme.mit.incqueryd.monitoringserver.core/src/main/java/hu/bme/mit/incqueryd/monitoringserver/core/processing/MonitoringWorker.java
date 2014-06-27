@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.processing;
 
 import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringDataCollectorActor;
-import hu.bme.mit.incqueryd.monitoringserver.core.datacollection.MonitoringService;
+import hu.bme.mit.incqueryd.monitoringserver.core.datacollection.MachineMonitoringWorker;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.AggregatedMonitoringData;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.MachineMonitoringData;
 import hu.bme.mit.incqueryd.monitoringserver.core.network.NetworkAddressHelper;
@@ -18,6 +18,7 @@ import com.typesafe.config.ConfigFactory;
 
 public class MonitoringWorker extends Thread {
 	
+	private static final int OS_AGENT_PORT = 7777;
 	private Map<String, Integer> monitoredHosts;
 	private String atmosHost;
 	private int atmosPort;
@@ -55,9 +56,12 @@ public class MonitoringWorker extends Thread {
 		
 		List<MachineMonitoringData> machines = new ArrayList<>();
 		
+		List<MachineMonitoringWorker> machineWorkers = new ArrayList<>();
+		
 		for (String host : monitoredHosts.keySet()) {
-			MachineMonitoringData machineData = MonitoringService.getMachineMonitoringData(host, monitoredHosts.get(host));
-			if(machineData != null)machines.add(machineData);
+			MachineMonitoringWorker mWorker = new MachineMonitoringWorker(host, OS_AGENT_PORT);
+			machineWorkers.add(mWorker);
+			mWorker.start();
 		}
 		
 //		AkkaMonitoringDataCollector akkaCollector = new  AkkaMonitoringDataCollector(atmosHost, atmosPort);
@@ -70,7 +74,22 @@ public class MonitoringWorker extends Thread {
 //				}
 //			}
 //		}
-//		
+		
+		for (MachineMonitoringWorker machineMonitoringWorker : machineWorkers) {
+			try {
+				machineMonitoringWorker.join();
+			} catch (InterruptedException e) {
+				
+			}
+			
+			MachineMonitoringData machineData = machineMonitoringWorker.getData();
+			if(machineData != null) {
+				synchronized (machines) {
+					machines.add(machineData);
+				}
+			}
+		}
+		
 		collectedData.setMachines(machines);
 		
 		synchronized (monitoredData) {
