@@ -18,14 +18,12 @@ public class ReteMonitoringWorker extends Thread {
 	
 	private List<ReteNodeMetrics> reteMetrics;
 	
-	protected final Timeout timeout = new Timeout(Duration.create(3, "seconds"));
+	protected final Timeout timeout = new Timeout(Duration.create(20, "seconds"));
 	
-	private boolean success;
 	
 	public ReteMonitoringWorker() {
 		reteMetrics = new ArrayList<>();
 		
-		success = false;
 	}
 	
 	public void run() {
@@ -38,13 +36,8 @@ public class ReteMonitoringWorker extends Thread {
 				
 			}
 		}
-		
-		success = true;
 	}
 	
-	public boolean successful() {
-		return success;
-	}
 	
 	public List<ReteNodeMetrics> getReteMetrics() {
 		return reteMetrics;

@@ -228,7 +228,7 @@ function drawHeatMap() {
         //no box offsets
         offset: 1,
         //duration of the animation
-        duration: 1500,
+        duration: 0,
 
         //Add the name of the node in the correponding label
         //This method is called once, on label creation.
@@ -287,7 +287,7 @@ function drawReteHeatMap() {
         //no box offsets
         offset: 1,
         //duration of the animation
-        duration: 1500,
+        duration: 0,
 
         //Add the name of the node in the correponding label
         //This method is called once, on label creation.
@@ -1272,7 +1272,7 @@ function hasReteNetworkChanged() {
 // Drawing the system as a graph
 function drawReteNet() {
 
-    if (jsonData.rete.length == 0) {
+    if (jsonData.rete == null || jsonData.rete.length == 0) {
         return;
     }
 
