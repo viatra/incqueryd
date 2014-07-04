@@ -5,8 +5,8 @@
     modelPluginID="org.eclipse.incquery.patternlanguage.rdf" forceOverwrite="true"
     modelName="RdfPatternLanguage" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.incquery.patternlanguage.rdf.edit"
-    editorPluginID="org.eclipse.incquery.patternlanguage.rdf.editor" runtimeVersion="2.9"
-    usedGenPackages="../../../org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.genmodel#//patternLanguage ../../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
+    editorPluginID="org.eclipse.incquery.patternlanguage.rdf.editor" runtimeVersion="2.10"
+    usedGenPackages="platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.genmodel#//patternLanguage platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <genPackages prefix="RdfPatternLanguage" basePackage="org.eclipse.incquery.patternlanguage.rdf"
       disposableProviderFactory="true" fileExtensions="rdfiq" ecorePackage="RdfPatternLanguage.ecore#/">
     <genClasses ecoreClass="RdfPatternLanguage.ecore#//Vocabulary">

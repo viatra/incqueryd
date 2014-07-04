@@ -16,27 +16,24 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class CacheRoleImpl extends RoleImpl implements CacheRole
-{
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected CacheRoleImpl()
-  {
-    super();
-  }
+public class CacheRoleImpl extends RoleImpl implements CacheRole {
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CacheRoleImpl() {
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return ArchPackage.Literals.CACHE_ROLE;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return ArchPackage.Literals.CACHE_ROLE;
+	}
 
 } //CacheRoleImpl

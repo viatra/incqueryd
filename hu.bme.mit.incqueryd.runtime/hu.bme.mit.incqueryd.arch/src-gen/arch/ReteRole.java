@@ -20,32 +20,31 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
  * @model
  * @generated
  */
-public interface ReteRole extends Role
-{
-  /**
-   * Returns the value of the '<em><b>Node Recipe</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Node Recipe</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Node Recipe</em>' reference.
-   * @see #setNodeRecipe(ReteNodeRecipe)
-   * @see arch.ArchPackage#getReteRole_NodeRecipe()
-   * @model
-   * @generated
-   */
-  ReteNodeRecipe getNodeRecipe();
+public interface ReteRole extends Role {
+	/**
+	 * Returns the value of the '<em><b>Node Recipe</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Node Recipe</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Node Recipe</em>' reference.
+	 * @see #setNodeRecipe(ReteNodeRecipe)
+	 * @see arch.ArchPackage#getReteRole_NodeRecipe()
+	 * @model
+	 * @generated
+	 */
+	ReteNodeRecipe getNodeRecipe();
 
-  /**
-   * Sets the value of the '{@link arch.ReteRole#getNodeRecipe <em>Node Recipe</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Node Recipe</em>' reference.
-   * @see #getNodeRecipe()
-   * @generated
-   */
-  void setNodeRecipe(ReteNodeRecipe value);
+	/**
+	 * Sets the value of the '{@link arch.ReteRole#getNodeRecipe <em>Node Recipe</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Node Recipe</em>' reference.
+	 * @see #getNodeRecipe()
+	 * @generated
+	 */
+	void setNodeRecipe(ReteNodeRecipe value);
 
 } // ReteRole

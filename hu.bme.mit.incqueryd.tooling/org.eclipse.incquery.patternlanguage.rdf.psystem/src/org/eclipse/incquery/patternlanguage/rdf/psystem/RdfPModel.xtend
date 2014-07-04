@@ -1,7 +1,7 @@
 package org.eclipse.incquery.patternlanguage.rdf.psystem
 
-import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
+import com.google.common.cache.LoadingCache
 import java.util.List
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference
@@ -21,7 +21,7 @@ class RdfPModel {
 
 	public val RdfPatternMatcherContext context
 
-	val Cache<Pattern, PQuery> queries = CacheBuilder.newBuilder.build[pattern |
+	val LoadingCache<Pattern, PQuery> queries = CacheBuilder.newBuilder.build[pattern |
 		new RdfPQuery(pattern, this)
 	] // XXX due to this solution, recursive patterns are not supported
 

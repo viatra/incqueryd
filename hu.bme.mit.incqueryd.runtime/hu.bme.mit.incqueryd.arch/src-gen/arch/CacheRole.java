@@ -13,6 +13,5 @@ package arch;
  * @model
  * @generated
  */
-public interface CacheRole extends Role
-{
+public interface CacheRole extends Role {
 } // CacheRole
