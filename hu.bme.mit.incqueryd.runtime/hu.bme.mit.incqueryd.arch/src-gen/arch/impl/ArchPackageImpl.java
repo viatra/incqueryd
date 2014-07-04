@@ -122,8 +122,8 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage
     isInited = true;
 
     // Initialize simple dependencies
-    InfrastructurePackage.eINSTANCE.eClass();
     RecipesPackage.eINSTANCE.eClass();
+    InfrastructurePackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theArchPackage.createPackageContents();
