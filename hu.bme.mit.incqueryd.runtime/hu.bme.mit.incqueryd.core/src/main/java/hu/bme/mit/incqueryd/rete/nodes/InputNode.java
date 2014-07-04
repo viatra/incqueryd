@@ -2,6 +2,8 @@ package hu.bme.mit.incqueryd.rete.nodes;
 
 import hu.bme.mit.bigmodel.fourstore.FourStoreClient;
 import hu.bme.mit.incqueryd.cache.TupleCache;
+import hu.bme.mit.incqueryd.recipes.RecipeProcessor;
+import hu.bme.mit.incqueryd.recipes.TypeInfo;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.rete.dataunits.GraphElement;
@@ -30,7 +32,7 @@ import com.google.common.collect.Multimap;
 
 public class InputNode extends ReteNode implements InitializableReteNode {
 
-	protected final String type;
+	protected final String typeNameSuffix;
 	protected boolean hasAttribute = false;
 	protected final GraphElement graphElement;
 	protected final Set<Tuple> tuples;
@@ -40,17 +42,19 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	
 	InputNode(final TypeInputRecipe recipe, final List<String> cacheMachineIps) {
 		super();
-		type = recipe.getTypeName();
 		graphElement = recipe instanceof UnaryInputRecipe ? GraphElement.NODE : GraphElement.EDGE;
 		cache = new TupleCache(cacheMachineIps);
-		final String setName = graphElement.toString() + type;
-		tuples = cache.getSet(setName);
 		
-		ontologyIri = "";
+		final TypeInfo typeInfo = RecipeProcessor.extractType(recipe);
+		typeNameSuffix = typeInfo.typeNameSuffix();
+		ontologyIri = typeInfo.ontologyIri();
+
+		final String setName = graphElement.toString() + typeNameSuffix;
+		tuples = cache.getSet(setName);
 	}
 
 	public String getType() {
-		return type;
+		return typeNameSuffix;
 	}
 
 	public GraphElement getGraphElement() {
@@ -79,7 +83,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	private void initializeForNodes() throws IOException {
 		final FourStoreClient client = new FourStoreClient(ontologyIri);
 
-		final List<Long> vertices = client.collectVertices(type);
+		final List<Long> vertices = client.collectVertices(typeNameSuffix);
 		for (final Long vertex : vertices) {
 			final Tuple tuple = new Tuple(vertex);
 			tuples.add(tuple);
@@ -90,9 +94,9 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 
 	private void initializeForEdges() throws IOException {
 		final FourStoreClient client = new FourStoreClient(ontologyIri);
-		final Multimap<Long, Long> edges = client.collectEdges(type);
+		final Multimap<Long, Long> edges = client.collectEdges(typeNameSuffix);
 		if (hasAttribute) {
-			final Map<Long, Integer> verticesWithProperty = client.collectVerticesWithProperty(type);
+			final Map<Long, Integer> verticesWithProperty = client.collectVerticesWithProperty(typeNameSuffix);
 			for (final Entry<Long, Integer> vertexWithProperty : verticesWithProperty.entrySet()) {
 				final Tuple tuple = new Tuple(vertexWithProperty.getKey(), vertexWithProperty.getValue());
 				tuples.add(tuple);
@@ -102,7 +106,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			tuples.add(tuple);
 		}
 
-		System.err.println("intializeForEdges returns " + tuples.size() + " " + type + " tuples");
+		System.err.println("intializeForEdges returns " + tuples.size() + " " + typeNameSuffix + " tuples");
 	}
 
 	public Collection<ChangeSet> transform(final Transformation transformation) throws IOException {
