@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: IncQuery-D Tooling Target Platform
+Bundle-SymbolicName: hu.bme.mit.incqueryd.tooling.targetplatform
+Bundle-Version: 1.0.0.qualifier
