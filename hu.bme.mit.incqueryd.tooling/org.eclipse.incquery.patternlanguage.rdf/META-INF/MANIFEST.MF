@@ -19,7 +19,8 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.common.types,
  org.eclipse.xtext.xbase.lib,
  hu.bme.mit.incqueryd.rdf;bundle-version="1.0.0",
- org.openrdf.sesame;bundle-version="2.7.10"
+ org.openrdf.sesame;bundle-version="2.7.10",
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

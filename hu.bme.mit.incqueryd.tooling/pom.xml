@@ -8,9 +8,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<tycho.version>0.20.0</tycho.version>
-		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
-		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
 	</properties>
 	<build>
 		<plugins>
@@ -55,38 +52,42 @@
 							<ws>win32</ws>
 							<arch>x86_64</arch>
 						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
 					</environments>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.0.201403182114</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<destFile>${sonar.jacoco.reportPath}</destFile>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+	<dependencies>
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.arch</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 	<modules>
-		<module>../../lib/org.mozilla.javascript</module>
-		<module>../../lib/org.openrdf.sesame</module>
-		<module>../hu.bme.mit.incqueryd.tooling.targetplatform</module>
-		<module>../hu.bme.mit.incqueryd.rdf</module>
-		<module>../org.eclipse.incquery.patternlanguage.rdf</module>
-		<module>../org.eclipse.incquery.patternlanguage.rdf.generator.recipe</module>
-		<module>../org.eclipse.incquery.patternlanguage.rdf.psystem</module>
-		<module>../org.eclipse.incquery.patternlanguage.rdf.tests</module>
-		<module>../org.eclipse.incquery.patternlanguage.rdf.ui</module>
-		<module>../hu.bme.mit.incqueryd.arch.language</module>
-		<module>../hu.bme.mit.incqueryd.arch.language.tests</module>
-		<module>../hu.bme.mit.incqueryd.arch.language.ui</module>
+		<module>../lib/org.mozilla.javascript</module>
+		<module>../lib/org.openrdf.sesame</module>
+		<module>hu.bme.mit.incqueryd.tooling.targetplatform</module>
+		<module>hu.bme.mit.incqueryd.rdf</module>
+		<module>org.eclipse.incquery.patternlanguage.rdf</module>
+		<module>org.eclipse.incquery.patternlanguage.rdf.generator.recipe</module>
+		<module>org.eclipse.incquery.patternlanguage.rdf.psystem</module>
+		<module>org.eclipse.incquery.patternlanguage.rdf.tests</module>
+		<module>org.eclipse.incquery.patternlanguage.rdf.ui</module>
+		<module>hu.bme.mit.incqueryd.arch.language</module>
+		<module>hu.bme.mit.incqueryd.arch.language.tests</module>
+		<module>hu.bme.mit.incqueryd.arch.language.ui</module>
+		<module>hu.bme.mit.incqueryd.tooling.main</module>
+		<module>hu.bme.mit.incqueryd.tooling.product</module>
 	</modules>
 </project>

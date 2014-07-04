@@ -1,8 +1,7 @@
-package org.eclipse.incquery.patternlanguage.rdf.validation;
+package org.eclipse.incquery.patternlanguage.rdf.validation
 
 import hu.bme.mit.incqueryd.rdf.RdfUtils
 import org.apache.log4j.Logger
-import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage
@@ -11,16 +10,15 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Vocabulary
 import org.eclipse.xtext.validation.Check
 import org.eclipse.xtext.validation.CheckType
 import org.openrdf.model.impl.URIImpl
-
 import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils.*
 
-public class RdfPatternLanguageJavaValidator extends AbstractRdfPatternLanguageJavaValidator {
-
-	static val logger = Logger.getLogger(RdfPatternLanguageJavaValidator)
-
-	override checkPackageDeclaration(PatternModel model) {
-		// Do not check
-	}
+/**
+ * Custom validation rules.
+ *
+ * see http://www.eclipse.org/Xtext/documentation.html#validation
+ */
+class RdfPatternLanguageValidator extends AbstractRdfPatternLanguageValidator {
+	static val logger = Logger.getLogger(RdfPatternLanguageValidator)
 
 	@Check
 	def void checkIri(Iri iri) {

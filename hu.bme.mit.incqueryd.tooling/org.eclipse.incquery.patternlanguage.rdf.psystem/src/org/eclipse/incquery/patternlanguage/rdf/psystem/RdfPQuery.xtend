@@ -113,4 +113,8 @@ class RdfPQuery implements PQuery, Serializable {
 		fullyQualifiedName = pattern.name
 	}
 
+	override getPProblems() {
+		#[]
+	}
+
 }

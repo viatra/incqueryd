@@ -20,32 +20,31 @@ import org.eclipse.emf.ecore.EObject;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface ElementWithTraceInfo extends EObject
-{
-  /**
-   * Returns the value of the '<em><b>Trace Info</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Trace Info</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Trace Info</em>' attribute.
-   * @see #setTraceInfo(String)
-   * @see infrastructure.InfrastructurePackage#getElementWithTraceInfo_TraceInfo()
-   * @model unique="false"
-   * @generated
-   */
-  String getTraceInfo();
+public interface ElementWithTraceInfo extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Trace Info</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Trace Info</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Trace Info</em>' attribute.
+	 * @see #setTraceInfo(String)
+	 * @see infrastructure.InfrastructurePackage#getElementWithTraceInfo_TraceInfo()
+	 * @model unique="false"
+	 * @generated
+	 */
+	String getTraceInfo();
 
-  /**
-   * Sets the value of the '{@link infrastructure.ElementWithTraceInfo#getTraceInfo <em>Trace Info</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Trace Info</em>' attribute.
-   * @see #getTraceInfo()
-   * @generated
-   */
-  void setTraceInfo(String value);
+	/**
+	 * Sets the value of the '{@link infrastructure.ElementWithTraceInfo#getTraceInfo <em>Trace Info</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Trace Info</em>' attribute.
+	 * @see #getTraceInfo()
+	 * @generated
+	 */
+	void setTraceInfo(String value);
 
 } // ElementWithTraceInfo
