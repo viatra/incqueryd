@@ -46,8 +46,8 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		cache = new TupleCache(cacheMachineIps);
 		
 		final TypeInfo typeInfo = RecipeProcessor.extractType(recipe);
-		typeNameSuffix = typeInfo.typeNameSuffix();
 		ontologyIri = typeInfo.ontologyIri();
+		typeNameSuffix = typeInfo.typeNameSuffix();
 
 		final String setName = graphElement.toString() + typeNameSuffix;
 		tuples = cache.getSet(setName);
