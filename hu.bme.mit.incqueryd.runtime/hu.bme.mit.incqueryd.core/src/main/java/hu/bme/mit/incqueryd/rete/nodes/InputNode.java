@@ -36,14 +36,17 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	protected final Set<Tuple> tuples;
 	protected final TupleCache cache;
 	protected final Random random = new Random(0);
-
+	protected final String ontologyIri;
+	
 	InputNode(final TypeInputRecipe recipe, final List<String> cacheMachineIps) {
 		super();
 		type = recipe.getTypeName();
 		graphElement = recipe instanceof UnaryInputRecipe ? GraphElement.NODE : GraphElement.EDGE;
-		String setName = graphElement.toString() + type;
 		cache = new TupleCache(cacheMachineIps);
+		final String setName = graphElement.toString() + type;
 		tuples = cache.getSet(setName);
+		
+		ontologyIri = "";
 	}
 
 	public String getType() {
@@ -74,7 +77,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	}
 
 	private void initializeForNodes() throws IOException {
-		final FourStoreClient client = new FourStoreClient();
+		final FourStoreClient client = new FourStoreClient(ontologyIri);
 
 		final List<Long> vertices = client.collectVertices(type);
 		for (final Long vertex : vertices) {
@@ -86,7 +89,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	}
 
 	private void initializeForEdges() throws IOException {
-		final FourStoreClient client = new FourStoreClient();
+		final FourStoreClient client = new FourStoreClient(ontologyIri);
 		final Multimap<Long, Long> edges = client.collectEdges(type);
 		if (hasAttribute) {
 			final Map<Long, Integer> verticesWithProperty = client.collectVerticesWithProperty(type);
@@ -105,7 +108,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	public Collection<ChangeSet> transform(final Transformation transformation) throws IOException {
 		final List<Tuple> invalids = new ArrayList<>(transformation.getInvalids());
 
-		final FourStoreClient client = new FourStoreClient();
+		final FourStoreClient client = new FourStoreClient(ontologyIri);
 		Collection<ChangeSet> changeSet = null;
 		switch (transformation.getTestCase()) {
 		case "PosLength":
