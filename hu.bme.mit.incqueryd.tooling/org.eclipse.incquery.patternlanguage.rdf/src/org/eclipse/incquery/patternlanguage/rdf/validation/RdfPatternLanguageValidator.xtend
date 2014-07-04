@@ -17,7 +17,7 @@ import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLangu
  *
  * see http://www.eclipse.org/Xtext/documentation.html#validation
  */
-class RdfPatternLanguageValidator extends AbstractRdfPatternLanguageValidator {
+class RdfPatternLanguageValidator extends AbstractRdfPatternLanguageValidator { // TODO call checks from PatternLanguageJavaValidator
 	static val logger = Logger.getLogger(RdfPatternLanguageValidator)
 
 	@Check
