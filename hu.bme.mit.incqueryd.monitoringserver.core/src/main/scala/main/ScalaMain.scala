@@ -4,7 +4,6 @@ import akka.actor.ActorSystem
 import akka.actor.Props
 import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringDataCollectorActor
 import hu.bme.mit.incqueryd.retemonitoring.metrics.AlphaNodeMetrics
-import hu.bme.mit.incqueryd.monitoringserver.core.ReteActorHandler
 import scala.collection.JavaConversions._
 import akka.actor.ScalaActorRef
 import hu.bme.mit.incqueryd.retemonitoring.metrics.BetaNodeMetrics

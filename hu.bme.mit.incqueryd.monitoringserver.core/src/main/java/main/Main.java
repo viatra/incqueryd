@@ -23,9 +23,11 @@ public class Main {
 //		System.out.println(os.getOs().getCpuUsage().getUsedCPUPercent());
 //		System.out.println(os.getOs().getMemoryUsage().getUsedMemory());
 		
-		System.out.println(NetworkAddressHelper.getLocalHostLANAddress().getHostAddress());
+		String address = NetworkAddressHelper.getLocalHostLANAddress().getHostAddress();
 		
-		final MonitoringWorker worker = new MonitoringWorker(null);
+		System.out.println(address);
+		
+		final MonitoringWorker worker = new MonitoringWorker(address);
 		worker.start();
 	}
 	

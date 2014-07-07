@@ -22,11 +22,9 @@ class MonitoringDataCollectorActor extends Actor {
 
     case alpha: AlphaNodeMetrics => 
 
-    case actorRefs: MonitoredActorCollection => ReteActorHandler.putActors(actorRefs.getActorRefs)
+    case actorRefs: MonitoredActorCollection => MonitoringAddressStore.putActors(actorRefs.getActorRefs)
     
-    case machines: MonitoredMachines => {
-      machines.getMachineIPs().foreach(m => println(m))
-    }
+    case machines: MonitoredMachines => MonitoringAddressStore.putMachines(machines.getMachineIPs)
     
     case _ => {}
 

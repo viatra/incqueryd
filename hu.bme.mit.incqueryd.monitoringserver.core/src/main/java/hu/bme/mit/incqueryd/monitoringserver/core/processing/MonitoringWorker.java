@@ -1,16 +1,14 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.processing;
 
+import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringAddressStore;
 import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringDataCollectorActor;
 import hu.bme.mit.incqueryd.monitoringserver.core.datacollection.MachineMonitoringWorker;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.AggregatedMonitoringData;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.MachineMonitoringData;
-import hu.bme.mit.incqueryd.monitoringserver.core.network.NetworkAddressHelper;
 import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics;
 
-import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import akka.actor.ActorSystem;
 import akka.actor.Props;
@@ -19,8 +17,9 @@ import com.typesafe.config.ConfigFactory;
 
 public class MonitoringWorker extends Thread {
 	
+	private final String collectorInterface;
+	
 	private static final int OS_AGENT_PORT = 7777;
-	private Map<String, Integer> monitoredHosts;
 	
 	private volatile boolean exit;
 	
@@ -28,9 +27,10 @@ public class MonitoringWorker extends Thread {
 	
 	private ActorSystem system;
 	
-	public MonitoringWorker(Map<String, Integer> monitoredHosts) {
+	public MonitoringWorker(String collectorInterface) {
 		super();
-		this.monitoredHosts = monitoredHosts;
+		
+		this.collectorInterface = collectorInterface;
 		
 		monitoredData = new AggregatedMonitoringData();
 		
@@ -56,7 +56,7 @@ public class MonitoringWorker extends Thread {
 		
 		//List<AkkaMonitoringDataCollector> akkaCollectors = new ArrayList<>();
 		
-		for (String host : monitoredHosts.keySet()) {
+		for (String host : MonitoringAddressStore.getMachines()) {
 			MachineMonitoringWorker mWorker = new MachineMonitoringWorker(host, OS_AGENT_PORT);
 			machineWorkers.add(mWorker);
 			mWorker.start();
@@ -135,13 +135,6 @@ public class MonitoringWorker extends Thread {
 	
 	private void createActor() {
 		
-		String ipAddress = "127.0.0.1"; // Default is local loopback
-		try {
-			ipAddress = NetworkAddressHelper.getLocalHostLANAddress().getHostAddress();
-		} catch (UnknownHostException e) {
-			
-		}
-		
 		String config = "akka {\r\n" + 
 				"    actor {\r\n" + 
 				"    provider = \"akka.remote.RemoteActorRefProvider\"\r\n" + 
@@ -159,7 +152,7 @@ public class MonitoringWorker extends Thread {
 				"    require-cookie = off\r\n" +
 				"    use-passive-connections = on\r\n" +
 				"    use-dispatcher-for-io = \"\"\r\n" +
-				"    hostname = \"" + ipAddress + "\"\r\n" + 
+				"    hostname = \"" + collectorInterface + "\"\r\n" + 
 				"    port = 2552\r\n" + 
 				"    message-frame-size = 1 MiB\r\n" +
 				"    reconnection-time-window = 600s\r\n" +

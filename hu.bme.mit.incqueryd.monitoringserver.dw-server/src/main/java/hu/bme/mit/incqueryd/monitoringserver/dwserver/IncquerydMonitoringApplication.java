@@ -6,9 +6,6 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.bazaarvoice.dropwizard.assets.ConfiguredAssetsBundle;
 
 public class IncquerydMonitoringApplication extends
@@ -28,14 +25,8 @@ public class IncquerydMonitoringApplication extends
 	public void run(IncquerydMonitoringConfiguration configuration, Environment environment)
 			throws Exception {
 		
-		Map<String, Integer> monitoredHosts = new HashMap<String, Integer>();
-		
-		for (MonitoredHostInfo host : configuration.getMonitoredHosts()) {
-			monitoredHosts.put(host.getHostName(), host.getPort());
-		}
-		
 
-		final MonitoringWorker worker = new MonitoringWorker(monitoredHosts);
+		final MonitoringWorker worker = new MonitoringWorker(configuration.getCollectorInterface());
 		
 		worker.start();
 		

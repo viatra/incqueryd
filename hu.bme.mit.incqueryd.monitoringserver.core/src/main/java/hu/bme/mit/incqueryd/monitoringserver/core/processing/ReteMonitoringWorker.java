@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.processing;
 
 import static akka.pattern.Patterns.ask;
-import hu.bme.mit.incqueryd.monitoringserver.core.ReteActorHandler;
+import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringAddressStore;
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoringMessage;
 import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics;
 
@@ -27,7 +27,9 @@ public class ReteMonitoringWorker extends Thread {
 	}
 	
 	public void run() {
-		for (ActorRef actorRef: ReteActorHandler.getActors()) {
+		System.out.println("Start");
+		for (ActorRef actorRef: MonitoringAddressStore.getActors()) {
+			System.out.println(actorRef.path().name().toString());
 			final Future<Object> future = ask(actorRef, MonitoringMessage.MONITOR, timeout);
 			try {
 				final ReteNodeMetrics result = (ReteNodeMetrics) Await.result(future, timeout.duration());
@@ -36,6 +38,7 @@ public class ReteMonitoringWorker extends Thread {
 				
 			}
 		}
+		System.out.println("Done");
 	}
 	
 	
