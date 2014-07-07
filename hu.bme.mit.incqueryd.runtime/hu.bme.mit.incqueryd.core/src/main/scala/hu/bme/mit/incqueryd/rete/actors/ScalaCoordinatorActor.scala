@@ -33,6 +33,7 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet
 import arch.Configuration
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
+import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredMachines
 
 class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean, val monitoringServerIPAddress: String) extends Actor{
   
@@ -81,7 +82,9 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     // phase 2
     subscribeActors(conf)
     
-    if(monitoringServerIPAddress != null)subscribeMonitoringService
+    if(monitoringServerIPAddress != null) {
+      subscribeMonitoringService(conf)
+    }
 
     // phase 3
     initialize
@@ -285,9 +288,15 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     Await.result(future, timeout.duration)
   }
   
-  private def subscribeMonitoringService = {
+  private def subscribeMonitoringService(conf: Configuration) = {
     val actor = context.actorFor("akka://monitoringserver@" + monitoringServerIPAddress + ":2552/user/collector")
+    
+	val machines = new MonitoredMachines
+	conf.getClusters().get(0).getReteMachines().foreach(machine => machines.addMachineIP(machine.getIp))
+	actor ! machines
+	
     actor ! new MonitoredActorCollection(actorRefs)
+    
   }
   
   def receive = {
