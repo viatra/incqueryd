@@ -19,11 +19,8 @@ import com.typesafe.config.ConfigFactory;
 
 public class MonitoringWorker extends Thread {
 	
-	//private static final int ATMOS_PORT = 8660;
 	private static final int OS_AGENT_PORT = 7777;
 	private Map<String, Integer> monitoredHosts;
-	private String atmosHost;
-	private int atmosPort;
 	
 	private volatile boolean exit;
 	
@@ -31,12 +28,9 @@ public class MonitoringWorker extends Thread {
 	
 	private ActorSystem system;
 	
-	public MonitoringWorker(Map<String, Integer> monitoredHosts, String atmosHost,
-			int atmosPort) {
+	public MonitoringWorker(Map<String, Integer> monitoredHosts) {
 		super();
 		this.monitoredHosts = monitoredHosts;
-		this.atmosHost = atmosHost;
-		this.atmosPort = atmosPort;
 		
 		monitoredData = new AggregatedMonitoringData();
 		

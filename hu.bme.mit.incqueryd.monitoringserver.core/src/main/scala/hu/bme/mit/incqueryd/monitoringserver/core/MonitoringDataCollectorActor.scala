@@ -10,6 +10,7 @@ import java.util.ArrayList
 import akka.actor.ActorRef
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
 import scala.collection.JavaConversions._
+import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredMachines
 
 class MonitoringDataCollectorActor extends Actor {
 
@@ -22,6 +23,10 @@ class MonitoringDataCollectorActor extends Actor {
     case alpha: AlphaNodeMetrics => 
 
     case actorRefs: MonitoredActorCollection => ReteActorHandler.putActors(actorRefs.getActorRefs)
+    
+    case machines: MonitoredMachines => {
+      machines.getMachineIPs().foreach(m => println(m))
+    }
     
     case _ => {}
 
