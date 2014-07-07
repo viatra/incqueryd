@@ -39,12 +39,29 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	protected final TupleCache cache;
 	protected final Random random = new Random(0);
 	protected final String ontologyIri;
-	
+
+	/*
+	 * Implementing the input nodes introduces the following challenge: - UnaryInputRecipes enumerate graph nodes -
+	 * BinaryInputRecipes enumerate node attributes and references as well
+	 * 
+	 * A temporary solution is the following: add "attribute" or "reference" string to the trace info.
+	 */
 	InputNode(final TypeInputRecipe recipe, final List<String> cacheMachineIps) {
 		super();
-		graphElement = recipe instanceof UnaryInputRecipe ? GraphElement.NODE : GraphElement.EDGE;
+
+		if (recipe instanceof UnaryInputRecipe) {
+			graphElement = GraphElement.NODE;
+		} else {
+			// the recipe is a BinaryInputRecipe
+			if (recipe.getTraceInfo().contains("edge")) {
+				graphElement = GraphElement.EDGE;
+			} else {
+				graphElement = GraphElement.ATTRIBUTE;
+			}
+		}
+
 		cache = new TupleCache(cacheMachineIps);
-		
+
 		final TypeInfo typeInfo = RecipeProcessor.extractType(recipe);
 		ontologyIri = typeInfo.ontologyIri();
 		typeNameSuffix = typeInfo.typeNameSuffix();
@@ -64,13 +81,14 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	@Override
 	public ChangeSet initialize() throws IOException {
 		switch (graphElement) {
-		case EDGE:
-			initializeForEdges();
-			break;
 		case NODE:
-			initializeForNodes();
+			initializeForNode();
 			break;
-		default:
+		case EDGE:
+			initializeForEdge();
+			break;
+		case ATTRIBUTE:
+			initializeForAttribute();
 			break;
 		}
 
@@ -80,7 +98,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		return changeSet;
 	}
 
-	private void initializeForNodes() throws IOException {
+	private void initializeForNode() throws IOException {
 		final FourStoreClient client = new FourStoreClient(ontologyIri);
 
 		final List<Long> vertices = client.collectVertices(typeNameSuffix);
@@ -92,16 +110,21 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		System.err.println("intializeForNodes returns " + tuples.size() + " tuples");
 	}
 
-	private void initializeForEdges() throws IOException {
+	private void initializeForAttribute() throws IOException {
+		final FourStoreClient client = new FourStoreClient(ontologyIri);
+		final Map<Long, Integer> verticesWithProperty = client.collectVerticesWithProperty(typeNameSuffix);
+		for (final Entry<Long, Integer> vertexWithProperty : verticesWithProperty.entrySet()) {
+			final Tuple tuple = new Tuple(vertexWithProperty.getKey(), vertexWithProperty.getValue());
+			tuples.add(tuple);
+		}
+
+		System.err.println("intializeForAttribute returns " + tuples.size() + " " + typeNameSuffix + " tuples");
+	}
+
+	private void initializeForEdge() throws IOException {
 		final FourStoreClient client = new FourStoreClient(ontologyIri);
 		final Multimap<Long, Long> edges = client.collectEdges(typeNameSuffix);
-		if (hasAttribute) {
-			final Map<Long, Integer> verticesWithProperty = client.collectVerticesWithProperty(typeNameSuffix);
-			for (final Entry<Long, Integer> vertexWithProperty : verticesWithProperty.entrySet()) {
-				final Tuple tuple = new Tuple(vertexWithProperty.getKey(), vertexWithProperty.getValue());
-				tuples.add(tuple);
-			}
-		} else for (final Entry<Long, Long> entry : edges.entries()) {
+		for (final Entry<Long, Long> entry : edges.entries()) {
 			final Tuple tuple = new Tuple(entry.getKey(), entry.getValue());
 			tuples.add(tuple);
 		}
