@@ -25,7 +25,7 @@ public class Main {
 		
 		System.out.println(NetworkAddressHelper.getLocalHostLANAddress().getHostAddress());
 		
-		final MonitoringWorker worker = new MonitoringWorker(null, "bla", 1);
+		final MonitoringWorker worker = new MonitoringWorker(null);
 		worker.start();
 	}
 	

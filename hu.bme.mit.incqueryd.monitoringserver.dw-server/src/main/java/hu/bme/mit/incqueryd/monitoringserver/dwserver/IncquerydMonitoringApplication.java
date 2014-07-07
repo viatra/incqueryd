@@ -35,7 +35,7 @@ public class IncquerydMonitoringApplication extends
 		}
 		
 
-		final MonitoringWorker worker = new MonitoringWorker(monitoredHosts, configuration.getAtmosHost(), configuration.getAtmosPort());
+		final MonitoringWorker worker = new MonitoringWorker(monitoredHosts);
 		
 		worker.start();
 		
