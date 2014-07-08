@@ -110,5 +110,8 @@ public class JVMMetrics implements Serializable{
 		this.usedNonHeapPercent = usedNonHeapPercent;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Name: " + name + " , MaxHeap: " + maxHeap + " , UsedHeap: " + usedHeap + " , MaxNonHeap: " + maxNonHeap + " , UsedNonHeap: " + usedNonHeap;
+	}
 }
