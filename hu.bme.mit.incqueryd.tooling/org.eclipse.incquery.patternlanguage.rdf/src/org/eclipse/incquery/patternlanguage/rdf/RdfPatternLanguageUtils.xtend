@@ -22,7 +22,11 @@ class RdfPatternLanguageUtils {
 	}
 
 	static def Resource toRdfResource(Iri iri) {
-		new URIImpl(iri.asString)
+		iri.asString.toRdfResource
+	}
+
+	static def Resource toRdfResource(String iriString) {
+		new URIImpl(iriString)
 	}
 
 	static def Model getVocabulary(EObject object) {

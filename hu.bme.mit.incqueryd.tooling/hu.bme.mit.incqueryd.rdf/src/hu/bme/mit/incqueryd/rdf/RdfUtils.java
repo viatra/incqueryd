@@ -44,9 +44,15 @@ public class RdfUtils {
 	}
 
 	public static boolean isProperty(Resource resource, Model vocabulary) {
-		return vocabulary.contains(resource, RDF.TYPE, RDF.PROPERTY) ||
-				vocabulary.contains(resource, RDF.TYPE, OWL.OBJECTPROPERTY) ||
-				vocabulary.contains(resource, RDF.TYPE, OWL.DATATYPEPROPERTY);
+		return isObjectProperty(resource, vocabulary) || isDatatypeProperty(resource, vocabulary);
+	}
+
+	public static boolean isObjectProperty(Resource resource, Model vocabulary) {
+		return vocabulary.contains(resource, RDF.TYPE, OWL.OBJECTPROPERTY);
+	}
+
+	public static boolean isDatatypeProperty(Resource resource, Model vocabulary) {
+		return vocabulary.contains(resource, RDF.TYPE, OWL.DATATYPEPROPERTY);
 	}
 
 }
