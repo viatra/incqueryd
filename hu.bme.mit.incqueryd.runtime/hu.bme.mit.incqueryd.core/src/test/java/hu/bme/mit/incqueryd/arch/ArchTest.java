@@ -2,6 +2,8 @@ package hu.bme.mit.incqueryd.arch;
 
 import infrastructure.InfrastructurePackage;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -11,7 +13,7 @@ import org.junit.Test;
 
 import arch.ArchPackage;
 
-public class ArchSandbox {
+public class ArchTest {
 
 	@Test
 	public void test() {
@@ -26,10 +28,10 @@ public class ArchSandbox {
 
 		// load resource
 		final ResourceSet resourceSet = new ResourceSetImpl();
-		final String architectureFile = "/home/szarnyasg/git/mondo-trainbenchmark/src/hu.bme.mit.trainbenchmark.benchmark.incqueryd/src/test/resources/arch-localvm/routesensor.arch";
-//		final Resource resource = resourceSet.getResource(URI.createFileURI(architectureFile), true);
-//		 traverse model
-//		final EObject o = resource.getContents().get(0);
-//		System.out.println(o);
+
+		final String architectureFile = "src/test/resources/arch/poslength.arch";
+		final Resource resource = resourceSet.getResource(URI.createFileURI(architectureFile), true);
+		// traverse model
+		final EObject o = resource.getContents().get(0);
 	}
 }

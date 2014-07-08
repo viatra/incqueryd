@@ -15,11 +15,11 @@ public class ExtractMachineTest {
 
 	@Test
 	public void testMachine() throws IOException {
-		final String architectureFile = "src/test/resources/arch/posLength.arch";
+		final String architectureFile = "src/test/resources/arch/poslength.arch";
 		final Configuration conf = ArchUtil.loadConfiguration(architectureFile);
 
 		final List<Machine> machines = new ArrayList<>();
-		for (InfrastructureMapping mapping : conf.getMappings()) {
+		for (final InfrastructureMapping mapping : conf.getMappings()) {
 			machines.add(mapping.getMachine());
 		}
 	}
