@@ -26,7 +26,7 @@ public class InputNodeTest {
 
 		final BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
 		recipe.setTypeName(ONTOLOGYIRI + "#Route_routeDefinition");
-		recipe.setTraceInfo("edge");
+		recipe.setTraceInfo(InputNode.EDGE_DISCRIMINATOR);
 
 		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList());
 		final ChangeSet changeSet = inputNode.initialize();
@@ -63,7 +63,7 @@ public class InputNodeTest {
 
 		final BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
 		recipe.setTypeName(ONTOLOGYIRI + "#Segment_length");
-		recipe.setTraceInfo("attribute");
+		recipe.setTraceInfo(InputNode.ATTRIBUTE_DISCRIMINATOR);
 
 		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList());
 		final ChangeSet changeSet = inputNode.initialize();

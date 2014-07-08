@@ -32,8 +32,9 @@ import com.google.common.collect.Multimap;
 
 public class InputNode extends ReteNode implements InitializableReteNode {
 
+	public static String EDGE_DISCRIMINATOR = ">edge"; 
+	public static String ATTRIBUTE_DISCRIMINATOR = ">attribute"; 
 	protected final String typeNameSuffix;
-	protected boolean hasAttribute = false;
 	protected final GraphElement graphElement;
 	protected final Set<Tuple> tuples;
 	protected final TupleCache cache;
@@ -53,7 +54,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			graphElement = GraphElement.NODE;
 		} else {
 			// the recipe is a BinaryInputRecipe
-			if (recipe.getTraceInfo().contains("edge")) {
+			if (recipe.getTraceInfo().endsWith(EDGE_DISCRIMINATOR)) {
 				graphElement = GraphElement.EDGE;
 			} else {
 				graphElement = GraphElement.ATTRIBUTE;
