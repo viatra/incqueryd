@@ -34,6 +34,7 @@ import arch.Configuration
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredMachines
+import hu.bme.mit.incqueryd.monitoring.actors.JVMMonitoringActor
 
 class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean, val monitoringServerIPAddress: String) extends Actor{
   
@@ -63,6 +64,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
   var emfUriToRecipe: HashMap[String, ReteNodeRecipe] = new HashMap[String, ReteNodeRecipe]
   var emfUriToActorRef: HashMap[String, ActorRef] = new HashMap[String, ActorRef]
   var actorRefs: HashSet[ActorRef] = new HashSet[ActorRef]
+  var jvmActorRefs: HashSet[ActorRef] = new HashSet[ActorRef]
   
   def start = {
     val conf: Configuration = ArchUtil.loadConfiguration(architectureFile)
@@ -75,6 +77,8 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
 
     // phase 1
     deployActors(conf)
+    // deploy jvm monitoring actors as well
+    deployJVMMonitoringActors(conf)
     
     // create mapping based on the results of phase one mapping
     fillEmfUriToActorRef
@@ -173,6 +177,27 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     
     if (debug) System.err.println("[ReteActor] All actors deployed and configured.")
     if (debug) System.err.println()
+    
+  }
+
+  private def deployJVMMonitoringActors(conf: Configuration) = {
+    
+    if (remoting) {
+      conf.getClusters().foreach(cluster => cluster.getReteMachines().foreach(machine => {
+        val ipAddress = machine.getIp
+
+        var props = Props[JVMMonitoringActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
+          IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))))
+
+        val actorRef = context.actorOf(props)
+        jvmActorRefs.add(actorRef)
+      }))
+    } 
+    else {
+      var props = Props[JVMMonitoringActor]
+      val actorRef = context.actorOf(props)
+      jvmActorRefs.add(actorRef)
+    }
     
   }
   
@@ -292,10 +317,10 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     val actor = context.actorFor("akka://monitoringserver@" + monitoringServerIPAddress + ":2552/user/collector")
     
 	val machines = new MonitoredMachines
-	conf.getClusters().get(0).getReteMachines().foreach(machine => machines.addMachineIP(machine.getIp))
+	conf.getClusters().foreach(cluster => cluster.getReteMachines().foreach(machine => machines.addMachineIP(machine.getIp)))
 	actor ! machines
 	
-    actor ! new MonitoredActorCollection(actorRefs)
+    actor ! new MonitoredActorCollection(actorRefs, jvmActorRefs)
     
   }
   
