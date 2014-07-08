@@ -3,6 +3,7 @@ package org.eclipse.incquery.patternlanguage.rdf.generator.recipe;
 import static com.google.common.base.Throwables.propagate;
 import static com.google.common.collect.ImmutableList.copyOf;
 import static com.google.common.collect.Iterables.filter;
+import hu.bme.mit.incqueryd.rdf.RdfUtils;
 
 import java.io.IOException;
 import java.util.Set;
@@ -11,6 +12,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
+import org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPModel;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPQuery;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
@@ -18,6 +20,7 @@ import org.eclipse.incquery.runtime.matchers.planning.QueryPlannerException;
 import org.eclipse.incquery.runtime.matchers.psystem.IExpressionEvaluator;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.incquery.runtime.rete.construction.plancompiler.ReteRecipeCompiler;
+import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ExpressionEnforcerRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
@@ -28,10 +31,14 @@ import org.eclipse.incquery.runtime.rete.traceability.RecipeTraceInfo;
 import org.eclipse.incquery.runtime.rete.util.Options;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.openrdf.model.Model;
 
 import com.google.common.collect.Sets;
 
 public class RecipeGenerator implements IGenerator {
+
+	private static final String ATTRIBUTE_DISCRIMINATOR = "attribute";
+	private static final String EDGE_DISCRIMINATOR = "edge";
 
 	@Override
 	public void doGenerate(Resource input, IFileSystemAccess fsa) {
@@ -43,12 +50,13 @@ public class RecipeGenerator implements IGenerator {
 			resource.getContents().add(recipe);
 			RdfPModel model = new RdfPModel(patternModel);
 			ReteRecipeCompiler compiler = new ReteRecipeCompiler(Options.builderMethod.layoutStrategy(), model.context);
+			Model vocabulary = RdfPatternLanguageUtils.getVocabulary(patternModel);
 			for (Pattern pattern : filter(copyOf(input.getAllContents()), Pattern.class)) {
 				PQuery query = new RdfPQuery(pattern, model);
 				try {
 					CompiledQuery compiledQuery = compiler.getCompiledForm(query);
 					for (ReteNodeRecipe nodeRecipe : collectRecipes(compiledQuery)) {
-						processForSerialization(recipe, nodeRecipe);
+						processForSerialization(recipe, nodeRecipe, vocabulary);
 					}
 				} catch (QueryPlannerException e) {
 					propagate(e);
@@ -63,7 +71,7 @@ public class RecipeGenerator implements IGenerator {
 		}
 	}
 
-	private void processForSerialization(ReteRecipe recipe,	ReteNodeRecipe nodeRecipe) { // XXX
+	private void processForSerialization(ReteRecipe recipe,	ReteNodeRecipe nodeRecipe, Model vocabulary) { // XXX
 		recipe.getRecipeNodes().add(nodeRecipe);
 		if (nodeRecipe instanceof ProductionRecipe) {
 			ProductionRecipe productionRecipe = (ProductionRecipe)nodeRecipe;
@@ -73,6 +81,14 @@ public class RecipeGenerator implements IGenerator {
 			IExpressionEvaluator evaluator = (IExpressionEvaluator) expressionEnforcerRecipe.getExpression().getEvaluator();
 			Object[] evaluationInfo = { evaluator.getShortDescription(), evaluator.getInputParameterNames() }; // XXX use an evaluator shared from runtime
 			expressionEnforcerRecipe.getExpression().setEvaluator(evaluationInfo);
+		} else if (nodeRecipe instanceof BinaryInputRecipe) {
+			BinaryInputRecipe binaryInputRecipe = (BinaryInputRecipe) nodeRecipe;
+			org.openrdf.model.Resource propertyUri = RdfPatternLanguageUtils.toRdfResource(binaryInputRecipe.getTypeName());
+			if (RdfUtils.isDatatypeProperty(propertyUri, vocabulary)) {
+				binaryInputRecipe.setTraceInfo(ATTRIBUTE_DISCRIMINATOR);
+			} else if (RdfUtils.isObjectProperty(propertyUri, vocabulary)) {
+				binaryInputRecipe.setTraceInfo(EDGE_DISCRIMINATOR);
+			}
 		}
 	}
 
