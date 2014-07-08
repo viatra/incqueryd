@@ -3,9 +3,7 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -29,15 +27,14 @@ import com.google.common.collect.Maps;
  */
 public class CheckNode extends AlphaNode {
 
-	private final List<String> expressions = new ArrayList<>();
+	private final String expression;
 	// private final Set<String> inputParameterNames;
 	private final Map<String, Integer> mappedIndices;
 
 	CheckNode(final CheckRecipe recipe) {
 		// TODO use an evaluator shared from runtime
-		for (final Object object : (Object[]) recipe.getExpression().getEvaluator()) {
-			expressions.add((String) object);
-		}
+		final Object[] evaluator = (Object[]) recipe.getExpression().getEvaluator();
+		expression = (String) evaluator[0];
 
 		// converting from EMap to Map
 		mappedIndices = Maps.newHashMap();
@@ -65,20 +62,13 @@ public class CheckNode extends AlphaNode {
 		final Context context = Context.enter();
 		try {
 			final Scriptable scope = context.initStandardObjects();
-			// for (final String parameterName : inputParameterNames) {
-			
-			boolean satisfies = true;
-			for (final String expression : expressions) {
-
-				for (final String parameterName : mappedIndices.keySet()) {
-					final Integer index = mappedIndices.get(parameterName);
-					final Object value = tuple.get(index);
-					scope.put(parameterName, scope, value);
-				}
-				final Boolean result = (Boolean) context.evaluateString(scope, expression, "<cmd>", 1, null);
-				satisfies &= result;
+			for (final String parameterName : mappedIndices.keySet()) {
+				final Integer index = mappedIndices.get(parameterName);
+				final Object value = tuple.get(index);
+				scope.put(parameterName, scope, value);
 			}
-			return satisfies;
+			final Boolean result = (Boolean) context.evaluateString(scope, expression, "<cmd>", 1, null);
+			return result;
 		} finally {
 			Context.exit();
 		}

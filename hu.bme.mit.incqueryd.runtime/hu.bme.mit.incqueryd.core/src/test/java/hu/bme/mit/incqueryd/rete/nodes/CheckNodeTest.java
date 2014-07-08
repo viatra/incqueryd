@@ -20,15 +20,14 @@ public class CheckNodeTest {
 		final CheckRecipe recipe = RecipesFactory.eINSTANCE.createCheckRecipe();
 		final ExpressionDefinition expressionDefinition = RecipesFactory.eINSTANCE.createExpressionDefinition();
 		
-		final Object[] expressions = new Object[2];
+		final Object[] evaluator = new Object[2];
 		
 		// the first Object is the expression
-		expressions[0] = "x <= 0";
-		expressions[1] = "-2 <= x";
+		evaluator[0] = "x <= 0";
 		// the second Object contains the names of the variables in the expression
-//		expressions[1] = ImmutableSet.<String>of("x");
+		evaluator[1] = ImmutableSet.<String>of("x");
 		
-		expressionDefinition.setEvaluator(expressions);
+		expressionDefinition.setEvaluator(evaluator);
 		
 		recipe.setExpression(expressionDefinition);
 		recipe.getMappedIndices().put("x", 0);
