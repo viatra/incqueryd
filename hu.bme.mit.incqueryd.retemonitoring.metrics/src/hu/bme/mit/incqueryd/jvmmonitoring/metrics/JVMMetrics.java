@@ -20,8 +20,6 @@ public class JVMMetrics {
 	
 	private String name;
 	
-	private double upTime;
-	
 	private double cpuUtilization;
 
 	
@@ -71,14 +69,6 @@ public class JVMMetrics {
 	
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	public double getUpTime() {
-		return upTime;
-	}
-	
-	public void setUpTime(double upTime) {
-		this.upTime = upTime;
 	}
 	
 	public double getUsedHeap() {
