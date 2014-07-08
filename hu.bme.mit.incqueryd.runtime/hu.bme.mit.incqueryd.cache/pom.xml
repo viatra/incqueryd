@@ -8,8 +8,6 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>hu.bme.mit.incqueryd.cache</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-
 	<name>IncQuery-D Distributed Cache Interface</name>
 
 </project>
