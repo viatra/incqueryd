@@ -14,9 +14,9 @@ public class JVMMetrics {
 	
 	private double usedNonHeapPercent;
 	
-	private double gcCollectionCount;
+	private long gcCollectionCount;
 	
-	private double gcCollectionTime;
+	private long gcCollectionTime;
 	
 	private String name;
 	
@@ -31,19 +31,19 @@ public class JVMMetrics {
 		this.cpuUtilization = cpuUtilization;
 	}
 	
-	public double getGcCollectionCount() {
+	public long getGcCollectionCount() {
 		return gcCollectionCount;
 	}
 	
-	public void setGcCollectionCount(double gcCollectionCount) {
+	public void setGcCollectionCount(long gcCollectionCount) {
 		this.gcCollectionCount = gcCollectionCount;
 	}
 	
-	public double getGcCollectionTime() {
+	public long getGcCollectionTime() {
 		return gcCollectionTime;
 	}
 	
-	public void setGcCollectionTime(double gcCollectionTime) {
+	public void setGcCollectionTime(long gcCollectionTime) {
 		this.gcCollectionTime = gcCollectionTime;
 	}
 	
