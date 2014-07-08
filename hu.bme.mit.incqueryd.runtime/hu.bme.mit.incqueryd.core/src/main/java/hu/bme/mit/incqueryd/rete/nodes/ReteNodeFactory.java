@@ -44,7 +44,7 @@ public class ReteNodeFactory {
 		} else if (recipe instanceof ProductionRecipe) {
 			return new ProductionNode((ProductionRecipe) recipe);
 		} else if (recipe instanceof CheckRecipe) {
-			return new TermEvaluatorNode((CheckRecipe) recipe);
+			return new CheckNode((CheckRecipe) recipe);
 		}
 		else {
 			throw new NotImplementedException(recipe.getClass().getSimpleName() + " recipe class is not supported.");
