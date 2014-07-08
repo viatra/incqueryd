@@ -16,13 +16,10 @@ class MonitoringDataCollectorActor extends Actor {
 
   def receive = {
 
-    case beta: BetaNodeMetrics => 
-
-    case input: InputNodeMetrics => 
-
-    case alpha: AlphaNodeMetrics => 
-
-    case actorRefs: MonitoredActorCollection => MonitoringAddressStore.putActors(actorRefs.getActorRefs)
+    case actorRefs: MonitoredActorCollection => {
+      MonitoringAddressStore.putActors(actorRefs.getActorRefs)
+      MonitoringAddressStore.putJvmActors(actorRefs.getJvmActorRefs)
+    }
     
     case machines: MonitoredMachines => MonitoringAddressStore.putMachines(machines.getMachineIPs)
     

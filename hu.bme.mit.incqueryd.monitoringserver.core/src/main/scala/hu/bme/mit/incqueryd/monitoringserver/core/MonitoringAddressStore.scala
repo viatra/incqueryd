@@ -14,6 +14,8 @@ object MonitoringAddressStore {
   
   private val actorRefs: ArrayList[ActorRef] = new ArrayList[ActorRef]
   
+  private val jvmActorRefs: ArrayList[ActorRef] = new ArrayList[ActorRef]
+  
   private val monitoredMachinesIPs: HashSet[String] = new HashSet[String]
   
   def putActors(actors: Collection[ActorRef]) = {
@@ -24,8 +26,20 @@ object MonitoringAddressStore {
     
   }
   
+  def putJvmActors(actors: Collection[ActorRef]) = {
+    jvmActorRefs.synchronized({
+      jvmActorRefs.clear();
+      jvmActorRefs.addAll(actors)
+    })
+    
+  }
+  
   def getActors : java.util.List[ActorRef] = {
     actorRefs.synchronized(for {actor <- actorRefs} yield actor)
+  }
+  
+  def getJvmActors : java.util.List[ActorRef] = {
+    jvmActorRefs.synchronized(for {actor <- jvmActorRefs} yield actor)
   }
   
   def putMachines(machines: Collection[String]) = {

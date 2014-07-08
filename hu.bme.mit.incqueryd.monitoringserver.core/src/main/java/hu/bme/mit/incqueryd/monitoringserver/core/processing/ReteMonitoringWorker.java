@@ -27,9 +27,7 @@ public class ReteMonitoringWorker extends Thread {
 	}
 	
 	public void run() {
-		System.out.println("Start");
 		for (ActorRef actorRef: MonitoringAddressStore.getActors()) {
-			System.out.println(actorRef.path().name().toString());
 			final Future<Object> future = ask(actorRef, MonitoringMessage.MONITOR, timeout);
 			try {
 				final ReteNodeMetrics result = (ReteNodeMetrics) Await.result(future, timeout.duration());
@@ -38,7 +36,6 @@ public class ReteMonitoringWorker extends Thread {
 				
 			}
 		}
-		System.out.println("Done");
 	}
 	
 	
