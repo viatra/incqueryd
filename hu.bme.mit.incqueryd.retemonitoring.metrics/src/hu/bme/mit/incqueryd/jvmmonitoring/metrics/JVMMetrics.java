@@ -1,7 +1,14 @@
 package hu.bme.mit.incqueryd.jvmmonitoring.metrics;
 
-public class JVMMetrics {
+import java.io.Serializable;
+
+public class JVMMetrics implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private double maxHeap;
 	
 	private double usedHeap;
