@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="IncQuery-D" sequenceNumber="11">
+<?pde version="3.8"?><target name="IncQuery-D" sequenceNumber="13">
 <locations>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.incquery.sdk.feature.source.feature.group" version="0.8.0.201407021417"/>
-<repository location="http://download.eclipse.org/incquery/updates/release"/>
-</location>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.platform.feature.group" version="4.3.2.v20140221-1852"/>
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.epp.package.rcp.feature.feature.group" version="2.0.2.20140224-0000"/>
 <unit id="org.eclipse.equinox.sdk.feature.group" version="3.9.0.v20140221-1852"/>
 <repository location="http://download.eclipse.org/releases/kepler"/>
 </location>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.emf.ecore.xcore.sdk.feature.group" version="1.2.0.v20140521-0402"/>
 <unit id="org.eclipse.emf.ecore.feature.group" version="2.10.0.v20140514-1158"/>
 <repository location="http://download.eclipse.org/modeling/emf/emf/updates/releases/"/>
 </location>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.xtend.sdk.feature.group" version="2.6.2.v201407030533"/>
 <unit id="org.eclipse.xtext.sdk.feature.group" version="2.6.2.v201407030533"/>
 <repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="com.google.guava" version="15.0.0.v201403281430"/>
+<unit id="com.google.guava.source" version="15.0.0.v201403281430"/>
+<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.incquery.sdk.feature.source.feature.group" version="0.8.0.201407021417"/>
+<repository location="http://download.eclipse.org/incquery/updates/release"/>
 </location>
 </locations>
 </target>
