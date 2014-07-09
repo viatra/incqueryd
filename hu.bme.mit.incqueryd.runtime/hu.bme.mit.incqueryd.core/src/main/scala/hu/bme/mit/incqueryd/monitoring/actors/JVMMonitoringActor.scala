@@ -11,6 +11,11 @@ class JVMMonitoringActor extends Actor{
   
   val toMega = 1024*1024
   
+  var prevProcessCpuTime: Long = 0
+  var prevUpTime: Long = 0
+  var prevGcCollectionCount: Long = 0
+  var prevGcCollectionTime: Long = 0
+  
   def receive = {
     case MonitoringMessage.MONITOR => {
       sender ! getJVMMetrics
@@ -24,11 +29,19 @@ class JVMMonitoringActor extends Actor{
     
     val memory = ManagementFactory.getMemoryMXBean
     
-    jvmMetrics.setMaxHeap(memory.getHeapMemoryUsage.getMax / toMega)
-    jvmMetrics.setUsedHeap(memory.getHeapMemoryUsage.getUsed / toMega)
+    val usedHeap: Double = memory.getHeapMemoryUsage.getUsed / toMega
+    val maxHeap: Double = memory.getHeapMemoryUsage.getMax / toMega
     
-    jvmMetrics.setMaxNonHeap(memory.getNonHeapMemoryUsage.getMax / toMega)
-    jvmMetrics.setUsedNonHeap(memory.getNonHeapMemoryUsage.getUsed / toMega)
+    jvmMetrics.setMaxHeap( maxHeap )
+    jvmMetrics.setUsedHeap( usedHeap )
+    jvmMetrics.setUsedHeapPercent( (usedHeap / maxHeap) * 100 )
+    
+    val usedNonHeap: Double = memory.getNonHeapMemoryUsage.getUsed / toMega
+    val maxNonHeap: Double = memory.getNonHeapMemoryUsage.getMax / toMega
+    
+    jvmMetrics.setMaxNonHeap( maxNonHeap )
+    jvmMetrics.setUsedNonHeap( usedNonHeap )
+    jvmMetrics.setUsedNonHeapPercent( (usedNonHeap / maxNonHeap) * 100 )
     
     var gcCollectionCount: Long = 0
     var gcCollectionTime: Long = 0
@@ -38,16 +51,35 @@ class JVMMonitoringActor extends Actor{
       gcCollectionTime += gc.getCollectionTime
     })
     
-    jvmMetrics.setGcCollectionCount(gcCollectionCount)
-    jvmMetrics.setGcCollectionTime(gcCollectionTime)
+    jvmMetrics.setGcCollectionCount(gcCollectionCount - prevGcCollectionCount)
+    jvmMetrics.setGcCollectionTime(gcCollectionTime - prevGcCollectionTime)
+    
+    prevGcCollectionCount = gcCollectionCount
+    prevGcCollectionTime = gcCollectionTime
     
     jvmMetrics.setName(ManagementFactory.getRuntimeMXBean.getName)
     
-    jvmMetrics.setCpuUtilization(0)
-    
-    val v = ManagementFactory.getOperatingSystemMXBean().asInstanceOf[com.sun.management.OperatingSystemMXBean]
+    jvmMetrics.setCpuUtilization(calculateCPUUsage)
     
     jvmMetrics
+  }
+  
+  private def calculateCPUUsage : Double = {
+    val runtimeMXBean = ManagementFactory.getRuntimeMXBean
+    val operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean.asInstanceOf[com.sun.management.OperatingSystemMXBean]
+    
+    val availableProcessors = operatingSystemMXBean.getAvailableProcessors
+    val upTime: Long = runtimeMXBean.getUptime
+    val processCpuTime: Long  = operatingSystemMXBean.getProcessCpuTime
+    val elapsedCpu: Long = processCpuTime - prevProcessCpuTime
+    val elapsedTime: Long = upTime - prevUpTime
+    
+    val cpuUsage: Double = elapsedCpu / (elapsedTime * 10000 * availableProcessors)
+    
+    prevProcessCpuTime = processCpuTime
+    prevUpTime = upTime
+    
+    cpuUsage
   }
   
 }
