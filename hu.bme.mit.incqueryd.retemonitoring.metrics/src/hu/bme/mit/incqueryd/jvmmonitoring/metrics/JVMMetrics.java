@@ -112,6 +112,6 @@ public class JVMMetrics implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Name: " + name + " , MaxHeap: " + maxHeap + " , UsedHeap: " + usedHeap + " , MaxNonHeap: " + maxNonHeap + " , UsedNonHeap: " + usedNonHeap;
+		return "Name: " + name + " , MaxHeap: " + maxHeap + " , UsedHeap: " + usedHeap + " , MaxNonHeap: " + maxNonHeap + " , UsedNonHeap: " + usedNonHeap + " , CPU: " + cpuUtilization;
 	}
 }
