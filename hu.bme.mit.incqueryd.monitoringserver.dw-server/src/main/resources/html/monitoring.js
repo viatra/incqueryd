@@ -180,14 +180,14 @@ function update(object) {
     if (!hasSystemChanged()) {
         
         updateHeatMap();
-       // updateJVMHeatMap();
+        updateJVMHeatMap();
 
     }
     // anyway if changed redraw the system, delete the heatmap
     else {
         $jit.id('infovis').innerHTML = "";
         $jit.id('heatmap').innerHTML = "";
-        //$jit.id('heatmap-jvm').innerHTML = "";
+        $jit.id('heatmap-jvm').innerHTML = "";
 
         drawSystem();
 
@@ -759,10 +759,10 @@ function JVMHeatMap() {
 
     // CPU and related part
     var cpu = {};
-    cpu.name = "CPU, Threads, Uptime";
+    cpu.name = "CPU";
     cpu.id = selectedNode.id + "_jvm_cpu";
     cpu.data = {};
-    cpu.data.$area = 300;
+    cpu.data.$area = 100;
     cpu.children = [];
 
     var cpuUsage = {};
@@ -770,58 +770,20 @@ function JVMHeatMap() {
     cpuUsage.id = selectedNode.id + "_jvm_cpuusage";
     cpuUsage.data = {};
     cpuUsage.data.$area = 100;
-    cpuUsage.data.$color = percentToColor(node.cpuCombined);
-    cpuUsage.data.value = (truncateDecimals(node.cpuCombined * 100) / 100) + " %";
+    cpuUsage.data.$color = percentToColor(node.cpuUtilization);
+    cpuUsage.data.value = (truncateDecimals(node.cpuUtilization * 100) / 100) + " %";
 
     cpu.children.push(cpuUsage);
-
-    var threadCount = {};
-    threadCount.name = "Number of threads";
-    threadCount.id = selectedNode.id + "_jvm_threadcount";
-    threadCount.data = {};
-    threadCount.data.$area = 100;
-    threadCount.data.$color = percentToColor(Math.min((node.threadCount / 50) * 100, 100));
-    threadCount.data.value = node.threadCount + " threads";
-
-    cpu.children.push(threadCount);
-
-    var uptime = {};
-    uptime.name = "Uptime";
-    uptime.id = selectedNode.id + "_jvm_uptime";
-    uptime.data = {};
-    uptime.data.$area = 100;
-    uptime.data.$color = "#0000FF";
-
-    switch (node.upTimeUnit) {
-        case "milliseconds": {
-            uptime.data.value = (truncateDecimals((node.upTime / 60000) * 100) / 100) + " minutes";
-            break;
-        }
-        case "seconds": {
-            uptime.data.value = (truncateDecimals((node.upTime / 60) * 100) / 100) + " minutes";
-            break;
-        }
-        case "minutes": {
-            uptime.data.value = node.upTime + " minutes";
-            break;
-        }
-        default: {
-            uptime.data.value = node.upTime + " " + node.upTimeUnit;
-        }
-
-    }
-
-    cpu.children.push(uptime);
 
     heatmap_jvm.children.push(cpu);
 
 
-    // Memory realted metrics
+    // Memory related metrics
     var memory = {};
-    memory.name = "Memory, GC";
+    memory.name = "Memory";
     memory.id = selectedNode.id + "_jvm_memory";
     memory.data = {};
-    memory.data.$area = 600;
+    memory.data.$area = 400;
     memory.children = [];
 
     var maxHeap = {};
@@ -830,7 +792,7 @@ function JVMHeatMap() {
     maxHeap.data = {};
     maxHeap.data.$area = 100;
     maxHeap.data.$color = "#0000FF";
-    maxHeap.data.value = node.maxHeap + " " + node.heapMemoryUnit;
+    maxHeap.data.value = node.maxHeap + " MB";
 
     memory.children.push(maxHeap);
 
@@ -840,11 +802,11 @@ function JVMHeatMap() {
     usedHeap.data = {};
     usedHeap.data.$area = 100;
 
-    var usedHeapPercent = (node.usedHeap / node.maxHeap) * 100;
+    var usedHeapPercent = node.usedHeapPercent;
 
     usedHeap.data.$color = percentToColor(usedHeapPercent);
     usedHeap.data.value = (truncateDecimals(usedHeapPercent * 100) / 100) + " %<br/>(" +
-                (truncateDecimals(node.usedHeap * 100) / 100) + " " + node.heapMemoryUnit + ")";
+                (truncateDecimals(node.usedHeap * 100) / 100) + " MB)";
 
     memory.children.push(usedHeap);
 
@@ -854,7 +816,7 @@ function JVMHeatMap() {
     maxNonHeap.data = {};
     maxNonHeap.data.$area = 100;
     maxNonHeap.data.$color = "#0000FF";
-    maxNonHeap.data.value = node.maxNonHeap + " " + node.heapMemoryUnit;
+    maxNonHeap.data.value = node.maxNonHeap + " MB";
 
     memory.children.push(maxNonHeap);
 
@@ -864,76 +826,45 @@ function JVMHeatMap() {
     usedNonHeap.data = {};
     usedNonHeap.data.$area = 100;
 
-    var usedNonHeapPercent = (node.usedNonHeap / node.maxNonHeap) * 100;
+    var usedNonHeapPercent = node.usedNonHeapPercent;
 
     usedNonHeap.data.$color = percentToColor(usedNonHeapPercent);
     usedNonHeap.data.value = (truncateDecimals(usedNonHeapPercent * 100) / 100) + " %<br/>(" +
-                (truncateDecimals(node.usedNonHeap * 100) / 100) + " " + node.heapMemoryUnit + ")";
+                (truncateDecimals(node.usedNonHeap * 100) / 100) + " MB)";
 
     memory.children.push(usedNonHeap);
 
-    var gcPerMin = {};
-    gcPerMin.name = "GC run per minute";
-    gcPerMin.id = selectedNode.id + "_jvm_gcpermin";
-    gcPerMin.data = {};
-    gcPerMin.data.$area = 100;
-    gcPerMin.data.$color = percentToColor(Math.min((node.gcCountPerMinute / 5) * 100, 100));
-    gcPerMin.data.value = node.gcCountPerMinute + " / minute";
-
-    memory.children.push(gcPerMin);
-
-    var gcTimePercent = {};
-    gcTimePercent.name = "GC time percent";
-    gcTimePercent.id = selectedNode.id + "_jvm_gcpercent";
-    gcTimePercent.data = {};
-    gcTimePercent.data.$area = 100;
-    gcTimePercent.data.$color = percentToColor(node.gcTimePercent);
-    gcTimePercent.data.value = node.gcTimePercent + " %";
-
-    memory.children.push(gcTimePercent);
-
     heatmap_jvm.children.push(memory);
 
-    // Network realted metrics
-    var network = {};
-    network.name = "Network";
-    network.id = selectedNode.id + "_jvm_network";
-    network.data = {};
-    network.data.$area = 300;
-    network.children = [];
+    // Memory realted metrics
+    var gc = {};
+    gc.name = "GC";
+    gc.id = selectedNode.id + "_jvm_gc";
+    gc.data = {};
+    gc.data.$area = 200;
+    gc.children = [];
 
-    var tcpEstab = {};
-    tcpEstab.name = "Currently established TCP connections";
-    tcpEstab.id = selectedNode.id + "_jvm_tcpestab";
-    tcpEstab.data = {};
-    tcpEstab.data.$area = 100;
-    tcpEstab.data.$color = percentToColor(Math.min((node.tcpCurrEstab / 100) * 100, 100));
-    tcpEstab.data.value = node.tcpCurrEstab;
+    var gcCount = {};
+    gcCount.name = "GC collections";
+    gcCount.id = selectedNode.id + "_jvm_gccount";
+    gcCount.data = {};
+    gcCount.data.$area = 100;
+    gcCount.data.$color = percentToColor(Math.min((node.gcCollectionCount / 5) * 100, 100));
+    gcCount.data.value = node.gcCollectionCount;
 
-    network.children.push(tcpEstab);
+    gc.children.push(gcCount);
 
-    var rxBytes = {};
-    rxBytes.name = "Received bytes per second";
-    rxBytes.id = selectedNode.id + "_jvm_rxbytes";
-    rxBytes.data = {};
-    rxBytes.data.$area = 100;
-    rxBytes.data.$color = percentToColor(Math.min((node.netRxBytesRate / 50000) * 100, 100));
-    rxBytes.data.value = node.netRxBytesRate + " " + node.netRxBytesRateUnit;
+    var gcTime = {};
+    gcTime.name = "GC time";
+    gcTime.id = selectedNode.id + "_jvm_gctime";
+    gcTime.data = {};
+    gcTime.data.$area = 100;
+    gcTime.data.$color = percentToColor(Math.min((node.gcCollectionTime / 20000) * 100, 100));
+    gcTime.data.value = node.gcCollectionTime + " ms";
 
-    network.children.push(rxBytes);
+    gc.children.push(gcTime);
 
-    var txBytes = {};
-    txBytes.name = "Sent bytes per second";
-    txBytes.id = selectedNode.id + "_jvm_txbytes";
-    txBytes.data = {};
-    txBytes.data.$area = 100;
-    txBytes.data.$color = percentToColor(Math.min((node.netTxBytesRate / 50000) * 100, 100));
-    txBytes.data.value = node.netTxBytesRate + " " + node.netTxBytesRateUnit;
-
-    network.children.push(txBytes);
-
-    heatmap_jvm.children.push(network);
-
+    heatmap_jvm.children.push(gc);
 
 }
 
@@ -1155,7 +1086,7 @@ function drawSystem() {
                 selectedNode = node;
                 drawHeatMap(); // draw the heat map for the selected host machine
                 drawReteHeatMap(); // draw the heatmap for the Rete nodes on the selected host machine
-                //drawJVMHeatMap(); // draw the heatmap for the JVM on the selcted host machine
+                drawJVMHeatMap(); // draw the heatmap for the JVM on the selcted host machine
             };
         },
         // Change node styles when DOM labels are placed

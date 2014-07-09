@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.processing;
 
+import hu.bme.mit.incqueryd.jvmmonitoring.metrics.JVMMetrics;
 import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringAddressStore;
 import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringDataCollectorActor;
 import hu.bme.mit.incqueryd.monitoringserver.core.datacollection.MachineMonitoringWorker;
@@ -54,19 +55,15 @@ public class MonitoringWorker extends Thread {
 		
 		List<MachineMonitoringWorker> machineWorkers = new ArrayList<>();
 		
-		//List<AkkaMonitoringDataCollector> akkaCollectors = new ArrayList<>();
+		// Start the JVM monitoring worker
+		JVMMonitoringWorker jvmWorker = new JVMMonitoringWorker();
+		jvmWorker.start();
 		
 		for (String host : MonitoringAddressStore.getMachines()) {
 			MachineMonitoringWorker mWorker = new MachineMonitoringWorker(host, OS_AGENT_PORT);
 			machineWorkers.add(mWorker);
 			mWorker.start();
 		}
-		
-//		for (String host : monitoredHosts.keySet()) {
-//			AkkaMonitoringDataCollector akkaCollector = new AkkaMonitoringDataCollector(host, ATMOS_PORT);
-//			akkaCollectors.add(akkaCollector);
-//			akkaCollector.start();
-//		}
 		
 		for (MachineMonitoringWorker machineMonitoringWorker : machineWorkers) {
 			try {
@@ -80,24 +77,23 @@ public class MonitoringWorker extends Thread {
 
 		}
 		
-//		for (AkkaMonitoringDataCollector akkaMonitoringDataCollector : akkaCollectors) {
-//			try {
-//				akkaMonitoringDataCollector.join();
-//			} catch (InterruptedException e) {
-//				
-//			}
-//			
-//			List<NodeMonitoringData> nodes = akkaMonitoringDataCollector.getNodeDataList();
-//			
-//			for (MachineMonitoringData machineMonitoringData : machines) {
-//				for (NodeMonitoringData nodeData : nodes) {
-//					if (machineMonitoringData.getHost().equals(nodeData.getName().split("@")[1])) {
-//						machineMonitoringData.addNode(nodeData);
-//					}
-//				}
-//			}
-//		}
+		// Wait for the jvm monitoring worker to complete
+		try {
+			jvmWorker.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		List<JVMMetrics> jvmMetrics = jvmWorker.getJvmMetrics();
+		
+		for (MachineMonitoringData machineMonitoringData : machines) {
+			for (JVMMetrics nodeData : jvmMetrics) {
+				if (machineMonitoringData.getHost().equals(nodeData.getName().split("@")[1])) {
+					machineMonitoringData.addNode(nodeData);
+				}
+			}
+		}
 		
 		collectedData.setMachines(machines);
 		
@@ -116,16 +112,18 @@ public class MonitoringWorker extends Thread {
 		
 		while (!exit) {
 			
-			ReteMonitoringWorker worker = new ReteMonitoringWorker();
-			worker.start();
+			ReteMonitoringWorker reteWorker = new ReteMonitoringWorker();
+			reteWorker.start();
 			
 			monitor(); 
 			
 			try {
-				worker.join();
+				reteWorker.join();
 			} catch (InterruptedException e1) {
+				
 			}
-			List<ReteNodeMetrics> reteMetrics = worker.getReteMetrics();
+			
+			List<ReteNodeMetrics> reteMetrics = reteWorker.getReteMetrics();
 			monitoredData.setRete(reteMetrics);
 			
 		}

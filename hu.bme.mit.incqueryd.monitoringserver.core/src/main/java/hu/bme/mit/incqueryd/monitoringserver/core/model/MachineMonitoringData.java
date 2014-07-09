@@ -1,5 +1,7 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.model;
 
+import hu.bme.mit.incqueryd.jvmmonitoring.metrics.JVMMetrics;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ public class MachineMonitoringData {
 	
 	private OSMonitoringData os;
 	
-	private List<NodeMonitoringData> nodes;
+	private List<JVMMetrics> nodes;
 	
 	
 	public MachineMonitoringData() {
@@ -20,7 +22,7 @@ public class MachineMonitoringData {
 		return host;
 	}
 	
-	public List<NodeMonitoringData> getNodes() {
+	public List<JVMMetrics> getNodes() {
 		return nodes;
 	}
 	
@@ -32,7 +34,7 @@ public class MachineMonitoringData {
 		this.host = host;
 	}
 	
-	public void addNode(NodeMonitoringData node) {
+	public void addNode(JVMMetrics node) {
 		this.nodes.add(node);
 	}
 	
