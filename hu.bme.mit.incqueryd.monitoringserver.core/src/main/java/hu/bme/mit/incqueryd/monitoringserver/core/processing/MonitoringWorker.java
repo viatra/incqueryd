@@ -55,6 +55,10 @@ public class MonitoringWorker extends Thread {
 		
 		List<MachineMonitoringWorker> machineWorkers = new ArrayList<>();
 		
+		// Start the Rete monitoring worker
+		ReteMonitoringWorker reteWorker = new ReteMonitoringWorker();
+		reteWorker.start();
+		
 		// Start the JVM monitoring worker
 		JVMMonitoringWorker jvmWorker = new JVMMonitoringWorker();
 		jvmWorker.start();
@@ -65,6 +69,8 @@ public class MonitoringWorker extends Thread {
 			mWorker.start();
 		}
 		
+		
+		// Wait for the machine workers
 		for (MachineMonitoringWorker machineMonitoringWorker : machineWorkers) {
 			try {
 				machineMonitoringWorker.join();
@@ -97,6 +103,16 @@ public class MonitoringWorker extends Thread {
 		
 		collectedData.setMachines(machines);
 		
+		// Wait for the Rete monitoring worker and get the collected data
+		try {
+			reteWorker.join();
+		} catch (InterruptedException e1) {
+
+		}
+
+		List<ReteNodeMetrics> reteMetrics = reteWorker.getReteMetrics();
+		collectedData.setRete(reteMetrics);
+		
 		synchronized (monitoredData) {
 			monitoredData = collectedData;
 		}
@@ -112,19 +128,7 @@ public class MonitoringWorker extends Thread {
 		
 		while (!exit) {
 			
-			ReteMonitoringWorker reteWorker = new ReteMonitoringWorker();
-			reteWorker.start();
-			
 			monitor(); 
-			
-			try {
-				reteWorker.join();
-			} catch (InterruptedException e1) {
-				
-			}
-			
-			List<ReteNodeMetrics> reteMetrics = reteWorker.getReteMetrics();
-			monitoredData.setRete(reteMetrics);
 			
 		}
 		

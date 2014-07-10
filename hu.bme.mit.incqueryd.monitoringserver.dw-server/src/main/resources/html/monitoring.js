@@ -427,6 +427,9 @@ function reteHeatMap() {
 
     for (var i = 0; i < jsonData.rete.length; i++) {
         var reteNode = jsonData.rete[i];
+
+        if (reteNode.nodeType == "ProductionNode") continue; // Production node actually doesn't contain useful information
+
         if (host == reteNode.hostName) {
 
             var node = {};
@@ -444,7 +447,7 @@ function reteHeatMap() {
             updates.children = [];
 
             var message = {};
-            message.name = "Update messages sent";
+            message.name = "Update messages";
             message.id = selectedNode.id + reteNode.reteNode + "_updatemessages";
             message.data = {};
             message.data.$area = 100;
@@ -454,7 +457,7 @@ function reteHeatMap() {
             updates.children.push(message);
 
             var changes = {};
-            changes.name = "Changes sent";
+            changes.name = "Changes";
             changes.id = selectedNode.id + reteNode.reteNode + "_changes";
             changes.data = {};
             changes.data.$area = 100;
@@ -465,12 +468,20 @@ function reteHeatMap() {
 
             node.children.push(updates);
 
+            var memoryCons = {};
+            memoryCons.name = "Consumption";
+            memoryCons.id = selectedNode.id + reteNode.reteNode + "_memoryconsumption";
+            memoryCons.data = {};
+            memoryCons.data.$area = 100;
+            memoryCons.data.$color = percentToColor(Math.min((reteNode.memory / 500) * 100, 100));
+            memoryCons.data.value = (truncateDecimals(reteNode.memory * 100) / 100) + " MB";
+
             if (reteNode.nodeClass == "Input") {
                 var memory = {};
                 memory.name = "Memory";
                 memory.id = selectedNode.id + reteNode.reteNode + "_memory";
                 memory.data = {};
-                memory.data.$area = 100;
+                memory.data.$area = 200;
                 memory.children = [];
 
                 var tuples = {};
@@ -483,19 +494,21 @@ function reteHeatMap() {
 
                 memory.children.push(tuples);
 
+                memory.children.push(memoryCons);
+
                 node.children.push(memory);
             }
 
             if (reteNode.nodeClass == "Beta") {
                 var indexer = {};
-                indexer.name = "Indexers";
-                indexer.id = selectedNode.id + reteNode.reteNode + "_indexer";
+                indexer.name = "Memory";
+                indexer.id = selectedNode.id + reteNode.reteNode + "_memory";
                 indexer.data = {};
-                indexer.data.$area = 200;
+                indexer.data.$area = 300;
                 indexer.children = [];
 
                 var leftindexer = {};
-                leftindexer.name = "Left";
+                leftindexer.name = "Left indexer";
                 leftindexer.id = selectedNode.id + reteNode.reteNode + "_leftindexer";
                 leftindexer.data = {};
                 leftindexer.data.$area = 100;
@@ -505,7 +518,7 @@ function reteHeatMap() {
                 indexer.children.push(leftindexer);
 
                 var rightindexer = {};
-                rightindexer.name = "Right";
+                rightindexer.name = "Right indexer";
                 rightindexer.id = selectedNode.id + reteNode.reteNode + "_rightindexer";
                 rightindexer.data = {};
                 rightindexer.data.$area = 100;
@@ -513,6 +526,8 @@ function reteHeatMap() {
                 rightindexer.data.value = reteNode.rightIndexerSize;
 
                 indexer.children.push(rightindexer);
+
+                indexer.children.push(memoryCons);
 
                 node.children.push(indexer);
             }
@@ -859,7 +874,7 @@ function JVMHeatMap() {
     gcTime.id = selectedNode.id + "_jvm_gctime";
     gcTime.data = {};
     gcTime.data.$area = 100;
-    gcTime.data.$color = percentToColor(Math.min((node.gcCollectionTime / 20000) * 100, 100));
+    gcTime.data.$color = percentToColor(Math.min((node.gcCollectionTime / 1000) * 100, 100));
     gcTime.data.value = node.gcCollectionTime + " ms";
 
     gc.children.push(gcTime);
@@ -1333,12 +1348,16 @@ function drawReteNet() {
                     }
                 }
 
+                var consumedMemory = "Memory consumed: " + (truncateDecimals(reteNode.memory * 100) / 100) + " MB";
+
                 if (reteNode.nodeClass == "Input") {
-                    html += "Memory: " + reteNode.tuples + "<br />";
+                    html += "Memory size: " + reteNode.tuples + "<br />";
+                    html += consumedMemory;
                 }
                 else if (reteNode.nodeClass == "Beta") {
                     html += "Left indexer: " + reteNode.leftIndexerSize + "<br />";
-                    html += "Right indexer: " + reteNode.rightIndexerSize;
+                    html += "Right indexer: " + reteNode.rightIndexerSize + "<br />";
+                    html += consumedMemory;
                 }
                 tip.innerHTML = html;
             }
