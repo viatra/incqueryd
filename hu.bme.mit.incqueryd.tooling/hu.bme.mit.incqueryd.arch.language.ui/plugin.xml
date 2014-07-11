@@ -397,6 +397,18 @@
             class="hu.bme.mit.incqueryd.arch.language.ui.ArchLanguageExecutableExtensionFactory:org.eclipse.xtext.ui.resource.generic.EmfResourceUIServiceProvider"
             uriExtension="recipe">
         </resourceServiceProvider>
-    </extension> <!-- to be able to refer to recipes -->
+    </extension>
+ <extension
+       id="incquerydtooling"
+       point="org.eclipse.core.runtime.products">
+    <product
+          application="org.eclipse.ui.ide.workbench"
+          name="IncQuery-D Configurator">
+       <property
+             name="appName"
+             value="IncQuery-D Configurator">
+       </property>
+    </product>
+ </extension> <!-- to be able to refer to recipes -->
 
 </plugin>
