@@ -18,6 +18,8 @@ public abstract class BetaNode extends ReteNode {
 
     protected Indexer primaryIndexer;
     protected Indexer secondaryIndexer;
+    
+    protected double memoryConsumption;
 
     BetaNode(final BetaRecipe recipe, final List<String> cacheMachineIps) {
     	super();
@@ -33,6 +35,14 @@ public abstract class BetaNode extends ReteNode {
     
     public int rightIndexerSize() {
     	return secondaryIndexer.getSize();
+    }
+    
+    protected void updateMemoryConsumption() {
+    	memoryConsumption = primaryIndexer.getMemoryConsumption() + secondaryIndexer.getMemoryConsumption();
+    }
+    
+    public double getMemoryConsumption() {
+    	return memoryConsumption;
     }
 
 }

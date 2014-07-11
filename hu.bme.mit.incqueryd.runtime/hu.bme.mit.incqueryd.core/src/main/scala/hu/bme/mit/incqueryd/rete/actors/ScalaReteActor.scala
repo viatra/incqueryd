@@ -273,9 +273,9 @@ class ScalaReteActor extends Actor {
     })
 
     reteNode match {
-      case inputNode: InputNode => new InputNodeMetrics(self.path.name, HostNameService.hostName, nodeType, "Input", self.path.toString, updateMessageCount, changesCount, inputNode.tuples, subscriberNodes)
+      case inputNode: InputNode => new InputNodeMetrics(self.path.name, HostNameService.hostName, nodeType, "Input", self.path.toString, updateMessageCount, changesCount, inputNode.tuples, inputNode.getMemoryConsumption, subscriberNodes)
       case alphaNode: AlphaNode => new AlphaNodeMetrics(self.path.name, HostNameService.hostName, nodeType, "Alpha", self.path.toString, updateMessageCount, changesCount, subscriberNodes)
-      case betaNode: BetaNode => new BetaNodeMetrics(self.path.name, HostNameService.hostName, nodeType, "Beta", self.path.toString, updateMessageCount, changesCount, betaNode.leftIndexerSize, betaNode.rightIndexerSize, subscriberNodes)
+      case betaNode: BetaNode => new BetaNodeMetrics(self.path.name, HostNameService.hostName, nodeType, "Beta", self.path.toString, updateMessageCount, changesCount, betaNode.leftIndexerSize, betaNode.rightIndexerSize, betaNode.getMemoryConsumption, subscriberNodes)
     }
   }
 

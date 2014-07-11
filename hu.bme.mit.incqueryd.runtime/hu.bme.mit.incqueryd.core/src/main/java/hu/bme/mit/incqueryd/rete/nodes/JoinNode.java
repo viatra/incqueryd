@@ -33,6 +33,9 @@ public class JoinNode extends BetaNode {
 
         // save the new tuples to the indexer's memory
         newTuplesIndexer.add(incomingTuples, changeType);
+        
+        // Update the memory consumption metric for the monitoring
+        updateMemoryConsumption();
 
         final Set<Tuple> resultTuples = new HashSet<>();
         final List<Integer> rightTupleMask = secondaryIndexer.getJoinMask();
