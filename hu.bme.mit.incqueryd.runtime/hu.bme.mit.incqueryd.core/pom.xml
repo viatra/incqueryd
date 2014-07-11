@@ -311,12 +311,20 @@
 			<version>2.10.2</version>
 		</dependency>
 
-		<!-- monitoring -->
+		<!-- Rete monitoring -->
 
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
 			<artifactId>hu.bme.mit.incqueryd.retemonitoring.metrics</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<!-- Memory measurement for monitoring -->
+		
+		<dependency>
+			<groupId>com.carrotsearch</groupId>
+			<artifactId>java-sizeof</artifactId>
+			<version>0.0.4</version>
 		</dependency>
 
 	</dependencies>
