@@ -2,14 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: hu.bme.mit.incqueryd.arch;singleton:=true
-Bundle-Version: 0.0.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: arch;version="0.0.1.SNAPSHOT",
+Export-Package: arch,
  arch.impl,
  arch.util,
- infrastructure;version="0.0.1.SNAPSHOT",
+ infrastructure,
  infrastructure.impl,
  infrastructure.util
 Require-Bundle: org.eclipse.core.runtime,
@@ -22,5 +22,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore.xcore;bundle-version="1.2.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Import-Package: arch;version="0.0.1.SNAPSHOT",
- infrastructure;version="0.0.1.SNAPSHOT"
+Import-Package: arch,
+ infrastructure
