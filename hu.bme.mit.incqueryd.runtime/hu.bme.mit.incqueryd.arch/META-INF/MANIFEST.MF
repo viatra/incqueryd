@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: IncQuery-D Architecture Metamodel
 Bundle-SymbolicName: hu.bme.mit.incqueryd.arch;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: %providerName
+Bundle-Vendor: IncQuery Labs Ltd.
 Bundle-Localization: plugin
 Export-Package: arch,
  arch.impl,
