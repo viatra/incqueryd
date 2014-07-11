@@ -99,33 +99,4 @@
 		<module>hu.bme.mit.incqueryd.tooling.product</module>
 	</modules>
 
-	<repositories>
-
-		<repository>
-			<id>kepler</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/kepler</url>
-		</repository>
-		<repository>
-			<id>incquery</id>
-			<layout>p2</layout>
-			<url>${incquery.update.site}</url>
-		</repository>
-		<repository>
-			<id>emf</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/emf/emf/updates/releases/</url>
-		</repository>
-		<repository>
-			<id>xtext</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</url>
-		</repository>
-		<repository>
-			<id>ghillairet</id>
-			<layout>p2</layout>
-			<url>http://ghillairet.github.io/p2/</url>
-		</repository>
-
-	</repositories>
 </project>
