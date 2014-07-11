@@ -23,6 +23,7 @@ import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 
+import com.carrotsearch.sizeof.RamUsageEstimator;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -73,6 +74,10 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	
 	public int tuples() {
 		return tuples.size();
+	}
+	
+	public double getMemoryConsumption() {
+		return tuples.size() > 0 ? (double)RamUsageEstimator.sizeOf(tuples)/RamUsageEstimator.ONE_MB : 0;
 	}
 
 	@Override
