@@ -84,7 +84,6 @@
 	
 	<modules>
 		<module>../lib/org.mozilla.javascript</module>
-		<module>../lib/org.openrdf.sesame</module>
 		<module>hu.bme.mit.incqueryd.tooling.targetplatform</module>
 		<module>hu.bme.mit.incqueryd.rdf</module>
 		<module>org.eclipse.incquery.patternlanguage.rdf</module>
