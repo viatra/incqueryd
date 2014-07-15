@@ -100,6 +100,7 @@ public class ArchUtil {
 	public static Configuration loadConfiguration(final String architectureFile) {
 		// initialize extension to factory map
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("recipe", new XMIResourceFactoryImpl());
 
 		// initialize package registry
 		// initialize the RecipesPackage before the others
