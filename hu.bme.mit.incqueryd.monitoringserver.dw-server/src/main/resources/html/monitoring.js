@@ -31,15 +31,18 @@ var images; // Store the images
 
 // Own node types and edge types **********************************************************************************************************************************************
 
-// Node visualized with an image
+// Node visualized as an image
 $jit.ForceDirected.Plot.NodeTypes.implement({
-    'image': {
+    'host': {
         'render': function (node, canvas) {
             var ctx = canvas.getCtx();
             var pos = node.pos.getc(true);
             if (node.getData('image') != 0) {
                 var img = node.getData('image');
                 ctx.drawImage(img, pos.x - 15, pos.y - 15);
+
+                drawGauge(canvas, { x: pos.x + img.width + 25, y: pos.y + 30 }, node.data.cpu, percentToColor(node.data.cpu), "CPU\n" + (truncateDecimals(node.data.cpu * 10) / 10) + "%", 30, 30, 15, 10);
+                drawGauge(canvas, { x: pos.x + img.width + 100, y: pos.y + 30 }, node.data.memory, percentToColor(node.data.memory), "MEM\n" + (truncateDecimals(node.data.memory * 10) / 10) + "%", 30, 30, 15, 10);
             }
         },
         'contains': function (node, pos) {
@@ -55,6 +58,7 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
     }
 });
 
+// Beta node type
 $jit.ForceDirected.Plot.NodeTypes.implement({
     'beta': {
         'render': function (node, canvas) {
@@ -63,6 +67,8 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
             this.nodeHelper.rectangle.render('fill', pos, 80, 30, canvas);
             this.nodeHelper.triangle.render('fill', { x: pos.x - 20, y: pos.y - 25 }, 10, canvas);
             this.nodeHelper.triangle.render('fill', { x: pos.x + 20, y: pos.y - 25 }, 10, canvas);
+            var memoryPercent = Math.min((node.data.memory / 500) * 100, 100);
+            drawGauge(canvas, { x: pos.x + 80, y: pos.y }, memoryPercent, percentToColor(memoryPercent), "MEM\n" + (truncateDecimals(node.data.memory * 10) / 10), 30, 30, 15, 10);
         },
         'contains': function (node, pos) {
             var npos = node.pos.getc(true);
@@ -70,6 +76,32 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
         }
     }
 });
+
+function drawGauge(canvas, pos, percent, color, text, outerWidth, innerWidth, outerLineWidth, innerLineWidth) {
+    var ctx = canvas.getCtx();
+
+    text_width = ctx.measureText(text).width;
+
+    ctx.beginPath();
+    ctx.strokeStyle = "#333";
+    ctx.lineWidth = outerLineWidth;
+    ctx.arc(pos.x , pos.y, outerWidth, 0, Math.PI * 2, false);
+    ctx.stroke();
+
+    var degrees = percent * 3.6;
+    var radians = degrees * Math.PI / 180;
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = innerLineWidth;
+    //The arc starts from the rightmost end. If we deduct 90 degrees from the angles
+    //the arc will start from the topmost end
+    ctx.arc(pos.x , pos.y, innerWidth, 0 - 90 * Math.PI / 180, radians - 90 * Math.PI / 180, false);
+    ctx.stroke();
+
+    ctx.fillStyle = color;
+    ctx.font = "15px  Impact";
+    ctx.wrapText(text, pos.x - text_width / 4, pos.y, 120, 16);
+}
 
 // Directed edge with label placed on it
 $jit.ForceDirected.Plot.EdgeTypes.implement({
@@ -181,6 +213,7 @@ function update(object) {
         
         updateHeatMap();
         updateJVMHeatMap();
+        updateSystemGraph();
 
     }
     // anyway if changed redraw the system, delete the heatmap
@@ -346,7 +379,7 @@ function drawJVMHeatMap() {
         //no box offsets
         offset: 1,
         //duration of the animation
-        duration: 1500,
+        duration: 0,
 
         //Add the name of the node in the correponding label
         //This method is called once, on label creation.
@@ -974,10 +1007,13 @@ function drawSystem() {
         adj.nodeTo = "graphnode0";
         adj.nodeFrom = jsonData.machines[i].host;
         node.adjacencies.push(adj);
-        node.data.$type = "image";
+        node.data.$type = "host";
         node.id = jsonData.machines[i].host;
         node.name = jsonData.machines[i].host;
         node.data.nodetype = "machine";
+
+        node.data.cpu = jsonData.machines[i].os.cpuUsage.usedCPUPercent;
+        node.data.memory = jsonData.machines[i].os.memoryUsage.usedMemoryPercent;
 
         graph.push(node);
     }
@@ -1037,12 +1073,7 @@ function drawSystem() {
                 this.onDragMove(node, eventInfo, e);
             },
             onClick: function (node, eventInfo, e) {
-                //if (!node) return;
-                //if (node.nodeFrom) {
-                //    console.log("target is an edge");
-                //} else {
-                //    console.log("target is a node");
-                //}
+                
             }
         },
         //Number of iterations for the FD algorithm
@@ -1121,13 +1152,13 @@ function drawSystem() {
 
     //load images
     fd.graph.eachNode(function (node) {
-        if (node.getData('type') == 'image') {
-            if (node.data.nodetype == "machine") {
-                var image = images["server"];
-                node.setData('image', image); // store this image object in node
-                node.setData('height', image.height);
-                node.setData('width', image.width);
-            }
+        if (node.getData('type') == 'host') {
+
+            var image = images["server"];
+            node.setData('image', image); // store this image object in node
+            node.setData('height', image.height);
+            node.setData('width', image.width);
+            
         }
     });
 
@@ -1149,6 +1180,25 @@ function drawSystem() {
         }
     });
     // end
+}
+
+// Update the data for the gauges on the system graph
+function updateSystemGraph() {
+    fd.graph.eachNode(function (node) {
+        var labeltext = "";
+
+        for (var i = 0; i < jsonData.machines.length; i++) {
+            var machine = jsonData.machines[i];
+            if (machine.host == node.id) {
+                node.data.cpu = machine.os.cpuUsage.usedCPUPercent;
+                node.data.memory = machine.os.memoryUsage.usedMemoryPercent;
+                break;
+            }
+        }
+
+    });
+
+    fd.plot();
 }
 
 // Set the measurement data from the server for the user selected node
@@ -1242,11 +1292,13 @@ function drawReteNet() {
         else if(reteNode.nodeClass == "Beta"){
             node.data.$type = "beta";
             node.data.nodetype = "beta";
+            node.data.memory = reteNode.memory;
         }
-        else {
+        else if (reteNode.nodeClass == "Input") {
             node.data.$type = "circle";
             node.data.$dim = 10;
             node.data.nodetype = "input";
+            node.data.memory = reteNode.memory;
         }
 
         node.id = reteNode.reteNode;
@@ -1369,7 +1421,7 @@ function drawReteNet() {
         // This method is only triggered
         // on label creation and only for DOM labels (not native canvas ones).
         onCreateLabel: function (domElement, node) {
-            // Create a 'name' and 'close' buttons and add them
+            // Create a 'name' button and add it
             // to the main node label
             var nameContainer = document.createElement('span'),
                 style = nameContainer.style;
@@ -1422,6 +1474,7 @@ function updateReteNetGraph() {
         for (var i = 0; i < jsonData.rete.length; i++) {
             var reteNode = jsonData.rete[i];
             if (reteNode.reteNode == node.id) {
+                if (reteNode.nodeClass == "Input" || reteNode.nodeClass == "Beta") node.data.memory = reteNode.memory;
                 labeltext = "Updates:" + reteNode.updateMessagesSent + "\nChanges:" + reteNode.changesCount;
                 break;
             }
