@@ -14,6 +14,9 @@ var fd_rete;
 var jsonData; // The JSON data we get from the server
 var images; // Store the images
 
+var beta_width = 140, beta_height = 80, beta_triangle_height = 20;
+var alpha_width = 140, alpha_height = 60;
+
 (function () {
     var ua = navigator.userAgent,
         iStuff = ua.match(/iPhone/i) || ua.match(/iPad/i),
@@ -64,15 +67,50 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
         'render': function (node, canvas) {
             var pos = node.pos.getc(true);
             
-            this.nodeHelper.rectangle.render('fill', pos, 80, 30, canvas);
-            this.nodeHelper.triangle.render('fill', { x: pos.x - 20, y: pos.y - 25 }, 10, canvas);
-            this.nodeHelper.triangle.render('fill', { x: pos.x + 20, y: pos.y - 25 }, 10, canvas);
+            this.nodeHelper.rectangle.render('fill', pos, beta_width, beta_height, canvas);
+            this.nodeHelper.triangle.render('fill', { x: pos.x - beta_width / 4, y: pos.y - beta_height / 2 - beta_triangle_height }, beta_triangle_height, canvas);
+            this.nodeHelper.triangle.render('fill', { x: pos.x + beta_width / 4, y: pos.y - beta_height / 2 - beta_triangle_height }, beta_triangle_height, canvas);
+
             var memoryPercent = Math.min((node.data.memory / 500) * 100, 100);
-            drawGauge(canvas, { x: pos.x + 80, y: pos.y }, memoryPercent, percentToColor(memoryPercent), "MEM\n" + (truncateDecimals(node.data.memory * 10) / 10), 30, 30, 15, 10);
+            drawGauge(canvas, { x: pos.x , y: pos.y }, memoryPercent, percentToColor(memoryPercent), "MEM\n" + (truncateDecimals(node.data.memory * 10) / 10), 30, 30, 15, 10);
         },
         'contains': function (node, pos) {
             var npos = node.pos.getc(true);
-            return this.nodeHelper.rectangle.contains(npos, pos, 40, 80);
+            return this.nodeHelper.rectangle.contains(npos, pos, beta_width, beta_height);
+        }
+    }
+});
+
+// Alpha node type
+$jit.ForceDirected.Plot.NodeTypes.implement({
+    'alpha': {
+        'render': function (node, canvas) {
+            var pos = node.pos.getc(true);
+
+            this.nodeHelper.rectangle.render('fill', pos, alpha_width, alpha_height, canvas);
+
+        },
+        'contains': function (node, pos) {
+            var npos = node.pos.getc(true);
+            return this.nodeHelper.rectangle.contains(npos, pos, alpha_width, alpha_height);
+        }
+    }
+});
+
+// Input node type
+$jit.ForceDirected.Plot.NodeTypes.implement({
+    'input': {
+        'render': function (node, canvas) {
+            var pos = node.pos.getc(true);
+
+            this.nodeHelper.circle.render('fill', pos, 40, canvas);
+
+            var memoryPercent = Math.min((node.data.memory / 500) * 100, 100);
+            drawGauge(canvas, { x: pos.x, y: pos.y }, memoryPercent, percentToColor(memoryPercent), "MEM\n" + (truncateDecimals(node.data.memory * 10) / 10), 30, 30, 15, 10);
+        },
+        'contains': function (node, pos) {
+            var npos = node.pos.getc(true);
+            return this.nodeHelper.circle.contains(npos, pos, 40);
         }
     }
 });
@@ -85,7 +123,7 @@ function drawGauge(canvas, pos, percent, color, text, outerWidth, innerWidth, ou
     ctx.beginPath();
     ctx.strokeStyle = "#333";
     ctx.lineWidth = outerLineWidth;
-    ctx.arc(pos.x , pos.y, outerWidth, 0, Math.PI * 2, false);
+    ctx.arc(pos.x, pos.y, outerWidth, 0, Math.PI * 2, false);
     ctx.stroke();
 
     var degrees = percent * 3.6;
@@ -95,7 +133,7 @@ function drawGauge(canvas, pos, percent, color, text, outerWidth, innerWidth, ou
     ctx.lineWidth = innerLineWidth;
     //The arc starts from the rightmost end. If we deduct 90 degrees from the angles
     //the arc will start from the topmost end
-    ctx.arc(pos.x , pos.y, innerWidth, 0 - 90 * Math.PI / 180, radians - 90 * Math.PI / 180, false);
+    ctx.arc(pos.x, pos.y, innerWidth, 0 - 90 * Math.PI / 180, radians - 90 * Math.PI / 180, false);
     ctx.stroke();
 
     ctx.fillStyle = color;
@@ -116,20 +154,21 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
             var deltaX;
             var deltaY;
             if (adj.data.slot == "PRIMARY") {
-                deltaX = -20;
-                deltaY = -30;
+                deltaX = - beta_width / 4;
+                deltaY = - (beta_height / 2) - beta_triangle_height * 2 + 5;
             }
             else if (adj.data.slot == "SECONDARY") {
-                deltaX = 20;
-                deltaY = -30;
+                deltaX = beta_width / 4;
+                deltaY = - (beta_height / 2) - beta_triangle_height * 2 + 5;
             }
-            else {
+            else if (adj.data.slot == "SINGLE") {
                 deltaX = 0;
                 if (from.y < to.y) {
-                    deltaY = -10;
+                    deltaY = -(alpha_height / 2) + 3;
                 }
-                else deltaY = 10;
+                else deltaY = (alpha_height / 2) - 3;
             }
+            
             
             if (inv) {
                 var from2 = {};
@@ -139,7 +178,7 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
             } else {
                 var to2 = {};
                 to2.y = to.y + deltaY;
-                to2.x = to.x + deltaX;;
+                to2.x = to.x + deltaX;
                 this.edgeHelper.arrow.render(from, to2, dim, inv, canvas);
             }
             
@@ -150,17 +189,35 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
             //check for edge label in data
             var data = adj.data;
             if (data.labeltext) {
-                var x2 = Math.max(pos.x, posChild.x);
-                var x1 = Math.min(pos.x, posChild.x);
-                var y2 = Math.max(pos.y, posChild.y);
-                var y1 = Math.min(pos.y, posChild.y);
+                var posChildX = 0, posChildY = 0;
 
-                var posy = y2 - (y2 - y1) / 2;
-                var posx = x2 - (x2 - x1) / 2;
+                if (adj.data.slot == "PRIMARY") {
+                    posChildX = posChild.x - beta_width / 4;
+                    posChildY = posChild.y - (beta_height / 2) - beta_triangle_height * 2;
+                }
+                else if (adj.data.slot == "SECONDARY") {
+                    posChildX = posChild.x + beta_width / 4;
+                    posChildY = posChild.y - (beta_height / 2) - beta_triangle_height * 2;
+                }
+                else if (adj.data.slot == "SINGLE") {
+                    posChildX = posChild.x;
+                    if (from.y < to.y) {
+                        posChildY = posChild.y - (alpha_height / 2);
+                    }
+                    else posChildY = posChild.y + (alpha_height / 2);
+                }
+                var x2 = Math.max(pos.x, posChildX);
+                var x1 = Math.min(pos.x, posChildX);
+                var y2 = Math.max(pos.y, posChildY);
+                var y1 = Math.min(pos.y, posChildY);
+
+                var posy = y2 - ((y2 - y1) / 2);
+                var posx = x2 - ((x2 - x1) / 2);
 
                 var ctx = canvas.getCtx();
-                ctx.font = "11pt Arial";
-                ctx.fillStyle = "#FF8900";
+                ctx.font = "15px  Impact";
+                ctx.fillStyle = "#FE5C00";
+                //ctx.fillStyle = "#CD0056";
                 ctx.wrapText(data.labeltext, posx, posy, 120, 16);
 
             }
@@ -1008,6 +1065,7 @@ function drawSystem() {
         adj.nodeFrom = jsonData.machines[i].host;
         node.adjacencies.push(adj);
         node.data.$type = "host";
+        node.data.hostcolor = '#' + jsonData.machines[i].host.toColor();
         node.id = jsonData.machines[i].host;
         node.name = jsonData.machines[i].host;
         node.data.nodetype = "machine";
@@ -1025,7 +1083,7 @@ function drawSystem() {
         //Enable zooming and panning
         //with scrolling and DnD
         width: 1024,
-        height: 900,
+        height: 1100,
         Navigation: {
             enable: true,
             type: 'Native',
@@ -1091,7 +1149,7 @@ function drawSystem() {
             nameContainer.innerHTML = node.name;
             domElement.appendChild(nameContainer);
             style.fontSize = "1.2em";
-            style.color = "#ddd";
+            style.color = node.data.hostcolor;
 
             //Toggle a node selection when clicking
             //its name. This is done by animating some
@@ -1142,8 +1200,8 @@ function drawSystem() {
             var left = parseInt(style.left);
             var top = parseInt(style.top);
             var w = domElement.offsetWidth;
-            style.left = (left - w / 2) + 'px';
-            style.top = (top - 32) + 'px';
+            style.left = (left - w / 4) + 'px';
+            style.top = (top - 35) + 'px';
             style.display = '';
         }
     });
@@ -1283,10 +1341,11 @@ function drawReteNet() {
 
         node.adjacencies = [];
 
-        node.data.$color = '#' + intToARGB(hashCode(reteNode.hostName));
+        node.data.hostcolor = '#' + reteNode.hostName.toColor();
+        node.data.$color = '#6a49ba'
 
         if (reteNode.nodeClass == "Alpha") {
-            node.data.$type = "rectangle";
+            node.data.$type = "alpha";
             node.data.nodetype = "alpha";
         }
         else if(reteNode.nodeClass == "Beta"){
@@ -1295,14 +1354,14 @@ function drawReteNet() {
             node.data.memory = reteNode.memory;
         }
         else if (reteNode.nodeClass == "Input") {
-            node.data.$type = "circle";
-            node.data.$dim = 10;
+            node.data.$type = "input";
             node.data.nodetype = "input";
             node.data.memory = reteNode.memory;
         }
 
         node.id = reteNode.reteNode;
-        node.name = reteNode.nodeType + " " + reteNode.reteNode + " on " + reteNode.hostName;
+        node.name = reteNode.nodeType + " " + reteNode.reteNode + " on ";
+        node.data.host = reteNode.hostName;
         
 
         for (var j = 0; j < reteNode.subscribers.length; j++) {
@@ -1332,7 +1391,7 @@ function drawReteNet() {
         //Enable zooming and panning
         //with scrolling and DnD
         width: 1024,
-        height: 900,
+        height: 1100,
         Navigation: {
             enable: true,
             type: 'Native',
@@ -1389,7 +1448,7 @@ function drawReteNet() {
             //add content to the tooltip when a node
             //is hovered
             onShow: function (tip, node, isLeaf, domElement) {
-                var html = "<div class=\"tip-title\">" + node.name
+                var html = "<div class=\"tip-title\">" + node.name + node.data.host
                   + "</div><div class=\"tip-text\">";
 
                 var reteNode = null;
@@ -1431,6 +1490,14 @@ function drawReteNet() {
             style.fontSize = "1.2em";
             style.color = "#ddd";
 
+            var nameContainer2 = document.createElement('span'),
+                style2 = nameContainer2.style;
+            nameContainer2.className = 'name';
+            nameContainer2.innerHTML = node.data.host;
+            domElement.appendChild(nameContainer2);
+            style2.fontSize = "1.2em";
+            style2.color = node.data.hostcolor;
+
         },
         // Change node styles when DOM labels are placed
         // or moved.
@@ -1440,7 +1507,7 @@ function drawReteNet() {
             var top = parseInt(style.top);
             var w = domElement.offsetWidth;
             style.left = (left - w / 2) + 'px';
-            style.top = (top - 32) + 'px';
+            style.top = (top - 62) + 'px';
             style.display = '';
         }
     });
@@ -1490,8 +1557,11 @@ function updateReteNetGraph() {
 
 function hashCode(str) { // java String#hashCode
     var hash = 0;
-    for (var i = 0; i < str.length; i++) {
-        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    if (str.length == 0) return hash;
+    for (i = 0; i < str.length; i++) {
+        char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32bit integer
     }
     return hash;
 }
@@ -1500,6 +1570,23 @@ function intToARGB(i) {
     return ((i >> 24) & 0xFF).toString(16) +
            ((i >> 16) & 0xFF).toString(16) +
            ((i >> 8) & 0xFF).toString(16);
+}
+
+String.prototype.toColor = function () {
+    var r = 0, g = 0, b = 0;
+    for (var i = 0; i < this.length ; i++) {
+        r += 3187 * this.charCodeAt(i);
+    }
+    for (var i = 0; i < this.length ; i++) {
+        g += 3967 * this.charCodeAt(i);
+    }
+    for (var i = 0; i < this.length; i++) {
+        b += 2333 * this.charCodeAt(i);
+    }
+
+    return ((r % 255) & 0xFF).toString(16) +
+           ((g % 255) & 0xFF).toString(16) +
+           ((b % 255) & 0xFF).toString(16);
 }
 
 // Other things **********************************************************************************************************************************************

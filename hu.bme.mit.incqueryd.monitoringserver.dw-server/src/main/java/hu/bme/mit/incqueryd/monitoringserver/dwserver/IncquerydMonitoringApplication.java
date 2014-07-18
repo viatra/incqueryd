@@ -18,13 +18,11 @@ public class IncquerydMonitoringApplication extends
 	@Override
 	public void initialize(Bootstrap<IncquerydMonitoringConfiguration> bootstrap) {
 		bootstrap.addBundle( new ConfiguredAssetsBundle("/html/", "/dashboard/"));
-		
 	}
 
 	@Override
 	public void run(IncquerydMonitoringConfiguration configuration, Environment environment)
 			throws Exception {
-		
 
 		final MonitoringWorker worker = new MonitoringWorker(configuration.getCollectorInterface());
 		
@@ -34,7 +32,6 @@ public class IncquerydMonitoringApplication extends
 		
 		environment.jersey().register(resource);
 		
-
 	}
 
 }
