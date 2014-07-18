@@ -35,6 +35,9 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeType
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredMachines
 import hu.bme.mit.incqueryd.monitoring.actors.JVMMonitoringActor
+import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoringMessage
+import hu.bme.mit.incqueryd.rete.dataunits.ScalaChangeSet
+import scala.collection.mutable.MutableList
 
 class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean, val monitoringServerIPAddress: String) extends Actor{
   
@@ -45,6 +48,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
   protected var debug: Boolean = false
   protected var latestResults: Set[Tuple] = new HashSet[Tuple]
   protected var latestChangeSet: ChangeSet = null
+  protected var unreportedChangeSets = new ArrayList[ChangeSet]() // unreported change sets for the monitoring server
   
   if (architectureFile.contains("poslength")) {
     query = "PosLength";
@@ -242,6 +246,8 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
   def check(): ChangeSet = {
     latestChangeSet = getQueryResults
     
+    unreportedChangeSets.add(latestChangeSet)
+    
     latestChangeSet.getChangeType match {
       case ChangeType.POSITIVE => latestResults.addAll(latestChangeSet.getTuples)
       case ChangeType.NEGATIVE => latestResults.removeAll(latestChangeSet.getTuples)
@@ -249,6 +255,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     }
     
     if (debug) System.err.println("Results: " + latestResults.size)
+    
     latestChangeSet
   }
   
@@ -324,6 +331,21 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     
   }
   
+  private def calculateUnreportedChanges : String = {
+    var sumChangeSet = new ScalaChangeSet
+    
+    unreportedChangeSets.foreach( change => {
+      sumChangeSet = sumChangeSet + ScalaChangeSet.create(change)
+      println(ScalaChangeSet.create(change))
+    })
+    
+    println(sumChangeSet.posChanges.size())
+    println(sumChangeSet.negChanges.size())
+    unreportedChangeSets.clear
+    
+    "hello"
+  }
+  
   def receive = {
     case CoordinatorCommand.START => {
       start
@@ -336,6 +358,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
       transform
       sender ! CoordinatorMessage.DONE
     }
+    case MonitoringMessage.GETCCHANGES => sender ! calculateUnreportedChanges
     case _ => {}
   }
   
