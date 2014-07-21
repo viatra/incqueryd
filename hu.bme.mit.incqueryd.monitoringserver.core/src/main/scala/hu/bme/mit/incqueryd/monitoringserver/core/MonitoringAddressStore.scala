@@ -18,6 +18,8 @@ object MonitoringAddressStore {
   
   private val monitoredMachinesIPs: HashSet[String] = new HashSet[String]
   
+  private var coordinatorActorRef: ActorRef = null
+  
   def putActors(actors: Collection[ActorRef]) = {
     actorRefs.synchronized({
       actorRefs.clear();
@@ -46,6 +48,10 @@ object MonitoringAddressStore {
     monitoredMachinesIPs.addAll(machines)
   }
   
-  def getMachines : java.util.Set[String] = monitoredMachinesIPs
+  def getMachines : java.util.Set[String] = monitoredMachinesIPs.synchronized(for {machine <- monitoredMachinesIPs} yield machine)
+  
+  def addCoordinatorActor(ref: ActorRef) = { coordinatorActorRef = ref }
+  
+  def getCoordinatorActor = coordinatorActorRef
   
 }

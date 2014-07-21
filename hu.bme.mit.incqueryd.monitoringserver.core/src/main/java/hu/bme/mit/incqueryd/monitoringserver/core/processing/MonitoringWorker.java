@@ -3,13 +3,18 @@ package hu.bme.mit.incqueryd.monitoringserver.core.processing;
 import hu.bme.mit.incqueryd.jvmmonitoring.metrics.JVMMetrics;
 import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringAddressStore;
 import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringDataCollectorActor;
+import hu.bme.mit.incqueryd.monitoringserver.core.QueryResultStore;
+import hu.bme.mit.incqueryd.monitoringserver.core.data.MonitoringChangeSet;
+import hu.bme.mit.incqueryd.monitoringserver.core.data.StringTuple;
 import hu.bme.mit.incqueryd.monitoringserver.core.datacollection.MachineMonitoringWorker;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.AggregatedMonitoringData;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.MachineMonitoringData;
+import hu.bme.mit.incqueryd.monitoringserver.core.model.QueryResultData;
 import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import akka.actor.ActorSystem;
 import akka.actor.Props;
@@ -112,6 +117,19 @@ public class MonitoringWorker extends Thread {
 
 		List<ReteNodeMetrics> reteMetrics = reteWorker.getReteMetrics();
 		collectedData.setRete(reteMetrics);
+		
+		MonitoringChangeSet changeSet = QueryResultStore.getChangeSet();
+		QueryResultData result = null;
+		if(changeSet != null) {
+			Set<StringTuple> posChanges = changeSet.posChanges();
+			result = new QueryResultData("yes", posChanges);
+			System.out.println(posChanges);
+		}
+		else {
+			result = new QueryResultData("no", null);
+		}
+		
+		collectedData.setResult(result);
 		
 		synchronized (monitoredData) {
 			monitoredData = collectedData;

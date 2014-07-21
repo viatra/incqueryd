@@ -11,6 +11,8 @@ import akka.actor.ActorRef
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
 import scala.collection.JavaConversions._
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredMachines
+import hu.bme.mit.incqueryd.monitoringserver.core.data.StringTuple
+import hu.bme.mit.incqueryd.monitoringserver.core.data.MonitoringChangeSet
 
 class MonitoringDataCollectorActor extends Actor {
 
@@ -21,7 +23,17 @@ class MonitoringDataCollectorActor extends Actor {
       MonitoringAddressStore.putJvmActors(actorRefs.getJvmActorRefs)
     }
     
-    case machines: MonitoredMachines => MonitoringAddressStore.putMachines(machines.getMachineIPs)
+    case machines: MonitoredMachines => {
+      MonitoringAddressStore.putMachines(machines.getMachineIPs)
+      MonitoringAddressStore.addCoordinatorActor(sender)
+    }
+    
+    case str: String => {
+      str charAt 0 match {
+        case '+' | '-' => QueryResultStore addChangeSet( MonitoringChangeSet from str )
+        case _ =>
+      }
+    }
     
     case _ => {}
 
