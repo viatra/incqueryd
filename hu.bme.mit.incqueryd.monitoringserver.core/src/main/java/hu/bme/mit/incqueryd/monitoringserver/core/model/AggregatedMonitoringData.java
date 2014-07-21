@@ -8,7 +8,7 @@ public class AggregatedMonitoringData {
 	
 	private List<MachineMonitoringData> machines;
 	private List<ReteNodeMetrics> rete;
-	private QueryResultData result;
+	private int changes;
 	
 	public void setMachines(List<MachineMonitoringData> machines) {
 		this.machines = machines;
@@ -26,11 +26,11 @@ public class AggregatedMonitoringData {
 		return rete;
 	}
 	
-	public QueryResultData getResult() {
-		return result;
+	public int getChanges() {
+		return changes;
 	}
 	
-	public void setResult(QueryResultData result) {
-		this.result = result;
+	public void setChanges(int changes) {
+		this.changes = changes;
 	}
 }

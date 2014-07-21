@@ -1,7 +1,9 @@
 package hu.bme.mit.incqueryd.monitoringserver.dwserver;
 
 import hu.bme.mit.incqueryd.monitoringserver.core.processing.MonitoringWorker;
+import hu.bme.mit.incqueryd.monitoringserver.dwserver.resources.IncquerydDeltaResultResource;
 import hu.bme.mit.incqueryd.monitoringserver.dwserver.resources.IncquerydMonitoringResource;
+import hu.bme.mit.incqueryd.monitoringserver.dwserver.resources.IncquerydQueryResultResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -30,7 +32,13 @@ public class IncquerydMonitoringApplication extends
 		
 		final IncquerydMonitoringResource resource = new IncquerydMonitoringResource(worker);
 		
+		final IncquerydQueryResultResource resultResource = new IncquerydQueryResultResource();
+		
+		final IncquerydDeltaResultResource deltaResource = new IncquerydDeltaResultResource();
+		
 		environment.jersey().register(resource);
+		environment.jersey().register(resultResource);
+		environment.jersey().register(deltaResource);
 		
 	}
 
