@@ -19,8 +19,6 @@ class MonitoringChangeSet (val positiveChanges: Set[StringTuple], val negativeCh
   
   def negChanges = asJavaSet(negativeChanges)
   
-  def ? = positiveChanges
-  
   override def toString: String = "+: " + positiveChanges + "\n" + "-: " + negativeChanges
 }
 

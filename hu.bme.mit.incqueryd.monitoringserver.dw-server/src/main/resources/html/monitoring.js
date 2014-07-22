@@ -17,6 +17,10 @@ var images; // Store the images
 var beta_width = 140, beta_height = 80, beta_triangle_height = 20;
 var alpha_width = 140, alpha_height = 60;
 
+var resultCount = 0; // To store how many changes were seen so far
+
+var resultsTable; // object for the results table
+
 (function () {
     var ua = navigator.userAgent,
         iStuff = ua.match(/iPhone/i) || ua.match(/iPad/i),
@@ -294,6 +298,13 @@ function update(object) {
         drawReteNet();
     }
 
+    checkQueryResults();
+
+    //resultsTable.clear();
+    //resultsTable.row.add([
+    //         'hello1'
+    //]).draw();
+    //console.log(resultsTable);
 }
 
 // Heatmap related things **********************************************************************************************************************************************
@@ -1589,6 +1600,58 @@ String.prototype.toColor = function () {
            ((b % 255) & 0xFF).toString(16);
 }
 
+
+// Query results **********************************************************************************************************************************************
+function checkQueryResults() {
+    if (resultCount < jsonData.changes) {
+        $.getJSON('/results', function (data) {
+            updateQueryResults(data);
+        });
+
+        $.getJSON('/deltas?from=' + resultCount, function (data) {
+
+        });
+
+        resultCount = jsonData.changes;
+    }
+}
+
+function updateQueryResults(data) {
+    if (resultsTable == null) {
+        if (data.length == 0) {
+            return;
+        }
+        var columns = [];
+
+        var tupleLength = data[0].tuple.length;
+
+        for (var i = 0; i < tupleLength; i++) {
+            columns.push({ "title": i + '.' });
+        }
+
+        resultsTable = $('#results').DataTable({
+            "scrollY": "700px",
+            "scrollCollapse": true,
+            "paging": false,
+            "columns": columns
+        });
+    }
+
+    resultsTable.clear();
+
+    for (var i = 0; i < data.length; i++) {
+        var tuple = data[i].tuple;
+
+        var values = [];
+        for (var j = 0; j < tuple.length; j++) {
+            values.push(tuple[j]);
+        }
+        resultsTable.row.add(values);
+    }
+
+    resultsTable.draw();
+}
+
 // Other things **********************************************************************************************************************************************
 
 // Load the images when the document is ready
@@ -1599,4 +1662,15 @@ function loadImages() {
     images = {
         server: serverImage
     };
+}
+
+function createTables() {
+    resultsTable = $('#results').DataTable({
+        "scrollY": "700px",
+        "scrollCollapse": true,
+        "paging": false,
+        "columns": [
+            { "title": "Engine" }
+        ]
+    });
 }

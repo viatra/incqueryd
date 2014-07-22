@@ -6,16 +6,18 @@
     <title>IncQuery-D monitoring</title>
     <link type="text/css" href="base.css" rel="stylesheet" />
     <link type="text/css" href="ForceDirected.css" rel="stylesheet" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link type="text/css" href="jquery.dataTables.css" rel="stylesheet" />
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script language="javascript" type="text/javascript" src="jit.js"></script>
     <script language="javascript" type="text/javascript" src="monitoring.js"></script>
+    <script language="javascript" type="text/javascript" src="jquery.dataTables.min.js"></script>
     <script>
 
         function visualizeSystem() {
 
             $.getJSON('/monitoring', function (data) {
                 update(data);
-                //console.log('JSON data received:', data);
             });
             setTimeout("visualizeSystem()", 5000);
         }
@@ -24,12 +26,11 @@
             loadImages();
             setTimeout("visualizeSystem()", 1000);
         });
-        
+
     </script>
 </head> 
 <body>
     <h1>IncQuery-D System Monitoring Overview</h1>
-    <!--<button onclick="visualizeSystem()">Click me</button>--> 
 
     <div id="container">
        
@@ -55,6 +56,20 @@
 
         <div id="heatmap-container-jvm">
             <div id="heatmap-jvm"></div>
+        </div>
+
+        <div id="results-table">
+
+            <h2>Query Results</h2>
+            
+            <table id="results" class="display" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Columns...</th>
+                    </tr>
+                </thead>
+            </table>
+            
         </div>
 
     </div>

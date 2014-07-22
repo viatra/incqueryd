@@ -17,23 +17,24 @@ h1 {
 
 #container {
     width: 1800px;
-    height: 2800px;
+    height: 4600px;
     margin:0 auto;
     position:relative;
 }
 
 #graph-container-rete, 
 #graph-container {
-    height:36%;
+    height:22%;
     position:absolute;
     top:0;
 }
 
 #heatmap-container-os,
 #heatmap-container-rete,
-#heatmap-container-jvm
+#heatmap-container-jvm,
+#results-table
  {
-    height:32%;
+    height:20%;
     position:absolute;
     top:0;
 }
@@ -73,7 +74,19 @@ h1 {
     float:right;
     border-right:1px solid #ddd;
     margin-left:25%;
-    margin-top:108%;
+    margin-top:109%;
+}
+
+#results-table {
+    width:49%;
+    color:#686c70;
+    overflow: auto;
+    background-color:#fff;
+    background-repeat:no-repeat;
+    border-bottom:1px solid #ddd;
+    float:right;
+    border-right:1px solid #ddd;
+    margin-top:161%;
 }
 
 #graph-container {

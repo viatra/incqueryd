@@ -26,7 +26,13 @@ object QueryResultStore {
   
   def getResults : java.util.Set[StringTuple] = sumChangeSet.synchronized(sumChangeSet posChanges)
   
-  def getDeltas(from: Int) = changeSets.synchronized(changeSets.subList(from, changeSets.size - 1))
+  def getDeltas(from: Int) = {
+    changeSets.synchronized({
+      if(from > changeSets.size) null
+      if(changeSets.size > 0)changeSets.subList(from, changeSets.size)
+      else changeSets
+    })
+  }
   
   def numberOfChanges = changeCounter
   
