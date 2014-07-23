@@ -17,6 +17,8 @@ table.dataTable {
 table.dataTable thead th,
 table.dataTable tfoot th {
   font-weight: bold;
+  font:20px Trebuchet MS;
+  background-color: #bbbbbb !important;
 }
 table.dataTable thead th,
 table.dataTable thead td {
@@ -55,6 +57,7 @@ table.dataTable thead .sorting_desc_disabled {
 }
 table.dataTable tbody tr {
   background-color: white;
+  font:15px Century Gothic;
 }
 table.dataTable tbody tr.selected {
   background-color: #b0bed9;
@@ -301,6 +304,21 @@ table.dataTable td {
   clear: both;
   *zoom: 1;
   zoom: 1;
+  font: 15px Century Gothic;
+  background-color: #bbbbbb !important;
+}
+.dataTables_wrapper input{
+  padding: 5px;
+  border: 4px solid #bbbbbb;
+  border-radius: 5px;
+  color: #333;
+  transition: all 0.3s ease-out;
+  font:16px Lucida Sans Typewriter;
+}
+.dataTables_wrapper input:focus{
+  outline: none;
+  border-radius: 8px; 
+  border-color: #5397e1;
 }
 .dataTables_wrapper .dataTables_length {
   float: left;

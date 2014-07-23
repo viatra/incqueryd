@@ -32,7 +32,8 @@ h1 {
 #heatmap-container-os,
 #heatmap-container-rete,
 #heatmap-container-jvm,
-#results-table
+#results-table,
+#deltas-table
  {
     height:20%;
     position:absolute;
@@ -87,6 +88,19 @@ h1 {
     float:right;
     border-right:1px solid #ddd;
     margin-top:161%;
+}
+
+#deltas-table {
+    width:49%;
+    color:#686c70;
+    overflow: auto;
+    background-color:#fff;
+    background-repeat:no-repeat;
+    border-bottom:1px solid #ddd;
+    float:right;
+    border-right:1px solid #ddd;
+    margin-top:161%;
+    margin-left:50%;
 }
 
 #graph-container {

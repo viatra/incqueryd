@@ -19,7 +19,9 @@ var alpha_width = 140, alpha_height = 60;
 
 var resultCount = 0; // To store how many changes were seen so far
 
-var resultsTable; // object for the results table
+var resultsTable, deltaTable; // object for the results and delta table
+
+var globalMonitoringTimer; // This stores the timer for the monitoring ajax request to the server
 
 (function () {
     var ua = navigator.userAgent,
@@ -221,7 +223,6 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
                 var ctx = canvas.getCtx();
                 ctx.font = "15px  Impact";
                 ctx.fillStyle = "#FE5C00";
-                //ctx.fillStyle = "#CD0056";
                 ctx.wrapText(data.labeltext, posx, posy, 120, 16);
 
             }
@@ -264,6 +265,14 @@ CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, li
 
 // End of node types and edge types **********************************************************************************************************************************************
 
+function visualizeSystem() {
+
+    $.getJSON('/monitoring', function (data) {
+        update(data);
+    });
+    globalMonitoringTimer = setTimeout(function () { visualizeSystem(); }, 5000);
+}
+
 // Update the data from the new query
 function update(object) {
     
@@ -300,11 +309,6 @@ function update(object) {
 
     checkQueryResults();
 
-    //resultsTable.clear();
-    //resultsTable.row.add([
-    //         'hello1'
-    //]).draw();
-    //console.log(resultsTable);
 }
 
 // Heatmap related things **********************************************************************************************************************************************
@@ -1604,15 +1608,13 @@ String.prototype.toColor = function () {
 // Query results **********************************************************************************************************************************************
 function checkQueryResults() {
     if (resultCount < jsonData.changes) {
+
+        clearTimeout(globalMonitoringTimer); // Cancel the current main query to the monitoring server
+
         $.getJSON('/results', function (data) {
             updateQueryResults(data);
         });
 
-        $.getJSON('/deltas?from=' + resultCount, function (data) {
-
-        });
-
-        resultCount = jsonData.changes;
     }
 }
 
@@ -1630,16 +1632,34 @@ function updateQueryResults(data) {
         }
 
         resultsTable = $('#results').DataTable({
-            "scrollY": "700px",
+            "scrollY": "742px",
             "scrollCollapse": true,
             "paging": false,
+            "ordering": false,
             "columns": columns
         });
     }
 
     resultsTable.clear();
 
-    for (var i = 0; i < data.length; i++) {
+    var length = data.length;
+
+    setTimeout(function () {
+        updateResultsTable(data, 0, length);
+    }, 0);
+}
+
+// This method is for adding the new rows to the results table by 1000 and not all of them by once so the UI stays responsive
+function updateResultsTable(data, from, length) {
+    var last = false;
+    var to = from + 1000;
+
+    if (from + 1000 >= length) {
+        last = true;
+        to = length;
+    }
+
+    for (var i = from; i < to; i++) {
         var tuple = data[i].tuple;
 
         var values = [];
@@ -1649,7 +1669,89 @@ function updateQueryResults(data) {
         resultsTable.row.add(values);
     }
 
-    resultsTable.draw();
+    
+
+    if (! last) {
+        setTimeout(function () {
+            updateResultsTable(data, to, length);
+        }, 100);
+    }
+    else{
+        resultsTable.draw();
+        getDeltaChanges();
+    }
+}
+
+function getDeltaChanges() {
+    $.getJSON('/deltas?from=' + resultCount, function (data) {
+        updateDeltaChanges(data);
+    });
+}
+
+function updateDeltaChanges(data) {
+    if (deltaTable == null) {
+        if (data.length == 0) {
+            return;
+        }
+
+        var columns = [];
+
+        var tupleLength = data[0].tuple.tuple.length;
+
+        columns.push({ "title": "Direction" });
+
+        for (var i = 0; i < tupleLength; i++) {
+            columns.push({ "title": i + '.' });
+        }
+
+        deltaTable = $('#deltas').DataTable({
+            "scrollY": "742px",
+            "scrollCollapse": true,
+            "paging": false,
+            "ordering": false,
+            "columns": columns
+        });
+    }
+
+    var deltasLength = data.length;
+
+    setTimeout(function () {
+        updateDeltaTable(data, deltasLength, 0);
+    }, 0);
+
+}
+
+function updateDeltaTable(data, deltasLength, from) {
+    var last = false;
+    var to = from + 1000;
+
+    if (from + 1000 >= deltasLength) {
+        last = true;
+        to = deltasLength;
+    }
+
+    for (var i = from; i < to; i++) {
+        var tuple = data[i].tuple.tuple;
+        var changeDirection = data[i].changed;
+
+        var values = [];
+        values.push(changeDirection);
+        for (var k = 0; k < tuple.length; k++) {
+            values.push(tuple[k]);
+        }
+        deltaTable.row.add(values);
+    }
+
+    if (!last) {
+        setTimeout(function () {
+            updateDeltaTable(data, deltasLength, to);
+        }, 100);
+    }
+    else {
+        resultCount = jsonData.changes;
+        deltaTable.draw();
+        globalMonitoringTimer = setTimeout(function () { visualizeSystem(); }, 0);
+    }
 }
 
 // Other things **********************************************************************************************************************************************
@@ -1662,15 +1764,4 @@ function loadImages() {
     images = {
         server: serverImage
     };
-}
-
-function createTables() {
-    resultsTable = $('#results').DataTable({
-        "scrollY": "700px",
-        "scrollCollapse": true,
-        "paging": false,
-        "columns": [
-            { "title": "Engine" }
-        ]
-    });
 }

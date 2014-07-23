@@ -29,10 +29,18 @@ public class IncquerydDeltaResultResource {
 		
 		for (MonitoringChangeSet monitoringChangeSet : changeDeltas) {
 			Set<StringTuple> posChanges = monitoringChangeSet.posChanges();
-			if(posChanges.size() > 0) changes.add(new QueryDeltaData('+', posChanges));
+			if(posChanges.size() > 0) {
+				for (StringTuple stringTuple : posChanges) {
+					changes.add(new QueryDeltaData('+', stringTuple));
+				}
+			}
 			
 			Set<StringTuple> negChanges = monitoringChangeSet.negChanges();
-			if(negChanges.size() > 0) changes.add(new QueryDeltaData('-', negChanges));
+			if(negChanges.size() > 0) {
+				for (StringTuple stringTuple : negChanges) {
+					changes.add(new QueryDeltaData('-', stringTuple));
+				}
+			}
 		}
 		
 		return changes;

@@ -14,13 +14,7 @@
     <script language="javascript" type="text/javascript" src="jquery.dataTables.min.js"></script>
     <script>
 
-        function visualizeSystem() {
-
-            $.getJSON('/monitoring', function (data) {
-                update(data);
-            });
-            setTimeout("visualizeSystem()", 5000);
-        }
+        
 
         $(function () {
             loadImages();
@@ -62,14 +56,25 @@
 
             <h2>Query Results</h2>
             
-            <table id="results" class="display" cellspacing="0">
+            <table id="results" class="cell-border" cellspacing="0">
                 <thead>
-                    <tr>
-                        <th>Columns...</th>
-                    </tr>
+                    <tr></tr>
                 </thead>
             </table>
             
+        </div>
+
+        <div id="deltas-table">
+
+            <h2>Delta Changes</h2>
+
+            <table id="deltas" class="cell-border" cellspacing="0">
+                <thead>
+                    <tr></tr>
+                </thead>
+
+            </table>
+
         </div>
 
     </div>

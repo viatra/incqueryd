@@ -17,8 +17,6 @@ object QueryResultStore {
     
     sumChangeSet.synchronized({
       sumChangeSet = sumChangeSet + changeSet
-      println( sumChangeSet )
-      println( sumChangeSet.posChanges.size )
     }) 
     
     changeCounter += 1
