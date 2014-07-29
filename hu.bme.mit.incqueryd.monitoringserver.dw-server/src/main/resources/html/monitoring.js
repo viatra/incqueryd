@@ -1636,6 +1636,8 @@ function updateQueryResults(data) {
             "scrollCollapse": true,
             "paging": false,
             "ordering": false,
+            "deferRender": true,
+            scrollCollapse: true,
             "columns": columns
         });
     }
@@ -1652,9 +1654,9 @@ function updateQueryResults(data) {
 // This method is for adding the new rows to the results table by 1000 and not all of them by once so the UI stays responsive
 function updateResultsTable(data, from, length) {
     var last = false;
-    var to = from + 1000;
+    var to = from + 200;
 
-    if (from + 1000 >= length) {
+    if (from + 200 >= length) {
         last = true;
         to = length;
     }
@@ -1674,7 +1676,7 @@ function updateResultsTable(data, from, length) {
     if (! last) {
         setTimeout(function () {
             updateResultsTable(data, to, length);
-        }, 100);
+        }, 4);
     }
     else{
         resultsTable.draw();
@@ -1709,6 +1711,8 @@ function updateDeltaChanges(data) {
             "scrollCollapse": true,
             "paging": false,
             "ordering": false,
+            "deferRender": true,
+            scrollCollapse: true,
             "columns": columns
         });
     }
@@ -1723,9 +1727,9 @@ function updateDeltaChanges(data) {
 
 function updateDeltaTable(data, deltasLength, from) {
     var last = false;
-    var to = from + 1000;
+    var to = from + 200;
 
-    if (from + 1000 >= deltasLength) {
+    if (from + 200 >= deltasLength) {
         last = true;
         to = deltasLength;
     }
@@ -1745,7 +1749,7 @@ function updateDeltaTable(data, deltasLength, from) {
     if (!last) {
         setTimeout(function () {
             updateDeltaTable(data, deltasLength, to);
-        }, 100);
+        }, 4);
     }
     else {
         resultCount = jsonData.changes;
