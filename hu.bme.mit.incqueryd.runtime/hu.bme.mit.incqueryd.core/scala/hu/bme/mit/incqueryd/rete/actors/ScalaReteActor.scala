@@ -153,7 +153,7 @@ class ScalaReteActor extends Actor {
 
   protected def sendToSubscribers(changeSet: ChangeSet, senderStack: Stack[ActorRef]) = {
     reteNode match{
-      case node:InputNode => {
+      case node: InputNode => {
         pendingTerminationMessages = subscribers.entrySet.size
       }
       case _ => {}
@@ -167,8 +167,8 @@ class ScalaReteActor extends Actor {
         val updateMessage = new UpdateMessage(changeSet, slot, propagatedSenderStack)
 
         // @formatter:off
-			System.err.println("[ReteActor] " + self + ", " + reteNode.getClass().getName() + ", "
-			    	+ ": Sending to " + subscriber + "\n"
+			System.err.println("[ReteActor] " + self + ", " + reteNode.getClass().getName() + "\n"
+			    	+ "            - Sending to " + subscriber + "\n"
 					+ "            - " + changeSet.getChangeType() + " changeset, " + changeSet.getTuples().size() + " tuples\n"
 					+ "            - " + "with sender stack: " + propagatedSenderStack + "\n"
 					+ "            - " + pendingTerminationMessages + " pending")
@@ -207,7 +207,7 @@ class ScalaReteActor extends Actor {
     val route = readyMessage.getRoute
 
     reteNode match{
-      case node:InputNode => {
+      case node: InputNode => {
         if (route.isEmpty()) {
 		  pendingTerminationMessages -= 1
 		}
@@ -215,11 +215,7 @@ class ScalaReteActor extends Actor {
         if (pendingTerminationMessages == 0) {
 		  coordinatorRef ! CoordinatorMessage.TERMINATED
 
-		  System.err.println(coordinatorRef)
-
-		  System.err.println("+======================================+")
-		  System.err.println("|          you're terminated           |")
-		  System.err.println("+======================================+")
+		  System.err.println("[ReteActor] " + self + " Termination protocol completed.");
 		}
 
         return

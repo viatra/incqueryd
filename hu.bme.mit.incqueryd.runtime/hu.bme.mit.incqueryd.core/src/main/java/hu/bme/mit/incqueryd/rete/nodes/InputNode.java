@@ -22,6 +22,8 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 
+import javax.naming.OperationNotSupportedException;
+
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
 
@@ -133,7 +135,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		System.err.println("intializeForEdges returns " + tuples.size() + " " + typeNameSuffix + " tuples");
 	}
 
-	public Collection<ChangeSet> transform(final Transformation transformation) throws IOException {
+	public Collection<ChangeSet> transform(final Transformation transformation) throws IOException, OperationNotSupportedException {
 		final List<Tuple> invalids = new ArrayList<>(transformation.getInvalids());
 
 		final FourStoreClient client = new FourStoreClient(ontologyIri);
@@ -152,7 +154,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 			changeSet = switchSensorTransformation(invalids, client);
 			break;
 		default:
-			break;
+			throw new OperationNotSupportedException("Transformation for query " + transformation.getTestCase() + " not supported.");
 		}
 
 		return changeSet;
@@ -166,7 +168,6 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 		final Set<Long> segmentsToFix = new HashSet<>();
 
 		final int nElemToModify = size / 10;
-		// for (int i = 0; i < nElemToModify; i++) {
 		while (segmentsToFix.size() < nElemToModify) {
 			final int rndTarget = random.nextInt(size);
 			final Long segment = (Long) invalids.get(rndTarget).get(0);

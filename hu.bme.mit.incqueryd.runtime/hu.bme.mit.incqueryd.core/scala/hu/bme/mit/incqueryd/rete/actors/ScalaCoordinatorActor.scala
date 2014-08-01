@@ -36,27 +36,27 @@ import arch.ReteRole
 import arch.CacheRole
 import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexerRecipe
 import org.eclipse.incquery.runtime.rete.recipes.InputRecipe
+import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe
 
 class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor {
 
   protected val timeout: Timeout = new Timeout(Duration.create(14400, "seconds"))
-  //implicit val timeout: Timeout = Timeout(14400)
   protected var productionActorRef: ActorRef = null
   protected var query: String = null
   protected var debug: Boolean = true
   protected var latestResults: Set[Tuple] = new HashSet[Tuple]
   protected var latestChangeSet: ChangeSet = null
 
-  if (architectureFile.contains("poslength")) {
+  if (architectureFile.toLowerCase().contains("poslength")) {
     query = "PosLength";
   }
-  if (architectureFile.contains("routesensor")) {
+  if (architectureFile.toLowerCase().contains("routesensor")) {
     query = "RouteSensor";
   }
-  if (architectureFile.contains("signalneighbor")) {
+  if (architectureFile.toLowerCase().contains("signalneighbor")) {
     query = "SignalNeighbor";
   }
-  if (architectureFile.contains("switchsensor")) {
+  if (architectureFile.toLowerCase().contains("switchsensor")) {
     query = "SwitchSensor";
   }
 
@@ -193,7 +193,6 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
   private def initialize = {
     val futures: HashSet[Future[AnyRef]] = new HashSet[Future[AnyRef]]
 
-    println(recipeToActorRef.entrySet);
     recipeToActorRef.entrySet.foreach(entry => {
       val recipe = entry.getKey
       recipe match {
@@ -205,14 +204,14 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
       }
     })
 
-    if (debug) System.err.println("<AWAIT>")
-
+    if (debug) System.err.println("<AWAIT> for " + futures.size + " futures.")
     futures.foreach(future => {
       if (debug) System.err.println("await for " + future)
       val result = Await.result(future, timeout.duration)
-      if (debug) System.err.println(result)
-      if (debug) System.err.println("</AWAIT>")
+      if (debug) System.err.println("result is: " + result)
     })
+    if (debug) System.err.println("</AWAIT>")
+    
   }
 
   def check(): ChangeSet = {
@@ -232,13 +231,13 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
     recipeToActorRef.entrySet.foreach(entry => {
 
       entry.getKey match {
-        case uer: UniquenessEnforcerRecipe => {
+        case ir: InputRecipe => {
           val actorRef = entry.getValue
 
           query match {
 
             case "PosLength" => {
-              if (uer.getTraceInfo.contains("Segment")) {
+              if (ir.isInstanceOf[BinaryInputRecipe]) {
                 val transformation = new Transformation(latestResults, query)
                 val future = ask(actorRef, transformation, timeout)
                 Await.result(future, timeout.duration)
@@ -246,7 +245,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
             }
 
             case "RouteSensor" => {
-              if (uer.getTraceInfo.contains("TrackElement_sensor")) {
+              if (ir.getTraceInfo.contains("TrackElement_sensor")) {
                 val transformation = new Transformation(latestResults, query)
                 val future = ask(actorRef, transformation, timeout)
                 Await.result(future, timeout.duration)
@@ -254,7 +253,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
             }
 
             case "SignalNeighbor" => {
-              if (uer.getTraceInfo.contains("Route_exit")) {
+              if (ir.getTraceInfo.contains("Route_exit")) {
                 val transformation = new Transformation(latestResults, query)
                 val future = ask(actorRef, transformation, timeout)
                 Await.result(future, timeout.duration)
@@ -262,7 +261,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
             }
 
             case "SwitchSensor" => {
-              if (uer.getTraceInfo.contains("TrackElement_sensor")) {
+              if (ir.getTraceInfo.contains("TrackElement_sensor")) {
                 val transformation = new Transformation(latestResults, query)
                 val future = ask(actorRef, transformation, timeout)
                 Await.result(future, timeout.duration)
