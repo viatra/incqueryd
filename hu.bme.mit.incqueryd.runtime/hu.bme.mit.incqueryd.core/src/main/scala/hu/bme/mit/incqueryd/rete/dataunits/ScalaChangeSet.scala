@@ -9,6 +9,10 @@ class ScalaChangeSet(val positiveChanges: Set[Tuple], val negativeChanges: Set[T
     this(asScalaSet(pChanges).toSet, asScalaSet(nChanges).toSet)
   }
   
+  def this() = {
+    this(Set[Tuple](), Set[Tuple]())
+  }
+  
   def +(otherChange: ScalaChangeSet): ScalaChangeSet = {
     val posC = positiveChanges.union(otherChange.positiveChanges).diff(negativeChanges).diff(otherChange.negativeChanges)
     val negC = negativeChanges.union(otherChange.negativeChanges).diff(positiveChanges).diff(otherChange.positiveChanges)
@@ -22,4 +26,13 @@ class ScalaChangeSet(val positiveChanges: Set[Tuple], val negativeChanges: Set[T
   
   override def toString: String = "+: " + positiveChanges + "\n" + "-: " + negativeChanges
   
+}
+
+object ScalaChangeSet {
+  def create (changeSet: ChangeSet) = {
+    changeSet.getChangeType match {
+      case ChangeType.POSITIVE => new ScalaChangeSet(asScalaSet(changeSet.getTuples).toSet, Set[Tuple]())
+      case ChangeType.NEGATIVE => new ScalaChangeSet(Set[Tuple](), asScalaSet(changeSet.getTuples).toSet)
+    }
+  }
 }
