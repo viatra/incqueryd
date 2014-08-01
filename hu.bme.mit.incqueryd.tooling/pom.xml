@@ -81,7 +81,7 @@
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
-	
+
 	<modules>
 		<module>../lib/org.mozilla.javascript</module>
 		<module>hu.bme.mit.incqueryd.tooling.targetplatform</module>
@@ -94,6 +94,8 @@
 		<module>hu.bme.mit.incqueryd.arch.language</module>
 		<module>hu.bme.mit.incqueryd.arch.language.tests</module>
 		<module>hu.bme.mit.incqueryd.arch.language.ui</module>
+		<module>hu.bme.mit.incqueryd.tooling.deployment</module>
+		<module>hu.bme.mit.incqueryd.tooling.monitoring</module>
 		<module>hu.bme.mit.incqueryd.tooling.main</module>
 		<module>hu.bme.mit.incqueryd.tooling.product</module>
 	</modules>
