@@ -12,9 +12,9 @@ public class RecipeProcessor {
 		final Pattern pattern = Pattern.compile(patternString);
 		final Matcher matcher = pattern.matcher(recipe.getTypeName());
 		if (matcher.matches()) {
-			final String ontologyIri = matcher.group(1);
+			final String ontologyIriPrefix = matcher.group(1);
 			final String typeNameSuffix = matcher.group(2);
-			return new TypeInfo(ontologyIri, typeNameSuffix);
+			return new TypeInfo(ontologyIriPrefix, typeNameSuffix);
 		} else {
 			throw new IllegalArgumentException("Type name in the TypeInputRecipe does not conform the pattern " + patternString + ".");
 		}

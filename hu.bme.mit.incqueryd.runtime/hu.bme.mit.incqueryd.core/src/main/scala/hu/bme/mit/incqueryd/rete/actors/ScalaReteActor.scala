@@ -54,7 +54,7 @@ class ScalaReteActor extends Actor {
 
     System.err.println();
     System.err.println("[ReteActor] " + self + ", " + reteNode.getClass().getName() + ": "
-      + ArchUtil.removeLineBreaks(recipe.toString()))
+      + recipe.toString())
 
     recipe match {
       case alphaRecipe: AlphaRecipe => {
@@ -127,7 +127,7 @@ class ScalaReteActor extends Actor {
   private def update(updateMessage: UpdateMessage) = {
     System.err.println("[ReteActor] " + self + ", " + reteNode.getClass().getName()
 				+ ": update message received, " + updateMessage.getChangeSet().getChangeType() + " "
-				+ updateMessage.getNodeSlot())
+				+ updateMessage.getNodeSlot() + " " + updateMessage.getChangeSet().getTuples().size())
 
 	var changeSet:ChangeSet = null
 
@@ -168,7 +168,7 @@ class ScalaReteActor extends Actor {
 
         // @formatter:off
 			System.err.println("[ReteActor] " + self + ", " + reteNode.getClass().getName() + ", "
-					+ ArchUtil.removeLineBreaks(recipe.getTraceInfo()) + ": Sending to " + subscriber + "\n"
+			    	+ ": Sending to " + subscriber + "\n"
 					+ "            - " + changeSet.getChangeType() + " changeset, " + changeSet.getTuples().size() + " tuples\n"
 					+ "            - " + "with sender stack: " + propagatedSenderStack + "\n"
 					+ "            - " + pendingTerminationMessages + " pending")
