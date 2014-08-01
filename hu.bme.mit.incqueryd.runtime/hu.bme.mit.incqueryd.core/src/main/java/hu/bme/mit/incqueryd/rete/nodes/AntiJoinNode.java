@@ -89,7 +89,7 @@ public class AntiJoinNode extends BetaNode {
 		}
 
 		final Set<Tuple> deltaT = new HashSet<>();
-
+		
 		switch (slot) {
 		case PRIMARY:
 			final Set<Tuple> deltaP = incomingDelta;
@@ -142,7 +142,7 @@ public class AntiJoinNode extends BetaNode {
 		default:
 			break;
 		}
-
+		
 		switch (slot) {
 		case PRIMARY:
 			primaryIndexer.add(incomingDelta, incomingChangeType);
@@ -156,7 +156,6 @@ public class AntiJoinNode extends BetaNode {
 		
 		// Update the memory consumption metric for the monitoring
         updateMemoryConsumption();
-
 
 		final ChangeSet propagatedChangeSet = new ChangeSet(deltaT, propagatedChangeType);
 		return propagatedChangeSet;

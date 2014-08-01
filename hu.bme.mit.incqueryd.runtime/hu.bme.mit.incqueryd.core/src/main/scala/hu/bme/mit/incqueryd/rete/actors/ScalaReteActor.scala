@@ -148,7 +148,9 @@ class ScalaReteActor extends Actor {
         changeSet = reteNode.asInstanceOf[AlphaNode].update(updateMessage.getChangeSet)
       }
       case ReteNodeSlot.PRIMARY | ReteNodeSlot.SECONDARY => {
+        println("started: " + self)
         changeSet = reteNode.asInstanceOf[BetaNode].update(updateMessage.getChangeSet, updateMessage.getNodeSlot)
+        println("ended: " + self)
       }
       case _ => {
         throw new NotImplementedException(updateMessage.getNodeSlot() + " slot is not supported.")

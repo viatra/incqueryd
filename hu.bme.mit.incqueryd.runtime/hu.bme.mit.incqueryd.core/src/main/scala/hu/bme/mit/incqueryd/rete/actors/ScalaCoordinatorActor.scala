@@ -48,7 +48,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
   protected var debug: Boolean = false
   protected var latestResults: Set[Tuple] = new HashSet[Tuple]
   protected var latestChangeSet: ChangeSet = null
-  protected var unreportedChangeSets = new ArrayList[ChangeSet]() // unreported change sets for the monitoring server
+  protected var monitoringActor: ActorRef = null
   
   if (architectureFile.contains("poslength")) {
     query = "PosLength";
@@ -246,8 +246,6 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
   def check(): ChangeSet = {
     latestChangeSet = getQueryResults
     
-    unreportedChangeSets.add(latestChangeSet)
-    
     latestChangeSet.getChangeType match {
       case ChangeType.POSITIVE => latestResults.addAll(latestChangeSet.getTuples)
       case ChangeType.NEGATIVE => latestResults.removeAll(latestChangeSet.getTuples)
@@ -256,7 +254,28 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     
     if (debug) System.err.println("Results: " + latestResults.size)
     
+    monitoringActor ! sendChangesForMonitoring(latestChangeSet)
+    
     latestChangeSet
+  }
+  
+  def sendChangesForMonitoring(changeSet: ChangeSet) = {
+    val sb = new StringBuilder
+    
+    changeSet.getChangeType match {
+      case ChangeType.POSITIVE => sb ++= "+ "
+      case ChangeType.NEGATIVE => sb ++= "- "
+    }
+    
+    changeSet.getTuples.foreach(tuple => {
+      for ( i <- 0 to tuple.size - 1) {
+        sb ++= tuple.get(i) + ":"
+      }
+      sb.deleteCharAt(sb.size - 1)
+      sb += ';'
+    })
+    
+    sb.toString
   }
   
   def transform = {
@@ -321,29 +340,14 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
   }
   
   private def subscribeMonitoringService(conf: Configuration) = {
-    val actor = context.actorFor("akka://monitoringserver@" + monitoringServerIPAddress + ":2552/user/collector")
+    monitoringActor = context.actorFor("akka://monitoringserver@" + monitoringServerIPAddress + ":2552/user/collector")
     
 	val machines = new MonitoredMachines
 	conf.getClusters().foreach(cluster => cluster.getReteMachines().foreach(machine => machines.addMachineIP(machine.getIp)))
-	actor ! machines
+	monitoringActor ! machines
 	
-    actor ! new MonitoredActorCollection(actorRefs, jvmActorRefs)
+    monitoringActor ! new MonitoredActorCollection(actorRefs, jvmActorRefs)
     
-  }
-  
-  private def calculateUnreportedChanges : String = {
-    var sumChangeSet = new ScalaChangeSet
-    
-    unreportedChangeSets.foreach( change => {
-      sumChangeSet = sumChangeSet + ScalaChangeSet.create(change)
-      println(ScalaChangeSet.create(change))
-    })
-    
-    println(sumChangeSet.posChanges.size())
-    println(sumChangeSet.negChanges.size())
-    unreportedChangeSets.clear
-    
-    "hello"
   }
   
   def receive = {
@@ -358,7 +362,6 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
       transform
       sender ! CoordinatorMessage.DONE
     }
-    case MonitoringMessage.GETCCHANGES => sender ! calculateUnreportedChanges
     case _ => {}
   }
   

@@ -42,7 +42,7 @@ public class IncQueryDEngine {
 	}
 
 	public void shutdown() {
-		system.shutdown();
+		//system.shutdown();
 	}
 
 }

@@ -51,5 +51,14 @@ object IncQueryDMain {
 		var cs13 = new ScalaChangeSet(Set(t12, t14), Set(t13))
 		
 		println(cs11 + cs12 + cs13)
+		
+		var t22 = new Tuple("hello1")
+		var t24 = new Tuple("hello2")
+		var cs21 = new ScalaChangeSet(Set(t22, t24), Set[Tuple]())
+		
+		var t23 = new Tuple("hello2")
+		var cs22 = new ScalaChangeSet(Set[Tuple](), Set[Tuple](t23))
+		
+		println(cs21 + cs22 )
 	}
  }
