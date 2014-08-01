@@ -27,7 +27,7 @@ import com.google.common.collect.Maps;
  */
 public class CheckNode extends AlphaNode {
 
-	private String expression;
+	private final String expression;
 	// private final Set<String> inputParameterNames;
 	private final Map<String, Integer> mappedIndices;
 
@@ -68,7 +68,6 @@ public class CheckNode extends AlphaNode {
 				scope.put(parameterName, scope, value);
 			}
 			
-			expression = "SegmentLength <= 0";
 			final Boolean result = (Boolean) context.evaluateString(scope, expression, "<cmd>", 1, null);
 			return result;
 		} finally {
