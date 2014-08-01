@@ -89,14 +89,6 @@ public class ArchUtil {
 		}
 	}
 
-	public static String removeLineBreaks(final String string) {
-		if (string == null) {
-			return "";
-		} else {
-			return string.replaceAll("\n", "");
-		}
-	}
-
 	public static Configuration loadConfiguration(final String architectureFile) {
 		// initialize extension to factory map
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());

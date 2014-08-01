@@ -34,14 +34,16 @@ import arch.Configuration
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType
 import arch.ReteRole
 import arch.CacheRole
+import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexerRecipe
+import org.eclipse.incquery.runtime.rete.recipes.InputRecipe
 
-class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor{
+class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor {
 
   protected val timeout: Timeout = new Timeout(Duration.create(14400, "seconds"))
   //implicit val timeout: Timeout = Timeout(14400)
   protected var productionActorRef: ActorRef = null
   protected var query: String = null
-  protected var debug: Boolean = false
+  protected var debug: Boolean = true
   protected var latestResults: Set[Tuple] = new HashSet[Tuple]
   protected var latestChangeSet: ChangeSet = null
 
@@ -88,7 +90,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
 
   private def fillRecipeToIp(conf: Configuration) = {
 
-    conf.getMappings.foreach( mapping => {
+    conf.getMappings.foreach(mapping => {
       val machine = mapping.getMachine
 
       mapping.getRoles.foreach(role => role match {
@@ -108,7 +110,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
       emfUriToActorRef.put(emfUri, akkaUri)
 
       if (debug) System.err.println("EMF URI: " + emfUri + ", Akka URI: " + akkaUri + ", traceInfo "
-						+ ArchUtil.removeLineBreaks(recipe.getTraceInfo()))
+        + recipe.getTraceInfo())
     })
 
     if (debug) System.err.println()
@@ -118,51 +120,55 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
   private def deployActors(conf: Configuration) = {
 
     val cacheMachineIps = conf.getMappings.toList.
-    		filter(_.getRoles.exists(_.isInstanceOf[CacheRole])).
-    		map(_.getMachine.getIp)
+      filter(_.getRoles.exists(_.isInstanceOf[CacheRole])).
+      map(_.getMachine.getIp)
 
     conf.getMappings.foreach(mapping => {
-      mapping.getRoles.foreach(role => role match {
-        case reteRole: ReteRole => {
-        	val rnr = reteRole.getNodeRecipe
-	        if (debug) System.err.println("[TestKit] Recipe: " + rnr.getClass.getName)
+      // the ProjectionIndexerRecipes are dropped,
+      // as the current implementation handles BetaNodes with their indexers as one actor
 
-	        val ipAddress = recipeToIp.get(rnr)
-	        val emfUri = EcoreUtil.getURI(rnr).toString
+      mapping.getRoles.flatMap { case reteRole: ReteRole => Some(reteRole) }.
+      	filter( !_.getNodeRecipe().isInstanceOf[ProjectionIndexerRecipe] ).
+      	foreach { reteRole =>
+        val rnr = reteRole.getNodeRecipe
 
-	        if (debug) System.err.println("[TestKit] - IP address:  " + ipAddress)
-	        if (debug) System.err.println("[TestKit] - EMF address: " + emfUri)
+        if (debug) System.err.println("[TestKit] Recipe: " + rnr.getClass.getName)
 
-	        emfUriToRecipe.put(emfUri, rnr)
+        val ipAddress = recipeToIp.get(rnr)
+        val emfUri = EcoreUtil.getURI(rnr).toString
 
-	        // create a clone, else we would get a java.util.ConcurrentModificationException
-	        val rnrClone = EcoreUtil.copy(rnr)
-	        val recipeString = EObjectSerializer.serializeToString(rnrClone)
+        if (debug) System.err.println("[TestKit] - IP address:  " + ipAddress)
+        if (debug) System.err.println("[TestKit] - EMF address: " + emfUri)
 
-	        var props: Props = null
-	        if (remoting) {
-	          props = Props[ScalaReteActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
-	                      IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))))
-	        } else {
-	          props = Props[ScalaReteActor]
-	        }
+        emfUriToRecipe.put(emfUri, rnr)
 
-	        val actorRef = context.actorOf(props)
+        // create a clone, else we would get a java.util.ConcurrentModificationException
+        val rnrClone = EcoreUtil.copy(rnr)
+        val recipeString = EObjectSerializer.serializeToString(rnrClone)
 
-	        configure(actorRef, recipeString, cacheMachineIps)
-
-	        actorRefs.add(actorRef)
-	        recipeToActorRef.put(rnr, actorRef)
-
-	        rnr match{
-	          case pRec: ProductionRecipe => productionActorRef = actorRef
-	          case _ => {}
-	        }
-
-	        if (debug) System.err.println("[TestKit] Actor configured.")
-	        if (debug) System.err.println()
+        var props: Props = null
+        if (remoting) {
+          props = Props[ScalaReteActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
+            IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))))
+        } else {
+          props = Props[ScalaReteActor]
         }
-      })
+
+        val actorRef = context.actorOf(props)
+
+        configure(actorRef, recipeString, cacheMachineIps)
+
+        actorRefs.add(actorRef)
+        recipeToActorRef.put(rnr, actorRef)
+
+        rnr match {
+          case pRec: ProductionRecipe => productionActorRef = actorRef
+          case _ => {}
+        }
+
+        if (debug) System.err.println("[TestKit] Actor configured.")
+        if (debug) System.err.println()
+      }
     })
 
     if (debug) System.err.println("[ReteActor] All actors deployed and configured.")
@@ -187,10 +193,11 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
   private def initialize = {
     val futures: HashSet[Future[AnyRef]] = new HashSet[Future[AnyRef]]
 
+    println(recipeToActorRef.entrySet);
     recipeToActorRef.entrySet.foreach(entry => {
       val recipe = entry.getKey
-      recipe match{
-        case rec: UniquenessEnforcerRecipe => {
+      recipe match {
+        case rec: InputRecipe => {
           val future = ask(entry.getValue, CoordinatorMessage.INITIALIZE, timeout)
           futures.add(future)
         }
@@ -276,7 +283,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
     Await.result(queryResultFuture, timeout.duration).asInstanceOf[ChangeSet]
   }
 
-  private def configure (actorRef: ActorRef, recipeString: String, cacheMachineIps: List[String]) = {
+  private def configure(actorRef: ActorRef, recipeString: String, cacheMachineIps: List[String]) = {
     val conf = new ReteNodeConfiguration(recipeString, cacheMachineIps)
     val future = ask(actorRef, conf, timeout)
     Await.result(future, timeout.duration)

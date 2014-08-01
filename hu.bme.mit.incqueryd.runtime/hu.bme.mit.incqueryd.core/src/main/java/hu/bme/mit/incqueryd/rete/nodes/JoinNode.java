@@ -38,7 +38,7 @@ public class JoinNode extends BetaNode {
         final List<Integer> rightTupleMask = secondaryIndexer.getJoinMask();
 
         for (final Tuple newTuple : incomingTuples) {
-            final Tuple extractedTuple = TupleMask.project(newTuple, newTuplesIndexer.getJoinMask());
+        	final Tuple extractedTuple = TupleMask.project(newTuple, newTuplesIndexer.getJoinMask());
             final Set<Tuple> matchingTuples = existingTuplesIndexer.get(extractedTuple);
 
             // for each matching tuple, create a result tuple
