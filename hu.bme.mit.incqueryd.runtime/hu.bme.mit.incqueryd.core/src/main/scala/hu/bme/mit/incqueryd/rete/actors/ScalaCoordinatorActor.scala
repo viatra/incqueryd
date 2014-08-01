@@ -1,51 +1,58 @@
 package hu.bme.mit.incqueryd.rete.actors
 
-import akka.actor.Actor
-import akka.util.Timeout
-import scala.concurrent.duration.Duration
-import akka.actor.ActorRef
-import hu.bme.mit.incqueryd.rete.dataunits.Tuple
-import hu.bme.mit.incqueryd.arch.ArchUtil
+import java.util.ArrayList
 import java.util.HashMap
-import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import java.util.HashSet
 import java.util.Set
+
 import scala.collection.JavaConversions._
-import com.google.common.collect.Lists
-import java.util.ArrayList
-import org.eclipse.emf.ecore.util.EcoreUtil
-import hu.bme.mit.incqueryd.util.EObjectSerializer
-import akka.actor.Props
-import akka.actor.Deploy
-import akka.remote.RemoteScope
-import akka.actor.Address
-import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
-import hu.bme.mit.incqueryd.rete.messages.YellowPages
 import scala.concurrent.Await
 import scala.concurrent.Future
-import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe
-import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage
-import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
-import akka.pattern.Patterns.ask
-import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand
-import hu.bme.mit.incqueryd.rete.messages.Transformation
-import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet
-import arch.Configuration
-import hu.bme.mit.incqueryd.rete.dataunits.ChangeType
-import arch.ReteRole
-import arch.CacheRole
-import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexerRecipe
-import org.eclipse.incquery.runtime.rete.recipes.InputRecipe
+import scala.concurrent.duration.Duration
+
+import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe
+import org.eclipse.incquery.runtime.rete.recipes.InputRecipe
+import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
+import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexerRecipe
+import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 
-class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor {
+import akka.actor.Actor
+import akka.actor.ActorRef
+import akka.actor.Address
+import akka.actor.Deploy
+import akka.actor.Props
+import akka.pattern.Patterns.ask
+import akka.remote.RemoteScope
+import akka.util.Timeout
+import arch.CacheRole
+import arch.Configuration
+import arch.ReteRole
+import hu.bme.mit.incqueryd.arch.ArchUtil
+import hu.bme.mit.incqueryd.monitoring.actors.JVMMonitoringActor
+import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet
+import hu.bme.mit.incqueryd.rete.dataunits.ChangeType
+import hu.bme.mit.incqueryd.rete.dataunits.ScalaChangeSet
+import hu.bme.mit.incqueryd.rete.dataunits.Tuple
+import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand
+import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage
+import hu.bme.mit.incqueryd.rete.messages.Transformation
+import hu.bme.mit.incqueryd.rete.messages.YellowPages
+import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
+import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredMachines
+import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoringMessage
+import hu.bme.mit.incqueryd.util.EObjectSerializer
+import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
 
+class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean, val monitoringServerIPAddress: String) extends Actor{
+  
   protected val timeout: Timeout = new Timeout(Duration.create(14400, "seconds"))
   protected var productionActorRef: ActorRef = null
   protected var query: String = null
   protected var debug: Boolean = true
   protected var latestResults: Set[Tuple] = new HashSet[Tuple]
   protected var latestChangeSet: ChangeSet = null
+  protected var unreportedChangeSets = new ArrayList[ChangeSet]() // unreported change sets for the monitoring server
 
   if (architectureFile.toLowerCase().contains("poslength")) {
     query = "PosLength";
@@ -65,6 +72,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
   var emfUriToRecipe: HashMap[String, ReteNodeRecipe] = new HashMap[String, ReteNodeRecipe]
   var emfUriToActorRef: HashMap[String, ActorRef] = new HashMap[String, ActorRef]
   var actorRefs: HashSet[ActorRef] = new HashSet[ActorRef]
+  var jvmActorRefs: HashSet[ActorRef] = new HashSet[ActorRef]
 
   def start = {
     val conf: Configuration = ArchUtil.loadConfiguration(architectureFile)
@@ -77,12 +85,18 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
 
     // phase 1
     deployActors(conf)
+    // deploy jvm monitoring actors as well
+    deployJVMMonitoringActors(conf)
 
     // create mapping based on the results of phase one mapping
     fillEmfUriToActorRef
 
     // phase 2
     subscribeActors(conf)
+    
+    if(monitoringServerIPAddress != null) {
+      subscribeMonitoringService(conf)
+    }
 
     // phase 3
     initialize
@@ -176,6 +190,27 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
 
   }
 
+  private def deployJVMMonitoringActors(conf: Configuration) = {
+    
+//    if (remoting) {
+//      conf.getClusters().foreach(cluster => cluster.getReteMachines().foreach(machine => {
+//        val ipAddress = machine.getIp
+//
+//        var props = Props[JVMMonitoringActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
+//          IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))))
+//
+//        val actorRef = context.actorOf(props)
+//        jvmActorRefs.add(actorRef)
+//      }))
+//    } 
+//    else {
+//      var props = Props[JVMMonitoringActor]
+//      val actorRef = context.actorOf(props)
+//      jvmActorRefs.add(actorRef)
+//    }
+    
+  }
+
   private def subscribeActors(conf: Configuration) = {
     val yellowPages = new YellowPages(emfUriToActorRef)
 
@@ -217,6 +252,8 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
   def check(): ChangeSet = {
     latestChangeSet = getQueryResults
 
+    unreportedChangeSets.add(latestChangeSet)
+    
     latestChangeSet.getChangeType match {
       case ChangeType.POSITIVE => latestResults.addAll(latestChangeSet.getTuples)
       case ChangeType.NEGATIVE => latestResults.removeAll(latestChangeSet.getTuples)
@@ -224,6 +261,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
     }
 
     if (debug) System.err.println("Results: " + latestResults.size)
+    
     latestChangeSet
   }
 
@@ -288,6 +326,32 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
     Await.result(future, timeout.duration)
   }
 
+  private def subscribeMonitoringService(conf: Configuration) = {
+//    val actor = context.actorFor("akka://monitoringserver@" + monitoringServerIPAddress + ":2552/user/collector")
+    
+//	val machines = new MonitoredMachines
+//	conf.getClusters().foreach(cluster => cluster.getReteMachines().foreach(machine => machines.addMachineIP(machine.getIp)))
+//	actor ! machines
+	
+//    actor ! new MonitoredActorCollection(actorRefs, jvmActorRefs)
+    
+  }
+  
+  private def calculateUnreportedChanges : String = {
+    var sumChangeSet = new ScalaChangeSet
+    
+    unreportedChangeSets.foreach( change => {
+      sumChangeSet = sumChangeSet + ScalaChangeSet.create(change)
+      println(ScalaChangeSet.create(change))
+    })
+    
+    println(sumChangeSet.posChanges.size())
+    println(sumChangeSet.negChanges.size())
+    unreportedChangeSets.clear
+    
+    "hello"
+  }
+  
   def receive = {
     case CoordinatorCommand.START => {
       start
@@ -300,6 +364,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean)
       transform
       sender ! CoordinatorMessage.DONE
     }
+    case MonitoringMessage.GETCCHANGES => sender ! calculateUnreportedChanges
     case _ => {}
   }
 

@@ -27,6 +27,7 @@ import javax.naming.OperationNotSupportedException;
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
 
+import com.carrotsearch.sizeof.RamUsageEstimator;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
@@ -79,6 +80,14 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 
 	public GraphElement getGraphElement() {
 		return graphElement;
+	}
+	
+	public int tuples() {
+		return tuples.size();
+	}
+	
+	public double getMemoryConsumption() {
+		return tuples.size() > 0 ? (double)RamUsageEstimator.sizeOf(tuples)/RamUsageEstimator.ONE_MB : 0;
 	}
 
 	@Override
