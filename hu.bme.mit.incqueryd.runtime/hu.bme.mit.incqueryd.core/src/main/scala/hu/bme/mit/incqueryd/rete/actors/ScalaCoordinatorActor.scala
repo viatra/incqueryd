@@ -44,15 +44,15 @@ import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoringMessage
 import hu.bme.mit.incqueryd.util.EObjectSerializer
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
 
-class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean, val monitoringServerIPAddress: String) extends Actor{
-  
+class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean, val monitoringServerIPAddress: String) extends Actor {
+
   protected val timeout: Timeout = new Timeout(Duration.create(14400, "seconds"))
   protected var productionActorRef: ActorRef = null
   protected var query: String = null
   protected var debug: Boolean = true
   protected var latestResults: Set[Tuple] = new HashSet[Tuple]
   protected var latestChangeSet: ChangeSet = null
-  protected var unreportedChangeSets = new ArrayList[ChangeSet]() // unreported change sets for the monitoring server
+  protected var monitoringActor: ActorRef = null
 
   if (architectureFile.toLowerCase().contains("poslength")) {
     query = "PosLength";
@@ -92,11 +92,11 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     fillEmfUriToActorRef
 
     // phase 2
-    subscribeActors(conf)
-    
-    if(monitoringServerIPAddress != null) {
+    if (monitoringServerIPAddress != null) {
       subscribeMonitoringService(conf)
     }
+
+    subscribeActors(conf)
 
     // phase 3
     initialize
@@ -142,47 +142,47 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
       // as the current implementation handles BetaNodes with their indexers as one actor
 
       mapping.getRoles.flatMap { case reteRole: ReteRole => Some(reteRole) }.
-      	filter( !_.getNodeRecipe().isInstanceOf[ProjectionIndexerRecipe] ).
-      	foreach { reteRole =>
-        val rnr = reteRole.getNodeRecipe
+        filter(!_.getNodeRecipe().isInstanceOf[ProjectionIndexerRecipe]).
+        foreach { reteRole =>
+          val rnr = reteRole.getNodeRecipe
 
-        if (debug) System.err.println("[TestKit] Recipe: " + rnr.getClass.getName)
+          if (debug) System.err.println("[TestKit] Recipe: " + rnr.getClass.getName)
 
-        val ipAddress = recipeToIp.get(rnr)
-        val emfUri = EcoreUtil.getURI(rnr).toString
+          val ipAddress = recipeToIp.get(rnr)
+          val emfUri = EcoreUtil.getURI(rnr).toString
 
-        if (debug) System.err.println("[TestKit] - IP address:  " + ipAddress)
-        if (debug) System.err.println("[TestKit] - EMF address: " + emfUri)
+          if (debug) System.err.println("[TestKit] - IP address:  " + ipAddress)
+          if (debug) System.err.println("[TestKit] - EMF address: " + emfUri)
 
-        emfUriToRecipe.put(emfUri, rnr)
+          emfUriToRecipe.put(emfUri, rnr)
 
-        // create a clone, else we would get a java.util.ConcurrentModificationException
-        val rnrClone = EcoreUtil.copy(rnr)
-        val recipeString = EObjectSerializer.serializeToString(rnrClone)
+          // create a clone, else we would get a java.util.ConcurrentModificationException
+          val rnrClone = EcoreUtil.copy(rnr)
+          val recipeString = EObjectSerializer.serializeToString(rnrClone)
 
-        var props: Props = null
-        if (remoting) {
-          props = Props[ScalaReteActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
-            IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))))
-        } else {
-          props = Props[ScalaReteActor]
+          var props: Props = null
+          if (remoting) {
+            props = Props[ScalaReteActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
+              IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))))
+          } else {
+            props = Props[ScalaReteActor]
+          }
+
+          val actorRef = context.actorOf(props)
+
+          configure(actorRef, recipeString, cacheMachineIps)
+
+          actorRefs.add(actorRef)
+          recipeToActorRef.put(rnr, actorRef)
+
+          rnr match {
+            case pRec: ProductionRecipe => productionActorRef = actorRef
+            case _ => {}
+          }
+
+          if (debug) System.err.println("[TestKit] Actor configured.")
+          if (debug) System.err.println()
         }
-
-        val actorRef = context.actorOf(props)
-
-        configure(actorRef, recipeString, cacheMachineIps)
-
-        actorRefs.add(actorRef)
-        recipeToActorRef.put(rnr, actorRef)
-
-        rnr match {
-          case pRec: ProductionRecipe => productionActorRef = actorRef
-          case _ => {}
-        }
-
-        if (debug) System.err.println("[TestKit] Actor configured.")
-        if (debug) System.err.println()
-      }
     })
 
     if (debug) System.err.println("[ReteActor] All actors deployed and configured.")
@@ -191,28 +191,27 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
   }
 
   private def deployJVMMonitoringActors(conf: Configuration) = {
-    
-//    if (remoting) {
-//      conf.getClusters().foreach(cluster => cluster.getReteMachines().foreach(machine => {
-//        val ipAddress = machine.getIp
-//
-//        var props = Props[JVMMonitoringActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
-//          IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))))
-//
-//        val actorRef = context.actorOf(props)
-//        jvmActorRefs.add(actorRef)
-//      }))
-//    } 
-//    else {
-//      var props = Props[JVMMonitoringActor]
-//      val actorRef = context.actorOf(props)
-//      jvmActorRefs.add(actorRef)
-//    }
-    
+
+    if (remoting) {
+      conf.getMappings.foreach(mapping => {
+        val ipAddress = mapping.getMachine.getIp
+
+        var props = Props[JVMMonitoringActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
+          IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))))
+
+        val actorRef = context.actorOf(props)
+        jvmActorRefs.add(actorRef)
+      })
+    } else {
+      var props = Props[JVMMonitoringActor]
+      val actorRef = context.actorOf(props)
+      jvmActorRefs.add(actorRef)
+    }
+
   }
 
   private def subscribeActors(conf: Configuration) = {
-    val yellowPages = new YellowPages(emfUriToActorRef)
+    val yellowPages = new YellowPages(emfUriToActorRef, monitoringActor)
 
     actorRefs.foreach(actorRef => {
       val future = ask(actorRef, yellowPages, timeout)
@@ -246,14 +245,12 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
       if (debug) System.err.println("result is: " + result)
     })
     if (debug) System.err.println("</AWAIT>")
-    
+
   }
 
   def check(): ChangeSet = {
     latestChangeSet = getQueryResults
 
-    unreportedChangeSets.add(latestChangeSet)
-    
     latestChangeSet.getChangeType match {
       case ChangeType.POSITIVE => latestResults.addAll(latestChangeSet.getTuples)
       case ChangeType.NEGATIVE => latestResults.removeAll(latestChangeSet.getTuples)
@@ -261,8 +258,29 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     }
 
     if (debug) System.err.println("Results: " + latestResults.size)
-    
+
+    monitoringActor ! sendChangesForMonitoring(latestChangeSet)
+
     latestChangeSet
+  }
+
+  def sendChangesForMonitoring(changeSet: ChangeSet) = {
+    val sb = new StringBuilder
+
+    changeSet.getChangeType match {
+      case ChangeType.POSITIVE => sb ++= "+ "
+      case ChangeType.NEGATIVE => sb ++= "- "
+    }
+
+    changeSet.getTuples.foreach(tuple => {
+      for (i <- 0 to tuple.size - 1) {
+        sb ++= tuple.get(i) + ":"
+      }
+      sb.deleteCharAt(sb.size - 1)
+      sb += ';'
+    })
+
+    sb.toString
   }
 
   def transform = {
@@ -327,31 +345,16 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
   }
 
   private def subscribeMonitoringService(conf: Configuration) = {
-//    val actor = context.actorFor("akka://monitoringserver@" + monitoringServerIPAddress + ":2552/user/collector")
-    
-//	val machines = new MonitoredMachines
-//	conf.getClusters().foreach(cluster => cluster.getReteMachines().foreach(machine => machines.addMachineIP(machine.getIp)))
-//	actor ! machines
-	
-//    actor ! new MonitoredActorCollection(actorRefs, jvmActorRefs)
-    
+    monitoringActor = context.actorFor("akka://monitoringserver@" + monitoringServerIPAddress + ":2552/user/collector")
+
+    val machines = new MonitoredMachines
+    conf.getMappings.foreach(mapping => machines.addMachineIP(mapping.getMachine.getIp))
+    monitoringActor ! machines
+
+    monitoringActor ! new MonitoredActorCollection(actorRefs, jvmActorRefs)
+
   }
-  
-  private def calculateUnreportedChanges : String = {
-    var sumChangeSet = new ScalaChangeSet
-    
-    unreportedChangeSets.foreach( change => {
-      sumChangeSet = sumChangeSet + ScalaChangeSet.create(change)
-      println(ScalaChangeSet.create(change))
-    })
-    
-    println(sumChangeSet.posChanges.size())
-    println(sumChangeSet.negChanges.size())
-    unreportedChangeSets.clear
-    
-    "hello"
-  }
-  
+
   def receive = {
     case CoordinatorCommand.START => {
       start
@@ -364,7 +367,6 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
       transform
       sender ! CoordinatorMessage.DONE
     }
-    case MonitoringMessage.GETCCHANGES => sender ! calculateUnreportedChanges
     case _ => {}
   }
 

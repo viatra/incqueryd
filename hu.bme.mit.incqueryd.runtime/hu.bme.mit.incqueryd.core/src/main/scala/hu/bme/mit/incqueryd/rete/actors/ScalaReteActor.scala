@@ -48,6 +48,8 @@ class ScalaReteActor extends Actor {
 
   protected var updateMessageCount = 0 // To count how many update messages this actor sent
   protected var changesCount = 0 // To count how many tuple changes it sent
+  
+  protected var monitoringServerActor: ActorRef = null
 
   System.err.println("[ReteActor] Rete actor instantiated.")
 
@@ -61,6 +63,8 @@ class ScalaReteActor extends Actor {
   }
 
   private def subscribe(yellowPages: YellowPages) = {
+    
+    monitoringServerActor = yellowPages.getMonitoringServerAddress
 
     val emfUriToActorRef = yellowPages.getEmfUriToActorRef()
 
@@ -156,6 +160,8 @@ class ScalaReteActor extends Actor {
     }
 
     sendToSubscribers(changeSet, updateMessage.getSenderStack)
+    
+    monitoringServerActor ! monitor // send the monitoring server the updated metrics
 
     reteNode match{
       case node:ProductionNode => terminationProtocol(new TerminationMessage(updateMessage.getSenderStack()))
@@ -202,28 +208,30 @@ class ScalaReteActor extends Actor {
 
     System.err.println("[ReteActor] " + self + ": INITIALIZE received")
 
-    spawn {
-      val node = reteNode.asInstanceOf[InitializableReteNode]
-      val changeSet = node.initialize
+    val node = reteNode.asInstanceOf[InitializableReteNode]
+    val changeSet = node.initialize
 
-      val emptyStack = Stack.empty[ActorRef]
-      sendToSubscribers(changeSet, emptyStack)
-    }
+    val emptyStack = Stack.empty[ActorRef]
+    sendToSubscribers(changeSet, emptyStack)
+    
+    monitoringServerActor ! monitor // send the monitoring server the updated metrics
+    
   }
 
   private def doTransformation(transformation: Transformation) = {
     coordinatorRef = sender
     System.err.println("[ReteActor] " + self + ": PosLength transformation")
 
-    spawn {
-      val inputNode = reteNode.asInstanceOf[InputNode]
-      val changeSets = inputNode.transform(transformation)
-      val emptyStack = Stack.empty[ActorRef]
+    val inputNode = reteNode.asInstanceOf[InputNode]
+    val changeSets = inputNode.transform(transformation)
+    val emptyStack = Stack.empty[ActorRef]
 
-      changeSets.foreach(changeSet => {
-        sendToSubscribers(changeSet, emptyStack)
-      })
-    }
+    changeSets.foreach(changeSet => {
+      sendToSubscribers(changeSet, emptyStack)
+    })
+    
+    monitoringServerActor ! monitor // send the monitoring server the updated metrics
+    
   }
 
   private def terminationProtocol(readyMessage: TerminationMessage): Unit = {
@@ -259,7 +267,7 @@ class ScalaReteActor extends Actor {
 
     return
   }
-
+  
   private def monitor: ReteNodeMetrics = {
     val clazz = reteNode.getClass.getName.split("\\.")
     val nodeType = clazz(clazz.length - 1)
@@ -278,7 +286,7 @@ class ScalaReteActor extends Actor {
 
   def receive = {
     case conf: ReteNodeConfiguration => configure(conf)
-    case updateMessage: UpdateMessage => spawn { update(updateMessage) }
+    case updateMessage: UpdateMessage => update(updateMessage)
     case yellowPages: YellowPages => {
       subscribe(yellowPages)
       sender ! ActorReply.YELLOWPAGES_RECEIVED

@@ -10,13 +10,19 @@ public class YellowPages implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	final Map<String, ActorRef> emfUriToActorRef;
+	protected final ActorRef monitoringServerAddress;
 	
-	public YellowPages(final Map<String, ActorRef> emfUriToActorRef) {
+	public YellowPages(final Map<String, ActorRef> emfUriToActorRef, ActorRef monitoringServerAddress) {
 		this.emfUriToActorRef = emfUriToActorRef;
+		this.monitoringServerAddress = monitoringServerAddress;
 	}
 	
 	public Map<String, ActorRef> getEmfUriToActorRef() {
 		return emfUriToActorRef;
+	}
+	
+	public ActorRef getMonitoringServerAddress() {
+		return monitoringServerAddress;
 	}
 	
 }
