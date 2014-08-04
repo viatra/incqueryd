@@ -18,5 +18,9 @@ public class AlphaNodeMetrics extends ReteNodeMetrics {
 	public String toString() {
 		return super.toString();
 	}
+	
+	public boolean shouldAlarm(AlphaNodeMetrics metrics, double percent) {
+		return super.shouldAlarm(metrics, percent);
+	}
 
 }

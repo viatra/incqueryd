@@ -90,7 +90,7 @@ public class ReteNodeMetrics implements Serializable {
 		return str;
 	}
 	
-	public boolean shouldAlarm(ReteNodeMetrics metrics, double percent) {
+	protected boolean shouldAlarm(ReteNodeMetrics metrics, double percent) {
 		return (this.changesCount >= metrics.getChangesCount() * (1 + percent)) | (this.changesCount <= metrics.getChangesCount() * (1 - percent));
 	}
 }
