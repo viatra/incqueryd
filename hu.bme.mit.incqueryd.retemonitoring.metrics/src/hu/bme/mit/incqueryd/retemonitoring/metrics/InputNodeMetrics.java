@@ -24,5 +24,9 @@ public class InputNodeMetrics extends MemoryNodeMetrics {
 	public String toString() {
 		return super.toString() + ", Tuples: " + tuples;
 	}
+	
+	public boolean shouldAlarm(InputNodeMetrics metrics, double percent) {
+		return super.shouldAlarm(metrics, percent);
+	}
 
 }

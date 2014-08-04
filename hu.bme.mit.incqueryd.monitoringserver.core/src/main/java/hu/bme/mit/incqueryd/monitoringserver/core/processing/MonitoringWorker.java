@@ -4,10 +4,10 @@ import hu.bme.mit.incqueryd.jvmmonitoring.metrics.JVMMetrics;
 import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringAddressStore;
 import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringDataCollectorActor;
 import hu.bme.mit.incqueryd.monitoringserver.core.QueryResultStore;
+import hu.bme.mit.incqueryd.monitoringserver.core.ReteMetricsStore;
 import hu.bme.mit.incqueryd.monitoringserver.core.datacollection.MachineMonitoringWorker;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.AggregatedMonitoringData;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.MachineMonitoringData;
-import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,10 +56,6 @@ public class MonitoringWorker extends Thread {
 		
 		List<MachineMonitoringWorker> machineWorkers = new ArrayList<>();
 		
-		// Start the Rete monitoring worker
-		ReteMonitoringWorker reteWorker = new ReteMonitoringWorker();
-		reteWorker.start();
-		
 		// Start the JVM monitoring worker
 		JVMMonitoringWorker jvmWorker = new JVMMonitoringWorker();
 		jvmWorker.start();
@@ -104,15 +100,7 @@ public class MonitoringWorker extends Thread {
 		
 		collectedData.setMachines(machines);
 		
-		// Wait for the Rete monitoring worker and get the collected data
-		try {
-			reteWorker.join();
-		} catch (InterruptedException e1) {
-
-		}
-
-		List<ReteNodeMetrics> reteMetrics = reteWorker.getReteMetrics();
-		collectedData.setRete(reteMetrics);
+		collectedData.setRete(ReteMetricsStore.getMetrics());
 		
 		collectedData.setChanges(QueryResultStore.numberOfChanges());
 		

@@ -40,4 +40,8 @@ public class BetaNodeMetrics extends MemoryNodeMetrics {
 		return super.toString() + ", Primary indexer: " + leftIndexerSize + ", Secondary indexer: " + rightIndexerSize;
 	}
 	
+	public boolean shouldAlarm(BetaNodeMetrics metrics, double percent) {
+		return super.shouldAlarm(metrics, percent);
+	}
+	
 }

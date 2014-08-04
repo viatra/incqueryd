@@ -30,5 +30,9 @@ public class MemoryNodeMetrics extends ReteNodeMetrics {
 	public String toString() {
 		return super.toString() + ", Memory: " + memory;
 	}
+	
+	protected boolean shouldAlarm(MemoryNodeMetrics metrics, double percent) {
+		return super.shouldAlarm(metrics, percent) | (this.memory >= metrics.getMemory() * (1 + percent)) | (this.memory <= metrics.getMemory() * (1 - percent));
+	}
 
 }

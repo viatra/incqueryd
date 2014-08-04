@@ -13,6 +13,7 @@ import scala.collection.JavaConversions._
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredMachines
 import hu.bme.mit.incqueryd.monitoringserver.core.data.StringTuple
 import hu.bme.mit.incqueryd.monitoringserver.core.data.MonitoringChangeSet
+import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics
 
 class MonitoringDataCollectorActor extends Actor {
 
@@ -27,6 +28,8 @@ class MonitoringDataCollectorActor extends Actor {
       MonitoringAddressStore.putMachines(machines.getMachineIPs)
       MonitoringAddressStore.addCoordinatorActor(sender)
     }
+    
+    case reteNodeMetrics: ReteNodeMetrics => ReteMetricsStore putMetric reteNodeMetrics
     
     case str: String => {
       str charAt 0 match {

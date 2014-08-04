@@ -45,7 +45,7 @@ object MonitoringAddressStore {
   }
   
   def putMachines(machines: Collection[String]) = {
-    monitoredMachinesIPs.addAll(machines)
+    monitoredMachinesIPs.synchronized(monitoredMachinesIPs.addAll(machines))
   }
   
   def getMachines : java.util.Set[String] = monitoredMachinesIPs.synchronized(for {machine <- monitoredMachinesIPs} yield machine)
