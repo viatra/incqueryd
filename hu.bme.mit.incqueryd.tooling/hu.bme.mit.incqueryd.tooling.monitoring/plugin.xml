@@ -24,5 +24,19 @@
          </toolbar>
       </menuContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="hu.bme.mit.incqueryd.tooling.monitoring.preferences.MonitoringPreferencePage"
+            id="hu.bme.mit.incqueryd.tooling.monitoring.preferences.MonitoringPreferencePage"
+            name="Monitoring">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="hu.bme.mit.incqueryd.tooling.monitoring.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
 
 </plugin>
