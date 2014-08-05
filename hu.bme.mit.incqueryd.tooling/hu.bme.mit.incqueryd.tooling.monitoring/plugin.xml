@@ -5,7 +5,7 @@
          point="org.eclipse.ui.commands">
       <command
             defaultHandler="hu.bme.mit.incqueryd.tooling.monitoring.StartMonitoringHandler"
-            id="hu.bme.mit.incqueryd.tooling.monitoring.commands.start"
+            id="hu.bme.mit.incqueryd.tooling.monitoring.commands.startMonitoring"
             name="Start Monitoring">
       </command>
       <command
@@ -22,7 +22,7 @@
          <toolbar
                id="hu.bme.mit.incqueryd.tooling.monitoring.toolbar">
             <command
-                  commandId="hu.bme.mit.incqueryd.tooling.monitoring.commands.start"
+                  commandId="hu.bme.mit.incqueryd.tooling.monitoring.commands.startMonitoring"
                   icon="icons/StartMonitoring.png"
                   style="push">
             </command>
