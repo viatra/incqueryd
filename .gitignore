@@ -8,3 +8,5 @@ tmp/
 .metadata
 runtimeInfo
 .cache
+hu.bme.mit.incqueryd.arch.edit
+hu.bme.mit.incqueryd.arch.editor

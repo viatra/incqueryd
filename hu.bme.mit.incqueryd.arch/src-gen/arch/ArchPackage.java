@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EReference;
  * <!-- end-user-doc -->
  * @see arch.ArchFactory
  * @model kind="package"
+ *        annotation="http://www.eclipse.org/emf/2002/GenModel editDirectory='/hu.bme.mit.incqueryd.arch.edit/src' editorDirectory='/hu.bme.mit.incqueryd.arch.editor/src'"
  * @generated
  */
 public interface ArchPackage extends EPackage {
