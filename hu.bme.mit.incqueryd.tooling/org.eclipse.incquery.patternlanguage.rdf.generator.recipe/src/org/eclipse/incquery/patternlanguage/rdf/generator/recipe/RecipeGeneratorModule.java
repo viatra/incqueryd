@@ -2,6 +2,7 @@ package org.eclipse.incquery.patternlanguage.rdf.generator.recipe;
 
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.generator.IOutputConfigurationProvider;
 import org.eclipse.xtext.service.AbstractGenericModule;
 
 import com.google.inject.Binder;
@@ -18,6 +19,7 @@ public class RecipeGeneratorModule extends AbstractGenericModule {
 		super.configure(binder);
 		binder.bind(AbstractUIPlugin.class).toInstance(plugin);
 		binder.bind(IDialogSettings.class).toInstance(plugin.getDialogSettings());
+		binder.bind(IOutputConfigurationProvider.class).to(RecipeGeneratorOutputConfigurationProvider.class);
 	}
 
 	public Class<? extends org.eclipse.xtext.generator.IGenerator> bindIGenerator() {
