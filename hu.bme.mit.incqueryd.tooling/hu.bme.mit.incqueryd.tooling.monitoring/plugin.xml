@@ -4,9 +4,14 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="hu.bme.mit.incqueryd.tooling.monitoring.StartMonitoringAndDashboardHandler"
+            defaultHandler="hu.bme.mit.incqueryd.tooling.monitoring.StartMonitoringHandler"
             id="hu.bme.mit.incqueryd.tooling.monitoring.commands.start"
-            name="Start Monitoring and Dashboard">
+            name="Start Monitoring">
+      </command>
+      <command
+            defaultHandler="hu.bme.mit.incqueryd.tooling.monitoring.ShowDashboardHandler"
+            id="hu.bme.mit.incqueryd.tooling.monitoring.commands.showDashboard"
+            name="Show Dashboard">
       </command>
    </extension>
    <extension
@@ -18,7 +23,12 @@
                id="hu.bme.mit.incqueryd.tooling.monitoring.toolbar">
             <command
                   commandId="hu.bme.mit.incqueryd.tooling.monitoring.commands.start"
-                  icon="icons/dashboard.png"
+                  icon="icons/StartMonitoring.png"
+                  style="push">
+            </command>
+            <command
+                  commandId="hu.bme.mit.incqueryd.tooling.monitoring.commands.showDashboard"
+                  icon="icons/ShowDashboard.png"
                   style="push">
             </command>
          </toolbar>
