@@ -1,0 +1,70 @@
+vocabulary <railway.rdf>
+
+base <http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#>
+
+pattern signalNeighbor(R1) =
+{
+	find exitSignalSensor(SigA, R1, Sen1A);
+	find connectingSensors(Sen1A, Sen2A);
+	find rDefinition(R3A, Sen2A);
+	R3A != R1;
+	neg find entrySignalSensor(SigA, _R2A, Sen2A);
+}
+	
+pattern exitSignalSensor(Sig, R1, Sen1) =
+{
+	find exitSignal(R1, Sig);
+	find rDefinition(R1, Sen1);
+}
+	
+pattern entrySignalSensor(Sig, R2, Sen2) =
+{
+	find entrySignal(R2, Sig);
+	find rDefinition(R2, Sen2);
+}
+
+
+
+pattern entrySignal(R, Sig) =
+{
+	Route(R);
+	Signal(Sig);
+	Route_entry(R, Sig);
+}
+
+pattern exitSignal(R, Sig) =
+{
+	Route(R);
+	Signal(Sig);
+	Route_exit(R, Sig);
+}
+	
+pattern rDefinition(R, Sen) =
+{
+	Route(R);
+	Sensor(Sen);
+	Route_routeDefinition(R, Sen);
+}
+	
+pattern connectingSensors(Sen1, Sen2) =
+{
+	find sensorTrackelement(Sen1, Te1);
+	find sensorTrackelement(Sen2, Te2);
+	find trackelementConnected(Te1, Te2);
+}
+	
+pattern trackelementConnected(Te1, Te2) =
+{
+	Trackelement(Te1);
+	Trackelement(Te2);
+	TrackElement_connectsTo(Te1, Te2);
+}
+	
+	
+pattern sensorTrackelement(Sen, Te) =
+{
+	Sensor(Sen);
+	Trackelement(Te);
+	Sensor_trackElement(Sen, Te);
+}
+
