@@ -2,7 +2,9 @@
  */
 package infrastructure.impl;
 
-import infrastructure.*;
+import infrastructure.InfrastructureFactory;
+import infrastructure.InfrastructurePackage;
+import infrastructure.Machine;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -57,6 +59,7 @@ public class InfrastructureFactoryImpl extends EFactoryImpl implements Infrastru
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case InfrastructurePackage.MACHINE: return createMachine();
+			case InfrastructurePackage.PROCESS: return createProcess();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -70,6 +73,16 @@ public class InfrastructureFactoryImpl extends EFactoryImpl implements Infrastru
 	public Machine createMachine() {
 		MachineImpl machine = new MachineImpl();
 		return machine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public infrastructure.Process createProcess() {
+		ProcessImpl process = new ProcessImpl();
+		return process;
 	}
 
 	/**

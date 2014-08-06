@@ -3,7 +3,6 @@
 package arch;
 
 import infrastructure.ElementWithTraceInfo;
-import infrastructure.Machine;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -15,8 +14,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link arch.InfrastructureMapping#getMachine <em>Machine</em>}</li>
  *   <li>{@link arch.InfrastructureMapping#getRoles <em>Roles</em>}</li>
+ *   <li>{@link arch.InfrastructureMapping#getMachines <em>Machines</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,45 +25,45 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface InfrastructureMapping extends ElementWithTraceInfo {
 	/**
-	 * Returns the value of the '<em><b>Machine</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Machine</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Machine</em>' containment reference.
-	 * @see #setMachine(Machine)
-	 * @see arch.ArchPackage#getInfrastructureMapping_Machine()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Machine getMachine();
-
-	/**
-	 * Sets the value of the '{@link arch.InfrastructureMapping#getMachine <em>Machine</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Machine</em>' containment reference.
-	 * @see #getMachine()
-	 * @generated
-	 */
-	void setMachine(Machine value);
-
-	/**
-	 * Returns the value of the '<em><b>Roles</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Roles</b></em>' reference list.
 	 * The list contents are of type {@link arch.Role}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Roles</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Roles</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Roles</em>' containment reference list.
+	 * @return the value of the '<em>Roles</em>' reference list.
 	 * @see arch.ArchPackage#getInfrastructureMapping_Roles()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
 	EList<Role> getRoles();
+
+	/**
+	 * Returns the value of the '<em><b>Machines</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Machines</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Machines</em>' reference.
+	 * @see #setMachines(infrastructure.Process)
+	 * @see arch.ArchPackage#getInfrastructureMapping_Machines()
+	 * @model
+	 * @generated
+	 */
+	infrastructure.Process getMachines();
+
+	/**
+	 * Sets the value of the '{@link arch.InfrastructureMapping#getMachines <em>Machines</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Machines</em>' reference.
+	 * @see #getMachines()
+	 * @generated
+	 */
+	void setMachines(infrastructure.Process value);
 
 } // InfrastructureMapping

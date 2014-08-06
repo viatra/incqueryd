@@ -171,22 +171,22 @@ public interface ArchPackage extends EPackage {
 	int INFRASTRUCTURE_MAPPING__TRACE_INFO = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
 
 	/**
-	 * The feature id for the '<em><b>Machine</b></em>' containment reference.
+	 * The feature id for the '<em><b>Roles</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFRASTRUCTURE_MAPPING__MACHINE = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
+	int INFRASTRUCTURE_MAPPING__ROLES = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Roles</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Machines</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFRASTRUCTURE_MAPPING__ROLES = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
+	int INFRASTRUCTURE_MAPPING__MACHINES = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Infrastructure Mapping</em>' class.
@@ -364,26 +364,26 @@ public interface ArchPackage extends EPackage {
 	EClass getInfrastructureMapping();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link arch.InfrastructureMapping#getMachine <em>Machine</em>}'.
+	 * Returns the meta object for the reference list '{@link arch.InfrastructureMapping#getRoles <em>Roles</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Machine</em>'.
-	 * @see arch.InfrastructureMapping#getMachine()
-	 * @see #getInfrastructureMapping()
-	 * @generated
-	 */
-	EReference getInfrastructureMapping_Machine();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link arch.InfrastructureMapping#getRoles <em>Roles</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Roles</em>'.
+	 * @return the meta object for the reference list '<em>Roles</em>'.
 	 * @see arch.InfrastructureMapping#getRoles()
 	 * @see #getInfrastructureMapping()
 	 * @generated
 	 */
 	EReference getInfrastructureMapping_Roles();
+
+	/**
+	 * Returns the meta object for the reference '{@link arch.InfrastructureMapping#getMachines <em>Machines</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Machines</em>'.
+	 * @see arch.InfrastructureMapping#getMachines()
+	 * @see #getInfrastructureMapping()
+	 * @generated
+	 */
+	EReference getInfrastructureMapping_Machines();
 
 	/**
 	 * Returns the meta object for class '{@link arch.Role <em>Role</em>}'.
@@ -504,20 +504,20 @@ public interface ArchPackage extends EPackage {
 		EClass INFRASTRUCTURE_MAPPING = eINSTANCE.getInfrastructureMapping();
 
 		/**
-		 * The meta object literal for the '<em><b>Machine</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INFRASTRUCTURE_MAPPING__MACHINE = eINSTANCE.getInfrastructureMapping_Machine();
-
-		/**
-		 * The meta object literal for the '<em><b>Roles</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Roles</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference INFRASTRUCTURE_MAPPING__ROLES = eINSTANCE.getInfrastructureMapping_Roles();
+
+		/**
+		 * The meta object literal for the '<em><b>Machines</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INFRASTRUCTURE_MAPPING__MACHINES = eINSTANCE.getInfrastructureMapping_Machines();
 
 		/**
 		 * The meta object literal for the '{@link arch.impl.RoleImpl <em>Role</em>}' class.

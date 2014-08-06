@@ -6,12 +6,9 @@ import arch.ArchPackage;
 import arch.InfrastructureMapping;
 import arch.Role;
 
-import infrastructure.Machine;
-
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -21,8 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,8 +28,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link arch.impl.InfrastructureMappingImpl#getTraceInfo <em>Trace Info</em>}</li>
- *   <li>{@link arch.impl.InfrastructureMappingImpl#getMachine <em>Machine</em>}</li>
  *   <li>{@link arch.impl.InfrastructureMappingImpl#getRoles <em>Roles</em>}</li>
+ *   <li>{@link arch.impl.InfrastructureMappingImpl#getMachines <em>Machines</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,17 +57,7 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 	protected String traceInfo = TRACE_INFO_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getMachine() <em>Machine</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMachine()
-	 * @generated
-	 * @ordered
-	 */
-	protected Machine machine;
-
-	/**
-	 * The cached value of the '{@link #getRoles() <em>Roles</em>}' containment reference list.
+	 * The cached value of the '{@link #getRoles() <em>Roles</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRoles()
@@ -79,6 +65,16 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 	 * @ordered
 	 */
 	protected EList<Role> roles;
+
+	/**
+	 * The cached value of the '{@link #getMachines() <em>Machines</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMachines()
+	 * @generated
+	 * @ordered
+	 */
+	protected infrastructure.Process machines;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -125,52 +121,9 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Machine getMachine() {
-		return machine;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetMachine(Machine newMachine, NotificationChain msgs) {
-		Machine oldMachine = machine;
-		machine = newMachine;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ArchPackage.INFRASTRUCTURE_MAPPING__MACHINE, oldMachine, newMachine);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMachine(Machine newMachine) {
-		if (newMachine != machine) {
-			NotificationChain msgs = null;
-			if (machine != null)
-				msgs = ((InternalEObject)machine).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ArchPackage.INFRASTRUCTURE_MAPPING__MACHINE, null, msgs);
-			if (newMachine != null)
-				msgs = ((InternalEObject)newMachine).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ArchPackage.INFRASTRUCTURE_MAPPING__MACHINE, null, msgs);
-			msgs = basicSetMachine(newMachine, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ArchPackage.INFRASTRUCTURE_MAPPING__MACHINE, newMachine, newMachine));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Role> getRoles() {
 		if (roles == null) {
-			roles = new EObjectContainmentEList<Role>(Role.class, this, ArchPackage.INFRASTRUCTURE_MAPPING__ROLES);
+			roles = new EObjectResolvingEList<Role>(Role.class, this, ArchPackage.INFRASTRUCTURE_MAPPING__ROLES);
 		}
 		return roles;
 	}
@@ -180,15 +133,37 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ArchPackage.INFRASTRUCTURE_MAPPING__MACHINE:
-				return basicSetMachine(null, msgs);
-			case ArchPackage.INFRASTRUCTURE_MAPPING__ROLES:
-				return ((InternalEList<?>)getRoles()).basicRemove(otherEnd, msgs);
+	public infrastructure.Process getMachines() {
+		if (machines != null && machines.eIsProxy()) {
+			InternalEObject oldMachines = (InternalEObject)machines;
+			machines = (infrastructure.Process)eResolveProxy(oldMachines);
+			if (machines != oldMachines) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ArchPackage.INFRASTRUCTURE_MAPPING__MACHINES, oldMachines, machines));
+			}
 		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return machines;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public infrastructure.Process basicGetMachines() {
+		return machines;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMachines(infrastructure.Process newMachines) {
+		infrastructure.Process oldMachines = machines;
+		machines = newMachines;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ArchPackage.INFRASTRUCTURE_MAPPING__MACHINES, oldMachines, machines));
 	}
 
 	/**
@@ -201,10 +176,11 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 		switch (featureID) {
 			case ArchPackage.INFRASTRUCTURE_MAPPING__TRACE_INFO:
 				return getTraceInfo();
-			case ArchPackage.INFRASTRUCTURE_MAPPING__MACHINE:
-				return getMachine();
 			case ArchPackage.INFRASTRUCTURE_MAPPING__ROLES:
 				return getRoles();
+			case ArchPackage.INFRASTRUCTURE_MAPPING__MACHINES:
+				if (resolve) return getMachines();
+				return basicGetMachines();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -221,12 +197,12 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 			case ArchPackage.INFRASTRUCTURE_MAPPING__TRACE_INFO:
 				setTraceInfo((String)newValue);
 				return;
-			case ArchPackage.INFRASTRUCTURE_MAPPING__MACHINE:
-				setMachine((Machine)newValue);
-				return;
 			case ArchPackage.INFRASTRUCTURE_MAPPING__ROLES:
 				getRoles().clear();
 				getRoles().addAll((Collection<? extends Role>)newValue);
+				return;
+			case ArchPackage.INFRASTRUCTURE_MAPPING__MACHINES:
+				setMachines((infrastructure.Process)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -243,11 +219,11 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 			case ArchPackage.INFRASTRUCTURE_MAPPING__TRACE_INFO:
 				setTraceInfo(TRACE_INFO_EDEFAULT);
 				return;
-			case ArchPackage.INFRASTRUCTURE_MAPPING__MACHINE:
-				setMachine((Machine)null);
-				return;
 			case ArchPackage.INFRASTRUCTURE_MAPPING__ROLES:
 				getRoles().clear();
+				return;
+			case ArchPackage.INFRASTRUCTURE_MAPPING__MACHINES:
+				setMachines((infrastructure.Process)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -263,10 +239,10 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 		switch (featureID) {
 			case ArchPackage.INFRASTRUCTURE_MAPPING__TRACE_INFO:
 				return TRACE_INFO_EDEFAULT == null ? traceInfo != null : !TRACE_INFO_EDEFAULT.equals(traceInfo);
-			case ArchPackage.INFRASTRUCTURE_MAPPING__MACHINE:
-				return machine != null;
 			case ArchPackage.INFRASTRUCTURE_MAPPING__ROLES:
 				return roles != null && !roles.isEmpty();
+			case ArchPackage.INFRASTRUCTURE_MAPPING__MACHINES:
+				return machines != null;
 		}
 		return super.eIsSet(featureID);
 	}
