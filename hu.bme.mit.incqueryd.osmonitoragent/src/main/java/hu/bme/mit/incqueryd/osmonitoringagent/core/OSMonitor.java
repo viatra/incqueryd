@@ -346,6 +346,7 @@ public class OSMonitor extends UntypedActor{
 		 		"  }\r\n" + 
 		 		"\r\n" + 
 		 		"  remote {\r\n" + 
+		 		"    transport = \"akka.remote.netty.NettyRemoteTransport\"\r\n" + 
 		 		"    netty {\r\n" + 
 		 		"      port = 7777\r\n" + 
 		 		"    }\r\n" + 

@@ -17,8 +17,6 @@ public class MonitoringWorker extends Thread {
 	
 	private final String collectorInterface;
 	
-	private static final int OS_AGENT_PORT = 7777;
-	
 	private volatile boolean exit;
 	
 	private AggregatedMonitoringData monitoredData;
