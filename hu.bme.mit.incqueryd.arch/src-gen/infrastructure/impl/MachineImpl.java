@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -197,9 +197,24 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
 	 */
 	public EList<infrastructure.Process> getProcesses() {
 		if (processes == null) {
-			processes = new EObjectContainmentEList<infrastructure.Process>(infrastructure.Process.class, this, InfrastructurePackage.MACHINE__PROCESSES);
+			processes = new EObjectContainmentWithInverseEList<infrastructure.Process>(infrastructure.Process.class, this, InfrastructurePackage.MACHINE__PROCESSES, InfrastructurePackage.PROCESS__MACHINE);
 		}
 		return processes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case InfrastructurePackage.MACHINE__PROCESSES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getProcesses()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

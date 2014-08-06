@@ -160,7 +160,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConfiguration_RecipeImports() {
+	public EReference getConfiguration_Machines() {
 		return (EReference)configurationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -169,8 +169,17 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConfiguration_Mappings() {
+	public EReference getConfiguration_RecipeImports() {
 		return (EReference)configurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConfiguration_Mappings() {
+		return (EReference)configurationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -284,6 +293,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 		// Create classes and their features
 		configurationEClass = createEClass(CONFIGURATION);
 		createEAttribute(configurationEClass, CONFIGURATION__CONNECTION_STRING);
+		createEReference(configurationEClass, CONFIGURATION__MACHINES);
 		createEReference(configurationEClass, CONFIGURATION__RECIPE_IMPORTS);
 		createEReference(configurationEClass, CONFIGURATION__MAPPINGS);
 
@@ -343,6 +353,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 		// Initialize classes, features, and operations; add parameters
 		initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConfiguration_ConnectionString(), theEcorePackage.getEString(), "connectionString", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfiguration_Machines(), theInfrastructurePackage.getMachine(), null, "machines", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_RecipeImports(), this.getRecipeImport(), null, "recipeImports", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_Mappings(), this.getInfrastructureMapping(), null, "mappings", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -351,7 +362,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 
 		initEClass(infrastructureMappingEClass, InfrastructureMapping.class, "InfrastructureMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInfrastructureMapping_Process(), theInfrastructurePackage.getProcess(), null, "process", null, 0, 1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInfrastructureMapping_Roles(), this.getRole(), null, "roles", null, 0, -1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInfrastructureMapping_Roles(), this.getRole(), null, "roles", null, 0, -1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(roleEClass, Role.class, "Role", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

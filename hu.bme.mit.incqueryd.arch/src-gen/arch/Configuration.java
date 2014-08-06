@@ -3,6 +3,7 @@
 package arch;
 
 import infrastructure.ElementWithTraceInfo;
+import infrastructure.Machine;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -15,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link arch.Configuration#getConnectionString <em>Connection String</em>}</li>
+ *   <li>{@link arch.Configuration#getMachines <em>Machines</em>}</li>
  *   <li>{@link arch.Configuration#getRecipeImports <em>Recipe Imports</em>}</li>
  *   <li>{@link arch.Configuration#getMappings <em>Mappings</em>}</li>
  * </ul>
@@ -50,6 +52,22 @@ public interface Configuration extends ElementWithTraceInfo {
 	 * @generated
 	 */
 	void setConnectionString(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Machines</b></em>' containment reference list.
+	 * The list contents are of type {@link infrastructure.Machine}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Machines</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Machines</em>' containment reference list.
+	 * @see arch.ArchPackage#getConfiguration_Machines()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Machine> getMachines();
 
 	/**
 	 * Returns the value of the '<em><b>Recipe Imports</b></em>' containment reference list.

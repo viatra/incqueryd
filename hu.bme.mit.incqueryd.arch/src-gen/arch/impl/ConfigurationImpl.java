@@ -7,6 +7,8 @@ import arch.Configuration;
 import arch.InfrastructureMapping;
 import arch.RecipeImport;
 
+import infrastructure.Machine;
+
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -32,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link arch.impl.ConfigurationImpl#getTraceInfo <em>Trace Info</em>}</li>
  *   <li>{@link arch.impl.ConfigurationImpl#getConnectionString <em>Connection String</em>}</li>
+ *   <li>{@link arch.impl.ConfigurationImpl#getMachines <em>Machines</em>}</li>
  *   <li>{@link arch.impl.ConfigurationImpl#getRecipeImports <em>Recipe Imports</em>}</li>
  *   <li>{@link arch.impl.ConfigurationImpl#getMappings <em>Mappings</em>}</li>
  * </ul>
@@ -79,6 +82,16 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 	 * @ordered
 	 */
 	protected String connectionString = CONNECTION_STRING_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getMachines() <em>Machines</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMachines()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Machine> machines;
 
 	/**
 	 * The cached value of the '{@link #getRecipeImports() <em>Recipe Imports</em>}' containment reference list.
@@ -166,6 +179,18 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Machine> getMachines() {
+		if (machines == null) {
+			machines = new EObjectContainmentEList<Machine>(Machine.class, this, ArchPackage.CONFIGURATION__MACHINES);
+		}
+		return machines;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<RecipeImport> getRecipeImports() {
 		if (recipeImports == null) {
 			recipeImports = new EObjectContainmentEList<RecipeImport>(RecipeImport.class, this, ArchPackage.CONFIGURATION__RECIPE_IMPORTS);
@@ -193,6 +218,8 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ArchPackage.CONFIGURATION__MACHINES:
+				return ((InternalEList<?>)getMachines()).basicRemove(otherEnd, msgs);
 			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
 				return ((InternalEList<?>)getRecipeImports()).basicRemove(otherEnd, msgs);
 			case ArchPackage.CONFIGURATION__MAPPINGS:
@@ -213,6 +240,8 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 				return getTraceInfo();
 			case ArchPackage.CONFIGURATION__CONNECTION_STRING:
 				return getConnectionString();
+			case ArchPackage.CONFIGURATION__MACHINES:
+				return getMachines();
 			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
 				return getRecipeImports();
 			case ArchPackage.CONFIGURATION__MAPPINGS:
@@ -235,6 +264,10 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 				return;
 			case ArchPackage.CONFIGURATION__CONNECTION_STRING:
 				setConnectionString((String)newValue);
+				return;
+			case ArchPackage.CONFIGURATION__MACHINES:
+				getMachines().clear();
+				getMachines().addAll((Collection<? extends Machine>)newValue);
 				return;
 			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
 				getRecipeImports().clear();
@@ -262,6 +295,9 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 			case ArchPackage.CONFIGURATION__CONNECTION_STRING:
 				setConnectionString(CONNECTION_STRING_EDEFAULT);
 				return;
+			case ArchPackage.CONFIGURATION__MACHINES:
+				getMachines().clear();
+				return;
 			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
 				getRecipeImports().clear();
 				return;
@@ -284,6 +320,8 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 				return TRACE_INFO_EDEFAULT == null ? traceInfo != null : !TRACE_INFO_EDEFAULT.equals(traceInfo);
 			case ArchPackage.CONFIGURATION__CONNECTION_STRING:
 				return CONNECTION_STRING_EDEFAULT == null ? connectionString != null : !CONNECTION_STRING_EDEFAULT.equals(connectionString);
+			case ArchPackage.CONFIGURATION__MACHINES:
+				return machines != null && !machines.isEmpty();
 			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
 				return recipeImports != null && !recipeImports.isEmpty();
 			case ArchPackage.CONFIGURATION__MAPPINGS:

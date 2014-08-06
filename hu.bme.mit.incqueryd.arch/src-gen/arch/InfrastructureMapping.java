@@ -51,17 +51,17 @@ public interface InfrastructureMapping extends ElementWithTraceInfo {
 	void setProcess(infrastructure.Process value);
 
 	/**
-	 * Returns the value of the '<em><b>Roles</b></em>' reference list.
+	 * Returns the value of the '<em><b>Roles</b></em>' containment reference list.
 	 * The list contents are of type {@link arch.Role}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Roles</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Roles</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Roles</em>' reference list.
+	 * @return the value of the '<em>Roles</em>' containment reference list.
 	 * @see arch.ArchPackage#getInfrastructureMapping_Roles()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<Role> getRoles();
