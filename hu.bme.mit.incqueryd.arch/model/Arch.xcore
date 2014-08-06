@@ -7,6 +7,7 @@ import infrastructure.Process
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 
 class Configuration extends ElementWithTraceInfo {
+	String connectionString
 	contains RecipeImport[] recipeImports
 	contains InfrastructureMapping[] mappings
 }
@@ -16,8 +17,8 @@ class RecipeImport {
 }
 
 class InfrastructureMapping extends ElementWithTraceInfo {
-	refers Role[] roles
 	refers Process process
+	refers Role[] roles
 }
 
 abstract class Role {
