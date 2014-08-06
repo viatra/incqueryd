@@ -74,10 +74,10 @@ class JVMMonitoringActor extends Actor{
     val elapsedCpu: Long = processCpuTime - prevProcessCpuTime
     val elapsedTime: Long = upTime - prevUpTime
     
-    val cpuUsage: Double = elapsedCpu / (elapsedTime * 10000 * availableProcessors)
-    
     prevProcessCpuTime = processCpuTime
     prevUpTime = upTime
+    
+    val cpuUsage: Double = if (elapsedTime == 0) 0 else elapsedCpu / (elapsedTime * 10000 * availableProcessors)
     
     cpuUsage
   }
