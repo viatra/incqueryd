@@ -46,34 +46,9 @@ public class MonitoringWorker extends Thread {
 	private void monitor() {
 		AggregatedMonitoringData collectedData = new AggregatedMonitoringData();
 		
-		//List<MachineMonitoringWorker> machineWorkers = new ArrayList<>();
-		
 		// Start the JVM monitoring worker
 		JVMMonitoringWorker jvmWorker = new JVMMonitoringWorker();
 		jvmWorker.start();
-		
-//		for (String host : MonitoringAddressStore.getMachines()) {
-//			MachineMonitoringWorker mWorker = new MachineMonitoringWorker(host, OS_AGENT_PORT);
-//			machineWorkers.add(mWorker);
-//			mWorker.start();
-//		}
-//		
-//		collectedData.setRete(ReteMetricsStore.getMetrics());
-//		
-//		collectedData.setChanges(QueryResultStore.numberOfChanges());
-//		
-//		// Wait for the machine workers
-//		for (MachineMonitoringWorker machineMonitoringWorker : machineWorkers) {
-//			try {
-//				machineMonitoringWorker.join();
-//			} catch (InterruptedException e) {
-//				
-//			}
-//			
-//			MachineMonitoringData machineData = machineMonitoringWorker.getData();
-//			if(machineData != null)machines.add(machineData);
-//
-//		}
 		
 		// Wait for the jvm monitoring worker to complete
 		try {
