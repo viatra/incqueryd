@@ -244,12 +244,11 @@ public class OSMonitor extends UntypedActor{
 			double usedCPUPercent = cpuUsage.getUsedCPUPercent();
 			double usedMemoryPercent = memoryUsage.getUsedMemoryPercent();
 			
-			boolean shouldAlarm = firstRound || Math.abs(usedCPUPercent - lastReportedCPU) >= 20  || Math.abs(usedMemoryPercent - lastReportedMemory) >= 5;
+			boolean shouldAlarm = firstRound || Math.abs(usedCPUPercent - lastReportedCPU) >= 10  || Math.abs(usedMemoryPercent - lastReportedMemory) >= 5;
 			
 			if(! shouldAlarm) continue;
 			
 			// else ...
-			System.out.println("Changed!!! CPU: " + lastReportedCPU + " " + usedCPUPercent + " Memory: " + lastReportedMemory + " " + usedMemoryPercent );
 			firstRound = false;
 			lastReportedCPU = usedCPUPercent;
 			lastReportedMemory = usedMemoryPercent;
