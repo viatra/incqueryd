@@ -4,6 +4,12 @@ package infrastructure
 class Machine extends ElementWithTraceInfo {
 	String name
 	String ip
+	
+	contains Process[] processes
+}
+
+class Process {
+	int port
 }
 
 interface ElementWithTraceInfo {
