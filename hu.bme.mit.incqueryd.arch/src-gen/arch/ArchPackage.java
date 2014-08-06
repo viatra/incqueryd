@@ -79,13 +79,22 @@ public interface ArchPackage extends EPackage {
 	int CONFIGURATION__TRACE_INFO = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
 
 	/**
+	 * The feature id for the '<em><b>Connection String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONFIGURATION__CONNECTION_STRING = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Recipe Imports</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION__RECIPE_IMPORTS = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
+	int CONFIGURATION__RECIPE_IMPORTS = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
@@ -94,7 +103,7 @@ public interface ArchPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION__MAPPINGS = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
+	int CONFIGURATION__MAPPINGS = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -103,7 +112,7 @@ public interface ArchPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_FEATURE_COUNT = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 2;
+	int CONFIGURATION_FEATURE_COUNT = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Configuration</em>' class.
@@ -171,22 +180,22 @@ public interface ArchPackage extends EPackage {
 	int INFRASTRUCTURE_MAPPING__TRACE_INFO = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
 
 	/**
+	 * The feature id for the '<em><b>Process</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INFRASTRUCTURE_MAPPING__PROCESS = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Roles</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INFRASTRUCTURE_MAPPING__ROLES = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Machines</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INFRASTRUCTURE_MAPPING__MACHINES = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
+	int INFRASTRUCTURE_MAPPING__ROLES = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Infrastructure Mapping</em>' class.
@@ -311,6 +320,17 @@ public interface ArchPackage extends EPackage {
 	EClass getConfiguration();
 
 	/**
+	 * Returns the meta object for the attribute '{@link arch.Configuration#getConnectionString <em>Connection String</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Connection String</em>'.
+	 * @see arch.Configuration#getConnectionString()
+	 * @see #getConfiguration()
+	 * @generated
+	 */
+	EAttribute getConfiguration_ConnectionString();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link arch.Configuration#getRecipeImports <em>Recipe Imports</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -364,6 +384,17 @@ public interface ArchPackage extends EPackage {
 	EClass getInfrastructureMapping();
 
 	/**
+	 * Returns the meta object for the reference '{@link arch.InfrastructureMapping#getProcess <em>Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Process</em>'.
+	 * @see arch.InfrastructureMapping#getProcess()
+	 * @see #getInfrastructureMapping()
+	 * @generated
+	 */
+	EReference getInfrastructureMapping_Process();
+
+	/**
 	 * Returns the meta object for the reference list '{@link arch.InfrastructureMapping#getRoles <em>Roles</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -373,17 +404,6 @@ public interface ArchPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getInfrastructureMapping_Roles();
-
-	/**
-	 * Returns the meta object for the reference '{@link arch.InfrastructureMapping#getMachines <em>Machines</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Machines</em>'.
-	 * @see arch.InfrastructureMapping#getMachines()
-	 * @see #getInfrastructureMapping()
-	 * @generated
-	 */
-	EReference getInfrastructureMapping_Machines();
 
 	/**
 	 * Returns the meta object for class '{@link arch.Role <em>Role</em>}'.
@@ -460,6 +480,14 @@ public interface ArchPackage extends EPackage {
 		EClass CONFIGURATION = eINSTANCE.getConfiguration();
 
 		/**
+		 * The meta object literal for the '<em><b>Connection String</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONFIGURATION__CONNECTION_STRING = eINSTANCE.getConfiguration_ConnectionString();
+
+		/**
 		 * The meta object literal for the '<em><b>Recipe Imports</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -504,20 +532,20 @@ public interface ArchPackage extends EPackage {
 		EClass INFRASTRUCTURE_MAPPING = eINSTANCE.getInfrastructureMapping();
 
 		/**
+		 * The meta object literal for the '<em><b>Process</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INFRASTRUCTURE_MAPPING__PROCESS = eINSTANCE.getInfrastructureMapping_Process();
+
+		/**
 		 * The meta object literal for the '<em><b>Roles</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference INFRASTRUCTURE_MAPPING__ROLES = eINSTANCE.getInfrastructureMapping_Roles();
-
-		/**
-		 * The meta object literal for the '<em><b>Machines</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INFRASTRUCTURE_MAPPING__MACHINES = eINSTANCE.getInfrastructureMapping_Machines();
 
 		/**
 		 * The meta object literal for the '{@link arch.impl.RoleImpl <em>Role</em>}' class.

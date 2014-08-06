@@ -5,19 +5,19 @@ import "http://www.eclipse.org/incquery/rete/recipes"
 import "http://incquery.net/d/infrastructure"
 import "http://incquery.net/arch"
 
-Configuration returns Configuration:
-	recipeImports+=RecipeImport*
-	mappings+=InfrastructureMapping*
-;
+//Configuration returns Configuration:
+//	recipeImports+=RecipeImport*
+//	mappings+=InfrastructureMapping*
+//;
 
 RecipeImport returns RecipeImport:
 	'recipe' importURI=STRING
 ;
 
-InfrastructureMapping returns InfrastructureMapping:
-	'use' machine=Machine
-	'for' roles+=Role (',' roles+=Role)*
-;
+//InfrastructureMapping returns InfrastructureMapping:
+//	'use' machine=Machine
+//	'for' roles+=Role (',' roles+=Role)*
+//;
 
 Machine returns Machine:
 	ip=IP

@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link arch.Configuration#getConnectionString <em>Connection String</em>}</li>
  *   <li>{@link arch.Configuration#getRecipeImports <em>Recipe Imports</em>}</li>
  *   <li>{@link arch.Configuration#getMappings <em>Mappings</em>}</li>
  * </ul>
@@ -24,6 +25,32 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Configuration extends ElementWithTraceInfo {
+	/**
+	 * Returns the value of the '<em><b>Connection String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Connection String</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Connection String</em>' attribute.
+	 * @see #setConnectionString(String)
+	 * @see arch.ArchPackage#getConfiguration_ConnectionString()
+	 * @model unique="false"
+	 * @generated
+	 */
+	String getConnectionString();
+
+	/**
+	 * Sets the value of the '{@link arch.Configuration#getConnectionString <em>Connection String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Connection String</em>' attribute.
+	 * @see #getConnectionString()
+	 * @generated
+	 */
+	void setConnectionString(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Recipe Imports</b></em>' containment reference list.
 	 * The list contents are of type {@link arch.RecipeImport}.

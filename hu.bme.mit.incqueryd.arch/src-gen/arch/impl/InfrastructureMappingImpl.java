@@ -28,8 +28,8 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link arch.impl.InfrastructureMappingImpl#getTraceInfo <em>Trace Info</em>}</li>
+ *   <li>{@link arch.impl.InfrastructureMappingImpl#getProcess <em>Process</em>}</li>
  *   <li>{@link arch.impl.InfrastructureMappingImpl#getRoles <em>Roles</em>}</li>
- *   <li>{@link arch.impl.InfrastructureMappingImpl#getMachines <em>Machines</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,6 +57,16 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 	protected String traceInfo = TRACE_INFO_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getProcess() <em>Process</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProcess()
+	 * @generated
+	 * @ordered
+	 */
+	protected infrastructure.Process process;
+
+	/**
 	 * The cached value of the '{@link #getRoles() <em>Roles</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,16 +75,6 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 	 * @ordered
 	 */
 	protected EList<Role> roles;
-
-	/**
-	 * The cached value of the '{@link #getMachines() <em>Machines</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMachines()
-	 * @generated
-	 * @ordered
-	 */
-	protected infrastructure.Process machines;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,6 +121,44 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public infrastructure.Process getProcess() {
+		if (process != null && process.eIsProxy()) {
+			InternalEObject oldProcess = (InternalEObject)process;
+			process = (infrastructure.Process)eResolveProxy(oldProcess);
+			if (process != oldProcess) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ArchPackage.INFRASTRUCTURE_MAPPING__PROCESS, oldProcess, process));
+			}
+		}
+		return process;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public infrastructure.Process basicGetProcess() {
+		return process;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProcess(infrastructure.Process newProcess) {
+		infrastructure.Process oldProcess = process;
+		process = newProcess;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ArchPackage.INFRASTRUCTURE_MAPPING__PROCESS, oldProcess, process));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Role> getRoles() {
 		if (roles == null) {
 			roles = new EObjectResolvingEList<Role>(Role.class, this, ArchPackage.INFRASTRUCTURE_MAPPING__ROLES);
@@ -133,54 +171,16 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public infrastructure.Process getMachines() {
-		if (machines != null && machines.eIsProxy()) {
-			InternalEObject oldMachines = (InternalEObject)machines;
-			machines = (infrastructure.Process)eResolveProxy(oldMachines);
-			if (machines != oldMachines) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ArchPackage.INFRASTRUCTURE_MAPPING__MACHINES, oldMachines, machines));
-			}
-		}
-		return machines;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public infrastructure.Process basicGetMachines() {
-		return machines;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setMachines(infrastructure.Process newMachines) {
-		infrastructure.Process oldMachines = machines;
-		machines = newMachines;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ArchPackage.INFRASTRUCTURE_MAPPING__MACHINES, oldMachines, machines));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ArchPackage.INFRASTRUCTURE_MAPPING__TRACE_INFO:
 				return getTraceInfo();
+			case ArchPackage.INFRASTRUCTURE_MAPPING__PROCESS:
+				if (resolve) return getProcess();
+				return basicGetProcess();
 			case ArchPackage.INFRASTRUCTURE_MAPPING__ROLES:
 				return getRoles();
-			case ArchPackage.INFRASTRUCTURE_MAPPING__MACHINES:
-				if (resolve) return getMachines();
-				return basicGetMachines();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -197,12 +197,12 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 			case ArchPackage.INFRASTRUCTURE_MAPPING__TRACE_INFO:
 				setTraceInfo((String)newValue);
 				return;
+			case ArchPackage.INFRASTRUCTURE_MAPPING__PROCESS:
+				setProcess((infrastructure.Process)newValue);
+				return;
 			case ArchPackage.INFRASTRUCTURE_MAPPING__ROLES:
 				getRoles().clear();
 				getRoles().addAll((Collection<? extends Role>)newValue);
-				return;
-			case ArchPackage.INFRASTRUCTURE_MAPPING__MACHINES:
-				setMachines((infrastructure.Process)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -219,11 +219,11 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 			case ArchPackage.INFRASTRUCTURE_MAPPING__TRACE_INFO:
 				setTraceInfo(TRACE_INFO_EDEFAULT);
 				return;
+			case ArchPackage.INFRASTRUCTURE_MAPPING__PROCESS:
+				setProcess((infrastructure.Process)null);
+				return;
 			case ArchPackage.INFRASTRUCTURE_MAPPING__ROLES:
 				getRoles().clear();
-				return;
-			case ArchPackage.INFRASTRUCTURE_MAPPING__MACHINES:
-				setMachines((infrastructure.Process)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -239,10 +239,10 @@ public class InfrastructureMappingImpl extends MinimalEObjectImpl.Container impl
 		switch (featureID) {
 			case ArchPackage.INFRASTRUCTURE_MAPPING__TRACE_INFO:
 				return TRACE_INFO_EDEFAULT == null ? traceInfo != null : !TRACE_INFO_EDEFAULT.equals(traceInfo);
+			case ArchPackage.INFRASTRUCTURE_MAPPING__PROCESS:
+				return process != null;
 			case ArchPackage.INFRASTRUCTURE_MAPPING__ROLES:
 				return roles != null && !roles.isEmpty();
-			case ArchPackage.INFRASTRUCTURE_MAPPING__MACHINES:
-				return machines != null;
 		}
 		return super.eIsSet(featureID);
 	}

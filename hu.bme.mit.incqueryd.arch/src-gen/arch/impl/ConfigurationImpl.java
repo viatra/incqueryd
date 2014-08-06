@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link arch.impl.ConfigurationImpl#getTraceInfo <em>Trace Info</em>}</li>
+ *   <li>{@link arch.impl.ConfigurationImpl#getConnectionString <em>Connection String</em>}</li>
  *   <li>{@link arch.impl.ConfigurationImpl#getRecipeImports <em>Recipe Imports</em>}</li>
  *   <li>{@link arch.impl.ConfigurationImpl#getMappings <em>Mappings</em>}</li>
  * </ul>
@@ -58,6 +59,26 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 	 * @ordered
 	 */
 	protected String traceInfo = TRACE_INFO_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getConnectionString() <em>Connection String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConnectionString()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CONNECTION_STRING_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getConnectionString() <em>Connection String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConnectionString()
+	 * @generated
+	 * @ordered
+	 */
+	protected String connectionString = CONNECTION_STRING_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRecipeImports() <em>Recipe Imports</em>}' containment reference list.
@@ -124,6 +145,27 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getConnectionString() {
+		return connectionString;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setConnectionString(String newConnectionString) {
+		String oldConnectionString = connectionString;
+		connectionString = newConnectionString;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ArchPackage.CONFIGURATION__CONNECTION_STRING, oldConnectionString, connectionString));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<RecipeImport> getRecipeImports() {
 		if (recipeImports == null) {
 			recipeImports = new EObjectContainmentEList<RecipeImport>(RecipeImport.class, this, ArchPackage.CONFIGURATION__RECIPE_IMPORTS);
@@ -169,6 +211,8 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 		switch (featureID) {
 			case ArchPackage.CONFIGURATION__TRACE_INFO:
 				return getTraceInfo();
+			case ArchPackage.CONFIGURATION__CONNECTION_STRING:
+				return getConnectionString();
 			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
 				return getRecipeImports();
 			case ArchPackage.CONFIGURATION__MAPPINGS:
@@ -188,6 +232,9 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 		switch (featureID) {
 			case ArchPackage.CONFIGURATION__TRACE_INFO:
 				setTraceInfo((String)newValue);
+				return;
+			case ArchPackage.CONFIGURATION__CONNECTION_STRING:
+				setConnectionString((String)newValue);
 				return;
 			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
 				getRecipeImports().clear();
@@ -212,6 +259,9 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 			case ArchPackage.CONFIGURATION__TRACE_INFO:
 				setTraceInfo(TRACE_INFO_EDEFAULT);
 				return;
+			case ArchPackage.CONFIGURATION__CONNECTION_STRING:
+				setConnectionString(CONNECTION_STRING_EDEFAULT);
+				return;
 			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
 				getRecipeImports().clear();
 				return;
@@ -232,6 +282,8 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 		switch (featureID) {
 			case ArchPackage.CONFIGURATION__TRACE_INFO:
 				return TRACE_INFO_EDEFAULT == null ? traceInfo != null : !TRACE_INFO_EDEFAULT.equals(traceInfo);
+			case ArchPackage.CONFIGURATION__CONNECTION_STRING:
+				return CONNECTION_STRING_EDEFAULT == null ? connectionString != null : !CONNECTION_STRING_EDEFAULT.equals(connectionString);
 			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
 				return recipeImports != null && !recipeImports.isEmpty();
 			case ArchPackage.CONFIGURATION__MAPPINGS:
@@ -252,6 +304,8 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (traceInfo: ");
 		result.append(traceInfo);
+		result.append(", connectionString: ");
+		result.append(connectionString);
 		result.append(')');
 		return result.toString();
 	}
