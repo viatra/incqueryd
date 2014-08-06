@@ -3,6 +3,8 @@ package hu.bme.mit.incqueryd.monitoringserver.core.processing;
 import hu.bme.mit.incqueryd.jvmmonitoring.metrics.JVMMetrics;
 import hu.bme.mit.incqueryd.monitoringserver.core.MachineMonitoringDataStore;
 import hu.bme.mit.incqueryd.monitoringserver.core.MonitoringDataCollectorActor;
+import hu.bme.mit.incqueryd.monitoringserver.core.QueryResultStore;
+import hu.bme.mit.incqueryd.monitoringserver.core.ReteMetricsStore;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.AggregatedMonitoringData;
 import hu.bme.mit.incqueryd.monitoringserver.core.model.MachineMonitoringData;
 
@@ -60,7 +62,6 @@ public class MonitoringWorker extends Thread {
 		
 		List<JVMMetrics> jvmMetrics = jvmWorker.getJvmMetrics();
 		
-		
 		List<MachineMonitoringData> machines = MachineMonitoringDataStore.getData();
 		
 		for (MachineMonitoringData machineMonitoringData : machines) {
@@ -71,6 +72,8 @@ public class MonitoringWorker extends Thread {
 			}
 		}
 		
+		collectedData.setRete(ReteMetricsStore.getMetrics());
+		collectedData.setChanges(QueryResultStore.numberOfChanges());
 		collectedData.setMachines(machines);
 		
 		synchronized (monitoredData) {
@@ -87,6 +90,10 @@ public class MonitoringWorker extends Thread {
 	public void run() {
 		
 		while (!exit) {
+			
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {}
 			
 			monitor(); 
 			
