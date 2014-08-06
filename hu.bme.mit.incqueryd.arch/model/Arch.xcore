@@ -5,9 +5,11 @@ package arch
 import infrastructure.ElementWithTraceInfo
 import infrastructure.Process
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
+import infrastructure.Machine
 
 class Configuration extends ElementWithTraceInfo {
 	String connectionString
+	contains Machine[] machines
 	contains RecipeImport[] recipeImports
 	contains InfrastructureMapping[] mappings
 }
@@ -18,7 +20,7 @@ class RecipeImport {
 
 class InfrastructureMapping extends ElementWithTraceInfo {
 	refers Process process
-	refers Role[] roles
+	contains Role[] roles
 }
 
 abstract class Role {
