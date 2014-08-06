@@ -1,0 +1,20 @@
+vocabulary <railway.rdf>
+
+base <http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#>
+
+pattern routeSensor(Sen, Sw, Sp, R) = {
+	Route(R);
+	SwitchPosition(Sp);
+	Switch(Sw);
+	Sensor(Sen);
+	
+	Route_switchPosition(R, Sp);
+	SwitchPosition_switch(Sp, Sw);
+	TrackElement_sensor(Sw, Sen);
+	
+	neg find head(Sen, R);
+}
+
+pattern head(Sen, R) = {
+	Route_routeDefinition(R, Sen);
+}
