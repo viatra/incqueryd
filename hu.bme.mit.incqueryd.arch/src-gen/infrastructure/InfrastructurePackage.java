@@ -177,13 +177,22 @@ public interface InfrastructurePackage extends EPackage {
 	int PROCESS__PORT = 0;
 
 	/**
+	 * The feature id for the '<em><b>Machine</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS__MACHINE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_FEATURE_COUNT = 1;
+	int PROCESS_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -258,6 +267,17 @@ public interface InfrastructurePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getProcess_Port();
+
+	/**
+	 * Returns the meta object for the container reference '{@link infrastructure.Process#getMachine <em>Machine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Machine</em>'.
+	 * @see infrastructure.Process#getMachine()
+	 * @see #getProcess()
+	 * @generated
+	 */
+	EReference getProcess_Machine();
 
 	/**
 	 * Returns the meta object for class '{@link infrastructure.ElementWithTraceInfo <em>Element With Trace Info</em>}'.
@@ -354,6 +374,14 @@ public interface InfrastructurePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROCESS__PORT = eINSTANCE.getProcess_Port();
+
+		/**
+		 * The meta object literal for the '<em><b>Machine</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS__MACHINE = eINSTANCE.getProcess_Machine();
 
 		/**
 		 * The meta object literal for the '{@link infrastructure.ElementWithTraceInfo <em>Element With Trace Info</em>}' class.

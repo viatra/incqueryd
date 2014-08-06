@@ -5,11 +5,13 @@ class Machine extends ElementWithTraceInfo {
 	String name
 	String ip
 	
-	contains Process[] processes
+	contains Process[] processes opposite machine
 }
 
 class Process {
 	int port
+	
+	container Machine machine opposite processes
 }
 
 interface ElementWithTraceInfo {

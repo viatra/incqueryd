@@ -4,19 +4,16 @@ import java.util.ArrayList
 import java.util.HashMap
 import java.util.HashSet
 import java.util.Set
-
 import scala.collection.JavaConversions._
 import scala.concurrent.Await
 import scala.concurrent.Future
 import scala.concurrent.duration.Duration
-
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.InputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexerRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
-
 import akka.actor.Actor
 import akka.actor.ActorRef
 import akka.actor.Address
@@ -43,6 +40,7 @@ import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredMachines
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoringMessage
 import hu.bme.mit.incqueryd.util.EObjectSerializer
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
+import infrastructure.Machine
 
 class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean, val monitoringServerIPAddress: String) extends Actor {
 
@@ -67,7 +65,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     query = "SwitchSensor";
   }
 
-  var recipeToIp: HashMap[ReteNodeRecipe, String] = new HashMap[ReteNodeRecipe, String]
+  var recipeToAddress: HashMap[ReteNodeRecipe, Tuple2[String,Int]] = new HashMap
   var recipeToActorRef: HashMap[ReteNodeRecipe, ActorRef] = new HashMap[ReteNodeRecipe, ActorRef]
   var emfUriToRecipe: HashMap[String, ReteNodeRecipe] = new HashMap[String, ReteNodeRecipe]
   var emfUriToActorRef: HashMap[String, ActorRef] = new HashMap[String, ActorRef]
@@ -81,7 +79,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
 
   private def processConfiguration(conf: Configuration) = {
     // mapping
-    fillRecipeToIp(conf)
+    fillRecipeToAddress(conf)
 
     // phase 1
     deployActors(conf)
@@ -102,13 +100,14 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     initialize
   }
 
-  private def fillRecipeToIp(conf: Configuration) = {
+  private def fillRecipeToAddress(conf: Configuration) = {
 
     conf.getMappings.foreach(mapping => {
-      val machine = mapping.getMachine
+      val process = mapping.getProcess
+      val machine = process.getMachine
 
       mapping.getRoles.foreach(role => role match {
-        case reteRole: ReteRole => recipeToIp.put(reteRole.getNodeRecipe, machine.getIp)
+        case reteRole: ReteRole => recipeToAddress.put(reteRole.getNodeRecipe, (machine.getIp, process.getPort))
       })
     })
 
@@ -135,7 +134,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
 
     val cacheMachineIps = conf.getMappings.toList.
       filter(_.getRoles.exists(_.isInstanceOf[CacheRole])).
-      map(_.getMachine.getIp)
+      map(_.getProcess.getMachine.getIp)
 
     conf.getMappings.foreach(mapping => {
       // the ProjectionIndexerRecipes are dropped,
@@ -148,7 +147,10 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
 
           if (debug) System.err.println("[TestKit] Recipe: " + rnr.getClass.getName)
 
-          val ipAddress = recipeToIp.get(rnr)
+          val address = recipeToAddress.get(rnr)
+          val ipAddress = address._1
+          val port = address._2
+          
           val emfUri = EcoreUtil.getURI(rnr).toString
 
           if (debug) System.err.println("[TestKit] - IP address:  " + ipAddress)
@@ -163,7 +165,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
           var props: Props = null
           if (remoting) {
             props = Props[ScalaReteActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
-              IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))))
+              IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, port))))
           } else {
             props = Props[ScalaReteActor]
           }
@@ -194,10 +196,11 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
 
     if (remoting) {
       conf.getMappings.foreach(mapping => {
-        val ipAddress = mapping.getMachine.getIp
+        val ipAddress = mapping.getProcess.getMachine.getIp
+        val port = mapping.getProcess.getPort
 
         var props = Props[JVMMonitoringActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
-          IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, 2552))))
+          IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, port))))
 
         val actorRef = context.actorOf(props)
         jvmActorRefs.add(actorRef)
@@ -346,10 +349,6 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
 
   private def subscribeMonitoringService(conf: Configuration) = {
     monitoringActor = context.actorFor("akka://monitoringserver@" + monitoringServerIPAddress + ":2552/user/collector")
-
-    val machines = new MonitoredMachines
-    conf.getMappings.foreach(mapping => machines.addMachineIP(mapping.getMachine.getIp))
-    monitoringActor ! machines
 
     monitoringActor ! new MonitoredActorCollection(actorRefs, jvmActorRefs)
 

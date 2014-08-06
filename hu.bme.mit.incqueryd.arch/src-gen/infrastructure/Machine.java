@@ -78,6 +78,7 @@ public interface Machine extends ElementWithTraceInfo {
 	/**
 	 * Returns the value of the '<em><b>Processes</b></em>' containment reference list.
 	 * The list contents are of type {@link infrastructure.Process}.
+	 * It is bidirectional and its opposite is '{@link infrastructure.Process#getMachine <em>Machine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Processes</em>' containment reference list isn't clear,
@@ -86,7 +87,8 @@ public interface Machine extends ElementWithTraceInfo {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Processes</em>' containment reference list.
 	 * @see infrastructure.InfrastructurePackage#getMachine_Processes()
-	 * @model containment="true"
+	 * @see infrastructure.Process#getMachine
+	 * @model opposite="machine" containment="true"
 	 * @generated
 	 */
 	EList<infrastructure.Process> getProcesses();

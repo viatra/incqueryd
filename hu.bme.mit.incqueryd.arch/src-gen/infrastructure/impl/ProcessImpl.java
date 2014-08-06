@@ -3,13 +3,18 @@
 package infrastructure.impl;
 
 import infrastructure.InfrastructurePackage;
+import infrastructure.Machine;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,6 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link infrastructure.impl.ProcessImpl#getPort <em>Port</em>}</li>
+ *   <li>{@link infrastructure.impl.ProcessImpl#getMachine <em>Machine</em>}</li>
  * </ul>
  * </p>
  *
@@ -90,11 +96,109 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Machine getMachine() {
+		if (eContainerFeatureID() != InfrastructurePackage.PROCESS__MACHINE) return null;
+		return (Machine)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Machine basicGetMachine() {
+		if (eContainerFeatureID() != InfrastructurePackage.PROCESS__MACHINE) return null;
+		return (Machine)eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetMachine(Machine newMachine, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newMachine, InfrastructurePackage.PROCESS__MACHINE, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMachine(Machine newMachine) {
+		if (newMachine != eInternalContainer() || (eContainerFeatureID() != InfrastructurePackage.PROCESS__MACHINE && newMachine != null)) {
+			if (EcoreUtil.isAncestor(this, newMachine))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newMachine != null)
+				msgs = ((InternalEObject)newMachine).eInverseAdd(this, InfrastructurePackage.MACHINE__PROCESSES, Machine.class, msgs);
+			msgs = basicSetMachine(newMachine, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, InfrastructurePackage.PROCESS__MACHINE, newMachine, newMachine));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case InfrastructurePackage.PROCESS__MACHINE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetMachine((Machine)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case InfrastructurePackage.PROCESS__MACHINE:
+				return basicSetMachine(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case InfrastructurePackage.PROCESS__MACHINE:
+				return eInternalContainer().eInverseRemove(this, InfrastructurePackage.MACHINE__PROCESSES, Machine.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case InfrastructurePackage.PROCESS__PORT:
 				return getPort();
+			case InfrastructurePackage.PROCESS__MACHINE:
+				if (resolve) return getMachine();
+				return basicGetMachine();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -109,6 +213,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 		switch (featureID) {
 			case InfrastructurePackage.PROCESS__PORT:
 				setPort((Integer)newValue);
+				return;
+			case InfrastructurePackage.PROCESS__MACHINE:
+				setMachine((Machine)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -125,6 +232,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 			case InfrastructurePackage.PROCESS__PORT:
 				setPort(PORT_EDEFAULT);
 				return;
+			case InfrastructurePackage.PROCESS__MACHINE:
+				setMachine((Machine)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -139,6 +249,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 		switch (featureID) {
 			case InfrastructurePackage.PROCESS__PORT:
 				return port != PORT_EDEFAULT;
+			case InfrastructurePackage.PROCESS__MACHINE:
+				return basicGetMachine() != null;
 		}
 		return super.eIsSet(featureID);
 	}
