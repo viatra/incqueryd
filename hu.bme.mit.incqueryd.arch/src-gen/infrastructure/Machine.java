@@ -2,6 +2,7 @@
  */
 package infrastructure;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,6 +14,7 @@ package infrastructure;
  * <ul>
  *   <li>{@link infrastructure.Machine#getName <em>Name</em>}</li>
  *   <li>{@link infrastructure.Machine#getIp <em>Ip</em>}</li>
+ *   <li>{@link infrastructure.Machine#getProcesses <em>Processes</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,5 +74,21 @@ public interface Machine extends ElementWithTraceInfo {
 	 * @generated
 	 */
 	void setIp(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Processes</b></em>' containment reference list.
+	 * The list contents are of type {@link infrastructure.Process}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Processes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Processes</em>' containment reference list.
+	 * @see infrastructure.InfrastructurePackage#getMachine_Processes()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<infrastructure.Process> getProcesses();
 
 } // Machine

@@ -5,12 +5,21 @@ package infrastructure.impl;
 import infrastructure.InfrastructurePackage;
 import infrastructure.Machine;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,6 +31,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link infrastructure.impl.MachineImpl#getTraceInfo <em>Trace Info</em>}</li>
  *   <li>{@link infrastructure.impl.MachineImpl#getName <em>Name</em>}</li>
  *   <li>{@link infrastructure.impl.MachineImpl#getIp <em>Ip</em>}</li>
+ *   <li>{@link infrastructure.impl.MachineImpl#getProcesses <em>Processes</em>}</li>
  * </ul>
  * </p>
  *
@@ -87,6 +97,16 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
 	 * @ordered
 	 */
 	protected String ip = IP_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getProcesses() <em>Processes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProcesses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<infrastructure.Process> processes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -175,6 +195,32 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<infrastructure.Process> getProcesses() {
+		if (processes == null) {
+			processes = new EObjectContainmentEList<infrastructure.Process>(infrastructure.Process.class, this, InfrastructurePackage.MACHINE__PROCESSES);
+		}
+		return processes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case InfrastructurePackage.MACHINE__PROCESSES:
+				return ((InternalEList<?>)getProcesses()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -184,6 +230,8 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
 				return getName();
 			case InfrastructurePackage.MACHINE__IP:
 				return getIp();
+			case InfrastructurePackage.MACHINE__PROCESSES:
+				return getProcesses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -193,6 +241,7 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -204,6 +253,10 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
 				return;
 			case InfrastructurePackage.MACHINE__IP:
 				setIp((String)newValue);
+				return;
+			case InfrastructurePackage.MACHINE__PROCESSES:
+				getProcesses().clear();
+				getProcesses().addAll((Collection<? extends infrastructure.Process>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -226,6 +279,9 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
 			case InfrastructurePackage.MACHINE__IP:
 				setIp(IP_EDEFAULT);
 				return;
+			case InfrastructurePackage.MACHINE__PROCESSES:
+				getProcesses().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -244,6 +300,8 @@ public class MachineImpl extends MinimalEObjectImpl.Container implements Machine
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case InfrastructurePackage.MACHINE__IP:
 				return IP_EDEFAULT == null ? ip != null : !IP_EDEFAULT.equals(ip);
+			case InfrastructurePackage.MACHINE__PROCESSES:
+				return processes != null && !processes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

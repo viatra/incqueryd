@@ -119,8 +119,8 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		InfrastructurePackage.eINSTANCE.eClass();
 		RecipesPackage.eINSTANCE.eClass();
+		InfrastructurePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theArchPackage.createPackageContents();
@@ -196,7 +196,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInfrastructureMapping_Machine() {
+	public EReference getInfrastructureMapping_Roles() {
 		return (EReference)infrastructureMappingEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -205,7 +205,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInfrastructureMapping_Roles() {
+	public EReference getInfrastructureMapping_Machines() {
 		return (EReference)infrastructureMappingEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -281,8 +281,8 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 		createEAttribute(recipeImportEClass, RECIPE_IMPORT__IMPORT_URI);
 
 		infrastructureMappingEClass = createEClass(INFRASTRUCTURE_MAPPING);
-		createEReference(infrastructureMappingEClass, INFRASTRUCTURE_MAPPING__MACHINE);
 		createEReference(infrastructureMappingEClass, INFRASTRUCTURE_MAPPING__ROLES);
+		createEReference(infrastructureMappingEClass, INFRASTRUCTURE_MAPPING__MACHINES);
 
 		roleEClass = createEClass(ROLE);
 
@@ -339,8 +339,8 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 		initEAttribute(getRecipeImport_ImportURI(), theEcorePackage.getEString(), "importURI", null, 0, 1, RecipeImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(infrastructureMappingEClass, InfrastructureMapping.class, "InfrastructureMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInfrastructureMapping_Machine(), theInfrastructurePackage.getMachine(), null, "machine", null, 0, 1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getInfrastructureMapping_Roles(), this.getRole(), null, "roles", null, 0, -1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInfrastructureMapping_Roles(), this.getRole(), null, "roles", null, 0, -1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInfrastructureMapping_Machines(), theInfrastructurePackage.getProcess(), null, "machines", null, 0, 1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(roleEClass, Role.class, "Role", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

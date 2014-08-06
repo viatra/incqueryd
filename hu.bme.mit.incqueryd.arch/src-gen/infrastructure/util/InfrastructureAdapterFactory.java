@@ -2,7 +2,9 @@
  */
 package infrastructure.util;
 
-import infrastructure.*;
+import infrastructure.ElementWithTraceInfo;
+import infrastructure.InfrastructurePackage;
+import infrastructure.Machine;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -72,6 +74,10 @@ public class InfrastructureAdapterFactory extends AdapterFactoryImpl {
 				return createMachineAdapter();
 			}
 			@Override
+			public Adapter caseProcess(infrastructure.Process object) {
+				return createProcessAdapter();
+			}
+			@Override
 			public Adapter caseElementWithTraceInfo(ElementWithTraceInfo object) {
 				return createElementWithTraceInfoAdapter();
 			}
@@ -106,6 +112,20 @@ public class InfrastructureAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMachineAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link infrastructure.Process <em>Process</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see infrastructure.Process
+	 * @generated
+	 */
+	public Adapter createProcessAdapter() {
 		return null;
 	}
 

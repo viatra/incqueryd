@@ -16,8 +16,8 @@ class RecipeImport {
 }
 
 class InfrastructureMapping extends ElementWithTraceInfo {
-	refers Process process
 	refers Role[] roles
+	refers Process machines
 }
 
 abstract class Role {

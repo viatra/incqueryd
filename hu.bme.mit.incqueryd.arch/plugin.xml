@@ -6,9 +6,8 @@
 
 <plugin>
 
-
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated arch-combined -->
+      <!-- @generated Arch -->
       <package
             uri="http://incquery.net/arch"
             class="arch.ArchPackage"
@@ -16,10 +15,11 @@
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated arch-combined -->
+      <!-- @generated Infrastructure -->
       <package
             uri="http://incquery.net/d/infrastructure"
             class="infrastructure.InfrastructurePackage"
             genModel="model/Infrastructure.xcore"/>
    </extension>
+
 </plugin>
