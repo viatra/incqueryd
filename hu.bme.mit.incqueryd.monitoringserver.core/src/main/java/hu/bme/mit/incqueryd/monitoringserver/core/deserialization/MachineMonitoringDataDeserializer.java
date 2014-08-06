@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.deserialization;
 
 import hu.bme.mit.incqueryd.monitoringserver.core.model.MachineMonitoringData;
-import hu.bme.mit.incqueryd.monitoringserver.core.model.OSMonitoringData;
+import hu.bme.mit.incqueryd.osmonitoringagent.metrics.OSMonitoringData;
 
 import java.lang.reflect.Type;
 

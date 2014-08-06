@@ -14,6 +14,7 @@ import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredMachines
 import hu.bme.mit.incqueryd.monitoringserver.core.data.StringTuple
 import hu.bme.mit.incqueryd.monitoringserver.core.data.MonitoringChangeSet
 import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics
+import hu.bme.mit.incqueryd.osmonitoringagent.metrics.HostData
 
 class MonitoringDataCollectorActor extends Actor {
 
@@ -30,6 +31,8 @@ class MonitoringDataCollectorActor extends Actor {
     }
     
     case reteNodeMetrics: ReteNodeMetrics => ReteMetricsStore putMetric reteNodeMetrics
+    
+    case hostData : HostData => MachineMonitoringDataStore addData hostData
     
     case str: String => {
       str charAt 0 match {

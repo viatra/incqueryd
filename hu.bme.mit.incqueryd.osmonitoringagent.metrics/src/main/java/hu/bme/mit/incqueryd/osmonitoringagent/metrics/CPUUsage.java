@@ -1,7 +1,13 @@
 package hu.bme.mit.incqueryd.osmonitoringagent.metrics;
 
-public class CPUUsage {
+import java.io.Serializable;
 
+public class CPUUsage implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private double usedCPUPercent;
 	
 	public CPUUsage(){

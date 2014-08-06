@@ -1,7 +1,13 @@
 package hu.bme.mit.incqueryd.osmonitoringagent.metrics;
 
-public class DiskUsage {
+import java.io.Serializable;
 
+public class DiskUsage implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private double diskQueue;
 	private long diskReads;

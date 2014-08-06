@@ -1,7 +1,13 @@
 package hu.bme.mit.incqueryd.osmonitoringagent.metrics;
 
-public class MemoryUsage {
+import java.io.Serializable;
 
+public class MemoryUsage implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private double totalMemory;
 	private double usedMemory;
 	private double freeMemory;

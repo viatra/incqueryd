@@ -1,6 +1,7 @@
 package hu.bme.mit.incqueryd.monitoringserver.core.model;
 
 import hu.bme.mit.incqueryd.jvmmonitoring.metrics.JVMMetrics;
+import hu.bme.mit.incqueryd.osmonitoringagent.metrics.OSMonitoringData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,16 @@ public class MachineMonitoringData {
 		nodes = new ArrayList<>();
 	}
 	
+	
+	
+	public MachineMonitoringData(String host, OSMonitoringData os) {
+		this.host = host;
+		this.os = os;
+		nodes = new ArrayList<>();
+	}
+
+
+
 	public String getHost() {
 		return host;
 	}

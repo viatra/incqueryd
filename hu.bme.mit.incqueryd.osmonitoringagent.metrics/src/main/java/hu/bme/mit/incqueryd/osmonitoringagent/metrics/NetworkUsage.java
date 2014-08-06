@@ -1,7 +1,13 @@
 package hu.bme.mit.incqueryd.osmonitoringagent.metrics;
 
-public class NetworkUsage {
+import java.io.Serializable;
+
+public class NetworkUsage implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String address;
 	private double rxTraffic;
