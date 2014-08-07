@@ -2,6 +2,8 @@
 
 # Usage: generate-configs.sh ip_address port1 port2 ...
 
+cd "$( cd "$( dirname "$0" )" && pwd )"
+
 ip_address=$1
 shift
 ports=$@

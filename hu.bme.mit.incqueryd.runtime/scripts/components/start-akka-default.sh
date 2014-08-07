@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export localHost=
+export HOSTNAME=<hostname>
 export JAVA_OPTS="-Xms1G -Xmx1G"
 
 while [[ ! -z `ps auxw | grep java | grep akka` ]]; do
@@ -10,10 +10,7 @@ done
 
 cd
 
-rm ~/atmos.* ~/akka.* 2> /dev/null
-
-cd ~/typesafe-console-developer-1.3.1
-bin/typesafe-console atmos -port 8660 -interface $localHost > ~/atmos.out 2> ~/atmos.err < /dev/null &
+rm ~/akka.* 2> /dev/null
 
 cd ~/akka-2.1.4
 nohup bin/akka hu.bme.mit.incqueryd.rete.actors.IncQueryDMicrokernel > ~/akka.out 2> ~/akka.err < /dev/null &
