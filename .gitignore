@@ -1,2 +1,12 @@
+plugin.xml_gen
+bin/
+target/
+MANIFEST.MF_gen
+.DS_Store*
+tmp/
+*.synctex.gz
+.metadata
+runtimeInfo
+.cache
 hu.bme.mit.incqueryd.arch.edit/
 hu.bme.mit.incqueryd.arch.editor/
