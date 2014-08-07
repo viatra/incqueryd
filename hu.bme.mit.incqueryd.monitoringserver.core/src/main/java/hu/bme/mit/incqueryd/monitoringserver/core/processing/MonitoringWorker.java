@@ -55,10 +55,7 @@ public class MonitoringWorker extends Thread {
 		// Wait for the jvm monitoring worker to complete
 		try {
 			jvmWorker.join();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (InterruptedException e) {}
 		
 		List<JVMMetrics> jvmMetrics = jvmWorker.getJvmMetrics();
 		
