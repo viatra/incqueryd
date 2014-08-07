@@ -255,7 +255,7 @@
 
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
-			<artifactId>hu.bme.mit.incqueryd.arch</artifactId>
+			<artifactId>hu.bme.mit.incqueryd.arch.model</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
