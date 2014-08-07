@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.arch;
 
+import hu.bme.mit.incqueryd.arch.util.ArchUtil;
 import infrastructure.Machine;
 
 import java.io.IOException;

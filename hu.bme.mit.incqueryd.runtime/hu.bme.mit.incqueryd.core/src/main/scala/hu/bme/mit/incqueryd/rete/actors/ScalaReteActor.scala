@@ -1,42 +1,45 @@
 package hu.bme.mit.incqueryd.rete.actors
 
-import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
-import hu.bme.mit.incqueryd.rete.nodes.ReteNode
+import java.util.ArrayList
 import java.util.HashMap
-import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot
-import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
-import hu.bme.mit.incqueryd.rete.nodes.ReteNodeFactory
-import akka.actor.Actor
-import hu.bme.mit.incqueryd.rete.messages.ActorReply
-import hu.bme.mit.incqueryd.rete.messages.YellowPages
-import hu.bme.mit.incqueryd.arch.ArchUtil
+
+import scala.collection.JavaConversions._
+import scala.collection.immutable.Stack
+import scala.concurrent.ops._
+
+import org.apache.commons.lang.NotImplementedException
 import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
-import scala.collection.JavaConversions._
+import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
+
+import akka.actor.Actor
 import akka.actor.ActorRef
-import hu.bme.mit.incqueryd.rete.messages.UpdateMessage
+import hu.bme.mit.incqueryd.arch.util.ArchUtil
+import hu.bme.mit.incqueryd.monitoring.HostNameService
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet
-import hu.bme.mit.incqueryd.rete.nodes.AlphaNode
-import org.apache.commons.lang.NotImplementedException
-import hu.bme.mit.incqueryd.rete.nodes.BetaNode
-import scala.collection.immutable.Stack
-import hu.bme.mit.incqueryd.rete.nodes.InputNode
-import hu.bme.mit.incqueryd.rete.nodes.InitializableReteNode
-import hu.bme.mit.incqueryd.rete.messages.Transformation
-import hu.bme.mit.incqueryd.rete.messages.TerminationMessage
+import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot
+import hu.bme.mit.incqueryd.rete.messages.ActorReply
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorMessage
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage
+import hu.bme.mit.incqueryd.rete.messages.TerminationMessage
+import hu.bme.mit.incqueryd.rete.messages.Transformation
+import hu.bme.mit.incqueryd.rete.messages.UpdateMessage
+import hu.bme.mit.incqueryd.rete.messages.YellowPages
+import hu.bme.mit.incqueryd.rete.nodes.AlphaNode
+import hu.bme.mit.incqueryd.rete.nodes.BetaNode
+import hu.bme.mit.incqueryd.rete.nodes.InitializableReteNode
+import hu.bme.mit.incqueryd.rete.nodes.InputNode
 import hu.bme.mit.incqueryd.rete.nodes.ProductionNode
-import scala.concurrent.ops._
-import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoringMessage
-import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics
-import hu.bme.mit.incqueryd.retemonitoring.metrics.InputNodeMetrics
-import hu.bme.mit.incqueryd.monitoring.HostNameService
+import hu.bme.mit.incqueryd.rete.nodes.ReteNode
+import hu.bme.mit.incqueryd.rete.nodes.ReteNodeFactory
 import hu.bme.mit.incqueryd.retemonitoring.metrics.AlphaNodeMetrics
 import hu.bme.mit.incqueryd.retemonitoring.metrics.BetaNodeMetrics
+import hu.bme.mit.incqueryd.retemonitoring.metrics.InputNodeMetrics
+import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoringMessage
+import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics
 import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteSubscriber
-import java.util.ArrayList
+import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
 
 class ScalaReteActor extends Actor {
 
@@ -119,8 +122,14 @@ class ScalaReteActor extends Actor {
   }
 
   protected def subscribeToActor(actorRef: ActorRef, slot: ReteNodeSlot) = {
-    val message = ArchUtil.slotToMessage(slot)
-
+    
+    val message = slot match {
+      case ReteNodeSlot.PRIMARY => SubscriptionMessage.SUBSCRIBE_PRIMARY
+      case ReteNodeSlot.SECONDARY => SubscriptionMessage.SUBSCRIBE_SECONDARY
+      case ReteNodeSlot.SINGLE => SubscriptionMessage.SUBSCRIBE_SINGLE
+      case _ => null
+    }
+    
     actorRef ! message
 
     try {

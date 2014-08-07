@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Usage: generate-configs.sh ip_address port1 port2 ...
+
 ip_address=$1
 shift
 ports=$@

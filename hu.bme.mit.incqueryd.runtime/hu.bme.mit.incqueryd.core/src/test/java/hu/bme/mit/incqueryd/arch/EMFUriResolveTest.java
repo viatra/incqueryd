@@ -1,6 +1,7 @@
 package hu.bme.mit.incqueryd.arch;
 
 import static org.junit.Assert.assertEquals;
+import hu.bme.mit.incqueryd.arch.util.ArchUtil;
 
 import org.junit.Test;
 
