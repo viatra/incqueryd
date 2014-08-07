@@ -20,7 +20,7 @@ public class ExtractMachineTest {
 
 		final List<Machine> machines = new ArrayList<>();
 		for (final InfrastructureMapping mapping : conf.getMappings()) {
-			machines.add(mapping.getMachine());
+			machines.add(mapping.getProcess().getMachine());
 		}
 	}
 
