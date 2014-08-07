@@ -2,4 +2,4 @@
 
 cd "$( cd "$( dirname "$0" )" && pwd )"
 
-./build.sh && ./deploy.sh
+./build.sh && ./install.sh

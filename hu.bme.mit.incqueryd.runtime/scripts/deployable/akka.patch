@@ -1,8 +1,0 @@
---- akka	2013-05-14 14:42:58.000000000 +0200
-+++ akka-patched	2014-06-27 13:32:28.933337491 +0200
-@@ -21,4 +21,4 @@
- 
- [ -n "$AKKA_CLASSPATH" ] || AKKA_CLASSPATH="$AKKA_HOME/lib/scala-library.jar:$AKKA_HOME/config:$AKKA_HOME/lib/akka/*"
- 
--java $JAVA_OPTS -cp "$AKKA_CLASSPATH" -Dakka.home="$AKKA_HOME" -Dakka.kernel.quiet=$quiet akka.kernel.Main "$@"
-+java $JAVA_OPTS -classpath "$AKKA_CLASSPATH" -Dakka.home="$AKKA_HOME" -javaagent:"$AKKA_HOME/lib/akka/weaver/aspectjweaver.jar" -Djava.library.path="$AKKA_HOME/lib/akka/sigar/" -Dorg.aspectj.tracing.factory=default -Dakka.kernel.quiet=$quiet akka.kernel.Main "$@"

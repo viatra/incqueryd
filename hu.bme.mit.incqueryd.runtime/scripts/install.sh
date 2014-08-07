@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Script for deploying IncQuery-D on the cloud. This includes:
+# Script for installing IncQuery-D on the cloud. This includes:
 # * light mode
 #   * IncQuery-D core JAR file
 #   * start-akka.sh
@@ -14,7 +14,9 @@ cd "$( cd "$( dirname "$0" )" && pwd )"
 . config.sh
 cd ..
 
-AKKA_DEPLOY_DIRECTORY="akka-2.1.4/deploy"
+AKKA_VERSION="2.1.4"
+INSTALL_DIR=~/incqueryd/
+AKKA_DEPLOY_DIRECTORY="$INSTALL_DIR/akka-$AKKA_VERSION/deploy/"
 
 while [ "$1" != "" ]; do
 	case $1 in
@@ -38,15 +40,17 @@ done
 for machine in ${machines[@]}; do
 	echo "Deploying IncQuery-D on $machine"
 
-	cd scripts/deployable
-	cat start-akka-default.sh | sed "s/export localHost=/export localHost=$machine/" > start-akka.sh
+	ssh $machine "mkdir -p $INSTALL_DIR/"
+
+	cd scripts/components
+	cat start-akka-default.sh | sed "s/<hostname>/$machine/" > start-akka.sh
 	chmod +x start-akka.sh
-	scp * $machine:
+	scp -r * $machine:$INSTALL_DIR
 	rm start-akka.sh
-	cd ../..
+	cd ../../
 
 	if [ $install ]; then
-		ssh $machine "~/install-akka.sh"
+		ssh $machine "$INSTALL_DIR/install-akka.sh"
 	fi
 
 	if [[ $normal || $install ]]; then
