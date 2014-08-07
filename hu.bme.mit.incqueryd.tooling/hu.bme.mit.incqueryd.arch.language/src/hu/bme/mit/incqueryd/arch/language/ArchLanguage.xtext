@@ -23,18 +23,18 @@ Machine returns Machine:
 	ip=IP
 ;
 
-Role:
-	ReteRole | CacheRole
-;
-
-ReteRole returns ReteRole:
-	nodeRecipe=[ReteNodeRecipe]
-;
-
-CacheRole returns CacheRole:
-	{CacheRole}
-	'cache'
-;
+//Role:
+//	ReteRole | CacheRole
+//;
+//
+//ReteRole returns ReteRole:
+//	nodeRecipe=[ReteNodeRecipe]
+//;
+//
+//CacheRole returns CacheRole:
+//	{CacheRole}
+//	'cache'
+//;
 
 terminal IP:
 	INT '.' INT '.' INT '.' INT
