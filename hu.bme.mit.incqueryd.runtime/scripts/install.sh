@@ -7,7 +7,6 @@
 # * normal mode
 #   * all of the above
 #   * the dependencies of IncQuery-D core
-# * install mode
 #   * Akka microkernel and monitoring components
 
 cd "$( cd "$( dirname "$0" )" && pwd )"
@@ -19,16 +18,6 @@ INSTALL_DIR=~/incqueryd/
 AKKA_DEPLOY_DIRECTORY="$INSTALL_DIR/akka-$AKKA_VERSION/deploy/"
 
 while [ "$1" != "" ]; do
-	case $1 in
-		"--install")
-		install=true
-		;;
-	esac
-	case $1 in
-		"--normal")
-		normal=true
-		;;
-	esac
 	case $1 in
 		"--light")
 		light=true
@@ -49,11 +38,10 @@ for machine in ${machines[@]}; do
 	rm start-akka.sh
 	cd ../../
 
-	if [ $install ]; then
+	if [[ ! $light ]]; then
+		# install Akka
 		ssh $machine "$INSTALL_DIR/install-akka.sh"
-	fi
 
-	if [[ $normal || $install ]]; then
 		# clean the deploy directory
 		ssh $machine "rm $AKKA_DEPLOY_DIRECTORY/*"
 
@@ -64,4 +52,3 @@ for machine in ${machines[@]}; do
 	# IncQuery-D's main JAR
 	scp hu.bme.mit.incqueryd.core/target/hu.bme.mit.incqueryd.core-*-SNAPSHOT.jar $machine:$AKKA_DEPLOY_DIRECTORY
 done
-
