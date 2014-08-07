@@ -25,7 +25,7 @@ import akka.util.Timeout
 import arch.CacheRole
 import arch.Configuration
 import arch.ReteRole
-import hu.bme.mit.incqueryd.arch.ArchUtil
+import hu.bme.mit.incqueryd.arch.util.ArchUtil
 import hu.bme.mit.incqueryd.monitoring.actors.JVMMonitoringActor
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType

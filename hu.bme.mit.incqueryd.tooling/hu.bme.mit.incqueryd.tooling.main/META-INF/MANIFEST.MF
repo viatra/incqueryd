@@ -8,5 +8,4 @@ Require-Bundle: org.eclipse.incquery.patternlanguage.rdf.generator.recipe;bundle
  org.eclipse.ui.ide.application;bundle-version="1.0.401",
  org.eclipse.equinox.util;bundle-version="1.0.500",
  hu.bme.mit.incqueryd.tooling.deployment;bundle-version="1.0.0",
- hu.bme.mit.incqueryd.tooling.monitoring;bundle-version="1.0.0",
- hu.bme.mit.incqueryd.arch.editor;bundle-version="1.0.0"
+ hu.bme.mit.incqueryd.tooling.monitoring;bundle-version="1.0.0"
