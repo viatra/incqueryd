@@ -28,14 +28,13 @@ public class ArchitectureInstaller {
 	}
 
 	private static void deploy(final Machine machine) throws IOException {
-		System.out.println(machine);
 		
 		final String AKKA_DIR = INSTALL_DIR + "akka-" + AKKA_VERSION + "/";
 		System.out.println(AKKA_DIR);
 		
 		final List<String> command = new ArrayList<>();
 		command.add("ssh");
-		command.add("localhost");
+		command.add(machine.getIp());
 		command.add(AKKA_DIR + "generate-configs.sh");
 		command.add(machine.getIp());
 		
@@ -47,5 +46,18 @@ public class ArchitectureInstaller {
 		final Map<String, String> environment = new HashMap<>();
 		
 		UnixUtils.run(command.toArray(new String[command.size()]), true, environment);
+		
+		final List<String> startCommand = new ArrayList<>();
+		startCommand.add("ssh");
+		startCommand.add(machine.getIp());
+		startCommand.add(INSTALL_DIR + "start-akka.sh");
+		startCommand.add(machine.getIp());
+		
+		for (final infrastructure.Process process: machine.getProcesses()) {
+			final int port = process.getPort();
+			startCommand.add(Integer.toString(port));
+		}
+		
+		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]), true, environment);
 	}
 }
