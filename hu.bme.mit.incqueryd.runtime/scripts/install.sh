@@ -31,13 +31,8 @@ for machine in ${machines[@]}; do
 
 	ssh $machine "mkdir -p $INSTALL_DIR/"
 
-	cd scripts/components
-	cat start-akka-default.sh | sed "s/<hostname>/$machine/" > start-akka.sh
-	chmod +x start-akka.sh
-	scp -r * $machine:$INSTALL_DIR
-	rm start-akka.sh
-	cd ../../
-
+	scp -r scripts/components/* $machine:$INSTALL_DIR
+	
 	if [[ ! $light ]]; then
 		# install Akka
 		ssh $machine "$INSTALL_DIR/install-akka.sh"
