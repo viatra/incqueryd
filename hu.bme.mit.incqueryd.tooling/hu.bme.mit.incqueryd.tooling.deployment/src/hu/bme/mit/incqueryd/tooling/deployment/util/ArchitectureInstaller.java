@@ -51,7 +51,6 @@ public class ArchitectureInstaller {
 		startCommand.add("ssh");
 		startCommand.add(machine.getIp());
 		startCommand.add(INSTALL_DIR + "start-akka.sh");
-		startCommand.add(machine.getIp());
 		
 		for (final infrastructure.Process process: machine.getProcesses()) {
 			final int port = process.getPort();
