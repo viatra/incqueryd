@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+declare quiet="false"
+
+while true; do
+  case "$1" in
+    -q | --quiet ) quiet="true"; shift ;;
+    * ) break ;;
+  esac
+done
+
+if [ $# -ne 2 ]; then
+  echo "Usage: bin/akka org.somewhere.BootClass port-number"
+  exit 1
+fi
+
+bootclass=$1
+port=$2
+
+declare AKKA_HOME="$(cd "$(cd "$(dirname "$0")"; pwd -P)"/..; pwd)"
+
+if [ ! -d $AKKA_HOME/config-$port ]; then
+  echo "Configuration directory $AKKA_HOME/config-$port does not exist."
+  exit 2
+fi
+
+[ -n "$JAVA_OPTS" ] || JAVA_OPTS="-Xms1024M -Xmx1024M -Xss1M -XX:MaxPermSize=256M -XX:+UseParallelGC"
+
+[ -n "$AKKA_CLASSPATH" ] || AKKA_CLASSPATH="$AKKA_HOME/lib/scala-library.jar:$AKKA_HOME/config-$port:$AKKA_HOME/lib/akka/*"
+
+java $JAVA_OPTS -cp "$AKKA_CLASSPATH" -Dakka.home="$AKKA_HOME" -Dakka.kernel.quiet=$quiet akka.kernel.Main "$bootclass"
