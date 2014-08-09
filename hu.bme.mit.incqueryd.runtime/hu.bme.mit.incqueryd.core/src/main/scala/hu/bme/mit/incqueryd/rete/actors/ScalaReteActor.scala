@@ -170,7 +170,7 @@ class ScalaReteActor extends Actor {
 
     sendToSubscribers(changeSet, updateMessage.getSenderStack)
     
-    monitoringServerActor ! monitor // send the monitoring server the updated metrics
+    if (monitoringServerActor != null) monitoringServerActor ! monitor // send the monitoring server the updated metrics
 
     reteNode match{
       case node:ProductionNode => terminationProtocol(new TerminationMessage(updateMessage.getSenderStack()))
@@ -223,7 +223,7 @@ class ScalaReteActor extends Actor {
     val emptyStack = Stack.empty[ActorRef]
     sendToSubscribers(changeSet, emptyStack)
     
-    monitoringServerActor ! monitor // send the monitoring server the updated metrics
+    if (monitoringServerActor != null) monitoringServerActor ! monitor // send the monitoring server the updated metrics
     
   }
 
@@ -239,7 +239,7 @@ class ScalaReteActor extends Actor {
       sendToSubscribers(changeSet, emptyStack)
     })
     
-    monitoringServerActor ! monitor // send the monitoring server the updated metrics
+    if (monitoringServerActor != null) monitoringServerActor ! monitor // send the monitoring server the updated metrics
     
   }
 
