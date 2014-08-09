@@ -126,7 +126,7 @@ public class OSMonitor extends UntypedActor{
 	 */
 	protected OSMonitor() throws SigarException, UnknownHostException {
 		
-		monitoringServerAddress = getContext().actorFor("akka://monitoringserver@" + monitoringServerIP + ":2552/user/collector");
+		monitoringServerAddress = getContext().actorFor("akka://monitoringserver@" + monitoringServerIP + ":5225/user/collector");
 
 		InetAddress iAddress = InetAddress.getLocalHost();
 		hostName = iAddress.getHostName();

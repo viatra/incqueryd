@@ -119,7 +119,7 @@ public class MonitoringWorker extends Thread {
 				"    use-passive-connections = on\r\n" +
 				"    use-dispatcher-for-io = \"\"\r\n" +
 				"    hostname = \"" + collectorInterface + "\"\r\n" + 
-				"    port = 2552\r\n" + 
+				"    port = 5225\r\n" + 
 				"    message-frame-size = 1 MiB\r\n" +
 				"    reconnection-time-window = 600s\r\n" +
 				"    all-timeout = 0s\r\n" +
