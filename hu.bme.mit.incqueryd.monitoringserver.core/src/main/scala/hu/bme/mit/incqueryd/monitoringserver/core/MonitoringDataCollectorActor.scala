@@ -23,10 +23,6 @@ class MonitoringDataCollectorActor extends Actor {
     case actorRefs: MonitoredActorCollection => {
       MonitoringAddressStore.putActors(actorRefs.getActorRefs)
       MonitoringAddressStore.putJvmActors(actorRefs.getJvmActorRefs)
-    }
-    
-    case machines: MonitoredMachines => {
-      MonitoringAddressStore.putMachines(machines.getMachineIPs)
       MonitoringAddressStore.addCoordinatorActor(sender)
     }
     
