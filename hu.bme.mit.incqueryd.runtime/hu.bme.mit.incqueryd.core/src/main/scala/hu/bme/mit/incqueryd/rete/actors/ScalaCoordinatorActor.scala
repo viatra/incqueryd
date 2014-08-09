@@ -348,7 +348,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
   }
 
   private def subscribeMonitoringService(conf: Configuration) = {
-    monitoringActor = context.actorFor("akka://monitoringserver@" + monitoringServerIPAddress + ":2552/user/collector")
+    monitoringActor = context.actorFor("akka://monitoringserver@" + monitoringServerIPAddress + ":5225/user/collector")
 
     monitoringActor ! new MonitoredActorCollection(actorRefs, jvmActorRefs)
 
