@@ -262,7 +262,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
 
     if (debug) System.err.println("Results: " + latestResults.size)
 
-    monitoringActor ! sendChangesForMonitoring(latestChangeSet)
+    if (monitoringActor != null) monitoringActor ! sendChangesForMonitoring(latestChangeSet)
 
     latestChangeSet
   }
