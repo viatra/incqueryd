@@ -16,6 +16,8 @@ cd ..
 AKKA_VERSION="2.1.4"
 INSTALL_DIR=~/incqueryd/
 AKKA_DEPLOY_DIRECTORY="$INSTALL_DIR/akka-$AKKA_VERSION/deploy/"
+COORDINATOR_INSTALL_DIR="$INSTALL_DIR/coordinator/"
+COORDINATOR_LIB_DIRECTORY="$COORDINATOR_INSTALL_DIR/lib/"
 
 while [ "$1" != "" ]; do
 	case $1 in
@@ -47,3 +49,18 @@ for machine in ${machines[@]}; do
 	# IncQuery-D's main JAR
 	scp hu.bme.mit.incqueryd.core/target/hu.bme.mit.incqueryd.core-*-SNAPSHOT.jar $machine:$AKKA_DEPLOY_DIRECTORY
 done
+
+# Installing the Main jar with the cordinator actor to the localhost
+echo "Deploying IncQuery-D Main jar on localhost"
+
+mkdir -p $COORDINATOR_INSTALL_DIR/
+mkdir -p $COORDINATOR_LIB_DIRECTORY/
+
+if [[ ! $light ]]; then
+	rm -f $COORDINATOR_LIB_DIRECTORY/*
+	# third party dependencies
+	scp hu.bme.mit.incqueryd.core/target/lib/* localhost:$COORDINATOR_LIB_DIRECTORY
+fi
+
+# IncQuery-D's main JAR
+scp hu.bme.mit.incqueryd.core/target/hu.bme.mit.incqueryd.core-*-SNAPSHOT.jar localhost:$COORDINATOR_INSTALL_DIR
