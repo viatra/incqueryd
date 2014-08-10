@@ -1,6 +1,7 @@
 package hu.bme.mit.incqueryd.tooling.deployment.util;
 
 import hu.bme.mit.incqueryd.arch.util.ArchUtil;
+import hu.bme.mit.incqueryd.tooling.deployment.dialogs.MonitoringServerAddressDialog;
 import infrastructure.Machine;
 
 import java.io.IOException;
@@ -9,14 +10,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
+
 import arch.Configuration;
 
 public class ArchitectureInstaller {
 
 	public static final String INSTALL_DIR = "~/incqueryd/";
 	public static final String AKKA_VERSION = "2.1.4";
+	public static final String COORDINATOR_DIR = "~/incqueryd/coordinator/";
+	
+	public static String archFile;
 	
 	public static void processArchitecture(final String architectureFile) throws IOException {
+		archFile = architectureFile;
+		
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 		
 		final String connectionString = configuration.getConnectionString();
@@ -58,5 +67,22 @@ public class ArchitectureInstaller {
 		}
 		
 		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]), true, environment);
+		
+		// Pop up a dialog to ask for the monitoring server's IP address
+		Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MonitoringServerAddressDialog dialog = new MonitoringServerAddressDialog(activeShell);
+		
+		String address = "192.168.133.1";
+//		if (dialog.open() == Window.OK) {
+//			address = dialog.getMsIPAddress();
+//		}
+		
+		final List<String> coordinatorCommand = new ArrayList<>();
+		//coordinatorCommand.add("java -jar");
+		coordinatorCommand.add(COORDINATOR_DIR +"start-coordinator.sh");
+		coordinatorCommand.add(archFile);
+		if(address != null && ! address.isEmpty()) coordinatorCommand.add(address);
+		
+		UnixUtils.run(coordinatorCommand.toArray(new String[coordinatorCommand.size()]), true, environment);
 	}
 }
