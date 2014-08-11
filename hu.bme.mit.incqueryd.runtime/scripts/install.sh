@@ -62,5 +62,8 @@ if [[ ! $light ]]; then
 	scp hu.bme.mit.incqueryd.core/target/lib/* localhost:$COORDINATOR_LIB_DIRECTORY
 fi
 
+# Copying the coordinator starting script(s) to the localhost's install idrectory
+scp scripts/coordinator/* localhost:$COORDINATOR_INSTALL_DIR
+
 # IncQuery-D's main JAR
 scp hu.bme.mit.incqueryd.core/target/hu.bme.mit.incqueryd.core-*-SNAPSHOT.jar localhost:$COORDINATOR_INSTALL_DIR
