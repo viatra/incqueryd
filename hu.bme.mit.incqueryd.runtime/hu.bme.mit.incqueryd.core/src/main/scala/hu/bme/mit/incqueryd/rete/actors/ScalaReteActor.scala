@@ -285,11 +285,11 @@ class ScalaReteActor extends Actor {
     subscribers.keySet().foreach(subscriber => {
       subscriberNodes.add(new ReteSubscriber(subscriber.path.name, subscribers.get(subscriber).toString))
     })
-
+    
     reteNode match {
-      case inputNode: InputNode => new InputNodeMetrics(self.path.name, HostNameService.hostName, nodeType, "Input", self.path.toString, updateMessageCount, changesCount, inputNode.tuples, inputNode.getMemoryConsumption, subscriberNodes)
-      case alphaNode: AlphaNode => new AlphaNodeMetrics(self.path.name, HostNameService.hostName, nodeType, "Alpha", self.path.toString, updateMessageCount, changesCount, subscriberNodes)
-      case betaNode: BetaNode => new BetaNodeMetrics(self.path.name, HostNameService.hostName, nodeType, "Beta", self.path.toString, updateMessageCount, changesCount, betaNode.leftIndexerSize, betaNode.rightIndexerSize, betaNode.getMemoryConsumption, subscriberNodes)
+      case inputNode: InputNode => new InputNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Input", self.path.toString, updateMessageCount, changesCount, inputNode.tuples, inputNode.getMemoryConsumption, subscriberNodes)
+      case alphaNode: AlphaNode => new AlphaNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Alpha", self.path.toString, updateMessageCount, changesCount, subscriberNodes)
+      case betaNode: BetaNode => new BetaNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Beta", self.path.toString, updateMessageCount, changesCount, betaNode.leftIndexerSize, betaNode.rightIndexerSize, betaNode.getMemoryConsumption, subscriberNodes)
     }
   }
 
@@ -310,7 +310,6 @@ class ScalaReteActor extends Actor {
       val productionNode = reteNode.asInstanceOf[ProductionNode]
       sender ! productionNode.getDeltaResults
     }
-    case MonitoringMessage.MONITOR => sender ! monitor
     case _ => {}
   }
 
