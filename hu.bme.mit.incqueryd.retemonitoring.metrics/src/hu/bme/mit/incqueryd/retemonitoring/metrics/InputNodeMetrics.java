@@ -4,9 +4,9 @@ import java.util.List;
 
 public class InputNodeMetrics extends MemoryNodeMetrics {
 
-	public InputNodeMetrics(String reteNode, String hostName, String nodeType, String nodeclass,
+	public InputNodeMetrics(String reteNode, String hostName, String processName, String nodeType, String nodeclass,
 			String actorPath, int updateMessagesSent, int changesCount, int tuples, double memory, List<ReteSubscriber> subscribers) {
-		super(reteNode, hostName, nodeType, nodeclass, actorPath, updateMessagesSent, changesCount, memory, subscribers);
+		super(reteNode, hostName, processName, nodeType, nodeclass, actorPath, updateMessagesSent, changesCount, memory, subscribers);
 		this.tuples = tuples;
 	}
 

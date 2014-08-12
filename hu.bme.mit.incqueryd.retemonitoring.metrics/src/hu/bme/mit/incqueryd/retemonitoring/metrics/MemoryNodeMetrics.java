@@ -6,10 +6,10 @@ public class MemoryNodeMetrics extends ReteNodeMetrics {
 	
 	private double memory;
 
-	public MemoryNodeMetrics(String reteNode, String hostName, String nodeType,
+	public MemoryNodeMetrics(String reteNode, String hostName, String processName, String nodeType,
 			String nodeclass, String actorPath, int updateMessagesSent,
 			int changesCount, double memory, List<ReteSubscriber> subscribers) {
-		super(reteNode, hostName, nodeType, nodeclass, actorPath, updateMessagesSent,
+		super(reteNode, hostName, processName, nodeType, nodeclass, actorPath, updateMessagesSent,
 				changesCount, subscribers);
 		this.memory = memory;
 	}
