@@ -15,15 +15,16 @@ h1 {
 }
 
 #container {
-    width: 1800px;
-    height: 4600px;
+    width: 1820px;
+    height: 2900px;
     margin:0 auto;
     position:relative;
+    /*background-color:#ff0000;*/
 }
 
 #graph-container-rete, 
 #graph-container {
-    height:22%;
+    height:38%;
     position:absolute;
     top:0;
 }
@@ -33,7 +34,7 @@ h1 {
 #results-table,
 #deltas-table
  {
-    height:20%;
+    height:31%;
     position:absolute;
     top:0;
 }
@@ -47,7 +48,7 @@ h1 {
     border-bottom:1px solid #ddd;
     float:left;
     border-right:1px solid #ddd;
-    margin-top:57%;
+    margin-top:62%;
 }
 
 #heatmap-container-rete {
@@ -59,8 +60,8 @@ h1 {
     border-bottom:1px solid #ddd;
     float:right;
     border-right:1px solid #ddd;
-    margin-left:50%;
-    margin-top:57%;
+    margin-left:51%;
+    margin-top:62%;
 }
 
 #results-table {
@@ -72,7 +73,7 @@ h1 {
     border-bottom:1px solid #ddd;
     float:right;
     border-right:1px solid #ddd;
-    margin-top:109%;
+    margin-top:113%;
 }
 
 #deltas-table {
@@ -84,8 +85,8 @@ h1 {
     border-bottom:1px solid #ddd;
     float:right;
     border-right:1px solid #ddd;
-    margin-top:109%;
-    margin-left:50%;
+    margin-top:113%;
+    margin-left:51%;
 }
 
 #graph-container {
@@ -102,15 +103,9 @@ h1 {
     border-bottom:1px solid #ddd;
     float:right;
     border-right:1px solid #ddd;
-    margin-left:50%;
+    margin-left:51%;
     background-color:#1a1a1a;
     color:#ccc;
-}
-
-.separator-horizontal {
-    background-color:inherit;
-    height:100%;
-    width:20px;
 }
 
 .text {
