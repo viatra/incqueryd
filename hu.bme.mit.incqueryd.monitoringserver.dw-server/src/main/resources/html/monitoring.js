@@ -294,7 +294,7 @@ CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, li
 
 function visualizeSystem() {
 
-    $.getJSON('test.json', function (data) {
+    $.getJSON('/monitoring', function (data) {
         update(data);
     });
     globalMonitoringTimer = setTimeout(function () { visualizeSystem(); }, 5000);
@@ -320,6 +320,7 @@ function update(object) {
     else {
         $jit.id('infovis').innerHTML = "";
         $jit.id('heatmap').innerHTML = "";
+        $jit.id('heatmap-rete').innerHTML = "";
 
         selectedNode = null;
 

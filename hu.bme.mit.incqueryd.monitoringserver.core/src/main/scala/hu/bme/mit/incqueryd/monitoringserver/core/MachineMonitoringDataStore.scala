@@ -16,7 +16,7 @@ object MachineMonitoringDataStore {
   
   def getData () = {
     machineData.synchronized({
-      asJavaList((for {data <- machineData.values} yield data) toList)
+      asJavaList((for {data <- machineData.values} yield new MachineMonitoringData(data.getHost, data.getOs)) toList)
     })
   }
   
