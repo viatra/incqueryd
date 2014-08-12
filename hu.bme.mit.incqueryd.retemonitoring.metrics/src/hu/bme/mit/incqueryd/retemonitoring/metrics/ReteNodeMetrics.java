@@ -12,6 +12,7 @@ public class ReteNodeMetrics implements Serializable {
 	
 	private String reteNode;
 	private String hostName;
+	private String processName;
 	private String nodeType;
 	private String nodeClass;
 	private String actorPath;
@@ -21,11 +22,12 @@ public class ReteNodeMetrics implements Serializable {
 	
 	private List<ReteSubscriber> subscribers;
 	
-	public ReteNodeMetrics(String reteNode, String hostName, String nodeType, String nodeclass,
+	public ReteNodeMetrics(String reteNode, String hostName, String processName, String nodeType, String nodeclass,
 			String actorPath, int updateMessagesSent, int changesCount, List<ReteSubscriber> subscribers) {
 		super();
 		this.reteNode = reteNode;
 		this.hostName = hostName;
+		this.processName = processName;
 		this.nodeType = nodeType;
 		this.updateMessagesSent = updateMessagesSent;
 		this.changesCount = changesCount;
@@ -56,6 +58,10 @@ public class ReteNodeMetrics implements Serializable {
 	
 	public void setHostName(String hostName) {
 		this.hostName = hostName;
+	}
+	
+	public String getProcessName() {
+		return processName;
 	}
 	
 	public int getChangesCount() {

@@ -5,12 +5,11 @@ body {
     font-size: 0.9em;
     text-align: center;
     background-color:#23A4FF;
-    /*background-image:url('background.png');*/
 }
 
 h1 {
-	text-shadow: 0px 0px 10px rgba(255,255,255,1), 0px 0px 30px rgba(255,255,255,1), 0px 0px 50px rgba(255,255,255,1), 0px 0px 180px rgba(255,255,255,1);
-	color: rgba(255,255,255,0.5);
+	/*text-shadow: 0px 0px 10px rgba(255,255,255,1), 0px 0px 30px rgba(255,255,255,1), 0px 0px 50px rgba(255,255,255,1), 0px 0px 180px rgba(255,255,255,1);*/
+	color: rgba(255,255,255,0.7);
 	font: 80px 'ChunkFiveRegular';
     background: linear-gradient(to right, #C0C0C0 , #23A4FF);
 }
@@ -31,7 +30,6 @@ h1 {
 
 #heatmap-container-os,
 #heatmap-container-rete,
-#heatmap-container-jvm,
 #results-table,
 #deltas-table
  {
@@ -65,19 +63,6 @@ h1 {
     margin-top:57%;
 }
 
-#heatmap-container-jvm {
-    width:49%;
-    color:#686c70;
-    overflow: auto;
-    background-color:#fff;
-    background-repeat:no-repeat;
-    border-bottom:1px solid #ddd;
-    float:right;
-    border-right:1px solid #ddd;
-    margin-left:25%;
-    margin-top:109%;
-}
-
 #results-table {
     width:49%;
     color:#686c70;
@@ -87,7 +72,7 @@ h1 {
     border-bottom:1px solid #ddd;
     float:right;
     border-right:1px solid #ddd;
-    margin-top:161%;
+    margin-top:109%;
 }
 
 #deltas-table {
@@ -99,7 +84,7 @@ h1 {
     border-bottom:1px solid #ddd;
     float:right;
     border-right:1px solid #ddd;
-    margin-top:161%;
+    margin-top:109%;
     margin-left:50%;
 }
 
@@ -142,8 +127,7 @@ h1 {
 }
 
 #heatmap,
-#heatmap-rete,
-#heatmap-jvm {
+#heatmap-rete {
     position:relative;
     width:100%;
     height:100%;

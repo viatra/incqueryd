@@ -67,6 +67,33 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
     }
 });
 
+// Process node
+$jit.ForceDirected.Plot.NodeTypes.implement({
+    'process': {
+        'render': function (node, canvas) {
+            var ctx = canvas.getCtx();
+            var pos = node.pos.getc(true);
+            if (node.getData('image') != 0) {
+                var img = node.getData('image');
+                ctx.drawImage(img, pos.x - 25, pos.y - 20);
+
+                drawGauge(canvas, { x: pos.x + img.width + 12, y: pos.y + 32 }, node.data.cpu, percentToColor(node.data.cpu), "CPU\n" + (truncateDecimals(node.data.cpu * 10) / 10) + "%", 30, 30, 15, 10);
+                drawGauge(canvas, { x: pos.x + img.width + 90, y: pos.y + 32 }, node.data.memory, percentToColor(node.data.memory), "HEAP\n" + (truncateDecimals(node.data.memory * 10) / 10) + "%", 30, 30, 15, 10);
+            }
+        },
+        'contains': function (node, pos) {
+            var npos = node.pos.getc(true);
+            //dim = node.getData('dim');
+            var width = node.getData('width');
+            var height = node.getData('height');
+            var npos2 = {};
+            npos2.x = npos.x + 25;
+            npos2.y = npos.y + 25;
+            return this.nodeHelper.rectangle.contains(npos2, pos, width, height);
+        }
+    }
+});
+
 // Beta node type
 $jit.ForceDirected.Plot.NodeTypes.implement({
     'beta': {
@@ -267,7 +294,7 @@ CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, li
 
 function visualizeSystem() {
 
-    $.getJSON('/monitoring', function (data) {
+    $.getJSON('test.json', function (data) {
         update(data);
     });
     globalMonitoringTimer = setTimeout(function () { visualizeSystem(); }, 5000);
@@ -280,9 +307,12 @@ function update(object) {
     jsonData = object;
 
     if (!hasSystemChanged()) {
+
+        if (selectedNode != null) {
+            if (selectedNode.data.nodetype == "machine") updateHeatMap();
+            else if (selectedNode.data.nodetype == "process") updateJVMHeatMap();
+        }
         
-        updateHeatMap();
-        updateJVMHeatMap();
         updateSystemGraph();
 
     }
@@ -290,7 +320,8 @@ function update(object) {
     else {
         $jit.id('infovis').innerHTML = "";
         $jit.id('heatmap').innerHTML = "";
-        $jit.id('heatmap-jvm').innerHTML = "";
+
+        selectedNode = null;
 
         drawSystem();
 
@@ -317,7 +348,7 @@ function drawHeatMap() {
 
     heatmap = {};
     heatmap.data = {};
-    heatmap.name = "Heatmap of OS-level resource usages";
+    heatmap.name = "Heatmap of OS-level resource usages for " + selectedNode.id;
 
     hostHeatMap();
 
@@ -353,7 +384,8 @@ function drawHeatMap() {
             style.border = '1px solid transparent';
             style.textAlign = "center";
             style.verticalAlign = "bottom";
-            style.fontFamily = "Impact,Charcoal,sans-serif";
+            style.fontFamily = "Impact,Charcoal,sans-serif"; reteHeatMap
+
             style.fontSize = "medium";
 
             domElement.onmouseover = function () {
@@ -375,7 +407,7 @@ function drawReteHeatMap() {
 
     heatmap_rete = {};
     heatmap_rete.data = {};
-    heatmap_rete.name = "Heatmap of Rete metrics and resource usages";
+    heatmap_rete.name = "Heatmap of Rete metrics and resource usages for " + selectedNode.id;
     heatmap_rete.id = "rete_top";
 
     reteHeatMap();
@@ -434,16 +466,16 @@ function drawJVMHeatMap() {
 
     heatmap_jvm = {};
     heatmap_jvm.data = {};
-    heatmap_jvm.name = "Heatmap of JVM-level resource usages";
+    heatmap_jvm.name = "Heatmap of JVM-level resource usages for " + selectedNode.id;
     heatmap_jvm.id = "jvm_top";
 
     JVMHeatMap();
 
-    $jit.id('heatmap-jvm').innerHTML = "";
+    $jit.id('heatmap').innerHTML = "";
 
-    tm_jvm = new $jit.TM.Squarified({
+    tm = new $jit.TM.Squarified({
         //where to inject the visualization
-        injectInto: 'heatmap-jvm',
+        injectInto: 'heatmap',
         //no parent frames
         titleHeight: 20,
         //enable animations
@@ -483,8 +515,8 @@ function drawJVMHeatMap() {
         }
     });
 
-    tm_jvm.loadJSON(heatmap_jvm);
-    tm_jvm.refresh();
+    tm.loadJSON(heatmap_jvm);
+    tm.refresh();
 
 }
 
@@ -512,12 +544,12 @@ function updateReteHeatMap() {
 }
 
 function updateJVMHeatMap() {
-    if (tm_jvm == null) return;
+    if (tm == null) return;
     // Update the JVM heatmap as well
     JVMHeatMap();
-    tm_jvm.config.duration = 0;
-    tm_jvm.loadJSON(heatmap_jvm);
-    tm_jvm.refresh();
+    tm.config.duration = 0;
+    tm.loadJSON(heatmap_jvm);
+    tm.refresh();
 }
 
 function reteHeatMap() {
@@ -528,14 +560,14 @@ function reteHeatMap() {
     delete heatmap_rete.children;
     heatmap_rete.children = [];
 
-    var host = selectedNode.id;
+    var hostOrProcess = selectedNode.id;
 
     for (var i = 0; i < jsonData.rete.length; i++) {
         var reteNode = jsonData.rete[i];
 
         if (reteNode.nodeType == "ProductionNode") continue; // Production node actually doesn't contain useful information
 
-        if (host == reteNode.hostName) {
+        if (hostOrProcess == reteNode.hostName || hostOrProcess == reteNode.processName) { // The tricky part so it works for both process and machine
 
             var node = {};
             node.name = reteNode.nodeType + " " + reteNode.reteNode;
@@ -869,13 +901,18 @@ function JVMHeatMap() {
     heatmap_jvm.children = [];
 
     var node = null;
+
+    var host = selectedNode.id.split("@")[1];
     for (var i = 0; i < jsonData.machines.length; i++) {
-        if (jsonData.machines[i].host == selectedNode.id) {
-            if (jsonData.machines[i].nodes.length == 0) return;
-            node = jsonData.machines[i].nodes[0];
+        if (jsonData.machines[i].host == host) {
+            var machine = jsonData.machines[i];
+            for (var j = 0; j < machine.nodes.length; j++) {
+                if (machine.nodes[j].name == selectedNode.id) {
+                    node = machine.nodes[j];
+                }
+            }
         }
     }
-
 
     // CPU and related part
     var cpu = {};
@@ -1022,30 +1059,46 @@ function hasSystemChanged() {
 
     if (graph == null) return true; // That's the first query, sure redraw then
    
-    var numberOfMachines = 0; // To count how many server machines we had previously
+    var numberOfNodes = 0; // To count how many server machines we had previously
     for (var j = 0; j < graph.length; j++) {
-        if (graph[j].data.nodetype == "machine") {
-            numberOfMachines++;
+        if (graph[j].data.nodetype == "machine" || graph[j].data.nodetype == "process") {
+            numberOfNodes++;
         }
     }
 
-    var hostsFound = 0; // To count how many we found of them
+    var nodesFound = 0; // To count how many we found of them
     for (var i = 0; i < jsonData.machines.length; i++) {
+
+        var machine = jsonData.machines[i];
 
         // Check if server machines were changed
         var found = false;
         for (var j = 0; j < graph.length; j++) {
-            if (jsonData.machines[i].host == graph[j].id) {
+            if (machine.host == graph[j].id) {
                 found = true;
-                hostsFound++;
+                nodesFound++;
                 break;
             }
         }
         if (!found) return true; // If we couldn't find the machine then return true
 
+        for (var k = 0; k < machine.nodes.length; k++) {
+            var process = machine.nodes[k];
+
+            found = false; // reuse this variable
+            for (var j = 0; j < graph.length; j++) {
+                if (process.name == graph[j].id) {
+                    found = true;
+                    nodesFound++;
+                    break;
+                }
+            }
+            if (!found) return true; // If we couldn't find the process then return true
+        }
+
     }
 
-    if (numberOfMachines != hostsFound) return true;
+    if (numberOfNodes != nodesFound) return true;
 
     return false; // Every component was found from previous query, the system hasn't changed sicne then
 
@@ -1080,13 +1133,37 @@ function drawSystem() {
         adj.nodeFrom = jsonData.machines[i].host;
         node.adjacencies.push(adj);
         node.data.$type = "host";
-        node.data.hostcolor = '#' + jsonData.machines[i].host.toColor();
+        node.data.namecolor = '#' + jsonData.machines[i].host.toColor();
         node.id = jsonData.machines[i].host;
         node.name = jsonData.machines[i].host;
         node.data.nodetype = "machine";
 
         node.data.cpu = jsonData.machines[i].os.cpuUsage.usedCPUPercent;
         node.data.memory = jsonData.machines[i].os.memoryUsage.usedMemoryPercent;
+
+        for (var j = 0; j < jsonData.machines[i].nodes.length; j++) {
+            var process = jsonData.machines[i].nodes[j];
+            var processNode = {};
+            processNode.data = {};
+            processNode.adjacencies = [];
+
+            processNode.data.$type = "process";
+            processNode.data.namecolor = '#' + process.name.toColor();
+            processNode.id = process.name;
+            processNode.name = process.name;
+            processNode.data.nodetype = "process";
+
+            processNode.data.cpu = process.cpuUtilization;
+            processNode.data.memory = process.usedHeapPercent;
+
+            var processAdj = {};
+            processAdj.nodeFrom = jsonData.machines[i].host;
+            processAdj.nodeTo = process.name;
+            node.adjacencies.push(processAdj);
+
+            graph.push(processNode);
+            
+        }
 
         graph.push(node);
     }
@@ -1164,7 +1241,7 @@ function drawSystem() {
             nameContainer.innerHTML = node.name;
             domElement.appendChild(nameContainer);
             style.fontSize = "1.2em";
-            style.color = node.data.hostcolor;
+            style.color = node.data.namecolor;
 
             //Toggle a node selection when clicking
             //its name. This is done by animating some
@@ -1203,9 +1280,14 @@ function drawSystem() {
                 
                 if (selectedNode != null) delete selectedNode;
                 selectedNode = node;
-                drawHeatMap(); // draw the heat map for the selected host machine
+
+                if (selectedNode.data.nodetype == "machine") {
+                    drawHeatMap(); // draw the heat map for the selected host machine
+                }
+                else if (selectedNode.data.nodetype == "process") drawJVMHeatMap(); // draw the heatmap for the JVM on the selcted host machine
+
                 drawReteHeatMap(); // draw the heatmap for the Rete nodes on the selected host machine
-                drawJVMHeatMap(); // draw the heatmap for the JVM on the selcted host machine
+                
             };
         },
         // Change node styles when DOM labels are placed
@@ -1232,6 +1314,14 @@ function drawSystem() {
             node.setData('height', image.height);
             node.setData('width', image.width);
             
+        }
+        else if (node.getData('type') == 'process') {
+
+            var image = images["process"];
+            node.setData('image', image); // store this image object in node
+            node.setData('height', image.height);
+            node.setData('width', image.width);
+
         }
     });
 
@@ -1266,6 +1356,15 @@ function updateSystemGraph() {
                 node.data.cpu = machine.os.cpuUsage.usedCPUPercent;
                 node.data.memory = machine.os.memoryUsage.usedMemoryPercent;
                 break;
+            }
+            for (var j = 0; j < machine.nodes.length; j++) {
+                var process = machine.nodes[j];
+
+                if (process.name == node.id) {
+                    node.data.cpu = process.cpuUtilization;
+                    node.data.memory = process.usedHeapPercent;
+                    break;
+                }
             }
         }
 
@@ -1356,7 +1455,7 @@ function drawReteNet() {
 
         node.adjacencies = [];
 
-        node.data.hostcolor = '#' + reteNode.hostName.toColor();
+        node.data.hostcolor = '#' + reteNode.processName.toColor();
         node.data.$color = '#6a49ba'
 
         if (reteNode.nodeClass == "Alpha") {
@@ -1376,7 +1475,7 @@ function drawReteNet() {
 
         node.id = reteNode.reteNode;
         node.name = reteNode.nodeType + " " + reteNode.reteNode + " on ";
-        node.data.host = reteNode.hostName;
+        node.data.host = reteNode.processName;
         
 
         for (var j = 0; j < reteNode.subscribers.length; j++) {
@@ -1765,7 +1864,11 @@ function loadImages() {
     var serverImage = new Image();
     serverImage.src = "server-icon.png";
 
+    var processImage = new Image();
+    processImage.src = "process-icon.png";
+
     images = {
-        server: serverImage
+        server: serverImage,
+        process: processImage
     };
 }
