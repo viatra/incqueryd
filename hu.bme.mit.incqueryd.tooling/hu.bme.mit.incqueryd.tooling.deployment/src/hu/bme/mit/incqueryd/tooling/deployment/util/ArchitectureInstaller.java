@@ -19,14 +19,15 @@ public class ArchitectureInstaller {
 	public static final String COORDINATOR_DIR = "~/incqueryd/coordinator/";
 	public static final String AKKA_VERSION = "2.1.4";
 
-	public static void installArchitecture(final IFile file) throws IOException {
+	public static void installArchitecture(final IFile file, final boolean light) throws IOException {
 		final String architectureFile = file.getLocation().toString();
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 		
 		final List<String> command = new ArrayList<>();
-		command.add("~/git/incqueryd/hu.bme.mit.incqueryd.tooling/scripts/install.sh");
+		command.add("/home/szarnyasg/git/incqueryd/hu.bme.mit.incqueryd.runtime/scripts/install.sh");
 
-		//if (light) command.add("--light");
+		if (light) command.add("--light");
+		command.add(configuration.getCoordinatorMachine().getIp());
 		for (final Machine machine : configuration.getMachines()) {
 			command.add(machine.getIp());
 		}
@@ -61,8 +62,8 @@ public class ArchitectureInstaller {
 		
 		UnixUtils.run(archCopyCommand.toArray(new String[archCopyCommand.size()]), true, environment);
 		
-		List<String> recipePaths = ArchUtil.getRecipePaths(architectureFile);
-		for (String recipeFile : recipePaths) {
+		final List<String> recipePaths = ArchUtil.getRecipePaths(architectureFile);
+		for (final String recipeFile : recipePaths) {
 			final List<String> recipeCopyCommand = new ArrayList<>();
 			recipeCopyCommand.add("scp");
 			recipeCopyCommand.add(recipeFile);
