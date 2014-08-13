@@ -8,3 +8,4 @@ tmp/
 .metadata
 runtimeInfo
 .cache
+*._trace
