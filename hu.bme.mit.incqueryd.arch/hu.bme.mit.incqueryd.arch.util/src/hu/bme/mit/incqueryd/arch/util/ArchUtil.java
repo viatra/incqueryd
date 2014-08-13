@@ -2,9 +2,13 @@ package hu.bme.mit.incqueryd.arch.util;
 
 import infrastructure.InfrastructurePackage;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -74,7 +78,28 @@ public class ArchUtil {
 		return cutProxyName(uri.toString());
 	}
 
-	public static Configuration loadConfiguration(final String architectureFile) {
+	public static Configuration loadConfiguration(final String architectureFile) throws IOException {
+		final Resource resource = loadModel(architectureFile);
+		
+		final EObject o = resource.getContents().get(0);
+		return (Configuration) o;
+	}
+
+	public static List<String> getRecipePaths(final String architectureFile) {
+		final Resource resource = loadModel(architectureFile);
+
+		final List<String> paths = new ArrayList<>();
+		final EList<Resource> resources = resource.getResourceSet().getResources();
+		for (final Resource res : resources) {
+			final String path = res.getURI().path();
+			if (path.toLowerCase().endsWith(".recipe")) {
+				paths.add(path);
+			}
+		}
+		return paths;
+	}
+	
+	protected static Resource loadModel(final String architectureFile) {
 		// initialize extension to factory map
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("recipe", new XMIResourceFactoryImpl());
@@ -85,13 +110,10 @@ public class ArchUtil {
 		InfrastructurePackage.eINSTANCE.eClass();
 		ArchPackage.eINSTANCE.eClass();
 
-		// load resource
 		final ResourceSet resourceSet = new ResourceSetImpl();
 		final Resource resource = resourceSet.getResource(URI.createFileURI(architectureFile), true);
-
-		// traverse model
-		final EObject o = resource.getContents().get(0);
-		return (Configuration) o;
+		EcoreUtil.resolveAll(resource);
+		return resource;
 	}
 
 }

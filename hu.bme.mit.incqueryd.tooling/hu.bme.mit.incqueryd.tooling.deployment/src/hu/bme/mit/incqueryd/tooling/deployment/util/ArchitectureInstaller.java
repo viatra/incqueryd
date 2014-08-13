@@ -20,12 +20,27 @@ import arch.Configuration;
 public class ArchitectureInstaller {
 
 	public static final String INSTALL_DIR = "~/incqueryd/";
-	public static final String AKKA_VERSION = "2.1.4";
 	public static final String COORDINATOR_DIR = "~/incqueryd/coordinator/";
+	public static final String AKKA_VERSION = "2.1.4";
 
-
-	public static void deployArchitecture(IFile file) throws IOException {
+	public static void installArchitecture(final IFile file) throws IOException {
+		final String architectureFile = file.getLocation().toString();
+		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 		
+		final List<String> command = new ArrayList<>();
+		command.add("~/git/incqueryd/hu.bme.mit.incqueryd.tooling/scripts/install.sh");
+
+		//if (light) command.add("--light");
+		for (final Machine machine : configuration.getMachines()) {
+			command.add(machine.getIp());
+		}
+		
+		final Map<String, String> environment = new HashMap<>();
+		UnixUtils.run(command.toArray(new String[command.size()]), true, environment);
+		System.out.println(command);
+	}
+	
+	public static void deployArchitecture(final IFile file) throws IOException {
 		final String architectureFile = file.getLocation().toString();
 
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
@@ -33,14 +48,16 @@ public class ArchitectureInstaller {
 		final String connectionString = configuration.getConnectionString();
 		System.out.println("Connection string: " + connectionString);
 
+		deployCoordinator(configuration.getCoordinatorMachine(), architectureFile);		
+		
 		for (final Machine machine : configuration.getMachines()) {
 			deploy(machine);
 		}
 
 		// Pop up a dialog to ask for the monitoring server's IP address
-		Shell activeShell = PlatformUI.getWorkbench()
+		final Shell activeShell = PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getShell();
-		MonitoringServerAddressDialog dialog = new MonitoringServerAddressDialog(
+		final MonitoringServerAddressDialog dialog = new MonitoringServerAddressDialog(
 				activeShell);
 
 		String address = null;
@@ -48,7 +65,7 @@ public class ArchitectureInstaller {
 			address = dialog.getMsIPAddress();
 		}
 		
-		String coordinatorIP = configuration.getCoordinatorMachine().getIp();
+		final String coordinatorIP = configuration.getCoordinatorMachine().getIp();
 		
 		final List<String> copyCommand = new ArrayList<>();
 		copyCommand.add("scp");
@@ -73,7 +90,11 @@ public class ArchitectureInstaller {
 		UnixUtils.run(coordinatorCommand.toArray(new String[coordinatorCommand.size()]), true, environment);
 	}
 
-	private static void deploy(final Machine machine) throws IOException {
+	protected static void deployCoordinator(final Machine coordinatorMachine, final String architectureFile) {
+		System.out.println(ArchUtil.getRecipePaths(architectureFile));
+	}
+
+	protected static void deploy(final Machine machine) throws IOException {
 
 		final String AKKA_DIR = INSTALL_DIR + "akka-" + AKKA_VERSION + "/";
 		System.out.println(AKKA_DIR);
@@ -102,7 +123,7 @@ public class ArchitectureInstaller {
 			final int port = process.getPort();
 			startCommand.add(Integer.toString(port));
 		}
-
+		
 		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]), true, environment);
 
 	}

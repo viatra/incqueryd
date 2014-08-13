@@ -26,13 +26,14 @@ public class InstallArchitectureHandler extends AbstractHandler {
 			final IFile file = (IFile) firstElement;
 			
 			try {
-				ArchitectureInstaller.deployArchitecture(file);
+				ArchitectureInstaller.installArchitecture(file);
 			} catch (final IOException e) {
 				throw new ExecutionException("Cannot process architecture file.", e);
 			}
 		} else {
 			showErrorMessage("The selected element is not an architecture file.");
-		}
+		}		
+		
 		return null;
 	}
 
