@@ -64,7 +64,7 @@ ssh $coordinator "mkdir -p $COORDINATOR_LIB_DIR"
 ssh $coordinator "mkdir -p $COORDINATOR_INSTALL_DIR/arch/"
 ssh $coordinator "mkdir -p $COORDINATOR_INSTALL_DIR/recipes/"
 
-# Installing the Main jar with the cordinator actor to the localhost
+# Installing the Main jar with the cordinator actor to the coordinator machine
 echo "Deploying IncQuery-D Main jar to the coordinator."
 
 if [[ ! $light ]]; then
