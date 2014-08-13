@@ -19,7 +19,6 @@ object IncQueryDMain {
     val architectureFile = args(0)
     val interface = args(1)
     var monitoringServerIPAddress = if (args.length > 2) args(2) else null
-    if(monitoringServerIPAddress isEmpty) monitoringServerIPAddress = null
     
     val engine = new IncQueryDEngine(interface)
     
