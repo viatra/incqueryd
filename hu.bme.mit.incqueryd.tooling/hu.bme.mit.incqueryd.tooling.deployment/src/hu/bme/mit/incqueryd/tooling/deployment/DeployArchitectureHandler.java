@@ -25,10 +25,8 @@ public class DeployArchitectureHandler extends AbstractHandler {
 		if (firstElement instanceof IFile) {
 			final IFile file = (IFile) firstElement;
 			
-			final String architectureFile = file.getLocation().toString();
-			
 			try {
-				ArchitectureInstaller.processArchitecture(architectureFile);
+				ArchitectureInstaller.deployArchitecture(file);
 			} catch (final IOException e) {
 				throw new ExecutionException("Cannot process architecture file.", e);
 			}

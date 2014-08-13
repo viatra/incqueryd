@@ -15,18 +15,20 @@ import akka.pattern.ask
 object IncQueryDMain {
 
   def main(args: Array[String]) {
-    val engine = new IncQueryDEngine
     
     val architectureFile = args(0)
+    val interface = args(1)
+    var monitoringServerIPAddress = if (args.length > 2) args(2) else null
+    if(monitoringServerIPAddress isEmpty) monitoringServerIPAddress = null
     
-    val monitoringServerIPAddress = if (args.length > 1) args(1) else null
-
+    val engine = new IncQueryDEngine(interface)
+    
     val coordinator = engine initialize (architectureFile, true, monitoringServerIPAddress)
     
     implicit val system = ActorSystem("http")
     val coordinatorService = system.actorOf(Props(new HttpCoordinatorActorFactory(coordinator)), "coordinator-service")
     implicit val timeout = Timeout(1000000 seconds)
     
-    IO(Http) ? Http.Bind(coordinatorService, interface = "localhost", port = 9090)
+    IO(Http) ? Http.Bind(coordinatorService, interface = interface, port = 9090)
   }
  }
