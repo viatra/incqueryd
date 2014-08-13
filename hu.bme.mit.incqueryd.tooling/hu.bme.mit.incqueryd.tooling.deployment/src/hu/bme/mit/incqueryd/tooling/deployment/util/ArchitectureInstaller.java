@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -23,7 +24,9 @@ public class ArchitectureInstaller {
 	public static final String COORDINATOR_DIR = "~/incqueryd/coordinator/";
 
 
-	public static void processArchitecture(final String architectureFile) throws IOException {
+	public static void deployArchitecture(IFile file) throws IOException {
+		
+		final String architectureFile = file.getLocation().toString();
 
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 
@@ -44,17 +47,29 @@ public class ArchitectureInstaller {
 		if (dialog.open() == Window.OK) {
 			address = dialog.getMsIPAddress();
 		}
+		
+		String coordinatorIP = configuration.getCoordinatorMachine().getIp();
+		
+		final List<String> copyCommand = new ArrayList<>();
+		copyCommand.add("scp");
+		copyCommand.add(architectureFile);
+		copyCommand.add(coordinatorIP + ":" + INSTALL_DIR);
+		
+		final Map<String, String> environment = new HashMap<>();
+		
+		UnixUtils.run(copyCommand.toArray(new String[copyCommand.size()]), true, environment);
+		
+		final String archFileNameShort = file.getName();
 
 		final List<String> coordinatorCommand = new ArrayList<>();
 		coordinatorCommand.add("ssh");
-		coordinatorCommand.add("localhost");
+		coordinatorCommand.add(coordinatorIP);
 		coordinatorCommand.add(COORDINATOR_DIR + "start-coordinator.sh");
-		coordinatorCommand.add(architectureFile);
+		coordinatorCommand.add(INSTALL_DIR + archFileNameShort);
+		coordinatorCommand.add(coordinatorIP);
 		if (address != null && !address.isEmpty())
 			coordinatorCommand.add(address);
 		
-		final Map<String, String> environment = new HashMap<>();
-
 		UnixUtils.run(coordinatorCommand.toArray(new String[coordinatorCommand.size()]), true, environment);
 	}
 
