@@ -9,9 +9,7 @@
 #   * the dependencies of IncQuery-D core
 #   * Akka microkernel and monitoring components
 
-cd "$( cd "$( dirname "$0" )" && pwd )"
-. config.sh
-cd ..
+cd "$( cd "$( dirname "$0" )" && pwd )/.."
 
 AKKA_VERSION="2.1.4"
 INSTALL_DIR=~/incqueryd/
@@ -19,16 +17,20 @@ AKKA_DEPLOY_DIRECTORY="$INSTALL_DIR/akka-$AKKA_VERSION/deploy/"
 COORDINATOR_INSTALL_DIR="$INSTALL_DIR/coordinator/"
 COORDINATOR_LIB_DIRECTORY="$COORDINATOR_INSTALL_DIR/lib/"
 
-while [ "$1" != "" ]; do
-	case $1 in
-		"--light")
-		light=true
-		;;
-	esac
+case $1 in
+	"--light")
+	light=true
 	shift
-done
+	;;
+esac
 
-for machine in ${machines[@]}; do
+if [[ $# -eq 0 ]] ; then
+    echo 'Usage: install.sh [--light] <hostname-1> <hostname-2> ...'
+    exit 0
+fi
+
+# iterating through the hostnames of the machines
+for machine in "$@"; do
 	echo "Deploying IncQuery-D on $machine"
 
 	ssh $machine "mkdir -p $INSTALL_DIR/"
