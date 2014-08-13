@@ -111,7 +111,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	}
 
 	private void initializeForNode() throws IOException {
-		final FourStoreClient client = new FourStoreClient(ontologyIri);
+		final FourStoreClient client = new FourStoreClient("trainbenchmark_cluster", ontologyIri);
 
 		final List<Long> vertices = client.collectVertices(typeNameSuffix);
 		for (final Long vertex : vertices) {
@@ -123,7 +123,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	}
 
 	private void initializeForAttribute() throws IOException {
-		final FourStoreClient client = new FourStoreClient(ontologyIri);
+		final FourStoreClient client = new FourStoreClient("trainbenchmark_cluster", ontologyIri);
 		final Map<Long, Integer> verticesWithProperty = client.collectVerticesWithProperty(typeNameSuffix);
 		for (final Entry<Long, Integer> vertexWithProperty : verticesWithProperty.entrySet()) {
 			final Tuple tuple = new Tuple(vertexWithProperty.getKey(), vertexWithProperty.getValue());
@@ -134,7 +134,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	}
 
 	private void initializeForEdge() throws IOException {
-		final FourStoreClient client = new FourStoreClient(ontologyIri);
+		final FourStoreClient client = new FourStoreClient("trainbenchmark_cluster", ontologyIri);
 		final Multimap<Long, Long> edges = client.collectEdges(typeNameSuffix);
 		for (final Entry<Long, Long> entry : edges.entries()) {
 			final Tuple tuple = new Tuple(entry.getKey(), entry.getValue());
@@ -147,7 +147,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	public Collection<ChangeSet> transform(final Transformation transformation) throws IOException, OperationNotSupportedException {
 		final List<Tuple> invalids = new ArrayList<>(transformation.getInvalids());
 
-		final FourStoreClient client = new FourStoreClient(ontologyIri);
+		final FourStoreClient client = new FourStoreClient("trainbenchmark_cluster", ontologyIri);
 		Collection<ChangeSet> changeSet = null;
 		switch (transformation.getTestCase()) {
 		case "PosLength":

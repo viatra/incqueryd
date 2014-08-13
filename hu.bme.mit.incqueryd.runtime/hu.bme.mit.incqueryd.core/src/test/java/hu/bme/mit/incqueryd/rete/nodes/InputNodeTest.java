@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.rete.nodes;
 
 import static org.junit.Assert.assertEquals;
-import hu.bme.mit.bigmodel.fourstore.CoordinatorFourStoreClient;
+import hu.bme.mit.bigmodel.fourstore.FourStoreClient;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class InputNodeTest {
 	@Test
 	public void testEdge() throws IOException {
 		// start the cluster and load the model
-		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient(ONTOLOGYIRI);
+		final FourStoreClient client = new FourStoreClient("trainbenchmark_cluster", ONTOLOGYIRI);
 		client.start(false);
 		client.load(modelPath);
 
@@ -39,7 +39,7 @@ public class InputNodeTest {
 	@Test
 	public void testVertex() throws IOException {
 		// start the cluster and load the model
-		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient(ONTOLOGYIRI);
+		final FourStoreClient client = new FourStoreClient("trainbenchmark_cluster", ONTOLOGYIRI);
 		client.start(false);
 		client.load(modelPath);
 
@@ -57,7 +57,7 @@ public class InputNodeTest {
 	@Test
 	public void testVertexWithProperties() throws IOException {
 		// start the cluster and load the model
-		final CoordinatorFourStoreClient client = new CoordinatorFourStoreClient(ONTOLOGYIRI);
+		final FourStoreClient client = new FourStoreClient("trainbenchmark_cluster", ONTOLOGYIRI);
 		client.start(false);
 		client.load(modelPath);
 
