@@ -20,7 +20,7 @@ public class IncQueryDEngine {
 	protected final ActorSystem system;
 	protected ActorRef coordinator;
 
-	public IncQueryDEngine() {
+	public IncQueryDEngine(String hostName) {
 		super();
 
 		// initialize EMF
@@ -28,7 +28,8 @@ public class IncQueryDEngine {
 
 		// initialize Akka
 		final Config config = ConfigFactory.parseString("akka.actor.provider = akka.remote.RemoteActorRefProvider\n"
-				+ "akka.remote.netty.message-frame-size = 10000000000\n" + "akka.loglevel = \"ERROR\"");
+				+ "akka.remote.netty.message-frame-size = 10000000000\n" + "akka.loglevel = \"ERROR\"\n"
+				+ "akka.remote.netty.hostname = \"" + hostName + "\"\n" + "akka.remote.netty.port = " + 2551);
 
 		system = ActorSystem.create("test", config);
 	}
