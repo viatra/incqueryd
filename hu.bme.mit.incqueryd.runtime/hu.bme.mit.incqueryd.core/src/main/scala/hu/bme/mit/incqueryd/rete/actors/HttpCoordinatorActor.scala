@@ -13,7 +13,7 @@ import spray.http._
 import HttpMethods._
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand
 
-class HttpCoordinatorActor (val actorRef: ActorRef) extends Actor {
+class HttpCoordinatorActor (val coordinatorActor: ActorRef) extends Actor {
   
   implicit val timeout = Timeout(14400 seconds)
   
@@ -22,28 +22,28 @@ class HttpCoordinatorActor (val actorRef: ActorRef) extends Actor {
     case _: Http.Connected => sender ! Http.Register(self)
     
     case HttpRequest(GET, Uri.Path("/start"), _, _, _) => {
-      val future = actorRef ? CoordinatorCommand.START
+      val future = coordinatorActor ? CoordinatorCommand.START
       Await.result(future, timeout.duration)
       
       sender ! HttpResponse(entity = "DONE")
     }
     
     case HttpRequest(GET, Uri.Path("/transform"), _, _, _) => {
-      val future = actorRef ? CoordinatorCommand.TRANSFORM
+      val future = coordinatorActor ? CoordinatorCommand.TRANSFORM
       Await.result(future, timeout.duration)
       
       sender ! HttpResponse(entity = "DONE")
     }
     
     case HttpRequest(GET, Uri.Path("/check"), _, _, _) => {
-      val future = actorRef ? CoordinatorCommand.CHECK
+      val future = coordinatorActor ? CoordinatorCommand.CHECK
       Await.result(future, timeout.duration)
       
       sender ! HttpResponse(entity = "DONE")
     }
     
     case HttpRequest(GET, Uri.Path("/load"), _, _, _) => {
-      val future = actorRef ? CoordinatorCommand.LOAD
+      val future = coordinatorActor ? CoordinatorCommand.LOAD
       Await.result(future, timeout.duration)
       
       sender ! HttpResponse(entity = "DONE")
