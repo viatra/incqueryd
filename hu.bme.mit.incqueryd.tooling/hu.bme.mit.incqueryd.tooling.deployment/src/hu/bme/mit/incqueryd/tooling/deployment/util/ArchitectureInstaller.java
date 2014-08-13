@@ -24,7 +24,8 @@ public class ArchitectureInstaller {
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 		
 		final List<String> command = new ArrayList<>();
-		command.add("/home/szarnyasg/git/incqueryd/hu.bme.mit.incqueryd.runtime/scripts/install.sh");
+		String homeDirectory = System.getProperty( "user.home" );
+		command.add(homeDirectory + "/git/incqueryd/hu.bme.mit.incqueryd.runtime/scripts/install.sh");
 
 		if (light) command.add("--light");
 		command.add(configuration.getCoordinatorMachine().getIp());
