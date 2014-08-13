@@ -2,19 +2,17 @@
 <arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://incquery.net/arch" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
   <machines traceInfo="" name="vcl0" ip="192.168.241.134">
     <processes port="2552"/>
+    <processes port="2553"/>
   </machines>
   <mappings traceInfo="" process="//@machines.0/@processes.0">
     <roles xsi:type="arch:ReteRole">
-      <nodeRecipe xsi:type="recipes:BinaryInputRecipe" href="../recipes/posLength.recipe#//@recipeNodes.0"/>
+      <nodeRecipe xsi:type="recipes:ProductionRecipe" href="../recipes/posLength.recipe#//@recipeNodes.0"/>
     </roles>
     <roles xsi:type="arch:ReteRole">
-      <nodeRecipe xsi:type="recipes:CheckRecipe" href="../recipes/posLength.recipe#//@recipeNodes.2"/>
+      <nodeRecipe xsi:type="recipes:BinaryInputRecipe" href="../recipes/posLength.recipe#//@recipeNodes.2"/>
     </roles>
     <roles xsi:type="arch:ReteRole">
-      <nodeRecipe xsi:type="recipes:JoinRecipe" href="../recipes/posLength.recipe#//@recipeNodes.4"/>
-    </roles>
-    <roles xsi:type="arch:ReteRole">
-      <nodeRecipe xsi:type="recipes:ProductionRecipe" href="../recipes/posLength.recipe#//@recipeNodes.3"/>
+      <nodeRecipe xsi:type="recipes:UnaryInputRecipe" href="../recipes/posLength.recipe#//@recipeNodes.4"/>
     </roles>
     <roles xsi:type="arch:ReteRole">
       <nodeRecipe xsi:type="recipes:ProjectionIndexerRecipe" href="../recipes/posLength.recipe#//@recipeNodes.4/@leftParent"/>
@@ -23,7 +21,12 @@
       <nodeRecipe xsi:type="recipes:ProjectionIndexerRecipe" href="../recipes/posLength.recipe#//@recipeNodes.4/@rightParent"/>
     </roles>
     <roles xsi:type="arch:ReteRole">
-      <nodeRecipe xsi:type="recipes:UnaryInputRecipe" href="../recipes/posLength.recipe#//@recipeNodes.1"/>
+      <nodeRecipe xsi:type="recipes:JoinRecipe" href="../recipes/posLength.recipe#//@recipeNodes.1"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.0/@processes.1">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:CheckRecipe" href="../recipes/posLength.recipe#//@recipeNodes.3"/>
     </roles>
   </mappings>
 </arch:Configuration>
