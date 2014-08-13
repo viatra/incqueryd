@@ -4,11 +4,14 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            id="hu.bme.mit.incqueryd.tooling.deployment.commands.deploy"
-            name="Deploy IncQuery-D architecture">
+            id="hu.bme.mit.incqueryd.tooling.deployment.commands.install"
+            name="Install IncQuery-D">
       </command>
       <command
-            defaultHandler="hu.bme.mit.incqueryd.tooling.deployment.StartArchitectureHandler"
+            id="hu.bme.mit.incqueryd.tooling.deployment.commands.deploy"
+            name="Deploy IncQuery-D">
+      </command>
+      <command
             id="hu.bme.mit.incqueryd.tooling.deployment.commands.start"
             name="Start IncQuery-D">
       </command>
@@ -18,6 +21,10 @@
       <menuContribution
             allPopups="false"
             locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.install"
+               style="push">
+         </command>
          <command
                commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.deploy"
                style="push">
@@ -30,6 +37,10 @@
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
+      <handler
+            class="hu.bme.mit.incqueryd.tooling.deployment.InstallArchitectureHandler"
+            commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.install">
+      </handler>
       <handler
             class="hu.bme.mit.incqueryd.tooling.deployment.DeployArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.deploy">
