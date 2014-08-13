@@ -1,7 +1,6 @@
 package hu.bme.mit.incqueryd.tooling.deployment.util;
 
 import hu.bme.mit.incqueryd.arch.util.ArchUtil;
-import hu.bme.mit.incqueryd.tooling.deployment.dialogs.MonitoringServerAddressDialog;
 import infrastructure.Machine;
 
 import java.io.IOException;
@@ -11,9 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.jface.window.Window;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
 
 import arch.Configuration;
 
@@ -54,38 +50,38 @@ public class ArchitectureInstaller {
 			deploy(machine);
 		}
 
-		// Pop up a dialog to ask for the monitoring server's IP address
-		final Shell activeShell = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell();
-		final MonitoringServerAddressDialog dialog = new MonitoringServerAddressDialog(
-				activeShell);
-
-		String address = null;
-		if (dialog.open() == Window.OK) {
-			address = dialog.getMsIPAddress();
-		}
-		
 		final String coordinatorIP = configuration.getCoordinatorMachine().getIp();
 		
-		final List<String> copyCommand = new ArrayList<>();
-		copyCommand.add("scp");
-		copyCommand.add(architectureFile);
-		copyCommand.add(coordinatorIP + ":" + INSTALL_DIR);
+		final List<String> archCopyCommand = new ArrayList<>();
+		archCopyCommand.add("scp");
+		archCopyCommand.add(architectureFile);
+		archCopyCommand.add(coordinatorIP + ":" + COORDINATOR_DIR + "arch/");
 		
 		final Map<String, String> environment = new HashMap<>();
 		
-		UnixUtils.run(copyCommand.toArray(new String[copyCommand.size()]), true, environment);
+		UnixUtils.run(archCopyCommand.toArray(new String[archCopyCommand.size()]), true, environment);
+		
+		List<String> recipePaths = ArchUtil.getRecipePaths(architectureFile);
+		for (String recipeFile : recipePaths) {
+			final List<String> recipeCopyCommand = new ArrayList<>();
+			recipeCopyCommand.add("scp");
+			recipeCopyCommand.add(recipeFile);
+			recipeCopyCommand.add(coordinatorIP + ":" + COORDINATOR_DIR + "recipes/");
+			
+			UnixUtils.run(recipeCopyCommand.toArray(new String[recipeCopyCommand.size()]), true, environment);
+		}
 		
 		final String archFileNameShort = file.getName();
+		final String monitoringIPAddress = configuration.getMonitoringIPAddress();
 
 		final List<String> coordinatorCommand = new ArrayList<>();
 		coordinatorCommand.add("ssh");
 		coordinatorCommand.add(coordinatorIP);
 		coordinatorCommand.add(COORDINATOR_DIR + "start-coordinator.sh");
-		coordinatorCommand.add(INSTALL_DIR + archFileNameShort);
+		coordinatorCommand.add(COORDINATOR_DIR + "arch/" + archFileNameShort);
 		coordinatorCommand.add(coordinatorIP);
-		if (address != null && !address.isEmpty())
-			coordinatorCommand.add(address);
+		if (monitoringIPAddress != null && !monitoringIPAddress.isEmpty())
+			coordinatorCommand.add(monitoringIPAddress);
 		
 		UnixUtils.run(coordinatorCommand.toArray(new String[coordinatorCommand.size()]), true, environment);
 	}
