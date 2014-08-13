@@ -41,9 +41,12 @@ import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoringMessage
 import hu.bme.mit.incqueryd.util.EObjectSerializer
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
 import infrastructure.Machine
+import hu.bme.mit.bigmodel.fourstore.FourStoreLoader
 
 class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean, val monitoringServerIPAddress: String) extends Actor {
 
+  val conf: Configuration = ArchUtil.loadConfiguration(architectureFile)
+  
   protected val timeout: Timeout = new Timeout(Duration.create(14400, "seconds"))
   protected var productionActorRef: ActorRef = null
   protected var query: String = null
@@ -65,7 +68,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     query = "SwitchSensor";
   }
 
-  var recipeToAddress: HashMap[ReteNodeRecipe, Tuple2[String,Int]] = new HashMap
+  var recipeToAddress: HashMap[ReteNodeRecipe, Tuple2[String, Int]] = new HashMap
   var recipeToActorRef: HashMap[ReteNodeRecipe, ActorRef] = new HashMap[ReteNodeRecipe, ActorRef]
   var emfUriToRecipe: HashMap[String, ReteNodeRecipe] = new HashMap[String, ReteNodeRecipe]
   var emfUriToActorRef: HashMap[String, ActorRef] = new HashMap[String, ActorRef]
@@ -73,7 +76,6 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
   var jvmActorRefs: HashSet[ActorRef] = new HashSet[ActorRef]
 
   def start = {
-    val conf: Configuration = ArchUtil.loadConfiguration(architectureFile)
     processConfiguration(conf)
   }
 
@@ -150,7 +152,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
           val address = recipeToAddress.get(rnr)
           val ipAddress = address._1
           val port = address._2
-          
+
           val emfUri = EcoreUtil.getURI(rnr).toString
 
           if (debug) System.err.println("[TestKit] - IP address:  " + ipAddress)
@@ -286,6 +288,12 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     sb.toString
   }
 
+  def load = {
+    val client = new FourStoreLoader(conf.getConnectionString)
+    client.start(remoting)
+    client.load(conf.getModelPath)
+  }
+
   def transform = {
     recipeToActorRef.entrySet.foreach(entry => {
 
@@ -364,6 +372,10 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
     }
     case CoordinatorCommand.TRANSFORM => {
       transform
+      sender ! CoordinatorMessage.DONE
+    }
+    case CoordinatorCommand.LOAD => {
+      load
       sender ! CoordinatorMessage.DONE
     }
     case _ => {}

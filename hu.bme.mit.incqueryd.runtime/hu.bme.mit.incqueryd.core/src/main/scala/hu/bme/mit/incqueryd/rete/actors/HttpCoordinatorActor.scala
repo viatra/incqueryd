@@ -42,6 +42,13 @@ class HttpCoordinatorActor (val actorRef: ActorRef) extends Actor {
       sender ! HttpResponse(entity = "DONE")
     }
     
+    case HttpRequest(GET, Uri.Path("/load"), _, _, _) => {
+      val future = actorRef ? CoordinatorCommand.LOAD
+      Await.result(future, timeout.duration)
+      
+      sender ! HttpResponse(entity = "DONE")
+    }
+    
   }
   
 }
