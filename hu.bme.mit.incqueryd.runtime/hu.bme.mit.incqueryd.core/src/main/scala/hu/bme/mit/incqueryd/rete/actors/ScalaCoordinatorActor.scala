@@ -216,7 +216,7 @@ class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean,
   }
 
   private def subscribeActors(conf: Configuration) = {
-    val yellowPages = new YellowPages(emfUriToActorRef, monitoringActor)
+    val yellowPages = new YellowPages(emfUriToActorRef, monitoringActor, conf.getConnectionString)
 
     actorRefs.foreach(actorRef => {
       val future = ask(actorRef, yellowPages, timeout)
