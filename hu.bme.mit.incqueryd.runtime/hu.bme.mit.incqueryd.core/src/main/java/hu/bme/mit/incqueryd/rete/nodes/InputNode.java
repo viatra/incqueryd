@@ -43,6 +43,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	protected final TupleCache cache;
 	protected final Random random = new Random(0);
 	protected final String ontologyIri;
+	protected final String connectionString;
 
 	/*
 	 * Implementing the input nodes introduces the following challenge: - UnaryInputRecipes enumerate graph nodes -
@@ -50,7 +51,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	 * 
 	 * A temporary solution is the following: add "attribute" or "reference" string to the trace info.
 	 */
-	InputNode(final TypeInputRecipe recipe, final List<String> cacheMachineIps) {
+	InputNode(final TypeInputRecipe recipe, final List<String> cacheMachineIps, String connectionString) {
 		super();
 
 		if (recipe instanceof UnaryInputRecipe) {
@@ -72,6 +73,8 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 
 		final String setName = graphElement.toString() + typeNameSuffix;
 		tuples = cache.getSet(setName);
+		
+		this.connectionString = connectionString;
 	}
 
 	public String getType() {
@@ -111,7 +114,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	}
 
 	private void initializeForNode() throws IOException {
-		final FourStoreClient client = new FourStoreClient("trainbenchmark_cluster", ontologyIri);
+		final FourStoreClient client = new FourStoreClient(connectionString, ontologyIri);
 
 		final List<Long> vertices = client.collectVertices(typeNameSuffix);
 		for (final Long vertex : vertices) {
@@ -123,7 +126,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	}
 
 	private void initializeForAttribute() throws IOException {
-		final FourStoreClient client = new FourStoreClient("trainbenchmark_cluster", ontologyIri);
+		final FourStoreClient client = new FourStoreClient(connectionString, ontologyIri);
 		final Map<Long, Integer> verticesWithProperty = client.collectVerticesWithProperty(typeNameSuffix);
 		for (final Entry<Long, Integer> vertexWithProperty : verticesWithProperty.entrySet()) {
 			final Tuple tuple = new Tuple(vertexWithProperty.getKey(), vertexWithProperty.getValue());
@@ -134,7 +137,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	}
 
 	private void initializeForEdge() throws IOException {
-		final FourStoreClient client = new FourStoreClient("trainbenchmark_cluster", ontologyIri);
+		final FourStoreClient client = new FourStoreClient(connectionString, ontologyIri);
 		final Multimap<Long, Long> edges = client.collectEdges(typeNameSuffix);
 		for (final Entry<Long, Long> entry : edges.entries()) {
 			final Tuple tuple = new Tuple(entry.getKey(), entry.getValue());
@@ -147,7 +150,7 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	public Collection<ChangeSet> transform(final Transformation transformation) throws IOException, OperationNotSupportedException {
 		final List<Tuple> invalids = new ArrayList<>(transformation.getInvalids());
 
-		final FourStoreClient client = new FourStoreClient("trainbenchmark_cluster", ontologyIri);
+		final FourStoreClient client = new FourStoreClient(connectionString, ontologyIri);
 		Collection<ChangeSet> changeSet = null;
 		switch (transformation.getTestCase()) {
 		case "PosLength":
