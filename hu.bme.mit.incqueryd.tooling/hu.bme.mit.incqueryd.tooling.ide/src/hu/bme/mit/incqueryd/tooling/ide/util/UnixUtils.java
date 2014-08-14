@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.tooling.deployment.util;
+package hu.bme.mit.incqueryd.tooling.ide.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;

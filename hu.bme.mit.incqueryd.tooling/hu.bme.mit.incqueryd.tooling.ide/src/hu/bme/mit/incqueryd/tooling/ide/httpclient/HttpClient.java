@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.tooling.deployment.httpclient;
+package hu.bme.mit.incqueryd.tooling.ide.httpclient;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;

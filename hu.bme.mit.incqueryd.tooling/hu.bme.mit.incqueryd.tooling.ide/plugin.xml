@@ -66,23 +66,23 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="hu.bme.mit.incqueryd.tooling.deployment.FullInstallArchitectureHandler"
+            class="hu.bme.mit.incqueryd.tooling.ide.FullInstallArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.install.full">
       </handler>
       <handler
-            class="hu.bme.mit.incqueryd.tooling.deployment.LightInstallArchitectureHandler"
+            class="hu.bme.mit.incqueryd.tooling.ide.LightInstallArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.install.light">
       </handler>
       <handler
-            class="hu.bme.mit.incqueryd.tooling.deployment.DeployArchitectureHandler"
+            class="hu.bme.mit.incqueryd.tooling.ide.DeployArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.deploy">
       </handler>
       <handler
-            class="hu.bme.mit.incqueryd.tooling.deployment.StartArchitectureHandler"
+            class="hu.bme.mit.incqueryd.tooling.ide.StartArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.start">
       </handler>
       <handler
-            class="hu.bme.mit.incqueryd.tooling.deployment.DestroyArchitectureHandler"
+            class="hu.bme.mit.incqueryd.tooling.ide.DestroyArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.destroy">
       </handler>
    </extension>
