@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.rete.actors.tests;
 
 import hu.bme.mit.incqueryd.rete.actors.IncQueryDMicrokernel;
-import hu.bme.mit.incqueryd.rete.actors.ScalaReteActor;
+import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import akka.actor.ActorRef;
@@ -23,7 +23,7 @@ public class RemoteReteActorExample {
 		new JavaTestKit(system) {
 			{
 				// Arrange
-				final Props props = new Props(ScalaReteActor.class).withDeploy(new Deploy(new RemoteScope(new Address(
+				final Props props = new Props(ReteActor.class).withDeploy(new Deploy(new RemoteScope(new Address(
 						"akka", IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, System.getenv("remoteHost"), 2552))));
 				final ActorRef actor = system.actorOf(props);
 

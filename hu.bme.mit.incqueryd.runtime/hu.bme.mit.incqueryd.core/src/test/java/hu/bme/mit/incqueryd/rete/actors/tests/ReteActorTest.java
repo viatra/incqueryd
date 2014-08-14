@@ -1,6 +1,6 @@
 package hu.bme.mit.incqueryd.rete.actors.tests;
 
-import hu.bme.mit.incqueryd.rete.actors.ScalaReteActor;
+import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 
@@ -32,7 +32,7 @@ public class ReteActorTest {
 		new JavaTestKit(system) {
 			{
 				// Arrange
-				final Props props = new Props(ScalaReteActor.class);
+				final Props props = new Props(ReteActor.class);
 				final ActorRef actor = system.actorOf(props);
 
 				// create probes to check the propagated
