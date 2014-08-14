@@ -1732,7 +1732,7 @@ function updateQueryResults(data) {
         }
 
         resultsTable = $('#results').DataTable({
-            "scrollY": "742px",
+            "scrollY": "750px",
             "scrollCollapse": true,
             "paging": false,
             "ordering": false,
@@ -1807,7 +1807,7 @@ function updateDeltaChanges(data) {
         }
 
         deltaTable = $('#deltas').DataTable({
-            "scrollY": "742px",
+            "scrollY": "750px",
             "scrollCollapse": true,
             "paging": false,
             "ordering": false,

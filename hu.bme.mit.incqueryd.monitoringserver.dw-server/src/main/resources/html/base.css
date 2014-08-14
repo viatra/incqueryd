@@ -28,11 +28,17 @@ h1 {
 }
 
 #heatmap-container-os,
-#heatmap-container-rete,
+#heatmap-container-rete
+ {
+    height:30%;
+    position:absolute;
+    top:0;
+}
+
 #results-table,
 #deltas-table
  {
-    height:30%;
+    height:31%;
     position:absolute;
     top:0;
 }
