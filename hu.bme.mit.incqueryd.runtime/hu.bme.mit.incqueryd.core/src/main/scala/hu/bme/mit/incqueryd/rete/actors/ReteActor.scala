@@ -41,7 +41,7 @@ import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics
 import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteSubscriber
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
 
-class ScalaReteActor extends Actor {
+class ReteActor extends Actor {
 
   protected var recipe: ReteNodeRecipe = null
   protected var reteNode: ReteNode = null
