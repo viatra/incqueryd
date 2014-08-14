@@ -11,10 +11,12 @@ public class YellowPages implements Serializable {
 	
 	final Map<String, ActorRef> emfUriToActorRef;
 	protected final ActorRef monitoringServerAddress;
+	protected final String connectionString;
 	
-	public YellowPages(final Map<String, ActorRef> emfUriToActorRef, ActorRef monitoringServerAddress) {
+	public YellowPages(final Map<String, ActorRef> emfUriToActorRef, ActorRef monitoringServerAddress, String connectionString) {
 		this.emfUriToActorRef = emfUriToActorRef;
 		this.monitoringServerAddress = monitoringServerAddress;
+		this.connectionString = connectionString;
 	}
 	
 	public Map<String, ActorRef> getEmfUriToActorRef() {
