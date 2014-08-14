@@ -76,10 +76,10 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
   var jvmActorRefs: HashSet[ActorRef] = new HashSet[ActorRef]
 
   def start = {
-    processConfiguration(conf)
+    processConfiguration
   }
 
-  private def processConfiguration(conf: Configuration) = {
+  private def processConfiguration = {
     // mapping
     fillRecipeToAddress(conf)
 
@@ -216,7 +216,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
   }
 
   private def subscribeActors(conf: Configuration) = {
-    val yellowPages = new YellowPages(emfUriToActorRef, monitoringActor, conf.getConnectionString)
+    val yellowPages = new YellowPages(emfUriToActorRef, monitoringActor)
 
     actorRefs.foreach(actorRef => {
       val future = ask(actorRef, yellowPages, timeout)
@@ -350,8 +350,8 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
   }
 
   private def configure(actorRef: ActorRef, recipeString: String, cacheMachineIps: List[String]) = {
-    val conf = new ReteNodeConfiguration(recipeString, cacheMachineIps)
-    val future = ask(actorRef, conf, timeout)
+    val reteConf = new ReteNodeConfiguration(recipeString, cacheMachineIps, conf.getConnectionString)
+    val future = ask(actorRef, reteConf, timeout)
     Await.result(future, timeout.duration)
   }
 
