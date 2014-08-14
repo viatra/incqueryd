@@ -1,7 +1,7 @@
-package hu.bme.mit.incqueryd.tooling.deployment;
+package hu.bme.mit.incqueryd.tooling.ide;
 
-import hu.bme.mit.incqueryd.tooling.deployment.util.ArchitectureInstaller;
-import hu.bme.mit.incqueryd.tooling.deployment.util.ArchitectureSelector;
+import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureInstaller;
+import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
 
 import java.io.IOException;
 
@@ -10,17 +10,17 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 
-public class FullInstallArchitectureHandler extends AbstractHandler {
+public class DestroyArchitectureHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		final IFile file = ArchitectureSelector.getSelection(event);
 		try {
-			ArchitectureInstaller.installArchitecture(file, false);
+			ArchitectureInstaller.destroyArchitecture(file);
 		} catch (final IOException e) {
 			throw new ExecutionException("Cannot process architecture file.", e);
 		}
 		return null;
 	}
-	
+
 }

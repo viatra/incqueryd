@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.tooling.deployment.dialogs;
+package hu.bme.mit.incqueryd.tooling.ide.dialogs;
 
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;

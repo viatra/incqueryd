@@ -1,8 +1,8 @@
-package hu.bme.mit.incqueryd.tooling.deployment;
+package hu.bme.mit.incqueryd.tooling.ide;
 
 import hu.bme.mit.incqueryd.arch.util.ArchUtil;
-import hu.bme.mit.incqueryd.tooling.deployment.httpclient.HttpClient;
-import hu.bme.mit.incqueryd.tooling.deployment.util.ArchitectureSelector;
+import hu.bme.mit.incqueryd.tooling.ide.httpclient.HttpClient;
+import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
 
 import java.io.IOException;
 

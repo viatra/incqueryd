@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.tooling.deployment.util;
+package hu.bme.mit.incqueryd.tooling.ide.util;
 
 import hu.bme.mit.incqueryd.arch.util.ArchUtil;
 import infrastructure.Machine;
