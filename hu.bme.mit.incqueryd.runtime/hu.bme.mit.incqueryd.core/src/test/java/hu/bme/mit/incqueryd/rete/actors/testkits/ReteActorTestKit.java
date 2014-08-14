@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.rete.actors.testkits;
 
 import static org.junit.Assert.assertEquals;
-import hu.bme.mit.incqueryd.rete.actors.ScalaReteActor;
+import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
@@ -38,7 +38,7 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 		super(system);
 		this.system = system;
 
-		final Props props = new Props(ScalaReteActor.class);
+		final Props props = new Props(ReteActor.class);
 		reteActor = system.actorOf(props);
 
 		coordinatorActor = new JavaTestKit(system);
