@@ -18,7 +18,7 @@ public class CoordinatorActorFactory implements UntypedActorFactory {
 	
 	@Override
 	public Actor create() throws Exception {
-		return new ScalaCoordinatorActor(architectureFile, remoting, monitoringServerIPAddress);
+		return new CoordinatorActor(architectureFile, remoting, monitoringServerIPAddress);
 	}
 
 }
