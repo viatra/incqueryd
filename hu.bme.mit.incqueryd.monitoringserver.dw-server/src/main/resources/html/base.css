@@ -15,14 +15,14 @@ h1 {
 
 #container {
     width: 1820px;
-    height: 2900px;
+    height: 3000px;
     margin:0 auto;
     position:relative;
 }
 
 #graph-container-rete, 
 #graph-container {
-    height:38%;
+    height:37%;
     position:absolute;
     top:0;
 }
@@ -32,7 +32,7 @@ h1 {
 #results-table,
 #deltas-table
  {
-    height:31%;
+    height:30%;
     position:absolute;
     top:0;
 }
@@ -46,7 +46,7 @@ h1 {
     border-bottom:1px solid #ddd;
     float:left;
     border-right:1px solid #ddd;
-    margin-top:62%;
+    margin-top:62.5%;
 }
 
 #heatmap-container-rete {
@@ -59,7 +59,7 @@ h1 {
     float:right;
     border-right:1px solid #ddd;
     margin-left:51%;
-    margin-top:62%;
+    margin-top:62.5%;
 }
 
 #results-table {
@@ -71,7 +71,7 @@ h1 {
     border-bottom:1px solid #ddd;
     float:right;
     border-right:1px solid #ddd;
-    margin-top:113%;
+    margin-top:113.5%;
 }
 
 #deltas-table {
@@ -83,7 +83,7 @@ h1 {
     border-bottom:1px solid #ddd;
     float:right;
     border-right:1px solid #ddd;
-    margin-top:113%;
+    margin-top:113.5%;
     margin-left:51%;
 }
 
