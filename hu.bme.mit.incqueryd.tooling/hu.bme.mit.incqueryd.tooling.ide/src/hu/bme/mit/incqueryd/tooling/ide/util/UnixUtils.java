@@ -4,10 +4,17 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Map;
 
 public class UnixUtils {
 
+	public static void run(final String[] command) throws IOException {
+		final Map<String, String> environment = new HashMap<>();
+		final boolean showOutput = true;
+		run(command, showOutput, environment);
+	}
+	
 	public static void run(final String[] command, final boolean showOutput, final Map<String, String> environment) throws IOException {
 		final BufferedReader reader = runAndReadOutput(command, showOutput, environment);
 
