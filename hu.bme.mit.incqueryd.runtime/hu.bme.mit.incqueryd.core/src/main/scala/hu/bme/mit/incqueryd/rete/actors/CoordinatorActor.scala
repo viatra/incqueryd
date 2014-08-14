@@ -43,7 +43,7 @@ import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
 import infrastructure.Machine
 import hu.bme.mit.bigmodel.fourstore.FourStoreLoader
 
-class ScalaCoordinatorActor(val architectureFile: String, val remoting: Boolean, val monitoringServerIPAddress: String) extends Actor {
+class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val monitoringServerIPAddress: String) extends Actor {
 
   val conf: Configuration = ArchUtil.loadConfiguration(architectureFile)
   
