@@ -14,13 +14,14 @@ import org.junit.Test;
 
 public class InputNodeTest {
 
-	private static final String ONTOLOGYIRI = "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl";
+	protected static final String FOURSTORE_CLUSTERNAME = "trainbenchmark_cluster";
+	protected static final String ONTOLOGYIRI = "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl";
 	protected static final String modelPath = "src/test/resources/models/railway-xform-1.ttl";
 
 	@Test
 	public void testEdge() throws IOException {
 		// start the cluster and load the model
-		final FourStoreClient client = new FourStoreClient("trainbenchmark_cluster", ONTOLOGYIRI);
+		final FourStoreClient client = new FourStoreClient(FOURSTORE_CLUSTERNAME, ONTOLOGYIRI);
 		client.start(false);
 		client.load(modelPath);
 
@@ -28,7 +29,7 @@ public class InputNodeTest {
 		recipe.setTypeName(ONTOLOGYIRI + "#Route_routeDefinition");
 		recipe.setTraceInfo(InputNode.EDGE_DISCRIMINATOR);
 
-		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList());
+		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList(), FOURSTORE_CLUSTERNAME);
 		final ChangeSet changeSet = inputNode.initialize();
 		assertEquals(843, changeSet.getTuples().size());
 
@@ -46,7 +47,7 @@ public class InputNodeTest {
 		final UnaryInputRecipe recipe = RecipesFactory.eINSTANCE.createUnaryInputRecipe();
 		recipe.setTypeName(ONTOLOGYIRI + "#Route");
 
-		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList());
+		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList(), FOURSTORE_CLUSTERNAME);
 		final ChangeSet changeSet = inputNode.initialize();
 		assertEquals(20, changeSet.getTuples().size());
 
@@ -65,7 +66,7 @@ public class InputNodeTest {
 		recipe.setTypeName(ONTOLOGYIRI + "#Segment_length");
 		recipe.setTraceInfo(InputNode.ATTRIBUTE_DISCRIMINATOR);
 
-		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList());
+		final InputNode inputNode = new InputNode(recipe, Collections.<String> emptyList(), FOURSTORE_CLUSTERNAME);
 		final ChangeSet changeSet = inputNode.initialize();
 		assertEquals(4835, changeSet.getTuples().size());
 
