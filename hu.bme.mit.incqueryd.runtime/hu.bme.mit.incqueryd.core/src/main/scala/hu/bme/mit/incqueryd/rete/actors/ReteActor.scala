@@ -202,7 +202,7 @@ class ReteActor extends Actor {
 			    	+ "            - Sending to " + subscriber + "\n"
 					+ "            - " + changeSet.getChangeType() + " changeset, " + changeSet.getTuples().size() + " tuples\n"
 					+ "            - " + "with sender stack: " + propagatedSenderStack + "\n"
-					+ "            - " + pendingTerminationMessages + " pending")
+					+ "            - " + pendingTerminationMessages + " pending\n")
 		// @formatter:on
 
 		subscriber ! updateMessage
