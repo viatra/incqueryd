@@ -166,10 +166,10 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
 
           var props: Props = null
           if (remoting) {
-            props = Props[ScalaReteActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
+            props = Props[ReteActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
               IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, port))))
           } else {
-            props = Props[ScalaReteActor]
+            props = Props[ReteActor]
           }
 
           val actorRef = context.actorOf(props)
