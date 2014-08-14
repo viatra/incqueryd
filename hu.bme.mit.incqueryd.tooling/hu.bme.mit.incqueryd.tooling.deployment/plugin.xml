@@ -19,12 +19,20 @@
             id="hu.bme.mit.incqueryd.tooling.deployment.commands.start"
             name="Start IncQuery-D">
       </command>
+      <command
+            id="hu.bme.mit.incqueryd.tooling.deployment.commands.destroy"
+            name="Destroy IncQuery-D (coordinator and microkernels)">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
             allPopups="false"
             locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+        <separator
+		       name="separator-0"
+		       visible="true">
+		</separator>
          <command
                commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.install.full"
                style="push">
@@ -33,12 +41,24 @@
                commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.install.light"
                style="push">
          </command>
+        <separator
+		       name="separator-1"
+		       visible="true">
+		</separator>
          <command
                commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.deploy"
                style="push">
          </command>
          <command
                commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.start"
+               style="push">
+         </command>
+        <separator
+		       name="separator-2"
+		       visible="true">
+		</separator>
+         <command
+               commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.destroy"
                style="push">
          </command>
       </menuContribution>
@@ -60,6 +80,10 @@
       <handler
             class="hu.bme.mit.incqueryd.tooling.deployment.StartArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.start">
+      </handler>
+      <handler
+            class="hu.bme.mit.incqueryd.tooling.deployment.DestroyArchitectureHandler"
+            commandId="hu.bme.mit.incqueryd.tooling.deployment.commands.destroy">
       </handler>
    </extension>
 
