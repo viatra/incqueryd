@@ -5,9 +5,7 @@ import infrastructure.Machine;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 
@@ -33,8 +31,7 @@ public class ArchitectureInstaller {
 			command.add(machine.getIp());
 		}
 		
-		final Map<String, String> environment = new HashMap<>();
-		UnixUtils.run(command.toArray(new String[command.size()]), true, environment);
+		UnixUtils.run(command.toArray(new String[command.size()]));
 		System.out.println(command);
 	}
 	
@@ -46,54 +43,13 @@ public class ArchitectureInstaller {
 		final String connectionString = configuration.getConnectionString();
 		System.out.println("Connection string: " + connectionString);
 
-		deployCoordinator(configuration.getCoordinatorMachine(), architectureFile);		
-		
 		for (final Machine machine : configuration.getMachines()) {
-			deploy(machine);
+			deployMachine(machine);
 		}
-
-		final String coordinatorIP = configuration.getCoordinatorMachine().getIp();
-		
-		final List<String> archCopyCommand = new ArrayList<>();
-		archCopyCommand.add("scp");
-		archCopyCommand.add(architectureFile);
-		archCopyCommand.add(coordinatorIP + ":" + COORDINATOR_DIR + "arch/");
-		
-		final Map<String, String> environment = new HashMap<>();
-		
-		UnixUtils.run(archCopyCommand.toArray(new String[archCopyCommand.size()]), true, environment);
-		
-		final List<String> recipePaths = ArchUtil.getRecipePaths(architectureFile);
-		for (final String recipeFile : recipePaths) {
-			final List<String> recipeCopyCommand = new ArrayList<>();
-			recipeCopyCommand.add("scp");
-			recipeCopyCommand.add(recipeFile);
-			recipeCopyCommand.add(coordinatorIP + ":" + COORDINATOR_DIR + "recipes/");
-			
-			UnixUtils.run(recipeCopyCommand.toArray(new String[recipeCopyCommand.size()]), true, environment);
-		}
-		
-		final String archFileNameShort = file.getName();
-		final String monitoringIPAddress = configuration.getMonitoringIPAddress();
-
-		final List<String> coordinatorCommand = new ArrayList<>();
-		coordinatorCommand.add("ssh");
-		coordinatorCommand.add(coordinatorIP);
-		coordinatorCommand.add(COORDINATOR_DIR + "start-coordinator.sh");
-		coordinatorCommand.add(COORDINATOR_DIR + "arch/" + archFileNameShort);
-		coordinatorCommand.add(coordinatorIP);
-		if (monitoringIPAddress != null && !monitoringIPAddress.isEmpty())
-			coordinatorCommand.add(monitoringIPAddress);
-		
-		UnixUtils.run(coordinatorCommand.toArray(new String[coordinatorCommand.size()]), true, environment);
+		deployCoordinator(file, architectureFile, configuration);
 	}
 
-	protected static void deployCoordinator(final Machine coordinatorMachine, final String architectureFile) {
-		System.out.println(ArchUtil.getRecipePaths(architectureFile));
-	}
-
-	protected static void deploy(final Machine machine) throws IOException {
-
+	protected static void deployMachine(final Machine machine) throws IOException {
 		final String AKKA_DIR = INSTALL_DIR + "akka-" + AKKA_VERSION + "/";
 		System.out.println(AKKA_DIR);
 
@@ -108,9 +64,7 @@ public class ArchitectureInstaller {
 			command.add(Integer.toString(port));
 		}
 
-		final Map<String, String> environment = new HashMap<>();
-
-		UnixUtils.run(command.toArray(new String[command.size()]), true, environment);
+		UnixUtils.run(command.toArray(new String[command.size()]));
 
 		final List<String> startCommand = new ArrayList<>();
 		startCommand.add("ssh");
@@ -122,11 +76,73 @@ public class ArchitectureInstaller {
 			startCommand.add(Integer.toString(port));
 		}
 		
-		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]), true, environment);
-
+		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
 	}
 
+	private static void deployCoordinator(final IFile file, final String architectureFile,
+			final Configuration configuration) throws IOException {
+		final String coordinatorIP = configuration.getCoordinatorMachine().getIp();
+		
+		final List<String> archCopyCommand = new ArrayList<>();
+		archCopyCommand.add("scp");
+		archCopyCommand.add(architectureFile);
+		archCopyCommand.add(coordinatorIP + ":" + COORDINATOR_DIR + "arch/");
+		
+		UnixUtils.run(archCopyCommand.toArray(new String[archCopyCommand.size()]));
+		
+		final List<String> recipePaths = ArchUtil.getRecipePaths(architectureFile);
+		for (final String recipeFile : recipePaths) {
+			final List<String> recipeCopyCommand = new ArrayList<>();
+			recipeCopyCommand.add("scp");
+			recipeCopyCommand.add(recipeFile);
+			recipeCopyCommand.add(coordinatorIP + ":" + COORDINATOR_DIR + "recipes/");
+			
+			UnixUtils.run(recipeCopyCommand.toArray(new String[recipeCopyCommand.size()]));
+		}
+		
+		final String archFileNameShort = file.getName();
+		final String monitoringIPAddress = configuration.getMonitoringIPAddress();
+
+		final List<String> coordinatorCommand = new ArrayList<>();
+		coordinatorCommand.add("ssh");
+		coordinatorCommand.add(coordinatorIP);
+		coordinatorCommand.add(COORDINATOR_DIR + "start-coordinator.sh");
+		coordinatorCommand.add(COORDINATOR_DIR + "arch/" + archFileNameShort);
+		coordinatorCommand.add(coordinatorIP);
+		if (monitoringIPAddress != null && !monitoringIPAddress.isEmpty())
+			coordinatorCommand.add(monitoringIPAddress);
+		
+		UnixUtils.run(coordinatorCommand.toArray(new String[coordinatorCommand.size()]));
+	}
+	
 	public static void destroyArchitecture(final IFile file) throws IOException {
-		System.out.println("Destroy architecture.");
+		final String architectureFile = file.getLocation().toString();
+
+		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
+
+		for (final Machine machine : configuration.getMachines()) {
+			destroyMachine(machine);
+		}
+
+		destroyCoordinator(configuration.getCoordinatorMachine());	
+	}
+
+	private static void destroyCoordinator(final Machine coordinatorMachine) throws IOException {
+		final List<String> startCommand = new ArrayList<>();
+		startCommand.add("ssh");
+		startCommand.add(coordinatorMachine.getIp());
+		startCommand.add("pkill -f incqueryd.core");
+		
+		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
+		
+	}
+
+	private static void destroyMachine(final Machine machine) throws IOException {
+		final List<String> startCommand = new ArrayList<>();
+		startCommand.add("ssh");
+		startCommand.add(machine.getIp());
+		startCommand.add("pkill -f akka");
+		
+		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
 	}
 }
