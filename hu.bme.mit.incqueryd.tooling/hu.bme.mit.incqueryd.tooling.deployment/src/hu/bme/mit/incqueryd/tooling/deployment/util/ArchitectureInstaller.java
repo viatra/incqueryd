@@ -24,7 +24,7 @@ public class ArchitectureInstaller {
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 		
 		final List<String> command = new ArrayList<>();
-		String homeDirectory = System.getProperty( "user.home" );
+		final String homeDirectory = System.getProperty( "user.home" );
 		command.add(homeDirectory + "/git/incqueryd/hu.bme.mit.incqueryd.runtime/scripts/install.sh");
 
 		if (light) command.add("--light");
@@ -124,5 +124,9 @@ public class ArchitectureInstaller {
 		
 		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]), true, environment);
 
+	}
+
+	public static void destroyArchitecture(final IFile file) throws IOException {
+		System.out.println("Destroy architecture.");
 	}
 }
