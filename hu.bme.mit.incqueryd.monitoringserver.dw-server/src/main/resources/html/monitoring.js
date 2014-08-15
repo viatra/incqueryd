@@ -1800,7 +1800,7 @@ function updateDeltaChanges(data) {
 
         var tupleLength = data[0].tuple.tuple.length;
 
-        columns.push({ "title": "Direction" });
+        columns.push({ "title": "Change type" });
 
         for (var i = 0; i < tupleLength; i++) {
             columns.push({ "title": i + '.' });
