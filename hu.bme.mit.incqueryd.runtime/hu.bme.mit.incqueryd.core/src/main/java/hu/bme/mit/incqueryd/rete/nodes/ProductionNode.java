@@ -3,7 +3,9 @@ package hu.bme.mit.incqueryd.rete.nodes;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
@@ -18,7 +20,7 @@ public class ProductionNode extends AlphaNode {
 
 	protected final ProductionRecipe recipe;
 	protected final Set<Tuple> memory = new HashSet<>();
-	protected ChangeSet lastChangeSet = null;
+	protected List<ChangeSet> lastChangeSets = new ArrayList<>();
 	
 	ProductionNode(final ProductionRecipe recipe) {
         super();
@@ -28,8 +30,12 @@ public class ProductionNode extends AlphaNode {
     @Override
 	public ChangeSet update(final ChangeSet incomingChangeSet) {
     	
-		lastChangeSet = incomingChangeSet;
-		
+    	if (incomingChangeSet.getTuples().size() > 0) {
+			synchronized (lastChangeSets) {
+				lastChangeSets.add(incomingChangeSet);
+			}
+		}
+    	
 		switch (incomingChangeSet.getChangeType()) {
         case POSITIVE:
             memory.addAll(incomingChangeSet.getTuples());        	
@@ -49,8 +55,15 @@ public class ProductionNode extends AlphaNode {
 		return memory;
 	}
     
-    public ChangeSet getDeltaResults() {
-		return lastChangeSet;
+    public List<ChangeSet> getDeltaResults() {
+    	synchronized (lastChangeSets) {
+			List<ChangeSet> copyList = new ArrayList<>();
+			for (ChangeSet changeSet : lastChangeSets) {
+				copyList.add(changeSet);
+			}
+			lastChangeSets.clear();
+			return copyList;
+		}
     }
 
 }

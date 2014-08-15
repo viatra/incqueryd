@@ -52,7 +52,6 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
   protected var query: String = null
   protected var debug: Boolean = true
   protected var latestResults: Set[Tuple] = new HashSet[Tuple]
-  protected var latestChangeSet: ChangeSet = null
   protected var monitoringActor: ActorRef = null
 
   if (architectureFile.toLowerCase().contains("poslength")) {
@@ -253,20 +252,24 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
 
   }
 
-  def check(): ChangeSet = {
-    latestChangeSet = getQueryResults
+  def check() = {
+    val latestChangeSets = getQueryResults
+    
+    latestChangeSets.foreach(latestChangeSet => {
 
-    latestChangeSet.getChangeType match {
-      case ChangeType.POSITIVE => latestResults.addAll(latestChangeSet.getTuples)
-      case ChangeType.NEGATIVE => latestResults.removeAll(latestChangeSet.getTuples)
-      case _ => {}
-    }
+      latestChangeSet.getChangeType match {
+        case ChangeType.POSITIVE => latestResults.addAll(latestChangeSet.getTuples)
+        case ChangeType.NEGATIVE => latestResults.removeAll(latestChangeSet.getTuples)
+        case _ => {}
+      }
+      
+      if (monitoringActor != null) monitoringActor ! sendChangesForMonitoring(latestChangeSet)
+      
+    })
 
     if (debug) System.err.println("Results: " + latestResults.size)
 
-    if (monitoringActor != null) monitoringActor ! sendChangesForMonitoring(latestChangeSet)
-
-    latestChangeSet
+    latestChangeSets
   }
 
   def sendChangesForMonitoring(changeSet: ChangeSet) = {
@@ -344,9 +347,9 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
     })
   }
 
-  private def getQueryResults(): ChangeSet = {
+  private def getQueryResults(): java.util.List[ChangeSet] = {
     val queryResultFuture = ask(productionActorRef, CoordinatorMessage.GETQUERYRESULTS, timeout)
-    Await.result(queryResultFuture, timeout.duration).asInstanceOf[ChangeSet]
+    Await.result(queryResultFuture, timeout.duration).asInstanceOf[java.util.List[ChangeSet]]
   }
 
   private def configure(actorRef: ActorRef, recipeString: String, cacheMachineIps: List[String]) = {
