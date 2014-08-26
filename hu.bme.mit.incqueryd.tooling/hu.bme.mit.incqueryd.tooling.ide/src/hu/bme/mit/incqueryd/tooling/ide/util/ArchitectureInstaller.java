@@ -15,6 +15,7 @@ public class ArchitectureInstaller {
 
 	public static final String INSTALL_DIR = "~/incqueryd/";
 	public static final String COORDINATOR_DIR = "~/incqueryd/coordinator/";
+	public static final String OSAGENT_DIR = "~/incqueryd/monitoring/osagent/";
 	public static final String AKKA_VERSION = "2.1.4";
 
 	public static void installArchitecture(final IFile file, final boolean light) throws IOException {
@@ -33,6 +34,20 @@ public class ArchitectureInstaller {
 		
 		UnixUtils.run(command.toArray(new String[command.size()]));
 		System.out.println(command);
+		
+		// Call the monitoring install script as well
+		// which installs the monitoring components to the machines as well
+		final List<String> monitroingInstallCommand = new ArrayList<>();
+		monitroingInstallCommand.add(homeDirectory + "/git/incqueryd-monitoring/scripts/install.sh");
+		
+		if (light) monitroingInstallCommand.add("--light"); // Light goes for monitoring too
+		
+		for (final Machine machine : configuration.getMachines()) {
+			monitroingInstallCommand.add(machine.getIp());
+		}
+		
+		UnixUtils.run(monitroingInstallCommand.toArray(new String[monitroingInstallCommand.size()]));
+		System.out.println(monitroingInstallCommand);
 	}
 	
 	public static void deployArchitecture(final IFile file) throws IOException {
@@ -45,6 +60,7 @@ public class ArchitectureInstaller {
 
 		for (final Machine machine : configuration.getMachines()) {
 			deployMachine(machine);
+			deployOSAgent(machine, configuration.getMonitoringIPAddress());
 		}
 		deployCoordinator(file, architectureFile, configuration);
 	}
@@ -77,6 +93,18 @@ public class ArchitectureInstaller {
 		}
 		
 		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
+		
+	}
+	
+	private static void deployOSAgent(final Machine machine, final String monitoringServerIP) throws IOException {
+		// Start the OS monitoring agent for the host
+		final List<String> osagentStartCommand = new ArrayList<>();
+		osagentStartCommand.add("ssh");
+		osagentStartCommand.add(machine.getIp());
+		osagentStartCommand.add(OSAGENT_DIR + "start.sh");
+		osagentStartCommand.add(monitoringServerIP);
+		
+		UnixUtils.run(osagentStartCommand.toArray(new String[osagentStartCommand.size()]));
 	}
 
 	private static void deployCoordinator(final IFile file, final String architectureFile,
@@ -144,5 +172,13 @@ public class ArchitectureInstaller {
 		startCommand.add("pkill -f akka");
 		
 		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
+		
+		// Destroy the OS monitor agents on each machine
+		final List<String> osagentDestroyCommand = new ArrayList<>();
+		osagentDestroyCommand.add("ssh");
+		osagentDestroyCommand.add(machine.getIp());
+		osagentDestroyCommand.add("pkill -f osmonitor.core");
+		
+		UnixUtils.run(osagentDestroyCommand.toArray(new String[osagentDestroyCommand.size()]));
 	}
 }
