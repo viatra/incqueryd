@@ -294,7 +294,7 @@ CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, li
 
 function visualizeSystem() {
 
-    $.getJSON('test.json', function (data) {
+    $.getJSON('/monitoring', function (data) {
         update(data);
     });
     globalMonitoringTimer = setTimeout(function () { visualizeSystem(); }, 5000);
@@ -320,6 +320,7 @@ function update(object) {
     else {
         $jit.id('infovis').innerHTML = "";
         $jit.id('heatmap').innerHTML = "";
+        $jit.id('heatmap-rete').innerHTML = "";
 
         selectedNode = null;
 
@@ -1731,7 +1732,7 @@ function updateQueryResults(data) {
         }
 
         resultsTable = $('#results').DataTable({
-            "scrollY": "742px",
+            "scrollY": "750px",
             "scrollCollapse": true,
             "paging": false,
             "ordering": false,
@@ -1799,14 +1800,14 @@ function updateDeltaChanges(data) {
 
         var tupleLength = data[0].tuple.tuple.length;
 
-        columns.push({ "title": "Direction" });
+        columns.push({ "title": "Change type" });
 
         for (var i = 0; i < tupleLength; i++) {
             columns.push({ "title": i + '.' });
         }
 
         deltaTable = $('#deltas').DataTable({
-            "scrollY": "742px",
+            "scrollY": "750px",
             "scrollCollapse": true,
             "paging": false,
             "ordering": false,
