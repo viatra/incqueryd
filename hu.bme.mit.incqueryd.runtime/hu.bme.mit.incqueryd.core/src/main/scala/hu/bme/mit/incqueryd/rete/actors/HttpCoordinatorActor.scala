@@ -22,24 +22,30 @@ class HttpCoordinatorActor (val coordinatorActor: ActorRef) extends Actor {
     case _: Http.Connected => sender ! Http.Register(self)
     
     case HttpRequest(GET, Uri.Path("/start"), _, _, _) => {
+      
+      sender ! HttpResponse(entity = "STARTED")
+      
       val future = coordinatorActor ? CoordinatorCommand.START
       Await.result(future, timeout.duration)
       
-      sender ! HttpResponse(entity = "DONE")
     }
     
     case HttpRequest(GET, Uri.Path("/transform"), _, _, _) => {
+      
+      sender ! HttpResponse(entity = "STARTED")
+      
       val future = coordinatorActor ? CoordinatorCommand.TRANSFORM
       Await.result(future, timeout.duration)
       
-      sender ! HttpResponse(entity = "DONE")
     }
     
     case HttpRequest(GET, Uri.Path("/check"), _, _, _) => {
+      
+      sender ! HttpResponse(entity = "STARTED")
+      
       val future = coordinatorActor ? CoordinatorCommand.CHECK
       Await.result(future, timeout.duration)
       
-      sender ! HttpResponse(entity = "DONE")
     }
     
     case HttpRequest(GET, Uri.Path("/load"), _, _, _) => {
