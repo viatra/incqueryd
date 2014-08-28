@@ -5,7 +5,7 @@
   </machines>
   <mappings traceInfo="" process="//@machines.0/@processes.0">
     <roles xsi:type="arch:ReteRole">
-      <nodeRecipe xsi:type="recipes:AntiJoinRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.15"/>
+      <nodeRecipe xsi:type="recipes:BinaryInputRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.2"/>
     </roles>
   </mappings>
 </arch:Configuration>
