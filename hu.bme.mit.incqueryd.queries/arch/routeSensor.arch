@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://incquery.net/arch" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes" traceInfo="RouteSensor query" connectionString="fourstore://trainbenchmark_cluster">
+  <machines>
+    <processes/>
+  </machines>
+  <mappings traceInfo="" process="//@machines.0/@processes.0">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:AntiJoinRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.15"/>
+    </roles>
+  </mappings>
+</arch:Configuration>
