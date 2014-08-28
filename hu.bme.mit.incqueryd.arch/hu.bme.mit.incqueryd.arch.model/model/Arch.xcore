@@ -9,7 +9,6 @@ import infrastructure.Machine
 
 class Configuration extends ElementWithTraceInfo {
 	String connectionString
-	String modelPath
 	String monitoringIPAddress
 	contains Machine[] machines
 	contains RecipeImport[] recipeImports
