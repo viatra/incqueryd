@@ -74,6 +74,10 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
   var actorRefs: HashSet[ActorRef] = new HashSet[ActorRef]
   var jvmActorRefs: HashSet[ActorRef] = new HashSet[ActorRef]
 
+  // TODO: introduce a way to identify input nodes (i.e. get their REST endpoint) based on their
+  // - type name (RDF: MM URI)
+  // - arity
+  
   def start = {
     processConfiguration
   }
@@ -294,7 +298,6 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
   def load = {
     val client = new FourStoreLoader(conf.getConnectionString)
     client.start(remoting)
-    client.load(conf.getModelPath)
   }
 
   def transform = {
