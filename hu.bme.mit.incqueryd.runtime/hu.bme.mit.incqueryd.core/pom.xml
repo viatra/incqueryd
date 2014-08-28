@@ -11,10 +11,6 @@
 
 	<name>IncQuery-D Core</name>
 
-	<properties>
-		<emf-incquery.version>0.8.0-SNAPSHOT</emf-incquery.version>
-	</properties>
-
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
