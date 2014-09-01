@@ -1,0 +1,21 @@
+@Ecore(nsPrefix="res", nsURI="http://incquery.net/res")
+package resources
+
+class Machine {
+	String ip
+	
+	int memorySize
+	MemoryUnit memoryUnit
+	
+	int CPUs
+	
+}
+
+enum MemoryUnit {
+	MB
+	GB
+}
+
+class Resources {
+	contains Machine[] machines
+}
