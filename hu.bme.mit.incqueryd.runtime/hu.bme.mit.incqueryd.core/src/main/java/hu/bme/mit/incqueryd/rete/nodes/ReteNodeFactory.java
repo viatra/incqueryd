@@ -40,7 +40,7 @@ public class ReteNodeFactory {
 		} else if (recipe instanceof TrimmerRecipe) {
 			return new TrimmerNode((TrimmerRecipe) recipe);
 		} else if (recipe instanceof TypeInputRecipe) {
-			return new InputNode((TypeInputRecipe) recipe, cacheMachineIps, conf.getConnectionString());
+			return new InputNode((TypeInputRecipe) recipe, cacheMachineIps);
 		} else if (recipe instanceof ProductionRecipe) {
 			return new ProductionNode((ProductionRecipe) recipe);
 		} else if (recipe instanceof CheckRecipe) {

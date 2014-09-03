@@ -24,7 +24,6 @@ object FourStoreDriverMain {
   def load(architectureFile: String) {
     println(architectureFile)
 
-    val ontologyIri = "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl"
     val conf = ArchUtil.loadConfiguration(architectureFile)
     val clusterName = conf.getConnectionString().split("://")(1)
     val databaseDriver = new FourStoreDriver(clusterName)
