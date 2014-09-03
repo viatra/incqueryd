@@ -5,7 +5,6 @@ import hu.bme.mit.incqueryd.recipes.RecipeProcessor;
 import hu.bme.mit.incqueryd.recipes.TypeInfo;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeType;
-import hu.bme.mit.incqueryd.rete.dataunits.GraphElement;
 import hu.bme.mit.incqueryd.rete.dataunits.Tuple;
 import hu.bme.mit.incqueryd.rete.messages.Transformation;
 
@@ -19,25 +18,15 @@ import java.util.Set;
 import javax.naming.OperationNotSupportedException;
 
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
 
 import com.carrotsearch.sizeof.RamUsageEstimator;
 import com.google.common.collect.ImmutableSet;
 
 public class InputNode extends ReteNode implements InitializableReteNode {
 
-	// TODO
-	// implement a REST endpoint to receive updates (changesets)
-	
-	public static String EDGE_DISCRIMINATOR = ">edge"; 
-	public static String ATTRIBUTE_DISCRIMINATOR = ">attribute"; 
-	protected final String typeNameSuffix;
-	protected final GraphElement graphElement;
 	protected final Set<Tuple> tuples;
 	protected final TupleCache cache;
 	protected final Random random = new Random(0);
-	protected final String ontologyIri;
-	protected final String connectionString;
 
 	/*
 	 * Implementing the input nodes introduces the following challenge: - UnaryInputRecipes enumerate graph nodes -
@@ -45,38 +34,17 @@ public class InputNode extends ReteNode implements InitializableReteNode {
 	 * 
 	 * A temporary solution is the following: add "attribute" or "reference" string to the trace info.
 	 */
-	InputNode(final TypeInputRecipe recipe, final List<String> cacheMachineIps, final String connectionString) {
+	InputNode(final TypeInputRecipe recipe, final List<String> cacheMachineIps) {
 		super();
-
-		if (recipe instanceof UnaryInputRecipe) {
-			graphElement = GraphElement.NODE;
-		} else {
-			// the recipe is a BinaryInputRecipe
-			if (recipe.getTraceInfo().endsWith(EDGE_DISCRIMINATOR)) {
-				graphElement = GraphElement.EDGE;
-			} else {
-				graphElement = GraphElement.ATTRIBUTE;
-			}
-		}
 
 		cache = new TupleCache(cacheMachineIps);
 
 		final TypeInfo typeInfo = RecipeProcessor.extractType(recipe);
-		ontologyIri = typeInfo.ontologyIri();
-		typeNameSuffix = typeInfo.typeNameSuffix();
+		final String ontologyIri = typeInfo.ontologyIri();
+		final String typeNameSuffix = typeInfo.typeNameSuffix();
 
-		final String setName = graphElement.toString() + typeNameSuffix;
+		final String setName = ontologyIri + typeNameSuffix;
 		tuples = cache.getSet(setName);
-		
-		this.connectionString = connectionString;
-	}
-
-	public String getType() {
-		return typeNameSuffix;
-	}
-
-	public GraphElement getGraphElement() {
-		return graphElement;
 	}
 	
 	public int tuples() {

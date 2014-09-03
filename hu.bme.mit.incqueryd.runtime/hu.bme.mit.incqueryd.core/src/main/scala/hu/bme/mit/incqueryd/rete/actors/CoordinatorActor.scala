@@ -42,6 +42,9 @@ import hu.bme.mit.incqueryd.util.EObjectSerializer
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
 import infrastructure.Machine
 import hu.bme.mit.bigmodel.fourstore.FourStoreLoader
+import hu.bme.mit.bigmodel.fourstore.FourStoreDriver
+import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe
+import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 
 class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val monitoringServerIPAddress: String) extends Actor {
 
@@ -49,24 +52,12 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
   
   protected val timeout: Timeout = new Timeout(Duration.create(14400, "seconds"))
   protected var productionActorRef: ActorRef = null
-  protected var query: String = null
   protected var debug: Boolean = true
   protected var latestResults: Set[Tuple] = new HashSet[Tuple]
   protected var monitoringActor: ActorRef = null
-
-  if (architectureFile.toLowerCase().contains("poslength")) {
-    query = "PosLength";
-  }
-  if (architectureFile.toLowerCase().contains("routesensor")) {
-    query = "RouteSensor";
-  }
-  if (architectureFile.toLowerCase().contains("signalneighbor")) {
-    query = "SignalNeighbor";
-  }
-  if (architectureFile.toLowerCase().contains("switchsensor")) {
-    query = "SwitchSensor";
-  }
-
+  protected var yellowPages: YellowPages = null
+  protected val typeRecipeToActor = new HashMap[ReteNodeRecipe, ActorRef] 
+  
   var recipeToAddress: HashMap[ReteNodeRecipe, Tuple2[String, Int]] = new HashMap
   var recipeToActorRef: HashMap[ReteNodeRecipe, ActorRef] = new HashMap[ReteNodeRecipe, ActorRef]
   var emfUriToRecipe: HashMap[String, ReteNodeRecipe] = new HashMap[String, ReteNodeRecipe]
@@ -119,7 +110,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
   }
 
   private def fillEmfUriToActorRef = {
-
+    
     emfUriToRecipe.entrySet.foreach(emfUriAndRecipe => {
       val emfUri = emfUriAndRecipe.getKey
       val recipe = emfUriAndRecipe.getValue
@@ -198,7 +189,6 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
   }
 
   private def deployJVMMonitoringActors(conf: Configuration) = {
-
     if (remoting) {
       conf.getMappings.foreach(mapping => {
         val ipAddress = mapping.getProcess.getMachine.getIp
@@ -219,7 +209,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
   }
 
   private def subscribeActors(conf: Configuration) = {
-    val yellowPages = new YellowPages(emfUriToActorRef, monitoringActor)
+    yellowPages = new YellowPages(emfUriToActorRef, monitoringActor)
 
     actorRefs.foreach(actorRef => {
       val future = ask(actorRef, yellowPages, timeout)
@@ -268,7 +258,6 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
       }
       
       if (monitoringActor != null) monitoringActor ! sendChangesForMonitoring(latestChangeSet)
-      
     })
 
     if (debug) System.err.println("Results: " + latestResults.size)
@@ -296,58 +285,126 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
   }
 
   def load = {
-    val client = new FourStoreLoader(conf.getConnectionString)
-    client.start(remoting)
+    val conf = ArchUtil.loadConfiguration(architectureFile)
+    val clusterName = conf.getConnectionString().split("://")(1)
+    val databaseDriver = new FourStoreDriver(clusterName)
+
+    conf.getMappings.foreach(mapping => {
+      mapping.getRoles.foreach(role => role match {
+        case reteRole: ReteRole =>
+          reteRole.getNodeRecipe match {
+            case typeInputRecipe: TypeInputRecipe =>
+
+              val tuples = scala.collection.mutable.Set[Tuple]()
+              typeInputRecipe match {
+                case binaryInputRecipe: BinaryInputRecipe => {
+                  println("binary input recipe: " + binaryInputRecipe)
+                  binaryInputRecipe.getTraceInfo match {
+                    case "attribute" => {
+                      initializeAttribute(databaseDriver, binaryInputRecipe, tuples)
+                    }
+                    case "edge" => {
+                      initializeEdge(databaseDriver, binaryInputRecipe, tuples)
+                    }
+                  }
+                }
+                case unaryInputRecipe: UnaryInputRecipe => {
+                  println("unary input recipe: " + unaryInputRecipe)
+                  initializeVertex(databaseDriver, unaryInputRecipe, tuples)
+                }
+              }
+
+              val actor = typeRecipeToActor.get(typeInputRecipe)
+
+              // send the updates to the actor
+              var changeSet = new ChangeSet(tuples, ChangeType.POSITIVE)
+              actor.tell(changeSet)
+              
+              println("tuples: " + tuples)
+            case _ => {}
+          }
+        case _ => {}
+      })
+    })
+  }
+  
+  def initializeAttribute(databaseDriver: FourStoreDriver, recipe: BinaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
+    val attributes = databaseDriver.collectVerticesWithProperty(recipe.getTypeName())
+
+    attributes.foreach(attribute => {
+      tuples += new Tuple(attribute._1, attribute._2)
+    })
+
+    println("attributes: " + attributes)
+    
   }
 
-  def transform = {
-    recipeToActorRef.entrySet.foreach(entry => {
+  def initializeEdge(databaseDriver: FourStoreDriver, recipe: BinaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
+    val edges = databaseDriver.collectEdges(recipe.getTypeName)
 
-      entry.getKey match {
-        case ir: InputRecipe => {
-          val actorRef = entry.getValue
-
-          query match {
-
-            case "PosLength" => {
-              if (ir.isInstanceOf[BinaryInputRecipe]) {
-                val transformation = new Transformation(latestResults, query)
-                val future = ask(actorRef, transformation, timeout)
-                Await.result(future, timeout.duration)
-              }
-            }
-
-            case "RouteSensor" => {
-              if (ir.getTraceInfo.contains("TrackElement_sensor")) {
-                val transformation = new Transformation(latestResults, query)
-                val future = ask(actorRef, transformation, timeout)
-                Await.result(future, timeout.duration)
-              }
-            }
-
-            case "SignalNeighbor" => {
-              if (ir.getTraceInfo.contains("Route_exit")) {
-                val transformation = new Transformation(latestResults, query)
-                val future = ask(actorRef, transformation, timeout)
-                Await.result(future, timeout.duration)
-              }
-            }
-
-            case "SwitchSensor" => {
-              if (ir.getTraceInfo.contains("TrackElement_sensor")) {
-                val transformation = new Transformation(latestResults, query)
-                val future = ask(actorRef, transformation, timeout)
-                Await.result(future, timeout.duration)
-              }
-            }
-
-          }
-        }
-
-        case _ => {}
-      }
-
+    edges.entries().foreach(edge => {
+      tuples += new Tuple(edge.getKey, edge.getValue)
     })
+
+    println("edges: " + edges)
+  }
+
+  def initializeVertex(databaseDriver: FourStoreDriver, recipe: UnaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
+    val vertices = databaseDriver.collectVertices(recipe.getTypeName)
+    vertices.foreach(vertex => tuples += new Tuple(vertex))
+    
+    println("vertices: " + vertices)
+  }
+  
+
+  def transform = {
+//    recipeToActorRef.entrySet.foreach(entry => {
+//
+//      entry.getKey match {
+//        case ir: InputRecipe => {
+//          val actorRef = entry.getValue
+//
+//          query match {
+//
+//            case "PosLength" => {
+//              if (ir.isInstanceOf[BinaryInputRecipe]) {
+//                val transformation = new Transformation(latestResults, query)
+//                val future = ask(actorRef, transformation, timeout)
+//                Await.result(future, timeout.duration)
+//              }
+//            }
+//
+//            case "RouteSensor" => {
+//              if (ir.getTraceInfo.contains("TrackElement_sensor")) {
+//                val transformation = new Transformation(latestResults, query)
+//                val future = ask(actorRef, transformation, timeout)
+//                Await.result(future, timeout.duration)
+//              }
+//            }
+//
+//            case "SignalNeighbor" => {
+//              if (ir.getTraceInfo.contains("Route_exit")) {
+//                val transformation = new Transformation(latestResults, query)
+//                val future = ask(actorRef, transformation, timeout)
+//                Await.result(future, timeout.duration)
+//              }
+//            }
+//
+//            case "SwitchSensor" => {
+//              if (ir.getTraceInfo.contains("TrackElement_sensor")) {
+//                val transformation = new Transformation(latestResults, query)
+//                val future = ask(actorRef, transformation, timeout)
+//                Await.result(future, timeout.duration)
+//              }
+//            }
+//
+//          }
+//        }
+//
+//        case _ => {}
+//      }
+//
+//    })
   }
 
   private def getQueryResults(): java.util.List[ChangeSet] = {
