@@ -60,7 +60,10 @@ public class ArchitectureInstaller {
 
 		for (final Machine machine : configuration.getMachines()) {
 			deployMachine(machine);
-			deployOSAgent(machine, configuration.getMonitoringIPAddress());
+			
+			if (configuration.getMonitoringMachine() != null) {
+				deployOSAgent(machine, configuration.getMonitoringMachine().getIp());
+			}
 		}
 		deployCoordinator(file, architectureFile, configuration);
 	}
@@ -129,7 +132,7 @@ public class ArchitectureInstaller {
 		}
 		
 		final String archFileNameShort = file.getName();
-		final String monitoringIPAddress = configuration.getMonitoringIPAddress();
+		final String monitoringIPAddress = configuration.getMonitoringMachine().getIp();
 
 		final List<String> coordinatorCommand = new ArrayList<>();
 		coordinatorCommand.add("ssh");

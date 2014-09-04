@@ -46,7 +46,7 @@ import hu.bme.mit.bigmodel.fourstore.FourStoreDriver
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 
-class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val monitoringServerIPAddress: String) extends Actor {
+class CoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor {
 
   val conf: Configuration = ArchUtil.loadConfiguration(architectureFile)
   
@@ -86,7 +86,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
     fillEmfUriToActorRef
 
     // phase 2
-    if (monitoringServerIPAddress != null) {
+    if (conf.getCoordinatorMachine != null) {
       subscribeMonitoringService(conf)
     }
 
@@ -419,7 +419,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean, val 
   }
 
   private def subscribeMonitoringService(conf: Configuration) = {
-    monitoringActor = context.actorFor("akka://monitoringserver@" + monitoringServerIPAddress + ":5225/user/collector")
+    monitoringActor = context.actorFor("akka://monitoringserver@" + conf.getMonitoringMachine.getIp + ":5225/user/collector")
 
     monitoringActor ! new MonitoredActorCollection(actorRefs, jvmActorRefs)
 
