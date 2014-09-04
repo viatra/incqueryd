@@ -18,11 +18,11 @@ object IncQueryDMain {
     
     val architectureFile = args(0)
     val interface = args(1)
-    var monitoringServerIPAddress = if (args.length > 2) args(2) else null
+    var remoting = !(args.length > 2 && args(2) == "local")
     
     val engine = new IncQueryDEngine(interface)
     
-    val coordinator = engine initialize (architectureFile, true, monitoringServerIPAddress)
+    val coordinator = engine initialize (architectureFile, remoting)
     
     implicit val system = ActorSystem("http")
     val coordinatorService = system.actorOf(Props(new HttpCoordinatorActorFactory(coordinator)), "coordinator-service")

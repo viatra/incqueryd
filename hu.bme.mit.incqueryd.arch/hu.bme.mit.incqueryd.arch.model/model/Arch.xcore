@@ -9,11 +9,11 @@ import infrastructure.Machine
 
 class Configuration extends ElementWithTraceInfo {
 	String connectionString
-	String monitoringIPAddress
 	contains Machine[] machines
 	contains RecipeImport[] recipeImports
 	contains InfrastructureMapping[] mappings
 	refers Machine coordinatorMachine
+	refers Machine monitoringMachine
 }
 
 class RecipeImport {

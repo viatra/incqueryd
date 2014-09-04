@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<recipes:ReteRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
+<recipes:ReteRecipe xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
   <recipeNodes xsi:type="recipes:CheckRecipe" parent="//@recipeNodes.2">
     <expression evaluator="ACED0005757200135B4C6A6176612E6C616E672E4F626A6563743B90CE589F1073296C0200007870000000027400125365676D656E744C656E677468203C3D203073720035636F6D2E676F6F676C652E636F6D6D6F6E2E636F6C6C6563742E496D6D757461626C655365742453657269616C697A6564466F726D00000000000000000200015B0008656C656D656E74737400135B4C6A6176612F6C616E672F4F626A6563743B78707571007E00000000000174000D5365676D656E744C656E677468"/>
     <mappedIndices key="SegmentLength" value="1"/>

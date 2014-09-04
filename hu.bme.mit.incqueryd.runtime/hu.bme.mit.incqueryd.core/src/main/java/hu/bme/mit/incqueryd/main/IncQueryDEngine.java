@@ -20,7 +20,7 @@ public class IncQueryDEngine {
 	protected final ActorSystem system;
 	protected ActorRef coordinator;
 
-	public IncQueryDEngine(String hostName) {
+	public IncQueryDEngine(final String hostName) {
 		super();
 
 		// initialize EMF
@@ -34,10 +34,10 @@ public class IncQueryDEngine {
 		system = ActorSystem.create("incqueryd", config);
 	}
 
-	public ActorRef initialize(final String architectureFile, final boolean cluster, final String monitoringServerIPAddress) throws Exception {
+	public ActorRef initialize(final String architectureFile, final boolean cluster) throws Exception {
 		// initialize the coordinator Actor
 		// the coordinator Actor runs on the client's side
-		final Props props = new Props().withCreator(new CoordinatorActorFactory(architectureFile, cluster, monitoringServerIPAddress));
+		final Props props = new Props().withCreator(new CoordinatorActorFactory(architectureFile, cluster));
 		coordinator = system.actorOf(props, "coordinator");
 		return coordinator;
 	}
