@@ -25,14 +25,13 @@ import com.google.common.collect.Maps;
  * @author szarnyasg
  * 
  */
-public class CheckNode extends AlphaNode {
+public class CheckNode implements AlphaNode {
 
 	private final String expression;
-	// private final Set<String> inputParameterNames;
 	private final Map<String, Integer> mappedIndices;
+	// private final Set<String> inputParameterNames;
 
 	CheckNode(final CheckRecipe recipe) {
-		// TODO use an evaluator shared from runtime
 		final Object[] evaluator = (Object[]) recipe.getExpression().getEvaluator();
 		expression = (String) evaluator[0];
 

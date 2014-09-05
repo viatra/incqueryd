@@ -27,7 +27,7 @@ public class Indexer {
 
     public Indexer(final List<Integer> joinMask, final List<String> cacheMachineIps) {
         this.joinMask = joinMask;
-        map = new TupleCache(cacheMachineIps).getMultiMap(UUID.randomUUID().toString());
+        map = new TupleCache().getMultiMap(UUID.randomUUID().toString());
     }
 
     public List<Integer> getJoinMask() {

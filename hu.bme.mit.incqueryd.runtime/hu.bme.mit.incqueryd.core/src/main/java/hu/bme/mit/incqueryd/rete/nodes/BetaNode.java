@@ -14,7 +14,7 @@ import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
  * @author szarnyasg
  * 
  */
-public abstract class BetaNode extends ReteNode {
+public abstract class BetaNode implements ReteNode {
 
     protected Indexer primaryIndexer;
     protected Indexer secondaryIndexer;

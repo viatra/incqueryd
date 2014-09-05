@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://incquery.net/arch" connectionString="fourstore://trainbenchmark_cluster" coordinatorMachine="//@machines.0" monitoringMachine="//@machines.0">
-  <machines name="vm0" ip="127.0.0.1">
-    <processes/>
-  </machines>
-  <mappings process="//@machines.0/@processes.0">
-    <roles xsi:type="arch:ReteRole"/>
-  </mappings>
+<arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:arch="http://incquery.net/arch" traceInfo="" connectionString="fourstore://trainbenchmark_cluster">
+  <recipes href="../recipes/posLength.recipe#/"/>
 </arch:Configuration>

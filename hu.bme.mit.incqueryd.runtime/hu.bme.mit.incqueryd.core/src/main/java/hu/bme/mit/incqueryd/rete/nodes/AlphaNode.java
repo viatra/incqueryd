@@ -9,8 +9,8 @@ import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
  * @author szarnyasg
  * 
  */
-public abstract class AlphaNode extends ReteNode {
+public interface AlphaNode extends ReteNode {
 
-    abstract public ChangeSet update(final ChangeSet incomingChangeSet);
+    public ChangeSet update(final ChangeSet incomingChangeSet);
 
 }

@@ -21,7 +21,7 @@ import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
  * @author szarnyasg
  * 
  */
-public class TrimmerNode extends AlphaNode {
+public class TrimmerNode implements AlphaNode {
 
 	protected TrimmerRecipe recipe;
 

@@ -20,7 +20,7 @@ import org.eclipse.incquery.runtime.rete.recipes.EqualityFilterRecipe;
  * @author szarnyasg
  * 
  */
-public class EqualityNode extends AlphaNode {
+public class EqualityNode implements AlphaNode {
 
 	protected EqualityFilterRecipe recipe;
 

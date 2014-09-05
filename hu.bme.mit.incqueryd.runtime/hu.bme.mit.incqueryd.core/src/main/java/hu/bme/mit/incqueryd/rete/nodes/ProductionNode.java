@@ -16,7 +16,7 @@ import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
  * @author szarnyasg
  * 
  */
-public class ProductionNode extends AlphaNode {
+public class ProductionNode implements AlphaNode {
 
 	protected final ProductionRecipe recipe;
 	protected final Set<Tuple> memory = new HashSet<>();

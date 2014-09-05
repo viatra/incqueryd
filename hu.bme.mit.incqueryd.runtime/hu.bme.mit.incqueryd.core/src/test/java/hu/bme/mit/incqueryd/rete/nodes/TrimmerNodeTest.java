@@ -19,7 +19,7 @@ public class TrimmerNodeTest extends AlphaNodeTest {
 	}
 
 	@Override
-	protected AlphaNode createAlphaNode(String recipeFile) throws IOException {
+	protected AlphaNode createAlphaNode(final String recipeFile) throws IOException {
 		final TrimmerRecipe recipe = (TrimmerRecipe) (RecipeDeserializer.deserializeFromFile(recipeFile));
 		final TrimmerNode trimmerNode = new TrimmerNode(recipe);
 		return trimmerNode;
