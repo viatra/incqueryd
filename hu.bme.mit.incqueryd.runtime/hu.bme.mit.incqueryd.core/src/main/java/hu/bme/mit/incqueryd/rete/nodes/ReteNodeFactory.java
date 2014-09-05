@@ -15,12 +15,13 @@ import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 
 public class ReteNodeFactory {
 
 	/**
 	 * Creates a Rete node from a Rete recipe
-	 *
+	 * 
 	 * @param recipe
 	 * @return An instantiated ReteNode.
 	 * @throws IOException
@@ -40,11 +41,13 @@ public class ReteNodeFactory {
 		} else if (recipe instanceof TrimmerRecipe) {
 			return new TrimmerNode((TrimmerRecipe) recipe);
 		} else if (recipe instanceof TypeInputRecipe) {
-			return new InputNode((TypeInputRecipe) recipe, cacheMachineIps);
+			return new InputNode((TypeInputRecipe) recipe);
 		} else if (recipe instanceof ProductionRecipe) {
 			return new ProductionNode((ProductionRecipe) recipe);
 		} else if (recipe instanceof CheckRecipe) {
 			return new CheckNode((CheckRecipe) recipe);
+		} else if (recipe instanceof UniquenessEnforcerRecipe) {
+			return new UniquenessEnforcerNode((UniquenessEnforcerRecipe) recipe);
 		} else {
 			throw new NotImplementedException(recipe.getClass().getSimpleName() + " recipe class is not supported.");
 		}

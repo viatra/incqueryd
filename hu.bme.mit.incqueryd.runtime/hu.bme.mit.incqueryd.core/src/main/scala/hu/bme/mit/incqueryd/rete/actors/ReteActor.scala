@@ -28,7 +28,6 @@ import hu.bme.mit.incqueryd.rete.messages.UpdateMessage
 import hu.bme.mit.incqueryd.rete.messages.YellowPages
 import hu.bme.mit.incqueryd.rete.nodes.AlphaNode
 import hu.bme.mit.incqueryd.rete.nodes.BetaNode
-import hu.bme.mit.incqueryd.rete.nodes.InitializableReteNode
 import hu.bme.mit.incqueryd.rete.nodes.InputNode
 import hu.bme.mit.incqueryd.rete.nodes.ProductionNode
 import hu.bme.mit.incqueryd.rete.nodes.ReteNode
@@ -215,29 +214,21 @@ class ReteActor extends Actor {
   private def initialize = {
     coordinatorRef = sender
 
-    System.err.println("[ReteActor] " + self + ": INITIALIZE received")
-
-    val node = reteNode.asInstanceOf[InitializableReteNode]
-    val changeSet = node.initialize
-
-    val emptyStack = Stack.empty[ActorRef]
-    sendToSubscribers(changeSet, emptyStack)
-    
-    if (monitoringServerActor != null) monitoringServerActor ! monitor // send the monitoring server the updated metrics
-    
+    if (monitoringServerActor != null) monitoringServerActor ! monitor // send the monitoring server the updated metrics    
   }
 
   private def doTransformation(transformation: Transformation) = {
     coordinatorRef = sender
     System.err.println("[ReteActor] " + self + ": PosLength transformation")
 
-    val inputNode = reteNode.asInstanceOf[InputNode]
-    val changeSets = inputNode.transform(transformation)
-    val emptyStack = Stack.empty[ActorRef]
-
-    changeSets.foreach(changeSet => {
-      sendToSubscribers(changeSet, emptyStack)
-    })
+//    val inputNode = reteNode.asInstanceOf[InputNode]
+//    val changeSets = inputNode.transform(transformation)
+//    val changeSets = null
+//    val emptyStack = Stack.empty[ActorRef]
+//
+//    changeSets.foreach(changeSet => {
+//      sendToSubscribers(changeSet, emptyStack)
+//    })
     
     if (monitoringServerActor != null) monitoringServerActor ! monitor // send the monitoring server the updated metrics
     

@@ -19,7 +19,7 @@ public class EqualityNodeTest extends AlphaNodeTest {
 	}
 	
 	@Override
-	protected AlphaNode createAlphaNode(String recipeFile) throws IOException {
+	protected AlphaNode createAlphaNode(final String recipeFile) throws IOException {
 		final EqualityFilterRecipe recipe = (EqualityFilterRecipe) (RecipeDeserializer.deserializeFromFile(recipeFile));
 		final EqualityNode filterNode = new EqualityNode(recipe);
 		return filterNode;
