@@ -40,8 +40,8 @@ object IncQueryDMain {
     val engine = new IncQueryDEngine(interface)
     val coordinator = engine initialize (architectureFile, remoting)
 
-    implicit val system = ActorSystem("http")
-    val coordinatorService = system.actorOf(Props(new HttpCoordinatorActorFactory(coordinator)), "coordinator-service")
+    implicit val httpActorSystem = ActorSystem("http")
+    val coordinatorService = httpActorSystem.actorOf(Props(new HttpCoordinatorActorFactory(coordinator)), "coordinator-service")
     implicit val timeout = Timeout(1000000 seconds)
 
     if (start) {
@@ -50,5 +50,9 @@ object IncQueryDMain {
     } else {
       IO(Http) ? Http.Bind(coordinatorService, interface = interface, port = 9090)
     }
+    
+    Thread.sleep(100000);
+    engine.shutdown
+    httpActorSystem.shutdown
   }
 }
