@@ -89,7 +89,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     fillEmfUriToActorRef
 
     // phase 2
-    if (conf.getCoordinatorMachine != null) {
+    if (conf.getMonitoringMachine != null) {
       subscribeMonitoringService
     }
 
@@ -114,12 +114,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
       val akkaUri = recipeToActorRef.get(recipe)
 
       emfUriToActorRef.put(emfUri, akkaUri)
-
-      if (verbose) println("EMF URI: " + emfUri + ", Akka URI: " + akkaUri + ", traceInfo "
-        + recipe.getTraceInfo)
     })
-
-    if (verbose) println
   }
 
   private def deployActors = {
@@ -129,7 +124,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
 
     conf.getRecipes.foreach(recipe =>
       recipe.getRecipeNodes.foreach(recipeNode => {
-        if (verbose) println("[TestKit] Recipe: " + recipeNode.getClass.getName)
+        if (verbose) println("[CoordinatorActor] Recipe: " + recipeNode.getClass.getName)
 
         val emfUri = EcoreUtil.getURI(recipeNode).toString
         recipeToEmfUri.put(recipeNode, emfUri)
@@ -144,8 +139,8 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
           val ipAddress = process.getMachine.getIp
           val port = process.getPort
 
-          if (verbose) println("[TestKit] - IP address:  " + ipAddress)
-          if (verbose) println("[TestKit] - EMF address: " + emfUri)
+          if (verbose) println("[CoordinatorActor] - IP address:  " + ipAddress)
+          if (verbose) println("[CoordinatorActor] - EMF address: " + emfUri)
 
           props = Props[ReteActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
             IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, port))))
@@ -165,11 +160,11 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
           case _ => {}
         }
 
-        if (verbose) println("[TestKit] Actor configured.")
+        if (verbose) println("[CoordinatorActor] Actor configured.")
         if (verbose) println
       }))
 
-    if (verbose) println("[ReteActor] All actors deployed and configured.")
+    if (verbose) println("[CoordinatorActor] All actors deployed and configured.")
     if (verbose) println
 
   }
@@ -201,9 +196,6 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
       val future = ask(actorRef, yellowPages, timeout)
       Await.result(future, timeout.duration)
     })
-
-    if (verbose) println
-    if (verbose) yellowPages.getEmfUriToActorRef.entrySet.foreach(entry => println(entry))
   }
 
   def check = {
