@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:arch="http://incquery.net/arch" connectionString="fourstore://trainbenchmark_cluster">
+  <recipes href="../recipes/routeSensor.recipe#/"/>
+</arch:Configuration>

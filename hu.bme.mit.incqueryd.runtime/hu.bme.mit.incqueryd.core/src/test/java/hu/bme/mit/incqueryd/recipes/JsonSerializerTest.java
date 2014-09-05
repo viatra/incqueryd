@@ -33,8 +33,8 @@ public class JsonSerializerTest {
 		EObjectSerializer.serializeToFile(recipe, "src/test/resources/recipe.json");
 		final BetaRecipe br = (BetaRecipe) RecipeDeserializer.deserializeFromFile("src/test/resources/recipe.json");
 
-		System.err.println(br.getLeftParent());
-		System.err.println(br.getRightParent());
+		System.out.println(br.getLeftParent());
+		System.out.println(br.getRightParent());
 
 	}
 
@@ -55,7 +55,7 @@ public class JsonSerializerTest {
 		recipe.setRightParent(secondaryParent);
 
 		final String model = EObjectSerializer.serializeToString(recipe);
-		System.err.println(model);
+		System.out.println(model);
 	}
 
 }
