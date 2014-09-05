@@ -69,7 +69,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   var recipeToActorRef = new HashMap[ReteNodeRecipe, ActorRef]
   var recipeToEmfUri = HashBiMap.create[ReteNodeRecipe, String]
   var emfUriToActorRef = new HashMap[String, ActorRef]
-  var actorRefs = new HashSet[ActorRef]
+//  var actorRefs = new HashSet[ActorRef]
   var jvmActorRefs = new HashSet[ActorRef]
   
   def start = {
@@ -152,7 +152,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
 
         configure(actorRef, recipeString, cacheMachineIps)
 
-        actorRefs.add(actorRef)
+//        actorRefs.add(actorRef)
         recipeToActorRef.put(recipeNode, actorRef)
 
         recipeNode match {
@@ -192,8 +192,11 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   private def subscribeActors = {
     yellowPages = new YellowPages(emfUriToActorRef, monitoringActor)
 
-    actorRefs.foreach(actorRef => {
-      val future = ask(actorRef, yellowPages, timeout)
+    println("Yellowpages");
+    
+    recipeToActorRef.foreach(recipeAndActorRef => {
+      println("Subscribing " + recipeAndActorRef._1 + " actor, which is based on a " + recipeAndActorRef + " recipe.")
+      val future = ask(recipeAndActorRef._2, yellowPages, timeout)
       Await.result(future, timeout.duration)
     })
   }
@@ -324,7 +327,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   private def subscribeMonitoringService = {
     monitoringActor = context.actorFor("akka://monitoringserver@" + conf.getMonitoringMachine.getIp + ":5225/user/collector")
 
-    monitoringActor ! new MonitoredActorCollection(actorRefs, jvmActorRefs)
+    monitoringActor ! new MonitoredActorCollection(recipeToActorRef.values, jvmActorRefs)
   }
 
   def receive = {

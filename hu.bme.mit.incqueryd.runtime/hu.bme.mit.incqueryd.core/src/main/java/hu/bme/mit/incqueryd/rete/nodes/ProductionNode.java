@@ -48,7 +48,8 @@ public class ProductionNode implements AlphaNode {
         }
 
 		System.out.println("Production memory size: " + memory.size());
-    	return null;
+    	// TODO
+		return incomingChangeSet;
     }
     
     public Set<Tuple> getResults() {
