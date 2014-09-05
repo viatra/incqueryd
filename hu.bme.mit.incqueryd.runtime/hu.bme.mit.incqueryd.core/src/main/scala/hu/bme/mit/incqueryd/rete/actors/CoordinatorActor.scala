@@ -51,6 +51,7 @@ import com.google.common.collect.HashBiMap
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot
 import scala.collection.immutable.Stack
+import hu.bme.mit.incqueryd.rete.messages.TerminationMessage
 
 class CoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor {
 
@@ -62,6 +63,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   var monitoringActor: ActorRef = null
   var yellowPages: YellowPages = null
   var latestResults = new HashSet[Tuple]
+  var pendingUpdateMessages = 0
 
   var recipeToProcess = new HashMap[ReteNodeRecipe, Process]
   var recipeToActorRef = new HashMap[ReteNodeRecipe, ActorRef]
@@ -69,11 +71,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   var emfUriToActorRef = new HashMap[String, ActorRef]
   var actorRefs = new HashSet[ActorRef]
   var jvmActorRefs = new HashSet[ActorRef]
-
-  // TODO: introduce a way to identify input nodes (i.e. get their REST endpoint) based on their
-  // - type name (RDF: MM URI)
-  // - arity
-
+  
   def start = {
     processConfiguration
   }
@@ -96,9 +94,9 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     }
 
     subscribeActors
-
-    // phase 3
-    initialize
+    
+    // load the model to the Rete network
+    load
   }
 
   private def fillRecipeToProcess = {
@@ -205,22 +203,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     })
 
     if (verbose) println
-    if (verbose) println
-
     if (verbose) yellowPages.getEmfUriToActorRef.entrySet.foreach(entry => println(entry))
-  }
-
-  private def initialize = {
-    val futures: HashSet[Future[AnyRef]] = new HashSet[Future[AnyRef]]
-
-    if (verbose) println("<AWAIT> for " + futures.size + " futures.")
-    futures.foreach(future => {
-      if (verbose) println("await for " + future)
-      val result = Await.result(future, timeout.duration)
-      if (verbose) println("result is: " + result)
-    })
-    if (verbose) println("</AWAIT>")
-
   }
 
   def check = {
@@ -289,21 +272,29 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
             }
           }
 
-          println("tuples: " + tuples)
+//          println("tuples: " + tuples)
 
           val actor = recipeToActorRef.get(typeInputRecipe)
-
           val changeSet = new ChangeSet(tuples, ChangeType.POSITIVE)
-          val emptyStack = Stack.empty[ActorRef]
-          val updateMessage = new UpdateMessage(changeSet, ReteNodeSlot.SINGLE, emptyStack)
 
-          // send the updates to the actor
-          println("sending update message " + updateMessage + " to " + actor)
-          actor.tell(updateMessage)
-
-          println("changeset sent.")
+          update(actor, changeSet)
         case _ => {}
       }))
+  }
+
+  /**
+   * Update API
+   */
+  def update(actor: ActorRef, changeSet: ChangeSet) {
+    val senderStack = Stack(self)
+    val updateMessage = new UpdateMessage(changeSet, ReteNodeSlot.SINGLE, senderStack)
+
+    // send the updates to the actor
+    println("sending update message to " + actor)
+    actor.tell(updateMessage)
+    
+    pendingUpdateMessages += 1
+    println(pendingUpdateMessages + " update message(s) pending.")
   }
 
   def initializeAttribute(databaseDriver: FourStoreDriver, recipe: BinaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
@@ -312,8 +303,6 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     attributes.foreach(attribute => {
       tuples += new Tuple(attribute._1, attribute._2)
     })
-
-    println("attributes: " + attributes)
   }
 
   def initializeEdge(databaseDriver: FourStoreDriver, recipe: BinaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
@@ -322,15 +311,11 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     edges.entries.foreach(edge => {
       tuples += new Tuple(edge.getKey, edge.getValue)
     })
-
-    println("edges: " + edges)
   }
 
   def initializeVertex(databaseDriver: FourStoreDriver, recipe: UnaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
     val vertices = databaseDriver.collectVertices(recipe.getTypeName)
     vertices.foreach(vertex => tuples += new Tuple(vertex))
-
-    println("vertices: " + vertices)
   }
 
   private def getQueryResults: java.util.List[ChangeSet] = {
@@ -353,7 +338,6 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   def receive = {
     case CoordinatorCommand.START => {
       start
-      load
       sender ! CoordinatorMessage.DONE
     }
     case CoordinatorCommand.CHECK => {
@@ -365,6 +349,14 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     case CoordinatorCommand.LOAD => {
       load
       sender ! CoordinatorMessage.DONE
+    }
+    case terminationMessage : TerminationMessage => {
+      pendingUpdateMessages -= 1
+      println("> " + pendingUpdateMessages + " update message(s) pending.")
+
+      if (pendingUpdateMessages == 0) {
+        println("Termination protocol finished.")
+      }
     }
     case _ => {}
   }

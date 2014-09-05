@@ -2,17 +2,14 @@ package hu.bme.mit.incqueryd.rete.actors
 
 import java.util.ArrayList
 import java.util.HashMap
-
 import scala.collection.JavaConversions._
 import scala.collection.immutable.Stack
 import scala.concurrent.ops._
-
 import org.apache.commons.lang.NotImplementedException
 import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
-
 import akka.actor.Actor
 import akka.actor.ActorRef
 import hu.bme.mit.incqueryd.arch.util.ArchUtil
@@ -39,6 +36,7 @@ import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoringMessage
 import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics
 import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteSubscriber
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
+import hu.bme.mit.incqueryd.rete.messages.ReteCommunicationMessage
 
 class ReteActor extends Actor {
 
@@ -50,7 +48,7 @@ class ReteActor extends Actor {
 
   protected var updateMessageCount = 0 // To count how many update messages this actor sent
   protected var changesCount = 0 // To count how many tuple changes it sent
-  
+
   protected var monitoringServerActor: ActorRef = null
 
   println("[ReteActor] Rete actor instantiated.")
@@ -65,7 +63,7 @@ class ReteActor extends Actor {
   }
 
   private def subscribe(yellowPages: YellowPages) = {
-    
+
     monitoringServerActor = yellowPages.getMonitoringServerAddress
 
     val emfUriToActorRef = yellowPages.getEmfUriToActorRef()
@@ -121,14 +119,14 @@ class ReteActor extends Actor {
   }
 
   protected def subscribeToActor(actorRef: ActorRef, slot: ReteNodeSlot) = {
-    
+
     val message = slot match {
       case ReteNodeSlot.PRIMARY => SubscriptionMessage.SUBSCRIBE_PRIMARY
       case ReteNodeSlot.SECONDARY => SubscriptionMessage.SUBSCRIBE_SECONDARY
       case ReteNodeSlot.SINGLE => SubscriptionMessage.SUBSCRIBE_SINGLE
       case _ => null
     }
-    
+
     actorRef ! message
 
     try {
@@ -150,12 +148,12 @@ class ReteActor extends Actor {
 
   private def update(updateMessage: UpdateMessage) = {
     println("[ReteActor] " + self + ", " + reteNode.getClass().getName()
-				+ ": update message received, " + updateMessage.getChangeSet().getChangeType() + " "
-				+ updateMessage.getNodeSlot() + " " + updateMessage.getChangeSet().getTuples().size())
+      + ": update message received, " + updateMessage.getChangeSet().getChangeType() + " "
+      + updateMessage.getNodeSlot() + " " + updateMessage.getChangeSet().getTuples().size())
 
-	var changeSet:ChangeSet = null
+    var changeSet: ChangeSet = null
 
-	updateMessage.getNodeSlot match {
+    updateMessage.getNodeSlot match {
       case ReteNodeSlot.SINGLE => {
         changeSet = reteNode.asInstanceOf[AlphaNode].update(updateMessage.getChangeSet)
       }
@@ -167,12 +165,12 @@ class ReteActor extends Actor {
       }
     }
 
-    sendToSubscribers(changeSet, updateMessage.getSenderStack)
-    
+    sendToSubscribers(changeSet, updateMessage.getRoute)
+
     if (monitoringServerActor != null) monitoringServerActor ! monitor // send the monitoring server the updated metrics
 
-    reteNode match{
-      case node:ProductionNode => terminationProtocol(new TerminationMessage(updateMessage.getSenderStack()))
+    reteNode match {
+      case node: ProductionNode => terminationProtocol(new TerminationMessage(updateMessage.getRoute))
       case _ => {}
     }
   }
@@ -182,29 +180,22 @@ class ReteActor extends Actor {
       updateMessageCount += 1
     }
 
-    reteNode match{
-      case node: InputNode => {
-          pendingTerminationMessages = subscribers.entrySet.size
-      }
-      case _ => {}
-    }
-
     subscribers.entrySet.foreach(entry => {
-        val subscriber = entry.getKey
-        val slot = entry.getValue
+      val subscriber = entry.getKey
+      val slot = entry.getValue
 
-        val propagatedSenderStack = senderStack.push(self)
-        val updateMessage = new UpdateMessage(changeSet, slot, propagatedSenderStack)
+      val propagatedRoute = senderStack.push(self)
+      val updateMessage = new UpdateMessage(changeSet, slot, propagatedRoute)
 
-        // @formatter:off
-			println("[ReteActor] " + self + ", " + reteNode.getClass().getName() + "\n"
-			    	+ "            - Sending to " + subscriber + "\n"
-					+ "            - " + changeSet.getChangeType() + " changeset, " + changeSet.getTuples().size() + " tuples\n"
-					+ "            - " + "with sender stack: " + propagatedSenderStack + "\n"
-					+ "            - " + pendingTerminationMessages + " pending\n")
-		// @formatter:on
+      // @formatter:off
+      println("[ReteActor] " + self + ", " + reteNode.getClass().getName() + "\n"
+        + "            - Sending to " + subscriber + "\n"
+        + "            - " + changeSet.getChangeType() + " changeset, " + changeSet.getTuples().size() + " tuples\n"
+        + "            - " + "with sender stack: " + propagatedRoute + "\n"
+        + "            - " + pendingTerminationMessages + " pending\n")
+      // @formatter:on
 
-		subscriber ! updateMessage
+      subscriber ! updateMessage
     })
 
     if (changeSet != null) changesCount += changeSet.getTuples.size // In case it's not a production node
@@ -217,57 +208,22 @@ class ReteActor extends Actor {
     if (monitoringServerActor != null) monitoringServerActor ! monitor // send the monitoring server the updated metrics    
   }
 
-  private def doTransformation(transformation: Transformation) = {
-    coordinatorRef = sender
-    println("[ReteActor] " + self + ": PosLength transformation")
-
-//    val inputNode = reteNode.asInstanceOf[InputNode]
-//    val changeSets = inputNode.transform(transformation)
-//    val changeSets = null
-//    val emptyStack = Stack.empty[ActorRef]
-//
-//    changeSets.foreach(changeSet => {
-//      sendToSubscribers(changeSet, emptyStack)
-//    })
-    
-    if (monitoringServerActor != null) monitoringServerActor ! monitor // send the monitoring server the updated metrics
-    
-  }
-
-  private def terminationProtocol(readyMessage: TerminationMessage): Unit = {
-    val route = readyMessage.getRoute
-
-    reteNode match{
-      case node: InputNode => {
-
-        if (route.isEmpty()) {
-		  pendingTerminationMessages -= 1
-		}
-
-        if (pendingTerminationMessages == 0) {
-          coordinatorRef ! CoordinatorMessage.TERMINATED
-
-		  println("[ReteActor] " + self + " Termination protocol completed.");
-		}
-
-        return
-      }
-      case _ => {}
-    }
+  private def terminationProtocol(terminationMessage: TerminationMessage): Unit = {
+    val route = terminationMessage.getRoute
 
     val pair = route.pop2
-    val readyMessageTarget = pair._1
-    val readyMessageSenderStack = pair._2
+    val terminationMessageTarget = pair._1
+    val terminationMessageRoute = pair._2
 
-    val propagatedReadyMessage = new TerminationMessage(readyMessageSenderStack)
-    readyMessageTarget ! propagatedReadyMessage
+    val propagatedTerminationMessage = new TerminationMessage(terminationMessageRoute)
+    terminationMessageTarget ! propagatedTerminationMessage
 
-    println("[ReteActor] Termination protocol sending: " + readyMessageSenderStack + " to "
-				+ readyMessageTarget)
+    println("[ReteActor] Termination protocol sending: " + terminationMessageRoute + " to "
+      + terminationMessageTarget)
 
     return
   }
-  
+
   private def monitor: ReteNodeMetrics = {
     val clazz = reteNode.getClass.getName.split("\\.")
     val nodeType = clazz(clazz.length - 1)
@@ -276,7 +232,7 @@ class ReteActor extends Actor {
     subscribers.keySet().foreach(subscriber => {
       subscriberNodes.add(new ReteSubscriber(subscriber.path.name, subscribers.get(subscriber).toString))
     })
-    
+
     reteNode match {
       case inputNode: InputNode => new InputNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Input", self.path.toString, updateMessageCount, changesCount, inputNode.tuples, inputNode.getMemoryConsumption, subscriberNodes)
       case alphaNode: AlphaNode => new AlphaNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Alpha", self.path.toString, updateMessageCount, changesCount, subscriberNodes)
@@ -292,7 +248,6 @@ class ReteActor extends Actor {
       sender ! ActorReply.YELLOWPAGES_RECEIVED
     }
     case terminationMessage: TerminationMessage => terminationProtocol(terminationMessage)
-    case transformation: Transformation => doTransformation(transformation)
     case SubscriptionMessage.SUBSCRIBE_SINGLE => subscribeSender(ReteNodeSlot.SINGLE)
     case SubscriptionMessage.SUBSCRIBE_PRIMARY => subscribeSender(ReteNodeSlot.PRIMARY)
     case SubscriptionMessage.SUBSCRIBE_SECONDARY => subscribeSender(ReteNodeSlot.SECONDARY)

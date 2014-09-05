@@ -5,6 +5,7 @@ import hu.bme.mit.incqueryd.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.rete.messages.ActorReply;
+import hu.bme.mit.incqueryd.rete.messages.ReteCommunicationMessage;
 import hu.bme.mit.incqueryd.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.rete.messages.TerminationMessage;
 import hu.bme.mit.incqueryd.rete.messages.UpdateMessage;
@@ -18,7 +19,6 @@ import org.apache.commons.io.FileUtils;
 
 import scala.Tuple2;
 import scala.collection.immutable.Stack;
-import scala.collection.immutable.Stack$;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
@@ -122,7 +122,7 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 			final ReteNodeSlot targetSlot) {
 		// Act
 		// message (A) !
-		final Stack<ActorRef> messageAStack = Stack$.MODULE$.empty().push(parentActor.getRef());
+		final Stack<ActorRef> messageAStack = Stack.empty().push(parentActor.getRef());
 		final UpdateMessage messageA = new UpdateMessage(incomingChangeSet, targetSlot, messageAStack);
 		testedActor.tell(messageA, parentActor.getRef());
 
@@ -140,17 +140,17 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 		// termination protocol
 		// Act
 		// message (C) !
-		final Tuple2<ActorRef, Stack<ActorRef>> pair = actualMessageB.getSenderStack().pop2();
+		final Tuple2<ActorRef, Stack<ActorRef>> pair = actualMessageB.getRoute().pop2();
 		final ActorRef terminationActorRef = pair._1();
 		final Stack<ActorRef> messageCStack = pair._2();
-		final TerminationMessage messageC = new TerminationMessage(messageCStack);
+		final ReteCommunicationMessage messageC = new TerminationMessage(messageCStack);
 		terminationActorRef.tell(messageC, targetActor.getRef());
 
 		// Assert
 		// message (D) ?
 		// we expect a ReadyMessage with an empty stack as the sender route
-		final TerminationMessage expectedMessageD = new TerminationMessage(Stack$.MODULE$.empty());
-		final TerminationMessage actualMessageD = parentActor.expectMsgClass(duration("1 second"), TerminationMessage.class);
+		final ReteCommunicationMessage expectedMessageD = new TerminationMessage(Stack.<ActorRef>empty());
+		final ReteCommunicationMessage actualMessageD = parentActor.expectMsgClass(duration("1 second"), ReteCommunicationMessage.class);
 		assertEquals(expectedMessageD, actualMessageD);
 	}
 
