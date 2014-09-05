@@ -31,7 +31,7 @@ public class RemoteReteActorExample {
 				final JavaTestKit probe1 = new JavaTestKit(system);
 				final JavaTestKit probe2 = new JavaTestKit(system);
 
-				System.err.println(actor);
+				System.out.println(actor);
 				
 				// Act
 				actor.tell(SubscriptionMessage.SUBSCRIBE_SINGLE, probe1.getRef());

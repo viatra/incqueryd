@@ -53,13 +53,13 @@ class ReteActor extends Actor {
   
   protected var monitoringServerActor: ActorRef = null
 
-  System.err.println("[ReteActor] Rete actor instantiated.")
+  println("[ReteActor] Rete actor instantiated.")
 
   private def configure(conf: ReteNodeConfiguration) = {
     recipe = conf.getReteNodeRecipe()
     reteNode = ReteNodeFactory.createNode(conf)
 
-    System.err.println("[ReteActor] " + reteNode.getClass().getName() + " configuration received.")
+    println("[ReteActor] " + reteNode.getClass().getName() + " configuration received.")
 
     sender ! ActorReply.CONFIGURATION_RECEIVED
   }
@@ -70,8 +70,8 @@ class ReteActor extends Actor {
 
     val emfUriToActorRef = yellowPages.getEmfUriToActorRef()
 
-    System.err.println();
-    System.err.println("[ReteActor] " + self + ", " + reteNode.getClass().getName() + ": "
+    println();
+    println("[ReteActor] " + self + ", " + reteNode.getClass().getName() + ": "
       + recipe.toString())
 
     recipe match {
@@ -80,7 +80,7 @@ class ReteActor extends Actor {
         val parentUri = ArchUtil.getJsonEObjectUri(parent)
         val parentActorRef = emfUriToActorRef.get(parentUri)
 
-        System.err.println("[ReteActor] - parent: " + parentUri + " -> " + parentActorRef)
+        println("[ReteActor] - parent: " + parentUri + " -> " + parentActorRef)
 
         subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE)
       }
@@ -91,12 +91,12 @@ class ReteActor extends Actor {
         val primaryParentUri = ArchUtil.getJsonEObjectUri(primaryParent)
         val primaryParentActorRef = emfUriToActorRef.get(primaryParentUri)
 
-        System.err.println("[ReteActor] - primary parent URI: " + primaryParentUri + " -> " + primaryParentActorRef)
+        println("[ReteActor] - primary parent URI: " + primaryParentUri + " -> " + primaryParentActorRef)
 
         val secondaryParentUri = ArchUtil.getJsonEObjectUri(secondaryParent)
         val secondaryParentActorRef = emfUriToActorRef.get(secondaryParentUri)
 
-        System.err.println("[ReteActor] - secondary parent URI: " + secondaryParentUri + " -> "
+        println("[ReteActor] - secondary parent URI: " + secondaryParentUri + " -> "
           + secondaryParentActorRef)
 
         subscribeToActor(primaryParentActorRef, ReteNodeSlot.PRIMARY)
@@ -109,7 +109,7 @@ class ReteActor extends Actor {
           val parentUri = ArchUtil.getJsonEObjectUri(parent)
           val parentActorRef = emfUriToActorRef.get(parentUri)
 
-          System.err.println("[ReteActor] - parent URI: " + parentUri + " -> " + parentActorRef)
+          println("[ReteActor] - parent URI: " + parentUri + " -> " + parentActorRef)
 
           subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE)
         })
@@ -144,12 +144,12 @@ class ReteActor extends Actor {
 
     sender ! ActorReply.SUBSCRIBED
 
-    System.err.println("[ReteActor] " + self + ": Subscribed: " + sender + " on slot " + slot)
+    println("[ReteActor] " + self + ": Subscribed: " + sender + " on slot " + slot)
 
   }
 
   private def update(updateMessage: UpdateMessage) = {
-    System.err.println("[ReteActor] " + self + ", " + reteNode.getClass().getName()
+    println("[ReteActor] " + self + ", " + reteNode.getClass().getName()
 				+ ": update message received, " + updateMessage.getChangeSet().getChangeType() + " "
 				+ updateMessage.getNodeSlot() + " " + updateMessage.getChangeSet().getTuples().size())
 
@@ -197,7 +197,7 @@ class ReteActor extends Actor {
         val updateMessage = new UpdateMessage(changeSet, slot, propagatedSenderStack)
 
         // @formatter:off
-			System.err.println("[ReteActor] " + self + ", " + reteNode.getClass().getName() + "\n"
+			println("[ReteActor] " + self + ", " + reteNode.getClass().getName() + "\n"
 			    	+ "            - Sending to " + subscriber + "\n"
 					+ "            - " + changeSet.getChangeType() + " changeset, " + changeSet.getTuples().size() + " tuples\n"
 					+ "            - " + "with sender stack: " + propagatedSenderStack + "\n"
@@ -219,7 +219,7 @@ class ReteActor extends Actor {
 
   private def doTransformation(transformation: Transformation) = {
     coordinatorRef = sender
-    System.err.println("[ReteActor] " + self + ": PosLength transformation")
+    println("[ReteActor] " + self + ": PosLength transformation")
 
 //    val inputNode = reteNode.asInstanceOf[InputNode]
 //    val changeSets = inputNode.transform(transformation)
@@ -247,7 +247,7 @@ class ReteActor extends Actor {
         if (pendingTerminationMessages == 0) {
           coordinatorRef ! CoordinatorMessage.TERMINATED
 
-		  System.err.println("[ReteActor] " + self + " Termination protocol completed.");
+		  println("[ReteActor] " + self + " Termination protocol completed.");
 		}
 
         return
@@ -262,7 +262,7 @@ class ReteActor extends Actor {
     val propagatedReadyMessage = new TerminationMessage(readyMessageSenderStack)
     readyMessageTarget ! propagatedReadyMessage
 
-    System.err.println("[ReteActor] Termination protocol sending: " + readyMessageSenderStack + " to "
+    println("[ReteActor] Termination protocol sending: " + readyMessageSenderStack + " to "
 				+ readyMessageTarget)
 
     return

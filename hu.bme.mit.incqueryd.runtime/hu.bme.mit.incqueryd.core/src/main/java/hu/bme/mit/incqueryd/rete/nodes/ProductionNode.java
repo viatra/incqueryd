@@ -47,7 +47,7 @@ public class ProductionNode implements AlphaNode {
         	break;
         }
 
-		System.err.println("Production memory size: " + memory.size());
+		System.out.println("Production memory size: " + memory.size());
     	return null;
     }
     
@@ -57,8 +57,8 @@ public class ProductionNode implements AlphaNode {
     
     public List<ChangeSet> getDeltaResults() {
     	synchronized (lastChangeSets) {
-			List<ChangeSet> copyList = new ArrayList<>();
-			for (ChangeSet changeSet : lastChangeSets) {
+			final List<ChangeSet> copyList = new ArrayList<>();
+			for (final ChangeSet changeSet : lastChangeSets) {
 				copyList.add(changeSet);
 			}
 			lastChangeSets.clear();

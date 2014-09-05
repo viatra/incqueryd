@@ -70,7 +70,7 @@ public abstract class AlphaNodeTest {
 		final ChangeSet incomingChangeSet1 = new ChangeSet(tuples, changeType);
 		final ChangeSet propagatedChangeSet = node.update(incomingChangeSet1);
 
-		System.err.println(propagatedChangeSet);
+		System.out.println(propagatedChangeSet);
 		return propagatedChangeSet;
 	}
 }

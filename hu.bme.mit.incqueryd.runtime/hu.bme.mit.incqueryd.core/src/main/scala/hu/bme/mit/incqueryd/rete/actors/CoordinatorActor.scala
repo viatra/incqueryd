@@ -117,7 +117,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
 
       emfUriToActorRef.put(emfUri, akkaUri)
 
-      if (verbose) System.err.println("EMF URI: " + emfUri + ", Akka URI: " + akkaUri + ", traceInfo "
+      if (verbose) println("EMF URI: " + emfUri + ", Akka URI: " + akkaUri + ", traceInfo "
         + recipe.getTraceInfo)
     })
 
@@ -131,7 +131,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
 
     conf.getRecipes.foreach(recipe =>
       recipe.getRecipeNodes.foreach(recipeNode => {
-        if (verbose) System.err.println("[TestKit] Recipe: " + recipeNode.getClass.getName)
+        if (verbose) println("[TestKit] Recipe: " + recipeNode.getClass.getName)
 
         val emfUri = EcoreUtil.getURI(recipeNode).toString
         recipeToEmfUri.put(recipeNode, emfUri)
@@ -146,8 +146,8 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
           val ipAddress = process.getMachine.getIp
           val port = process.getPort
 
-          if (verbose) System.err.println("[TestKit] - IP address:  " + ipAddress)
-          if (verbose) System.err.println("[TestKit] - EMF address: " + emfUri)
+          if (verbose) println("[TestKit] - IP address:  " + ipAddress)
+          if (verbose) println("[TestKit] - EMF address: " + emfUri)
 
           props = Props[ReteActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
             IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, port))))
@@ -167,12 +167,12 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
           case _ => {}
         }
 
-        if (verbose) System.err.println("[TestKit] Actor configured.")
-        if (verbose) System.err.println
+        if (verbose) println("[TestKit] Actor configured.")
+        if (verbose) println
       }))
 
-    if (verbose) System.err.println("[ReteActor] All actors deployed and configured.")
-    if (verbose) System.err.println
+    if (verbose) println("[ReteActor] All actors deployed and configured.")
+    if (verbose) println
 
   }
 
@@ -204,22 +204,22 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
       Await.result(future, timeout.duration)
     })
 
-    if (verbose) System.err.println
-    if (verbose) System.err.println
+    if (verbose) println
+    if (verbose) println
 
-    if (verbose) yellowPages.getEmfUriToActorRef.entrySet.foreach(entry => System.err.println(entry))
+    if (verbose) yellowPages.getEmfUriToActorRef.entrySet.foreach(entry => println(entry))
   }
 
   private def initialize = {
     val futures: HashSet[Future[AnyRef]] = new HashSet[Future[AnyRef]]
 
-    if (verbose) System.err.println("<AWAIT> for " + futures.size + " futures.")
+    if (verbose) println("<AWAIT> for " + futures.size + " futures.")
     futures.foreach(future => {
-      if (verbose) System.err.println("await for " + future)
+      if (verbose) println("await for " + future)
       val result = Await.result(future, timeout.duration)
-      if (verbose) System.err.println("result is: " + result)
+      if (verbose) println("result is: " + result)
     })
-    if (verbose) System.err.println("</AWAIT>")
+    if (verbose) println("</AWAIT>")
 
   }
 
@@ -236,7 +236,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
       if (monitoringActor != null) monitoringActor ! sendChangesForMonitoring(latestChangeSet)
     })
 
-    if (verbose) System.err.println("Results: " + latestResults.size)
+    if (verbose) println("Results: " + latestResults.size)
 
     latestChangeSets
   }

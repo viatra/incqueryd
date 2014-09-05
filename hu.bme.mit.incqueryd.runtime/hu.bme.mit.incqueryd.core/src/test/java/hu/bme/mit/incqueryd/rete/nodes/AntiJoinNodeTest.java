@@ -40,7 +40,7 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 
 	@Test
 	public void antiJoinDeltaTest1() {
-		System.err.println("Test 1");
+		System.out.println("Test 1");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
 		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
@@ -66,12 +66,12 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.POSITIVE);
 		assertEquals(expectedChangeSet, actualChangeSet);
 		
-		System.err.println();
+		System.out.println();
 	}
 	
 	@Test
 	public void antiJoinDeltaTest2() {
-		System.err.println("Test 2");
+		System.out.println("Test 2");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
 		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
@@ -98,12 +98,12 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.POSITIVE);
 		assertEquals(expectedChangeSet, actualChangeSet);
 		
-		System.err.println();
+		System.out.println();
 	}
 	
 	@Test
 	public void antiJoinDeltaTest3() {
-		System.err.println("Test 3");
+		System.out.println("Test 3");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
 		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
@@ -128,14 +128,14 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		s.add(new Tuple(2, 3));
 		update(node, deltaS, ChangeType.NEGATIVE, ReteNodeSlot.SECONDARY);
 		
-		System.err.println();
+		System.out.println();
 
 	}
 	
 
 	@Test
 	public void antiJoinDeltaTest4() {
-		System.err.println("Test 4");
+		System.out.println("Test 4");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
 		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
@@ -162,14 +162,14 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.NEGATIVE);
 		assertEquals(expectedChangeSet, actualChangeSet);
 		
-		System.err.println();
+		System.out.println();
 	}
 	
 
 
 	@Test
 	public void antiJoinDeltaTest5() {
-		System.err.println("Test 5");
+		System.out.println("Test 5");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
 		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
@@ -195,13 +195,13 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		final ChangeSet expectedChangeSet = new ChangeSet(expectedTuples, ChangeType.NEGATIVE);
 		assertEquals(expectedChangeSet, actualChangeSet);
 		
-		System.err.println();
+		System.out.println();
 	}
 	
 
 	@Test
 	public void antiJoinDeltaTest6() {
-		System.err.println("Test 6");
+		System.out.println("Test 6");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
 		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
@@ -229,13 +229,13 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		
 		assertEquals(expectedChangeSet, actualChangeSet);
 		
-		System.err.println();
+		System.out.println();
 	}
 	
 
 	@Test
 	public void antiJoinDeltaTest7() {
-		System.err.println("Test 7");
+		System.out.println("Test 7");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
 		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
@@ -264,13 +264,13 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		
 		assertEquals(expectedChangeSet, actualChangeSet);
 		
-		System.err.println();
+		System.out.println();
 	}
 	
 
 	@Test
 	public void antiJoinDeltaTest8() {
-		System.err.println("Test 8");
+		System.out.println("Test 8");
 		final AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
 		final ProjectionIndexerRecipe leftParent = createProjectionIndexer(Arrays.asList(1));
 		recipe.setLeftParent(leftParent);
@@ -300,7 +300,7 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		
 		assertEquals(expectedChangeSet, actualChangeSet);
 		
-		System.err.println();
+		System.out.println();
 	}
 	
 	
@@ -309,7 +309,7 @@ public class AntiJoinNodeTest extends BetaNodeTest {
 		final ChangeSet incomingChangeSet1 = new ChangeSet(tuples, changeType);
 		final ChangeSet propagatedChangeSet = node.update(incomingChangeSet1, reteNodeSlot);
 
-		System.err.println(propagatedChangeSet);
+		System.out.println(propagatedChangeSet);
 		return propagatedChangeSet;
 	}
 

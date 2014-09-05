@@ -47,7 +47,7 @@ public class InequalityNodeTest extends AlphaNodeTest {
 		final ChangeSet changeSet = new ChangeSet(tuples, ChangeType.POSITIVE);
 		final ChangeSet result = node.update(changeSet);
 		
-		System.err.println(result);
+		System.out.println(result);
 		
 	}
 	

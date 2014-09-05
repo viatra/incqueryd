@@ -82,7 +82,7 @@ public abstract class BetaNodeTest {
 		final ChangeSet incomingChangeSet1 = new ChangeSet(tuples, changeType);
 		final ChangeSet propagatedChangeSet = node.update(incomingChangeSet1, reteNodeSlot);
 
-		System.err.println(propagatedChangeSet);
+		System.out.println(propagatedChangeSet);
 		return propagatedChangeSet;
 	}
 
