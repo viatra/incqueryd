@@ -37,6 +37,7 @@ import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteNodeMetrics
 import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteSubscriber
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
 import hu.bme.mit.incqueryd.rete.messages.ReteCommunicationMessage
+import hu.bme.mit.incqueryd.retemonitoring.metrics.MemoryNodeMetrics
 
 class ReteActor extends Actor {
 
@@ -235,6 +236,7 @@ class ReteActor extends Actor {
 
     reteNode match {
       case inputNode: InputNode => new InputNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Input", self.path.toString, updateMessageCount, changesCount, inputNode.tuples, inputNode.getMemoryConsumption, subscriberNodes)
+      case productionNode: ProductionNode => new MemoryNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Production", self.path.toString, updateMessageCount, changesCount, productionNode.getMemoryConsumption, subscriberNodes)
       case alphaNode: AlphaNode => new AlphaNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Alpha", self.path.toString, updateMessageCount, changesCount, subscriberNodes)
       case betaNode: BetaNode => new BetaNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Beta", self.path.toString, updateMessageCount, changesCount, betaNode.leftIndexerSize, betaNode.rightIndexerSize, betaNode.getMemoryConsumption, subscriberNodes)
     }
