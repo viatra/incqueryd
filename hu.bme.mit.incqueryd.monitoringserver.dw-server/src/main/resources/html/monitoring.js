@@ -132,7 +132,7 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
 
 // Input node type
 $jit.ForceDirected.Plot.NodeTypes.implement({
-    'input': {
+    'memoryAlpha': {
         'render': function (node, canvas) {
             var pos = node.pos.getc(true);
 
@@ -566,7 +566,7 @@ function reteHeatMap() {
     for (var i = 0; i < jsonData.rete.length; i++) {
         var reteNode = jsonData.rete[i];
 
-        if (reteNode.nodeType == "ProductionNode") continue; // Production node actually doesn't contain useful information
+        //if (reteNode.nodeType == "ProductionNode") continue; // Production node actually doesn't contain useful information
 
         if (hostOrProcess == reteNode.hostName || hostOrProcess == reteNode.processName) { // The tricky part so it works for both process and machine
 
@@ -1469,8 +1469,13 @@ function drawReteNet() {
             node.data.memory = reteNode.memory;
         }
         else if (reteNode.nodeClass == "Input") {
-            node.data.$type = "input";
+            node.data.$type = "memoryAlpha";
             node.data.nodetype = "input";
+            node.data.memory = reteNode.memory;
+        }
+        else if (reteNode.nodeClass == "Production") {
+            node.data.$type = "memoryAlpha";
+            node.data.nodetype = "production";
             node.data.memory = reteNode.memory;
         }
 
@@ -1580,6 +1585,9 @@ function drawReteNet() {
                     html += "Memory size: " + reteNode.tuples + "<br />";
                     html += consumedMemory;
                 }
+                else if (reteNode.nodeClass == "Production") {
+                    html += consumedMemory;
+                }
                 else if (reteNode.nodeClass == "Beta") {
                     html += "Left indexer: " + reteNode.leftIndexerSize + "<br />";
                     html += "Right indexer: " + reteNode.rightIndexerSize + "<br />";
@@ -1656,7 +1664,7 @@ function updateReteNetGraph() {
         for (var i = 0; i < jsonData.rete.length; i++) {
             var reteNode = jsonData.rete[i];
             if (reteNode.reteNode == node.id) {
-                if (reteNode.nodeClass == "Input" || reteNode.nodeClass == "Beta") node.data.memory = reteNode.memory;
+                if (reteNode.nodeClass == "Input" || reteNode.nodeClass == "Production" || reteNode.nodeClass == "Beta") node.data.memory = reteNode.memory;
                 labeltext = "Updates:" + reteNode.updateMessagesSent + "\nChanges:" + reteNode.changesCount;
                 break;
             }
