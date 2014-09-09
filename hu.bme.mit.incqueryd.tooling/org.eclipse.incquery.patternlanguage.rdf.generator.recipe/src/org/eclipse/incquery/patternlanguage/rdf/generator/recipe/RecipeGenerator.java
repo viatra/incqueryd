@@ -6,6 +6,8 @@ import static com.google.common.collect.Iterables.filter;
 import hu.bme.mit.incqueryd.rdf.RdfUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -51,39 +53,49 @@ public class RecipeGenerator implements IGenerator {
 			RdfPModel model = new RdfPModel(patternModel);
 			ReteRecipeCompiler compiler = new ReteRecipeCompiler(Options.builderMethod.layoutStrategy(), model.context);
 			Model vocabulary = RdfPatternLanguageUtils.getVocabulary(patternModel);
+			ArrayList<CompiledQuery> compiledQueries = new ArrayList<>();
 			for (Pattern pattern : filter(copyOf(input.getAllContents()), Pattern.class)) {
 				PQuery query = new RdfPQuery(pattern, model);
 				try {
 					CompiledQuery compiledQuery = compiler.getCompiledForm(query);
-					for (ReteNodeRecipe nodeRecipe : collectRecipes(compiledQuery)) {
-						processForSerialization(recipe, nodeRecipe, vocabulary);
-					}
+					compiledQueries.add(compiledQuery);
 				} catch (QueryPlannerException e) {
 					propagate(e);
 				}
 			}
+			Set<ReteNodeRecipe> collectRecipes = new HashSet<>();
+			for (CompiledQuery compiledQuery : compiledQueries) {
+				collectRecipes.addAll(collectRecipes(compiledQuery));
+			}
+			for (ReteNodeRecipe nodeRecipe : collectRecipes) {
+				processForSerialization(recipe, nodeRecipe, vocabulary);
+			}
 			try {
 				String contents = xmlProcessor.saveToString(resource, null);
-				fsa.generateFile(input.getURI().trimFileExtension().appendFileExtension("recipe").lastSegment(), contents);
+				fsa.generateFile(input.getURI().trimFileExtension().appendFileExtension("recipe").lastSegment(),
+						contents);
 			} catch (IOException e) {
 				propagate(e);
 			}
 		}
 	}
 
-	private void processForSerialization(ReteRecipe recipe,	ReteNodeRecipe nodeRecipe, Model vocabulary) { // XXX
+	private void processForSerialization(ReteRecipe recipe, ReteNodeRecipe nodeRecipe, Model vocabulary) { // XXX
 		recipe.getRecipeNodes().add(nodeRecipe);
 		if (nodeRecipe instanceof ProductionRecipe) {
-			ProductionRecipe productionRecipe = (ProductionRecipe)nodeRecipe;
+			ProductionRecipe productionRecipe = (ProductionRecipe) nodeRecipe;
 			productionRecipe.setPattern(null);
 		} else if (nodeRecipe instanceof ExpressionEnforcerRecipe) {
 			ExpressionEnforcerRecipe expressionEnforcerRecipe = (ExpressionEnforcerRecipe) nodeRecipe;
-			IExpressionEvaluator evaluator = (IExpressionEvaluator) expressionEnforcerRecipe.getExpression().getEvaluator();
-			Object[] evaluationInfo = { evaluator.getShortDescription(), evaluator.getInputParameterNames() }; // XXX use an evaluator shared from runtime
+			IExpressionEvaluator evaluator = (IExpressionEvaluator) expressionEnforcerRecipe.getExpression()
+					.getEvaluator();
+			// XXX use an evaluator shared from runtime
+			Object[] evaluationInfo = { evaluator.getShortDescription(), evaluator.getInputParameterNames() }; 
 			expressionEnforcerRecipe.getExpression().setEvaluator(evaluationInfo);
 		} else if (nodeRecipe instanceof BinaryInputRecipe) {
 			BinaryInputRecipe binaryInputRecipe = (BinaryInputRecipe) nodeRecipe;
-			org.openrdf.model.Resource propertyUri = RdfPatternLanguageUtils.toRdfResource(binaryInputRecipe.getTypeName());
+			org.openrdf.model.Resource propertyUri = RdfPatternLanguageUtils.toRdfResource(binaryInputRecipe
+					.getTypeName());
 			if (RdfUtils.isDatatypeProperty(propertyUri, vocabulary)) {
 				binaryInputRecipe.setTraceInfo(ATTRIBUTE_DISCRIMINATOR);
 			} else if (RdfUtils.isObjectProperty(propertyUri, vocabulary)) {

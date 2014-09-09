@@ -16,8 +16,8 @@ import java.io.Serializable
 class RdfPQuery implements PQuery, Serializable {
 
 	// Annotations
-
 	val List<PAnnotation> annotations
+	val Pattern pattern
 
 	override getAllAnnotations() {
 		annotations
@@ -32,7 +32,6 @@ class RdfPQuery implements PQuery, Serializable {
 	}
 
 	// Parameters
-
 	val List<PParameter> parameters
 
 	override getParameters() {
@@ -45,11 +44,10 @@ class RdfPQuery implements PQuery, Serializable {
 
 	override getPositionOfParameter(String parameterName) { // TODO extract this unorthogonal logic
 		val index = parameterNames.indexOf(parameterName)
-		if (index == -1) null else index
+		if(index == -1) null else index
 	}
 
 	// Status
-
 	val status = PQuery.PQueryStatus.OK
 
 	override getStatus() {
@@ -57,7 +55,6 @@ class RdfPQuery implements PQuery, Serializable {
 	}
 
 	// Mutability
-
 	override isMutable() {
 		false
 	}
@@ -66,7 +63,6 @@ class RdfPQuery implements PQuery, Serializable {
 	}
 
 	// Bodies
-
 	val PDisjunction disjunction
 
 	override getDisjunctBodies() {
@@ -74,18 +70,17 @@ class RdfPQuery implements PQuery, Serializable {
 	}
 
 	// Referred queries
-
-	override getDirectReferredQueries() {  // TODO extract this unorthogonal logic
-		disjunctBodies.bodies.map[body |
+	override getDirectReferredQueries() { // TODO extract this unorthogonal logic
+		disjunctBodies.bodies.map [ body |
 			body.constraints.filter(IQueryReference).map[referredQuery]
 		].flatten.toSet
 	}
 
 	override getAllReferredQueries() { // TODO extract this unorthogonal logic
 		val processedQueries = Sets.newHashSet(this as PQuery)
-        val foundQueries = directReferredQueries
-        val newQueries = Sets.newHashSet(foundQueries)
-        while (!processedQueries.containsAll(newQueries)) {
+		val foundQueries = directReferredQueries
+		val newQueries = Sets.newHashSet(foundQueries)
+		while (!processedQueries.containsAll(newQueries)) {
 			val query = newQueries.iterator.next
 			processedQueries.add(query)
 			newQueries.remove(query)
@@ -94,11 +89,10 @@ class RdfPQuery implements PQuery, Serializable {
 			foundQueries.addAll(referred)
 			newQueries.addAll(referred)
 		}
-        foundQueries
+		foundQueries
 	}
 
 	// Name
-
 	val String fullyQualifiedName
 
 	override getFullyQualifiedName() {
@@ -106,6 +100,7 @@ class RdfPQuery implements PQuery, Serializable {
 	}
 
 	new(Pattern pattern, RdfPModel model) {
+		this.pattern = pattern
 		parameters = pattern.parameters.map[toPParameter]
 		annotations = pattern.annotations.map[toPAnnotation]
 		val bodies = pattern.bodies.map[toPBody(pattern, this, model)].toSet
@@ -115,6 +110,16 @@ class RdfPQuery implements PQuery, Serializable {
 
 	override getPProblems() {
 		#[]
+	}
+
+	override equals(Object q) {
+		if (!(q instanceof RdfPQuery)) return false
+
+		pattern.equals((q as RdfPQuery).pattern)
+	}
+
+	override hashCode() {
+		return pattern.hashCode
 	}
 
 }
