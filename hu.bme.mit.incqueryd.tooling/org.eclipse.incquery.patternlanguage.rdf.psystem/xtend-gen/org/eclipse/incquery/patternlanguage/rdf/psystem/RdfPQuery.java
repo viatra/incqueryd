@@ -34,6 +34,8 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 public class RdfPQuery implements PQuery, Serializable {
   private final List<PAnnotation> annotations;
   
+  private final Pattern pattern;
+  
   public List<PAnnotation> getAllAnnotations() {
     return this.annotations;
   }
@@ -165,6 +167,7 @@ public class RdfPQuery implements PQuery, Serializable {
   }
   
   public RdfPQuery(final Pattern pattern, final RdfPModel model) {
+    this.pattern = pattern;
     EList<Variable> _parameters = pattern.getParameters();
     final Function1<Variable, PParameter> _function = new Function1<Variable, PParameter>() {
       public PParameter apply(final Variable it) {
@@ -197,5 +200,20 @@ public class RdfPQuery implements PQuery, Serializable {
   
   public List<PProblem> getPProblems() {
     return Collections.<PProblem>unmodifiableList(Lists.<PProblem>newArrayList());
+  }
+  
+  public boolean equals(final Object q) {
+    boolean _xblockexpression = false;
+    {
+      if ((!(q instanceof RdfPQuery))) {
+        return false;
+      }
+      _xblockexpression = this.pattern.equals(((RdfPQuery) q).pattern);
+    }
+    return _xblockexpression;
+  }
+  
+  public int hashCode() {
+    return this.pattern.hashCode();
   }
 }
