@@ -54,5 +54,8 @@ public class RdfUtils {
 	public static boolean isDatatypeProperty(Resource resource, Model vocabulary) {
 		return vocabulary.contains(resource, RDF.TYPE, OWL.DATATYPEPROPERTY);
 	}
-
+	
+	public static String getTypeSuffix() {
+		return "";
+	}
 }

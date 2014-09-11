@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Editor
+Bundle-SymbolicName: hu.bme.mit.incqueryd.recipe.editor;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: hu.bme.mit.incqueryd.recipe.editor.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors,
+ org.eclipse.emf.ecore.edit;bundle-version="2.9.0",
+ org.eclipse.emf.ecore.editor;bundle-version="2.10.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy

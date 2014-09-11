@@ -24,7 +24,7 @@ class JVMMonitoringActor extends Actor{
     case _ => {}
   }
   
-  private def getJVMMetrics: JVMMetrics = {
+  def getJVMMetrics: JVMMetrics = {
     val jvmMetrics = new JVMMetrics
     
     val memory = ManagementFactory.getMemoryMXBean
@@ -64,7 +64,7 @@ class JVMMonitoringActor extends Actor{
     jvmMetrics
   }
   
-  private def calculateCPUUsage : Double = {
+  def calculateCPUUsage : Double = {
     val runtimeMXBean = ManagementFactory.getRuntimeMXBean
     val operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean.asInstanceOf[com.sun.management.OperatingSystemMXBean]
     

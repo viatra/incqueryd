@@ -7,6 +7,9 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.xtend.lib,
  com.google.guava,
  org.eclipse.xtext.xbase.lib,
- org.openrdf.sesame;bundle-version="2.7.10"
-Export-Package: hu.bme.mit.incqueryd.rdf
+ org.openrdf.sesame;bundle-version="2.7.10",
+ org.junit;bundle-version="4.11.0",
+ org.eclipse.incquery.runtime.rete.recipes;bundle-version="0.8.0"
+Export-Package: hu.bme.mit.incqueryd.rdf,
+ hu.bme.mit.incqueryd.recipes
 
