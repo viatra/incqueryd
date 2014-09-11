@@ -4,6 +4,7 @@ import static com.google.common.base.Throwables.propagate;
 import static com.google.common.collect.ImmutableList.copyOf;
 import static com.google.common.collect.Iterables.filter;
 import hu.bme.mit.incqueryd.rdf.RdfUtils;
+import hu.bme.mit.incqueryd.recipes.RecipeProcessor;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
 import org.eclipse.incquery.runtime.rete.traceability.CompiledQuery;
 import org.eclipse.incquery.runtime.rete.traceability.RecipeTraceInfo;
 import org.eclipse.incquery.runtime.rete.util.Options;
@@ -41,6 +43,8 @@ public class RecipeGenerator implements IGenerator {
 
 	private static final String ATTRIBUTE_DISCRIMINATOR = "attribute";
 	private static final String EDGE_DISCRIMINATOR = "edge";
+	// the VERTEX_DISCRIMINATOR is not used as a discriminator
+	private static final String VERTEX_DISCRIMINATOR = "edge";
 
 	@Override
 	public void doGenerate(Resource input, IFileSystemAccess fsa) {
@@ -90,16 +94,22 @@ public class RecipeGenerator implements IGenerator {
 			IExpressionEvaluator evaluator = (IExpressionEvaluator) expressionEnforcerRecipe.getExpression()
 					.getEvaluator();
 			// XXX use an evaluator shared from runtime
-			Object[] evaluationInfo = { evaluator.getShortDescription(), evaluator.getInputParameterNames() }; 
+			Object[] evaluationInfo = { evaluator.getShortDescription(), evaluator.getInputParameterNames() };
 			expressionEnforcerRecipe.getExpression().setEvaluator(evaluationInfo);
+		} else if (nodeRecipe instanceof UnaryInputRecipe) {
+			UnaryInputRecipe unaryInputRecipe = (UnaryInputRecipe) nodeRecipe;
+
+			String typeNameSuffix = RecipeProcessor.extractType(unaryInputRecipe).getTypeNameSuffix();
+			unaryInputRecipe.setTraceInfo(VERTEX_DISCRIMINATOR + ": " + typeNameSuffix);
 		} else if (nodeRecipe instanceof BinaryInputRecipe) {
 			BinaryInputRecipe binaryInputRecipe = (BinaryInputRecipe) nodeRecipe;
-			org.openrdf.model.Resource propertyUri = RdfPatternLanguageUtils.toRdfResource(binaryInputRecipe
-					.getTypeName());
+			org.openrdf.model.Resource propertyUri = RdfPatternLanguageUtils.toRdfResource(binaryInputRecipe.getTypeName());
+			
+			String typeNameSuffix = RecipeProcessor.extractType(binaryInputRecipe).getTypeNameSuffix();
 			if (RdfUtils.isDatatypeProperty(propertyUri, vocabulary)) {
-				binaryInputRecipe.setTraceInfo(ATTRIBUTE_DISCRIMINATOR);
+				binaryInputRecipe.setTraceInfo(ATTRIBUTE_DISCRIMINATOR + ": " + typeNameSuffix);
 			} else if (RdfUtils.isObjectProperty(propertyUri, vocabulary)) {
-				binaryInputRecipe.setTraceInfo(EDGE_DISCRIMINATOR);
+				binaryInputRecipe.setTraceInfo(EDGE_DISCRIMINATOR + ": " + typeNameSuffix);
 			}
 		}
 	}
