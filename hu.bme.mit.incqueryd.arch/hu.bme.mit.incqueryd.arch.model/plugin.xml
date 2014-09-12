@@ -27,7 +27,15 @@
       <package
             uri="http://incquery.net/res"
             class="resources.ResourcesPackage"
-            genModel="model/Resources.xcore"/>
+            genModel="model/Inventory.xcore"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Inventory -->
+      <package
+            uri="http://incquery.net/inv"
+            class="inventory.InventoryPackage"
+            genModel="model/Inventory.xcore"/>
    </extension>
 
 </plugin>
