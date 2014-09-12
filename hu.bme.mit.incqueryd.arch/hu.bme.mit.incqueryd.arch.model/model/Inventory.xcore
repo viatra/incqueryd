@@ -1,5 +1,5 @@
-@Ecore(nsPrefix="res", nsURI="http://incquery.net/res")
-package resources
+@Ecore(nsPrefix="inv", nsURI="http://incquery.net/inv")
+package inventory
 
 class Machine {
 	String ip
@@ -16,6 +16,6 @@ enum MemoryUnit {
 	GB
 }
 
-class Resources {
+class Inventory {
 	contains Machine[] machines
 }
