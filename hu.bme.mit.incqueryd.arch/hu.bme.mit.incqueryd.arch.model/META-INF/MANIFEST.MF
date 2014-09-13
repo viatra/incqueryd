@@ -12,10 +12,7 @@ Export-Package: arch,
  arch.util,
  infrastructure,
  infrastructure.impl,
- infrastructure.util,
- inventory,
- inventory.impl,
- inventory.util
+ infrastructure.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.xtext.xbase.lib;visibility:=reexport,
