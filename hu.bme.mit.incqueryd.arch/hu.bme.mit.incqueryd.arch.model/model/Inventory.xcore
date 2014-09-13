@@ -1,8 +1,26 @@
-@Ecore(nsPrefix="inv", nsURI="http://incquery.net/inv")
+@GenModel(editDirectory="/hu.bme.mit.incqueryd.inventory.edit/src", editorDirectory="/hu.bme.mit.incqueryd.inventory.editor/src")
+@Ecore(nsPrefix="inventory", nsURI="http://incquery.net/inventory")
 package inventory
 
-class Machine {
-	String ip
+class Inventory {
+	String connectionString
+	contains MachineSet machineSet
+}
+
+abstract class MachineSet {
+}
+
+class InstanceSet extends MachineSet {
+	contains MachineInstance[] machineInstances
+	contains InstancesOverhead[] overheads
+}
+
+class TemplateSet extends MachineSet {
+	contains MachineTemplate[] machineTemplates
+	contains TemplatesOverhead[] overheads
+}
+
+abstract class Machine {
 	
 	int memorySize
 	MemoryUnit memoryUnit
@@ -11,11 +29,25 @@ class Machine {
 	
 }
 
+class MachineInstance extends Machine{
+	String ip
+}
+
+class MachineTemplate extends Machine{
+	long idintifier
+}
+
 enum MemoryUnit {
 	MB
 	GB
 }
 
-class Inventory {
-	contains Machine[] machines
+class InstancesOverhead {
+	int[] overheads
+	refers MachineInstance machine
+}
+
+class TemplatesOverhead {
+	int[] overheads
+	refers MachineTemplate machine
 }

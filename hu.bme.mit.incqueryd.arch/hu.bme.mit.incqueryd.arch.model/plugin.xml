@@ -33,7 +33,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated Inventory -->
       <package
-            uri="http://incquery.net/inv"
+            uri="http://incquery.net/inventory"
             class="inventory.InventoryPackage"
             genModel="model/Inventory.xcore"/>
    </extension>
