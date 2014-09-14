@@ -44,10 +44,14 @@ public class RecipeGenerator implements IGenerator {
 	private static final String ATTRIBUTE_DISCRIMINATOR = "attribute";
 	private static final String EDGE_DISCRIMINATOR = "edge";
 	// the VERTEX_DISCRIMINATOR is not used as a discriminator
-	private static final String VERTEX_DISCRIMINATOR = "edge";
+	private static final String VERTEX_DISCRIMINATOR = "vertex";
 
+	private int recipeIndex = 0;
+	
 	@Override
 	public void doGenerate(Resource input, IFileSystemAccess fsa) {
+		recipeIndex = 0;
+		
 		XMLProcessor xmlProcessor = new XMLProcessor();
 		for (RdfPatternModel patternModel : filter(input.getContents(), RdfPatternModel.class)) {
 			XMLResourceImpl resource = new XMLResourceImpl();
@@ -85,7 +89,10 @@ public class RecipeGenerator implements IGenerator {
 	}
 
 	private void processForSerialization(ReteRecipe recipe, ReteNodeRecipe nodeRecipe, Model vocabulary) { // XXX
+		nodeRecipe.setTraceInfo("");
 		recipe.getRecipeNodes().add(nodeRecipe);
+		recipeIndex++;
+		
 		if (nodeRecipe instanceof ProductionRecipe) {
 			ProductionRecipe productionRecipe = (ProductionRecipe) nodeRecipe;
 			productionRecipe.setPattern(null);
@@ -112,6 +119,8 @@ public class RecipeGenerator implements IGenerator {
 				binaryInputRecipe.setTraceInfo(EDGE_DISCRIMINATOR + ": " + typeNameSuffix);
 			}
 		}
+		
+		nodeRecipe.setTraceInfo(nodeRecipe.getTraceInfo() + " [recipe " + recipeIndex + "]");
 	}
 
 	private Set<ReteNodeRecipe> collectRecipes(RecipeTraceInfo recipeTraceInfo) {
