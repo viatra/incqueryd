@@ -38,11 +38,15 @@ import hu.bme.mit.incqueryd.retemonitoring.metrics.ReteSubscriber
 import hu.bme.mit.incqueryd.util.ReteNodeConfiguration
 import hu.bme.mit.incqueryd.rete.messages.ReteCommunicationMessage
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MemoryNodeMetrics
+import java.nio.channels.NotYetBoundException
+import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe
+import org.apache.velocity.runtime.directive.Foreach
+import org.eclipse.incquery.runtime.rete.recipes.SingleParentNodeRecipe
 
 class ReteActor extends Actor {
 
-  val logPrefix = "[ReteActor       ] "
-    
+  var logPrefix = "[ReteActor       ] "
+
   var recipe: ReteNodeRecipe = null
   var reteNode: ReteNode = null
   var subscribers = new HashMap[ActorRef, ReteNodeSlot]
@@ -54,11 +58,16 @@ class ReteActor extends Actor {
 
   var monitoringServerActor: ActorRef = null
 
+  var nodeType: String = ""
+
   def configure(conf: ReteNodeConfiguration) = {
     recipe = conf.getReteNodeRecipe
     reteNode = ReteNodeFactory.createNode(conf)
+    nodeType = reteNode.getClass.getSimpleName
 
-    println(logPrefix + "  (" + reteNode.getClass.getSimpleName + ") " + self + " Configuration received.")
+    logPrefix = logPrefix + "(" + nodeType + ", " + recipe.getTraceInfo + ") "
+
+    println(logPrefix + self + " Configuration received.")
 
     sender ! ActorReply.CONFIGURATION_RECEIVED
   }
@@ -69,7 +78,7 @@ class ReteActor extends Actor {
 
     val emfUriToActorRef = yellowPages.getEmfUriToActorRef
 
-    println(logPrefix + "  (" + reteNode.getClass.getSimpleName + ") " + self + ", Recipe: " + recipe.toString)
+    println(logPrefix + self + ", Recipe: " + recipe.toString)
 
     recipe match {
       case alphaRecipe: AlphaRecipe => {
@@ -98,6 +107,17 @@ class ReteActor extends Actor {
 
         subscribeToActor(primaryParentActorRef, ReteNodeSlot.PRIMARY)
         subscribeToActor(secondaryParentActorRef, ReteNodeSlot.SECONDARY)
+      }
+      case multiParentNodeRecipe: MultiParentNodeRecipe => {
+        val parents = multiParentNodeRecipe.getParents
+        parents.foreach(parent => {
+          val parentUri = ArchUtil.getJsonEObjectUri(parent)
+          val parentActorRef = emfUriToActorRef.get(parentUri)
+
+          println(logPrefix + "  Parent: " + parentUri + " -> " + parentActorRef)
+
+          subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE)
+        })
       }
       case productionRecipe: ProductionRecipe => {
         val parents = productionRecipe.getParents
@@ -146,7 +166,7 @@ class ReteActor extends Actor {
   }
 
   def update(updateMessage: UpdateMessage) = {
-    println(logPrefix + "  (" + reteNode.getClass.getSimpleName + ") " + self + " " 
+    println(logPrefix + self + " "
       + "Update message received, " + updateMessage.getChangeSet.getChangeType + ", "
       + updateMessage.getNodeSlot + ", " + updateMessage.getChangeSet.getTuples.size)
 
@@ -187,7 +207,7 @@ class ReteActor extends Actor {
       val updateMessage = new UpdateMessage(changeSet, slot, propagatedRoute)
 
       // @formatter:off
-      println(logPrefix + "  (" + reteNode.getClass.getSimpleName + ") " + self + "\n"
+      println(logPrefix + self + "\n"
         + logPrefix + "    Sending to " + subscriber + "\n"
         + logPrefix + "    " + changeSet.getChangeType + " changeset, " + changeSet.getTuples.size + " tuples\n"
         + logPrefix + "    " + "Propagated route: " + propagatedRoute + "\n"
@@ -215,17 +235,15 @@ class ReteActor extends Actor {
     val terminationMessageRoute = pair._2
 
     val propagatedTerminationMessage = new TerminationMessage(terminationMessageRoute)
-    
+
     println(logPrefix + "  (" + reteNode.getClass.getSimpleName + ") Termination protocol sending: " + terminationMessageRoute + " to "
       + terminationMessageTarget)
     Thread.sleep(2000)
-    
+
     terminationMessageTarget ! propagatedTerminationMessage
   }
 
   def monitor: ReteNodeMetrics = {
-    val nodeType = reteNode.getClass.getSimpleName
-
     val subscriberNodes: java.util.List[ReteSubscriber] = new ArrayList
     subscribers.keySet.foreach(subscriber => {
       subscriberNodes.add(new ReteSubscriber(subscriber.path.name, subscribers.get(subscriber).toString))

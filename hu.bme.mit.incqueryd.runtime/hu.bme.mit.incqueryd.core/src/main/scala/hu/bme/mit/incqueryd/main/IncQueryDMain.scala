@@ -51,7 +51,7 @@ object IncQueryDMain {
       IO(Http) ? Http.Bind(coordinatorService, interface = interface, port = 9090)
     }
     
-    Thread.sleep(100000);
+    Thread.sleep(20000);
     engine.shutdown
     httpActorSystem.shutdown
   }
