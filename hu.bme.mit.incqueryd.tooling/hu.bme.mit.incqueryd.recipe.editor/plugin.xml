@@ -7,7 +7,7 @@
             class="org.eclipse.emf.ecore.presentation.EcoreEditor"
             contributorClass="org.eclipse.emf.ecore.presentation.EcoreActionBarContributor$Reflective"
             extensions="recipe"
-            icon="icons/recipe.gif"
+            icon="icons/recipe.png"
             id="org.eclipse.emf.ecore.presentation.ReflectiveEditorID"
             name="Recipe Editor">
       </editor>

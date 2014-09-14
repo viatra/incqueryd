@@ -47,10 +47,12 @@ class ReteActor extends Actor {
 
   var logPrefix = "[ReteActor       ] "
 
+  // throttle termination protocol
+  val throttle = true
+    
   var recipe: ReteNodeRecipe = null
   var reteNode: ReteNode = null
   var subscribers = new HashMap[ActorRef, ReteNodeSlot]
-  var pendingTerminationMessages = 0
   var coordinatorRef: ActorRef = null
 
   var updateMessageCount = 0 // To count how many update messages this actor sent
@@ -189,7 +191,9 @@ class ReteActor extends Actor {
     if (monitoringServerActor != null) monitoringServerActor ! monitor // send the monitoring server the updated metrics
 
     reteNode match {
-      case node: ProductionNode => terminationProtocol(new TerminationMessage(updateMessage.getRoute))
+      case node: ProductionNode => {
+        if (subscribers.isEmpty()) terminationProtocol(new TerminationMessage(updateMessage.getRoute))
+      }
       case _ => {}
     }
   }
@@ -210,8 +214,7 @@ class ReteActor extends Actor {
       println(logPrefix + self + "\n"
         + logPrefix + "    Sending to " + subscriber + "\n"
         + logPrefix + "    " + changeSet.getChangeType + " changeset, " + changeSet.getTuples.size + " tuples\n"
-        + logPrefix + "    " + "Propagated route: " + propagatedRoute + "\n"
-        + logPrefix + "    " + pendingTerminationMessages + " pending\n")
+        + logPrefix + "    " + "Propagated route: " + propagatedRoute + "\n")
       // @formatter:on
 
       subscriber ! updateMessage
@@ -238,7 +241,7 @@ class ReteActor extends Actor {
 
     println(logPrefix + "  (" + reteNode.getClass.getSimpleName + ") Termination protocol sending: " + terminationMessageRoute + " to "
       + terminationMessageTarget)
-    Thread.sleep(2000)
+    if (throttle) Thread.sleep(1000)
 
     terminationMessageTarget ! propagatedTerminationMessage
   }

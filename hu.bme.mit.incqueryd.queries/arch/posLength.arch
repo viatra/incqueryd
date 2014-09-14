@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:arch="http://incquery.net/arch" traceInfo="" connectionString="fourstore://trainbenchmark_cluster">
+<arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:arch="http://incquery.net/arch" traceInfo="" connectionString="fourstore://trainbenchmark_cluster" monitoringMachine="//@machines.0">
+  <machines ip="127.0.0.1"/>
   <recipes href="../recipes/posLength.recipe#/"/>
 </arch:Configuration>
