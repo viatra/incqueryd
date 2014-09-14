@@ -7,7 +7,6 @@ import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 public class UniquenessEnforcerNode implements AlphaNode {
 
 	UniquenessEnforcerNode(final UniquenessEnforcerRecipe recipe) {
-		// TODO: add memory to provide uniqueness enforcement
 	}
 	
 	@Override
