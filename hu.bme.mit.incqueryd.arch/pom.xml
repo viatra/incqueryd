@@ -69,6 +69,7 @@
 	</repositories>
 
 	<modules>
+		<module>hu.bme.mit.incqueryd.arch.inventory.model</module>
 		<module>hu.bme.mit.incqueryd.arch.model</module>
 		<module>hu.bme.mit.incqueryd.arch.util</module>
 	</modules>
