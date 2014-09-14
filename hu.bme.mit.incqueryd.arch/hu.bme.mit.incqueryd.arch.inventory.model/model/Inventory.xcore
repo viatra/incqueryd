@@ -12,21 +12,21 @@ abstract class MachineSet {
 
 class InstanceSet extends MachineSet {
 	contains MachineInstance[] machineInstances
-	contains InstancesOverhead[] overheads
 }
 
 class TemplateSet extends MachineSet {
 	contains MachineTemplate[] machineTemplates
-	contains TemplatesOverhead[] overheads
 }
 
 abstract class Machine {
+	long identifier
 	
 	int memorySize
 	MemoryUnit memoryUnit
 	
 	int CPUs
 	
+	int[] overheads
 }
 
 class MachineInstance extends Machine{
@@ -34,20 +34,10 @@ class MachineInstance extends Machine{
 }
 
 class MachineTemplate extends Machine{
-	long idintifier
+	
 }
 
 enum MemoryUnit {
 	MB
 	GB
-}
-
-class InstancesOverhead {
-	int[] overheads
-	refers MachineInstance machine
-}
-
-class TemplatesOverhead {
-	int[] overheads
-	refers MachineTemplate machine
 }
