@@ -1175,7 +1175,7 @@ function drawSystem() {
         injectInto: 'infovis',
         //Enable zooming and panning
         //with scrolling and DnD
-        width: 1024,
+        width: 800,
         height: 1100,
         Navigation: {
             enable: true,
@@ -1510,7 +1510,7 @@ function drawReteNet() {
         injectInto: 'infovis-rete',
         //Enable zooming and panning
         //with scrolling and DnD
-        width: 1024,
+        width: 1400,
         height: 1100,
         Navigation: {
             enable: true,
