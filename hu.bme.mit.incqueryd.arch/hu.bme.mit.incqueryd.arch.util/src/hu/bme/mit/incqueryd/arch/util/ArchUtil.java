@@ -1,6 +1,8 @@
 package hu.bme.mit.incqueryd.arch.util;
 
 import infrastructure.InfrastructurePackage;
+import inventory.Inventory;
+import inventory.InventoryPackage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +19,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage;
+import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
 
 import arch.ArchPackage;
 import arch.Configuration;
@@ -84,6 +87,20 @@ public class ArchUtil {
 		final EObject o = resource.getContents().get(0);
 		return (Configuration) o;
 	}
+	
+	public static Inventory loadInventory(final String inventoryFile) throws IOException {
+		final Resource resource = loadModel(inventoryFile);
+		
+		final EObject o = resource.getContents().get(0);
+		return (Inventory) o;
+	}
+	
+	public static ReteRecipe loadRecipe(final String recipeFile) throws IOException {
+		final Resource resource = loadModel(recipeFile);
+		
+		final EObject o = resource.getContents().get(0);
+		return (ReteRecipe) o;
+	}
 
 	public static List<String> getRecipePaths(final String architectureFile) {
 		final Resource resource = loadModel(architectureFile);
@@ -103,12 +120,14 @@ public class ArchUtil {
 		// initialize extension to factory map
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("recipe", new XMIResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("inventory", new XMIResourceFactoryImpl());
 
 		// initialize package registry
 		// initialize the RecipesPackage before the others
 		RecipesPackage.eINSTANCE.eClass();
 		InfrastructurePackage.eINSTANCE.eClass();
 		ArchPackage.eINSTANCE.eClass();
+		InventoryPackage.eINSTANCE.eClass();
 
 		final ResourceSet resourceSet = new ResourceSetImpl();
 		final Resource resource = resourceSet.getResource(URI.createFileURI(architectureFile), true);
