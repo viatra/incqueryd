@@ -95,6 +95,7 @@ public class RecipeGenerator implements IGenerator {
 		
 		if (nodeRecipe instanceof ProductionRecipe) {
 			ProductionRecipe productionRecipe = (ProductionRecipe) nodeRecipe;
+			nodeRecipe.setTraceInfo(((PQuery) productionRecipe.getPattern()).getFullyQualifiedName());
 			productionRecipe.setPattern(null);
 		} else if (nodeRecipe instanceof ExpressionEnforcerRecipe) {
 			ExpressionEnforcerRecipe expressionEnforcerRecipe = (ExpressionEnforcerRecipe) nodeRecipe;
