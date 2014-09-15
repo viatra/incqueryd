@@ -15,6 +15,7 @@ import org.apache.commons.cli.Options
 import org.apache.commons.cli.PosixParser
 import org.apache.commons.cli.Option
 import hu.bme.mit.incqueryd.rete.messages.CoordinatorCommand
+import scala.concurrent.Await
 
 object IncQueryDMain {
 
@@ -45,13 +46,16 @@ object IncQueryDMain {
     implicit val timeout = Timeout(1000000 seconds)
 
     if (start) {
-      Thread.sleep(1000)
-      coordinator ! CoordinatorCommand.START
+      val startFuture = coordinator ? CoordinatorCommand.START
+      Await.ready(startFuture, timeout.duration)
     } else {
       IO(Http) ? Http.Bind(coordinatorService, interface = interface, port = 9090)
     }
     
-    Thread.sleep(30000);
+    val resultFuture = coordinator ? CoordinatorCommand.CHECK
+    val result = Await.result(resultFuture, timeout.duration)
+    println(result)
+    
     engine.shutdown
     httpActorSystem.shutdown
   }
