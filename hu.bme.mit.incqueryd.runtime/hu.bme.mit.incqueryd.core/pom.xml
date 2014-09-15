@@ -274,6 +274,12 @@
 			<artifactId>hu.bme.mit.incqueryd.arch.util</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.arch.inventory.model</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
 
 		<!-- EMF Binding for JSON -->
 

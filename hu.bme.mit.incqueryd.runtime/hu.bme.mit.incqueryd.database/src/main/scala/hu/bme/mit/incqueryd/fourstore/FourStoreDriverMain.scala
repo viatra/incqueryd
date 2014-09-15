@@ -10,7 +10,7 @@ import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 import hu.bme.mit.bigmodel.fourstore.FourStoreDriver
 import scala.collection.mutable.HashSet
-import hu.bme.mit.incqueryd.rete.dataunits.Tuple
+import hu.bme.mit.incqueryd.core.rete.dataunits.Tuple
 
 object FourStoreDriverMain {
 
