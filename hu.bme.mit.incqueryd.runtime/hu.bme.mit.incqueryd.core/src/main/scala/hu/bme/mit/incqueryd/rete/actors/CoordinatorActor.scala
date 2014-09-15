@@ -52,11 +52,18 @@ import hu.bme.mit.incqueryd.rete.messages.UpdateMessage
 import hu.bme.mit.incqueryd.rete.dataunits.ReteNodeSlot
 import scala.collection.immutable.Stack
 import hu.bme.mit.incqueryd.rete.messages.TerminationMessage
+import java.nio.file.Paths
+import org.apache.commons.io.FilenameUtils
 
 class CoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor {
 
   val logPrefix = "[CoordinatorActor] "
   val conf: Configuration = ArchUtil.loadConfiguration(architectureFile)
+  val queryName = FilenameUtils.removeExtension(Paths.get(architectureFile).getFileName.toString())
+  
+  println("query name: " + queryName)
+  
+  var engine: ActorRef = null
 
   var verbose = true
   val timeout = new Timeout(Duration.create(14400, "seconds"))
@@ -71,7 +78,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   var recipeToEmfUri = HashBiMap.create[ReteNodeRecipe, String]
   var emfUriToActorRef = new HashMap[String, ActorRef]
   var jvmActorRefs = new HashSet[ActorRef]
-
+  
   def start = {
     processConfiguration
   }
@@ -125,7 +132,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     if (verbose) println(logPrefix + "Deploying actors")
     conf.getRecipes.foreach(recipe =>
       recipe.getRecipeNodes.foreach(recipeNode => {
-        if (verbose) println(logPrefix + "  Recipe: " + recipeNode.getClass.getSimpleName)
+        if (verbose) println(logPrefix + "Recipe: " + recipeNode.getClass.getSimpleName)
 
         val emfUri = EcoreUtil.getURI(recipeNode).toString
         recipeToEmfUri.put(recipeNode, emfUri)
@@ -140,8 +147,8 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
           val ipAddress = process.getMachine.getIp
           val port = process.getPort
 
-          if (verbose) println(logPrefix + "  IP address:  " + ipAddress)
-          if (verbose) println(logPrefix + "  EMF address: " + emfUri)
+          if (verbose) println(logPrefix + "IP address:  " + ipAddress)
+          if (verbose) println(logPrefix + "EMF address: " + emfUri)
 
           props = Props[ReteActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
             IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, port))))
@@ -156,11 +163,15 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
         recipeToActorRef.put(recipeNode, actorRef)
 
         recipeNode match {
-          case pRec: ProductionRecipe => productionActorRef = actorRef
+          case pRec: ProductionRecipe => {
+            if (pRec.getTraceInfo().contains(queryName)) {
+              productionActorRef = actorRef
+            }
+          }
           case _ => {}
         }
 
-        if (verbose) println(logPrefix + "  Actor configured.")
+        if (verbose) println(logPrefix + "Actor configured.")
       }))
 
     if (verbose) println(logPrefix + "All actors deployed and configured.")
@@ -194,7 +205,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     yellowPages = new YellowPages(emfUriToActorRef, monitoringActor)
 
     recipeToActorRef.foreach(recipeAndActorRef => {
-      println(logPrefix + "  Subscribing " + recipeAndActorRef._1 + " actor, which is based on a " + recipeAndActorRef + " recipe.")
+      println(logPrefix + "Subscribing " + recipeAndActorRef._1 + " actor, which is based on a " + recipeAndActorRef + " recipe.")
       val future = ask(recipeAndActorRef._2, yellowPages, timeout)
       Await.result(future, timeout.duration)
     })
@@ -206,6 +217,9 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   def check = {
     val latestChangeSets = getQueryResults
 
+    println(latestChangeSets.size + " lCS")
+    println(latestChangeSets)
+    
     latestChangeSets.foreach(latestChangeSet => {
       latestChangeSet.getChangeType match {
         case ChangeType.POSITIVE => latestResults.addAll(latestChangeSet.getTuples)
@@ -281,11 +295,11 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     val updateMessage = new UpdateMessage(changeSet, ReteNodeSlot.SINGLE, senderStack)
 
     // send the updates to the actor
-    println(logPrefix + "  Sending update message to " + actor)
+    println(logPrefix + "Sending update message to " + actor)
     actor.tell(updateMessage)
 
     pendingUpdateMessages += 1
-    println(logPrefix + "  " + pendingUpdateMessages + " update message(s) pending.")
+    println(logPrefix + pendingUpdateMessages + " update message(s) pending.")
   }
 
   def initializeAttribute(databaseDriver: FourStoreDriver, recipe: BinaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
@@ -322,14 +336,13 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
 
   def subscribeMonitoringService = {
     monitoringActor = context.actorFor("akka://monitoringserver@" + conf.getMonitoringMachine.getIp + ":5225/user/collector")
-
     monitoringActor ! new MonitoredActorCollection(recipeToActorRef.values, jvmActorRefs)
   }
 
   def receive = {
     case CoordinatorCommand.START => {
       start
-      sender ! CoordinatorMessage.DONE
+      engine = sender
     }
     case CoordinatorCommand.CHECK => {
       sender ! check
@@ -343,10 +356,11 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     }
     case terminationMessage: TerminationMessage => {
       pendingUpdateMessages -= 1
-      println(logPrefix + "  Termination message received, " + pendingUpdateMessages + " update message(s) pending.")
+      println(logPrefix + "Termination message received, " + pendingUpdateMessages + " update message(s) pending.")
 
       if (pendingUpdateMessages == 0) {
         println(logPrefix + "Termination protocol finished.")
+        engine ! CoordinatorMessage.DONE
       }
     }
     case _ => {}

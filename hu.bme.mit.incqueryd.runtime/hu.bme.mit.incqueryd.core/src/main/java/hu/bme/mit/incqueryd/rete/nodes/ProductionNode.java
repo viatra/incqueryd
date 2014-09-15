@@ -31,10 +31,10 @@ public class ProductionNode implements AlphaNode {
 	
     @Override
 	public ChangeSet update(final ChangeSet incomingChangeSet) {
-    	
     	if (incomingChangeSet.getTuples().size() > 0) {
 			synchronized (lastChangeSets) {
 				lastChangeSets.add(incomingChangeSet);
+	    		System.out.println("[ReteActor       ] (ProductionNode, " + recipe.getTraceInfo() + ") lCS updated " + lastChangeSets.size());
 			}
 		}
     	
@@ -49,7 +49,7 @@ public class ProductionNode implements AlphaNode {
         	break;
         }
 
-		System.out.println("[ReteActor       ]   (ProductionNode," + recipe.getTraceInfo() + ") Production memory size: " + memory.size());
+		System.out.println("[ReteActor       ] (ProductionNode, " + recipe.getTraceInfo() + ") Production memory size: " + memory.size());
 		return incomingChangeSet;
     }
     
@@ -59,7 +59,10 @@ public class ProductionNode implements AlphaNode {
     
     public List<ChangeSet> getDeltaResults() {
     	synchronized (lastChangeSets) {
-			final List<ChangeSet> copyList = new ArrayList<>();
+    		System.out.println("[ReteActor       ] (ProductionNode, " + recipe.getTraceInfo() + ") lCS queried " + lastChangeSets.size());
+	    	System.out.println(lastChangeSets);
+    		
+    		final List<ChangeSet> copyList = new ArrayList<>();
 			for (final ChangeSet changeSet : lastChangeSets) {
 				copyList.add(changeSet);
 			}
