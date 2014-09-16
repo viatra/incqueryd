@@ -1,6 +1,9 @@
 package hu.bme.mit.incqueryd.tooling.ide.util;
 
 import hu.bme.mit.incqueryd.arch.util.ArchUtil;
+import infrastructure.InfrastructureFactory;
+import infrastructure.Machine;
+import infrastructure.Process;
 import inventory.InstanceSet;
 import inventory.Inventory;
 import inventory.MachineInstance;
@@ -10,6 +13,7 @@ import inventory.TemplateSet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -17,12 +21,21 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
+
+import arch.ArchFactory;
+import arch.Configuration;
+import arch.InfrastructureMapping;
+import arch.ReteRole;
 
 public class ReteAllocator {
 	
@@ -45,7 +58,7 @@ public class ReteAllocator {
 		
 		for(int i = 0; i < recipeNodes.size(); i++) {
 			ReteNodeRecipe reteNodeRecipe = recipeNodes.get(i);
-			// These node types have memory --> go to sepaarte jvm
+			// These node types have memory --> go to separate jvm
 			if(reteNodeRecipe instanceof BetaRecipe || reteNodeRecipe instanceof ProductionRecipe || reteNodeRecipe instanceof TypeInputRecipe) {
 				List<ReteNodeRecipe> nodes = new ArrayList<>();
 				nodes.add(reteNodeRecipe);
@@ -92,6 +105,51 @@ public class ReteAllocator {
 			System.out.println();
 		}
 		
+	}
+	
+	public static void allocateNull (String recipeFile, String outputFile) throws IOException {
+		ReteRecipe recipe = ArchUtil.loadRecipe(recipeFile);
+		
+		final Configuration configuration = ArchFactory.eINSTANCE.createConfiguration();
+		configuration.setConnectionString("fourstore://trainbenchmark_cluster");
+		
+		final Machine machine = InfrastructureFactory.eINSTANCE.createMachine();
+		machine.setIp("127.0.0.1");
+		machine.setName("local");
+		
+		final Process process = InfrastructureFactory.eINSTANCE.createProcess();
+		process.setPort(2552);
+		
+		machine.getProcesses().add(process);
+		
+		configuration.getMachines().add(machine);
+		configuration.getRecipes().add(recipe);
+		configuration.setCoordinatorMachine(machine);
+		configuration.setMonitoringMachine(machine);
+		
+		InfrastructureMapping infrastructureMapping = ArchFactory.eINSTANCE.createInfrastructureMapping();
+		infrastructureMapping.setProcess(process);
+		
+		EList<ReteNodeRecipe> recipeNodes = recipe.getRecipeNodes();
+		
+		for (ReteNodeRecipe reteNodeRecipe : recipeNodes) {
+			ReteRole reteRole = ArchFactory.eINSTANCE.createReteRole();
+			reteRole.setNodeRecipe(reteNodeRecipe);
+			infrastructureMapping.getRoles().add(reteRole);
+		}
+		
+		configuration.getMappings().add(infrastructureMapping);
+		
+		ResourceSet resSet = new ResourceSetImpl();
+		Resource resource = resSet.createResource(URI.createFileURI(outputFile));
+		resource.getContents().add(configuration);
+		
+		try {
+		      resource.save(Collections.EMPTY_MAP);
+		} catch (IOException e) {
+		      e.printStackTrace();
+		}
+		System.out.println(outputFile);
 	}
 	
 	public static void processInventory (String inventoryFile) throws IOException {

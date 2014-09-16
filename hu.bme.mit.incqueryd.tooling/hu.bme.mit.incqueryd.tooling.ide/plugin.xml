@@ -23,6 +23,14 @@
             id="hu.bme.mit.incqueryd.tooling.ide.commands.destroy"
             name="Destroy IncQuery-D (coordinator and microkernels)">
       </command>
+      <command
+            id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.null"
+            name="NULL allocation">
+      </command>
+      <command
+            id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.opt"
+            name="Optimized allocation">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -61,6 +69,18 @@
                commandId="hu.bme.mit.incqueryd.tooling.ide.commands.destroy"
                style="push">
          </command>
+         <separator
+		       name="separator-3"
+		       visible="true">
+		</separator>
+         <command
+               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.null"
+               style="push">
+         </command>
+         <command
+               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.opt"
+               style="push">
+         </command>
       </menuContribution>
    </extension>
    <extension
@@ -84,6 +104,14 @@
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.DestroyArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.destroy">
+      </handler>
+      <handler
+            class="hu.bme.mit.incqueryd.tooling.ide.NullAllocationHandler"
+            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.null">
+      </handler>
+      <handler
+            class="hu.bme.mit.incqueryd.tooling.ide.OptimizedAllocationHandler"
+            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.opt">
       </handler>
    </extension>
 
