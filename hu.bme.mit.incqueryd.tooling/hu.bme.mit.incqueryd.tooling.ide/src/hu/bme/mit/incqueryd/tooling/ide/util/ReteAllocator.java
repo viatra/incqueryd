@@ -147,9 +147,8 @@ public class ReteAllocator {
 		try {
 		      resource.save(Collections.EMPTY_MAP);
 		} catch (IOException e) {
-		      e.printStackTrace();
+			
 		}
-		System.out.println(outputFile);
 	}
 	
 	public static void processInventory (String inventoryFile) throws IOException {
