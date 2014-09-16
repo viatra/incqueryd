@@ -25,8 +25,8 @@ public class InputNode implements AlphaNode {
 		return tuples.size() > 0 ? (double) RamUsageEstimator.sizeOf(tuples) / RamUsageEstimator.ONE_MB : 0;
 	}
 
-	public int getTuples() {
-		return tuples.size();
+	public Set<Tuple> getTuples() {
+		return tuples;
 	}
 	
 	@Override

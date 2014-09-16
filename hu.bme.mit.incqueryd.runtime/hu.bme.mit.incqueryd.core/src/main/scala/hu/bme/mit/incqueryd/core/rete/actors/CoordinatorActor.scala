@@ -3,7 +3,6 @@ package hu.bme.mit.incqueryd.core.rete.actors
 import java.nio.file.Paths
 import java.util.HashMap
 import java.util.HashSet
-
 import scala.collection.JavaConversions.asScalaBuffer
 import scala.collection.JavaConversions.asScalaSet
 import scala.collection.JavaConversions.collectionAsScalaIterable
@@ -13,7 +12,6 @@ import scala.collection.JavaConversions.seqAsJavaList
 import scala.collection.immutable.Stack
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-
 import org.apache.commons.io.FilenameUtils
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe
@@ -21,9 +19,7 @@ import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe
-
 import com.google.common.collect.HashBiMap
-
 import akka.actor.Actor
 import akka.actor.ActorRef
 import akka.actor.Address
@@ -52,23 +48,25 @@ import hu.bme.mit.incqueryd.core.util.EObjectSerializer
 import hu.bme.mit.incqueryd.core.util.ReteNodeConfiguration
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
 import infrastructure.Process
+import hu.bme.mit.incqueryd.core.rete.messages.QueryIndexer
 
 class CoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor {
 
   val logPrefix = "[CoordinatorActor] "
   val conf: Configuration = ArchUtil.loadConfiguration(architectureFile)
   val queryName = FilenameUtils.removeExtension(Paths.get(architectureFile).getFileName.toString())
-  
-  println(logPrefix + "Running query: " + queryName)
-  
-  var engine: ActorRef = null
 
-  var verbose = true
+  println(logPrefix + "Running query: " + queryName)
+
+  val verbose = true
   val timeout = new Timeout(Duration.create(14400, "seconds"))
+  val latestResults = new HashSet[Tuple]
+  val indexers = new HashMap[String, ActorRef]
+
+  var engine: ActorRef = null
   var productionActorRef: ActorRef = null
   var monitoringActor: ActorRef = null
   var yellowPages: YellowPages = null
-  var latestResults = new HashSet[Tuple]
   var pendingUpdateMessages = 0
 
   var recipeToProcess = new HashMap[ReteNodeRecipe, Process]
@@ -76,7 +74,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   var recipeToEmfUri = HashBiMap.create[ReteNodeRecipe, String]
   var emfUriToActorRef = new HashMap[String, ActorRef]
   var jvmActorRefs = new HashSet[ActorRef]
-  
+
   def start = {
     processConfiguration
   }
@@ -161,10 +159,13 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
         recipeToActorRef.put(recipeNode, actorRef)
 
         recipeNode match {
-          case pRec: ProductionRecipe => {
-            if (pRec.getTraceInfo().contains(queryName)) {
+          case productionRecipe: ProductionRecipe => {
+            if (productionRecipe.getTraceInfo().contains(queryName)) {
               productionActorRef = actorRef
             }
+          }
+          case typeInputRecipe: TypeInputRecipe => {
+            indexers.put(typeInputRecipe.getTypeName(), actorRef)
           }
           case _ => {}
         }
@@ -173,7 +174,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
       }))
 
     if (verbose) println(logPrefix + "All actors deployed and configured.")
-    if (verbose) println
+    if (verbose) println(logPrefix + "Indexers: " + indexers)
 
   }
 
@@ -207,7 +208,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
       val future = ask(recipeAndActorRef._2, yellowPages, timeout)
       Await.result(future, timeout.duration)
     })
-    
+
     if (verbose) println(logPrefix + "Actors subscribed.")
     if (verbose) println
   }
@@ -261,12 +262,12 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
 
           val tuples = scala.collection.mutable.Set[Tuple]()
           typeInputRecipe match {
-            case binaryInputRecipe: BinaryInputRecipe => { 
+            case binaryInputRecipe: BinaryInputRecipe => {
               val traceInfo = binaryInputRecipe.getTraceInfo
               if (traceInfo.startsWith("attribute")) {
                 initializeAttribute(databaseDriver, binaryInputRecipe, tuples)
               } else if (traceInfo.startsWith("edge")) {
-                  initializeEdge(databaseDriver, binaryInputRecipe, tuples)
+                initializeEdge(databaseDriver, binaryInputRecipe, tuples)
               }
             }
             case unaryInputRecipe: UnaryInputRecipe => {
@@ -335,7 +336,10 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   }
 
   def receive = {
-    case CoordinatorCommand.START => {
+    case updateMessage: UpdateMessage => {
+      update(updateMessage.getTarget, updateMessage.getChangeSet);
+    } 
+  	case CoordinatorCommand.START => {
       start
       engine = sender
     }
@@ -348,6 +352,9 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     case CoordinatorCommand.LOAD => {
       load
       sender ! CoordinatorMessage.DONE
+    }
+    case queryIndexer: QueryIndexer => {
+      sender ! indexers.get(queryIndexer.getTypeName)
     }
     case terminationMessage: TerminationMessage => {
       pendingUpdateMessages -= 1
