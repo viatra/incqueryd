@@ -42,6 +42,7 @@ import java.nio.channels.NotYetBoundException
 import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe
 import org.apache.velocity.runtime.directive.Foreach
 import org.eclipse.incquery.runtime.rete.recipes.SingleParentNodeRecipe
+import hu.bme.mit.incqueryd.core.rete.messages.QueryMessage
 
 class ReteActor extends Actor {
 
@@ -253,7 +254,7 @@ class ReteActor extends Actor {
     })
 
     reteNode match {
-      case inputNode: InputNode => new InputNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Input", self.path.toString, updateMessageCount, changesCount, inputNode.getTuples, inputNode.getMemoryConsumption, subscriberNodes)
+      case inputNode: InputNode => new InputNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Input", self.path.toString, updateMessageCount, changesCount, inputNode.getTuples.size, inputNode.getMemoryConsumption, subscriberNodes)
       case productionNode: ProductionNode => new MemoryNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Production", self.path.toString, updateMessageCount, changesCount, productionNode.getMemoryConsumption, subscriberNodes)
       case alphaNode: AlphaNode => new AlphaNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Alpha", self.path.toString, updateMessageCount, changesCount, subscriberNodes)
       case betaNode: BetaNode => new BetaNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Beta", self.path.toString, updateMessageCount, changesCount, betaNode.leftIndexerSize, betaNode.rightIndexerSize, betaNode.getMemoryConsumption, subscriberNodes)
@@ -275,6 +276,11 @@ class ReteActor extends Actor {
     case CoordinatorMessage.GETQUERYRESULTS => {
       val productionNode = reteNode.asInstanceOf[ProductionNode]
       sender ! productionNode.getDeltaResults
+    }
+    case QueryMessage.ALL => {
+      val inputNode = reteNode.asInstanceOf[InputNode];
+      val tuples = inputNode.getTuples
+      sender ! tuples
     }
     case _ => {}
   }
