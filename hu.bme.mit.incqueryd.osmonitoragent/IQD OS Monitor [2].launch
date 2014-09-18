@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/hu.bme.mit.incqueryd.osmonitoringagent.core/src/main/java/hu/bme/mit/incqueryd/osmonitoringagent/core/OSMonitor.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="hu.bme.mit.incqueryd.osmonitoringagent.core.OSMonitor"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="127.0.0.1"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="hu.bme.mit.incqueryd.osmonitoringagent.core"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.library.path=./lib/hyperic-sigar-1.6.5/sigar-bin/lib/"/>
+</launchConfiguration>
