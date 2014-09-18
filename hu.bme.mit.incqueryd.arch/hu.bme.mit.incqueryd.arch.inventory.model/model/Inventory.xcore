@@ -21,6 +21,8 @@ class TemplateSet extends MachineSet {
 abstract class Machine {
 	long identifier
 	
+	int cost
+	
 	int memorySize
 	MemoryUnit memoryUnit
 	
