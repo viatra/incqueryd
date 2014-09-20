@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.tooling.ide;
 
+import hu.bme.mit.incqueryd.tooling.ide.dialogs.OptimizationObjectiveFunctionDialog;
 import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -27,10 +28,16 @@ public class OptimizedAllocationHandler extends AbstractHandler{
 		fd.setFilterPath(file.getProject().getLocation().toString());
 		String[] filterExt = { "*.inventory" };
         fd.setFilterExtensions(filterExt);
-        String selected = fd.open();
+        String inventoryFile = fd.open();
         
-        System.out.println(selected);
+        // Pop up objective function selection dialog
+        OptimizationObjectiveFunctionDialog ofDialog = new OptimizationObjectiveFunctionDialog(activeShell);
+        ofDialog.open();
+        boolean forCommunication = ofDialog.forCommunication();
+        
+        final String outputFile = file.getProject().getLocation().toString() + "/arch/" + file.getName().replaceFirst("\\." + file.getFileExtension(), "") + "-opt.arch";
 		
+        //ReteAllocator reteAllocator = new ReteAllocator(forCommunication, recipeFile, inventoryFile, outputFile);
         
 		return null;
 	}
