@@ -2,8 +2,8 @@ package csptool.java;
 
 import hu.bme.mit.incqueryd.csp.algorithm.AllocationSolver;
 import hu.bme.mit.incqueryd.csp.algorithm.data.Allocation;
-import hu.bme.mit.incqueryd.csp.algorithm.data.Container;
-import hu.bme.mit.incqueryd.csp.algorithm.data.Node;
+import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.Container;
+import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.Node;
 
 import java.util.List;
 
@@ -64,8 +64,8 @@ public class JavaMain2 {
 		};
 		
 		AllocationSolver solver = new AllocationSolver();
-		//Allocation solutions = solver.optimizeWithInstances(containers, nodes, edges, overheads, false);
-		Allocation solutions = solver.optimizeWithInstances(containers, nodes, edges, overheads, false, 20);
+		Allocation solutions = solver.optimizeWithInstances(containers, nodes, edges, overheads, false);
+		//Allocation solutions = solver.optimizeWithInstances(containers, nodes, edges, overheads, false, 20);
 		
 		if (!solver.canBeAllocated()) {
 			System.err.println("The problem can not be solved with the current resource set!");

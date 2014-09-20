@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.csp.algorithm.data
+package hu.bme.mit.incqueryd.csp.algorithm.data.xtend
 
 @Data
 class ContainerTemplate extends AbstractContainer implements Comparable<ContainerTemplate>{
