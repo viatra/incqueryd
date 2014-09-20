@@ -14,7 +14,7 @@ public class JavaMain2 {
 
 	public static void main(String[] args) {
 		try{
-			System.loadLibrary("jniortools_64");
+			System.loadLibrary("jniortools");
 		}catch(UnsatisfiedLinkError e){
 			System.err.println(e.getMessage());
 			try{
@@ -23,6 +23,7 @@ public class JavaMain2 {
 				System.out.println("ERROR: Cannot load or-tools native library");
 			}
 		}
+		
 		
 		List<Container> containers = Lists.newArrayList();
 		containers.add(new Container(2000, 10, "10.0.0.1"));
@@ -63,8 +64,8 @@ public class JavaMain2 {
 		};
 		
 		AllocationSolver solver = new AllocationSolver();
-		Allocation solutions = solver.optimizeWithInstances(containers, nodes, edges, overheads, false);
-		//Allocation solutions = solver.optimizeWithInstances(containers, nodes, edges, overheads, false, 20);
+		//Allocation solutions = solver.optimizeWithInstances(containers, nodes, edges, overheads, false);
+		Allocation solutions = solver.optimizeWithInstances(containers, nodes, edges, overheads, false, 20);
 		
 		if (!solver.canBeAllocated()) {
 			System.err.println("The problem can not be solved with the current resource set!");

@@ -16,7 +16,7 @@ public class JavaMain3 {
 	public static void main(String[] args) {
 		
 		try{
-			System.loadLibrary("jniortools_64");
+			System.loadLibrary("jniortools");
 		}catch(UnsatisfiedLinkError e){
 			System.err.println(e.getMessage());
 			try{
