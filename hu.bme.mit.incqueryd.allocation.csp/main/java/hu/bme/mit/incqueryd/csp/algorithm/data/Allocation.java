@@ -1,5 +1,7 @@
 package hu.bme.mit.incqueryd.csp.algorithm.data;
 
+import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.Node;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

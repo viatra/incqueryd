@@ -11,10 +11,10 @@ import com.google.ortools.constraintsolver.OptimizeVar
 import java.util.Collections
 import hu.bme.mit.incqueryd.csp.algorithm.data.Allocation
 import hu.bme.mit.incqueryd.csp.algortihm.helper.CSPAlgorithmHelper
-import hu.bme.mit.incqueryd.csp.algorithm.data.Node
-import hu.bme.mit.incqueryd.csp.algorithm.data.Container
+import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.Node
+import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.Container
 import hu.bme.mit.incqueryd.csp.impl.ortools.helpers.VariableHelper
-import hu.bme.mit.incqueryd.csp.algorithm.data.ContainerTemplate
+import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.ContainerTemplate
 
 class AllocationSolver {
 	
