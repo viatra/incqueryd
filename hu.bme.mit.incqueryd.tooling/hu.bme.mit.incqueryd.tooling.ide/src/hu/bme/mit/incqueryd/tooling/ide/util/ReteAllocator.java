@@ -1,6 +1,8 @@
 package hu.bme.mit.incqueryd.tooling.ide.util;
 
 import hu.bme.mit.incqueryd.arch.util.ArchUtil;
+import hu.bme.mit.incqueryd.csp.algorithm.data.Container;
+import hu.bme.mit.incqueryd.csp.algorithm.data.ContainerTemplate;
 import infrastructure.InfrastructureFactory;
 import infrastructure.Machine;
 import infrastructure.Process;
@@ -9,6 +11,7 @@ import inventory.Inventory;
 import inventory.MachineInstance;
 import inventory.MachineSet;
 import inventory.MachineTemplate;
+import inventory.MemoryUnit;
 import inventory.TemplateSet;
 
 import java.io.IOException;
@@ -39,7 +42,25 @@ import arch.ReteRole;
 
 public class ReteAllocator {
 	
-	public static void allocate (String recipeFile) throws IOException {
+	private int[][] overheads;
+	private final List<Container> containers = new ArrayList<>();
+	private final List<ContainerTemplate> containerTemplates = new ArrayList<>();
+	
+	private boolean optimizeForCost;
+	private String recipeFile;
+	private String inventoryFile;
+	 private String outputFile;
+	
+	public ReteAllocator(boolean optimizeForCost, String recipeFile, String inventoryFile, String outputFile) {
+		this.optimizeForCost = optimizeForCost;
+		this.recipeFile = recipeFile;
+		this.inventoryFile = inventoryFile;
+		this.outputFile = outputFile;
+	}
+	
+	public void allocate () throws IOException {
+		processInventory(inventoryFile);
+		
 		ReteRecipe recipe = ArchUtil.loadRecipe(recipeFile);
 		
 		EList<ReteNodeRecipe> recipeNodes = recipe.getRecipeNodes();
@@ -107,6 +128,62 @@ public class ReteAllocator {
 		
 	}
 	
+	
+	
+	private void processInventory (String inventoryFile) throws IOException {
+		Inventory inventory = ArchUtil.loadInventory(inventoryFile);
+		
+		MachineSet machineSet = inventory.getMachineSet();
+		
+		if(machineSet instanceof TemplateSet) {
+			TemplateSet templateSet = (TemplateSet)machineSet;
+			
+			EList<MachineTemplate> machineTemplates = templateSet.getMachineTemplates();
+			overheads = new int[machineTemplates.size()][machineTemplates.size()];
+			
+			for(int i=0; i < machineTemplates.size(); i++) {
+				MachineTemplate machineTemplate = machineTemplates.get(i);
+				ContainerTemplate containerTemplate = new ContainerTemplate(getMemoryInMBs(machineTemplate.getMemoryUnit(), machineTemplate.getMemorySize()), machineTemplate.getCost(), machineTemplate.getIdentifier());
+				containerTemplates.add(containerTemplate);
+				for(int j = 0; j < machineTemplate.getOverheads().size(); j++) {
+					overheads[i][j] = machineTemplate.getOverheads().get(j).intValue();
+				}
+			}
+			
+		}
+		else {
+			InstanceSet instanceSet = (InstanceSet)machineSet;
+			
+			EList<MachineInstance> machineInstances = instanceSet.getMachineInstances();
+			overheads = new int[machineInstances.size()][machineInstances.size()];
+			
+			for(int i=0; i < machineInstances.size(); i++) {
+				MachineInstance machineInstance = machineInstances.get(i);
+				Container container = new Container(getMemoryInMBs(machineInstance.getMemoryUnit(), machineInstance.getMemorySize()), machineInstance.getCost(), machineInstance.getIp());
+				containers.add(container);
+				for(int j = 0; j < machineInstance.getOverheads().size(); j++) {
+					overheads[i][j] = machineInstance.getOverheads().get(j).intValue();
+				}
+			}
+			
+		}
+	}
+	
+	private static int getMemoryInMBs(MemoryUnit memUnit, int memorySize) {
+		switch (memUnit) {
+		case MB:
+			return memorySize;
+			
+		case GB:
+			return 1024 * memorySize;
+
+		default:
+			return 0;
+		}
+	}
+	
+	
+	// The NULL allocator, this method is static
 	public static void allocateNull (String recipeFile, String outputFile) throws IOException {
 		ReteRecipe recipe = ArchUtil.loadRecipe(recipeFile);
 		
@@ -147,41 +224,6 @@ public class ReteAllocator {
 		try {
 		      resource.save(Collections.EMPTY_MAP);
 		} catch (IOException e) {
-			
-		}
-	}
-	
-	public static void processInventory (String inventoryFile) throws IOException {
-		Inventory inventory = ArchUtil.loadInventory(inventoryFile);
-		
-		MachineSet machineSet = inventory.getMachineSet();
-		
-		if(machineSet instanceof TemplateSet) {
-			TemplateSet templateSet = (TemplateSet)machineSet;
-			
-			EList<MachineTemplate> machineTemplates = templateSet.getMachineTemplates();
-			int[][] overheads = new int[machineTemplates.size()][machineTemplates.size()];
-			
-			for(int i=0; i < machineTemplates.size(); i++) {
-				MachineTemplate machineTemplate = machineTemplates.get(i);
-				for(int j = 0; j < machineTemplate.getOverheads().size(); j++) {
-					overheads[i][j] = machineTemplate.getOverheads().get(j).intValue();
-				}
-			}
-			
-		}
-		else {
-			InstanceSet instanceSet = (InstanceSet)machineSet;
-			
-			EList<MachineInstance> machineInstances = instanceSet.getMachineInstances();
-			int[][] overheads = new int[machineInstances.size()][machineInstances.size()];
-			
-			for(int i=0; i < machineInstances.size(); i++) {
-				MachineInstance machineInstance = machineInstances.get(i);
-				for(int j = 0; j < machineInstance.getOverheads().size(); j++) {
-					overheads[i][j] = machineInstance.getOverheads().get(j).intValue();
-				}
-			}
 			
 		}
 	}
