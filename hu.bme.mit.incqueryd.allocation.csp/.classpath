@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="hu.bme.mit.transima.als.autoallocation/extjars"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="xtend-gen"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="main/java"/>
+	<classpathentry kind="lib" path="extjars/choco-solver-3.1.1-jar-with-dependencies.jar" sourcepath="extjars/choco-solver-3.1.1-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="extjars/choco-solver-3.1.1-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="extjars/com.google.ortools.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
