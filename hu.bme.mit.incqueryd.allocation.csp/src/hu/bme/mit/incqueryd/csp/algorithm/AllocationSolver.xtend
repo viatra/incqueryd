@@ -101,12 +101,14 @@ class AllocationSolver {
         
         getSolutions(communicationPriority)
         
-        val AllocationSolver allocationSolver = new AllocationSolver // solve it again with the calculated optimal to get all optimal results
-         
-        if(communicationPriority)
-        	optimalAllocation = allocationSolver.optimizeWithInstances(containers, nodes, edges, overheads, communicationPriority, optimalAllocation.communication)
-        else
-        	optimalAllocation = allocationSolver.optimizeWithInstances(containers, nodes, edges, overheads, communicationPriority, optimalAllocation.cost)
+        if (optimalAllocation != null) {
+			val AllocationSolver allocationSolver = new AllocationSolver // solve it again with the calculated optimal to get all optimal results
+
+			if (communicationPriority)
+				optimalAllocation = allocationSolver.optimizeWithInstances(containers, nodes, edges, overheads,communicationPriority, optimalAllocation.communication)
+			else
+				optimalAllocation = allocationSolver.optimizeWithInstances(containers, nodes, edges, overheads,communicationPriority, optimalAllocation.cost)
+		}
         
 		return optimalAllocation
 		
@@ -187,7 +189,7 @@ class AllocationSolver {
 					
 					//println("sumweight: " + sumNodeWeight + " ,edge weight: " + edgeWeight)
 					
-					val IntVar edgeWeightVar = VariableHelper.bounded("e" + i + j, 0, Long.MAX_VALUE, solver)
+					val IntVar edgeWeightVar = VariableHelper.bounded("e" + i + j, -1, Long.MAX_VALUE, solver)
 					edgeWeightVariables.add(edgeWeightVar)
 					
 					for(k : 0 ..< nodesOnContainersVariables.get(i).length){
