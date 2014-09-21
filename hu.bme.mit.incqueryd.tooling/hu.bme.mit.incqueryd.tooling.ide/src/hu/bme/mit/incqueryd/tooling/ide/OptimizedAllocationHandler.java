@@ -2,6 +2,9 @@ package hu.bme.mit.incqueryd.tooling.ide;
 
 import hu.bme.mit.incqueryd.tooling.ide.dialogs.OptimizationObjectiveFunctionDialog;
 import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
+import hu.bme.mit.incqueryd.tooling.ide.util.ReteAllocator;
+
+import java.io.IOException;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -37,7 +40,12 @@ public class OptimizedAllocationHandler extends AbstractHandler{
         
         final String outputFile = file.getProject().getLocation().toString() + "/arch/" + file.getName().replaceFirst("\\." + file.getFileExtension(), "") + "-opt.arch";
 		
-        //ReteAllocator reteAllocator = new ReteAllocator(forCommunication, recipeFile, inventoryFile, outputFile);
+        ReteAllocator reteAllocator = new ReteAllocator(forCommunication, recipeFile, inventoryFile, outputFile);
+        try {
+			reteAllocator.allocate();
+		} catch (IOException e) {
+			
+		}
         
 		return null;
 	}
