@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.csp.algorithm.data.xtend
+package hu.bme.mit.incqueryd.csp.algorithm.data
 
 @Data
 class Container extends AbstractContainer{

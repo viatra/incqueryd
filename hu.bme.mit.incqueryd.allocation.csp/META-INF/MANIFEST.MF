@@ -3,7 +3,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Allocation CSP
 Bundle-SymbolicName: hu.bme.mit.incqueryd.allocation.csp;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: extjars/choco-solver-3.1.1-jar-with-dependencies.jar,extjars/choco-solver-3.1.1-sources.jar,extjars/com.google.ortools.jar
+Bundle-ClassPath: extjars/choco-solver-3.1.1-jar-with-dependencies.jar,
+ extjars/choco-solver-3.1.1-sources.jar,
+ extjars/com.google.ortools.jar,
+ .
 Bundle-NativeCode: extjars/jniortools_32.dll,extjars/jniortools_64.dll,extjars/libjniortools.so
 Require-Bundle: org.junit;bundle-version="4.11.0",
  org.eclipse.xtend.lib,
@@ -11,7 +14,7 @@ Require-Bundle: org.junit;bundle-version="4.11.0",
  org.eclipse.xtext.xbase.lib
 Export-Package: hu.bme.mit.incqueryd.csp.algorithm,
  hu.bme.mit.incqueryd.csp.algorithm.data,
- hu.bme.mit.incqueryd.csp.algorithm.data.xtend
+ hu.bme.mit.incqueryd.csp.algorithm.helper
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 
 
