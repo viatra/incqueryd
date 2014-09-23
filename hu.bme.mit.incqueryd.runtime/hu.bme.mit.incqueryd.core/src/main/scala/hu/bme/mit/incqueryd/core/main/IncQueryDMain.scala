@@ -57,7 +57,7 @@ object IncQueryDMain {
     
     val resultFuture = coordinator ? CoordinatorCommand.CHECK
     val result = Await.result(resultFuture, timeout.duration)
-    println(result)
+    println("[IncQueryDMain   ] " + result)
     
     engine.shutdown
     httpActorSystem.shutdown

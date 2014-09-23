@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link inventory.impl.MachineImpl#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link inventory.impl.MachineImpl#getCost <em>Cost</em>}</li>
  *   <li>{@link inventory.impl.MachineImpl#getMemorySize <em>Memory Size</em>}</li>
  *   <li>{@link inventory.impl.MachineImpl#getMemoryUnit <em>Memory Unit</em>}</li>
  *   <li>{@link inventory.impl.MachineImpl#getCPUs <em>CP Us</em>}</li>
@@ -56,6 +57,26 @@ public abstract class MachineImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected long identifier = IDENTIFIER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCost() <em>Cost</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCost()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int COST_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getCost() <em>Cost</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCost()
+	 * @generated
+	 * @ordered
+	 */
+	protected int cost = COST_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMemorySize() <em>Memory Size</em>}' attribute.
@@ -172,6 +193,27 @@ public abstract class MachineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getCost() {
+		return cost;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCost(int newCost) {
+		int oldCost = cost;
+		cost = newCost;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, InventoryPackage.MACHINE__COST, oldCost, cost));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public int getMemorySize() {
 		return memorySize;
 	}
@@ -252,6 +294,8 @@ public abstract class MachineImpl extends MinimalEObjectImpl.Container implement
 		switch (featureID) {
 			case InventoryPackage.MACHINE__IDENTIFIER:
 				return getIdentifier();
+			case InventoryPackage.MACHINE__COST:
+				return getCost();
 			case InventoryPackage.MACHINE__MEMORY_SIZE:
 				return getMemorySize();
 			case InventoryPackage.MACHINE__MEMORY_UNIT:
@@ -275,6 +319,9 @@ public abstract class MachineImpl extends MinimalEObjectImpl.Container implement
 		switch (featureID) {
 			case InventoryPackage.MACHINE__IDENTIFIER:
 				setIdentifier((Long)newValue);
+				return;
+			case InventoryPackage.MACHINE__COST:
+				setCost((Integer)newValue);
 				return;
 			case InventoryPackage.MACHINE__MEMORY_SIZE:
 				setMemorySize((Integer)newValue);
@@ -304,6 +351,9 @@ public abstract class MachineImpl extends MinimalEObjectImpl.Container implement
 			case InventoryPackage.MACHINE__IDENTIFIER:
 				setIdentifier(IDENTIFIER_EDEFAULT);
 				return;
+			case InventoryPackage.MACHINE__COST:
+				setCost(COST_EDEFAULT);
+				return;
 			case InventoryPackage.MACHINE__MEMORY_SIZE:
 				setMemorySize(MEMORY_SIZE_EDEFAULT);
 				return;
@@ -330,6 +380,8 @@ public abstract class MachineImpl extends MinimalEObjectImpl.Container implement
 		switch (featureID) {
 			case InventoryPackage.MACHINE__IDENTIFIER:
 				return identifier != IDENTIFIER_EDEFAULT;
+			case InventoryPackage.MACHINE__COST:
+				return cost != COST_EDEFAULT;
 			case InventoryPackage.MACHINE__MEMORY_SIZE:
 				return memorySize != MEMORY_SIZE_EDEFAULT;
 			case InventoryPackage.MACHINE__MEMORY_UNIT:
@@ -354,6 +406,8 @@ public abstract class MachineImpl extends MinimalEObjectImpl.Container implement
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (identifier: ");
 		result.append(identifier);
+		result.append(", cost: ");
+		result.append(cost);
 		result.append(", memorySize: ");
 		result.append(memorySize);
 		result.append(", memoryUnit: ");

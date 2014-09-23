@@ -57,7 +57,7 @@
 
 		<repository>
 			<id>emf-incquery</id>
-			<url>https://repo.eclipse.org/content/repositories/emf-incquery-snapshots/</url>
+			<url>https://repo.eclipse.org/content/repositories/emf-incquery</url>
 		</repository>
 	</repositories>
 

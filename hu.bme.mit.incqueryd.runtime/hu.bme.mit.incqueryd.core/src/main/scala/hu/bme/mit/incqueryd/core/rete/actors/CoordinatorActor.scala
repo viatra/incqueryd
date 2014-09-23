@@ -49,6 +49,24 @@ import hu.bme.mit.incqueryd.core.util.ReteNodeConfiguration
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
 import infrastructure.Process
 import hu.bme.mit.incqueryd.core.rete.messages.QueryIndexer
+import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
+import hu.bme.mit.bigmodel.rdf.RDFHelper
+import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
+import hu.bme.mit.incqueryd.arch.util.ArchUtil
+import hu.bme.mit.bigmodel.rdf.RDFHelper
+import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
+import arch.Configuration
+import hu.bme.mit.incqueryd.arch.util.ArchUtil
+import hu.bme.mit.bigmodel.rdf.RDFHelper
+import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
+import arch.Configuration
+import hu.bme.mit.incqueryd.arch.util.ArchUtil
+import hu.bme.mit.bigmodel.rdf.RDFHelper
+import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
+import arch.Configuration
+import hu.bme.mit.incqueryd.arch.util.ArchUtil
+import hu.bme.mit.bigmodel.rdf.RDFHelper
+import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
 
 class CoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor {
 
@@ -251,10 +269,12 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   }
 
   def load = {
-    println(logPrefix + "Loading the Rete network...")
+    println(logPrefix + "Loading the Rete network.")
 
     val clusterName = conf.getConnectionString.split("://")(1)
-    val databaseDriver = new FourStoreDriver(clusterName)
+    val databaseDriver = new FourStoreDriverUnique(clusterName)
+    
+    databaseDriver.generateUniques()
 
     conf.getRecipes.foreach(recipe =>
       recipe.getRecipeNodes.foreach(_ match {
@@ -298,24 +318,31 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     println(logPrefix + pendingUpdateMessages + " update message(s) pending.")
   }
 
-  def initializeAttribute(databaseDriver: FourStoreDriver, recipe: BinaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
-    val attributes = databaseDriver.collectVerticesWithProperty(recipe.getTypeName)
+  def initializeAttribute(databaseDriver: FourStoreDriverUnique, recipe: BinaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
+    val typeName = RDFHelper.brackets(recipe.getTypeName)
+    val attributes = databaseDriver.collectVerticesWithProperty(typeName) 
 
     attributes.foreach(attribute => {
-      tuples += new Tuple(attribute._1, attribute._2)
+      val key = attribute._1
+      val value = attribute._2
+      
+      val regex = "\"(.*?)\"\\^\\^<http://www.w3.org/2001/XMLSchema#int>".r
+      val intValue = regex.findFirstMatchIn(value).get.group(1)
+      tuples += new Tuple(key, intValue)
     })
   }
 
-  def initializeEdge(databaseDriver: FourStoreDriver, recipe: BinaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
-    val edges = databaseDriver.collectEdges(recipe.getTypeName)
-
+  def initializeEdge(databaseDriver: FourStoreDriverUnique, recipe: BinaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
+    val typeName = RDFHelper.brackets(recipe.getTypeName)
+    val edges = databaseDriver.collectEdges(typeName)
+    
     edges.entries.foreach(edge => {
       tuples += new Tuple(edge.getKey, edge.getValue)
     })
   }
 
-  def initializeVertex(databaseDriver: FourStoreDriver, recipe: UnaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
-    val vertices = databaseDriver.collectVertices(recipe.getTypeName)
+  def initializeVertex(databaseDriver: FourStoreDriverUnique, recipe: UnaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
+    val vertices = databaseDriver.collectVertices(RDFHelper.brackets(recipe.getTypeName))
     vertices.foreach(vertex => tuples += new Tuple(vertex))
   }
 
