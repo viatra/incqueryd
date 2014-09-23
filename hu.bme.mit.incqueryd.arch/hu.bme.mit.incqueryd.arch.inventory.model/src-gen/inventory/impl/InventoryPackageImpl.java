@@ -244,7 +244,7 @@ public class InventoryPackageImpl extends EPackageImpl implements InventoryPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMachine_MemorySize() {
+	public EAttribute getMachine_Cost() {
 		return (EAttribute)machineEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -253,7 +253,7 @@ public class InventoryPackageImpl extends EPackageImpl implements InventoryPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMachine_MemoryUnit() {
+	public EAttribute getMachine_MemorySize() {
 		return (EAttribute)machineEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -262,7 +262,7 @@ public class InventoryPackageImpl extends EPackageImpl implements InventoryPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMachine_CPUs() {
+	public EAttribute getMachine_MemoryUnit() {
 		return (EAttribute)machineEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -271,8 +271,17 @@ public class InventoryPackageImpl extends EPackageImpl implements InventoryPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMachine_Overheads() {
+	public EAttribute getMachine_CPUs() {
 		return (EAttribute)machineEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMachine_Overheads() {
+		return (EAttribute)machineEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -353,6 +362,7 @@ public class InventoryPackageImpl extends EPackageImpl implements InventoryPacka
 
 		machineEClass = createEClass(MACHINE);
 		createEAttribute(machineEClass, MACHINE__IDENTIFIER);
+		createEAttribute(machineEClass, MACHINE__COST);
 		createEAttribute(machineEClass, MACHINE__MEMORY_SIZE);
 		createEAttribute(machineEClass, MACHINE__MEMORY_UNIT);
 		createEAttribute(machineEClass, MACHINE__CP_US);
@@ -418,6 +428,7 @@ public class InventoryPackageImpl extends EPackageImpl implements InventoryPacka
 
 		initEClass(machineEClass, Machine.class, "Machine", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getMachine_Identifier(), theEcorePackage.getELong(), "identifier", null, 0, 1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMachine_Cost(), theEcorePackage.getEInt(), "cost", null, 0, 1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMachine_MemorySize(), theEcorePackage.getEInt(), "memorySize", null, 0, 1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMachine_MemoryUnit(), this.getMemoryUnit(), "memoryUnit", null, 0, 1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMachine_CPUs(), theEcorePackage.getEInt(), "CPUs", null, 0, 1, Machine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

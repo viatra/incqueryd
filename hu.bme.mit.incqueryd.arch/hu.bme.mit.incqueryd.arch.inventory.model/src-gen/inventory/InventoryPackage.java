@@ -226,13 +226,22 @@ public interface InventoryPackage extends EPackage {
 	int MACHINE__IDENTIFIER = 0;
 
 	/**
+	 * The feature id for the '<em><b>Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MACHINE__COST = 1;
+
+	/**
 	 * The feature id for the '<em><b>Memory Size</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MACHINE__MEMORY_SIZE = 1;
+	int MACHINE__MEMORY_SIZE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Memory Unit</b></em>' attribute.
@@ -241,7 +250,7 @@ public interface InventoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MACHINE__MEMORY_UNIT = 2;
+	int MACHINE__MEMORY_UNIT = 3;
 
 	/**
 	 * The feature id for the '<em><b>CP Us</b></em>' attribute.
@@ -250,7 +259,7 @@ public interface InventoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MACHINE__CP_US = 3;
+	int MACHINE__CP_US = 4;
 
 	/**
 	 * The feature id for the '<em><b>Overheads</b></em>' attribute list.
@@ -259,7 +268,7 @@ public interface InventoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MACHINE__OVERHEADS = 4;
+	int MACHINE__OVERHEADS = 5;
 
 	/**
 	 * The number of structural features of the '<em>Machine</em>' class.
@@ -268,7 +277,7 @@ public interface InventoryPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MACHINE_FEATURE_COUNT = 5;
+	int MACHINE_FEATURE_COUNT = 6;
 
 	/**
 	 * The number of operations of the '<em>Machine</em>' class.
@@ -297,6 +306,15 @@ public interface InventoryPackage extends EPackage {
 	 * @ordered
 	 */
 	int MACHINE_INSTANCE__IDENTIFIER = MACHINE__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MACHINE_INSTANCE__COST = MACHINE__COST;
 
 	/**
 	 * The feature id for the '<em><b>Memory Size</b></em>' attribute.
@@ -379,6 +397,15 @@ public interface InventoryPackage extends EPackage {
 	 * @ordered
 	 */
 	int MACHINE_TEMPLATE__IDENTIFIER = MACHINE__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MACHINE_TEMPLATE__COST = MACHINE__COST;
 
 	/**
 	 * The feature id for the '<em><b>Memory Size</b></em>' attribute.
@@ -549,6 +576,17 @@ public interface InventoryPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getMachine_Identifier();
+
+	/**
+	 * Returns the meta object for the attribute '{@link inventory.Machine#getCost <em>Cost</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Cost</em>'.
+	 * @see inventory.Machine#getCost()
+	 * @see #getMachine()
+	 * @generated
+	 */
+	EAttribute getMachine_Cost();
 
 	/**
 	 * Returns the meta object for the attribute '{@link inventory.Machine#getMemorySize <em>Memory Size</em>}'.
@@ -747,6 +785,14 @@ public interface InventoryPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute MACHINE__IDENTIFIER = eINSTANCE.getMachine_Identifier();
+
+		/**
+		 * The meta object literal for the '<em><b>Cost</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute MACHINE__COST = eINSTANCE.getMachine_Cost();
 
 		/**
 		 * The meta object literal for the '<em><b>Memory Size</b></em>' attribute feature.

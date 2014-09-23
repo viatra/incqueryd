@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link inventory.Machine#getIdentifier <em>Identifier</em>}</li>
+ *   <li>{@link inventory.Machine#getCost <em>Cost</em>}</li>
  *   <li>{@link inventory.Machine#getMemorySize <em>Memory Size</em>}</li>
  *   <li>{@link inventory.Machine#getMemoryUnit <em>Memory Unit</em>}</li>
  *   <li>{@link inventory.Machine#getCPUs <em>CP Us</em>}</li>
@@ -52,6 +53,32 @@ public interface Machine extends EObject {
 	 * @generated
 	 */
 	void setIdentifier(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Cost</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Cost</em>' attribute.
+	 * @see #setCost(int)
+	 * @see inventory.InventoryPackage#getMachine_Cost()
+	 * @model unique="false"
+	 * @generated
+	 */
+	int getCost();
+
+	/**
+	 * Sets the value of the '{@link inventory.Machine#getCost <em>Cost</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Cost</em>' attribute.
+	 * @see #getCost()
+	 * @generated
+	 */
+	void setCost(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Memory Size</b></em>' attribute.
