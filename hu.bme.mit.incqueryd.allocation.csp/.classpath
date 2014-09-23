@@ -8,7 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="xtend-gen"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="main/java"/>
 	<classpathentry kind="lib" path="extjars/choco-solver-3.1.1-jar-with-dependencies.jar" sourcepath="extjars/choco-solver-3.1.1-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="extjars/choco-solver-3.1.1-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="extjars/com.google.ortools.jar"/>

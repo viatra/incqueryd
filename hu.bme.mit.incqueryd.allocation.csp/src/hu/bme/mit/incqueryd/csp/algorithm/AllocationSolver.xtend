@@ -1,20 +1,21 @@
 package hu.bme.mit.incqueryd.csp.algorithm
 
-import com.google.ortools.constraintsolver.Solver
-import static extension hu.bme.mit.incqueryd.csp.impl.ortools.extensions.ConstraintExtension.*
-import java.util.List
-import com.google.ortools.constraintsolver.IntVar
 import com.google.common.collect.Lists
 import com.google.ortools.constraintsolver.DecisionBuilder
-import java.util.ArrayList
+import com.google.ortools.constraintsolver.IntVar
 import com.google.ortools.constraintsolver.OptimizeVar
-import java.util.Collections
+import com.google.ortools.constraintsolver.Solver
 import hu.bme.mit.incqueryd.csp.algorithm.data.Allocation
-import hu.bme.mit.incqueryd.csp.algortihm.helper.CSPAlgorithmHelper
-import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.Node
-import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.Container
+import hu.bme.mit.incqueryd.csp.algorithm.data.Container
+import hu.bme.mit.incqueryd.csp.algorithm.data.ContainerTemplate
+import hu.bme.mit.incqueryd.csp.algorithm.data.Node
+import hu.bme.mit.incqueryd.csp.algorithm.helper.CSPAlgorithmHelper
 import hu.bme.mit.incqueryd.csp.impl.ortools.helpers.VariableHelper
-import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.ContainerTemplate
+import java.util.ArrayList
+import java.util.Collections
+import java.util.List
+
+import static extension hu.bme.mit.incqueryd.csp.impl.ortools.extensions.ConstraintExtension.*
 
 class AllocationSolver {
 	

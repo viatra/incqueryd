@@ -2,8 +2,8 @@ package csptool.java;
 
 import hu.bme.mit.incqueryd.csp.algorithm.AllocationSolver;
 import hu.bme.mit.incqueryd.csp.algorithm.data.Allocation;
-import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.Container;
-import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.Node;
+import hu.bme.mit.incqueryd.csp.algorithm.data.Container;
+import hu.bme.mit.incqueryd.csp.algorithm.data.Node;
 
 import java.util.List;
 

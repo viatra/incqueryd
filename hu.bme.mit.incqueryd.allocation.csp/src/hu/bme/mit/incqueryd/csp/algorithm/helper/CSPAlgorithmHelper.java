@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.csp.algortihm.helper;
+package hu.bme.mit.incqueryd.csp.algorithm.helper;
 
 
 public class CSPAlgorithmHelper {
