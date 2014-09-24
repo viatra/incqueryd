@@ -22,7 +22,7 @@ fi
 
 # iterating through the hostnames of the machines
 for machine in "$@"; do
-	echo "Deploying OS monitoring agent on $machine"
+	echo "Installing OS monitoring agent on $machine"
 
 	ssh $machine "mkdir -p $INSTALL_DIR/"
 
@@ -37,5 +37,5 @@ for machine in "$@"; do
 	fi
 
 	# OS agent main JAR
-	scp hu.bme.mit.incqueryd.osmonitoragent/target/core-*-SNAPSHOT.jar $machine:$INSTALL_DIR
+	scp hu.bme.mit.incqueryd.osmonitoragent/target/osmonitor.core.jar $machine:$INSTALL_DIR
 done

@@ -10,4 +10,4 @@ cd $OSAGENT_DIR
 
 rm -f osagent.err osagent.out $OSAGENT_DIR 2> /dev/null
 
-nohup java -Djava.library.path=./lib/hyperic-sigar-1.6.5/sigar-bin/lib/ -jar core-*-SNAPSHOT.jar $monitoringServerIPAddress > $OSAGENT_DIR/osagent.out 2> $OSAGENT_DIR/osagent.err < /dev/null &
+nohup java -Djava.library.path=./lib/hyperic-sigar-1.6.5/sigar-bin/lib/ -jar osmonitor.core.jar $monitoringServerIPAddress > $OSAGENT_DIR/osagent.out 2> $OSAGENT_DIR/osagent.err < /dev/null &
