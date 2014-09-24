@@ -30,7 +30,7 @@ object IncQueryDMain {
     architectureFileOption.setRequired(true)
     options.addOption(architectureFileOption)
 
-    options.addOption(new Option("httpAddress", true, "The address to the HTTP interface, the default value is 127.0.0.1."))
+    options.addOption(new Option("interface", true, "The address to the HTTP interface, the default value is 127.0.0.1."))
     options.addOption(new Option("local", false, "Run IQD in local mode."))
     options.addOption(new Option("start", false, "Starts query processing immediately."))
 

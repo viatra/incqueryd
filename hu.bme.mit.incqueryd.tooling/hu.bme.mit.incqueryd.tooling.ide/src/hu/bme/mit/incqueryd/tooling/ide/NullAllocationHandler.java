@@ -18,7 +18,7 @@ public class NullAllocationHandler extends AbstractHandler {
 		String recipeFile = file.getLocation().toString();
 		
 		try {
-			ReteAllocator.allocateNull(recipeFile, file.getProject().getLocation().toString() + "/arch/" + file.getName().replaceFirst("\\." + file.getFileExtension(), "") + "-null.arch");
+			ReteAllocator.allocateNull(recipeFile, file.getProject().getLocation().toString() + "/arch-null/" + file.getName().replaceFirst("\\." + file.getFileExtension(), "") + ".arch");
 		} catch (IOException e) {
 			
 		}

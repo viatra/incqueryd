@@ -5,6 +5,7 @@ export INSTALL_DIR=~/incqueryd
 export AKKA_VERSION=2.1.4
 
 while [[ ! -z `ps auxw | grep java | grep akka` ]]; do
+  pkill -f akka
   echo Waiting for Akka to finish.
   sleep 1
 done
@@ -18,6 +19,6 @@ cd akka-$AKKA_VERSION
 for port in "$@"
 do
     echo "$port"
-    nohup bin/akka hu.bme.mit.incqueryd.rete.actors.IncQueryDMicrokernel $port > $INSTALL_DIR/akka-$port.out 2> $INSTALL_DIR/akka-$port.err < /dev/null &
+    nohup bin/akka hu.bme.mit.incqueryd.core.rete.actors.IncQueryDMicrokernel $port > $INSTALL_DIR/akka-$port.out 2> $INSTALL_DIR/akka-$port.err < /dev/null &
 done
 
