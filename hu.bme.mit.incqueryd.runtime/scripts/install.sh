@@ -34,7 +34,7 @@ shift
 
 # iterating through the hostnames of the machines
 for machine in "$@"; do
-	echo "Deploying IncQuery-D on $machine"
+	echo "Installing IncQuery-D on $machine"
 
 	ssh $machine "mkdir -p $INSTALL_DIR/"
 
@@ -44,7 +44,7 @@ for machine in "$@"; do
 		# install Akka
 		ssh $machine "$INSTALL_DIR/install-akka.sh"
 
-		# clean the deploy directory
+		# clean the install directory
 		ssh $machine "rm $AKKA_DEPLOY_DIR/*"
 
 		# third party dependencies
@@ -55,7 +55,7 @@ for machine in "$@"; do
 	scp hu.bme.mit.incqueryd.core/target/hu.bme.mit.incqueryd.core-*-SNAPSHOT.jar $machine:$AKKA_DEPLOY_DIR
 done
 
-# deploying to the coordinator
+# installing to the coordinator
 
 echo "Creating directories on the coordinator."
 
@@ -65,7 +65,7 @@ ssh $coordinator "mkdir -p $COORDINATOR_INSTALL_DIR/arch/"
 ssh $coordinator "mkdir -p $COORDINATOR_INSTALL_DIR/recipes/"
 
 # Installing the Main jar with the cordinator actor to the coordinator machine
-echo "Deploying IncQuery-D Main jar to the coordinator."
+echo "Installing IncQuery-D Main jar to the coordinator."
 
 if [[ ! $light ]]; then
 	rm -f $COORDINATOR_LIB_DIR/*

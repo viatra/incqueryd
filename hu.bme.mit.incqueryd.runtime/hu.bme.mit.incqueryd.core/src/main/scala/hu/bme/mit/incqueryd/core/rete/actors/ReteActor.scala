@@ -111,17 +111,6 @@ class ReteActor extends Actor {
         subscribeToActor(primaryParentActorRef, ReteNodeSlot.PRIMARY)
         subscribeToActor(secondaryParentActorRef, ReteNodeSlot.SECONDARY)
       }
-      case multiParentNodeRecipe: MultiParentNodeRecipe => {
-        val parents = multiParentNodeRecipe.getParents
-        parents.foreach(parent => {
-          val parentUri = ArchUtil.getJsonEObjectUri(parent)
-          val parentActorRef = emfUriToActorRef.get(parentUri)
-
-          println(logPrefix + "Parent: " + parentUri + " -> " + parentActorRef)
-
-          subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE)
-        })
-      }
       case productionRecipe: ProductionRecipe => {
         val parents = productionRecipe.getParents
 
@@ -134,6 +123,17 @@ class ReteActor extends Actor {
           subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE)
         })
 
+      }
+      case multiParentNodeRecipe: MultiParentNodeRecipe => {
+        val parents = multiParentNodeRecipe.getParents
+        parents.foreach(parent => {
+          val parentUri = ArchUtil.getJsonEObjectUri(parent)
+          val parentActorRef = emfUriToActorRef.get(parentUri)
+
+          println(logPrefix + "Parent: " + parentUri + " -> " + parentActorRef)
+
+          subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE)
+        })
       }
       case _ => {}
     }

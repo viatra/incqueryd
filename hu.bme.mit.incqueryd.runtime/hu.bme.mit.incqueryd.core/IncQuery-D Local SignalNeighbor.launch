@@ -10,6 +10,6 @@
 <mapEntry key="[debug]" value="scala.application.new"/>
 </mapAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="hu.bme.mit.incqueryd.core.main.IncQueryDMain"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--architectureFile /home/szarnyasg/git/incqueryd/hu.bme.mit.incqueryd.queries/arch/signalNeighbor.arch --httpAddress 127.0.0.1 --local --start"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--architectureFile /home/szarnyasg/git/incqueryd/hu.bme.mit.incqueryd.queries/arch/signalNeighbor.arch --local --start"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="hu.bme.mit.incqueryd.core"/>
 </launchConfiguration>

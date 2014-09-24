@@ -132,16 +132,12 @@ public class ArchitectureInstaller {
 		}
 		
 		final String archFileNameShort = file.getName();
-		final String monitoringIPAddress = configuration.getMonitoringMachine().getIp();
 
 		final List<String> coordinatorCommand = new ArrayList<>();
 		coordinatorCommand.add("ssh");
 		coordinatorCommand.add(coordinatorIP);
 		coordinatorCommand.add(COORDINATOR_DIR + "start-coordinator.sh");
 		coordinatorCommand.add(COORDINATOR_DIR + "arch/" + archFileNameShort);
-		coordinatorCommand.add(coordinatorIP);
-		if (monitoringIPAddress != null && !monitoringIPAddress.isEmpty())
-			coordinatorCommand.add(monitoringIPAddress);
 		
 		UnixUtils.run(coordinatorCommand.toArray(new String[coordinatorCommand.size()]));
 	}

@@ -23,7 +23,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>hu.bme.mit.incqueryd.main.IncQueryDMain</mainClass>
+							<mainClass>hu.bme.mit.incqueryd.core.main.IncQueryDMain</mainClass>
 							<useUniqueVersions>false</useUniqueVersions>
 						</manifest>
 					</archive>

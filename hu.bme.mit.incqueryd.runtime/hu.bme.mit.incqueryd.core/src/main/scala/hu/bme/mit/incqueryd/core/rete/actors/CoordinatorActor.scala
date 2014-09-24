@@ -123,7 +123,10 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   def fillRecipeToProcess = {
     conf.getMappings.foreach(mapping => {
       mapping.getRoles.foreach(role => role match {
-        case reteRole: ReteRole => recipeToProcess.put(reteRole.getNodeRecipe, mapping.getProcess)
+        case reteRole: ReteRole => {
+          println(reteRole.getNodeRecipe() + ": " + mapping.getProcess())
+          recipeToProcess.put(reteRole.getNodeRecipe, mapping.getProcess)
+        }
       })
     })
   }
@@ -157,12 +160,13 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
 
         var props: Props = null
         if (remoting) {
+          if (verbose) println(logPrefix + "EMF address: " + emfUri)
           val process = recipeToProcess.get(recipeNode)
-          val ipAddress = process.getMachine.getIp
+          val machine = process.getMachine
+          val ipAddress = machine.getIp
           val port = process.getPort
 
           if (verbose) println(logPrefix + "IP address:  " + ipAddress)
-          if (verbose) println(logPrefix + "EMF address: " + emfUri)
 
           props = Props[ReteActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
             IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, port))))
@@ -171,9 +175,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
         }
 
         val actorRef = context.actorOf(props)
-
         configure(actorRef, recipeString, cacheMachineIps)
-
         recipeToActorRef.put(recipeNode, actorRef)
 
         recipeNode match {
@@ -280,7 +282,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
       recipe.getRecipeNodes.foreach(_ match {
         case typeInputRecipe: TypeInputRecipe =>
 
-          val tuples = scala.collection.mutable.Set[Tuple]()
+          val tuples : java.util.Set[Tuple] = new java.util.HashSet
           typeInputRecipe match {
             case binaryInputRecipe: BinaryInputRecipe => {
               val traceInfo = binaryInputRecipe.getTraceInfo
@@ -318,7 +320,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     println(logPrefix + pendingUpdateMessages + " update message(s) pending.")
   }
 
-  def initializeAttribute(databaseDriver: FourStoreDriverUnique, recipe: BinaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
+  def initializeAttribute(databaseDriver: FourStoreDriverUnique, recipe: BinaryInputRecipe, tuples: java.util.Set[Tuple]) = {
     val typeName = RDFHelper.brackets(recipe.getTypeName)
     val attributes = databaseDriver.collectVerticesWithProperty(typeName) 
 
@@ -332,7 +334,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     })
   }
 
-  def initializeEdge(databaseDriver: FourStoreDriverUnique, recipe: BinaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
+  def initializeEdge(databaseDriver: FourStoreDriverUnique, recipe: BinaryInputRecipe, tuples: java.util.Set[Tuple]) = {
     val typeName = RDFHelper.brackets(recipe.getTypeName)
     val edges = databaseDriver.collectEdges(typeName)
     
@@ -341,7 +343,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     })
   }
 
-  def initializeVertex(databaseDriver: FourStoreDriverUnique, recipe: UnaryInputRecipe, tuples: scala.collection.mutable.Set[Tuple]) = {
+  def initializeVertex(databaseDriver: FourStoreDriverUnique, recipe: UnaryInputRecipe, tuples: java.util.Set[Tuple]) = {
     val vertices = databaseDriver.collectVertices(RDFHelper.brackets(recipe.getTypeName))
     vertices.foreach(vertex => tuples += new Tuple(vertex))
   }
