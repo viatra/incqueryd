@@ -1,9 +1,9 @@
 package hu.bme.mit.incqueryd.tooling.ide.util;
 
 import hu.bme.mit.incqueryd.arch.util.ArchUtil;
-import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.Container;
-import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.ContainerTemplate;
-import hu.bme.mit.incqueryd.csp.algorithm.data.xtend.Node;
+import hu.bme.mit.incqueryd.csp.algorithm.data.Container;
+import hu.bme.mit.incqueryd.csp.algorithm.data.ContainerTemplate;
+import hu.bme.mit.incqueryd.csp.algorithm.data.Node;
 import infrastructure.InfrastructureFactory;
 import infrastructure.Machine;
 import infrastructure.Process;
