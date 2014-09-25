@@ -170,13 +170,13 @@ public class ReteAllocator {
 		for (ReteNodeRecipe reteNodeRecipe : recipeNodes) {
 			if(reteNodeRecipe instanceof BetaRecipe) {
 				BetaRecipe betaRecipe = (BetaRecipe) reteNodeRecipe;
-				long[] processesOfParents = getProcessesOfParents(betaRecipe.getLeftParent().getParent(),betaRecipe.getRightParent().getParent());
+				long[] processesOfParents = getProcessesOfParents(betaRecipe, betaRecipe.getLeftParent().getParent(),betaRecipe.getRightParent().getParent());
 				for (long l : processesOfParents) {
 					System.out.println(l);
 				}
 			}
 			else if(reteNodeRecipe instanceof AlphaRecipe) {
-				long[] processesOfParents = getProcessesOfParents(((AlphaRecipe) reteNodeRecipe).getParent());
+				long[] processesOfParents = getProcessesOfParents(reteNodeRecipe, ((AlphaRecipe) reteNodeRecipe).getParent());
 				for (long l : processesOfParents) {
 					System.out.println(l);
 				}
@@ -185,18 +185,32 @@ public class ReteAllocator {
 		
 	}
 	
-	private long[] getProcessesOfParents(ReteNodeRecipe... parents) {
+	private long[] getProcessesOfParents(ReteNodeRecipe child, ReteNodeRecipe... parents) {
 		long[] parentProcessIds = new long[parents.length];
+		
+		long childProcess = 0;
+		String uriOfChild = ArchUtil.getJsonEObjectUri(child);
 		
 		int i = 0;
 		
 		Set<Long> processSet = processes.keySet();
+		
+		for (Long process : processSet) {
+			List<ReteNodeRecipe> nodesInProcess = processes.get(process);
+			for (ReteNodeRecipe reteNodeRecipe : nodesInProcess) {
+				if(uriOfChild.equals(ArchUtil.getJsonEObjectUri(reteNodeRecipe))) {
+					childProcess = process.longValue();
+					break;
+				}
+			}
+		}
+		
 		for (ReteNodeRecipe parent : parents) {
 			String uriOfParent = ArchUtil.getJsonEObjectUri(parent);
 			for (Long process : processSet) {
 				List<ReteNodeRecipe> nodesInProcess = processes.get(process);
 				for (ReteNodeRecipe reteNodeRecipe : nodesInProcess) {
-					if(uriOfParent.equals(ArchUtil.getJsonEObjectUri(reteNodeRecipe))) {
+					if(uriOfParent.equals(ArchUtil.getJsonEObjectUri(reteNodeRecipe)) && process != childProcess) {
 						parentProcessIds[i] = process.longValue();
 						i++;
 						break;
@@ -205,7 +219,23 @@ public class ReteAllocator {
 			}
 		}
 		
-		return parentProcessIds;
+		int notNullElements = 0;
+		
+		for (long id : parentProcessIds) {
+			if(id != 0)notNullElements++;
+		}
+		
+		long[] processes = new long[notNullElements];
+		
+		int j = 0;
+		for (long id : parentProcessIds) {
+			if(id != 0) {
+				processes[j] = id;
+				j++;
+			}
+		}
+		
+		return processes;
 	}
 	
 	private void processInventory (String inventoryFile) throws IOException {
