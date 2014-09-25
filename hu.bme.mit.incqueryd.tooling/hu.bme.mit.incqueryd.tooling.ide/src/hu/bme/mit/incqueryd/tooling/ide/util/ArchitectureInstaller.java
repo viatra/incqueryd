@@ -37,17 +37,17 @@ public class ArchitectureInstaller {
 		
 		// Call the monitoring install script as well
 		// which installs the monitoring components to the machines as well
-		final List<String> monitroingInstallCommand = new ArrayList<>();
-		monitroingInstallCommand.add(homeDirectory + "/git/incqueryd-monitoring/scripts/install.sh");
+		final List<String> monitoringInstallCommand = new ArrayList<>();
+		monitoringInstallCommand.add(homeDirectory + "/git/incqueryd-monitoring/scripts/install.sh");
 		
-		if (light) monitroingInstallCommand.add("--light"); // Light goes for monitoring too
+		if (light) monitoringInstallCommand.add("--light"); // Light goes for monitoring too
 		
 		for (final Machine machine : configuration.getMachines()) {
-			monitroingInstallCommand.add(machine.getIp());
+			monitoringInstallCommand.add(machine.getIp());
 		}
 		
-		UnixUtils.run(monitroingInstallCommand.toArray(new String[monitroingInstallCommand.size()]));
-		System.out.println(monitroingInstallCommand);
+		UnixUtils.run(monitoringInstallCommand.toArray(new String[monitoringInstallCommand.size()]));
+		System.out.println(monitoringInstallCommand);
 	}
 	
 	public static void deployArchitecture(final IFile file) throws IOException {
