@@ -1,6 +1,8 @@
 package hu.bme.mit.incqueryd.tooling.ide.util;
 
 import hu.bme.mit.incqueryd.arch.util.ArchUtil;
+import hu.bme.mit.incqueryd.csp.algorithm.AllocationSolver;
+import hu.bme.mit.incqueryd.csp.algorithm.data.Allocation;
 import hu.bme.mit.incqueryd.csp.algorithm.data.Container;
 import hu.bme.mit.incqueryd.csp.algorithm.data.ContainerTemplate;
 import hu.bme.mit.incqueryd.csp.algorithm.data.Node;
@@ -51,15 +53,15 @@ public class ReteAllocator {
 	private int[][] edges;
 	private final List<Node> nodes = new ArrayList<>();
 	
-	private final Map<Long, List<ReteNodeRecipe>> processes = new HashMap<>();
+	private final Map<Integer, List<ReteNodeRecipe>> processes = new HashMap<>();
 	
-	private boolean optimizeForCost;
+	private boolean optimizeForCommunication;
 	private String recipeFile;
 	private String inventoryFile;
 	 private String outputFile;
 	
 	public ReteAllocator(boolean optimizeForCost, String recipeFile, String inventoryFile, String outputFile) {
-		this.optimizeForCost = optimizeForCost;
+		this.optimizeForCommunication = optimizeForCost;
 		this.recipeFile = recipeFile;
 		this.inventoryFile = inventoryFile;
 		this.outputFile = outputFile;
@@ -73,6 +75,8 @@ public class ReteAllocator {
 		createProcesses(recipe);
 		
 		createNodesAndEdges(recipe);
+		
+		optimizedAllocation();
 	}
 
 	private void createProcesses(ReteRecipe recipe) {
@@ -87,7 +91,7 @@ public class ReteAllocator {
 		
 		Set<ReteNodeRecipe> recipesToDelete = new HashSet<>();
 		
-		long id_counter = 1;
+		int id_counter = 1;
 		
 		for(int i = 0; i < recipeNodes.size(); i++) {
 			ReteNodeRecipe reteNodeRecipe = recipeNodes.get(i);
@@ -122,7 +126,7 @@ public class ReteAllocator {
 				}
 				
 				String uriOfParent = ArchUtil.getJsonEObjectUri(parent);
-				for (Long jvmID : processes.keySet()) {
+				for (Integer jvmID : processes.keySet()) {
 					// if its parent was in this jvm then add it to the jvm's 1st place
 					if(uriOfParent.equals(ArchUtil.getJsonEObjectUri(processes.get(jvmID).get(0)))) {
 						processes.get(jvmID).add(0, _this);
@@ -140,7 +144,7 @@ public class ReteAllocator {
 		}
 		
 		System.out.println();
-		for (Long jvmID : processes.keySet()) {
+		for (Integer jvmID : processes.keySet()) {
 			System.out.println(jvmID + ". jvm:");
 			for (ReteNodeRecipe node : processes.get(jvmID)) {
 				System.out.println(node.getClass().getSimpleName() + " " + ArchUtil.getJsonEObjectUri(node));
@@ -152,8 +156,8 @@ public class ReteAllocator {
 	
 	private void createNodesAndEdges(ReteRecipe recipe) {
 		
-		Set<Long> processSet = processes.keySet();
-		for (Long process : processSet) {
+		Set<Integer> processSet = processes.keySet();
+		for (Integer process : processSet) {
 			Node node = new Node(process.longValue(), process.toString(), 1000);
 			nodes.add(node);
 		}
@@ -168,50 +172,62 @@ public class ReteAllocator {
 		
 		EList<ReteNodeRecipe> recipeNodes = recipe.getRecipeNodes();
 		for (ReteNodeRecipe reteNodeRecipe : recipeNodes) {
+			int processId = getProcessOfReteNode(reteNodeRecipe);
+			
 			if(reteNodeRecipe instanceof BetaRecipe) {
 				BetaRecipe betaRecipe = (BetaRecipe) reteNodeRecipe;
-				long[] processesOfParents = getProcessesOfParents(betaRecipe, betaRecipe.getLeftParent().getParent(),betaRecipe.getRightParent().getParent());
-				for (long l : processesOfParents) {
-					System.out.println(l);
+				int[] processesOfParents = getProcessesOfParents(betaRecipe, betaRecipe.getLeftParent().getParent(),betaRecipe.getRightParent().getParent());
+				for (int l : processesOfParents) {
+					System.out.println(processId + " <--- " + l);
+					edges[l-1][processId-1] = 100;
 				}
 			}
 			else if(reteNodeRecipe instanceof AlphaRecipe) {
-				long[] processesOfParents = getProcessesOfParents(reteNodeRecipe, ((AlphaRecipe) reteNodeRecipe).getParent());
-				for (long l : processesOfParents) {
-					System.out.println(l);
+				int[] processesOfParents = getProcessesOfParents(reteNodeRecipe, ((AlphaRecipe) reteNodeRecipe).getParent());
+				for (int l : processesOfParents) {
+					System.out.println(processId + " <--- " + l);
+					edges[l-1][processId-1] = 100;
 				}
 			}
+			else if (reteNodeRecipe instanceof MultiParentNodeRecipe) {
+				MultiParentNodeRecipe multiParentNodeRecipe = ((MultiParentNodeRecipe) reteNodeRecipe);
+				EList<ReteNodeRecipe> parents = multiParentNodeRecipe.getParents();
+				ReteNodeRecipe[] parentsArray = parents.toArray(new ReteNodeRecipe[parents.size()]);
+				int[] processesOfParents = getProcessesOfParents(reteNodeRecipe, parentsArray);
+				for (int l : processesOfParents) {
+					System.out.println(processId + " <--- " + l);
+					edges[l-1][processId-1] = 100;
+				}
+			}
+		}
+		
+		for(int i = 0; i < edges.length; i++) {
+			int[] row = edges[i];
+			for(int j = 0; j < row.length; j++) {
+				System.out.print(edges[i][j]+", ");
+			}
+			System.out.println();
 		}
 		
 	}
 	
-	private long[] getProcessesOfParents(ReteNodeRecipe child, ReteNodeRecipe... parents) {
-		long[] parentProcessIds = new long[parents.length];
+	private int[] getProcessesOfParents(ReteNodeRecipe child, ReteNodeRecipe... parents) {
+		int[] parentProcessIds = new int[parents.length];
 		
-		long childProcess = 0;
-		String uriOfChild = ArchUtil.getJsonEObjectUri(child);
+		int childProcess = getProcessOfReteNode(child);
 		
 		int i = 0;
 		
-		Set<Long> processSet = processes.keySet();
+		Set<Integer> processSet = processes.keySet();
 		
-		for (Long process : processSet) {
-			List<ReteNodeRecipe> nodesInProcess = processes.get(process);
-			for (ReteNodeRecipe reteNodeRecipe : nodesInProcess) {
-				if(uriOfChild.equals(ArchUtil.getJsonEObjectUri(reteNodeRecipe))) {
-					childProcess = process.longValue();
-					break;
-				}
-			}
-		}
 		
 		for (ReteNodeRecipe parent : parents) {
 			String uriOfParent = ArchUtil.getJsonEObjectUri(parent);
-			for (Long process : processSet) {
+			for (Integer process : processSet) {
 				List<ReteNodeRecipe> nodesInProcess = processes.get(process);
 				for (ReteNodeRecipe reteNodeRecipe : nodesInProcess) {
 					if(uriOfParent.equals(ArchUtil.getJsonEObjectUri(reteNodeRecipe)) && process != childProcess) {
-						parentProcessIds[i] = process.longValue();
+						parentProcessIds[i] = process.intValue();
 						i++;
 						break;
 					}
@@ -219,16 +235,17 @@ public class ReteAllocator {
 			}
 		}
 		
+		// This last part is for eliminating the same process edges
 		int notNullElements = 0;
 		
-		for (long id : parentProcessIds) {
+		for (int id : parentProcessIds) {
 			if(id != 0)notNullElements++;
 		}
 		
-		long[] processes = new long[notNullElements];
+		int[] processes = new int[notNullElements];
 		
 		int j = 0;
-		for (long id : parentProcessIds) {
+		for (int id : parentProcessIds) {
 			if(id != 0) {
 				processes[j] = id;
 				j++;
@@ -236,6 +253,22 @@ public class ReteAllocator {
 		}
 		
 		return processes;
+	}
+	
+	private int getProcessOfReteNode(ReteNodeRecipe node) {
+		Set<Integer> processSet = processes.keySet();
+		String uriOfNode = ArchUtil.getJsonEObjectUri(node);
+		
+		for (Integer process : processSet) {
+			List<ReteNodeRecipe> nodesInProcess = processes.get(process);
+			for (ReteNodeRecipe reteNodeRecipe : nodesInProcess) {
+				if(uriOfNode.equals(ArchUtil.getJsonEObjectUri(reteNodeRecipe))) {
+					return process.intValue();
+				}
+			}
+		}
+		
+		return 0;
 	}
 	
 	private void processInventory (String inventoryFile) throws IOException {
@@ -290,6 +323,32 @@ public class ReteAllocator {
 		}
 	}
 	
+	private void optimizedAllocation() {
+		boolean useInstances = !containers.isEmpty();
+		
+		if(useInstances) {
+			AllocationSolver solver = new AllocationSolver();
+			Allocation allocation = solver.optimizeWithInstances(containers, nodes, edges, overheads, optimizeForCommunication);
+			
+			if (!solver.canBeAllocated()) {
+				System.err.println("The problem can not be solved with the current resource set!");
+			}
+			System.out.println();
+			System.out.println(allocation);
+			createArch(allocation);
+		} else {
+			AllocationSolver solver = new AllocationSolver();
+			
+			Allocation allocation = solver.optimizeWithTemplates(containerTemplates, nodes, edges, overheads, optimizeForCommunication);
+			System.out.println();
+			System.out.println(allocation);
+			createArch(allocation);
+		}
+	}
+	
+	private void createArch(Allocation allcoation) {
+		
+	}
 	
 	// The NULL allocator, this method is static
 	public static void allocateNull (String recipeFile, String outputFile) throws IOException {

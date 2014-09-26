@@ -48,6 +48,7 @@ public class OptimizationObjectiveFunctionDialog extends TitleAreaDialog {
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, IDialogConstants.OK_ID, "OK", true);
+		createButton(parent, IDialogConstants.CANCEL_ID, "Cancel", true);
 	}
 
 	@Override
