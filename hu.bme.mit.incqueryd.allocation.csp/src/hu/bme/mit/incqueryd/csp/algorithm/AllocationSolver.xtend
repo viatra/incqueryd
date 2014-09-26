@@ -34,7 +34,14 @@ class AllocationSolver {
 	
 	var Allocation optimalAllocation
 	
-	new() {	
+	new() {
+		try{
+			System.loadLibrary("jniortools");
+		}catch(UnsatisfiedLinkError e){
+			System.err.println(e.getMessage());
+			System.out.println("ERROR: Cannot load or-tools native library");
+		}
+		
 		solver = new Solver("AllocationSolver");
 		solver.makeDefaultSolver();
 		
