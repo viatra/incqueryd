@@ -10,6 +10,7 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -38,11 +39,22 @@ public class OptimizedAllocationHandler extends AbstractHandler{
         ofDialog.open();
         boolean forCommunication = ofDialog.forCommunication();
         
-        final String outputFile = file.getProject().getLocation().toString() + "/arch/" + file.getName().replaceFirst("\\." + file.getFileExtension(), "") + "-opt.arch";
+        final String outputFile = file.getProject().getLocation().toString() + "/arch-opt/" + file.getName().replaceFirst("\\." + file.getFileExtension(), "") + ".arch";
 		
         ReteAllocator reteAllocator = new ReteAllocator(forCommunication, recipeFile, inventoryFile, outputFile);
         try {
-			reteAllocator.allocate();
+			boolean success = reteAllocator.allocate();
+			
+			if(success) {
+				MessageDialog dialog = new MessageDialog(activeShell, "Allocation result", null,
+					    "Your arch file is ready in the arch-opt folder!", MessageDialog.INFORMATION, new String[] {"OK"}, 0);
+				dialog.open();
+			}
+			else {
+				MessageDialog dialog = new MessageDialog(activeShell, "Allocation result", null,
+					    "The problem can not be solved with the current resource set!", MessageDialog.ERROR, new String[] {"OK"}, 0);
+				dialog.open();
+			}
 		} catch (IOException e) {
 			
 		}

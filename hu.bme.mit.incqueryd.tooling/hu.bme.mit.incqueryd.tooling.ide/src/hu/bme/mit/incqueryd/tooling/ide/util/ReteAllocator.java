@@ -49,7 +49,6 @@ public class ReteAllocator {
 	private int[][] overheads;
 	private final List<Container> containers = new ArrayList<>();
 	private final List<ContainerTemplate> containerTemplates = new ArrayList<>();
-	
 	private int[][] edges;
 	private final List<Node> nodes = new ArrayList<>();
 	
@@ -58,7 +57,9 @@ public class ReteAllocator {
 	private boolean optimizeForCommunication;
 	private String recipeFile;
 	private String inventoryFile;
-	 private String outputFile;
+	private String outputFile;
+	
+	private Inventory inventory;
 	
 	public ReteAllocator(boolean optimizeForCost, String recipeFile, String inventoryFile, String outputFile) {
 		this.optimizeForCommunication = optimizeForCost;
@@ -67,7 +68,7 @@ public class ReteAllocator {
 		this.outputFile = outputFile;
 	}
 	
-	public void allocate () throws IOException {
+	public boolean allocate () throws IOException {
 		processInventory(inventoryFile);
 		
 		ReteRecipe recipe = ArchUtil.loadRecipe(recipeFile);
@@ -76,7 +77,9 @@ public class ReteAllocator {
 		
 		createNodesAndEdges(recipe);
 		
-		optimizedAllocation();
+		boolean optimizedAllocation = optimizedAllocation();
+		
+		return optimizedAllocation;
 	}
 
 	private void createProcesses(ReteRecipe recipe) {
@@ -158,7 +161,7 @@ public class ReteAllocator {
 		
 		Set<Integer> processSet = processes.keySet();
 		for (Integer process : processSet) {
-			Node node = new Node(process.longValue(), process.toString(), 1000);
+			Node node = new Node(process.intValue(), process.toString(), 1000);
 			nodes.add(node);
 		}
 		
@@ -272,7 +275,7 @@ public class ReteAllocator {
 	}
 	
 	private void processInventory (String inventoryFile) throws IOException {
-		Inventory inventory = ArchUtil.loadInventory(inventoryFile);
+		inventory = ArchUtil.loadInventory(inventoryFile);
 		
 		MachineSet machineSet = inventory.getMachineSet();
 		
@@ -323,7 +326,7 @@ public class ReteAllocator {
 		}
 	}
 	
-	private void optimizedAllocation() {
+	private boolean optimizedAllocation() throws IOException {
 		boolean useInstances = !containers.isEmpty();
 		
 		if(useInstances) {
@@ -331,22 +334,75 @@ public class ReteAllocator {
 			Allocation allocation = solver.optimizeWithInstances(containers, nodes, edges, overheads, optimizeForCommunication);
 			
 			if (!solver.canBeAllocated()) {
-				System.err.println("The problem can not be solved with the current resource set!");
+				return false;
 			}
 			System.out.println();
 			System.out.println(allocation);
 			createArch(allocation);
 		} else {
 			AllocationSolver solver = new AllocationSolver();
-			
 			Allocation allocation = solver.optimizeWithTemplates(containerTemplates, nodes, edges, overheads, optimizeForCommunication);
+			
+			if (!solver.canBeAllocated()) {
+				return false;
+			}
 			System.out.println();
 			System.out.println(allocation);
 			createArch(allocation);
 		}
+		
+		return true;
 	}
 	
-	private void createArch(Allocation allcoation) {
+	private void createArch(Allocation allocation) throws IOException {
+		ReteRecipe recipe = ArchUtil.loadRecipe(recipeFile);
+		
+		final Configuration configuration = ArchFactory.eINSTANCE.createConfiguration();
+		configuration.setConnectionString(inventory.getConnectionString());
+		configuration.getRecipes().add(recipe);
+		
+		Map<String, List<Node>> allocations = allocation.getAllocations();
+		Set<String> machines = allocations.keySet();
+		int port_counter = 2552;
+		for (String ip : machines) {
+			final Machine machine = InfrastructureFactory.eINSTANCE.createMachine();
+			machine.setIp(ip);
+			machine.setName(ip);
+			
+			configuration.getMachines().add(machine);
+			
+			List<Node> nodesOnMachines = allocations.get(ip);
+			for (Node node : nodesOnMachines) {
+				final Process process = InfrastructureFactory.eINSTANCE.createProcess();
+				process.setPort(port_counter);
+				port_counter++;
+				
+				machine.getProcesses().add(process);
+				
+				InfrastructureMapping infrastructureMapping = ArchFactory.eINSTANCE.createInfrastructureMapping();
+				infrastructureMapping.setProcess(process);
+				
+				List<ReteNodeRecipe> reteNodesInProcess = processes.get(node.getId());
+				
+				for (ReteNodeRecipe reteNodeRecipe : reteNodesInProcess) {
+					ReteRole reteRole = ArchFactory.eINSTANCE.createReteRole();
+					reteRole.setNodeRecipe(reteNodeRecipe);
+					infrastructureMapping.getRoles().add(reteRole);
+				}
+				
+				configuration.getMappings().add(infrastructureMapping);
+			}
+		}
+		
+		ResourceSet resSet = new ResourceSetImpl();
+		Resource resource = resSet.createResource(URI.createFileURI(outputFile));
+		resource.getContents().add(configuration);
+		
+		try {
+		      resource.save(Collections.EMPTY_MAP);
+		} catch (IOException e) {
+			
+		}
 		
 	}
 	
