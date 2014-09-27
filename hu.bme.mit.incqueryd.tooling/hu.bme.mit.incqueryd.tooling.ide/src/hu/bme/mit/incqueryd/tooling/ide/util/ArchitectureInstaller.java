@@ -16,6 +16,7 @@ public class ArchitectureInstaller {
 	public static final String INSTALL_DIR = "~/incqueryd/";
 	public static final String COORDINATOR_DIR = "~/incqueryd/coordinator/";
 	public static final String OSAGENT_DIR = "~/incqueryd/monitoring/osagent/";
+	public static final String MONSERVER_DIR = "~/incqueryd/monitoring/server/";
 	public static final String AKKA_VERSION = "2.1.4";
 
 	public static void installArchitecture(final IFile file, final boolean light) throws IOException {
@@ -42,6 +43,8 @@ public class ArchitectureInstaller {
 		
 		if (light) monitoringInstallCommand.add("--light"); // Light goes for monitoring too
 		
+		monitoringInstallCommand.add(configuration.getMonitoringMachine().getIp()); // The IP of the monitoring server
+		
 		for (final Machine machine : configuration.getMachines()) {
 			monitoringInstallCommand.add(machine.getIp());
 		}
@@ -66,6 +69,8 @@ public class ArchitectureInstaller {
 			}
 		}
 		deployCoordinator(file, architectureFile, configuration);
+		
+		deployMonitoringServer(configuration.getMonitoringMachine());
 	}
 
 	protected static void deployMachine(final Machine machine) throws IOException {
@@ -106,6 +111,16 @@ public class ArchitectureInstaller {
 		osagentStartCommand.add(machine.getIp());
 		osagentStartCommand.add(OSAGENT_DIR + "start.sh");
 		osagentStartCommand.add(monitoringServerIP);
+		
+		UnixUtils.run(osagentStartCommand.toArray(new String[osagentStartCommand.size()]));
+	}
+	
+	private static void deployMonitoringServer(final Machine monitoringMachine) throws IOException {
+		// Start the OS monitoring agent for the host
+		final List<String> osagentStartCommand = new ArrayList<>();
+		osagentStartCommand.add("ssh");
+		osagentStartCommand.add(monitoringMachine.getIp());
+		osagentStartCommand.add(MONSERVER_DIR + "start-server.sh");
 		
 		UnixUtils.run(osagentStartCommand.toArray(new String[osagentStartCommand.size()]));
 	}
@@ -152,6 +167,7 @@ public class ArchitectureInstaller {
 		}
 
 		destroyCoordinator(configuration.getCoordinatorMachine());	
+		destroyMonitoringServer(configuration.getMonitoringMachine());
 	}
 
 	private static void destroyCoordinator(final Machine coordinatorMachine) throws IOException {
@@ -159,6 +175,16 @@ public class ArchitectureInstaller {
 		startCommand.add("ssh");
 		startCommand.add(coordinatorMachine.getIp());
 		startCommand.add("pkill -f incqueryd.core");
+		
+		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
+		
+	}
+	
+	private static void destroyMonitoringServer(final Machine monitoringMachine) throws IOException {
+		final List<String> startCommand = new ArrayList<>();
+		startCommand.add("ssh");
+		startCommand.add(monitoringMachine.getIp());
+		startCommand.add("pkill -f dw-server");
 		
 		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
 		
