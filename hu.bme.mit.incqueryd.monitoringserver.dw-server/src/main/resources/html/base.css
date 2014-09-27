@@ -94,20 +94,20 @@ h1 {
 }
 
 #graph-container {
-    width:49%;
+    width:33%;
     float:left;
     background-color:#1a1a1a;
     color:#ccc;
 }
 
 #graph-container-rete {
-    width:49%;
+    width:66%;
     overflow: auto;
     background-repeat:no-repeat;
     border-bottom:1px solid #ddd;
     float:right;
     border-right:1px solid #ddd;
-    margin-left:51%;
+    margin-left:34%;
     background-color:#1a1a1a;
     color:#ccc;
 }
