@@ -9,6 +9,9 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 
 public class NullAllocationHandler extends AbstractHandler {
 
@@ -22,6 +25,11 @@ public class NullAllocationHandler extends AbstractHandler {
 		} catch (IOException e) {
 			
 		}
+		
+		Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		MessageDialog dialog = new MessageDialog(activeShell, "Allocation result", null,
+			    "Your arch file is ready in the arch-null folder!", MessageDialog.INFORMATION, new String[] {"OK"}, 0);
+		dialog.open();
 
 		return null;
 	}
