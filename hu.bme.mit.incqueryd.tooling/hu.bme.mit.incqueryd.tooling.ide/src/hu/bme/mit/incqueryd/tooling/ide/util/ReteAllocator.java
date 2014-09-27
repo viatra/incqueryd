@@ -364,12 +364,18 @@ public class ReteAllocator {
 		Map<String, List<Node>> allocations = allocation.getAllocations();
 		Set<String> machines = allocations.keySet();
 		int port_counter = 2552;
+		boolean firstMachine = true; // This will have the coordinator and the monitoring server
 		for (String ip : machines) {
 			final Machine machine = InfrastructureFactory.eINSTANCE.createMachine();
 			machine.setIp(ip);
 			machine.setName(ip);
 			
 			configuration.getMachines().add(machine);
+			if(firstMachine) {
+				configuration.setCoordinatorMachine(machine);
+				configuration.setMonitoringMachine(machine);
+				firstMachine = false;
+			}
 			
 			List<Node> nodesOnMachines = allocations.get(ip);
 			for (Node node : nodesOnMachines) {
