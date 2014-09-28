@@ -10,6 +10,7 @@ class Machine extends ElementWithTraceInfo {
 
 class Process {
 	int port
+	int memory
 	
 	container Machine machine opposite processes
 }

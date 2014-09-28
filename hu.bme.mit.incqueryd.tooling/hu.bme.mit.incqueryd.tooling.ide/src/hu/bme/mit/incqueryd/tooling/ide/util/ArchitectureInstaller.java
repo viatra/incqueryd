@@ -90,17 +90,23 @@ public class ArchitectureInstaller {
 
 		UnixUtils.run(command.toArray(new String[command.size()]));
 
-		final List<String> startCommand = new ArrayList<>();
-		startCommand.add("ssh");
-		startCommand.add(machine.getIp());
-		startCommand.add(INSTALL_DIR + "start-akka.sh");
+		
 
 		for (final infrastructure.Process process : machine.getProcesses()) {
+			final List<String> startCommand = new ArrayList<>();
+			startCommand.add("ssh");
+			startCommand.add(machine.getIp());
+			startCommand.add(INSTALL_DIR + "start-akka.sh");
+			
 			final int port = process.getPort();
 			startCommand.add(Integer.toString(port));
+			
+			final int memory = process.getMemory();
+			startCommand.add(Integer.toString(memory));
+			
+			UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
 		}
 		
-		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
 		
 	}
 	

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<inventory:Inventory xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:inventory="http://incquery.net/inventory">
+<inventory:Inventory xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:inventory="http://incquery.net/inventory" connectionString="fourstore://trainbenchmark_cluster">
   <machineSet xsi:type="inventory:InstanceSet">
     <machineInstances identifier="1" cost="5" memorySize="4000" CPUs="2" ip="10.0.0.1">
       <overheads>1</overheads>

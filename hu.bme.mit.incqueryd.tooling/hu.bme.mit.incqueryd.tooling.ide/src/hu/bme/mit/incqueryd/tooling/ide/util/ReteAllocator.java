@@ -381,6 +381,7 @@ public class ReteAllocator {
 			for (Node node : nodesOnMachines) {
 				final Process process = InfrastructureFactory.eINSTANCE.createProcess();
 				process.setPort(port_counter);
+				process.setMemory(Math.max(256,node.getSize()));
 				port_counter++;
 				
 				machine.getProcesses().add(process);
@@ -425,6 +426,7 @@ public class ReteAllocator {
 		
 		final Process process = InfrastructureFactory.eINSTANCE.createProcess();
 		process.setPort(2552);
+		process.setMemory(2048);
 		
 		machine.getProcesses().add(process);
 		
