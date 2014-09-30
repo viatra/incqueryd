@@ -18,6 +18,7 @@ import java.util.List;
 import org.apache.commons.lang.NotImplementedException;
 import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.ConstantRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.EqualityFilterRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.InequalityFilterRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
@@ -42,20 +43,22 @@ public class ReteNodeFactory {
 
 		if (recipe instanceof AntiJoinRecipe) {
 			return new AntiJoinNode((AntiJoinRecipe) recipe, cacheMachineIps);
-		} else if (recipe instanceof JoinRecipe) {
-			return new JoinNode((JoinRecipe) recipe, cacheMachineIps);
+		} else if (recipe instanceof CheckRecipe) {
+			return new CheckNode((CheckRecipe) recipe);
+		} else if (recipe instanceof ConstantRecipe) {
+			return new ConstantNode((ConstantRecipe) recipe);
 		} else if (recipe instanceof EqualityFilterRecipe) {
 			return new EqualityNode((EqualityFilterRecipe) recipe);
+		} else if (recipe instanceof JoinRecipe) {
+			return new JoinNode((JoinRecipe) recipe, cacheMachineIps);
 		} else if (recipe instanceof InequalityFilterRecipe) {
 			return new InequalityNode((InequalityFilterRecipe) recipe);
+		} else if (recipe instanceof ProductionRecipe) {
+			return new ProductionNode((ProductionRecipe) recipe);
 		} else if (recipe instanceof TrimmerRecipe) {
 			return new TrimmerNode((TrimmerRecipe) recipe);
 		} else if (recipe instanceof TypeInputRecipe) {
 			return new InputNode((TypeInputRecipe) recipe);
-		} else if (recipe instanceof ProductionRecipe) {
-			return new ProductionNode((ProductionRecipe) recipe);
-		} else if (recipe instanceof CheckRecipe) {
-			return new CheckNode((CheckRecipe) recipe);
 		} else if (recipe instanceof UniquenessEnforcerRecipe) {
 			return new UniquenessEnforcerNode((UniquenessEnforcerRecipe) recipe);
 		} else {
