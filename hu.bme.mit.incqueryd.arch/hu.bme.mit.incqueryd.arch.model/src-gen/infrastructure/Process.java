@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link infrastructure.Process#getPort <em>Port</em>}</li>
+ *   <li>{@link infrastructure.Process#getMemory <em>Memory</em>}</li>
  *   <li>{@link infrastructure.Process#getMachine <em>Machine</em>}</li>
  * </ul>
  * </p>
@@ -47,6 +48,32 @@ public interface Process extends EObject {
 	 * @generated
 	 */
 	void setPort(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Memory</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Memory</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Memory</em>' attribute.
+	 * @see #setMemory(int)
+	 * @see infrastructure.InfrastructurePackage#getProcess_Memory()
+	 * @model unique="false"
+	 * @generated
+	 */
+	int getMemory();
+
+	/**
+	 * Sets the value of the '{@link infrastructure.Process#getMemory <em>Memory</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Memory</em>' attribute.
+	 * @see #getMemory()
+	 * @generated
+	 */
+	void setMemory(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Machine</b></em>' container reference.

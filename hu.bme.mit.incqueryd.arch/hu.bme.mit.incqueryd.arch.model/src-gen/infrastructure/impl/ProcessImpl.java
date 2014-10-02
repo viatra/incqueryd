@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * The following features are implemented:
  * <ul>
  *   <li>{@link infrastructure.impl.ProcessImpl#getPort <em>Port</em>}</li>
+ *   <li>{@link infrastructure.impl.ProcessImpl#getMemory <em>Memory</em>}</li>
  *   <li>{@link infrastructure.impl.ProcessImpl#getMachine <em>Machine</em>}</li>
  * </ul>
  * </p>
@@ -50,6 +51,26 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 	 * @ordered
 	 */
 	protected int port = PORT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getMemory() <em>Memory</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMemory()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int MEMORY_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getMemory() <em>Memory</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMemory()
+	 * @generated
+	 * @ordered
+	 */
+	protected int memory = MEMORY_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,6 +110,27 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 		port = newPort;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, InfrastructurePackage.PROCESS__PORT, oldPort, port));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getMemory() {
+		return memory;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMemory(int newMemory) {
+		int oldMemory = memory;
+		memory = newMemory;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, InfrastructurePackage.PROCESS__MEMORY, oldMemory, memory));
 	}
 
 	/**
@@ -196,6 +238,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 		switch (featureID) {
 			case InfrastructurePackage.PROCESS__PORT:
 				return getPort();
+			case InfrastructurePackage.PROCESS__MEMORY:
+				return getMemory();
 			case InfrastructurePackage.PROCESS__MACHINE:
 				if (resolve) return getMachine();
 				return basicGetMachine();
@@ -213,6 +257,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 		switch (featureID) {
 			case InfrastructurePackage.PROCESS__PORT:
 				setPort((Integer)newValue);
+				return;
+			case InfrastructurePackage.PROCESS__MEMORY:
+				setMemory((Integer)newValue);
 				return;
 			case InfrastructurePackage.PROCESS__MACHINE:
 				setMachine((Machine)newValue);
@@ -232,6 +279,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 			case InfrastructurePackage.PROCESS__PORT:
 				setPort(PORT_EDEFAULT);
 				return;
+			case InfrastructurePackage.PROCESS__MEMORY:
+				setMemory(MEMORY_EDEFAULT);
+				return;
 			case InfrastructurePackage.PROCESS__MACHINE:
 				setMachine((Machine)null);
 				return;
@@ -249,6 +299,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 		switch (featureID) {
 			case InfrastructurePackage.PROCESS__PORT:
 				return port != PORT_EDEFAULT;
+			case InfrastructurePackage.PROCESS__MEMORY:
+				return memory != MEMORY_EDEFAULT;
 			case InfrastructurePackage.PROCESS__MACHINE:
 				return basicGetMachine() != null;
 		}
@@ -267,6 +319,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (port: ");
 		result.append(port);
+		result.append(", memory: ");
+		result.append(memory);
 		result.append(')');
 		return result.toString();
 	}

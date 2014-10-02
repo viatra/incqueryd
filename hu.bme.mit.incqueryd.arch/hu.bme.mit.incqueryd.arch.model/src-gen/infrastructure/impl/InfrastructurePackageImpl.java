@@ -166,8 +166,17 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getProcess_Memory() {
+		return (EAttribute)processEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getProcess_Machine() {
-		return (EReference)processEClass.getEStructuralFeatures().get(1);
+		return (EReference)processEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -223,6 +232,7 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
 
 		processEClass = createEClass(PROCESS);
 		createEAttribute(processEClass, PROCESS__PORT);
+		createEAttribute(processEClass, PROCESS__MEMORY);
 		createEReference(processEClass, PROCESS__MACHINE);
 
 		elementWithTraceInfoEClass = createEClass(ELEMENT_WITH_TRACE_INFO);
@@ -270,6 +280,7 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
 
 		initEClass(processEClass, infrastructure.Process.class, "Process", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getProcess_Port(), theEcorePackage.getEInt(), "port", null, 0, 1, infrastructure.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProcess_Memory(), theEcorePackage.getEInt(), "memory", null, 0, 1, infrastructure.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcess_Machine(), this.getMachine(), this.getMachine_Processes(), "machine", null, 0, 1, infrastructure.Process.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(elementWithTraceInfoEClass, ElementWithTraceInfo.class, "ElementWithTraceInfo", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
