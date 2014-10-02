@@ -35,12 +35,16 @@ public class UpdateMessage extends ReteCommunicationMessage {
 		this.nodeSlot = nodeSlot;
 	}
 
-	public ActorRef getTarget() {
-		return target;
+	public UpdateMessage(final ChangeSet changeSet, final ReteNodeSlot nodeSlot, final Stack<ActorRef> route, final ActorRef target) {
+		super(route);
+		
+		this.changeSet = changeSet;
+		this.nodeSlot = nodeSlot;
+		this.target = target;
 	}
 	
-	public void setTarget(ActorRef target) {
-		this.target = target;
+	public ActorRef getTarget() {
+		return target;
 	}
 	
 	public ChangeSet getChangeSet() {

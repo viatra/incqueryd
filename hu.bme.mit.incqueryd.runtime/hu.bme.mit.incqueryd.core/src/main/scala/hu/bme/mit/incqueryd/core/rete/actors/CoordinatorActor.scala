@@ -67,6 +67,8 @@ import arch.Configuration
 import hu.bme.mit.incqueryd.arch.util.ArchUtil
 import hu.bme.mit.bigmodel.rdf.RDFHelper
 import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
+import java.util.concurrent.ExecutionException
+import java.io.IOException
 
 class CoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor {
 
@@ -192,6 +194,10 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
 
         if (verbose) println(logPrefix + "Actor configured.")
       }))
+      
+    if (productionActorRef == null) {
+      throw new IOException("Production node actor is unknown.");
+    }
 
     if (verbose) println(logPrefix + "All actors deployed and configured.")
     if (verbose) println(logPrefix + "Indexers: " + indexers)
