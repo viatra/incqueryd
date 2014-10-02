@@ -32,7 +32,7 @@ public class StartArchitectureHandler extends AbstractHandler {
 			String response = HttpClient.getURL("http://" + coordinatorIp +":9090/start");
 			System.out.println(response);
 		} catch (IOException e) {
-			throw new ExecutionException("Coordinator actor hasn't responded.", e);
+			throw new ExecutionException("Coordinator actor did not respond.", e);
 		}
 		
 		return null;

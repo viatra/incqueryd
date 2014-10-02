@@ -49,7 +49,7 @@ class ReteActor extends Actor {
   var logPrefix = "[ReteActor       ] "
 
   // throttle termination protocol
-  val throttle = true
+  val throttle = false
     
   var recipe: ReteNodeRecipe = null
   var reteNode: ReteNode = null
