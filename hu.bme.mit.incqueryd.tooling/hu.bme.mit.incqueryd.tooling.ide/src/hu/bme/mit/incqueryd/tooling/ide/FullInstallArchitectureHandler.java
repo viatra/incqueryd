@@ -1,6 +1,6 @@
 package hu.bme.mit.incqueryd.tooling.ide;
 
-import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureInstaller;
+import hu.bme.mit.incqueryd.arch.install.ArchitectureInstaller;
 import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ public class FullInstallArchitectureHandler extends AbstractHandler {
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		final IFile file = ArchitectureSelector.getSelection(event);
 		try {
-			ArchitectureInstaller.installArchitecture(file, false);
+			ArchitectureInstaller.installArchitecture(file.getLocation().toString(), false);
 		} catch (final IOException e) {
 			throw new ExecutionException("Cannot process architecture file.", e);
 		}
