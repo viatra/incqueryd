@@ -22,7 +22,7 @@ done
 
 cd $INSTALL_DIR
 
-rm akka*.err akka*.out $INSTALL_DIR 2> /dev/null
+rm akka-$port.err akka-$port.out $INSTALL_DIR 2> /dev/null
 
 cd akka-$AKKA_VERSION
 
