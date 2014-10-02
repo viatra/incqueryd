@@ -14,12 +14,6 @@ export JAVA_OPTS="-Xms256m -Xmx$memory$m"
 export INSTALL_DIR=~/incqueryd
 export AKKA_VERSION=2.1.4
 
-while [[ ! -z `ps auxw | grep java | grep akka` ]]; do
-  pkill -f akka
-  echo Waiting for Akka to finish.
-  sleep 1
-done
-
 cd $INSTALL_DIR
 
 rm akka-$port.err akka-$port.out $INSTALL_DIR 2> /dev/null
