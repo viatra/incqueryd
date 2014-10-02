@@ -66,6 +66,7 @@ public class ArchitectureInstaller {
 			if (configuration.getMonitoringMachine() != null) {
 				deployOSAgent(machine, configuration.getMonitoringMachine().getIp());
 			}
+			
 		}
 		deployCoordinator(architectureFile, configuration);
 		
@@ -103,6 +104,7 @@ public class ArchitectureInstaller {
 			startCommand.add(Integer.toString(memory));
 			
 			UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
+			
 		}
 		
 		
