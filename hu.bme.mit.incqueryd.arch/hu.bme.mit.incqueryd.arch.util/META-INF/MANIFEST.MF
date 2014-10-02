@@ -6,5 +6,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: hu.bme.mit.incqueryd.arch.model,
  hu.bme.mit.incqueryd.arch.inventory.model,
  org.eclipse.emf.ecore.xmi;bundle-version="2.10.0"
-Export-Package: hu.bme.mit.incqueryd.arch.util
+Export-Package: hu.bme.mit.incqueryd.arch.install,
+ hu.bme.mit.incqueryd.arch.util
 
