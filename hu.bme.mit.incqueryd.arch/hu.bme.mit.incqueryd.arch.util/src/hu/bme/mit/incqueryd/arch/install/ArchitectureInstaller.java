@@ -57,6 +57,8 @@ public class ArchitectureInstaller {
 
 		final String connectionString = configuration.getConnectionString();
 		System.out.println("Connection string: " + connectionString);
+		
+		deployMonitoringServer(configuration.getMonitoringMachine());
 
 		for (final Machine machine : configuration.getMachines()) {
 			deployMachine(machine);
@@ -67,7 +69,6 @@ public class ArchitectureInstaller {
 		}
 		deployCoordinator(architectureFile, configuration);
 		
-		deployMonitoringServer(configuration.getMonitoringMachine());
 	}
 
 	protected static void deployMachine(final Machine machine) throws IOException {
