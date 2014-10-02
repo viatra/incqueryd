@@ -177,13 +177,22 @@ public interface InfrastructurePackage extends EPackage {
 	int PROCESS__PORT = 0;
 
 	/**
+	 * The feature id for the '<em><b>Memory</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS__MEMORY = 1;
+
+	/**
 	 * The feature id for the '<em><b>Machine</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__MACHINE = 1;
+	int PROCESS__MACHINE = 2;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.
@@ -192,7 +201,7 @@ public interface InfrastructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_FEATURE_COUNT = 2;
+	int PROCESS_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -267,6 +276,17 @@ public interface InfrastructurePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getProcess_Port();
+
+	/**
+	 * Returns the meta object for the attribute '{@link infrastructure.Process#getMemory <em>Memory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Memory</em>'.
+	 * @see infrastructure.Process#getMemory()
+	 * @see #getProcess()
+	 * @generated
+	 */
+	EAttribute getProcess_Memory();
 
 	/**
 	 * Returns the meta object for the container reference '{@link infrastructure.Process#getMachine <em>Machine</em>}'.
@@ -374,6 +394,14 @@ public interface InfrastructurePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROCESS__PORT = eINSTANCE.getProcess_Port();
+
+		/**
+		 * The meta object literal for the '<em><b>Memory</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROCESS__MEMORY = eINSTANCE.getProcess_Memory();
 
 		/**
 		 * The meta object literal for the '<em><b>Machine</b></em>' container reference feature.
