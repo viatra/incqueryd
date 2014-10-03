@@ -14,11 +14,10 @@ Bundle-NativeCode:
  /native/windows/x86_64/jniortools_64.dll;
  /native/windows/x86/jniortools_32.dll
 Require-Bundle: org.junit;bundle-version="4.11.0",
- org.eclipse.xtend.lib,
  com.google.guava,
- org.eclipse.xtext.xbase.lib,
- org.eclipse.ui.workbench,
  org.eclipse.core.runtime;bundle-version="3.9.100",
+ org.eclipse.ui.workbench,
+ org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.standalone;bundle-version="2.6.2"
 Export-Package: hu.bme.mit.incqueryd.csp.algorithm,
  hu.bme.mit.incqueryd.csp.algorithm.data,
