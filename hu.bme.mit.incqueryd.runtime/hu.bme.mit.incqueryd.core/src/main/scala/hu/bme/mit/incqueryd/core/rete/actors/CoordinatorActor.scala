@@ -84,7 +84,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   val indexers = new HashMap[String, ActorRef]
 
   var engine: ActorRef = null
-  var productionActorRef: ActorRef = null
+  var productionActors = new HashMap[String, ActorRef]
   var monitoringActor: ActorRef = null
   var yellowPages: YellowPages = null
   var pendingUpdateMessages = 0
@@ -182,9 +182,10 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
 
         recipeNode match {
           case productionRecipe: ProductionRecipe => {
-            if (productionRecipe.getTraceInfo().contains(queryName)) {
-              productionActorRef = actorRef
-            }
+            val traceInfo = productionRecipe.getTraceInfo()
+            val patternName = traceInfo.split(" ", 2)(0)
+            println(patternName)
+            productionActors.put(patternName, actorRef)
           }
           case typeInputRecipe: TypeInputRecipe => {
             indexers.put(typeInputRecipe.getTypeName(), actorRef)
@@ -195,10 +196,6 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
         if (verbose) println(logPrefix + "Actor configured.")
       }))
       
-    if (productionActorRef == null) {
-      throw new IOException("Production node actor is unknown.");
-    }
-
     if (verbose) println(logPrefix + "All actors deployed and configured.")
     if (verbose) println(logPrefix + "Indexers: " + indexers)
 
@@ -240,7 +237,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   }
 
   def check = {
-    val latestChangeSets = getQueryResults
+    val latestChangeSets = getQueryResults(queryName)
 
     latestChangeSets.foreach(latestChangeSet => {
       latestChangeSet.getChangeType match {
@@ -354,7 +351,9 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     vertices.foreach(vertex => tuples += new Tuple(vertex))
   }
 
-  def getQueryResults: java.util.List[ChangeSet] = {
+  def getQueryResults(pattern: String): java.util.List[ChangeSet] = {
+    val productionActorRef = productionActors.get(pattern)
+    
     val queryResultFuture = ask(productionActorRef, CoordinatorMessage.GETQUERYRESULTS, timeout)
     Await.result(queryResultFuture, timeout.duration).asInstanceOf[java.util.List[ChangeSet]]
   }
