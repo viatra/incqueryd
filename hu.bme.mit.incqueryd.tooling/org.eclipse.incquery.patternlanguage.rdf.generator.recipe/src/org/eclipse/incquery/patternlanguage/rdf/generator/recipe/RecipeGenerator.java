@@ -92,7 +92,7 @@ public class RecipeGenerator implements IGenerator {
 		nodeRecipe.setTraceInfo("");
 		recipe.getRecipeNodes().add(nodeRecipe);
 		recipeIndex++;
-		
+			
 		if (nodeRecipe instanceof ProductionRecipe) {
 			ProductionRecipe productionRecipe = (ProductionRecipe) nodeRecipe;
 			nodeRecipe.setTraceInfo(((PQuery) productionRecipe.getPattern()).getFullyQualifiedName());
