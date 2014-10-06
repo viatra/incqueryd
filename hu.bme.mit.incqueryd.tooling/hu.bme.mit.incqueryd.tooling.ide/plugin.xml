@@ -12,10 +12,6 @@
             name="Install IncQuery-D (Light)">
       </command>
       <command
-            id="hu.bme.mit.incqueryd.tooling.ide.commands.uninstall"
-            name="Uninstall IncQuery-D">
-      </command>
-      <command
             id="hu.bme.mit.incqueryd.tooling.ide.commands.deploy"
             name="Deploy IncQuery-D">
       </command>
@@ -26,6 +22,10 @@
       <command
             id="hu.bme.mit.incqueryd.tooling.ide.commands.destroy"
             name="Destroy IncQuery-D (coordinator and microkernels)">
+      </command>
+      <command
+            id="hu.bme.mit.incqueryd.tooling.ide.commands.uninstall"
+            name="Uninstall IncQuery-D">
       </command>
       <command
             id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.null"
@@ -53,10 +53,6 @@
                commandId="hu.bme.mit.incqueryd.tooling.ide.commands.install.light"
                style="push">
          </command>
-         <command
-               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.uninstall"
-               style="push">
-         </command>
         <separator
 		       name="separator-1"
 		       visible="true">
@@ -75,6 +71,10 @@
 		</separator>
          <command
                commandId="hu.bme.mit.incqueryd.tooling.ide.commands.destroy"
+               style="push">
+         </command>
+         <command
+               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.uninstall"
                style="push">
          </command>
          <separator
@@ -102,10 +102,6 @@
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.install.light">
       </handler>
       <handler
-            class="hu.bme.mit.incqueryd.tooling.ide.UninstallArchitectureHandler"
-            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.uninstall">
-      </handler>
-      <handler
             class="hu.bme.mit.incqueryd.tooling.ide.DeployArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.deploy">
       </handler>	 
@@ -116,6 +112,10 @@
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.DestroyArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.destroy">
+      </handler>
+      <handler
+            class="hu.bme.mit.incqueryd.tooling.ide.UninstallArchitectureHandler"
+            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.uninstall">
       </handler>
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.NullAllocationHandler"
