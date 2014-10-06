@@ -14,8 +14,12 @@ var fd_rete;
 var jsonData; // The JSON data we get from the server
 var images; // Store the images
 
-var beta_width = 140, beta_height = 80, beta_triangle_height = 20;
-var alpha_width = 140, alpha_height = 60;
+//var beta_width = 140, beta_height = 80, beta_triangle_height = 20;
+//var alpha_width = 140, alpha_height = 60;
+
+var beta_width = 90, beta_height = 40, beta_triangle_height = 10;
+var alpha_width = 50, alpha_height = 20;
+
 
 var resultCount = 0; // To store how many changes were seen so far
 
@@ -170,7 +174,7 @@ function drawGauge(canvas, pos, percent, color, text, outerWidth, innerWidth, ou
     ctx.stroke();
 
     ctx.fillStyle = color;
-    ctx.font = "15px  Impact";
+    ctx.font = "15px  sans-serif";
     ctx.wrapText(text, pos.x - text_width / 4, pos.y, 120, 16);
 }
 
@@ -248,8 +252,8 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
                 var posx = x2 - ((x2 - x1) / 2);
 
                 var ctx = canvas.getCtx();
-                ctx.font = "15px  Impact";
-                ctx.fillStyle = "#FE5C00";
+                ctx.font = "1em  sans-serif";
+                ctx.fillStyle = "#000000";
                 ctx.wrapText(data.labeltext, posx, posy, 120, 16);
 
             }
@@ -293,8 +297,9 @@ CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, li
 // End of node types and edge types **********************************************************************************************************************************************
 
 function visualizeSystem() {
-
+// TODO comment here for offline testing of style info
     $.getJSON('/monitoring', function (data) {
+//      $.getJSON('test.json', function (data) {
         update(data);
     });
     globalMonitoringTimer = setTimeout(function () { visualizeSystem(); }, 5000);
@@ -385,9 +390,9 @@ function drawHeatMap() {
             style.border = '1px solid transparent';
             style.textAlign = "center";
             style.verticalAlign = "bottom";
-            style.fontFamily = "Impact,Charcoal,sans-serif"; reteHeatMap
+            style.fontFamily = "sans-serif"; reteHeatMap
 
-            style.fontSize = "medium";
+            style.fontSize = "1em";
 
             domElement.onmouseover = function () {
                 style.border = '2px solid #0000FF';
@@ -445,8 +450,8 @@ function drawReteHeatMap() {
             style.border = '1px solid transparent';
             style.textAlign = "center";
             style.verticalAlign = "bottom";
-            style.fontFamily = "Impact,Charcoal,sans-serif";
-            style.fontSize = "medium";
+            style.fontFamily = "sans-serif";
+            style.fontSize = "1em";
 
             domElement.onmouseover = function () {
                 style.border = '2px solid #0000FF';
@@ -504,8 +509,8 @@ function drawJVMHeatMap() {
             style.border = '1px solid transparent';
             style.textAlign = "center";
             style.verticalAlign = "bottom";
-            style.fontFamily = "Impact,Charcoal,sans-serif";
-            style.fontSize = "medium";
+            style.fontFamily = "sans-serif";
+            style.fontSize = "1em";
 
             domElement.onmouseover = function () {
                 style.border = '2px solid #0000FF';
@@ -1118,8 +1123,9 @@ function drawSystem() {
     var node = {};
     node.data = {};
     node.adjacencies = [];
-    node.data.$color = "#83548B";
-    node.data.$type = "circle";
+//    node.data.$color = "#83548B";
+    node.data.$color = "#000000";
+    node.data.$type = "circle"; 
     node.id = "graphnode0";
     node.name = "";
 
@@ -1134,7 +1140,7 @@ function drawSystem() {
         adj.nodeFrom = jsonData.machines[i].host;
         node.adjacencies.push(adj);
         node.data.$type = "host";
-        node.data.namecolor = '#' + jsonData.machines[i].host.toColor();
+        //node.data.namecolor = '#' + jsonData.machines[i].host.toColor();
         node.id = jsonData.machines[i].host;
         node.name = jsonData.machines[i].host;
         node.data.nodetype = "machine";
@@ -1149,7 +1155,7 @@ function drawSystem() {
             processNode.adjacencies = [];
 
             processNode.data.$type = "process";
-            processNode.data.namecolor = '#' + process.name.toColor();
+            //processNode.data.namecolor = '#' + process.name.toColor();
             processNode.id = process.name;
             processNode.name = process.name;
             processNode.data.nodetype = "process";
@@ -1230,7 +1236,7 @@ function drawSystem() {
         //Number of iterations for the FD algorithm
         iterations: 200,
         //Edge length
-        levelDistance: 130,
+        levelDistance: 200,
         // This method is only triggered
         // on label creation and only for DOM labels (not native canvas ones).
         onCreateLabel: function (domElement, node) {
@@ -1239,10 +1245,11 @@ function drawSystem() {
             var nameContainer = document.createElement('span'),
                 style = nameContainer.style;
             nameContainer.className = 'name';
-            nameContainer.innerHTML = node.name;
+            nameContainer.innerHTML = node.data.nodetype+": "+node.name;
             domElement.appendChild(nameContainer);
-            style.fontSize = "1.2em";
-            style.color = node.data.namecolor;
+            style.fontSize = "1em";
+            //style.color = node.data.namecolor;
+            style.color = "#000000";
 
             //Toggle a node selection when clicking
             //its name. This is done by animating some
@@ -1456,8 +1463,10 @@ function drawReteNet() {
 
         node.adjacencies = [];
 
-        node.data.hostcolor = '#' + reteNode.processName.toColor();
-        node.data.$color = '#6a49ba'
+        //node.data.hostcolor = '#' + reteNode.processName.toColor();
+        //node.data.$color = '#6a49ba'
+        node.data.$color = '#777777'
+
 
         if (reteNode.nodeClass == "Alpha") {
             node.data.$type = "alpha";
@@ -1597,9 +1606,9 @@ function drawReteNet() {
             }
         },
         //Number of iterations for the FD algorithm
-        iterations: 200,
+        iterations: 400,
         //Edge length
-        levelDistance: 130,
+        levelDistance: 200,
         // This method is only triggered
         // on label creation and only for DOM labels (not native canvas ones).
         onCreateLabel: function (domElement, node) {
@@ -1610,16 +1619,17 @@ function drawReteNet() {
             nameContainer.className = 'name';
             nameContainer.innerHTML = node.name;
             domElement.appendChild(nameContainer);
-            style.fontSize = "1.2em";
-            style.color = "#ddd";
+            style.fontSize = "1em";
+            style.color = "#000";
 
             var nameContainer2 = document.createElement('span'),
                 style2 = nameContainer2.style;
             nameContainer2.className = 'name';
             nameContainer2.innerHTML = node.data.host;
             domElement.appendChild(nameContainer2);
-            style2.fontSize = "1.2em";
-            style2.color = node.data.hostcolor;
+            style2.fontSize = "1em";
+            //style2.color = node.data.hostcolor;
+            style2.color = "#ee0000";
 
         },
         // Change node styles when DOM labels are placed
@@ -1639,7 +1649,7 @@ function drawReteNet() {
 
     // compute positions incrementally and animate.
     fd_rete.computeIncremental({
-        iter: 40,
+        iter: 160,
         property: 'end',
         onStep: function (perc) {
 

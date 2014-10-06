@@ -1,16 +1,15 @@
 body {
     margin:0;
     padding:0;
-    font-family: "Lucida Grande", Verdana;
-    font-size: 0.9em;
+    font-family: sans-serif;
+    font-size: 1.0em;
     text-align: center;
-    background-color:#23A4FF;
+    background-color:#ffffff;
 }
 
 h1 {
-	color: rgba(255,255,255,0.7);
-	font: 80px 'ChunkFiveRegular';
-    background: linear-gradient(to right, #C0C0C0 , #23A4FF);
+	color: #000000;
+	font: 80px;
 }
 
 #container {
@@ -25,6 +24,8 @@ h1 {
     height:37%;
     position:absolute;
     top:0;
+    box-shadow: 10px 10px 5px #888888;
+    border: solid 1px;
 }
 
 #heatmap-container-os,
@@ -33,6 +34,8 @@ h1 {
     height:30%;
     position:absolute;
     top:0;
+    box-shadow: 10px 10px 5px #888888;
+    border: solid 1px;
 }
 
 #results-table,
@@ -41,6 +44,8 @@ h1 {
     height:31%;
     position:absolute;
     top:0;
+    box-shadow: 10px 10px 5px #888888;
+    border: solid 1px;
 }
 
 #heatmap-container-os {
@@ -96,7 +101,7 @@ h1 {
 #graph-container {
     width:33%;
     float:left;
-    background-color:#1a1a1a;
+    background-color:#efefef;
     color:#ccc;
 }
 
@@ -108,7 +113,7 @@ h1 {
     float:right;
     border-right:1px solid #ddd;
     margin-left:34%;
-    background-color:#1a1a1a;
+    background-color:#efefef;
     color:#ccc;
 }
 
@@ -142,6 +147,5 @@ h1 {
     opacity:0.7;
     filter:alpha(opacity=90);
     font-size:12px;
-    font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
     padding:8px;
 }
