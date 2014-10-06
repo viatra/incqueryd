@@ -3,6 +3,7 @@ package hu.bme.mit.incqueryd.core.rete.actors
 import java.nio.file.Paths
 import java.util.HashMap
 import java.util.HashSet
+
 import scala.collection.JavaConversions.asScalaBuffer
 import scala.collection.JavaConversions.asScalaSet
 import scala.collection.JavaConversions.collectionAsScalaIterable
@@ -12,6 +13,7 @@ import scala.collection.JavaConversions.seqAsJavaList
 import scala.collection.immutable.Stack
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
+
 import org.apache.commons.io.FilenameUtils
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe
@@ -19,7 +21,9 @@ import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe
+
 import com.google.common.collect.HashBiMap
+
 import akka.actor.Actor
 import akka.actor.ActorRef
 import akka.actor.Address
@@ -31,8 +35,12 @@ import akka.remote.RemoteScope
 import akka.util.Timeout
 import arch.CacheRole
 import arch.Configuration
+import arch.Configuration
+import arch.Configuration
+import arch.Configuration
 import arch.ReteRole
-import hu.bme.mit.bigmodel.fourstore.FourStoreDriver
+import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
+import hu.bme.mit.bigmodel.rdf.RDFHelper
 import hu.bme.mit.incqueryd.arch.util.ArchUtil
 import hu.bme.mit.incqueryd.core.monitoring.actors.JVMMonitoringActor
 import hu.bme.mit.incqueryd.core.rete.dataunits.ChangeSet
@@ -41,6 +49,7 @@ import hu.bme.mit.incqueryd.core.rete.dataunits.ReteNodeSlot
 import hu.bme.mit.incqueryd.core.rete.dataunits.Tuple
 import hu.bme.mit.incqueryd.core.rete.messages.CoordinatorCommand
 import hu.bme.mit.incqueryd.core.rete.messages.CoordinatorMessage
+import hu.bme.mit.incqueryd.core.rete.messages.QueryIndexer
 import hu.bme.mit.incqueryd.core.rete.messages.TerminationMessage
 import hu.bme.mit.incqueryd.core.rete.messages.UpdateMessage
 import hu.bme.mit.incqueryd.core.rete.messages.YellowPages
@@ -48,29 +57,8 @@ import hu.bme.mit.incqueryd.core.util.EObjectSerializer
 import hu.bme.mit.incqueryd.core.util.ReteNodeConfiguration
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
 import infrastructure.Process
-import hu.bme.mit.incqueryd.core.rete.messages.QueryIndexer
-import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
-import hu.bme.mit.bigmodel.rdf.RDFHelper
-import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
-import hu.bme.mit.incqueryd.arch.util.ArchUtil
-import hu.bme.mit.bigmodel.rdf.RDFHelper
-import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
-import arch.Configuration
-import hu.bme.mit.incqueryd.arch.util.ArchUtil
-import hu.bme.mit.bigmodel.rdf.RDFHelper
-import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
-import arch.Configuration
-import hu.bme.mit.incqueryd.arch.util.ArchUtil
-import hu.bme.mit.bigmodel.rdf.RDFHelper
-import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
-import arch.Configuration
-import hu.bme.mit.incqueryd.arch.util.ArchUtil
-import hu.bme.mit.bigmodel.rdf.RDFHelper
-import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
-import java.util.concurrent.ExecutionException
-import java.io.IOException
 
-class CoordinatorActor(val architectureFile: String, val remoting: Boolean) extends Actor {
+class CoordinatorActor(val architectureFile: String, val distributed: Boolean) extends Actor {
 
   val logPrefix = "[CoordinatorActor] "
   val conf: Configuration = ArchUtil.loadConfiguration(architectureFile)
@@ -161,7 +149,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
         val recipeString = EObjectSerializer.serializeToString(rnrClone)
 
         var props: Props = null
-        if (remoting) {
+        if (distributed) {
           if (verbose) println(logPrefix + "EMF address: " + emfUri)
           val process = recipeToProcess.get(recipeNode)
           val machine = process.getMachine
@@ -202,7 +190,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
   }
 
   def deployJVMMonitoringActors = {
-    if (remoting) {
+    if (distributed) {
       conf.getMappings.foreach(mapping => {
         val ipAddress = mapping.getProcess.getMachine.getIp
         val port = mapping.getProcess.getPort
@@ -277,8 +265,7 @@ class CoordinatorActor(val architectureFile: String, val remoting: Boolean) exte
     println(logPrefix + "Loading the Rete network.")
 
     val clusterName = conf.getConnectionString.split("://")(1)
-    val databaseDriver = new FourStoreDriverUnique(clusterName)
-    
+    val databaseDriver = new FourStoreDriverUnique(clusterName, distributed)   
     databaseDriver.generateUniques()
 
     conf.getRecipes.foreach(recipe =>

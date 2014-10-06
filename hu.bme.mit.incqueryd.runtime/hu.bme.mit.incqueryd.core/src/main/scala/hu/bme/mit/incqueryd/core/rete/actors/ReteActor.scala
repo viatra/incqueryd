@@ -152,7 +152,7 @@ class ReteActor extends Actor {
     actorRef ! message
 
     try {
-      Thread.sleep(200)
+      Thread.sleep(100)
     } catch {
       case e: InterruptedException => e.printStackTrace
     }

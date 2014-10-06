@@ -11,11 +11,14 @@
 
 cd "$( cd "$( dirname "$0" )" && pwd )/.."
 
-AKKA_VERSION="2.1.4"
 INSTALL_DIR=~/incqueryd/
-AKKA_DEPLOY_DIR="$INSTALL_DIR/akka-$AKKA_VERSION/deploy/"
-COORDINATOR_INSTALL_DIR="$INSTALL_DIR/coordinator/"
-COORDINATOR_LIB_DIR="$COORDINATOR_INSTALL_DIR/lib/"
+
+AKKA_VERSION="2.1.4"
+AKKA_DIR=$INSTALL_DIR/akka-$AKKA_VERSION
+AKKA_DEPLOY_DIR=$AKKA_DIR/deploy/
+
+COORDINATOR_INSTALL_DIR=$INSTALL_DIR/coordinator/
+COORDINATOR_LIB_DIR=$COORDINATOR_INSTALL_DIR/lib/
 
 case $1 in
 	"--light")
@@ -35,12 +38,13 @@ shift
 # iterating through the hostnames of the machines
 for machine in "$@"; do
 	echo "Installing IncQuery-D on $machine"
-
 	ssh $machine "mkdir -p $INSTALL_DIR/"
-
 	scp -r scripts/components/* $machine:$INSTALL_DIR
 	
 	if [[ ! $light ]]; then
+		# copy Akka
+		scp akka/*.tgz $machine:$INSTALL_DIR
+
 		# install Akka
 		ssh $machine "$INSTALL_DIR/install-akka.sh"
 
