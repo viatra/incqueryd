@@ -1245,7 +1245,7 @@ function drawSystem() {
             var nameContainer = document.createElement('span'),
                 style = nameContainer.style;
             nameContainer.className = 'name';
-            nameContainer.innerHTML = node.data.nodetype+": "+node.name;
+            nameContainer.innerHTML = node.data.nodetype ? (node.data.nodetype + ": " + node.name) : "";
             domElement.appendChild(nameContainer);
             style.fontSize = "1em";
             //style.color = node.data.namecolor;
