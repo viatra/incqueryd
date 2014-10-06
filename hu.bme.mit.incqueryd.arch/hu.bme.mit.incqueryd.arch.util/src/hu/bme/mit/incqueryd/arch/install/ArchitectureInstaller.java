@@ -23,7 +23,7 @@ public class ArchitectureInstaller {
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 		
 		final List<String> command = new ArrayList<>();
-		final String homeDirectory = System.getProperty( "user.home" );
+		final String homeDirectory = System.getProperty("user.home");
 		command.add(homeDirectory + "/git/incqueryd/hu.bme.mit.incqueryd.runtime/scripts/install.sh");
 
 		if (light) command.add("--light");
@@ -50,6 +50,21 @@ public class ArchitectureInstaller {
 		
 		UnixUtils.run(monitoringInstallCommand.toArray(new String[monitoringInstallCommand.size()]));
 		System.out.println(monitoringInstallCommand);
+	}
+	
+	public static void uninstallArchitecture(final String architectureFile) throws IOException {
+		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
+		
+		final List<String> command = new ArrayList<>();
+		final String homeDirectory = System.getProperty("user.home");
+		command.add(homeDirectory + "/git/incqueryd/hu.bme.mit.incqueryd.runtime/scripts/uninstall.sh");
+
+		for (final Machine machine : configuration.getMachines()) {
+			command.add(machine.getIp());
+		}
+		
+		UnixUtils.run(command.toArray(new String[command.size()]));
+		System.out.println(command);
 	}
 	
 	public static void deployArchitecture(final String architectureFile) throws IOException {

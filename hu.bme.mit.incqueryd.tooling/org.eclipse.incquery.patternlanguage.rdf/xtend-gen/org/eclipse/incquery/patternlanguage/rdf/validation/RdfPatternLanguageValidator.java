@@ -1,6 +1,5 @@
 package org.eclipse.incquery.patternlanguage.rdf.validation;
 
-import com.google.common.collect.Sets;
 import hu.bme.mit.incqueryd.rdf.RdfUtils;
 import java.net.URL;
 import java.util.Collections;
@@ -17,6 +16,7 @@ import org.eclipse.incquery.patternlanguage.rdf.validation.AbstractRdfPatternLan
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.CheckType;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.openrdf.model.Model;
 import org.openrdf.model.Resource;
@@ -51,7 +51,7 @@ public class RdfPatternLanguageValidator extends AbstractRdfPatternLanguageValid
   public void checkVocabulary(final Vocabulary vocabulary) {
     try {
       URL _url = RdfPatternLanguageUtils.getUrl(vocabulary);
-      RdfUtils.load(Collections.<URL>unmodifiableSet(Sets.<URL>newHashSet(_url)));
+      RdfUtils.load(Collections.<URL>unmodifiableSet(CollectionLiterals.<URL>newHashSet(_url)));
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {
         final Exception e = (Exception)_t;
