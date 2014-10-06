@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ASCII"?>
+<arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://incquery.net/arch" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes" connectionString="fourstore://trainbenchmark_cluster" coordinatorMachine="//@machines.0" monitoringMachine="//@machines.0">
+  <machines name="172.16.242.134" ip="172.16.242.134">
+    <processes port="2552" memory="1000"/>
+    <processes port="2553" memory="1000"/>
+    <processes port="2554" memory="1000"/>
+    <processes port="2555" memory="1000"/>
+    <processes port="2556" memory="1000"/>
+  </machines>
+  <machines name="172.16.242.135" ip="172.16.242.135">
+    <processes port="2557" memory="1000"/>
+    <processes port="2558" memory="1000"/>
+    <processes port="2559" memory="1000"/>
+    <processes port="2560" memory="1000"/>
+    <processes port="2561" memory="1000"/>
+    <processes port="2562" memory="1000"/>
+    <processes port="2563" memory="1000"/>
+    <processes port="2564" memory="1000"/>
+    <processes port="2565" memory="1000"/>
+    <processes port="2566" memory="1000"/>
+    <processes port="2567" memory="1000"/>
+    <processes port="2568" memory="1000"/>
+  </machines>
+  <recipes href="../recipes/routeSensor.recipe#/"/>
+  <mappings process="//@machines.0/@processes.0">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:BinaryInputRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.3"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.0/@processes.1">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:JoinRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.5"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.0/@processes.2">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:UnaryInputRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.6"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.0/@processes.3">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:JoinRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.9"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.0/@processes.4">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:UnaryInputRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.11"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.1/@processes.0">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:BinaryInputRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.0"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.1/@processes.1">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:TrimmerRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.14"/>
+    </roles>
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:AntiJoinRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.2"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.1/@processes.2">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:ProductionRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.4"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.1/@processes.3">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:UnaryInputRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.7"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.1/@processes.4">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:JoinRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.8"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.1/@processes.5">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:JoinRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.10"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.1/@processes.6">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:JoinRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.12"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.1/@processes.7">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:JoinRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.13"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.1/@processes.8">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:ProductionRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.15"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.1/@processes.9">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:TrimmerRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.1"/>
+    </roles>
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:BinaryInputRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.16"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.1/@processes.10">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:UnaryInputRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.18"/>
+    </roles>
+  </mappings>
+  <mappings process="//@machines.1/@processes.11">
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe xsi:type="recipes:BinaryInputRecipe" href="../recipes/routeSensor.recipe#//@recipeNodes.17"/>
+    </roles>
+  </mappings>
+</arch:Configuration>
