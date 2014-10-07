@@ -163,20 +163,20 @@ public class ArchitectureInstaller {
 		UnixUtils.run(coordinatorCommand.toArray(new String[coordinatorCommand.size()]));
 	}
 	
-	public static void destroyArchitecture(final IFile file) throws IOException {
+	public static void stopArchitecture(final IFile file) throws IOException {
 		final String architectureFile = file.getLocation().toString();
 
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 
 		for (final Machine machine : configuration.getMachines()) {
-			destroyMachine(machine);
+			stopMachine(machine);
 		}
 
-		destroyCoordinator(configuration.getCoordinatorMachine());	
-		destroyMonitoringServer(configuration.getMonitoringMachine());
+		stopCoordinator(configuration.getCoordinatorMachine());	
+		stopMonitoringServer(configuration.getMonitoringMachine());
 	}
 
-	private static void destroyCoordinator(final Machine coordinatorMachine) throws IOException {
+	private static void stopCoordinator(final Machine coordinatorMachine) throws IOException {
 		final List<String> startCommand = new ArrayList<>();
 		startCommand.add("ssh");
 		startCommand.add(coordinatorMachine.getIp());
@@ -186,7 +186,7 @@ public class ArchitectureInstaller {
 		
 	}
 	
-	private static void destroyMonitoringServer(final Machine monitoringMachine) throws IOException {
+	private static void stopMonitoringServer(final Machine monitoringMachine) throws IOException {
 		final List<String> startCommand = new ArrayList<>();
 		startCommand.add("ssh");
 		startCommand.add(monitoringMachine.getIp());
@@ -196,7 +196,7 @@ public class ArchitectureInstaller {
 		
 	}
 
-	private static void destroyMachine(final Machine machine) throws IOException {
+	private static void stopMachine(final Machine machine) throws IOException {
 		final List<String> startCommand = new ArrayList<>();
 		startCommand.add("ssh");
 		startCommand.add(machine.getIp());
@@ -204,12 +204,12 @@ public class ArchitectureInstaller {
 		
 		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
 		
-		// Destroy the OS monitor agents on each machine
-		final List<String> osagentDestroyCommand = new ArrayList<>();
-		osagentDestroyCommand.add("ssh");
-		osagentDestroyCommand.add(machine.getIp());
-		osagentDestroyCommand.add("pkill -f osmonitor.core");
+		// Stop the OS monitor agents on each machine
+		final List<String> osagentStopCommand = new ArrayList<>();
+		osagentStopCommand.add("ssh");
+		osagentStopCommand.add(machine.getIp());
+		osagentStopCommand.add("pkill -f osmonitor.core");
 		
-		UnixUtils.run(osagentDestroyCommand.toArray(new String[osagentDestroyCommand.size()]));
+		UnixUtils.run(osagentStopCommand.toArray(new String[osagentStopCommand.size()]));
 	}
 }
