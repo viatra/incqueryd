@@ -8,7 +8,7 @@ import org.eclipse.incquery.runtime.rete.recipes.InputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
-import hu.bme.mit.bigmodel.fourstore.FourStoreDriver
+import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
 import scala.collection.mutable.HashSet
 import hu.bme.mit.incqueryd.core.rete.dataunits.Tuple
 import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
@@ -29,7 +29,7 @@ object FourStoreDriverMain {
 
     val conf = ArchUtil.loadConfiguration(architectureFile)
     val clusterName = conf.getConnectionString().split("://")(1)
-    val databaseDriver = new FourStoreDriverUnique(clusterName)
+    val databaseDriver = new FourStoreDriverUnique(clusterName, false)
     databaseDriver.generateUniques
 
     conf.getRecipes.foreach(recipe =>
