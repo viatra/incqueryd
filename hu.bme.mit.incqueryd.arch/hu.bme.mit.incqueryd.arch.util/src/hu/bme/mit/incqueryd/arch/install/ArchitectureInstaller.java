@@ -180,7 +180,7 @@ public class ArchitectureInstaller {
 		UnixUtils.run(coordinatorCommand.toArray(new String[coordinatorCommand.size()]));
 	}
 	
-	public static void destroyArchitecture(final String architectureFile) throws IOException {
+	public static void stopArchitecture(final String architectureFile) throws IOException {
 
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 
