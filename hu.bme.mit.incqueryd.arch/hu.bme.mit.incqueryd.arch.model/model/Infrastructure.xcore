@@ -8,7 +8,7 @@ class Machine extends ElementWithTraceInfo {
 	contains Process[] processes opposite machine
 }
 
-class Process {
+class Process extends ElementWithTraceInfo {
 	int port
 	int memory
 	

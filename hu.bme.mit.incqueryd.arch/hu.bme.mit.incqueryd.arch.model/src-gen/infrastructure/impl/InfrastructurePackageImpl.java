@@ -271,6 +271,7 @@ public class InfrastructurePackageImpl extends EPackageImpl implements Infrastru
 
 		// Add supertypes to classes
 		machineEClass.getESuperTypes().add(this.getElementWithTraceInfo());
+		processEClass.getESuperTypes().add(this.getElementWithTraceInfo());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(machineEClass, Machine.class, "Machine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -2,7 +2,6 @@
  */
 package infrastructure;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Process extends EObject {
+public interface Process extends ElementWithTraceInfo {
 	/**
 	 * Returns the value of the '<em><b>Port</b></em>' attribute.
 	 * <!-- begin-user-doc -->

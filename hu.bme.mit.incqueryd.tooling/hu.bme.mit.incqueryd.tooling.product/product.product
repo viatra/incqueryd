@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="IncQuery-D Configurator" uid="hu.bme.mit.incqueryd.arch.language.ui.incquerydtooling" id="hu.bme.mit.incqueryd.arch.language.ui.incquerydtooling" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="IncQuery-D Tooling" uid="hu.bme.mit.incqueryd.arch.language.ui.incquerydtooling" id="hu.bme.mit.incqueryd.arch.language.ui.incquerydtooling" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
@@ -27,10 +27,10 @@
       <plugin id="com.google.inject.multibindings" fragment="true"/>
       <plugin id="com.ibm.icu"/>
       <plugin id="com.ning.async-http-client"/>
-      <plugin id="hu.bme.mit.incqueryd.arch.model"/>
       <plugin id="hu.bme.mit.incqueryd.arch.language"/>
       <plugin id="hu.bme.mit.incqueryd.arch.language.tests"/>
       <plugin id="hu.bme.mit.incqueryd.arch.language.ui"/>
+      <plugin id="hu.bme.mit.incqueryd.arch.model"/>
       <plugin id="hu.bme.mit.incqueryd.rdf"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>

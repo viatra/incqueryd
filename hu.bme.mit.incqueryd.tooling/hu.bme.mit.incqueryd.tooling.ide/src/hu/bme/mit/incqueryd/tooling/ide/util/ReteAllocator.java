@@ -363,7 +363,7 @@ public class ReteAllocator {
 		
 		Map<String, List<Node>> allocations = allocation.getAllocations();
 		Set<String> machines = allocations.keySet();
-		int port_counter = 2552;
+		
 		boolean firstMachine = true; // This will have the coordinator and the monitoring server
 		for (String ip : machines) {
 			final Machine machine = InfrastructureFactory.eINSTANCE.createMachine();
@@ -377,11 +377,13 @@ public class ReteAllocator {
 				firstMachine = false;
 			}
 			
+			int port_counter = 2552;
 			List<Node> nodesOnMachines = allocations.get(ip);
 			for (Node node : nodesOnMachines) {
 				final Process process = InfrastructureFactory.eINSTANCE.createProcess();
 				process.setPort(port_counter);
 				process.setMemory(Math.max(256,node.getSize()));
+				process.setTraceInfo(ip + ":" + port_counter);
 				port_counter++;
 				
 				machine.getProcesses().add(process);
