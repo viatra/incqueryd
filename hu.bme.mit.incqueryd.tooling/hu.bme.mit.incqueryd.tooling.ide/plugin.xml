@@ -5,35 +5,39 @@
          point="org.eclipse.ui.commands">
       <command
             id="hu.bme.mit.incqueryd.tooling.ide.commands.install.full"
-            name="Install IncQuery-D (Full)">
+            name="IncQuery-D: Install System (Full)">
       </command>
       <command
             id="hu.bme.mit.incqueryd.tooling.ide.commands.install.light"
-            name="Install IncQuery-D (Light)">
+            name="IncQuery-D: Install System (Light)">
       </command>
       <command
             id="hu.bme.mit.incqueryd.tooling.ide.commands.deploy"
-            name="Deploy IncQuery-D">
+            name="IncQuery-D: Deploy Architecture">
       </command>
       <command
             id="hu.bme.mit.incqueryd.tooling.ide.commands.start"
-            name="Start IncQuery-D">
+            name="IncQuery-D: Start Query">
+      </command>
+      <command
+            id="hu.bme.mit.incqueryd.tooling.ide.commands.start"
+            name="IncQuery-D: Check Query Results">
       </command>
       <command
             id="hu.bme.mit.incqueryd.tooling.ide.commands.destroy"
-            name="Destroy IncQuery-D (coordinator and microkernels)">
+            name="IncQuery-D: Destroy Architecture">
       </command>
       <command
             id="hu.bme.mit.incqueryd.tooling.ide.commands.uninstall"
-            name="Uninstall IncQuery-D">
+            name="IncQuery-D: Uninstall System">
       </command>
       <command
             id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.null"
-            name="NULL allocation">
+            name="IncQuery-D: Null Allocation">
       </command>
       <command
             id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.opt"
-            name="Optimized allocation">
+            name="IncQuery-D: Optimized Allocation">
       </command>
    </extension>
    <extension
