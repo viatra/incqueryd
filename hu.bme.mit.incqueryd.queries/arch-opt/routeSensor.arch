@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://incquery.net/arch" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes" connectionString="fourstore://trainbenchmark_cluster" coordinatorMachine="//@machines.0" monitoringMachine="//@machines.0">
-  <machines name="172.16.242.134" ip="172.16.242.134">
+  <machines name="vm0" ip="172.16.242.134">
     <processes port="2552" memory="1000"/>
     <processes port="2553" memory="1000"/>
     <processes port="2554" memory="1000"/>
@@ -9,7 +9,7 @@
     <processes port="2557" memory="1000"/>
     <processes port="2558" memory="1000"/>
   </machines>
-  <machines name="172.16.242.135" ip="172.16.242.135">
+  <machines name="vm1" ip="172.16.242.135">
     <processes port="2559" memory="1000"/>
     <processes port="2560" memory="1000"/>
     <processes port="2561" memory="1000"/>

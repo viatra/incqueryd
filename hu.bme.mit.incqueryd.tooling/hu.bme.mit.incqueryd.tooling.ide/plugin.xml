@@ -24,8 +24,8 @@
             name="IncQuery-D: Check Query Results">
       </command>
       <command
-            id="hu.bme.mit.incqueryd.tooling.ide.commands.destroy"
-            name="IncQuery-D: Destroy Architecture">
+            id="hu.bme.mit.incqueryd.tooling.ide.commands.stop"
+            name="IncQuery-D: Stop Architecture">
       </command>
       <command
             id="hu.bme.mit.incqueryd.tooling.ide.commands.uninstall"
@@ -78,7 +78,7 @@
 		       visible="true">
 		</separator>
          <command
-               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.destroy"
+               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.stop"
                style="push">
          </command>
          <command
@@ -122,8 +122,8 @@
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.check">
       </handler>
       <handler
-            class="hu.bme.mit.incqueryd.tooling.ide.DestroyArchitectureHandler"
-            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.destroy">
+            class="hu.bme.mit.incqueryd.tooling.ide.StopArchitectureHandler"
+            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.stop">
       </handler>
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.UninstallArchitectureHandler"

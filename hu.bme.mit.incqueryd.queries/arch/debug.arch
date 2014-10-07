@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<arch:Configuration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:arch="http://incquery.net/arch" connectionString="fourstore://trainbenchmark_cluster">
-  <machines name="vm0" ip="127.0.0.1"/>
-  <recipes href="../recipes/debug.recipe#/"/>
-  <mappings>
-    <roles xsi:type="arch:ReteRole"/>
-  </mappings>
-</arch:Configuration>
