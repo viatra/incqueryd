@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link infrastructure.impl.ProcessImpl#getTraceInfo <em>Trace Info</em>}</li>
  *   <li>{@link infrastructure.impl.ProcessImpl#getPort <em>Port</em>}</li>
  *   <li>{@link infrastructure.impl.ProcessImpl#getMemory <em>Memory</em>}</li>
  *   <li>{@link infrastructure.impl.ProcessImpl#getMachine <em>Machine</em>}</li>
@@ -32,6 +33,26 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @generated
  */
 public class ProcessImpl extends MinimalEObjectImpl.Container implements infrastructure.Process {
+	/**
+	 * The default value of the '{@link #getTraceInfo() <em>Trace Info</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTraceInfo()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TRACE_INFO_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTraceInfo() <em>Trace Info</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTraceInfo()
+	 * @generated
+	 * @ordered
+	 */
+	protected String traceInfo = TRACE_INFO_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getPort() <em>Port</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -89,6 +110,27 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 	@Override
 	protected EClass eStaticClass() {
 		return InfrastructurePackage.Literals.PROCESS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getTraceInfo() {
+		return traceInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTraceInfo(String newTraceInfo) {
+		String oldTraceInfo = traceInfo;
+		traceInfo = newTraceInfo;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, InfrastructurePackage.PROCESS__TRACE_INFO, oldTraceInfo, traceInfo));
 	}
 
 	/**
@@ -236,6 +278,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case InfrastructurePackage.PROCESS__TRACE_INFO:
+				return getTraceInfo();
 			case InfrastructurePackage.PROCESS__PORT:
 				return getPort();
 			case InfrastructurePackage.PROCESS__MEMORY:
@@ -255,6 +299,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case InfrastructurePackage.PROCESS__TRACE_INFO:
+				setTraceInfo((String)newValue);
+				return;
 			case InfrastructurePackage.PROCESS__PORT:
 				setPort((Integer)newValue);
 				return;
@@ -276,6 +323,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case InfrastructurePackage.PROCESS__TRACE_INFO:
+				setTraceInfo(TRACE_INFO_EDEFAULT);
+				return;
 			case InfrastructurePackage.PROCESS__PORT:
 				setPort(PORT_EDEFAULT);
 				return;
@@ -297,6 +347,8 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case InfrastructurePackage.PROCESS__TRACE_INFO:
+				return TRACE_INFO_EDEFAULT == null ? traceInfo != null : !TRACE_INFO_EDEFAULT.equals(traceInfo);
 			case InfrastructurePackage.PROCESS__PORT:
 				return port != PORT_EDEFAULT;
 			case InfrastructurePackage.PROCESS__MEMORY:
@@ -317,7 +369,9 @@ public class ProcessImpl extends MinimalEObjectImpl.Container implements infrast
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (port: ");
+		result.append(" (traceInfo: ");
+		result.append(traceInfo);
+		result.append(", port: ");
 		result.append(port);
 		result.append(", memory: ");
 		result.append(memory);

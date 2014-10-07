@@ -188,7 +188,7 @@ class AllocationSolver {
 					val sumNodeWeight = nodes.get(i).size + nodes.get(j).size
 					val edgeWeight = row.get(j)
 					
-					//println("sumweight: " + sumNodeWeight + " ,edge weight: " + edgeWeight)
+					println("sumweight: " + sumNodeWeight + " ,edge weight: " + edgeWeight)
 					
 					val IntVar edgeWeightVar = VariableHelper.bounded("e" + i + j, -1, Long.MAX_VALUE, solver)
 					edgeWeightVariables.add(edgeWeightVar)
@@ -203,7 +203,7 @@ class AllocationSolver {
 							// if : xi + yj >= xs + ys then: edgeWeightVar = weightWithOverhead
 							solver >> (edgeWeightConstraint => (edgeWeightVar -> weightWithOverhead))
 							
-							//println(nodesOnContainersVariables.get(i).get(k).name + "," + nodesOnContainersVariables.get(j).get(l).name + " -> weight: " +  weightWithOverhead)
+							println(nodesOnContainersVariables.get(i).get(k).name + "," + nodesOnContainersVariables.get(j).get(l).name + " -> weight: " +  weightWithOverhead)
 						}
 					}
 

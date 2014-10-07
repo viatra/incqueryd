@@ -78,6 +78,7 @@ public class InfrastructureSwitch<T> extends Switch<T> {
 			case InfrastructurePackage.PROCESS: {
 				infrastructure.Process process = (infrastructure.Process)theEObject;
 				T result = caseProcess(process);
+				if (result == null) result = caseElementWithTraceInfo(process);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

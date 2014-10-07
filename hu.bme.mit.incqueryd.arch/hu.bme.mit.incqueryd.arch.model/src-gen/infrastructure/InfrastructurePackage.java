@@ -168,13 +168,22 @@ public interface InfrastructurePackage extends EPackage {
 	int PROCESS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Trace Info</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS__TRACE_INFO = ELEMENT_WITH_TRACE_INFO__TRACE_INFO;
+
+	/**
 	 * The feature id for the '<em><b>Port</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__PORT = 0;
+	int PROCESS__PORT = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Memory</b></em>' attribute.
@@ -183,7 +192,7 @@ public interface InfrastructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__MEMORY = 1;
+	int PROCESS__MEMORY = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Machine</b></em>' container reference.
@@ -192,7 +201,7 @@ public interface InfrastructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS__MACHINE = 2;
+	int PROCESS__MACHINE = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Process</em>' class.
@@ -201,7 +210,7 @@ public interface InfrastructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_FEATURE_COUNT = 3;
+	int PROCESS_FEATURE_COUNT = ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Process</em>' class.
@@ -210,7 +219,7 @@ public interface InfrastructurePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_OPERATION_COUNT = 0;
+	int PROCESS_OPERATION_COUNT = ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT + 0;
 
 
 	/**
