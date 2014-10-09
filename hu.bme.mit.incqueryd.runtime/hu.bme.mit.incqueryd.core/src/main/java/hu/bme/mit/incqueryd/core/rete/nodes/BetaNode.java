@@ -13,6 +13,8 @@ package hu.bme.mit.incqueryd.core.rete.nodes;
 import hu.bme.mit.incqueryd.core.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.core.rete.dataunits.ReteNodeSlot;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
 import java.util.List;
 
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
@@ -29,8 +31,6 @@ public abstract class BetaNode implements ReteNode {
     protected Indexer primaryIndexer;
     protected Indexer secondaryIndexer;
     
-    protected double memoryConsumption;
-
     BetaNode(final BetaRecipe recipe, final List<String> cacheMachineIps) {
     	super();
         this.primaryIndexer = new Indexer(recipe.getLeftParent().getMask().getSourceIndices(), cacheMachineIps);
@@ -47,12 +47,9 @@ public abstract class BetaNode implements ReteNode {
     	return secondaryIndexer.getSize();
     }
     
-    protected void updateMemoryConsumption() {
-    	memoryConsumption = primaryIndexer.getMemoryConsumption() + secondaryIndexer.getMemoryConsumption();
-    }
-    
     public double getMemoryConsumption() {
-    	return memoryConsumption;
+    	MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
+    	return memoryMXBean.getHeapMemoryUsage().getUsed() / (1024*1024);
     }
 
 }
