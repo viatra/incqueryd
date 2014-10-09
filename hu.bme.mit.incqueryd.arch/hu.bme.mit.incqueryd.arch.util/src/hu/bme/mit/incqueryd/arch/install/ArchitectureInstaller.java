@@ -216,7 +216,7 @@ public class ArchitectureInstaller {
 		final List<String> startCommand = new ArrayList<>();
 		startCommand.add("ssh");
 		startCommand.add(machine.getIp());
-		startCommand.add("pkill -f akka");
+		startCommand.add("pkill -x akka");
 		
 		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
 		
