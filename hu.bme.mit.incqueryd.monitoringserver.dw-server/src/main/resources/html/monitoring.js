@@ -254,7 +254,7 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
                 var posx = x2 - ((x2 - x1) / 2);
 
                 var ctx = canvas.getCtx();
-                ctx.font = "1em  sans-serif";
+                ctx.font = "12px  sans-serif";
                 ctx.fillStyle = "#000000";
                 ctx.wrapText(data.labeltext, posx, posy, 120, 16);
 
