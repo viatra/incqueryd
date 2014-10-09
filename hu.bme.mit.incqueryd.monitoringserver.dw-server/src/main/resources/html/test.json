@@ -31,7 +31,7 @@
                }
             ],
             "cpuUsage":{
-               "usedCPUPercent":74.74747474747475
+               "usedCPUPercent":14.74747474747475
             }
          },
          "nodes":[
@@ -194,8 +194,9 @@
          "hostName":"jozsilx",
          "processName":"5895@jozsilx",
          "nodeType":"ProductionNode",
-         "nodeClass":"Alpha",
+         "nodeClass":"Production",
          "actorPath":"akka://test/user/$a/$a",
+         "memory":193.64744567871094,
          "updateMessagesSent":0,
          "changesCount":0,
          "subscribers":[

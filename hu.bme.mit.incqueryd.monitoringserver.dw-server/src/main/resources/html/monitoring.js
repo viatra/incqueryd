@@ -17,8 +17,10 @@ var images; // Store the images
 //var beta_width = 140, beta_height = 80, beta_triangle_height = 20;
 //var alpha_width = 140, alpha_height = 60;
 
-var beta_width = 90, beta_height = 40, beta_triangle_height = 10;
-var alpha_width = 50, alpha_height = 20;
+var beta_width = 100, beta_height = 50, beta_triangle_height = 10;
+var alpha_width = 80, alpha_height = 40;
+
+var reteMemoryThreshold = 1000;
 
 
 var resultCount = 0; // To store how many changes were seen so far
@@ -108,8 +110,8 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
             this.nodeHelper.triangle.render('fill', { x: pos.x - beta_width / 4, y: pos.y - beta_height / 2 - beta_triangle_height }, beta_triangle_height, canvas);
             this.nodeHelper.triangle.render('fill', { x: pos.x + beta_width / 4, y: pos.y - beta_height / 2 - beta_triangle_height }, beta_triangle_height, canvas);
 
-            var memoryPercent = Math.min((node.data.memory / 500) * 100, 100);
-            drawGauge(canvas, { x: pos.x , y: pos.y }, memoryPercent, percentToColor(memoryPercent), "MEM\n" + (truncateDecimals(node.data.memory * 10) / 10), 30, 30, 15, 10);
+            var memoryPercent = Math.min((node.data.memory / reteMemoryThreshold) * 100, 100);
+            drawGauge(canvas, { x: pos.x, y: pos.y }, memoryPercent, percentToColor(memoryPercent), "MEM\n" + (truncateDecimals(node.data.memory * 10) / 10), 22, 22, 10, 8);
         },
         'contains': function (node, pos) {
             var npos = node.pos.getc(true);
@@ -134,16 +136,16 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
     }
 });
 
-// Input node type
+// Memory Alpha node type
 $jit.ForceDirected.Plot.NodeTypes.implement({
     'memoryAlpha': {
         'render': function (node, canvas) {
             var pos = node.pos.getc(true);
 
-            this.nodeHelper.circle.render('fill', pos, 40, canvas);
+            this.nodeHelper.circle.render('fill', pos, 30, canvas);
 
-            var memoryPercent = Math.min((node.data.memory / 500) * 100, 100);
-            drawGauge(canvas, { x: pos.x, y: pos.y }, memoryPercent, percentToColor(memoryPercent), "MEM\n" + (truncateDecimals(node.data.memory * 10) / 10), 30, 30, 15, 10);
+            var memoryPercent = Math.min((node.data.memory / reteMemoryThreshold) * 100, 100);
+            drawGauge(canvas, { x: pos.x, y: pos.y }, memoryPercent, percentToColor(memoryPercent), "MEM\n" + (truncateDecimals(node.data.memory * 10) / 10), 22, 22, 12, 8);
         },
         'contains': function (node, pos) {
             var npos = node.pos.getc(true);
@@ -201,9 +203,9 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
             else if (adj.data.slot == "SINGLE") {
                 deltaX = 0;
                 if (from.y < to.y) {
-                    deltaY = -(alpha_height / 2) + 3;
+                    deltaY = -(alpha_height / 2) ;
                 }
-                else deltaY = (alpha_height / 2) - 3;
+                else deltaY = (alpha_height / 2) ;
             }
             
             
@@ -1489,7 +1491,7 @@ function drawReteNet() {
         }
 
         node.id = reteNode.reteNode;
-        node.name = reteNode.nodeType + " " + reteNode.reteNode + " on ";
+        node.name = reteNode.nodeType.replace('Node','') + " " + reteNode.reteNode + " on ";
         node.data.host = reteNode.processName;
         
 
@@ -1640,7 +1642,7 @@ function drawReteNet() {
             var top = parseInt(style.top);
             var w = domElement.offsetWidth;
             style.left = (left - w / 2) + 'px';
-            style.top = (top - 62) + 'px';
+            style.top = (top - 50) + 'px';
             style.display = '';
         }
     });
