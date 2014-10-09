@@ -164,9 +164,6 @@ public class AntiJoinNode extends BetaNode {
 			break;
 		}
 		
-		// Update the memory consumption metric for the monitoring
-        updateMemoryConsumption();
-
 
 		final ChangeSet propagatedChangeSet = new ChangeSet(deltaT, propagatedChangeType);
 		return propagatedChangeSet;
