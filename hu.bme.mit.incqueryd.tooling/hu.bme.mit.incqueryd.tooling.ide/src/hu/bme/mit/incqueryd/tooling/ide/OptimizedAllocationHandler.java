@@ -1,8 +1,8 @@
 package hu.bme.mit.incqueryd.tooling.ide;
 
+import hu.bme.mit.incqueryd.csp.util.ReteAllocator;
 import hu.bme.mit.incqueryd.tooling.ide.dialogs.OptimizationObjectiveFunctionDialog;
 import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
-import hu.bme.mit.incqueryd.tooling.ide.util.ReteAllocator;
 
 import java.io.IOException;
 
