@@ -12,7 +12,7 @@ public class Main {
 		System.loadLibrary("jniortools");
 		AllocationConfiguration allocationConfiguration = new AllocationConfiguration(args);
 		
-		ReteAllocator allocator = new ReteAllocator(allocationConfiguration);
+		ReteAllocator allocator = new ReteAllocator(allocationConfiguration.isOptimizeForCost(), allocationConfiguration.getRecipe(), allocationConfiguration.getInventory(), allocationConfiguration.getArchitecture());
 		if (allocator.allocate()) {
 			System.out.println("Your arch file is ready");
 		} else {
