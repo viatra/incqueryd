@@ -6,7 +6,6 @@ import hu.bme.mit.incqueryd.csp.algorithm.data.Allocation;
 import hu.bme.mit.incqueryd.csp.algorithm.data.Container;
 import hu.bme.mit.incqueryd.csp.algorithm.data.ContainerTemplate;
 import hu.bme.mit.incqueryd.csp.algorithm.data.Node;
-import hu.bme.mit.incqueryd.csp.main.AllocationConfiguration;
 import infrastructure.InfrastructureFactory;
 import infrastructure.Machine;
 import infrastructure.Process;
@@ -56,19 +55,23 @@ public class ReteAllocator {
 	private final Map<Integer, List<ReteNodeRecipe>> processes = new HashMap<>();
 
 	private boolean optimizeForCommunication;
+	private String recipeFile;
+	private String inventoryFile;
+	private String architectureFile;
 
 	private Inventory inventory;
-	private AllocationConfiguration allocationConfiguration;
 
-	public ReteAllocator(AllocationConfiguration configuration) {
-		super();
-		this.allocationConfiguration = configuration;
+	public ReteAllocator(boolean optimizeForCost, String recipeFile, String inventoryFile, String architectureFile) {
+		this.optimizeForCommunication = optimizeForCost;
+		this.recipeFile = recipeFile;
+		this.inventoryFile = inventoryFile;
+		this.architectureFile = architectureFile;
 	}
 
 	public boolean allocate() throws IOException {
-		processInventory(allocationConfiguration.getInventory());
+		processInventory(inventoryFile);
 
-		ReteRecipe recipe = ArchUtil.loadRecipe(allocationConfiguration.getRecipe());
+		ReteRecipe recipe = ArchUtil.loadRecipe(recipeFile);
 
 		createProcesses(recipe);
 
@@ -359,7 +362,7 @@ public class ReteAllocator {
 	}
 
 	private void createArch(Allocation allocation) throws IOException {
-		ReteRecipe recipe = ArchUtil.loadRecipe(allocationConfiguration.getRecipe());
+		ReteRecipe recipe = ArchUtil.loadRecipe(recipeFile);
 
 		final Configuration configuration = ArchFactory.eINSTANCE.createConfiguration();
 		configuration.setConnectionString(inventory.getConnectionString());
@@ -408,7 +411,7 @@ public class ReteAllocator {
 		}
 
 		ResourceSet resSet = new ResourceSetImpl();
-		Resource resource = resSet.createResource(URI.createFileURI(allocationConfiguration.getArchitecture()));
+		Resource resource = resSet.createResource(URI.createFileURI(architectureFile));
 		resource.getContents().add(configuration);
 
 		resource.save(Collections.EMPTY_MAP);
