@@ -11,7 +11,7 @@
 
 cd "$( cd "$( dirname "$0" )" && pwd )/.."
 
-INSTALL_DIR=~/incqueryd/
+INSTALL_DIR=incqueryd/
 
 AKKA_VERSION="2.1.4"
 AKKA_DIR=$INSTALL_DIR/akka-$AKKA_VERSION

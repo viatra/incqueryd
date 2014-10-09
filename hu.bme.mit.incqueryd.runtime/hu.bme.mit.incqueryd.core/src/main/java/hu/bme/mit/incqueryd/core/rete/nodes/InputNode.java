@@ -13,12 +13,12 @@ package hu.bme.mit.incqueryd.core.rete.nodes;
 import hu.bme.mit.incqueryd.core.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.core.rete.dataunits.Tuple;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
-
-import com.carrotsearch.sizeof.RamUsageEstimator;
 
 public class InputNode implements AlphaNode {
 
@@ -32,7 +32,8 @@ public class InputNode implements AlphaNode {
 	protected final Set<Tuple> tuples = new HashSet<>();
 
 	public double getMemoryConsumption() {
-		return tuples.size() > 0 ? (double) RamUsageEstimator.sizeOf(tuples) / RamUsageEstimator.ONE_MB : 0;
+		MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
+    	return memoryMXBean.getHeapMemoryUsage().getUsed() / (1024*1024);
 	}
 
 	public Set<Tuple> getTuples() {

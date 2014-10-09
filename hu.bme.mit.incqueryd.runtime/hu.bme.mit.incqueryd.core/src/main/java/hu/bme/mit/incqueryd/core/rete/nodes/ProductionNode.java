@@ -13,14 +13,14 @@ package hu.bme.mit.incqueryd.core.rete.nodes;
 import hu.bme.mit.incqueryd.core.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.core.rete.dataunits.Tuple;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryMXBean;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
-
-import com.carrotsearch.sizeof.RamUsageEstimator;
 
 /**
  * Implements a production node.
@@ -78,9 +78,8 @@ public class ProductionNode implements AlphaNode {
     }
     
     public double getMemoryConsumption() {
-		 double memorySize = memory.size() > 0 ? (double) RamUsageEstimator.sizeOf(memory) / RamUsageEstimator.ONE_MB : 0;
-		 double deltaSize = lastChangeSets.size() > 0 ? (double) RamUsageEstimator.sizeOf(lastChangeSets) / RamUsageEstimator.ONE_MB : 0;
-		 return memorySize + deltaSize;
+    	MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
+    	return memoryMXBean.getHeapMemoryUsage().getUsed() / (1024*1024);
 	}
 
 }
