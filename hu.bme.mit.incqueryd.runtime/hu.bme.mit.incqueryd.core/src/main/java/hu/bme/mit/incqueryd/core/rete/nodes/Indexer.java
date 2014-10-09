@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-import com.carrotsearch.sizeof.RamUsageEstimator;
 import com.google.common.collect.ImmutableSet;
 
 /**
@@ -75,10 +74,6 @@ public class Indexer {
     
     public int getSize() {
         return map.size();
-    }
-    
-    public double getMemoryConsumption() {
-    	return map.size() > 0 ? (double)RamUsageEstimator.sizeOf(map)/RamUsageEstimator.ONE_MB : 0;
     }
 
 }
