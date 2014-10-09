@@ -44,7 +44,7 @@ var globalMonitoringTimer; // This stores the timer for the monitoring ajax requ
 
 // Own node types and edge types **********************************************************************************************************************************************
 
-// Node visualized as an image
+// Host Node visualized as an image
 $jit.ForceDirected.Plot.NodeTypes.implement({
     'host': {
         'render': function (node, canvas) {
@@ -54,8 +54,8 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
                 var img = node.getData('image');
                 ctx.drawImage(img, pos.x - 15, pos.y - 15);
 
-                drawGauge(canvas, { x: pos.x + img.width + 25, y: pos.y + 30 }, node.data.cpu, percentToColor(node.data.cpu), "CPU\n" + (truncateDecimals(node.data.cpu * 10) / 10) + "%", 30, 30, 15, 10);
-                drawGauge(canvas, { x: pos.x + img.width + 100, y: pos.y + 30 }, node.data.memory, percentToColor(node.data.memory), "MEM\n" + (truncateDecimals(node.data.memory * 10) / 10) + "%", 30, 30, 15, 10);
+                drawGauge(canvas, { x: pos.x + img.width + 20, y: pos.y + 10 }, node.data.cpu, percentToColor(node.data.cpu), "CPU\n" + (truncateDecimals(node.data.cpu * 10) / 10) + "%", 22, 22, 12, 8);
+                drawGauge(canvas, { x: pos.x + img.width + 77, y: pos.y + 10 }, node.data.memory, percentToColor(node.data.memory), "MEM\n" + (truncateDecimals(node.data.memory * 10) / 10) + "%", 22, 22, 12, 8);
             }
         },
         'contains': function (node, pos) {
@@ -64,8 +64,8 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
             var width = node.getData('width');
             var height = node.getData('height');
             var npos2 = {};
-            npos2.x = npos.x + 25;
-            npos2.y = npos.y + 25;
+            npos2.x = npos.x + 5;
+            npos2.y = npos.y + 15;
             return this.nodeHelper.rectangle.contains(npos2, pos, width, height);
         }
     }
@@ -81,8 +81,8 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
                 var img = node.getData('image');
                 ctx.drawImage(img, pos.x - 25, pos.y - 20);
 
-                drawGauge(canvas, { x: pos.x + img.width + 12, y: pos.y + 32 }, node.data.cpu, percentToColor(node.data.cpu), "CPU\n" + (truncateDecimals(node.data.cpu * 10) / 10) + "%", 30, 30, 15, 10);
-                drawGauge(canvas, { x: pos.x + img.width + 90, y: pos.y + 32 }, node.data.memory, percentToColor(node.data.memory), "HEAP\n" + (truncateDecimals(node.data.memory * 10) / 10) + "%", 30, 30, 15, 10);
+                drawGauge(canvas, { x: pos.x + img.width + 8, y: pos.y + 10 }, node.data.cpu, percentToColor(node.data.cpu), "CPU\n" + (truncateDecimals(node.data.cpu * 10) / 10) + "%", 22, 22, 12, 8);
+                drawGauge(canvas, { x: pos.x + img.width + 65, y: pos.y + 10 }, node.data.memory, percentToColor(node.data.memory), "HEAP\n" + (truncateDecimals(node.data.memory * 10) / 10) + "%", 22, 22, 12, 8);
             }
         },
         'contains': function (node, pos) {
@@ -91,8 +91,8 @@ $jit.ForceDirected.Plot.NodeTypes.implement({
             var width = node.getData('width');
             var height = node.getData('height');
             var npos2 = {};
-            npos2.x = npos.x + 25;
-            npos2.y = npos.y + 25;
+            npos2.x = npos.x + 5;
+            npos2.y = npos.y + 15;
             return this.nodeHelper.rectangle.contains(npos2, pos, width, height);
         }
     }
@@ -174,8 +174,8 @@ function drawGauge(canvas, pos, percent, color, text, outerWidth, innerWidth, ou
     ctx.stroke();
 
     ctx.fillStyle = color;
-    ctx.font = "15px  sans-serif";
-    ctx.wrapText(text, pos.x - text_width / 4, pos.y, 120, 16);
+    ctx.font = "10px sans-serif";
+    ctx.wrapText(text, pos.x - text_width / 4, pos.y - 2, 120, 10);
 }
 
 // Directed edge with label placed on it
@@ -298,7 +298,7 @@ CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, li
 
 function visualizeSystem() {
 // TODO comment here for offline testing of style info
-    $.getJSON('/monitoring', function (data) {
+    $.getJSON('test.json', function (data) {
 //      $.getJSON('test.json', function (data) {
         update(data);
     });
