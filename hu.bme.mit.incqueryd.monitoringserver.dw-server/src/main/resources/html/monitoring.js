@@ -300,7 +300,7 @@ CanvasRenderingContext2D.prototype.wrapText = function (text, x, y, maxWidth, li
 
 function visualizeSystem() {
 // TODO comment here for offline testing of style info
-    $.getJSON('test.json', function (data) {
+    $.getJSON('/monitoring', function (data) {
 //      $.getJSON('test.json', function (data) {
         update(data);
     });
