@@ -28,7 +28,7 @@ public class ArchUtil {
 
 	/**
 	 * Extract the type name from the trace info.
-	 *
+	 * 
 	 * @param traceInfo
 	 * @return
 	 */
@@ -60,7 +60,7 @@ public class ArchUtil {
 
 	/**
 	 * Cut the proxy's name from the EMF URI.
-	 *
+	 * 
 	 * @param emfUri
 	 * @return
 	 */
@@ -83,21 +83,30 @@ public class ArchUtil {
 
 	public static Configuration loadConfiguration(final String architectureFile) throws IOException {
 		final Resource resource = loadModel(architectureFile);
-		
+
 		final EObject o = resource.getContents().get(0);
 		return (Configuration) o;
 	}
-	
+
 	public static Inventory loadInventory(final String inventoryFile) throws IOException {
 		final Resource resource = loadModel(inventoryFile);
-		
+
 		final EObject o = resource.getContents().get(0);
 		return (Inventory) o;
 	}
-	
+
 	public static ReteRecipe loadRecipe(final String recipeFile) throws IOException {
-		final Resource resource = loadModel(recipeFile);
-		
+		// initialize extension to factory map
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("recipe", new XMIResourceFactoryImpl());
+
+		// initialize package registry
+		// initialize the RecipesPackage before the others
+		RecipesPackage.eINSTANCE.eClass();
+
+		final ResourceSet resourceSet = new ResourceSetImpl();
+		final Resource resource = resourceSet.getResource(URI.createFileURI(recipeFile), true);
+		EcoreUtil.resolveAll(resource);
+
 		final EObject o = resource.getContents().get(0);
 		return (ReteRecipe) o;
 	}
@@ -115,7 +124,7 @@ public class ArchUtil {
 		}
 		return paths;
 	}
-	
+
 	protected static Resource loadModel(final String architectureFile) {
 		// initialize extension to factory map
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());

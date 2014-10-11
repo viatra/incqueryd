@@ -15,13 +15,15 @@ public class AllocationConfiguration {
 	private static final String ARCHITECTURE = "architecture";
 	private static final String INVENTORY = "inventory";
 	private static final String RECIPE = "recipe";
-	private static final String OBJECTIVEFUNCTION = "objectivefunction";
+	private static final String OBJECTIVEFUNCTION = "objectiveFunction";
+	private static final String STATS = "stats";
 	
 	private final Options options = new Options();
 	private String recipe;
 	private String inventory;
 	private String architecture;
 	private String objectiveFunction;
+	private String stats;
 	private boolean optimizeForCost;
 	
 	public String getRecipe() {
@@ -38,6 +40,10 @@ public class AllocationConfiguration {
 	
 	public boolean isOptimizeForCost() {
 		return optimizeForCost;
+	}
+	
+	public String getStats() {
+		return stats;
 	}
 	
 	public AllocationConfiguration(String[] args) throws ParseException {
@@ -61,6 +67,7 @@ public class AllocationConfiguration {
 		options.addOption(requiredOption(RECIPE, "recipe file (input)"));
 		options.addOption(requiredOption(INVENTORY, "inventory file (input)"));
 		options.addOption(requiredOption(ARCHITECTURE, "architecture file (output)"));
+		options.addOption(requiredOption(STATS, "architecture file (output)"));
 		options.addOption(OBJECTIVEFUNCTION, true, "objective function: communication (default), cost");
 		
 		final CommandLineParser parser = new PosixParser();
@@ -69,6 +76,7 @@ public class AllocationConfiguration {
 		inventory = cmd.getOptionValue(INVENTORY);
 		architecture = cmd.getOptionValue(ARCHITECTURE);
 		objectiveFunction = cmd.getOptionValue(OBJECTIVEFUNCTION);
+		stats = cmd.getOptionValue(STATS);
 	}
 
 	protected static Option requiredOption(String name, String description) {
@@ -84,6 +92,5 @@ public class AllocationConfiguration {
 		formatter.printHelp("java -cp \"target/*:target/lib/*\" hu.bme.mit.incqueryd.csp.main.AllocationMain", "options:", options, "", false);
 		System.out.println();
 	}
-	
 	
 }
