@@ -1,8 +1,10 @@
 package hu.bme.mit.incqueryd.csp.main;
 
+import hu.bme.mit.incqueryd.csp.stats.StatsUtil;
 import hu.bme.mit.incqueryd.csp.util.ReteAllocator;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.apache.commons.cli.ParseException;
 
@@ -11,6 +13,9 @@ public class AllocationMain {
 	public static void main(String[] args) throws IOException, ParseException {
 		System.loadLibrary("jniortools");
 		AllocationConfiguration allocationConfiguration = new AllocationConfiguration(args);
+		
+		Map<String, Long> stats = StatsUtil.loadStats(allocationConfiguration.getStats());
+		System.out.println(stats);
 		
 		ReteAllocator allocator = new ReteAllocator(allocationConfiguration.isOptimizeForCost(), allocationConfiguration.getRecipe(), allocationConfiguration.getInventory(), allocationConfiguration.getArchitecture());
 		if (allocator.allocate()) {
