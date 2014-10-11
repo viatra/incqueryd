@@ -81,7 +81,7 @@ public class AllocationConfiguration {
 		HelpFormatter formatter = new HelpFormatter();
 		formatter.setWidth(120);
 
-		formatter.printHelp("java -cp \"target/*:target/lib/*\" hu.bme.mit.incqueryd.csp.main.Main", "options:", options, "", false);
+		formatter.printHelp("java -cp \"target/*:target/lib/*\" hu.bme.mit.incqueryd.csp.main.AllocationMain", "options:", options, "", false);
 		System.out.println();
 	}
 	

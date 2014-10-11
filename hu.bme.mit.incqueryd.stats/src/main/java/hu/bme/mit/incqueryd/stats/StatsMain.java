@@ -3,13 +3,9 @@ package hu.bme.mit.incqueryd.stats;
 import hu.bme.mit.bigmodel.fourstore.FourStoreDriverCrud;
 import hu.bme.mit.incqueryd.arch.util.ArchUtil;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 import org.apache.commons.cli.ParseException;
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;
@@ -45,15 +41,10 @@ public class StatsMain {
 			}
 		}
 
-		Properties props = new Properties();
-		for (Map.Entry<String, Long> entry : stats.entrySet()) {
-			props.setProperty(entry.getKey(), entry.getValue().toString());
-		}
-
-		File f = new File(statsFile);
-		OutputStream out = new FileOutputStream(f);
-		props.store(out, "");
-
+		StatsUtil.saveStats(statsFile, stats);
+		Map<String, Long> loadStats = StatsUtil.loadStats(statsFile);
+		System.out.println(loadStats);
 	}
+
 
 }
