@@ -27,9 +27,11 @@ public class InputNode implements AlphaNode {
 	 */
 	InputNode(final TypeInputRecipe recipe) {
 		super();
+		typeName = recipe.getTypeName().split("#")[1];
 	}
 
 	protected final Set<Tuple> tuples = new HashSet<>();
+	protected final String typeName;
 
 	public double getMemoryConsumption() {
 		MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
@@ -38,6 +40,10 @@ public class InputNode implements AlphaNode {
 
 	public Set<Tuple> getTuples() {
 		return tuples;
+	}
+	
+	public String getTypeName() {
+		return typeName;
 	}
 	
 	@Override
