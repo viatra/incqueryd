@@ -30,14 +30,18 @@ public class StatsMain {
 				final TypeInputRecipe typeInputRecipe = (TypeInputRecipe) recipe;
 				String typeName = typeInputRecipe.getTypeName();
 				long size = 0;
+				long arity = 0;
 
 				if (typeInputRecipe instanceof UnaryInputRecipe) {
 					size = driver.getNodeSize(typeInputRecipe.getTypeName());
+					arity = 1;
 				} else if (typeInputRecipe instanceof BinaryInputRecipe) {
 					size = driver.getEdgeSize(typeInputRecipe.getTypeName());
+					arity = 2;
 				}
 
-				stats.put(typeName, size);
+				stats.put(typeName + "_size", size);
+				stats.put(typeName + "_arity", arity);
 			}
 		}
 

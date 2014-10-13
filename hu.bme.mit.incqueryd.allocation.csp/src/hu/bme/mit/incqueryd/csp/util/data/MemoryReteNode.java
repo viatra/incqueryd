@@ -5,11 +5,10 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 public class MemoryReteNode extends ReteNode {
 	
 	protected int memory;
-	protected int rawData;
+	
 
 	public MemoryReteNode(ReteNodeRecipe reteNode, int raw) {
-		super(reteNode);
-		this.rawData = raw;
+		super(reteNode, raw);
 		memory = 1000;
 	}
 	
@@ -21,11 +20,4 @@ public class MemoryReteNode extends ReteNode {
 		this.memory = memory;
 	}
 
-	public int getRawData() {
-		return rawData;
-	}
-	
-	public void setRawData(int rawData) {
-		this.rawData = rawData;
-	}
 }
