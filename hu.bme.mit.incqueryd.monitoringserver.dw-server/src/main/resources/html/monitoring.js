@@ -203,9 +203,9 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
             else if (adj.data.slot == "SINGLE") {
                 deltaX = 0;
                 if (from.y < to.y) {
-                    deltaY = -(alpha_height / 2) ;
+                    deltaY = (alpha_height / 2) ;
                 }
-                else deltaY = (alpha_height / 2) ;
+                else deltaY = -(alpha_height / 2) ;
             }
             
             
