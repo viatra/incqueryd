@@ -1491,7 +1491,14 @@ function drawReteNet() {
         }
 
         node.id = reteNode.reteNode;
-        node.name = reteNode.nodeType.replace('Node','') + " " + reteNode.reteNode + " on ";
+
+        if (reteNode.nodeClass == "Input") {
+            node.name = reteNode.nodeType.replace('Node', '') + " " + reteNode.typeName + " on ";
+        }
+        else {
+            node.name = reteNode.nodeType.replace('Node', '') + " " + reteNode.reteNode + " on ";
+        }
+        
         node.data.host = reteNode.processName;
         
 
