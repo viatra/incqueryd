@@ -321,10 +321,10 @@ public class ReteAllocator {
 	private static int getMemoryInMBs(MemoryUnit memUnit, int memorySize) {
 		switch (memUnit) {
 		case MB:
-			return memorySize;
+			return (int)(memorySize * 0.8);
 
 		case GB:
-			return 1024 * memorySize;
+			return (int)(1024 * memorySize * 0.8);
 
 		default:
 			return 0;
