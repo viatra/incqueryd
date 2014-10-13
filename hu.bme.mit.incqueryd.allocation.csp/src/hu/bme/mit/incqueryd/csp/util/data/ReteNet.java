@@ -48,7 +48,7 @@ public class ReteNet {
 				reteNodes.add(reteNode);
 				
 			} else {
-				ReteNode reteNode = new ReteNode(reteNodeRecipe);
+				ReteNode reteNode = new ReteNode(reteNodeRecipe, 0);
 				reteNodes.add(reteNode);
 			}
 		}
