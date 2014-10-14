@@ -254,7 +254,7 @@ class ReteActor extends Actor {
     })
 
     reteNode match {
-      case inputNode: InputNode => new InputNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Input", self.path.toString, updateMessageCount, changesCount, inputNode.getTuples.size, inputNode.getMemoryConsumption, subscriberNodes)
+      case inputNode: InputNode => new InputNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Input", self.path.toString, updateMessageCount, changesCount, inputNode.getTuples.size, inputNode.getMemoryConsumption, subscriberNodes, inputNode.getTypeName)
       case productionNode: ProductionNode => new MemoryNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Production", self.path.toString, updateMessageCount, changesCount, productionNode.getMemoryConsumption, subscriberNodes)
       case alphaNode: AlphaNode => new AlphaNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Alpha", self.path.toString, updateMessageCount, changesCount, subscriberNodes)
       case betaNode: BetaNode => new BetaNodeMetrics(self.path.name, HostNameService.hostName, HostNameService.processName, nodeType, "Beta", self.path.toString, updateMessageCount, changesCount, betaNode.leftIndexerSize, betaNode.rightIndexerSize, betaNode.getMemoryConsumption, subscriberNodes)
