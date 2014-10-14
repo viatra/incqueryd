@@ -3,7 +3,6 @@ package hu.bme.mit.incqueryd.core.rete.actors
 import java.nio.file.Paths
 import java.util.HashMap
 import java.util.HashSet
-
 import scala.collection.JavaConversions.asScalaBuffer
 import scala.collection.JavaConversions.asScalaSet
 import scala.collection.JavaConversions.collectionAsScalaIterable
@@ -13,7 +12,6 @@ import scala.collection.JavaConversions.seqAsJavaList
 import scala.collection.immutable.Stack
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-
 import org.apache.commons.io.FilenameUtils
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe
@@ -21,9 +19,7 @@ import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe
-
 import com.google.common.collect.HashBiMap
-
 import akka.actor.Actor
 import akka.actor.ActorRef
 import akka.actor.Address
@@ -57,6 +53,7 @@ import hu.bme.mit.incqueryd.core.util.EObjectSerializer
 import hu.bme.mit.incqueryd.core.util.ReteNodeConfiguration
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
 import infrastructure.Process
+import hu.bme.mit.bigmodel.fourstore.FourStoreDriverTrainBenchmark
 
 class CoordinatorActor(val architectureFile: String, val distributed: Boolean) extends Actor {
 
@@ -265,8 +262,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
     println(logPrefix + "Loading the Rete network.")
 
     val clusterName = conf.getConnectionString.split("://")(1)
-    val databaseDriver = new FourStoreDriverUnique(clusterName, distributed)   
-    databaseDriver.generateUniques()
+    val databaseDriver = new FourStoreDriverTrainBenchmark(clusterName, distributed)
 
     conf.getRecipes.foreach(recipe =>
       recipe.getRecipeNodes.foreach(_ match {
@@ -310,7 +306,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
     println(logPrefix + pendingUpdateMessages + " update message(s) pending.")
   }
 
-  def initializeAttribute(databaseDriver: FourStoreDriverUnique, recipe: BinaryInputRecipe, tuples: java.util.Set[Tuple]) = {
+  def initializeAttribute(databaseDriver: FourStoreDriverTrainBenchmark, recipe: BinaryInputRecipe, tuples: java.util.Set[Tuple]) = {
     val typeName = RDFHelper.brackets(recipe.getTypeName)
     val attributes = databaseDriver.collectVerticesWithProperty(typeName) 
 
@@ -324,7 +320,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
     })
   }
 
-  def initializeEdge(databaseDriver: FourStoreDriverUnique, recipe: BinaryInputRecipe, tuples: java.util.Set[Tuple]) = {
+  def initializeEdge(databaseDriver: FourStoreDriverTrainBenchmark, recipe: BinaryInputRecipe, tuples: java.util.Set[Tuple]) = {
     val typeName = RDFHelper.brackets(recipe.getTypeName)
     val edges = databaseDriver.collectEdges(typeName)
     
@@ -333,7 +329,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
     })
   }
 
-  def initializeVertex(databaseDriver: FourStoreDriverUnique, recipe: UnaryInputRecipe, tuples: java.util.Set[Tuple]) = {
+  def initializeVertex(databaseDriver: FourStoreDriverTrainBenchmark, recipe: UnaryInputRecipe, tuples: java.util.Set[Tuple]) = {
     val vertices = databaseDriver.collectVertices(RDFHelper.brackets(recipe.getTypeName))
     vertices.foreach(vertex => tuples += new Tuple(vertex))
   }
