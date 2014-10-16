@@ -4,23 +4,42 @@ public class ReteEdge {
 	
 	protected ReteNode parent;
 	
-	protected int weight;
+	protected int tupleNumber;
+	protected int tupleArity;
+	
+	protected boolean valid;
 
-	public ReteEdge(ReteNode target, int weight) {
+	public ReteEdge(ReteNode target) {
 		this.parent = target;
-		this.weight = weight;
+		valid = false;
 	}
 	
 	public ReteNode getTarget() {
 		return parent;
 	}
 	
-	public int getWeight() {
-		return weight;
+	public int getTupleNumber() {
+		return tupleNumber;
 	}
 	
-	public void setWeight(int weight) {
-		this.weight = weight;
+	public int getTupleArity() {
+		return tupleArity;
+	}
+	
+	public void setTupleNumber(int tupleNumber) {
+		this.tupleNumber = tupleNumber;
+	}
+	
+	public void setTupleArity(int tupleArity) {
+		this.tupleArity = tupleArity;
+	}
+	
+	public boolean isValid() {
+		return valid;
+	}
+	
+	public void valid() {
+		valid = true;
 	}
 
 }
