@@ -4,37 +4,27 @@ import hu.bme.mit.incqueryd.csp.util.heuristics.HeuristicsHelper;
 
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 
-public class ProductionReteNode extends MemoryReteNode {
+public class ProductionReteNode extends MultiParentReteNode {
 	
-	protected ReteEdge parentEdge;
+	protected int memory;
 	
-	public void createParentEdge(ReteNode par) {
-		parentEdge = new ReteEdge(par);
-	}
-
 	public ProductionReteNode(ReteNodeRecipe node) {
 		super(node);
+	}
+	
+	public int getMemory() {
+		return memory;
 	}
 
 	@Override
 	public boolean calculateHeuristics() {
-		ReteNode parentNode = parentEdge.getTarget();
-		if(parentNode.isValid()) {
-			int arity = parentNode.getTupleArity();
-			int tuples = parentNode.getTupleNumber();
-			
-			parentEdge.setTupleArity(arity);
-			parentEdge.setTupleNumber(tuples);
-			
-			this.tupleArity = arity;
-			this.tupleNumber = tuples;
-			
-			memory = HeuristicsHelper.getEstimatedMemoryUsage(arity * tuples);
-			
-			this.valid = true;
+		boolean ready = super.calculateHeuristics();
+		
+		if(ready) {
+			memory = HeuristicsHelper.getEstimatedMemoryUsage(this.tupleArity * this.tupleNumber);
 		}
 		
-		return false;
+		return ready;
 	}
 
 }
