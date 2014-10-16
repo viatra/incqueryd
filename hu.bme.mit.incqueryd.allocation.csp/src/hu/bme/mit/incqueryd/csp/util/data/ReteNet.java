@@ -29,8 +29,9 @@ public class ReteNet {
 
 	public void create() {
 
-		createNodes();
-		createEdges();
+		createNodes(); // 1st phase is creation of nodes
+		createEdges(); // 2nd phase is creation of edges
+		calculateHeuristicsInTheNet(); // 3rd phase
 
 	}
 	
@@ -39,14 +40,25 @@ public class ReteNet {
 
 		for (ReteNodeRecipe reteNodeRecipe : recipeNodes) {
 			if (reteNodeRecipe instanceof TypeInputRecipe) {
-				Long memoryStats = inputStats.get(((TypeInputRecipe) reteNodeRecipe).getTypeName());
+				String typeName = ((TypeInputRecipe) reteNodeRecipe).getTypeName();
+				Long tuples = inputStats.get(typeName + "_size");
+				Long arity = inputStats.get(typeName + "_arity");
 				
+				InputReteNode node = new InputReteNode(reteNodeRecipe, tuples.intValue(), arity.intValue());
+				reteNodes.add(node);
 			}
-			else if (reteNodeRecipe instanceof BetaRecipe || reteNodeRecipe instanceof ProductionRecipe ) {
-				
-				
-			} else {
-				
+			else if (reteNodeRecipe instanceof BetaRecipe) {
+				BetaRecipe recipe = (BetaRecipe) reteNodeRecipe;
+				reteNodes.add(new BetaReteNode(recipe));
+			}
+			else if (reteNodeRecipe instanceof ProductionRecipe ) {
+				reteNodes.add(new ProductionReteNode(reteNodeRecipe));
+			}
+			else if (reteNodeRecipe instanceof MultiParentNodeRecipe) {
+				reteNodes.add(new MultiParentReteNode(reteNodeRecipe));
+			}
+			else {
+				reteNodes.add(new AlphaReteNode(reteNodeRecipe));
 			}
 		}
 	}
@@ -64,27 +76,67 @@ public class ReteNet {
 				ReteNode leftParentNode = getReteNodeById(ArchUtil.getJsonEObjectUri(leftParent));
 				ReteNode rightParentNode = getReteNodeById(ArchUtil.getJsonEObjectUri(rightParent));
 				
-
+				BetaReteNode betaNode = (BetaReteNode) node;
+				betaNode.createLeftParentEdge(leftParentNode);
+				betaNode.createRightParentEdge(rightParentNode);
 				
 			} else if (reteNodeRecipe instanceof AlphaRecipe) {
 				ReteNodeRecipe parent = ((AlphaRecipe) reteNodeRecipe).getParent();
-				
 				ReteNode parentNode = getReteNodeById(ArchUtil.getJsonEObjectUri(parent));
 				
+				AlphaReteNode alphaNode = (AlphaReteNode) node;
+				alphaNode.createParentEdge(parentNode);
 				
-			} else if (reteNodeRecipe instanceof MultiParentNodeRecipe) {
-				MultiParentNodeRecipe multiParentNodeRecipe = ((MultiParentNodeRecipe) reteNodeRecipe);
-				EList<ReteNodeRecipe> parents = multiParentNodeRecipe.getParents();
-				
+			} else if (reteNodeRecipe instanceof ProductionRecipe) {
+				ProductionRecipe productionNodeRecipe = ((ProductionRecipe) reteNodeRecipe);
+				EList<ReteNodeRecipe> parents = productionNodeRecipe.getParents();
+				ProductionReteNode prodNode = (ProductionReteNode) node;
 				for (ReteNodeRecipe parent : parents) {
 					ReteNode parentNode = getReteNodeById(ArchUtil.getJsonEObjectUri(parent));
-					
+					prodNode.createParentEdge(parentNode);
+				}
+				
+			}
+			else if (reteNodeRecipe instanceof MultiParentNodeRecipe) {
+				MultiParentNodeRecipe multiParentNodeRecipe = ((MultiParentNodeRecipe) reteNodeRecipe);
+				EList<ReteNodeRecipe> parents = multiParentNodeRecipe.getParents();
+				MultiParentReteNode multiNode = (MultiParentReteNode) node;
+				for (ReteNodeRecipe parent : parents) {
+					ReteNode parentNode = getReteNodeById(ArchUtil.getJsonEObjectUri(parent));
+					multiNode.createParentEdge(parentNode);
 				}
 			}
 		}
 		
 	}
 
+	
+	private void calculateHeuristicsInTheNet() {
+		List<ReteNode> notReadyNodes = new ArrayList<>();
+		
+		for (ReteNode reteNode : reteNodes) {
+			boolean isReady = reteNode.calculateHeuristics();
+			if(!isReady) {
+				notReadyNodes.add(reteNode);
+			}
+		}
+		
+		do {
+			List<ReteNode> readyNodes = new ArrayList<>();
+			
+			for (ReteNode reteNode : notReadyNodes) {
+				boolean isReady = reteNode.calculateHeuristics();
+				if(isReady) readyNodes.add(reteNode);
+			}
+			
+			for (ReteNode readyNode : readyNodes) {
+				notReadyNodes.remove(readyNode);
+			}
+			
+			readyNodes.clear();
+			
+		}while(!notReadyNodes.isEmpty());
+	}
 	
 	
 	//Private helper methods
