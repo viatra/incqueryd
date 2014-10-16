@@ -40,16 +40,13 @@ public class ReteNet {
 		for (ReteNodeRecipe reteNodeRecipe : recipeNodes) {
 			if (reteNodeRecipe instanceof TypeInputRecipe) {
 				Long memoryStats = inputStats.get(((TypeInputRecipe) reteNodeRecipe).getTypeName());
-				MemoryReteNode reteNode = new MemoryReteNode(reteNodeRecipe, memoryStats.intValue());
-				reteNodes.add(reteNode);
+				
 			}
 			else if (reteNodeRecipe instanceof BetaRecipe || reteNodeRecipe instanceof ProductionRecipe ) {
-				MemoryReteNode reteNode = new MemoryReteNode(reteNodeRecipe, 0);
-				reteNodes.add(reteNode);
+				
 				
 			} else {
-				ReteNode reteNode = new ReteNode(reteNodeRecipe, 0);
-				reteNodes.add(reteNode);
+				
 			}
 		}
 	}
@@ -66,14 +63,14 @@ public class ReteNet {
 				
 				ReteNode leftParentNode = getReteNodeById(ArchUtil.getJsonEObjectUri(leftParent));
 				ReteNode rightParentNode = getReteNodeById(ArchUtil.getJsonEObjectUri(rightParent));
-				node.createEdge(leftParentNode, 0);
-				node.createEdge(rightParentNode, 0);
+				
+
 				
 			} else if (reteNodeRecipe instanceof AlphaRecipe) {
 				ReteNodeRecipe parent = ((AlphaRecipe) reteNodeRecipe).getParent();
 				
 				ReteNode parentNode = getReteNodeById(ArchUtil.getJsonEObjectUri(parent));
-				node.createEdge(parentNode, 0);
+				
 				
 			} else if (reteNodeRecipe instanceof MultiParentNodeRecipe) {
 				MultiParentNodeRecipe multiParentNodeRecipe = ((MultiParentNodeRecipe) reteNodeRecipe);
@@ -81,7 +78,7 @@ public class ReteNet {
 				
 				for (ReteNodeRecipe parent : parents) {
 					ReteNode parentNode = getReteNodeById(ArchUtil.getJsonEObjectUri(parent));
-					node.createEdge(parentNode, 0);
+					
 				}
 			}
 		}
