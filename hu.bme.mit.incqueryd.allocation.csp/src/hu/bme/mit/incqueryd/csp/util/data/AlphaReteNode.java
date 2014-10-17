@@ -1,5 +1,7 @@
 package hu.bme.mit.incqueryd.csp.util.data;
 
+import hu.bme.mit.incqueryd.arch.util.ArchUtil;
+
 import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
@@ -39,8 +41,22 @@ public class AlphaReteNode extends ReteNode {
 			}
 			
 			this.valid = true;
+			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public void print() {
+		System.out.println("ReteNode: " + this.reteNode.getClass().getSimpleName() + " " + ArchUtil.getJsonEObjectUri(this.reteNode));
+		
+		ReteNode parent = parentEdge.getTarget();
+		int tupels = parentEdge.getTupleNumber();
+		int arity = parentEdge.getTupleArity();
+		String parentID = parent.getReteNode().getClass().getSimpleName() + " " + ArchUtil.getJsonEObjectUri(parent.getReteNode());
+		
+		System.out.println("parent: " + parentID + ", tuples: " + tupels + ",arity: " + arity);
+		
 	}
 
 }
