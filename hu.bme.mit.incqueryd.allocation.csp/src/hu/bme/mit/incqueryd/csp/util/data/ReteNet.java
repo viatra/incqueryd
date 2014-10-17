@@ -18,9 +18,12 @@ import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
 public class ReteNet {
 
 	protected List<ReteNode> reteNodes = new ArrayList<>();
+	protected List<ReteEdge> reteEdges = new ArrayList<>();
 
 	protected ReteRecipe recipe;
 	protected Map<String, Long> inputStats;
+	
+	protected List<ReteProcess> processes = new ArrayList<>();
 
 	public ReteNet(ReteRecipe recipe, Map<String, Long> inputStats) {
 		this.recipe = recipe;
@@ -32,9 +35,11 @@ public class ReteNet {
 		createNodes(); // 1st phase is creation of nodes
 		createEdges(); // 2nd phase is creation of edges
 		calculateHeuristicsInTheNet(); // 3rd phase
+		createProcesses();
 
 	}
 	
+
 	private void createNodes() {
 		EList<ReteNodeRecipe> recipeNodes = recipe.getRecipeNodes();
 
@@ -77,15 +82,20 @@ public class ReteNet {
 				ReteNode rightParentNode = getReteNodeById(ArchUtil.getJsonEObjectUri(rightParent));
 				
 				BetaReteNode betaNode = (BetaReteNode) node;
-				betaNode.createLeftParentEdge(leftParentNode);
-				betaNode.createRightParentEdge(rightParentNode);
+				ReteEdge left = betaNode.createLeftParentEdge(leftParentNode);
+				ReteEdge right = betaNode.createRightParentEdge(rightParentNode);
+				
+				reteEdges.add(left);
+				reteEdges.add(right);
 				
 			} else if (reteNodeRecipe instanceof AlphaRecipe) {
 				ReteNodeRecipe parent = ((AlphaRecipe) reteNodeRecipe).getParent();
 				ReteNode parentNode = getReteNodeById(ArchUtil.getJsonEObjectUri(parent));
 				
 				AlphaReteNode alphaNode = (AlphaReteNode) node;
-				alphaNode.createParentEdge(parentNode);
+				ReteEdge parentEdge = alphaNode.createParentEdge(parentNode);
+				
+				reteEdges.add(parentEdge);
 				
 			} else if (reteNodeRecipe instanceof ProductionRecipe) {
 				ProductionRecipe productionNodeRecipe = ((ProductionRecipe) reteNodeRecipe);
@@ -93,7 +103,9 @@ public class ReteNet {
 				ProductionReteNode prodNode = (ProductionReteNode) node;
 				for (ReteNodeRecipe parent : parents) {
 					ReteNode parentNode = getReteNodeById(ArchUtil.getJsonEObjectUri(parent));
-					prodNode.createParentEdge(parentNode);
+					ReteEdge parentEdge = prodNode.createParentEdge(parentNode);
+					
+					reteEdges.add(parentEdge);
 				}
 				
 			}
@@ -103,7 +115,9 @@ public class ReteNet {
 				MultiParentReteNode multiNode = (MultiParentReteNode) node;
 				for (ReteNodeRecipe parent : parents) {
 					ReteNode parentNode = getReteNodeById(ArchUtil.getJsonEObjectUri(parent));
-					multiNode.createParentEdge(parentNode);
+					ReteEdge parentEdge = multiNode.createParentEdge(parentNode);
+					
+					reteEdges.add(parentEdge);
 				}
 			}
 		}
@@ -134,6 +148,37 @@ public class ReteNet {
 			
 			readyNodes.clear();
 		}while(!notReadyNodes.isEmpty());
+	}
+	
+	
+	private void createProcesses() {
+		List<ReteNode> remainingNodes = new ArrayList<>();
+		
+		int id = 0;
+		for (ReteNode reteNode : reteNodes) {
+			if (reteNode instanceof BetaReteNode) {
+				BetaReteNode betaNode = (BetaReteNode) reteNode;
+				ReteProcess reteProcess = new ReteProcess(++id, betaNode.getMemory(), betaNode);
+				processes.add(reteProcess);
+			}
+			else if (reteNode instanceof InputReteNode) {
+				InputReteNode inputNode = (InputReteNode) reteNode;
+				ReteProcess reteProcess = new ReteProcess(++id, inputNode.getMemory(), inputNode);
+				processes.add(reteProcess);
+			}
+			else if (reteNode instanceof ProductionReteNode) {
+				ProductionReteNode productionNode = (ProductionReteNode) reteNode;
+				ReteProcess reteProcess = new ReteProcess(++id, productionNode.getMemory(), productionNode);
+				processes.add(reteProcess);
+			}
+			else {
+				remainingNodes.add(reteNode);
+			}
+		}
+		
+		do {
+			
+		}while(!remainingNodes.isEmpty());
 	}
 	
 	

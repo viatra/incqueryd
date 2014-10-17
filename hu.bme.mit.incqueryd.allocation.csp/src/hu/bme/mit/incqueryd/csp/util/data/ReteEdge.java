@@ -3,19 +3,25 @@ package hu.bme.mit.incqueryd.csp.util.data;
 public class ReteEdge {
 	
 	protected ReteNode parent;
+	protected ReteNode child;
 	
 	protected int tupleNumber;
 	protected int tupleArity;
 	
 	protected boolean valid;
 
-	public ReteEdge(ReteNode target) {
+	public ReteEdge(ReteNode target, ReteNode child) {
 		this.parent = target;
+		this.child = child;
 		valid = false;
 	}
 	
-	public ReteNode getTarget() {
+	public ReteNode getParent() {
 		return parent;
+	}
+	
+	public ReteNode getChild() {
+		return child;
 	}
 	
 	public int getTupleNumber() {
