@@ -24,6 +24,7 @@ public class ReteNet {
 	protected Map<String, Long> inputStats;
 	
 	protected List<ReteProcess> processes = new ArrayList<>();
+	private int[][] edges;
 
 	public ReteNet(ReteRecipe recipe, Map<String, Long> inputStats) {
 		this.recipe = recipe;
@@ -36,6 +37,9 @@ public class ReteNet {
 		createEdges(); // 2nd phase is creation of edges
 		calculateHeuristicsInTheNet(); // 3rd phase
 		createProcesses();
+		createProcessEdges();
+		
+		print();
 
 	}
 	
@@ -154,7 +158,7 @@ public class ReteNet {
 	private void createProcesses() {
 		List<ReteNode> remainingNodes = new ArrayList<>();
 		
-		int id = 0;
+		int id = -1;
 		for (ReteNode reteNode : reteNodes) {
 			if (reteNode instanceof BetaReteNode) {
 				BetaReteNode betaNode = (BetaReteNode) reteNode;
@@ -177,10 +181,59 @@ public class ReteNet {
 		}
 		
 		do {
+			List<ReteNode> assignedNodes = new ArrayList<>();
+			
+			for (ReteNode remainingNode : remainingNodes) {
+				boolean processFound = false;
+				for (ReteProcess process : processes) {
+					boolean found = remainingNode.isYourProcess(process);
+					if(found) {
+						processFound = true;
+						break;
+					}
+				}
+				if(processFound) {
+					assignedNodes.add(remainingNode);
+				}
+			}
+			
+			remainingNodes.removeAll(assignedNodes);
 			
 		}while(!remainingNodes.isEmpty());
 	}
 	
+	
+	private void createProcessEdges() {
+		int processNumber = processes.size();
+		edges = new int[processNumber][processNumber];
+		
+		// initialize
+		for (int i = 0; i < edges.length; i++) {
+			int[] row = edges[i];
+			for (int j = 0; j < row.length; j++) {
+				edges[i][j] = 0;
+			}
+		}
+		
+		for (ReteEdge reteEdge : reteEdges) {
+			boolean interProcess = reteEdge.isInterProcess();
+			if(interProcess) {
+				int parentPID = reteEdge.getParentPID();
+				int childPID = reteEdge.getChildPID();
+				int weight = reteEdge.getWeight();
+				
+				edges[parentPID][childPID] = weight;
+			}
+		}
+		
+		for (int i = 0; i < edges.length; i++) {
+			int[] row = edges[i];
+			for (int j = 0; j < row.length; j++) {
+				System.out.print(edges[i][j]+", ");
+			}
+			System.out.println();
+		}
+	}
 	
 	//Private helper methods
 	private ReteNode getReteNodeById(String id) {
@@ -194,8 +247,8 @@ public class ReteNet {
 	}
 	
 	public void print() {
-		for (ReteNode node : reteNodes) {
-			node.print();
+		for (ReteProcess process : processes) {
+			process.print();
 			System.out.println();
 		}
 	}

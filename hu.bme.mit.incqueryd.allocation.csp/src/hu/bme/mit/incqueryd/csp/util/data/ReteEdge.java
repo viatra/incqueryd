@@ -32,6 +32,10 @@ public class ReteEdge {
 		return tupleArity;
 	}
 	
+	public int getWeight() {
+		return tupleNumber * tupleArity;
+	}
+	
 	public void setTupleNumber(int tupleNumber) {
 		this.tupleNumber = tupleNumber;
 	}
@@ -46,6 +50,21 @@ public class ReteEdge {
 	
 	public void valid() {
 		valid = true;
+	}
+	
+	public boolean isInterProcess() {
+		int parentPID = parent.getProcessId();
+		int childPID = child.getProcessId();
+		
+		return (parentPID != childPID);
+	}
+	
+	public int getParentPID() {
+		return parent.getProcessId();
+	}
+	
+	public int getChildPID() {
+		return child.getProcessId();
 	}
 
 }

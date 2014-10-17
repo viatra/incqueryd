@@ -32,4 +32,13 @@ public class ReteProcess {
 	public int getId() {
 		return id;
 	}
+	
+	public void print() {
+		System.out.println("Process " + id + " begins");
+		for (ReteNode reteNode : reteNodes) {
+			reteNode.print();
+			System.out.println();
+		}
+		System.out.println("Process " + id + " over");
+	}
 }
