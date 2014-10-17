@@ -16,9 +16,10 @@ public class MultiParentReteNode extends ReteNode {
 		
 		parentEdges = new ArrayList<>();
 	}
-	public void createParentEdge(ReteNode par) {
-		ReteEdge parentEdge = new ReteEdge(par);
+	public ReteEdge createParentEdge(ReteNode par) {
+		ReteEdge parentEdge = new ReteEdge(par, this);
 		parentEdges.add(parentEdge);
+		return parentEdge;
 	}
 
 	@Override
@@ -26,7 +27,7 @@ public class MultiParentReteNode extends ReteNode {
 		
 		boolean parentsReady = true;
 		for (ReteEdge parentEdge : parentEdges) {
-			ReteNode parent = parentEdge.getTarget();
+			ReteNode parent = parentEdge.getParent();
 			if (!parent.isValid()) {
 				parentsReady = false;
 				break;
@@ -48,7 +49,7 @@ public class MultiParentReteNode extends ReteNode {
 			int tupleNumber = 0;
 			int arity = 0;
 			for (ReteEdge parentEdge : parentEdges) {
-				ReteNode parent = parentEdge.getTarget();
+				ReteNode parent = parentEdge.getParent();
 				tupleNumber += parent.getTupleNumber();
 				arity = parent.getTupleArity();
 			}
@@ -61,12 +62,22 @@ public class MultiParentReteNode extends ReteNode {
 		
 		return parentsReady;
 	}
+	
+	@Override
+	public boolean isYourProcess(ReteProcess process) {
+		boolean containsParent = process.contains(parentEdges.get(0).getParent());
+		
+		if(containsParent) process.addNode(this);
+		
+		return containsParent;
+	}
+	
 	@Override
 	public void print() {
 		System.out.println("ReteNode: " + this.reteNode.getClass().getSimpleName() + " " + ArchUtil.getJsonEObjectUri(this.reteNode));
 		
 		for (ReteEdge parentEdge : parentEdges) {
-			ReteNode parent = parentEdge.getTarget();
+			ReteNode parent = parentEdge.getParent();
 			int tupels = parentEdge.getTupleNumber();
 			int arity = parentEdge.getTupleArity();
 			String parentID = parent.getReteNode().getClass().getSimpleName() + " " + ArchUtil.getJsonEObjectUri(parent.getReteNode());

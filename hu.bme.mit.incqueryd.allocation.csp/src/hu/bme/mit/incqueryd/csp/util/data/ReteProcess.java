@@ -9,13 +9,16 @@ public class ReteProcess {
 	private int memory;
 	private List<ReteNode> reteNodes = new ArrayList<>();
 	
-	public ReteProcess(int id, int memory) {
+	public ReteProcess(int id, int memory, ReteNode node) {
 		this.id = id;
 		this.memory = memory;
+		reteNodes.add(node);
+		node.setProcessId(this.id);
 	}
 	
 	public void addNode(ReteNode node) {
 		reteNodes.add(0, node);
+		node.setProcessId(this.id);
 	}
 	
 	public boolean contains(ReteNode node) {

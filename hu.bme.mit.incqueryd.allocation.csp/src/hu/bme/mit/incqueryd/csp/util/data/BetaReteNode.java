@@ -16,19 +16,21 @@ public class BetaReteNode extends MemoryReteNode {
 		super(recipe);
 	}
 	
-	public void createLeftParentEdge(ReteNode left) {
-		leftParent = new ReteEdge(left);
+	public ReteEdge createLeftParentEdge(ReteNode left) {
+		leftParent = new ReteEdge(left, this);
+		return leftParent;
 	}
 	
-	public void createRightParentEdge(ReteNode right) {
-		rightParent = new ReteEdge(right);
+	public ReteEdge createRightParentEdge(ReteNode right) {
+		rightParent = new ReteEdge(right, this);
+		return rightParent;
 	}
 
 	
 	@Override
 	public boolean calculateHeuristics() {
-		ReteNode left = leftParent.getTarget();
-		ReteNode right = rightParent.getTarget();
+		ReteNode left = leftParent.getParent();
+		ReteNode right = rightParent.getParent();
 		if(left.isValid() && right.isValid()) {
 			
 			int leftArity = left.getTupleArity();
@@ -73,14 +75,14 @@ public class BetaReteNode extends MemoryReteNode {
 	public void print() {
 		System.out.println("ReteNode: " + this.reteNode.getClass().getSimpleName() + " " + ArchUtil.getJsonEObjectUri(this.reteNode) + " ,memory: " + memory);
 		
-		ReteNode left = leftParent.getTarget();
+		ReteNode left = leftParent.getParent();
 		int leftTupels = leftParent.getTupleNumber();
 		int leftArity = leftParent.getTupleArity();
 		String leftID = left.getReteNode().getClass().getSimpleName() + " " + ArchUtil.getJsonEObjectUri(left.getReteNode());
 		
 		System.out.println("left parent: " + leftID + ", tuples: " + leftTupels + ",arity: " + leftArity);
 		
-		ReteNode right = rightParent.getTarget();
+		ReteNode right = rightParent.getParent();
 		int rightTupels = rightParent.getTupleNumber();
 		int rightArity = rightParent.getTupleArity();
 		String rightID = right.getReteNode().getClass().getSimpleName() + " " + ArchUtil.getJsonEObjectUri(right.getReteNode());

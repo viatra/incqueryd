@@ -10,8 +10,9 @@ public class AlphaReteNode extends ReteNode {
 	
 	protected ReteEdge parentEdge;
 	
-	public void createParentEdge(ReteNode par) {
-		parentEdge = new ReteEdge(par);
+	public ReteEdge createParentEdge(ReteNode par) {
+		parentEdge = new ReteEdge(par, this);
+		return parentEdge;
 	}
 
 	public AlphaReteNode(ReteNodeRecipe reteNode) {
@@ -20,7 +21,7 @@ public class AlphaReteNode extends ReteNode {
 
 	@Override
 	public boolean calculateHeuristics() {
-		ReteNode parentNode = parentEdge.getTarget();
+		ReteNode parentNode = parentEdge.getParent();
 		if(parentNode.isValid()) {
 			int arity = parentNode.getTupleArity();
 			int tuples = parentNode.getTupleNumber();
@@ -45,12 +46,21 @@ public class AlphaReteNode extends ReteNode {
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean isYourProcess(ReteProcess process) {
+		boolean containsParent = process.contains(parentEdge.getParent());
+		
+		if(containsParent) process.addNode(this);
+		
+		return containsParent;
+	}
 
 	@Override
 	public void print() {
 		System.out.println("ReteNode: " + this.reteNode.getClass().getSimpleName() + " " + ArchUtil.getJsonEObjectUri(this.reteNode));
 		
-		ReteNode parent = parentEdge.getTarget();
+		ReteNode parent = parentEdge.getParent();
 		int tupels = parentEdge.getTupleNumber();
 		int arity = parentEdge.getTupleArity();
 		String parentID = parent.getReteNode().getClass().getSimpleName() + " " + ArchUtil.getJsonEObjectUri(parent.getReteNode());

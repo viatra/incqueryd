@@ -9,6 +9,8 @@ public abstract class ReteNode {
 	protected int tupleArity;
 	protected boolean valid;
 	
+	protected int processId;
+	
 	protected ReteNodeRecipe reteNode;
 	
 	public ReteNode(ReteNodeRecipe reteNode) {
@@ -42,6 +44,18 @@ public abstract class ReteNode {
 	
 	public void valid() {
 		valid = true;
+	}
+	
+	public int getProcessId() {
+		return processId;
+	}
+	
+	public void setProcessId(int processId) {
+		this.processId = processId;
+	}
+	
+	public boolean isYourProcess(ReteProcess process) {
+		return false;
 	}
 	
 	abstract public boolean calculateHeuristics();
