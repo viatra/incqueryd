@@ -22,7 +22,6 @@ public class AllocationMain {
 		ReteRecipe recipe = ArchUtil.loadRecipe(allocationConfiguration.getRecipe());
 		ReteNet net = new ReteNet(recipe, stats);
 		net.create();
-		net.print();
 		
 //		ReteAllocator allocator = new ReteAllocator(allocationConfiguration.isOptimizeForCost(), allocationConfiguration.getRecipe(), allocationConfiguration.getInventory(), allocationConfiguration.getArchitecture());
 //		if (allocator.allocate()) {
