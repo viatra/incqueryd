@@ -123,7 +123,6 @@ public class ReteNet {
 		
 		do {
 			List<ReteNode> readyNodes = new ArrayList<>();
-			
 			for (ReteNode reteNode : notReadyNodes) {
 				boolean isReady = reteNode.calculateHeuristics();
 				if(isReady) readyNodes.add(reteNode);
@@ -134,7 +133,6 @@ public class ReteNet {
 			}
 			
 			readyNodes.clear();
-			
 		}while(!notReadyNodes.isEmpty());
 	}
 	
@@ -148,5 +146,12 @@ public class ReteNet {
 		}
 		
 		return null;
+	}
+	
+	public void print() {
+		for (ReteNode node : reteNodes) {
+			node.print();
+			System.out.println();
+		}
 	}
 }

@@ -1,5 +1,7 @@
 package hu.bme.mit.incqueryd.csp.util.data;
 
+import hu.bme.mit.incqueryd.arch.util.ArchUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +60,19 @@ public class MultiParentReteNode extends ReteNode {
 		}
 		
 		return parentsReady;
+	}
+	@Override
+	public void print() {
+		System.out.println("ReteNode: " + this.reteNode.getClass().getSimpleName() + " " + ArchUtil.getJsonEObjectUri(this.reteNode));
+		
+		for (ReteEdge parentEdge : parentEdges) {
+			ReteNode parent = parentEdge.getTarget();
+			int tupels = parentEdge.getTupleNumber();
+			int arity = parentEdge.getTupleArity();
+			String parentID = parent.getReteNode().getClass().getSimpleName() + " " + ArchUtil.getJsonEObjectUri(parent.getReteNode());
+			
+			System.out.println("parent: " + parentID + ", tuples: " + tupels + ",arity: " + arity);
+		}
 	}
 
 }

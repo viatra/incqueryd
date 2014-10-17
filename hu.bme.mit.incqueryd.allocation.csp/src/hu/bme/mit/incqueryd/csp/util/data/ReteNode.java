@@ -45,5 +45,7 @@ public abstract class ReteNode {
 	}
 	
 	abstract public boolean calculateHeuristics();
+	
+	abstract public void print();
 
 }
