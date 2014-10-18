@@ -115,8 +115,10 @@
 		<module>hu.bme.mit.incqueryd.rdf</module>
 		<module>hu.bme.mit.incqueryd.tooling.ide</module>
 		<module>hu.bme.mit.incqueryd.tooling.monitoring</module>
-		<module>hu.bme.mit.incqueryd.tooling.product</module>
+		
 		<module>hu.bme.mit.incqueryd.tooling.targetplatform</module>
+		<module>hu.bme.mit.incqueryd.tooling.feature</module>
+		<module>hu.bme.mit.incqueryd.tooling.update</module>
 	</modules>
 
 	<repositories>
