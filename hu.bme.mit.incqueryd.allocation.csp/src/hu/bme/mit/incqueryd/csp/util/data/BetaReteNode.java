@@ -46,7 +46,7 @@ public class BetaReteNode extends MemoryReteNode {
 			leftParent.valid();
 			rightParent.valid();
 			
-			long size = leftArity * leftTuples + rightArity + rightTuples;
+			long size = leftArity * leftTuples + rightArity * rightTuples;
 			memory = HeuristicsHelper.getEstimatedMemoryUsage(size);
 			
 			if(reteNode instanceof JoinRecipe) {

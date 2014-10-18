@@ -135,7 +135,7 @@ public class AllocationOptimizer {
 			for (Node node : nodesOnMachines) {
 				final Process process = InfrastructureFactory.eINSTANCE.createProcess();
 				process.setPort(port_counter);
-				process.setMemory(Math.max(256, node.getSize()));
+				process.setMemory(node.getSize());
 				process.setTraceInfo(ip + ":" + port_counter);
 				port_counter++;
 
