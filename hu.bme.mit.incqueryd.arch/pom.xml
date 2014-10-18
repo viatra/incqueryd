@@ -72,6 +72,11 @@
 		<module>hu.bme.mit.incqueryd.arch.inventory.model</module>
 		<module>hu.bme.mit.incqueryd.arch.model</module>
 		<module>hu.bme.mit.incqueryd.arch.util</module>
+		
+		<module>hu.bme.mit.incqueryd.arch.edit</module>
+		<module>hu.bme.mit.incqueryd.arch.editor</module>
+		<module>hu.bme.mit.incqueryd.inventory.edit</module>
+		<module>hu.bme.mit.incqueryd.inventory.editor</module>
 	</modules>
 
 </project>
