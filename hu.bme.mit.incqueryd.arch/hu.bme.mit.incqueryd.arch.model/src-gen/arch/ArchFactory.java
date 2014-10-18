@@ -31,15 +31,6 @@ public interface ArchFactory extends EFactory {
 	Configuration createConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Recipe Import</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Recipe Import</em>'.
-	 * @generated
-	 */
-	RecipeImport createRecipeImport();
-
-	/**
 	 * Returns a new object of class '<em>Infrastructure Mapping</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

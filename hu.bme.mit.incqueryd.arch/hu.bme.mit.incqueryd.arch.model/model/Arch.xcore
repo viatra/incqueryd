@@ -11,15 +11,10 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 class Configuration extends ElementWithTraceInfo {
 	String connectionString
 	contains Machine[] machines
-	contains RecipeImport[] recipeImports
 	refers ReteRecipe[] recipes
 	contains InfrastructureMapping[] mappings
 	refers Machine coordinatorMachine
 	refers Machine monitoringMachine
-}
-
-class RecipeImport {
-	String importURI
 }
 
 class InfrastructureMapping extends ElementWithTraceInfo {

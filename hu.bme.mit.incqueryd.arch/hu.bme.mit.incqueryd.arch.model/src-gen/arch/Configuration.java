@@ -19,7 +19,6 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
  * <ul>
  *   <li>{@link arch.Configuration#getConnectionString <em>Connection String</em>}</li>
  *   <li>{@link arch.Configuration#getMachines <em>Machines</em>}</li>
- *   <li>{@link arch.Configuration#getRecipeImports <em>Recipe Imports</em>}</li>
  *   <li>{@link arch.Configuration#getRecipes <em>Recipes</em>}</li>
  *   <li>{@link arch.Configuration#getMappings <em>Mappings</em>}</li>
  *   <li>{@link arch.Configuration#getCoordinatorMachine <em>Coordinator Machine</em>}</li>
@@ -73,22 +72,6 @@ public interface Configuration extends ElementWithTraceInfo {
 	 * @generated
 	 */
 	EList<Machine> getMachines();
-
-	/**
-	 * Returns the value of the '<em><b>Recipe Imports</b></em>' containment reference list.
-	 * The list contents are of type {@link arch.RecipeImport}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Recipe Imports</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Recipe Imports</em>' containment reference list.
-	 * @see arch.ArchPackage#getConfiguration_RecipeImports()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<RecipeImport> getRecipeImports();
 
 	/**
 	 * Returns the value of the '<em><b>Recipes</b></em>' reference list.

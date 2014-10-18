@@ -97,22 +97,13 @@ public interface ArchPackage extends EPackage {
 	int CONFIGURATION__MACHINES = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Recipe Imports</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION__RECIPE_IMPORTS = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Recipes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION__RECIPES = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 3;
+	int CONFIGURATION__RECIPES = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
@@ -121,7 +112,7 @@ public interface ArchPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION__MAPPINGS = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 4;
+	int CONFIGURATION__MAPPINGS = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Coordinator Machine</b></em>' reference.
@@ -130,7 +121,7 @@ public interface ArchPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION__COORDINATOR_MACHINE = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 5;
+	int CONFIGURATION__COORDINATOR_MACHINE = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Monitoring Machine</b></em>' reference.
@@ -139,7 +130,7 @@ public interface ArchPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION__MONITORING_MACHINE = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 6;
+	int CONFIGURATION__MONITORING_MACHINE = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -148,7 +139,7 @@ public interface ArchPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_FEATURE_COUNT = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 7;
+	int CONFIGURATION_FEATURE_COUNT = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Configuration</em>' class.
@@ -160,43 +151,6 @@ public interface ArchPackage extends EPackage {
 	int CONFIGURATION_OPERATION_COUNT = InfrastructurePackage.ELEMENT_WITH_TRACE_INFO_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link arch.impl.RecipeImportImpl <em>Recipe Import</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see arch.impl.RecipeImportImpl
-	 * @see arch.impl.ArchPackageImpl#getRecipeImport()
-	 * @generated
-	 */
-	int RECIPE_IMPORT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Import URI</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RECIPE_IMPORT__IMPORT_URI = 0;
-
-	/**
-	 * The number of structural features of the '<em>Recipe Import</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RECIPE_IMPORT_FEATURE_COUNT = 1;
-
-	/**
-	 * The number of operations of the '<em>Recipe Import</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RECIPE_IMPORT_OPERATION_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link arch.impl.InfrastructureMappingImpl <em>Infrastructure Mapping</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -204,7 +158,7 @@ public interface ArchPackage extends EPackage {
 	 * @see arch.impl.ArchPackageImpl#getInfrastructureMapping()
 	 * @generated
 	 */
-	int INFRASTRUCTURE_MAPPING = 2;
+	int INFRASTRUCTURE_MAPPING = 1;
 
 	/**
 	 * The feature id for the '<em><b>Trace Info</b></em>' attribute.
@@ -259,7 +213,7 @@ public interface ArchPackage extends EPackage {
 	 * @see arch.impl.ArchPackageImpl#getRole()
 	 * @generated
 	 */
-	int ROLE = 3;
+	int ROLE = 2;
 
 	/**
 	 * The number of structural features of the '<em>Role</em>' class.
@@ -287,7 +241,7 @@ public interface ArchPackage extends EPackage {
 	 * @see arch.impl.ArchPackageImpl#getReteRole()
 	 * @generated
 	 */
-	int RETE_ROLE = 4;
+	int RETE_ROLE = 3;
 
 	/**
 	 * The feature id for the '<em><b>Node Recipe</b></em>' reference.
@@ -324,7 +278,7 @@ public interface ArchPackage extends EPackage {
 	 * @see arch.impl.ArchPackageImpl#getCacheRole()
 	 * @generated
 	 */
-	int CACHE_ROLE = 5;
+	int CACHE_ROLE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Cache Role</em>' class.
@@ -378,17 +332,6 @@ public interface ArchPackage extends EPackage {
 	EReference getConfiguration_Machines();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link arch.Configuration#getRecipeImports <em>Recipe Imports</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Recipe Imports</em>'.
-	 * @see arch.Configuration#getRecipeImports()
-	 * @see #getConfiguration()
-	 * @generated
-	 */
-	EReference getConfiguration_RecipeImports();
-
-	/**
 	 * Returns the meta object for the reference list '{@link arch.Configuration#getRecipes <em>Recipes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -431,27 +374,6 @@ public interface ArchPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getConfiguration_MonitoringMachine();
-
-	/**
-	 * Returns the meta object for class '{@link arch.RecipeImport <em>Recipe Import</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Recipe Import</em>'.
-	 * @see arch.RecipeImport
-	 * @generated
-	 */
-	EClass getRecipeImport();
-
-	/**
-	 * Returns the meta object for the attribute '{@link arch.RecipeImport#getImportURI <em>Import URI</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Import URI</em>'.
-	 * @see arch.RecipeImport#getImportURI()
-	 * @see #getRecipeImport()
-	 * @generated
-	 */
-	EAttribute getRecipeImport_ImportURI();
 
 	/**
 	 * Returns the meta object for class '{@link arch.InfrastructureMapping <em>Infrastructure Mapping</em>}'.
@@ -576,14 +498,6 @@ public interface ArchPackage extends EPackage {
 		EReference CONFIGURATION__MACHINES = eINSTANCE.getConfiguration_Machines();
 
 		/**
-		 * The meta object literal for the '<em><b>Recipe Imports</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURATION__RECIPE_IMPORTS = eINSTANCE.getConfiguration_RecipeImports();
-
-		/**
 		 * The meta object literal for the '<em><b>Recipes</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -614,24 +528,6 @@ public interface ArchPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONFIGURATION__MONITORING_MACHINE = eINSTANCE.getConfiguration_MonitoringMachine();
-
-		/**
-		 * The meta object literal for the '{@link arch.impl.RecipeImportImpl <em>Recipe Import</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see arch.impl.RecipeImportImpl
-		 * @see arch.impl.ArchPackageImpl#getRecipeImport()
-		 * @generated
-		 */
-		EClass RECIPE_IMPORT = eINSTANCE.getRecipeImport();
-
-		/**
-		 * The meta object literal for the '<em><b>Import URI</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute RECIPE_IMPORT__IMPORT_URI = eINSTANCE.getRecipeImport_ImportURI();
 
 		/**
 		 * The meta object literal for the '{@link arch.impl.InfrastructureMappingImpl <em>Infrastructure Mapping</em>}' class.

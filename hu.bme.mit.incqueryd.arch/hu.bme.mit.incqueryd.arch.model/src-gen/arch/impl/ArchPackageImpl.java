@@ -7,7 +7,6 @@ import arch.ArchPackage;
 import arch.CacheRole;
 import arch.Configuration;
 import arch.InfrastructureMapping;
-import arch.RecipeImport;
 import arch.ReteRole;
 import arch.Role;
 
@@ -36,13 +35,6 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 	 * @generated
 	 */
 	private EClass configurationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass recipeImportEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -119,8 +111,8 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		InfrastructurePackage.eINSTANCE.eClass();
 		RecipesPackage.eINSTANCE.eClass();
+		InfrastructurePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theArchPackage.createPackageContents();
@@ -169,7 +161,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConfiguration_RecipeImports() {
+	public EReference getConfiguration_Recipes() {
 		return (EReference)configurationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -178,7 +170,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConfiguration_Recipes() {
+	public EReference getConfiguration_Mappings() {
 		return (EReference)configurationEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -187,7 +179,7 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConfiguration_Mappings() {
+	public EReference getConfiguration_CoordinatorMachine() {
 		return (EReference)configurationEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -196,35 +188,8 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConfiguration_CoordinatorMachine() {
-		return (EReference)configurationEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getConfiguration_MonitoringMachine() {
-		return (EReference)configurationEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getRecipeImport() {
-		return recipeImportEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRecipeImport_ImportURI() {
-		return (EAttribute)recipeImportEClass.getEStructuralFeatures().get(0);
+		return (EReference)configurationEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -321,14 +286,10 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 		configurationEClass = createEClass(CONFIGURATION);
 		createEAttribute(configurationEClass, CONFIGURATION__CONNECTION_STRING);
 		createEReference(configurationEClass, CONFIGURATION__MACHINES);
-		createEReference(configurationEClass, CONFIGURATION__RECIPE_IMPORTS);
 		createEReference(configurationEClass, CONFIGURATION__RECIPES);
 		createEReference(configurationEClass, CONFIGURATION__MAPPINGS);
 		createEReference(configurationEClass, CONFIGURATION__COORDINATOR_MACHINE);
 		createEReference(configurationEClass, CONFIGURATION__MONITORING_MACHINE);
-
-		recipeImportEClass = createEClass(RECIPE_IMPORT);
-		createEAttribute(recipeImportEClass, RECIPE_IMPORT__IMPORT_URI);
 
 		infrastructureMappingEClass = createEClass(INFRASTRUCTURE_MAPPING);
 		createEReference(infrastructureMappingEClass, INFRASTRUCTURE_MAPPING__PROCESS);
@@ -384,14 +345,10 @@ public class ArchPackageImpl extends EPackageImpl implements ArchPackage {
 		initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConfiguration_ConnectionString(), theEcorePackage.getEString(), "connectionString", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_Machines(), theInfrastructurePackage.getMachine(), null, "machines", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConfiguration_RecipeImports(), this.getRecipeImport(), null, "recipeImports", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_Recipes(), theRecipesPackage.getReteRecipe(), null, "recipes", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_Mappings(), this.getInfrastructureMapping(), null, "mappings", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_CoordinatorMachine(), theInfrastructurePackage.getMachine(), null, "coordinatorMachine", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_MonitoringMachine(), theInfrastructurePackage.getMachine(), null, "monitoringMachine", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(recipeImportEClass, RecipeImport.class, "RecipeImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRecipeImport_ImportURI(), theEcorePackage.getEString(), "importURI", null, 0, 1, RecipeImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(infrastructureMappingEClass, InfrastructureMapping.class, "InfrastructureMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInfrastructureMapping_Process(), theInfrastructurePackage.getProcess(), null, "process", null, 0, 1, InfrastructureMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

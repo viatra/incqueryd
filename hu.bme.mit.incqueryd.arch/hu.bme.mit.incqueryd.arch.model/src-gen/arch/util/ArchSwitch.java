@@ -75,12 +75,6 @@ public class ArchSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ArchPackage.RECIPE_IMPORT: {
-				RecipeImport recipeImport = (RecipeImport)theEObject;
-				T result = caseRecipeImport(recipeImport);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ArchPackage.INFRASTRUCTURE_MAPPING: {
 				InfrastructureMapping infrastructureMapping = (InfrastructureMapping)theEObject;
 				T result = caseInfrastructureMapping(infrastructureMapping);
@@ -124,21 +118,6 @@ public class ArchSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConfiguration(Configuration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Recipe Import</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Recipe Import</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRecipeImport(RecipeImport object) {
 		return null;
 	}
 

@@ -109,9 +109,9 @@
 		<module>org.eclipse.incquery.patternlanguage.rdf.psystem</module>
 		<module>org.eclipse.incquery.patternlanguage.rdf.tests</module>
 		<module>org.eclipse.incquery.patternlanguage.rdf.ui</module>
-		<module>hu.bme.mit.incqueryd.arch.language</module>
-		<module>hu.bme.mit.incqueryd.arch.language.tests</module>
-		<module>hu.bme.mit.incqueryd.arch.language.ui</module>
+		
+		
+		
 		<module>hu.bme.mit.incqueryd.rdf</module>
 		<module>hu.bme.mit.incqueryd.tooling.ide</module>
 		<module>hu.bme.mit.incqueryd.tooling.monitoring</module>

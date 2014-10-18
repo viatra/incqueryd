@@ -57,7 +57,6 @@ public class ArchFactoryImpl extends EFactoryImpl implements ArchFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ArchPackage.CONFIGURATION: return createConfiguration();
-			case ArchPackage.RECIPE_IMPORT: return createRecipeImport();
 			case ArchPackage.INFRASTRUCTURE_MAPPING: return createInfrastructureMapping();
 			case ArchPackage.RETE_ROLE: return createReteRole();
 			case ArchPackage.CACHE_ROLE: return createCacheRole();
@@ -74,16 +73,6 @@ public class ArchFactoryImpl extends EFactoryImpl implements ArchFactory {
 	public Configuration createConfiguration() {
 		ConfigurationImpl configuration = new ConfigurationImpl();
 		return configuration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RecipeImport createRecipeImport() {
-		RecipeImportImpl recipeImport = new RecipeImportImpl();
-		return recipeImport;
 	}
 
 	/**

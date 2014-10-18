@@ -5,7 +5,6 @@ package arch.impl;
 import arch.ArchPackage;
 import arch.Configuration;
 import arch.InfrastructureMapping;
-import arch.RecipeImport;
 
 import infrastructure.Machine;
 
@@ -38,7 +37,6 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
  *   <li>{@link arch.impl.ConfigurationImpl#getTraceInfo <em>Trace Info</em>}</li>
  *   <li>{@link arch.impl.ConfigurationImpl#getConnectionString <em>Connection String</em>}</li>
  *   <li>{@link arch.impl.ConfigurationImpl#getMachines <em>Machines</em>}</li>
- *   <li>{@link arch.impl.ConfigurationImpl#getRecipeImports <em>Recipe Imports</em>}</li>
  *   <li>{@link arch.impl.ConfigurationImpl#getRecipes <em>Recipes</em>}</li>
  *   <li>{@link arch.impl.ConfigurationImpl#getMappings <em>Mappings</em>}</li>
  *   <li>{@link arch.impl.ConfigurationImpl#getCoordinatorMachine <em>Coordinator Machine</em>}</li>
@@ -98,16 +96,6 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 	 * @ordered
 	 */
 	protected EList<Machine> machines;
-
-	/**
-	 * The cached value of the '{@link #getRecipeImports() <em>Recipe Imports</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRecipeImports()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<RecipeImport> recipeImports;
 
 	/**
 	 * The cached value of the '{@link #getRecipes() <em>Recipes</em>}' reference list.
@@ -227,18 +215,6 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<RecipeImport> getRecipeImports() {
-		if (recipeImports == null) {
-			recipeImports = new EObjectContainmentEList<RecipeImport>(RecipeImport.class, this, ArchPackage.CONFIGURATION__RECIPE_IMPORTS);
-		}
-		return recipeImports;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<ReteRecipe> getRecipes() {
 		if (recipes == null) {
 			recipes = new EObjectResolvingEList<ReteRecipe>(ReteRecipe.class, this, ArchPackage.CONFIGURATION__RECIPES);
@@ -344,8 +320,6 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 		switch (featureID) {
 			case ArchPackage.CONFIGURATION__MACHINES:
 				return ((InternalEList<?>)getMachines()).basicRemove(otherEnd, msgs);
-			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
-				return ((InternalEList<?>)getRecipeImports()).basicRemove(otherEnd, msgs);
 			case ArchPackage.CONFIGURATION__MAPPINGS:
 				return ((InternalEList<?>)getMappings()).basicRemove(otherEnd, msgs);
 		}
@@ -366,8 +340,6 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 				return getConnectionString();
 			case ArchPackage.CONFIGURATION__MACHINES:
 				return getMachines();
-			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
-				return getRecipeImports();
 			case ArchPackage.CONFIGURATION__RECIPES:
 				return getRecipes();
 			case ArchPackage.CONFIGURATION__MAPPINGS:
@@ -400,10 +372,6 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 			case ArchPackage.CONFIGURATION__MACHINES:
 				getMachines().clear();
 				getMachines().addAll((Collection<? extends Machine>)newValue);
-				return;
-			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
-				getRecipeImports().clear();
-				getRecipeImports().addAll((Collection<? extends RecipeImport>)newValue);
 				return;
 			case ArchPackage.CONFIGURATION__RECIPES:
 				getRecipes().clear();
@@ -440,9 +408,6 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 			case ArchPackage.CONFIGURATION__MACHINES:
 				getMachines().clear();
 				return;
-			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
-				getRecipeImports().clear();
-				return;
 			case ArchPackage.CONFIGURATION__RECIPES:
 				getRecipes().clear();
 				return;
@@ -473,8 +438,6 @@ public class ConfigurationImpl extends MinimalEObjectImpl.Container implements C
 				return CONNECTION_STRING_EDEFAULT == null ? connectionString != null : !CONNECTION_STRING_EDEFAULT.equals(connectionString);
 			case ArchPackage.CONFIGURATION__MACHINES:
 				return machines != null && !machines.isEmpty();
-			case ArchPackage.CONFIGURATION__RECIPE_IMPORTS:
-				return recipeImports != null && !recipeImports.isEmpty();
 			case ArchPackage.CONFIGURATION__RECIPES:
 				return recipes != null && !recipes.isEmpty();
 			case ArchPackage.CONFIGURATION__MAPPINGS:
