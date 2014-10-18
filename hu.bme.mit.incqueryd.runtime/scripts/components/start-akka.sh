@@ -10,7 +10,7 @@ memory=$2
 
 m="m"
 
-export JAVA_OPTS="-Xms256m -Xmx$memory$m"
+export JAVA_OPTS="-Xmx$memory$m"
 export INSTALL_DIR=~/incqueryd
 export AKKA_VERSION=2.1.4
 
