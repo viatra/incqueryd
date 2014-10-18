@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Deployment UI
-Bundle-SymbolicName: hu.bme.mit.incqueryd.tooling.ide;singleton:=true
+Bundle-SymbolicName: hu.bme.mit.incqueryd.tooling.deployment;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.ui;bundle-version="3.105.0",
