@@ -109,13 +109,13 @@
 		<module>org.eclipse.incquery.patternlanguage.rdf.psystem</module>
 		<module>org.eclipse.incquery.patternlanguage.rdf.tests</module>
 		<module>org.eclipse.incquery.patternlanguage.rdf.ui</module>
-		
-		
-		
+
+
+
 		<module>hu.bme.mit.incqueryd.rdf</module>
-		<module>hu.bme.mit.incqueryd.tooling.ide</module>
+		<module>hu.bme.mit.incqueryd.tooling.deployment</module>
 		<module>hu.bme.mit.incqueryd.tooling.monitoring</module>
-		
+
 		<module>hu.bme.mit.incqueryd.tooling.targetplatform</module>
 		<module>hu.bme.mit.incqueryd.tooling.feature</module>
 		<module>hu.bme.mit.incqueryd.tooling.update</module>
@@ -143,5 +143,5 @@
 			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</url>
 		</repository>
 	</repositories>
-	
+
 </project>
