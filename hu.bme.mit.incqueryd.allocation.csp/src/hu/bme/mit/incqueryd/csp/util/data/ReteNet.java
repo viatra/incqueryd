@@ -1,6 +1,7 @@
 package hu.bme.mit.incqueryd.csp.util.data;
 
 import hu.bme.mit.incqueryd.arch.util.ArchUtil;
+import hu.bme.mit.incqueryd.csp.algorithm.data.Node;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,31 @@ public class ReteNet {
 	public ReteNet(ReteRecipe recipe, Map<String, Long> inputStats) {
 		this.recipe = recipe;
 		this.inputStats = inputStats;
+	}
+	
+	public int[][] getEdges() {
+		return edges;
+	}
+	
+	public List<Node> getProcessNodes(){
+		List<Node> processNodes = new ArrayList<>();
+		
+		for (ReteProcess process : processes) {
+			Node node = new Node(process.getId(), String.valueOf(process.getId()), process.getMemory());
+			processNodes.add(node);
+		}
+		
+		return processNodes;
+	}
+	
+	public List<ReteNodeRecipe> getReteNodeRecipesByProcessId(int processId){
+		List<ReteNodeRecipe> recipes = new ArrayList<>();
+		
+		for (ReteNode reteNode : reteNodes) {
+			if(reteNode.getProcessId() == processId)recipes.add(reteNode.getReteNode());
+		}
+		
+		return recipes;
 	}
 
 	public void create() {
