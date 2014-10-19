@@ -59,7 +59,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
 
   val logPrefix = "[CoordinatorActor] "
   val conf: Configuration = ArchUtil.loadConfiguration(architectureFile)
-  val queryName = FilenameUtils.removeExtension(Paths.get(architectureFile).getFileName.toString())
+  val queryName = FilenameUtils.removeExtension(Paths.get(architectureFile).getFileName.toString()).toLowerCase
 
   println(logPrefix + "Running query: " + queryName)
 
@@ -168,7 +168,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
         recipeNode match {
           case productionRecipe: ProductionRecipe => {
             val traceInfo = productionRecipe.getTraceInfo()
-            val patternName = traceInfo.split(" ", 2)(0)
+            val patternName = traceInfo.split(" ", 2)(0).toLowerCase
             println(patternName)
             productionActors.put(patternName, actorRef)
           }

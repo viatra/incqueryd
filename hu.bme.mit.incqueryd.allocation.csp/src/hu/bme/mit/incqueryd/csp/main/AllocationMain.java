@@ -17,9 +17,6 @@ public class AllocationMain {
 		Map<String, Long> stats = StatsUtil.loadStats(allocationConfiguration.getStats());
 		System.out.println(stats);
 		
-//		ReteRecipe recipe = ArchUtil.loadRecipe(allocationConfiguration.getRecipe());
-//		ReteNet net = new ReteNet(recipe, stats);
-//		net.create();
 		
 		AllocationOptimizer allocator = new AllocationOptimizer(allocationConfiguration.isOptimizeForCost(), allocationConfiguration.getRecipe(), allocationConfiguration.getInventory(), allocationConfiguration.getArchitecture(), stats);
 		if (allocator.allocate()) {

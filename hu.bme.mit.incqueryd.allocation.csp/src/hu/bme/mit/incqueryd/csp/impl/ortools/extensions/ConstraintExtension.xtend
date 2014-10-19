@@ -173,6 +173,16 @@ class ConstraintExtension  {
 		return solver.makeMinimize(sumOfRow, 1)
 	}
 	
+	def static SUM_MAX(IntVar[] row){
+		var IntVar sumOfRow = solver.makeSum(row).^var()
+		return solver.makeMaximize(sumOfRow, 1)
+	}
+	
+	def static SUM_MAX(List<IntVar> vars){
+		var IntVar sumOfRow = solver.makeSum(vars).^var()
+		return solver.makeMaximize(sumOfRow, 1)
+	}
+	
 	def static SUM(List<IntVar> vars){
 		return solver.makeSum(vars)
 	}
