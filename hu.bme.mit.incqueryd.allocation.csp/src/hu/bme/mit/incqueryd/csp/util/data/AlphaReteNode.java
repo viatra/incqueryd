@@ -34,7 +34,7 @@ public class AlphaReteNode extends ReteNode {
 				int remains = trimmer.getMask().getSourceIndices().size();
 				
 				this.tupleArity = remains;
-				this.tupleNumber = tuples;
+				this.tupleNumber = (int) Math.floor(tuples * 0.9);
 			}
 			else if (reteNode instanceof CheckRecipe) {
 				this.tupleArity = arity;

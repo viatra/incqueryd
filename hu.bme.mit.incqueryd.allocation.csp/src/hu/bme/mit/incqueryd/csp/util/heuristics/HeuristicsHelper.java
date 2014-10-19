@@ -4,8 +4,8 @@ public class HeuristicsHelper {
 	
 	public static int getEstimatedMemoryUsage(long size) {
 		double memorySize = 0.0003 * size + 52.969;
-		
-		return ((int) Math.ceil(memorySize * 1.3));
+		int memory = Math.max(128, ((int) Math.ceil(memorySize * 1.4)));
+		return memory;
 	}
 
 }

@@ -56,7 +56,7 @@ public class AllocationOptimizer {
 	private Inventory inventory;
 
 	public AllocationOptimizer(boolean optimizeForCost, String recipeFile, String inventoryFile, String architectureFile, Map<String, Long> inputStats) throws IOException {
-		this.optimizeForCommunication = optimizeForCost;
+		this.optimizeForCommunication = !optimizeForCost;
 		this.recipeFile = recipeFile;
 		this.inventoryFile = inventoryFile;
 		this.architectureFile = architectureFile;
