@@ -2,9 +2,11 @@
 <feature
       id="hu.bme.mit.incqueryd.tooling.feature"
       label="IncQuery-D Tooling"
-      version="1.0.0.qualifier">
+      version="1.0.0.qualifier"
+      license-feature="org.eclipse.incquery.runtime.feature"
+      license-feature-version="0.8.0.201407021417">
 
-   <description url="http://www.example.com/description">
+   <description url="http://incquery.net/">
       IncQuery-D Tooling
    </description>
 
