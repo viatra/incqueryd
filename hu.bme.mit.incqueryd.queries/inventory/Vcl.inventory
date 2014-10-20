@@ -6,7 +6,7 @@
       <overheads>3</overheads>
       <overheads>3</overheads>
     </machineInstances>
-    <machineInstances identifier="2" cost="1" memorySize="4" memoryUnit="GB" CPUs="1" ip="10.6.17.185">
+    <machineInstances identifier="2" cost="1" memorySize="8" memoryUnit="GB" CPUs="1" ip="10.6.17.185">
       <overheads>3</overheads>
       <overheads>1</overheads>
       <overheads>3</overheads>
