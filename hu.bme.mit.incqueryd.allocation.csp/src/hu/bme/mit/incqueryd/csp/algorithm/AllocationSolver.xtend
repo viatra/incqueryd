@@ -89,7 +89,6 @@ class AllocationSolver {
 		machineCostFunction = machineCostVariables.SUM_MIN
 		
 		// min {e1 + e2 + ... + en}
-		
 		communicationCostFunction = edgeWeightVariables.SUM_MIN
 		
 		
