@@ -11,7 +11,6 @@
 package hu.bme.mit.incqueryd.core.rete.dataunits;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -67,13 +66,9 @@ public class Tuple implements Serializable, Comparable<Tuple> {
 	@Override
 	public int compareTo(Tuple o) {
 		for (int i = 0; i < o.size(); i++) {
-			BigInteger l1 = (BigInteger) get(i); // TODO avoid cast (store Comparables)
-			BigInteger l2 = (BigInteger) o.get(i);
+			Long l1 = (Long) get(i); // TODO avoid cast (store Comparables)
+			Long l2 = (Long) o.get(i);
 
-			// for Long values
-			// if (l1 != l2) {
-			// return l1 < l2 ? -1 : 1;
-			// }
 			if (!l1.equals(l2)) {
 				return -1;
 			} // else continue with the for cycle
