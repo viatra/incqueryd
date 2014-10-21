@@ -12,7 +12,7 @@ public class InputReteNode extends MemoryReteNode {
 		super(node);
 		this.tupleNumber = tupleNumber;
 		this.tupleArity = tupleArity;
-		memory = HeuristicsHelper.getEstimatedMemoryUsage(tupleNumber* tupleArity);
+		memory = HeuristicsHelper.getEstimatedMemoryUsage(tupleNumber * tupleArity, tupleNumber * tupleArity);
 		this.valid = true;
 	}
 	

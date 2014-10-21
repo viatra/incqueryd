@@ -21,7 +21,7 @@ public class ProductionReteNode extends MultiParentReteNode {
 		boolean ready = super.calculateHeuristics();
 		
 		if(ready) {
-			memory = HeuristicsHelper.getEstimatedMemoryUsage(this.tupleArity * this.tupleNumber);
+			memory = HeuristicsHelper.getEstimatedMemoryUsage(this.tupleArity * this.tupleNumber, this.tupleArity * this.tupleNumber);
 		}
 		
 		return ready;
