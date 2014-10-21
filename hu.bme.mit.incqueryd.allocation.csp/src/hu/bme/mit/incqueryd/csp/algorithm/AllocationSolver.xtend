@@ -101,14 +101,14 @@ class AllocationSolver {
         
         getSolutions(communicationPriority)
         
-        if (optimalAllocation != null) {
-			val AllocationSolver allocationSolver = new AllocationSolver // solve it again with the calculated optimal to get all optimal results
-
-			if (communicationPriority)
-				optimalAllocation = allocationSolver.optimizeWithInstances(containers, nodes, edges, overheads,communicationPriority, optimalAllocation.communication)
-			else
-				optimalAllocation = allocationSolver.optimizeWithInstances(containers, nodes, edges, overheads,communicationPriority, optimalAllocation.cost)
-		}
+//        if (optimalAllocation != null) {
+//			val AllocationSolver allocationSolver = new AllocationSolver // solve it again with the calculated optimal to get all optimal results
+//
+//			if (communicationPriority)
+//				optimalAllocation = allocationSolver.optimizeWithInstances(containers, nodes, edges, overheads,communicationPriority, optimalAllocation.communication)
+//			else
+//				optimalAllocation = allocationSolver.optimizeWithInstances(containers, nodes, edges, overheads,communicationPriority, optimalAllocation.cost)
+//		}
         
 		return optimalAllocation
 		
