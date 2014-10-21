@@ -180,7 +180,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
 
         if (verbose) println(logPrefix + "Actor configured.")
       }))
-      
+
     if (verbose) println(logPrefix + "All actors deployed and configured.")
     if (verbose) println(logPrefix + "Indexers: " + indexers)
 
@@ -268,7 +268,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
       recipe.getRecipeNodes.foreach(_ match {
         case typeInputRecipe: TypeInputRecipe =>
 
-          val tuples : java.util.Set[Tuple] = new java.util.HashSet
+          val tuples: java.util.Set[Tuple] = new java.util.HashSet
           typeInputRecipe match {
             case binaryInputRecipe: BinaryInputRecipe => {
               val traceInfo = binaryInputRecipe.getTraceInfo
@@ -308,12 +308,12 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
 
   def initializeAttribute(databaseDriver: FourStoreDriverTrainBenchmark, recipe: BinaryInputRecipe, tuples: java.util.Set[Tuple]) = {
     val typeName = RDFHelper.brackets(recipe.getTypeName)
-    val attributes = databaseDriver.collectVerticesWithProperty(typeName) 
+    val attributes = databaseDriver.collectVerticesWithProperty(typeName)
 
     attributes.foreach(attribute => {
       val key = attribute._1
       val value = attribute._2
-      
+
       val regex = "\"(.*?)\"\\^\\^<http://www.w3.org/2001/XMLSchema#int>".r
       val intValue = regex.findFirstMatchIn(value).get.group(1)
       tuples += new Tuple(key, intValue)
@@ -323,7 +323,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
   def initializeEdge(databaseDriver: FourStoreDriverTrainBenchmark, recipe: BinaryInputRecipe, tuples: java.util.Set[Tuple]) = {
     val typeName = RDFHelper.brackets(recipe.getTypeName)
     val edges = databaseDriver.collectEdges(typeName)
-    
+
     edges.entries.foreach(edge => {
       tuples += new Tuple(edge.getKey, edge.getValue)
     })
@@ -336,7 +336,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
 
   def getQueryResults(pattern: String): java.util.List[ChangeSet] = {
     val productionActorRef = productionActors.get(pattern)
-    
+
     val queryResultFuture = ask(productionActorRef, CoordinatorMessage.GETQUERYRESULTS, timeout)
     Await.result(queryResultFuture, timeout.duration).asInstanceOf[java.util.List[ChangeSet]]
   }
@@ -353,25 +353,23 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
   }
 
   def receive = {
-    case updateMessage: UpdateMessage => {
-      update(updateMessage.getTarget, updateMessage.getChangeSet);
-    } 
-  	case CoordinatorCommand.START => {
+    case CoordinatorCommand.START => {
       start
       engine = sender
-    }
-    case CoordinatorCommand.CHECK => {
-      sender ! check
-    }
-    case CoordinatorCommand.TRANSFORM => {
-      sender ! CoordinatorMessage.DONE
     }
     case CoordinatorCommand.LOAD => {
       load
       sender ! CoordinatorMessage.DONE
     }
+    case CoordinatorCommand.CHECK => {
+      sender ! check
+    }
     case queryIndexer: QueryIndexer => {
       sender ! indexers.get(queryIndexer.getTypeName)
+    }
+    case updateMessage: UpdateMessage => {
+      engine = sender
+      update(updateMessage.getTarget, updateMessage.getChangeSet)
     }
     case terminationMessage: TerminationMessage => {
       pendingUpdateMessages -= 1
