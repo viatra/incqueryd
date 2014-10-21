@@ -213,10 +213,10 @@ public class AllocationOptimizer {
 	private static int getMemoryInMBs(MemoryUnit memUnit, int memorySize) {
 		switch (memUnit) {
 		case MB:
-			return (int)(memorySize * 0.9);
+			return memorySize;
 
 		case GB:
-			return (int)(1024 * memorySize * 0.9);
+			return 1024 * memorySize;
 
 		default:
 			return 0;
