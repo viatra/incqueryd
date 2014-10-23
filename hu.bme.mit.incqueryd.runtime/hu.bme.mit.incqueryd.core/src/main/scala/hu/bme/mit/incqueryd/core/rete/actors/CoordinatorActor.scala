@@ -62,7 +62,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
   val conf: Configuration = try ArchUtil.loadConfiguration(architectureFile) catch {
     case e: Exception =>  { sender ! Status.Failure(e); e.printStackTrace(); System.exit(-1); throw e;  } 
   }
-  
+    
   val queryName = FilenameUtils.removeExtension(Paths.get(architectureFile).getFileName.toString()).toLowerCase
 
   println(logPrefix + "Running query: " + queryName)
