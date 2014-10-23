@@ -230,6 +230,16 @@ class ReteActor extends Actor {
 
     if (monitoringServerActor != null) monitoringServerActor ! monitor // send the monitoring server the updated metrics    
   }
+  
+  def initializeInput = {
+	println(logPrefix + " Initializing input node")
+    val inputNode = reteNode.asInstanceOf[InputNode]
+    val changeSet = inputNode.initialize
+    val senderStack = Stack(sender, self)
+    println(logPrefix + " ChangeSet: " + changeSet)
+    val updateMessage = new UpdateMessage(changeSet, ReteNodeSlot.SINGLE, senderStack)
+	self.tell(updateMessage)
+  }
 
   def terminationProtocol(terminationMessage: TerminationMessage): Unit = {
     val route = terminationMessage.getRoute
@@ -273,6 +283,7 @@ class ReteActor extends Actor {
     case SubscriptionMessage.SUBSCRIBE_PRIMARY => subscribeSender(ReteNodeSlot.PRIMARY)
     case SubscriptionMessage.SUBSCRIBE_SECONDARY => subscribeSender(ReteNodeSlot.SECONDARY)
     case CoordinatorMessage.INITIALIZE => initialize
+    case CoordinatorMessage.INITIALIZE_INPUT => initializeInput
     case CoordinatorMessage.GETQUERYRESULTS => {
       val productionNode = reteNode.asInstanceOf[ProductionNode]
       sender ! productionNode.getDeltaResults

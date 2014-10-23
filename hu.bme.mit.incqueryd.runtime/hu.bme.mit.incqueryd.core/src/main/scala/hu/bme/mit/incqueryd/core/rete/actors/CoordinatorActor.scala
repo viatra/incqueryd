@@ -15,11 +15,9 @@ import scala.concurrent.duration.Duration
 
 import org.apache.commons.io.FilenameUtils
 import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
-import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe
 
 import com.google.common.collect.HashBiMap
 
@@ -37,7 +35,6 @@ import arch.CacheRole
 import arch.Configuration
 import arch.ReteRole
 import hu.bme.mit.bigmodel.fourstore.FourStoreDriverTrainBenchmark
-import hu.bme.mit.bigmodel.rdf.RDFHelper
 import hu.bme.mit.incqueryd.arch.util.ArchUtil
 import hu.bme.mit.incqueryd.core.monitoring.actors.JVMMonitoringActor
 import hu.bme.mit.incqueryd.core.rete.dataunits.ChangeSet
@@ -272,25 +269,8 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
       recipe.getRecipeNodes.foreach(_ match {
         case typeInputRecipe: TypeInputRecipe =>
 
-          val tuples: java.util.Set[Tuple] = new java.util.HashSet
-          typeInputRecipe match {
-            case binaryInputRecipe: BinaryInputRecipe => {
-              val traceInfo = binaryInputRecipe.getTraceInfo
-              if (traceInfo.startsWith("attribute")) {
-                initializeAttribute(databaseDriver, binaryInputRecipe, tuples)
-              } else if (traceInfo.startsWith("edge")) {
-                initializeEdge(databaseDriver, binaryInputRecipe, tuples)
-              }
-            }
-            case unaryInputRecipe: UnaryInputRecipe => {
-              initializeVertex(databaseDriver, unaryInputRecipe, tuples)
-            }
-          }
-
           val actor = recipeToActorRef.get(typeInputRecipe)
-          val changeSet = new ChangeSet(tuples, ChangeType.POSITIVE)
-
-          update(actor, changeSet)
+          initialize(actor)
         case _ => {}
       }))
   }
@@ -298,6 +278,14 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
   /**
    * Update API
    */
+  def initialize(actor: ActorRef) {
+    println(logPrefix + "Sending initialize message to " + actor)
+    actor.tell(CoordinatorMessage.INITIALIZE_INPUT, self)
+
+    pendingUpdateMessages += 1
+    println(logPrefix + pendingUpdateMessages + " update message(s) pending.")
+  }
+  
   def update(actor: ActorRef, changeSet: ChangeSet) {
     val senderStack = Stack(self)
     val updateMessage = new UpdateMessage(changeSet, ReteNodeSlot.SINGLE, senderStack)
@@ -308,34 +296,6 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
 
     pendingUpdateMessages += 1
     println(logPrefix + pendingUpdateMessages + " update message(s) pending.")
-  }
-
-  def initializeAttribute(databaseDriver: FourStoreDriverTrainBenchmark, recipe: BinaryInputRecipe, tuples: java.util.Set[Tuple]) = {
-    val typeName = RDFHelper.brackets(recipe.getTypeName)
-    val attributes = databaseDriver.collectVerticesWithProperty(typeName)
-
-    attributes.foreach(attribute => {
-      val key = attribute._1
-      val value = attribute._2
-
-      val regex = "\"(.*?)\"\\^\\^<http://www.w3.org/2001/XMLSchema#int>".r
-      val intValue = regex.findFirstMatchIn(value).get.group(1)
-      tuples += new Tuple(key, intValue)
-    })
-  }
-
-  def initializeEdge(databaseDriver: FourStoreDriverTrainBenchmark, recipe: BinaryInputRecipe, tuples: java.util.Set[Tuple]) = {
-    val typeName = RDFHelper.brackets(recipe.getTypeName)
-    val edges = databaseDriver.collectEdges(typeName)
-
-    edges.entries.foreach(edge => {
-      tuples += new Tuple(edge.getKey, edge.getValue)
-    })
-  }
-
-  def initializeVertex(databaseDriver: FourStoreDriverTrainBenchmark, recipe: UnaryInputRecipe, tuples: java.util.Set[Tuple]) = {
-    val vertices = databaseDriver.collectVertices(RDFHelper.brackets(recipe.getTypeName))
-    vertices.foreach(vertex => tuples += new Tuple(vertex))
   }
 
   def getQueryResults(pattern: String): java.util.List[ChangeSet] = {
