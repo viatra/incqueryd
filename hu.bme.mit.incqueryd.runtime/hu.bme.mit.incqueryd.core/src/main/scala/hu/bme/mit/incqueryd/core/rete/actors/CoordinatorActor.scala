@@ -3,15 +3,16 @@ package hu.bme.mit.incqueryd.core.rete.actors
 import java.nio.file.Paths
 import java.util.HashMap
 import java.util.HashSet
+
 import scala.collection.JavaConversions.asScalaBuffer
 import scala.collection.JavaConversions.asScalaSet
 import scala.collection.JavaConversions.collectionAsScalaIterable
 import scala.collection.JavaConversions.mapAsScalaMap
-import scala.collection.JavaConversions.mutableSetAsJavaSet
 import scala.collection.JavaConversions.seqAsJavaList
 import scala.collection.immutable.Stack
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
+
 import org.apache.commons.io.FilenameUtils
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe
@@ -19,23 +20,23 @@ import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe
+
 import com.google.common.collect.HashBiMap
+
 import akka.actor.Actor
 import akka.actor.ActorRef
 import akka.actor.Address
 import akka.actor.Deploy
 import akka.actor.Props
+import akka.actor.Status
 import akka.actor.actorRef2Scala
 import akka.pattern.Patterns.ask
 import akka.remote.RemoteScope
 import akka.util.Timeout
 import arch.CacheRole
 import arch.Configuration
-import arch.Configuration
-import arch.Configuration
-import arch.Configuration
 import arch.ReteRole
-import hu.bme.mit.bigmodel.fourstore.FourStoreDriverUnique
+import hu.bme.mit.bigmodel.fourstore.FourStoreDriverTrainBenchmark
 import hu.bme.mit.bigmodel.rdf.RDFHelper
 import hu.bme.mit.incqueryd.arch.util.ArchUtil
 import hu.bme.mit.incqueryd.core.monitoring.actors.JVMMonitoringActor
@@ -53,12 +54,16 @@ import hu.bme.mit.incqueryd.core.util.EObjectSerializer
 import hu.bme.mit.incqueryd.core.util.ReteNodeConfiguration
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
 import infrastructure.Process
-import hu.bme.mit.bigmodel.fourstore.FourStoreDriverTrainBenchmark
 
 class CoordinatorActor(val architectureFile: String, val distributed: Boolean) extends Actor {
 
   val logPrefix = "[CoordinatorActor] "
-  val conf: Configuration = ArchUtil.loadConfiguration(architectureFile)
+  
+  val conf: Configuration = try ArchUtil.loadConfiguration(architectureFile) catch {
+    case e: Exception =>  { sender ! Status.Failure(e); e.printStackTrace(); System.exit(-1); throw e;  } 
+  }
+    
+    //val conf: Configuration = ArchUtil.loadConfiguration(architectureFile)
   val queryName = FilenameUtils.removeExtension(Paths.get(architectureFile).getFileName.toString()).toLowerCase
 
   println(logPrefix + "Running query: " + queryName)
@@ -351,8 +356,13 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
     monitoringActor = context.actorFor("akka://monitoringserver@" + conf.getMonitoringMachine.getIp + ":5225/user/collector")
     monitoringActor ! new MonitoredActorCollection(recipeToActorRef.values, jvmActorRefs)
   }
-
+  
+  var state = 0
+  
   def receive = {
+    case ex: Exception => {
+      println("Exception received")
+    }
     case CoordinatorCommand.START => {
       start
       engine = sender
