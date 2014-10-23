@@ -112,7 +112,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
     conf.getMappings.foreach(mapping => {
       mapping.getRoles.foreach(role => role match {
         case reteRole: ReteRole => {
-          println(reteRole.getNodeRecipe() + ": " + mapping.getProcess())
+          // println(reteRole.getNodeRecipe() + ": " + mapping.getProcess())
           recipeToProcess.put(reteRole.getNodeRecipe, mapping.getProcess)
         }
       })

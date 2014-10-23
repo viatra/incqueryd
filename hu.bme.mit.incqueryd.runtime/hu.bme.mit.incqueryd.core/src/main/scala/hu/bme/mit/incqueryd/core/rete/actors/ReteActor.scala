@@ -222,7 +222,6 @@ class ReteActor extends Actor {
     })
 
     if (changeSet != null) changesCount += changeSet.getTuples.size // In case it's not a production node
-
   }
 
   def initialize = {
