@@ -4,7 +4,7 @@
 
 cd "$( cd "$( dirname "$0" )" && pwd )/.."
 
-INSTALL_DIR=~/incqueryd/
+INSTALL_DIR=incqueryd/
 
 # iterating through the hostnames of the machines
 for machine in "$@"; do
