@@ -5,8 +5,8 @@
 
 cd "$( cd "$( dirname "$0" )" && pwd )/.."
 
-INSTALL_DIR=~/incqueryd/monitoring/osagent/
-SERVER_INSTALL_DIR=~/incqueryd/monitoring/server/
+INSTALL_DIR=incqueryd/monitoring/osagent/
+SERVER_INSTALL_DIR=incqueryd/monitoring/server/
 INSTALL_LIB_DIR="$INSTALL_DIR/lib/"
 
 case $1 in
@@ -53,3 +53,5 @@ scp -r scripts/server/* $monitoring:$SERVER_INSTALL_DIR
 scp hu.bme.mit.incqueryd.monitoringserver.dw-server/target/dw-server-*-SNAPSHOT.jar $monitoring:$SERVER_INSTALL_DIR
 
 ssh $monitoring "echo \"collectorInterface: $monitoring\" > $SERVER_INSTALL_DIR/config.yml"
+
+echo Monitoring components installed.
