@@ -75,9 +75,10 @@ public class ArchitectureInstaller {
 		final String connectionString = configuration.getConnectionString();
 		System.out.println("Connection string: " + connectionString);
 
-		deployMonitoringServer(configuration.getMonitoringMachine());
+//		deployMonitoringServer(configuration.getMonitoringMachine());
 
 		for (final Machine machine : configuration.getMachines()) {
+			deployMonitoringServer(machine);
 			deployMachine(machine);
 
 			if (configuration.getMonitoringMachine() != null) {
