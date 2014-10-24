@@ -235,7 +235,6 @@ class ReteActor extends Actor {
     val inputNode = reteNode.asInstanceOf[InputNode]
     val changeSet = inputNode.initialize
     val senderStack = Stack(sender, self)
-    println(logPrefix + " ChangeSet: " + changeSet)
     val updateMessage = new UpdateMessage(changeSet, ReteNodeSlot.SINGLE, senderStack)
 	self.tell(updateMessage)
   }
