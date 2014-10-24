@@ -81,4 +81,5 @@
 
 	</dependencies>
 
+	<name>Monitoring Dropwizard Server</name>
 </project>

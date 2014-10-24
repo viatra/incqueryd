@@ -32,4 +32,5 @@
 		<artifactId>hu.bme.mit.incqueryd.monitoring</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<name>Rete Monitoring Metrics</name>
 </project>
