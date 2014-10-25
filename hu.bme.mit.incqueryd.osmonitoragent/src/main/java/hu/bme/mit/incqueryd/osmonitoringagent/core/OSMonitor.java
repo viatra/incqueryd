@@ -175,15 +175,15 @@ public class OSMonitor extends UntypedActor{
 			NetInterfaceConfig netInterfaceConfig = sigar
 					.getNetInterfaceConfig(netInterface);
 
-			if (netInterfaceConfig.getType().equals("Ethernet")
-					&& !netInterfaceConfig.getAddress().equals("0.0.0.0")) {
+//			if (netInterfaceConfig.getType().equals("Ethernet")
+//					&& !netInterfaceConfig.getAddress().equals("0.0.0.0")) {
 				networkInterfaces.add(netInterface);
 
 				NetworkUsage netUsage = new NetworkUsage(
 						netInterfaceConfig.getName(),
 						netInterfaceConfig.getAddress());
 				netUsages.add(netUsage);
-			}
+//			}
 
 		}
 
