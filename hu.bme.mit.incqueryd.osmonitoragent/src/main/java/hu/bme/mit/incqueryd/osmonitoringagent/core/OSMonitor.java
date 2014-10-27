@@ -175,15 +175,15 @@ public class OSMonitor extends UntypedActor{
 			NetInterfaceConfig netInterfaceConfig = sigar
 					.getNetInterfaceConfig(netInterface);
 
-//			if (netInterfaceConfig.getType().equals("Ethernet")
-//					&& !netInterfaceConfig.getAddress().equals("0.0.0.0")) {
+			if ((netInterfaceConfig.getType().equals("Ethernet") || netInterfaceConfig.getType().equals("Local Loopback"))
+					&& !netInterfaceConfig.getAddress().equals("0.0.0.0")) {
 				networkInterfaces.add(netInterface);
 
 				NetworkUsage netUsage = new NetworkUsage(
 						netInterfaceConfig.getName(),
 						netInterfaceConfig.getAddress());
 				netUsages.add(netUsage);
-//			}
+			}
 
 		}
 
@@ -310,8 +310,11 @@ public class OSMonitor extends UntypedActor{
 				netUsage.setTxTraffic((double) ((TXBytes - previousTXBytes[i]) * 8)
 						/ (1024 * elapsedTimeInSec)); // in Kbps
 				
-				netUsage.setRxSumTraffic((double)(RXBytes / (1024*1024)));
-				netUsage.setTxSumTraffic((double)(TXBytes / (1024*1024)));
+				double toMega = 1024*1024;
+				double sumRXinMB = (RXBytes / toMega);
+				double sumTXinMB = (TXBytes / toMega);
+				netUsage.setRxSumTraffic(sumRXinMB);
+				netUsage.setTxSumTraffic(sumTXinMB);
 
 				previousRXPackets[i] = RXPacket;
 				previousRXBytes[i] = RXBytes;
