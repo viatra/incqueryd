@@ -309,6 +309,9 @@ public class OSMonitor extends UntypedActor{
 				netUsage.setTxPackets(TXPacket - previousTXPackets[i]);
 				netUsage.setTxTraffic((double) ((TXBytes - previousTXBytes[i]) * 8)
 						/ (1024 * elapsedTimeInSec)); // in Kbps
+				
+				netUsage.setRxSummTraffic(RXBytes / (1024*1024));
+				netUsage.setTxSummTraffic(TXBytes / (1024*1024));
 
 				previousRXPackets[i] = RXPacket;
 				previousRXBytes[i] = RXBytes;
