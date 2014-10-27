@@ -853,44 +853,64 @@ function hostHeatMap() {
         net.children = [];
 
         var rxTraffic = {};
-        rxTraffic.name = "RX Traffic";
+        rxTraffic.name = "RX Traffic Rate";
         rxTraffic.id = net.id + "_rxtraffic";
         rxTraffic.data = {};
         rxTraffic.data.$area = 100;
-        rxTraffic.data.$color = percentToColor(Math.min((netUsage.rxTraffic / 200) * 100, 100));
+        rxTraffic.data.$color = percentToColor(Math.min((netUsage.rxTraffic / 100000) * 100, 100));
         rxTraffic.data.value = (truncateDecimals(netUsage.rxTraffic * 100) / 100) + " Kbit/sec";
 
         net.children.push(rxTraffic);
 
-        var rxPackets = {};
-        rxPackets.name = "RX Packets";
-        rxPackets.id = net.id + "_rxpackets";
-        rxPackets.data = {};
-        rxPackets.data.$area = 100;
-        rxPackets.data.$color = percentToColor(Math.min((netUsage.rxPackets / 200) * 100, 100));
-        rxPackets.data.value = (truncateDecimals(netUsage.rxPackets * 100) / 100) + " Packets";
+        //var rxPackets = {};
+        //rxPackets.name = "RX Packets";
+        //rxPackets.id = net.id + "_rxpackets";
+        //rxPackets.data = {};
+        //rxPackets.data.$area = 100;
+        //rxPackets.data.$color = percentToColor(Math.min((netUsage.rxPackets / 100000) * 100, 100));
+        //rxPackets.data.value = (truncateDecimals(netUsage.rxPackets * 100) / 100) + " Packets";
 
-        net.children.push(rxPackets);
+        //net.children.push(rxPackets);
 
         var txTraffic = {};
-        txTraffic.name = "TX Traffic";
+        txTraffic.name = "TX Traffic Rate";
         txTraffic.id = net.id + "_txtraffic";
         txTraffic.data = {};
         txTraffic.data.$area = 100;
-        txTraffic.data.$color = percentToColor(Math.min((netUsage.txTraffic / 200) * 100, 100));
+        txTraffic.data.$color = percentToColor(Math.min((netUsage.txTraffic / 100000) * 100, 100));
         txTraffic.data.value = (truncateDecimals(netUsage.txTraffic * 100) / 100) + " Kbit/sec";
 
         net.children.push(txTraffic);
 
-        var txPackets = {};
-        txPackets.name = "TX Packets";
-        txPackets.id = net.id + "_txpackets";
-        txPackets.data = {};
-        txPackets.data.$area = 100;
-        txPackets.data.$color = percentToColor(Math.min((netUsage.txPackets / 200) * 100, 100));
-        txPackets.data.value = (truncateDecimals(netUsage.txPackets * 100) / 100) + " Packets";
+        //var txPackets = {};
+        //txPackets.name = "TX Packets";
+        //txPackets.id = net.id + "_txpackets";
+        //txPackets.data = {};
+        //txPackets.data.$area = 100;
+        //txPackets.data.$color = percentToColor(Math.min((netUsage.txPackets / 200) * 100, 100));
+        //txPackets.data.value = (truncateDecimals(netUsage.txPackets * 100) / 100) + " Packets";
 
-        net.children.push(txPackets);
+        //net.children.push(txPackets);
+
+        var rxSumTraffic = {};
+        rxSumTraffic.name = "RX Traffic";
+        rxSumTraffic.id = net.id + "_rxsumtraffic";
+        rxSumTraffic.data = {};
+        rxSumTraffic.data.$area = 100;
+        rxSumTraffic.data.$color = percentToColor(Math.min((netUsage.rxSumTraffic / 5000) * 100, 100));
+        rxSumTraffic.data.value = (truncateDecimals(netUsage.rxSumTraffic * 100) / 100) + " MB";
+
+        net.children.push(rxSumTraffic);
+
+        var txSumTraffic = {};
+        txSumTraffic.name = "TX Traffic";
+        txSumTraffic.id = net.id + "_txsumtraffic";
+        txSumTraffic.data = {};
+        txSumTraffic.data.$area = 100;
+        txSumTraffic.data.$color = percentToColor(Math.min((netUsage.txSumTraffic / 5000) * 100, 100));
+        txSumTraffic.data.value = (truncateDecimals(netUsage.txSumTraffic * 100) / 100) + " MB";
+
+        net.children.push(txSumTraffic);
 
         network.children.push(net);
 

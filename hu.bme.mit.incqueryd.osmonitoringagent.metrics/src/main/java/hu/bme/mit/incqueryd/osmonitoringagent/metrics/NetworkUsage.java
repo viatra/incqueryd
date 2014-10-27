@@ -14,8 +14,8 @@ public class NetworkUsage implements Serializable{
 	private long rxPackets;
 	private double txTraffic;
 	private long txPackets;
-	private double rxSummTraffic;
-	private double txSummTraffic;
+	private double rxSumTraffic;
+	private double txSumTraffic;
 
 	public NetworkUsage(String name, String address) {
 		this.name = name;
@@ -24,8 +24,8 @@ public class NetworkUsage implements Serializable{
 		rxPackets = 0;
 		txTraffic = 0;
 		txPackets = 0;
-		rxSummTraffic = 0;
-		txSummTraffic = 0;
+		rxSumTraffic = 0;
+		txSumTraffic = 0;
 	}
 	
 	public String getName() {
@@ -76,19 +76,19 @@ public class NetworkUsage implements Serializable{
 		this.txPackets = txPackets;
 	}
 	
-	public double getRxSummTraffic() {
-		return rxSummTraffic;
+	public double getRxSumTraffic() {
+		return rxSumTraffic;
 	}
 	
-	public double getTxSummTraffic() {
-		return txSummTraffic;
+	public double getTxSumTraffic() {
+		return txSumTraffic;
 	}
 	
-	public void setRxSummTraffic(double rxSummTraffic) {
-		this.rxSummTraffic = rxSummTraffic;
+	public void setRxSumTraffic(double rxSummTraffic) {
+		this.rxSumTraffic = rxSummTraffic;
 	}
 	
-	public void setTxSummTraffic(double txSummTraffic) {
-		this.txSummTraffic = txSummTraffic;
+	public void setTxSumTraffic(double txSummTraffic) {
+		this.txSumTraffic = txSummTraffic;
 	}
 }
