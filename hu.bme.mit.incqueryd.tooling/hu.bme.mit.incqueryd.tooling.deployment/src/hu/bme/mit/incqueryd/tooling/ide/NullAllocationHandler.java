@@ -9,6 +9,10 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
@@ -16,21 +20,25 @@ import org.eclipse.ui.PlatformUI;
 public class NullAllocationHandler extends AbstractHandler {
 
 	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final IFile file = ArchitectureSelector.getSelection(event);
-		String recipeFile = file.getLocation().toString();
-		
-		try {
-			ReteAllocator.allocateNull(recipeFile, file.getProject().getLocation().toString() + "/arch-null/" + file.getName().replaceFirst("\\." + file.getFileExtension(), "") + ".arch");
-		} catch (IOException e) {
-			
-		}
-		
-		Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		MessageDialog dialog = new MessageDialog(activeShell, "Allocation result", null,
-			    "Your arch file is ready in the arch-null folder!", MessageDialog.INFORMATION, new String[] {"OK"}, 0);
-		dialog.open();
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
+		new Job("Allocating Rete (no optimization)") {
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+				final IFile file = ArchitectureSelector.getSelection(event);
+				String recipeFile = file.getLocation().toString();
 
+				try {
+					ReteAllocator.allocateNull(recipeFile, file.getProject().getLocation().toString() + "/arch-null/" + file.getName().replaceFirst("\\." + file.getFileExtension(), "") + ".arch");
+				} catch (IOException e) {
+
+				}
+
+				Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+				MessageDialog dialog = new MessageDialog(activeShell, "Allocation result", null, "Your arch file is ready in the arch-null folder!", MessageDialog.INFORMATION, new String[] { "OK" }, 0);
+				dialog.open();
+				return Status.OK_STATUS;
+			}
+		}.schedule();
 		return null;
 	}
 

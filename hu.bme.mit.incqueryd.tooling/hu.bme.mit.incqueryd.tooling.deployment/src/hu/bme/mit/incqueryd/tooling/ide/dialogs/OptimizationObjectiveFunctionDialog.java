@@ -12,20 +12,20 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 
 public class OptimizationObjectiveFunctionDialog extends TitleAreaDialog {
-	
+
 	private boolean forCommunication;
-	
+
 	private Button communicationButton;
 	private Button costButton;
 
 	public OptimizationObjectiveFunctionDialog(Shell parentShell) {
 		super(parentShell);
 	}
-	
+
 	@Override
 	  public void create() {
 		super.create();
-		setTitle("Choose objective fnction");
+		setTitle("Choose objective function");
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class OptimizationObjectiveFunctionDialog extends TitleAreaDialog {
 	    communicationButton.setText("Communication");
 	    costButton = new Button(container, SWT.RADIO);
 	    costButton.setText("Cost");
-	    
+
 		return container;
 	}
 
@@ -61,7 +61,7 @@ public class OptimizationObjectiveFunctionDialog extends TitleAreaDialog {
 		forCommunication = communicationButton.getSelection();
 		super.okPressed();
 	}
-	
+
 	public boolean forCommunication() {
 		return forCommunication;
 	}
