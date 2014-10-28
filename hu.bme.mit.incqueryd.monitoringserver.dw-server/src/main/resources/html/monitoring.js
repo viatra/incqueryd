@@ -190,6 +190,8 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
             direction = adj.data.$direction,
             inv = (direction && direction.length > 1 && direction[0] != adj.nodeFrom.id);
 
+            var data = adj.data;
+
             var deltaX;
             var deltaY;
             if (adj.data.slot == "PRIMARY") {
@@ -208,7 +210,9 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
                 else deltaY = -(alpha_height / 2) ;
             }
             
-            
+            var context = canvas.getCtx();
+            context.fillStyle = data.edgeColor;
+            context.strokeStyle = data.edgeColor;
             if (inv) {
                 var from2 = {};
                 from2.y = from.y + deltaY;
@@ -226,7 +230,7 @@ $jit.ForceDirected.Plot.EdgeTypes.implement({
             var posChild = adj.nodeTo.pos.getc(true);
 
             //check for edge label in data
-            var data = adj.data;
+            
             if (data.labeltext) {
                 var posChildX = 0, posChildY = 0;
 
@@ -1467,6 +1471,25 @@ function hasReteNetworkChanged() {
 }
 
 // Rete network visualization functions **********************************************************************************************************************************************
+
+function getColorForReteEdge(processName, reteId) {
+    for (var i = 0; i < jsonData.rete.length; i++) {
+        var reteNode = jsonData.rete[i];
+
+        if (reteNode.reteNode == reteId) {
+            
+            if (reteNode.processName == processName) return "#0cd5d5";
+            else {
+                var machine1 = reteNode.processName.split("@")[1];
+                var machine2 = processName.split("@")[1];
+
+                return (machine1 == machine2) ? "#00e200" : "#ff9200";
+            }
+          
+        }
+    }
+}
+
 // Drawing the system as a graph
 function drawReteNet() {
 
@@ -1534,6 +1557,7 @@ function drawReteNet() {
             edge.data.$direction.push(reteNode.reteNode);
             edge.data.$direction.push(subsciber.reteNode);
             edge.data.labeltext = "Updates:" + reteNode.updateMessagesSent + "\nChanges:" + reteNode.changesCount;
+            edge.data.edgeColor = getColorForReteEdge(reteNode.processName, subsciber.reteNode);
             edge.data.slot = subsciber.slot;
 
             node.adjacencies.push(edge);
