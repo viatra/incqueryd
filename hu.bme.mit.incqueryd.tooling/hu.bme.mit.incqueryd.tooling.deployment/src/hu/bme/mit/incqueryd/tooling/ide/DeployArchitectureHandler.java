@@ -23,7 +23,6 @@ public class DeployArchitectureHandler extends AbstractHandler {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				IqdConsole console = IqdConsole.getInstance();
-				console.getStream().println("o hai");
 				final IFile file = ArchitectureSelector.getSelection(event);
 				try {
 					ArchitectureInstaller.deployArchitecture(file.getLocation().toString(), console.getStream());
