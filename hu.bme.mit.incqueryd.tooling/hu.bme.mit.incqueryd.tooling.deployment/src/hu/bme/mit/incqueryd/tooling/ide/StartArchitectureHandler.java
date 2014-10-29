@@ -3,6 +3,7 @@ package hu.bme.mit.incqueryd.tooling.ide;
 import hu.bme.mit.incqueryd.arch.util.ArchUtil;
 import hu.bme.mit.incqueryd.tooling.ide.httpclient.HttpClient;
 import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
+import hu.bme.mit.incqueryd.tooling.ide.util.IqdConsole;
 
 import java.io.IOException;
 
@@ -24,6 +25,7 @@ public class StartArchitectureHandler extends AbstractHandler {
 		new Job("Starting architecture") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
+				IqdConsole console = IqdConsole.getInstance();
 				final IFile file = ArchitectureSelector.getSelection(event);
 				String architectureFile = file.getLocation().toString();
 				Configuration configuration;
@@ -37,7 +39,7 @@ public class StartArchitectureHandler extends AbstractHandler {
 
 				try {
 					String response = HttpClient.getURL("http://" + coordinatorIp + ":9090/start");
-					System.out.println(response);
+					console.getStream().println(response);
 				} catch (IOException e) {
 					throw new RuntimeException("Coordinator actor did not respond.", e);
 				}

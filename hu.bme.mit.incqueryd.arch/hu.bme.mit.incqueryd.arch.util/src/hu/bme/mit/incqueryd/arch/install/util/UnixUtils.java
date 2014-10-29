@@ -4,40 +4,46 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.common.base.Charsets;
+
 public class UnixUtils {
 
-	public static void run(final String[] command) throws IOException {
-		final Map<String, String> environment = new HashMap<>();
-		final boolean showOutput = true;
-		run(command, showOutput, environment);
+	public static void run(final String[] command, OutputStream outputStream) throws IOException {
+		run(command, outputStream, new HashMap<String, String>());
 	}
-	
-	public static void run(final String[] command, final boolean showOutput, final Map<String, String> environment) throws IOException {
-		final BufferedReader reader = runAndReadOutput(command, showOutput, environment);
+
+	public static void run(final String[] command, OutputStream outputStream, final Map<String, String> environment) throws IOException {
+		final BufferedReader reader = runAndReadOutput(command, outputStream, environment);
 
 		String line;
 		while ((line = reader.readLine()) != null) {
-			if (showOutput) {
-				System.out.println(line);
+			if (outputStream != null) {
+				println(outputStream, line);
 			}
 		}
-		
-		if (showOutput) {
-			System.out.println("Command finished.");
+
+		if (outputStream != null) {
+			println(outputStream, "Command finished.");
 		}
 	}
 
-	public static BufferedReader runAndReadOutput(final String[] command, final boolean showOutput, final Map<String, String> environment) throws IOException {
-		if (showOutput) {
-			System.out.println("Invoking command:");
+	private static void println(OutputStream outputStream, String line) throws IOException {
+		outputStream.write(line.getBytes(Charsets.UTF_8));
+		outputStream.write('\n');
+	}
+
+	public static BufferedReader runAndReadOutput(final String[] command, OutputStream outputStream, final Map<String, String> environment) throws IOException {
+		if (outputStream != null) {
+			println(outputStream, "Invoking command:");
 			for (final String string : command) {
 				System.out.print(string + " ");
 			}
-			System.out.println();
-			System.out.println("Command output:");
+			println(outputStream, "");
+			println(outputStream, "Command output:");
 		}
 
 		// passing command name and arguments as an array to the ProcessBuilder
@@ -50,5 +56,5 @@ public class UnixUtils {
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(stdout));
 		return reader;
 	}
-	
+
 }

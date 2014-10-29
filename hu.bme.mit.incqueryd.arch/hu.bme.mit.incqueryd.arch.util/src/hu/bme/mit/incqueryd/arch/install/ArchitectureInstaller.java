@@ -6,6 +6,7 @@ import infrastructure.Machine;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +20,9 @@ public class ArchitectureInstaller {
 	public static final String MONSERVER_DIR = "~/incqueryd/monitoring/server/";
 	public static final String AKKA_VERSION = "2.1.4";
 
-	public static void installArchitecture(final String architectureFile, final boolean light) throws IOException {
+	public static void installArchitecture(final String architectureFile, final boolean light, OutputStream outputStream) throws IOException {
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
-		
+
 		final List<String> command = new ArrayList<>();
 		final String homeDirectory = System.getProperty("user.home");
 		command.add(homeDirectory + "/git/incqueryd/hu.bme.mit.incqueryd.runtime/scripts/install.sh");
@@ -31,30 +32,30 @@ public class ArchitectureInstaller {
 		for (final Machine machine : configuration.getMachines()) {
 			command.add(machine.getIp());
 		}
-		
-		UnixUtils.run(command.toArray(new String[command.size()]));
+
+		UnixUtils.run(command.toArray(new String[command.size()]), outputStream);
 		System.out.println(command);
-		
+
 		// Call the monitoring install script as well
 		// which installs the monitoring components to the machines as well
 		final List<String> monitoringInstallCommand = new ArrayList<>();
 		monitoringInstallCommand.add(homeDirectory + "/git/incqueryd-monitoring/scripts/install.sh");
-		
+
 		if (light) monitoringInstallCommand.add("--light"); // Light goes for monitoring too
-		
+
 		monitoringInstallCommand.add(configuration.getMonitoringMachine().getIp()); // The IP of the monitoring server
-		
+
 		for (final Machine machine : configuration.getMachines()) {
 			monitoringInstallCommand.add(machine.getIp());
 		}
-		
-		UnixUtils.run(monitoringInstallCommand.toArray(new String[monitoringInstallCommand.size()]));
+
+		UnixUtils.run(monitoringInstallCommand.toArray(new String[monitoringInstallCommand.size()]), outputStream);
 		System.out.println(monitoringInstallCommand);
 	}
-	
-	public static void uninstallArchitecture(final String architectureFile) throws IOException {
+
+	public static void uninstallArchitecture(final String architectureFile, OutputStream outputStream) throws IOException {
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
-		
+
 		final List<String> command = new ArrayList<>();
 		final String homeDirectory = System.getProperty("user.home");
 		command.add(homeDirectory + "/git/incqueryd/hu.bme.mit.incqueryd.runtime/scripts/uninstall.sh");
@@ -62,32 +63,32 @@ public class ArchitectureInstaller {
 		for (final Machine machine : configuration.getMachines()) {
 			command.add(machine.getIp());
 		}
-		
-		UnixUtils.run(command.toArray(new String[command.size()]));
+
+		UnixUtils.run(command.toArray(new String[command.size()]), outputStream);
 		System.out.println(command);
 	}
-	
-	public static void deployArchitecture(final String architectureFile) throws IOException {
+
+	public static void deployArchitecture(final String architectureFile, OutputStream outputStream) throws IOException {
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 
 		final String connectionString = configuration.getConnectionString();
 		System.out.println("Connection string: " + connectionString);
-		
-		deployMonitoringServer(configuration.getMonitoringMachine());
+
+		deployMonitoringServer(configuration.getMonitoringMachine(), outputStream);
 
 		for (final Machine machine : configuration.getMachines()) {
-			deployMachine(machine);
-			
+			deployMachine(machine, outputStream);
+
 			if (configuration.getMonitoringMachine() != null) {
-				deployOSAgent(machine, configuration.getMonitoringMachine().getIp());
+				deployOSAgent(machine, configuration.getMonitoringMachine().getIp(), outputStream);
 			}
-			
+
 		}
-		deployCoordinator(architectureFile, configuration);
-		
+		deployCoordinator(architectureFile, configuration, outputStream);
+
 	}
 
-	protected static void deployMachine(final Machine machine) throws IOException {
+	protected static void deployMachine(final Machine machine, OutputStream outputStream) throws IOException {
 		final String AKKA_DIR = INSTALL_DIR + "akka-" + AKKA_VERSION + "/";
 		System.out.println(AKKA_DIR);
 
@@ -102,71 +103,71 @@ public class ArchitectureInstaller {
 			command.add(Integer.toString(port));
 		}
 
-		UnixUtils.run(command.toArray(new String[command.size()]));
+		UnixUtils.run(command.toArray(new String[command.size()]), outputStream);
 
-		
+
 
 		for (final infrastructure.Process process : machine.getProcesses()) {
 			final List<String> startCommand = new ArrayList<>();
 			startCommand.add("ssh");
 			startCommand.add(machine.getIp());
 			startCommand.add(INSTALL_DIR + "start-akka.sh");
-			
+
 			final int port = process.getPort();
 			startCommand.add(Integer.toString(port));
-			
+
 			final int memory = process.getMemory();
 			startCommand.add(Integer.toString(memory));
-			
-			UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
-			
+
+			UnixUtils.run(startCommand.toArray(new String[startCommand.size()]), outputStream);
+
 		}
-		
-		
+
+
 	}
-	
-	private static void deployOSAgent(final Machine machine, final String monitoringServerIP) throws IOException {
+
+	private static void deployOSAgent(final Machine machine, final String monitoringServerIP, OutputStream outputStream) throws IOException {
 		// Start the OS monitoring agent for the host
 		final List<String> osagentStartCommand = new ArrayList<>();
 		osagentStartCommand.add("ssh");
 		osagentStartCommand.add(machine.getIp());
 		osagentStartCommand.add(OSAGENT_DIR + "start.sh");
 		osagentStartCommand.add(monitoringServerIP);
-		
-		UnixUtils.run(osagentStartCommand.toArray(new String[osagentStartCommand.size()]));
+
+		UnixUtils.run(osagentStartCommand.toArray(new String[osagentStartCommand.size()]), outputStream);
 	}
-	
-	private static void deployMonitoringServer(final Machine monitoringMachine) throws IOException {
+
+	private static void deployMonitoringServer(final Machine monitoringMachine, OutputStream outputStream) throws IOException {
 		// Start the OS monitoring agent for the host
 		final List<String> osagentStartCommand = new ArrayList<>();
 		osagentStartCommand.add("ssh");
 		osagentStartCommand.add(monitoringMachine.getIp());
 		osagentStartCommand.add(MONSERVER_DIR + "start-server.sh");
-		
-		UnixUtils.run(osagentStartCommand.toArray(new String[osagentStartCommand.size()]));
+
+		UnixUtils.run(osagentStartCommand.toArray(new String[osagentStartCommand.size()]), outputStream);
 	}
 
 	private static void deployCoordinator(final String architectureFile,
-			final Configuration configuration) throws IOException {
+			final Configuration configuration, OutputStream outputStream) throws IOException {
 		final String coordinatorIP = configuration.getCoordinatorMachine().getIp();
-		
+
 		final List<String> archCopyCommand = new ArrayList<>();
 		archCopyCommand.add("scp");
 		archCopyCommand.add(architectureFile);
 		archCopyCommand.add(coordinatorIP + ":" + COORDINATOR_DIR + "arch/");
-		
-		UnixUtils.run(archCopyCommand.toArray(new String[archCopyCommand.size()]));
-		
+
+		UnixUtils.run(archCopyCommand.toArray(new String[archCopyCommand.size()]), outputStream);
+
 		final List<String> recipePaths = ArchUtil.getRecipePaths(architectureFile);
 		for (final String recipeFile : recipePaths) {
 			final List<String> recipeCopyCommand = new ArrayList<>();
 			recipeCopyCommand.add("scp");
 			recipeCopyCommand.add(recipeFile);
 			recipeCopyCommand.add(coordinatorIP + ":" + COORDINATOR_DIR + "recipes/");
-			
-			UnixUtils.run(recipeCopyCommand.toArray(new String[recipeCopyCommand.size()]));
+
+			UnixUtils.run(recipeCopyCommand.toArray(new String[recipeCopyCommand.size()]), outputStream);
 		}
-		
+
 		File file = new File(architectureFile);
 		final String archFileNameShort = file.getName();
 
@@ -176,56 +177,56 @@ public class ArchitectureInstaller {
 		coordinatorCommand.add(COORDINATOR_DIR + "start-coordinator.sh");
 		coordinatorCommand.add(COORDINATOR_DIR + "arch/" + archFileNameShort);
 		coordinatorCommand.add(configuration.getCoordinatorMachine().getIp());
-		
-		UnixUtils.run(coordinatorCommand.toArray(new String[coordinatorCommand.size()]));
+
+		UnixUtils.run(coordinatorCommand.toArray(new String[coordinatorCommand.size()]), outputStream);
 	}
-	
-	public static void stopArchitecture(final String architectureFile) throws IOException {
+
+	public static void stopArchitecture(final String architectureFile, OutputStream outputStream) throws IOException {
 
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 
 		for (final Machine machine : configuration.getMachines()) {
-			destroyMachine(machine);
+			destroyMachine(machine, outputStream);
 		}
 
-		destroyCoordinator(configuration.getCoordinatorMachine());	
-		destroyMonitoringServer(configuration.getMonitoringMachine());
+		destroyCoordinator(configuration.getCoordinatorMachine(), outputStream);
+		destroyMonitoringServer(configuration.getMonitoringMachine(), outputStream);
 	}
 
-	private static void destroyCoordinator(final Machine coordinatorMachine) throws IOException {
+	private static void destroyCoordinator(final Machine coordinatorMachine, OutputStream outputStream) throws IOException {
 		final List<String> startCommand = new ArrayList<>();
 		startCommand.add("ssh");
 		startCommand.add(coordinatorMachine.getIp());
 		startCommand.add("pkill -f incqueryd.core");
-		
-		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
-		
+
+		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]), outputStream);
+
 	}
-	
-	private static void destroyMonitoringServer(final Machine monitoringMachine) throws IOException {
+
+	private static void destroyMonitoringServer(final Machine monitoringMachine, OutputStream outputStream) throws IOException {
 		final List<String> startCommand = new ArrayList<>();
 		startCommand.add("ssh");
 		startCommand.add(monitoringMachine.getIp());
 		startCommand.add("pkill -f dw-server");
-		
-		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
-		
+
+		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]), outputStream);
+
 	}
 
-	private static void destroyMachine(final Machine machine) throws IOException {
+	private static void destroyMachine(final Machine machine, OutputStream outputStream) throws IOException {
 		final List<String> startCommand = new ArrayList<>();
 		startCommand.add("ssh");
 		startCommand.add(machine.getIp());
 		startCommand.add("pkill -x akka");
-		
-		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]));
-		
+
+		UnixUtils.run(startCommand.toArray(new String[startCommand.size()]), outputStream);
+
 		// Destroy the OS monitor agents on each machine
 		final List<String> osagentDestroyCommand = new ArrayList<>();
 		osagentDestroyCommand.add("ssh");
 		osagentDestroyCommand.add(machine.getIp());
 		osagentDestroyCommand.add("pkill -f osmonitor.core");
-		
-		UnixUtils.run(osagentDestroyCommand.toArray(new String[osagentDestroyCommand.size()]));
+
+		UnixUtils.run(osagentDestroyCommand.toArray(new String[osagentDestroyCommand.size()]), outputStream);
 	}
 }

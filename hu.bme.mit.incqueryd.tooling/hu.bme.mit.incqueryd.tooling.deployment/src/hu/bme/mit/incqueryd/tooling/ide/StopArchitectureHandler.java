@@ -2,6 +2,7 @@ package hu.bme.mit.incqueryd.tooling.ide;
 
 import hu.bme.mit.incqueryd.arch.install.ArchitectureInstaller;
 import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
+import hu.bme.mit.incqueryd.tooling.ide.util.IqdConsole;
 
 import java.io.IOException;
 
@@ -21,9 +22,10 @@ public class StopArchitectureHandler extends AbstractHandler {
 		new Job("Stopping architecture") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
+				IqdConsole console = IqdConsole.getInstance();
 				final IFile file = ArchitectureSelector.getSelection(event);
 				try {
-					ArchitectureInstaller.stopArchitecture(file.getLocation().toString());
+					ArchitectureInstaller.stopArchitecture(file.getLocation().toString(), console.getStream());
 				} catch (final IOException e) {
 					throw new RuntimeException("Cannot process architecture file.", e);
 				}

@@ -2,6 +2,7 @@ package hu.bme.mit.incqueryd.tooling.ide;
 
 import hu.bme.mit.incqueryd.arch.install.ArchitectureInstaller;
 import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
+import hu.bme.mit.incqueryd.tooling.ide.util.IqdConsole;
 
 import java.io.IOException;
 
@@ -21,9 +22,10 @@ public class FullInstallArchitectureHandler extends AbstractHandler {
 		new Job("Installing architecture (full)") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
+				IqdConsole console = IqdConsole.getInstance();
 				final IFile file = ArchitectureSelector.getSelection(event);
 				try {
-					ArchitectureInstaller.installArchitecture(file.getLocation().toString(), false);
+					ArchitectureInstaller.installArchitecture(file.getLocation().toString(), false, console.getStream());
 				} catch (final IOException e) {
 					throw new RuntimeException("Cannot process architecture file.", e);
 				}
