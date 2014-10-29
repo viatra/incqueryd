@@ -10,6 +10,8 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -19,6 +21,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
+
+import com.google.common.base.Throwables;
 
 public class OptimizedAllocationHandler extends AbstractHandler {
 
@@ -60,6 +64,11 @@ public class OptimizedAllocationHandler extends AbstractHandler {
 					}
 				} catch (IOException e) {
 					throw new RuntimeException(e);
+				}
+				try {
+					file.getProject().refreshLocal(IResource.DEPTH_INFINITE, monitor);
+				} catch (CoreException e) {
+					Throwables.propagate(e);
 				}
 				return Status.OK_STATUS;
 			}
