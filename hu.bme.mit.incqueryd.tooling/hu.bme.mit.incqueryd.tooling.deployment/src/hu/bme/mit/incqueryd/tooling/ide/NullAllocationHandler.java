@@ -26,10 +26,10 @@ public class NullAllocationHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
+		final IFile file = ArchitectureSelector.getSelection(event);
 		new Job("Allocating Rete (no optimization)") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
-				final IFile file = ArchitectureSelector.getSelection(event);
 				String recipeFile = file.getLocation().toString();
 
 				try {

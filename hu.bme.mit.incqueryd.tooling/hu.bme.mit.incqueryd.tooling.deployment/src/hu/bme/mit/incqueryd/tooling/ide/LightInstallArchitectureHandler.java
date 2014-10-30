@@ -19,11 +19,11 @@ public class LightInstallArchitectureHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
+		final IFile file = ArchitectureSelector.getSelection(event);
 		new Job("Installing architecture (light)") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				IqdConsole console = IqdConsole.getInstance();
-				final IFile file = ArchitectureSelector.getSelection(event);
 				try {
 					ArchitectureInstaller.installArchitecture(file.getLocation().toString(), true, console.getStream());
 				} catch (final IOException e) {

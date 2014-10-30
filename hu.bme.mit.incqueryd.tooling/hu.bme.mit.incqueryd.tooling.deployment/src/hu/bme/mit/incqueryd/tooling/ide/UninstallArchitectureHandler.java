@@ -19,11 +19,11 @@ public class UninstallArchitectureHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
+		final IFile file = ArchitectureSelector.getSelection(event);
 		new Job("Uninstalling architecture") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				IqdConsole console = IqdConsole.getInstance();
-				final IFile file = ArchitectureSelector.getSelection(event);
 				try {
 					ArchitectureInstaller.uninstallArchitecture(file.getLocation().toString(), console.getStream());
 				} catch (final IOException e) {

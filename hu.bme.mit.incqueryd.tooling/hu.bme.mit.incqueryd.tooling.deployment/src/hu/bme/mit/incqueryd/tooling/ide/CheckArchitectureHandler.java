@@ -22,11 +22,11 @@ public class CheckArchitectureHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
+		final IFile file = ArchitectureSelector.getSelection(event);
 		new Job("Checking architecture") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
-				IqdConsole console = IqdConsole.getInstance();
-				final IFile file = ArchitectureSelector.getSelection(event);
+				final IqdConsole console = IqdConsole.getInstance();
 				String architectureFile = file.getLocation().toString();
 				Configuration configuration;
 				try {
