@@ -1,7 +1,6 @@
 package hu.bme.mit.incqueryd.tooling.ide.util;
 
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -9,7 +8,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 public class ArchitectureSelector {
-	public static IFile getSelection(final ExecutionEvent event) throws ExecutionException {
+	public static IFile getSelection(final ExecutionEvent event) {
 		final ISelection sel = HandlerUtil.getActiveMenuSelection(event);
 		final IStructuredSelection selection = (IStructuredSelection) sel;
 		final Object firstElement = selection.getFirstElement();
@@ -20,7 +19,7 @@ public class ArchitectureSelector {
 		} else {
 			final String message = "The selected element is not an architecture file.";
 			showErrorMessage(message);
-			throw new ExecutionException(message);
+			throw new RuntimeException(message);
 		}
 	}
 
@@ -29,6 +28,6 @@ public class ArchitectureSelector {
 				errorMessage, MessageDialog.ERROR, new String[] { "Ok" }, 0);
 		messageDialog.open();
 	}
-	
-	
+
+
 }

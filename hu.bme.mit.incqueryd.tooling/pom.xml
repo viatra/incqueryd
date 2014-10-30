@@ -119,6 +119,7 @@
 		<module>hu.bme.mit.incqueryd.tooling.targetplatform</module>
 		<module>hu.bme.mit.incqueryd.tooling.feature</module>
 		<module>hu.bme.mit.incqueryd.tooling.update</module>
+		<module>hu.bme.mit.incqueryd.recipe.editor</module>
 	</modules>
 
 	<repositories>

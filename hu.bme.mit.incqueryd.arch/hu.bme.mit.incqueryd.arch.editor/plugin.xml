@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated Arch -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="arch.presentation.ArchModelWizardID"
+            name="%_UI_ArchModelWizard_label"
+            class="arch.presentation.ArchModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ArchModelFile.gif">
+         <description>%_UI_ArchModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated Arch -->
+      <editor
+            id="arch.presentation.ArchEditorID"
+            name="%_UI_ArchEditor_label"
+            icon="icons/full/obj16/ArchModelFile.gif"
+            extensions="arch"
+            class="arch.presentation.ArchEditor"
+            contributorClass="arch.presentation.ArchActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
