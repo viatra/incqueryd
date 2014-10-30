@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inventory:Inventory xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:inventory="http://incquery.net/inventory" connectionString="fourstore://trainbenchmark_cluster">
+  <machineSet xsi:type="inventory:InstanceSet">
+    <machineInstances identifier="1" cost="1" memorySize="20" memoryUnit="GB" CPUs="8" ip="10.6.17.181">
+      <overheads>1</overheads>
+    </machineInstances>
+  </machineSet>
+</inventory:Inventory>
