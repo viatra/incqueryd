@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.tooling.ide.util;
 
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 public class UiUtils {
@@ -12,23 +12,23 @@ public class UiUtils {
 	/**
 	 * Returns the current workbench page.
 	 */
-	public static IWorkbenchPage getWorkbenchPage() {
-		PageFinder pageFinder = new PageFinder(); // Ensure that we are in the UI thread
+	public static IWorkbenchWindow getWorkbenchWindow() {
+		WindowFinder pageFinder = new WindowFinder(); // Ensure that we are in the UI thread
 		Display.getDefault().syncExec(pageFinder);
-		return pageFinder.getPage();
+		return pageFinder.getWindow();
 	}
 
-	private static final class PageFinder implements Runnable {
+	private static final class WindowFinder implements Runnable {
 
-		private IWorkbenchPage page;
+		private IWorkbenchWindow window;
 
 		@Override
 		public void run() {
-			page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		}
 
-		public IWorkbenchPage getPage() {
-			return page;
+		public IWorkbenchWindow getWindow() {
+			return window;
 		}
 
 	}

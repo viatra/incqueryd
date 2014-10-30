@@ -2,6 +2,7 @@ package hu.bme.mit.incqueryd.tooling.ide;
 
 import hu.bme.mit.incqueryd.csp.util.ReteAllocator;
 import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
+import hu.bme.mit.incqueryd.tooling.ide.util.UiUtils;
 
 import java.io.IOException;
 
@@ -16,8 +17,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.PlatformUI;
 
 import com.google.common.base.Throwables;
 
@@ -37,9 +38,14 @@ public class NullAllocationHandler extends AbstractHandler {
 					Throwables.propagate(e);
 				}
 
-				Shell activeShell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-				MessageDialog dialog = new MessageDialog(activeShell, "Allocation result", null, "Your arch file is ready in the arch-null folder!", MessageDialog.INFORMATION, new String[] { "OK" }, 0);
-				dialog.open();
+				Shell activeShell = UiUtils.getWorkbenchWindow().getShell();
+				final MessageDialog dialog = new MessageDialog(activeShell, "Allocation result", null, "Your arch file is ready in the arch-null folder!", MessageDialog.INFORMATION, new String[] { "OK" }, 0);
+				Display.getDefault().asyncExec(new Runnable() {
+					@Override
+					public void run() {
+						dialog.open();
+					}
+				});
 				try {
 					file.getProject().refreshLocal(IResource.DEPTH_INFINITE, monitor);
 				} catch (CoreException e) {

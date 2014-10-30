@@ -39,7 +39,7 @@ public class ConsoleUtils {
 	 * Displays the given console in the Console view.
 	 */
 	public static void showConsole(final IConsole console) {
-		final IWorkbenchPage page = UiUtils.getWorkbenchPage();
+		final IWorkbenchPage page = UiUtils.getWorkbenchWindow().getActivePage();
 		Display.getDefault().asyncExec(new Runnable() {
 
 			@Override
