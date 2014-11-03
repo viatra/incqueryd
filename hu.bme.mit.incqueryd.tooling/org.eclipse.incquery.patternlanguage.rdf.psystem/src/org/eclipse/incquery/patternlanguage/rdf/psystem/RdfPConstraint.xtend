@@ -19,7 +19,7 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary
 import static org.eclipse.incquery.patternlanguage.patternLanguage.CompareFeature.*
 
 import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils.*
-import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
+import static extension org.eclipse.incquery.patternlanguage.util.psystem.PUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation
 

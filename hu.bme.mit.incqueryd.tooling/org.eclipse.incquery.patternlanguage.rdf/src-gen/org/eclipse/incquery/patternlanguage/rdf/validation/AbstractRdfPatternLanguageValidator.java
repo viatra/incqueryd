@@ -8,7 +8,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtext.validation.ComposedChecks;
 
-@ComposedChecks(validators= {org.eclipse.incquery.patternlanguage.rdf.validation.CustomPatternLanguageJavaValidator.class})
+@ComposedChecks(validators= {org.eclipse.incquery.patternlanguage.util.validation.CustomPatternLanguageJavaValidator.class})
 public class AbstractRdfPatternLanguageValidator extends org.eclipse.xtext.validation.AbstractDeclarativeValidator {
 
 	@Override

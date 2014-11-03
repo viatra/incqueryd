@@ -47,11 +47,11 @@ public class RecipeGenerator implements IGenerator {
 	private static final String VERTEX_DISCRIMINATOR = "vertex";
 
 	private int recipeIndex = 0;
-	
+
 	@Override
 	public void doGenerate(Resource input, IFileSystemAccess fsa) {
 		recipeIndex = 0;
-		
+
 		XMLProcessor xmlProcessor = new XMLProcessor();
 		for (RdfPatternModel patternModel : filter(input.getContents(), RdfPatternModel.class)) {
 			XMLResourceImpl resource = new XMLResourceImpl();
@@ -92,7 +92,7 @@ public class RecipeGenerator implements IGenerator {
 		nodeRecipe.setTraceInfo("");
 		recipe.getRecipeNodes().add(nodeRecipe);
 		recipeIndex++;
-			
+
 		if (nodeRecipe instanceof ProductionRecipe) {
 			ProductionRecipe productionRecipe = (ProductionRecipe) nodeRecipe;
 			nodeRecipe.setTraceInfo(((PQuery) productionRecipe.getPattern()).getFullyQualifiedName());
@@ -112,7 +112,7 @@ public class RecipeGenerator implements IGenerator {
 		} else if (nodeRecipe instanceof BinaryInputRecipe) {
 			BinaryInputRecipe binaryInputRecipe = (BinaryInputRecipe) nodeRecipe;
 			org.openrdf.model.Resource propertyUri = RdfPatternLanguageUtils.toRdfResource(binaryInputRecipe.getTypeName());
-			
+
 			String typeNameSuffix = RecipeProcessor.extractType(binaryInputRecipe).getTypeNameSuffix();
 			if (RdfUtils.isDatatypeProperty(propertyUri, vocabulary)) {
 				binaryInputRecipe.setTraceInfo(ATTRIBUTE_DISCRIMINATOR + ": " + typeNameSuffix);
@@ -120,7 +120,7 @@ public class RecipeGenerator implements IGenerator {
 				binaryInputRecipe.setTraceInfo(EDGE_DISCRIMINATOR + ": " + typeNameSuffix);
 			}
 		}
-		
+
 		nodeRecipe.setTraceInfo(nodeRecipe.getTraceInfo() + " [recipe " + recipeIndex + "]");
 	}
 

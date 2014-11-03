@@ -2,7 +2,6 @@ package org.eclipse.incquery.patternlanguage.rdf.psystem;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import java.io.Serializable;
 import java.util.Collections;
@@ -15,9 +14,9 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.Annotation;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternBody;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Variable;
-import org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPBody;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPModel;
+import org.eclipse.incquery.patternlanguage.util.psystem.PUtils;
 import org.eclipse.incquery.runtime.matchers.psystem.IQueryReference;
 import org.eclipse.incquery.runtime.matchers.psystem.PBody;
 import org.eclipse.incquery.runtime.matchers.psystem.PConstraint;
@@ -26,6 +25,7 @@ import org.eclipse.incquery.runtime.matchers.psystem.queries.PDisjunction;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PProblem;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -137,10 +137,7 @@ public class RdfPQuery implements PQuery, Serializable {
       final HashSet<PQuery> processedQueries = Sets.<PQuery>newHashSet(((PQuery) this));
       final Set<PQuery> foundQueries = this.getDirectReferredQueries();
       final HashSet<PQuery> newQueries = Sets.<PQuery>newHashSet(foundQueries);
-      boolean _containsAll = processedQueries.containsAll(newQueries);
-      boolean _not = (!_containsAll);
-      boolean _while = _not;
-      while (_while) {
+      while ((!processedQueries.containsAll(newQueries))) {
         {
           Iterator<PQuery> _iterator = newQueries.iterator();
           final PQuery query = _iterator.next();
@@ -151,9 +148,6 @@ public class RdfPQuery implements PQuery, Serializable {
           foundQueries.addAll(referred);
           newQueries.addAll(referred);
         }
-        boolean _containsAll_1 = processedQueries.containsAll(newQueries);
-        boolean _not_1 = (!_containsAll_1);
-        _while = _not_1;
       }
       _xblockexpression = foundQueries;
     }
@@ -199,7 +193,7 @@ public class RdfPQuery implements PQuery, Serializable {
   }
   
   public List<PProblem> getPProblems() {
-    return Collections.<PProblem>unmodifiableList(Lists.<PProblem>newArrayList());
+    return Collections.<PProblem>unmodifiableList(CollectionLiterals.<PProblem>newArrayList());
   }
   
   public boolean equals(final Object q) {

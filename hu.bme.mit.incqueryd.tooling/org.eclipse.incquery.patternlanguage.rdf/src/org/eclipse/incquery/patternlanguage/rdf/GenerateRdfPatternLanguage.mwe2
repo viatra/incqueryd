@@ -74,7 +74,7 @@ Workflow {
 
     		fragment = validation.ValidatorFragment auto-inject {
     			inheritImplementation = false
-    			composedCheck = "org.eclipse.incquery.patternlanguage.rdf.validation.CustomPatternLanguageJavaValidator"
+    			composedCheck = "org.eclipse.incquery.patternlanguage.util.validation.CustomPatternLanguageJavaValidator"
     		//    composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
     		//    composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
     		}

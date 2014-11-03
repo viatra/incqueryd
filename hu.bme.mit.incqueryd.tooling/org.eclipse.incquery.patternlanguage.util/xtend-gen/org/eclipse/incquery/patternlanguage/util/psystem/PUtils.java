@@ -1,4 +1,4 @@
-package org.eclipse.incquery.patternlanguage.rdf.psystem;
+package org.eclipse.incquery.patternlanguage.util.psystem;
 
 import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;

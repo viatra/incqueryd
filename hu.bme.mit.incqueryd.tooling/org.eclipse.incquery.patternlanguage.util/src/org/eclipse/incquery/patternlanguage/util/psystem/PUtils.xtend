@@ -1,4 +1,4 @@
-package org.eclipse.incquery.patternlanguage.rdf.psystem
+package org.eclipse.incquery.patternlanguage.util.psystem
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.Annotation
 import org.eclipse.incquery.patternlanguage.patternLanguage.BoolValue
