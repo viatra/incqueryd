@@ -95,9 +95,9 @@ public class MondixPatternLanguageAdapterFactory extends AdapterFactoryImpl
         return createEdgeConstraintAdapter();
       }
       @Override
-      public Adapter caseRdfPatternModel(RdfPatternModel object)
+      public Adapter caseMondixPatternModel(MondixPatternModel object)
       {
-        return createRdfPatternModelAdapter();
+        return createMondixPatternModelAdapter();
       }
       @Override
       public Adapter caseJvmIdentifiableElement(JvmIdentifiableElement object)
@@ -187,16 +187,16 @@ public class MondixPatternLanguageAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.RdfPatternModel <em>Rdf Pattern Model</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternModel <em>Mondix Pattern Model</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.RdfPatternModel
+   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternModel
    * @generated
    */
-  public Adapter createRdfPatternModelAdapter()
+  public Adapter createMondixPatternModelAdapter()
   {
     return null;
   }

@@ -20,22 +20,22 @@ import org.eclipse.xtext.xbase.services.XtypeGrammarAccess;
 public class MondixPatternLanguageGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
-	public class RdfPatternModelElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RdfPatternModel");
+	public class MondixPatternModelElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MondixPatternModel");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cRdfPatternModelAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cMondixPatternModelAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cPatternsAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cPatternsPatternParserRuleCall_1_0 = (RuleCall)cPatternsAssignment_1.eContents().get(0);
 		
-		//RdfPatternModel returns core::PatternModel:
-		//	{RdfPatternModel} patterns+=Pattern*;
+		//MondixPatternModel returns core::PatternModel:
+		//	{MondixPatternModel} patterns+=Pattern*;
 		public ParserRule getRule() { return rule; }
 
-		//{RdfPatternModel} patterns+=Pattern*
+		//{MondixPatternModel} patterns+=Pattern*
 		public Group getGroup() { return cGroup; }
 
-		//{RdfPatternModel}
-		public Action getRdfPatternModelAction_0() { return cRdfPatternModelAction_0; }
+		//{MondixPatternModel}
+		public Action getMondixPatternModelAction_0() { return cMondixPatternModelAction_0; }
 
 		//patterns+=Pattern*
 		public Assignment getPatternsAssignment_1() { return cPatternsAssignment_1; }
@@ -173,7 +173,7 @@ public class MondixPatternLanguageGrammarAccess extends AbstractGrammarElementFi
 	}
 	
 	
-	private RdfPatternModelElements pRdfPatternModel;
+	private MondixPatternModelElements pMondixPatternModel;
 	private ParameterElements pParameter;
 	private ConstraintElements pConstraint;
 	private NodeConstraintElements pNodeConstraint;
@@ -217,14 +217,14 @@ public class MondixPatternLanguageGrammarAccess extends AbstractGrammarElementFi
 	}
 
 	
-	//RdfPatternModel returns core::PatternModel:
-	//	{RdfPatternModel} patterns+=Pattern*;
-	public RdfPatternModelElements getRdfPatternModelAccess() {
-		return (pRdfPatternModel != null) ? pRdfPatternModel : (pRdfPatternModel = new RdfPatternModelElements());
+	//MondixPatternModel returns core::PatternModel:
+	//	{MondixPatternModel} patterns+=Pattern*;
+	public MondixPatternModelElements getMondixPatternModelAccess() {
+		return (pMondixPatternModel != null) ? pMondixPatternModel : (pMondixPatternModel = new MondixPatternModelElements());
 	}
 	
-	public ParserRule getRdfPatternModelRule() {
-		return getRdfPatternModelAccess().getRule();
+	public ParserRule getMondixPatternModelRule() {
+		return getMondixPatternModelAccess().getRule();
 	}
 
 	//Parameter returns Variable:

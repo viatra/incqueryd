@@ -15,5 +15,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="ecore:EClass platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//ValueReference"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RdfPatternModel" eSuperTypes="platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//PatternModel"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MondixPatternModel" eSuperTypes="platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//PatternModel"/>
 </ecore:EPackage>

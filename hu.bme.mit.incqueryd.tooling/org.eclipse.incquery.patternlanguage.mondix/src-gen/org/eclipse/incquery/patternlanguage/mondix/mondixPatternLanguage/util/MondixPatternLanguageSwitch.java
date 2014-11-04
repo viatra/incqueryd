@@ -102,11 +102,11 @@ public class MondixPatternLanguageSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MondixPatternLanguagePackage.RDF_PATTERN_MODEL:
+      case MondixPatternLanguagePackage.MONDIX_PATTERN_MODEL:
       {
-        RdfPatternModel rdfPatternModel = (RdfPatternModel)theEObject;
-        T result = caseRdfPatternModel(rdfPatternModel);
-        if (result == null) result = casePatternModel(rdfPatternModel);
+        MondixPatternModel mondixPatternModel = (MondixPatternModel)theEObject;
+        T result = caseMondixPatternModel(mondixPatternModel);
+        if (result == null) result = casePatternModel(mondixPatternModel);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -163,17 +163,17 @@ public class MondixPatternLanguageSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Rdf Pattern Model</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Mondix Pattern Model</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Rdf Pattern Model</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Mondix Pattern Model</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRdfPatternModel(RdfPatternModel object)
+  public T caseMondixPatternModel(MondixPatternModel object)
   {
     return null;
   }

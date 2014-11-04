@@ -19,6 +19,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MondixPatternLanguage.ecore#//EdgeConstraint/source"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MondixPatternLanguage.ecore#//EdgeConstraint/target"/>
     </genClasses>
-    <genClasses ecoreClass="MondixPatternLanguage.ecore#//RdfPatternModel"/>
+    <genClasses ecoreClass="MondixPatternLanguage.ecore#//MondixPatternModel"/>
   </genPackages>
 </genmodel:GenModel>

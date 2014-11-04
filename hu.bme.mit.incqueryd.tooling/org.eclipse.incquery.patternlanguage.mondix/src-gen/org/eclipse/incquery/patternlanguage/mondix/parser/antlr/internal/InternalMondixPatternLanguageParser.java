@@ -148,7 +148,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalAntlrPa
         
         @Override
         protected String getFirstRuleName() {
-        	return "RdfPatternModel";	
+        	return "MondixPatternModel";	
        	}
        	
        	@Override
@@ -158,30 +158,30 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalAntlrPa
 
 
 
-    // $ANTLR start "entryRuleRdfPatternModel"
-    // ../org.eclipse.incquery.patternlanguage.mondix/src-gen/org/eclipse/incquery/patternlanguage/mondix/parser/antlr/internal/InternalMondixPatternLanguage.g:68:1: entryRuleRdfPatternModel returns [EObject current=null] : iv_ruleRdfPatternModel= ruleRdfPatternModel EOF ;
-    public final EObject entryRuleRdfPatternModel() throws RecognitionException {
+    // $ANTLR start "entryRuleMondixPatternModel"
+    // ../org.eclipse.incquery.patternlanguage.mondix/src-gen/org/eclipse/incquery/patternlanguage/mondix/parser/antlr/internal/InternalMondixPatternLanguage.g:68:1: entryRuleMondixPatternModel returns [EObject current=null] : iv_ruleMondixPatternModel= ruleMondixPatternModel EOF ;
+    public final EObject entryRuleMondixPatternModel() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleRdfPatternModel = null;
+        EObject iv_ruleMondixPatternModel = null;
 
 
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix/src-gen/org/eclipse/incquery/patternlanguage/mondix/parser/antlr/internal/InternalMondixPatternLanguage.g:69:2: (iv_ruleRdfPatternModel= ruleRdfPatternModel EOF )
-            // ../org.eclipse.incquery.patternlanguage.mondix/src-gen/org/eclipse/incquery/patternlanguage/mondix/parser/antlr/internal/InternalMondixPatternLanguage.g:70:2: iv_ruleRdfPatternModel= ruleRdfPatternModel EOF
+            // ../org.eclipse.incquery.patternlanguage.mondix/src-gen/org/eclipse/incquery/patternlanguage/mondix/parser/antlr/internal/InternalMondixPatternLanguage.g:69:2: (iv_ruleMondixPatternModel= ruleMondixPatternModel EOF )
+            // ../org.eclipse.incquery.patternlanguage.mondix/src-gen/org/eclipse/incquery/patternlanguage/mondix/parser/antlr/internal/InternalMondixPatternLanguage.g:70:2: iv_ruleMondixPatternModel= ruleMondixPatternModel EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getRdfPatternModelRule()); 
+               newCompositeNode(grammarAccess.getMondixPatternModelRule()); 
             }
-            pushFollow(FOLLOW_ruleRdfPatternModel_in_entryRuleRdfPatternModel75);
-            iv_ruleRdfPatternModel=ruleRdfPatternModel();
+            pushFollow(FOLLOW_ruleMondixPatternModel_in_entryRuleMondixPatternModel75);
+            iv_ruleMondixPatternModel=ruleMondixPatternModel();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleRdfPatternModel; 
+               current =iv_ruleMondixPatternModel; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleRdfPatternModel85); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMondixPatternModel85); if (state.failed) return current;
 
             }
 
@@ -195,12 +195,12 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalAntlrPa
         }
         return current;
     }
-    // $ANTLR end "entryRuleRdfPatternModel"
+    // $ANTLR end "entryRuleMondixPatternModel"
 
 
-    // $ANTLR start "ruleRdfPatternModel"
-    // ../org.eclipse.incquery.patternlanguage.mondix/src-gen/org/eclipse/incquery/patternlanguage/mondix/parser/antlr/internal/InternalMondixPatternLanguage.g:77:1: ruleRdfPatternModel returns [EObject current=null] : ( () ( (lv_patterns_1_0= rulePattern ) )* ) ;
-    public final EObject ruleRdfPatternModel() throws RecognitionException {
+    // $ANTLR start "ruleMondixPatternModel"
+    // ../org.eclipse.incquery.patternlanguage.mondix/src-gen/org/eclipse/incquery/patternlanguage/mondix/parser/antlr/internal/InternalMondixPatternLanguage.g:77:1: ruleMondixPatternModel returns [EObject current=null] : ( () ( (lv_patterns_1_0= rulePattern ) )* ) ;
+    public final EObject ruleMondixPatternModel() throws RecognitionException {
         EObject current = null;
 
         EObject lv_patterns_1_0 = null;
@@ -221,7 +221,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalAntlrPa
             if ( state.backtracking==0 ) {
 
                       current = forceCreateModelElement(
-                          grammarAccess.getRdfPatternModelAccess().getRdfPatternModelAction_0(),
+                          grammarAccess.getMondixPatternModelAccess().getMondixPatternModelAction_0(),
                           current);
                   
             }
@@ -248,10 +248,10 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalAntlrPa
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getPatternsPatternParserRuleCall_1_0()); 
+            	      	        newCompositeNode(grammarAccess.getMondixPatternModelAccess().getPatternsPatternParserRuleCall_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_rulePattern_in_ruleRdfPatternModel140);
+            	    pushFollow(FOLLOW_rulePattern_in_ruleMondixPatternModel140);
             	    lv_patterns_1_0=rulePattern();
 
             	    state._fsp--;
@@ -259,7 +259,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalAntlrPa
             	    if ( state.backtracking==0 ) {
 
             	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getRdfPatternModelRule());
+            	      	            current = createModelElementForParent(grammarAccess.getMondixPatternModelRule());
             	      	        }
             	             		add(
             	             			current, 
@@ -300,7 +300,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalAntlrPa
         }
         return current;
     }
-    // $ANTLR end "ruleRdfPatternModel"
+    // $ANTLR end "ruleMondixPatternModel"
 
 
     // $ANTLR start "entryRuleParameter"
@@ -28332,9 +28332,9 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalAntlrPa
     }
  
 
-    public static final BitSet FOLLOW_ruleRdfPatternModel_in_entryRuleRdfPatternModel75 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleRdfPatternModel85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePattern_in_ruleRdfPatternModel140 = new BitSet(new long[]{0x0000000000190002L});
+    public static final BitSet FOLLOW_ruleMondixPatternModel_in_entryRuleMondixPatternModel75 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMondixPatternModel85 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePattern_in_ruleMondixPatternModel140 = new BitSet(new long[]{0x0000000000190002L});
     public static final BitSet FOLLOW_ruleParameter_in_entryRuleParameter177 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleParameter187 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleParameter228 = new BitSet(new long[]{0x0000000000000002L});

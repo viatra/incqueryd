@@ -5,8 +5,8 @@ import com.google.inject.Provider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage;
+import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternModel;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.NodeConstraint;
-import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.RdfPatternModel;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.mondix.services.MondixPatternLanguageGrammarAccess;
 import org.eclipse.incquery.patternlanguage.patternLanguage.AggregatedValue;
@@ -107,16 +107,16 @@ public class MondixPatternLanguageSemanticSequencer extends PatternLanguageSeman
 					return; 
 				}
 				else break;
+			case MondixPatternLanguagePackage.MONDIX_PATTERN_MODEL:
+				if(context == grammarAccess.getMondixPatternModelRule()) {
+					sequence_MondixPatternModel(context, (MondixPatternModel) semanticObject); 
+					return; 
+				}
+				else break;
 			case MondixPatternLanguagePackage.NODE_CONSTRAINT:
 				if(context == grammarAccess.getConstraintRule() ||
 				   context == grammarAccess.getNodeConstraintRule()) {
 					sequence_NodeConstraint(context, (NodeConstraint) semanticObject); 
-					return; 
-				}
-				else break;
-			case MondixPatternLanguagePackage.RDF_PATTERN_MODEL:
-				if(context == grammarAccess.getRdfPatternModelRule()) {
-					sequence_RdfPatternModel(context, (RdfPatternModel) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1439,6 +1439,15 @@ public class MondixPatternLanguageSemanticSequencer extends PatternLanguageSeman
 	
 	/**
 	 * Constraint:
+	 *     (patterns+=Pattern*)
+	 */
+	protected void sequence_MondixPatternModel(EObject context, MondixPatternModel semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (type=ID variable=VariableReference)
 	 */
 	protected void sequence_NodeConstraint(EObject context, NodeConstraint semanticObject) {
@@ -1461,15 +1470,6 @@ public class MondixPatternLanguageSemanticSequencer extends PatternLanguageSeman
 	 *     name=ID
 	 */
 	protected void sequence_Parameter(EObject context, Variable semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (patterns+=Pattern*)
-	 */
-	protected void sequence_RdfPatternModel(EObject context, RdfPatternModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 }

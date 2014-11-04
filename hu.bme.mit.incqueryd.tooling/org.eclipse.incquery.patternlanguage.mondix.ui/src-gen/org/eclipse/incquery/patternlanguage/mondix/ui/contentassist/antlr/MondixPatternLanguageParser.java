@@ -83,7 +83,7 @@ public class MondixPatternLanguageParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getAlternatives_1(), "rule__XImportDeclaration__Alternatives_1");
 					put(grammarAccess.getXImportDeclarationAccess().getAlternatives_1_0_3(), "rule__XImportDeclaration__Alternatives_1_0_3");
 					put(grammarAccess.getCompareFeatureAccess().getAlternatives(), "rule__CompareFeature__Alternatives");
-					put(grammarAccess.getRdfPatternModelAccess().getGroup(), "rule__RdfPatternModel__Group__0");
+					put(grammarAccess.getMondixPatternModelAccess().getGroup(), "rule__MondixPatternModel__Group__0");
 					put(grammarAccess.getNodeConstraintAccess().getGroup(), "rule__NodeConstraint__Group__0");
 					put(grammarAccess.getEdgeConstraintAccess().getGroup(), "rule__EdgeConstraint__Group__0");
 					put(grammarAccess.getPatternModelAccess().getGroup(), "rule__PatternModel__Group__0");
@@ -300,7 +300,7 @@ public class MondixPatternLanguageParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getGroup(), "rule__XImportDeclaration__Group__0");
 					put(grammarAccess.getXImportDeclarationAccess().getGroup_1_0(), "rule__XImportDeclaration__Group_1_0__0");
 					put(grammarAccess.getQualifiedNameInStaticImportAccess().getGroup(), "rule__QualifiedNameInStaticImport__Group__0");
-					put(grammarAccess.getRdfPatternModelAccess().getPatternsAssignment_1(), "rule__RdfPatternModel__PatternsAssignment_1");
+					put(grammarAccess.getMondixPatternModelAccess().getPatternsAssignment_1(), "rule__MondixPatternModel__PatternsAssignment_1");
 					put(grammarAccess.getParameterAccess().getNameAssignment(), "rule__Parameter__NameAssignment");
 					put(grammarAccess.getNodeConstraintAccess().getTypeAssignment_0(), "rule__NodeConstraint__TypeAssignment_0");
 					put(grammarAccess.getNodeConstraintAccess().getVariableAssignment_2(), "rule__NodeConstraint__VariableAssignment_2");
@@ -510,7 +510,7 @@ public class MondixPatternLanguageParser extends AbstractContentAssistParser {
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			org.eclipse.incquery.patternlanguage.mondix.ui.contentassist.antlr.internal.InternalMondixPatternLanguageParser typedParser = (org.eclipse.incquery.patternlanguage.mondix.ui.contentassist.antlr.internal.InternalMondixPatternLanguageParser) parser;
-			typedParser.entryRuleRdfPatternModel();
+			typedParser.entryRuleMondixPatternModel();
 			return typedParser.getFollowElements();
 		} catch(RecognitionException ex) {
 			throw new RuntimeException(ex);

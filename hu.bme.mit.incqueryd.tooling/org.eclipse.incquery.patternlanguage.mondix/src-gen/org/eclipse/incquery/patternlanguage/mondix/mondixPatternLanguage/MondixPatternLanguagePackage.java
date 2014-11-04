@@ -188,14 +188,14 @@ public interface MondixPatternLanguagePackage extends EPackage
   int EDGE_CONSTRAINT_FEATURE_COUNT = PatternLanguagePackage.CONSTRAINT_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.RdfPatternModelImpl <em>Rdf Pattern Model</em>}' class.
+   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.MondixPatternModelImpl <em>Mondix Pattern Model</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.RdfPatternModelImpl
-   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.MondixPatternLanguagePackageImpl#getRdfPatternModel()
+   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.MondixPatternModelImpl
+   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.MondixPatternLanguagePackageImpl#getMondixPatternModel()
    * @generated
    */
-  int RDF_PATTERN_MODEL = 3;
+  int MONDIX_PATTERN_MODEL = 3;
 
   /**
    * The feature id for the '<em><b>Package Name</b></em>' attribute.
@@ -204,7 +204,7 @@ public interface MondixPatternLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int RDF_PATTERN_MODEL__PACKAGE_NAME = PatternLanguagePackage.PATTERN_MODEL__PACKAGE_NAME;
+  int MONDIX_PATTERN_MODEL__PACKAGE_NAME = PatternLanguagePackage.PATTERN_MODEL__PACKAGE_NAME;
 
   /**
    * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -213,16 +213,16 @@ public interface MondixPatternLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int RDF_PATTERN_MODEL__PATTERNS = PatternLanguagePackage.PATTERN_MODEL__PATTERNS;
+  int MONDIX_PATTERN_MODEL__PATTERNS = PatternLanguagePackage.PATTERN_MODEL__PATTERNS;
 
   /**
-   * The number of structural features of the '<em>Rdf Pattern Model</em>' class.
+   * The number of structural features of the '<em>Mondix Pattern Model</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RDF_PATTERN_MODEL_FEATURE_COUNT = PatternLanguagePackage.PATTERN_MODEL_FEATURE_COUNT + 0;
+  int MONDIX_PATTERN_MODEL_FEATURE_COUNT = PatternLanguagePackage.PATTERN_MODEL_FEATURE_COUNT + 0;
 
 
   /**
@@ -311,14 +311,14 @@ public interface MondixPatternLanguagePackage extends EPackage
   EReference getEdgeConstraint_Target();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.RdfPatternModel <em>Rdf Pattern Model</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternModel <em>Mondix Pattern Model</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Rdf Pattern Model</em>'.
-   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.RdfPatternModel
+   * @return the meta object for class '<em>Mondix Pattern Model</em>'.
+   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternModel
    * @generated
    */
-  EClass getRdfPatternModel();
+  EClass getMondixPatternModel();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -414,14 +414,14 @@ public interface MondixPatternLanguagePackage extends EPackage
     EReference EDGE_CONSTRAINT__TARGET = eINSTANCE.getEdgeConstraint_Target();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.RdfPatternModelImpl <em>Rdf Pattern Model</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.MondixPatternModelImpl <em>Mondix Pattern Model</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.RdfPatternModelImpl
-     * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.MondixPatternLanguagePackageImpl#getRdfPatternModel()
+     * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.MondixPatternModelImpl
+     * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.MondixPatternLanguagePackageImpl#getMondixPatternModel()
      * @generated
      */
-    EClass RDF_PATTERN_MODEL = eINSTANCE.getRdfPatternModel();
+    EClass MONDIX_PATTERN_MODEL = eINSTANCE.getMondixPatternModel();
 
   }
 

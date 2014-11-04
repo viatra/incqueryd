@@ -57,25 +57,25 @@ import org.eclipse.incquery.patternlanguage.mondix.services.MondixPatternLanguag
 
 
 
-// Entry rule entryRuleRdfPatternModel
-entryRuleRdfPatternModel 
+// Entry rule entryRuleMondixPatternModel
+entryRuleMondixPatternModel 
 :
-{ before(grammarAccess.getRdfPatternModelRule()); }
-	 ruleRdfPatternModel
-{ after(grammarAccess.getRdfPatternModelRule()); } 
+{ before(grammarAccess.getMondixPatternModelRule()); }
+	 ruleMondixPatternModel
+{ after(grammarAccess.getMondixPatternModelRule()); } 
 	 EOF 
 ;
 
-// Rule RdfPatternModel
-ruleRdfPatternModel
+// Rule MondixPatternModel
+ruleMondixPatternModel
     @init {
 		int stackSize = keepStackSize();
     }
 	:
 (
-{ before(grammarAccess.getRdfPatternModelAccess().getGroup()); }
-(rule__RdfPatternModel__Group__0)
-{ after(grammarAccess.getRdfPatternModelAccess().getGroup()); }
+{ before(grammarAccess.getMondixPatternModelAccess().getGroup()); }
+(rule__MondixPatternModel__Group__0)
+{ after(grammarAccess.getMondixPatternModelAccess().getGroup()); }
 )
 
 ;
@@ -4548,29 +4548,29 @@ finally {
 
 
 
-rule__RdfPatternModel__Group__0
+rule__MondixPatternModel__Group__0
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__RdfPatternModel__Group__0__Impl
-	rule__RdfPatternModel__Group__1
+	rule__MondixPatternModel__Group__0__Impl
+	rule__MondixPatternModel__Group__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RdfPatternModel__Group__0__Impl
+rule__MondixPatternModel__Group__0__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRdfPatternModelAccess().getRdfPatternModelAction_0()); }
+{ before(grammarAccess.getMondixPatternModelAccess().getMondixPatternModelAction_0()); }
 (
 
 )
-{ after(grammarAccess.getRdfPatternModelAccess().getRdfPatternModelAction_0()); }
+{ after(grammarAccess.getMondixPatternModelAccess().getMondixPatternModelAction_0()); }
 )
 
 ;
@@ -4579,26 +4579,26 @@ finally {
 }
 
 
-rule__RdfPatternModel__Group__1
+rule__MondixPatternModel__Group__1
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__RdfPatternModel__Group__1__Impl
+	rule__MondixPatternModel__Group__1__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RdfPatternModel__Group__1__Impl
+rule__MondixPatternModel__Group__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRdfPatternModelAccess().getPatternsAssignment_1()); }
-(rule__RdfPatternModel__PatternsAssignment_1)*
-{ after(grammarAccess.getRdfPatternModelAccess().getPatternsAssignment_1()); }
+{ before(grammarAccess.getMondixPatternModelAccess().getPatternsAssignment_1()); }
+(rule__MondixPatternModel__PatternsAssignment_1)*
+{ after(grammarAccess.getMondixPatternModelAccess().getPatternsAssignment_1()); }
 )
 
 ;
@@ -21297,14 +21297,14 @@ finally {
 
 
 
-rule__RdfPatternModel__PatternsAssignment_1
+rule__MondixPatternModel__PatternsAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRdfPatternModelAccess().getPatternsPatternParserRuleCall_1_0()); }
-	rulePattern{ after(grammarAccess.getRdfPatternModelAccess().getPatternsPatternParserRuleCall_1_0()); }
+{ before(grammarAccess.getMondixPatternModelAccess().getPatternsPatternParserRuleCall_1_0()); }
+	rulePattern{ after(grammarAccess.getMondixPatternModelAccess().getPatternsPatternParserRuleCall_1_0()); }
 )
 
 ;

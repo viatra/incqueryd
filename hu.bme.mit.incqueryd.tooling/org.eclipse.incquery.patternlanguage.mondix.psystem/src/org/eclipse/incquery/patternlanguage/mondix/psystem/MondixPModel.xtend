@@ -1,26 +1,25 @@
-package org.eclipse.incquery.patternlanguage.rdf.psystem
+package org.eclipse.incquery.patternlanguage.mondix.psystem
 
 import com.google.common.cache.CacheBuilder
 import com.google.common.cache.LoadingCache
 import java.util.List
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel
 import org.eclipse.incquery.runtime.matchers.psystem.PBody
 import org.eclipse.incquery.runtime.matchers.psystem.PVariable
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
 import org.eclipse.incquery.runtime.matchers.tuple.FlatTuple
 import org.eclipse.incquery.runtime.matchers.tuple.Tuple
 
-import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils.*
-import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPQuery.*
-import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
+import static extension org.eclipse.incquery.patternlanguage.mondix.psystem.MondixPQuery.*
+import static extension org.eclipse.incquery.patternlanguage.mondix.psystem.MondixPVariable.*
+import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternModel
 
-class RdfPModel {
+class MondixPModel {
 
-	val RdfPatternModel patternModel
+	val MondixPatternModel patternModel
 
-	public val RdfPatternMatcherContext context
+	public val MondixPatternMatcherContext context
 
 	val LoadingCache<Pattern, PQuery> queries = CacheBuilder.newBuilder.build[toPQuery(this)] // XXX due to this solution, recursive patterns are not supported
 
@@ -28,10 +27,9 @@ class RdfPModel {
 		queries.get(pattern)
 	}
 
-	new(RdfPatternModel patternModel) {
+	new(MondixPatternModel patternModel) {
 		this.patternModel = patternModel
-		val vocabulary = patternModel.vocabulary
-		context = new RdfPatternMatcherContext(vocabulary)
+		context = new MondixPatternMatcherContext
 	}
 
 	def Tuple toTuple(List<ValueReference> valueReferences, PBody pBody) {

@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguageFactory;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage;
+import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternModel;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.NodeConstraint;
-import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.RdfPatternModel;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.Variable;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternLanguagePackage;
@@ -52,7 +52,7 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass rdfPatternModelEClass = null;
+  private EClass mondixPatternModelEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -205,9 +205,9 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getRdfPatternModel()
+  public EClass getMondixPatternModel()
   {
-    return rdfPatternModelEClass;
+    return mondixPatternModelEClass;
   }
 
   /**
@@ -251,7 +251,7 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
     createEReference(edgeConstraintEClass, EDGE_CONSTRAINT__SOURCE);
     createEReference(edgeConstraintEClass, EDGE_CONSTRAINT__TARGET);
 
-    rdfPatternModelEClass = createEClass(RDF_PATTERN_MODEL);
+    mondixPatternModelEClass = createEClass(MONDIX_PATTERN_MODEL);
   }
 
   /**
@@ -289,7 +289,7 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
     variableEClass.getESuperTypes().add(thePatternLanguagePackage.getVariable());
     nodeConstraintEClass.getESuperTypes().add(thePatternLanguagePackage.getConstraint());
     edgeConstraintEClass.getESuperTypes().add(thePatternLanguagePackage.getConstraint());
-    rdfPatternModelEClass.getESuperTypes().add(thePatternLanguagePackage.getPatternModel());
+    mondixPatternModelEClass.getESuperTypes().add(thePatternLanguagePackage.getPatternModel());
 
     // Initialize classes and features; add operations and parameters
     initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -303,7 +303,7 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
     initEReference(getEdgeConstraint_Source(), thePatternLanguagePackage.getVariableReference(), null, "source", null, 0, 1, EdgeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEdgeConstraint_Target(), thePatternLanguagePackage.getValueReference(), null, "target", null, 0, 1, EdgeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(rdfPatternModelEClass, RdfPatternModel.class, "RdfPatternModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(mondixPatternModelEClass, MondixPatternModel.class, "MondixPatternModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     // Create resource
     createResource(eNS_URI);

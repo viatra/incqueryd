@@ -45,7 +45,7 @@ import org.eclipse.incquery.patternlanguage.mondix.services.MondixPatternLanguag
     
     @Override
     protected String getFirstRuleName() {
-    	return "RdfPatternModel";	
+    	return "MondixPatternModel";	
    	}
    	
    	@Override
@@ -64,34 +64,34 @@ import org.eclipse.incquery.patternlanguage.mondix.services.MondixPatternLanguag
 
 
 
-// Entry rule entryRuleRdfPatternModel
-entryRuleRdfPatternModel returns [EObject current=null] 
+// Entry rule entryRuleMondixPatternModel
+entryRuleMondixPatternModel returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getRdfPatternModelRule()); }
-	 iv_ruleRdfPatternModel=ruleRdfPatternModel 
-	 { $current=$iv_ruleRdfPatternModel.current; } 
+	{ newCompositeNode(grammarAccess.getMondixPatternModelRule()); }
+	 iv_ruleMondixPatternModel=ruleMondixPatternModel 
+	 { $current=$iv_ruleMondixPatternModel.current; } 
 	 EOF 
 ;
 
-// Rule RdfPatternModel
-ruleRdfPatternModel returns [EObject current=null] 
+// Rule MondixPatternModel
+ruleMondixPatternModel returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getRdfPatternModelAccess().getRdfPatternModelAction_0(),
+            grammarAccess.getMondixPatternModelAccess().getMondixPatternModelAction_0(),
             $current);
     }
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRdfPatternModelAccess().getPatternsPatternParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getMondixPatternModelAccess().getPatternsPatternParserRuleCall_1_0()); 
 	    }
 		lv_patterns_1_0=rulePattern		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getRdfPatternModelRule());
+	            $current = createModelElementForParent(grammarAccess.getMondixPatternModelRule());
 	        }
        		add(
        			$current, 

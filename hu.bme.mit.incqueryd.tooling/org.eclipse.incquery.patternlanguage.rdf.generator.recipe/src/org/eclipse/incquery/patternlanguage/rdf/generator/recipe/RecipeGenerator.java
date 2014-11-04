@@ -51,19 +51,14 @@ public class RecipeGenerator implements IGenerator {
 	@Override
 	public void doGenerate(Resource input, IFileSystemAccess fsa) {
 		recipeIndex = 0;
-
-		XMLProcessor xmlProcessor = new XMLProcessor();
 		for (RdfPatternModel patternModel : filter(input.getContents(), RdfPatternModel.class)) {
-			XMLResourceImpl resource = new XMLResourceImpl();
-			resource.setEncoding("UTF-8");
 			ReteRecipe recipe = RecipesFactory.eINSTANCE.createReteRecipe();
-			resource.getContents().add(recipe);
 			RdfPModel model = new RdfPModel(patternModel);
 			ReteRecipeCompiler compiler = new ReteRecipeCompiler(Options.builderMethod.layoutStrategy(), model.context);
 			Model vocabulary = RdfPatternLanguageUtils.getVocabulary(patternModel);
 			ArrayList<CompiledQuery> compiledQueries = new ArrayList<>();
 			for (Pattern pattern : filter(copyOf(input.getAllContents()), Pattern.class)) {
-				PQuery query = new RdfPQuery(pattern, model);
+				PQuery query = RdfPQuery.toPQuery(pattern, model);
 				try {
 					CompiledQuery compiledQuery = compiler.getCompiledForm(query);
 					compiledQueries.add(compiledQuery);
@@ -79,9 +74,12 @@ public class RecipeGenerator implements IGenerator {
 				processForSerialization(recipe, nodeRecipe, vocabulary);
 			}
 			try {
+				XMLResourceImpl resource = new XMLResourceImpl();
+				resource.setEncoding("UTF-8");
+				resource.getContents().add(recipe);
+				XMLProcessor xmlProcessor = new XMLProcessor();
 				String contents = xmlProcessor.saveToString(resource, null);
-				fsa.generateFile(input.getURI().trimFileExtension().appendFileExtension("recipe").lastSegment(),
-						contents);
+				fsa.generateFile(input.getURI().trimFileExtension().appendFileExtension("recipe").lastSegment(), contents);
 			} catch (IOException e) {
 				propagate(e);
 			}
@@ -99,8 +97,7 @@ public class RecipeGenerator implements IGenerator {
 			productionRecipe.setPattern(null);
 		} else if (nodeRecipe instanceof ExpressionEnforcerRecipe) {
 			ExpressionEnforcerRecipe expressionEnforcerRecipe = (ExpressionEnforcerRecipe) nodeRecipe;
-			IExpressionEvaluator evaluator = (IExpressionEvaluator) expressionEnforcerRecipe.getExpression()
-					.getEvaluator();
+			IExpressionEvaluator evaluator = (IExpressionEvaluator) expressionEnforcerRecipe.getExpression().getEvaluator();
 			// XXX use an evaluator shared from runtime
 			Object[] evaluationInfo = { evaluator.getShortDescription(), evaluator.getInputParameterNames() };
 			expressionEnforcerRecipe.getExpression().setEvaluator(evaluationInfo);

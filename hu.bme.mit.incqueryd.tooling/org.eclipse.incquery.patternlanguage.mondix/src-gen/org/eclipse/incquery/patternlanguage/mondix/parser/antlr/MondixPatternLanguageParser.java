@@ -25,7 +25,7 @@ public class MondixPatternLanguageParser extends org.eclipse.xtext.parser.antlr.
 	
 	@Override 
 	protected String getDefaultRuleName() {
-		return "RdfPatternModel";
+		return "MondixPatternModel";
 	}
 	
 	public MondixPatternLanguageGrammarAccess getGrammarAccess() {

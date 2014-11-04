@@ -67,7 +67,7 @@ public class MondixPatternLanguageFactoryImpl extends EFactoryImpl implements Mo
       case MondixPatternLanguagePackage.VARIABLE: return createVariable();
       case MondixPatternLanguagePackage.NODE_CONSTRAINT: return createNodeConstraint();
       case MondixPatternLanguagePackage.EDGE_CONSTRAINT: return createEdgeConstraint();
-      case MondixPatternLanguagePackage.RDF_PATTERN_MODEL: return createRdfPatternModel();
+      case MondixPatternLanguagePackage.MONDIX_PATTERN_MODEL: return createMondixPatternModel();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -111,10 +111,10 @@ public class MondixPatternLanguageFactoryImpl extends EFactoryImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public RdfPatternModel createRdfPatternModel()
+  public MondixPatternModel createMondixPatternModel()
   {
-    RdfPatternModelImpl rdfPatternModel = new RdfPatternModelImpl();
-    return rdfPatternModel;
+    MondixPatternModelImpl mondixPatternModel = new MondixPatternModelImpl();
+    return mondixPatternModel;
   }
 
   /**

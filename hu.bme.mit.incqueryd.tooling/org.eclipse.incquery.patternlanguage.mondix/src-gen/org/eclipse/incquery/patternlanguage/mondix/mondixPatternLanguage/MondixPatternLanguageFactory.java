@@ -50,13 +50,13 @@ public interface MondixPatternLanguageFactory extends EFactory
   EdgeConstraint createEdgeConstraint();
 
   /**
-   * Returns a new object of class '<em>Rdf Pattern Model</em>'.
+   * Returns a new object of class '<em>Mondix Pattern Model</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Rdf Pattern Model</em>'.
+   * @return a new object of class '<em>Mondix Pattern Model</em>'.
    * @generated
    */
-  RdfPatternModel createRdfPatternModel();
+  MondixPatternModel createMondixPatternModel();
 
   /**
    * Returns the package supported by this factory.
