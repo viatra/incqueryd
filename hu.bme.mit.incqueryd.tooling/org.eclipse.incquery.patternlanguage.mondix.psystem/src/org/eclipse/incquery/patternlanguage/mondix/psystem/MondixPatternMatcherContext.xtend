@@ -2,7 +2,6 @@ package org.eclipse.incquery.patternlanguage.mondix.psystem
 
 import org.apache.log4j.Logger
 import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext
-import org.openrdf.model.Value
 
 class MondixPatternMatcherContext implements IPatternMatcherContext {
 
@@ -117,7 +116,7 @@ class MondixPatternMatcherContext implements IPatternMatcherContext {
 	}
 
 	override printType(Object typeObject) {
-		(typeObject as Value).stringValue
+		typeObject.toString
 	}
 
 	override reportPatternDependency(Object pattern) {

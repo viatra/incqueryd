@@ -5,6 +5,7 @@ import static org.eclipse.xtext.util.Modules2.mixin;
 
 import org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageRuntimeModule;
 import org.eclipse.incquery.patternlanguage.rdf.ui.RdfPatternLanguageUiModule;
+import org.eclipse.incquery.patternlanguage.util.generator.recipe.RecipeGeneratorModule;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.osgi.framework.BundleContext;
@@ -27,7 +28,7 @@ public class Activator extends AbstractUIPlugin {
 			new RdfPatternLanguageRuntimeModule(),
 			new SharedStateModule(),
 			new RdfPatternLanguageUiModule(this),
-			new RecipeGeneratorModule(this)));
+			new RecipeGeneratorModule(this, RdfRecipeGenerator.class)));
 	}
 
 	@Override

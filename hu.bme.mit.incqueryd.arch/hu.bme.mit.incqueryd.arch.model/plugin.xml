@@ -22,20 +22,6 @@
             genModel="model/Arch.xcore"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Resources -->
-      <package
-            uri="http://incquery.net/res"
-            class="resources.ResourcesPackage"
-            genModel="model/Inventory.xcore"/>
-   </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Inventory -->
-      <package
-            uri="http://incquery.net/inventory"
-            class="inventory.InventoryPackage"
-            genModel="model/Inventory.xcore"/>
-   </extension>
 
 </plugin>

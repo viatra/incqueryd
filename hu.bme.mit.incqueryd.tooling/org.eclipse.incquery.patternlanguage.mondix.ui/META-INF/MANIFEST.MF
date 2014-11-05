@@ -20,8 +20,9 @@ Require-Bundle: org.eclipse.incquery.patternlanguage.mondix;visibility:=reexport
 Import-Package: org.apache.log4j,
  org.eclipse.xtext.xbase.lib
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: org.eclipse.incquery.patternlanguage.mondix.ui.quickfix,
+Export-Package: org.eclipse.incquery.patternlanguage.mondix.ui,
  org.eclipse.incquery.patternlanguage.mondix.ui.contentassist,
  org.eclipse.incquery.patternlanguage.mondix.ui.contentassist.antlr,
- org.eclipse.incquery.patternlanguage.mondix.ui.internal
+ org.eclipse.incquery.patternlanguage.mondix.ui.internal,
+ org.eclipse.incquery.patternlanguage.mondix.ui.quickfix
 Bundle-Activator: org.eclipse.incquery.patternlanguage.mondix.ui.internal.MondixPatternLanguageActivator

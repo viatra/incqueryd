@@ -1,4 +1,4 @@
-package org.eclipse.incquery.patternlanguage.rdf.generator.recipe;
+package org.eclipse.incquery.patternlanguage.util.generator.recipe;
 
 import java.util.Set;
 
@@ -10,6 +10,7 @@ import com.google.common.collect.ImmutableSet;
 
 public class RecipeGeneratorOutputConfigurationProvider implements IOutputConfigurationProvider {
 
+	@Override
 	public Set<OutputConfiguration> getOutputConfigurations() {
 		OutputConfiguration defaultOutput = new OutputConfiguration(IFileSystemAccess.DEFAULT_OUTPUT);
 		defaultOutput.setDescription("Output Folder");

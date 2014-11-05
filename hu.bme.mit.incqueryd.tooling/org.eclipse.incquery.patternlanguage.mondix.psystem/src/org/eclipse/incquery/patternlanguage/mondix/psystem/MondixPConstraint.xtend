@@ -27,6 +27,7 @@ class MondixPConstraint {
 			PatternCompositionConstraint: convertPatternCompositionConstraint(pBody, model)
 			CompareConstraint: convertCompareConstraint(pBody, model)
 			NodeConstraint: convertNodeConstraint(pBody, model)
+			EdgeConstraint: convertEdgeConstraint(pBody, model)
 			default: throw new IllegalArgumentException('''Unhandled case «it»''')
 		}
 	}

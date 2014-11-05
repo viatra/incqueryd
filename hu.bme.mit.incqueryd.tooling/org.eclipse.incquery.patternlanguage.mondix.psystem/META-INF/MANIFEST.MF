@@ -8,10 +8,6 @@ Require-Bundle: org.eclipse.xtext.xbase.lib;bundle-version="2.4.3",
  org.eclipse.incquery.runtime.matchers;bundle-version="0.8.0",
  org.eclipse.incquery.patternlanguage;bundle-version="0.8.0",
  org.apache.log4j;bundle-version="1.2.15",
- hu.bme.mit.incqueryd.rdf;bundle-version="1.0.0",
- org.openrdf.sesame;bundle-version="2.7.10",
- org.mozilla.javascript;bundle-version="1.7.4",
- com.google.guava;bundle-version="11.0.0",
  org.eclipse.incquery.patternlanguage.util;bundle-version="1.0.0",
  org.eclipse.incquery.patternlanguage.mondix;bundle-version="1.0.0"
 Export-Package: org.eclipse.incquery.patternlanguage.mondix.psystem

@@ -1,11 +1,10 @@
 package org.eclipse.incquery.patternlanguage.mondix.psystem;
 
+import com.google.common.collect.Sets;
 import java.util.Collection;
 import java.util.Collections;
 import org.apache.log4j.Logger;
 import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext;
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.openrdf.model.Value;
 
 @SuppressWarnings("all")
 public class MondixPatternMatcherContext implements IPatternMatcherContext {
@@ -16,11 +15,11 @@ public class MondixPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public Collection<?> enumerateDirectUnarySubtypes(final Object typeObject) {
-    return Collections.<Object>unmodifiableSet(CollectionLiterals.<Object>newHashSet());
+    return Collections.<Object>unmodifiableSet(Sets.<Object>newHashSet());
   }
   
   public Collection<?> enumerateDirectUnarySupertypes(final Object typeObject) {
-    return Collections.<Object>unmodifiableSet(CollectionLiterals.<Object>newHashSet());
+    return Collections.<Object>unmodifiableSet(Sets.<Object>newHashSet());
   }
   
   public boolean isBinaryEdgeType(final Object typeObject) {
@@ -28,11 +27,11 @@ public class MondixPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public Object binaryEdgeSourceType(final Object typeObject) {
-    return Collections.<Object>unmodifiableSet(CollectionLiterals.<Object>newHashSet());
+    return Collections.<Object>unmodifiableSet(Sets.<Object>newHashSet());
   }
   
   public Object binaryEdgeTargetType(final Object typeObject) {
-    return Collections.<Object>unmodifiableSet(CollectionLiterals.<Object>newHashSet());
+    return Collections.<Object>unmodifiableSet(Sets.<Object>newHashSet());
   }
   
   public boolean isBinaryEdgeMultiplicityOneTo(final Object typeObject) {
@@ -44,11 +43,11 @@ public class MondixPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public Collection<?> enumerateDirectBinaryEdgeSubtypes(final Object typeObject) {
-    return Collections.<Object>unmodifiableSet(CollectionLiterals.<Object>newHashSet());
+    return Collections.<Object>unmodifiableSet(Sets.<Object>newHashSet());
   }
   
   public Collection<?> enumerateDirectBinaryEdgeSupertypes(final Object typeObject) {
-    return Collections.<Object>unmodifiableSet(CollectionLiterals.<Object>newHashSet());
+    return Collections.<Object>unmodifiableSet(Sets.<Object>newHashSet());
   }
   
   public boolean isTernaryEdgeType(final Object typeObject) {
@@ -126,7 +125,7 @@ public class MondixPatternMatcherContext implements IPatternMatcherContext {
   }
   
   public String printType(final Object typeObject) {
-    return ((Value) typeObject).stringValue();
+    return typeObject.toString();
   }
   
   public void reportPatternDependency(final Object pattern) {

@@ -2,6 +2,7 @@ package org.eclipse.incquery.patternlanguage.util.psystem;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import java.io.Serializable;
 import java.util.Collections;
@@ -23,7 +24,6 @@ import org.eclipse.incquery.runtime.matchers.psystem.queries.PDisjunction;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PProblem;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -136,7 +136,10 @@ public class GenericPQuery implements PQuery, Serializable {
       final HashSet<PQuery> processedQueries = Sets.<PQuery>newHashSet(((PQuery) this));
       final Set<PQuery> foundQueries = this.getDirectReferredQueries();
       final HashSet<PQuery> newQueries = Sets.<PQuery>newHashSet(foundQueries);
-      while ((!processedQueries.containsAll(newQueries))) {
+      boolean _containsAll = processedQueries.containsAll(newQueries);
+      boolean _not = (!_containsAll);
+      boolean _while = _not;
+      while (_while) {
         {
           Iterator<PQuery> _iterator = newQueries.iterator();
           final PQuery query = _iterator.next();
@@ -147,6 +150,9 @@ public class GenericPQuery implements PQuery, Serializable {
           foundQueries.addAll(referred);
           newQueries.addAll(referred);
         }
+        boolean _containsAll_1 = processedQueries.containsAll(newQueries);
+        boolean _not_1 = (!_containsAll_1);
+        _while = _not_1;
       }
       _xblockexpression = foundQueries;
     }
@@ -192,7 +198,7 @@ public class GenericPQuery implements PQuery, Serializable {
   }
   
   public List<PProblem> getPProblems() {
-    return Collections.<PProblem>unmodifiableList(CollectionLiterals.<PProblem>newArrayList());
+    return Collections.<PProblem>unmodifiableList(Lists.<PProblem>newArrayList());
   }
   
   public boolean equals(final Object q) {

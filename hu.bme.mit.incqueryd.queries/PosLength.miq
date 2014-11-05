@@ -1,0 +1,4 @@
+pattern posLength(Segment, SegmentLength) = {
+	Segment(Segment);
+	Segment_length(Segment, SegmentLength);
+}

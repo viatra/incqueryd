@@ -55,6 +55,12 @@ public class MondixPConstraint {
       }
     }
     if (!_matched) {
+      if (it instanceof EdgeConstraint) {
+        _matched=true;
+        _switchResult = MondixPConstraint.convertEdgeConstraint(((EdgeConstraint)it), pBody, model);
+      }
+    }
+    if (!_matched) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("Unhandled case ");
       _builder.append(it, "");
