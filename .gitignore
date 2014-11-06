@@ -11,3 +11,4 @@ runtimeInfo
 *._trace
 published
 rete-visualization/
+xtend-gen/*
