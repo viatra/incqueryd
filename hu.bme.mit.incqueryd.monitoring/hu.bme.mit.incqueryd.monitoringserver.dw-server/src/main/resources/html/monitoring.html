@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>IncQuery-D monitoring</title>
+    <link type="text/css" href="base.css" rel="stylesheet" />
+    <link type="text/css" href="ForceDirected.css" rel="stylesheet" />
+    <link type="text/css" href="jquery.dataTables.css" rel="stylesheet" />
+    <link type="text/css" href="dataTables.scroller.min.css" rel="stylesheet" />
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script language="javascript" type="text/javascript" src="jit.js"></script>
+    <script language="javascript" type="text/javascript" src="monitoring.js"></script>
+    <script language="javascript" type="text/javascript" src="jquery.dataTables.min.js"></script>
+    <script language="javascript" type="text/javascript" src="dataTables.scroller.min.js"></script>
+    <script>
+
+        
+
+        $(function () {
+            loadImages();
+            setTimeout("visualizeSystem()", 1000);
+        });
+
+    </script>
+</head> 
+<body>
+    <h1>IncQuery-D Monitoring Dashboard</h1>
+
+    <div id="container">
+       
+        <div id="graph-container">
+            <span style="font-size: 2em; color:#000;">Cloud nodes and JVMs</span>
+            <div id="infovis"></div>
+        </div>
+
+        <div id="graph-container-rete">
+            <span style="font-size: 2em; color:#000;">Rete overlay</span>
+            <div id="infovis-rete"></div>
+        </div>
+        
+        <div id="heatmap-container-os">
+            <div id="heatmap"></div>
+        </div>
+
+        <div class="separator-horizontal"></div>
+
+        <div id="heatmap-container-rete">
+            <div id="heatmap-rete"></div>
+        </div>
+
+        <div id="results-table">
+
+            <h2>Query Results</h2>
+            
+            <table id="results" class="cell-border" cellspacing="0">
+                <thead>
+                    <tr></tr>
+                </thead>
+            </table>
+            
+        </div>
+
+        <div id="deltas-table">
+
+            <h2>Delta Changes</h2>
+
+            <table id="deltas" class="cell-border" cellspacing="0">
+                <thead>
+                    <tr></tr>
+                </thead>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+</body>
+</html>

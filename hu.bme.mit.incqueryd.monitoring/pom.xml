@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <modelVersion>4.0.0</modelVersion>
+        <groupId>hu.bme.mit.incqueryd.monitoring</groupId>
+        <artifactId>hu.bme.mit.incqueryd.monitoring</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <packaging>pom</packaging>
+
+        <name>IncQuery-D Monitoring</name>
+
+        <modules>
+                <module>hu.bme.mit.incqueryd.monitoringserver.core</module>
+                <module>hu.bme.mit.incqueryd.monitoringserver.dw-server</module>
+                <module>hu.bme.mit.incqueryd.osmonitoragent</module>
+                <module>hu.bme.mit.incqueryd.osmonitoringagent.metrics</module>
+                <module>hu.bme.mit.incqueryd.retemonitoring.metrics</module>
+        </modules>
+        
+        <properties>
+        	<akka.actor.artifact>akka-actor_2.10</akka.actor.artifact>
+        	<akka.remote.artifact>akka-remote_2.10</akka.remote.artifact>
+        	<akka.version>2.1.4</akka.version>
+        </properties>
+        
+</project>
