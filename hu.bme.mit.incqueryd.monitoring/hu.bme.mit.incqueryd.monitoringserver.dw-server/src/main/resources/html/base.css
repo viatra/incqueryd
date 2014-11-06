@@ -1,0 +1,151 @@
+body {
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    font-size: 1.0em;
+    text-align: center;
+    background-color:#ffffff;
+}
+
+h1 {
+	color: #000000;
+	font: 80px;
+}
+
+#container {
+    width: 1820px;
+    height: 3000px;
+    margin:0 auto;
+    position:relative;
+}
+
+#graph-container-rete, 
+#graph-container {
+    height:37%;
+    position:absolute;
+    top:0;
+    box-shadow: 10px 10px 5px #888888;
+    border: solid 1px;
+}
+
+#heatmap-container-os,
+#heatmap-container-rete
+ {
+    height:30%;
+    position:absolute;
+    top:0;
+    box-shadow: 10px 10px 5px #888888;
+    border: solid 1px;
+}
+
+#results-table,
+#deltas-table
+ {
+    height:31%;
+    position:absolute;
+    top:0;
+    box-shadow: 10px 10px 5px #888888;
+    border: solid 1px;
+}
+
+#heatmap-container-os {
+    width:49%;
+    color:#686c70;
+    overflow: auto;
+    background-color:#fff;
+    background-repeat:no-repeat;
+    border-bottom:1px solid #ddd;
+    float:left;
+    border-right:1px solid #ddd;
+    margin-top:62.5%;
+}
+
+#heatmap-container-rete {
+    width:49%;
+    color:#686c70;
+    overflow: auto;
+    background-color:#fff;
+    background-repeat:no-repeat;
+    border-bottom:1px solid #ddd;
+    float:right;
+    border-right:1px solid #ddd;
+    margin-left:51%;
+    margin-top:62.5%;
+}
+
+#results-table {
+    width:49%;
+    color:#686c70;
+    overflow: auto;
+    background-color:#fff;
+    background-repeat:no-repeat;
+    border-bottom:1px solid #ddd;
+    float:right;
+    border-right:1px solid #ddd;
+    margin-top:113.5%;
+}
+
+#deltas-table {
+    width:49%;
+    color:#686c70;
+    overflow: auto;
+    background-color:#fff;
+    background-repeat:no-repeat;
+    border-bottom:1px solid #ddd;
+    float:right;
+    border-right:1px solid #ddd;
+    margin-top:113.5%;
+    margin-left:51%;
+}
+
+#graph-container {
+    width:33%;
+    float:left;
+    background-color:#efefef;
+    color:#ccc;
+}
+
+#graph-container-rete {
+    width:66%;
+    overflow: auto;
+    background-repeat:no-repeat;
+    border-bottom:1px solid #ddd;
+    float:right;
+    border-right:1px solid #ddd;
+    margin-left:34%;
+    background-color:#efefef;
+    color:#ccc;
+}
+
+.text {
+    margin: 7px;
+}
+
+#infovis,
+#infovis-rete {
+    position:relative;
+    width:100%;
+    height:100%;
+    margin:auto;
+    overflow:hidden;
+}
+
+#heatmap,
+#heatmap-rete {
+    position:relative;
+    width:100%;
+    height:100%;
+    margin:auto;
+    overflow:hidden;
+}
+
+/*TOOLTIPS*/
+.tip {
+    color: #fff;
+    width: 139px;
+    background-color: black;
+    opacity:0.7;
+    filter:alpha(opacity=90);
+    font-size:12px;
+    padding:8px;
+}
