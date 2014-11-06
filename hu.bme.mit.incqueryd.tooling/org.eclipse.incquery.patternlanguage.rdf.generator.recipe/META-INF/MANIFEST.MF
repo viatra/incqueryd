@@ -23,6 +23,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.xtext.junit4,
  org.eclipse.incquery.patternlanguage.rdf.tests,
  hu.bme.mit.incqueryd.rdf;bundle-version="1.0.0",
- org.eclipse.xtext.common.types.ui;bundle-version="2.6.2"
+ org.eclipse.xtext.common.types.ui;bundle-version="2.6.2",
+ hu.bme.mit.incqueryd.rdf;bundle-version="1.0.0",
+ org.eclipse.incquery.patternlanguage.util;bundle-version="1.0.0",
+ org.eclipse.incquery.patternlanguage.util.generator.recipe
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy

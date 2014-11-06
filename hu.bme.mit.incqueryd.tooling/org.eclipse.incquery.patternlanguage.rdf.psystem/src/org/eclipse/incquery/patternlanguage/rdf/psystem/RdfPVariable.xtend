@@ -13,7 +13,7 @@ import org.eclipse.incquery.runtime.matchers.psystem.PBody
 import org.eclipse.incquery.runtime.matchers.psystem.PVariable
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.PatternMatchCounter
 
-import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
+import static extension org.eclipse.incquery.patternlanguage.util.psystem.PUtils.*
 
 class RdfPVariable {
 

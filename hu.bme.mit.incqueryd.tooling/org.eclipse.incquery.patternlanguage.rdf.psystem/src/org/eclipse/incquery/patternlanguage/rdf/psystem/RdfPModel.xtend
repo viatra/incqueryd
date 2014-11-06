@@ -13,6 +13,7 @@ import org.eclipse.incquery.runtime.matchers.tuple.FlatTuple
 import org.eclipse.incquery.runtime.matchers.tuple.Tuple
 
 import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils.*
+import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPQuery.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
 
 class RdfPModel {
@@ -21,9 +22,7 @@ class RdfPModel {
 
 	public val RdfPatternMatcherContext context
 
-	val LoadingCache<Pattern, PQuery> queries = CacheBuilder.newBuilder.build[pattern |
-		new RdfPQuery(pattern, this)
-	] // XXX due to this solution, recursive patterns are not supported
+	val LoadingCache<Pattern, PQuery> queries = CacheBuilder.newBuilder.build[toPQuery(this)] // XXX due to this solution, recursive patterns are not supported
 
 	def PQuery findQueryOf(Pattern pattern) {
 		queries.get(pattern)

@@ -1,0 +1,28 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: MondixPL Editor
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.eclipse.incquery.patternlanguage.mondix.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.incquery.patternlanguage.mondix;visibility:=reexport,
+ org.eclipse.xtext.ui,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.xtext.xbase.ui,
+ org.eclipse.ui,
+ org.eclipse.xtext.builder,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types.ui,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipse.compare,
+ org.eclipse.incquery.patternlanguage.ui;bundle-version="0.8.0"
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: org.eclipse.incquery.patternlanguage.mondix.ui,
+ org.eclipse.incquery.patternlanguage.mondix.ui.contentassist,
+ org.eclipse.incquery.patternlanguage.mondix.ui.contentassist.antlr,
+ org.eclipse.incquery.patternlanguage.mondix.ui.internal,
+ org.eclipse.incquery.patternlanguage.mondix.ui.quickfix
+Bundle-Activator: org.eclipse.incquery.patternlanguage.mondix.ui.internal.MondixPatternLanguageActivator

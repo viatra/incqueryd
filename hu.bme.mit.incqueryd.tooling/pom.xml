@@ -103,23 +103,32 @@
 	</dependencies>
 
 	<modules>
+		<module>hu.bme.mit.incqueryd.tooling.targetplatform</module>
+
+		<module>org.eclipse.incquery.patternlanguage.util</module>
+		<module>org.eclipse.incquery.patternlanguage.util.generator.recipe</module>
+
 		<module>../lib/org.mozilla.javascript</module>
+		<module>hu.bme.mit.incqueryd.rdf</module>
 		<module>org.eclipse.incquery.patternlanguage.rdf</module>
-		<module>org.eclipse.incquery.patternlanguage.rdf.generator.recipe</module>
-		<module>org.eclipse.incquery.patternlanguage.rdf.psystem</module>
 		<module>org.eclipse.incquery.patternlanguage.rdf.tests</module>
 		<module>org.eclipse.incquery.patternlanguage.rdf.ui</module>
+		<module>org.eclipse.incquery.patternlanguage.rdf.psystem</module>
+		<module>org.eclipse.incquery.patternlanguage.rdf.generator.recipe</module>
 
+		<module>org.eclipse.incquery.patternlanguage.mondix</module>
+		<module>org.eclipse.incquery.patternlanguage.mondix.tests</module>
+		<module>org.eclipse.incquery.patternlanguage.mondix.ui</module>
+		<module>org.eclipse.incquery.patternlanguage.mondix.psystem</module>
+		<module>org.eclipse.incquery.patternlanguage.mondix.generator.recipe</module>
 
+		<module>hu.bme.mit.incqueryd.recipe.editor</module>
 
-		<module>hu.bme.mit.incqueryd.rdf</module>
 		<module>hu.bme.mit.incqueryd.tooling.deployment</module>
 		<module>hu.bme.mit.incqueryd.tooling.monitoring</module>
 
-		<module>hu.bme.mit.incqueryd.tooling.targetplatform</module>
 		<module>hu.bme.mit.incqueryd.tooling.feature</module>
 		<module>hu.bme.mit.incqueryd.tooling.update</module>
-		<module>hu.bme.mit.incqueryd.recipe.editor</module>
 	</modules>
 
 	<repositories>

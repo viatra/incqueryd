@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Recipe Generator
+Bundle-SymbolicName: org.eclipse.incquery.patternlanguage.util.generator.recipe
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.xtext.builder;bundle-version="2.6.2",
+ org.eclipse.xtext.generator,
+ org.eclipse.ui.workbench,
+ org.eclipse.xtext;bundle-version="2.6.2",
+ org.eclipse.jface,
+ org.eclipse.core.runtime;bundle-version="3.9.100",
+ org.eclipse.incquery.runtime.rete.recipes,
+ org.eclipse.incquery.runtime.rete,
+ org.eclipse.incquery.patternlanguage
+Export-Package: org.eclipse.incquery.patternlanguage.util.generator.recipe

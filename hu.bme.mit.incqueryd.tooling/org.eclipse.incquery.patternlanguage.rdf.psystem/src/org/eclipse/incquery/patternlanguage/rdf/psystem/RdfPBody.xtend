@@ -7,7 +7,7 @@ import org.eclipse.incquery.runtime.matchers.psystem.PBody
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExportedParameter
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
 
-import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.PUtils.*
+import static extension org.eclipse.incquery.patternlanguage.util.psystem.PUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPConstraint.*
 
 class RdfPBody {

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipes:ReteRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
+  <recipeNodes xsi:type="recipes:UnaryInputRecipe" typeKey="ACED00057400075365676D656E74" typeName="Segment"/>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="posLength" parents="//@recipeNodes.3">
+    <mappedIndices key="Segment" value="0"/>
+    <mappedIndices key="SegmentLength" value="1"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:BinaryInputRecipe" typeKey="ACED000574000E5365676D656E745F6C656E677468" typeName="Segment_length"/>
+  <recipeNodes xsi:type="recipes:JoinRecipe">
+    <leftParent parent="//@recipeNodes.0">
+      <mask sourceArity="1">
+        <sourceIndices>0</sourceIndices>
+      </mask>
+    </leftParent>
+    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.2">
+      <mask sourceArity="2">
+        <sourceIndices>0</sourceIndices>
+      </mask>
+    </rightParent>
+    <rightParentComplementaryMask sourceArity="2">
+      <sourceIndices>1</sourceIndices>
+    </rightParentComplementaryMask>
+  </recipeNodes>
+</recipes:ReteRecipe>

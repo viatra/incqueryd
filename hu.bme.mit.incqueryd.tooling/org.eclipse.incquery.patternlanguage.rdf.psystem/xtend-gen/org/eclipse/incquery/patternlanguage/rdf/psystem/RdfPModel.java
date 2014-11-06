@@ -30,8 +30,8 @@ public class RdfPModel {
   
   private final LoadingCache<Pattern, PQuery> queries = CacheBuilder.newBuilder().<Pattern, PQuery>build(new CacheLoader<Pattern, PQuery>() {
     @Override
-    public PQuery load(final Pattern pattern) throws Exception {
-      return new RdfPQuery(pattern, RdfPModel.this);
+    public PQuery load(final Pattern it) throws Exception {
+      return RdfPQuery.toPQuery(it, RdfPModel.this);
     }
   });
   

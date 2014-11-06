@@ -24,7 +24,7 @@ public class RdfPatternLanguageRuntimeModule extends org.eclipse.incquery.patter
 	@Override
 	public void configure(Binder binder) {
 		super.configure(binder);
-		binder.bind(ITypeProvider.class).to(XbaseBatchTypeProvider.class);
+		binder.bind(ITypeProvider.class).to(XbaseBatchTypeProvider.class); // XXX IncQuery workaround to avoid "No implementation for org.eclipse.xtext.xbase.typing.ITypeProvider was bound"
 	}
 
 }

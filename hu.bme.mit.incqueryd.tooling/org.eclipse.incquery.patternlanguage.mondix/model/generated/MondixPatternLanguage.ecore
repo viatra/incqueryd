@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mondixPatternLanguage" nsURI="http://www.eclipse.org/incquery/patternlanguage/mondix/MondixPatternLanguage"
+    nsPrefix="mondixPatternLanguage">
+  <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//Variable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeConstraint" eSuperTypes="platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//Constraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="ecore:EClass platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//VariableReference"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EdgeConstraint" eSuperTypes="platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//Constraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="refType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//VariableReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="ecore:EClass platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//ValueReference"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MondixPatternModel" eSuperTypes="platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//PatternModel"/>
+</ecore:EPackage>

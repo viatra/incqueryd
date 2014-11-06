@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipes:ReteRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
+  <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="null [recipe 0]" parent="//@recipeNodes.14">
+    <mask sourceArity="5">
+      <sourceIndices>1</sourceIndices>
+    </mask>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="null [recipe 1]">
+    <leftParent parent="//@recipeNodes.24">
+      <mask sourceArity="2">
+        <sourceIndices>1</sourceIndices>
+      </mask>
+    </leftParent>
+    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.12">
+      <mask sourceArity="2">
+        <sourceIndices>1</sourceIndices>
+      </mask>
+    </rightParent>
+    <rightParentComplementaryMask sourceArity="2">
+      <sourceIndices>0</sourceIndices>
+    </rightParentComplementaryMask>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="null [recipe 2]">
+    <leftParent parent="//@recipeNodes.16">
+      <mask sourceArity="2">
+        <sourceIndices>1</sourceIndices>
+      </mask>
+    </leftParent>
+    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.9">
+      <mask sourceArity="2">
+        <sourceIndices>1</sourceIndices>
+      </mask>
+    </rightParent>
+    <rightParentComplementaryMask sourceArity="2">
+      <sourceIndices>0</sourceIndices>
+    </rightParentComplementaryMask>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="null [recipe 3]" parent="//@recipeNodes.7">
+    <mask sourceArity="3">
+      <sourceIndices>1</sourceIndices>
+      <sourceIndices>0</sourceIndices>
+      <sourceIndices>2</sourceIndices>
+    </mask>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge: Route_exit [recipe 4]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740054687474703A2F2F7777772E73656D616E7469637765622E6F72672F6F6E746F6C6F676965732F323031312F312F547261696E526571756972656D656E744F6E746F6C6F67792E6F776C23526F7574655F65786974" typeName="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Route_exit"/>
+  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge: Sensor_trackElement [recipe 5]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF74005D687474703A2F2F7777772E73656D616E7469637765622E6F72672F6F6E746F6C6F676965732F323031312F312F547261696E526571756972656D656E744F6E746F6C6F67792E6F776C2353656E736F725F747261636B456C656D656E74" typeName="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Sensor_trackElement"/>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="exitSignal [recipe 6]" parents="//@recipeNodes.4">
+    <mappedIndices key="R" value="0"/>
+    <mappedIndices key="Sig" value="1"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="null [recipe 7]">
+    <leftParent parent="//@recipeNodes.6">
+      <mask sourceArity="2">
+        <sourceIndices>0</sourceIndices>
+      </mask>
+    </leftParent>
+    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.9">
+      <mask sourceArity="2">
+        <sourceIndices>0</sourceIndices>
+      </mask>
+    </rightParent>
+    <rightParentComplementaryMask sourceArity="2">
+      <sourceIndices>1</sourceIndices>
+    </rightParentComplementaryMask>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="signalNeighbor [recipe 8]" parents="//@recipeNodes.0">
+    <mappedIndices key="R1" value="0"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="rDefinition [recipe 9]" parents="//@recipeNodes.17">
+    <mappedIndices key="R" value="0"/>
+    <mappedIndices key="Sen" value="1"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="entrySignal [recipe 10]" parents="//@recipeNodes.15">
+    <mappedIndices key="R" value="0"/>
+    <mappedIndices key="Sig" value="1"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="entrySignalSensor [recipe 11]" parents="//@recipeNodes.13">
+    <mappedIndices key="Sig" value="0"/>
+    <mappedIndices key="R2" value="1"/>
+    <mappedIndices key="Sen2" value="2"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:UniquenessEnforcerRecipe" traceInfo="null [recipe 12]" parents="//@recipeNodes.18"/>
+  <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="null [recipe 13]" parent="//@recipeNodes.22">
+    <mask sourceArity="3">
+      <sourceIndices>2</sourceIndices>
+      <sourceIndices>0</sourceIndices>
+      <sourceIndices>1</sourceIndices>
+    </mask>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:AntiJoinRecipe" traceInfo="null [recipe 14]">
+    <leftParent parent="//@recipeNodes.20">
+      <mask sourceArity="5">
+        <sourceIndices>0</sourceIndices>
+        <sourceIndices>3</sourceIndices>
+      </mask>
+    </leftParent>
+    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.11">
+      <mask sourceArity="3">
+        <sourceIndices>0</sourceIndices>
+        <sourceIndices>2</sourceIndices>
+      </mask>
+    </rightParent>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge: Route_entry [recipe 15]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740055687474703A2F2F7777772E73656D616E7469637765622E6F72672F6F6E746F6C6F676965732F323031312F312F547261696E526571756972656D656E744F6E746F6C6F67792E6F776C23526F7574655F656E747279" typeName="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Route_entry"/>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="connectingSensors [recipe 16]" parents="//@recipeNodes.25">
+    <mappedIndices key="Sen1" value="0"/>
+    <mappedIndices key="Sen2" value="1"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge: Route_routeDefinition [recipe 17]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF74005F687474703A2F2F7777772E73656D616E7469637765622E6F72672F6F6E746F6C6F676965732F323031312F312F547261696E526571756972656D656E744F6E746F6C6F67792E6F776C23526F7574655F726F757465446566696E6974696F6E" typeName="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Route_routeDefinition"/>
+  <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="null [recipe 18]" parent="//@recipeNodes.19">
+    <mask sourceArity="3">
+      <sourceIndices>2</sourceIndices>
+      <sourceIndices>1</sourceIndices>
+    </mask>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="null [recipe 19]">
+    <leftParent parent="//@recipeNodes.23">
+      <mask sourceArity="2">
+        <sourceIndices>0</sourceIndices>
+      </mask>
+    </leftParent>
+    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.24">
+      <mask sourceArity="2">
+        <sourceIndices>1</sourceIndices>
+      </mask>
+    </rightParent>
+    <rightParentComplementaryMask sourceArity="2">
+      <sourceIndices>0</sourceIndices>
+    </rightParentComplementaryMask>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:InequalityFilterRecipe" traceInfo="null [recipe 20]" parent="//@recipeNodes.26" subject="1">
+    <inequals>4</inequals>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="exitSignalSensor [recipe 21]" parents="//@recipeNodes.3">
+    <mappedIndices key="Sig" value="0"/>
+    <mappedIndices key="R1" value="1"/>
+    <mappedIndices key="Sen1" value="2"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="null [recipe 22]">
+    <leftParent parent="//@recipeNodes.9">
+      <mask sourceArity="2">
+        <sourceIndices>0</sourceIndices>
+      </mask>
+    </leftParent>
+    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.10">
+      <mask sourceArity="2">
+        <sourceIndices>0</sourceIndices>
+      </mask>
+    </rightParent>
+    <rightParentComplementaryMask sourceArity="2">
+      <sourceIndices>1</sourceIndices>
+    </rightParentComplementaryMask>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="trackelementConnected [recipe 23]" parents="//@recipeNodes.27">
+    <mappedIndices key="Te1" value="0"/>
+    <mappedIndices key="Te2" value="1"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="sensorTrackelement [recipe 24]" parents="//@recipeNodes.5">
+    <mappedIndices key="Sen" value="0"/>
+    <mappedIndices key="Te" value="1"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="null [recipe 25]" parent="//@recipeNodes.1">
+    <mask sourceArity="3">
+      <sourceIndices>2</sourceIndices>
+      <sourceIndices>0</sourceIndices>
+    </mask>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="null [recipe 26]">
+    <leftParent parent="//@recipeNodes.21">
+      <mask sourceArity="3">
+        <sourceIndices>2</sourceIndices>
+      </mask>
+    </leftParent>
+    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.2">
+      <mask sourceArity="3">
+        <sourceIndices>0</sourceIndices>
+      </mask>
+    </rightParent>
+    <rightParentComplementaryMask sourceArity="3">
+      <sourceIndices>1</sourceIndices>
+      <sourceIndices>2</sourceIndices>
+    </rightParentComplementaryMask>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge: TrackElement_connectsTo [recipe 27]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740061687474703A2F2F7777772E73656D616E7469637765622E6F72672F6F6E746F6C6F676965732F323031312F312F547261696E526571756972656D656E744F6E746F6C6F67792E6F776C23547261636B456C656D656E745F636F6E6E65637473546F" typeName="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#TrackElement_connectsTo"/>
+</recipes:ReteRecipe>
