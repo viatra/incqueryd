@@ -1,4 +1,4 @@
 IncQuery-D
 ==========
 
-Check out the Getting Started guide in the [wiki](https://github.com/FTSRG/incqueryd/wiki).
+Check out the guide in the [wiki](https://github.com/FTSRG/incqueryd/wiki).
