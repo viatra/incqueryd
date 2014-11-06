@@ -6,5 +6,5 @@ cd ../..
 git clone https://github.com/FTSRG/4store-graph-driver.git
 cd 4store-graph-driver
 git pull
-scripts/build.sh --resolveDependencies
+scripts/build.sh --resolveDependencies --skipTests
 
