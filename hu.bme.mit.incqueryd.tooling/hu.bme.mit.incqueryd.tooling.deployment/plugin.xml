@@ -32,11 +32,11 @@
             name="IncQuery-D: Uninstall System">
       </command>
       <command
-            id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.null"
-            name="IncQuery-D: Null Allocation">
+            id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.unoptimized"
+            name="IncQuery-D: Unoptimized Allocation">
       </command>
       <command
-            id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.opt"
+            id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.optimized"
             name="IncQuery-D: Optimized Allocation">
       </command>
    </extension>
@@ -90,11 +90,11 @@
 		       visible="true">
 		</separator>
          <command
-               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.null"
+               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.unoptimized"
                style="push">
          </command>
          <command
-               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.opt"
+               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.optimized"
                style="push">
          </command>
       </menuContribution>
@@ -130,12 +130,12 @@
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.uninstall">
       </handler>
       <handler
-            class="hu.bme.mit.incqueryd.tooling.ide.NullAllocationHandler"
-            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.null">
+            class="hu.bme.mit.incqueryd.tooling.ide.UnoptimizedAllocationHandler"
+            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.unoptimized">
       </handler>
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.OptimizedAllocationHandler"
-            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.opt">
+            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.optimized">
       </handler>
    </extension>
 

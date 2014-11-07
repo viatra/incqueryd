@@ -22,7 +22,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import com.google.common.base.Throwables;
 
-public class NullAllocationHandler extends AbstractHandler {
+public class UnoptimizedAllocationHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
