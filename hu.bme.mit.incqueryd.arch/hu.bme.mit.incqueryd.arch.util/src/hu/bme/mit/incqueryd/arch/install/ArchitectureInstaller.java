@@ -40,7 +40,7 @@ public class ArchitectureInstaller {
 		// Call the monitoring install script as well
 		// which installs the monitoring components to the machines as well
 		final List<String> monitoringInstallCommand = new ArrayList<>();
-		monitoringInstallCommand.add(homeDirectory + "/git/incqueryd-monitoring/scripts/install.sh");
+		monitoringInstallCommand.add(homeDirectory + "/git/incqueryd/hu.bme.mit.incqueryd.monitoring/scripts/install.sh");
 
 		if (light)
 			monitoringInstallCommand.add("--light"); // Light goes for monitoring too
