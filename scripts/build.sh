@@ -5,7 +5,6 @@ cd "$( cd "$( dirname "$0" )" && pwd )/.."
 while [ "$1" != "" ]; do
 	case $1 in
 		"--resolveDependencies")
-		shift
 		resolveDependencies=true
 		;;
 	esac
