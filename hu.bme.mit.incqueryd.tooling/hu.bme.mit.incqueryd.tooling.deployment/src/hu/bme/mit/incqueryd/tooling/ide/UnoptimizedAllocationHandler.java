@@ -24,6 +24,8 @@ import com.google.common.base.Throwables;
 
 public class UnoptimizedAllocationHandler extends AbstractHandler {
 
+	private static final String FOLDER_NAME = "arch-unopt";
+
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		final IFile file = ArchitectureSelector.getSelection(event);
@@ -33,13 +35,13 @@ public class UnoptimizedAllocationHandler extends AbstractHandler {
 				String recipeFile = file.getLocation().toString();
 
 				try {
-					ReteAllocator.allocateNull(recipeFile, file.getProject().getLocation().toString() + "/arch-null/" + file.getName().replaceFirst("\\." + file.getFileExtension(), "") + ".arch");
+					ReteAllocator.allocateUnoptimized(recipeFile, file.getProject().getLocation().toString() + "/" + FOLDER_NAME + "/" + file.getName().replaceFirst("\\." + file.getFileExtension(), "") + ".arch");
 				} catch (IOException e) {
 					Throwables.propagate(e);
 				}
 
 				Shell activeShell = UiUtils.getWorkbenchWindow().getShell();
-				final MessageDialog dialog = new MessageDialog(activeShell, "Allocation result", null, "Your arch file is ready in the arch-null folder!", MessageDialog.INFORMATION, new String[] { "OK" }, 0);
+				final MessageDialog dialog = new MessageDialog(activeShell, "Allocation result", null, "Your arch file is ready in the " + FOLDER_NAME + " folder!", MessageDialog.INFORMATION, new String[] { "OK" }, 0);
 				Display.getDefault().asyncExec(new Runnable() {
 					@Override
 					public void run() {

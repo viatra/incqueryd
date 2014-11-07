@@ -417,8 +417,8 @@ public class ReteAllocator {
 		resource.save(Collections.EMPTY_MAP);
 	}
 
-	// The NULL allocator, this method is static
-	public static void allocateNull(String recipeFile, String outputFile) throws IOException {
+	// The unoptimized allocator, this method is static
+	public static void allocateUnoptimized(String recipeFile, String outputFile) throws IOException {
 		ReteRecipe recipe = ArchUtil.loadRecipe(recipeFile);
 
 		final Configuration configuration = ArchFactory.eINSTANCE.createConfiguration();

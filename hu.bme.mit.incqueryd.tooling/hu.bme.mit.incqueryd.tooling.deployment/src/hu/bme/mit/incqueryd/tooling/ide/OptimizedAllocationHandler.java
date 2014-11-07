@@ -27,6 +27,8 @@ import com.google.common.base.Throwables;
 
 public class OptimizedAllocationHandler extends AbstractHandler {
 
+	private static final String FOLDER_NAME = "arch-opt";
+
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		final IFile file = ArchitectureSelector.getSelection(event);
@@ -56,14 +58,14 @@ public class OptimizedAllocationHandler extends AbstractHandler {
 				});
 				boolean forCommunication = ofDialog.forCommunication();
 
-				final String outputFile = file.getProject().getLocation().toString() + "/arch-opt/" + file.getName().replaceFirst("\\." + file.getFileExtension(), "") + ".arch";
+				final String outputFile = file.getProject().getLocation().toString() + "/" + FOLDER_NAME + "/" + file.getName().replaceFirst("\\." + file.getFileExtension(), "") + ".arch";
 
 				ReteAllocator reteAllocator = new ReteAllocator(forCommunication, recipeFile, inventoryFile, outputFile);
 				try {
 					boolean success = reteAllocator.allocate();
 
 					final MessageDialog dialog = success ?
-						new MessageDialog(activeShell, "Allocation result", null, "Your arch file is ready in the arch-opt folder!", MessageDialog.INFORMATION, new String[] { "OK" }, 0) :
+						new MessageDialog(activeShell, "Allocation result", null, "Your arch file is ready in the " + FOLDER_NAME + " folder!", MessageDialog.INFORMATION, new String[] { "OK" }, 0) :
 						new MessageDialog(activeShell, "Allocation result", null, "The problem can not be solved with the current resource set!", MessageDialog.ERROR, new String[] { "OK" }, 0);
 					Display.getDefault().asyncExec(new Runnable() {
 						@Override
