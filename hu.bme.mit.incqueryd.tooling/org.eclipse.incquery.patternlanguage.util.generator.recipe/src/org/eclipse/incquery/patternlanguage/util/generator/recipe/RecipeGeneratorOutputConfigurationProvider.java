@@ -17,7 +17,7 @@ public class RecipeGeneratorOutputConfigurationProvider implements IOutputConfig
 		defaultOutput.setOutputDirectory("./recipes");
 		defaultOutput.setOverrideExistingResources(true);
 		defaultOutput.setCreateOutputDirectory(true);
-		defaultOutput.setCleanUpDerivedResources(true);
+		defaultOutput.setCleanUpDerivedResources(false);
 		defaultOutput.setSetDerivedProperty(false); // XXX because if another builder participant comes after ours, it might delete those
 		defaultOutput.setKeepLocalHistory(true);
 		return ImmutableSet.of(defaultOutput);
