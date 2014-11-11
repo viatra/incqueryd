@@ -32,15 +32,19 @@ public class UnixUtils {
 	}
 
 	private static void println(OutputStream outputStream, String line) throws IOException {
+		print(outputStream, line);
+		print(outputStream, "\n");
+	}
+
+	private static void print(OutputStream outputStream, String line) throws IOException {
 		outputStream.write(line.getBytes(Charsets.UTF_8));
-		outputStream.write('\n');
 	}
 
 	public static BufferedReader runAndReadOutput(final String[] command, OutputStream outputStream, final Map<String, String> environment) throws IOException {
 		if (outputStream != null) {
-			println(outputStream, "Invoking command:");
+			print(outputStream, "Invoking command: ");
 			for (final String string : command) {
-				println(outputStream, string + " ");
+				print(outputStream, string + " ");
 			}
 			println(outputStream, "");
 			println(outputStream, "Command output:");
