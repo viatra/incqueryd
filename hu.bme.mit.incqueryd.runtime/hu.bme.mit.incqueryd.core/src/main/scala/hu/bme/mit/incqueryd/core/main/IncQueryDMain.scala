@@ -25,21 +25,26 @@ object IncQueryDMain {
   def main(args: Array[String]) {
     val options = new Options;
     val parser = new PosixParser;
+    
+    val ARG_ARCHITECTUREFILE = "architectureFile"
+    val ARG_INTERFACE = "interface"
+    val ARG_DEBUG = "debug"
+    val ARG_START = "start"
 
-    val architectureFileOption = new Option("architectureFile", true, "The path to the architecture file.");
+    val architectureFileOption = new Option(ARG_ARCHITECTUREFILE, true, "The path to the architecture file.");
     architectureFileOption.setRequired(true)
     options.addOption(architectureFileOption)
-
-    options.addOption(new Option("interface", true, "The address to the HTTP interface, the default value is 127.0.0.1."))
-    options.addOption(new Option("debug", false, "Run IQD in debug mode (using a single JVM)."))
-    options.addOption(new Option("start", false, "Starts query processing immediately."))
+    
+    options.addOption(new Option(ARG_INTERFACE, true, "The address to the HTTP interface, the default value is 127.0.0.1."))
+    options.addOption(new Option(ARG_DEBUG, false, "Run IQD in debug mode (using a single JVM)."))
+    options.addOption(new Option(ARG_START, false, "Starts query processing immediately."))
 
     val cmd = parser.parse(options, args);
 
-    val architectureFile = cmd.getOptionValue("architectureFile")
-    val interface = if (cmd.hasOption("interface")) cmd.getOptionValue("interface") else "127.0.0.1"
-    val debug = cmd.hasOption("debug")
-    val start = cmd.hasOption("start")
+    val architectureFile = cmd.getOptionValue(ARG_ARCHITECTUREFILE)
+    val interface = if (cmd.hasOption(ARG_INTERFACE)) cmd.getOptionValue(ARG_INTERFACE) else "127.0.0.1"
+    val debug = cmd.hasOption(ARG_DEBUG)
+    val start = cmd.hasOption(ARG_START)
 
     val engine = new IncQueryDEngine(interface)
     val coordinator = engine initialize (architectureFile, debug)
