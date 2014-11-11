@@ -65,8 +65,8 @@ public class MondixPatternLanguageFactoryImpl extends EFactoryImpl implements Mo
     switch (eClass.getClassifierID())
     {
       case MondixPatternLanguagePackage.VARIABLE: return createVariable();
-      case MondixPatternLanguagePackage.NODE_CONSTRAINT: return createNodeConstraint();
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT: return createEdgeConstraint();
+      case MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT: return createUnaryRelationConstraint();
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT: return createBinaryRelationConstraint();
       case MondixPatternLanguagePackage.MONDIX_PATTERN_MODEL: return createMondixPatternModel();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -89,10 +89,10 @@ public class MondixPatternLanguageFactoryImpl extends EFactoryImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public NodeConstraint createNodeConstraint()
+  public UnaryRelationConstraint createUnaryRelationConstraint()
   {
-    NodeConstraintImpl nodeConstraint = new NodeConstraintImpl();
-    return nodeConstraint;
+    UnaryRelationConstraintImpl unaryRelationConstraint = new UnaryRelationConstraintImpl();
+    return unaryRelationConstraint;
   }
 
   /**
@@ -100,10 +100,10 @@ public class MondixPatternLanguageFactoryImpl extends EFactoryImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public EdgeConstraint createEdgeConstraint()
+  public BinaryRelationConstraint createBinaryRelationConstraint()
   {
-    EdgeConstraintImpl edgeConstraint = new EdgeConstraintImpl();
-    return edgeConstraint;
+    BinaryRelationConstraintImpl binaryRelationConstraint = new BinaryRelationConstraintImpl();
+    return binaryRelationConstraint;
   }
 
   /**

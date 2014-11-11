@@ -84,8 +84,8 @@ public class MondixPatternLanguageParser extends AbstractContentAssistParser {
 					put(grammarAccess.getXImportDeclarationAccess().getAlternatives_1_0_3(), "rule__XImportDeclaration__Alternatives_1_0_3");
 					put(grammarAccess.getCompareFeatureAccess().getAlternatives(), "rule__CompareFeature__Alternatives");
 					put(grammarAccess.getMondixPatternModelAccess().getGroup(), "rule__MondixPatternModel__Group__0");
-					put(grammarAccess.getNodeConstraintAccess().getGroup(), "rule__NodeConstraint__Group__0");
-					put(grammarAccess.getEdgeConstraintAccess().getGroup(), "rule__EdgeConstraint__Group__0");
+					put(grammarAccess.getUnaryRelationConstraintAccess().getGroup(), "rule__UnaryRelationConstraint__Group__0");
+					put(grammarAccess.getBinaryRelationConstraintAccess().getGroup(), "rule__BinaryRelationConstraint__Group__0");
 					put(grammarAccess.getPatternModelAccess().getGroup(), "rule__PatternModel__Group__0");
 					put(grammarAccess.getPatternModelAccess().getGroup_0(), "rule__PatternModel__Group_0__0");
 					put(grammarAccess.getPatternAccess().getGroup(), "rule__Pattern__Group__0");
@@ -302,11 +302,11 @@ public class MondixPatternLanguageParser extends AbstractContentAssistParser {
 					put(grammarAccess.getQualifiedNameInStaticImportAccess().getGroup(), "rule__QualifiedNameInStaticImport__Group__0");
 					put(grammarAccess.getMondixPatternModelAccess().getPatternsAssignment_1(), "rule__MondixPatternModel__PatternsAssignment_1");
 					put(grammarAccess.getParameterAccess().getNameAssignment(), "rule__Parameter__NameAssignment");
-					put(grammarAccess.getNodeConstraintAccess().getTypeAssignment_0(), "rule__NodeConstraint__TypeAssignment_0");
-					put(grammarAccess.getNodeConstraintAccess().getVariableAssignment_2(), "rule__NodeConstraint__VariableAssignment_2");
-					put(grammarAccess.getEdgeConstraintAccess().getRefTypeAssignment_0(), "rule__EdgeConstraint__RefTypeAssignment_0");
-					put(grammarAccess.getEdgeConstraintAccess().getSourceAssignment_2(), "rule__EdgeConstraint__SourceAssignment_2");
-					put(grammarAccess.getEdgeConstraintAccess().getTargetAssignment_4(), "rule__EdgeConstraint__TargetAssignment_4");
+					put(grammarAccess.getUnaryRelationConstraintAccess().getRelationAssignment_0(), "rule__UnaryRelationConstraint__RelationAssignment_0");
+					put(grammarAccess.getUnaryRelationConstraintAccess().getVariableAssignment_2(), "rule__UnaryRelationConstraint__VariableAssignment_2");
+					put(grammarAccess.getBinaryRelationConstraintAccess().getRelationAssignment_0(), "rule__BinaryRelationConstraint__RelationAssignment_0");
+					put(grammarAccess.getBinaryRelationConstraintAccess().getSourceAssignment_2(), "rule__BinaryRelationConstraint__SourceAssignment_2");
+					put(grammarAccess.getBinaryRelationConstraintAccess().getTargetAssignment_4(), "rule__BinaryRelationConstraint__TargetAssignment_4");
 					put(grammarAccess.getPatternModelAccess().getPackageNameAssignment_0_1(), "rule__PatternModel__PackageNameAssignment_0_1");
 					put(grammarAccess.getPatternModelAccess().getPatternsAssignment_1(), "rule__PatternModel__PatternsAssignment_1");
 					put(grammarAccess.getPatternAccess().getAnnotationsAssignment_0(), "rule__Pattern__AnnotationsAssignment_0");

@@ -65,14 +65,14 @@ public class MondixPatternLanguageGrammarAccess extends AbstractGrammarElementFi
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cPatternCompositionConstraintParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cCompareConstraintParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cNodeConstraintParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cEdgeConstraintParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cUnaryRelationConstraintParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cBinaryRelationConstraintParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//Constraint returns core::Constraint:
-		//	PatternCompositionConstraint | CompareConstraint | NodeConstraint | EdgeConstraint;
+		//	PatternCompositionConstraint | CompareConstraint | UnaryRelationConstraint | BinaryRelationConstraint;
 		public ParserRule getRule() { return rule; }
 
-		//PatternCompositionConstraint | CompareConstraint | NodeConstraint | EdgeConstraint
+		//PatternCompositionConstraint | CompareConstraint | UnaryRelationConstraint | BinaryRelationConstraint
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//PatternCompositionConstraint
@@ -81,35 +81,39 @@ public class MondixPatternLanguageGrammarAccess extends AbstractGrammarElementFi
 		//CompareConstraint
 		public RuleCall getCompareConstraintParserRuleCall_1() { return cCompareConstraintParserRuleCall_1; }
 
-		//NodeConstraint
-		public RuleCall getNodeConstraintParserRuleCall_2() { return cNodeConstraintParserRuleCall_2; }
+		//UnaryRelationConstraint
+		public RuleCall getUnaryRelationConstraintParserRuleCall_2() { return cUnaryRelationConstraintParserRuleCall_2; }
 
-		//EdgeConstraint
-		public RuleCall getEdgeConstraintParserRuleCall_3() { return cEdgeConstraintParserRuleCall_3; }
+		//BinaryRelationConstraint
+		public RuleCall getBinaryRelationConstraintParserRuleCall_3() { return cBinaryRelationConstraintParserRuleCall_3; }
 	}
 
-	public class NodeConstraintElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NodeConstraint");
+	public class UnaryRelationConstraintElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnaryRelationConstraint");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTypeIDTerminalRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
+		private final Assignment cRelationAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cRelationRelationCrossReference_0_0 = (CrossReference)cRelationAssignment_0.eContents().get(0);
+		private final RuleCall cRelationRelationIDTerminalRuleCall_0_0_1 = (RuleCall)cRelationRelationCrossReference_0_0.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cVariableAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cVariableVariableReferenceParserRuleCall_2_0 = (RuleCall)cVariableAssignment_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//NodeConstraint:
-		//	type=ID "(" variable=VariableReference ")";
+		//UnaryRelationConstraint:
+		//	relation=[mondixschema::Relation] "(" variable=VariableReference ")";
 		public ParserRule getRule() { return rule; }
 
-		//type=ID "(" variable=VariableReference ")"
+		//relation=[mondixschema::Relation] "(" variable=VariableReference ")"
 		public Group getGroup() { return cGroup; }
 
-		//type=ID
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//relation=[mondixschema::Relation]
+		public Assignment getRelationAssignment_0() { return cRelationAssignment_0; }
+
+		//[mondixschema::Relation]
+		public CrossReference getRelationRelationCrossReference_0_0() { return cRelationRelationCrossReference_0_0; }
 
 		//ID
-		public RuleCall getTypeIDTerminalRuleCall_0_0() { return cTypeIDTerminalRuleCall_0_0; }
+		public RuleCall getRelationRelationIDTerminalRuleCall_0_0_1() { return cRelationRelationIDTerminalRuleCall_0_0_1; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
@@ -124,11 +128,12 @@ public class MondixPatternLanguageGrammarAccess extends AbstractGrammarElementFi
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 	}
 
-	public class EdgeConstraintElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EdgeConstraint");
+	public class BinaryRelationConstraintElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BinaryRelationConstraint");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cRefTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cRefTypeIDTerminalRuleCall_0_0 = (RuleCall)cRefTypeAssignment_0.eContents().get(0);
+		private final Assignment cRelationAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cRelationRelationCrossReference_0_0 = (CrossReference)cRelationAssignment_0.eContents().get(0);
+		private final RuleCall cRelationRelationIDTerminalRuleCall_0_0_1 = (RuleCall)cRelationRelationCrossReference_0_0.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cSourceAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cSourceVariableReferenceParserRuleCall_2_0 = (RuleCall)cSourceAssignment_2.eContents().get(0);
@@ -137,18 +142,21 @@ public class MondixPatternLanguageGrammarAccess extends AbstractGrammarElementFi
 		private final RuleCall cTargetValueReferenceParserRuleCall_4_0 = (RuleCall)cTargetAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
-		//EdgeConstraint:
-		//	refType=ID "(" source=VariableReference "," target=ValueReference ")";
+		//BinaryRelationConstraint:
+		//	relation=[mondixschema::Relation] "(" source=VariableReference "," target=ValueReference ")";
 		public ParserRule getRule() { return rule; }
 
-		//refType=ID "(" source=VariableReference "," target=ValueReference ")"
+		//relation=[mondixschema::Relation] "(" source=VariableReference "," target=ValueReference ")"
 		public Group getGroup() { return cGroup; }
 
-		//refType=ID
-		public Assignment getRefTypeAssignment_0() { return cRefTypeAssignment_0; }
+		//relation=[mondixschema::Relation]
+		public Assignment getRelationAssignment_0() { return cRelationAssignment_0; }
+
+		//[mondixschema::Relation]
+		public CrossReference getRelationRelationCrossReference_0_0() { return cRelationRelationCrossReference_0_0; }
 
 		//ID
-		public RuleCall getRefTypeIDTerminalRuleCall_0_0() { return cRefTypeIDTerminalRuleCall_0_0; }
+		public RuleCall getRelationRelationIDTerminalRuleCall_0_0_1() { return cRelationRelationIDTerminalRuleCall_0_0_1; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
@@ -176,8 +184,8 @@ public class MondixPatternLanguageGrammarAccess extends AbstractGrammarElementFi
 	private MondixPatternModelElements pMondixPatternModel;
 	private ParameterElements pParameter;
 	private ConstraintElements pConstraint;
-	private NodeConstraintElements pNodeConstraint;
-	private EdgeConstraintElements pEdgeConstraint;
+	private UnaryRelationConstraintElements pUnaryRelationConstraint;
+	private BinaryRelationConstraintElements pBinaryRelationConstraint;
 	
 	private final Grammar grammar;
 
@@ -238,7 +246,7 @@ public class MondixPatternLanguageGrammarAccess extends AbstractGrammarElementFi
 	}
 
 	//Constraint returns core::Constraint:
-	//	PatternCompositionConstraint | CompareConstraint | NodeConstraint | EdgeConstraint;
+	//	PatternCompositionConstraint | CompareConstraint | UnaryRelationConstraint | BinaryRelationConstraint;
 	public ConstraintElements getConstraintAccess() {
 		return (pConstraint != null) ? pConstraint : (pConstraint = new ConstraintElements());
 	}
@@ -247,24 +255,24 @@ public class MondixPatternLanguageGrammarAccess extends AbstractGrammarElementFi
 		return getConstraintAccess().getRule();
 	}
 
-	//NodeConstraint:
-	//	type=ID "(" variable=VariableReference ")";
-	public NodeConstraintElements getNodeConstraintAccess() {
-		return (pNodeConstraint != null) ? pNodeConstraint : (pNodeConstraint = new NodeConstraintElements());
+	//UnaryRelationConstraint:
+	//	relation=[mondixschema::Relation] "(" variable=VariableReference ")";
+	public UnaryRelationConstraintElements getUnaryRelationConstraintAccess() {
+		return (pUnaryRelationConstraint != null) ? pUnaryRelationConstraint : (pUnaryRelationConstraint = new UnaryRelationConstraintElements());
 	}
 	
-	public ParserRule getNodeConstraintRule() {
-		return getNodeConstraintAccess().getRule();
+	public ParserRule getUnaryRelationConstraintRule() {
+		return getUnaryRelationConstraintAccess().getRule();
 	}
 
-	//EdgeConstraint:
-	//	refType=ID "(" source=VariableReference "," target=ValueReference ")";
-	public EdgeConstraintElements getEdgeConstraintAccess() {
-		return (pEdgeConstraint != null) ? pEdgeConstraint : (pEdgeConstraint = new EdgeConstraintElements());
+	//BinaryRelationConstraint:
+	//	relation=[mondixschema::Relation] "(" source=VariableReference "," target=ValueReference ")";
+	public BinaryRelationConstraintElements getBinaryRelationConstraintAccess() {
+		return (pBinaryRelationConstraint != null) ? pBinaryRelationConstraint : (pBinaryRelationConstraint = new BinaryRelationConstraintElements());
 	}
 	
-	public ParserRule getEdgeConstraintRule() {
-		return getEdgeConstraintAccess().getRule();
+	public ParserRule getBinaryRelationConstraintRule() {
+		return getBinaryRelationConstraintAccess().getRule();
 	}
 
 	//PatternModel:

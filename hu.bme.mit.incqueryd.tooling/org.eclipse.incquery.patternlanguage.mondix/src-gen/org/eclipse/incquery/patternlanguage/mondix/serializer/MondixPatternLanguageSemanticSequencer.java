@@ -3,10 +3,10 @@ package org.eclipse.incquery.patternlanguage.mondix.serializer;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint;
+import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.BinaryRelationConstraint;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternModel;
-import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.NodeConstraint;
+import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.UnaryRelationConstraint;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.Variable;
 import org.eclipse.incquery.patternlanguage.mondix.services.MondixPatternLanguageGrammarAccess;
 import org.eclipse.incquery.patternlanguage.patternLanguage.AggregatedValue;
@@ -100,10 +100,10 @@ public class MondixPatternLanguageSemanticSequencer extends PatternLanguageSeman
 	
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == MondixPatternLanguagePackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
-			case MondixPatternLanguagePackage.EDGE_CONSTRAINT:
-				if(context == grammarAccess.getConstraintRule() ||
-				   context == grammarAccess.getEdgeConstraintRule()) {
-					sequence_EdgeConstraint(context, (EdgeConstraint) semanticObject); 
+			case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT:
+				if(context == grammarAccess.getBinaryRelationConstraintRule() ||
+				   context == grammarAccess.getConstraintRule()) {
+					sequence_BinaryRelationConstraint(context, (BinaryRelationConstraint) semanticObject); 
 					return; 
 				}
 				else break;
@@ -113,10 +113,10 @@ public class MondixPatternLanguageSemanticSequencer extends PatternLanguageSeman
 					return; 
 				}
 				else break;
-			case MondixPatternLanguagePackage.NODE_CONSTRAINT:
+			case MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT:
 				if(context == grammarAccess.getConstraintRule() ||
-				   context == grammarAccess.getNodeConstraintRule()) {
-					sequence_NodeConstraint(context, (NodeConstraint) semanticObject); 
+				   context == grammarAccess.getUnaryRelationConstraintRule()) {
+					sequence_UnaryRelationConstraint(context, (UnaryRelationConstraint) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1417,22 +1417,22 @@ public class MondixPatternLanguageSemanticSequencer extends PatternLanguageSeman
 	
 	/**
 	 * Constraint:
-	 *     (refType=ID source=VariableReference target=ValueReference)
+	 *     (relation=[Relation|ID] source=VariableReference target=ValueReference)
 	 */
-	protected void sequence_EdgeConstraint(EObject context, EdgeConstraint semanticObject) {
+	protected void sequence_BinaryRelationConstraint(EObject context, BinaryRelationConstraint semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, MondixPatternLanguagePackage.Literals.EDGE_CONSTRAINT__REF_TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MondixPatternLanguagePackage.Literals.EDGE_CONSTRAINT__REF_TYPE));
-			if(transientValues.isValueTransient(semanticObject, MondixPatternLanguagePackage.Literals.EDGE_CONSTRAINT__SOURCE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MondixPatternLanguagePackage.Literals.EDGE_CONSTRAINT__SOURCE));
-			if(transientValues.isValueTransient(semanticObject, MondixPatternLanguagePackage.Literals.EDGE_CONSTRAINT__TARGET) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MondixPatternLanguagePackage.Literals.EDGE_CONSTRAINT__TARGET));
+			if(transientValues.isValueTransient(semanticObject, MondixPatternLanguagePackage.Literals.BINARY_RELATION_CONSTRAINT__RELATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MondixPatternLanguagePackage.Literals.BINARY_RELATION_CONSTRAINT__RELATION));
+			if(transientValues.isValueTransient(semanticObject, MondixPatternLanguagePackage.Literals.BINARY_RELATION_CONSTRAINT__SOURCE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MondixPatternLanguagePackage.Literals.BINARY_RELATION_CONSTRAINT__SOURCE));
+			if(transientValues.isValueTransient(semanticObject, MondixPatternLanguagePackage.Literals.BINARY_RELATION_CONSTRAINT__TARGET) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MondixPatternLanguagePackage.Literals.BINARY_RELATION_CONSTRAINT__TARGET));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getEdgeConstraintAccess().getRefTypeIDTerminalRuleCall_0_0(), semanticObject.getRefType());
-		feeder.accept(grammarAccess.getEdgeConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0(), semanticObject.getSource());
-		feeder.accept(grammarAccess.getEdgeConstraintAccess().getTargetValueReferenceParserRuleCall_4_0(), semanticObject.getTarget());
+		feeder.accept(grammarAccess.getBinaryRelationConstraintAccess().getRelationRelationIDTerminalRuleCall_0_0_1(), semanticObject.getRelation());
+		feeder.accept(grammarAccess.getBinaryRelationConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0(), semanticObject.getSource());
+		feeder.accept(grammarAccess.getBinaryRelationConstraintAccess().getTargetValueReferenceParserRuleCall_4_0(), semanticObject.getTarget());
 		feeder.finish();
 	}
 	
@@ -1448,28 +1448,28 @@ public class MondixPatternLanguageSemanticSequencer extends PatternLanguageSeman
 	
 	/**
 	 * Constraint:
-	 *     (type=ID variable=VariableReference)
+	 *     name=ID
 	 */
-	protected void sequence_NodeConstraint(EObject context, NodeConstraint semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, MondixPatternLanguagePackage.Literals.NODE_CONSTRAINT__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MondixPatternLanguagePackage.Literals.NODE_CONSTRAINT__TYPE));
-			if(transientValues.isValueTransient(semanticObject, MondixPatternLanguagePackage.Literals.NODE_CONSTRAINT__VARIABLE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MondixPatternLanguagePackage.Literals.NODE_CONSTRAINT__VARIABLE));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getNodeConstraintAccess().getTypeIDTerminalRuleCall_0_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getNodeConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0(), semanticObject.getVariable());
-		feeder.finish();
+	protected void sequence_Parameter(EObject context, Variable semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     name=ID
+	 *     (relation=[Relation|ID] variable=VariableReference)
 	 */
-	protected void sequence_Parameter(EObject context, Variable semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_UnaryRelationConstraint(EObject context, UnaryRelationConstraint semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, MondixPatternLanguagePackage.Literals.UNARY_RELATION_CONSTRAINT__RELATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MondixPatternLanguagePackage.Literals.UNARY_RELATION_CONSTRAINT__RELATION));
+			if(transientValues.isValueTransient(semanticObject, MondixPatternLanguagePackage.Literals.UNARY_RELATION_CONSTRAINT__VARIABLE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, MondixPatternLanguagePackage.Literals.UNARY_RELATION_CONSTRAINT__VARIABLE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getUnaryRelationConstraintAccess().getRelationRelationIDTerminalRuleCall_0_0_1(), semanticObject.getRelation());
+		feeder.accept(grammarAccess.getUnaryRelationConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0(), semanticObject.getVariable());
+		feeder.finish();
 	}
 }

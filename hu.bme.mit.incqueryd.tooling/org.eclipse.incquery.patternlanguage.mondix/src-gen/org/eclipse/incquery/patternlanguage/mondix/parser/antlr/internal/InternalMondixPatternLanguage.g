@@ -184,21 +184,21 @@ ruleConstraint returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getConstraintAccess().getNodeConstraintParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getConstraintAccess().getUnaryRelationConstraintParserRuleCall_2()); 
     }
-    this_NodeConstraint_2=ruleNodeConstraint
+    this_UnaryRelationConstraint_2=ruleUnaryRelationConstraint
     { 
-        $current = $this_NodeConstraint_2.current; 
+        $current = $this_UnaryRelationConstraint_2.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getConstraintAccess().getEdgeConstraintParserRuleCall_3()); 
+        newCompositeNode(grammarAccess.getConstraintAccess().getBinaryRelationConstraintParserRuleCall_3()); 
     }
-    this_EdgeConstraint_3=ruleEdgeConstraint
+    this_BinaryRelationConstraint_3=ruleBinaryRelationConstraint
     { 
-        $current = $this_EdgeConstraint_3.current; 
+        $current = $this_BinaryRelationConstraint_3.current; 
         afterParserOrEnumRuleCall();
     }
 )
@@ -208,50 +208,45 @@ ruleConstraint returns [EObject current=null]
 
 
 
-// Entry rule entryRuleNodeConstraint
-entryRuleNodeConstraint returns [EObject current=null] 
+// Entry rule entryRuleUnaryRelationConstraint
+entryRuleUnaryRelationConstraint returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getNodeConstraintRule()); }
-	 iv_ruleNodeConstraint=ruleNodeConstraint 
-	 { $current=$iv_ruleNodeConstraint.current; } 
+	{ newCompositeNode(grammarAccess.getUnaryRelationConstraintRule()); }
+	 iv_ruleUnaryRelationConstraint=ruleUnaryRelationConstraint 
+	 { $current=$iv_ruleUnaryRelationConstraint.current; } 
 	 EOF 
 ;
 
-// Rule NodeConstraint
-ruleNodeConstraint returns [EObject current=null] 
+// Rule UnaryRelationConstraint
+ruleUnaryRelationConstraint returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
 (
-		lv_type_0_0=RULE_ID
 		{
-			newLeafNode(lv_type_0_0, grammarAccess.getNodeConstraintAccess().getTypeIDTerminalRuleCall_0_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getNodeConstraintRule());
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getUnaryRelationConstraintRule());
 	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"type",
-        		lv_type_0_0, 
-        		"ID");
-	    }
+        }
+	otherlv_0=RULE_ID
+	{
+		newLeafNode(otherlv_0, grammarAccess.getUnaryRelationConstraintAccess().getRelationRelationCrossReference_0_0()); 
+	}
 
 )
 )	otherlv_1='(' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getNodeConstraintAccess().getLeftParenthesisKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getUnaryRelationConstraintAccess().getLeftParenthesisKeyword_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getNodeConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getUnaryRelationConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0()); 
 	    }
 		lv_variable_2_0=ruleVariableReference		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getNodeConstraintRule());
+	            $current = createModelElementForParent(grammarAccess.getUnaryRelationConstraintRule());
 	        }
        		set(
        			$current, 
@@ -264,7 +259,7 @@ ruleNodeConstraint returns [EObject current=null]
 )
 )	otherlv_3=')' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getNodeConstraintAccess().getRightParenthesisKeyword_3());
+    	newLeafNode(otherlv_3, grammarAccess.getUnaryRelationConstraintAccess().getRightParenthesisKeyword_3());
     }
 )
 ;
@@ -273,50 +268,45 @@ ruleNodeConstraint returns [EObject current=null]
 
 
 
-// Entry rule entryRuleEdgeConstraint
-entryRuleEdgeConstraint returns [EObject current=null] 
+// Entry rule entryRuleBinaryRelationConstraint
+entryRuleBinaryRelationConstraint returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getEdgeConstraintRule()); }
-	 iv_ruleEdgeConstraint=ruleEdgeConstraint 
-	 { $current=$iv_ruleEdgeConstraint.current; } 
+	{ newCompositeNode(grammarAccess.getBinaryRelationConstraintRule()); }
+	 iv_ruleBinaryRelationConstraint=ruleBinaryRelationConstraint 
+	 { $current=$iv_ruleBinaryRelationConstraint.current; } 
 	 EOF 
 ;
 
-// Rule EdgeConstraint
-ruleEdgeConstraint returns [EObject current=null] 
+// Rule BinaryRelationConstraint
+ruleBinaryRelationConstraint returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
 (
-		lv_refType_0_0=RULE_ID
 		{
-			newLeafNode(lv_refType_0_0, grammarAccess.getEdgeConstraintAccess().getRefTypeIDTerminalRuleCall_0_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getEdgeConstraintRule());
+			if ($current==null) {
+	            $current = createModelElement(grammarAccess.getBinaryRelationConstraintRule());
 	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"refType",
-        		lv_refType_0_0, 
-        		"ID");
-	    }
+        }
+	otherlv_0=RULE_ID
+	{
+		newLeafNode(otherlv_0, grammarAccess.getBinaryRelationConstraintAccess().getRelationRelationCrossReference_0_0()); 
+	}
 
 )
 )	otherlv_1='(' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getEdgeConstraintAccess().getLeftParenthesisKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getBinaryRelationConstraintAccess().getLeftParenthesisKeyword_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEdgeConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getBinaryRelationConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); 
 	    }
 		lv_source_2_0=ruleVariableReference		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getEdgeConstraintRule());
+	            $current = createModelElementForParent(grammarAccess.getBinaryRelationConstraintRule());
 	        }
        		set(
        			$current, 
@@ -329,16 +319,16 @@ ruleEdgeConstraint returns [EObject current=null]
 )
 )	otherlv_3=',' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getEdgeConstraintAccess().getCommaKeyword_3());
+    	newLeafNode(otherlv_3, grammarAccess.getBinaryRelationConstraintAccess().getCommaKeyword_3());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getEdgeConstraintAccess().getTargetValueReferenceParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getBinaryRelationConstraintAccess().getTargetValueReferenceParserRuleCall_4_0()); 
 	    }
 		lv_target_4_0=ruleValueReference		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getEdgeConstraintRule());
+	            $current = createModelElementForParent(grammarAccess.getBinaryRelationConstraintRule());
 	        }
        		set(
        			$current, 
@@ -351,7 +341,7 @@ ruleEdgeConstraint returns [EObject current=null]
 )
 )	otherlv_5=')' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getEdgeConstraintAccess().getRightParenthesisKeyword_5());
+    	newLeafNode(otherlv_5, grammarAccess.getBinaryRelationConstraintAccess().getRightParenthesisKeyword_5());
     }
 )
 ;

@@ -85,14 +85,14 @@ public class MondixPatternLanguageAdapterFactory extends AdapterFactoryImpl
         return createVariableAdapter();
       }
       @Override
-      public Adapter caseNodeConstraint(NodeConstraint object)
+      public Adapter caseUnaryRelationConstraint(UnaryRelationConstraint object)
       {
-        return createNodeConstraintAdapter();
+        return createUnaryRelationConstraintAdapter();
       }
       @Override
-      public Adapter caseEdgeConstraint(EdgeConstraint object)
+      public Adapter caseBinaryRelationConstraint(BinaryRelationConstraint object)
       {
-        return createEdgeConstraintAdapter();
+        return createBinaryRelationConstraintAdapter();
       }
       @Override
       public Adapter caseMondixPatternModel(MondixPatternModel object)
@@ -157,31 +157,31 @@ public class MondixPatternLanguageAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.NodeConstraint <em>Node Constraint</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.UnaryRelationConstraint <em>Unary Relation Constraint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.NodeConstraint
+   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.UnaryRelationConstraint
    * @generated
    */
-  public Adapter createNodeConstraintAdapter()
+  public Adapter createUnaryRelationConstraintAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint <em>Edge Constraint</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.BinaryRelationConstraint <em>Binary Relation Constraint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint
+   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.BinaryRelationConstraint
    * @generated
    */
-  public Adapter createEdgeConstraintAdapter()
+  public Adapter createBinaryRelationConstraintAdapter()
   {
     return null;
   }

@@ -32,22 +32,22 @@ public interface MondixPatternLanguageFactory extends EFactory
   Variable createVariable();
 
   /**
-   * Returns a new object of class '<em>Node Constraint</em>'.
+   * Returns a new object of class '<em>Unary Relation Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Node Constraint</em>'.
+   * @return a new object of class '<em>Unary Relation Constraint</em>'.
    * @generated
    */
-  NodeConstraint createNodeConstraint();
+  UnaryRelationConstraint createUnaryRelationConstraint();
 
   /**
-   * Returns a new object of class '<em>Edge Constraint</em>'.
+   * Returns a new object of class '<em>Binary Relation Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Edge Constraint</em>'.
+   * @return a new object of class '<em>Binary Relation Constraint</em>'.
    * @generated
    */
-  EdgeConstraint createEdgeConstraint();
+  BinaryRelationConstraint createBinaryRelationConstraint();
 
   /**
    * Returns a new object of class '<em>Mondix Pattern Model</em>'.

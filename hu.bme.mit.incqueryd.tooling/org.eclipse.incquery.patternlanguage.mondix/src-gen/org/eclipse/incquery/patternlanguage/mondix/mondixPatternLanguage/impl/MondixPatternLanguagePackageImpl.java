@@ -2,18 +2,19 @@
  */
 package org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
+import hu.bme.mit.incqueryd.mondixschema.MondixSchemaPackage;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint;
+import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.BinaryRelationConstraint;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguageFactory;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternModel;
-import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.NodeConstraint;
+import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.UnaryRelationConstraint;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.Variable;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternLanguagePackage;
@@ -38,14 +39,14 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass nodeConstraintEClass = null;
+  private EClass unaryRelationConstraintEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass edgeConstraintEClass = null;
+  private EClass binaryRelationConstraintEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -103,6 +104,7 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
     isInited = true;
 
     // Initialize simple dependencies
+    MondixSchemaPackage.eINSTANCE.eClass();
     PatternLanguagePackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
@@ -135,9 +137,9 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getNodeConstraint()
+  public EClass getUnaryRelationConstraint()
   {
-    return nodeConstraintEClass;
+    return unaryRelationConstraintEClass;
   }
 
   /**
@@ -145,9 +147,9 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getNodeConstraint_Type()
+  public EReference getUnaryRelationConstraint_Relation()
   {
-    return (EAttribute)nodeConstraintEClass.getEStructuralFeatures().get(0);
+    return (EReference)unaryRelationConstraintEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -155,9 +157,9 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getNodeConstraint_Variable()
+  public EReference getUnaryRelationConstraint_Variable()
   {
-    return (EReference)nodeConstraintEClass.getEStructuralFeatures().get(1);
+    return (EReference)unaryRelationConstraintEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -165,9 +167,9 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getEdgeConstraint()
+  public EClass getBinaryRelationConstraint()
   {
-    return edgeConstraintEClass;
+    return binaryRelationConstraintEClass;
   }
 
   /**
@@ -175,9 +177,9 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getEdgeConstraint_RefType()
+  public EReference getBinaryRelationConstraint_Relation()
   {
-    return (EAttribute)edgeConstraintEClass.getEStructuralFeatures().get(0);
+    return (EReference)binaryRelationConstraintEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -185,9 +187,9 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getEdgeConstraint_Source()
+  public EReference getBinaryRelationConstraint_Source()
   {
-    return (EReference)edgeConstraintEClass.getEStructuralFeatures().get(1);
+    return (EReference)binaryRelationConstraintEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -195,9 +197,9 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getEdgeConstraint_Target()
+  public EReference getBinaryRelationConstraint_Target()
   {
-    return (EReference)edgeConstraintEClass.getEStructuralFeatures().get(2);
+    return (EReference)binaryRelationConstraintEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -242,14 +244,14 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
     // Create classes and their features
     variableEClass = createEClass(VARIABLE);
 
-    nodeConstraintEClass = createEClass(NODE_CONSTRAINT);
-    createEAttribute(nodeConstraintEClass, NODE_CONSTRAINT__TYPE);
-    createEReference(nodeConstraintEClass, NODE_CONSTRAINT__VARIABLE);
+    unaryRelationConstraintEClass = createEClass(UNARY_RELATION_CONSTRAINT);
+    createEReference(unaryRelationConstraintEClass, UNARY_RELATION_CONSTRAINT__RELATION);
+    createEReference(unaryRelationConstraintEClass, UNARY_RELATION_CONSTRAINT__VARIABLE);
 
-    edgeConstraintEClass = createEClass(EDGE_CONSTRAINT);
-    createEAttribute(edgeConstraintEClass, EDGE_CONSTRAINT__REF_TYPE);
-    createEReference(edgeConstraintEClass, EDGE_CONSTRAINT__SOURCE);
-    createEReference(edgeConstraintEClass, EDGE_CONSTRAINT__TARGET);
+    binaryRelationConstraintEClass = createEClass(BINARY_RELATION_CONSTRAINT);
+    createEReference(binaryRelationConstraintEClass, BINARY_RELATION_CONSTRAINT__RELATION);
+    createEReference(binaryRelationConstraintEClass, BINARY_RELATION_CONSTRAINT__SOURCE);
+    createEReference(binaryRelationConstraintEClass, BINARY_RELATION_CONSTRAINT__TARGET);
 
     mondixPatternModelEClass = createEClass(MONDIX_PATTERN_MODEL);
   }
@@ -280,6 +282,7 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
 
     // Obtain other dependent packages
     PatternLanguagePackage thePatternLanguagePackage = (PatternLanguagePackage)EPackage.Registry.INSTANCE.getEPackage(PatternLanguagePackage.eNS_URI);
+    MondixSchemaPackage theMondixSchemaPackage = (MondixSchemaPackage)EPackage.Registry.INSTANCE.getEPackage(MondixSchemaPackage.eNS_URI);
 
     // Create type parameters
 
@@ -287,21 +290,21 @@ public class MondixPatternLanguagePackageImpl extends EPackageImpl implements Mo
 
     // Add supertypes to classes
     variableEClass.getESuperTypes().add(thePatternLanguagePackage.getVariable());
-    nodeConstraintEClass.getESuperTypes().add(thePatternLanguagePackage.getConstraint());
-    edgeConstraintEClass.getESuperTypes().add(thePatternLanguagePackage.getConstraint());
+    unaryRelationConstraintEClass.getESuperTypes().add(thePatternLanguagePackage.getConstraint());
+    binaryRelationConstraintEClass.getESuperTypes().add(thePatternLanguagePackage.getConstraint());
     mondixPatternModelEClass.getESuperTypes().add(thePatternLanguagePackage.getPatternModel());
 
     // Initialize classes and features; add operations and parameters
     initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(nodeConstraintEClass, NodeConstraint.class, "NodeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getNodeConstraint_Type(), ecorePackage.getEString(), "type", null, 0, 1, NodeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getNodeConstraint_Variable(), thePatternLanguagePackage.getVariableReference(), null, "variable", null, 0, 1, NodeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(unaryRelationConstraintEClass, UnaryRelationConstraint.class, "UnaryRelationConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getUnaryRelationConstraint_Relation(), theMondixSchemaPackage.getRelation(), null, "relation", null, 0, 1, UnaryRelationConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getUnaryRelationConstraint_Variable(), thePatternLanguagePackage.getVariableReference(), null, "variable", null, 0, 1, UnaryRelationConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(edgeConstraintEClass, EdgeConstraint.class, "EdgeConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEdgeConstraint_RefType(), ecorePackage.getEString(), "refType", null, 0, 1, EdgeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEdgeConstraint_Source(), thePatternLanguagePackage.getVariableReference(), null, "source", null, 0, 1, EdgeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEdgeConstraint_Target(), thePatternLanguagePackage.getValueReference(), null, "target", null, 0, 1, EdgeConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(binaryRelationConstraintEClass, BinaryRelationConstraint.class, "BinaryRelationConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBinaryRelationConstraint_Relation(), theMondixSchemaPackage.getRelation(), null, "relation", null, 0, 1, BinaryRelationConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBinaryRelationConstraint_Source(), thePatternLanguagePackage.getVariableReference(), null, "source", null, 0, 1, BinaryRelationConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBinaryRelationConstraint_Target(), thePatternLanguagePackage.getValueReference(), null, "target", null, 0, 1, BinaryRelationConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(mondixPatternModelEClass, MondixPatternModel.class, "MondixPatternModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

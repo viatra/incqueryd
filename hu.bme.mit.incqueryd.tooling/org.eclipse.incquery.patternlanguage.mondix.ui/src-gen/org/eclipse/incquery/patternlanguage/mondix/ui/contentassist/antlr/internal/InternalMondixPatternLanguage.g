@@ -141,25 +141,25 @@ finally {
 
 
 
-// Entry rule entryRuleNodeConstraint
-entryRuleNodeConstraint 
+// Entry rule entryRuleUnaryRelationConstraint
+entryRuleUnaryRelationConstraint 
 :
-{ before(grammarAccess.getNodeConstraintRule()); }
-	 ruleNodeConstraint
-{ after(grammarAccess.getNodeConstraintRule()); } 
+{ before(grammarAccess.getUnaryRelationConstraintRule()); }
+	 ruleUnaryRelationConstraint
+{ after(grammarAccess.getUnaryRelationConstraintRule()); } 
 	 EOF 
 ;
 
-// Rule NodeConstraint
-ruleNodeConstraint
+// Rule UnaryRelationConstraint
+ruleUnaryRelationConstraint
     @init {
 		int stackSize = keepStackSize();
     }
 	:
 (
-{ before(grammarAccess.getNodeConstraintAccess().getGroup()); }
-(rule__NodeConstraint__Group__0)
-{ after(grammarAccess.getNodeConstraintAccess().getGroup()); }
+{ before(grammarAccess.getUnaryRelationConstraintAccess().getGroup()); }
+(rule__UnaryRelationConstraint__Group__0)
+{ after(grammarAccess.getUnaryRelationConstraintAccess().getGroup()); }
 )
 
 ;
@@ -169,25 +169,25 @@ finally {
 
 
 
-// Entry rule entryRuleEdgeConstraint
-entryRuleEdgeConstraint 
+// Entry rule entryRuleBinaryRelationConstraint
+entryRuleBinaryRelationConstraint 
 :
-{ before(grammarAccess.getEdgeConstraintRule()); }
-	 ruleEdgeConstraint
-{ after(grammarAccess.getEdgeConstraintRule()); } 
+{ before(grammarAccess.getBinaryRelationConstraintRule()); }
+	 ruleBinaryRelationConstraint
+{ after(grammarAccess.getBinaryRelationConstraintRule()); } 
 	 EOF 
 ;
 
-// Rule EdgeConstraint
-ruleEdgeConstraint
+// Rule BinaryRelationConstraint
+ruleBinaryRelationConstraint
     @init {
 		int stackSize = keepStackSize();
     }
 	:
 (
-{ before(grammarAccess.getEdgeConstraintAccess().getGroup()); }
-(rule__EdgeConstraint__Group__0)
-{ after(grammarAccess.getEdgeConstraintAccess().getGroup()); }
+{ before(grammarAccess.getBinaryRelationConstraintAccess().getGroup()); }
+(rule__BinaryRelationConstraint__Group__0)
+{ after(grammarAccess.getBinaryRelationConstraintAccess().getGroup()); }
 )
 
 ;
@@ -3158,15 +3158,15 @@ rule__Constraint__Alternatives
 )
 
     |(
-{ before(grammarAccess.getConstraintAccess().getNodeConstraintParserRuleCall_2()); }
-	ruleNodeConstraint
-{ after(grammarAccess.getConstraintAccess().getNodeConstraintParserRuleCall_2()); }
+{ before(grammarAccess.getConstraintAccess().getUnaryRelationConstraintParserRuleCall_2()); }
+	ruleUnaryRelationConstraint
+{ after(grammarAccess.getConstraintAccess().getUnaryRelationConstraintParserRuleCall_2()); }
 )
 
     |(
-{ before(grammarAccess.getConstraintAccess().getEdgeConstraintParserRuleCall_3()); }
-	ruleEdgeConstraint
-{ after(grammarAccess.getConstraintAccess().getEdgeConstraintParserRuleCall_3()); }
+{ before(grammarAccess.getConstraintAccess().getBinaryRelationConstraintParserRuleCall_3()); }
+	ruleBinaryRelationConstraint
+{ after(grammarAccess.getConstraintAccess().getBinaryRelationConstraintParserRuleCall_3()); }
 )
 
 ;
@@ -4611,27 +4611,27 @@ finally {
 
 
 
-rule__NodeConstraint__Group__0
+rule__UnaryRelationConstraint__Group__0
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__NodeConstraint__Group__0__Impl
-	rule__NodeConstraint__Group__1
+	rule__UnaryRelationConstraint__Group__0__Impl
+	rule__UnaryRelationConstraint__Group__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__NodeConstraint__Group__0__Impl
+rule__UnaryRelationConstraint__Group__0__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getNodeConstraintAccess().getTypeAssignment_0()); }
-(rule__NodeConstraint__TypeAssignment_0)
-{ after(grammarAccess.getNodeConstraintAccess().getTypeAssignment_0()); }
+{ before(grammarAccess.getUnaryRelationConstraintAccess().getRelationAssignment_0()); }
+(rule__UnaryRelationConstraint__RelationAssignment_0)
+{ after(grammarAccess.getUnaryRelationConstraintAccess().getRelationAssignment_0()); }
 )
 
 ;
@@ -4640,29 +4640,29 @@ finally {
 }
 
 
-rule__NodeConstraint__Group__1
+rule__UnaryRelationConstraint__Group__1
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__NodeConstraint__Group__1__Impl
-	rule__NodeConstraint__Group__2
+	rule__UnaryRelationConstraint__Group__1__Impl
+	rule__UnaryRelationConstraint__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__NodeConstraint__Group__1__Impl
+rule__UnaryRelationConstraint__Group__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getNodeConstraintAccess().getLeftParenthesisKeyword_1()); }
+{ before(grammarAccess.getUnaryRelationConstraintAccess().getLeftParenthesisKeyword_1()); }
 
 	'(' 
 
-{ after(grammarAccess.getNodeConstraintAccess().getLeftParenthesisKeyword_1()); }
+{ after(grammarAccess.getUnaryRelationConstraintAccess().getLeftParenthesisKeyword_1()); }
 )
 
 ;
@@ -4671,27 +4671,27 @@ finally {
 }
 
 
-rule__NodeConstraint__Group__2
+rule__UnaryRelationConstraint__Group__2
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__NodeConstraint__Group__2__Impl
-	rule__NodeConstraint__Group__3
+	rule__UnaryRelationConstraint__Group__2__Impl
+	rule__UnaryRelationConstraint__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__NodeConstraint__Group__2__Impl
+rule__UnaryRelationConstraint__Group__2__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getNodeConstraintAccess().getVariableAssignment_2()); }
-(rule__NodeConstraint__VariableAssignment_2)
-{ after(grammarAccess.getNodeConstraintAccess().getVariableAssignment_2()); }
+{ before(grammarAccess.getUnaryRelationConstraintAccess().getVariableAssignment_2()); }
+(rule__UnaryRelationConstraint__VariableAssignment_2)
+{ after(grammarAccess.getUnaryRelationConstraintAccess().getVariableAssignment_2()); }
 )
 
 ;
@@ -4700,28 +4700,28 @@ finally {
 }
 
 
-rule__NodeConstraint__Group__3
+rule__UnaryRelationConstraint__Group__3
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__NodeConstraint__Group__3__Impl
+	rule__UnaryRelationConstraint__Group__3__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__NodeConstraint__Group__3__Impl
+rule__UnaryRelationConstraint__Group__3__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getNodeConstraintAccess().getRightParenthesisKeyword_3()); }
+{ before(grammarAccess.getUnaryRelationConstraintAccess().getRightParenthesisKeyword_3()); }
 
 	')' 
 
-{ after(grammarAccess.getNodeConstraintAccess().getRightParenthesisKeyword_3()); }
+{ after(grammarAccess.getUnaryRelationConstraintAccess().getRightParenthesisKeyword_3()); }
 )
 
 ;
@@ -4738,27 +4738,27 @@ finally {
 
 
 
-rule__EdgeConstraint__Group__0
+rule__BinaryRelationConstraint__Group__0
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__EdgeConstraint__Group__0__Impl
-	rule__EdgeConstraint__Group__1
+	rule__BinaryRelationConstraint__Group__0__Impl
+	rule__BinaryRelationConstraint__Group__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__EdgeConstraint__Group__0__Impl
+rule__BinaryRelationConstraint__Group__0__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getEdgeConstraintAccess().getRefTypeAssignment_0()); }
-(rule__EdgeConstraint__RefTypeAssignment_0)
-{ after(grammarAccess.getEdgeConstraintAccess().getRefTypeAssignment_0()); }
+{ before(grammarAccess.getBinaryRelationConstraintAccess().getRelationAssignment_0()); }
+(rule__BinaryRelationConstraint__RelationAssignment_0)
+{ after(grammarAccess.getBinaryRelationConstraintAccess().getRelationAssignment_0()); }
 )
 
 ;
@@ -4767,29 +4767,29 @@ finally {
 }
 
 
-rule__EdgeConstraint__Group__1
+rule__BinaryRelationConstraint__Group__1
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__EdgeConstraint__Group__1__Impl
-	rule__EdgeConstraint__Group__2
+	rule__BinaryRelationConstraint__Group__1__Impl
+	rule__BinaryRelationConstraint__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__EdgeConstraint__Group__1__Impl
+rule__BinaryRelationConstraint__Group__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getEdgeConstraintAccess().getLeftParenthesisKeyword_1()); }
+{ before(grammarAccess.getBinaryRelationConstraintAccess().getLeftParenthesisKeyword_1()); }
 
 	'(' 
 
-{ after(grammarAccess.getEdgeConstraintAccess().getLeftParenthesisKeyword_1()); }
+{ after(grammarAccess.getBinaryRelationConstraintAccess().getLeftParenthesisKeyword_1()); }
 )
 
 ;
@@ -4798,27 +4798,27 @@ finally {
 }
 
 
-rule__EdgeConstraint__Group__2
+rule__BinaryRelationConstraint__Group__2
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__EdgeConstraint__Group__2__Impl
-	rule__EdgeConstraint__Group__3
+	rule__BinaryRelationConstraint__Group__2__Impl
+	rule__BinaryRelationConstraint__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__EdgeConstraint__Group__2__Impl
+rule__BinaryRelationConstraint__Group__2__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getEdgeConstraintAccess().getSourceAssignment_2()); }
-(rule__EdgeConstraint__SourceAssignment_2)
-{ after(grammarAccess.getEdgeConstraintAccess().getSourceAssignment_2()); }
+{ before(grammarAccess.getBinaryRelationConstraintAccess().getSourceAssignment_2()); }
+(rule__BinaryRelationConstraint__SourceAssignment_2)
+{ after(grammarAccess.getBinaryRelationConstraintAccess().getSourceAssignment_2()); }
 )
 
 ;
@@ -4827,29 +4827,29 @@ finally {
 }
 
 
-rule__EdgeConstraint__Group__3
+rule__BinaryRelationConstraint__Group__3
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__EdgeConstraint__Group__3__Impl
-	rule__EdgeConstraint__Group__4
+	rule__BinaryRelationConstraint__Group__3__Impl
+	rule__BinaryRelationConstraint__Group__4
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__EdgeConstraint__Group__3__Impl
+rule__BinaryRelationConstraint__Group__3__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getEdgeConstraintAccess().getCommaKeyword_3()); }
+{ before(grammarAccess.getBinaryRelationConstraintAccess().getCommaKeyword_3()); }
 
 	',' 
 
-{ after(grammarAccess.getEdgeConstraintAccess().getCommaKeyword_3()); }
+{ after(grammarAccess.getBinaryRelationConstraintAccess().getCommaKeyword_3()); }
 )
 
 ;
@@ -4858,27 +4858,27 @@ finally {
 }
 
 
-rule__EdgeConstraint__Group__4
+rule__BinaryRelationConstraint__Group__4
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__EdgeConstraint__Group__4__Impl
-	rule__EdgeConstraint__Group__5
+	rule__BinaryRelationConstraint__Group__4__Impl
+	rule__BinaryRelationConstraint__Group__5
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__EdgeConstraint__Group__4__Impl
+rule__BinaryRelationConstraint__Group__4__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getEdgeConstraintAccess().getTargetAssignment_4()); }
-(rule__EdgeConstraint__TargetAssignment_4)
-{ after(grammarAccess.getEdgeConstraintAccess().getTargetAssignment_4()); }
+{ before(grammarAccess.getBinaryRelationConstraintAccess().getTargetAssignment_4()); }
+(rule__BinaryRelationConstraint__TargetAssignment_4)
+{ after(grammarAccess.getBinaryRelationConstraintAccess().getTargetAssignment_4()); }
 )
 
 ;
@@ -4887,28 +4887,28 @@ finally {
 }
 
 
-rule__EdgeConstraint__Group__5
+rule__BinaryRelationConstraint__Group__5
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__EdgeConstraint__Group__5__Impl
+	rule__BinaryRelationConstraint__Group__5__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__EdgeConstraint__Group__5__Impl
+rule__BinaryRelationConstraint__Group__5__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getEdgeConstraintAccess().getRightParenthesisKeyword_5()); }
+{ before(grammarAccess.getBinaryRelationConstraintAccess().getRightParenthesisKeyword_5()); }
 
 	')' 
 
-{ after(grammarAccess.getEdgeConstraintAccess().getRightParenthesisKeyword_5()); }
+{ after(grammarAccess.getBinaryRelationConstraintAccess().getRightParenthesisKeyword_5()); }
 )
 
 ;
@@ -21327,14 +21327,18 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__NodeConstraint__TypeAssignment_0
+rule__UnaryRelationConstraint__RelationAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getNodeConstraintAccess().getTypeIDTerminalRuleCall_0_0()); }
-	RULE_ID{ after(grammarAccess.getNodeConstraintAccess().getTypeIDTerminalRuleCall_0_0()); }
+{ before(grammarAccess.getUnaryRelationConstraintAccess().getRelationRelationCrossReference_0_0()); }
+(
+{ before(grammarAccess.getUnaryRelationConstraintAccess().getRelationRelationIDTerminalRuleCall_0_0_1()); }
+	RULE_ID{ after(grammarAccess.getUnaryRelationConstraintAccess().getRelationRelationIDTerminalRuleCall_0_0_1()); }
+)
+{ after(grammarAccess.getUnaryRelationConstraintAccess().getRelationRelationCrossReference_0_0()); }
 )
 
 ;
@@ -21342,14 +21346,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__NodeConstraint__VariableAssignment_2
+rule__UnaryRelationConstraint__VariableAssignment_2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getNodeConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0()); }
-	ruleVariableReference{ after(grammarAccess.getNodeConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0()); }
+{ before(grammarAccess.getUnaryRelationConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0()); }
+	ruleVariableReference{ after(grammarAccess.getUnaryRelationConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0()); }
 )
 
 ;
@@ -21357,14 +21361,18 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__EdgeConstraint__RefTypeAssignment_0
+rule__BinaryRelationConstraint__RelationAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getEdgeConstraintAccess().getRefTypeIDTerminalRuleCall_0_0()); }
-	RULE_ID{ after(grammarAccess.getEdgeConstraintAccess().getRefTypeIDTerminalRuleCall_0_0()); }
+{ before(grammarAccess.getBinaryRelationConstraintAccess().getRelationRelationCrossReference_0_0()); }
+(
+{ before(grammarAccess.getBinaryRelationConstraintAccess().getRelationRelationIDTerminalRuleCall_0_0_1()); }
+	RULE_ID{ after(grammarAccess.getBinaryRelationConstraintAccess().getRelationRelationIDTerminalRuleCall_0_0_1()); }
+)
+{ after(grammarAccess.getBinaryRelationConstraintAccess().getRelationRelationCrossReference_0_0()); }
 )
 
 ;
@@ -21372,14 +21380,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__EdgeConstraint__SourceAssignment_2
+rule__BinaryRelationConstraint__SourceAssignment_2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getEdgeConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); }
-	ruleVariableReference{ after(grammarAccess.getEdgeConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); }
+{ before(grammarAccess.getBinaryRelationConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); }
+	ruleVariableReference{ after(grammarAccess.getBinaryRelationConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); }
 )
 
 ;
@@ -21387,14 +21395,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__EdgeConstraint__TargetAssignment_4
+rule__BinaryRelationConstraint__TargetAssignment_4
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getEdgeConstraintAccess().getTargetValueReferenceParserRuleCall_4_0()); }
-	ruleValueReference{ after(grammarAccess.getEdgeConstraintAccess().getTargetValueReferenceParserRuleCall_4_0()); }
+{ before(grammarAccess.getBinaryRelationConstraintAccess().getTargetValueReferenceParserRuleCall_4_0()); }
+	ruleValueReference{ after(grammarAccess.getBinaryRelationConstraintAccess().getTargetValueReferenceParserRuleCall_4_0()); }
 )
 
 ;

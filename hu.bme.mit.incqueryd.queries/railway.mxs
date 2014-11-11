@@ -1,0 +1,10 @@
+schema TrainBenchmark
+
+relation Segment {
+	column segment
+}
+
+relation Segment_length {
+	column segment
+	column length
+}

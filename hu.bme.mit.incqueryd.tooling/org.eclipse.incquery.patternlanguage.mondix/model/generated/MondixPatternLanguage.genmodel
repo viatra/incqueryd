@@ -6,18 +6,18 @@
     modelName="MondixPatternLanguage" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.incquery.patternlanguage.mondix.edit"
     editorPluginID="org.eclipse.incquery.patternlanguage.mondix.editor" runtimeVersion="2.10"
-    usedGenPackages="platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.genmodel#//patternLanguage platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
+    usedGenPackages="platform:/resource/hu.bme.mit.incqueryd.mondixschema/model/MondixSchema.genmodel#//mondixschema platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.genmodel#//patternLanguage platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <genPackages prefix="MondixPatternLanguage" basePackage="org.eclipse.incquery.patternlanguage.mondix"
       disposableProviderFactory="true" fileExtensions="miq" ecorePackage="MondixPatternLanguage.ecore#/">
     <genClasses ecoreClass="MondixPatternLanguage.ecore#//Variable"/>
-    <genClasses ecoreClass="MondixPatternLanguage.ecore#//NodeConstraint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MondixPatternLanguage.ecore#//NodeConstraint/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MondixPatternLanguage.ecore#//NodeConstraint/variable"/>
+    <genClasses ecoreClass="MondixPatternLanguage.ecore#//UnaryRelationConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MondixPatternLanguage.ecore#//UnaryRelationConstraint/relation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MondixPatternLanguage.ecore#//UnaryRelationConstraint/variable"/>
     </genClasses>
-    <genClasses ecoreClass="MondixPatternLanguage.ecore#//EdgeConstraint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MondixPatternLanguage.ecore#//EdgeConstraint/refType"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MondixPatternLanguage.ecore#//EdgeConstraint/source"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MondixPatternLanguage.ecore#//EdgeConstraint/target"/>
+    <genClasses ecoreClass="MondixPatternLanguage.ecore#//BinaryRelationConstraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference MondixPatternLanguage.ecore#//BinaryRelationConstraint/relation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MondixPatternLanguage.ecore#//BinaryRelationConstraint/source"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MondixPatternLanguage.ecore#//BinaryRelationConstraint/target"/>
     </genClasses>
     <genClasses ecoreClass="MondixPatternLanguage.ecore#//MondixPatternModel"/>
   </genPackages>

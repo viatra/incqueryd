@@ -2,6 +2,8 @@
  */
 package org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl;
 
+import hu.bme.mit.incqueryd.mondixschema.Relation;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -11,7 +13,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage;
-import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.NodeConstraint;
+import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.UnaryRelationConstraint;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 
@@ -19,39 +21,29 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.impl.ConstraintImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Node Constraint</b></em>'.
+ * An implementation of the model object '<em><b>Unary Relation Constraint</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.NodeConstraintImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.NodeConstraintImpl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.UnaryRelationConstraintImpl#getRelation <em>Relation</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.UnaryRelationConstraintImpl#getVariable <em>Variable</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class NodeConstraintImpl extends ConstraintImpl implements NodeConstraint
+public class UnaryRelationConstraintImpl extends ConstraintImpl implements UnaryRelationConstraint
 {
   /**
-   * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+   * The cached value of the '{@link #getRelation() <em>Relation</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getRelation()
    * @generated
    * @ordered
    */
-  protected static final String TYPE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getType()
-   * @generated
-   * @ordered
-   */
-  protected String type = TYPE_EDEFAULT;
+  protected Relation relation;
 
   /**
    * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
@@ -68,7 +60,7 @@ public class NodeConstraintImpl extends ConstraintImpl implements NodeConstraint
    * <!-- end-user-doc -->
    * @generated
    */
-  protected NodeConstraintImpl()
+  protected UnaryRelationConstraintImpl()
   {
     super();
   }
@@ -81,7 +73,7 @@ public class NodeConstraintImpl extends ConstraintImpl implements NodeConstraint
   @Override
   protected EClass eStaticClass()
   {
-    return MondixPatternLanguagePackage.Literals.NODE_CONSTRAINT;
+    return MondixPatternLanguagePackage.Literals.UNARY_RELATION_CONSTRAINT;
   }
 
   /**
@@ -89,9 +81,19 @@ public class NodeConstraintImpl extends ConstraintImpl implements NodeConstraint
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getType()
+  public Relation getRelation()
   {
-    return type;
+    if (relation != null && relation.eIsProxy())
+    {
+      InternalEObject oldRelation = (InternalEObject)relation;
+      relation = (Relation)eResolveProxy(oldRelation);
+      if (relation != oldRelation)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__RELATION, oldRelation, relation));
+      }
+    }
+    return relation;
   }
 
   /**
@@ -99,12 +101,22 @@ public class NodeConstraintImpl extends ConstraintImpl implements NodeConstraint
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(String newType)
+  public Relation basicGetRelation()
   {
-    String oldType = type;
-    type = newType;
+    return relation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setRelation(Relation newRelation)
+  {
+    Relation oldRelation = relation;
+    relation = newRelation;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.NODE_CONSTRAINT__TYPE, oldType, type));
+      eNotify(new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__RELATION, oldRelation, relation));
   }
 
   /**
@@ -128,7 +140,7 @@ public class NodeConstraintImpl extends ConstraintImpl implements NodeConstraint
     variable = newVariable;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.NODE_CONSTRAINT__VARIABLE, oldVariable, newVariable);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__VARIABLE, oldVariable, newVariable);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -145,14 +157,14 @@ public class NodeConstraintImpl extends ConstraintImpl implements NodeConstraint
     {
       NotificationChain msgs = null;
       if (variable != null)
-        msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MondixPatternLanguagePackage.NODE_CONSTRAINT__VARIABLE, null, msgs);
+        msgs = ((InternalEObject)variable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__VARIABLE, null, msgs);
       if (newVariable != null)
-        msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MondixPatternLanguagePackage.NODE_CONSTRAINT__VARIABLE, null, msgs);
+        msgs = ((InternalEObject)newVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__VARIABLE, null, msgs);
       msgs = basicSetVariable(newVariable, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.NODE_CONSTRAINT__VARIABLE, newVariable, newVariable));
+      eNotify(new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__VARIABLE, newVariable, newVariable));
   }
 
   /**
@@ -165,7 +177,7 @@ public class NodeConstraintImpl extends ConstraintImpl implements NodeConstraint
   {
     switch (featureID)
     {
-      case MondixPatternLanguagePackage.NODE_CONSTRAINT__VARIABLE:
+      case MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__VARIABLE:
         return basicSetVariable(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -181,9 +193,10 @@ public class NodeConstraintImpl extends ConstraintImpl implements NodeConstraint
   {
     switch (featureID)
     {
-      case MondixPatternLanguagePackage.NODE_CONSTRAINT__TYPE:
-        return getType();
-      case MondixPatternLanguagePackage.NODE_CONSTRAINT__VARIABLE:
+      case MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__RELATION:
+        if (resolve) return getRelation();
+        return basicGetRelation();
+      case MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__VARIABLE:
         return getVariable();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -199,10 +212,10 @@ public class NodeConstraintImpl extends ConstraintImpl implements NodeConstraint
   {
     switch (featureID)
     {
-      case MondixPatternLanguagePackage.NODE_CONSTRAINT__TYPE:
-        setType((String)newValue);
+      case MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__RELATION:
+        setRelation((Relation)newValue);
         return;
-      case MondixPatternLanguagePackage.NODE_CONSTRAINT__VARIABLE:
+      case MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__VARIABLE:
         setVariable((VariableReference)newValue);
         return;
     }
@@ -219,10 +232,10 @@ public class NodeConstraintImpl extends ConstraintImpl implements NodeConstraint
   {
     switch (featureID)
     {
-      case MondixPatternLanguagePackage.NODE_CONSTRAINT__TYPE:
-        setType(TYPE_EDEFAULT);
+      case MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__RELATION:
+        setRelation((Relation)null);
         return;
-      case MondixPatternLanguagePackage.NODE_CONSTRAINT__VARIABLE:
+      case MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__VARIABLE:
         setVariable((VariableReference)null);
         return;
     }
@@ -239,29 +252,12 @@ public class NodeConstraintImpl extends ConstraintImpl implements NodeConstraint
   {
     switch (featureID)
     {
-      case MondixPatternLanguagePackage.NODE_CONSTRAINT__TYPE:
-        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-      case MondixPatternLanguagePackage.NODE_CONSTRAINT__VARIABLE:
+      case MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__RELATION:
+        return relation != null;
+      case MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT__VARIABLE:
         return variable != null;
     }
     return super.eIsSet(featureID);
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (type: ");
-    result.append(type);
-    result.append(')');
-    return result.toString();
-  }
-
-} //NodeConstraintImpl
+} //UnaryRelationConstraintImpl

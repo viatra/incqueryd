@@ -20,6 +20,8 @@ Workflow {
     	registerGenModelFile = "platform:/resource/org.eclipse.xtext.xbase/model/Xbase.genmodel"
     	registerGeneratedEPackage = "org.eclipse.incquery.patternlanguage.patternLanguage.PatternLanguagePackage"
 		registerGenModelFile = "platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.genmodel"
+		registerGeneratedEPackage = "hu.bme.mit.incqueryd.mondixschema.MondixSchemaPackage"
+		registerGenModelFile = "platform:/resource/hu.bme.mit.incqueryd.mondixschema/model/MondixSchema.genmodel"
     }
 
     component = DirectoryCleaner {

@@ -412,25 +412,25 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
     // $ANTLR end "ruleConstraint"
 
 
-    // $ANTLR start "entryRuleNodeConstraint"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:145:1: entryRuleNodeConstraint : ruleNodeConstraint EOF ;
-    public final void entryRuleNodeConstraint() throws RecognitionException {
+    // $ANTLR start "entryRuleUnaryRelationConstraint"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:145:1: entryRuleUnaryRelationConstraint : ruleUnaryRelationConstraint EOF ;
+    public final void entryRuleUnaryRelationConstraint() throws RecognitionException {
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:146:1: ( ruleNodeConstraint EOF )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:147:1: ruleNodeConstraint EOF
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:146:1: ( ruleUnaryRelationConstraint EOF )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:147:1: ruleUnaryRelationConstraint EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNodeConstraintRule()); 
+               before(grammarAccess.getUnaryRelationConstraintRule()); 
             }
-            pushFollow(FOLLOW_ruleNodeConstraint_in_entryRuleNodeConstraint247);
-            ruleNodeConstraint();
+            pushFollow(FOLLOW_ruleUnaryRelationConstraint_in_entryRuleUnaryRelationConstraint247);
+            ruleUnaryRelationConstraint();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNodeConstraintRule()); 
+               after(grammarAccess.getUnaryRelationConstraintRule()); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleNodeConstraint254); if (state.failed) return ;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleUnaryRelationConstraint254); if (state.failed) return ;
 
             }
 
@@ -443,30 +443,30 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "entryRuleNodeConstraint"
+    // $ANTLR end "entryRuleUnaryRelationConstraint"
 
 
-    // $ANTLR start "ruleNodeConstraint"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:154:1: ruleNodeConstraint : ( ( rule__NodeConstraint__Group__0 ) ) ;
-    public final void ruleNodeConstraint() throws RecognitionException {
+    // $ANTLR start "ruleUnaryRelationConstraint"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:154:1: ruleUnaryRelationConstraint : ( ( rule__UnaryRelationConstraint__Group__0 ) ) ;
+    public final void ruleUnaryRelationConstraint() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:158:2: ( ( ( rule__NodeConstraint__Group__0 ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:159:1: ( ( rule__NodeConstraint__Group__0 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:158:2: ( ( ( rule__UnaryRelationConstraint__Group__0 ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:159:1: ( ( rule__UnaryRelationConstraint__Group__0 ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:159:1: ( ( rule__NodeConstraint__Group__0 ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:160:1: ( rule__NodeConstraint__Group__0 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:159:1: ( ( rule__UnaryRelationConstraint__Group__0 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:160:1: ( rule__UnaryRelationConstraint__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNodeConstraintAccess().getGroup()); 
+               before(grammarAccess.getUnaryRelationConstraintAccess().getGroup()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:161:1: ( rule__NodeConstraint__Group__0 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:161:2: rule__NodeConstraint__Group__0
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:161:1: ( rule__UnaryRelationConstraint__Group__0 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:161:2: rule__UnaryRelationConstraint__Group__0
             {
-            pushFollow(FOLLOW_rule__NodeConstraint__Group__0_in_ruleNodeConstraint280);
-            rule__NodeConstraint__Group__0();
+            pushFollow(FOLLOW_rule__UnaryRelationConstraint__Group__0_in_ruleUnaryRelationConstraint280);
+            rule__UnaryRelationConstraint__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -474,7 +474,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNodeConstraintAccess().getGroup()); 
+               after(grammarAccess.getUnaryRelationConstraintAccess().getGroup()); 
             }
 
             }
@@ -494,28 +494,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "ruleNodeConstraint"
+    // $ANTLR end "ruleUnaryRelationConstraint"
 
 
-    // $ANTLR start "entryRuleEdgeConstraint"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:173:1: entryRuleEdgeConstraint : ruleEdgeConstraint EOF ;
-    public final void entryRuleEdgeConstraint() throws RecognitionException {
+    // $ANTLR start "entryRuleBinaryRelationConstraint"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:173:1: entryRuleBinaryRelationConstraint : ruleBinaryRelationConstraint EOF ;
+    public final void entryRuleBinaryRelationConstraint() throws RecognitionException {
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:174:1: ( ruleEdgeConstraint EOF )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:175:1: ruleEdgeConstraint EOF
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:174:1: ( ruleBinaryRelationConstraint EOF )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:175:1: ruleBinaryRelationConstraint EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEdgeConstraintRule()); 
+               before(grammarAccess.getBinaryRelationConstraintRule()); 
             }
-            pushFollow(FOLLOW_ruleEdgeConstraint_in_entryRuleEdgeConstraint307);
-            ruleEdgeConstraint();
+            pushFollow(FOLLOW_ruleBinaryRelationConstraint_in_entryRuleBinaryRelationConstraint307);
+            ruleBinaryRelationConstraint();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEdgeConstraintRule()); 
+               after(grammarAccess.getBinaryRelationConstraintRule()); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleEdgeConstraint314); if (state.failed) return ;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBinaryRelationConstraint314); if (state.failed) return ;
 
             }
 
@@ -528,30 +528,30 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "entryRuleEdgeConstraint"
+    // $ANTLR end "entryRuleBinaryRelationConstraint"
 
 
-    // $ANTLR start "ruleEdgeConstraint"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:182:1: ruleEdgeConstraint : ( ( rule__EdgeConstraint__Group__0 ) ) ;
-    public final void ruleEdgeConstraint() throws RecognitionException {
+    // $ANTLR start "ruleBinaryRelationConstraint"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:182:1: ruleBinaryRelationConstraint : ( ( rule__BinaryRelationConstraint__Group__0 ) ) ;
+    public final void ruleBinaryRelationConstraint() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:186:2: ( ( ( rule__EdgeConstraint__Group__0 ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:187:1: ( ( rule__EdgeConstraint__Group__0 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:186:2: ( ( ( rule__BinaryRelationConstraint__Group__0 ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:187:1: ( ( rule__BinaryRelationConstraint__Group__0 ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:187:1: ( ( rule__EdgeConstraint__Group__0 ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:188:1: ( rule__EdgeConstraint__Group__0 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:187:1: ( ( rule__BinaryRelationConstraint__Group__0 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:188:1: ( rule__BinaryRelationConstraint__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEdgeConstraintAccess().getGroup()); 
+               before(grammarAccess.getBinaryRelationConstraintAccess().getGroup()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:189:1: ( rule__EdgeConstraint__Group__0 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:189:2: rule__EdgeConstraint__Group__0
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:189:1: ( rule__BinaryRelationConstraint__Group__0 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:189:2: rule__BinaryRelationConstraint__Group__0
             {
-            pushFollow(FOLLOW_rule__EdgeConstraint__Group__0_in_ruleEdgeConstraint340);
-            rule__EdgeConstraint__Group__0();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__Group__0_in_ruleBinaryRelationConstraint340);
+            rule__BinaryRelationConstraint__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -559,7 +559,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEdgeConstraintAccess().getGroup()); 
+               after(grammarAccess.getBinaryRelationConstraintAccess().getGroup()); 
             }
 
             }
@@ -579,7 +579,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "ruleEdgeConstraint"
+    // $ANTLR end "ruleBinaryRelationConstraint"
 
 
     // $ANTLR start "entryRulePattern"
@@ -9404,13 +9404,13 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__Constraint__Alternatives"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3143:1: rule__Constraint__Alternatives : ( ( rulePatternCompositionConstraint ) | ( ruleCompareConstraint ) | ( ruleNodeConstraint ) | ( ruleEdgeConstraint ) );
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3143:1: rule__Constraint__Alternatives : ( ( rulePatternCompositionConstraint ) | ( ruleCompareConstraint ) | ( ruleUnaryRelationConstraint ) | ( ruleBinaryRelationConstraint ) );
     public final void rule__Constraint__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3147:1: ( ( rulePatternCompositionConstraint ) | ( ruleCompareConstraint ) | ( ruleNodeConstraint ) | ( ruleEdgeConstraint ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3147:1: ( ( rulePatternCompositionConstraint ) | ( ruleCompareConstraint ) | ( ruleUnaryRelationConstraint ) | ( ruleBinaryRelationConstraint ) )
             int alt2=4;
             switch ( input.LA(1) ) {
             case 63:
@@ -9436,10 +9436,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                 {
                 int LA2_3 = input.LA(2);
 
-                if ( ((LA2_3>=25 && LA2_3<=26)) ) {
-                    alt2=2;
-                }
-                else if ( (LA2_3==55) ) {
+                if ( (LA2_3==55) ) {
                     int LA2_4 = input.LA(3);
 
                     if ( (LA2_4==RULE_ID) ) {
@@ -9466,6 +9463,9 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
                         throw nvae;
                     }
+                }
+                else if ( ((LA2_3>=25 && LA2_3<=26)) ) {
+                    alt2=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -9532,21 +9532,21 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3160:6: ( ruleNodeConstraint )
+                    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3160:6: ( ruleUnaryRelationConstraint )
                     {
-                    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3160:6: ( ruleNodeConstraint )
-                    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3161:1: ruleNodeConstraint
+                    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3160:6: ( ruleUnaryRelationConstraint )
+                    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3161:1: ruleUnaryRelationConstraint
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getConstraintAccess().getNodeConstraintParserRuleCall_2()); 
+                       before(grammarAccess.getConstraintAccess().getUnaryRelationConstraintParserRuleCall_2()); 
                     }
-                    pushFollow(FOLLOW_ruleNodeConstraint_in_rule__Constraint__Alternatives6674);
-                    ruleNodeConstraint();
+                    pushFollow(FOLLOW_ruleUnaryRelationConstraint_in_rule__Constraint__Alternatives6674);
+                    ruleUnaryRelationConstraint();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getConstraintAccess().getNodeConstraintParserRuleCall_2()); 
+                       after(grammarAccess.getConstraintAccess().getUnaryRelationConstraintParserRuleCall_2()); 
                     }
 
                     }
@@ -9555,21 +9555,21 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3166:6: ( ruleEdgeConstraint )
+                    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3166:6: ( ruleBinaryRelationConstraint )
                     {
-                    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3166:6: ( ruleEdgeConstraint )
-                    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3167:1: ruleEdgeConstraint
+                    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3166:6: ( ruleBinaryRelationConstraint )
+                    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:3167:1: ruleBinaryRelationConstraint
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getConstraintAccess().getEdgeConstraintParserRuleCall_3()); 
+                       before(grammarAccess.getConstraintAccess().getBinaryRelationConstraintParserRuleCall_3()); 
                     }
-                    pushFollow(FOLLOW_ruleEdgeConstraint_in_rule__Constraint__Alternatives6691);
-                    ruleEdgeConstraint();
+                    pushFollow(FOLLOW_ruleBinaryRelationConstraint_in_rule__Constraint__Alternatives6691);
+                    ruleBinaryRelationConstraint();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getConstraintAccess().getEdgeConstraintParserRuleCall_3()); 
+                       after(grammarAccess.getConstraintAccess().getBinaryRelationConstraintParserRuleCall_3()); 
                     }
 
                     }
@@ -9826,11 +9826,11 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                 if ( (LA5_1==RULE_INT) ) {
                     int LA5_2 = input.LA(3);
 
-                    if ( (LA5_2==47) ) {
-                        alt5=3;
-                    }
-                    else if ( (LA5_2==EOF||(LA5_2>=25 && LA5_2<=26)||LA5_2==48||LA5_2==56||(LA5_2>=61 && LA5_2<=62)) ) {
+                    if ( (LA5_2==EOF||(LA5_2>=25 && LA5_2<=26)||LA5_2==48||LA5_2==56||(LA5_2>=61 && LA5_2<=62)) ) {
                         alt5=1;
+                    }
+                    else if ( (LA5_2==47) ) {
+                        alt5=3;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return ;}
@@ -9853,11 +9853,11 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                 {
                 int LA5_2 = input.LA(2);
 
-                if ( (LA5_2==47) ) {
-                    alt5=3;
-                }
-                else if ( (LA5_2==EOF||(LA5_2>=25 && LA5_2<=26)||LA5_2==48||LA5_2==56||(LA5_2>=61 && LA5_2<=62)) ) {
+                if ( (LA5_2==EOF||(LA5_2>=25 && LA5_2<=26)||LA5_2==48||LA5_2==56||(LA5_2>=61 && LA5_2<=62)) ) {
                     alt5=1;
+                }
+                else if ( (LA5_2==47) ) {
+                    alt5=3;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -10252,11 +10252,11 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                 {
                 int LA8_2 = input.LA(2);
 
-                if ( (LA8_2==13) ) {
-                    alt8=1;
-                }
-                else if ( (LA8_2==EOF||(LA8_2>=RULE_ID && LA8_2<=RULE_STRING)||(LA8_2>=14 && LA8_2<=17)||(LA8_2>=20 && LA8_2<=56)||(LA8_2>=60 && LA8_2<=62)||(LA8_2>=64 && LA8_2<=65)||(LA8_2>=68 && LA8_2<=88)||(LA8_2>=93 && LA8_2<=94)||LA8_2==96) ) {
+                if ( (LA8_2==EOF||(LA8_2>=RULE_ID && LA8_2<=RULE_STRING)||(LA8_2>=14 && LA8_2<=17)||(LA8_2>=20 && LA8_2<=56)||(LA8_2>=60 && LA8_2<=62)||(LA8_2>=64 && LA8_2<=65)||(LA8_2>=68 && LA8_2<=88)||(LA8_2>=93 && LA8_2<=94)||LA8_2==96) ) {
                     alt8=2;
+                }
+                else if ( (LA8_2==13) ) {
+                    alt8=1;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -10271,11 +10271,11 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                 {
                 int LA8_3 = input.LA(2);
 
-                if ( (LA8_3==EOF||(LA8_3>=RULE_ID && LA8_3<=RULE_STRING)||(LA8_3>=14 && LA8_3<=17)||(LA8_3>=20 && LA8_3<=56)||(LA8_3>=60 && LA8_3<=62)||(LA8_3>=64 && LA8_3<=65)||(LA8_3>=68 && LA8_3<=88)||(LA8_3>=93 && LA8_3<=94)||LA8_3==96) ) {
-                    alt8=2;
-                }
-                else if ( (LA8_3==13) ) {
+                if ( (LA8_3==13) ) {
                     alt8=1;
+                }
+                else if ( (LA8_3==EOF||(LA8_3>=RULE_ID && LA8_3<=RULE_STRING)||(LA8_3>=14 && LA8_3<=17)||(LA8_3>=20 && LA8_3<=56)||(LA8_3>=60 && LA8_3<=62)||(LA8_3>=64 && LA8_3<=65)||(LA8_3>=68 && LA8_3<=88)||(LA8_3>=93 && LA8_3<=94)||LA8_3==96) ) {
+                    alt8=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -10290,11 +10290,11 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                 {
                 int LA8_4 = input.LA(2);
 
-                if ( (LA8_4==EOF||(LA8_4>=RULE_ID && LA8_4<=RULE_STRING)||(LA8_4>=14 && LA8_4<=17)||(LA8_4>=20 && LA8_4<=56)||(LA8_4>=60 && LA8_4<=62)||(LA8_4>=64 && LA8_4<=65)||(LA8_4>=68 && LA8_4<=88)||(LA8_4>=93 && LA8_4<=94)||LA8_4==96) ) {
-                    alt8=2;
-                }
-                else if ( (LA8_4==13) ) {
+                if ( (LA8_4==13) ) {
                     alt8=1;
+                }
+                else if ( (LA8_4==EOF||(LA8_4>=RULE_ID && LA8_4<=RULE_STRING)||(LA8_4>=14 && LA8_4<=17)||(LA8_4>=20 && LA8_4<=56)||(LA8_4>=60 && LA8_4<=62)||(LA8_4>=64 && LA8_4<=65)||(LA8_4>=68 && LA8_4<=88)||(LA8_4>=93 && LA8_4<=94)||LA8_4==96) ) {
+                    alt8=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
@@ -15202,23 +15202,23 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
     // $ANTLR end "rule__MondixPatternModel__Group__1__Impl"
 
 
-    // $ANTLR start "rule__NodeConstraint__Group__0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4614:1: rule__NodeConstraint__Group__0 : rule__NodeConstraint__Group__0__Impl rule__NodeConstraint__Group__1 ;
-    public final void rule__NodeConstraint__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__UnaryRelationConstraint__Group__0"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4614:1: rule__UnaryRelationConstraint__Group__0 : rule__UnaryRelationConstraint__Group__0__Impl rule__UnaryRelationConstraint__Group__1 ;
+    public final void rule__UnaryRelationConstraint__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4618:1: ( rule__NodeConstraint__Group__0__Impl rule__NodeConstraint__Group__1 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4619:2: rule__NodeConstraint__Group__0__Impl rule__NodeConstraint__Group__1
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4618:1: ( rule__UnaryRelationConstraint__Group__0__Impl rule__UnaryRelationConstraint__Group__1 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4619:2: rule__UnaryRelationConstraint__Group__0__Impl rule__UnaryRelationConstraint__Group__1
             {
-            pushFollow(FOLLOW_rule__NodeConstraint__Group__0__Impl_in_rule__NodeConstraint__Group__010059);
-            rule__NodeConstraint__Group__0__Impl();
+            pushFollow(FOLLOW_rule__UnaryRelationConstraint__Group__0__Impl_in_rule__UnaryRelationConstraint__Group__010059);
+            rule__UnaryRelationConstraint__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__NodeConstraint__Group__1_in_rule__NodeConstraint__Group__010062);
-            rule__NodeConstraint__Group__1();
+            pushFollow(FOLLOW_rule__UnaryRelationConstraint__Group__1_in_rule__UnaryRelationConstraint__Group__010062);
+            rule__UnaryRelationConstraint__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15237,30 +15237,30 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__NodeConstraint__Group__0"
+    // $ANTLR end "rule__UnaryRelationConstraint__Group__0"
 
 
-    // $ANTLR start "rule__NodeConstraint__Group__0__Impl"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4626:1: rule__NodeConstraint__Group__0__Impl : ( ( rule__NodeConstraint__TypeAssignment_0 ) ) ;
-    public final void rule__NodeConstraint__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__UnaryRelationConstraint__Group__0__Impl"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4626:1: rule__UnaryRelationConstraint__Group__0__Impl : ( ( rule__UnaryRelationConstraint__RelationAssignment_0 ) ) ;
+    public final void rule__UnaryRelationConstraint__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4630:1: ( ( ( rule__NodeConstraint__TypeAssignment_0 ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4631:1: ( ( rule__NodeConstraint__TypeAssignment_0 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4630:1: ( ( ( rule__UnaryRelationConstraint__RelationAssignment_0 ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4631:1: ( ( rule__UnaryRelationConstraint__RelationAssignment_0 ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4631:1: ( ( rule__NodeConstraint__TypeAssignment_0 ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4632:1: ( rule__NodeConstraint__TypeAssignment_0 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4631:1: ( ( rule__UnaryRelationConstraint__RelationAssignment_0 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4632:1: ( rule__UnaryRelationConstraint__RelationAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNodeConstraintAccess().getTypeAssignment_0()); 
+               before(grammarAccess.getUnaryRelationConstraintAccess().getRelationAssignment_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4633:1: ( rule__NodeConstraint__TypeAssignment_0 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4633:2: rule__NodeConstraint__TypeAssignment_0
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4633:1: ( rule__UnaryRelationConstraint__RelationAssignment_0 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4633:2: rule__UnaryRelationConstraint__RelationAssignment_0
             {
-            pushFollow(FOLLOW_rule__NodeConstraint__TypeAssignment_0_in_rule__NodeConstraint__Group__0__Impl10089);
-            rule__NodeConstraint__TypeAssignment_0();
+            pushFollow(FOLLOW_rule__UnaryRelationConstraint__RelationAssignment_0_in_rule__UnaryRelationConstraint__Group__0__Impl10089);
+            rule__UnaryRelationConstraint__RelationAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15268,7 +15268,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNodeConstraintAccess().getTypeAssignment_0()); 
+               after(grammarAccess.getUnaryRelationConstraintAccess().getRelationAssignment_0()); 
             }
 
             }
@@ -15288,26 +15288,26 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__NodeConstraint__Group__0__Impl"
+    // $ANTLR end "rule__UnaryRelationConstraint__Group__0__Impl"
 
 
-    // $ANTLR start "rule__NodeConstraint__Group__1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4643:1: rule__NodeConstraint__Group__1 : rule__NodeConstraint__Group__1__Impl rule__NodeConstraint__Group__2 ;
-    public final void rule__NodeConstraint__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__UnaryRelationConstraint__Group__1"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4643:1: rule__UnaryRelationConstraint__Group__1 : rule__UnaryRelationConstraint__Group__1__Impl rule__UnaryRelationConstraint__Group__2 ;
+    public final void rule__UnaryRelationConstraint__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4647:1: ( rule__NodeConstraint__Group__1__Impl rule__NodeConstraint__Group__2 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4648:2: rule__NodeConstraint__Group__1__Impl rule__NodeConstraint__Group__2
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4647:1: ( rule__UnaryRelationConstraint__Group__1__Impl rule__UnaryRelationConstraint__Group__2 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4648:2: rule__UnaryRelationConstraint__Group__1__Impl rule__UnaryRelationConstraint__Group__2
             {
-            pushFollow(FOLLOW_rule__NodeConstraint__Group__1__Impl_in_rule__NodeConstraint__Group__110119);
-            rule__NodeConstraint__Group__1__Impl();
+            pushFollow(FOLLOW_rule__UnaryRelationConstraint__Group__1__Impl_in_rule__UnaryRelationConstraint__Group__110119);
+            rule__UnaryRelationConstraint__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__NodeConstraint__Group__2_in_rule__NodeConstraint__Group__110122);
-            rule__NodeConstraint__Group__2();
+            pushFollow(FOLLOW_rule__UnaryRelationConstraint__Group__2_in_rule__UnaryRelationConstraint__Group__110122);
+            rule__UnaryRelationConstraint__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15326,12 +15326,12 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__NodeConstraint__Group__1"
+    // $ANTLR end "rule__UnaryRelationConstraint__Group__1"
 
 
-    // $ANTLR start "rule__NodeConstraint__Group__1__Impl"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4655:1: rule__NodeConstraint__Group__1__Impl : ( '(' ) ;
-    public final void rule__NodeConstraint__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__UnaryRelationConstraint__Group__1__Impl"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4655:1: rule__UnaryRelationConstraint__Group__1__Impl : ( '(' ) ;
+    public final void rule__UnaryRelationConstraint__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -15343,11 +15343,11 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
             // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4661:1: '('
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNodeConstraintAccess().getLeftParenthesisKeyword_1()); 
+               before(grammarAccess.getUnaryRelationConstraintAccess().getLeftParenthesisKeyword_1()); 
             }
-            match(input,55,FOLLOW_55_in_rule__NodeConstraint__Group__1__Impl10150); if (state.failed) return ;
+            match(input,55,FOLLOW_55_in_rule__UnaryRelationConstraint__Group__1__Impl10150); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNodeConstraintAccess().getLeftParenthesisKeyword_1()); 
+               after(grammarAccess.getUnaryRelationConstraintAccess().getLeftParenthesisKeyword_1()); 
             }
 
             }
@@ -15367,26 +15367,26 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__NodeConstraint__Group__1__Impl"
+    // $ANTLR end "rule__UnaryRelationConstraint__Group__1__Impl"
 
 
-    // $ANTLR start "rule__NodeConstraint__Group__2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4674:1: rule__NodeConstraint__Group__2 : rule__NodeConstraint__Group__2__Impl rule__NodeConstraint__Group__3 ;
-    public final void rule__NodeConstraint__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__UnaryRelationConstraint__Group__2"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4674:1: rule__UnaryRelationConstraint__Group__2 : rule__UnaryRelationConstraint__Group__2__Impl rule__UnaryRelationConstraint__Group__3 ;
+    public final void rule__UnaryRelationConstraint__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4678:1: ( rule__NodeConstraint__Group__2__Impl rule__NodeConstraint__Group__3 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4679:2: rule__NodeConstraint__Group__2__Impl rule__NodeConstraint__Group__3
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4678:1: ( rule__UnaryRelationConstraint__Group__2__Impl rule__UnaryRelationConstraint__Group__3 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4679:2: rule__UnaryRelationConstraint__Group__2__Impl rule__UnaryRelationConstraint__Group__3
             {
-            pushFollow(FOLLOW_rule__NodeConstraint__Group__2__Impl_in_rule__NodeConstraint__Group__210181);
-            rule__NodeConstraint__Group__2__Impl();
+            pushFollow(FOLLOW_rule__UnaryRelationConstraint__Group__2__Impl_in_rule__UnaryRelationConstraint__Group__210181);
+            rule__UnaryRelationConstraint__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__NodeConstraint__Group__3_in_rule__NodeConstraint__Group__210184);
-            rule__NodeConstraint__Group__3();
+            pushFollow(FOLLOW_rule__UnaryRelationConstraint__Group__3_in_rule__UnaryRelationConstraint__Group__210184);
+            rule__UnaryRelationConstraint__Group__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15405,30 +15405,30 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__NodeConstraint__Group__2"
+    // $ANTLR end "rule__UnaryRelationConstraint__Group__2"
 
 
-    // $ANTLR start "rule__NodeConstraint__Group__2__Impl"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4686:1: rule__NodeConstraint__Group__2__Impl : ( ( rule__NodeConstraint__VariableAssignment_2 ) ) ;
-    public final void rule__NodeConstraint__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__UnaryRelationConstraint__Group__2__Impl"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4686:1: rule__UnaryRelationConstraint__Group__2__Impl : ( ( rule__UnaryRelationConstraint__VariableAssignment_2 ) ) ;
+    public final void rule__UnaryRelationConstraint__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4690:1: ( ( ( rule__NodeConstraint__VariableAssignment_2 ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4691:1: ( ( rule__NodeConstraint__VariableAssignment_2 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4690:1: ( ( ( rule__UnaryRelationConstraint__VariableAssignment_2 ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4691:1: ( ( rule__UnaryRelationConstraint__VariableAssignment_2 ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4691:1: ( ( rule__NodeConstraint__VariableAssignment_2 ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4692:1: ( rule__NodeConstraint__VariableAssignment_2 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4691:1: ( ( rule__UnaryRelationConstraint__VariableAssignment_2 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4692:1: ( rule__UnaryRelationConstraint__VariableAssignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNodeConstraintAccess().getVariableAssignment_2()); 
+               before(grammarAccess.getUnaryRelationConstraintAccess().getVariableAssignment_2()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4693:1: ( rule__NodeConstraint__VariableAssignment_2 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4693:2: rule__NodeConstraint__VariableAssignment_2
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4693:1: ( rule__UnaryRelationConstraint__VariableAssignment_2 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4693:2: rule__UnaryRelationConstraint__VariableAssignment_2
             {
-            pushFollow(FOLLOW_rule__NodeConstraint__VariableAssignment_2_in_rule__NodeConstraint__Group__2__Impl10211);
-            rule__NodeConstraint__VariableAssignment_2();
+            pushFollow(FOLLOW_rule__UnaryRelationConstraint__VariableAssignment_2_in_rule__UnaryRelationConstraint__Group__2__Impl10211);
+            rule__UnaryRelationConstraint__VariableAssignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15436,7 +15436,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNodeConstraintAccess().getVariableAssignment_2()); 
+               after(grammarAccess.getUnaryRelationConstraintAccess().getVariableAssignment_2()); 
             }
 
             }
@@ -15456,21 +15456,21 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__NodeConstraint__Group__2__Impl"
+    // $ANTLR end "rule__UnaryRelationConstraint__Group__2__Impl"
 
 
-    // $ANTLR start "rule__NodeConstraint__Group__3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4703:1: rule__NodeConstraint__Group__3 : rule__NodeConstraint__Group__3__Impl ;
-    public final void rule__NodeConstraint__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__UnaryRelationConstraint__Group__3"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4703:1: rule__UnaryRelationConstraint__Group__3 : rule__UnaryRelationConstraint__Group__3__Impl ;
+    public final void rule__UnaryRelationConstraint__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4707:1: ( rule__NodeConstraint__Group__3__Impl )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4708:2: rule__NodeConstraint__Group__3__Impl
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4707:1: ( rule__UnaryRelationConstraint__Group__3__Impl )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4708:2: rule__UnaryRelationConstraint__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__NodeConstraint__Group__3__Impl_in_rule__NodeConstraint__Group__310241);
-            rule__NodeConstraint__Group__3__Impl();
+            pushFollow(FOLLOW_rule__UnaryRelationConstraint__Group__3__Impl_in_rule__UnaryRelationConstraint__Group__310241);
+            rule__UnaryRelationConstraint__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15489,12 +15489,12 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__NodeConstraint__Group__3"
+    // $ANTLR end "rule__UnaryRelationConstraint__Group__3"
 
 
-    // $ANTLR start "rule__NodeConstraint__Group__3__Impl"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4714:1: rule__NodeConstraint__Group__3__Impl : ( ')' ) ;
-    public final void rule__NodeConstraint__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__UnaryRelationConstraint__Group__3__Impl"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4714:1: rule__UnaryRelationConstraint__Group__3__Impl : ( ')' ) ;
+    public final void rule__UnaryRelationConstraint__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -15506,11 +15506,11 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
             // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4720:1: ')'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNodeConstraintAccess().getRightParenthesisKeyword_3()); 
+               before(grammarAccess.getUnaryRelationConstraintAccess().getRightParenthesisKeyword_3()); 
             }
-            match(input,56,FOLLOW_56_in_rule__NodeConstraint__Group__3__Impl10269); if (state.failed) return ;
+            match(input,56,FOLLOW_56_in_rule__UnaryRelationConstraint__Group__3__Impl10269); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNodeConstraintAccess().getRightParenthesisKeyword_3()); 
+               after(grammarAccess.getUnaryRelationConstraintAccess().getRightParenthesisKeyword_3()); 
             }
 
             }
@@ -15530,26 +15530,26 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__NodeConstraint__Group__3__Impl"
+    // $ANTLR end "rule__UnaryRelationConstraint__Group__3__Impl"
 
 
-    // $ANTLR start "rule__EdgeConstraint__Group__0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4741:1: rule__EdgeConstraint__Group__0 : rule__EdgeConstraint__Group__0__Impl rule__EdgeConstraint__Group__1 ;
-    public final void rule__EdgeConstraint__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__Group__0"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4741:1: rule__BinaryRelationConstraint__Group__0 : rule__BinaryRelationConstraint__Group__0__Impl rule__BinaryRelationConstraint__Group__1 ;
+    public final void rule__BinaryRelationConstraint__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4745:1: ( rule__EdgeConstraint__Group__0__Impl rule__EdgeConstraint__Group__1 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4746:2: rule__EdgeConstraint__Group__0__Impl rule__EdgeConstraint__Group__1
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4745:1: ( rule__BinaryRelationConstraint__Group__0__Impl rule__BinaryRelationConstraint__Group__1 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4746:2: rule__BinaryRelationConstraint__Group__0__Impl rule__BinaryRelationConstraint__Group__1
             {
-            pushFollow(FOLLOW_rule__EdgeConstraint__Group__0__Impl_in_rule__EdgeConstraint__Group__010308);
-            rule__EdgeConstraint__Group__0__Impl();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__Group__0__Impl_in_rule__BinaryRelationConstraint__Group__010308);
+            rule__BinaryRelationConstraint__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__EdgeConstraint__Group__1_in_rule__EdgeConstraint__Group__010311);
-            rule__EdgeConstraint__Group__1();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__Group__1_in_rule__BinaryRelationConstraint__Group__010311);
+            rule__BinaryRelationConstraint__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15568,30 +15568,30 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__Group__0"
+    // $ANTLR end "rule__BinaryRelationConstraint__Group__0"
 
 
-    // $ANTLR start "rule__EdgeConstraint__Group__0__Impl"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4753:1: rule__EdgeConstraint__Group__0__Impl : ( ( rule__EdgeConstraint__RefTypeAssignment_0 ) ) ;
-    public final void rule__EdgeConstraint__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__Group__0__Impl"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4753:1: rule__BinaryRelationConstraint__Group__0__Impl : ( ( rule__BinaryRelationConstraint__RelationAssignment_0 ) ) ;
+    public final void rule__BinaryRelationConstraint__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4757:1: ( ( ( rule__EdgeConstraint__RefTypeAssignment_0 ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4758:1: ( ( rule__EdgeConstraint__RefTypeAssignment_0 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4757:1: ( ( ( rule__BinaryRelationConstraint__RelationAssignment_0 ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4758:1: ( ( rule__BinaryRelationConstraint__RelationAssignment_0 ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4758:1: ( ( rule__EdgeConstraint__RefTypeAssignment_0 ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4759:1: ( rule__EdgeConstraint__RefTypeAssignment_0 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4758:1: ( ( rule__BinaryRelationConstraint__RelationAssignment_0 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4759:1: ( rule__BinaryRelationConstraint__RelationAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEdgeConstraintAccess().getRefTypeAssignment_0()); 
+               before(grammarAccess.getBinaryRelationConstraintAccess().getRelationAssignment_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4760:1: ( rule__EdgeConstraint__RefTypeAssignment_0 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4760:2: rule__EdgeConstraint__RefTypeAssignment_0
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4760:1: ( rule__BinaryRelationConstraint__RelationAssignment_0 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4760:2: rule__BinaryRelationConstraint__RelationAssignment_0
             {
-            pushFollow(FOLLOW_rule__EdgeConstraint__RefTypeAssignment_0_in_rule__EdgeConstraint__Group__0__Impl10338);
-            rule__EdgeConstraint__RefTypeAssignment_0();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__RelationAssignment_0_in_rule__BinaryRelationConstraint__Group__0__Impl10338);
+            rule__BinaryRelationConstraint__RelationAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15599,7 +15599,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEdgeConstraintAccess().getRefTypeAssignment_0()); 
+               after(grammarAccess.getBinaryRelationConstraintAccess().getRelationAssignment_0()); 
             }
 
             }
@@ -15619,26 +15619,26 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__Group__0__Impl"
+    // $ANTLR end "rule__BinaryRelationConstraint__Group__0__Impl"
 
 
-    // $ANTLR start "rule__EdgeConstraint__Group__1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4770:1: rule__EdgeConstraint__Group__1 : rule__EdgeConstraint__Group__1__Impl rule__EdgeConstraint__Group__2 ;
-    public final void rule__EdgeConstraint__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__Group__1"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4770:1: rule__BinaryRelationConstraint__Group__1 : rule__BinaryRelationConstraint__Group__1__Impl rule__BinaryRelationConstraint__Group__2 ;
+    public final void rule__BinaryRelationConstraint__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4774:1: ( rule__EdgeConstraint__Group__1__Impl rule__EdgeConstraint__Group__2 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4775:2: rule__EdgeConstraint__Group__1__Impl rule__EdgeConstraint__Group__2
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4774:1: ( rule__BinaryRelationConstraint__Group__1__Impl rule__BinaryRelationConstraint__Group__2 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4775:2: rule__BinaryRelationConstraint__Group__1__Impl rule__BinaryRelationConstraint__Group__2
             {
-            pushFollow(FOLLOW_rule__EdgeConstraint__Group__1__Impl_in_rule__EdgeConstraint__Group__110368);
-            rule__EdgeConstraint__Group__1__Impl();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__Group__1__Impl_in_rule__BinaryRelationConstraint__Group__110368);
+            rule__BinaryRelationConstraint__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__EdgeConstraint__Group__2_in_rule__EdgeConstraint__Group__110371);
-            rule__EdgeConstraint__Group__2();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__Group__2_in_rule__BinaryRelationConstraint__Group__110371);
+            rule__BinaryRelationConstraint__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15657,12 +15657,12 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__Group__1"
+    // $ANTLR end "rule__BinaryRelationConstraint__Group__1"
 
 
-    // $ANTLR start "rule__EdgeConstraint__Group__1__Impl"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4782:1: rule__EdgeConstraint__Group__1__Impl : ( '(' ) ;
-    public final void rule__EdgeConstraint__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__Group__1__Impl"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4782:1: rule__BinaryRelationConstraint__Group__1__Impl : ( '(' ) ;
+    public final void rule__BinaryRelationConstraint__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -15674,11 +15674,11 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
             // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4788:1: '('
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEdgeConstraintAccess().getLeftParenthesisKeyword_1()); 
+               before(grammarAccess.getBinaryRelationConstraintAccess().getLeftParenthesisKeyword_1()); 
             }
-            match(input,55,FOLLOW_55_in_rule__EdgeConstraint__Group__1__Impl10399); if (state.failed) return ;
+            match(input,55,FOLLOW_55_in_rule__BinaryRelationConstraint__Group__1__Impl10399); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEdgeConstraintAccess().getLeftParenthesisKeyword_1()); 
+               after(grammarAccess.getBinaryRelationConstraintAccess().getLeftParenthesisKeyword_1()); 
             }
 
             }
@@ -15698,26 +15698,26 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__Group__1__Impl"
+    // $ANTLR end "rule__BinaryRelationConstraint__Group__1__Impl"
 
 
-    // $ANTLR start "rule__EdgeConstraint__Group__2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4801:1: rule__EdgeConstraint__Group__2 : rule__EdgeConstraint__Group__2__Impl rule__EdgeConstraint__Group__3 ;
-    public final void rule__EdgeConstraint__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__Group__2"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4801:1: rule__BinaryRelationConstraint__Group__2 : rule__BinaryRelationConstraint__Group__2__Impl rule__BinaryRelationConstraint__Group__3 ;
+    public final void rule__BinaryRelationConstraint__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4805:1: ( rule__EdgeConstraint__Group__2__Impl rule__EdgeConstraint__Group__3 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4806:2: rule__EdgeConstraint__Group__2__Impl rule__EdgeConstraint__Group__3
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4805:1: ( rule__BinaryRelationConstraint__Group__2__Impl rule__BinaryRelationConstraint__Group__3 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4806:2: rule__BinaryRelationConstraint__Group__2__Impl rule__BinaryRelationConstraint__Group__3
             {
-            pushFollow(FOLLOW_rule__EdgeConstraint__Group__2__Impl_in_rule__EdgeConstraint__Group__210430);
-            rule__EdgeConstraint__Group__2__Impl();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__Group__2__Impl_in_rule__BinaryRelationConstraint__Group__210430);
+            rule__BinaryRelationConstraint__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__EdgeConstraint__Group__3_in_rule__EdgeConstraint__Group__210433);
-            rule__EdgeConstraint__Group__3();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__Group__3_in_rule__BinaryRelationConstraint__Group__210433);
+            rule__BinaryRelationConstraint__Group__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15736,30 +15736,30 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__Group__2"
+    // $ANTLR end "rule__BinaryRelationConstraint__Group__2"
 
 
-    // $ANTLR start "rule__EdgeConstraint__Group__2__Impl"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4813:1: rule__EdgeConstraint__Group__2__Impl : ( ( rule__EdgeConstraint__SourceAssignment_2 ) ) ;
-    public final void rule__EdgeConstraint__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__Group__2__Impl"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4813:1: rule__BinaryRelationConstraint__Group__2__Impl : ( ( rule__BinaryRelationConstraint__SourceAssignment_2 ) ) ;
+    public final void rule__BinaryRelationConstraint__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4817:1: ( ( ( rule__EdgeConstraint__SourceAssignment_2 ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4818:1: ( ( rule__EdgeConstraint__SourceAssignment_2 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4817:1: ( ( ( rule__BinaryRelationConstraint__SourceAssignment_2 ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4818:1: ( ( rule__BinaryRelationConstraint__SourceAssignment_2 ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4818:1: ( ( rule__EdgeConstraint__SourceAssignment_2 ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4819:1: ( rule__EdgeConstraint__SourceAssignment_2 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4818:1: ( ( rule__BinaryRelationConstraint__SourceAssignment_2 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4819:1: ( rule__BinaryRelationConstraint__SourceAssignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEdgeConstraintAccess().getSourceAssignment_2()); 
+               before(grammarAccess.getBinaryRelationConstraintAccess().getSourceAssignment_2()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4820:1: ( rule__EdgeConstraint__SourceAssignment_2 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4820:2: rule__EdgeConstraint__SourceAssignment_2
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4820:1: ( rule__BinaryRelationConstraint__SourceAssignment_2 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4820:2: rule__BinaryRelationConstraint__SourceAssignment_2
             {
-            pushFollow(FOLLOW_rule__EdgeConstraint__SourceAssignment_2_in_rule__EdgeConstraint__Group__2__Impl10460);
-            rule__EdgeConstraint__SourceAssignment_2();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__SourceAssignment_2_in_rule__BinaryRelationConstraint__Group__2__Impl10460);
+            rule__BinaryRelationConstraint__SourceAssignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15767,7 +15767,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEdgeConstraintAccess().getSourceAssignment_2()); 
+               after(grammarAccess.getBinaryRelationConstraintAccess().getSourceAssignment_2()); 
             }
 
             }
@@ -15787,26 +15787,26 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__Group__2__Impl"
+    // $ANTLR end "rule__BinaryRelationConstraint__Group__2__Impl"
 
 
-    // $ANTLR start "rule__EdgeConstraint__Group__3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4830:1: rule__EdgeConstraint__Group__3 : rule__EdgeConstraint__Group__3__Impl rule__EdgeConstraint__Group__4 ;
-    public final void rule__EdgeConstraint__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__Group__3"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4830:1: rule__BinaryRelationConstraint__Group__3 : rule__BinaryRelationConstraint__Group__3__Impl rule__BinaryRelationConstraint__Group__4 ;
+    public final void rule__BinaryRelationConstraint__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4834:1: ( rule__EdgeConstraint__Group__3__Impl rule__EdgeConstraint__Group__4 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4835:2: rule__EdgeConstraint__Group__3__Impl rule__EdgeConstraint__Group__4
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4834:1: ( rule__BinaryRelationConstraint__Group__3__Impl rule__BinaryRelationConstraint__Group__4 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4835:2: rule__BinaryRelationConstraint__Group__3__Impl rule__BinaryRelationConstraint__Group__4
             {
-            pushFollow(FOLLOW_rule__EdgeConstraint__Group__3__Impl_in_rule__EdgeConstraint__Group__310490);
-            rule__EdgeConstraint__Group__3__Impl();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__Group__3__Impl_in_rule__BinaryRelationConstraint__Group__310490);
+            rule__BinaryRelationConstraint__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__EdgeConstraint__Group__4_in_rule__EdgeConstraint__Group__310493);
-            rule__EdgeConstraint__Group__4();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__Group__4_in_rule__BinaryRelationConstraint__Group__310493);
+            rule__BinaryRelationConstraint__Group__4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15825,12 +15825,12 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__Group__3"
+    // $ANTLR end "rule__BinaryRelationConstraint__Group__3"
 
 
-    // $ANTLR start "rule__EdgeConstraint__Group__3__Impl"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4842:1: rule__EdgeConstraint__Group__3__Impl : ( ',' ) ;
-    public final void rule__EdgeConstraint__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__Group__3__Impl"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4842:1: rule__BinaryRelationConstraint__Group__3__Impl : ( ',' ) ;
+    public final void rule__BinaryRelationConstraint__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -15842,11 +15842,11 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
             // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4848:1: ','
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEdgeConstraintAccess().getCommaKeyword_3()); 
+               before(grammarAccess.getBinaryRelationConstraintAccess().getCommaKeyword_3()); 
             }
-            match(input,48,FOLLOW_48_in_rule__EdgeConstraint__Group__3__Impl10521); if (state.failed) return ;
+            match(input,48,FOLLOW_48_in_rule__BinaryRelationConstraint__Group__3__Impl10521); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEdgeConstraintAccess().getCommaKeyword_3()); 
+               after(grammarAccess.getBinaryRelationConstraintAccess().getCommaKeyword_3()); 
             }
 
             }
@@ -15866,26 +15866,26 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__Group__3__Impl"
+    // $ANTLR end "rule__BinaryRelationConstraint__Group__3__Impl"
 
 
-    // $ANTLR start "rule__EdgeConstraint__Group__4"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4861:1: rule__EdgeConstraint__Group__4 : rule__EdgeConstraint__Group__4__Impl rule__EdgeConstraint__Group__5 ;
-    public final void rule__EdgeConstraint__Group__4() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__Group__4"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4861:1: rule__BinaryRelationConstraint__Group__4 : rule__BinaryRelationConstraint__Group__4__Impl rule__BinaryRelationConstraint__Group__5 ;
+    public final void rule__BinaryRelationConstraint__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4865:1: ( rule__EdgeConstraint__Group__4__Impl rule__EdgeConstraint__Group__5 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4866:2: rule__EdgeConstraint__Group__4__Impl rule__EdgeConstraint__Group__5
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4865:1: ( rule__BinaryRelationConstraint__Group__4__Impl rule__BinaryRelationConstraint__Group__5 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4866:2: rule__BinaryRelationConstraint__Group__4__Impl rule__BinaryRelationConstraint__Group__5
             {
-            pushFollow(FOLLOW_rule__EdgeConstraint__Group__4__Impl_in_rule__EdgeConstraint__Group__410552);
-            rule__EdgeConstraint__Group__4__Impl();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__Group__4__Impl_in_rule__BinaryRelationConstraint__Group__410552);
+            rule__BinaryRelationConstraint__Group__4__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__EdgeConstraint__Group__5_in_rule__EdgeConstraint__Group__410555);
-            rule__EdgeConstraint__Group__5();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__Group__5_in_rule__BinaryRelationConstraint__Group__410555);
+            rule__BinaryRelationConstraint__Group__5();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15904,30 +15904,30 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__Group__4"
+    // $ANTLR end "rule__BinaryRelationConstraint__Group__4"
 
 
-    // $ANTLR start "rule__EdgeConstraint__Group__4__Impl"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4873:1: rule__EdgeConstraint__Group__4__Impl : ( ( rule__EdgeConstraint__TargetAssignment_4 ) ) ;
-    public final void rule__EdgeConstraint__Group__4__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__Group__4__Impl"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4873:1: rule__BinaryRelationConstraint__Group__4__Impl : ( ( rule__BinaryRelationConstraint__TargetAssignment_4 ) ) ;
+    public final void rule__BinaryRelationConstraint__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4877:1: ( ( ( rule__EdgeConstraint__TargetAssignment_4 ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4878:1: ( ( rule__EdgeConstraint__TargetAssignment_4 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4877:1: ( ( ( rule__BinaryRelationConstraint__TargetAssignment_4 ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4878:1: ( ( rule__BinaryRelationConstraint__TargetAssignment_4 ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4878:1: ( ( rule__EdgeConstraint__TargetAssignment_4 ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4879:1: ( rule__EdgeConstraint__TargetAssignment_4 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4878:1: ( ( rule__BinaryRelationConstraint__TargetAssignment_4 ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4879:1: ( rule__BinaryRelationConstraint__TargetAssignment_4 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEdgeConstraintAccess().getTargetAssignment_4()); 
+               before(grammarAccess.getBinaryRelationConstraintAccess().getTargetAssignment_4()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4880:1: ( rule__EdgeConstraint__TargetAssignment_4 )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4880:2: rule__EdgeConstraint__TargetAssignment_4
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4880:1: ( rule__BinaryRelationConstraint__TargetAssignment_4 )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4880:2: rule__BinaryRelationConstraint__TargetAssignment_4
             {
-            pushFollow(FOLLOW_rule__EdgeConstraint__TargetAssignment_4_in_rule__EdgeConstraint__Group__4__Impl10582);
-            rule__EdgeConstraint__TargetAssignment_4();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__TargetAssignment_4_in_rule__BinaryRelationConstraint__Group__4__Impl10582);
+            rule__BinaryRelationConstraint__TargetAssignment_4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15935,7 +15935,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEdgeConstraintAccess().getTargetAssignment_4()); 
+               after(grammarAccess.getBinaryRelationConstraintAccess().getTargetAssignment_4()); 
             }
 
             }
@@ -15955,21 +15955,21 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__Group__4__Impl"
+    // $ANTLR end "rule__BinaryRelationConstraint__Group__4__Impl"
 
 
-    // $ANTLR start "rule__EdgeConstraint__Group__5"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4890:1: rule__EdgeConstraint__Group__5 : rule__EdgeConstraint__Group__5__Impl ;
-    public final void rule__EdgeConstraint__Group__5() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__Group__5"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4890:1: rule__BinaryRelationConstraint__Group__5 : rule__BinaryRelationConstraint__Group__5__Impl ;
+    public final void rule__BinaryRelationConstraint__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4894:1: ( rule__EdgeConstraint__Group__5__Impl )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4895:2: rule__EdgeConstraint__Group__5__Impl
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4894:1: ( rule__BinaryRelationConstraint__Group__5__Impl )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4895:2: rule__BinaryRelationConstraint__Group__5__Impl
             {
-            pushFollow(FOLLOW_rule__EdgeConstraint__Group__5__Impl_in_rule__EdgeConstraint__Group__510612);
-            rule__EdgeConstraint__Group__5__Impl();
+            pushFollow(FOLLOW_rule__BinaryRelationConstraint__Group__5__Impl_in_rule__BinaryRelationConstraint__Group__510612);
+            rule__BinaryRelationConstraint__Group__5__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15988,12 +15988,12 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__Group__5"
+    // $ANTLR end "rule__BinaryRelationConstraint__Group__5"
 
 
-    // $ANTLR start "rule__EdgeConstraint__Group__5__Impl"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4901:1: rule__EdgeConstraint__Group__5__Impl : ( ')' ) ;
-    public final void rule__EdgeConstraint__Group__5__Impl() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__Group__5__Impl"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4901:1: rule__BinaryRelationConstraint__Group__5__Impl : ( ')' ) ;
+    public final void rule__BinaryRelationConstraint__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -16005,11 +16005,11 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
             // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:4907:1: ')'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEdgeConstraintAccess().getRightParenthesisKeyword_5()); 
+               before(grammarAccess.getBinaryRelationConstraintAccess().getRightParenthesisKeyword_5()); 
             }
-            match(input,56,FOLLOW_56_in_rule__EdgeConstraint__Group__5__Impl10640); if (state.failed) return ;
+            match(input,56,FOLLOW_56_in_rule__BinaryRelationConstraint__Group__5__Impl10640); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEdgeConstraintAccess().getRightParenthesisKeyword_5()); 
+               after(grammarAccess.getBinaryRelationConstraintAccess().getRightParenthesisKeyword_5()); 
             }
 
             }
@@ -16029,7 +16029,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__Group__5__Impl"
+    // $ANTLR end "rule__BinaryRelationConstraint__Group__5__Impl"
 
 
     // $ANTLR start "rule__Pattern__Group__0"
@@ -60669,25 +60669,37 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
     // $ANTLR end "rule__Parameter__NameAssignment"
 
 
-    // $ANTLR start "rule__NodeConstraint__TypeAssignment_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21330:1: rule__NodeConstraint__TypeAssignment_0 : ( RULE_ID ) ;
-    public final void rule__NodeConstraint__TypeAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__UnaryRelationConstraint__RelationAssignment_0"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21330:1: rule__UnaryRelationConstraint__RelationAssignment_0 : ( ( RULE_ID ) ) ;
+    public final void rule__UnaryRelationConstraint__RelationAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21334:1: ( ( RULE_ID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21335:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21334:1: ( ( ( RULE_ID ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21335:1: ( ( RULE_ID ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21335:1: ( RULE_ID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21336:1: RULE_ID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21335:1: ( ( RULE_ID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21336:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNodeConstraintAccess().getTypeIDTerminalRuleCall_0_0()); 
+               before(grammarAccess.getUnaryRelationConstraintAccess().getRelationRelationCrossReference_0_0()); 
             }
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__NodeConstraint__TypeAssignment_042880); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21337:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21338:1: RULE_ID
+            {
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNodeConstraintAccess().getTypeIDTerminalRuleCall_0_0()); 
+               before(grammarAccess.getUnaryRelationConstraintAccess().getRelationRelationIDTerminalRuleCall_0_0_1()); 
+            }
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__UnaryRelationConstraint__RelationAssignment_042884); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getUnaryRelationConstraintAccess().getRelationRelationIDTerminalRuleCall_0_0_1()); 
+            }
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getUnaryRelationConstraintAccess().getRelationRelationCrossReference_0_0()); 
             }
 
             }
@@ -60707,32 +60719,32 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__NodeConstraint__TypeAssignment_0"
+    // $ANTLR end "rule__UnaryRelationConstraint__RelationAssignment_0"
 
 
-    // $ANTLR start "rule__NodeConstraint__VariableAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21345:1: rule__NodeConstraint__VariableAssignment_2 : ( ruleVariableReference ) ;
-    public final void rule__NodeConstraint__VariableAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__UnaryRelationConstraint__VariableAssignment_2"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21349:1: rule__UnaryRelationConstraint__VariableAssignment_2 : ( ruleVariableReference ) ;
+    public final void rule__UnaryRelationConstraint__VariableAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21349:1: ( ( ruleVariableReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21350:1: ( ruleVariableReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21353:1: ( ( ruleVariableReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21354:1: ( ruleVariableReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21350:1: ( ruleVariableReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21351:1: ruleVariableReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21354:1: ( ruleVariableReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21355:1: ruleVariableReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getNodeConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0()); 
+               before(grammarAccess.getUnaryRelationConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleVariableReference_in_rule__NodeConstraint__VariableAssignment_242911);
+            pushFollow(FOLLOW_ruleVariableReference_in_rule__UnaryRelationConstraint__VariableAssignment_242919);
             ruleVariableReference();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getNodeConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0()); 
+               after(grammarAccess.getUnaryRelationConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0()); 
             }
 
             }
@@ -60752,28 +60764,40 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__NodeConstraint__VariableAssignment_2"
+    // $ANTLR end "rule__UnaryRelationConstraint__VariableAssignment_2"
 
 
-    // $ANTLR start "rule__EdgeConstraint__RefTypeAssignment_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21360:1: rule__EdgeConstraint__RefTypeAssignment_0 : ( RULE_ID ) ;
-    public final void rule__EdgeConstraint__RefTypeAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__RelationAssignment_0"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21364:1: rule__BinaryRelationConstraint__RelationAssignment_0 : ( ( RULE_ID ) ) ;
+    public final void rule__BinaryRelationConstraint__RelationAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21364:1: ( ( RULE_ID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21365:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21368:1: ( ( ( RULE_ID ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21369:1: ( ( RULE_ID ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21365:1: ( RULE_ID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21366:1: RULE_ID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21369:1: ( ( RULE_ID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21370:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEdgeConstraintAccess().getRefTypeIDTerminalRuleCall_0_0()); 
+               before(grammarAccess.getBinaryRelationConstraintAccess().getRelationRelationCrossReference_0_0()); 
             }
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__EdgeConstraint__RefTypeAssignment_042942); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21371:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21372:1: RULE_ID
+            {
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEdgeConstraintAccess().getRefTypeIDTerminalRuleCall_0_0()); 
+               before(grammarAccess.getBinaryRelationConstraintAccess().getRelationRelationIDTerminalRuleCall_0_0_1()); 
+            }
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__BinaryRelationConstraint__RelationAssignment_042954); if (state.failed) return ;
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getBinaryRelationConstraintAccess().getRelationRelationIDTerminalRuleCall_0_0_1()); 
+            }
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getBinaryRelationConstraintAccess().getRelationRelationCrossReference_0_0()); 
             }
 
             }
@@ -60793,32 +60817,32 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__RefTypeAssignment_0"
+    // $ANTLR end "rule__BinaryRelationConstraint__RelationAssignment_0"
 
 
-    // $ANTLR start "rule__EdgeConstraint__SourceAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21375:1: rule__EdgeConstraint__SourceAssignment_2 : ( ruleVariableReference ) ;
-    public final void rule__EdgeConstraint__SourceAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__SourceAssignment_2"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21383:1: rule__BinaryRelationConstraint__SourceAssignment_2 : ( ruleVariableReference ) ;
+    public final void rule__BinaryRelationConstraint__SourceAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21379:1: ( ( ruleVariableReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21380:1: ( ruleVariableReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21387:1: ( ( ruleVariableReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21388:1: ( ruleVariableReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21380:1: ( ruleVariableReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21381:1: ruleVariableReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21388:1: ( ruleVariableReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21389:1: ruleVariableReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEdgeConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); 
+               before(grammarAccess.getBinaryRelationConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleVariableReference_in_rule__EdgeConstraint__SourceAssignment_242973);
+            pushFollow(FOLLOW_ruleVariableReference_in_rule__BinaryRelationConstraint__SourceAssignment_242989);
             ruleVariableReference();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEdgeConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); 
+               after(grammarAccess.getBinaryRelationConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); 
             }
 
             }
@@ -60838,32 +60862,32 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__SourceAssignment_2"
+    // $ANTLR end "rule__BinaryRelationConstraint__SourceAssignment_2"
 
 
-    // $ANTLR start "rule__EdgeConstraint__TargetAssignment_4"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21390:1: rule__EdgeConstraint__TargetAssignment_4 : ( ruleValueReference ) ;
-    public final void rule__EdgeConstraint__TargetAssignment_4() throws RecognitionException {
+    // $ANTLR start "rule__BinaryRelationConstraint__TargetAssignment_4"
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21398:1: rule__BinaryRelationConstraint__TargetAssignment_4 : ( ruleValueReference ) ;
+    public final void rule__BinaryRelationConstraint__TargetAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21394:1: ( ( ruleValueReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21395:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21402:1: ( ( ruleValueReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21403:1: ( ruleValueReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21395:1: ( ruleValueReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21396:1: ruleValueReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21403:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21404:1: ruleValueReference
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEdgeConstraintAccess().getTargetValueReferenceParserRuleCall_4_0()); 
+               before(grammarAccess.getBinaryRelationConstraintAccess().getTargetValueReferenceParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleValueReference_in_rule__EdgeConstraint__TargetAssignment_443004);
+            pushFollow(FOLLOW_ruleValueReference_in_rule__BinaryRelationConstraint__TargetAssignment_443020);
             ruleValueReference();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEdgeConstraintAccess().getTargetValueReferenceParserRuleCall_4_0()); 
+               after(grammarAccess.getBinaryRelationConstraintAccess().getTargetValueReferenceParserRuleCall_4_0()); 
             }
 
             }
@@ -60883,26 +60907,26 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         }
         return ;
     }
-    // $ANTLR end "rule__EdgeConstraint__TargetAssignment_4"
+    // $ANTLR end "rule__BinaryRelationConstraint__TargetAssignment_4"
 
 
     // $ANTLR start "rule__Pattern__AnnotationsAssignment_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21407:1: rule__Pattern__AnnotationsAssignment_0 : ( ruleAnnotation ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21415:1: rule__Pattern__AnnotationsAssignment_0 : ( ruleAnnotation ) ;
     public final void rule__Pattern__AnnotationsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21411:1: ( ( ruleAnnotation ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21412:1: ( ruleAnnotation )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21419:1: ( ( ruleAnnotation ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21420:1: ( ruleAnnotation )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21412:1: ( ruleAnnotation )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21413:1: ruleAnnotation
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21420:1: ( ruleAnnotation )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21421:1: ruleAnnotation
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getAnnotationsAnnotationParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleAnnotation_in_rule__Pattern__AnnotationsAssignment_043037);
+            pushFollow(FOLLOW_ruleAnnotation_in_rule__Pattern__AnnotationsAssignment_043053);
             ruleAnnotation();
 
             state._fsp--;
@@ -60932,22 +60956,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__Pattern__ModifiersAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21422:1: rule__Pattern__ModifiersAssignment_1 : ( ruleModifiers ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21430:1: rule__Pattern__ModifiersAssignment_1 : ( ruleModifiers ) ;
     public final void rule__Pattern__ModifiersAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21426:1: ( ( ruleModifiers ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21427:1: ( ruleModifiers )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21434:1: ( ( ruleModifiers ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21435:1: ( ruleModifiers )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21427:1: ( ruleModifiers )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21428:1: ruleModifiers
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21435:1: ( ruleModifiers )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21436:1: ruleModifiers
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getModifiersModifiersParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleModifiers_in_rule__Pattern__ModifiersAssignment_143068);
+            pushFollow(FOLLOW_ruleModifiers_in_rule__Pattern__ModifiersAssignment_143084);
             ruleModifiers();
 
             state._fsp--;
@@ -60977,22 +61001,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__Pattern__NameAssignment_3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21437:1: rule__Pattern__NameAssignment_3 : ( RULE_ID ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21445:1: rule__Pattern__NameAssignment_3 : ( RULE_ID ) ;
     public final void rule__Pattern__NameAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21441:1: ( ( RULE_ID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21442:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21449:1: ( ( RULE_ID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21450:1: ( RULE_ID )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21442:1: ( RULE_ID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21443:1: RULE_ID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21450:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21451:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getNameIDTerminalRuleCall_3_0()); 
             }
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Pattern__NameAssignment_343099); if (state.failed) return ;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Pattern__NameAssignment_343115); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPatternAccess().getNameIDTerminalRuleCall_3_0()); 
             }
@@ -61018,22 +61042,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__Pattern__ParametersAssignment_5_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21452:1: rule__Pattern__ParametersAssignment_5_0 : ( ruleParameter ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21460:1: rule__Pattern__ParametersAssignment_5_0 : ( ruleParameter ) ;
     public final void rule__Pattern__ParametersAssignment_5_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21456:1: ( ( ruleParameter ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21457:1: ( ruleParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21464:1: ( ( ruleParameter ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21465:1: ( ruleParameter )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21457:1: ( ruleParameter )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21458:1: ruleParameter
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21465:1: ( ruleParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21466:1: ruleParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getParametersParameterParserRuleCall_5_0_0()); 
             }
-            pushFollow(FOLLOW_ruleParameter_in_rule__Pattern__ParametersAssignment_5_043130);
+            pushFollow(FOLLOW_ruleParameter_in_rule__Pattern__ParametersAssignment_5_043146);
             ruleParameter();
 
             state._fsp--;
@@ -61063,22 +61087,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__Pattern__ParametersAssignment_5_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21467:1: rule__Pattern__ParametersAssignment_5_1_1 : ( ruleParameter ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21475:1: rule__Pattern__ParametersAssignment_5_1_1 : ( ruleParameter ) ;
     public final void rule__Pattern__ParametersAssignment_5_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21471:1: ( ( ruleParameter ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21472:1: ( ruleParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21479:1: ( ( ruleParameter ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21480:1: ( ruleParameter )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21472:1: ( ruleParameter )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21473:1: ruleParameter
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21480:1: ( ruleParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21481:1: ruleParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getParametersParameterParserRuleCall_5_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleParameter_in_rule__Pattern__ParametersAssignment_5_1_143161);
+            pushFollow(FOLLOW_ruleParameter_in_rule__Pattern__ParametersAssignment_5_1_143177);
             ruleParameter();
 
             state._fsp--;
@@ -61108,22 +61132,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__Pattern__BodiesAssignment_8"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21482:1: rule__Pattern__BodiesAssignment_8 : ( rulePatternBody ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21490:1: rule__Pattern__BodiesAssignment_8 : ( rulePatternBody ) ;
     public final void rule__Pattern__BodiesAssignment_8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21486:1: ( ( rulePatternBody ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21487:1: ( rulePatternBody )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21494:1: ( ( rulePatternBody ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21495:1: ( rulePatternBody )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21487:1: ( rulePatternBody )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21488:1: rulePatternBody
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21495:1: ( rulePatternBody )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21496:1: rulePatternBody
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getBodiesPatternBodyParserRuleCall_8_0()); 
             }
-            pushFollow(FOLLOW_rulePatternBody_in_rule__Pattern__BodiesAssignment_843192);
+            pushFollow(FOLLOW_rulePatternBody_in_rule__Pattern__BodiesAssignment_843208);
             rulePatternBody();
 
             state._fsp--;
@@ -61153,22 +61177,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__Pattern__BodiesAssignment_9_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21497:1: rule__Pattern__BodiesAssignment_9_1 : ( rulePatternBody ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21505:1: rule__Pattern__BodiesAssignment_9_1 : ( rulePatternBody ) ;
     public final void rule__Pattern__BodiesAssignment_9_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21501:1: ( ( rulePatternBody ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21502:1: ( rulePatternBody )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21509:1: ( ( rulePatternBody ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21510:1: ( rulePatternBody )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21502:1: ( rulePatternBody )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21503:1: rulePatternBody
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21510:1: ( rulePatternBody )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21511:1: rulePatternBody
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getBodiesPatternBodyParserRuleCall_9_1_0()); 
             }
-            pushFollow(FOLLOW_rulePatternBody_in_rule__Pattern__BodiesAssignment_9_143223);
+            pushFollow(FOLLOW_rulePatternBody_in_rule__Pattern__BodiesAssignment_9_143239);
             rulePatternBody();
 
             state._fsp--;
@@ -61198,22 +61222,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__Annotation__NameAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21512:1: rule__Annotation__NameAssignment_1 : ( RULE_ID ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21520:1: rule__Annotation__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Annotation__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21516:1: ( ( RULE_ID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21517:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21524:1: ( ( RULE_ID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21525:1: ( RULE_ID )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21517:1: ( RULE_ID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21518:1: RULE_ID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21525:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21526:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAnnotationAccess().getNameIDTerminalRuleCall_1_0()); 
             }
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Annotation__NameAssignment_143254); if (state.failed) return ;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Annotation__NameAssignment_143270); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAnnotationAccess().getNameIDTerminalRuleCall_1_0()); 
             }
@@ -61239,22 +61263,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__Annotation__ParametersAssignment_2_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21527:1: rule__Annotation__ParametersAssignment_2_1 : ( ruleAnnotationParameter ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21535:1: rule__Annotation__ParametersAssignment_2_1 : ( ruleAnnotationParameter ) ;
     public final void rule__Annotation__ParametersAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21531:1: ( ( ruleAnnotationParameter ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21532:1: ( ruleAnnotationParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21539:1: ( ( ruleAnnotationParameter ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21540:1: ( ruleAnnotationParameter )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21532:1: ( ruleAnnotationParameter )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21533:1: ruleAnnotationParameter
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21540:1: ( ruleAnnotationParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21541:1: ruleAnnotationParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAnnotationAccess().getParametersAnnotationParameterParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleAnnotationParameter_in_rule__Annotation__ParametersAssignment_2_143285);
+            pushFollow(FOLLOW_ruleAnnotationParameter_in_rule__Annotation__ParametersAssignment_2_143301);
             ruleAnnotationParameter();
 
             state._fsp--;
@@ -61284,22 +61308,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__Annotation__ParametersAssignment_2_2_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21542:1: rule__Annotation__ParametersAssignment_2_2_1 : ( ruleAnnotationParameter ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21550:1: rule__Annotation__ParametersAssignment_2_2_1 : ( ruleAnnotationParameter ) ;
     public final void rule__Annotation__ParametersAssignment_2_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21546:1: ( ( ruleAnnotationParameter ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21547:1: ( ruleAnnotationParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21554:1: ( ( ruleAnnotationParameter ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21555:1: ( ruleAnnotationParameter )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21547:1: ( ruleAnnotationParameter )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21548:1: ruleAnnotationParameter
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21555:1: ( ruleAnnotationParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21556:1: ruleAnnotationParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAnnotationAccess().getParametersAnnotationParameterParserRuleCall_2_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleAnnotationParameter_in_rule__Annotation__ParametersAssignment_2_2_143316);
+            pushFollow(FOLLOW_ruleAnnotationParameter_in_rule__Annotation__ParametersAssignment_2_2_143332);
             ruleAnnotationParameter();
 
             state._fsp--;
@@ -61329,22 +61353,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__AnnotationParameter__NameAssignment_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21557:1: rule__AnnotationParameter__NameAssignment_0 : ( RULE_ID ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21565:1: rule__AnnotationParameter__NameAssignment_0 : ( RULE_ID ) ;
     public final void rule__AnnotationParameter__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21561:1: ( ( RULE_ID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21562:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21569:1: ( ( RULE_ID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21570:1: ( RULE_ID )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21562:1: ( RULE_ID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21563:1: RULE_ID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21570:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21571:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAnnotationParameterAccess().getNameIDTerminalRuleCall_0_0()); 
             }
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AnnotationParameter__NameAssignment_043347); if (state.failed) return ;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AnnotationParameter__NameAssignment_043363); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAnnotationParameterAccess().getNameIDTerminalRuleCall_0_0()); 
             }
@@ -61370,22 +61394,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__AnnotationParameter__ValueAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21572:1: rule__AnnotationParameter__ValueAssignment_2 : ( ruleAnnotationValueReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21580:1: rule__AnnotationParameter__ValueAssignment_2 : ( ruleAnnotationValueReference ) ;
     public final void rule__AnnotationParameter__ValueAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21576:1: ( ( ruleAnnotationValueReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21577:1: ( ruleAnnotationValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21584:1: ( ( ruleAnnotationValueReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21585:1: ( ruleAnnotationValueReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21577:1: ( ruleAnnotationValueReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21578:1: ruleAnnotationValueReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21585:1: ( ruleAnnotationValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21586:1: ruleAnnotationValueReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAnnotationParameterAccess().getValueAnnotationValueReferenceParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleAnnotationValueReference_in_rule__AnnotationParameter__ValueAssignment_243378);
+            pushFollow(FOLLOW_ruleAnnotationValueReference_in_rule__AnnotationParameter__ValueAssignment_243394);
             ruleAnnotationValueReference();
 
             state._fsp--;
@@ -61415,28 +61439,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__Modifiers__PrivateAssignment"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21587:1: rule__Modifiers__PrivateAssignment : ( ( 'private' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21595:1: rule__Modifiers__PrivateAssignment : ( ( 'private' ) ) ;
     public final void rule__Modifiers__PrivateAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21591:1: ( ( ( 'private' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21592:1: ( ( 'private' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21599:1: ( ( ( 'private' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21600:1: ( ( 'private' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21592:1: ( ( 'private' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21593:1: ( 'private' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getModifiersAccess().getPrivatePrivateKeyword_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21594:1: ( 'private' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21595:1: 'private'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21600:1: ( ( 'private' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21601:1: ( 'private' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getModifiersAccess().getPrivatePrivateKeyword_0()); 
             }
-            match(input,91,FOLLOW_91_in_rule__Modifiers__PrivateAssignment43414); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21602:1: ( 'private' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21603:1: 'private'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getModifiersAccess().getPrivatePrivateKeyword_0()); 
+            }
+            match(input,91,FOLLOW_91_in_rule__Modifiers__PrivateAssignment43430); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getModifiersAccess().getPrivatePrivateKeyword_0()); 
             }
@@ -61468,22 +61492,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__VariableReference__VarAssignment"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21617:1: rule__VariableReference__VarAssignment : ( RULE_ID ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21625:1: rule__VariableReference__VarAssignment : ( RULE_ID ) ;
     public final void rule__VariableReference__VarAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21621:1: ( ( RULE_ID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21622:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21629:1: ( ( RULE_ID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21630:1: ( RULE_ID )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21622:1: ( RULE_ID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21623:1: RULE_ID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21630:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21631:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVariableReferenceAccess().getVarIDTerminalRuleCall_0()); 
             }
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__VariableReference__VarAssignment43460); if (state.failed) return ;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__VariableReference__VarAssignment43476); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getVariableReferenceAccess().getVarIDTerminalRuleCall_0()); 
             }
@@ -61509,22 +61533,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__Type__TypenameAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21632:1: rule__Type__TypenameAssignment_1 : ( RULE_ID ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21640:1: rule__Type__TypenameAssignment_1 : ( RULE_ID ) ;
     public final void rule__Type__TypenameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21636:1: ( ( RULE_ID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21637:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21644:1: ( ( RULE_ID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21645:1: ( RULE_ID )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21637:1: ( RULE_ID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21638:1: RULE_ID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21645:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21646:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getTypeAccess().getTypenameIDTerminalRuleCall_1_0()); 
             }
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Type__TypenameAssignment_143491); if (state.failed) return ;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Type__TypenameAssignment_143507); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getTypeAccess().getTypenameIDTerminalRuleCall_1_0()); 
             }
@@ -61550,22 +61574,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__RefType__TypenameAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21647:1: rule__RefType__TypenameAssignment_1 : ( RULE_ID ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21655:1: rule__RefType__TypenameAssignment_1 : ( RULE_ID ) ;
     public final void rule__RefType__TypenameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21651:1: ( ( RULE_ID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21652:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21659:1: ( ( RULE_ID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21660:1: ( RULE_ID )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21652:1: ( RULE_ID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21653:1: RULE_ID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21660:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21661:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getRefTypeAccess().getTypenameIDTerminalRuleCall_1_0()); 
             }
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__RefType__TypenameAssignment_143522); if (state.failed) return ;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__RefType__TypenameAssignment_143538); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getRefTypeAccess().getTypenameIDTerminalRuleCall_1_0()); 
             }
@@ -61591,22 +61615,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PatternBody__NameAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21662:1: rule__PatternBody__NameAssignment_1 : ( RULE_ID ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21670:1: rule__PatternBody__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__PatternBody__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21666:1: ( ( RULE_ID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21667:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21674:1: ( ( RULE_ID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21675:1: ( RULE_ID )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21667:1: ( RULE_ID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21668:1: RULE_ID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21675:1: ( RULE_ID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21676:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternBodyAccess().getNameIDTerminalRuleCall_1_0()); 
             }
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__PatternBody__NameAssignment_143553); if (state.failed) return ;
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__PatternBody__NameAssignment_143569); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPatternBodyAccess().getNameIDTerminalRuleCall_1_0()); 
             }
@@ -61632,22 +61656,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PatternBody__ConstraintsAssignment_3_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21677:1: rule__PatternBody__ConstraintsAssignment_3_0 : ( ruleConstraint ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21685:1: rule__PatternBody__ConstraintsAssignment_3_0 : ( ruleConstraint ) ;
     public final void rule__PatternBody__ConstraintsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21681:1: ( ( ruleConstraint ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21682:1: ( ruleConstraint )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21689:1: ( ( ruleConstraint ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21690:1: ( ruleConstraint )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21682:1: ( ruleConstraint )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21683:1: ruleConstraint
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21690:1: ( ruleConstraint )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21691:1: ruleConstraint
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternBodyAccess().getConstraintsConstraintParserRuleCall_3_0_0()); 
             }
-            pushFollow(FOLLOW_ruleConstraint_in_rule__PatternBody__ConstraintsAssignment_3_043584);
+            pushFollow(FOLLOW_ruleConstraint_in_rule__PatternBody__ConstraintsAssignment_3_043600);
             ruleConstraint();
 
             state._fsp--;
@@ -61677,28 +61701,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PatternCompositionConstraint__NegativeAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21692:1: rule__PatternCompositionConstraint__NegativeAssignment_1 : ( ( 'neg' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21700:1: rule__PatternCompositionConstraint__NegativeAssignment_1 : ( ( 'neg' ) ) ;
     public final void rule__PatternCompositionConstraint__NegativeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21696:1: ( ( ( 'neg' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21697:1: ( ( 'neg' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21704:1: ( ( ( 'neg' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21705:1: ( ( 'neg' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21697:1: ( ( 'neg' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21698:1: ( 'neg' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getPatternCompositionConstraintAccess().getNegativeNegKeyword_1_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21699:1: ( 'neg' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21700:1: 'neg'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21705:1: ( ( 'neg' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21706:1: ( 'neg' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternCompositionConstraintAccess().getNegativeNegKeyword_1_0()); 
             }
-            match(input,92,FOLLOW_92_in_rule__PatternCompositionConstraint__NegativeAssignment_143620); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21707:1: ( 'neg' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21708:1: 'neg'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getPatternCompositionConstraintAccess().getNegativeNegKeyword_1_0()); 
+            }
+            match(input,92,FOLLOW_92_in_rule__PatternCompositionConstraint__NegativeAssignment_143636); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPatternCompositionConstraintAccess().getNegativeNegKeyword_1_0()); 
             }
@@ -61730,22 +61754,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PatternCompositionConstraint__CallAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21715:1: rule__PatternCompositionConstraint__CallAssignment_2 : ( rulePatternCall ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21723:1: rule__PatternCompositionConstraint__CallAssignment_2 : ( rulePatternCall ) ;
     public final void rule__PatternCompositionConstraint__CallAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21719:1: ( ( rulePatternCall ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21720:1: ( rulePatternCall )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21727:1: ( ( rulePatternCall ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21728:1: ( rulePatternCall )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21720:1: ( rulePatternCall )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21721:1: rulePatternCall
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21728:1: ( rulePatternCall )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21729:1: rulePatternCall
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternCompositionConstraintAccess().getCallPatternCallParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_rulePatternCall_in_rule__PatternCompositionConstraint__CallAssignment_243659);
+            pushFollow(FOLLOW_rulePatternCall_in_rule__PatternCompositionConstraint__CallAssignment_243675);
             rulePatternCall();
 
             state._fsp--;
@@ -61775,28 +61799,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PatternCall__PatternRefAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21730:1: rule__PatternCall__PatternRefAssignment_1 : ( ( ruleQualifiedName ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21738:1: rule__PatternCall__PatternRefAssignment_1 : ( ( ruleQualifiedName ) ) ;
     public final void rule__PatternCall__PatternRefAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21734:1: ( ( ( ruleQualifiedName ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21735:1: ( ( ruleQualifiedName ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21742:1: ( ( ( ruleQualifiedName ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21743:1: ( ( ruleQualifiedName ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21735:1: ( ( ruleQualifiedName ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21736:1: ( ruleQualifiedName )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21743:1: ( ( ruleQualifiedName ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21744:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternCallAccess().getPatternRefPatternCrossReference_1_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21737:1: ( ruleQualifiedName )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21738:1: ruleQualifiedName
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21745:1: ( ruleQualifiedName )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21746:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternCallAccess().getPatternRefPatternQualifiedNameParserRuleCall_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__PatternCall__PatternRefAssignment_143694);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__PatternCall__PatternRefAssignment_143710);
             ruleQualifiedName();
 
             state._fsp--;
@@ -61832,28 +61856,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PatternCall__TransitiveAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21749:1: rule__PatternCall__TransitiveAssignment_2 : ( ( '+' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21757:1: rule__PatternCall__TransitiveAssignment_2 : ( ( '+' ) ) ;
     public final void rule__PatternCall__TransitiveAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21753:1: ( ( ( '+' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21754:1: ( ( '+' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21761:1: ( ( ( '+' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21762:1: ( ( '+' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21754:1: ( ( '+' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21755:1: ( '+' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getPatternCallAccess().getTransitivePlusSignKeyword_2_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21756:1: ( '+' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21757:1: '+'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21762:1: ( ( '+' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21763:1: ( '+' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternCallAccess().getTransitivePlusSignKeyword_2_0()); 
             }
-            match(input,38,FOLLOW_38_in_rule__PatternCall__TransitiveAssignment_243734); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21764:1: ( '+' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21765:1: '+'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getPatternCallAccess().getTransitivePlusSignKeyword_2_0()); 
+            }
+            match(input,38,FOLLOW_38_in_rule__PatternCall__TransitiveAssignment_243750); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPatternCallAccess().getTransitivePlusSignKeyword_2_0()); 
             }
@@ -61885,22 +61909,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PatternCall__ParametersAssignment_4_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21772:1: rule__PatternCall__ParametersAssignment_4_0 : ( ruleValueReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21780:1: rule__PatternCall__ParametersAssignment_4_0 : ( ruleValueReference ) ;
     public final void rule__PatternCall__ParametersAssignment_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21776:1: ( ( ruleValueReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21777:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21784:1: ( ( ruleValueReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21785:1: ( ruleValueReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21777:1: ( ruleValueReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21778:1: ruleValueReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21785:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21786:1: ruleValueReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternCallAccess().getParametersValueReferenceParserRuleCall_4_0_0()); 
             }
-            pushFollow(FOLLOW_ruleValueReference_in_rule__PatternCall__ParametersAssignment_4_043773);
+            pushFollow(FOLLOW_ruleValueReference_in_rule__PatternCall__ParametersAssignment_4_043789);
             ruleValueReference();
 
             state._fsp--;
@@ -61930,22 +61954,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PatternCall__ParametersAssignment_4_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21787:1: rule__PatternCall__ParametersAssignment_4_1_1 : ( ruleValueReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21795:1: rule__PatternCall__ParametersAssignment_4_1_1 : ( ruleValueReference ) ;
     public final void rule__PatternCall__ParametersAssignment_4_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21791:1: ( ( ruleValueReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21792:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21799:1: ( ( ruleValueReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21800:1: ( ruleValueReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21792:1: ( ruleValueReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21793:1: ruleValueReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21800:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21801:1: ruleValueReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternCallAccess().getParametersValueReferenceParserRuleCall_4_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValueReference_in_rule__PatternCall__ParametersAssignment_4_1_143804);
+            pushFollow(FOLLOW_ruleValueReference_in_rule__PatternCall__ParametersAssignment_4_1_143820);
             ruleValueReference();
 
             state._fsp--;
@@ -61975,22 +61999,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__CompareConstraint__LeftOperandAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21802:1: rule__CompareConstraint__LeftOperandAssignment_1 : ( ruleValueReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21810:1: rule__CompareConstraint__LeftOperandAssignment_1 : ( ruleValueReference ) ;
     public final void rule__CompareConstraint__LeftOperandAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21806:1: ( ( ruleValueReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21807:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21814:1: ( ( ruleValueReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21815:1: ( ruleValueReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21807:1: ( ruleValueReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21808:1: ruleValueReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21815:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21816:1: ruleValueReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCompareConstraintAccess().getLeftOperandValueReferenceParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValueReference_in_rule__CompareConstraint__LeftOperandAssignment_143835);
+            pushFollow(FOLLOW_ruleValueReference_in_rule__CompareConstraint__LeftOperandAssignment_143851);
             ruleValueReference();
 
             state._fsp--;
@@ -62020,22 +62044,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__CompareConstraint__FeatureAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21817:1: rule__CompareConstraint__FeatureAssignment_2 : ( ruleCompareFeature ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21825:1: rule__CompareConstraint__FeatureAssignment_2 : ( ruleCompareFeature ) ;
     public final void rule__CompareConstraint__FeatureAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21821:1: ( ( ruleCompareFeature ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21822:1: ( ruleCompareFeature )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21829:1: ( ( ruleCompareFeature ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21830:1: ( ruleCompareFeature )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21822:1: ( ruleCompareFeature )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21823:1: ruleCompareFeature
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21830:1: ( ruleCompareFeature )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21831:1: ruleCompareFeature
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCompareConstraintAccess().getFeatureCompareFeatureEnumRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleCompareFeature_in_rule__CompareConstraint__FeatureAssignment_243866);
+            pushFollow(FOLLOW_ruleCompareFeature_in_rule__CompareConstraint__FeatureAssignment_243882);
             ruleCompareFeature();
 
             state._fsp--;
@@ -62065,22 +62089,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__CompareConstraint__RightOperandAssignment_3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21832:1: rule__CompareConstraint__RightOperandAssignment_3 : ( ruleValueReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21840:1: rule__CompareConstraint__RightOperandAssignment_3 : ( ruleValueReference ) ;
     public final void rule__CompareConstraint__RightOperandAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21836:1: ( ( ruleValueReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21837:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21844:1: ( ( ruleValueReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21845:1: ( ruleValueReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21837:1: ( ruleValueReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21838:1: ruleValueReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21845:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21846:1: ruleValueReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCompareConstraintAccess().getRightOperandValueReferenceParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleValueReference_in_rule__CompareConstraint__RightOperandAssignment_343897);
+            pushFollow(FOLLOW_ruleValueReference_in_rule__CompareConstraint__RightOperandAssignment_343913);
             ruleValueReference();
 
             state._fsp--;
@@ -62110,22 +62134,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PathExpressionHead__TypeAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21849:1: rule__PathExpressionHead__TypeAssignment_1 : ( ruleType ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21857:1: rule__PathExpressionHead__TypeAssignment_1 : ( ruleType ) ;
     public final void rule__PathExpressionHead__TypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21853:1: ( ( ruleType ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21854:1: ( ruleType )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21861:1: ( ( ruleType ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21862:1: ( ruleType )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21854:1: ( ruleType )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21855:1: ruleType
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21862:1: ( ruleType )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21863:1: ruleType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPathExpressionHeadAccess().getTypeTypeParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleType_in_rule__PathExpressionHead__TypeAssignment_143930);
+            pushFollow(FOLLOW_ruleType_in_rule__PathExpressionHead__TypeAssignment_143946);
             ruleType();
 
             state._fsp--;
@@ -62155,22 +62179,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PathExpressionHead__TailAssignment_3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21864:1: rule__PathExpressionHead__TailAssignment_3 : ( rulePathExpressionTail ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21872:1: rule__PathExpressionHead__TailAssignment_3 : ( rulePathExpressionTail ) ;
     public final void rule__PathExpressionHead__TailAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21868:1: ( ( rulePathExpressionTail ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21869:1: ( rulePathExpressionTail )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21876:1: ( ( rulePathExpressionTail ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21877:1: ( rulePathExpressionTail )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21869:1: ( rulePathExpressionTail )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21870:1: rulePathExpressionTail
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21877:1: ( rulePathExpressionTail )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21878:1: rulePathExpressionTail
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPathExpressionHeadAccess().getTailPathExpressionTailParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_rulePathExpressionTail_in_rule__PathExpressionHead__TailAssignment_343961);
+            pushFollow(FOLLOW_rulePathExpressionTail_in_rule__PathExpressionHead__TailAssignment_343977);
             rulePathExpressionTail();
 
             state._fsp--;
@@ -62200,22 +62224,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PathExpressionHead__SrcAssignment_5"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21879:1: rule__PathExpressionHead__SrcAssignment_5 : ( ruleVariableReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21887:1: rule__PathExpressionHead__SrcAssignment_5 : ( ruleVariableReference ) ;
     public final void rule__PathExpressionHead__SrcAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21883:1: ( ( ruleVariableReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21884:1: ( ruleVariableReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21891:1: ( ( ruleVariableReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21892:1: ( ruleVariableReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21884:1: ( ruleVariableReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21885:1: ruleVariableReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21892:1: ( ruleVariableReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21893:1: ruleVariableReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPathExpressionHeadAccess().getSrcVariableReferenceParserRuleCall_5_0()); 
             }
-            pushFollow(FOLLOW_ruleVariableReference_in_rule__PathExpressionHead__SrcAssignment_543992);
+            pushFollow(FOLLOW_ruleVariableReference_in_rule__PathExpressionHead__SrcAssignment_544008);
             ruleVariableReference();
 
             state._fsp--;
@@ -62245,22 +62269,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PathExpressionHead__DstAssignment_7"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21894:1: rule__PathExpressionHead__DstAssignment_7 : ( ruleValueReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21902:1: rule__PathExpressionHead__DstAssignment_7 : ( ruleValueReference ) ;
     public final void rule__PathExpressionHead__DstAssignment_7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21898:1: ( ( ruleValueReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21899:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21906:1: ( ( ruleValueReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21907:1: ( ruleValueReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21899:1: ( ruleValueReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21900:1: ruleValueReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21907:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21908:1: ruleValueReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPathExpressionHeadAccess().getDstValueReferenceParserRuleCall_7_0()); 
             }
-            pushFollow(FOLLOW_ruleValueReference_in_rule__PathExpressionHead__DstAssignment_744023);
+            pushFollow(FOLLOW_ruleValueReference_in_rule__PathExpressionHead__DstAssignment_744039);
             ruleValueReference();
 
             state._fsp--;
@@ -62290,22 +62314,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PathExpressionTail__TypeAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21909:1: rule__PathExpressionTail__TypeAssignment_1 : ( ruleRefType ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21917:1: rule__PathExpressionTail__TypeAssignment_1 : ( ruleRefType ) ;
     public final void rule__PathExpressionTail__TypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21913:1: ( ( ruleRefType ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21914:1: ( ruleRefType )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21921:1: ( ( ruleRefType ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21922:1: ( ruleRefType )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21914:1: ( ruleRefType )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21915:1: ruleRefType
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21922:1: ( ruleRefType )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21923:1: ruleRefType
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPathExpressionTailAccess().getTypeRefTypeParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleRefType_in_rule__PathExpressionTail__TypeAssignment_144054);
+            pushFollow(FOLLOW_ruleRefType_in_rule__PathExpressionTail__TypeAssignment_144070);
             ruleRefType();
 
             state._fsp--;
@@ -62335,22 +62359,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PathExpressionTail__IndexAssignment_2_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21924:1: rule__PathExpressionTail__IndexAssignment_2_1 : ( RULE_INT ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21932:1: rule__PathExpressionTail__IndexAssignment_2_1 : ( RULE_INT ) ;
     public final void rule__PathExpressionTail__IndexAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21928:1: ( ( RULE_INT ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21929:1: ( RULE_INT )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21936:1: ( ( RULE_INT ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21937:1: ( RULE_INT )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21929:1: ( RULE_INT )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21930:1: RULE_INT
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21937:1: ( RULE_INT )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21938:1: RULE_INT
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPathExpressionTailAccess().getIndexINTTerminalRuleCall_2_1_0()); 
             }
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__PathExpressionTail__IndexAssignment_2_144085); if (state.failed) return ;
+            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__PathExpressionTail__IndexAssignment_2_144101); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPathExpressionTailAccess().getIndexINTTerminalRuleCall_2_1_0()); 
             }
@@ -62376,28 +62400,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PathExpressionTail__ClosureAssignment_3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21939:1: rule__PathExpressionTail__ClosureAssignment_3 : ( ( '*' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21947:1: rule__PathExpressionTail__ClosureAssignment_3 : ( ( '*' ) ) ;
     public final void rule__PathExpressionTail__ClosureAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21943:1: ( ( ( '*' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21944:1: ( ( '*' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21951:1: ( ( ( '*' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21952:1: ( ( '*' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21944:1: ( ( '*' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21945:1: ( '*' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getPathExpressionTailAccess().getClosureAsteriskKeyword_3_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21946:1: ( '*' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21947:1: '*'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21952:1: ( ( '*' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21953:1: ( '*' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPathExpressionTailAccess().getClosureAsteriskKeyword_3_0()); 
             }
-            match(input,40,FOLLOW_40_in_rule__PathExpressionTail__ClosureAssignment_344121); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21954:1: ( '*' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21955:1: '*'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getPathExpressionTailAccess().getClosureAsteriskKeyword_3_0()); 
+            }
+            match(input,40,FOLLOW_40_in_rule__PathExpressionTail__ClosureAssignment_344137); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getPathExpressionTailAccess().getClosureAsteriskKeyword_3_0()); 
             }
@@ -62429,22 +62453,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__PathExpressionTail__TailAssignment_4_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21962:1: rule__PathExpressionTail__TailAssignment_4_1 : ( rulePathExpressionTail ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21970:1: rule__PathExpressionTail__TailAssignment_4_1 : ( rulePathExpressionTail ) ;
     public final void rule__PathExpressionTail__TailAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21966:1: ( ( rulePathExpressionTail ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21967:1: ( rulePathExpressionTail )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21974:1: ( ( rulePathExpressionTail ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21975:1: ( rulePathExpressionTail )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21967:1: ( rulePathExpressionTail )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21968:1: rulePathExpressionTail
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21975:1: ( rulePathExpressionTail )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21976:1: rulePathExpressionTail
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPathExpressionTailAccess().getTailPathExpressionTailParserRuleCall_4_1_0()); 
             }
-            pushFollow(FOLLOW_rulePathExpressionTail_in_rule__PathExpressionTail__TailAssignment_4_144160);
+            pushFollow(FOLLOW_rulePathExpressionTail_in_rule__PathExpressionTail__TailAssignment_4_144176);
             rulePathExpressionTail();
 
             state._fsp--;
@@ -62474,22 +62498,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__IntValue__ValueAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21977:1: rule__IntValue__ValueAssignment_1 : ( ruleINTNUMBER ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21985:1: rule__IntValue__ValueAssignment_1 : ( ruleINTNUMBER ) ;
     public final void rule__IntValue__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21981:1: ( ( ruleINTNUMBER ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21982:1: ( ruleINTNUMBER )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21989:1: ( ( ruleINTNUMBER ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21990:1: ( ruleINTNUMBER )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21982:1: ( ruleINTNUMBER )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21983:1: ruleINTNUMBER
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21990:1: ( ruleINTNUMBER )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21991:1: ruleINTNUMBER
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getIntValueAccess().getValueINTNUMBERParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleINTNUMBER_in_rule__IntValue__ValueAssignment_144191);
+            pushFollow(FOLLOW_ruleINTNUMBER_in_rule__IntValue__ValueAssignment_144207);
             ruleINTNUMBER();
 
             state._fsp--;
@@ -62519,22 +62543,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__StringValue__ValueAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21992:1: rule__StringValue__ValueAssignment_1 : ( RULE_STRING ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22000:1: rule__StringValue__ValueAssignment_1 : ( RULE_STRING ) ;
     public final void rule__StringValue__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21996:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21997:1: ( RULE_STRING )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22004:1: ( ( RULE_STRING ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22005:1: ( RULE_STRING )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21997:1: ( RULE_STRING )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:21998:1: RULE_STRING
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22005:1: ( RULE_STRING )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22006:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_1_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__StringValue__ValueAssignment_144222); if (state.failed) return ;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__StringValue__ValueAssignment_144238); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_1_0()); 
             }
@@ -62560,22 +62584,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__BoolValue__ValueAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22007:1: rule__BoolValue__ValueAssignment_1 : ( ruleBOOLEAN ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22015:1: rule__BoolValue__ValueAssignment_1 : ( ruleBOOLEAN ) ;
     public final void rule__BoolValue__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22011:1: ( ( ruleBOOLEAN ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22012:1: ( ruleBOOLEAN )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22019:1: ( ( ruleBOOLEAN ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22020:1: ( ruleBOOLEAN )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22012:1: ( ruleBOOLEAN )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22013:1: ruleBOOLEAN
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22020:1: ( ruleBOOLEAN )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22021:1: ruleBOOLEAN
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getBoolValueAccess().getValueBOOLEANParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleBOOLEAN_in_rule__BoolValue__ValueAssignment_144253);
+            pushFollow(FOLLOW_ruleBOOLEAN_in_rule__BoolValue__ValueAssignment_144269);
             ruleBOOLEAN();
 
             state._fsp--;
@@ -62605,22 +62629,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__DoubleValue__ValueAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22022:1: rule__DoubleValue__ValueAssignment_1 : ( ruleDOUBLE ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22030:1: rule__DoubleValue__ValueAssignment_1 : ( ruleDOUBLE ) ;
     public final void rule__DoubleValue__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22026:1: ( ( ruleDOUBLE ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22027:1: ( ruleDOUBLE )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22034:1: ( ( ruleDOUBLE ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22035:1: ( ruleDOUBLE )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22027:1: ( ruleDOUBLE )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22028:1: ruleDOUBLE
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22035:1: ( ruleDOUBLE )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22036:1: ruleDOUBLE
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDoubleValueAccess().getValueDOUBLEParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleDOUBLE_in_rule__DoubleValue__ValueAssignment_144284);
+            pushFollow(FOLLOW_ruleDOUBLE_in_rule__DoubleValue__ValueAssignment_144300);
             ruleDOUBLE();
 
             state._fsp--;
@@ -62650,22 +62674,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__VariableValue__ValueAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22037:1: rule__VariableValue__ValueAssignment_1 : ( ruleVariableReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22045:1: rule__VariableValue__ValueAssignment_1 : ( ruleVariableReference ) ;
     public final void rule__VariableValue__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22041:1: ( ( ruleVariableReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22042:1: ( ruleVariableReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22049:1: ( ( ruleVariableReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22050:1: ( ruleVariableReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22042:1: ( ruleVariableReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22043:1: ruleVariableReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22050:1: ( ruleVariableReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22051:1: ruleVariableReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVariableValueAccess().getValueVariableReferenceParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleVariableReference_in_rule__VariableValue__ValueAssignment_144315);
+            pushFollow(FOLLOW_ruleVariableReference_in_rule__VariableValue__ValueAssignment_144331);
             ruleVariableReference();
 
             state._fsp--;
@@ -62695,22 +62719,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__ListValue__ValuesAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22052:1: rule__ListValue__ValuesAssignment_2 : ( ruleValueReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22060:1: rule__ListValue__ValuesAssignment_2 : ( ruleValueReference ) ;
     public final void rule__ListValue__ValuesAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22056:1: ( ( ruleValueReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22057:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22064:1: ( ( ruleValueReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22065:1: ( ruleValueReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22057:1: ( ruleValueReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22058:1: ruleValueReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22065:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22066:1: ruleValueReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getListValueAccess().getValuesValueReferenceParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleValueReference_in_rule__ListValue__ValuesAssignment_244346);
+            pushFollow(FOLLOW_ruleValueReference_in_rule__ListValue__ValuesAssignment_244362);
             ruleValueReference();
 
             state._fsp--;
@@ -62740,22 +62764,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__ListValue__ValuesAssignment_3_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22067:1: rule__ListValue__ValuesAssignment_3_1 : ( ruleValueReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22075:1: rule__ListValue__ValuesAssignment_3_1 : ( ruleValueReference ) ;
     public final void rule__ListValue__ValuesAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22071:1: ( ( ruleValueReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22072:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22079:1: ( ( ruleValueReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22080:1: ( ruleValueReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22072:1: ( ruleValueReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22073:1: ruleValueReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22080:1: ( ruleValueReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22081:1: ruleValueReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getListValueAccess().getValuesValueReferenceParserRuleCall_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValueReference_in_rule__ListValue__ValuesAssignment_3_144377);
+            pushFollow(FOLLOW_ruleValueReference_in_rule__ListValue__ValuesAssignment_3_144393);
             ruleValueReference();
 
             state._fsp--;
@@ -62785,22 +62809,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__FunctionEvaluationValue__ExpressionAssignment_3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22082:1: rule__FunctionEvaluationValue__ExpressionAssignment_3 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22090:1: rule__FunctionEvaluationValue__ExpressionAssignment_3 : ( ruleXExpression ) ;
     public final void rule__FunctionEvaluationValue__ExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22086:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22087:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22094:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22095:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22087:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22088:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22095:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22096:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionEvaluationValueAccess().getExpressionXExpressionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__FunctionEvaluationValue__ExpressionAssignment_344408);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__FunctionEvaluationValue__ExpressionAssignment_344424);
             ruleXExpression();
 
             state._fsp--;
@@ -62830,22 +62854,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__AggregatedValue__AggregatorAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22097:1: rule__AggregatedValue__AggregatorAssignment_1 : ( ruleAggregatorExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22105:1: rule__AggregatedValue__AggregatorAssignment_1 : ( ruleAggregatorExpression ) ;
     public final void rule__AggregatedValue__AggregatorAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22101:1: ( ( ruleAggregatorExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22102:1: ( ruleAggregatorExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22109:1: ( ( ruleAggregatorExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22110:1: ( ruleAggregatorExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22102:1: ( ruleAggregatorExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22103:1: ruleAggregatorExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22110:1: ( ruleAggregatorExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22111:1: ruleAggregatorExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAggregatedValueAccess().getAggregatorAggregatorExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleAggregatorExpression_in_rule__AggregatedValue__AggregatorAssignment_144439);
+            pushFollow(FOLLOW_ruleAggregatorExpression_in_rule__AggregatedValue__AggregatorAssignment_144455);
             ruleAggregatorExpression();
 
             state._fsp--;
@@ -62875,22 +62899,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__AggregatedValue__CallAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22112:1: rule__AggregatedValue__CallAssignment_2 : ( rulePatternCall ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22120:1: rule__AggregatedValue__CallAssignment_2 : ( rulePatternCall ) ;
     public final void rule__AggregatedValue__CallAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22116:1: ( ( rulePatternCall ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22117:1: ( rulePatternCall )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22124:1: ( ( rulePatternCall ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22125:1: ( rulePatternCall )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22117:1: ( rulePatternCall )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22118:1: rulePatternCall
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22125:1: ( rulePatternCall )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22126:1: rulePatternCall
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAggregatedValueAccess().getCallPatternCallParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_rulePatternCall_in_rule__AggregatedValue__CallAssignment_244470);
+            pushFollow(FOLLOW_rulePatternCall_in_rule__AggregatedValue__CallAssignment_244486);
             rulePatternCall();
 
             state._fsp--;
@@ -62920,28 +62944,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XAssignment__FeatureAssignment_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22127:1: rule__XAssignment__FeatureAssignment_0_1 : ( ( ruleFeatureCallID ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22135:1: rule__XAssignment__FeatureAssignment_0_1 : ( ( ruleFeatureCallID ) ) ;
     public final void rule__XAssignment__FeatureAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22131:1: ( ( ( ruleFeatureCallID ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22132:1: ( ( ruleFeatureCallID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22139:1: ( ( ( ruleFeatureCallID ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22140:1: ( ( ruleFeatureCallID ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22132:1: ( ( ruleFeatureCallID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22133:1: ( ruleFeatureCallID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22140:1: ( ( ruleFeatureCallID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22141:1: ( ruleFeatureCallID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementCrossReference_0_1_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22134:1: ( ruleFeatureCallID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22135:1: ruleFeatureCallID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22142:1: ( ruleFeatureCallID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22143:1: ruleFeatureCallID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementFeatureCallIDParserRuleCall_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleFeatureCallID_in_rule__XAssignment__FeatureAssignment_0_144505);
+            pushFollow(FOLLOW_ruleFeatureCallID_in_rule__XAssignment__FeatureAssignment_0_144521);
             ruleFeatureCallID();
 
             state._fsp--;
@@ -62977,22 +63001,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XAssignment__ValueAssignment_0_3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22146:1: rule__XAssignment__ValueAssignment_0_3 : ( ruleXAssignment ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22154:1: rule__XAssignment__ValueAssignment_0_3 : ( ruleXAssignment ) ;
     public final void rule__XAssignment__ValueAssignment_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22150:1: ( ( ruleXAssignment ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22151:1: ( ruleXAssignment )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22158:1: ( ( ruleXAssignment ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22159:1: ( ruleXAssignment )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22151:1: ( ruleXAssignment )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22152:1: ruleXAssignment
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22159:1: ( ruleXAssignment )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22160:1: ruleXAssignment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getValueXAssignmentParserRuleCall_0_3_0()); 
             }
-            pushFollow(FOLLOW_ruleXAssignment_in_rule__XAssignment__ValueAssignment_0_344540);
+            pushFollow(FOLLOW_ruleXAssignment_in_rule__XAssignment__ValueAssignment_0_344556);
             ruleXAssignment();
 
             state._fsp--;
@@ -63022,28 +63046,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XAssignment__FeatureAssignment_1_1_0_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22161:1: rule__XAssignment__FeatureAssignment_1_1_0_0_1 : ( ( ruleOpMultiAssign ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22169:1: rule__XAssignment__FeatureAssignment_1_1_0_0_1 : ( ( ruleOpMultiAssign ) ) ;
     public final void rule__XAssignment__FeatureAssignment_1_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22165:1: ( ( ( ruleOpMultiAssign ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22166:1: ( ( ruleOpMultiAssign ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22173:1: ( ( ( ruleOpMultiAssign ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22174:1: ( ( ruleOpMultiAssign ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22166:1: ( ( ruleOpMultiAssign ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22167:1: ( ruleOpMultiAssign )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22174:1: ( ( ruleOpMultiAssign ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22175:1: ( ruleOpMultiAssign )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementCrossReference_1_1_0_0_1_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22168:1: ( ruleOpMultiAssign )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22169:1: ruleOpMultiAssign
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22176:1: ( ruleOpMultiAssign )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22177:1: ruleOpMultiAssign
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getFeatureJvmIdentifiableElementOpMultiAssignParserRuleCall_1_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpMultiAssign_in_rule__XAssignment__FeatureAssignment_1_1_0_0_144575);
+            pushFollow(FOLLOW_ruleOpMultiAssign_in_rule__XAssignment__FeatureAssignment_1_1_0_0_144591);
             ruleOpMultiAssign();
 
             state._fsp--;
@@ -63079,22 +63103,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XAssignment__RightOperandAssignment_1_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22180:1: rule__XAssignment__RightOperandAssignment_1_1_1 : ( ruleXAssignment ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22188:1: rule__XAssignment__RightOperandAssignment_1_1_1 : ( ruleXAssignment ) ;
     public final void rule__XAssignment__RightOperandAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22184:1: ( ( ruleXAssignment ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22185:1: ( ruleXAssignment )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22192:1: ( ( ruleXAssignment ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22193:1: ( ruleXAssignment )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22185:1: ( ruleXAssignment )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22186:1: ruleXAssignment
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22193:1: ( ruleXAssignment )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22194:1: ruleXAssignment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAssignmentAccess().getRightOperandXAssignmentParserRuleCall_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXAssignment_in_rule__XAssignment__RightOperandAssignment_1_1_144610);
+            pushFollow(FOLLOW_ruleXAssignment_in_rule__XAssignment__RightOperandAssignment_1_1_144626);
             ruleXAssignment();
 
             state._fsp--;
@@ -63124,28 +63148,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XOrExpression__FeatureAssignment_1_0_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22195:1: rule__XOrExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpOr ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22203:1: rule__XOrExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpOr ) ) ;
     public final void rule__XOrExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22199:1: ( ( ( ruleOpOr ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22200:1: ( ( ruleOpOr ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22207:1: ( ( ( ruleOpOr ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22208:1: ( ( ruleOpOr ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22200:1: ( ( ruleOpOr ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22201:1: ( ruleOpOr )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22208:1: ( ( ruleOpOr ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22209:1: ( ruleOpOr )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOrExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22202:1: ( ruleOpOr )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22203:1: ruleOpOr
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22210:1: ( ruleOpOr )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22211:1: ruleOpOr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOrExpressionAccess().getFeatureJvmIdentifiableElementOpOrParserRuleCall_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpOr_in_rule__XOrExpression__FeatureAssignment_1_0_0_144645);
+            pushFollow(FOLLOW_ruleOpOr_in_rule__XOrExpression__FeatureAssignment_1_0_0_144661);
             ruleOpOr();
 
             state._fsp--;
@@ -63181,22 +63205,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XOrExpression__RightOperandAssignment_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22214:1: rule__XOrExpression__RightOperandAssignment_1_1 : ( ruleXAndExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22222:1: rule__XOrExpression__RightOperandAssignment_1_1 : ( ruleXAndExpression ) ;
     public final void rule__XOrExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22218:1: ( ( ruleXAndExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22219:1: ( ruleXAndExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22226:1: ( ( ruleXAndExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22227:1: ( ruleXAndExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22219:1: ( ruleXAndExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22220:1: ruleXAndExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22227:1: ( ruleXAndExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22228:1: ruleXAndExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOrExpressionAccess().getRightOperandXAndExpressionParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXAndExpression_in_rule__XOrExpression__RightOperandAssignment_1_144680);
+            pushFollow(FOLLOW_ruleXAndExpression_in_rule__XOrExpression__RightOperandAssignment_1_144696);
             ruleXAndExpression();
 
             state._fsp--;
@@ -63226,28 +63250,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XAndExpression__FeatureAssignment_1_0_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22229:1: rule__XAndExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpAnd ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22237:1: rule__XAndExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpAnd ) ) ;
     public final void rule__XAndExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22233:1: ( ( ( ruleOpAnd ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22234:1: ( ( ruleOpAnd ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22241:1: ( ( ( ruleOpAnd ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22242:1: ( ( ruleOpAnd ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22234:1: ( ( ruleOpAnd ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22235:1: ( ruleOpAnd )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22242:1: ( ( ruleOpAnd ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22243:1: ( ruleOpAnd )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAndExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22236:1: ( ruleOpAnd )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22237:1: ruleOpAnd
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22244:1: ( ruleOpAnd )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22245:1: ruleOpAnd
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAndExpressionAccess().getFeatureJvmIdentifiableElementOpAndParserRuleCall_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpAnd_in_rule__XAndExpression__FeatureAssignment_1_0_0_144715);
+            pushFollow(FOLLOW_ruleOpAnd_in_rule__XAndExpression__FeatureAssignment_1_0_0_144731);
             ruleOpAnd();
 
             state._fsp--;
@@ -63283,22 +63307,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XAndExpression__RightOperandAssignment_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22248:1: rule__XAndExpression__RightOperandAssignment_1_1 : ( ruleXEqualityExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22256:1: rule__XAndExpression__RightOperandAssignment_1_1 : ( ruleXEqualityExpression ) ;
     public final void rule__XAndExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22252:1: ( ( ruleXEqualityExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22253:1: ( ruleXEqualityExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22260:1: ( ( ruleXEqualityExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22261:1: ( ruleXEqualityExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22253:1: ( ruleXEqualityExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22254:1: ruleXEqualityExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22261:1: ( ruleXEqualityExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22262:1: ruleXEqualityExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAndExpressionAccess().getRightOperandXEqualityExpressionParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXEqualityExpression_in_rule__XAndExpression__RightOperandAssignment_1_144750);
+            pushFollow(FOLLOW_ruleXEqualityExpression_in_rule__XAndExpression__RightOperandAssignment_1_144766);
             ruleXEqualityExpression();
 
             state._fsp--;
@@ -63328,28 +63352,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XEqualityExpression__FeatureAssignment_1_0_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22263:1: rule__XEqualityExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpEquality ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22271:1: rule__XEqualityExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpEquality ) ) ;
     public final void rule__XEqualityExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22267:1: ( ( ( ruleOpEquality ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22268:1: ( ( ruleOpEquality ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22275:1: ( ( ( ruleOpEquality ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22276:1: ( ( ruleOpEquality ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22268:1: ( ( ruleOpEquality ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22269:1: ( ruleOpEquality )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22276:1: ( ( ruleOpEquality ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22277:1: ( ruleOpEquality )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXEqualityExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22270:1: ( ruleOpEquality )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22271:1: ruleOpEquality
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22278:1: ( ruleOpEquality )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22279:1: ruleOpEquality
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXEqualityExpressionAccess().getFeatureJvmIdentifiableElementOpEqualityParserRuleCall_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpEquality_in_rule__XEqualityExpression__FeatureAssignment_1_0_0_144785);
+            pushFollow(FOLLOW_ruleOpEquality_in_rule__XEqualityExpression__FeatureAssignment_1_0_0_144801);
             ruleOpEquality();
 
             state._fsp--;
@@ -63385,22 +63409,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XEqualityExpression__RightOperandAssignment_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22282:1: rule__XEqualityExpression__RightOperandAssignment_1_1 : ( ruleXRelationalExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22290:1: rule__XEqualityExpression__RightOperandAssignment_1_1 : ( ruleXRelationalExpression ) ;
     public final void rule__XEqualityExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22286:1: ( ( ruleXRelationalExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22287:1: ( ruleXRelationalExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22294:1: ( ( ruleXRelationalExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22295:1: ( ruleXRelationalExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22287:1: ( ruleXRelationalExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22288:1: ruleXRelationalExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22295:1: ( ruleXRelationalExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22296:1: ruleXRelationalExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXEqualityExpressionAccess().getRightOperandXRelationalExpressionParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXRelationalExpression_in_rule__XEqualityExpression__RightOperandAssignment_1_144820);
+            pushFollow(FOLLOW_ruleXRelationalExpression_in_rule__XEqualityExpression__RightOperandAssignment_1_144836);
             ruleXRelationalExpression();
 
             state._fsp--;
@@ -63430,22 +63454,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XRelationalExpression__TypeAssignment_1_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22297:1: rule__XRelationalExpression__TypeAssignment_1_0_1 : ( ruleJvmTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22305:1: rule__XRelationalExpression__TypeAssignment_1_0_1 : ( ruleJvmTypeReference ) ;
     public final void rule__XRelationalExpression__TypeAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22301:1: ( ( ruleJvmTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22302:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22309:1: ( ( ruleJvmTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22310:1: ( ruleJvmTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22302:1: ( ruleJvmTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22303:1: ruleJvmTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22310:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22311:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXRelationalExpressionAccess().getTypeJvmTypeReferenceParserRuleCall_1_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XRelationalExpression__TypeAssignment_1_0_144851);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XRelationalExpression__TypeAssignment_1_0_144867);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -63475,28 +63499,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XRelationalExpression__FeatureAssignment_1_1_0_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22312:1: rule__XRelationalExpression__FeatureAssignment_1_1_0_0_1 : ( ( ruleOpCompare ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22320:1: rule__XRelationalExpression__FeatureAssignment_1_1_0_0_1 : ( ( ruleOpCompare ) ) ;
     public final void rule__XRelationalExpression__FeatureAssignment_1_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22316:1: ( ( ( ruleOpCompare ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22317:1: ( ( ruleOpCompare ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22324:1: ( ( ( ruleOpCompare ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22325:1: ( ( ruleOpCompare ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22317:1: ( ( ruleOpCompare ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22318:1: ( ruleOpCompare )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22325:1: ( ( ruleOpCompare ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22326:1: ( ruleOpCompare )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXRelationalExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_1_0_0_1_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22319:1: ( ruleOpCompare )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22320:1: ruleOpCompare
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22327:1: ( ruleOpCompare )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22328:1: ruleOpCompare
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXRelationalExpressionAccess().getFeatureJvmIdentifiableElementOpCompareParserRuleCall_1_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpCompare_in_rule__XRelationalExpression__FeatureAssignment_1_1_0_0_144886);
+            pushFollow(FOLLOW_ruleOpCompare_in_rule__XRelationalExpression__FeatureAssignment_1_1_0_0_144902);
             ruleOpCompare();
 
             state._fsp--;
@@ -63532,22 +63556,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XRelationalExpression__RightOperandAssignment_1_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22331:1: rule__XRelationalExpression__RightOperandAssignment_1_1_1 : ( ruleXOtherOperatorExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22339:1: rule__XRelationalExpression__RightOperandAssignment_1_1_1 : ( ruleXOtherOperatorExpression ) ;
     public final void rule__XRelationalExpression__RightOperandAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22335:1: ( ( ruleXOtherOperatorExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22336:1: ( ruleXOtherOperatorExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22343:1: ( ( ruleXOtherOperatorExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22344:1: ( ruleXOtherOperatorExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22336:1: ( ruleXOtherOperatorExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22337:1: ruleXOtherOperatorExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22344:1: ( ruleXOtherOperatorExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22345:1: ruleXOtherOperatorExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXRelationalExpressionAccess().getRightOperandXOtherOperatorExpressionParserRuleCall_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXOtherOperatorExpression_in_rule__XRelationalExpression__RightOperandAssignment_1_1_144921);
+            pushFollow(FOLLOW_ruleXOtherOperatorExpression_in_rule__XRelationalExpression__RightOperandAssignment_1_1_144937);
             ruleXOtherOperatorExpression();
 
             state._fsp--;
@@ -63577,28 +63601,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22346:1: rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpOther ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22354:1: rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpOther ) ) ;
     public final void rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22350:1: ( ( ( ruleOpOther ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22351:1: ( ( ruleOpOther ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22358:1: ( ( ( ruleOpOther ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22359:1: ( ( ruleOpOther ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22351:1: ( ( ruleOpOther ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22352:1: ( ruleOpOther )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22359:1: ( ( ruleOpOther ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22360:1: ( ruleOpOther )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOtherOperatorExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22353:1: ( ruleOpOther )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22354:1: ruleOpOther
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22361:1: ( ruleOpOther )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22362:1: ruleOpOther
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOtherOperatorExpressionAccess().getFeatureJvmIdentifiableElementOpOtherParserRuleCall_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpOther_in_rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_144956);
+            pushFollow(FOLLOW_ruleOpOther_in_rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_144972);
             ruleOpOther();
 
             state._fsp--;
@@ -63634,22 +63658,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XOtherOperatorExpression__RightOperandAssignment_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22365:1: rule__XOtherOperatorExpression__RightOperandAssignment_1_1 : ( ruleXAdditiveExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22373:1: rule__XOtherOperatorExpression__RightOperandAssignment_1_1 : ( ruleXAdditiveExpression ) ;
     public final void rule__XOtherOperatorExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22369:1: ( ( ruleXAdditiveExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22370:1: ( ruleXAdditiveExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22377:1: ( ( ruleXAdditiveExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22378:1: ( ruleXAdditiveExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22370:1: ( ruleXAdditiveExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22371:1: ruleXAdditiveExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22378:1: ( ruleXAdditiveExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22379:1: ruleXAdditiveExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXOtherOperatorExpressionAccess().getRightOperandXAdditiveExpressionParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXAdditiveExpression_in_rule__XOtherOperatorExpression__RightOperandAssignment_1_144991);
+            pushFollow(FOLLOW_ruleXAdditiveExpression_in_rule__XOtherOperatorExpression__RightOperandAssignment_1_145007);
             ruleXAdditiveExpression();
 
             state._fsp--;
@@ -63679,28 +63703,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XAdditiveExpression__FeatureAssignment_1_0_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22380:1: rule__XAdditiveExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpAdd ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22388:1: rule__XAdditiveExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpAdd ) ) ;
     public final void rule__XAdditiveExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22384:1: ( ( ( ruleOpAdd ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22385:1: ( ( ruleOpAdd ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22392:1: ( ( ( ruleOpAdd ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22393:1: ( ( ruleOpAdd ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22385:1: ( ( ruleOpAdd ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22386:1: ( ruleOpAdd )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22393:1: ( ( ruleOpAdd ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22394:1: ( ruleOpAdd )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAdditiveExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22387:1: ( ruleOpAdd )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22388:1: ruleOpAdd
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22395:1: ( ruleOpAdd )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22396:1: ruleOpAdd
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAdditiveExpressionAccess().getFeatureJvmIdentifiableElementOpAddParserRuleCall_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpAdd_in_rule__XAdditiveExpression__FeatureAssignment_1_0_0_145026);
+            pushFollow(FOLLOW_ruleOpAdd_in_rule__XAdditiveExpression__FeatureAssignment_1_0_0_145042);
             ruleOpAdd();
 
             state._fsp--;
@@ -63736,22 +63760,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XAdditiveExpression__RightOperandAssignment_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22399:1: rule__XAdditiveExpression__RightOperandAssignment_1_1 : ( ruleXMultiplicativeExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22407:1: rule__XAdditiveExpression__RightOperandAssignment_1_1 : ( ruleXMultiplicativeExpression ) ;
     public final void rule__XAdditiveExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22403:1: ( ( ruleXMultiplicativeExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22404:1: ( ruleXMultiplicativeExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22411:1: ( ( ruleXMultiplicativeExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22412:1: ( ruleXMultiplicativeExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22404:1: ( ruleXMultiplicativeExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22405:1: ruleXMultiplicativeExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22412:1: ( ruleXMultiplicativeExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22413:1: ruleXMultiplicativeExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXAdditiveExpressionAccess().getRightOperandXMultiplicativeExpressionParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXMultiplicativeExpression_in_rule__XAdditiveExpression__RightOperandAssignment_1_145061);
+            pushFollow(FOLLOW_ruleXMultiplicativeExpression_in_rule__XAdditiveExpression__RightOperandAssignment_1_145077);
             ruleXMultiplicativeExpression();
 
             state._fsp--;
@@ -63781,28 +63805,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22414:1: rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpMulti ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22422:1: rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_1 : ( ( ruleOpMulti ) ) ;
     public final void rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22418:1: ( ( ( ruleOpMulti ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22419:1: ( ( ruleOpMulti ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22426:1: ( ( ( ruleOpMulti ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22427:1: ( ( ruleOpMulti ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22419:1: ( ( ruleOpMulti ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22420:1: ( ruleOpMulti )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22427:1: ( ( ruleOpMulti ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22428:1: ( ruleOpMulti )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMultiplicativeExpressionAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_1_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22421:1: ( ruleOpMulti )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22422:1: ruleOpMulti
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22429:1: ( ruleOpMulti )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22430:1: ruleOpMulti
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMultiplicativeExpressionAccess().getFeatureJvmIdentifiableElementOpMultiParserRuleCall_1_0_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpMulti_in_rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_145096);
+            pushFollow(FOLLOW_ruleOpMulti_in_rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_145112);
             ruleOpMulti();
 
             state._fsp--;
@@ -63838,22 +63862,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMultiplicativeExpression__RightOperandAssignment_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22433:1: rule__XMultiplicativeExpression__RightOperandAssignment_1_1 : ( ruleXUnaryOperation ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22441:1: rule__XMultiplicativeExpression__RightOperandAssignment_1_1 : ( ruleXUnaryOperation ) ;
     public final void rule__XMultiplicativeExpression__RightOperandAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22437:1: ( ( ruleXUnaryOperation ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22438:1: ( ruleXUnaryOperation )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22445:1: ( ( ruleXUnaryOperation ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22446:1: ( ruleXUnaryOperation )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22438:1: ( ruleXUnaryOperation )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22439:1: ruleXUnaryOperation
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22446:1: ( ruleXUnaryOperation )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22447:1: ruleXUnaryOperation
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMultiplicativeExpressionAccess().getRightOperandXUnaryOperationParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXUnaryOperation_in_rule__XMultiplicativeExpression__RightOperandAssignment_1_145131);
+            pushFollow(FOLLOW_ruleXUnaryOperation_in_rule__XMultiplicativeExpression__RightOperandAssignment_1_145147);
             ruleXUnaryOperation();
 
             state._fsp--;
@@ -63883,28 +63907,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XUnaryOperation__FeatureAssignment_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22448:1: rule__XUnaryOperation__FeatureAssignment_0_1 : ( ( ruleOpUnary ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22456:1: rule__XUnaryOperation__FeatureAssignment_0_1 : ( ( ruleOpUnary ) ) ;
     public final void rule__XUnaryOperation__FeatureAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22452:1: ( ( ( ruleOpUnary ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22453:1: ( ( ruleOpUnary ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22460:1: ( ( ( ruleOpUnary ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22461:1: ( ( ruleOpUnary ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22453:1: ( ( ruleOpUnary ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22454:1: ( ruleOpUnary )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22461:1: ( ( ruleOpUnary ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22462:1: ( ruleOpUnary )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXUnaryOperationAccess().getFeatureJvmIdentifiableElementCrossReference_0_1_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22455:1: ( ruleOpUnary )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22456:1: ruleOpUnary
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22463:1: ( ruleOpUnary )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22464:1: ruleOpUnary
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXUnaryOperationAccess().getFeatureJvmIdentifiableElementOpUnaryParserRuleCall_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpUnary_in_rule__XUnaryOperation__FeatureAssignment_0_145166);
+            pushFollow(FOLLOW_ruleOpUnary_in_rule__XUnaryOperation__FeatureAssignment_0_145182);
             ruleOpUnary();
 
             state._fsp--;
@@ -63940,22 +63964,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XUnaryOperation__OperandAssignment_0_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22467:1: rule__XUnaryOperation__OperandAssignment_0_2 : ( ruleXUnaryOperation ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22475:1: rule__XUnaryOperation__OperandAssignment_0_2 : ( ruleXUnaryOperation ) ;
     public final void rule__XUnaryOperation__OperandAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22471:1: ( ( ruleXUnaryOperation ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22472:1: ( ruleXUnaryOperation )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22479:1: ( ( ruleXUnaryOperation ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22480:1: ( ruleXUnaryOperation )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22472:1: ( ruleXUnaryOperation )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22473:1: ruleXUnaryOperation
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22480:1: ( ruleXUnaryOperation )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22481:1: ruleXUnaryOperation
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXUnaryOperationAccess().getOperandXUnaryOperationParserRuleCall_0_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXUnaryOperation_in_rule__XUnaryOperation__OperandAssignment_0_245201);
+            pushFollow(FOLLOW_ruleXUnaryOperation_in_rule__XUnaryOperation__OperandAssignment_0_245217);
             ruleXUnaryOperation();
 
             state._fsp--;
@@ -63985,22 +64009,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XCastedExpression__TypeAssignment_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22482:1: rule__XCastedExpression__TypeAssignment_1_1 : ( ruleJvmTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22490:1: rule__XCastedExpression__TypeAssignment_1_1 : ( ruleJvmTypeReference ) ;
     public final void rule__XCastedExpression__TypeAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22486:1: ( ( ruleJvmTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22487:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22494:1: ( ( ruleJvmTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22495:1: ( ruleJvmTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22487:1: ( ruleJvmTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22488:1: ruleJvmTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22495:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22496:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCastedExpressionAccess().getTypeJvmTypeReferenceParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XCastedExpression__TypeAssignment_1_145232);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XCastedExpression__TypeAssignment_1_145248);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -64030,28 +64054,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XPostfixOperation__FeatureAssignment_1_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22497:1: rule__XPostfixOperation__FeatureAssignment_1_0_1 : ( ( ruleOpPostfix ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22505:1: rule__XPostfixOperation__FeatureAssignment_1_0_1 : ( ( ruleOpPostfix ) ) ;
     public final void rule__XPostfixOperation__FeatureAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22501:1: ( ( ( ruleOpPostfix ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22502:1: ( ( ruleOpPostfix ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22509:1: ( ( ( ruleOpPostfix ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22510:1: ( ( ruleOpPostfix ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22502:1: ( ( ruleOpPostfix ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22503:1: ( ruleOpPostfix )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22510:1: ( ( ruleOpPostfix ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22511:1: ( ruleOpPostfix )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXPostfixOperationAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_1_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22504:1: ( ruleOpPostfix )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22505:1: ruleOpPostfix
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22512:1: ( ruleOpPostfix )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22513:1: ruleOpPostfix
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXPostfixOperationAccess().getFeatureJvmIdentifiableElementOpPostfixParserRuleCall_1_0_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleOpPostfix_in_rule__XPostfixOperation__FeatureAssignment_1_0_145267);
+            pushFollow(FOLLOW_ruleOpPostfix_in_rule__XPostfixOperation__FeatureAssignment_1_0_145283);
             ruleOpPostfix();
 
             state._fsp--;
@@ -64087,28 +64111,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22516:1: rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_1 : ( ( '::' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22524:1: rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_1 : ( ( '::' ) ) ;
     public final void rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22520:1: ( ( ( '::' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22521:1: ( ( '::' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22528:1: ( ( ( '::' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22529:1: ( ( '::' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22521:1: ( ( '::' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22522:1: ( '::' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_0_0_0_1_1_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22523:1: ( '::' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22524:1: '::'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22529:1: ( ( '::' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22530:1: ( '::' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_0_0_0_1_1_0()); 
             }
-            match(input,93,FOLLOW_93_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_145307); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22531:1: ( '::' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22532:1: '::'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_0_0_0_1_1_0()); 
+            }
+            match(input,93,FOLLOW_93_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_145323); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_0_0_0_1_1_0()); 
             }
@@ -64140,28 +64164,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22539:1: rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_2 : ( ( ruleFeatureCallID ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22547:1: rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_2 : ( ( ruleFeatureCallID ) ) ;
     public final void rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22543:1: ( ( ( ruleFeatureCallID ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22544:1: ( ( ruleFeatureCallID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22551:1: ( ( ( ruleFeatureCallID ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22552:1: ( ( ruleFeatureCallID ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22544:1: ( ( ruleFeatureCallID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22545:1: ( ruleFeatureCallID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22552:1: ( ( ruleFeatureCallID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22553:1: ( ruleFeatureCallID )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementCrossReference_1_0_0_0_2_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22546:1: ( ruleFeatureCallID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22547:1: ruleFeatureCallID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22554:1: ( ruleFeatureCallID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22555:1: ruleFeatureCallID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementFeatureCallIDParserRuleCall_1_0_0_0_2_0_1()); 
             }
-            pushFollow(FOLLOW_ruleFeatureCallID_in_rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_245350);
+            pushFollow(FOLLOW_ruleFeatureCallID_in_rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_245366);
             ruleFeatureCallID();
 
             state._fsp--;
@@ -64197,22 +64221,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMemberFeatureCall__ValueAssignment_1_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22558:1: rule__XMemberFeatureCall__ValueAssignment_1_0_1 : ( ruleXAssignment ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22566:1: rule__XMemberFeatureCall__ValueAssignment_1_0_1 : ( ruleXAssignment ) ;
     public final void rule__XMemberFeatureCall__ValueAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22562:1: ( ( ruleXAssignment ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22563:1: ( ruleXAssignment )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22570:1: ( ( ruleXAssignment ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22571:1: ( ruleXAssignment )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22563:1: ( ruleXAssignment )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22564:1: ruleXAssignment
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22571:1: ( ruleXAssignment )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22572:1: ruleXAssignment
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getValueXAssignmentParserRuleCall_1_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXAssignment_in_rule__XMemberFeatureCall__ValueAssignment_1_0_145385);
+            pushFollow(FOLLOW_ruleXAssignment_in_rule__XMemberFeatureCall__ValueAssignment_1_0_145401);
             ruleXAssignment();
 
             state._fsp--;
@@ -64242,28 +64266,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22573:1: rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_1 : ( ( '?.' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22581:1: rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_1 : ( ( '?.' ) ) ;
     public final void rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22577:1: ( ( ( '?.' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22578:1: ( ( '?.' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22585:1: ( ( ( '?.' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22586:1: ( ( '?.' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22578:1: ( ( '?.' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22579:1: ( '?.' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXMemberFeatureCallAccess().getNullSafeQuestionMarkFullStopKeyword_1_1_0_0_1_1_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22580:1: ( '?.' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22581:1: '?.'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22586:1: ( ( '?.' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22587:1: ( '?.' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getNullSafeQuestionMarkFullStopKeyword_1_1_0_0_1_1_0()); 
             }
-            match(input,94,FOLLOW_94_in_rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_145421); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22588:1: ( '?.' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22589:1: '?.'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXMemberFeatureCallAccess().getNullSafeQuestionMarkFullStopKeyword_1_1_0_0_1_1_0()); 
+            }
+            match(input,94,FOLLOW_94_in_rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_145437); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXMemberFeatureCallAccess().getNullSafeQuestionMarkFullStopKeyword_1_1_0_0_1_1_0()); 
             }
@@ -64295,28 +64319,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22596:1: rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_2 : ( ( '::' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22604:1: rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_2 : ( ( '::' ) ) ;
     public final void rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22600:1: ( ( ( '::' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22601:1: ( ( '::' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22608:1: ( ( ( '::' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22609:1: ( ( '::' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22601:1: ( ( '::' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22602:1: ( '::' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_1_0_0_1_2_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22603:1: ( '::' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22604:1: '::'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22609:1: ( ( '::' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22610:1: ( '::' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_1_0_0_1_2_0()); 
             }
-            match(input,93,FOLLOW_93_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_245465); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22611:1: ( '::' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22612:1: '::'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_1_0_0_1_2_0()); 
+            }
+            match(input,93,FOLLOW_93_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_245481); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXMemberFeatureCallAccess().getExplicitStaticColonColonKeyword_1_1_0_0_1_2_0()); 
             }
@@ -64348,22 +64372,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22619:1: rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22627:1: rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22623:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22624:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22631:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22632:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22624:1: ( ruleJvmArgumentTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22625:1: ruleJvmArgumentTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22632:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22633:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_145504);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_145520);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -64393,22 +64417,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22634:1: rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22642:1: rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22638:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22639:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22646:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22647:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22639:1: ( ruleJvmArgumentTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22640:1: ruleJvmArgumentTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22647:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22648:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_1_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_145535);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_145551);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -64438,28 +64462,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMemberFeatureCall__FeatureAssignment_1_1_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22649:1: rule__XMemberFeatureCall__FeatureAssignment_1_1_2 : ( ( ruleIdOrSuper ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22657:1: rule__XMemberFeatureCall__FeatureAssignment_1_1_2 : ( ( ruleIdOrSuper ) ) ;
     public final void rule__XMemberFeatureCall__FeatureAssignment_1_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22653:1: ( ( ( ruleIdOrSuper ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22654:1: ( ( ruleIdOrSuper ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22661:1: ( ( ( ruleIdOrSuper ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22662:1: ( ( ruleIdOrSuper ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22654:1: ( ( ruleIdOrSuper ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22655:1: ( ruleIdOrSuper )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22662:1: ( ( ruleIdOrSuper ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22663:1: ( ruleIdOrSuper )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementCrossReference_1_1_2_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22656:1: ( ruleIdOrSuper )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22657:1: ruleIdOrSuper
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22664:1: ( ruleIdOrSuper )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22665:1: ruleIdOrSuper
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getFeatureJvmIdentifiableElementIdOrSuperParserRuleCall_1_1_2_0_1()); 
             }
-            pushFollow(FOLLOW_ruleIdOrSuper_in_rule__XMemberFeatureCall__FeatureAssignment_1_1_245570);
+            pushFollow(FOLLOW_ruleIdOrSuper_in_rule__XMemberFeatureCall__FeatureAssignment_1_1_245586);
             ruleIdOrSuper();
 
             state._fsp--;
@@ -64495,28 +64519,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22668:1: rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_0 : ( ( '(' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22676:1: rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_0 : ( ( '(' ) ) ;
     public final void rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22672:1: ( ( ( '(' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22673:1: ( ( '(' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22680:1: ( ( ( '(' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22681:1: ( ( '(' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22673:1: ( ( '(' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22674:1: ( '(' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXMemberFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_1_1_3_0_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22675:1: ( '(' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22676:1: '('
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22681:1: ( ( '(' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22682:1: ( '(' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_1_1_3_0_0()); 
             }
-            match(input,55,FOLLOW_55_in_rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_045610); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22683:1: ( '(' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22684:1: '('
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXMemberFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_1_1_3_0_0()); 
+            }
+            match(input,55,FOLLOW_55_in_rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_045626); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXMemberFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_1_1_3_0_0()); 
             }
@@ -64548,22 +64572,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22691:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0 : ( ruleXShortClosure ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22699:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0 : ( ruleXShortClosure ) ;
     public final void rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22695:1: ( ( ruleXShortClosure ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22696:1: ( ruleXShortClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22703:1: ( ( ruleXShortClosure ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22704:1: ( ruleXShortClosure )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22696:1: ( ruleXShortClosure )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22697:1: ruleXShortClosure
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22704:1: ( ruleXShortClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22705:1: ruleXShortClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXShortClosureParserRuleCall_1_1_3_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXShortClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_045649);
+            pushFollow(FOLLOW_ruleXShortClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_045665);
             ruleXShortClosure();
 
             state._fsp--;
@@ -64593,22 +64617,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22706:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_0 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22714:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_0 : ( ruleXExpression ) ;
     public final void rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22710:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22711:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22718:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22719:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22711:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22712:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22719:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22720:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXExpressionParserRuleCall_1_1_3_1_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_045680);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_045696);
             ruleXExpression();
 
             state._fsp--;
@@ -64638,22 +64662,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22721:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22729:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_1 : ( ruleXExpression ) ;
     public final void rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22725:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22726:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22733:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22734:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22726:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22727:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22734:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22735:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXExpressionParserRuleCall_1_1_3_1_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_145711);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_145727);
             ruleXExpression();
 
             state._fsp--;
@@ -64683,22 +64707,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_4"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22736:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_4 : ( ruleXClosure ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22744:1: rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_4 : ( ruleXClosure ) ;
     public final void rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22740:1: ( ( ruleXClosure ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22741:1: ( ruleXClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22748:1: ( ( ruleXClosure ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22749:1: ( ruleXClosure )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22741:1: ( ruleXClosure )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22742:1: ruleXClosure
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22749:1: ( ruleXClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22750:1: ruleXClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXMemberFeatureCallAccess().getMemberCallArgumentsXClosureParserRuleCall_1_1_4_0()); 
             }
-            pushFollow(FOLLOW_ruleXClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_445742);
+            pushFollow(FOLLOW_ruleXClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_445758);
             ruleXClosure();
 
             state._fsp--;
@@ -64728,22 +64752,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XSetLiteral__ElementsAssignment_3_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22751:1: rule__XSetLiteral__ElementsAssignment_3_0 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22759:1: rule__XSetLiteral__ElementsAssignment_3_0 : ( ruleXExpression ) ;
     public final void rule__XSetLiteral__ElementsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22755:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22756:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22763:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22764:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22756:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22757:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22764:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22765:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSetLiteralAccess().getElementsXExpressionParserRuleCall_3_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_045773);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_045789);
             ruleXExpression();
 
             state._fsp--;
@@ -64773,22 +64797,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XSetLiteral__ElementsAssignment_3_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22766:1: rule__XSetLiteral__ElementsAssignment_3_1_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22774:1: rule__XSetLiteral__ElementsAssignment_3_1_1 : ( ruleXExpression ) ;
     public final void rule__XSetLiteral__ElementsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22770:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22771:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22778:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22779:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22771:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22772:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22779:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22780:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSetLiteralAccess().getElementsXExpressionParserRuleCall_3_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_1_145804);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_1_145820);
             ruleXExpression();
 
             state._fsp--;
@@ -64818,22 +64842,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XListLiteral__ElementsAssignment_3_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22781:1: rule__XListLiteral__ElementsAssignment_3_0 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22789:1: rule__XListLiteral__ElementsAssignment_3_0 : ( ruleXExpression ) ;
     public final void rule__XListLiteral__ElementsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22785:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22786:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22793:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22794:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22786:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22787:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22794:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22795:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXListLiteralAccess().getElementsXExpressionParserRuleCall_3_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_045835);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_045851);
             ruleXExpression();
 
             state._fsp--;
@@ -64863,22 +64887,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XListLiteral__ElementsAssignment_3_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22796:1: rule__XListLiteral__ElementsAssignment_3_1_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22804:1: rule__XListLiteral__ElementsAssignment_3_1_1 : ( ruleXExpression ) ;
     public final void rule__XListLiteral__ElementsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22800:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22801:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22808:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22809:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22801:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22802:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22809:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22810:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXListLiteralAccess().getElementsXExpressionParserRuleCall_3_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_1_145866);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_1_145882);
             ruleXExpression();
 
             state._fsp--;
@@ -64908,22 +64932,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22811:1: rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_0 : ( ruleJvmFormalParameter ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22819:1: rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_0 : ( ruleJvmFormalParameter ) ;
     public final void rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22815:1: ( ( ruleJvmFormalParameter ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22816:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22823:1: ( ( ruleJvmFormalParameter ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22824:1: ( ruleJvmFormalParameter )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22816:1: ( ruleJvmFormalParameter )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22817:1: ruleJvmFormalParameter
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22824:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22825:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_1_0_0_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_045897);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_045913);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -64953,22 +64977,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22826:1: rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_1 : ( ruleJvmFormalParameter ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22834:1: rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_1 : ( ruleJvmFormalParameter ) ;
     public final void rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22830:1: ( ( ruleJvmFormalParameter ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22831:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22838:1: ( ( ruleJvmFormalParameter ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22839:1: ( ruleJvmFormalParameter )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22831:1: ( ruleJvmFormalParameter )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22832:1: ruleJvmFormalParameter
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22839:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22840:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_1_0_0_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_145928);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_145944);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -64998,28 +65022,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XClosure__ExplicitSyntaxAssignment_1_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22841:1: rule__XClosure__ExplicitSyntaxAssignment_1_0_1 : ( ( '|' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22849:1: rule__XClosure__ExplicitSyntaxAssignment_1_0_1 : ( ( '|' ) ) ;
     public final void rule__XClosure__ExplicitSyntaxAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22845:1: ( ( ( '|' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22846:1: ( ( '|' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22853:1: ( ( ( '|' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22854:1: ( ( '|' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22846:1: ( ( '|' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22847:1: ( '|' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXClosureAccess().getExplicitSyntaxVerticalLineKeyword_1_0_1_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22848:1: ( '|' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22849:1: '|'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22854:1: ( ( '|' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22855:1: ( '|' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXClosureAccess().getExplicitSyntaxVerticalLineKeyword_1_0_1_0()); 
             }
-            match(input,95,FOLLOW_95_in_rule__XClosure__ExplicitSyntaxAssignment_1_0_145964); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22856:1: ( '|' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22857:1: '|'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXClosureAccess().getExplicitSyntaxVerticalLineKeyword_1_0_1_0()); 
+            }
+            match(input,95,FOLLOW_95_in_rule__XClosure__ExplicitSyntaxAssignment_1_0_145980); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXClosureAccess().getExplicitSyntaxVerticalLineKeyword_1_0_1_0()); 
             }
@@ -65051,22 +65075,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XClosure__ExpressionAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22864:1: rule__XClosure__ExpressionAssignment_2 : ( ruleXExpressionInClosure ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22872:1: rule__XClosure__ExpressionAssignment_2 : ( ruleXExpressionInClosure ) ;
     public final void rule__XClosure__ExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22868:1: ( ( ruleXExpressionInClosure ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22869:1: ( ruleXExpressionInClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22876:1: ( ( ruleXExpressionInClosure ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22877:1: ( ruleXExpressionInClosure )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22869:1: ( ruleXExpressionInClosure )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22870:1: ruleXExpressionInClosure
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22877:1: ( ruleXExpressionInClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22878:1: ruleXExpressionInClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXClosureAccess().getExpressionXExpressionInClosureParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpressionInClosure_in_rule__XClosure__ExpressionAssignment_246003);
+            pushFollow(FOLLOW_ruleXExpressionInClosure_in_rule__XClosure__ExpressionAssignment_246019);
             ruleXExpressionInClosure();
 
             state._fsp--;
@@ -65096,22 +65120,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XExpressionInClosure__ExpressionsAssignment_1_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22879:1: rule__XExpressionInClosure__ExpressionsAssignment_1_0 : ( ruleXExpressionOrVarDeclaration ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22887:1: rule__XExpressionInClosure__ExpressionsAssignment_1_0 : ( ruleXExpressionOrVarDeclaration ) ;
     public final void rule__XExpressionInClosure__ExpressionsAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22883:1: ( ( ruleXExpressionOrVarDeclaration ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22884:1: ( ruleXExpressionOrVarDeclaration )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22891:1: ( ( ruleXExpressionOrVarDeclaration ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22892:1: ( ruleXExpressionOrVarDeclaration )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22884:1: ( ruleXExpressionOrVarDeclaration )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22885:1: ruleXExpressionOrVarDeclaration
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22892:1: ( ruleXExpressionOrVarDeclaration )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22893:1: ruleXExpressionOrVarDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXExpressionInClosureAccess().getExpressionsXExpressionOrVarDeclarationParserRuleCall_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XExpressionInClosure__ExpressionsAssignment_1_046034);
+            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XExpressionInClosure__ExpressionsAssignment_1_046050);
             ruleXExpressionOrVarDeclaration();
 
             state._fsp--;
@@ -65141,22 +65165,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22894:1: rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_0 : ( ruleJvmFormalParameter ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22902:1: rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_0 : ( ruleJvmFormalParameter ) ;
     public final void rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22898:1: ( ( ruleJvmFormalParameter ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22899:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22906:1: ( ( ruleJvmFormalParameter ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22907:1: ( ruleJvmFormalParameter )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22899:1: ( ruleJvmFormalParameter )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22900:1: ruleJvmFormalParameter
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22907:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22908:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXShortClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_0_0_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_046065);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_046081);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -65186,22 +65210,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22909:1: rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_1 : ( ruleJvmFormalParameter ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22917:1: rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_1 : ( ruleJvmFormalParameter ) ;
     public final void rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22913:1: ( ( ruleJvmFormalParameter ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22914:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22921:1: ( ( ruleJvmFormalParameter ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22922:1: ( ruleJvmFormalParameter )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22914:1: ( ruleJvmFormalParameter )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22915:1: ruleJvmFormalParameter
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22922:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22923:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXShortClosureAccess().getDeclaredFormalParametersJvmFormalParameterParserRuleCall_0_0_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_146096);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_146112);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -65231,28 +65255,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XShortClosure__ExplicitSyntaxAssignment_0_0_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22924:1: rule__XShortClosure__ExplicitSyntaxAssignment_0_0_2 : ( ( '|' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22932:1: rule__XShortClosure__ExplicitSyntaxAssignment_0_0_2 : ( ( '|' ) ) ;
     public final void rule__XShortClosure__ExplicitSyntaxAssignment_0_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22928:1: ( ( ( '|' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22929:1: ( ( '|' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22936:1: ( ( ( '|' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22937:1: ( ( '|' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22929:1: ( ( '|' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22930:1: ( '|' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXShortClosureAccess().getExplicitSyntaxVerticalLineKeyword_0_0_2_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22931:1: ( '|' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22932:1: '|'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22937:1: ( ( '|' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22938:1: ( '|' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXShortClosureAccess().getExplicitSyntaxVerticalLineKeyword_0_0_2_0()); 
             }
-            match(input,95,FOLLOW_95_in_rule__XShortClosure__ExplicitSyntaxAssignment_0_0_246132); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22939:1: ( '|' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22940:1: '|'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXShortClosureAccess().getExplicitSyntaxVerticalLineKeyword_0_0_2_0()); 
+            }
+            match(input,95,FOLLOW_95_in_rule__XShortClosure__ExplicitSyntaxAssignment_0_0_246148); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXShortClosureAccess().getExplicitSyntaxVerticalLineKeyword_0_0_2_0()); 
             }
@@ -65284,22 +65308,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XShortClosure__ExpressionAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22947:1: rule__XShortClosure__ExpressionAssignment_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22955:1: rule__XShortClosure__ExpressionAssignment_1 : ( ruleXExpression ) ;
     public final void rule__XShortClosure__ExpressionAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22951:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22952:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22959:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22960:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22952:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22953:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22960:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22961:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXShortClosureAccess().getExpressionXExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XShortClosure__ExpressionAssignment_146171);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XShortClosure__ExpressionAssignment_146187);
             ruleXExpression();
 
             state._fsp--;
@@ -65329,22 +65353,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XIfExpression__IfAssignment_3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22962:1: rule__XIfExpression__IfAssignment_3 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22970:1: rule__XIfExpression__IfAssignment_3 : ( ruleXExpression ) ;
     public final void rule__XIfExpression__IfAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22966:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22967:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22974:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22975:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22967:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22968:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22975:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22976:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXIfExpressionAccess().getIfXExpressionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XIfExpression__IfAssignment_346202);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XIfExpression__IfAssignment_346218);
             ruleXExpression();
 
             state._fsp--;
@@ -65374,22 +65398,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XIfExpression__ThenAssignment_5"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22977:1: rule__XIfExpression__ThenAssignment_5 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22985:1: rule__XIfExpression__ThenAssignment_5 : ( ruleXExpression ) ;
     public final void rule__XIfExpression__ThenAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22981:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22982:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22989:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22990:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22982:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22983:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22990:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22991:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXIfExpressionAccess().getThenXExpressionParserRuleCall_5_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XIfExpression__ThenAssignment_546233);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XIfExpression__ThenAssignment_546249);
             ruleXExpression();
 
             state._fsp--;
@@ -65419,22 +65443,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XIfExpression__ElseAssignment_6_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22992:1: rule__XIfExpression__ElseAssignment_6_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23000:1: rule__XIfExpression__ElseAssignment_6_1 : ( ruleXExpression ) ;
     public final void rule__XIfExpression__ElseAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22996:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22997:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23004:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23005:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22997:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:22998:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23005:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23006:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXIfExpressionAccess().getElseXExpressionParserRuleCall_6_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XIfExpression__ElseAssignment_6_146264);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XIfExpression__ElseAssignment_6_146280);
             ruleXExpression();
 
             state._fsp--;
@@ -65464,22 +65488,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23007:1: rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_1 : ( ruleJvmFormalParameter ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23015:1: rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_1 : ( ruleJvmFormalParameter ) ;
     public final void rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23011:1: ( ( ruleJvmFormalParameter ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23012:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23019:1: ( ( ruleJvmFormalParameter ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23020:1: ( ruleJvmFormalParameter )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23012:1: ( ruleJvmFormalParameter )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23013:1: ruleJvmFormalParameter
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23020:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23021:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getDeclaredParamJvmFormalParameterParserRuleCall_2_0_0_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_146295);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_146311);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -65509,22 +65533,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XSwitchExpression__SwitchAssignment_2_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23022:1: rule__XSwitchExpression__SwitchAssignment_2_0_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23030:1: rule__XSwitchExpression__SwitchAssignment_2_0_1 : ( ruleXExpression ) ;
     public final void rule__XSwitchExpression__SwitchAssignment_2_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23026:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23027:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23034:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23035:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23027:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23028:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23035:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23036:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getSwitchXExpressionParserRuleCall_2_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_0_146326);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_0_146342);
             ruleXExpression();
 
             state._fsp--;
@@ -65554,22 +65578,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23037:1: rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_0 : ( ruleJvmFormalParameter ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23045:1: rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_0 : ( ruleJvmFormalParameter ) ;
     public final void rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23041:1: ( ( ruleJvmFormalParameter ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23042:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23049:1: ( ( ruleJvmFormalParameter ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23050:1: ( ruleJvmFormalParameter )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23042:1: ( ruleJvmFormalParameter )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23043:1: ruleJvmFormalParameter
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23050:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23051:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getDeclaredParamJvmFormalParameterParserRuleCall_2_1_0_0_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_046357);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_046373);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -65599,22 +65623,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XSwitchExpression__SwitchAssignment_2_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23052:1: rule__XSwitchExpression__SwitchAssignment_2_1_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23060:1: rule__XSwitchExpression__SwitchAssignment_2_1_1 : ( ruleXExpression ) ;
     public final void rule__XSwitchExpression__SwitchAssignment_2_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23056:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23057:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23064:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23065:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23057:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23058:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23065:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23066:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getSwitchXExpressionParserRuleCall_2_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_1_146388);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_1_146404);
             ruleXExpression();
 
             state._fsp--;
@@ -65644,22 +65668,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XSwitchExpression__CasesAssignment_4"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23067:1: rule__XSwitchExpression__CasesAssignment_4 : ( ruleXCasePart ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23075:1: rule__XSwitchExpression__CasesAssignment_4 : ( ruleXCasePart ) ;
     public final void rule__XSwitchExpression__CasesAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23071:1: ( ( ruleXCasePart ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23072:1: ( ruleXCasePart )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23079:1: ( ( ruleXCasePart ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23080:1: ( ruleXCasePart )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23072:1: ( ruleXCasePart )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23073:1: ruleXCasePart
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23080:1: ( ruleXCasePart )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23081:1: ruleXCasePart
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getCasesXCasePartParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleXCasePart_in_rule__XSwitchExpression__CasesAssignment_446419);
+            pushFollow(FOLLOW_ruleXCasePart_in_rule__XSwitchExpression__CasesAssignment_446435);
             ruleXCasePart();
 
             state._fsp--;
@@ -65689,22 +65713,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XSwitchExpression__DefaultAssignment_5_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23082:1: rule__XSwitchExpression__DefaultAssignment_5_2 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23090:1: rule__XSwitchExpression__DefaultAssignment_5_2 : ( ruleXExpression ) ;
     public final void rule__XSwitchExpression__DefaultAssignment_5_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23086:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23087:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23094:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23095:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23087:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23088:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23095:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23096:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSwitchExpressionAccess().getDefaultXExpressionParserRuleCall_5_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSwitchExpression__DefaultAssignment_5_246450);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSwitchExpression__DefaultAssignment_5_246466);
             ruleXExpression();
 
             state._fsp--;
@@ -65734,22 +65758,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XCasePart__TypeGuardAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23097:1: rule__XCasePart__TypeGuardAssignment_1 : ( ruleJvmTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23105:1: rule__XCasePart__TypeGuardAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__XCasePart__TypeGuardAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23101:1: ( ( ruleJvmTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23102:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23109:1: ( ( ruleJvmTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23110:1: ( ruleJvmTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23102:1: ( ruleJvmTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23103:1: ruleJvmTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23110:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23111:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCasePartAccess().getTypeGuardJvmTypeReferenceParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XCasePart__TypeGuardAssignment_146481);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XCasePart__TypeGuardAssignment_146497);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -65779,22 +65803,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XCasePart__CaseAssignment_2_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23112:1: rule__XCasePart__CaseAssignment_2_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23120:1: rule__XCasePart__CaseAssignment_2_1 : ( ruleXExpression ) ;
     public final void rule__XCasePart__CaseAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23116:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23117:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23124:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23125:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23117:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23118:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23125:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23126:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCasePartAccess().getCaseXExpressionParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XCasePart__CaseAssignment_2_146512);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XCasePart__CaseAssignment_2_146528);
             ruleXExpression();
 
             state._fsp--;
@@ -65824,22 +65848,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XCasePart__ThenAssignment_3_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23127:1: rule__XCasePart__ThenAssignment_3_0_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23135:1: rule__XCasePart__ThenAssignment_3_0_1 : ( ruleXExpression ) ;
     public final void rule__XCasePart__ThenAssignment_3_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23131:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23132:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23139:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23140:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23132:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23133:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23140:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23141:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCasePartAccess().getThenXExpressionParserRuleCall_3_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XCasePart__ThenAssignment_3_0_146543);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XCasePart__ThenAssignment_3_0_146559);
             ruleXExpression();
 
             state._fsp--;
@@ -65869,22 +65893,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XForLoopExpression__DeclaredParamAssignment_0_0_3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23142:1: rule__XForLoopExpression__DeclaredParamAssignment_0_0_3 : ( ruleJvmFormalParameter ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23150:1: rule__XForLoopExpression__DeclaredParamAssignment_0_0_3 : ( ruleJvmFormalParameter ) ;
     public final void rule__XForLoopExpression__DeclaredParamAssignment_0_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23146:1: ( ( ruleJvmFormalParameter ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23147:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23154:1: ( ( ruleJvmFormalParameter ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23155:1: ( ruleJvmFormalParameter )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23147:1: ( ruleJvmFormalParameter )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23148:1: ruleJvmFormalParameter
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23155:1: ( ruleJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23156:1: ruleJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXForLoopExpressionAccess().getDeclaredParamJvmFormalParameterParserRuleCall_0_0_3_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XForLoopExpression__DeclaredParamAssignment_0_0_346574);
+            pushFollow(FOLLOW_ruleJvmFormalParameter_in_rule__XForLoopExpression__DeclaredParamAssignment_0_0_346590);
             ruleJvmFormalParameter();
 
             state._fsp--;
@@ -65914,22 +65938,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XForLoopExpression__ForExpressionAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23157:1: rule__XForLoopExpression__ForExpressionAssignment_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23165:1: rule__XForLoopExpression__ForExpressionAssignment_1 : ( ruleXExpression ) ;
     public final void rule__XForLoopExpression__ForExpressionAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23161:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23162:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23169:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23170:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23162:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23163:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23170:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23171:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXForLoopExpressionAccess().getForExpressionXExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XForLoopExpression__ForExpressionAssignment_146605);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XForLoopExpression__ForExpressionAssignment_146621);
             ruleXExpression();
 
             state._fsp--;
@@ -65959,22 +65983,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XForLoopExpression__EachExpressionAssignment_3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23172:1: rule__XForLoopExpression__EachExpressionAssignment_3 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23180:1: rule__XForLoopExpression__EachExpressionAssignment_3 : ( ruleXExpression ) ;
     public final void rule__XForLoopExpression__EachExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23176:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23177:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23184:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23185:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23177:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23178:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23185:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23186:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXForLoopExpressionAccess().getEachExpressionXExpressionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XForLoopExpression__EachExpressionAssignment_346636);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XForLoopExpression__EachExpressionAssignment_346652);
             ruleXExpression();
 
             state._fsp--;
@@ -66004,22 +66028,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__InitExpressionsAssignment_3_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23187:1: rule__XBasicForLoopExpression__InitExpressionsAssignment_3_0 : ( ruleXExpressionOrVarDeclaration ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23195:1: rule__XBasicForLoopExpression__InitExpressionsAssignment_3_0 : ( ruleXExpressionOrVarDeclaration ) ;
     public final void rule__XBasicForLoopExpression__InitExpressionsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23191:1: ( ( ruleXExpressionOrVarDeclaration ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23192:1: ( ruleXExpressionOrVarDeclaration )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23199:1: ( ( ruleXExpressionOrVarDeclaration ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23200:1: ( ruleXExpressionOrVarDeclaration )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23192:1: ( ruleXExpressionOrVarDeclaration )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23193:1: ruleXExpressionOrVarDeclaration
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23200:1: ( ruleXExpressionOrVarDeclaration )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23201:1: ruleXExpressionOrVarDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getInitExpressionsXExpressionOrVarDeclarationParserRuleCall_3_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_046667);
+            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_046683);
             ruleXExpressionOrVarDeclaration();
 
             state._fsp--;
@@ -66049,22 +66073,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23202:1: rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_1 : ( ruleXExpressionOrVarDeclaration ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23210:1: rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_1 : ( ruleXExpressionOrVarDeclaration ) ;
     public final void rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23206:1: ( ( ruleXExpressionOrVarDeclaration ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23207:1: ( ruleXExpressionOrVarDeclaration )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23214:1: ( ( ruleXExpressionOrVarDeclaration ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23215:1: ( ruleXExpressionOrVarDeclaration )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23207:1: ( ruleXExpressionOrVarDeclaration )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23208:1: ruleXExpressionOrVarDeclaration
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23215:1: ( ruleXExpressionOrVarDeclaration )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23216:1: ruleXExpressionOrVarDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getInitExpressionsXExpressionOrVarDeclarationParserRuleCall_3_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_146698);
+            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_146714);
             ruleXExpressionOrVarDeclaration();
 
             state._fsp--;
@@ -66094,22 +66118,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__ExpressionAssignment_5"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23217:1: rule__XBasicForLoopExpression__ExpressionAssignment_5 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23225:1: rule__XBasicForLoopExpression__ExpressionAssignment_5 : ( ruleXExpression ) ;
     public final void rule__XBasicForLoopExpression__ExpressionAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23221:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23222:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23229:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23230:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23222:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23223:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23230:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23231:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getExpressionXExpressionParserRuleCall_5_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__ExpressionAssignment_546729);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__ExpressionAssignment_546745);
             ruleXExpression();
 
             state._fsp--;
@@ -66139,22 +66163,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23232:1: rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_0 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23240:1: rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_0 : ( ruleXExpression ) ;
     public final void rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23236:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23237:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23244:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23245:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23237:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23238:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23245:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23246:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getUpdateExpressionsXExpressionParserRuleCall_7_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_046760);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_046776);
             ruleXExpression();
 
             state._fsp--;
@@ -66184,22 +66208,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23247:1: rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23255:1: rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_1 : ( ruleXExpression ) ;
     public final void rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23251:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23252:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23259:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23260:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23252:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23253:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23260:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23261:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getUpdateExpressionsXExpressionParserRuleCall_7_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_146791);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_146807);
             ruleXExpression();
 
             state._fsp--;
@@ -66229,22 +66253,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XBasicForLoopExpression__EachExpressionAssignment_9"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23262:1: rule__XBasicForLoopExpression__EachExpressionAssignment_9 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23270:1: rule__XBasicForLoopExpression__EachExpressionAssignment_9 : ( ruleXExpression ) ;
     public final void rule__XBasicForLoopExpression__EachExpressionAssignment_9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23266:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23267:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23274:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23275:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23267:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23268:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23275:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23276:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBasicForLoopExpressionAccess().getEachExpressionXExpressionParserRuleCall_9_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__EachExpressionAssignment_946822);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__EachExpressionAssignment_946838);
             ruleXExpression();
 
             state._fsp--;
@@ -66274,22 +66298,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XWhileExpression__PredicateAssignment_3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23277:1: rule__XWhileExpression__PredicateAssignment_3 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23285:1: rule__XWhileExpression__PredicateAssignment_3 : ( ruleXExpression ) ;
     public final void rule__XWhileExpression__PredicateAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23281:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23282:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23289:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23290:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23282:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23283:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23290:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23291:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXWhileExpressionAccess().getPredicateXExpressionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XWhileExpression__PredicateAssignment_346853);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XWhileExpression__PredicateAssignment_346869);
             ruleXExpression();
 
             state._fsp--;
@@ -66319,22 +66343,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XWhileExpression__BodyAssignment_5"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23292:1: rule__XWhileExpression__BodyAssignment_5 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23300:1: rule__XWhileExpression__BodyAssignment_5 : ( ruleXExpression ) ;
     public final void rule__XWhileExpression__BodyAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23296:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23297:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23304:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23305:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23297:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23298:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23305:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23306:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXWhileExpressionAccess().getBodyXExpressionParserRuleCall_5_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XWhileExpression__BodyAssignment_546884);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XWhileExpression__BodyAssignment_546900);
             ruleXExpression();
 
             state._fsp--;
@@ -66364,22 +66388,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XDoWhileExpression__BodyAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23307:1: rule__XDoWhileExpression__BodyAssignment_2 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23315:1: rule__XDoWhileExpression__BodyAssignment_2 : ( ruleXExpression ) ;
     public final void rule__XDoWhileExpression__BodyAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23311:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23312:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23319:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23320:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23312:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23313:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23320:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23321:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXDoWhileExpressionAccess().getBodyXExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__BodyAssignment_246915);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__BodyAssignment_246931);
             ruleXExpression();
 
             state._fsp--;
@@ -66409,22 +66433,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XDoWhileExpression__PredicateAssignment_5"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23322:1: rule__XDoWhileExpression__PredicateAssignment_5 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23330:1: rule__XDoWhileExpression__PredicateAssignment_5 : ( ruleXExpression ) ;
     public final void rule__XDoWhileExpression__PredicateAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23326:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23327:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23334:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23335:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23327:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23328:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23335:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23336:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXDoWhileExpressionAccess().getPredicateXExpressionParserRuleCall_5_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__PredicateAssignment_546946);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__PredicateAssignment_546962);
             ruleXExpression();
 
             state._fsp--;
@@ -66454,22 +66478,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XBlockExpression__ExpressionsAssignment_2_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23337:1: rule__XBlockExpression__ExpressionsAssignment_2_0 : ( ruleXExpressionOrVarDeclaration ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23345:1: rule__XBlockExpression__ExpressionsAssignment_2_0 : ( ruleXExpressionOrVarDeclaration ) ;
     public final void rule__XBlockExpression__ExpressionsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23341:1: ( ( ruleXExpressionOrVarDeclaration ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23342:1: ( ruleXExpressionOrVarDeclaration )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23349:1: ( ( ruleXExpressionOrVarDeclaration ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23350:1: ( ruleXExpressionOrVarDeclaration )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23342:1: ( ruleXExpressionOrVarDeclaration )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23343:1: ruleXExpressionOrVarDeclaration
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23350:1: ( ruleXExpressionOrVarDeclaration )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23351:1: ruleXExpressionOrVarDeclaration
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBlockExpressionAccess().getExpressionsXExpressionOrVarDeclarationParserRuleCall_2_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBlockExpression__ExpressionsAssignment_2_046977);
+            pushFollow(FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBlockExpression__ExpressionsAssignment_2_046993);
             ruleXExpressionOrVarDeclaration();
 
             state._fsp--;
@@ -66499,28 +66523,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XVariableDeclaration__WriteableAssignment_1_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23352:1: rule__XVariableDeclaration__WriteableAssignment_1_0 : ( ( 'var' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23360:1: rule__XVariableDeclaration__WriteableAssignment_1_0 : ( ( 'var' ) ) ;
     public final void rule__XVariableDeclaration__WriteableAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23356:1: ( ( ( 'var' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23357:1: ( ( 'var' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23364:1: ( ( ( 'var' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23365:1: ( ( 'var' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23357:1: ( ( 'var' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23358:1: ( 'var' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXVariableDeclarationAccess().getWriteableVarKeyword_1_0_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23359:1: ( 'var' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23360:1: 'var'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23365:1: ( ( 'var' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23366:1: ( 'var' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getWriteableVarKeyword_1_0_0()); 
             }
-            match(input,96,FOLLOW_96_in_rule__XVariableDeclaration__WriteableAssignment_1_047013); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23367:1: ( 'var' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23368:1: 'var'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXVariableDeclarationAccess().getWriteableVarKeyword_1_0_0()); 
+            }
+            match(input,96,FOLLOW_96_in_rule__XVariableDeclaration__WriteableAssignment_1_047029); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXVariableDeclarationAccess().getWriteableVarKeyword_1_0_0()); 
             }
@@ -66552,22 +66576,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XVariableDeclaration__TypeAssignment_2_0_0_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23375:1: rule__XVariableDeclaration__TypeAssignment_2_0_0_0 : ( ruleJvmTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23383:1: rule__XVariableDeclaration__TypeAssignment_2_0_0_0 : ( ruleJvmTypeReference ) ;
     public final void rule__XVariableDeclaration__TypeAssignment_2_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23379:1: ( ( ruleJvmTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23380:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23387:1: ( ( ruleJvmTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23388:1: ( ruleJvmTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23380:1: ( ruleJvmTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23381:1: ruleJvmTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23388:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23389:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getTypeJvmTypeReferenceParserRuleCall_2_0_0_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XVariableDeclaration__TypeAssignment_2_0_0_047052);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XVariableDeclaration__TypeAssignment_2_0_0_047068);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -66597,22 +66621,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XVariableDeclaration__NameAssignment_2_0_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23390:1: rule__XVariableDeclaration__NameAssignment_2_0_0_1 : ( ruleValidID ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23398:1: rule__XVariableDeclaration__NameAssignment_2_0_0_1 : ( ruleValidID ) ;
     public final void rule__XVariableDeclaration__NameAssignment_2_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23394:1: ( ( ruleValidID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23395:1: ( ruleValidID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23402:1: ( ( ruleValidID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23403:1: ( ruleValidID )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23395:1: ( ruleValidID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23396:1: ruleValidID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23403:1: ( ruleValidID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23404:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getNameValidIDParserRuleCall_2_0_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_0_0_147083);
+            pushFollow(FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_0_0_147099);
             ruleValidID();
 
             state._fsp--;
@@ -66642,22 +66666,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XVariableDeclaration__NameAssignment_2_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23405:1: rule__XVariableDeclaration__NameAssignment_2_1 : ( ruleValidID ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23413:1: rule__XVariableDeclaration__NameAssignment_2_1 : ( ruleValidID ) ;
     public final void rule__XVariableDeclaration__NameAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23409:1: ( ( ruleValidID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23410:1: ( ruleValidID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23417:1: ( ( ruleValidID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23418:1: ( ruleValidID )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23410:1: ( ruleValidID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23411:1: ruleValidID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23418:1: ( ruleValidID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23419:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getNameValidIDParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_147114);
+            pushFollow(FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_147130);
             ruleValidID();
 
             state._fsp--;
@@ -66687,22 +66711,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XVariableDeclaration__RightAssignment_3_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23420:1: rule__XVariableDeclaration__RightAssignment_3_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23428:1: rule__XVariableDeclaration__RightAssignment_3_1 : ( ruleXExpression ) ;
     public final void rule__XVariableDeclaration__RightAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23424:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23425:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23432:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23433:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23425:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23426:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23433:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23434:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXVariableDeclarationAccess().getRightXExpressionParserRuleCall_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XVariableDeclaration__RightAssignment_3_147145);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XVariableDeclaration__RightAssignment_3_147161);
             ruleXExpression();
 
             state._fsp--;
@@ -66732,22 +66756,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__JvmFormalParameter__ParameterTypeAssignment_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23435:1: rule__JvmFormalParameter__ParameterTypeAssignment_0 : ( ruleJvmTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23443:1: rule__JvmFormalParameter__ParameterTypeAssignment_0 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmFormalParameter__ParameterTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23439:1: ( ( ruleJvmTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23440:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23447:1: ( ( ruleJvmTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23448:1: ( ruleJvmTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23440:1: ( ruleJvmTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23441:1: ruleJvmTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23448:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23449:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmFormalParameterAccess().getParameterTypeJvmTypeReferenceParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmFormalParameter__ParameterTypeAssignment_047176);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmFormalParameter__ParameterTypeAssignment_047192);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -66777,22 +66801,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__JvmFormalParameter__NameAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23450:1: rule__JvmFormalParameter__NameAssignment_1 : ( ruleValidID ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23458:1: rule__JvmFormalParameter__NameAssignment_1 : ( ruleValidID ) ;
     public final void rule__JvmFormalParameter__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23454:1: ( ( ruleValidID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23455:1: ( ruleValidID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23462:1: ( ( ruleValidID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23463:1: ( ruleValidID )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23455:1: ( ruleValidID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23456:1: ruleValidID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23463:1: ( ruleValidID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23464:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmFormalParameterAccess().getNameValidIDParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__JvmFormalParameter__NameAssignment_147207);
+            pushFollow(FOLLOW_ruleValidID_in_rule__JvmFormalParameter__NameAssignment_147223);
             ruleValidID();
 
             state._fsp--;
@@ -66822,22 +66846,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__FullJvmFormalParameter__ParameterTypeAssignment_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23465:1: rule__FullJvmFormalParameter__ParameterTypeAssignment_0 : ( ruleJvmTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23473:1: rule__FullJvmFormalParameter__ParameterTypeAssignment_0 : ( ruleJvmTypeReference ) ;
     public final void rule__FullJvmFormalParameter__ParameterTypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23469:1: ( ( ruleJvmTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23470:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23477:1: ( ( ruleJvmTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23478:1: ( ruleJvmTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23470:1: ( ruleJvmTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23471:1: ruleJvmTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23478:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23479:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFullJvmFormalParameterAccess().getParameterTypeJvmTypeReferenceParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__FullJvmFormalParameter__ParameterTypeAssignment_047238);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__FullJvmFormalParameter__ParameterTypeAssignment_047254);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -66867,22 +66891,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__FullJvmFormalParameter__NameAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23480:1: rule__FullJvmFormalParameter__NameAssignment_1 : ( ruleValidID ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23488:1: rule__FullJvmFormalParameter__NameAssignment_1 : ( ruleValidID ) ;
     public final void rule__FullJvmFormalParameter__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23484:1: ( ( ruleValidID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23485:1: ( ruleValidID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23492:1: ( ( ruleValidID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23493:1: ( ruleValidID )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23485:1: ( ruleValidID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23486:1: ruleValidID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23493:1: ( ruleValidID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23494:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFullJvmFormalParameterAccess().getNameValidIDParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__FullJvmFormalParameter__NameAssignment_147269);
+            pushFollow(FOLLOW_ruleValidID_in_rule__FullJvmFormalParameter__NameAssignment_147285);
             ruleValidID();
 
             state._fsp--;
@@ -66912,22 +66936,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XFeatureCall__TypeArgumentsAssignment_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23495:1: rule__XFeatureCall__TypeArgumentsAssignment_1_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23503:1: rule__XFeatureCall__TypeArgumentsAssignment_1_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XFeatureCall__TypeArgumentsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23499:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23500:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23507:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23508:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23500:1: ( ruleJvmArgumentTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23501:1: ruleJvmArgumentTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23508:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23509:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_147300);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_147316);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -66957,22 +66981,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XFeatureCall__TypeArgumentsAssignment_1_2_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23510:1: rule__XFeatureCall__TypeArgumentsAssignment_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23518:1: rule__XFeatureCall__TypeArgumentsAssignment_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XFeatureCall__TypeArgumentsAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23514:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23515:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23522:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23523:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23515:1: ( ruleJvmArgumentTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23516:1: ruleJvmArgumentTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23523:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23524:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_1_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_2_147331);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_2_147347);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -67002,28 +67026,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23525:1: rule__XFeatureCall__FeatureAssignment_2 : ( ( ruleIdOrSuper ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23533:1: rule__XFeatureCall__FeatureAssignment_2 : ( ( ruleIdOrSuper ) ) ;
     public final void rule__XFeatureCall__FeatureAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23529:1: ( ( ( ruleIdOrSuper ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23530:1: ( ( ruleIdOrSuper ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23537:1: ( ( ( ruleIdOrSuper ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23538:1: ( ( ruleIdOrSuper ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23530:1: ( ( ruleIdOrSuper ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23531:1: ( ruleIdOrSuper )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23538:1: ( ( ruleIdOrSuper ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23539:1: ( ruleIdOrSuper )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureJvmIdentifiableElementCrossReference_2_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23532:1: ( ruleIdOrSuper )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23533:1: ruleIdOrSuper
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23540:1: ( ruleIdOrSuper )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23541:1: ruleIdOrSuper
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureJvmIdentifiableElementIdOrSuperParserRuleCall_2_0_1()); 
             }
-            pushFollow(FOLLOW_ruleIdOrSuper_in_rule__XFeatureCall__FeatureAssignment_247366);
+            pushFollow(FOLLOW_ruleIdOrSuper_in_rule__XFeatureCall__FeatureAssignment_247382);
             ruleIdOrSuper();
 
             state._fsp--;
@@ -67059,28 +67083,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XFeatureCall__ExplicitOperationCallAssignment_3_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23544:1: rule__XFeatureCall__ExplicitOperationCallAssignment_3_0 : ( ( '(' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23552:1: rule__XFeatureCall__ExplicitOperationCallAssignment_3_0 : ( ( '(' ) ) ;
     public final void rule__XFeatureCall__ExplicitOperationCallAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23548:1: ( ( ( '(' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23549:1: ( ( '(' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23556:1: ( ( ( '(' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23557:1: ( ( '(' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23549:1: ( ( '(' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23550:1: ( '(' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_3_0_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23551:1: ( '(' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23552:1: '('
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23557:1: ( ( '(' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23558:1: ( '(' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_3_0_0()); 
             }
-            match(input,55,FOLLOW_55_in_rule__XFeatureCall__ExplicitOperationCallAssignment_3_047406); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23559:1: ( '(' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23560:1: '('
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_3_0_0()); 
+            }
+            match(input,55,FOLLOW_55_in_rule__XFeatureCall__ExplicitOperationCallAssignment_3_047422); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXFeatureCallAccess().getExplicitOperationCallLeftParenthesisKeyword_3_0_0()); 
             }
@@ -67112,22 +67136,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23567:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_0 : ( ruleXShortClosure ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23575:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_0 : ( ruleXShortClosure ) ;
     public final void rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23571:1: ( ( ruleXShortClosure ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23572:1: ( ruleXShortClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23579:1: ( ( ruleXShortClosure ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23580:1: ( ruleXShortClosure )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23572:1: ( ruleXShortClosure )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23573:1: ruleXShortClosure
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23580:1: ( ruleXShortClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23581:1: ruleXShortClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXShortClosureParserRuleCall_3_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXShortClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_047445);
+            pushFollow(FOLLOW_ruleXShortClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_047461);
             ruleXShortClosure();
 
             state._fsp--;
@@ -67157,22 +67181,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23582:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_0 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23590:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_0 : ( ruleXExpression ) ;
     public final void rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23586:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23587:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23594:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23595:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23587:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23588:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23595:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23596:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXExpressionParserRuleCall_3_1_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_047476);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_047492);
             ruleXExpression();
 
             state._fsp--;
@@ -67202,22 +67226,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23597:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23605:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_1 : ( ruleXExpression ) ;
     public final void rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23601:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23602:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23609:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23610:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23602:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23603:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23610:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23611:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXExpressionParserRuleCall_3_1_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_147507);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_147523);
             ruleXExpression();
 
             state._fsp--;
@@ -67247,22 +67271,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XFeatureCall__FeatureCallArgumentsAssignment_4"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23612:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_4 : ( ruleXClosure ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23620:1: rule__XFeatureCall__FeatureCallArgumentsAssignment_4 : ( ruleXClosure ) ;
     public final void rule__XFeatureCall__FeatureCallArgumentsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23616:1: ( ( ruleXClosure ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23617:1: ( ruleXClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23624:1: ( ( ruleXClosure ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23625:1: ( ruleXClosure )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23617:1: ( ruleXClosure )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23618:1: ruleXClosure
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23625:1: ( ruleXClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23626:1: ruleXClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFeatureCallAccess().getFeatureCallArgumentsXClosureParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleXClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_447538);
+            pushFollow(FOLLOW_ruleXClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_447554);
             ruleXClosure();
 
             state._fsp--;
@@ -67292,28 +67316,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XConstructorCall__ConstructorAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23627:1: rule__XConstructorCall__ConstructorAssignment_2 : ( ( ruleQualifiedName ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23635:1: rule__XConstructorCall__ConstructorAssignment_2 : ( ( ruleQualifiedName ) ) ;
     public final void rule__XConstructorCall__ConstructorAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23631:1: ( ( ( ruleQualifiedName ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23632:1: ( ( ruleQualifiedName ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23639:1: ( ( ( ruleQualifiedName ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23640:1: ( ( ruleQualifiedName ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23632:1: ( ( ruleQualifiedName ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23633:1: ( ruleQualifiedName )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23640:1: ( ( ruleQualifiedName ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23641:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getConstructorJvmConstructorCrossReference_2_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23634:1: ( ruleQualifiedName )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23635:1: ruleQualifiedName
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23642:1: ( ruleQualifiedName )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23643:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getConstructorJvmConstructorQualifiedNameParserRuleCall_2_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__XConstructorCall__ConstructorAssignment_247573);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__XConstructorCall__ConstructorAssignment_247589);
             ruleQualifiedName();
 
             state._fsp--;
@@ -67349,22 +67373,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XConstructorCall__TypeArgumentsAssignment_3_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23646:1: rule__XConstructorCall__TypeArgumentsAssignment_3_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23654:1: rule__XConstructorCall__TypeArgumentsAssignment_3_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XConstructorCall__TypeArgumentsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23650:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23651:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23658:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23659:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23651:1: ( ruleJvmArgumentTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23652:1: ruleJvmArgumentTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23659:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23660:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_147608);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_147624);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -67394,22 +67418,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XConstructorCall__TypeArgumentsAssignment_3_2_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23661:1: rule__XConstructorCall__TypeArgumentsAssignment_3_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23669:1: rule__XConstructorCall__TypeArgumentsAssignment_3_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__XConstructorCall__TypeArgumentsAssignment_3_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23665:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23666:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23673:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23674:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23666:1: ( ruleJvmArgumentTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23667:1: ruleJvmArgumentTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23674:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23675:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getTypeArgumentsJvmArgumentTypeReferenceParserRuleCall_3_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_2_147639);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_2_147655);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -67439,28 +67463,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XConstructorCall__ExplicitConstructorCallAssignment_4_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23676:1: rule__XConstructorCall__ExplicitConstructorCallAssignment_4_0 : ( ( '(' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23684:1: rule__XConstructorCall__ExplicitConstructorCallAssignment_4_0 : ( ( '(' ) ) ;
     public final void rule__XConstructorCall__ExplicitConstructorCallAssignment_4_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23680:1: ( ( ( '(' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23681:1: ( ( '(' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23688:1: ( ( ( '(' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23689:1: ( ( '(' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23681:1: ( ( '(' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23682:1: ( '(' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXConstructorCallAccess().getExplicitConstructorCallLeftParenthesisKeyword_4_0_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23683:1: ( '(' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23684:1: '('
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23689:1: ( ( '(' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23690:1: ( '(' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getExplicitConstructorCallLeftParenthesisKeyword_4_0_0()); 
             }
-            match(input,55,FOLLOW_55_in_rule__XConstructorCall__ExplicitConstructorCallAssignment_4_047675); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23691:1: ( '(' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23692:1: '('
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXConstructorCallAccess().getExplicitConstructorCallLeftParenthesisKeyword_4_0_0()); 
+            }
+            match(input,55,FOLLOW_55_in_rule__XConstructorCall__ExplicitConstructorCallAssignment_4_047691); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXConstructorCallAccess().getExplicitConstructorCallLeftParenthesisKeyword_4_0_0()); 
             }
@@ -67492,22 +67516,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XConstructorCall__ArgumentsAssignment_4_1_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23699:1: rule__XConstructorCall__ArgumentsAssignment_4_1_0 : ( ruleXShortClosure ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23707:1: rule__XConstructorCall__ArgumentsAssignment_4_1_0 : ( ruleXShortClosure ) ;
     public final void rule__XConstructorCall__ArgumentsAssignment_4_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23703:1: ( ( ruleXShortClosure ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23704:1: ( ruleXShortClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23711:1: ( ( ruleXShortClosure ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23712:1: ( ruleXShortClosure )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23704:1: ( ruleXShortClosure )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23705:1: ruleXShortClosure
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23712:1: ( ruleXShortClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23713:1: ruleXShortClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getArgumentsXShortClosureParserRuleCall_4_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXShortClosure_in_rule__XConstructorCall__ArgumentsAssignment_4_1_047714);
+            pushFollow(FOLLOW_ruleXShortClosure_in_rule__XConstructorCall__ArgumentsAssignment_4_1_047730);
             ruleXShortClosure();
 
             state._fsp--;
@@ -67537,22 +67561,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XConstructorCall__ArgumentsAssignment_4_1_1_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23714:1: rule__XConstructorCall__ArgumentsAssignment_4_1_1_0 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23722:1: rule__XConstructorCall__ArgumentsAssignment_4_1_1_0 : ( ruleXExpression ) ;
     public final void rule__XConstructorCall__ArgumentsAssignment_4_1_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23718:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23719:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23726:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23727:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23719:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23720:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23727:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23728:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getArgumentsXExpressionParserRuleCall_4_1_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_047745);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_047761);
             ruleXExpression();
 
             state._fsp--;
@@ -67582,22 +67606,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23729:1: rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23737:1: rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_1 : ( ruleXExpression ) ;
     public final void rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23733:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23734:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23741:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23742:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23734:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23735:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23742:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23743:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getArgumentsXExpressionParserRuleCall_4_1_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_147776);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_147792);
             ruleXExpression();
 
             state._fsp--;
@@ -67627,22 +67651,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XConstructorCall__ArgumentsAssignment_5"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23744:1: rule__XConstructorCall__ArgumentsAssignment_5 : ( ruleXClosure ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23752:1: rule__XConstructorCall__ArgumentsAssignment_5 : ( ruleXClosure ) ;
     public final void rule__XConstructorCall__ArgumentsAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23748:1: ( ( ruleXClosure ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23749:1: ( ruleXClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23756:1: ( ( ruleXClosure ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23757:1: ( ruleXClosure )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23749:1: ( ruleXClosure )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23750:1: ruleXClosure
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23757:1: ( ruleXClosure )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23758:1: ruleXClosure
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXConstructorCallAccess().getArgumentsXClosureParserRuleCall_5_0()); 
             }
-            pushFollow(FOLLOW_ruleXClosure_in_rule__XConstructorCall__ArgumentsAssignment_547807);
+            pushFollow(FOLLOW_ruleXClosure_in_rule__XConstructorCall__ArgumentsAssignment_547823);
             ruleXClosure();
 
             state._fsp--;
@@ -67672,28 +67696,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XBooleanLiteral__IsTrueAssignment_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23759:1: rule__XBooleanLiteral__IsTrueAssignment_1_1 : ( ( 'true' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23767:1: rule__XBooleanLiteral__IsTrueAssignment_1_1 : ( ( 'true' ) ) ;
     public final void rule__XBooleanLiteral__IsTrueAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23763:1: ( ( ( 'true' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23764:1: ( ( 'true' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23771:1: ( ( ( 'true' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23772:1: ( ( 'true' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23764:1: ( ( 'true' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23765:1: ( 'true' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXBooleanLiteralAccess().getIsTrueTrueKeyword_1_1_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23766:1: ( 'true' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23767:1: 'true'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23772:1: ( ( 'true' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23773:1: ( 'true' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXBooleanLiteralAccess().getIsTrueTrueKeyword_1_1_0()); 
             }
-            match(input,16,FOLLOW_16_in_rule__XBooleanLiteral__IsTrueAssignment_1_147843); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23774:1: ( 'true' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23775:1: 'true'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXBooleanLiteralAccess().getIsTrueTrueKeyword_1_1_0()); 
+            }
+            match(input,16,FOLLOW_16_in_rule__XBooleanLiteral__IsTrueAssignment_1_147859); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXBooleanLiteralAccess().getIsTrueTrueKeyword_1_1_0()); 
             }
@@ -67725,22 +67749,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XNumberLiteral__ValueAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23782:1: rule__XNumberLiteral__ValueAssignment_1 : ( ruleNumber ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23790:1: rule__XNumberLiteral__ValueAssignment_1 : ( ruleNumber ) ;
     public final void rule__XNumberLiteral__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23786:1: ( ( ruleNumber ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23787:1: ( ruleNumber )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23794:1: ( ( ruleNumber ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23795:1: ( ruleNumber )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23787:1: ( ruleNumber )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23788:1: ruleNumber
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23795:1: ( ruleNumber )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23796:1: ruleNumber
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXNumberLiteralAccess().getValueNumberParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleNumber_in_rule__XNumberLiteral__ValueAssignment_147882);
+            pushFollow(FOLLOW_ruleNumber_in_rule__XNumberLiteral__ValueAssignment_147898);
             ruleNumber();
 
             state._fsp--;
@@ -67770,22 +67794,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XStringLiteral__ValueAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23797:1: rule__XStringLiteral__ValueAssignment_1 : ( RULE_STRING ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23805:1: rule__XStringLiteral__ValueAssignment_1 : ( RULE_STRING ) ;
     public final void rule__XStringLiteral__ValueAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23801:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23802:1: ( RULE_STRING )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23809:1: ( ( RULE_STRING ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23810:1: ( RULE_STRING )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23802:1: ( RULE_STRING )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23803:1: RULE_STRING
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23810:1: ( RULE_STRING )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23811:1: RULE_STRING
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXStringLiteralAccess().getValueSTRINGTerminalRuleCall_1_0()); 
             }
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__XStringLiteral__ValueAssignment_147913); if (state.failed) return ;
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__XStringLiteral__ValueAssignment_147929); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXStringLiteralAccess().getValueSTRINGTerminalRuleCall_1_0()); 
             }
@@ -67811,28 +67835,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XTypeLiteral__TypeAssignment_3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23812:1: rule__XTypeLiteral__TypeAssignment_3 : ( ( ruleQualifiedName ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23820:1: rule__XTypeLiteral__TypeAssignment_3 : ( ( ruleQualifiedName ) ) ;
     public final void rule__XTypeLiteral__TypeAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23816:1: ( ( ( ruleQualifiedName ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23817:1: ( ( ruleQualifiedName ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23824:1: ( ( ( ruleQualifiedName ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23825:1: ( ( ruleQualifiedName ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23817:1: ( ( ruleQualifiedName ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23818:1: ( ruleQualifiedName )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23825:1: ( ( ruleQualifiedName ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23826:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTypeLiteralAccess().getTypeJvmTypeCrossReference_3_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23819:1: ( ruleQualifiedName )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23820:1: ruleQualifiedName
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23827:1: ( ruleQualifiedName )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23828:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTypeLiteralAccess().getTypeJvmTypeQualifiedNameParserRuleCall_3_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__XTypeLiteral__TypeAssignment_347948);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__XTypeLiteral__TypeAssignment_347964);
             ruleQualifiedName();
 
             state._fsp--;
@@ -67868,22 +67892,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XTypeLiteral__ArrayDimensionsAssignment_4"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23831:1: rule__XTypeLiteral__ArrayDimensionsAssignment_4 : ( ruleArrayBrackets ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23839:1: rule__XTypeLiteral__ArrayDimensionsAssignment_4 : ( ruleArrayBrackets ) ;
     public final void rule__XTypeLiteral__ArrayDimensionsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23835:1: ( ( ruleArrayBrackets ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23836:1: ( ruleArrayBrackets )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23843:1: ( ( ruleArrayBrackets ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23844:1: ( ruleArrayBrackets )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23836:1: ( ruleArrayBrackets )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23837:1: ruleArrayBrackets
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23844:1: ( ruleArrayBrackets )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23845:1: ruleArrayBrackets
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTypeLiteralAccess().getArrayDimensionsArrayBracketsParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleArrayBrackets_in_rule__XTypeLiteral__ArrayDimensionsAssignment_447983);
+            pushFollow(FOLLOW_ruleArrayBrackets_in_rule__XTypeLiteral__ArrayDimensionsAssignment_447999);
             ruleArrayBrackets();
 
             state._fsp--;
@@ -67913,22 +67937,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XThrowExpression__ExpressionAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23846:1: rule__XThrowExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23854:1: rule__XThrowExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
     public final void rule__XThrowExpression__ExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23850:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23851:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23858:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23859:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23851:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23852:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23859:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23860:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXThrowExpressionAccess().getExpressionXExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XThrowExpression__ExpressionAssignment_248014);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XThrowExpression__ExpressionAssignment_248030);
             ruleXExpression();
 
             state._fsp--;
@@ -67958,22 +67982,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XReturnExpression__ExpressionAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23861:1: rule__XReturnExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23869:1: rule__XReturnExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
     public final void rule__XReturnExpression__ExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23865:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23866:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23873:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23874:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23866:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23867:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23874:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23875:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXReturnExpressionAccess().getExpressionXExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XReturnExpression__ExpressionAssignment_248045);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XReturnExpression__ExpressionAssignment_248061);
             ruleXExpression();
 
             state._fsp--;
@@ -68003,22 +68027,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XTryCatchFinallyExpression__ExpressionAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23876:1: rule__XTryCatchFinallyExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23884:1: rule__XTryCatchFinallyExpression__ExpressionAssignment_2 : ( ruleXExpression ) ;
     public final void rule__XTryCatchFinallyExpression__ExpressionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23880:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23881:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23888:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23889:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23881:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23882:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23889:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23890:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTryCatchFinallyExpressionAccess().getExpressionXExpressionParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__ExpressionAssignment_248076);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__ExpressionAssignment_248092);
             ruleXExpression();
 
             state._fsp--;
@@ -68048,22 +68072,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23891:1: rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_0 : ( ruleXCatchClause ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23899:1: rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_0 : ( ruleXCatchClause ) ;
     public final void rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23895:1: ( ( ruleXCatchClause ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23896:1: ( ruleXCatchClause )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23903:1: ( ( ruleXCatchClause ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23904:1: ( ruleXCatchClause )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23896:1: ( ruleXCatchClause )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23897:1: ruleXCatchClause
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23904:1: ( ruleXCatchClause )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23905:1: ruleXCatchClause
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTryCatchFinallyExpressionAccess().getCatchClausesXCatchClauseParserRuleCall_3_0_0_0()); 
             }
-            pushFollow(FOLLOW_ruleXCatchClause_in_rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_048107);
+            pushFollow(FOLLOW_ruleXCatchClause_in_rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_048123);
             ruleXCatchClause();
 
             state._fsp--;
@@ -68093,22 +68117,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23906:1: rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23914:1: rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_1 : ( ruleXExpression ) ;
     public final void rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23910:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23911:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23918:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23919:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23911:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23912:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23919:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23920:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTryCatchFinallyExpressionAccess().getFinallyExpressionXExpressionParserRuleCall_3_0_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_148138);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_148154);
             ruleXExpression();
 
             state._fsp--;
@@ -68138,22 +68162,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23921:1: rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23929:1: rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_1 : ( ruleXExpression ) ;
     public final void rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23925:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23926:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23933:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23934:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23926:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23927:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23934:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23935:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXTryCatchFinallyExpressionAccess().getFinallyExpressionXExpressionParserRuleCall_3_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_148169);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_148185);
             ruleXExpression();
 
             state._fsp--;
@@ -68183,22 +68207,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XSynchronizedExpression__ParamAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23936:1: rule__XSynchronizedExpression__ParamAssignment_1 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23944:1: rule__XSynchronizedExpression__ParamAssignment_1 : ( ruleXExpression ) ;
     public final void rule__XSynchronizedExpression__ParamAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23940:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23941:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23948:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23949:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23941:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23942:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23949:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23950:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSynchronizedExpressionAccess().getParamXExpressionParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ParamAssignment_148200);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ParamAssignment_148216);
             ruleXExpression();
 
             state._fsp--;
@@ -68228,22 +68252,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XSynchronizedExpression__ExpressionAssignment_3"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23951:1: rule__XSynchronizedExpression__ExpressionAssignment_3 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23959:1: rule__XSynchronizedExpression__ExpressionAssignment_3 : ( ruleXExpression ) ;
     public final void rule__XSynchronizedExpression__ExpressionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23955:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23956:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23963:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23964:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23956:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23957:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23964:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23965:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXSynchronizedExpressionAccess().getExpressionXExpressionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ExpressionAssignment_348231);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ExpressionAssignment_348247);
             ruleXExpression();
 
             state._fsp--;
@@ -68273,22 +68297,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XCatchClause__DeclaredParamAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23966:1: rule__XCatchClause__DeclaredParamAssignment_2 : ( ruleFullJvmFormalParameter ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23974:1: rule__XCatchClause__DeclaredParamAssignment_2 : ( ruleFullJvmFormalParameter ) ;
     public final void rule__XCatchClause__DeclaredParamAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23970:1: ( ( ruleFullJvmFormalParameter ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23971:1: ( ruleFullJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23978:1: ( ( ruleFullJvmFormalParameter ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23979:1: ( ruleFullJvmFormalParameter )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23971:1: ( ruleFullJvmFormalParameter )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23972:1: ruleFullJvmFormalParameter
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23979:1: ( ruleFullJvmFormalParameter )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23980:1: ruleFullJvmFormalParameter
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCatchClauseAccess().getDeclaredParamFullJvmFormalParameterParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleFullJvmFormalParameter_in_rule__XCatchClause__DeclaredParamAssignment_248262);
+            pushFollow(FOLLOW_ruleFullJvmFormalParameter_in_rule__XCatchClause__DeclaredParamAssignment_248278);
             ruleFullJvmFormalParameter();
 
             state._fsp--;
@@ -68318,22 +68342,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XCatchClause__ExpressionAssignment_4"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23981:1: rule__XCatchClause__ExpressionAssignment_4 : ( ruleXExpression ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23989:1: rule__XCatchClause__ExpressionAssignment_4 : ( ruleXExpression ) ;
     public final void rule__XCatchClause__ExpressionAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23985:1: ( ( ruleXExpression ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23986:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23993:1: ( ( ruleXExpression ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23994:1: ( ruleXExpression )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23986:1: ( ruleXExpression )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23987:1: ruleXExpression
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23994:1: ( ruleXExpression )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23995:1: ruleXExpression
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXCatchClauseAccess().getExpressionXExpressionParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleXExpression_in_rule__XCatchClause__ExpressionAssignment_448293);
+            pushFollow(FOLLOW_ruleXExpression_in_rule__XCatchClause__ExpressionAssignment_448309);
             ruleXExpression();
 
             state._fsp--;
@@ -68363,22 +68387,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XFunctionTypeRef__ParamTypesAssignment_0_1_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:23996:1: rule__XFunctionTypeRef__ParamTypesAssignment_0_1_0 : ( ruleJvmTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24004:1: rule__XFunctionTypeRef__ParamTypesAssignment_0_1_0 : ( ruleJvmTypeReference ) ;
     public final void rule__XFunctionTypeRef__ParamTypesAssignment_0_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24000:1: ( ( ruleJvmTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24001:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24008:1: ( ( ruleJvmTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24009:1: ( ruleJvmTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24001:1: ( ruleJvmTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24002:1: ruleJvmTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24009:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24010:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFunctionTypeRefAccess().getParamTypesJvmTypeReferenceParserRuleCall_0_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_048324);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_048340);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -68408,22 +68432,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24011:1: rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_1 : ( ruleJvmTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24019:1: rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_1 : ( ruleJvmTypeReference ) ;
     public final void rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24015:1: ( ( ruleJvmTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24016:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24023:1: ( ( ruleJvmTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24024:1: ( ruleJvmTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24016:1: ( ruleJvmTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24017:1: ruleJvmTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24024:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24025:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFunctionTypeRefAccess().getParamTypesJvmTypeReferenceParserRuleCall_0_1_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_148355);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_148371);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -68453,22 +68477,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XFunctionTypeRef__ReturnTypeAssignment_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24026:1: rule__XFunctionTypeRef__ReturnTypeAssignment_2 : ( ruleJvmTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24034:1: rule__XFunctionTypeRef__ReturnTypeAssignment_2 : ( ruleJvmTypeReference ) ;
     public final void rule__XFunctionTypeRef__ReturnTypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24030:1: ( ( ruleJvmTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24031:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24038:1: ( ( ruleJvmTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24039:1: ( ruleJvmTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24031:1: ( ruleJvmTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24032:1: ruleJvmTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24039:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24040:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXFunctionTypeRefAccess().getReturnTypeJvmTypeReferenceParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ReturnTypeAssignment_248386);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ReturnTypeAssignment_248402);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -68498,28 +68522,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__TypeAssignment_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24041:1: rule__JvmParameterizedTypeReference__TypeAssignment_0 : ( ( ruleQualifiedName ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24049:1: rule__JvmParameterizedTypeReference__TypeAssignment_0 : ( ( ruleQualifiedName ) ) ;
     public final void rule__JvmParameterizedTypeReference__TypeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24045:1: ( ( ( ruleQualifiedName ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24046:1: ( ( ruleQualifiedName ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24053:1: ( ( ( ruleQualifiedName ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24054:1: ( ( ruleQualifiedName ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24046:1: ( ( ruleQualifiedName ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24047:1: ( ruleQualifiedName )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24054:1: ( ( ruleQualifiedName ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24055:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getTypeJvmTypeCrossReference_0_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24048:1: ( ruleQualifiedName )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24049:1: ruleQualifiedName
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24056:1: ( ruleQualifiedName )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24057:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getTypeJvmTypeQualifiedNameParserRuleCall_0_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__JvmParameterizedTypeReference__TypeAssignment_048421);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__JvmParameterizedTypeReference__TypeAssignment_048437);
             ruleQualifiedName();
 
             state._fsp--;
@@ -68555,22 +68579,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24060:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24068:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24064:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24065:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24072:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24073:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24065:1: ( ruleJvmArgumentTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24066:1: ruleJvmArgumentTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24073:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24074:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_148456);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_148472);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -68600,22 +68624,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24075:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24083:1: rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_1 : ( ruleJvmArgumentTypeReference ) ;
     public final void rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24079:1: ( ( ruleJvmArgumentTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24080:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24087:1: ( ( ruleJvmArgumentTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24088:1: ( ruleJvmArgumentTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24080:1: ( ruleJvmArgumentTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24081:1: ruleJvmArgumentTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24088:1: ( ruleJvmArgumentTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24089:1: ruleJvmArgumentTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmParameterizedTypeReferenceAccess().getArgumentsJvmArgumentTypeReferenceParserRuleCall_1_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_148487);
+            pushFollow(FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_148503);
             ruleJvmArgumentTypeReference();
 
             state._fsp--;
@@ -68645,22 +68669,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24090:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0 : ( ruleJvmUpperBound ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24098:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0 : ( ruleJvmUpperBound ) ;
     public final void rule__JvmWildcardTypeReference__ConstraintsAssignment_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24094:1: ( ( ruleJvmUpperBound ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24095:1: ( ruleJvmUpperBound )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24102:1: ( ( ruleJvmUpperBound ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24103:1: ( ruleJvmUpperBound )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24095:1: ( ruleJvmUpperBound )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24096:1: ruleJvmUpperBound
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24103:1: ( ruleJvmUpperBound )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24104:1: ruleJvmUpperBound
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmUpperBoundParserRuleCall_2_0_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmUpperBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_048518);
+            pushFollow(FOLLOW_ruleJvmUpperBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_048534);
             ruleJvmUpperBound();
 
             state._fsp--;
@@ -68690,22 +68714,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24105:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1 : ( ruleJvmLowerBound ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24113:1: rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1 : ( ruleJvmLowerBound ) ;
     public final void rule__JvmWildcardTypeReference__ConstraintsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24109:1: ( ( ruleJvmLowerBound ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24110:1: ( ruleJvmLowerBound )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24117:1: ( ( ruleJvmLowerBound ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24118:1: ( ruleJvmLowerBound )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24110:1: ( ruleJvmLowerBound )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24111:1: ruleJvmLowerBound
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24118:1: ( ruleJvmLowerBound )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24119:1: ruleJvmLowerBound
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmWildcardTypeReferenceAccess().getConstraintsJvmLowerBoundParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmLowerBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_148549);
+            pushFollow(FOLLOW_ruleJvmLowerBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_148565);
             ruleJvmLowerBound();
 
             state._fsp--;
@@ -68735,22 +68759,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__JvmUpperBound__TypeReferenceAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24120:1: rule__JvmUpperBound__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24128:1: rule__JvmUpperBound__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmUpperBound__TypeReferenceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24124:1: ( ( ruleJvmTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24125:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24132:1: ( ( ruleJvmTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24133:1: ( ruleJvmTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24125:1: ( ruleJvmTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24126:1: ruleJvmTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24133:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24134:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmUpperBoundAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBound__TypeReferenceAssignment_148580);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBound__TypeReferenceAssignment_148596);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -68780,22 +68804,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__JvmUpperBoundAnded__TypeReferenceAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24135:1: rule__JvmUpperBoundAnded__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24143:1: rule__JvmUpperBoundAnded__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmUpperBoundAnded__TypeReferenceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24139:1: ( ( ruleJvmTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24140:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24147:1: ( ( ruleJvmTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24148:1: ( ruleJvmTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24140:1: ( ruleJvmTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24141:1: ruleJvmTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24148:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24149:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmUpperBoundAndedAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBoundAnded__TypeReferenceAssignment_148611);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBoundAnded__TypeReferenceAssignment_148627);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -68825,22 +68849,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__JvmLowerBound__TypeReferenceAssignment_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24150:1: rule__JvmLowerBound__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24158:1: rule__JvmLowerBound__TypeReferenceAssignment_1 : ( ruleJvmTypeReference ) ;
     public final void rule__JvmLowerBound__TypeReferenceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24154:1: ( ( ruleJvmTypeReference ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24155:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24162:1: ( ( ruleJvmTypeReference ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24163:1: ( ruleJvmTypeReference )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24155:1: ( ruleJvmTypeReference )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24156:1: ruleJvmTypeReference
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24163:1: ( ruleJvmTypeReference )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24164:1: ruleJvmTypeReference
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getJvmLowerBoundAccess().getTypeReferenceJvmTypeReferenceParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmLowerBound__TypeReferenceAssignment_148642);
+            pushFollow(FOLLOW_ruleJvmTypeReference_in_rule__JvmLowerBound__TypeReferenceAssignment_148658);
             ruleJvmTypeReference();
 
             state._fsp--;
@@ -68870,28 +68894,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XImportDeclaration__StaticAssignment_1_0_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24169:1: rule__XImportDeclaration__StaticAssignment_1_0_0 : ( ( 'static' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24177:1: rule__XImportDeclaration__StaticAssignment_1_0_0 : ( ( 'static' ) ) ;
     public final void rule__XImportDeclaration__StaticAssignment_1_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24173:1: ( ( ( 'static' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24174:1: ( ( 'static' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24181:1: ( ( ( 'static' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24182:1: ( ( 'static' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24174:1: ( ( 'static' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24175:1: ( 'static' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXImportDeclarationAccess().getStaticStaticKeyword_1_0_0_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24176:1: ( 'static' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24177:1: 'static'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24182:1: ( ( 'static' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24183:1: ( 'static' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getStaticStaticKeyword_1_0_0_0()); 
             }
-            match(input,51,FOLLOW_51_in_rule__XImportDeclaration__StaticAssignment_1_0_048682); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24184:1: ( 'static' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24185:1: 'static'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXImportDeclarationAccess().getStaticStaticKeyword_1_0_0_0()); 
+            }
+            match(input,51,FOLLOW_51_in_rule__XImportDeclaration__StaticAssignment_1_0_048698); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXImportDeclarationAccess().getStaticStaticKeyword_1_0_0_0()); 
             }
@@ -68923,28 +68947,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XImportDeclaration__ExtensionAssignment_1_0_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24192:1: rule__XImportDeclaration__ExtensionAssignment_1_0_1 : ( ( 'extension' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24200:1: rule__XImportDeclaration__ExtensionAssignment_1_0_1 : ( ( 'extension' ) ) ;
     public final void rule__XImportDeclaration__ExtensionAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24196:1: ( ( ( 'extension' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24197:1: ( ( 'extension' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24204:1: ( ( ( 'extension' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24205:1: ( ( 'extension' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24197:1: ( ( 'extension' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24198:1: ( 'extension' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXImportDeclarationAccess().getExtensionExtensionKeyword_1_0_1_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24199:1: ( 'extension' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24200:1: 'extension'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24205:1: ( ( 'extension' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24206:1: ( 'extension' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getExtensionExtensionKeyword_1_0_1_0()); 
             }
-            match(input,53,FOLLOW_53_in_rule__XImportDeclaration__ExtensionAssignment_1_0_148726); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24207:1: ( 'extension' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24208:1: 'extension'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXImportDeclarationAccess().getExtensionExtensionKeyword_1_0_1_0()); 
+            }
+            match(input,53,FOLLOW_53_in_rule__XImportDeclaration__ExtensionAssignment_1_0_148742); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXImportDeclarationAccess().getExtensionExtensionKeyword_1_0_1_0()); 
             }
@@ -68976,28 +69000,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XImportDeclaration__ImportedTypeAssignment_1_0_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24215:1: rule__XImportDeclaration__ImportedTypeAssignment_1_0_2 : ( ( ruleQualifiedNameInStaticImport ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24223:1: rule__XImportDeclaration__ImportedTypeAssignment_1_0_2 : ( ( ruleQualifiedNameInStaticImport ) ) ;
     public final void rule__XImportDeclaration__ImportedTypeAssignment_1_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24219:1: ( ( ( ruleQualifiedNameInStaticImport ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24220:1: ( ( ruleQualifiedNameInStaticImport ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24227:1: ( ( ( ruleQualifiedNameInStaticImport ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24228:1: ( ( ruleQualifiedNameInStaticImport ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24220:1: ( ( ruleQualifiedNameInStaticImport ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24221:1: ( ruleQualifiedNameInStaticImport )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24228:1: ( ( ruleQualifiedNameInStaticImport ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24229:1: ( ruleQualifiedNameInStaticImport )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeCrossReference_1_0_2_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24222:1: ( ruleQualifiedNameInStaticImport )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24223:1: ruleQualifiedNameInStaticImport
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24230:1: ( ruleQualifiedNameInStaticImport )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24231:1: ruleQualifiedNameInStaticImport
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeQualifiedNameInStaticImportParserRuleCall_1_0_2_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedNameInStaticImport_in_rule__XImportDeclaration__ImportedTypeAssignment_1_0_248769);
+            pushFollow(FOLLOW_ruleQualifiedNameInStaticImport_in_rule__XImportDeclaration__ImportedTypeAssignment_1_0_248785);
             ruleQualifiedNameInStaticImport();
 
             state._fsp--;
@@ -69033,28 +69057,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XImportDeclaration__WildcardAssignment_1_0_3_0"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24234:1: rule__XImportDeclaration__WildcardAssignment_1_0_3_0 : ( ( '*' ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24242:1: rule__XImportDeclaration__WildcardAssignment_1_0_3_0 : ( ( '*' ) ) ;
     public final void rule__XImportDeclaration__WildcardAssignment_1_0_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24238:1: ( ( ( '*' ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24239:1: ( ( '*' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24246:1: ( ( ( '*' ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24247:1: ( ( '*' ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24239:1: ( ( '*' ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24240:1: ( '*' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getXImportDeclarationAccess().getWildcardAsteriskKeyword_1_0_3_0_0()); 
-            }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24241:1: ( '*' )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24242:1: '*'
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24247:1: ( ( '*' ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24248:1: ( '*' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getWildcardAsteriskKeyword_1_0_3_0_0()); 
             }
-            match(input,40,FOLLOW_40_in_rule__XImportDeclaration__WildcardAssignment_1_0_3_048809); if (state.failed) return ;
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24249:1: ( '*' )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24250:1: '*'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getXImportDeclarationAccess().getWildcardAsteriskKeyword_1_0_3_0_0()); 
+            }
+            match(input,40,FOLLOW_40_in_rule__XImportDeclaration__WildcardAssignment_1_0_3_048825); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getXImportDeclarationAccess().getWildcardAsteriskKeyword_1_0_3_0_0()); 
             }
@@ -69086,22 +69110,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XImportDeclaration__MemberNameAssignment_1_0_3_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24257:1: rule__XImportDeclaration__MemberNameAssignment_1_0_3_1 : ( ruleValidID ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24265:1: rule__XImportDeclaration__MemberNameAssignment_1_0_3_1 : ( ruleValidID ) ;
     public final void rule__XImportDeclaration__MemberNameAssignment_1_0_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24261:1: ( ( ruleValidID ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24262:1: ( ruleValidID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24269:1: ( ( ruleValidID ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24270:1: ( ruleValidID )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24262:1: ( ruleValidID )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24263:1: ruleValidID
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24270:1: ( ruleValidID )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24271:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getMemberNameValidIDParserRuleCall_1_0_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__XImportDeclaration__MemberNameAssignment_1_0_3_148848);
+            pushFollow(FOLLOW_ruleValidID_in_rule__XImportDeclaration__MemberNameAssignment_1_0_3_148864);
             ruleValidID();
 
             state._fsp--;
@@ -69131,28 +69155,28 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XImportDeclaration__ImportedTypeAssignment_1_1"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24272:1: rule__XImportDeclaration__ImportedTypeAssignment_1_1 : ( ( ruleQualifiedName ) ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24280:1: rule__XImportDeclaration__ImportedTypeAssignment_1_1 : ( ( ruleQualifiedName ) ) ;
     public final void rule__XImportDeclaration__ImportedTypeAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24276:1: ( ( ( ruleQualifiedName ) ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24277:1: ( ( ruleQualifiedName ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24284:1: ( ( ( ruleQualifiedName ) ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24285:1: ( ( ruleQualifiedName ) )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24277:1: ( ( ruleQualifiedName ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24278:1: ( ruleQualifiedName )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24285:1: ( ( ruleQualifiedName ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24286:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeCrossReference_1_1_0()); 
             }
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24279:1: ( ruleQualifiedName )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24280:1: ruleQualifiedName
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24287:1: ( ruleQualifiedName )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24288:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedTypeJvmDeclaredTypeQualifiedNameParserRuleCall_1_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__XImportDeclaration__ImportedTypeAssignment_1_148883);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__XImportDeclaration__ImportedTypeAssignment_1_148899);
             ruleQualifiedName();
 
             state._fsp--;
@@ -69188,22 +69212,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__XImportDeclaration__ImportedNamespaceAssignment_1_2"
-    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24291:1: rule__XImportDeclaration__ImportedNamespaceAssignment_1_2 : ( ruleQualifiedNameWithWildcard ) ;
+    // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24299:1: rule__XImportDeclaration__ImportedNamespaceAssignment_1_2 : ( ruleQualifiedNameWithWildcard ) ;
     public final void rule__XImportDeclaration__ImportedNamespaceAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24295:1: ( ( ruleQualifiedNameWithWildcard ) )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24296:1: ( ruleQualifiedNameWithWildcard )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24303:1: ( ( ruleQualifiedNameWithWildcard ) )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24304:1: ( ruleQualifiedNameWithWildcard )
             {
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24296:1: ( ruleQualifiedNameWithWildcard )
-            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24297:1: ruleQualifiedNameWithWildcard
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24304:1: ( ruleQualifiedNameWithWildcard )
+            // ../org.eclipse.incquery.patternlanguage.mondix.ui/src-gen/org/eclipse/incquery/patternlanguage/mondix/ui/contentassist/antlr/internal/InternalMondixPatternLanguage.g:24305:1: ruleQualifiedNameWithWildcard
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getXImportDeclarationAccess().getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_rule__XImportDeclaration__ImportedNamespaceAssignment_1_248918);
+            pushFollow(FOLLOW_ruleQualifiedNameWithWildcard_in_rule__XImportDeclaration__ImportedNamespaceAssignment_1_248934);
             ruleQualifiedNameWithWildcard();
 
             state._fsp--;
@@ -71142,23 +71166,23 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
     static final String DFA45_eotS =
         "\7\uffff";
     static final String DFA45_eofS =
-        "\2\uffff\1\4\2\uffff\1\4\1\uffff";
+        "\2\uffff\1\4\3\uffff\1\4";
     static final String DFA45_minS =
-        "\1\4\1\uffff\1\57\1\4\1\uffff\1\57\1\uffff";
+        "\1\4\1\uffff\1\57\1\4\2\uffff\1\57";
     static final String DFA45_maxS =
-        "\1\63\1\uffff\1\76\1\50\1\uffff\1\76\1\uffff";
+        "\1\63\1\uffff\1\76\1\50\2\uffff\1\76";
     static final String DFA45_acceptS =
-        "\1\uffff\1\1\2\uffff\1\2\1\uffff\1\3";
+        "\1\uffff\1\1\2\uffff\1\2\1\3\1\uffff";
     static final String DFA45_specialS =
         "\7\uffff}>";
     static final String[] DFA45_transitionS = {
             "\1\2\56\uffff\1\1",
             "",
             "\1\3\16\uffff\1\4",
-            "\1\5\43\uffff\1\6",
+            "\1\6\43\uffff\1\5",
             "",
-            "\1\3\16\uffff\1\4",
-            ""
+            "",
+            "\1\3\16\uffff\1\4"
     };
 
     static final short[] DFA45_eot = DFA.unpackEncodedString(DFA45_eotS);
@@ -71205,7 +71229,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
     static final String DFA69_acceptS =
         "\10\uffff\1\2\1\1";
     static final String DFA69_specialS =
-        "\1\uffff\1\4\1\2\1\1\1\5\1\0\1\3\1\6\2\uffff}>";
+        "\1\uffff\1\1\1\6\1\2\1\4\1\5\1\3\1\0\2\uffff}>";
     static final String[] DFA69_transitionS = {
             "\5\10\5\uffff\4\10\2\uffff\1\1\1\2\1\3\1\4\1\5\5\10\1\7\1\6"+
             "\31\10\3\uffff\3\10\1\uffff\2\10\2\uffff\25\10\4\uffff\2\10"+
@@ -71258,10 +71282,10 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA69_5 = input.LA(1);
+                        int LA69_7 = input.LA(1);
 
                          
-                        int index69_5 = input.index();
+                        int index69_7 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred119_InternalMondixPatternLanguage()) ) {s = 9;}
@@ -71269,10 +71293,25 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                         else if ( (true) ) {s = 8;}
 
                          
-                        input.seek(index69_5);
+                        input.seek(index69_7);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
+                        int LA69_1 = input.LA(1);
+
+                         
+                        int index69_1 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred119_InternalMondixPatternLanguage()) ) {s = 9;}
+
+                        else if ( (true) ) {s = 8;}
+
+                         
+                        input.seek(index69_1);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
                         int LA69_3 = input.LA(1);
 
                          
@@ -71285,21 +71324,6 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
                          
                         input.seek(index69_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA69_2 = input.LA(1);
-
-                         
-                        int index69_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred119_InternalMondixPatternLanguage()) ) {s = 9;}
-
-                        else if ( (true) ) {s = 8;}
-
-                         
-                        input.seek(index69_2);
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
@@ -71318,21 +71342,6 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA69_1 = input.LA(1);
-
-                         
-                        int index69_1 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred119_InternalMondixPatternLanguage()) ) {s = 9;}
-
-                        else if ( (true) ) {s = 8;}
-
-                         
-                        input.seek(index69_1);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
                         int LA69_4 = input.LA(1);
 
                          
@@ -71347,11 +71356,11 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                         input.seek(index69_4);
                         if ( s>=0 ) return s;
                         break;
-                    case 6 : 
-                        int LA69_7 = input.LA(1);
+                    case 5 : 
+                        int LA69_5 = input.LA(1);
 
                          
-                        int index69_7 = input.index();
+                        int index69_5 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred119_InternalMondixPatternLanguage()) ) {s = 9;}
@@ -71359,7 +71368,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                         else if ( (true) ) {s = 8;}
 
                          
-                        input.seek(index69_7);
+                        input.seek(index69_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA69_2 = input.LA(1);
+
+                         
+                        int index69_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred119_InternalMondixPatternLanguage()) ) {s = 9;}
+
+                        else if ( (true) ) {s = 8;}
+
+                         
+                        input.seek(index69_2);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -71381,7 +71405,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
     static final String DFA75_acceptS =
         "\1\uffff\1\2\10\uffff\1\1";
     static final String DFA75_specialS =
-        "\2\uffff\1\6\1\4\1\5\1\1\1\7\1\2\1\0\1\3\1\uffff}>";
+        "\2\uffff\1\1\1\6\1\4\1\5\1\3\1\0\1\2\1\7\1\uffff}>";
     static final String[] DFA75_transitionS = {
             "\5\1\5\uffff\4\1\2\uffff\12\1\1\3\1\2\1\4\1\5\1\6\1\7\1\10\1"+
             "\11\23\1\3\uffff\3\1\1\uffff\2\1\2\uffff\25\1\4\uffff\2\1\1"+
@@ -71435,36 +71459,6 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA75_8 = input.LA(1);
-
-                         
-                        int index75_8 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred125_InternalMondixPatternLanguage()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index75_8);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA75_5 = input.LA(1);
-
-                         
-                        int index75_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred125_InternalMondixPatternLanguage()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index75_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
                         int LA75_7 = input.LA(1);
 
                          
@@ -71479,52 +71473,7 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                         input.seek(index75_7);
                         if ( s>=0 ) return s;
                         break;
-                    case 3 : 
-                        int LA75_9 = input.LA(1);
-
-                         
-                        int index75_9 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred125_InternalMondixPatternLanguage()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index75_9);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA75_3 = input.LA(1);
-
-                         
-                        int index75_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred125_InternalMondixPatternLanguage()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index75_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
-                        int LA75_4 = input.LA(1);
-
-                         
-                        int index75_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred125_InternalMondixPatternLanguage()) ) {s = 10;}
-
-                        else if ( (true) ) {s = 1;}
-
-                         
-                        input.seek(index75_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 6 : 
+                    case 1 : 
                         int LA75_2 = input.LA(1);
 
                          
@@ -71539,7 +71488,22 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
                         input.seek(index75_2);
                         if ( s>=0 ) return s;
                         break;
-                    case 7 : 
+                    case 2 : 
+                        int LA75_8 = input.LA(1);
+
+                         
+                        int index75_8 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred125_InternalMondixPatternLanguage()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index75_8);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
                         int LA75_6 = input.LA(1);
 
                          
@@ -71552,6 +71516,66 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
 
                          
                         input.seek(index75_6);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA75_4 = input.LA(1);
+
+                         
+                        int index75_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred125_InternalMondixPatternLanguage()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index75_4);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
+                        int LA75_5 = input.LA(1);
+
+                         
+                        int index75_5 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred125_InternalMondixPatternLanguage()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index75_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA75_3 = input.LA(1);
+
+                         
+                        int index75_3 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred125_InternalMondixPatternLanguage()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index75_3);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA75_9 = input.LA(1);
+
+                         
+                        int index75_9 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred125_InternalMondixPatternLanguage()) ) {s = 10;}
+
+                        else if ( (true) ) {s = 1;}
+
+                         
+                        input.seek(index75_9);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -73674,12 +73698,12 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
     public static final BitSet FOLLOW_ruleConstraint_in_entryRuleConstraint187 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleConstraint194 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Constraint__Alternatives_in_ruleConstraint220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNodeConstraint_in_entryRuleNodeConstraint247 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleNodeConstraint254 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NodeConstraint__Group__0_in_ruleNodeConstraint280 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEdgeConstraint_in_entryRuleEdgeConstraint307 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleEdgeConstraint314 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__Group__0_in_ruleEdgeConstraint340 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnaryRelationConstraint_in_entryRuleUnaryRelationConstraint247 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleUnaryRelationConstraint254 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnaryRelationConstraint__Group__0_in_ruleUnaryRelationConstraint280 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBinaryRelationConstraint_in_entryRuleBinaryRelationConstraint307 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBinaryRelationConstraint314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__Group__0_in_ruleBinaryRelationConstraint340 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePattern_in_entryRulePattern369 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePattern376 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Pattern__Group__0_in_rulePattern402 = new BitSet(new long[]{0x0000000000000002L});
@@ -73993,8 +74017,8 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
     public static final BitSet FOLLOW_rule__CompareFeature__Alternatives_in_ruleCompareFeature6605 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePatternCompositionConstraint_in_rule__Constraint__Alternatives6640 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCompareConstraint_in_rule__Constraint__Alternatives6657 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNodeConstraint_in_rule__Constraint__Alternatives6674 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEdgeConstraint_in_rule__Constraint__Alternatives6691 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnaryRelationConstraint_in_rule__Constraint__Alternatives6674 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBinaryRelationConstraint_in_rule__Constraint__Alternatives6691 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLiteralValueReference_in_rule__ValueReference__Alternatives6723 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleVariableValue_in_rule__ValueReference__Alternatives6740 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleComputationValue_in_rule__ValueReference__Alternatives6757 = new BitSet(new long[]{0x0000000000000002L});
@@ -74137,34 +74161,34 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
     public static final BitSet FOLLOW_rule__MondixPatternModel__Group__1_in_rule__MondixPatternModel__Group__09939 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MondixPatternModel__Group__1__Impl_in_rule__MondixPatternModel__Group__19997 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__MondixPatternModel__PatternsAssignment_1_in_rule__MondixPatternModel__Group__1__Impl10024 = new BitSet(new long[]{0x0A00000000000002L,0x0000000008000000L});
-    public static final BitSet FOLLOW_rule__NodeConstraint__Group__0__Impl_in_rule__NodeConstraint__Group__010059 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_rule__NodeConstraint__Group__1_in_rule__NodeConstraint__Group__010062 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NodeConstraint__TypeAssignment_0_in_rule__NodeConstraint__Group__0__Impl10089 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NodeConstraint__Group__1__Impl_in_rule__NodeConstraint__Group__110119 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__NodeConstraint__Group__2_in_rule__NodeConstraint__Group__110122 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_rule__NodeConstraint__Group__1__Impl10150 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NodeConstraint__Group__2__Impl_in_rule__NodeConstraint__Group__210181 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_rule__NodeConstraint__Group__3_in_rule__NodeConstraint__Group__210184 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NodeConstraint__VariableAssignment_2_in_rule__NodeConstraint__Group__2__Impl10211 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__NodeConstraint__Group__3__Impl_in_rule__NodeConstraint__Group__310241 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rule__NodeConstraint__Group__3__Impl10269 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__Group__0__Impl_in_rule__EdgeConstraint__Group__010308 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__Group__1_in_rule__EdgeConstraint__Group__010311 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__RefTypeAssignment_0_in_rule__EdgeConstraint__Group__0__Impl10338 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__Group__1__Impl_in_rule__EdgeConstraint__Group__110368 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__Group__2_in_rule__EdgeConstraint__Group__110371 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_rule__EdgeConstraint__Group__1__Impl10399 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__Group__2__Impl_in_rule__EdgeConstraint__Group__210430 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__Group__3_in_rule__EdgeConstraint__Group__210433 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__SourceAssignment_2_in_rule__EdgeConstraint__Group__2__Impl10460 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__Group__3__Impl_in_rule__EdgeConstraint__Group__310490 = new BitSet(new long[]{0x00000080000F0150L,0x000000000000000CL});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__Group__4_in_rule__EdgeConstraint__Group__310493 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__EdgeConstraint__Group__3__Impl10521 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__Group__4__Impl_in_rule__EdgeConstraint__Group__410552 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__Group__5_in_rule__EdgeConstraint__Group__410555 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__TargetAssignment_4_in_rule__EdgeConstraint__Group__4__Impl10582 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EdgeConstraint__Group__5__Impl_in_rule__EdgeConstraint__Group__510612 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_56_in_rule__EdgeConstraint__Group__5__Impl10640 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnaryRelationConstraint__Group__0__Impl_in_rule__UnaryRelationConstraint__Group__010059 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_rule__UnaryRelationConstraint__Group__1_in_rule__UnaryRelationConstraint__Group__010062 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnaryRelationConstraint__RelationAssignment_0_in_rule__UnaryRelationConstraint__Group__0__Impl10089 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnaryRelationConstraint__Group__1__Impl_in_rule__UnaryRelationConstraint__Group__110119 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__UnaryRelationConstraint__Group__2_in_rule__UnaryRelationConstraint__Group__110122 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_rule__UnaryRelationConstraint__Group__1__Impl10150 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnaryRelationConstraint__Group__2__Impl_in_rule__UnaryRelationConstraint__Group__210181 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_rule__UnaryRelationConstraint__Group__3_in_rule__UnaryRelationConstraint__Group__210184 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnaryRelationConstraint__VariableAssignment_2_in_rule__UnaryRelationConstraint__Group__2__Impl10211 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__UnaryRelationConstraint__Group__3__Impl_in_rule__UnaryRelationConstraint__Group__310241 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__UnaryRelationConstraint__Group__3__Impl10269 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__Group__0__Impl_in_rule__BinaryRelationConstraint__Group__010308 = new BitSet(new long[]{0x0080000000000000L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__Group__1_in_rule__BinaryRelationConstraint__Group__010311 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__RelationAssignment_0_in_rule__BinaryRelationConstraint__Group__0__Impl10338 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__Group__1__Impl_in_rule__BinaryRelationConstraint__Group__110368 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__Group__2_in_rule__BinaryRelationConstraint__Group__110371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_rule__BinaryRelationConstraint__Group__1__Impl10399 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__Group__2__Impl_in_rule__BinaryRelationConstraint__Group__210430 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__Group__3_in_rule__BinaryRelationConstraint__Group__210433 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__SourceAssignment_2_in_rule__BinaryRelationConstraint__Group__2__Impl10460 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__Group__3__Impl_in_rule__BinaryRelationConstraint__Group__310490 = new BitSet(new long[]{0x00000080000F0150L,0x000000000000000CL});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__Group__4_in_rule__BinaryRelationConstraint__Group__310493 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__BinaryRelationConstraint__Group__3__Impl10521 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__Group__4__Impl_in_rule__BinaryRelationConstraint__Group__410552 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__Group__5_in_rule__BinaryRelationConstraint__Group__410555 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__TargetAssignment_4_in_rule__BinaryRelationConstraint__Group__4__Impl10582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BinaryRelationConstraint__Group__5__Impl_in_rule__BinaryRelationConstraint__Group__510612 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_56_in_rule__BinaryRelationConstraint__Group__5__Impl10640 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Pattern__Group__0__Impl_in_rule__Pattern__Group__010685 = new BitSet(new long[]{0x0A00000000000000L,0x0000000008000000L});
     public static final BitSet FOLLOW_rule__Pattern__Group__1_in_rule__Pattern__Group__010688 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Pattern__AnnotationsAssignment_0_in_rule__Pattern__Group__0__Impl10715 = new BitSet(new long[]{0x0800000000000002L});
@@ -75469,189 +75493,189 @@ public class InternalMondixPatternLanguageParser extends AbstractInternalContent
     public static final BitSet FOLLOW_47_in_rule__QualifiedNameInStaticImport__Group__1__Impl42778 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePattern_in_rule__MondixPatternModel__PatternsAssignment_142818 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__Parameter__NameAssignment42849 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__NodeConstraint__TypeAssignment_042880 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableReference_in_rule__NodeConstraint__VariableAssignment_242911 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__EdgeConstraint__RefTypeAssignment_042942 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableReference_in_rule__EdgeConstraint__SourceAssignment_242973 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueReference_in_rule__EdgeConstraint__TargetAssignment_443004 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAnnotation_in_rule__Pattern__AnnotationsAssignment_043037 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleModifiers_in_rule__Pattern__ModifiersAssignment_143068 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Pattern__NameAssignment_343099 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleParameter_in_rule__Pattern__ParametersAssignment_5_043130 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleParameter_in_rule__Pattern__ParametersAssignment_5_1_143161 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePatternBody_in_rule__Pattern__BodiesAssignment_843192 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePatternBody_in_rule__Pattern__BodiesAssignment_9_143223 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Annotation__NameAssignment_143254 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAnnotationParameter_in_rule__Annotation__ParametersAssignment_2_143285 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAnnotationParameter_in_rule__Annotation__ParametersAssignment_2_2_143316 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__AnnotationParameter__NameAssignment_043347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAnnotationValueReference_in_rule__AnnotationParameter__ValueAssignment_243378 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_91_in_rule__Modifiers__PrivateAssignment43414 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__VariableReference__VarAssignment43460 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Type__TypenameAssignment_143491 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__RefType__TypenameAssignment_143522 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__PatternBody__NameAssignment_143553 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstraint_in_rule__PatternBody__ConstraintsAssignment_3_043584 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_92_in_rule__PatternCompositionConstraint__NegativeAssignment_143620 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePatternCall_in_rule__PatternCompositionConstraint__CallAssignment_243659 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__PatternCall__PatternRefAssignment_143694 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_rule__PatternCall__TransitiveAssignment_243734 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueReference_in_rule__PatternCall__ParametersAssignment_4_043773 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueReference_in_rule__PatternCall__ParametersAssignment_4_1_143804 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueReference_in_rule__CompareConstraint__LeftOperandAssignment_143835 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCompareFeature_in_rule__CompareConstraint__FeatureAssignment_243866 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueReference_in_rule__CompareConstraint__RightOperandAssignment_343897 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleType_in_rule__PathExpressionHead__TypeAssignment_143930 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePathExpressionTail_in_rule__PathExpressionHead__TailAssignment_343961 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableReference_in_rule__PathExpressionHead__SrcAssignment_543992 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueReference_in_rule__PathExpressionHead__DstAssignment_744023 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRefType_in_rule__PathExpressionTail__TypeAssignment_144054 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rule__PathExpressionTail__IndexAssignment_2_144085 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_rule__PathExpressionTail__ClosureAssignment_344121 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePathExpressionTail_in_rule__PathExpressionTail__TailAssignment_4_144160 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleINTNUMBER_in_rule__IntValue__ValueAssignment_144191 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__StringValue__ValueAssignment_144222 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBOOLEAN_in_rule__BoolValue__ValueAssignment_144253 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDOUBLE_in_rule__DoubleValue__ValueAssignment_144284 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableReference_in_rule__VariableValue__ValueAssignment_144315 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueReference_in_rule__ListValue__ValuesAssignment_244346 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValueReference_in_rule__ListValue__ValuesAssignment_3_144377 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__FunctionEvaluationValue__ExpressionAssignment_344408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAggregatorExpression_in_rule__AggregatedValue__AggregatorAssignment_144439 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePatternCall_in_rule__AggregatedValue__CallAssignment_244470 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFeatureCallID_in_rule__XAssignment__FeatureAssignment_0_144505 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAssignment_in_rule__XAssignment__ValueAssignment_0_344540 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpMultiAssign_in_rule__XAssignment__FeatureAssignment_1_1_0_0_144575 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAssignment_in_rule__XAssignment__RightOperandAssignment_1_1_144610 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpOr_in_rule__XOrExpression__FeatureAssignment_1_0_0_144645 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAndExpression_in_rule__XOrExpression__RightOperandAssignment_1_144680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpAnd_in_rule__XAndExpression__FeatureAssignment_1_0_0_144715 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXEqualityExpression_in_rule__XAndExpression__RightOperandAssignment_1_144750 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpEquality_in_rule__XEqualityExpression__FeatureAssignment_1_0_0_144785 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXRelationalExpression_in_rule__XEqualityExpression__RightOperandAssignment_1_144820 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XRelationalExpression__TypeAssignment_1_0_144851 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpCompare_in_rule__XRelationalExpression__FeatureAssignment_1_1_0_0_144886 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXOtherOperatorExpression_in_rule__XRelationalExpression__RightOperandAssignment_1_1_144921 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpOther_in_rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_144956 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAdditiveExpression_in_rule__XOtherOperatorExpression__RightOperandAssignment_1_144991 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpAdd_in_rule__XAdditiveExpression__FeatureAssignment_1_0_0_145026 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXMultiplicativeExpression_in_rule__XAdditiveExpression__RightOperandAssignment_1_145061 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpMulti_in_rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_145096 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXUnaryOperation_in_rule__XMultiplicativeExpression__RightOperandAssignment_1_145131 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpUnary_in_rule__XUnaryOperation__FeatureAssignment_0_145166 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXUnaryOperation_in_rule__XUnaryOperation__OperandAssignment_0_245201 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XCastedExpression__TypeAssignment_1_145232 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOpPostfix_in_rule__XPostfixOperation__FeatureAssignment_1_0_145267 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_93_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_145307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFeatureCallID_in_rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_245350 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXAssignment_in_rule__XMemberFeatureCall__ValueAssignment_1_0_145385 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_94_in_rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_145421 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_93_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_245465 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_145504 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_145535 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIdOrSuper_in_rule__XMemberFeatureCall__FeatureAssignment_1_1_245570 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_045610 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXShortClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_045649 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_045680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_145711 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_445742 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_045773 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_1_145804 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_045835 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_1_145866 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_045897 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_145928 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_rule__XClosure__ExplicitSyntaxAssignment_1_0_145964 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionInClosure_in_rule__XClosure__ExpressionAssignment_246003 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XExpressionInClosure__ExpressionsAssignment_1_046034 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_046065 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_146096 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_rule__XShortClosure__ExplicitSyntaxAssignment_0_0_246132 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XShortClosure__ExpressionAssignment_146171 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XIfExpression__IfAssignment_346202 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XIfExpression__ThenAssignment_546233 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XIfExpression__ElseAssignment_6_146264 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_146295 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_0_146326 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_046357 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_1_146388 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXCasePart_in_rule__XSwitchExpression__CasesAssignment_446419 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSwitchExpression__DefaultAssignment_5_246450 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XCasePart__TypeGuardAssignment_146481 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XCasePart__CaseAssignment_2_146512 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XCasePart__ThenAssignment_3_0_146543 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XForLoopExpression__DeclaredParamAssignment_0_0_346574 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XForLoopExpression__ForExpressionAssignment_146605 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XForLoopExpression__EachExpressionAssignment_346636 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_046667 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_146698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__ExpressionAssignment_546729 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_046760 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_146791 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__EachExpressionAssignment_946822 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XWhileExpression__PredicateAssignment_346853 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XWhileExpression__BodyAssignment_546884 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__BodyAssignment_246915 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__PredicateAssignment_546946 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBlockExpression__ExpressionsAssignment_2_046977 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_96_in_rule__XVariableDeclaration__WriteableAssignment_1_047013 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XVariableDeclaration__TypeAssignment_2_0_0_047052 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_0_0_147083 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_147114 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XVariableDeclaration__RightAssignment_3_147145 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmFormalParameter__ParameterTypeAssignment_047176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__JvmFormalParameter__NameAssignment_147207 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__FullJvmFormalParameter__ParameterTypeAssignment_047238 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__FullJvmFormalParameter__NameAssignment_147269 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_147300 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_2_147331 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIdOrSuper_in_rule__XFeatureCall__FeatureAssignment_247366 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_rule__XFeatureCall__ExplicitOperationCallAssignment_3_047406 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXShortClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_047445 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_047476 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_147507 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_447538 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__XConstructorCall__ConstructorAssignment_247573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_147608 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_2_147639 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_rule__XConstructorCall__ExplicitConstructorCallAssignment_4_047675 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXShortClosure_in_rule__XConstructorCall__ArgumentsAssignment_4_1_047714 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_047745 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_147776 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXClosure_in_rule__XConstructorCall__ArgumentsAssignment_547807 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_rule__XBooleanLiteral__IsTrueAssignment_1_147843 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleNumber_in_rule__XNumberLiteral__ValueAssignment_147882 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__XStringLiteral__ValueAssignment_147913 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__XTypeLiteral__TypeAssignment_347948 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrayBrackets_in_rule__XTypeLiteral__ArrayDimensionsAssignment_447983 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XThrowExpression__ExpressionAssignment_248014 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XReturnExpression__ExpressionAssignment_248045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__ExpressionAssignment_248076 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXCatchClause_in_rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_048107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_148138 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_148169 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ParamAssignment_148200 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ExpressionAssignment_348231 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFullJvmFormalParameter_in_rule__XCatchClause__DeclaredParamAssignment_248262 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleXExpression_in_rule__XCatchClause__ExpressionAssignment_448293 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_048324 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_148355 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ReturnTypeAssignment_248386 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__JvmParameterizedTypeReference__TypeAssignment_048421 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_148456 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_148487 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmUpperBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_048518 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmLowerBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_148549 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBound__TypeReferenceAssignment_148580 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBoundAnded__TypeReferenceAssignment_148611 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmLowerBound__TypeReferenceAssignment_148642 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_rule__XImportDeclaration__StaticAssignment_1_0_048682 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_rule__XImportDeclaration__ExtensionAssignment_1_0_148726 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedNameInStaticImport_in_rule__XImportDeclaration__ImportedTypeAssignment_1_0_248769 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_rule__XImportDeclaration__WildcardAssignment_1_0_3_048809 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__XImportDeclaration__MemberNameAssignment_1_0_3_148848 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__XImportDeclaration__ImportedTypeAssignment_1_148883 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_rule__XImportDeclaration__ImportedNamespaceAssignment_1_248918 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__UnaryRelationConstraint__RelationAssignment_042884 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableReference_in_rule__UnaryRelationConstraint__VariableAssignment_242919 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__BinaryRelationConstraint__RelationAssignment_042954 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableReference_in_rule__BinaryRelationConstraint__SourceAssignment_242989 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueReference_in_rule__BinaryRelationConstraint__TargetAssignment_443020 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAnnotation_in_rule__Pattern__AnnotationsAssignment_043053 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleModifiers_in_rule__Pattern__ModifiersAssignment_143084 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Pattern__NameAssignment_343115 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleParameter_in_rule__Pattern__ParametersAssignment_5_043146 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleParameter_in_rule__Pattern__ParametersAssignment_5_1_143177 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePatternBody_in_rule__Pattern__BodiesAssignment_843208 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePatternBody_in_rule__Pattern__BodiesAssignment_9_143239 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Annotation__NameAssignment_143270 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAnnotationParameter_in_rule__Annotation__ParametersAssignment_2_143301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAnnotationParameter_in_rule__Annotation__ParametersAssignment_2_2_143332 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__AnnotationParameter__NameAssignment_043363 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAnnotationValueReference_in_rule__AnnotationParameter__ValueAssignment_243394 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_91_in_rule__Modifiers__PrivateAssignment43430 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__VariableReference__VarAssignment43476 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Type__TypenameAssignment_143507 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__RefType__TypenameAssignment_143538 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__PatternBody__NameAssignment_143569 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstraint_in_rule__PatternBody__ConstraintsAssignment_3_043600 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_92_in_rule__PatternCompositionConstraint__NegativeAssignment_143636 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePatternCall_in_rule__PatternCompositionConstraint__CallAssignment_243675 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__PatternCall__PatternRefAssignment_143710 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__PatternCall__TransitiveAssignment_243750 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueReference_in_rule__PatternCall__ParametersAssignment_4_043789 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueReference_in_rule__PatternCall__ParametersAssignment_4_1_143820 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueReference_in_rule__CompareConstraint__LeftOperandAssignment_143851 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCompareFeature_in_rule__CompareConstraint__FeatureAssignment_243882 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueReference_in_rule__CompareConstraint__RightOperandAssignment_343913 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleType_in_rule__PathExpressionHead__TypeAssignment_143946 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePathExpressionTail_in_rule__PathExpressionHead__TailAssignment_343977 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableReference_in_rule__PathExpressionHead__SrcAssignment_544008 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueReference_in_rule__PathExpressionHead__DstAssignment_744039 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRefType_in_rule__PathExpressionTail__TypeAssignment_144070 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_rule__PathExpressionTail__IndexAssignment_2_144101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_rule__PathExpressionTail__ClosureAssignment_344137 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePathExpressionTail_in_rule__PathExpressionTail__TailAssignment_4_144176 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleINTNUMBER_in_rule__IntValue__ValueAssignment_144207 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__StringValue__ValueAssignment_144238 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBOOLEAN_in_rule__BoolValue__ValueAssignment_144269 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDOUBLE_in_rule__DoubleValue__ValueAssignment_144300 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableReference_in_rule__VariableValue__ValueAssignment_144331 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueReference_in_rule__ListValue__ValuesAssignment_244362 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValueReference_in_rule__ListValue__ValuesAssignment_3_144393 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__FunctionEvaluationValue__ExpressionAssignment_344424 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAggregatorExpression_in_rule__AggregatedValue__AggregatorAssignment_144455 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePatternCall_in_rule__AggregatedValue__CallAssignment_244486 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFeatureCallID_in_rule__XAssignment__FeatureAssignment_0_144521 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAssignment_in_rule__XAssignment__ValueAssignment_0_344556 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpMultiAssign_in_rule__XAssignment__FeatureAssignment_1_1_0_0_144591 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAssignment_in_rule__XAssignment__RightOperandAssignment_1_1_144626 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpOr_in_rule__XOrExpression__FeatureAssignment_1_0_0_144661 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAndExpression_in_rule__XOrExpression__RightOperandAssignment_1_144696 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpAnd_in_rule__XAndExpression__FeatureAssignment_1_0_0_144731 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXEqualityExpression_in_rule__XAndExpression__RightOperandAssignment_1_144766 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpEquality_in_rule__XEqualityExpression__FeatureAssignment_1_0_0_144801 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXRelationalExpression_in_rule__XEqualityExpression__RightOperandAssignment_1_144836 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XRelationalExpression__TypeAssignment_1_0_144867 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpCompare_in_rule__XRelationalExpression__FeatureAssignment_1_1_0_0_144902 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXOtherOperatorExpression_in_rule__XRelationalExpression__RightOperandAssignment_1_1_144937 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpOther_in_rule__XOtherOperatorExpression__FeatureAssignment_1_0_0_144972 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAdditiveExpression_in_rule__XOtherOperatorExpression__RightOperandAssignment_1_145007 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpAdd_in_rule__XAdditiveExpression__FeatureAssignment_1_0_0_145042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXMultiplicativeExpression_in_rule__XAdditiveExpression__RightOperandAssignment_1_145077 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpMulti_in_rule__XMultiplicativeExpression__FeatureAssignment_1_0_0_145112 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXUnaryOperation_in_rule__XMultiplicativeExpression__RightOperandAssignment_1_145147 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpUnary_in_rule__XUnaryOperation__FeatureAssignment_0_145182 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXUnaryOperation_in_rule__XUnaryOperation__OperandAssignment_0_245217 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XCastedExpression__TypeAssignment_1_145248 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOpPostfix_in_rule__XPostfixOperation__FeatureAssignment_1_0_145283 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_93_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_0_0_0_1_145323 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFeatureCallID_in_rule__XMemberFeatureCall__FeatureAssignment_1_0_0_0_245366 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXAssignment_in_rule__XMemberFeatureCall__ValueAssignment_1_0_145401 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_94_in_rule__XMemberFeatureCall__NullSafeAssignment_1_1_0_0_1_145437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_93_in_rule__XMemberFeatureCall__ExplicitStaticAssignment_1_1_0_0_1_245481 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_145520 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XMemberFeatureCall__TypeArgumentsAssignment_1_1_1_2_145551 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIdOrSuper_in_rule__XMemberFeatureCall__FeatureAssignment_1_1_245586 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_rule__XMemberFeatureCall__ExplicitOperationCallAssignment_1_1_3_045626 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXShortClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_045665 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_045696 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_1_1_145727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXClosure_in_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_445758 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_045789 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSetLiteral__ElementsAssignment_3_1_145820 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_045851 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XListLiteral__ElementsAssignment_3_1_145882 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_045913 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XClosure__DeclaredFormalParametersAssignment_1_0_0_1_145944 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_rule__XClosure__ExplicitSyntaxAssignment_1_0_145980 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpressionInClosure_in_rule__XClosure__ExpressionAssignment_246019 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XExpressionInClosure__ExpressionsAssignment_1_046050 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_046081 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XShortClosure__DeclaredFormalParametersAssignment_0_0_1_1_146112 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_rule__XShortClosure__ExplicitSyntaxAssignment_0_0_246148 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XShortClosure__ExpressionAssignment_146187 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XIfExpression__IfAssignment_346218 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XIfExpression__ThenAssignment_546249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XIfExpression__ElseAssignment_6_146280 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_0_0_0_146311 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_0_146342 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XSwitchExpression__DeclaredParamAssignment_2_1_0_0_046373 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSwitchExpression__SwitchAssignment_2_1_146404 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXCasePart_in_rule__XSwitchExpression__CasesAssignment_446435 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSwitchExpression__DefaultAssignment_5_246466 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XCasePart__TypeGuardAssignment_146497 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XCasePart__CaseAssignment_2_146528 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XCasePart__ThenAssignment_3_0_146559 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmFormalParameter_in_rule__XForLoopExpression__DeclaredParamAssignment_0_0_346590 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XForLoopExpression__ForExpressionAssignment_146621 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XForLoopExpression__EachExpressionAssignment_346652 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_046683 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBasicForLoopExpression__InitExpressionsAssignment_3_1_146714 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__ExpressionAssignment_546745 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_046776 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__UpdateExpressionsAssignment_7_1_146807 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XBasicForLoopExpression__EachExpressionAssignment_946838 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XWhileExpression__PredicateAssignment_346869 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XWhileExpression__BodyAssignment_546900 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__BodyAssignment_246931 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XDoWhileExpression__PredicateAssignment_546962 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpressionOrVarDeclaration_in_rule__XBlockExpression__ExpressionsAssignment_2_046993 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_96_in_rule__XVariableDeclaration__WriteableAssignment_1_047029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XVariableDeclaration__TypeAssignment_2_0_0_047068 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_0_0_147099 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__XVariableDeclaration__NameAssignment_2_147130 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XVariableDeclaration__RightAssignment_3_147161 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmFormalParameter__ParameterTypeAssignment_047192 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__JvmFormalParameter__NameAssignment_147223 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__FullJvmFormalParameter__ParameterTypeAssignment_047254 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__FullJvmFormalParameter__NameAssignment_147285 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_147316 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XFeatureCall__TypeArgumentsAssignment_1_2_147347 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIdOrSuper_in_rule__XFeatureCall__FeatureAssignment_247382 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_rule__XFeatureCall__ExplicitOperationCallAssignment_3_047422 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXShortClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_047461 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_047492 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_3_1_1_1_147523 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXClosure_in_rule__XFeatureCall__FeatureCallArgumentsAssignment_447554 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__XConstructorCall__ConstructorAssignment_247589 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_147624 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__XConstructorCall__TypeArgumentsAssignment_3_2_147655 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_55_in_rule__XConstructorCall__ExplicitConstructorCallAssignment_4_047691 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXShortClosure_in_rule__XConstructorCall__ArgumentsAssignment_4_1_047730 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_047761 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XConstructorCall__ArgumentsAssignment_4_1_1_1_147792 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXClosure_in_rule__XConstructorCall__ArgumentsAssignment_547823 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_rule__XBooleanLiteral__IsTrueAssignment_1_147859 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleNumber_in_rule__XNumberLiteral__ValueAssignment_147898 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__XStringLiteral__ValueAssignment_147929 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__XTypeLiteral__TypeAssignment_347964 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleArrayBrackets_in_rule__XTypeLiteral__ArrayDimensionsAssignment_447999 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XThrowExpression__ExpressionAssignment_248030 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XReturnExpression__ExpressionAssignment_248061 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__ExpressionAssignment_248092 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXCatchClause_in_rule__XTryCatchFinallyExpression__CatchClausesAssignment_3_0_048123 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_0_1_148154 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XTryCatchFinallyExpression__FinallyExpressionAssignment_3_1_148185 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ParamAssignment_148216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XSynchronizedExpression__ExpressionAssignment_348247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFullJvmFormalParameter_in_rule__XCatchClause__DeclaredParamAssignment_248278 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXExpression_in_rule__XCatchClause__ExpressionAssignment_448309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_048340 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ParamTypesAssignment_0_1_1_148371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__XFunctionTypeRef__ReturnTypeAssignment_248402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__JvmParameterizedTypeReference__TypeAssignment_048437 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_148472 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmArgumentTypeReference_in_rule__JvmParameterizedTypeReference__ArgumentsAssignment_1_2_148503 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmUpperBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_048534 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmLowerBound_in_rule__JvmWildcardTypeReference__ConstraintsAssignment_2_148565 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBound__TypeReferenceAssignment_148596 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmUpperBoundAnded__TypeReferenceAssignment_148627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJvmTypeReference_in_rule__JvmLowerBound__TypeReferenceAssignment_148658 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rule__XImportDeclaration__StaticAssignment_1_0_048698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_rule__XImportDeclaration__ExtensionAssignment_1_0_148742 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameInStaticImport_in_rule__XImportDeclaration__ImportedTypeAssignment_1_0_248785 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_rule__XImportDeclaration__WildcardAssignment_1_0_3_048825 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__XImportDeclaration__MemberNameAssignment_1_0_3_148864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__XImportDeclaration__ImportedTypeAssignment_1_148899 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedNameWithWildcard_in_rule__XImportDeclaration__ImportedNamespaceAssignment_1_248934 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__OpOther__Group_6_1_0__0_in_synpred38_InternalMondixPatternLanguage7748 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_31_in_synpred39_InternalMondixPatternLanguage7767 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__XMemberFeatureCall__MemberCallArgumentsAssignment_1_1_3_1_0_in_synpred52_InternalMondixPatternLanguage8326 = new BitSet(new long[]{0x0000000000000002L});

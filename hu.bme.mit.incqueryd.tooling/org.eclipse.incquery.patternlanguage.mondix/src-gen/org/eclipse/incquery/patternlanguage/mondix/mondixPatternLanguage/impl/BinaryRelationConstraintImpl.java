@@ -2,6 +2,8 @@
  */
 package org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl;
 
+import hu.bme.mit.incqueryd.mondixschema.Relation;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -10,7 +12,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint;
+import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.BinaryRelationConstraint;
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
@@ -20,40 +22,30 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.impl.ConstraintImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Edge Constraint</b></em>'.
+ * An implementation of the model object '<em><b>Binary Relation Constraint</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.EdgeConstraintImpl#getRefType <em>Ref Type</em>}</li>
- *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.EdgeConstraintImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.EdgeConstraintImpl#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.BinaryRelationConstraintImpl#getRelation <em>Relation</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.BinaryRelationConstraintImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.impl.BinaryRelationConstraintImpl#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
+public class BinaryRelationConstraintImpl extends ConstraintImpl implements BinaryRelationConstraint
 {
   /**
-   * The default value of the '{@link #getRefType() <em>Ref Type</em>}' attribute.
+   * The cached value of the '{@link #getRelation() <em>Relation</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRefType()
+   * @see #getRelation()
    * @generated
    * @ordered
    */
-  protected static final String REF_TYPE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getRefType() <em>Ref Type</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getRefType()
-   * @generated
-   * @ordered
-   */
-  protected String refType = REF_TYPE_EDEFAULT;
+  protected Relation relation;
 
   /**
    * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
@@ -80,7 +72,7 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EdgeConstraintImpl()
+  protected BinaryRelationConstraintImpl()
   {
     super();
   }
@@ -93,7 +85,7 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
   @Override
   protected EClass eStaticClass()
   {
-    return MondixPatternLanguagePackage.Literals.EDGE_CONSTRAINT;
+    return MondixPatternLanguagePackage.Literals.BINARY_RELATION_CONSTRAINT;
   }
 
   /**
@@ -101,9 +93,19 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getRefType()
+  public Relation getRelation()
   {
-    return refType;
+    if (relation != null && relation.eIsProxy())
+    {
+      InternalEObject oldRelation = (InternalEObject)relation;
+      relation = (Relation)eResolveProxy(oldRelation);
+      if (relation != oldRelation)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__RELATION, oldRelation, relation));
+      }
+    }
+    return relation;
   }
 
   /**
@@ -111,12 +113,22 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setRefType(String newRefType)
+  public Relation basicGetRelation()
   {
-    String oldRefType = refType;
-    refType = newRefType;
+    return relation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setRelation(Relation newRelation)
+  {
+    Relation oldRelation = relation;
+    relation = newRelation;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.EDGE_CONSTRAINT__REF_TYPE, oldRefType, refType));
+      eNotify(new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__RELATION, oldRelation, relation));
   }
 
   /**
@@ -140,7 +152,7 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
     source = newSource;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.EDGE_CONSTRAINT__SOURCE, oldSource, newSource);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__SOURCE, oldSource, newSource);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -157,14 +169,14 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
     {
       NotificationChain msgs = null;
       if (source != null)
-        msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MondixPatternLanguagePackage.EDGE_CONSTRAINT__SOURCE, null, msgs);
+        msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__SOURCE, null, msgs);
       if (newSource != null)
-        msgs = ((InternalEObject)newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MondixPatternLanguagePackage.EDGE_CONSTRAINT__SOURCE, null, msgs);
+        msgs = ((InternalEObject)newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__SOURCE, null, msgs);
       msgs = basicSetSource(newSource, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.EDGE_CONSTRAINT__SOURCE, newSource, newSource));
+      eNotify(new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__SOURCE, newSource, newSource));
   }
 
   /**
@@ -188,7 +200,7 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
     target = newTarget;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.EDGE_CONSTRAINT__TARGET, oldTarget, newTarget);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__TARGET, oldTarget, newTarget);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -205,14 +217,14 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
     {
       NotificationChain msgs = null;
       if (target != null)
-        msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MondixPatternLanguagePackage.EDGE_CONSTRAINT__TARGET, null, msgs);
+        msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__TARGET, null, msgs);
       if (newTarget != null)
-        msgs = ((InternalEObject)newTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MondixPatternLanguagePackage.EDGE_CONSTRAINT__TARGET, null, msgs);
+        msgs = ((InternalEObject)newTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__TARGET, null, msgs);
       msgs = basicSetTarget(newTarget, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.EDGE_CONSTRAINT__TARGET, newTarget, newTarget));
+      eNotify(new ENotificationImpl(this, Notification.SET, MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__TARGET, newTarget, newTarget));
   }
 
   /**
@@ -225,9 +237,9 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
   {
     switch (featureID)
     {
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__SOURCE:
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__SOURCE:
         return basicSetSource(null, msgs);
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__TARGET:
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__TARGET:
         return basicSetTarget(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -243,11 +255,12 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
   {
     switch (featureID)
     {
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__REF_TYPE:
-        return getRefType();
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__SOURCE:
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__RELATION:
+        if (resolve) return getRelation();
+        return basicGetRelation();
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__SOURCE:
         return getSource();
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__TARGET:
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__TARGET:
         return getTarget();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -263,13 +276,13 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
   {
     switch (featureID)
     {
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__REF_TYPE:
-        setRefType((String)newValue);
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__RELATION:
+        setRelation((Relation)newValue);
         return;
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__SOURCE:
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__SOURCE:
         setSource((VariableReference)newValue);
         return;
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__TARGET:
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__TARGET:
         setTarget((ValueReference)newValue);
         return;
     }
@@ -286,13 +299,13 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
   {
     switch (featureID)
     {
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__REF_TYPE:
-        setRefType(REF_TYPE_EDEFAULT);
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__RELATION:
+        setRelation((Relation)null);
         return;
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__SOURCE:
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__SOURCE:
         setSource((VariableReference)null);
         return;
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__TARGET:
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__TARGET:
         setTarget((ValueReference)null);
         return;
     }
@@ -309,31 +322,14 @@ public class EdgeConstraintImpl extends ConstraintImpl implements EdgeConstraint
   {
     switch (featureID)
     {
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__REF_TYPE:
-        return REF_TYPE_EDEFAULT == null ? refType != null : !REF_TYPE_EDEFAULT.equals(refType);
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__SOURCE:
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__RELATION:
+        return relation != null;
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__SOURCE:
         return source != null;
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT__TARGET:
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT__TARGET:
         return target != null;
     }
     return super.eIsSet(featureID);
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (refType: ");
-    result.append(refType);
-    result.append(')');
-    return result.toString();
-  }
-
-} //EdgeConstraintImpl
+} //BinaryRelationConstraintImpl

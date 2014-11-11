@@ -2,55 +2,57 @@
  */
 package org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage;
 
+import hu.bme.mit.incqueryd.mondixschema.Relation;
+
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Edge Constraint</b></em>'.
+ * A representation of the model object '<em><b>Binary Relation Constraint</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint#getRefType <em>Ref Type</em>}</li>
- *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint#getSource <em>Source</em>}</li>
- *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.BinaryRelationConstraint#getRelation <em>Relation</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.BinaryRelationConstraint#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.BinaryRelationConstraint#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage#getEdgeConstraint()
+ * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage#getBinaryRelationConstraint()
  * @model
  * @generated
  */
-public interface EdgeConstraint extends Constraint
+public interface BinaryRelationConstraint extends Constraint
 {
   /**
-   * Returns the value of the '<em><b>Ref Type</b></em>' attribute.
+   * Returns the value of the '<em><b>Relation</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Ref Type</em>' attribute isn't clear,
+   * If the meaning of the '<em>Relation</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Ref Type</em>' attribute.
-   * @see #setRefType(String)
-   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage#getEdgeConstraint_RefType()
+   * @return the value of the '<em>Relation</em>' reference.
+   * @see #setRelation(Relation)
+   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage#getBinaryRelationConstraint_Relation()
    * @model
    * @generated
    */
-  String getRefType();
+  Relation getRelation();
 
   /**
-   * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint#getRefType <em>Ref Type</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.BinaryRelationConstraint#getRelation <em>Relation</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ref Type</em>' attribute.
-   * @see #getRefType()
+   * @param value the new value of the '<em>Relation</em>' reference.
+   * @see #getRelation()
    * @generated
    */
-  void setRefType(String value);
+  void setRelation(Relation value);
 
   /**
    * Returns the value of the '<em><b>Source</b></em>' containment reference.
@@ -62,14 +64,14 @@ public interface EdgeConstraint extends Constraint
    * <!-- end-user-doc -->
    * @return the value of the '<em>Source</em>' containment reference.
    * @see #setSource(VariableReference)
-   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage#getEdgeConstraint_Source()
+   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage#getBinaryRelationConstraint_Source()
    * @model containment="true"
    * @generated
    */
   VariableReference getSource();
 
   /**
-   * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint#getSource <em>Source</em>}' containment reference.
+   * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.BinaryRelationConstraint#getSource <em>Source</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Source</em>' containment reference.
@@ -88,14 +90,14 @@ public interface EdgeConstraint extends Constraint
    * <!-- end-user-doc -->
    * @return the value of the '<em>Target</em>' containment reference.
    * @see #setTarget(ValueReference)
-   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage#getEdgeConstraint_Target()
+   * @see org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternLanguagePackage#getBinaryRelationConstraint_Target()
    * @model containment="true"
    * @generated
    */
   ValueReference getTarget();
 
   /**
-   * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint#getTarget <em>Target</em>}' containment reference.
+   * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.BinaryRelationConstraint#getTarget <em>Target</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Target</em>' containment reference.
@@ -104,4 +106,4 @@ public interface EdgeConstraint extends Constraint
    */
   void setTarget(ValueReference value);
 
-} // EdgeConstraint
+} // BinaryRelationConstraint

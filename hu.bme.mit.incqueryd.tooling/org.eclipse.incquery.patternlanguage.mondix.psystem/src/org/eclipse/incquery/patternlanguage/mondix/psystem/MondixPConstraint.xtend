@@ -1,7 +1,7 @@
 package org.eclipse.incquery.patternlanguage.mondix.psystem
 
-import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.EdgeConstraint
-import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.NodeConstraint
+import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.BinaryRelationConstraint
+import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.UnaryRelationConstraint
 import org.eclipse.incquery.patternlanguage.patternLanguage.CompareConstraint
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternCompositionConstraint
@@ -26,8 +26,8 @@ class MondixPConstraint {
 		switch it {
 			PatternCompositionConstraint: convertPatternCompositionConstraint(pBody, model)
 			CompareConstraint: convertCompareConstraint(pBody, model)
-			NodeConstraint: convertNodeConstraint(pBody, model)
-			EdgeConstraint: convertEdgeConstraint(pBody, model)
+			UnaryRelationConstraint: convertUnaryRelationConstraint(pBody, model)
+			BinaryRelationConstraint: convertBinaryRelationConstraint(pBody, model)
 			default: throw new IllegalArgumentException('''Unhandled case «it»''')
 		}
 	}
@@ -63,19 +63,19 @@ class MondixPConstraint {
 		}
 	}
 
-	static def TypeUnary convertNodeConstraint(NodeConstraint constraint, PBody pBody, MondixPModel model) {
+	static def TypeUnary convertUnaryRelationConstraint(UnaryRelationConstraint constraint, PBody pBody, MondixPModel model) {
 		val variable = constraint.variable.variable
 		val pVariable = variable.toPVariable(pBody)
-		val typeObject = constraint.type
+		val typeObject = constraint.relation.name
 		val typeString = model.context.printType(typeObject)
 		new TypeUnary(pBody, pVariable, typeObject, typeString)
 	}
 
-	static def PConstraint convertEdgeConstraint(EdgeConstraint constraint, PBody pBody, MondixPModel model) {
-		val refType = constraint.refType
+	static def PConstraint convertBinaryRelationConstraint(BinaryRelationConstraint constraint, PBody pBody, MondixPModel model) {
+		val refType = constraint.relation
 		val source = constraint.source.variable.toPVariable(pBody)
 		val target = constraint.target.toPVariable(pBody, model)
-		val typeObject = refType
+		val typeObject = refType.name
 		val typeString = model.context.printType(typeObject)
 		new TypeBinary(pBody, model.context, source, target, typeObject, typeString)
 	}

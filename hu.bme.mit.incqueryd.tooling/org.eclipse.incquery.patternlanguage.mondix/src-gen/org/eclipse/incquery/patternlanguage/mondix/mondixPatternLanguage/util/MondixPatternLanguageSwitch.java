@@ -86,19 +86,19 @@ public class MondixPatternLanguageSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MondixPatternLanguagePackage.NODE_CONSTRAINT:
+      case MondixPatternLanguagePackage.UNARY_RELATION_CONSTRAINT:
       {
-        NodeConstraint nodeConstraint = (NodeConstraint)theEObject;
-        T result = caseNodeConstraint(nodeConstraint);
-        if (result == null) result = caseConstraint(nodeConstraint);
+        UnaryRelationConstraint unaryRelationConstraint = (UnaryRelationConstraint)theEObject;
+        T result = caseUnaryRelationConstraint(unaryRelationConstraint);
+        if (result == null) result = caseConstraint(unaryRelationConstraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case MondixPatternLanguagePackage.EDGE_CONSTRAINT:
+      case MondixPatternLanguagePackage.BINARY_RELATION_CONSTRAINT:
       {
-        EdgeConstraint edgeConstraint = (EdgeConstraint)theEObject;
-        T result = caseEdgeConstraint(edgeConstraint);
-        if (result == null) result = caseConstraint(edgeConstraint);
+        BinaryRelationConstraint binaryRelationConstraint = (BinaryRelationConstraint)theEObject;
+        T result = caseBinaryRelationConstraint(binaryRelationConstraint);
+        if (result == null) result = caseConstraint(binaryRelationConstraint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -131,33 +131,33 @@ public class MondixPatternLanguageSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Node Constraint</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Unary Relation Constraint</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Node Constraint</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Unary Relation Constraint</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseNodeConstraint(NodeConstraint object)
+  public T caseUnaryRelationConstraint(UnaryRelationConstraint object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Edge Constraint</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Binary Relation Constraint</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Edge Constraint</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Binary Relation Constraint</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseEdgeConstraint(EdgeConstraint object)
+  public T caseBinaryRelationConstraint(BinaryRelationConstraint object)
   {
     return null;
   }
