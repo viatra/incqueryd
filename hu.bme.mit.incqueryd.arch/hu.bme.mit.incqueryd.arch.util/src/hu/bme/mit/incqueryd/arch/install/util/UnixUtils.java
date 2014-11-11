@@ -40,7 +40,7 @@ public class UnixUtils {
 		if (outputStream != null) {
 			println(outputStream, "Invoking command:");
 			for (final String string : command) {
-				System.out.print(string + " ");
+				println(outputStream, string + " ");
 			}
 			println(outputStream, "");
 			println(outputStream, "Command output:");
