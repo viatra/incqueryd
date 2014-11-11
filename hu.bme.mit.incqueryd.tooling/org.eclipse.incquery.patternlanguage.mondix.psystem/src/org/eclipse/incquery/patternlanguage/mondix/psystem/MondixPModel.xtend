@@ -14,22 +14,25 @@ import org.eclipse.incquery.runtime.matchers.tuple.Tuple
 import static extension org.eclipse.incquery.patternlanguage.mondix.psystem.MondixPQuery.*
 import static extension org.eclipse.incquery.patternlanguage.mondix.psystem.MondixPVariable.*
 import org.eclipse.incquery.patternlanguage.mondix.mondixPatternLanguage.MondixPatternModel
+import eu.mondo.mondix.incquery.runtime.MondixPatternMatcherContext
+import org.eclipse.incquery.runtime.api.IQuerySpecification
+import org.eclipse.incquery.patternlanguage.util.psystem.GenericPQuery
 
-class MondixPModel {
+public class MondixPModel {
 
 	val MondixPatternModel patternModel
 
 	public val MondixPatternMatcherContext context
 
-	val LoadingCache<Pattern, PQuery> queries = CacheBuilder.newBuilder.build[toPQuery(this)] // XXX due to this solution, recursive patterns are not supported
+	val LoadingCache<Pattern, GenericPQuery> queries = CacheBuilder.newBuilder.build[toPQuery(this)] // XXX due to this solution, recursive patterns are not supported
 
-	def PQuery findQueryOf(Pattern pattern) {
+	def GenericPQuery findQueryOf(Pattern pattern) {
 		queries.get(pattern)
 	}
 
 	new(MondixPatternModel patternModel) {
 		this.patternModel = patternModel
-		context = new MondixPatternMatcherContext
+		context = MondixPatternMatcherContext.STATIC_INSTANCE
 	}
 
 	def Tuple toTuple(List<ValueReference> valueReferences, PBody pBody) {

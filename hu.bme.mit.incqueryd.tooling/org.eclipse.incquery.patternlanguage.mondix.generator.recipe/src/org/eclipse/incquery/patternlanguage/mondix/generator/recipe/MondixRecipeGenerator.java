@@ -5,7 +5,7 @@ import org.eclipse.incquery.patternlanguage.mondix.psystem.MondixPModel;
 import org.eclipse.incquery.patternlanguage.mondix.psystem.MondixPQuery;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.incquery.patternlanguage.util.generator.recipe.RecipeGenerator;
-import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext;
+import org.eclipse.incquery.runtime.matchers.context.IPatternMatcherContext;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
