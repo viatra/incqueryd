@@ -125,7 +125,6 @@
 		<module>hu.bme.mit.incqueryd.recipe.editor</module>
 
 		<module>hu.bme.mit.incqueryd.tooling.deployment</module>
-		<module>hu.bme.mit.incqueryd.tooling.monitoring</module>
 
 		<module>hu.bme.mit.incqueryd.tooling.feature</module>
 		<module>hu.bme.mit.incqueryd.tooling.update</module>
