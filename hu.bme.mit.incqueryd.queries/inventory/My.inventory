@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<inventory:Inventory xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:inventory="http://incquery.net/inventory">
-  <machineSet xsi:type="inventory:InstanceSet">
-    <machineInstances memorySize="986" CPUs="1" ip="192.168.27.128">
-      <overheads>0</overheads>
-    </machineInstances>
-  </machineSet>
-</inventory:Inventory>
