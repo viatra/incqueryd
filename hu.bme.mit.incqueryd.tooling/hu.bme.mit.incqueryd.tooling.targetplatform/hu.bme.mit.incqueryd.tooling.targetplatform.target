@@ -27,6 +27,7 @@
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="com.google.guava" version="15.0.0.v201403281430"/>
 <unit id="org.mozilla.javascript" version="1.7.4.v201209142200"/>
+<unit id="org.apache.commons.exec" version="1.1.0.v201301240602"/>
 <repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/"/>
 </location>
 </locations>
