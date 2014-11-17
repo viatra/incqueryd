@@ -1,7 +1,14 @@
-FROM ubuntu:14.04
+FROM n3ziniuka5/ubuntu-oracle-jdk:14.04-JDK7
 MAINTAINER IncQuery-D Team
-RUN apt-get update && apt-get install -y \
-	ssh \
-	git
-RUN apt-get install -y software-properties-common && bash -c "echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections" && add-apt-repository -y ppa:webupd8team/java && apt-get update && apt-get install -y oracle-java7-installer
-RUN git clone https://github.com/FTSRG/4store-graph-driver && cd 4store-graph-driver/scripts && ./4s-install.sh && ./4s-init-single-node.sh $IPS
+RUN apt-get update && \
+	apt-get install -y git
+RUN git clone https://github.com/FTSRG/4store-graph-driver && \
+	4store-graph-driver/scripts/4s-install.sh
+RUN apt-get update && \
+	apt-get install -y openssh-server && \
+	mkdir /var/run/sshd && \
+	echo 'root:root' |chpasswd && \
+	sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+	sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+EXPOSE 22
+COPY init-container.sh .
