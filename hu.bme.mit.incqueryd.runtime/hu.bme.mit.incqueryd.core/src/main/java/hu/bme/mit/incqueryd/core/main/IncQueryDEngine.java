@@ -13,7 +13,7 @@ package hu.bme.mit.incqueryd.core.main;
 import hu.bme.mit.incqueryd.core.rete.actors.CoordinatorActorFactory;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipselabs.emfjson.resource.JsResourceFactoryImpl;
+import org.emfjson.jackson.resource.JsonResourceFactory;
 
 import scala.concurrent.duration.Duration;
 import akka.actor.ActorRef;
@@ -34,7 +34,7 @@ public class IncQueryDEngine {
 		super();
 
 		// initialize EMF
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("json", new JsResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("json", new JsonResourceFactory());
 
 		// initialize Akka
 		final Config config = ConfigFactory.parseString("akka.actor.provider = akka.remote.RemoteActorRefProvider\n"
