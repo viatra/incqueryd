@@ -46,15 +46,6 @@
 
 	<repositories>
 		<repository>
-			<id>emfjson-repository</id>
-			<url>http://repository-ghillairet.forge.cloudbees.com/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</repository>
-
-		<repository>
 			<id>emf-incquery</id>
 			<url>https://repo.eclipse.org/content/repositories/emf-incquery</url>
 		</repository>
