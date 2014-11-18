@@ -256,6 +256,9 @@
     <sourceLocator
         rootFolder="${git.clone.4store-graph-driver.location}"
         locateNestedProjects="true"/>
+    <sourceLocator
+        rootFolder="${git.clone.rdf-graph-driver.location}"
+        locateNestedProjects="true"/>
   </setupTask>
   <setupTask
       xsi:type="setup:EclipseIniTask"
