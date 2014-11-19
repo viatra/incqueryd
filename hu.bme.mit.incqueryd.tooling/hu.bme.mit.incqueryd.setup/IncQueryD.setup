@@ -174,7 +174,7 @@
           source="http:/www.eclipse.org/oomph/targlets/TargetDefinitionGenerator">
         <detail
             key="location">
-          <value>${git.clone.incqueryd.location/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.tooling.targetplatform/hu.bme.mit.incqueryd.tooling.targetplatform_oomphgen.target}</value>
+          <value>${git.clone.incqueryd.location/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.tooling.targetplatform/hu.bme.mit.incqueryd.tooling.targetplatform.target}</value>
         </detail>
         <detail
             key="includeAllPlatforms">
@@ -268,7 +268,7 @@
   <setupTask
       xsi:type="setup.workingsets:WorkingSetTask">
     <workingSet
-        name="${scope.project.name}">
+        name="IncQuery-D">
       <predicate
           xsi:type="predicates:RepositoryPredicate"
           project="hu.bme.mit.incqueryd.tooling.feature"/>
