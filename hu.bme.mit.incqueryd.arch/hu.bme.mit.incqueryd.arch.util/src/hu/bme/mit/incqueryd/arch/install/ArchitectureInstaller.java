@@ -18,10 +18,10 @@ import com.google.common.base.Joiner;
 
 public class ArchitectureInstaller {
 
-	public static final String INSTALL_DIR = "~/incqueryd/";
-	public static final String COORDINATOR_DIR = "~/incqueryd/coordinator/";
-	public static final String OSAGENT_DIR = "~/incqueryd/monitoring/osagent/";
-	public static final String MONSERVER_DIR = "~/incqueryd/monitoring/server/";
+	public static final String INSTALL_DIR = "incqueryd/";
+	public static final String COORDINATOR_DIR = "incqueryd/coordinator/";
+	public static final String OSAGENT_DIR = "incqueryd/monitoring/osagent/";
+	public static final String MONSERVER_DIR = "incqueryd/monitoring/server/";
 	public static final String AKKA_VERSION = "2.1.4";
 
 	public static void installArchitecture(final String architectureFile, final boolean light, OutputStream outputStream) throws IOException {
