@@ -1,6 +1,7 @@
 package hu.bme.mit.incqueryd.tooling.ide;
 
 import hu.bme.mit.incqueryd.tooling.ide.preferences.PreferenceConstants;
+import hu.bme.mit.incqueryd.tooling.ide.util.InstallerUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -10,6 +11,7 @@ import java.util.Collections;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import org.apache.commons.io.FilenameUtils;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -34,7 +36,7 @@ public class DownloadInstallerHandler extends AbstractHandler {
 					File installerDirectory = new File(Activator.getDefault().getPreferenceStore().getString(PreferenceConstants.RUNTIME_PATH));
 					
 					monitor.subTask("Download IncQuery-D runtime installer");
-					URL installerUrl = new URL("https://build.inf.mit.bme.hu/jenkins/job/IncQuery-D%20Runtime/lastSuccessfulBuild/artifact/hu.bme.mit.incqueryd.runtime/*zip*/hu.bme.mit.incqueryd.runtime.zip");
+					URL installerUrl = new URL("https://build.inf.mit.bme.hu/jenkins/job/IncQuery-D%20Runtime/lastSuccessfulBuild/artifact/*zip*/archive.zip");
 					File installer = new File(installerDirectory, "installer.zip");
 					download(installerUrl, installer);
 					extract(installer, installerDirectory);
@@ -42,7 +44,7 @@ public class DownloadInstallerHandler extends AbstractHandler {
 					
 					monitor.subTask("Download Akka");
 					URL akkaUrl = new URL("http://download.akka.io/downloads/akka-2.1.4.tgz");
-					File akka = new File(installerDirectory, "hu.bme.mit.incqueryd.runtime/akka/akka-2.1.4.tgz");
+					File akka = new File(InstallerUtils.getActualInstallerRoot(), "hu.bme.mit.incqueryd.runtime/akka/akka-2.1.4.tgz");
 					download(akkaUrl, akka);
 				} catch (IOException e) {
 					Throwables.propagate(e);
@@ -65,6 +67,9 @@ public class DownloadInstallerHandler extends AbstractHandler {
             if (zipEntry.isDirectory()) {
                 file.mkdirs();
             } else {
+            	if ("sh".equals(FilenameUtils.getExtension(file.getName()))) { // XXX workaround for zip not preserving permissions
+            		file.setExecutable(true);
+            	}
             	file.getParentFile().mkdirs();
             	ByteStreams.copy(zipFile.getInputStream(zipEntry), new FileOutputStream(file));
             }

@@ -3,6 +3,7 @@ package hu.bme.mit.incqueryd.tooling.ide;
 import hu.bme.mit.incqueryd.arch.install.ArchitectureInstaller;
 import hu.bme.mit.incqueryd.tooling.ide.preferences.PreferenceConstants;
 import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
+import hu.bme.mit.incqueryd.tooling.ide.util.InstallerUtils;
 import hu.bme.mit.incqueryd.tooling.ide.util.IqdConsole;
 
 import java.io.File;
@@ -27,7 +28,7 @@ public class LightInstallArchitectureHandler extends AbstractHandler {
 			protected IStatus run(IProgressMonitor monitor) {
 				IqdConsole console = IqdConsole.getInstance();
 				try {
-					File installerDirectory = new File(Activator.getDefault().getPreferenceStore().getString(PreferenceConstants.RUNTIME_PATH));
+					File installerDirectory = InstallerUtils.getActualInstallerRoot();
 					ArchitectureInstaller.installArchitecture(architectureFile.getLocation().toFile(), installerDirectory, true, console.getStream());
 				} catch (final IOException e) {
 					throw new RuntimeException("Cannot install architecture.", e);

@@ -29,7 +29,6 @@ public class ArchitectureInstaller {
 
 		final StringBuilder commandBuilder = new StringBuilder();
 		File script = new File(installerDirectory, "hu.bme.mit.incqueryd.runtime/scripts/install.sh");
-		script.setExecutable(true);
 		commandBuilder.append(script.getAbsolutePath());
 
 		if (light)
@@ -45,7 +44,6 @@ public class ArchitectureInstaller {
 		// which installs the monitoring components to the machines as well
 		final List<String> monitoringInstallCommand = new ArrayList<>();
 		File monitoringScript = new File(installerDirectory, "hu.bme.mit.incqueryd.monitoring/scripts/install.sh");
-		monitoringScript.setExecutable(true);
 		monitoringInstallCommand.add(monitoringScript.getAbsolutePath());
 
 		if (light)
@@ -66,7 +64,6 @@ public class ArchitectureInstaller {
 
 		final List<String> command = new ArrayList<>();
 		File script = new File(installerDirectory, "hu.bme.mit.incqueryd.runtime/scripts/uninstall.sh");
-		script.setExecutable(true);
 		command.add(script.getAbsolutePath());
 
 		for (final Machine machine : configuration.getMachines()) {
