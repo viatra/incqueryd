@@ -3,7 +3,6 @@ package hu.bme.mit.incqueryd.core.rete.actors
 import java.nio.file.Paths
 import java.util.HashMap
 import java.util.HashSet
-
 import scala.collection.JavaConversions.asScalaBuffer
 import scala.collection.JavaConversions.asScalaSet
 import scala.collection.JavaConversions.collectionAsScalaIterable
@@ -12,15 +11,12 @@ import scala.collection.JavaConversions.seqAsJavaList
 import scala.collection.immutable.Stack
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-
 import org.apache.commons.io.FilenameUtils
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
-
 import com.google.common.collect.HashBiMap
-
 import akka.actor.Actor
 import akka.actor.ActorRef
 import akka.actor.Address
@@ -51,12 +47,13 @@ import hu.bme.mit.incqueryd.core.util.EObjectSerializer
 import hu.bme.mit.incqueryd.core.util.ReteNodeConfiguration
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
 import infrastructure.Process
+import java.io.File
 
 class CoordinatorActor(val architectureFile: String, val debug: Boolean) extends Actor {
 
   val logPrefix = "[CoordinatorActor] "
   
-  val conf: Configuration = try ArchUtil.loadConfiguration(architectureFile) catch {
+  val conf: Configuration = try ArchUtil.loadConfiguration(new File(architectureFile)) catch {
     case e: Exception =>  { sender ! Status.Failure(e); e.printStackTrace(); System.exit(-1); throw e;  } 
   }
     
