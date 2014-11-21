@@ -29,7 +29,7 @@ public class UnoptimizedAllocationHandler extends AbstractHandler {
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		final IFile file = ArchitectureSelector.getSelection(event);
-		new Job("Allocating Rete (no optimization)") {
+		new Job("Allocating Rete to local machine") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				String recipeFile = file.getLocation().toString();

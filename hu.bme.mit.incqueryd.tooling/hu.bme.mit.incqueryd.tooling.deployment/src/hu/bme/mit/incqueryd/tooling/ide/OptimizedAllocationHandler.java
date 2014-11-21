@@ -44,7 +44,7 @@ public class OptimizedAllocationHandler extends AbstractHandler {
 		fd.setFilterExtensions(filterExt);
 		final String inventoryFile = fd.open();
 
-		new Job("Allocating Rete (with optimization)") {
+		new Job("Allocating Rete to infrastructure") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 

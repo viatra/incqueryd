@@ -19,15 +19,15 @@ public class DeployArchitectureHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
-		final IFile file = ArchitectureSelector.getSelection(event);
+		final IFile architectureFile = ArchitectureSelector.getSelection(event);
 		new Job("Deploying architecture") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				IqdConsole console = IqdConsole.getInstance();
 				try {
-					ArchitectureInstaller.deployArchitecture(file.getLocation().toString(), console.getStream());
+					ArchitectureInstaller.deployArchitecture(architectureFile.getLocation().toFile(), console.getStream());
 				} catch (final IOException e) {
-					throw new RuntimeException("Cannot process architecture file.", e);
+					throw new RuntimeException("Cannot deploy architecture.", e);
 				}
 				return Status.OK_STATUS;
 			}

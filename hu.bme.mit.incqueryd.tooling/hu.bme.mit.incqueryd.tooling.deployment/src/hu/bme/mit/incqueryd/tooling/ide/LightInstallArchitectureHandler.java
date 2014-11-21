@@ -1,9 +1,11 @@
 package hu.bme.mit.incqueryd.tooling.ide;
 
 import hu.bme.mit.incqueryd.arch.install.ArchitectureInstaller;
+import hu.bme.mit.incqueryd.tooling.ide.preferences.PreferenceConstants;
 import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
 import hu.bme.mit.incqueryd.tooling.ide.util.IqdConsole;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -19,15 +21,16 @@ public class LightInstallArchitectureHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
-		final IFile file = ArchitectureSelector.getSelection(event);
+		final IFile architectureFile = ArchitectureSelector.getSelection(event);
 		new Job("Installing architecture (light)") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				IqdConsole console = IqdConsole.getInstance();
 				try {
-					ArchitectureInstaller.installArchitecture(file.getLocation().toString(), true, console.getStream());
+					File installerDirectory = new File(Activator.getDefault().getPreferenceStore().getString(PreferenceConstants.RUNTIME_PATH));
+					ArchitectureInstaller.installArchitecture(architectureFile.getLocation().toFile(), installerDirectory, true, console.getStream());
 				} catch (final IOException e) {
-					throw new RuntimeException("Cannot process architecture file.", e);
+					throw new RuntimeException("Cannot install architecture.", e);
 				}
 				return Status.OK_STATUS;
 			}

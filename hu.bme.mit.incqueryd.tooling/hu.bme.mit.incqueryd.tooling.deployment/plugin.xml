@@ -39,6 +39,10 @@
             id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.optimized"
             name="IncQuery-D: Optimized Allocation">
       </command>
+      <command
+            id="hu.bme.mit.incqueryd.tooling.ide.commands.download"
+            name="IncQuery-D: Download Runtime Installer">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -137,6 +141,39 @@
             class="hu.bme.mit.incqueryd.tooling.ide.OptimizedAllocationHandler"
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.optimized">
       </handler>
+      <handler
+            class="hu.bme.mit.incqueryd.tooling.ide.DownloadInstallerHandler"
+            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.download">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="hu.bme.mit.incqueryd.tooling.ide.preferences.IncQueryDPreferencePage"
+            id="hu.bme.mit.incqueryd.tooling.ide.preferences.IncQueryDPreferencePage"
+            name="IncQuery-D">
+      </page>
+   </extension>
+      <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="hu.bme.mit.incqueryd.tooling.ide.toolbar">
+            <command
+                  commandId="hu.bme.mit.incqueryd.tooling.ide.commands.download"
+                  icon="icons/DownloadInstaller.gif"
+                  style="push">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="hu.bme.mit.incqueryd.tooling.ide.preferences.PreferenceInitializer">
+      </initializer>
    </extension>
 
 </plugin>

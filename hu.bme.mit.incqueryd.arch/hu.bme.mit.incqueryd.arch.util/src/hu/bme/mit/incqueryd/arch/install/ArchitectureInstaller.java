@@ -24,12 +24,13 @@ public class ArchitectureInstaller {
 	public static final String MONSERVER_DIR = "incqueryd/monitoring/server/";
 	public static final String AKKA_VERSION = "2.1.4";
 
-	public static void installArchitecture(final String architectureFile, final boolean light, OutputStream outputStream) throws IOException {
+	public static void installArchitecture(final File architectureFile, File installerDirectory, final boolean light, OutputStream outputStream) throws IOException {
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 
 		final StringBuilder commandBuilder = new StringBuilder();
-		final String homeDirectory = System.getProperty("user.home");
-		commandBuilder.append(homeDirectory + "/git/incqueryd/hu.bme.mit.incqueryd.runtime/scripts/install.sh");
+		File script = new File(installerDirectory, "hu.bme.mit.incqueryd.runtime/scripts/install.sh");
+		script.setExecutable(true);
+		commandBuilder.append(script.getAbsolutePath());
 
 		if (light)
 			commandBuilder.append(" --light");
@@ -43,7 +44,9 @@ public class ArchitectureInstaller {
 		// Call the monitoring install script as well
 		// which installs the monitoring components to the machines as well
 		final List<String> monitoringInstallCommand = new ArrayList<>();
-		monitoringInstallCommand.add(homeDirectory + "/git/incqueryd/hu.bme.mit.incqueryd.monitoring/scripts/install.sh");
+		File monitoringScript = new File(installerDirectory, "hu.bme.mit.incqueryd.monitoring/scripts/install.sh");
+		monitoringScript.setExecutable(true);
+		monitoringInstallCommand.add(monitoringScript.getAbsolutePath());
 
 		if (light)
 			monitoringInstallCommand.add("--light"); // Light goes for monitoring too
@@ -58,12 +61,13 @@ public class ArchitectureInstaller {
 		System.out.println(monitoringInstallCommand);
 	}
 
-	public static void uninstallArchitecture(final String architectureFile, OutputStream outputStream) throws IOException {
+	public static void uninstallArchitecture(final File architectureFile, File installerDirectory, OutputStream outputStream) throws IOException {
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 
 		final List<String> command = new ArrayList<>();
-		final String homeDirectory = System.getProperty("user.home");
-		command.add(homeDirectory + "/git/incqueryd/hu.bme.mit.incqueryd.runtime/scripts/uninstall.sh");
+		File script = new File(installerDirectory, "hu.bme.mit.incqueryd.runtime/scripts/uninstall.sh");
+		script.setExecutable(true);
+		command.add(script.getAbsolutePath());
 
 		for (final Machine machine : configuration.getMachines()) {
 			command.add(machine.getIp());
@@ -73,7 +77,7 @@ public class ArchitectureInstaller {
 		System.out.println(command);
 	}
 
-	public static void deployArchitecture(final String architectureFile, OutputStream outputStream) throws IOException {
+	public static void deployArchitecture(final File architectureFile, OutputStream outputStream) throws IOException {
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 
 		final String connectionString = configuration.getConnectionString();
@@ -148,13 +152,13 @@ public class ArchitectureInstaller {
 		UnixUtils.exec(Joiner.on(" ").join(osagentStartCommand), Collections.EMPTY_MAP, outputStream);
 	}
 
-	private static void deployCoordinator(final String architectureFile,
+	private static void deployCoordinator(final File architectureFile,
 			final Configuration configuration, OutputStream outputStream) throws IOException {
 		final String coordinatorIP = configuration.getCoordinatorMachine().getIp();
 
 		final List<String> archCopyCommand = new ArrayList<>();
 		archCopyCommand.add("scp");
-		archCopyCommand.add(architectureFile);
+		archCopyCommand.add(architectureFile.getAbsolutePath());
 		archCopyCommand.add(coordinatorIP + ":" + COORDINATOR_DIR + "arch/");
 
 		UnixUtils.exec(Joiner.on(" ").join(archCopyCommand), Collections.EMPTY_MAP, outputStream);
@@ -169,8 +173,7 @@ public class ArchitectureInstaller {
 			UnixUtils.exec(Joiner.on(" ").join(recipeCopyCommand), Collections.EMPTY_MAP, outputStream);
 		}
 
-		File file = new File(architectureFile);
-		final String archFileNameShort = file.getName();
+		final String archFileNameShort = architectureFile.getName();
 
 		final List<String> coordinatorCommand = new ArrayList<>();
 		coordinatorCommand.add("ssh");
@@ -182,7 +185,7 @@ public class ArchitectureInstaller {
 		UnixUtils.exec(Joiner.on(" ").join(coordinatorCommand), Collections.EMPTY_MAP, outputStream);
 	}
 
-	public static void stopArchitecture(final String architectureFile, OutputStream outputStream) throws IOException {
+	public static void stopArchitecture(final File architectureFile, OutputStream outputStream) throws IOException {
 
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 
