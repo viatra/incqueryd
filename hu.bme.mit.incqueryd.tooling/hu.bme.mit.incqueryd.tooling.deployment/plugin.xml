@@ -32,12 +32,12 @@
             name="IncQuery-D: Uninstall System">
       </command>
       <command
-            id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.unoptimized"
-            name="IncQuery-D: Unoptimized Allocation">
+            id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.local"
+            name="IncQuery-D: Allocate to Local Machine">
       </command>
       <command
-            id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.optimized"
-            name="IncQuery-D: Optimized Allocation">
+            id="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.infrastructure"
+            name="IncQuery-D: Allocate to Infrastructure">
       </command>
       <command
             id="hu.bme.mit.incqueryd.tooling.ide.commands.download"
@@ -94,11 +94,11 @@
 		       visible="true">
 		</separator>
          <command
-               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.unoptimized"
+               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.local"
                style="push">
          </command>
          <command
-               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.optimized"
+               commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.infrastructure"
                style="push">
          </command>
       </menuContribution>
@@ -134,12 +134,12 @@
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.uninstall">
       </handler>
       <handler
-            class="hu.bme.mit.incqueryd.tooling.ide.UnoptimizedAllocationHandler"
-            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.unoptimized">
+            class="hu.bme.mit.incqueryd.tooling.ide.LocalAllocationHandler"
+            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.local">
       </handler>
       <handler
-            class="hu.bme.mit.incqueryd.tooling.ide.OptimizedAllocationHandler"
-            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.optimized">
+            class="hu.bme.mit.incqueryd.tooling.ide.InfrastructureAllocationHandler"
+            commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.infrastructure">
       </handler>
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.DownloadInstallerHandler"

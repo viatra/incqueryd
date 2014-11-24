@@ -1,7 +1,6 @@
 package hu.bme.mit.incqueryd.tooling.ide;
 
 import hu.bme.mit.incqueryd.arch.install.ArchitectureInstaller;
-import hu.bme.mit.incqueryd.tooling.ide.preferences.PreferenceConstants;
 import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
 import hu.bme.mit.incqueryd.tooling.ide.util.InstallerUtils;
 import hu.bme.mit.incqueryd.tooling.ide.util.IqdConsole;
