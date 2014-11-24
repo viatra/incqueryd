@@ -108,38 +108,82 @@
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.FullInstallArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.install.full">
+         <enabledWhen>
+            <reference
+                  definitionId="hu.bme.mit.incqueryd.tooling.deployment.definitions.archSelected">
+            </reference></enabledWhen>
       </handler>
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.LightInstallArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.install.light">
+         <enabledWhen>
+            <reference
+                  definitionId="hu.bme.mit.incqueryd.tooling.deployment.definitions.archSelected">
+            </reference>
+         </enabledWhen>
       </handler>
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.DeployArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.deploy">
+         <enabledWhen>
+            <reference
+                  definitionId="hu.bme.mit.incqueryd.tooling.deployment.definitions.archSelected">
+            </reference>
+         </enabledWhen>
       </handler>	 
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.StartArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.start">
+         <enabledWhen>
+            <reference
+                  definitionId="hu.bme.mit.incqueryd.tooling.deployment.definitions.archSelected">
+            </reference>
+         </enabledWhen>
       </handler>
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.CheckArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.check">
+         <enabledWhen>
+            <reference
+                  definitionId="hu.bme.mit.incqueryd.tooling.deployment.definitions.archSelected">
+            </reference>
+         </enabledWhen>
       </handler>
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.StopArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.stop">
+         <enabledWhen>
+            <reference
+                  definitionId="hu.bme.mit.incqueryd.tooling.deployment.definitions.archSelected">
+            </reference>
+         </enabledWhen>
       </handler>
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.UninstallArchitectureHandler"
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.uninstall">
+         <enabledWhen>
+            <reference
+                  definitionId="hu.bme.mit.incqueryd.tooling.deployment.definitions.archSelected">
+            </reference>
+         </enabledWhen>
       </handler>
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.LocalAllocationHandler"
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.local">
+         <enabledWhen>
+            <reference
+                  definitionId="hu.bme.mit.incqueryd.tooling.deployment.definitions.recipeSelected">
+            </reference>
+         </enabledWhen>
       </handler>
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.InfrastructureAllocationHandler"
             commandId="hu.bme.mit.incqueryd.tooling.ide.commands.allocate.infrastructure">
+         <enabledWhen>
+            <reference
+                  definitionId="hu.bme.mit.incqueryd.tooling.deployment.definitions.recipeSelected">
+            </reference>
+         </enabledWhen>
       </handler>
       <handler
             class="hu.bme.mit.incqueryd.tooling.ide.DownloadInstallerHandler"
@@ -174,6 +218,41 @@
       <initializer
             class="hu.bme.mit.incqueryd.tooling.ide.preferences.PreferenceInitializer">
       </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="hu.bme.mit.incqueryd.tooling.deployment.definitions.recipeSelected">
+         <with
+               variable="selection">
+            <count
+                  value="1">
+            </count>
+            <iterate
+                  ifEmpty="false">
+               <test
+                     property="org.eclipse.core.resources.extension"
+                     value="recipe">
+               </test>
+            </iterate>
+         </with>
+      </definition>
+      <definition
+            id="hu.bme.mit.incqueryd.tooling.deployment.definitions.archSelected">
+         <with
+               variable="selection">
+            <count
+                  value="1">
+            </count>
+            <iterate
+                  ifEmpty="false">
+               <test
+                     property="org.eclipse.core.resources.extension"
+                     value="arch">
+               </test>
+            </iterate>
+         </with>
+      </definition>
    </extension>
 
 </plugin>
