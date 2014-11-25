@@ -200,7 +200,8 @@
       <requirement
           name="org.eclipse.emf.sdk.feature.group"/>
       <requirement
-          name="org.eclipse.incquery.sdk.feature.source.feature.group"/>
+          name="org.eclipse.incquery.sdk.feature.source.feature.group"
+          versionRange="[0.9.0,0.10.0)"/>
       <requirement
           name="org.openrdf.sesame.feature.feature.group"/>
       <requirement
@@ -232,7 +233,7 @@
         <repository
             url="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
         <repository
-            url="http://download.eclipse.org/incquery/updates/release"/>
+            url="http://download.eclipse.org/incquery/updates/integration"/>
         <repository
             url="http://ghillairet.github.io/p2/"/>
         <repository
@@ -262,8 +263,8 @@
   </setupTask>
   <setupTask
       xsi:type="setup:EclipseIniTask"
-      option="-Doomph.redirection.incquery.cps.demo.setup"
-      value="=https://https://raw.githubusercontent.com/FTSRG/incqueryd/master/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.setup/IncQueryD.setup->${git.clone.incqueryd.location|uri}/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.setup/IncQueryD.setup"
+      option="-Doomph.redirection.incqueryd"
+      value="=https://raw.githubusercontent.com/FTSRG/incqueryd/master/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.setup/IncQueryD.setup->${git.clone.incqueryd.location|uri}/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.setup/IncQueryD.setup"
       vm="true"/>
   <setupTask
       xsi:type="setup.workingsets:WorkingSetTask">

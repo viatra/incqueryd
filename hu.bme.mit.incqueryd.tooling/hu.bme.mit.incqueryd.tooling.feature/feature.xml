@@ -2,9 +2,7 @@
 <feature
       id="hu.bme.mit.incqueryd.tooling.feature"
       label="IncQuery-D Tooling"
-      version="1.0.0.qualifier"
-      license-feature="org.eclipse.incquery.runtime.feature"
-      license-feature-version="0.8.0.201407021417">
+      version="1.0.0.qualifier">
 
    <description url="http://incquery.net/">
       IncQuery-D Tooling
@@ -14,8 +12,8 @@
       [Enter Copyright Description here.]
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license url="http://www.eclipse.org/legal/epl-v10.html">
+      Eclipse Public License 1.0
    </license>
 
    <plugin

@@ -15,6 +15,7 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<xtend.version>2.7.2</xtend.version>
 		<emf.version>2.9.1-v20130827-0309</emf.version>
+		<emf.incquery.version>0.9.0-SNAPSHOT</emf.incquery.version>
 	</properties>
 
 	<build>
@@ -133,7 +134,7 @@
 		<dependency>
 			<groupId>org.eclipse.incquery</groupId>
 			<artifactId>org.eclipse.incquery.runtime.rete.recipes</artifactId>
-			<version>0.8.0</version>
+			<version>${emf.incquery.version}</version>
 		</dependency>
 
 		<!-- EMF -->

@@ -11,7 +11,7 @@
 		<tycho.extras.version>0.20.0</tycho.extras.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.showWarnings>true</maven.compiler.showWarnings>
-		<incquery.update.site>http://download.eclipse.org/incquery/updates/release</incquery.update.site>
+		<incquery.update.site>http://download.eclipse.org/incquery/updates/integration</incquery.update.site>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<xtend.version>2.7.2</xtend.version>
