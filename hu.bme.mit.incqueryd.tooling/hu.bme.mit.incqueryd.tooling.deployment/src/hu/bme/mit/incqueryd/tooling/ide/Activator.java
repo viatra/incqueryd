@@ -1,10 +1,12 @@
-package hu.bme.mit.incqueryd.tooling.monitoring;
+package hu.bme.mit.incqueryd.tooling.ide;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 public class Activator extends AbstractUIPlugin {
 
+	public static final String PLUGIN_ID = "hu.bme.mit.incqueryd.tooling.deployment";
+	
 	private static Activator instance;
 
 	public static AbstractUIPlugin getDefault() {

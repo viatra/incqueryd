@@ -9,7 +9,7 @@ import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPModel;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPQuery;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 import org.eclipse.incquery.patternlanguage.util.generator.recipe.RecipeGenerator;
-import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext;
+import org.eclipse.incquery.runtime.matchers.context.IPatternMatcherContext;
 import org.eclipse.incquery.runtime.matchers.psystem.IExpressionEvaluator;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;

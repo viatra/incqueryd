@@ -2,8 +2,10 @@ package hu.bme.mit.incqueryd.tooling.ide;
 
 import hu.bme.mit.incqueryd.arch.install.ArchitectureInstaller;
 import hu.bme.mit.incqueryd.tooling.ide.util.ArchitectureSelector;
+import hu.bme.mit.incqueryd.tooling.ide.util.InstallerUtils;
 import hu.bme.mit.incqueryd.tooling.ide.util.IqdConsole;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -19,15 +21,16 @@ public class UninstallArchitectureHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
-		final IFile file = ArchitectureSelector.getSelection(event);
+		final IFile architectureFile = ArchitectureSelector.getSelection(event);
 		new Job("Uninstalling architecture") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				IqdConsole console = IqdConsole.getInstance();
 				try {
-					ArchitectureInstaller.uninstallArchitecture(file.getLocation().toString(), console.getStream());
+					File installerDirectory = InstallerUtils.getActualInstallerRoot();
+					ArchitectureInstaller.uninstallArchitecture(architectureFile.getLocation().toFile(), installerDirectory, console.getStream());
 				} catch (final IOException e) {
-					throw new RuntimeException("Cannot process architecture file.", e);
+					throw new RuntimeException("Cannot uninstall architecture.", e);
 				}
 				return Status.OK_STATUS;
 			}

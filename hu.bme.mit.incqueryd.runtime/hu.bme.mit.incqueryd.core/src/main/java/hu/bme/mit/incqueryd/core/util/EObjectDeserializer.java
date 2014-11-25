@@ -23,13 +23,13 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipselabs.emfjson.resource.JsResourceFactoryImpl;
+import org.emfjson.jackson.resource.JsonResourceFactory;
 
 public class EObjectDeserializer {
 
 	public static EObject deserializeFromFile(final String filename, Set<? extends EPackage> packages) throws IOException {
 		final ResourceSet resourceSet = new ResourceSetImpl();
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("json", new JsResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("json", new JsonResourceFactory());
 
 		final Map<String, Object> options = new HashMap<String, Object>();
 

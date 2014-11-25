@@ -22,14 +22,14 @@ import org.eclipse.swt.widgets.Shell;
 
 import com.google.common.base.Throwables;
 
-public class UnoptimizedAllocationHandler extends AbstractHandler {
+public class LocalAllocationHandler extends AbstractHandler {
 
-	private static final String FOLDER_NAME = "arch-unopt";
+	private static final String FOLDER_NAME = "arch-local";
 
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		final IFile file = ArchitectureSelector.getSelection(event);
-		new Job("Allocating Rete (no optimization)") {
+		new Job("Allocating Rete to local machine") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				String recipeFile = file.getLocation().toString();

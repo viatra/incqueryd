@@ -17,16 +17,16 @@ public class CoordinatorActorFactory implements UntypedActorFactory {
 
 	private static final long serialVersionUID = 1L;
 	private final String architectureFile;
-	private final boolean remoting;
+	private final boolean debug;
 
-	public CoordinatorActorFactory(final String architectureFile, final boolean remoting) {
+	public CoordinatorActorFactory(final String architectureFile, final boolean debug) {
 		this.architectureFile = architectureFile;
-		this.remoting = remoting;
+		this.debug = debug;
 	}
 	
 	@Override
 	public Actor create() throws Exception {
-		return new CoordinatorActor(architectureFile, remoting);
+		return new CoordinatorActor(architectureFile, debug);
 	}
 
 }

@@ -1,10 +1,9 @@
-package hu.bme.mit.incqueryd.tooling.monitoring.preferences;
+package hu.bme.mit.incqueryd.tooling.ide.preferences;
 
-import hu.bme.mit.incqueryd.tooling.monitoring.Activator;
+import hu.bme.mit.incqueryd.tooling.ide.Activator;
 
+import org.eclipse.jface.preference.DirectoryFieldEditor;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
-import org.eclipse.jface.preference.FileFieldEditor;
-import org.eclipse.jface.preference.StringFieldEditor;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
@@ -19,9 +18,9 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  * preferences can be accessed directly via the preference store.
  */
 
-public class MonitoringPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
+public class IncQueryDPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
-	public MonitoringPreferencePage() {
+	public IncQueryDPreferencePage() {
 		super(GRID);
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());
 	}
@@ -32,8 +31,7 @@ public class MonitoringPreferencePage extends FieldEditorPreferencePage implemen
 	 * editor knows how to save and restore itself.
 	 */
 	protected void createFieldEditors() {
-		addField(new FileFieldEditor(PreferenceConstants.MONITORING_SERVER_JAR, "&Monitoring server JAR:", getFieldEditorParent()));
-		addField(new StringFieldEditor(PreferenceConstants.COLLECTOR_INTERFACE, "&Collector interface:", getFieldEditorParent()));
+		addField(new DirectoryFieldEditor(PreferenceConstants.RUNTIME_PATH, "&Path of runtime installer directory:", getFieldEditorParent()));
 	}
 
 	@Override

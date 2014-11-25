@@ -4,6 +4,7 @@ import infrastructure.InfrastructurePackage;
 import inventory.Inventory;
 import inventory.InventoryPackage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,14 +82,14 @@ public class ArchUtil {
 		return cutProxyName(uri.toString());
 	}
 
-	public static Configuration loadConfiguration(final String architectureFile) throws IOException {
+	public static Configuration loadConfiguration(final File architectureFile) throws IOException {
 		final Resource resource = loadModel(architectureFile);
 
 		final EObject o = resource.getContents().get(0);
 		return (Configuration) o;
 	}
 
-	public static Inventory loadInventory(final String inventoryFile) throws IOException {
+	public static Inventory loadInventory(final File inventoryFile) throws IOException {
 		final Resource resource = loadModel(inventoryFile);
 
 		final EObject o = resource.getContents().get(0);
@@ -111,7 +112,7 @@ public class ArchUtil {
 		return (ReteRecipe) o;
 	}
 
-	public static List<String> getRecipePaths(final String architectureFile) {
+	public static List<String> getRecipePaths(final File architectureFile) {
 		final Resource resource = loadModel(architectureFile);
 
 		final List<String> paths = new ArrayList<>();
@@ -125,7 +126,7 @@ public class ArchUtil {
 		return paths;
 	}
 
-	protected static Resource loadModel(final String architectureFile) {
+	protected static Resource loadModel(final File architectureFile) {
 		// initialize extension to factory map
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("arch", new XMIResourceFactoryImpl());
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("recipe", new XMIResourceFactoryImpl());
@@ -139,7 +140,7 @@ public class ArchUtil {
 		InventoryPackage.eINSTANCE.eClass();
 
 		final ResourceSet resourceSet = new ResourceSetImpl();
-		final Resource resource = resourceSet.getResource(URI.createFileURI(architectureFile), true);
+		final Resource resource = resourceSet.getResource(URI.createFileURI(architectureFile.getAbsolutePath()), true);
 		EcoreUtil.resolveAll(resource);
 		return resource;
 	}

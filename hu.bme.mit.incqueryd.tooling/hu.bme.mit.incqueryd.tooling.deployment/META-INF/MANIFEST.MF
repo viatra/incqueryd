@@ -15,4 +15,7 @@ Require-Bundle: org.eclipse.ui;bundle-version="3.105.0",
  hu.bme.mit.incqueryd.arch.inventory.model,
  hu.bme.mit.incqueryd.allocation.csp;bundle-version="1.0.0",
  hu.bme.mit.incqueryd.arch.model;bundle-version="1.0.0",
- org.eclipse.ui.console;bundle-version="3.5.200"
+ org.eclipse.ui.console;bundle-version="3.5.200",
+ org.eclipse.core.expressions;bundle-version="3.4.501"
+Bundle-Activator: hu.bme.mit.incqueryd.tooling.ide.Activator
+Bundle-ActivationPolicy: lazy

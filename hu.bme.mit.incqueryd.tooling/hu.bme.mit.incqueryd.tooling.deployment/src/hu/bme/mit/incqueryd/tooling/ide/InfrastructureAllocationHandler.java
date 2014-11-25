@@ -25,9 +25,9 @@ import org.eclipse.swt.widgets.Shell;
 
 import com.google.common.base.Throwables;
 
-public class OptimizedAllocationHandler extends AbstractHandler {
+public class InfrastructureAllocationHandler extends AbstractHandler {
 
-	private static final String FOLDER_NAME = "arch-opt";
+	private static final String FOLDER_NAME = "arch";
 
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
@@ -44,7 +44,7 @@ public class OptimizedAllocationHandler extends AbstractHandler {
 		fd.setFilterExtensions(filterExt);
 		final String inventoryFile = fd.open();
 
-		new Job("Allocating Rete (with optimization)") {
+		new Job("Allocating Rete to infrastructure") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 
@@ -66,7 +66,7 @@ public class OptimizedAllocationHandler extends AbstractHandler {
 
 					final MessageDialog dialog = success ?
 						new MessageDialog(activeShell, "Allocation result", null, "Your arch file is ready in the " + FOLDER_NAME + " folder!", MessageDialog.INFORMATION, new String[] { "OK" }, 0) :
-						new MessageDialog(activeShell, "Allocation result", null, "The problem can not be solved with the current resource set!", MessageDialog.ERROR, new String[] { "OK" }, 0);
+						new MessageDialog(activeShell, "Allocation result", null, "The allocation can not be solved with the current resource set!", MessageDialog.ERROR, new String[] { "OK" }, 0);
 					Display.getDefault().asyncExec(new Runnable() {
 						@Override
 						public void run() {
