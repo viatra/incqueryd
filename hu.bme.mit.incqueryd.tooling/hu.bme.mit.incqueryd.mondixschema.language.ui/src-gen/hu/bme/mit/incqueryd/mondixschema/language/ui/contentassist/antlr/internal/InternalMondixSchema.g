@@ -141,6 +141,63 @@ finally {
 
 
 
+// Rule ColumnType
+ruleColumnType
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getColumnTypeAccess().getAlternatives()); }
+(rule__ColumnType__Alternatives)
+{ after(grammarAccess.getColumnTypeAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+rule__ColumnType__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getColumnTypeAccess().getIdEnumLiteralDeclaration_0()); }
+(	'ID' 
+)
+{ after(grammarAccess.getColumnTypeAccess().getIdEnumLiteralDeclaration_0()); }
+)
+
+    |(
+{ before(grammarAccess.getColumnTypeAccess().getStringEnumLiteralDeclaration_1()); }
+(	'STRING' 
+)
+{ after(grammarAccess.getColumnTypeAccess().getStringEnumLiteralDeclaration_1()); }
+)
+
+    |(
+{ before(grammarAccess.getColumnTypeAccess().getNumberEnumLiteralDeclaration_2()); }
+(	'NUMBER' 
+)
+{ after(grammarAccess.getColumnTypeAccess().getNumberEnumLiteralDeclaration_2()); }
+)
+
+    |(
+{ before(grammarAccess.getColumnTypeAccess().getBooleanEnumLiteralDeclaration_3()); }
+(	'BOOLEAN' 
+)
+{ after(grammarAccess.getColumnTypeAccess().getBooleanEnumLiteralDeclaration_3()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 
 
 rule__Schema__Group__0
@@ -531,6 +588,7 @@ rule__Column__Group__2
     }
 :
 	rule__Column__Group__2__Impl
+	rule__Column__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -553,6 +611,99 @@ finally {
 }
 
 
+rule__Column__Group__3
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Column__Group__3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Column__Group__3__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getColumnAccess().getGroup_3()); }
+(rule__Column__Group_3__0)?
+{ after(grammarAccess.getColumnAccess().getGroup_3()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
+
+
+
+
+
+
+rule__Column__Group_3__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Column__Group_3__0__Impl
+	rule__Column__Group_3__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Column__Group_3__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getColumnAccess().getColonKeyword_3_0()); }
+
+	':' 
+
+{ after(grammarAccess.getColumnAccess().getColonKeyword_3_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__Column__Group_3__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Column__Group_3__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Column__Group_3__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getColumnAccess().getTypeAssignment_3_1()); }
+(rule__Column__TypeAssignment_3_1)
+{ after(grammarAccess.getColumnAccess().getTypeAssignment_3_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
 
 
 
@@ -628,6 +779,21 @@ rule__Column__NameAssignment_2
 (
 { before(grammarAccess.getColumnAccess().getNameIDTerminalRuleCall_2_0()); }
 	RULE_ID{ after(grammarAccess.getColumnAccess().getNameIDTerminalRuleCall_2_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Column__TypeAssignment_3_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getColumnAccess().getTypeColumnTypeEnumRuleCall_3_1_0()); }
+	ruleColumnType{ after(grammarAccess.getColumnAccess().getTypeColumnTypeEnumRuleCall_3_1_0()); }
 )
 
 ;

@@ -37,14 +37,17 @@ public class MondixSchemaParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getColumnTypeAccess().getAlternatives(), "rule__ColumnType__Alternatives");
 					put(grammarAccess.getSchemaAccess().getGroup(), "rule__Schema__Group__0");
 					put(grammarAccess.getRelationAccess().getGroup(), "rule__Relation__Group__0");
 					put(grammarAccess.getColumnAccess().getGroup(), "rule__Column__Group__0");
+					put(grammarAccess.getColumnAccess().getGroup_3(), "rule__Column__Group_3__0");
 					put(grammarAccess.getSchemaAccess().getNameAssignment_2(), "rule__Schema__NameAssignment_2");
 					put(grammarAccess.getSchemaAccess().getRelationsAssignment_3(), "rule__Schema__RelationsAssignment_3");
 					put(grammarAccess.getRelationAccess().getNameAssignment_2(), "rule__Relation__NameAssignment_2");
 					put(grammarAccess.getRelationAccess().getColumnsAssignment_4(), "rule__Relation__ColumnsAssignment_4");
 					put(grammarAccess.getColumnAccess().getNameAssignment_2(), "rule__Column__NameAssignment_2");
+					put(grammarAccess.getColumnAccess().getTypeAssignment_3_1(), "rule__Column__TypeAssignment_3_1");
 				}
 			};
 		}

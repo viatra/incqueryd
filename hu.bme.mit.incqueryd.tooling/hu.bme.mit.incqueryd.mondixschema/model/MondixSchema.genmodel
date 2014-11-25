@@ -8,12 +8,20 @@
   <foreignModel>MondixSchema.ecore</foreignModel>
   <genPackages prefix="MondixSchema" basePackage="hu.bme.mit.incqueryd" disposableProviderFactory="true"
       ecorePackage="MondixSchema.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="MondixSchema.ecore#//ColumnType">
+      <genEnumLiterals ecoreEnumLiteral="MondixSchema.ecore#//ColumnType/ID"/>
+      <genEnumLiterals ecoreEnumLiteral="MondixSchema.ecore#//ColumnType/STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="MondixSchema.ecore#//ColumnType/NUMBER"/>
+      <genEnumLiterals ecoreEnumLiteral="MondixSchema.ecore#//ColumnType/BOOLEAN"/>
+    </genEnums>
     <genClasses ecoreClass="MondixSchema.ecore#//Schema">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MondixSchema.ecore#//Schema/relations"/>
     </genClasses>
     <genClasses ecoreClass="MondixSchema.ecore#//Relation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference MondixSchema.ecore#//Relation/columns"/>
     </genClasses>
-    <genClasses ecoreClass="MondixSchema.ecore#//Column"/>
+    <genClasses ecoreClass="MondixSchema.ecore#//Column">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute MondixSchema.ecore#//Column/type"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

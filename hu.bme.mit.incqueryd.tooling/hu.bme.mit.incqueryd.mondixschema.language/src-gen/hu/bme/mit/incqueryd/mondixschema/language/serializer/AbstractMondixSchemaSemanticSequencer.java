@@ -48,7 +48,7 @@ public abstract class AbstractMondixSchemaSemanticSequencer extends AbstractDele
 	
 	/**
 	 * Constraint:
-	 *     name=ID
+	 *     (name=ID type=ColumnType?)
 	 */
 	protected void sequence_Column(EObject context, Column semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

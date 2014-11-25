@@ -9,5 +9,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
         eType="#//Column" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Column" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//ENamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Column" eSuperTypes="../../org.eclipse.emf.ecore/model/Ecore.ecore#//ENamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ColumnType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ColumnType">
+    <eLiterals name="id" literal="ID"/>
+    <eLiterals name="string" value="1" literal="STRING"/>
+    <eLiterals name="number" value="2" literal="NUMBER"/>
+    <eLiterals name="boolean" value="3" literal="BOOLEAN"/>
+  </eClassifiers>
 </ecore:EPackage>

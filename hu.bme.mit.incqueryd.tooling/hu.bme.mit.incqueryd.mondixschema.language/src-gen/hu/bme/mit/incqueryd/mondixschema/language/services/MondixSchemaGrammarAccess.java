@@ -105,12 +105,16 @@ public class MondixSchemaGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColumnKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameIDTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cColonKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cTypeAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cTypeColumnTypeEnumRuleCall_3_1_0 = (RuleCall)cTypeAssignment_3_1.eContents().get(0);
 		
 		//Column:
-		//	{Column} "column" name=ID;
+		//	{Column} "column" name=ID (":" type=ColumnType)?;
 		public ParserRule getRule() { return rule; }
 
-		//{Column} "column" name=ID
+		//{Column} "column" name=ID (":" type=ColumnType)?
 		public Group getGroup() { return cGroup; }
 
 		//{Column}
@@ -124,12 +128,69 @@ public class MondixSchemaGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_2_0() { return cNameIDTerminalRuleCall_2_0; }
+
+		//(":" type=ColumnType)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//":"
+		public Keyword getColonKeyword_3_0() { return cColonKeyword_3_0; }
+
+		//type=ColumnType
+		public Assignment getTypeAssignment_3_1() { return cTypeAssignment_3_1; }
+
+		//ColumnType
+		public RuleCall getTypeColumnTypeEnumRuleCall_3_1_0() { return cTypeColumnTypeEnumRuleCall_3_1_0; }
 	}
 	
+	
+	public class ColumnTypeElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "ColumnType");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cIdEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cIdIDKeyword_0_0 = (Keyword)cIdEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cStringEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cStringSTRINGKeyword_1_0 = (Keyword)cStringEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cNumberEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cNumberNUMBERKeyword_2_0 = (Keyword)cNumberEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cBooleanEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cBooleanBOOLEANKeyword_3_0 = (Keyword)cBooleanEnumLiteralDeclaration_3.eContents().get(0);
+		
+		//enum ColumnType:
+		//	id="ID" | string="STRING" | number="NUMBER" | boolean="BOOLEAN";
+		public EnumRule getRule() { return rule; }
+
+		//id="ID" | string="STRING" | number="NUMBER" | boolean="BOOLEAN"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//id="ID"
+		public EnumLiteralDeclaration getIdEnumLiteralDeclaration_0() { return cIdEnumLiteralDeclaration_0; }
+
+		//"ID"
+		public Keyword getIdIDKeyword_0_0() { return cIdIDKeyword_0_0; }
+
+		//string="STRING"
+		public EnumLiteralDeclaration getStringEnumLiteralDeclaration_1() { return cStringEnumLiteralDeclaration_1; }
+
+		//"STRING"
+		public Keyword getStringSTRINGKeyword_1_0() { return cStringSTRINGKeyword_1_0; }
+
+		//number="NUMBER"
+		public EnumLiteralDeclaration getNumberEnumLiteralDeclaration_2() { return cNumberEnumLiteralDeclaration_2; }
+
+		//"NUMBER"
+		public Keyword getNumberNUMBERKeyword_2_0() { return cNumberNUMBERKeyword_2_0; }
+
+		//boolean="BOOLEAN"
+		public EnumLiteralDeclaration getBooleanEnumLiteralDeclaration_3() { return cBooleanEnumLiteralDeclaration_3; }
+
+		//"BOOLEAN"
+		public Keyword getBooleanBOOLEANKeyword_3_0() { return cBooleanBOOLEANKeyword_3_0; }
+	}
 	
 	private SchemaElements pSchema;
 	private RelationElements pRelation;
 	private ColumnElements pColumn;
+	private ColumnTypeElements unknownRuleColumnType;
 	
 	private final Grammar grammar;
 
@@ -190,13 +251,23 @@ public class MondixSchemaGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Column:
-	//	{Column} "column" name=ID;
+	//	{Column} "column" name=ID (":" type=ColumnType)?;
 	public ColumnElements getColumnAccess() {
 		return (pColumn != null) ? pColumn : (pColumn = new ColumnElements());
 	}
 	
 	public ParserRule getColumnRule() {
 		return getColumnAccess().getRule();
+	}
+
+	//enum ColumnType:
+	//	id="ID" | string="STRING" | number="NUMBER" | boolean="BOOLEAN";
+	public ColumnTypeElements getColumnTypeAccess() {
+		return (unknownRuleColumnType != null) ? unknownRuleColumnType : (unknownRuleColumnType = new ColumnTypeElements());
+	}
+	
+	public EnumRule getColumnTypeRule() {
+		return getColumnTypeAccess().getRule();
 	}
 
 	//terminal ID:

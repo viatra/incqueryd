@@ -3,12 +3,15 @@
 package hu.bme.mit.incqueryd.mondixschema.impl;
 
 import hu.bme.mit.incqueryd.mondixschema.Column;
+import hu.bme.mit.incqueryd.mondixschema.ColumnType;
 import hu.bme.mit.incqueryd.mondixschema.MondixSchemaFactory;
 import hu.bme.mit.incqueryd.mondixschema.MondixSchemaPackage;
 import hu.bme.mit.incqueryd.mondixschema.Relation;
 import hu.bme.mit.incqueryd.mondixschema.Schema;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -42,6 +45,13 @@ public class MondixSchemaPackageImpl extends EPackageImpl implements MondixSchem
 	 * @generated
 	 */
 	private EClass columnEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum columnTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -157,6 +167,24 @@ public class MondixSchemaPackageImpl extends EPackageImpl implements MondixSchem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getColumn_Type() {
+		return (EAttribute)columnEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getColumnType() {
+		return columnTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MondixSchemaFactory getMondixSchemaFactory() {
 		return (MondixSchemaFactory)getEFactoryInstance();
 	}
@@ -187,6 +215,10 @@ public class MondixSchemaPackageImpl extends EPackageImpl implements MondixSchem
 		createEReference(relationEClass, RELATION__COLUMNS);
 
 		columnEClass = createEClass(COLUMN);
+		createEAttribute(columnEClass, COLUMN__TYPE);
+
+		// Create enums
+		columnTypeEEnum = createEEnum(COLUMN_TYPE);
 	}
 
 	/**
@@ -232,6 +264,14 @@ public class MondixSchemaPackageImpl extends EPackageImpl implements MondixSchem
 		initEReference(getRelation_Columns(), this.getColumn(), null, "columns", null, 0, -1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(columnEClass, Column.class, "Column", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getColumn_Type(), this.getColumnType(), "type", null, 0, 1, Column.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(columnTypeEEnum, ColumnType.class, "ColumnType");
+		addEEnumLiteral(columnTypeEEnum, ColumnType.ID);
+		addEEnumLiteral(columnTypeEEnum, ColumnType.STRING);
+		addEEnumLiteral(columnTypeEEnum, ColumnType.NUMBER);
+		addEEnumLiteral(columnTypeEEnum, ColumnType.BOOLEAN);
 
 		// Create resource
 		createResource(eNS_URI);

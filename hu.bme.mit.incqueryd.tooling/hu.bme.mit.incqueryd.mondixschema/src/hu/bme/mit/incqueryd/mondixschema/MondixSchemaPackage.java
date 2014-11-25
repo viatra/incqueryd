@@ -2,7 +2,9 @@
  */
 package hu.bme.mit.incqueryd.mondixschema;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -213,13 +215,22 @@ public interface MondixSchemaPackage extends EPackage {
 	int COLUMN__NAME = EcorePackage.ENAMED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLUMN__TYPE = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Column</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COLUMN_FEATURE_COUNT = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 0;
+	int COLUMN_FEATURE_COUNT = EcorePackage.ENAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Get EAnnotation</em>' operation.
@@ -238,6 +249,17 @@ public interface MondixSchemaPackage extends EPackage {
 	 * @ordered
 	 */
 	int COLUMN_OPERATION_COUNT = EcorePackage.ENAMED_ELEMENT_OPERATION_COUNT + 0;
+
+
+	/**
+	 * The meta object id for the '{@link hu.bme.mit.incqueryd.mondixschema.ColumnType <em>Column Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see hu.bme.mit.incqueryd.mondixschema.ColumnType
+	 * @see hu.bme.mit.incqueryd.mondixschema.impl.MondixSchemaPackageImpl#getColumnType()
+	 * @generated
+	 */
+	int COLUMN_TYPE = 3;
 
 
 	/**
@@ -291,6 +313,27 @@ public interface MondixSchemaPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getColumn();
+
+	/**
+	 * Returns the meta object for the attribute '{@link hu.bme.mit.incqueryd.mondixschema.Column#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see hu.bme.mit.incqueryd.mondixschema.Column#getType()
+	 * @see #getColumn()
+	 * @generated
+	 */
+	EAttribute getColumn_Type();
+
+	/**
+	 * Returns the meta object for enum '{@link hu.bme.mit.incqueryd.mondixschema.ColumnType <em>Column Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Column Type</em>'.
+	 * @see hu.bme.mit.incqueryd.mondixschema.ColumnType
+	 * @generated
+	 */
+	EEnum getColumnType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -360,6 +403,24 @@ public interface MondixSchemaPackage extends EPackage {
 		 * @generated
 		 */
 		EClass COLUMN = eINSTANCE.getColumn();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COLUMN__TYPE = eINSTANCE.getColumn_Type();
+
+		/**
+		 * The meta object literal for the '{@link hu.bme.mit.incqueryd.mondixschema.ColumnType <em>Column Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see hu.bme.mit.incqueryd.mondixschema.ColumnType
+		 * @see hu.bme.mit.incqueryd.mondixschema.impl.MondixSchemaPackageImpl#getColumnType()
+		 * @generated
+		 */
+		EEnum COLUMN_TYPE = eINSTANCE.getColumnType();
 
 	}
 

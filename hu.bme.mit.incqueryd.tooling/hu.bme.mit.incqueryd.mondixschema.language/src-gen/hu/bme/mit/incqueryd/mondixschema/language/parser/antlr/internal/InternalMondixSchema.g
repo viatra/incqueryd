@@ -24,6 +24,7 @@ import org.eclipse.xtext.parser.*;
 import org.eclipse.xtext.parser.impl.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
@@ -247,10 +248,63 @@ ruleColumn returns [EObject current=null]
 	    }
 
 )
-))
+)(	otherlv_3=':' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getColumnAccess().getColonKeyword_3_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getColumnAccess().getTypeColumnTypeEnumRuleCall_3_1_0()); 
+	    }
+		lv_type_4_0=ruleColumnType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getColumnRule());
+	        }
+       		set(
+       			$current, 
+       			"type",
+        		lv_type_4_0, 
+        		"ColumnType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))?)
 ;
 
 
+
+
+
+// Rule ColumnType
+ruleColumnType returns [Enumerator current=null] 
+    @init { enterRule(); }
+    @after { leaveRule(); }:
+((	enumLiteral_0='ID' 
+	{
+        $current = grammarAccess.getColumnTypeAccess().getIdEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_0, grammarAccess.getColumnTypeAccess().getIdEnumLiteralDeclaration_0()); 
+    }
+)
+    |(	enumLiteral_1='STRING' 
+	{
+        $current = grammarAccess.getColumnTypeAccess().getStringEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_1, grammarAccess.getColumnTypeAccess().getStringEnumLiteralDeclaration_1()); 
+    }
+)
+    |(	enumLiteral_2='NUMBER' 
+	{
+        $current = grammarAccess.getColumnTypeAccess().getNumberEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_2, grammarAccess.getColumnTypeAccess().getNumberEnumLiteralDeclaration_2()); 
+    }
+)
+    |(	enumLiteral_3='BOOLEAN' 
+	{
+        $current = grammarAccess.getColumnTypeAccess().getBooleanEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_3, grammarAccess.getColumnTypeAccess().getBooleanEnumLiteralDeclaration_3()); 
+    }
+));
 
 
 

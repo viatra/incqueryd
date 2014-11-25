@@ -13,18 +13,23 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalMondixSchemaLexer extends Lexer {
     public static final int RULE_ID=4;
+    public static final int RULE_ANY_OTHER=10;
+    public static final int T__20=20;
+    public static final int RULE_SL_COMMENT=8;
+    public static final int EOF=-1;
+    public static final int RULE_ML_COMMENT=7;
+    public static final int T__19=19;
     public static final int RULE_STRING=6;
+    public static final int T__16=16;
     public static final int T__15=15;
+    public static final int T__18=18;
+    public static final int T__17=17;
     public static final int T__12=12;
     public static final int T__11=11;
     public static final int T__14=14;
     public static final int T__13=13;
-    public static final int RULE_ANY_OTHER=10;
     public static final int RULE_INT=5;
     public static final int RULE_WS=9;
-    public static final int RULE_SL_COMMENT=8;
-    public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=7;
 
     // delegates
     // delegators
@@ -142,15 +147,119 @@ public class InternalMondixSchemaLexer extends Lexer {
     }
     // $ANTLR end "T__15"
 
+    // $ANTLR start "T__16"
+    public final void mT__16() throws RecognitionException {
+        try {
+            int _type = T__16;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:16:7: ( ':' )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:16:9: ':'
+            {
+            match(':'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__16"
+
+    // $ANTLR start "T__17"
+    public final void mT__17() throws RecognitionException {
+        try {
+            int _type = T__17;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:17:7: ( 'ID' )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:17:9: 'ID'
+            {
+            match("ID"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__17"
+
+    // $ANTLR start "T__18"
+    public final void mT__18() throws RecognitionException {
+        try {
+            int _type = T__18;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:18:7: ( 'STRING' )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:18:9: 'STRING'
+            {
+            match("STRING"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__18"
+
+    // $ANTLR start "T__19"
+    public final void mT__19() throws RecognitionException {
+        try {
+            int _type = T__19;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:19:7: ( 'NUMBER' )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:19:9: 'NUMBER'
+            {
+            match("NUMBER"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__19"
+
+    // $ANTLR start "T__20"
+    public final void mT__20() throws RecognitionException {
+        try {
+            int _type = T__20;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:20:7: ( 'BOOLEAN' )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:20:9: 'BOOLEAN'
+            {
+            match("BOOLEAN"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__20"
+
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:257:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:257:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:311:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:311:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:257:11: ( '^' )?
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:311:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -159,7 +268,7 @@ public class InternalMondixSchemaLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:257:11: '^'
+                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:311:11: '^'
                     {
                     match('^'); 
 
@@ -177,7 +286,7 @@ public class InternalMondixSchemaLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:257:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:311:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -226,10 +335,10 @@ public class InternalMondixSchemaLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:259:10: ( ( '0' .. '9' )+ )
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:259:12: ( '0' .. '9' )+
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:313:10: ( ( '0' .. '9' )+ )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:313:12: ( '0' .. '9' )+
             {
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:259:12: ( '0' .. '9' )+
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:313:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -243,7 +352,7 @@ public class InternalMondixSchemaLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:259:13: '0' .. '9'
+            	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:313:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -275,10 +384,10 @@ public class InternalMondixSchemaLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:261:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:261:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:315:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:315:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:261:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:315:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -296,10 +405,10 @@ public class InternalMondixSchemaLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:261:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:315:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:261:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:315:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -315,7 +424,7 @@ public class InternalMondixSchemaLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:261:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:315:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -331,7 +440,7 @@ public class InternalMondixSchemaLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:261:66: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:315:66: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -356,10 +465,10 @@ public class InternalMondixSchemaLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:261:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:315:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:261:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:315:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -375,7 +484,7 @@ public class InternalMondixSchemaLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:261:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
+                    	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:315:92: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
@@ -391,7 +500,7 @@ public class InternalMondixSchemaLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:261:137: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:315:137: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -434,12 +543,12 @@ public class InternalMondixSchemaLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:263:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:263:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:317:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:317:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:263:24: ( options {greedy=false; } : . )*
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:317:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -464,7 +573,7 @@ public class InternalMondixSchemaLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:263:52: .
+            	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:317:52: .
             	    {
             	    matchAny(); 
 
@@ -494,12 +603,12 @@ public class InternalMondixSchemaLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:265:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:265:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:319:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:319:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:265:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:319:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -512,7 +621,7 @@ public class InternalMondixSchemaLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:265:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:319:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -532,7 +641,7 @@ public class InternalMondixSchemaLexer extends Lexer {
                 }
             } while (true);
 
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:265:40: ( ( '\\r' )? '\\n' )?
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:319:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -541,9 +650,9 @@ public class InternalMondixSchemaLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:265:41: ( '\\r' )? '\\n'
+                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:319:41: ( '\\r' )? '\\n'
                     {
-                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:265:41: ( '\\r' )?
+                    // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:319:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -552,7 +661,7 @@ public class InternalMondixSchemaLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:265:41: '\\r'
+                            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:319:41: '\\r'
                             {
                             match('\r'); 
 
@@ -584,10 +693,10 @@ public class InternalMondixSchemaLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:267:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:267:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:321:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:321:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:267:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:321:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -641,8 +750,8 @@ public class InternalMondixSchemaLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:269:16: ( . )
-            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:269:18: .
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:323:16: ( . )
+            // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:323:18: .
             {
             matchAny(); 
 
@@ -657,8 +766,8 @@ public class InternalMondixSchemaLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=12;
+        // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=17;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
@@ -697,49 +806,84 @@ public class InternalMondixSchemaLexer extends Lexer {
                 }
                 break;
             case 6 :
-                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:40: RULE_ID
+                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:40: T__16
+                {
+                mT__16(); 
+
+                }
+                break;
+            case 7 :
+                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:46: T__17
+                {
+                mT__17(); 
+
+                }
+                break;
+            case 8 :
+                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:52: T__18
+                {
+                mT__18(); 
+
+                }
+                break;
+            case 9 :
+                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:58: T__19
+                {
+                mT__19(); 
+
+                }
+                break;
+            case 10 :
+                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:64: T__20
+                {
+                mT__20(); 
+
+                }
+                break;
+            case 11 :
+                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:70: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 7 :
-                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:48: RULE_INT
+            case 12 :
+                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:78: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 8 :
-                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:57: RULE_STRING
+            case 13 :
+                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:87: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 9 :
-                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:69: RULE_ML_COMMENT
+            case 14 :
+                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:99: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 10 :
-                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:85: RULE_SL_COMMENT
+            case 15 :
+                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:115: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 11 :
-                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:101: RULE_WS
+            case 16 :
+                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:131: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 12 :
-                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:109: RULE_ANY_OTHER
+            case 17 :
+                // ../hu.bme.mit.incqueryd.mondixschema.language/src-gen/hu/bme/mit/incqueryd/mondixschema/language/parser/antlr/internal/InternalMondixSchema.g:1:139: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -753,71 +897,105 @@ public class InternalMondixSchemaLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\2\17\2\uffff\1\17\1\15\2\uffff\3\15\2\uffff\1\17\1\uffff"+
-        "\1\17\2\uffff\1\17\5\uffff\11\17\1\45\1\17\1\47\1\uffff\1\17\1\uffff"+
-        "\1\51\1\uffff";
+        "\1\uffff\2\24\2\uffff\1\24\1\uffff\4\24\1\22\2\uffff\3\22\2\uffff"+
+        "\1\24\1\uffff\1\24\2\uffff\1\24\1\uffff\1\46\3\24\5\uffff\3\24\1"+
+        "\uffff\17\24\1\74\1\24\1\76\1\77\1\100\1\24\1\uffff\1\24\3\uffff"+
+        "\1\103\1\104\2\uffff";
     static final String DFA12_eofS =
-        "\52\uffff";
+        "\105\uffff";
     static final String DFA12_minS =
-        "\1\0\1\143\1\145\2\uffff\1\157\1\101\2\uffff\2\0\1\52\2\uffff\1"+
-        "\150\1\uffff\1\154\2\uffff\1\154\5\uffff\1\145\1\141\1\165\1\155"+
-        "\1\164\1\155\1\141\1\151\1\156\1\60\1\157\1\60\1\uffff\1\156\1\uffff"+
-        "\1\60\1\uffff";
+        "\1\0\1\143\1\145\2\uffff\1\157\1\uffff\1\104\1\124\1\125\1\117\1"+
+        "\101\2\uffff\2\0\1\52\2\uffff\1\150\1\uffff\1\154\2\uffff\1\154"+
+        "\1\uffff\1\60\1\122\1\115\1\117\5\uffff\1\145\1\141\1\165\1\uffff"+
+        "\1\111\1\102\1\114\1\155\1\164\1\155\1\116\2\105\1\141\1\151\1\156"+
+        "\1\107\1\122\1\101\1\60\1\157\3\60\1\116\1\uffff\1\156\3\uffff\2"+
+        "\60\2\uffff";
     static final String DFA12_maxS =
-        "\1\uffff\1\143\1\145\2\uffff\1\157\1\172\2\uffff\2\uffff\1\57\2"+
-        "\uffff\1\150\1\uffff\1\154\2\uffff\1\154\5\uffff\1\145\1\141\1\165"+
-        "\1\155\1\164\1\155\1\141\1\151\1\156\1\172\1\157\1\172\1\uffff\1"+
-        "\156\1\uffff\1\172\1\uffff";
+        "\1\uffff\1\143\1\145\2\uffff\1\157\1\uffff\1\104\1\124\1\125\1\117"+
+        "\1\172\2\uffff\2\uffff\1\57\2\uffff\1\150\1\uffff\1\154\2\uffff"+
+        "\1\154\1\uffff\1\172\1\122\1\115\1\117\5\uffff\1\145\1\141\1\165"+
+        "\1\uffff\1\111\1\102\1\114\1\155\1\164\1\155\1\116\2\105\1\141\1"+
+        "\151\1\156\1\107\1\122\1\101\1\172\1\157\3\172\1\116\1\uffff\1\156"+
+        "\3\uffff\2\172\2\uffff";
     static final String DFA12_acceptS =
-        "\3\uffff\1\3\1\4\2\uffff\1\6\1\7\3\uffff\1\13\1\14\1\uffff\1\6\1"+
-        "\uffff\1\3\1\4\1\uffff\1\7\1\10\1\11\1\12\1\13\14\uffff\1\1\1\uffff"+
-        "\1\5\1\uffff\1\2";
+        "\3\uffff\1\3\1\4\1\uffff\1\6\5\uffff\1\13\1\14\3\uffff\1\20\1\21"+
+        "\1\uffff\1\13\1\uffff\1\3\1\4\1\uffff\1\6\4\uffff\1\14\1\15\1\16"+
+        "\1\17\1\20\3\uffff\1\7\25\uffff\1\1\1\uffff\1\5\1\10\1\11\2\uffff"+
+        "\1\12\1\2";
     static final String DFA12_specialS =
-        "\1\0\10\uffff\1\1\1\2\37\uffff}>";
+        "\1\1\15\uffff\1\0\1\2\65\uffff}>";
     static final String[] DFA12_transitionS = {
-            "\11\15\2\14\2\15\1\14\22\15\1\14\1\15\1\11\4\15\1\12\7\15\1"+
-            "\13\12\10\7\15\32\7\3\15\1\6\1\7\1\15\2\7\1\5\16\7\1\2\1\1\7"+
-            "\7\1\3\1\15\1\4\uff82\15",
-            "\1\16",
-            "\1\20",
-            "",
-            "",
+            "\11\22\2\21\2\22\1\21\22\22\1\21\1\22\1\16\4\22\1\17\7\22\1"+
+            "\20\12\15\1\6\6\22\1\14\1\12\6\14\1\7\4\14\1\11\4\14\1\10\7"+
+            "\14\3\22\1\13\1\14\1\22\2\14\1\5\16\14\1\2\1\1\7\14\1\3\1\22"+
+            "\1\4\uff82\22",
             "\1\23",
-            "\32\17\4\uffff\1\17\1\uffff\32\17",
+            "\1\25",
             "",
             "",
-            "\0\25",
-            "\0\25",
-            "\1\26\4\uffff\1\27",
-            "",
-            "",
-            "\1\31",
+            "\1\30",
             "",
             "\1\32",
-            "",
-            "",
             "\1\33",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\34",
             "\1\35",
-            "\1\36",
-            "\1\37",
-            "\1\40",
-            "\1\41",
-            "\1\42",
+            "\32\24\4\uffff\1\24\1\uffff\32\24",
+            "",
+            "",
+            "\0\37",
+            "\0\37",
+            "\1\40\4\uffff\1\41",
+            "",
+            "",
             "\1\43",
+            "",
             "\1\44",
-            "\12\17\7\uffff\32\17\4\uffff\1\17\1\uffff\32\17",
-            "\1\46",
-            "\12\17\7\uffff\32\17\4\uffff\1\17\1\uffff\32\17",
             "",
+            "",
+            "\1\45",
+            "",
+            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
+            "\1\47",
             "\1\50",
+            "\1\51",
             "",
-            "\12\17\7\uffff\32\17\4\uffff\1\17\1\uffff\32\17",
+            "",
+            "",
+            "",
+            "",
+            "\1\52",
+            "\1\53",
+            "\1\54",
+            "",
+            "\1\55",
+            "\1\56",
+            "\1\57",
+            "\1\60",
+            "\1\61",
+            "\1\62",
+            "\1\63",
+            "\1\64",
+            "\1\65",
+            "\1\66",
+            "\1\67",
+            "\1\70",
+            "\1\71",
+            "\1\72",
+            "\1\73",
+            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
+            "\1\75",
+            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
+            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
+            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
+            "\1\101",
+            "",
+            "\1\102",
+            "",
+            "",
+            "",
+            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
+            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
+            "",
             ""
     };
 
@@ -851,13 +1029,23 @@ public class InternalMondixSchemaLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
+                        int LA12_14 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA12_14>='\u0000' && LA12_14<='\uFFFF')) ) {s = 31;}
+
+                        else s = 18;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
                         int LA12_0 = input.LA(1);
 
                         s = -1;
@@ -871,41 +1059,41 @@ public class InternalMondixSchemaLexer extends Lexer {
 
                         else if ( (LA12_0=='c') ) {s = 5;}
 
-                        else if ( (LA12_0=='^') ) {s = 6;}
+                        else if ( (LA12_0==':') ) {s = 6;}
 
-                        else if ( ((LA12_0>='A' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='a' && LA12_0<='b')||(LA12_0>='d' && LA12_0<='q')||(LA12_0>='t' && LA12_0<='z')) ) {s = 7;}
+                        else if ( (LA12_0=='I') ) {s = 7;}
 
-                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 8;}
+                        else if ( (LA12_0=='S') ) {s = 8;}
 
-                        else if ( (LA12_0=='\"') ) {s = 9;}
+                        else if ( (LA12_0=='N') ) {s = 9;}
 
-                        else if ( (LA12_0=='\'') ) {s = 10;}
+                        else if ( (LA12_0=='B') ) {s = 10;}
 
-                        else if ( (LA12_0=='/') ) {s = 11;}
+                        else if ( (LA12_0=='^') ) {s = 11;}
 
-                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 12;}
+                        else if ( (LA12_0=='A'||(LA12_0>='C' && LA12_0<='H')||(LA12_0>='J' && LA12_0<='M')||(LA12_0>='O' && LA12_0<='R')||(LA12_0>='T' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='a' && LA12_0<='b')||(LA12_0>='d' && LA12_0<='q')||(LA12_0>='t' && LA12_0<='z')) ) {s = 12;}
 
-                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||(LA12_0>='(' && LA12_0<='.')||(LA12_0>=':' && LA12_0<='@')||(LA12_0>='[' && LA12_0<=']')||LA12_0=='`'||LA12_0=='|'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 13;}
+                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 13;}
 
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA12_9 = input.LA(1);
+                        else if ( (LA12_0=='\"') ) {s = 14;}
 
-                        s = -1;
-                        if ( ((LA12_9>='\u0000' && LA12_9<='\uFFFF')) ) {s = 21;}
+                        else if ( (LA12_0=='\'') ) {s = 15;}
 
-                        else s = 13;
+                        else if ( (LA12_0=='/') ) {s = 16;}
+
+                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 17;}
+
+                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||(LA12_0>='(' && LA12_0<='.')||(LA12_0>=';' && LA12_0<='@')||(LA12_0>='[' && LA12_0<=']')||LA12_0=='`'||LA12_0=='|'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 18;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA12_10 = input.LA(1);
+                        int LA12_15 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_10>='\u0000' && LA12_10<='\uFFFF')) ) {s = 21;}
+                        if ( ((LA12_15>='\u0000' && LA12_15<='\uFFFF')) ) {s = 31;}
 
-                        else s = 13;
+                        else s = 18;
 
                         if ( s>=0 ) return s;
                         break;

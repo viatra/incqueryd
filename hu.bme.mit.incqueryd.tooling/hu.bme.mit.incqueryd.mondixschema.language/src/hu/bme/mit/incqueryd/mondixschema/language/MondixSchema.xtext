@@ -16,4 +16,7 @@ Relation returns Relation:
 
 Column returns Column:
 	{Column}
-	'column' name=ID;
+	'column' name=ID (':' type=ColumnType)?;
+
+enum ColumnType returns ColumnType:
+	id | string | number | boolean;
