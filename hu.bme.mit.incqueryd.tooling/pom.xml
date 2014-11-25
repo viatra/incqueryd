@@ -1,21 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>hu.bme.mit.incqueryd</groupId>
 	<artifactId>hu.bme.mit.incqueryd.tooling</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<tycho.version>0.20.0</tycho.version>
-		<tycho.extras.version>0.20.0</tycho.extras.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.showWarnings>true</maven.compiler.showWarnings>
-		<incquery.update.site>http://download.eclipse.org/incquery/updates/integration</incquery.update.site>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
-		<xtend.version>2.7.2</xtend.version>
-	</properties>
+	<parent>
+		<groupId>hu.bme.mit.incqueryd</groupId>
+		<artifactId>hu.bme.mit.incqueryd.parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
 	<build>
 		<plugins>
 			<plugin>
