@@ -17,6 +17,7 @@
 		<emf.version>2.9.1-v20130827-0309</emf.version>
 		<emf.incquery.version>0.9.0-SNAPSHOT</emf.incquery.version>
 		<incquery.update.site>http://download.eclipse.org/incquery/updates/integration</incquery.update.site>
+		<dropwizard.version>0.7.0</dropwizard.version>
 	</properties>
 
 	<modules>
