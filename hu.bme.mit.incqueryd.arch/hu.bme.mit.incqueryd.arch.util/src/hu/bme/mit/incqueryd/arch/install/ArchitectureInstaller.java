@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.mondo.eu.utils.UnixUtils;
-
 import arch.Configuration;
 
 import com.google.common.base.Joiner;
+
+import eu.mondo.utils.UnixUtils;
 
 public class ArchitectureInstaller {
 

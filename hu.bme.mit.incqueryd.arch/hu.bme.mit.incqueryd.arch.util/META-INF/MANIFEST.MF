@@ -8,6 +8,6 @@ Require-Bundle: hu.bme.mit.incqueryd.arch.model,
  org.eclipse.emf.ecore.xmi;bundle-version="2.10.0",
  org.junit,
  org.apache.commons.exec;bundle-version="1.1.0",
- org.mondo.eu.utils;bundle-version="1.0.0"
+ eu.mondo.utils;bundle-version="1.0.0"
 Export-Package: hu.bme.mit.incqueryd.arch.install,
  hu.bme.mit.incqueryd.arch.util
