@@ -18,6 +18,7 @@ import inventory.MachineTemplate;
 import inventory.MemoryUnit;
 import inventory.TemplateSet;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -170,7 +171,7 @@ public class AllocationOptimizer {
 	
 	
 	private void processInventory() throws IOException {
-		inventory = ArchUtil.loadInventory(inventoryFile);
+		inventory = ArchUtil.loadInventory(new File(inventoryFile));
 
 		MachineSet machineSet = inventory.getMachineSet();
 

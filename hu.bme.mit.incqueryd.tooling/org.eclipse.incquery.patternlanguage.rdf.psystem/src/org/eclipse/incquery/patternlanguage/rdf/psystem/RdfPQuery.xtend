@@ -7,7 +7,13 @@ import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPBod
 class RdfPQuery {
 
 	static def toPQuery(Pattern pattern, RdfPModel model) {
-		new GenericPQuery(pattern, [patternBody, query | toPBody(patternBody, pattern, query, model)])
+		new GenericPQuery(pattern, [patternBody, query | toPBody(patternBody, pattern, query, model)]) {
+			
+			override getPreferredScopeClass() {
+				throw new UnsupportedOperationException("TODO")
+			}
+			
+		}
 	}
 
 }

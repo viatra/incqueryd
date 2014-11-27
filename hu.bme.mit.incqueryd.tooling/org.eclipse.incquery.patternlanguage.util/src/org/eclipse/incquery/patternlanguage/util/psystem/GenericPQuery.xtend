@@ -1,21 +1,17 @@
 package org.eclipse.incquery.patternlanguage.util.psystem
 
-import com.google.common.collect.Sets
+import java.io.Serializable
 import java.util.List
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern
-import org.eclipse.incquery.runtime.matchers.psystem.IQueryReference
-import org.eclipse.incquery.runtime.matchers.psystem.annotations.PAnnotation
-import org.eclipse.incquery.runtime.matchers.psystem.queries.PDisjunction
+import org.eclipse.incquery.patternlanguage.patternLanguage.PatternBody
+import org.eclipse.incquery.runtime.api.GenericQuerySpecification
+import org.eclipse.incquery.runtime.api.IncQueryEngine
+import org.eclipse.incquery.runtime.exception.IncQueryException
+import org.eclipse.incquery.runtime.matchers.psystem.PBody
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PParameter
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
 
 import static extension org.eclipse.incquery.patternlanguage.util.psystem.PUtils.*
-import java.io.Serializable
-import org.eclipse.incquery.runtime.matchers.psystem.PBody
-import org.eclipse.incquery.patternlanguage.patternLanguage.PatternBody
-import org.eclipse.incquery.runtime.api.GenericQuerySpecification
-import org.eclipse.incquery.runtime.exception.IncQueryException
-import org.eclipse.incquery.runtime.api.IncQueryEngine
 
 abstract class GenericPQuery extends GenericQuerySpecification<GenericPatternMatcher> implements Serializable {
 	
@@ -121,7 +117,7 @@ abstract class GenericPQuery extends GenericQuerySpecification<GenericPatternMat
 	}
 	
 	override protected instantiate(IncQueryEngine engine) throws IncQueryException {
-		org.eclipse.incquery.patternlanguage.util.psystem.GenericPatternMatcher.instantiate(engine, this)
+		GenericPatternMatcher.instantiate(engine, this)
 	}
 	
 //

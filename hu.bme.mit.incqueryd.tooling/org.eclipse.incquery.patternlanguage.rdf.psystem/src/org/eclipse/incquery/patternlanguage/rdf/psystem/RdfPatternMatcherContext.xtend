@@ -2,7 +2,7 @@ package org.eclipse.incquery.patternlanguage.rdf.psystem
 
 import hu.bme.mit.incqueryd.rdf.RdfUtils
 import org.apache.log4j.Logger
-import org.eclipse.incquery.runtime.matchers.IPatternMatcherContext
+import org.eclipse.incquery.runtime.matchers.context.IPatternMatcherContext
 import org.openrdf.model.Model
 import org.openrdf.model.Resource
 import org.openrdf.model.Value
@@ -127,9 +127,6 @@ class RdfPatternMatcherContext implements IPatternMatcherContext {
 
 	override printType(Object typeObject) {
 		(typeObject as Value).stringValue
-	}
-
-	override reportPatternDependency(Object pattern) {
 	}
 
 	// Logging

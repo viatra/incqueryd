@@ -3,7 +3,6 @@ package hu.bme.mit.incqueryd.core.rete.actors
 import java.nio.file.Paths
 import java.util.HashMap
 import java.util.HashSet
-
 import scala.collection.JavaConversions.asScalaBuffer
 import scala.collection.JavaConversions.asScalaSet
 import scala.collection.JavaConversions.collectionAsScalaIterable
@@ -12,15 +11,12 @@ import scala.collection.JavaConversions.seqAsJavaList
 import scala.collection.immutable.Stack
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-
 import org.apache.commons.io.FilenameUtils
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
-
 import com.google.common.collect.HashBiMap
-
 import akka.actor.Actor
 import akka.actor.ActorRef
 import akka.actor.Address
@@ -51,12 +47,13 @@ import hu.bme.mit.incqueryd.core.util.EObjectSerializer
 import hu.bme.mit.incqueryd.core.util.ReteNodeConfiguration
 import hu.bme.mit.incqueryd.retemonitoring.metrics.MonitoredActorCollection
 import infrastructure.Process
+import java.io.File
 
-class CoordinatorActor(val architectureFile: String, val distributed: Boolean) extends Actor {
+class CoordinatorActor(val architectureFile: String, val debug: Boolean) extends Actor {
 
   val logPrefix = "[CoordinatorActor] "
   
-  val conf: Configuration = try ArchUtil.loadConfiguration(architectureFile) catch {
+  val conf: Configuration = try ArchUtil.loadConfiguration(new File(architectureFile)) catch {
     case e: Exception =>  { sender ! Status.Failure(e); e.printStackTrace(); System.exit(-1); throw e;  } 
   }
     
@@ -147,7 +144,12 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
         val recipeString = EObjectSerializer.serializeToString(rnrClone)
 
         var props: Props = null
-        if (distributed) {
+
+        if (debug) {
+          // initialize in the same JVM as the CoordinatorActor
+          props = Props[ReteActor]
+        } else {
+          // initialize in a separate (remote) JVM
           if (verbose) println(logPrefix + "EMF address: " + emfUri)
           val process = recipeToProcess.get(recipeNode)
           val machine = process.getMachine
@@ -158,8 +160,6 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
 
           props = Props[ReteActor].withDeploy(new Deploy(new RemoteScope(new Address("akka",
             IncQueryDMicrokernel.ACTOR_SYSTEM_NAME, ipAddress, port))))
-        } else {
-          props = Props[ReteActor]
         }
 
         val actorRef = context.actorOf(props)
@@ -188,7 +188,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
   }
 
   def deployJVMMonitoringActors = {
-    if (distributed) {
+    if (debug) {
       conf.getMappings.foreach(mapping => {
         val ipAddress = mapping.getProcess.getMachine.getIp
         val port = mapping.getProcess.getPort
@@ -263,7 +263,7 @@ class CoordinatorActor(val architectureFile: String, val distributed: Boolean) e
     println(logPrefix + "Loading the Rete network.")
 
     val clusterName = conf.getConnectionString.split("://")(1)
-    val databaseDriver = new FourStoreDriverTrainBenchmark(clusterName, distributed)
+    val databaseDriver = new FourStoreDriverTrainBenchmark(clusterName, debug)
 
     conf.getRecipes.foreach(recipe =>
       recipe.getRecipeNodes.foreach(_ match {

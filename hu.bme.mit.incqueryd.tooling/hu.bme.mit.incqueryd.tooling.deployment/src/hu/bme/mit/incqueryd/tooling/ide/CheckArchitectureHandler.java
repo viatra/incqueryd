@@ -22,17 +22,16 @@ public class CheckArchitectureHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
-		final IFile file = ArchitectureSelector.getSelection(event);
+		final IFile architectureFile = ArchitectureSelector.getSelection(event);
 		new Job("Checking architecture") {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				final IqdConsole console = IqdConsole.getInstance();
-				String architectureFile = file.getLocation().toString();
 				Configuration configuration;
 				try {
-					configuration = ArchUtil.loadConfiguration(architectureFile);
+					configuration = ArchUtil.loadConfiguration(architectureFile.getLocation().toFile());
 				} catch (IOException e) {
-					throw new RuntimeException("Cannot process architecture file.", e);
+					throw new RuntimeException("Cannot load architecture file.", e);
 				}
 
 				String coordinatorIp = configuration.getCoordinatorMachine().getIp();

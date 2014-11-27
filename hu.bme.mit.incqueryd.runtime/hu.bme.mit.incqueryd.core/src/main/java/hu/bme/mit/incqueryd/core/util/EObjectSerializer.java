@@ -21,14 +21,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipselabs.emfjson.EMFJs;
-import org.eclipselabs.emfjson.resource.JsResourceFactoryImpl;
+import org.emfjson.EMFJs;
+import org.emfjson.jackson.resource.JsonResourceFactory;
 
 public class EObjectSerializer {
 
 	public static void serializeToFile(final EObject eObject, final String modelFile) throws IOException {
 		final ResourceSet resourceSet = new ResourceSetImpl();
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("json", new JsResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("json", new JsonResourceFactory());
 
 		final Resource resource = resourceSet.createResource(URI.createURI(modelFile));
 		final Map<String, Object> options = new HashMap<String, Object>();
@@ -41,7 +41,7 @@ public class EObjectSerializer {
 	}
 
 	public static String serializeToString(final EObject eObject) throws IOException {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("json", new JsResourceFactoryImpl());
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("json", new JsonResourceFactory());
 
 		final File tempFile = createTempFile();
 		serializeToFile(eObject, tempFile.getAbsolutePath());

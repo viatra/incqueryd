@@ -18,11 +18,8 @@ if [ $resolveDependencies ]; then
 	scripts/resolve-dependencies.sh || exit 1
 fi
 
-hu.bme.mit.incqueryd.monitoring/scripts/build.sh && \
-hu.bme.mit.incqueryd.arch/scripts/build.sh && \
-hu.bme.mit.incqueryd.allocation.csp/scripts/build.sh && \
-hu.bme.mit.incqueryd.stats/scripts/build.sh && \
-hu.bme.mit.incqueryd.runtime/scripts/build.sh || exit 1
+export MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=256m"
+mvn clean install || exit 1
 
 if [ ! $noTooling ]; then
 	hu.bme.mit.incqueryd.tooling/scripts/build.sh || exit 1
