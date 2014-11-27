@@ -4,12 +4,12 @@
 
 	<parent>
 		<groupId>hu.bme.mit.incqueryd</groupId>
-		<artifactId>hu.bme.mit.incqueryd.runtime</artifactId>
+		<artifactId>hu.bme.mit.incqueryd.core</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>hu.bme.mit.incqueryd.engine</artifactId>
 
-	<name>IncQuery-D Core</name>
+	<name>IncQuery-D Engine</name>
 
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
