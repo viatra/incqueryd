@@ -1,11 +1,10 @@
 #!/bin/bash
 
-# Usage: generate-configs.sh ip_address port1 port2 ...
+# Usage: generate-configs.sh port1 port2 ...
 
 cd "$( cd "$( dirname "$0" )" && pwd )"
 
-ip_address=$1
-shift
+ip_address=$(ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
 ports=$@
 
 rm -r config-* 2> /dev/null
