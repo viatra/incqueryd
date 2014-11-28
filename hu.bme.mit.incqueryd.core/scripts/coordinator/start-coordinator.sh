@@ -9,4 +9,4 @@ cd $COORDINATOR_DIR
 
 rm -f coordinator.err coordinator.out $COORDINATOR_DIR 2> /dev/null
 
-nohup java -jar hu.bme.mit.incqueryd.core-*-SNAPSHOT.jar --architectureFile $architectureFile --interface $interface > $COORDINATOR_DIR/coordinator.out 2> $COORDINATOR_DIR/coordinator.err < /dev/null &
+nohup java -jar hu.bme.mit.incqueryd.engine-*-SNAPSHOT.jar --architectureFile $architectureFile --interface $interface > $COORDINATOR_DIR/coordinator.out 2> $COORDINATOR_DIR/coordinator.err < /dev/null &

@@ -21,6 +21,6 @@ rm akka-$port.err akka-$port.out $INSTALL_DIR 2> /dev/null
 cd akka-$AKKA_VERSION
 
 echo "$port"
-nohup bin/akka hu.bme.mit.incqueryd.core.rete.actors.IncQueryDMicrokernel $port > $INSTALL_DIR/akka-$port.out 2> $INSTALL_DIR/akka-$port.err < /dev/null &
+nohup bin/akka hu.bme.mit.incqueryd.engine.rete.actors.IncQueryDMicrokernel $port > $INSTALL_DIR/akka-$port.out 2> $INSTALL_DIR/akka-$port.err < /dev/null &
 
 

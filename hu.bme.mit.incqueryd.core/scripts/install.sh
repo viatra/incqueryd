@@ -52,11 +52,11 @@ for machine in "$@"; do
 		ssh $machine "rm $AKKA_DEPLOY_DIR/*"
 
 		# third party dependencies
-		scp hu.bme.mit.incqueryd.core/target/lib/* $machine:$AKKA_DEPLOY_DIR
+		scp hu.bme.mit.incqueryd.engine/target/lib/* $machine:$AKKA_DEPLOY_DIR
 	fi
 
 	# IncQuery-D's main JAR
-	scp hu.bme.mit.incqueryd.core/target/hu.bme.mit.incqueryd.core-*-SNAPSHOT.jar $machine:$AKKA_DEPLOY_DIR
+	scp hu.bme.mit.incqueryd.engine/target/hu.bme.mit.incqueryd.engine-*-SNAPSHOT.jar $machine:$AKKA_DEPLOY_DIR
 done
 
 # installing to the coordinator
@@ -74,11 +74,11 @@ echo "Installing IncQuery-D Main jar to the coordinator."
 if [[ ! $light ]]; then
 	rm -f $COORDINATOR_LIB_DIR/*
 	# third party dependencies
-	scp hu.bme.mit.incqueryd.core/target/lib/* $coordinator:$COORDINATOR_LIB_DIR
+	scp hu.bme.mit.incqueryd.engine/target/lib/* $coordinator:$COORDINATOR_LIB_DIR
 fi
 
 # Copying the coordinator starting script(s) to the coordinator's install idrectory
 scp scripts/coordinator/* $coordinator:$COORDINATOR_INSTALL_DIR
 
 # IncQuery-D's main JAR
-scp hu.bme.mit.incqueryd.core/target/hu.bme.mit.incqueryd.core-*-SNAPSHOT.jar $coordinator:$COORDINATOR_INSTALL_DIR
+scp hu.bme.mit.incqueryd.engine/target/hu.bme.mit.incqueryd.engine-*-SNAPSHOT.jar $coordinator:$COORDINATOR_INSTALL_DIR
