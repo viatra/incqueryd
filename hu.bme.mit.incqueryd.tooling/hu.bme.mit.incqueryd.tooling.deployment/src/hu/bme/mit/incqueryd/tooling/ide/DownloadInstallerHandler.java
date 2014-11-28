@@ -1,7 +1,6 @@
 package hu.bme.mit.incqueryd.tooling.ide;
 
 import hu.bme.mit.incqueryd.tooling.ide.preferences.PreferenceConstants;
-import hu.bme.mit.incqueryd.tooling.ide.util.InstallerUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -34,18 +33,11 @@ public class DownloadInstallerHandler extends AbstractHandler {
 			protected IStatus run(IProgressMonitor monitor) {
 				try {
 					File installerDirectory = new File(Activator.getDefault().getPreferenceStore().getString(PreferenceConstants.RUNTIME_PATH));
-					
-					monitor.subTask("Download IncQuery-D runtime installer");
 					URL installerUrl = new URL("https://build.inf.mit.bme.hu/jenkins/job/IncQuery-D_Runtime/lastSuccessfulBuild/artifact/*zip*/archive.zip");
 					File installer = new File(installerDirectory, "installer.zip");
 					download(installerUrl, installer);
 					extract(installer, installerDirectory);
 					installer.delete();
-					
-					monitor.subTask("Download Akka");
-					URL akkaUrl = new URL("http://download.akka.io/downloads/akka-2.1.4.tgz");
-					File akka = new File(InstallerUtils.getActualInstallerRoot(), "hu.bme.mit.incqueryd.runtime/akka/akka-2.1.4.tgz");
-					download(akkaUrl, akka);
 				} catch (IOException e) {
 					Throwables.propagate(e);
 				}
