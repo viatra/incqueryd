@@ -33,19 +33,15 @@ public class DownloadInstallerHandler extends AbstractHandler {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				try {
-					monitor.subTask("Download IncQuery-D runtime installer");
 					URL installerUrl = new URL("https://build.inf.mit.bme.hu/jenkins/job/IncQuery-D_Runtime/lastSuccessfulBuild/artifact/*zip*/archive.zip");
 					File tempDir = Files.createTempDir();
+					tempDir.deleteOnExit();
 					File installer = new File(tempDir, "installer.zip");
-					File installerDirectory = InstallerUtils.getActualInstallerRoot();
 					download(installerUrl, installer);
 					extract(installer, tempDir);
-					FileUtils.copyDirectory(new File(tempDir, "archive"), installerDirectory); // XXX Jenkins artifact layout
-
-					monitor.subTask("Download Akka");
-					URL akkaUrl = new URL("http://download.akka.io/downloads/akka-2.1.4.tgz");
-					File akka = new File(InstallerUtils.getActualInstallerRoot(), "hu.bme.mit.incqueryd.core/akka/akka-2.1.4.tgz");
-					download(akkaUrl, akka);
+					File extractedDirectory = new File(tempDir, "archive"); // XXX Jenkins artifact layout
+					File installerDirectory = InstallerUtils.getActualInstallerRoot();
+					FileUtils.copyDirectory(extractedDirectory, installerDirectory);
 				} catch (IOException e) {
 					Throwables.propagate(e);
 				}
