@@ -11,6 +11,8 @@ def application(request):
     file = open(path, "rb")
     zip = zipfile.ZipFile(file)
     zip.extractall(".")
+    file.close()
+    os.remove(path)
     output = subprocess.check_output(["archive/scripts/start.sh"])
     return Response(output)
 
