@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>hu.bme.mit.incqueryd.core</artifactId>
+		<groupId>hu.bme.mit.incqueryd</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>hu.bme.mit.incqueryd.cache.hazelcast</artifactId>
+	<name>IncQuery-D Distributed Cache Hazelcast Implementation</name>
+
+	<properties>
+		<hazelcast.version>3.2</hazelcast.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast</artifactId>
+			<version>${hazelcast.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast-client</artifactId>
+			<version>${hazelcast.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.cache</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+</project>

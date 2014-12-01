@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="scala.application">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/hu.bme.mit.incqueryd.engine"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="4"/>
+</listAttribute>
+<mapAttribute key="org.eclipse.debug.core.preferred_launchers">
+<mapEntry key="[debug]" value="scala.application.new"/>
+</mapAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="hu.bme.mit.incqueryd.engine.main.IncQueryDMain"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--architectureFile /home/szarnyasg/git/incqueryd/hu.bme.mit.incqueryd.queries/arch/switchSensor.arch --local --start"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="hu.bme.mit.incqueryd.engine"/>
+</launchConfiguration>

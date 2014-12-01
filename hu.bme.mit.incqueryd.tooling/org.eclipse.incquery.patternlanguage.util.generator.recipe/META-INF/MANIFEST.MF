@@ -9,7 +9,7 @@ Require-Bundle: org.eclipse.xtext.builder;bundle-version="2.6.2",
  org.eclipse.ui.workbench,
  org.eclipse.xtext;bundle-version="2.6.2",
  org.eclipse.jface,
- org.eclipse.core.runtime;bundle-version="3.9.100",
+ org.eclipse.core.runtime,
  org.eclipse.incquery.runtime.rete.recipes,
  org.eclipse.incquery.runtime.rete,
  org.eclipse.incquery.patternlanguage

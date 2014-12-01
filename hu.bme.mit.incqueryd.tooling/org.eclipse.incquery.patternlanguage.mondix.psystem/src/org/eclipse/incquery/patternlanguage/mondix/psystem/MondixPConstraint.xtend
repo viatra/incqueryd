@@ -19,6 +19,7 @@ import static org.eclipse.incquery.patternlanguage.patternLanguage.CompareFeatur
 
 import static extension org.eclipse.incquery.patternlanguage.mondix.psystem.MondixPVariable.*
 import static extension org.eclipse.incquery.patternlanguage.util.psystem.PUtils.*
+import eu.mondo.mondix.incquery.viewspec.RelationSpec
 
 class MondixPConstraint {
 
@@ -66,17 +67,16 @@ class MondixPConstraint {
 	static def TypeUnary convertNodeConstraint(NodeConstraint constraint, PBody pBody, MondixPModel model) {
 		val variable = constraint.variable.variable
 		val pVariable = variable.toPVariable(pBody)
-		val typeObject = constraint.type
-		val typeString = model.context.printType(typeObject)
+		val typeString = constraint.type
+		val typeObject = new RelationSpec(typeString, 1)
 		new TypeUnary(pBody, pVariable, typeObject, typeString)
 	}
 
 	static def PConstraint convertEdgeConstraint(EdgeConstraint constraint, PBody pBody, MondixPModel model) {
-		val refType = constraint.refType
 		val source = constraint.source.variable.toPVariable(pBody)
 		val target = constraint.target.toPVariable(pBody, model)
-		val typeObject = refType
-		val typeString = model.context.printType(typeObject)
+		val typeString = constraint.refType
+		val typeObject = new RelationSpec(typeString, 2)
 		new TypeBinary(pBody, model.context, source, target, typeObject, typeString)
 	}
 

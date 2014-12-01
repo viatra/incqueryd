@@ -25,6 +25,6 @@
 		<module>hu.bme.mit.incqueryd.arch</module>
 		<module>hu.bme.mit.incqueryd.allocation.csp</module>
 		<module>hu.bme.mit.incqueryd.stats</module>
-		<module>hu.bme.mit.incqueryd.runtime</module>
+		<module>hu.bme.mit.incqueryd.core</module>
 	</modules>
 </project>

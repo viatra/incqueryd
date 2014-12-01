@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.mondo.eu.utils.UnixUtils;
-
 import arch.Configuration;
 
 import com.google.common.base.Joiner;
+
+import eu.mondo.utils.UnixUtils;
 
 public class ArchitectureInstaller {
 
@@ -28,7 +28,7 @@ public class ArchitectureInstaller {
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 
 		final StringBuilder commandBuilder = new StringBuilder();
-		File script = new File(installerDirectory, "hu.bme.mit.incqueryd.runtime/scripts/install.sh");
+		File script = new File(installerDirectory, "hu.bme.mit.incqueryd.core/scripts/install.sh");
 		commandBuilder.append(script.getAbsolutePath());
 
 		if (light)
@@ -63,7 +63,7 @@ public class ArchitectureInstaller {
 		final Configuration configuration = ArchUtil.loadConfiguration(architectureFile);
 
 		final List<String> command = new ArrayList<>();
-		File script = new File(installerDirectory, "hu.bme.mit.incqueryd.runtime/scripts/uninstall.sh");
+		File script = new File(installerDirectory, "hu.bme.mit.incqueryd.core/scripts/uninstall.sh");
 		command.add(script.getAbsolutePath());
 
 		for (final Machine machine : configuration.getMachines()) {
@@ -101,7 +101,6 @@ public class ArchitectureInstaller {
 		command.add("ssh");
 		command.add(machine.getIp());
 		command.add(AKKA_DIR + "generate-configs.sh");
-		command.add(machine.getIp());
 
 		for (final infrastructure.Process process : machine.getProcesses()) {
 			final int port = process.getPort();

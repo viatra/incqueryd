@@ -9,5 +9,6 @@ Require-Bundle: org.eclipse.xtext.xbase.lib;bundle-version="2.4.3",
  org.eclipse.incquery.patternlanguage;bundle-version="0.9.0",
  org.apache.log4j;bundle-version="1.2.15",
  org.eclipse.incquery.patternlanguage.util;bundle-version="1.0.0",
- org.eclipse.incquery.patternlanguage.mondix;bundle-version="1.0.0"
+ org.eclipse.incquery.patternlanguage.mondix;bundle-version="1.0.0",
+ eu.mondo.mondix.incquery;bundle-version="1.0.0"
 Export-Package: org.eclipse.incquery.patternlanguage.mondix.psystem

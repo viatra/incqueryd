@@ -166,6 +166,28 @@
     <description>rdf-graph-driver</description>
   </setupTask>
   <setupTask
+      xsi:type="git:GitCloneTask"
+      id="git.clone.mondo-mondix"
+      remoteURI="FTSRG/mondo-mondix"
+      pushURI="">
+    <annotation
+        source="http://www.eclipse.org/oomph/setup/InducedChoices">
+      <detail
+          key="inherit">
+        <value>github.remoteURIs</value>
+      </detail>
+      <detail
+          key="label">
+        <value>mondo-mondix Github repository</value>
+      </detail>
+      <detail
+          key="target">
+        <value>remoteURI</value>
+      </detail>
+    </annotation>
+    <description>mondo-mondix</description>
+  </setupTask>
+  <setupTask
       xsi:type="setup.targlets:TargletTask">
     <targlet
         name="${scope.project.label}"
@@ -260,6 +282,9 @@
     <sourceLocator
         rootFolder="${git.clone.rdf-graph-driver.location}"
         locateNestedProjects="true"/>
+    <sourceLocator
+        rootFolder="${git.clone.mondo-mondix.location}"
+        locateNestedProjects="true"/>
   </setupTask>
   <setupTask
       xsi:type="setup:EclipseIniTask"
@@ -283,10 +308,13 @@
             project="4store-graph-driver"/>
         <operand
             xsi:type="predicates:RepositoryPredicate"
-            project="org.mondo.eu.utils"/>
+            project="eu.mondo.utils"/>
         <operand
             xsi:type="predicates:RepositoryPredicate"
             project="rdf-graph-driver"/>
+        <operand
+            xsi:type="predicates:RepositoryPredicate"
+            project="eu.mondo.mondix.interfaces"/>
       </predicate>
     </workingSet>
     <description>The dynamic working sets for ${scope.project.label}</description>

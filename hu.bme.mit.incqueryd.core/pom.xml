@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>hu.bme.mit.incqueryd.core</artifactId>
+	<packaging>pom</packaging>
+	<parent>
+		<groupId>hu.bme.mit.incqueryd</groupId>
+		<artifactId>hu.bme.mit.incqueryd.parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<name>IncQuery-D Core</name>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+				<version>2.2.1</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>emf-incquery</id>
+			<url>https://repo.eclipse.org/content/repositories/emf-incquery</url>
+		</repository>
+	</repositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>13.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<modules>
+		<module>hu.bme.mit.incqueryd.engine</module>
+		<module>hu.bme.mit.incqueryd.cache</module>
+		<module>hu.bme.mit.incqueryd.cache.hazelcast</module>
+		<module>hu.bme.mit.incqueryd.cache.local</module>
+	</modules>
+
+</project>
