@@ -181,6 +181,15 @@ public class InventoryPackageImpl extends EPackageImpl implements InventoryPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getInventory_Master() {
+		return (EReference)inventoryEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMachineSet() {
 		return machineSetEClass;
 	}
@@ -351,6 +360,7 @@ public class InventoryPackageImpl extends EPackageImpl implements InventoryPacka
 		inventoryEClass = createEClass(INVENTORY);
 		createEAttribute(inventoryEClass, INVENTORY__CONNECTION_STRING);
 		createEReference(inventoryEClass, INVENTORY__MACHINE_SET);
+		createEReference(inventoryEClass, INVENTORY__MASTER);
 
 		machineSetEClass = createEClass(MACHINE_SET);
 
@@ -417,6 +427,7 @@ public class InventoryPackageImpl extends EPackageImpl implements InventoryPacka
 		initEClass(inventoryEClass, Inventory.class, "Inventory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInventory_ConnectionString(), theEcorePackage.getEString(), "connectionString", null, 0, 1, Inventory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInventory_MachineSet(), this.getMachineSet(), null, "machineSet", null, 0, 1, Inventory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInventory_Master(), this.getMachineInstance(), null, "master", null, 0, 1, Inventory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(machineSetEClass, MachineSet.class, "MachineSet", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

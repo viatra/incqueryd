@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link inventory.Inventory#getConnectionString <em>Connection String</em>}</li>
  *   <li>{@link inventory.Inventory#getMachineSet <em>Machine Set</em>}</li>
+ *   <li>{@link inventory.Inventory#getMaster <em>Master</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,5 +74,31 @@ public interface Inventory extends EObject {
 	 * @generated
 	 */
 	void setMachineSet(MachineSet value);
+
+	/**
+	 * Returns the value of the '<em><b>Master</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Master</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Master</em>' reference.
+	 * @see #setMaster(MachineInstance)
+	 * @see inventory.InventoryPackage#getInventory_Master()
+	 * @model
+	 * @generated
+	 */
+	MachineInstance getMaster();
+
+	/**
+	 * Sets the value of the '{@link inventory.Inventory#getMaster <em>Master</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Master</em>' reference.
+	 * @see #getMaster()
+	 * @generated
+	 */
+	void setMaster(MachineInstance value);
 
 } // Inventory

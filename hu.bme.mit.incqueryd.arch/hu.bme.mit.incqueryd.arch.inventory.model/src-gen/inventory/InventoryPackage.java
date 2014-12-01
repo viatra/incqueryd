@@ -87,13 +87,22 @@ public interface InventoryPackage extends EPackage {
 	int INVENTORY__MACHINE_SET = 1;
 
 	/**
+	 * The feature id for the '<em><b>Master</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVENTORY__MASTER = 2;
+
+	/**
 	 * The number of structural features of the '<em>Inventory</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVENTORY_FEATURE_COUNT = 2;
+	int INVENTORY_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Inventory</em>' class.
@@ -505,6 +514,17 @@ public interface InventoryPackage extends EPackage {
 	EReference getInventory_MachineSet();
 
 	/**
+	 * Returns the meta object for the reference '{@link inventory.Inventory#getMaster <em>Master</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Master</em>'.
+	 * @see inventory.Inventory#getMaster()
+	 * @see #getInventory()
+	 * @generated
+	 */
+	EReference getInventory_Master();
+
+	/**
 	 * Returns the meta object for class '{@link inventory.MachineSet <em>Machine Set</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -721,6 +741,14 @@ public interface InventoryPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INVENTORY__MACHINE_SET = eINSTANCE.getInventory_MachineSet();
+
+		/**
+		 * The meta object literal for the '<em><b>Master</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INVENTORY__MASTER = eINSTANCE.getInventory_Master();
 
 		/**
 		 * The meta object literal for the '{@link inventory.impl.MachineSetImpl <em>Machine Set</em>}' class.

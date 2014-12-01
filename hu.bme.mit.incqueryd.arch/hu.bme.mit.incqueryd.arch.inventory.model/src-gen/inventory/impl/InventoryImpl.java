@@ -4,6 +4,7 @@ package inventory.impl;
 
 import inventory.Inventory;
 import inventory.InventoryPackage;
+import inventory.MachineInstance;
 import inventory.MachineSet;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link inventory.impl.InventoryImpl#getConnectionString <em>Connection String</em>}</li>
  *   <li>{@link inventory.impl.InventoryImpl#getMachineSet <em>Machine Set</em>}</li>
+ *   <li>{@link inventory.impl.InventoryImpl#getMaster <em>Master</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,6 +61,16 @@ public class InventoryImpl extends MinimalEObjectImpl.Container implements Inven
 	 * @ordered
 	 */
 	protected MachineSet machineSet;
+
+	/**
+	 * The cached value of the '{@link #getMaster() <em>Master</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMaster()
+	 * @generated
+	 * @ordered
+	 */
+	protected MachineInstance master;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -148,6 +160,44 @@ public class InventoryImpl extends MinimalEObjectImpl.Container implements Inven
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public MachineInstance getMaster() {
+		if (master != null && master.eIsProxy()) {
+			InternalEObject oldMaster = (InternalEObject)master;
+			master = (MachineInstance)eResolveProxy(oldMaster);
+			if (master != oldMaster) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, InventoryPackage.INVENTORY__MASTER, oldMaster, master));
+			}
+		}
+		return master;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MachineInstance basicGetMaster() {
+		return master;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMaster(MachineInstance newMaster) {
+		MachineInstance oldMaster = master;
+		master = newMaster;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, InventoryPackage.INVENTORY__MASTER, oldMaster, master));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -169,6 +219,9 @@ public class InventoryImpl extends MinimalEObjectImpl.Container implements Inven
 				return getConnectionString();
 			case InventoryPackage.INVENTORY__MACHINE_SET:
 				return getMachineSet();
+			case InventoryPackage.INVENTORY__MASTER:
+				if (resolve) return getMaster();
+				return basicGetMaster();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -186,6 +239,9 @@ public class InventoryImpl extends MinimalEObjectImpl.Container implements Inven
 				return;
 			case InventoryPackage.INVENTORY__MACHINE_SET:
 				setMachineSet((MachineSet)newValue);
+				return;
+			case InventoryPackage.INVENTORY__MASTER:
+				setMaster((MachineInstance)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -205,6 +261,9 @@ public class InventoryImpl extends MinimalEObjectImpl.Container implements Inven
 			case InventoryPackage.INVENTORY__MACHINE_SET:
 				setMachineSet((MachineSet)null);
 				return;
+			case InventoryPackage.INVENTORY__MASTER:
+				setMaster((MachineInstance)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -221,6 +280,8 @@ public class InventoryImpl extends MinimalEObjectImpl.Container implements Inven
 				return CONNECTION_STRING_EDEFAULT == null ? connectionString != null : !CONNECTION_STRING_EDEFAULT.equals(connectionString);
 			case InventoryPackage.INVENTORY__MACHINE_SET:
 				return machineSet != null;
+			case InventoryPackage.INVENTORY__MASTER:
+				return master != null;
 		}
 		return super.eIsSet(featureID);
 	}

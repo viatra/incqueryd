@@ -5,6 +5,7 @@ package inventory
 class Inventory {
 	String connectionString
 	contains MachineSet machineSet
+	refers MachineInstance master
 }
 
 abstract class MachineSet {
