@@ -26,5 +26,6 @@
 		<module>hu.bme.mit.incqueryd.allocation.csp</module>
 		<module>hu.bme.mit.incqueryd.stats</module>
 		<module>hu.bme.mit.incqueryd.core</module>
+		<module>hu.bme.mit.incqueryd.agent</module>
 	</modules>
 </project>

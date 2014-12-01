@@ -17,7 +17,7 @@ public class Agent extends Application<Configuration> {
 
 	@Override
 	public void run(Configuration configuration, Environment environment) throws Exception {
-		DeployResource deployResource = new DeployResource();
+		PrepareInfrastructureResource deployResource = new PrepareInfrastructureResource();
 		environment.jersey().register(deployResource);
 	}
 
