@@ -1,0 +1,1 @@
+java -jar ../hu.bme.mit.incqueryd.agent/target/hu.bme.mit.incqueryd.agent-1.0.0-SNAPSHOT.jar server
