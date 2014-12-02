@@ -2,12 +2,9 @@ package hu.bme.mit.incqueryd.agent
 
 import java.text.MessageFormat
 import java.util.Collections
-
 import org.mondo.eu.utils.UnixUtils
-
 import com.codahale.metrics.annotation.Timed
 import com.google.common.collect.ImmutableSet
-
 import Paths.CORE_SCRIPTS
 import Paths.MONITORING_SCRIPTS
 import hu.bme.mit.incqueryd.engine.util.EObjectDeserializer
@@ -17,8 +14,11 @@ import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.QueryParam
 import javax.ws.rs.core.Response
+import javax.ws.rs.Produces
+import javax.ws.rs.core.MediaType
 
 @Path("/prepare")
+@Produces(Array(MediaType.APPLICATION_JSON))
 class PrepareInfrastructureResource {
 
   @GET

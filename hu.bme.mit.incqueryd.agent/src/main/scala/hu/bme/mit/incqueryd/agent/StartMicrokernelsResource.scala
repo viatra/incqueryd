@@ -2,12 +2,9 @@ package hu.bme.mit.incqueryd.agent
 
 import scala.collection.JavaConversions.asScalaBuffer
 import scala.collection.JavaConversions.mapAsJavaMap
-
 import org.mondo.eu.utils.UnixUtils
-
 import com.codahale.metrics.annotation.Timed
 import com.google.common.collect.ImmutableSet
-
 import Paths.AKKA_SCRIPTS
 import arch.ArchPackage
 import arch.Configuration
@@ -17,8 +14,11 @@ import javax.ws.rs.GET
 import javax.ws.rs.Path
 import javax.ws.rs.QueryParam
 import javax.ws.rs.core.Response
+import javax.ws.rs.Produces
+import javax.ws.rs.core.MediaType
 
 @Path("/start")
+@Produces(Array(MediaType.APPLICATION_JSON))
 class StartMicrokernelsResource {
 
   @GET
