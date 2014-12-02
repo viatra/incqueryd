@@ -19,11 +19,9 @@ class Agent extends Application[Configuration] {
   }
 
   override def run(configuration: Configuration, environment: Environment) {
-    environment.jersey.disable
-    environment.jersey.register(
-      new PrepareInfrastructureResource,
+    List(new PrepareInfrastructureResource,
       new DestroyInfrastructureResource,
-      new StartMicrokernelsResource)
+      new StartMicrokernelsResource).foreach(environment.jersey.register(_))
   }
 
 }
