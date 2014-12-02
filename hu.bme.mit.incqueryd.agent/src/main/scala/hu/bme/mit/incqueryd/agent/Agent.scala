@@ -19,6 +19,7 @@ class Agent extends Application[Configuration] {
   }
 
   override def run(configuration: Configuration, environment: Environment) {
+    environment.jersey.disable
     environment.jersey.register(
       new PrepareInfrastructureResource,
       new DestroyInfrastructureResource,
