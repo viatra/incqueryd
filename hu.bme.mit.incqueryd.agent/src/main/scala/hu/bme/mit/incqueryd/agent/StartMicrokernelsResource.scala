@@ -5,7 +5,6 @@ import scala.collection.JavaConversions.mapAsJavaMap
 import org.mondo.eu.utils.UnixUtils
 import com.codahale.metrics.annotation.Timed
 import com.google.common.collect.ImmutableSet
-import Paths.AKKA_SCRIPTS
 import arch.ArchPackage
 import arch.Configuration
 import hu.bme.mit.incqueryd.engine.util.EObjectDeserializer
@@ -16,6 +15,7 @@ import javax.ws.rs.QueryParam
 import javax.ws.rs.core.Response
 import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
+import hu.bme.mit.incqueryd.core.CoreScripts
 
 @Path("/start")
 @Produces(Array(MediaType.APPLICATION_JSON))
@@ -40,11 +40,13 @@ class StartMicrokernelsResource {
   }
 
   private def generateConfigs(processes: Iterable[Process]) = {
-    UnixUtils.exec(AKKA_SCRIPTS + "generate-configs.sh " + processes.map(_.getPort).mkString(" "), Map[String, String]())
+    val command = CoreScripts.GENERATE_CONFIGS(processes.map(_.getPort))
+    UnixUtils.exec(command, Map[String, String]())
   }
 
   private def startMicrokernel(process: Process) {
-    UnixUtils.exec(AKKA_SCRIPTS + "start-akka.sh " + process.getPort + " " + process.getMemory, Map[String, String]())
+    val command = CoreScripts.START_MICROKERNEL(process.getPort, process.getMemory)
+    UnixUtils.exec(command, Map[String, String]())
   }
 
 }

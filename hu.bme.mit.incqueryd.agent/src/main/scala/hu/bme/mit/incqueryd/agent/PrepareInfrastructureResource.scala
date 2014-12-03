@@ -5,8 +5,6 @@ import java.util.Collections
 import org.mondo.eu.utils.UnixUtils
 import com.codahale.metrics.annotation.Timed
 import com.google.common.collect.ImmutableSet
-import Paths.CORE_SCRIPTS
-import Paths.MONITORING_SCRIPTS
 import hu.bme.mit.incqueryd.engine.util.EObjectDeserializer
 import inventory.Inventory
 import inventory.InventoryPackage
@@ -16,6 +14,8 @@ import javax.ws.rs.QueryParam
 import javax.ws.rs.core.Response
 import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
+import hu.bme.mit.incqueryd.core.CoreScripts
+import hu.bme.mit.incqueryd.monitoring.MonitoringScripts
 
 @Path("/prepare")
 @Produces(Array(MediaType.APPLICATION_JSON))
@@ -42,17 +42,17 @@ class PrepareInfrastructureResource {
   }
 
   private def startCoordinator(inventory: Inventory) {
-    val command = CORE_SCRIPTS + "coordinator/start-coordinator.sh"
+    val command = CoreScripts.START_COORDINATOR
     UnixUtils.exec(command, Collections.emptyMap[String, String])
   }
 
   private def startMonitoring {
-    val command = MONITORING_SCRIPTS + "server/start-server.sh"
+    val command = MonitoringScripts.START_SERVER
     UnixUtils.exec(command, Collections.emptyMap[String, String])
   }
 
   private def startOsAgent(inventory: Inventory) {
-    val command = MessageFormat.format(MONITORING_SCRIPTS + "osagent/start.sh {0}", inventory.getMaster.getIp)
+    val command = MonitoringScripts.START_OS_AGENT(inventory.getMaster.getIp)
     UnixUtils.exec(command, Collections.emptyMap[String, String])
   }
 
