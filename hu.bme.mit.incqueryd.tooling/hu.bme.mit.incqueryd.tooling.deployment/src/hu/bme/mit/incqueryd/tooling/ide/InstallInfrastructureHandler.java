@@ -62,7 +62,8 @@ public class InstallInfrastructureHandler extends AbstractHandler {
 
 	public static HttpResponse install(final String ip) throws IOException, ClientProtocolException { // TODO extract to bootstrap agent interface
 		DefaultHttpClient client = new DefaultHttpClient();
-		HttpGet get = new HttpGet(MessageFormat.format("http://{0}:{1}", ip, 4242));
+		String uriString = MessageFormat.format("http://{0}:{1,number,#}", ip, 4242);
+		HttpGet get = new HttpGet(uriString);
 		HttpResponse response = client.execute(get);
 		return response;
 	}
