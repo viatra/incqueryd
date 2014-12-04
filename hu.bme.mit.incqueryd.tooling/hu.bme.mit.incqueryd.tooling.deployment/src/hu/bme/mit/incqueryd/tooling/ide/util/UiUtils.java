@@ -1,6 +1,7 @@
 package hu.bme.mit.incqueryd.tooling.ide.util;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
@@ -9,9 +10,10 @@ public class UiUtils {
 	private UiUtils() {
 	}
 
-	/**
-	 * Returns the current workbench page.
-	 */
+	public static IWorkbenchPage getWorkbenchPage() {
+		return getWorkbenchWindow().getActivePage();
+	}
+
 	public static IWorkbenchWindow getWorkbenchWindow() {
 		WindowFinder pageFinder = new WindowFinder(); // Ensure that we are in the UI thread
 		Display.getDefault().syncExec(pageFinder);
