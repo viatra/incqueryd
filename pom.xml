@@ -4,7 +4,12 @@
 	<groupId>hu.bme.mit.incqueryd</groupId>
 	<artifactId>hu.bme.mit.incqueryd</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
+	<name>IncQuery-D</name>
 	<packaging>pom</packaging>
+	<properties>
+		<tycho.version>0.20.0</tycho.version>
+		<incquery.update.site>http://download.eclipse.org/incquery/updates/integration</incquery.update.site>
+	</properties>
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -14,8 +19,36 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-maven-plugin</artifactId>
+					<version>${tycho.version}</version>
+					<extensions>true</extensions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-packaging-plugin</artifactId>
+					<version>${tycho.version}</version>
+					<configuration>
+						<strictBinIncludes>false</strictBinIncludes>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-surefire-plugin</artifactId>
+					<version>${tycho.version}</version>
+					<configuration>
+						<argLine>-Xms512m -Xmx1024m -XX:MaxPermSize=512m</argLine>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 	<modules>
-		<module>hu.bme.mit.incqueryd.api</module>
+		<module>hu.bme.mit.incqueryd.client</module>
 		<module>hu.bme.mit.incqueryd.test</module>
 	</modules>
 </project>

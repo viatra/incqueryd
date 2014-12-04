@@ -1,0 +1,46 @@
+@GenModel
+@Ecore(nsPrefix="inventory", nsURI="http://incquery.net/inventory")
+package hu.bme.mit.incqueryd.inventory
+
+class Inventory {
+	String connectionString
+	contains MachineSet machineSet
+	refers MachineInstance master
+}
+
+abstract class MachineSet {
+}
+
+class InstanceSet extends MachineSet {
+	contains MachineInstance[] machineInstances
+}
+
+class TemplateSet extends MachineSet {
+	contains MachineTemplate[] machineTemplates
+}
+
+abstract class Machine {
+	long identifier
+	
+	int cost
+	
+	int memorySize
+	MemoryUnit memoryUnit
+	
+	int CPUs
+	
+	int[] overheads
+}
+
+class MachineInstance extends Machine{
+	String ip
+}
+
+class MachineTemplate extends Machine{
+	
+}
+
+enum MemoryUnit {
+	MB
+	GB
+}

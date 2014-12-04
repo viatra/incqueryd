@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Inventory -->
+      <package
+            uri="http://incquery.net/inventory"
+            class="hu.bme.mit.incqueryd.inventory.InventoryPackage"
+            genModel="model/Inventory.xcore"/>
+   </extension>
+
+</plugin>
