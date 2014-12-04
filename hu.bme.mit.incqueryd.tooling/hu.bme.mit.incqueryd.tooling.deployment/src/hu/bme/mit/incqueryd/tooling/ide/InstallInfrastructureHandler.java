@@ -11,6 +11,7 @@ import java.text.MessageFormat;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.eclipse.core.commands.AbstractHandler;
@@ -40,13 +41,11 @@ public class InstallInfrastructureHandler extends AbstractHandler {
 						@Override
 						protected IStatus run(IProgressMonitor monitor) {
 							try {
-								DefaultHttpClient client = new DefaultHttpClient();
-								HttpGet get = new HttpGet(MessageFormat.format("http://{0}:{1}", instance.getIp(), 4242));
-								HttpResponse response = client.execute(get);
+								HttpResponse response = install(instance.getIp());
 								if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 									return Status.OK_STATUS;
 								} else {
-									return new Status(IStatus.ERROR, "", "Bad response: " + response);
+									return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Bad response: " + response);
 								}
 							} catch (IOException e) {
 								throw Throwables.propagate(e);
@@ -59,6 +58,13 @@ public class InstallInfrastructureHandler extends AbstractHandler {
 			throw new ExecutionException("Failed to load inventory file", e);
 		}
 		return null;
+	}
+
+	public static HttpResponse install(final String ip) throws IOException, ClientProtocolException { // TODO extract to bootstrap agent interface
+		DefaultHttpClient client = new DefaultHttpClient();
+		HttpGet get = new HttpGet(MessageFormat.format("http://{0}:{1}", ip, 4242));
+		HttpResponse response = client.execute(get);
+		return response;
 	}
 
 }
