@@ -9,6 +9,8 @@
 	<properties>
 		<tycho.version>0.20.0</tycho.version>
 		<incquery.update.site>http://download.eclipse.org/incquery/updates/integration</incquery.update.site>
+		<emf.version>2.9.1-v20130827-0309</emf.version>
+		<xtend.version>2.7.2</xtend.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -16,6 +18,31 @@
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.11</version>
+			</dependency>
+			<dependency>
+				<groupId>org.scala-lang</groupId>
+				<artifactId>scala-library</artifactId>
+				<version>2.10.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.emf</groupId>
+				<artifactId>org.eclipse.emf.common</artifactId>
+				<version>${emf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.emf</groupId>
+				<artifactId>org.eclipse.emf.ecore</artifactId>
+				<version>${emf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.emf</groupId>
+				<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+				<version>${emf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.eclipse.xtend</groupId>
+				<artifactId>org.eclipse.xtend.lib</artifactId>
+				<version>${xtend.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -42,6 +69,47 @@
 					<version>${tycho.version}</version>
 					<configuration>
 						<argLine>-Xms512m -Xmx1024m -XX:MaxPermSize=512m</argLine>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.scala-tools</groupId>
+					<artifactId>maven-scala-plugin</artifactId>
+					<version>2.9.1</version>
+					<executions>
+						<execution>
+							<id>scala-compile-first</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>add-source</goal>
+								<goal>compile</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>scala-test-compile</id>
+							<phase>process-test-resources</phase>
+							<goals>
+								<goal>testCompile</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.xtend</groupId>
+					<artifactId>xtend-maven-plugin</artifactId>
+					<version>${xtend.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>compile</goal>
+								<goal>testCompile</goal>
+								<goal>xtend-install-debug-info</goal>
+								<goal>xtend-test-install-debug-info</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<outputDirectory>xtend-gen</outputDirectory>
+						<testOutputDirectory>xtend-gen</testOutputDirectory>
 					</configuration>
 				</plugin>
 			</plugins>

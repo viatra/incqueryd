@@ -1,22 +1,39 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>hu.bme.mit.incqueryd</groupId>
-    <artifactId>hu.bme.mit.incqueryd.client</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-  </parent>
-  <artifactId>hu.bme.mit.incqueryd.bootstrapagent.client</artifactId>
-  <dependencies>
-  	<dependency>
-  		<groupId>hu.bme.mit.incqueryd</groupId>
-  		<artifactId>hu.bme.mit.incqueryd.infrastructureagent.client</artifactId>
-  		<version>1.0.0-SNAPSHOT</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>hu.bme.mit.incqueryd</groupId>
-  		<artifactId>hu.bme.mit.incqueryd.inventory</artifactId>
-  		<version>1.0.0-SNAPSHOT</version>
-  	</dependency>
-  </dependencies>
-  <name>IncQuery-D Bootstrap Agent Client</name>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>hu.bme.mit.incqueryd</groupId>
+		<artifactId>hu.bme.mit.incqueryd.client</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>hu.bme.mit.incqueryd.bootstrapagent.client</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.infrastructureagent.client</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.inventory</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.common</artifactId>
+		</dependency>
+	</dependencies>
+	<name>IncQuery-D Bootstrap Agent Client</name>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.scala-tools</groupId>
+				<artifactId>maven-scala-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>

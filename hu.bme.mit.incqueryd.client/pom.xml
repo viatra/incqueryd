@@ -16,11 +16,6 @@
 			<url>http://download.eclipse.org/releases/kepler</url>
 		</repository>
 		<repository>
-			<id>incquery</id>
-			<layout>p2</layout>
-			<url>${incquery.update.site}</url>
-		</repository>
-		<repository>
 			<id>emf</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/modeling/emf/emf/updates/releases/</url>
