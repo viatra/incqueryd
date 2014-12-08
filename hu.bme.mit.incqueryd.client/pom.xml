@@ -30,6 +30,7 @@
 		<module>hu.bme.mit.incqueryd.infrastructureagent.client</module>
 		<module>hu.bme.mit.incqueryd.bootstrapagent.client</module>
 		<module>hu.bme.mit.incqueryd.inventory.model</module>
+		<module>hu.bme.mit.incqueryd.coordinator.client</module>
 	</modules>
 	<name>IncQuery-D Client</name>
 </project>

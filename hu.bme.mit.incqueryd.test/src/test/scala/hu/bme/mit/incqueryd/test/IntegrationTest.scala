@@ -15,7 +15,8 @@ class IntegrationTest {
     instance.setIp("127.0.0.1")
     instanceSet.getMachineInstances.add(instance)
     inventory.setMachineSet(instanceSet)
-    BootstrapAgent.bootstrapAll(inventory)
+    val infrastructureAgents = BootstrapAgent.bootstrapAll(inventory)
+    val infrastructures = infrastructureAgents.map(agent => agent.prepareInfrastructure(inventory))
   }
 
 }

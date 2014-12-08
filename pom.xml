@@ -8,9 +8,10 @@
 	<packaging>pom</packaging>
 	<properties>
 		<tycho.version>0.20.0</tycho.version>
-		<incquery.update.site>http://download.eclipse.org/incquery/updates/integration</incquery.update.site>
 		<emf.version>2.9.1-v20130827-0309</emf.version>
 		<xtend.version>2.7.2</xtend.version>
+		<incquery.version>0.9.0-SNAPSHOT</incquery.version>
+		<incquery.update.site>http://download.eclipse.org/incquery/updates/integration</incquery.update.site>
 	</properties>
 	<dependencyManagement>
 		<dependencies>

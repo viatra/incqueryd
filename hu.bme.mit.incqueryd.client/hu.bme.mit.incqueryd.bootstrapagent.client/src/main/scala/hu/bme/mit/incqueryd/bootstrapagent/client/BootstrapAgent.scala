@@ -8,7 +8,7 @@ import scala.collection.JavaConversions._
 
 object BootstrapAgent {
 
-  def bootstrapAll(inventory: Inventory): java.lang.Iterable[InfrastructureAgent] = {
+  def bootstrapAll(inventory: Inventory): Iterable[InfrastructureAgent] = {
     inventory.getMachineSet match {
       case instanceSet: InstanceSet => instanceSet.getMachineInstances.map(new BootstrapAgent(_).bootstrap)
       case _ => List()
@@ -17,7 +17,7 @@ object BootstrapAgent {
 
 }
 
-class BootstrapAgent(private val instance: MachineInstance) {
+class BootstrapAgent(val instance: MachineInstance) {
 
   def bootstrap: InfrastructureAgent = {
     println(s"Bootstrapping ${instance.getIp}")
