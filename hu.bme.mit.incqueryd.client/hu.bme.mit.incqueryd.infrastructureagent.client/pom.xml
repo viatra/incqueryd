@@ -5,6 +5,7 @@
 		<groupId>hu.bme.mit.incqueryd</groupId>
 		<artifactId>hu.bme.mit.incqueryd.client</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>hu.bme.mit.incqueryd.infrastructureagent.client</artifactId>
 	<name>IncQuery-D Infrastructure Agent Client</name>

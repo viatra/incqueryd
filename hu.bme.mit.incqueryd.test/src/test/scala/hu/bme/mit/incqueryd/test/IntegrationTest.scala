@@ -27,7 +27,7 @@ class IntegrationTest {
     coordinator.stopQuery
     infrastructureAgents.foreach(_.destroyInfrastructure)
   }
-  
+
   def loadInventory = {
     val inventory = InventoryFactory.eINSTANCE.createInventory
     val instanceSet = InventoryFactory.eINSTANCE.createInstanceSet
