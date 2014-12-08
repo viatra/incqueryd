@@ -231,27 +231,45 @@
     <workingSet
         name="Client">
       <predicate
-          xsi:type="predicates:RepositoryPredicate"
-          project="hu.bme.mit.incqueryd.client"/>
+          xsi:type="predicates:OrPredicate">
+        <operand
+            xsi:type="predicates:NamePredicate"
+            pattern="hu.bme.mit.incqueryd.client"/>
+        <operand
+            xsi:type="predicates:LocationPredicate"
+            pattern="${git.clone.incqueryd.location}/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.*"/>
+      </predicate>
     </workingSet>
     <workingSet
         name="Runtime">
       <predicate
-          xsi:type="predicates:RepositoryPredicate"
-          project="hu.bme.mit.incqueryd.runtime"/>
+          xsi:type="predicates:OrPredicate">
+        <operand
+            xsi:type="predicates:NamePredicate"
+            pattern="hu.bme.mit.incqueryd.runtime"/>
+        <operand
+            xsi:type="predicates:LocationPredicate"
+            pattern="${git.clone.incqueryd.location}/hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.*"/>
+      </predicate>
     </workingSet>
     <workingSet
         name="Test"
         id="">
       <predicate
-          xsi:type="predicates:RepositoryPredicate"
-          project="hu.bme.mit.incqueryd.test"/>
+          xsi:type="predicates:NamePredicate"
+          pattern="hu.bme.mit.incqueryd.test"/>
     </workingSet>
     <workingSet
         name="Tooling">
       <predicate
-          xsi:type="predicates:RepositoryPredicate"
-          project="hu.bme.mit.incqueryd.tooling.feature"/>
+          xsi:type="predicates:OrPredicate">
+        <operand
+            xsi:type="predicates:NamePredicate"
+            pattern="hu.bme.mit.incqueryd.tooling"/>
+        <operand
+            xsi:type="predicates:LocationPredicate"
+            pattern="${git.clone.incqueryd.location}/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.*"/>
+      </predicate>
     </workingSet>
     <description>The dynamic working sets for ${scope.project.label}</description>
   </setupTask>
