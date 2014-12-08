@@ -19,5 +19,8 @@ class InfrastructureAgent(val instance: MachineInstance) {
 
   def startMicrokernels() {
   }
+  
+  def stopMicrokernels() {
+  }
  
 }

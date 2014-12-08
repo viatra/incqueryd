@@ -23,6 +23,10 @@
 			<artifactId>org.eclipse.incquery.runtime.rete.recipes</artifactId>
 			<version>${incquery.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
   </dependencies>
 	<name>IncQuery-D Coordinator Client</name>
 	<build>

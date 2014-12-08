@@ -4,6 +4,8 @@ import org.junit.Test
 import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
 import hu.bme.mit.incqueryd.inventory.InventoryFactory
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory
+import hu.bme.mit.incqueryd.coordinator.client.Coordinator
+import org.junit.Assert
 
 class IntegrationTest {
 
@@ -18,8 +20,15 @@ class IntegrationTest {
     val infrastructureAgents = BootstrapAgent.bootstrapAll(inventory)
     val infrastructures = infrastructureAgents.map(agent => agent.prepareInfrastructure(inventory))
     val coordinators = infrastructures.flatMap(_.coordinator.toSet)
+    Assert.assertEquals(1, coordinators.size)
+    val coordinator = coordinators.head
     val recipe = null // TODO
-    coordinators.foreach(_.startQuery(recipe))
+    coordinator.startQuery(recipe)
+    val result = coordinator.check
+    println(s"Query result: $result")
+    Assert.assertEquals(Coordinator.sampleResult, result)
+    coordinator.stopQuery
+    infrastructureAgents.foreach(_.destroyInfrastructure)
   }
 
 }
