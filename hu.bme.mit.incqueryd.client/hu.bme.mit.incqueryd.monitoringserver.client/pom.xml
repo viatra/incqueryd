@@ -5,34 +5,26 @@
 		<groupId>hu.bme.mit.incqueryd</groupId>
 		<artifactId>hu.bme.mit.incqueryd.client</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>hu.bme.mit.incqueryd.infrastructureagent.client</artifactId>
-	<name>IncQuery-D Infrastructure Agent Client</name>
-	<dependencies>
-		<dependency>
-			<groupId>hu.bme.mit.incqueryd</groupId>
-			<artifactId>hu.bme.mit.incqueryd.inventory</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
+  <artifactId>hu.bme.mit.incqueryd.monitoringserver.client</artifactId>
+  <dependencies>
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
-			<artifactId>
-				hu.bme.mit.incqueryd.coordinator.client
-			</artifactId>
+			<artifactId>hu.bme.mit.incqueryd.inventory</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>hu.bme.mit.incqueryd</groupId>
-			<artifactId>
-				hu.bme.mit.incqueryd.monitoringserver.client
-			</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<groupId>org.eclipse.incquery</groupId>
+			<artifactId>org.eclipse.incquery.runtime.rete.recipes</artifactId>
+			<version>${incquery.version}</version>
 		</dependency>
-	</dependencies>
+  </dependencies>
+	<name>IncQuery-D Monitoring Server Client</name>
 	<build>
 		<plugins>
 			<plugin>

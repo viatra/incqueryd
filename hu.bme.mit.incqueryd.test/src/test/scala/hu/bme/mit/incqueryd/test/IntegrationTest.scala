@@ -1,9 +1,9 @@
 package hu.bme.mit.incqueryd.test
 
 import org.junit.Test
-
 import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
 import hu.bme.mit.incqueryd.inventory.InventoryFactory
+import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory
 
 class IntegrationTest {
 
@@ -17,6 +17,9 @@ class IntegrationTest {
     inventory.setMachineSet(instanceSet)
     val infrastructureAgents = BootstrapAgent.bootstrapAll(inventory)
     val infrastructures = infrastructureAgents.map(agent => agent.prepareInfrastructure(inventory))
+    val coordinators = infrastructures.flatMap(_.coordinator.toSet)
+    val recipe = null // TODO
+    coordinators.foreach(_.startQuery(recipe))
   }
 
 }
