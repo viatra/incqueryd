@@ -103,27 +103,6 @@
   </setupTask>
   <setupTask
       xsi:type="git:GitCloneTask"
-      id="git.clone.4store-graph-driver"
-      remoteURI="FTSRG/4store-graph-driver">
-    <annotation
-        source="http://www.eclipse.org/oomph/setup/InducedChoices">
-      <detail
-          key="inherit">
-        <value>github.remoteURIs</value>
-      </detail>
-      <detail
-          key="label">
-        <value>4store-graph-driver Github repository</value>
-      </detail>
-      <detail
-          key="target">
-        <value>remoteURI</value>
-      </detail>
-    </annotation>
-    <description>4store-graph-driver</description>
-  </setupTask>
-  <setupTask
-      xsi:type="git:GitCloneTask"
       id="git.clone.mondo-utils"
       remoteURI="FTSRG/mondo-utils">
     <annotation
@@ -142,50 +121,6 @@
       </detail>
     </annotation>
     <description>mondo-utils</description>
-  </setupTask>
-  <setupTask
-      xsi:type="git:GitCloneTask"
-      id="git.clone.rdf-graph-driver"
-      remoteURI="FTSRG/rdf-graph-driver"
-      pushURI="">
-    <annotation
-        source="http://www.eclipse.org/oomph/setup/InducedChoices">
-      <detail
-          key="inherit">
-        <value>github.remoteURIs</value>
-      </detail>
-      <detail
-          key="label">
-        <value>rdf-graph-driver Github repository</value>
-      </detail>
-      <detail
-          key="target">
-        <value>remoteURI</value>
-      </detail>
-    </annotation>
-    <description>rdf-graph-driver</description>
-  </setupTask>
-  <setupTask
-      xsi:type="git:GitCloneTask"
-      id="git.clone.mondo-mondix"
-      remoteURI="FTSRG/mondo-mondix"
-      pushURI="">
-    <annotation
-        source="http://www.eclipse.org/oomph/setup/InducedChoices">
-      <detail
-          key="inherit">
-        <value>github.remoteURIs</value>
-      </detail>
-      <detail
-          key="label">
-        <value>mondo-mondix Github repository</value>
-      </detail>
-      <detail
-          key="target">
-        <value>remoteURI</value>
-      </detail>
-    </annotation>
-    <description>mondo-mondix</description>
   </setupTask>
   <setupTask
       xsi:type="setup.targlets:TargletTask">
@@ -276,15 +211,6 @@
     <sourceLocator
         rootFolder="${git.clone.mondo-utils.location}"
         locateNestedProjects="true"/>
-    <sourceLocator
-        rootFolder="${git.clone.4store-graph-driver.location}"
-        locateNestedProjects="true"/>
-    <sourceLocator
-        rootFolder="${git.clone.rdf-graph-driver.location}"
-        locateNestedProjects="true"/>
-    <sourceLocator
-        rootFolder="${git.clone.mondo-mondix.location}"
-        locateNestedProjects="true"/>
   </setupTask>
   <setupTask
       xsi:type="setup:EclipseIniTask"
@@ -294,28 +220,38 @@
   <setupTask
       xsi:type="setup.workingsets:WorkingSetTask">
     <workingSet
-        name="IncQuery-D">
-      <predicate
-          xsi:type="predicates:RepositoryPredicate"
-          project="hu.bme.mit.incqueryd.tooling.feature"/>
-    </workingSet>
-    <workingSet
         name="Dependencies">
       <predicate
           xsi:type="predicates:OrPredicate">
         <operand
             xsi:type="predicates:RepositoryPredicate"
-            project="4store-graph-driver"/>
-        <operand
-            xsi:type="predicates:RepositoryPredicate"
             project="eu.mondo.utils"/>
-        <operand
-            xsi:type="predicates:RepositoryPredicate"
-            project="rdf-graph-driver"/>
-        <operand
-            xsi:type="predicates:RepositoryPredicate"
-            project="eu.mondo.mondix.interfaces"/>
       </predicate>
+    </workingSet>
+    <workingSet
+        name="Client">
+      <predicate
+          xsi:type="predicates:RepositoryPredicate"
+          project="hu.bme.mit.incqueryd.client"/>
+    </workingSet>
+    <workingSet
+        name="Runtime">
+      <predicate
+          xsi:type="predicates:RepositoryPredicate"
+          project="hu.bme.mit.incqueryd.runtime"/>
+    </workingSet>
+    <workingSet
+        name="Test"
+        id="">
+      <predicate
+          xsi:type="predicates:RepositoryPredicate"
+          project="hu.bme.mit.incqueryd.test"/>
+    </workingSet>
+    <workingSet
+        name="Tooling">
+      <predicate
+          xsi:type="predicates:RepositoryPredicate"
+          project="hu.bme.mit.incqueryd.tooling.feature"/>
     </workingSet>
     <description>The dynamic working sets for ${scope.project.label}</description>
   </setupTask>
