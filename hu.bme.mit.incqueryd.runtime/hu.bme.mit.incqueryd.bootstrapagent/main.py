@@ -4,11 +4,13 @@ import zipfile
 import subprocess
 import os
 import stat
+import time
+import shutil
 
 @Request.application
 def application(request):
     projectName = "hu.bme.mit.incqueryd.runtime"
-    os.remove(projectName)
+    shutil.rmtree(projectName, True)
     opener = urllib.URLopener()
     fileName = projectName + ".zip"
     opener.retrieve("https://build.inf.mit.bme.hu/jenkins/job/IncQuery-D_Runtime_New/lastSuccessfulBuild/artifact/" + projectName + "/*zip*/" + fileName, fileName)
@@ -20,9 +22,12 @@ def application(request):
     startScript = projectName + "/scripts/start.sh"
     oldStats = os.stat(startScript)
     os.chmod(startScript, oldStats.st_mode | stat.S_IEXEC)
-    output = subprocess.check_output([startScript])
-    return Response(output)
+    subprocess.Popen([startScript])
+    time.sleep(10) # XXX
+    return Response(status = 200)
 
 if __name__ == '__main__':
     from werkzeug.serving import run_simple
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    print os.getcwd()
     run_simple('localhost', 4242, application)
