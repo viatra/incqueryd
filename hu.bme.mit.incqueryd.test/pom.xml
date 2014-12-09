@@ -51,4 +51,5 @@
 			</plugin>
 		</plugins>
 	</build>
+	<description>Verifies the correct behavior of the entire system.</description>
 </project>

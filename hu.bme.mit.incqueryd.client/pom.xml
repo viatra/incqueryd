@@ -54,4 +54,5 @@
 		<module>hu.bme.mit.incqueryd.monitoringserver.client</module>
 	</modules>
 	<name>IncQuery-D Client</name>
+	<description>The API through which the services of the runtime can be accessed.</description>
 </project>

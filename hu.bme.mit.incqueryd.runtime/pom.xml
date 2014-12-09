@@ -13,4 +13,5 @@
 	<modules>
 		<module>hu.bme.mit.incqueryd.infrastructureagent</module>
 	</modules>
+	<description>The server-side part of IncQuery-D which runs on the remote nodes.</description>
 </project>
