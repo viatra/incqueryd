@@ -7,8 +7,9 @@ import stat
 
 @Request.application
 def application(request):
-    opener = urllib.URLopener()
     projectName = "hu.bme.mit.incqueryd.runtime"
+    os.remove(projectName)
+    opener = urllib.URLopener()
     fileName = projectName + ".zip"
     opener.retrieve("https://build.inf.mit.bme.hu/jenkins/job/IncQuery-D_Runtime_New/lastSuccessfulBuild/artifact/" + projectName + "/*zip*/" + fileName, fileName)
     file = open(fileName, "rb")

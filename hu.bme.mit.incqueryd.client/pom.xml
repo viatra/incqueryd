@@ -25,6 +25,11 @@
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</url>
 		</repository>
+		<repository>
+			<id>incquery</id>
+			<layout>p2</layout>
+			<url>${incquery.update.site}</url>
+		</repository>
 	</repositories>
 	<dependencyManagement>
 		<dependencies>
@@ -41,7 +46,8 @@
 		</dependencies>
 	</dependencyManagement>
 	<modules>
-		<module>hu.bme.mit.incqueryd.inventory.model</module>
+		<module>hu.bme.mit.incqueryd.inventory</module>
+		<module>hu.bme.mit.incqueryd.arch</module>
 		<module>hu.bme.mit.incqueryd.bootstrapagent.client</module>
 		<module>hu.bme.mit.incqueryd.infrastructureagent.client</module>
 		<module>hu.bme.mit.incqueryd.coordinator.client</module>

@@ -1,0 +1,21 @@
+@GenModel
+@Ecore(nsPrefix="inf", nsURI="http://incquery.net/d/infrastructure")
+package hu.bme.mit.incqueryd.infrastructure
+
+class Machine extends ElementWithTraceInfo {
+	String name
+	String ip
+	
+	contains Process[] processes opposite machine
+}
+
+class Process extends ElementWithTraceInfo {
+	int port
+	int memory
+	
+	container Machine machine opposite processes
+}
+
+interface ElementWithTraceInfo {
+	String traceInfo
+}

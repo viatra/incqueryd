@@ -1,0 +1,33 @@
+@GenModel
+@Ecore(nsPrefix="arch", nsURI="http://incquery.net/arch")
+package hu.bme.mit.incqueryd.arch
+
+import hu.bme.mit.incqueryd.infrastructure.ElementWithTraceInfo
+import hu.bme.mit.incqueryd.infrastructure.Process
+import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
+import hu.bme.mit.incqueryd.infrastructure.Machine
+import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
+
+class Configuration extends ElementWithTraceInfo {
+	String connectionString
+	contains Machine[] machines
+	refers ReteRecipe[] recipes
+	contains InfrastructureMapping[] mappings
+	refers Machine coordinatorMachine
+	refers Machine monitoringMachine
+}
+
+class InfrastructureMapping extends ElementWithTraceInfo {
+	refers Process process
+	contains Role[] roles
+}
+
+abstract class Role {
+}
+
+class ReteRole extends Role {
+	refers ReteNodeRecipe nodeRecipe
+}
+
+class CacheRole extends Role {
+}

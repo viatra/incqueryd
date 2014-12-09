@@ -11,6 +11,6 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<modules>
-		<module>hu.bme.mit.incqueryd.bootstrapagent</module>
+		<module>hu.bme.mit.incqueryd.infrastructureagent</module>
 	</modules>
 </project>
