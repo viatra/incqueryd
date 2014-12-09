@@ -9,7 +9,7 @@ import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
 import hu.bme.mit.incqueryd.coordinator.client.Coordinator
 import hu.bme.mit.incqueryd.inventory.InventoryFactory
 
-class IntegrationTest {
+class ITIncQueryD {
 
   @Test
   def mainWorkflow() {

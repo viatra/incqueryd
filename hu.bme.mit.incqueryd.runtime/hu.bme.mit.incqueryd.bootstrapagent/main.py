@@ -6,14 +6,15 @@ import subprocess
 @Request.application
 def application(request):
     opener = urllib.URLopener()
-    path = "archive.zip"
-    opener.retrieve("https://build.inf.mit.bme.hu/jenkins/job/IncQuery-D_Runtime_New/lastSuccessfulBuild/artifact/*zip*/" + path, path)
-    file = open(path, "rb")
+    projectName = "hu.bme.mit.incqueryd.runtime"
+    fileName = projectName + ".zip"
+    opener.retrieve("https://build.inf.mit.bme.hu/jenkins/job/IncQuery-D_Runtime_New/ws/" + projectName + "/*zip*/" + fileName, fileName)
+    file = open(fileName, "rb")
     zip = zipfile.ZipFile(file)
     zip.extractall(".")
     file.close()
-    os.remove(path)
-    output = subprocess.check_output(["archive/scripts/start.sh"])
+    os.remove(fileName)
+    output = subprocess.check_output([projectName + "/scripts/start.sh"])
     return Response(output)
 
 if __name__ == '__main__':
