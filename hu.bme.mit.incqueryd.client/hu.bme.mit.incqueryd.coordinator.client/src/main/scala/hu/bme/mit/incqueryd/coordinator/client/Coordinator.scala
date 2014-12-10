@@ -6,13 +6,19 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import scala.collection.JavaConversions._
+import org.apache.http.HttpResponse
+import org.apache.http.client.methods.HttpGet
+import org.apache.http.impl.client.DefaultHttpClient
+import org.apache.http.HttpStatus
+import eu.mondo.utils.WebServiceUtils
 
 object Coordinator {
+  val port = 9090
   val sampleResult = List(new ChangeSet(Set(new Tuple(new Integer(42))), ChangeType.POSITIVE))
 }
 
 class Coordinator(val instance: MachineInstance) {
-  
+
   def startQuery(recipe: ReteRecipe) {
     println(s"Starting query on ${instance.getIp}")
   }
@@ -20,8 +26,10 @@ class Coordinator(val instance: MachineInstance) {
   def check: List[ChangeSet] = {
     Coordinator.sampleResult
   }
-  
+
   def stopQuery() {
   }
+
+  private def callWebService(path: String) = WebServiceUtils.call(instance.getIp, Coordinator.port, path)
 
 }

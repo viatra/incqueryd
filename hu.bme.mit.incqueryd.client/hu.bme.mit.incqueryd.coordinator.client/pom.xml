@@ -7,8 +7,8 @@
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-  <artifactId>hu.bme.mit.incqueryd.coordinator.client</artifactId>
-  <dependencies>
+	<artifactId>hu.bme.mit.incqueryd.coordinator.client</artifactId>
+	<dependencies>
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
@@ -27,7 +27,12 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
-  </dependencies>
+		<dependency>
+			<groupId>eu.mondo</groupId>
+			<artifactId>eu.mondo.utils</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 	<name>IncQuery-D Coordinator Client</name>
 	<build>
 		<plugins>

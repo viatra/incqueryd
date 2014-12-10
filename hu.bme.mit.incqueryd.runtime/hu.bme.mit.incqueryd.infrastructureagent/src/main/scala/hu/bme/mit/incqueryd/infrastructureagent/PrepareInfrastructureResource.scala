@@ -10,6 +10,8 @@ import javax.ws.rs.core.Response
 import javax.ws.rs.core.MediaType
 import hu.bme.mit.incqueryd.inventory.InventoryFactory
 import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgentPaths
+import eu.mondo.utils.UnixUtils
+import eu.mondo.utils.UnixUtils
 
 @Path(InfrastructureAgentPaths.prepareInfrastructure)
 @Produces(Array(MediaType.APPLICATION_JSON))
@@ -36,7 +38,7 @@ class PrepareInfrastructureResource {
   }
 
   private def startCoordinator(inventory: Inventory) {
-    // TODO
+    // TODO scripts/start.sh
   }
 
   private def startMonitoring {

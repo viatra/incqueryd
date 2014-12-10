@@ -8,6 +8,7 @@ import hu.bme.mit.incqueryd.inventory.Inventory
 import hu.bme.mit.incqueryd.inventory.MachineInstance
 import hu.bme.mit.incqueryd.monitoringserver.client.MonitoringServer
 import org.apache.http.HttpResponse
+import eu.mondo.utils.WebServiceUtils
 
 class InfrastructureAgent(val instance: MachineInstance) {
 
@@ -31,16 +32,6 @@ class InfrastructureAgent(val instance: MachineInstance) {
     val response = callWebService(InfrastructureAgentPaths.stopMicrokernels)
   }
   
-  private def callWebService(path: String): HttpResponse = {
-    val httpClient = new DefaultHttpClient
-    val port = 8080
-    val httpGet = new HttpGet(s"http://${instance.getIp}:$port$path")
-    val response = httpClient.execute(httpGet)
-    httpGet.releaseConnection
-    if (response.getStatusLine.getStatusCode != HttpStatus.SC_OK) {
-      throw new RuntimeException("Calling web service failed, status: " + response.getStatusLine)
-    }
-    response
-  }
+  private def callWebService(path: String) = WebServiceUtils.call(instance.getIp, 8080, path)
 
 }
