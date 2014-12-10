@@ -43,6 +43,11 @@
 			<artifactId>org.eclipse.incquery.runtime.rete.recipes</artifactId>
 			<version>${incquery.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.infrastructureagent.client</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

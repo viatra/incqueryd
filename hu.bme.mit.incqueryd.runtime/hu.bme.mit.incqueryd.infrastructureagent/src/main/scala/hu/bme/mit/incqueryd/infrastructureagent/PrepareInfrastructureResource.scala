@@ -9,8 +9,9 @@ import javax.ws.rs.QueryParam
 import javax.ws.rs.core.Response
 import javax.ws.rs.core.MediaType
 import hu.bme.mit.incqueryd.inventory.InventoryFactory
+import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgentPaths
 
-@Path("/prepare")
+@Path(InfrastructureAgentPaths.prepareInfrastructure)
 @Produces(Array(MediaType.APPLICATION_JSON))
 class PrepareInfrastructureResource {
 

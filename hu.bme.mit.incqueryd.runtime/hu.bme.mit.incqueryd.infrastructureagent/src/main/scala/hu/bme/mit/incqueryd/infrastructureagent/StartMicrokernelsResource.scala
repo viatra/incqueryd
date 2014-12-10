@@ -12,8 +12,9 @@ import hu.bme.mit.incqueryd.arch.Configuration
 import hu.bme.mit.incqueryd.arch.ArchFactory
 import scala.collection.JavaConversions._
 import hu.bme.mit.incqueryd.infrastructure.Process
+import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgentPaths
 
-@Path("/start")
+@Path(InfrastructureAgentPaths.startMicrokernels)
 @Produces(Array(MediaType.APPLICATION_JSON))
 class StartMicrokernelsResource {
 

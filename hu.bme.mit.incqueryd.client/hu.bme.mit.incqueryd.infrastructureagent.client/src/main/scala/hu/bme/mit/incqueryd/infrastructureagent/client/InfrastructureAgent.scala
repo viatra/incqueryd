@@ -13,14 +13,14 @@ class InfrastructureAgent(val instance: MachineInstance) {
 
   def prepareInfrastructure(inventory: Inventory): Infrastructure = {
     println(s"Preparing infrastructure on ${instance.getIp}")
-    val response = callWebService(InfrastructureAgentPaths.prepare)
+    val response = callWebService(InfrastructureAgentPaths.prepareInfrastructure)
     val coordinator = new Coordinator(instance)
     val monitoringServer = new MonitoringServer(instance)
     Infrastructure(Some(coordinator), Some(monitoringServer))
   }
 
   def destroyInfrastructure() {
-    val response = callWebService(InfrastructureAgentPaths.destroy)
+    val response = callWebService(InfrastructureAgentPaths.destroyInfrastructure)
   }
 
   def startMicrokernels() {

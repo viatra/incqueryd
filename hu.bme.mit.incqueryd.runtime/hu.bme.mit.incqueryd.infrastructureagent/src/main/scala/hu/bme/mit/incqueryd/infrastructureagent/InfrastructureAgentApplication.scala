@@ -5,15 +5,15 @@ import io.dropwizard.Configuration
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
 
-object InfrastructureAgent {
+object InfrastructureAgentApplication {
 
   def main(args: Array[String]) {
-    new InfrastructureAgent().run(args)
+    new InfrastructureAgentApplication().run(args)
   }
 
 }
 
-class InfrastructureAgent extends Application[Configuration] {
+class InfrastructureAgentApplication extends Application[Configuration] {
 
   override def initialize(bootstrap: Bootstrap[Configuration]) {
   }
