@@ -83,7 +83,8 @@
   <setupTask
       xsi:type="git:GitCloneTask"
       id="git.clone.incqueryd"
-      remoteURI="FTSRG/incqueryd">
+      remoteURI="FTSRG/incqueryd"
+      checkoutBranch="issues/35">
     <annotation
         source="http://www.eclipse.org/oomph/setup/InducedChoices">
       <detail
@@ -215,7 +216,7 @@
   <setupTask
       xsi:type="setup:EclipseIniTask"
       option="-Doomph.redirection.incqueryd"
-      value="=https://raw.githubusercontent.com/FTSRG/incqueryd/master/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.setup/IncQueryD.setup->${git.clone.incqueryd.location|uri}/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.setup/IncQueryD.setup"
+      value="=https://raw.githubusercontent.com/FTSRG/incqueryd/issues/35/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.setup/IncQueryD.setup->${git.clone.incqueryd.location|uri}/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.setup/IncQueryD.setup"
       vm="true"/>
   <setupTask
       xsi:type="setup.workingsets:WorkingSetTask">
