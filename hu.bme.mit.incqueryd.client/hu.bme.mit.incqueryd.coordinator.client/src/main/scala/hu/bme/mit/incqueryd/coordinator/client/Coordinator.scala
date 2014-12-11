@@ -21,13 +21,16 @@ class Coordinator(val instance: MachineInstance) {
 
   def startQuery(recipe: ReteRecipe) {
     println(s"Starting query on ${instance.getIp}")
+    callWebService(CoordinatorPaths.start)
   }
 
   def check: List[ChangeSet] = {
+    callWebService(CoordinatorPaths.check) // TODO response
     Coordinator.sampleResult
   }
 
   def stopQuery() {
+    callWebService(CoordinatorPaths.stop)
   }
 
   private def callWebService(path: String) = WebServiceUtils.call(instance.getIp, Coordinator.port, path)

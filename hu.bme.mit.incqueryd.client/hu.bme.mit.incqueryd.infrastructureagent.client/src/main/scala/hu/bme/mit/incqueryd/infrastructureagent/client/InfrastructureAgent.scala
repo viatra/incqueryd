@@ -9,12 +9,18 @@ import hu.bme.mit.incqueryd.inventory.MachineInstance
 import hu.bme.mit.incqueryd.monitoringserver.client.MonitoringServer
 import org.apache.http.HttpResponse
 import eu.mondo.utils.WebServiceUtils
+import org.apache.http.NameValuePair
+import hu.bme.mit.incqueryd.util.EObjectSerializer
+import org.apache.http.message.BasicNameValuePair
 
 class InfrastructureAgent(val instance: MachineInstance) {
 
   def prepareInfrastructure(inventory: Inventory): Infrastructure = {
     println(s"Preparing infrastructure on ${instance.getIp}")
-    val response = callWebService(InfrastructureAgentPaths.prepareInfrastructure)
+    val inventoryJson = EObjectSerializer.serializeToString(inventory)
+    val response = callWebService(InfrastructureAgentPaths.prepareInfrastructure,
+        new BasicNameValuePair(InfrastructureAgentPaths.inventoryParameter, inventoryJson))
+    // TODO response
     val coordinator = new Coordinator(instance)
     val monitoringServer = new MonitoringServer(instance)
     Infrastructure(Some(coordinator), Some(monitoringServer))
@@ -32,6 +38,6 @@ class InfrastructureAgent(val instance: MachineInstance) {
     val response = callWebService(InfrastructureAgentPaths.stopMicrokernels)
   }
   
-  private def callWebService(path: String) = WebServiceUtils.call(instance.getIp, 8080, path)
+  private def callWebService(path: String, params: NameValuePair*) = WebServiceUtils.call(instance.getIp, 8080, path, params:_*)
 
 }

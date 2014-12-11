@@ -5,4 +5,5 @@ object InfrastructureAgentPaths {
   final val startMicrokernels = "/start"
   final val stopMicrokernels = "/stop"
   final val destroyInfrastructure = "/destroy"
+  final val inventoryParameter = "inventory"
 }

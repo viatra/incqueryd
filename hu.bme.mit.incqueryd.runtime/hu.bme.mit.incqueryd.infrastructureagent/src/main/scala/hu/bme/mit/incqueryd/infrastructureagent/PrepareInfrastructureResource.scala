@@ -10,8 +10,15 @@ import javax.ws.rs.core.Response
 import javax.ws.rs.core.MediaType
 import hu.bme.mit.incqueryd.inventory.InventoryFactory
 import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgentPaths
+import hu.bme.mit.incqueryd.util.EObjectDeserializer
+import hu.bme.mit.incqueryd.inventory.InventoryPackage
+import scala.collection.JavaConversions._
 import eu.mondo.utils.UnixUtils
-import eu.mondo.utils.UnixUtils
+import java.util.Collections
+import com.google.common.collect.ImmutableMap
+import hu.bme.mit.incqueryd.coordinator.client.CoordinatorPaths
+import hu.bme.mit.incqueryd.coordinator.client.Coordinator
+import scala.concurrent.duration._
 
 @Path(InfrastructureAgentPaths.prepareInfrastructure)
 @Produces(Array(MediaType.APPLICATION_JSON))
@@ -19,7 +26,7 @@ class PrepareInfrastructureResource {
 
   @GET
   @Timed
-  def execute(@QueryParam("inventory") inventoryJson: String): Response = {
+  def execute(@QueryParam(InfrastructureAgentPaths.inventoryParameter) inventoryJson: String): Response = {
     val inventory = parseInventory(inventoryJson)
     if (thisMachineIsMaster(inventory)) {
       startCoordinator(inventory)
@@ -30,15 +37,19 @@ class PrepareInfrastructureResource {
   }
 
   private def parseInventory(inventoryJson: String): Inventory = {
-    InventoryFactory.eINSTANCE.createInventory // TODO
+	EObjectDeserializer.deserializeFromString(inventoryJson, Set(InventoryPackage.eINSTANCE)) match {
+	  case inventory: Inventory => inventory
+	  case _ => throw new IllegalArgumentException(s"JSON does not describe an inventory: $inventoryJson")
+	}
   }
 
   private def thisMachineIsMaster(inventory: Inventory): Boolean = {
-    true // TODO
+    NetworkUtils.thisMachineIs(inventory.getMaster)
   }
 
   private def startCoordinator(inventory: Inventory) {
-    // TODO scripts/start.sh
+    UnixUtils.exec("./start-coordinator.sh", Map[String, String](), System.out)
+    NetworkUtils.waitForServer(inventory.getMaster.getIp, Coordinator.port, 10 seconds)
   }
 
   private def startMonitoring {

@@ -16,17 +16,20 @@ object IntegrationTest {
   def test(development: Boolean) {
     val inventory = loadInventory
     val infrastructureAgents = if (development) localInfrastructureAgents(inventory) else BootstrapAgent.bootstrapAll(inventory)
-    val infrastructures = infrastructureAgents.map(_.prepareInfrastructure(inventory))
-    val coordinators = infrastructures.flatMap(_.coordinator.toSet)
-    assertEquals(1, coordinators.size)
-    val coordinator = coordinators.head
-    val recipe = loadRecipe
-    coordinator.startQuery(recipe)
-    val result = coordinator.check
-    println(s"Query result: $result")
-    assertEquals(Coordinator.sampleResult, result)
-    coordinator.stopQuery
-    infrastructureAgents.foreach(_.destroyInfrastructure)
+    try {
+      val infrastructures = infrastructureAgents.map(_.prepareInfrastructure(inventory))
+      val coordinators = infrastructures.flatMap(_.coordinator.toSet)
+      assertEquals(1, coordinators.size)
+      val coordinator = coordinators.head
+      val recipe = loadRecipe
+      coordinator.startQuery(recipe)
+      val result = coordinator.check
+      println(s"Query result: $result")
+      assertEquals(Coordinator.sampleResult, result)
+      coordinator.stopQuery
+    } finally {
+	  infrastructureAgents.foreach(_.destroyInfrastructure)
+    }
   }
 
   private def localInfrastructureAgents(inventory: Inventory) = {
@@ -43,6 +46,7 @@ object IntegrationTest {
     instance.setIp("127.0.0.1")
     instanceSet.getMachineInstances.add(instance)
     inventory.setMachineSet(instanceSet)
+    inventory.setMaster(instance)
     inventory
   }
 
