@@ -35,6 +35,11 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>eu.mondo</groupId>
+			<artifactId>eu.mondo.utils</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<name>IncQuery-D Bootstrap Agent Client</name>
 	<build>
