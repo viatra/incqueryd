@@ -27,7 +27,7 @@ class InfrastructureAgent(val instance: MachineInstance) {
   def prepareInfrastructure(inventory: Inventory): Infrastructure = {
     println(s"Preparing infrastructure on ${instance.getIp}")
     val inventoryJson = EObjectSerializer.serializeToString(inventory)
-    val response = callWebService(InfrastructureAgentPaths.destroyInfrastructure, new BasicNameValuePair(InfrastructureAgentPaths.inventoryParameter, inventoryJson)).getEntity(classOf[PrepareInfrastructureResponse])
+    val response = callWebService(InfrastructureAgentPaths.prepareInfrastructure, new BasicNameValuePair(InfrastructureAgentPaths.inventoryParameter, inventoryJson)).getEntity(classOf[PrepareInfrastructureResponse])
     if (response.isMaster) {
       val coordinator = new Coordinator(instance)
       val monitoringServer = new MonitoringServer(instance)

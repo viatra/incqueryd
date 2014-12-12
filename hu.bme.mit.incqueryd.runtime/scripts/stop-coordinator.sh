@@ -2,4 +2,8 @@
 
 cd "$( cd "$( dirname "$0" )" && pwd )"
 
-[ ! -f coordinator.pid ] && kill -9 $(<coordinator.pid)
+PID_FILE=coordinator.pid
+if [ -f "$PID_FILE" ]
+then
+    kill -9 $(<"$PID_FILE")
+fi
