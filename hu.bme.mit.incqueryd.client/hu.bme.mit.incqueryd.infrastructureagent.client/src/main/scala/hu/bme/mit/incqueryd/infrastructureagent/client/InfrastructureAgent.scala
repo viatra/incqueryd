@@ -12,18 +12,29 @@ import eu.mondo.utils.WebServiceUtils
 import org.apache.http.NameValuePair
 import hu.bme.mit.incqueryd.util.EObjectSerializer
 import org.apache.http.message.BasicNameValuePair
+import com.sun.jersey.api.client.Client
+import javax.ws.rs.core.MediaType
+import javax.ws.rs.core.Response
+import com.sun.jersey.api.client.ClientResponse
+import org.apache.http.client.utils.URIUtils
+import org.apache.http.client.utils.URLEncodedUtils
+import com.google.common.collect.ImmutableList
+import com.sun.jersey.api.client.config.DefaultClientConfig
+import org.codehaus.jackson.jaxrs.JacksonJsonProvider
 
 class InfrastructureAgent(val instance: MachineInstance) {
 
   def prepareInfrastructure(inventory: Inventory): Infrastructure = {
     println(s"Preparing infrastructure on ${instance.getIp}")
     val inventoryJson = EObjectSerializer.serializeToString(inventory)
-    val response = callWebService(InfrastructureAgentPaths.prepareInfrastructure,
-        new BasicNameValuePair(InfrastructureAgentPaths.inventoryParameter, inventoryJson))
-    // TODO response
-    val coordinator = new Coordinator(instance)
-    val monitoringServer = new MonitoringServer(instance)
-    Infrastructure(Some(coordinator), Some(monitoringServer))
+    val response = callWebService(InfrastructureAgentPaths.destroyInfrastructure, new BasicNameValuePair(InfrastructureAgentPaths.inventoryParameter, inventoryJson)).getEntity(classOf[PrepareInfrastructureResponse])
+    if (response.isMaster) {
+      val coordinator = new Coordinator(instance)
+      val monitoringServer = new MonitoringServer(instance)
+      Infrastructure(Some(coordinator), Some(monitoringServer))
+    } else {
+      Infrastructure(None, None)
+    }
   }
 
   def destroyInfrastructure() {
@@ -37,7 +48,7 @@ class InfrastructureAgent(val instance: MachineInstance) {
   def stopMicrokernels() {
     val response = callWebService(InfrastructureAgentPaths.stopMicrokernels)
   }
-  
-  private def callWebService(path: String, params: NameValuePair*) = WebServiceUtils.call(instance.getIp, 8080, path, params:_*)
+
+  private def callWebService(path: String, params: NameValuePair*) = WebServiceUtils.call(instance.getIp, 8080, path, params: _*)
 
 }

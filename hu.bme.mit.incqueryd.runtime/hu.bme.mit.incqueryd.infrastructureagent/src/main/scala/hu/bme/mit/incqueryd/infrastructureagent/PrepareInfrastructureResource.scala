@@ -19,6 +19,7 @@ import com.google.common.collect.ImmutableMap
 import hu.bme.mit.incqueryd.coordinator.client.CoordinatorPaths
 import hu.bme.mit.incqueryd.coordinator.client.Coordinator
 import scala.concurrent.duration._
+import hu.bme.mit.incqueryd.infrastructureagent.client.PrepareInfrastructureResponse
 
 @Path(InfrastructureAgentPaths.prepareInfrastructure)
 @Produces(Array(MediaType.APPLICATION_JSON))
@@ -26,14 +27,15 @@ class PrepareInfrastructureResource {
 
   @GET
   @Timed
-  def execute(@QueryParam(InfrastructureAgentPaths.inventoryParameter) inventoryJson: String): Response = {
+  def execute(@QueryParam(InfrastructureAgentPaths.inventoryParameter) inventoryJson: String): PrepareInfrastructureResponse = {
     val inventory = parseInventory(inventoryJson)
-    if (thisMachineIsMaster(inventory)) {
+    val isMaster = thisMachineIsMaster(inventory)
+    if (isMaster) {
       startCoordinator(inventory)
       startMonitoring
     }
     startOsAgent(inventory)
-    Response.ok.build
+    new PrepareInfrastructureResponse(isMaster)
   }
 
   private def parseInventory(inventoryJson: String): Inventory = {

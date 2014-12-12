@@ -172,6 +172,12 @@
       <requirement
           name="org.eclipse.xtext.sdk.feature.group"
           versionRange="[2.6.0,2.7.0)"/>
+      <requirement
+          name="com.sun.jersey"
+          versionRange="1.17.0"/>
+      <requirement
+          name="org.codehaus.jackson.jaxrs"
+          versionRange="1.6.0"/>
       <repositoryList
           name="Mars">
         <repository

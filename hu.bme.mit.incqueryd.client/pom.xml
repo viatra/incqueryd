@@ -55,6 +55,11 @@
 				<artifactId>httpcore</artifactId>
 				<version>4.2.5</version>
 			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-client</artifactId>
+				<version>1.18.3</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<modules>
