@@ -9,25 +9,25 @@ import javax.ws.rs.QueryParam
 import javax.ws.rs.core.Response
 import javax.ws.rs.core.MediaType
 import hu.bme.mit.incqueryd.inventory.InventoryFactory
-import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgentPaths
+import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
 import hu.bme.mit.incqueryd.util.EObjectDeserializer
 import hu.bme.mit.incqueryd.inventory.InventoryPackage
 import scala.collection.JavaConversions._
 import eu.mondo.utils.UnixUtils
 import java.util.Collections
 import com.google.common.collect.ImmutableMap
-import hu.bme.mit.incqueryd.coordinator.client.CoordinatorPaths
+import hu.bme.mit.incqueryd.coordinator.client.Coordinator
 import hu.bme.mit.incqueryd.coordinator.client.Coordinator
 import scala.concurrent.duration._
 import hu.bme.mit.incqueryd.infrastructureagent.client.PrepareInfrastructureResponse
 
-@Path(InfrastructureAgentPaths.prepareInfrastructure)
+@Path(InfrastructureAgent.PrepareInfrastructure.path)
 @Produces(Array(MediaType.APPLICATION_JSON))
 class PrepareInfrastructureResource {
 
   @GET
   @Timed
-  def execute(@QueryParam(InfrastructureAgentPaths.inventoryParameter) inventoryJson: String): PrepareInfrastructureResponse = {
+  def execute(@QueryParam(InfrastructureAgent.PrepareInfrastructure.inventoryParameter) inventoryJson: String): PrepareInfrastructureResponse = {
     val inventory = parseInventory(inventoryJson)
     val isMaster = thisMachineIsMaster(inventory)
     if (isMaster) {

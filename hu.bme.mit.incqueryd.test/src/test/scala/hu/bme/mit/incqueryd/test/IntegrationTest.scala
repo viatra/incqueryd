@@ -25,7 +25,7 @@ object IntegrationTest {
       coordinator.startQuery(recipe)
       val result = coordinator.check
       println(s"Query result: $result")
-      assertEquals(Coordinator.sampleResult, result)
+      assertEquals(Coordinator.Check.sampleResult, result)
       coordinator.stopQuery
     } catch {
       case e: Exception => println(s"Error: $e")

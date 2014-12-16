@@ -22,12 +22,29 @@ import com.google.common.collect.ImmutableList
 import com.sun.jersey.api.client.config.DefaultClientConfig
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider
 
+object InfrastructureAgent {
+  final val port = 8080
+  object PrepareInfrastructure {
+    final val path = "/prepare"
+    final val inventoryParameter = "inventory"
+  }
+  object StartMicrokernels {
+    final val path = "/start"
+  }
+  object StopMicrokernels {
+    final val path = "/stop"
+  }
+  object DestroyInfrastructure {
+    final val path = "/destroy"
+  }
+}
+
 class InfrastructureAgent(val instance: MachineInstance) {
 
   def prepareInfrastructure(inventory: Inventory): Infrastructure = {
     println(s"Preparing infrastructure on ${instance.getIp}")
     val inventoryJson = EObjectSerializer.serializeToString(inventory)
-    val response = callWebService(InfrastructureAgentPaths.prepareInfrastructure, new BasicNameValuePair(InfrastructureAgentPaths.inventoryParameter, inventoryJson)).getEntity(classOf[PrepareInfrastructureResponse])
+    val response = callWebService(InfrastructureAgent.PrepareInfrastructure.path, new BasicNameValuePair(InfrastructureAgent.PrepareInfrastructure.inventoryParameter, inventoryJson)).getEntity(classOf[PrepareInfrastructureResponse])
     if (response.isMaster) {
       val coordinator = new Coordinator(instance)
       val monitoringServer = new MonitoringServer(instance)
@@ -38,17 +55,17 @@ class InfrastructureAgent(val instance: MachineInstance) {
   }
 
   def destroyInfrastructure() {
-    val response = callWebService(InfrastructureAgentPaths.destroyInfrastructure)
+    val response = callWebService(InfrastructureAgent.DestroyInfrastructure.path)
   }
 
   def startMicrokernels() {
-    val response = callWebService(InfrastructureAgentPaths.startMicrokernels)
+    val response = callWebService(InfrastructureAgent.StartMicrokernels.path)
   }
 
   def stopMicrokernels() {
-    val response = callWebService(InfrastructureAgentPaths.stopMicrokernels)
+    val response = callWebService(InfrastructureAgent.StopMicrokernels.path)
   }
 
-  private def callWebService(path: String, params: NameValuePair*) = WebServiceUtils.call(instance.getIp, 8080, path, params: _*)
+  private def callWebService(path: String, params: NameValuePair*) = WebServiceUtils.call(instance.getIp, InfrastructureAgent.port, path, params: _*)
 
 }

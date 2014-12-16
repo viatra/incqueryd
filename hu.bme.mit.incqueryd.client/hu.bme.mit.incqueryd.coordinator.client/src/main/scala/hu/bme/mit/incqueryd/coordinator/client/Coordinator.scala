@@ -13,24 +13,33 @@ import org.apache.http.HttpStatus
 import eu.mondo.utils.WebServiceUtils
 
 object Coordinator {
-  val port = 9090
-  val sampleResult = List(new ChangeSet(Set(new Tuple(new Integer(42))), ChangeType.POSITIVE))
+  final val port = 9090
+  object Start {
+    final val path = "/start"
+  }
+  object Check {
+    final val path = "/check"
+    final val sampleResult = List(new ChangeSet(Set(new Tuple(new Integer(42))), ChangeType.POSITIVE))
+  }
+  object Stop {
+    final val path = "/stop" 
+  }
 }
 
 class Coordinator(val instance: MachineInstance) {
 
   def startQuery(recipe: ReteRecipe) {
     println(s"Starting query on ${instance.getIp}")
-    callWebService(CoordinatorPaths.start)
+    callWebService(Coordinator.Start.path)
   }
 
   def check: List[ChangeSet] = {
-    callWebService(CoordinatorPaths.check) // TODO response
-    Coordinator.sampleResult
+    callWebService(Coordinator.Check.path) // TODO response
+    Coordinator.Check.sampleResult
   }
 
   def stopQuery() {
-    callWebService(CoordinatorPaths.stop)
+    callWebService(Coordinator.Stop.path)
   }
 
   private def callWebService(path: String) = WebServiceUtils.call(instance.getIp, Coordinator.port, path)
