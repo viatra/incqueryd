@@ -7,8 +7,6 @@ import scala.concurrent.duration._
 import akka.io.IO
 import akka.actor.ActorRef
 import spray.can.Http
-import hu.bme.mit.incqueryd.engine.rete.actors.CoordinatorActor
-import hu.bme.mit.incqueryd.engine.rete.actors.CoordinatorActor
 import hu.bme.mit.incqueryd.coordinator.client.Coordinator
 
 object CoordinatorApplication {

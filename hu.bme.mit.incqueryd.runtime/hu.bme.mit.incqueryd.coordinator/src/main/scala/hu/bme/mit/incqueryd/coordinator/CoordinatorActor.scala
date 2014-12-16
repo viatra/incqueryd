@@ -1,14 +1,11 @@
-package hu.bme.mit.incqueryd.engine.rete.actors
+package hu.bme.mit.incqueryd.coordinator
 
 import akka.actor.Actor
-import spray.http.HttpResponse
-import spray.can.Http
 
-class CoordinatorActor extends Actor {
+class CoordinatorActor extends CoordinatorService with Actor {
 
-  def receive = {
-    case _: Http.Connected => sender ! Http.Register(self)
-    case _ => sender ! HttpResponse(entity = "STARTED")
-  }
+  def actorRefFactory = context
+
+  def receive = runRoute(route)
 
 }

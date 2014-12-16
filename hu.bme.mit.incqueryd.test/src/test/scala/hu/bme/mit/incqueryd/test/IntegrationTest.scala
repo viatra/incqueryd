@@ -27,8 +27,6 @@ object IntegrationTest {
       println(s"Query result: $result")
       assertEquals(Coordinator.Check.sampleResult, result)
       coordinator.stopQuery
-    } catch {
-      case e: Exception => println(s"Error: $e")
     } finally {
 	  infrastructureAgents.foreach(_.destroyInfrastructure)
     }
