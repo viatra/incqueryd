@@ -24,6 +24,7 @@ import org.codehaus.jackson.jaxrs.JacksonJsonProvider
 
 object InfrastructureAgent {
   final val port = 8084
+  final val adminPort = 8085
   object PrepareInfrastructure {
     final val path = "/prepare"
     final val inventoryParameter = "inventory"

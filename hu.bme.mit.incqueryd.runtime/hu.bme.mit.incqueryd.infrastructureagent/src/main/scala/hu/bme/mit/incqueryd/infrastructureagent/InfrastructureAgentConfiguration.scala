@@ -6,5 +6,7 @@ import io.dropwizard.jetty.HttpConnectorFactory
 import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
 
 class InfrastructureAgentConfiguration extends Configuration {
-  getServerFactory().asInstanceOf[DefaultServerFactory].getApplicationConnectors().get(0).asInstanceOf[HttpConnectorFactory].setPort(InfrastructureAgent.port)
+  val serverFactory = getServerFactory().asInstanceOf[DefaultServerFactory]
+  serverFactory.getApplicationConnectors().get(0).asInstanceOf[HttpConnectorFactory].setPort(InfrastructureAgent.port)
+  serverFactory.getAdminConnectors().get(0).asInstanceOf[HttpConnectorFactory].setPort(InfrastructureAgent.adminPort)
 }
