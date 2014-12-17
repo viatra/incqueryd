@@ -10,6 +10,7 @@ import hu.bme.mit.incqueryd.inventory.Inventory
 import hu.bme.mit.incqueryd.inventory.InstanceSet
 import scala.collection.JavaConversions._
 import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
+import eu.mondo.utils.NetworkUtils
 
 object IntegrationTest {
 
@@ -43,7 +44,7 @@ object IntegrationTest {
     val inventory = InventoryFactory.eINSTANCE.createInventory
     val instanceSet = InventoryFactory.eINSTANCE.createInstanceSet
     val instance = InventoryFactory.eINSTANCE.createMachineInstance
-    instance.setIp("127.0.0.1")
+    instance.setIp(NetworkUtils.getLocalIpAddress)
     instanceSet.getMachineInstances.add(instance)
     inventory.setMachineSet(instanceSet)
     inventory.setMaster(instance)

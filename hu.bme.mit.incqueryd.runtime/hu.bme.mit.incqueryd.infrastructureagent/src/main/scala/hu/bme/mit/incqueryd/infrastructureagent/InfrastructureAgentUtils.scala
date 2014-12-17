@@ -8,10 +8,9 @@ import java.net.Socket
 import scala.concurrent._
 import scala.concurrent.duration._
 import ExecutionContext.Implicits.global
+import eu.mondo.utils.NetworkUtils
 
-object NetworkUtils {
-
-  def getLocalIpAddress: String = InetAddress.getLocalHost.getHostAddress
+object InfrastructureAgentUtils {
 
   def isServerListening(host: String, port: Int): Boolean = {
     var s: Socket = null
@@ -37,8 +36,8 @@ object NetworkUtils {
     }, timeout)
   }
 
-  def thisMachineIs(instance: MachineInstance): Boolean = instance.getIp == getLocalIpAddress
+  def thisMachineIs(instance: MachineInstance): Boolean = instance.getIp == NetworkUtils.getLocalIpAddress
   
-  def thisMachineIs(machine: Machine): Boolean = machine.getIp == getLocalIpAddress
+  def thisMachineIs(machine: Machine): Boolean = machine.getIp == NetworkUtils.getLocalIpAddress
 
 }

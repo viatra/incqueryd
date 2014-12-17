@@ -46,12 +46,12 @@ class PrepareInfrastructureResource {
   }
 
   private def thisMachineIsMaster(inventory: Inventory): Boolean = {
-    NetworkUtils.thisMachineIs(inventory.getMaster)
+    InfrastructureAgentUtils.thisMachineIs(inventory.getMaster)
   }
 
   private def startCoordinator(inventory: Inventory) {
     UnixUtils.exec("./start-coordinator.sh", Map[String, String](), System.out)
-    NetworkUtils.waitForServer(inventory.getMaster.getIp, Coordinator.port, 10 seconds)
+    InfrastructureAgentUtils.waitForServer(inventory.getMaster.getIp, Coordinator.port, 10 seconds)
   }
 
   private def startMonitoring {

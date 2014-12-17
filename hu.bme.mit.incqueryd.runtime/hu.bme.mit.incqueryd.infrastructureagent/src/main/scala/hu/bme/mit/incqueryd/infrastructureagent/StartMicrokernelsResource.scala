@@ -33,7 +33,7 @@ class StartMicrokernelsResource {
   }
 
   private def getLocalProcesses(configuration: Configuration): Iterable[Process] = {
-    configuration.getMappings.map(_.getProcess).filter(process => NetworkUtils.thisMachineIs(process.getMachine))
+    configuration.getMappings.map(_.getProcess).filter(process => InfrastructureAgentUtils.thisMachineIs(process.getMachine))
   }
 
   private def generateConfigs(processes: Iterable[Process]) {
