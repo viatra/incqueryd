@@ -3,7 +3,7 @@
 set -e
 cd "$( cd "$( dirname "$0" )" && pwd )/.."
 
-mvn clean install --offline
+mvn clean install
 hu.bme.mit.incqueryd.runtime/scripts/start.sh
 sleep 15s # XXX
 cd hu.bme.mit.incqueryd.test

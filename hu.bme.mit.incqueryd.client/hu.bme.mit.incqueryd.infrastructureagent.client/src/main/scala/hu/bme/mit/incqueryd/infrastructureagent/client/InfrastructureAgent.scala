@@ -23,7 +23,7 @@ import com.sun.jersey.api.client.config.DefaultClientConfig
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider
 
 object InfrastructureAgent {
-  final val port = 8080
+  final val port = 8084
   object PrepareInfrastructure {
     final val path = "/prepare"
     final val inventoryParameter = "inventory"

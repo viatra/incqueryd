@@ -13,12 +13,12 @@ object InfrastructureAgentApplication {
 
 }
 
-class InfrastructureAgentApplication extends Application[Configuration] {
+class InfrastructureAgentApplication extends Application[InfrastructureAgentConfiguration] {
 
-  override def initialize(bootstrap: Bootstrap[Configuration]) {
+  override def initialize(bootstrap: Bootstrap[InfrastructureAgentConfiguration]) {
   }
 
-  override def run(configuration: Configuration, environment: Environment) {
+  override def run(configuration: InfrastructureAgentConfiguration, environment: Environment) {
     List(new PrepareInfrastructureResource,
       new DestroyInfrastructureResource,
       new StartMicrokernelsResource,
