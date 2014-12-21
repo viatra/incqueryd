@@ -81,6 +81,7 @@
                                 <artifact><id>com.typesafe.akka:akka-remote_2.10:2.1.4</id><source>true</source></artifact>
                                 <artifact><id>com.typesafe.akka:akka-testkit_2.10:2.1.4</id><source>true</source></artifact>
                                 <artifact><id>commons-io:commons-io:2.4</id><source>true</source></artifact>
+                                <artifact><id>eu.mondo.driver:eu.mondo.driver.file:0.0.1-SNAPSHOT</id><source>true</source></artifact>
                                 <artifact><id>io.spray:spray-can:1.1.1</id><source>true</source></artifact>
                                 <artifact><id>io.spray:spray-client:1.1.1</id><source>true</source></artifact>
                                 <artifact><id>io.spray:spray-http:1.1.1</id><source>true</source></artifact>
@@ -93,7 +94,7 @@
                                 <artifact><id>org.codehaus.jackson:jackson-jaxrs:1.6.0</id><source>true</source></artifact>
                                 <artifact><id>org.emfjson:emfjson-core:0.9.0</id><source>true</source></artifact>
                                 <artifact><id>org.emfjson:emfjson-jackson:0.9.0</id><source>true</source></artifact>
-                                <artifact><id>org.scala-lang:scala-library:2.10.2</id><source>true</source></artifact>c
+                                <artifact><id>org.scala-lang:scala-library:2.10.2</id><source>true</source></artifact>
                             </artifacts>
                         </configuration>
 
