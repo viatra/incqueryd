@@ -27,9 +27,9 @@ class PrepareInfrastructureResource {
 
   @GET
   @Timed
-  def execute(@QueryParam(InfrastructureAgent.PrepareInfrastructure.inventoryParameter) inventoryJson: String): PrepareInfrastructureResponse = {
+  def execute(@QueryParam(InfrastructureAgent.PrepareInfrastructure.inventoryParameter) inventoryJson: String, @QueryParam(InfrastructureAgent.PrepareInfrastructure.currentIpParameter) currentIp: String): PrepareInfrastructureResponse = {
     val inventory = parseInventory(inventoryJson)
-    val isMaster = thisMachineIsMaster(inventory)
+    val isMaster = inventory.getMaster.getIp == currentIp
     if (isMaster) {
       startCoordinator(inventory)
       startMonitoring
@@ -43,10 +43,6 @@ class PrepareInfrastructureResource {
 	  case inventory: Inventory => inventory
 	  case _ => throw new IllegalArgumentException(s"JSON does not describe an inventory: $inventoryJson")
 	}
-  }
-
-  private def thisMachineIsMaster(inventory: Inventory): Boolean = {
-    InfrastructureAgentUtils.thisMachineIs(inventory.getMaster)
   }
 
   private def startCoordinator(inventory: Inventory) {

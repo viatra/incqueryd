@@ -18,6 +18,7 @@ import spray.httpx.unmarshalling._
 import spray.httpx.marshalling._
 import spray.http.Uri
 import scala.util.Left
+import akka.util.Timeout
 
 object Coordinator {
   final val port = 9090

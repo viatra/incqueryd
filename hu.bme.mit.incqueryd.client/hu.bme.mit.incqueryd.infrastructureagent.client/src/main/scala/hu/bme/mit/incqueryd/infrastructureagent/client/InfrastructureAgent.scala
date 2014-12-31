@@ -28,6 +28,7 @@ object InfrastructureAgent {
   object PrepareInfrastructure {
     final val path = "/prepare"
     final val inventoryParameter = "inventory"
+    final val currentIpParameter = "currentIp"
   }
   object StartMicrokernels {
     final val path = "/start"
@@ -45,7 +46,11 @@ class InfrastructureAgent(val instance: MachineInstance) {
   def prepareInfrastructure(inventory: Inventory): Infrastructure = {
     println(s"Preparing infrastructure on ${instance.getIp}")
     val inventoryJson = EObjectSerializer.serializeToString(inventory)
-    val response = callWebService(InfrastructureAgent.PrepareInfrastructure.path, new BasicNameValuePair(InfrastructureAgent.PrepareInfrastructure.inventoryParameter, inventoryJson)).getEntity(classOf[PrepareInfrastructureResponse])
+    val currentIp = instance.getIp
+    val response = callWebService(InfrastructureAgent.PrepareInfrastructure.path,
+        new BasicNameValuePair(InfrastructureAgent.PrepareInfrastructure.inventoryParameter, inventoryJson),
+        new BasicNameValuePair(InfrastructureAgent.PrepareInfrastructure.currentIpParameter, currentIp)
+      ).getEntity(classOf[PrepareInfrastructureResponse])
     if (response.isMaster) {
       val coordinator = new Coordinator(instance)
       val monitoringServer = new MonitoringServer(instance)

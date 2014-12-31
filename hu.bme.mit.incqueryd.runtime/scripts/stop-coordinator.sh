@@ -6,4 +6,5 @@ PID_FILE=coordinator.pid
 if [ -f "$PID_FILE" ]
 then
     kill -9 $(<"$PID_FILE")
+    rm $PID_FILE
 fi

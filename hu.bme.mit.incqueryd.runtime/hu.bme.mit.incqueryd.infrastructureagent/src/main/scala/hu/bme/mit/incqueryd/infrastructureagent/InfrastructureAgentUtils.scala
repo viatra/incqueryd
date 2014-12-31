@@ -34,6 +34,7 @@ object InfrastructureAgentUtils {
         Thread.sleep(1000)
       }
     }, timeout)
+    Thread.sleep(1000) // XXX
   }
 
   def thisMachineIs(instance: MachineInstance): Boolean = instance.getIp == NetworkUtils.getLocalIpAddress

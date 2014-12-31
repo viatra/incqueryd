@@ -1,9 +1,12 @@
 #!/bin/bash
 
-cd "$( cd "$( dirname "$0" )" && pwd )"
+cd "$( cd "$( dirname "$0" )" && pwd )/.."
 
-PID_FILE=infrastructureagent.pid
+PID_FILE=infrastructure-agent.pid
 if [ -f "$PID_FILE" ]
 then
-    kill -9 $(<"$PID_FILE")
+	CONTAINER=$(<"$PID_FILE")
+    docker stop $CONTAINER
+    docker rm $CONTAINER
+    rm $PID_FILE
 fi

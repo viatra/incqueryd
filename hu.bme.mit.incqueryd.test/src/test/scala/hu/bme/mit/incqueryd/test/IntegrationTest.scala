@@ -44,7 +44,7 @@ object IntegrationTest {
     val inventory = InventoryFactory.eINSTANCE.createInventory
     val instanceSet = InventoryFactory.eINSTANCE.createInstanceSet
     val instance = InventoryFactory.eINSTANCE.createMachineInstance
-    instance.setIp(NetworkUtils.getLocalIpAddress)
+    instance.setIp(System.getProperty("instanceIp"))
     instanceSet.getMachineInstances.add(instance)
     inventory.setMachineSet(instanceSet)
     inventory.setMaster(instance)
