@@ -1,7 +1,8 @@
-box: wercker-labs/docker
+box: jparyani/docker@1.0.1
 build:
-  steps:
-    - script:
-      code: |
-          scripts/resolve-dependencies.sh
-          scripts/build-and-test.sh $IP
+    steps:
+        - script:
+            name: build
+            code: |
+                scripts/resolve-dependencies.sh
+                scripts/build-and-test.sh $IP
