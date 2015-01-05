@@ -1,0 +1,7 @@
+box: wercker-labs/docker
+build:
+  steps:
+    - script:
+      code: |
+          scripts/resolve-dependencies.sh
+          scripts/build-and-test.sh $IP
