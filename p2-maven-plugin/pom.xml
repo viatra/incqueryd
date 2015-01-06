@@ -81,7 +81,6 @@
                                 <artifact><id>com.typesafe.akka:akka-remote_2.10:2.1.4</id><source>true</source></artifact>
                                 <artifact><id>com.typesafe.akka:akka-testkit_2.10:2.1.4</id><source>true</source></artifact>
                                 <artifact><id>commons-io:commons-io:2.4</id><source>true</source></artifact>
-                                <artifact><id>eu.mondo.driver:eu.mondo.driver.file:0.0.1-SNAPSHOT</id><source>true</source></artifact>
                                 <artifact><id>io.spray:spray-can:1.1.1</id><source>true</source></artifact>
                                 <artifact><id>io.spray:spray-client:1.1.1</id><source>true</source></artifact>
                                 <artifact><id>io.spray:spray-http:1.1.1</id><source>true</source></artifact>
