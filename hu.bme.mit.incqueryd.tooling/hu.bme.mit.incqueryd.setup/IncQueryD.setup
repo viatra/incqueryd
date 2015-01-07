@@ -202,6 +202,10 @@
             url="http://ghillairet.github.io/p2/"/>
         <repository
             url="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/"/>
+        <repository
+            url="https://build.inf.mit.bme.hu/jenkins/job/IncQuery-D_Update_Site/lastSuccessfulBuild/artifact/p2-maven-plugin/target/repository/"/>
+        <repository
+            url="http://download.scala-ide.org/sdk/e38/scala210/stable/site/"/>
       </repositoryList>
       <repositoryList
           name="Juno">

@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Bootstrapagent
+Bundle-SymbolicName: hu.bme.mit.incqueryd.bootstrapagent
+Bundle-Version: 1.0.0.qualifier

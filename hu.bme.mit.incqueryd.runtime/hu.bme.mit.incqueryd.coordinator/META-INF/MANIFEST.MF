@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Coordinator
+Bundle-SymbolicName: hu.bme.mit.incqueryd.coordinator
+Bundle-Version: 1.0.0.qualifier
+Export-Package: hu.bme.mit.incqueryd.coordinator

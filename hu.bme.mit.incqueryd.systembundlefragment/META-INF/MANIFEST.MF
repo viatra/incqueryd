@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Systembundlefragment
+Bundle-SymbolicName: hu.bme.mit.incqueryd.systembundlefragment
+Bundle-Version: 1.0.0.qualifier
+Fragment-Host: system.bundle; extension:=framework
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: sun.misc

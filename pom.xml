@@ -11,110 +11,10 @@
 		<maven.compiler.showWarnings>true</maven.compiler.showWarnings>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
-		<tycho.version>0.20.0</tycho.version>
-		<emf.version>2.9.1-v20130827-0309</emf.version>
-		<xtend.version>2.7.2</xtend.version>
-		<incquery.version>0.9.0-SNAPSHOT</incquery.version>
-		<incquery.update.site>http://download.eclipse.org/incquery/updates/integration</incquery.update.site>
-		<dropwizard.version>0.7.0</dropwizard.version>
+		<tycho.version>0.22.0</tycho.version>
+		<scala.version>2.10.4</scala.version>
 	</properties>
-	<repositories>
-		<repository>
-			<id>emf-incquery</id>
-			<url>https://repo.eclipse.org/content/repositories/emf-incquery</url>
-		</repository>
-	</repositories>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.11</version>
-			</dependency>
-			<dependency>
-				<groupId>com.google.guava</groupId>
-				<artifactId>guava</artifactId>
-				<version>16.0.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.scala-lang</groupId>
-				<artifactId>scala-library</artifactId>
-				<version>2.10.2</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.emf</groupId>
-				<artifactId>org.eclipse.emf.common</artifactId>
-				<version>${emf.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.emf</groupId>
-				<artifactId>org.eclipse.emf.ecore</artifactId>
-				<version>${emf.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.emf</groupId>
-				<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
-				<version>${emf.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.eclipse.xtend</groupId>
-				<artifactId>org.eclipse.xtend.lib</artifactId>
-				<version>${xtend.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.typesafe.akka</groupId>
-				<artifactId>akka-actor_2.10</artifactId>
-				<version>2.1.4</version>
-			</dependency>
-			<dependency>
-				<groupId>com.typesafe.akka</groupId>
-				<artifactId>akka-remote_2.10</artifactId>
-				<version>2.1.4</version>
-			</dependency>
-			<dependency>
-				<groupId>com.typesafe.akka</groupId>
-				<artifactId>akka-kernel_2.10</artifactId>
-				<version>2.1.4</version>
-			</dependency>
-			<dependency>
-				<groupId>com.typesafe.akka</groupId>
-				<artifactId>akka-testkit_2.10</artifactId>
-				<version>2.1.4</version>
-			</dependency>
-			<dependency>
-				<groupId>io.spray</groupId>
-				<artifactId>spray-can</artifactId>
-				<version>1.1.1</version>
-			</dependency>
-			<dependency>
-				<groupId>io.spray</groupId>
-				<artifactId>spray-http</artifactId>
-				<version>1.1.1</version>
-			</dependency>
-			<dependency>
-				<groupId>io.spray</groupId>
-				<artifactId>spray-httpx</artifactId>
-				<version>1.1.1</version>
-			</dependency>
-			<dependency>
-				<groupId>io.spray</groupId>
-				<artifactId>spray-routing</artifactId>
-				<version>1.1.1</version>
-			</dependency>
-			<dependency>
-				<groupId>io.spray</groupId>
-				<artifactId>spray-client</artifactId>
-				<version>1.1.1</version>
-			</dependency>
-			<dependency>
-				<groupId>io.spray</groupId>
-				<artifactId>spray-json_2.10</artifactId>
-				<version>1.2.5</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 	<build>
-		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
@@ -122,6 +22,23 @@
 					<version>${tycho.version}</version>
 					<extensions>true</extensions>
 				</plugin>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>target-platform-configuration</artifactId>
+          <version>${tycho.version}</version>
+          <configuration>
+            <dependency-resolution>
+              <optionalDependencies>ignore</optionalDependencies>
+              <extraRequirements>
+                <requirement>
+                  <type>eclipse-plugin</type>
+                  <id>hu.bme.mit.incqueryd.systembundlefragment</id>
+                  <versionRange>0.0.0</versionRange>
+                </requirement>
+              </extraRequirements>
+            </dependency-resolution>
+          </configuration>
+        </plugin>
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-packaging-plugin</artifactId>
@@ -130,6 +47,16 @@
 						<strictBinIncludes>false</strictBinIncludes>
 					</configuration>
 				</plugin>
+        <plugin>
+          <groupId>org.eclipse.tycho</groupId>
+          <artifactId>tycho-compiler-plugin</artifactId>
+          <version>${tycho.version}</version>
+          <configuration>
+            <excludeResources>
+              <excludeResource>**/*.scala</excludeResource>
+            </excludeResources>
+          </configuration>
+        </plugin>
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-surefire-plugin</artifactId>
@@ -161,35 +88,62 @@
 					</executions>
 				</plugin>
 				<plugin>
-					<groupId>org.eclipse.xtend</groupId>
-					<artifactId>xtend-maven-plugin</artifactId>
-					<version>${xtend.version}</version>
-					<executions>
-						<execution>
-							<goals>
-								<goal>compile</goal>
-								<goal>testCompile</goal>
-								<goal>xtend-install-debug-info</goal>
-								<goal>xtend-test-install-debug-info</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<outputDirectory>xtend-gen</outputDirectory>
-						<testOutputDirectory>xtend-gen</testOutputDirectory>
-					</configuration>
-				</plugin>
-				<plugin>
+  				<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.2</version>
 					<configuration>
 						<source>${maven.compiler.source}</source>
 						<target>${maven.compiler.target}</target>
 					</configuration>
 				</plugin>
 			</plugins>
-		</pluginManagement>
 	</build>
+	<repositories>
+		<repository>
+			<id>kepler</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/kepler</url>
+		</repository>
+		<repository>
+			<id>orbit</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/</url>
+		</repository>
+		<repository>
+			<id>emf</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/emf/emf/updates/releases/</url>
+		</repository>
+		<repository>
+			<id>xtext</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</url>
+		</repository>
+		<repository>
+			<id>incquery</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/incquery/updates/integration</url>
+		</repository>
+    <repository>
+			<id>misc</id>
+			<layout>p2</layout>
+			<url>https://build.inf.mit.bme.hu/jenkins/job/IncQuery-D_Update_Site/lastSuccessfulBuild/artifact/p2-maven-plugin/target/repository/</url>
+		</repository>
+    <repository>
+      <id>scala</id>
+      <layout>p2</layout>
+      <url>http://download.scala-ide.org/sdk/e38/scala210/stable/site</url>
+    </repository>
+	</repositories>
+	<dependencies>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>${scala.version}</version>
+    </dependency>
+  </dependencies>
 	<modules>
+  	<module>hu.bme.mit.incqueryd.systembundlefragment</module>
 		<module>hu.bme.mit.incqueryd.client</module>
 		<module>hu.bme.mit.incqueryd.runtime</module>
 		<module>hu.bme.mit.incqueryd.test</module>
