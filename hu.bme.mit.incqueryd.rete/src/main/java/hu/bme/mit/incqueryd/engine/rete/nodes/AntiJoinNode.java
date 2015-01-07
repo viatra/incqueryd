@@ -74,8 +74,8 @@ import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
  */
 public class AntiJoinNode extends BetaNode {
 
-	AntiJoinNode(final AntiJoinRecipe recipe, final List<String> cacheMachineIps) {
-		super(recipe, cacheMachineIps);
+	AntiJoinNode(final AntiJoinRecipe recipe) {
+		super(recipe);
 	}
 
 	@Override

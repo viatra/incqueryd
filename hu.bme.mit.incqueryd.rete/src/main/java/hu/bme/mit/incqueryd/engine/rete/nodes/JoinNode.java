@@ -29,8 +29,8 @@ import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
  */
 public class JoinNode extends BetaNode {
 
-    JoinNode(final JoinRecipe recipe, final List<String> cacheMachineIps) {
-        super(recipe, cacheMachineIps);
+    JoinNode(final JoinRecipe recipe) {
+        super(recipe);
     }
 
     @Override

@@ -80,12 +80,12 @@ public abstract class BetaNodeTest {
 	protected abstract BetaNode createBetaNode(String recipeFile) throws IOException;
 
 	protected ProjectionIndexerRecipe createProjectionIndexer(final Collection<? extends Integer> mask) {
-		final Mask leftMask = RecipesFactory.eINSTANCE.createMask();
-		leftMask.setSourceArity(mask.size());
-		leftMask.getSourceIndices().addAll(mask);
-		final ProjectionIndexerRecipe leftParent = RecipesFactory.eINSTANCE.createProjectionIndexerRecipe();
-		leftParent.setMask(leftMask);
-		return leftParent;
+		final Mask eMask = RecipesFactory.eINSTANCE.createMask();
+		eMask.setSourceArity(mask.size());
+		eMask.getSourceIndices().addAll(mask);
+		final ProjectionIndexerRecipe indexer = RecipesFactory.eINSTANCE.createProjectionIndexerRecipe();
+		indexer.setMask(eMask);
+		return indexer;
 	}
 
 	private ChangeSet update(final BetaNode node, final Set<Tuple> tuples, final ChangeType changeType,

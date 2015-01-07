@@ -55,4 +55,8 @@ public class ChangeSet implements Serializable {
 				&& getTuples().equals(changeSet.getTuples());
 	}
 
+	public int size() {
+		return tuples.size();
+	}
+	
 }

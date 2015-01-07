@@ -31,10 +31,10 @@ public abstract class BetaNode implements ReteNode {
     protected Indexer primaryIndexer;
     protected Indexer secondaryIndexer;
     
-    BetaNode(final BetaRecipe recipe, final List<String> cacheMachineIps) {
+    BetaNode(final BetaRecipe recipe) {
     	super();
-        this.primaryIndexer = new Indexer(recipe.getLeftParent().getMask().getSourceIndices(), cacheMachineIps);
-        this.secondaryIndexer = new Indexer(recipe.getRightParent().getMask().getSourceIndices(), cacheMachineIps);
+        this.primaryIndexer = new Indexer(recipe.getLeftParent().getMask().getSourceIndices());
+        this.secondaryIndexer = new Indexer(recipe.getRightParent().getMask().getSourceIndices());
     }
 
     abstract public ChangeSet update(final ChangeSet incomingChangeSet, final ReteNodeSlot slot);

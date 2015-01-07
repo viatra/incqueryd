@@ -24,6 +24,7 @@ import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
 
 public class ReteNodeFactory {
@@ -37,10 +38,9 @@ public class ReteNodeFactory {
 	 */
 	public static ReteNode createNode(final ReteNodeConfiguration conf) throws IOException {
 		final ReteNodeRecipe recipe = conf.getReteNodeRecipe();
-		final List<String> cacheMachineIps = conf.getCacheMachineIps();
 
 		if (recipe instanceof AntiJoinRecipe) {
-			return new AntiJoinNode((AntiJoinRecipe) recipe, cacheMachineIps);
+			return new AntiJoinNode((AntiJoinRecipe) recipe);
 		} else if (recipe instanceof CheckRecipe) {
 			return new CheckNode((CheckRecipe) recipe);
 		} else if (recipe instanceof ConstantRecipe) {
@@ -48,15 +48,15 @@ public class ReteNodeFactory {
 		} else if (recipe instanceof EqualityFilterRecipe) {
 			return new EqualityNode((EqualityFilterRecipe) recipe);
 		} else if (recipe instanceof JoinRecipe) {
-			return new JoinNode((JoinRecipe) recipe, cacheMachineIps);
+			return new JoinNode((JoinRecipe) recipe);
 		} else if (recipe instanceof InequalityFilterRecipe) {
 			return new InequalityNode((InequalityFilterRecipe) recipe);
 		} else if (recipe instanceof ProductionRecipe) {
 			return new ProductionNode((ProductionRecipe) recipe);
 		} else if (recipe instanceof TrimmerRecipe) {
 			return new TrimmerNode((TrimmerRecipe) recipe);
-//		} else if (recipe instanceof TypeInputRecipe) {
-//			return new InputNode((TypeInputRecipe) recipe);
+		} else if (recipe instanceof TypeInputRecipe) {
+			return new TypeInputNode((TypeInputRecipe) recipe);
 		} else if (recipe instanceof UniquenessEnforcerRecipe) {
 			return new UniquenessEnforcerNode((UniquenessEnforcerRecipe) recipe);
 		} else {

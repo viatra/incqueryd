@@ -33,7 +33,7 @@ import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
  */
 public class TrimmerNode implements AlphaNode {
 
-	protected TrimmerRecipe recipe;
+	protected final TrimmerRecipe recipe;
 
     TrimmerNode(final TrimmerRecipe recipe) {
         super();

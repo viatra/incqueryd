@@ -36,7 +36,7 @@ public class JoinNodeTest extends BetaNodeTest {
 	@Override
 	protected BetaNode createBetaNode(String recipeFile) throws IOException {
 		final JoinRecipe recipe = (JoinRecipe) (RecipeDeserializer.deserializeFromFile(recipeFile));
-		final JoinNode node = new JoinNode(recipe, Collections.<String>emptyList());
+		final JoinNode node = new JoinNode(recipe);
 		return node;
 	}
 
