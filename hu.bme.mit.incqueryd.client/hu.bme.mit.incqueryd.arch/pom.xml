@@ -2,7 +2,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>hu.bme.mit.incqueryd.arch</artifactId>
-	<packaging>eclipse-plugin</packaging>
 	<parent>
 		<groupId>hu.bme.mit.incqueryd</groupId>
 		<artifactId>hu.bme.mit.incqueryd.client</artifactId>
@@ -10,22 +9,6 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<name>IncQuery-D Architecture Model</name>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-packaging-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-surefire-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 	<dependencies>
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
@@ -35,5 +18,12 @@
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.ecore</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.eclipse.incquery</groupId>
+			<artifactId>org.eclipse.incquery.runtime.rete.recipes</artifactId>
+		</dependency>
 	</dependencies>
+	<build>
+		<sourceDirectory>src-gen</sourceDirectory>
+	</build>
 </project>
