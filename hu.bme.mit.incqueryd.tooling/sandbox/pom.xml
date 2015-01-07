@@ -15,9 +15,24 @@
 	</properties>
 	<repositories>
 		<repository>
+			<id>kepler</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/kepler</url>
+		</repository>
+		<repository>
+			<id>emf</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/emf/emf/updates/releases/</url>
+		</repository>
+		<repository>
+			<id>xtext</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/</url>
+		</repository>
+		<repository>
 			<id>dependencies</id>
 			<layout>p2</layout>
-			<url>https://build.inf.mit.bme.hu/jenkins/job/IncQuery-D_Update_Site/lastSuccessfulBuild/artifact/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.tooling.dependencies/target/repository/</url>
+			<url>https://build.inf.mit.bme.hu/jenkins/job/IncQuery-D_Tooling_Dependencies_Update_Site/lastSuccessfulBuild/artifact/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.tooling.dependencies/target/repository/</url>
 		</repository>
 	</repositories>
 	<build>
