@@ -1,0 +1,22 @@
+{
+	"primarySet":[{"tuple":[1,2,3,4]},{"tuple":[5,6,7,8]}],
+	"changes":[
+		{
+			"changeSet":{"tuples":[{"tuple":[1,2,3,5]}],"changeType":"POSITIVE"},
+			"changeSlot":"PRIMARY"
+		},
+		{
+			"changeSet":{"tuples":[{"tuple":[10,11,12,13]}],"changeType":"POSITIVE"},
+			"changeSlot":"PRIMARY"
+		},
+		{
+			"changeSet":{"tuples":[{"tuple":[1,2,3,5]}],"changeType":"NEGATIVE"},
+			"changeSlot":"PRIMARY"
+		}
+	],
+	"expectedChangeSets":[
+		{"tuples":[{"tuple":[3,1]}],"changeType":"POSITIVE"},
+		{"tuples":[{"tuple":[12,10]}],"changeType":"POSITIVE"},
+		{"tuples":[{"tuple":[3,1]}],"changeType":"NEGATIVE"}
+	]
+}

@@ -1,0 +1,6 @@
+{
+  "primaryChangeSet":{"tuples":[{"tuple":[1,5]},{"tuple":[2,6]}],"changeType":"POSITIVE"},
+  "secondaryChangeSet":{"tuples":[{"tuple":[5,10]}],"changeType":"POSITIVE"},
+  "expectedFirstChangeSet":{"tuples":[{"tuple":[1,5]},{"tuple":[2,6]}],"changeType":"POSITIVE"},
+  "expectedSecondChangeSet":{"tuples":[{"tuple":[1,5]}],"changeType":"NEGATIVE"}
+}
