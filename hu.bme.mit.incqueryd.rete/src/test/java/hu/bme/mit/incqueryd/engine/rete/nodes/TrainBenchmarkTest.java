@@ -37,6 +37,8 @@ public class TrainBenchmarkTest {
 		TypeInputNode segmentLengthInputNode = createAttributeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.SEGMENT_LENGTH);
 		segmentLengthInputNode.load();
 		ChangeSet segmentLengthChangeSet = segmentLengthInputNode.getChangeSet();
+
+		
 		
 		assertEquals(4835, segmentLengthChangeSet.size());
 	}
@@ -132,35 +134,35 @@ public class TrainBenchmarkTest {
 	}
 
 	private TypeInputNode createVertexInputNode(String typeName) {
-		UnaryInputRecipe switchRecipe = RecipesFactory.eINSTANCE.createUnaryInputRecipe();
-		switchRecipe.setTypeName(typeName);
-		TypeInputNode switchInputNode = new TypeInputNode(switchRecipe);
-		return switchInputNode;
+		UnaryInputRecipe recipe = RecipesFactory.eINSTANCE.createUnaryInputRecipe();
+		recipe.setTypeName(typeName);
+		TypeInputNode node = new TypeInputNode(recipe);
+		return node;
 	}
 
 	private TrimmerNode createTrimmerNode(ImmutableList<Integer> mask) {
-		TrimmerRecipe trimmerRecipe = RecipesFactory.eINSTANCE.createTrimmerRecipe();
+		TrimmerRecipe recipe = RecipesFactory.eINSTANCE.createTrimmerRecipe();
 		Mask eMask = RecipesFactory.eINSTANCE.createMask();
 		eMask.getSourceIndices().addAll(mask);
-		trimmerRecipe.setMask(eMask);
-		TrimmerNode trimmerNode = new TrimmerNode(trimmerRecipe);
-		return trimmerNode;
+		recipe.setMask(eMask);
+		TrimmerNode node = new TrimmerNode(recipe);
+		return node;
 	}
 
 	private AntiJoinNode createAntiJoinNode(ImmutableList<Integer> primaryMask, ImmutableList<Integer> secondaryMask) {
-		AntiJoinRecipe antiJoinRecipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
-		antiJoinRecipe.setLeftParent(createProjectionIndexer(primaryMask));
-		antiJoinRecipe.setRightParent(createProjectionIndexer(secondaryMask));
-		AntiJoinNode antiJoinNode = new AntiJoinNode(antiJoinRecipe);
-		return antiJoinNode;
+		AntiJoinRecipe recipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
+		recipe.setLeftParent(createProjectionIndexer(primaryMask));
+		recipe.setRightParent(createProjectionIndexer(secondaryMask));
+		AntiJoinNode node = new AntiJoinNode(recipe);
+		return node;
 	}
 
 	private JoinNode createJoinNode(ImmutableList<Integer> primaryMask, ImmutableList<Integer> secondaryMask) {
-		JoinRecipe joinRecipe1 = RecipesFactory.eINSTANCE.createJoinRecipe();
-		joinRecipe1.setLeftParent(createProjectionIndexer(primaryMask));
-		joinRecipe1.setRightParent(createProjectionIndexer(secondaryMask));
-		JoinNode joinNode1 = new JoinNode(joinRecipe1);
-		return joinNode1;
+		JoinRecipe recipe = RecipesFactory.eINSTANCE.createJoinRecipe();
+		recipe.setLeftParent(createProjectionIndexer(primaryMask));
+		recipe.setRightParent(createProjectionIndexer(secondaryMask));
+		JoinNode node = new JoinNode(recipe);
+		return node;
 	}
 
 	private TypeInputNode createEdgeInputNode(String type) throws IOException {
