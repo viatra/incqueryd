@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
@@ -78,9 +80,16 @@ public class TypeInputNode implements ReteNode {
 		Map<Long, String> properties = driver.collectProperty(typeName);
 
 		for (Entry<Long, String> property : properties.entrySet()) {
-			tuples.add(new Tuple(property.getKey(), property.getValue()));
-		}
 
+			String attribute = property.getValue();
+			
+			Pattern pattern = Pattern.compile("\"(.*?)\"\\^\\^<http://www.w3.org/2001/XMLSchema#int>");
+			Matcher matcher = pattern.matcher(attribute);
+			if (matcher.matches()) {
+				String intString = matcher.group(1);
+				tuples.add(new Tuple(property.getKey(), intString));
+			}
+		}
 	}
 
 	private void initializeVertex(final String typeName) throws IOException {
