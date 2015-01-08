@@ -12,9 +12,6 @@ package hu.bme.mit.incqueryd.engine.rete.dataunits;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet;
-import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType;
-import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple;
 
 import java.util.HashSet;
 import java.util.Set;

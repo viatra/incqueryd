@@ -11,15 +11,14 @@
 package hu.bme.mit.incqueryd.engine.rete.nodes;
 
 import static org.junit.Assert.assertEquals;
-import hu.bme.mit.incqueryd.engine.rete.nodes.data.Change;
-import hu.bme.mit.incqueryd.engine.rete.nodes.data.TestData;
-import hu.bme.mit.incqueryd.engine.test.util.GsonParser;
-import hu.bme.mit.incqueryd.engine.test.util.TestCaseFinder;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.engine.rete.nodes.BetaNode;
+import hu.bme.mit.incqueryd.engine.rete.nodes.data.Change;
+import hu.bme.mit.incqueryd.engine.rete.nodes.data.TestData;
+import hu.bme.mit.incqueryd.engine.test.util.GsonParser;
+import hu.bme.mit.incqueryd.engine.test.util.TestCaseFinder;
 
 import java.io.File;
 import java.io.FileReader;

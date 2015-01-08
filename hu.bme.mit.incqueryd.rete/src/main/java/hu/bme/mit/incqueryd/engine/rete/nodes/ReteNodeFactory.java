@@ -13,7 +13,6 @@ package hu.bme.mit.incqueryd.engine.rete.nodes;
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe;

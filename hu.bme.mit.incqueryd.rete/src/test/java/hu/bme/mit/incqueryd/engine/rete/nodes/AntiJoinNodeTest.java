@@ -15,13 +15,10 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ReteNodeSlot;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.engine.rete.nodes.AntiJoinNode;
-import hu.bme.mit.incqueryd.engine.rete.nodes.BetaNode;
 import hu.bme.mit.incqueryd.engine.util.RecipeDeserializer;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 

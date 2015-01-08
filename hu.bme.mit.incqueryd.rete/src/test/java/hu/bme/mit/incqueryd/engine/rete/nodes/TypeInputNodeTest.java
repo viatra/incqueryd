@@ -13,21 +13,13 @@ package hu.bme.mit.incqueryd.engine.rete.nodes;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple;
 
 import java.io.IOException;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openrdf.rio.RDFHandlerException;
-import org.openrdf.rio.RDFParseException;
-
-import eu.mondo.driver.file.FileGraphDriverReadOnly;
-import eu.mondo.driver.graph.RDFGraphDriverReadOnly;
 
 public class TypeInputNodeTest {
 

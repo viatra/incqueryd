@@ -1,15 +1,11 @@
 package hu.bme.mit.incqueryd.engine.rete.nodes;
 
+import static org.junit.Assert.assertEquals;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet;
-import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ReteNodeSlot;
-import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.Set;
-
-import javax.swing.text.html.CSS;
 
 import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;
@@ -36,39 +32,54 @@ public class TrainBenchmarkTest {
 	}
 
 	@Test
+	public void posLengthTest() throws IOException {
+		// input nodes
+		TypeInputNode segmentLengthInputNode = createAttributeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.SEGMENT_LENGTH);
+		segmentLengthInputNode.load();
+		ChangeSet segmentLengthChangeSet = segmentLengthInputNode.getChangeSet();
+		
+		assertEquals(4835, segmentLengthChangeSet.size());
+	}
+	
+	private TypeInputNode createAttributeInputNode(String type) {
+		BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
+		recipe.setTypeName(type);
+		recipe.setTraceInfo("attribute");
+		TypeInputNode node = new TypeInputNode(recipe);
+		return node;
+	}
+
+	@Test
 	public void routeSensorTest() throws IOException {
 		// input nodes
-		ChangeSet switchPositionChangeSet = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.SWITCHPOSITION_SWITCH);
-		ChangeSet routeSwitchPositionChangeSet = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.ROUTE_SWITCHPOSITION);
-		ChangeSet trackElementSensorChangeSet = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.TRACKELEMENT_SENSOR);
-		ChangeSet routeRouteDefinitionChangeSet = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.ROUTE_ROUTEDEFINITION);
+		TypeInputNode switchPositionNode = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.SWITCHPOSITION_SWITCH);
+		TypeInputNode routeSwitchPositionNode = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.ROUTE_SWITCHPOSITION);
+		TypeInputNode trackElementSensorNode = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.TRACKELEMENT_SENSOR);
+		TypeInputNode routeRouteDefinitionNode = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.ROUTE_ROUTEDEFINITION);
 
 		// join node: <SwP, Sw, R>
-		JoinRecipe joinRecipe1 = RecipesFactory.eINSTANCE.createJoinRecipe();
-		joinRecipe1.setLeftParent(createProjectionIndexer(ImmutableList.of(0)));
-		joinRecipe1.setRightParent(createProjectionIndexer(ImmutableList.of(1)));
-		JoinNode joinNode1 = new JoinNode(joinRecipe1);
-
-		// join node: <SwP, Sw, R, Sen>
-		JoinRecipe joinRecipe2 = RecipesFactory.eINSTANCE.createJoinRecipe();
-		joinRecipe2.setLeftParent(createProjectionIndexer(ImmutableList.of(1)));
-		joinRecipe2.setRightParent(createProjectionIndexer(ImmutableList.of(0)));
-		JoinNode joinNode2 = new JoinNode(joinRecipe2);
+		JoinNode joinNode1 = createJoinNode(ImmutableList.of(0), ImmutableList.of(1));
 
 		// antijoin node: <SwP, Sw, R, Sen>
-		AntiJoinRecipe antiJoinRecipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
-		antiJoinRecipe.setLeftParent(createProjectionIndexer(ImmutableList.of(2, 3)));
-		antiJoinRecipe.setRightParent(createProjectionIndexer(ImmutableList.of(0, 1)));
-		AntiJoinNode antiJoinNode = new AntiJoinNode(antiJoinRecipe);
+		JoinNode joinNode2 = createJoinNode(ImmutableList.of(1), ImmutableList.of(0));
+
+		// antijoin node: <SwP, Sw, R, Sen>
+		AntiJoinNode antiJoinNode = createAntiJoinNode(ImmutableList.of(2, 3), ImmutableList.of(0, 1));
 
 		// trimmer node: <R>
-		TrimmerRecipe trimmerRecipe = RecipesFactory.eINSTANCE.createTrimmerRecipe();
-		Mask mask = RecipesFactory.eINSTANCE.createMask();
-		mask.getSourceIndices().addAll(ImmutableList.of(3));
-		trimmerRecipe.setMask(mask);
-		TrimmerNode trimmerNode = new TrimmerNode(trimmerRecipe);
+		TrimmerNode trimmerNode = createTrimmerNode(ImmutableList.of(3));
 		
 		// sending the changesets
+		switchPositionNode.load();
+		routeSwitchPositionNode.load();
+		trackElementSensorNode.load();
+		routeRouteDefinitionNode.load();
+		
+		ChangeSet switchPositionChangeSet = switchPositionNode.getChangeSet();
+		ChangeSet routeSwitchPositionChangeSet = routeSwitchPositionNode.getChangeSet();
+		ChangeSet trackElementSensorChangeSet = trackElementSensorNode.getChangeSet();
+		ChangeSet routeRouteDefinitionChangeSet = routeRouteDefinitionNode.getChangeSet();
+		
 		// joinNode1
 		ChangeSet cs1 = joinNode1.update(switchPositionChangeSet, ReteNodeSlot.PRIMARY); // empty
 		ChangeSet cs2 = joinNode1.update(routeSwitchPositionChangeSet, ReteNodeSlot.SECONDARY);
@@ -83,23 +94,19 @@ public class TrainBenchmarkTest {
 		
 		// trimmer
 		ChangeSet cs7 = trimmerNode.update(cs6);
-		System.out.println(cs7);
 		
-		Assert.assertEquals(94, cs7.size());
+		assertEquals(94, cs7.size());
 	}
 
 	@Test
 	public void switchSensorTest() throws IOException {
+		
 		// input node for switch vertices
-		UnaryInputRecipe switchRecipe = RecipesFactory.eINSTANCE.createUnaryInputRecipe();
-		switchRecipe.setTypeName(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.SWITCH);
-		TypeInputNode switchInputNode = new TypeInputNode(switchRecipe);
-		switchInputNode.load();
-		ChangeSet switchChangeSet = switchInputNode.getChangeSet();
+		TypeInputNode switchInputNode = createVertexInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.SWITCH);
 		
 		// input node for trackElement_sensor edges
 		String type = TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.TRACKELEMENT_SENSOR;
-		ChangeSet trackElementSensorChangeSet = createEdgeInputNode(type);
+		TypeInputNode trackElementSensorNode = createEdgeInputNode(type);
 
 		// antijoin node
 		AntiJoinRecipe antiJoinRecipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
@@ -110,23 +117,58 @@ public class TrainBenchmarkTest {
 		AntiJoinNode antiJoinNode = new AntiJoinNode(antiJoinRecipe);
 
 		// sending the changesets
+		switchInputNode.load();
+		ChangeSet switchChangeSet = switchInputNode.getChangeSet();
+		trackElementSensorNode.load();
+		ChangeSet trackElementSensorChangeSet = trackElementSensorNode.getChangeSet();
+		
 		// secondary changeset
 		ChangeSet cs1 = antiJoinNode.update(trackElementSensorChangeSet, ReteNodeSlot.SECONDARY);
 
 		// primary changeset
 		ChangeSet cs2 = antiJoinNode.update(switchChangeSet, ReteNodeSlot.PRIMARY);
 
-		Assert.assertEquals(19, cs2.size());
+		assertEquals(19, cs2.size());
 	}
 
-	private ChangeSet createEdgeInputNode(String type) throws IOException {
-		BinaryInputRecipe trackElementSensorRecipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
-		trackElementSensorRecipe.setTypeName(type);
-		trackElementSensorRecipe.setTraceInfo("edge");
-		TypeInputNode trackElementSensorInputNode = new TypeInputNode(trackElementSensorRecipe);
-		trackElementSensorInputNode.load();
-		ChangeSet trackElementSensorChangeSet = trackElementSensorInputNode.getChangeSet();
-		return trackElementSensorChangeSet;
+	private TypeInputNode createVertexInputNode(String typeName) {
+		UnaryInputRecipe switchRecipe = RecipesFactory.eINSTANCE.createUnaryInputRecipe();
+		switchRecipe.setTypeName(typeName);
+		TypeInputNode switchInputNode = new TypeInputNode(switchRecipe);
+		return switchInputNode;
+	}
+
+	private TrimmerNode createTrimmerNode(ImmutableList<Integer> mask) {
+		TrimmerRecipe trimmerRecipe = RecipesFactory.eINSTANCE.createTrimmerRecipe();
+		Mask eMask = RecipesFactory.eINSTANCE.createMask();
+		eMask.getSourceIndices().addAll(mask);
+		trimmerRecipe.setMask(eMask);
+		TrimmerNode trimmerNode = new TrimmerNode(trimmerRecipe);
+		return trimmerNode;
+	}
+
+	private AntiJoinNode createAntiJoinNode(ImmutableList<Integer> primaryMask, ImmutableList<Integer> secondaryMask) {
+		AntiJoinRecipe antiJoinRecipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
+		antiJoinRecipe.setLeftParent(createProjectionIndexer(primaryMask));
+		antiJoinRecipe.setRightParent(createProjectionIndexer(secondaryMask));
+		AntiJoinNode antiJoinNode = new AntiJoinNode(antiJoinRecipe);
+		return antiJoinNode;
+	}
+
+	private JoinNode createJoinNode(ImmutableList<Integer> primaryMask, ImmutableList<Integer> secondaryMask) {
+		JoinRecipe joinRecipe1 = RecipesFactory.eINSTANCE.createJoinRecipe();
+		joinRecipe1.setLeftParent(createProjectionIndexer(primaryMask));
+		joinRecipe1.setRightParent(createProjectionIndexer(secondaryMask));
+		JoinNode joinNode1 = new JoinNode(joinRecipe1);
+		return joinNode1;
+	}
+
+	private TypeInputNode createEdgeInputNode(String type) throws IOException {
+		BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
+		recipe.setTypeName(type);
+		recipe.setTraceInfo("edge");
+		TypeInputNode node = new TypeInputNode(recipe);
+		return node;
 	}
 
 }

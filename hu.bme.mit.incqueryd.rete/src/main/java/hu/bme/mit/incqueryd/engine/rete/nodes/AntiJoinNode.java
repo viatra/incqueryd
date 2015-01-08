@@ -18,7 +18,6 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.TupleMask;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;

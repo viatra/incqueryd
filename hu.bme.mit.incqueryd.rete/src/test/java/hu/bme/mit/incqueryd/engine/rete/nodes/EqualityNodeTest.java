@@ -10,8 +10,6 @@
  *******************************************************************************/
 package hu.bme.mit.incqueryd.engine.rete.nodes;
 
-import hu.bme.mit.incqueryd.engine.rete.nodes.AlphaNode;
-import hu.bme.mit.incqueryd.engine.rete.nodes.EqualityNode;
 import hu.bme.mit.incqueryd.engine.util.RecipeDeserializer;
 
 import java.io.IOException;

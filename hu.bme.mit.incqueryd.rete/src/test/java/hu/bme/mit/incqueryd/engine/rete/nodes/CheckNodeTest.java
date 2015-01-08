@@ -13,7 +13,6 @@ package hu.bme.mit.incqueryd.engine.rete.nodes;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple;
-import hu.bme.mit.incqueryd.engine.rete.nodes.CheckNode;
 
 import java.util.Set;
 

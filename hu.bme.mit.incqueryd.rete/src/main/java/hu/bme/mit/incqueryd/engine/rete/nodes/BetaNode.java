@@ -15,7 +15,6 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.ReteNodeSlot;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
-import java.util.List;
 
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe;
 

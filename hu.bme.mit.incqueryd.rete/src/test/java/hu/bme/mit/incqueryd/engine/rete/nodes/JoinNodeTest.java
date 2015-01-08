@@ -11,12 +11,9 @@
 package hu.bme.mit.incqueryd.engine.rete.nodes;
 
 
-import hu.bme.mit.incqueryd.engine.rete.nodes.BetaNode;
-import hu.bme.mit.incqueryd.engine.rete.nodes.JoinNode;
 import hu.bme.mit.incqueryd.engine.util.RecipeDeserializer;
 
 import java.io.IOException;
-import java.util.Collections;
 
 import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
 
