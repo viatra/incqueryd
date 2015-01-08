@@ -41,7 +41,6 @@
 		<dependency>
 			<groupId>org.eclipse.incquery</groupId>
 			<artifactId>org.eclipse.incquery.runtime.rete.recipes</artifactId>
-			<version>${incquery.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
@@ -97,6 +96,10 @@
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 								</transformer>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>reference.conf</resource>
+								</transformer> <!-- XXX http://grokbase.com/t/gg/akka-user/141rep75jv/reference-conf-conflicts-in-fat-jar-i-think -->
 							</transformers>
 						</configuration>
 					</execution>

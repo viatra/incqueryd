@@ -22,14 +22,17 @@ import akka.util.Timeout
 
 object Coordinator {
   final val port = 9090
-  object Start {
+  object IsWebServiceReady {
+    final val path = "isWebServiceReady"
+  }
+  object StartQuery {
     final val path = "start"
   }
-  object Check {
+  object CheckResults {
     final val path = "check"
     final val sampleResult = List(ChangeSet(Set(Tuple(List(42))), true))
   }
-  object Stop {
+  object StopQuery {
     final val path = "stop"
   }
   object JsonProtocol extends DefaultJsonProtocol {
@@ -40,14 +43,18 @@ object Coordinator {
 
 class Coordinator(val instance: MachineInstance) {
 
+  def isWebServiceReady() {
+    callWebService(Coordinator.IsWebServiceReady.path)
+  }
+
   def startQuery(recipe: ReteRecipe) {
     println(s"Starting query on ${instance.getIp}")
-    callWebService(Coordinator.Start.path)
+    callWebService(Coordinator.StartQuery.path)
   }
 
   def check: List[ChangeSet] = {
   	import Coordinator.JsonProtocol._
-    val response = callWebService(Coordinator.Check.path)
+    val response = callWebService(Coordinator.CheckResults.path)
     val result = response.as[List[ChangeSet]]
     result match {
   	  case Left(error) => throw new RuntimeException(s"Can't unmarshal response, error: $error")
@@ -56,7 +63,7 @@ class Coordinator(val instance: MachineInstance) {
   }
 
   def stopQuery() {
-    callWebService(Coordinator.Stop.path)
+    callWebService(Coordinator.StopQuery.path)
   }
 
   private def callWebService(path: String): HttpResponse = {

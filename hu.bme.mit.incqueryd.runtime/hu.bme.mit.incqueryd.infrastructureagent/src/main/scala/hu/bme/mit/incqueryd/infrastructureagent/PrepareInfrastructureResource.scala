@@ -47,7 +47,10 @@ class PrepareInfrastructureResource {
 
   private def startCoordinator(inventory: Inventory) {
     UnixUtils.exec("./start-coordinator.sh", Map[String, String](), System.out)
-    InfrastructureAgentUtils.waitForServer(inventory.getMaster.getIp, Coordinator.port, 10 seconds)
+    val coordinator = new Coordinator(inventory.getMaster())
+    InfrastructureAgentUtils.retry(15)(1000) {
+      coordinator.isWebServiceReady
+    }
   }
 
   private def startMonitoring {

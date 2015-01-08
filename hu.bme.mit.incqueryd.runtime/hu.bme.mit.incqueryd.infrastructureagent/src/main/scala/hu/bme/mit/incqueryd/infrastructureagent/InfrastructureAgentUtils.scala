@@ -9,36 +9,21 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import ExecutionContext.Implicits.global
 import eu.mondo.utils.NetworkUtils
+import scala.util.Try
+import scala.util.Failure
+import scala.util.Success
 
 object InfrastructureAgentUtils {
 
-  def isServerListening(host: String, port: Int): Boolean = {
-    var s: Socket = null
-    try {
-      s = new Socket(host, port)
-      true
-    } catch {
-      case e: Exception => false
-    } finally {
-      if (s != null) try {
-        s.close()
-      } catch {
-        case e: Exception => 
-      }
+  @annotation.tailrec
+  def retry[T](n: Int)(delayMillis: Long)(fn: => T): T = {
+    Try { fn } match {
+      case Success(x) => x
+      case _ if n > 1 => { Thread.sleep(delayMillis); retry(n - 1)(delayMillis)(fn) }
+      case Failure(e) => throw e
     }
   }
 
-  def waitForServer(host: String, port: Int, timeout: Duration) {
-    Await.ready(future {
-      while (!isServerListening(host, port)) {
-        Thread.sleep(1000)
-      }
-    }, timeout)
-    Thread.sleep(1000) // XXX
-  }
-
-  def thisMachineIs(instance: MachineInstance): Boolean = instance.getIp == NetworkUtils.getLocalIpAddress
-  
   def thisMachineIs(machine: Machine): Boolean = machine.getIp == NetworkUtils.getLocalIpAddress
 
 }

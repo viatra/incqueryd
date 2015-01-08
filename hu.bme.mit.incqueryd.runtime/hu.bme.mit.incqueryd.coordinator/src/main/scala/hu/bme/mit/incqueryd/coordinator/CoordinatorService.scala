@@ -11,26 +11,32 @@ import spray.http.ContentTypes._
 
 trait CoordinatorService extends HttpService {
 
-  def start = path(Coordinator.Start.path) {
+  def isWebServiceReady = path(Coordinator.IsWebServiceReady.path) {
+    get { complete("ready") }
+  }
+
+  def start = path(Coordinator.StartQuery.path) {
     get { complete("started") }
   }
 
-  def check = path(Coordinator.Check.path) {
+  def check = path(Coordinator.CheckResults.path) {
     get {
       respondWithHeader(`Content-Type`(`application/json`)) {
         complete {
           import Coordinator.JsonProtocol._
-          marshal(Coordinator.Check.sampleResult).right.get // TODO error handling
+          marshal(Coordinator.CheckResults.sampleResult).right.get // TODO error handling
         }
       }
     }
   }
 
-  def stop = path(Coordinator.Stop.path) {
+  def stop = path(Coordinator.StopQuery.path) {
     get { complete("stopped") }
   }
 
-  def route = start ~
+  def route =
+    isWebServiceReady ~
+    start ~
     check ~
     stop
 

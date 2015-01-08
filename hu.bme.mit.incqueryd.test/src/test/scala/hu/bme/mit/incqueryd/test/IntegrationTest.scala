@@ -26,7 +26,7 @@ object IntegrationTest {
       coordinator.startQuery(recipe)
       val result = coordinator.check
       println(s"Query result: $result")
-      assertEquals(Coordinator.Check.sampleResult, result)
+      assertEquals(Coordinator.CheckResults.sampleResult, result)
       coordinator.stopQuery
     } finally {
 	  infrastructureAgents.foreach(_.destroyInfrastructure)
