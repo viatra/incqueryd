@@ -2,7 +2,7 @@ package hu.bme.mit.incqueryd.coordinator
 
 import akka.actor.Actor
 
-class CoordinatorActor extends CoordinatorService with Actor {
+class HttpCoordinatorActor extends CoordinatorService with Actor {
 
   def actorRefFactory = context
 
