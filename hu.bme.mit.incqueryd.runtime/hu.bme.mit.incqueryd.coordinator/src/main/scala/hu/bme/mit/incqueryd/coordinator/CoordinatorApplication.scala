@@ -14,9 +14,9 @@ object CoordinatorApplication {
 
   def main(args: Array[String]) {
     implicit val httpActorSystem = ActorSystem("http")
-    val coordinatorActor = httpActorSystem.actorOf(Props[HttpCoordinatorActor], "coordinator")
+    val httpCoordinatorActor = httpActorSystem.actorOf(Props[HttpCoordinatorActor], "coordinator")
     implicit val timeout = Timeout(1000000 seconds)
-    IO(Http) ! Http.Bind(coordinatorActor, interface = NetworkUtils.getLocalIpAddress, port = Coordinator.port)
+    IO(Http) ! Http.Bind(httpCoordinatorActor, interface = NetworkUtils.getLocalIpAddress, port = Coordinator.port)
   }
 
 }
