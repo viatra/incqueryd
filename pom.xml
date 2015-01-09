@@ -11,13 +11,10 @@
 		<maven.compiler.showWarnings>true</maven.compiler.showWarnings>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
-		<tycho.version>0.20.0</tycho.version>
 		<scala.version>2.10.4</scala.version>
 		<akka.version>2.3.6</akka.version>
 		<spray.version>1.3.1</spray.version>
 		<emf.version>2.9.1-v20130827-0309</emf.version>
-		<incquery.version>0.9.0-SNAPSHOT</incquery.version>
-		<dropwizard.version>0.7.0</dropwizard.version>
   </properties>
 	<repositories>
 		<repository>
@@ -110,7 +107,7 @@
 		  <dependency>
 			  <groupId>org.eclipse.incquery</groupId>
 			  <artifactId>org.eclipse.incquery.runtime.rete.recipes</artifactId>
-			  <version>${incquery.version}</version>
+			  <version>0.9.0-SNAPSHOT</version>
   		</dependency>
 		</dependencies>
 	</dependencyManagement>
