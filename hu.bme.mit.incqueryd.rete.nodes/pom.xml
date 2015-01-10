@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hu.bme.mit.incqueryd</groupId>
-	<artifactId>hu.bme.mit.incqueryd.rete</artifactId>
+	<artifactId>hu.bme.mit.incqueryd.rete.nodes</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>IncQuery-D Rete implementation</name>
+	<name>IncQuery-D Rete nodes</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -67,12 +67,6 @@
 		</dependency>
 
 		<!-- EMF JSON -->
-
-		<!-- <dependency> -->
-		<!-- <groupId>org.emfjson</groupId> -->
-		<!-- <artifactId>emfjson-core</artifactId> -->
-		<!-- <version>0.9.0</version> -->
-		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.emfjson</groupId>
