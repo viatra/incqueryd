@@ -1,0 +1,28 @@
+{
+	"primarySet":[{"tuple":[1,2,3,4]},{"tuple":[1,5,6,7]},{"tuple":[3,2,5,4]}],
+	"secondarySet":[],
+	"changes":[
+		{
+			"changeSet":{"tuples":[{"tuple":[8,2,6,4]}],"changeType":"POSITIVE"},
+			"changeSlot":"PRIMARY"
+		},
+		{
+			"changeSet":{"tuples":[{"tuple":[2,5,4,3]}],"changeType":"POSITIVE"},
+			"changeSlot":"SECONDARY"
+		},
+		{
+			"changeSet":{"tuples":[{"tuple":[5,5,7,3]}],"changeType":"POSITIVE"},
+			"changeSlot":"SECONDARY"
+		},
+		{
+			"changeSet":{"tuples":[{"tuple":[2,5,4,3]}],"changeType":"NEGATIVE"},
+			"changeSlot":"SECONDARY"
+		}
+	],
+	"expectedChangeSets":[
+		{"tuples":[{"tuple":[8,2,6,4]}],"changeType":"POSITIVE"},
+		{"tuples":[{"tuple":[1,2,3,4]},{"tuple":[3,2,5,4]},{"tuple":[8,2,6,4]}],"changeType":"NEGATIVE"},
+		{"tuples":[{"tuple":[1,5,6,7]}],"changeType":"NEGATIVE"},
+		{"tuples":[{"tuple":[1,2,3,4]},{"tuple":[3,2,5,4]},{"tuple":[8,2,6,4]}],"changeType":"POSITIVE"}
+	]
+}
