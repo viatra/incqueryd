@@ -21,6 +21,20 @@ import org.apache.http.client.utils.URLEncodedUtils
 import com.google.common.collect.ImmutableList
 import com.sun.jersey.api.client.config.DefaultClientConfig
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider
+import akka.actor.ActorSystem
+import hu.bme.mit.incqueryd.coordinator.client.CoordinatorActor
+import akka.actor.Props
+import akka.actor.Deploy
+import akka.remote.RemoteScope
+import akka.actor.Address
+import hu.bme.mit.incqueryd.coordinator.client.Coordinator
+import hu.bme.mit.incqueryd.coordinator.client.Coordinator
+import akka.actor.ActorPath
+import scala.concurrent.Await
+import akka.util.Timeout
+import java.util.concurrent.TimeUnit
+import eu.mondo.utils.NetworkUtils
+import akka.actor.ActorRef
 
 object InfrastructureAgent {
   final val port = 8084
@@ -41,21 +55,30 @@ object InfrastructureAgent {
   }
 }
 
-class InfrastructureAgent(val instance: MachineInstance) {
+trait InfrastructureAgent {
+  def prepareInfrastructure(inventory: Inventory): Infrastructure
+  def destroyInfrastructure
+  def startMicrokernels
+  def stopMicrokernels
+}
+
+object DefaultInfrastructureAgent {
+}
+
+class DefaultInfrastructureAgent(val instance: MachineInstance) extends InfrastructureAgent {
 
   def prepareInfrastructure(inventory: Inventory): Infrastructure = {
     println(s"Preparing infrastructure on ${instance.getIp}")
     val inventoryJson = EObjectSerializer.serializeToString(inventory)
-    val currentIp = instance.getIp
+    val instanceIp = instance.getIp
     val response = callWebService(InfrastructureAgent.PrepareInfrastructure.path,
-        new BasicNameValuePair(InfrastructureAgent.PrepareInfrastructure.inventoryParameter, inventoryJson),
-        new BasicNameValuePair(InfrastructureAgent.PrepareInfrastructure.currentIpParameter, currentIp)
-      ).getEntity(classOf[PrepareInfrastructureResponse])
+      new BasicNameValuePair(InfrastructureAgent.PrepareInfrastructure.inventoryParameter, inventoryJson),
+      new BasicNameValuePair(InfrastructureAgent.PrepareInfrastructure.currentIpParameter, instanceIp)).getEntity(classOf[PrepareInfrastructureResponse])
     if (response.isMaster) {
-      val coordinator = new Coordinator(instance)
-      val monitoringServer = new MonitoringServer(instance)
-      Infrastructure(Some(coordinator), Some(monitoringServer))
-    } else {
+        val coordinator = new Coordinator(instance)
+        val monitoringServer = new MonitoringServer(instance)
+        Infrastructure(Some(coordinator), Some(monitoringServer))
+      } else {
       Infrastructure(None, None)
     }
   }
@@ -73,5 +96,30 @@ class InfrastructureAgent(val instance: MachineInstance) {
   }
 
   private def callWebService(path: String, params: NameValuePair*) = WebServiceUtils.call(instance.getIp, InfrastructureAgent.port, path, params: _*)
+
+}
+
+class DebugInfrastructureAgent(val instance: MachineInstance) extends InfrastructureAgent {
+
+  val actorSystem = ActorSystem(Coordinator.actorSystemName)
+
+  def prepareInfrastructure(inventory: Inventory): Infrastructure = {
+    println("Preparing infrastructure on local machine")
+    val actorSystem = Coordinator.createCoordinatorRuntimeActorSystem(instance.getIp)
+    val props = Props[CoordinatorActor]
+    actorSystem.actorOf(props, Coordinator.actorName)
+    val coordinator = new Coordinator(instance)
+    Infrastructure(Some(coordinator), None)
+  }
+
+  def destroyInfrastructure {
+    actorSystem.shutdown
+  }
+
+  def startMicrokernels {
+  }
+
+  def stopMicrokernels {
+  }
 
 }

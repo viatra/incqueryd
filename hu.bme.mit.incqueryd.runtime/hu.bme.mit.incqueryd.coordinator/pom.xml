@@ -30,26 +30,6 @@
 			<artifactId>akka-testkit_2.10</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>io.spray</groupId>
-			<artifactId>spray-can</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.spray</groupId>
-			<artifactId>spray-http</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.spray</groupId>
-			<artifactId>spray-httpx</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.spray</groupId>
-			<artifactId>spray-json_2.10</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.spray</groupId>
-			<artifactId>spray-routing</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
 			<artifactId>hu.bme.mit.incqueryd.arch</artifactId>
 			<version>1.0.0-SNAPSHOT</version>

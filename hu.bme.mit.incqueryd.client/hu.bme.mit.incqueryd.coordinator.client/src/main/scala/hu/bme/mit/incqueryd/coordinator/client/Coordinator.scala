@@ -4,75 +4,75 @@ import scala.collection.JavaConversions._
 import scala.concurrent.Await
 import scala.concurrent.Future
 import scala.concurrent.duration._
+
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
+
+import com.typesafe.config.ConfigFactory
+
+import akka.actor.ActorRef
 import akka.actor.ActorSystem
 import akka.actor.ActorSystem
-import hu.bme.mit.incqueryd.inventory.MachineInstance
-import spray.client.pipelining._
-import spray.http.HttpRequest
-import spray.http.HttpRequest
-import spray.http.HttpResponse
-import spray.httpx.SprayJsonSupport._
-import spray.json._
-import spray.httpx.unmarshalling._
-import spray.httpx.marshalling._
-import spray.http.Uri
-import scala.util.Left
+import akka.pattern.ask
 import akka.util.Timeout
+import eu.mondo.utils.NetworkUtils
+import hu.bme.mit.incqueryd.inventory.MachineInstance
 
 object Coordinator {
   final val port = 9090
-  object IsWebServiceReady {
-    final val path = "isWebServiceReady"
-  }
-  object StartQuery {
-    final val path = "start"
-  }
+  final val actorSystemName = "coordinator"
+  final val actorName = "coordinator"
   object CheckResults {
-    final val path = "check"
     final val sampleResult = List(ChangeSet(Set(Tuple(List(42))), true))
   }
-  object StopQuery {
-    final val path = "stop"
+
+  def getRemotingActorSystem(externalIp: String, port: Int): ActorSystem = {
+    val config = ConfigFactory.parseString(s"""
+akka {
+  actor {
+    provider = "akka.remote.RemoteActorRefProvider"
   }
-  object JsonProtocol extends DefaultJsonProtocol {
-    implicit val tupleFormat = jsonFormat1(Tuple)
-    implicit val changeSetFormat = jsonFormat2(ChangeSet)
+  remote {
+    enabled-transports = ["akka.remote.netty.tcp"]
+    netty.tcp {
+      hostname = "${externalIp}"
+      bind-hostname = "${NetworkUtils.getLocalIpAddress}" # XXX needed for docker networking
+      port = $port
+    }
   }
 }
-
-class Coordinator(val instance: MachineInstance) {
-
-  def isWebServiceReady() {
-    callWebService(Coordinator.IsWebServiceReady.path)
+""")
+       ActorSystem(Coordinator.actorSystemName, config)
+  }
+  def createCoordinatorRuntimeActorSystem(externalIp: String) = {
+    Coordinator.getRemotingActorSystem(externalIp, Coordinator.port)
+  }
+  
+  def coordinatorActor(ip: String): ActorRef = {
+	lazy val coordinatorClientActorSystem = Coordinator.getRemotingActorSystem(NetworkUtils.getLocalIpAddress, 0)
+    val actorPath = s"akka.tcp://${Coordinator.actorSystemName}@${ip}:${Coordinator.port}/user/${Coordinator.actorName}"
+    coordinatorClientActorSystem.actorFor(actorPath)
   }
 
+}
+
+class Coordinator(instance: MachineInstance) {
+
+  val coordinatorActor = Coordinator.coordinatorActor(instance.getIp)
+
   def startQuery(recipe: ReteRecipe) {
-    println(s"Starting query on ${instance.getIp}")
-    callWebService(Coordinator.StartQuery.path)
+    println(s"Starting query")
+    coordinatorActor ! StartQuery(recipe)
   }
 
   def check: List[ChangeSet] = {
-  	import Coordinator.JsonProtocol._
-    val response = callWebService(Coordinator.CheckResults.path)
-    val result = response.as[List[ChangeSet]]
-    result match {
-  	  case Left(error) => throw new RuntimeException(s"Can't unmarshal response, error: $error")
-  	  case Right(value) => value
-  	}
+    implicit val timeout = Timeout(5 seconds)
+    val future = coordinatorActor ? CheckResults
+    Await.result(future, timeout.duration).asInstanceOf[List[ChangeSet]]
   }
 
   def stopQuery() {
-    callWebService(Coordinator.StopQuery.path)
-  }
-
-  private def callWebService(path: String): HttpResponse = {
-    implicit val system = ActorSystem()
-    import system.dispatcher // execution context for futures
-    val pipeline: HttpRequest => Future[HttpResponse] = sendReceive
-    val future = pipeline(Get(Uri.from(scheme = "http", host = instance.getIp, port = Coordinator.port, path = s"/$path")))
-    val timeout = 10 seconds;
-    Await.result(future, timeout)
+    println(s"Stopping query")
+    coordinatorActor ! StopQuery
   }
 
 }

@@ -9,6 +9,7 @@ import hu.bme.mit.incqueryd.inventory.InstanceSet
 import hu.bme.mit.incqueryd.inventory.Inventory
 import hu.bme.mit.incqueryd.inventory.MachineInstance
 import eu.mondo.utils.WebServiceUtils
+import hu.bme.mit.incqueryd.infrastructureagent.client.DefaultInfrastructureAgent
 
 object BootstrapAgent {
 
@@ -27,7 +28,7 @@ class BootstrapAgent(val instance: MachineInstance) {
     println(s"Bootstrapping ${instance.getIp}")
     val port = 4242 // XXX duplication
     WebServiceUtils.call(instance.getIp, port, "")
-    new InfrastructureAgent(instance)
+    new DefaultInfrastructureAgent(instance)
   }
 
 }

@@ -20,6 +20,9 @@ import hu.bme.mit.incqueryd.coordinator.client.Coordinator
 import hu.bme.mit.incqueryd.coordinator.client.Coordinator
 import scala.concurrent.duration._
 import hu.bme.mit.incqueryd.infrastructureagent.client.PrepareInfrastructureResponse
+import akka.actor.Identify
+import hu.bme.mit.incqueryd.infrastructureagent.client.DefaultInfrastructureAgent
+import hu.bme.mit.incqueryd.coordinator.client.IsAlive
 
 @Path(InfrastructureAgent.PrepareInfrastructure.path)
 @Produces(Array(MediaType.APPLICATION_JSON))
@@ -46,11 +49,8 @@ class PrepareInfrastructureResource {
   }
 
   private def startCoordinator(inventory: Inventory) {
-    UnixUtils.exec("./start-coordinator.sh", Map[String, String](), System.out)
-    val coordinator = new Coordinator(inventory.getMaster())
-    InfrastructureAgentUtils.retry(15)(1000) {
-      coordinator.isWebServiceReady
-    }
+    UnixUtils.exec(s"./start-coordinator.sh ${inventory.getMaster.getIp}", Map[String, String](), System.out)
+    Thread.sleep(2000) // XXX
   }
 
   private def startMonitoring {

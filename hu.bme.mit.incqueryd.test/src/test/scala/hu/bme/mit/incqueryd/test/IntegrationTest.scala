@@ -11,6 +11,7 @@ import hu.bme.mit.incqueryd.inventory.InstanceSet
 import scala.collection.JavaConversions._
 import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
 import eu.mondo.utils.NetworkUtils
+import hu.bme.mit.incqueryd.infrastructureagent.client.DefaultInfrastructureAgent
 
 object IntegrationTest {
 
@@ -35,7 +36,7 @@ object IntegrationTest {
 
   private def localInfrastructureAgents(inventory: Inventory) = {
     inventory.getMachineSet match {
-      case instanceSet: InstanceSet => instanceSet.getMachineInstances.map(new InfrastructureAgent(_))
+      case instanceSet: InstanceSet => instanceSet.getMachineInstances.map(new DefaultInfrastructureAgent(_))
       case _ => List()
     }
   }
