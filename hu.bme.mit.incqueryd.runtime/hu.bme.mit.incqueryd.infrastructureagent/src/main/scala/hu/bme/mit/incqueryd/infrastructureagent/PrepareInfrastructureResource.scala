@@ -50,7 +50,10 @@ class PrepareInfrastructureResource {
 
   private def startCoordinator(inventory: Inventory) {
     UnixUtils.exec(s"./start-coordinator.sh ${inventory.getMaster.getIp}", Map[String, String](), System.out)
-    Thread.sleep(2000) // XXX
+    val coordinatorActor = Coordinator.coordinatorActor(inventory.getMaster.getIp)
+    InfrastructureAgentUtils.retry(10)(1000) {
+      coordinatorActor ! IsAlive
+    }
   }
 
   private def startMonitoring {
