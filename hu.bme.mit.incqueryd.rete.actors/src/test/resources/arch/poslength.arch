@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<arch:Configuration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:arch="http://incquery.net/arch"
+    xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
+  <recipeImports
+      importURI="../recipes/posLength.xmi"/>
+  <mappings>
+    <machine
+        ip="172.16.70.135"/>
+    <roles xsi:type="arch:ReteRole">
+      <nodeRecipe
+          xsi:type="recipes:BinaryInputRecipe"
+          href="../recipes/posLength.xmi#//@recipeNodes.0"/>
+    </roles>
+  </mappings>
+  <mappings>
+    <machine
+        ip="172.16.70.137"/>
+  </mappings>
+</arch:Configuration>
