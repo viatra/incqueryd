@@ -8,20 +8,21 @@ class CoordinatorActor extends Actor {
   def receive = {
     case IsAlive => {
     }
-    case StartQuery => {
-      sender ! "ready"
+    case StartQuery(recipe) => {
+      sender ! ReteNetwork(List(PatternDescriptor()))
     }
-    case CheckResults => {
+    case CheckResults(pattern) => {
       sender ! Coordinator.CheckResults.sampleResult
     }
-    case StopQuery => {
-      sender ! "ready"
+    case StopQuery(network) => {
+      sender ! "Ready"
     }
   }
 
 }
 
-case object IsAlive
-case class StartQuery(recipe: ReteRecipe)
-case object CheckResults
-case object StopQuery
+sealed trait CoordinatorCommand
+case object IsAlive extends CoordinatorCommand
+case class StartQuery(recipe: ReteRecipe) extends CoordinatorCommand
+case class CheckResults(pattern: PatternDescriptor) extends CoordinatorCommand
+case class StopQuery(network: ReteNetwork) extends CoordinatorCommand

@@ -12,3 +12,7 @@ runtimeInfo
 published
 rete-visualization/
 xtend-gen/*
+.idea
+*.err
+*.out
+*.iml

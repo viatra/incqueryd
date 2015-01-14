@@ -34,7 +34,7 @@ akka {
   remote {
     enabled-transports = ["akka.remote.netty.tcp"]
     netty.tcp {
-      hostname = "${externalIp}"
+      hostname = "$externalIp"
       bind-hostname = "${NetworkUtils.getLocalIpAddress}" # XXX needed for docker networking
       port = $port
     }
@@ -49,7 +49,7 @@ akka {
   
   def coordinatorActor(ip: String): ActorRef = {
 	lazy val coordinatorClientActorSystem = Coordinator.getRemotingActorSystem(NetworkUtils.getLocalIpAddress, 0)
-    val actorPath = s"akka.tcp://${Coordinator.actorSystemName}@${ip}:${Coordinator.port}/user/${Coordinator.actorName}"
+    val actorPath = s"akka.tcp://${Coordinator.actorSystemName}@$ip:${Coordinator.port}/user/${Coordinator.actorName}"
     coordinatorClientActorSystem.actorFor(actorPath)
   }
 
@@ -59,20 +59,24 @@ class Coordinator(instance: MachineInstance) {
 
   val coordinatorActor = Coordinator.coordinatorActor(instance.getIp)
 
-  def startQuery(recipe: ReteRecipe) {
+  def startQuery(recipe: ReteRecipe): ReteNetwork = {
     println(s"Starting query")
-    coordinatorActor ! StartQuery(recipe)
+    askCoordinator[ReteNetwork](StartQuery(recipe))
   }
 
-  def check: List[ChangeSet] = {
-    implicit val timeout = Timeout(5 seconds)
-    val future = coordinatorActor ? CheckResults
-    Await.result(future, timeout.duration).asInstanceOf[List[ChangeSet]]
+  def checkResults(pattern: PatternDescriptor): List[ChangeSet] = {
+    askCoordinator[List[ChangeSet]](CheckResults(pattern))
   }
 
-  def stopQuery() {
+  def stopQuery(network: ReteNetwork) {
     println(s"Stopping query")
-    coordinatorActor ! StopQuery
+    askCoordinator[String](StopQuery(network))
+  }
+
+  private def askCoordinator[T](message: CoordinatorCommand): T = {
+    implicit val timeout = Timeout(5 seconds)
+    val future = coordinatorActor ? message
+    Await.result(future, timeout.duration).asInstanceOf[T]
   }
 
 }

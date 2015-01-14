@@ -113,7 +113,7 @@ class DebugInfrastructureAgent(val instance: MachineInstance) extends Infrastruc
   }
 
   def destroyInfrastructure {
-    actorSystem.shutdown
+    actorSystem.terminate
   }
 
   def startMicrokernels {

@@ -13,6 +13,6 @@ mvn clean install
 hu.bme.mit.incqueryd.runtime/scripts/start.sh
 sleep 15s # XXX
 cd hu.bme.mit.incqueryd.test
-mvn verify -Dtest=**/ITDevelopment* -DinstanceIp=$1
+mvn verify -Dtest=**/Development* -DinstanceIp=$1
 cd ..
 hu.bme.mit.incqueryd.runtime/scripts/stop.sh
