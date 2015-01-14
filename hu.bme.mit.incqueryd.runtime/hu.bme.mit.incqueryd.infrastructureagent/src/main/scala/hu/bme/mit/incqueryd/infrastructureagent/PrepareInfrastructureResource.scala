@@ -23,6 +23,7 @@ import hu.bme.mit.incqueryd.infrastructureagent.client.PrepareInfrastructureResp
 import akka.actor.Identify
 import hu.bme.mit.incqueryd.infrastructureagent.client.DefaultInfrastructureAgent
 import hu.bme.mit.incqueryd.coordinator.client.IsAlive
+import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent.PrepareInfrastructure._
 
 @Path(InfrastructureAgent.PrepareInfrastructure.path)
 @Produces(Array(MediaType.APPLICATION_JSON))
@@ -30,7 +31,7 @@ class PrepareInfrastructureResource {
 
   @GET
   @Timed
-  def execute(@QueryParam(InfrastructureAgent.PrepareInfrastructure.inventoryParameter) inventoryJson: String, @QueryParam(InfrastructureAgent.PrepareInfrastructure.currentIpParameter) currentIp: String): PrepareInfrastructureResponse = {
+  def execute(@QueryParam(inventoryParameter) inventoryJson: String, @QueryParam(currentIpParameter) currentIp: String): PrepareInfrastructureResponse = {
     val inventory = parseInventory(inventoryJson)
     val isMaster = inventory.getMaster.getIp == currentIp
     if (isMaster) {
