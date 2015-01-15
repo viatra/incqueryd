@@ -14,8 +14,6 @@
       <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.monitoringserver.client/hu.bme.mit.incqueryd.monitoringserver.client.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.monitoringserver.client/hu.bme.mit.incqueryd.monitoringserver.client.iml" />
       <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.runtime.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.runtime.iml" />
       <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.test/hu.bme.mit.incqueryd.test.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.test/hu.bme.mit.incqueryd.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.tooling.dependencies/hu.bme.mit.incqueryd.tooling.dependencies.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.tooling.dependencies/hu.bme.mit.incqueryd.tooling.dependencies.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.tooling/sandbox/sandbox.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.tooling/sandbox/sandbox.iml" />
     </modules>
   </component>
 </project>
