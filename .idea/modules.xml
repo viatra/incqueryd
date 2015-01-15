@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.arch/hu.bme.mit.incqueryd.arch.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.arch/hu.bme.mit.incqueryd.arch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.bootstrapagent.client/hu.bme.mit.incqueryd.bootstrapagent.client.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.bootstrapagent.client/hu.bme.mit.incqueryd.bootstrapagent.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.client.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.coordinator/hu.bme.mit.incqueryd.coordinator.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.coordinator/hu.bme.mit.incqueryd.coordinator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.coordinator.client/hu.bme.mit.incqueryd.coordinator.client.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.coordinator.client/hu.bme.mit.incqueryd.coordinator.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.infrastructureagent/hu.bme.mit.incqueryd.infrastructureagent.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.infrastructureagent/hu.bme.mit.incqueryd.infrastructureagent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.infrastructureagent.client/hu.bme.mit.incqueryd.infrastructureagent.client.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.infrastructureagent.client/hu.bme.mit.incqueryd.infrastructureagent.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.inventory/hu.bme.mit.incqueryd.inventory.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.inventory/hu.bme.mit.incqueryd.inventory.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.monitoringserver.client/hu.bme.mit.incqueryd.monitoringserver.client.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.monitoringserver.client/hu.bme.mit.incqueryd.monitoringserver.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.runtime.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.runtime.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.test/hu.bme.mit.incqueryd.test.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.test/hu.bme.mit.incqueryd.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.tooling.dependencies/hu.bme.mit.incqueryd.tooling.dependencies.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.tooling.dependencies/hu.bme.mit.incqueryd.tooling.dependencies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.tooling/sandbox/sandbox.iml" filepath="$PROJECT_DIR$/hu.bme.mit.incqueryd.tooling/sandbox/sandbox.iml" />
+    </modules>
+  </component>
+</project>
