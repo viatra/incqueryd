@@ -43,10 +43,10 @@ class PrepareInfrastructureResource {
   }
 
   private def parseInventory(inventoryJson: String): Inventory = {
-	EObjectDeserializer.deserializeFromString(inventoryJson, Set(InventoryPackage.eINSTANCE)) match {
-	  case inventory: Inventory => inventory
-	  case _ => throw new IllegalArgumentException(s"JSON does not describe an inventory: $inventoryJson")
-	}
+    EObjectDeserializer.deserializeFromString(inventoryJson, Set(InventoryPackage.eINSTANCE)) match {
+      case inventory: Inventory => inventory
+      case _ => throw new IllegalArgumentException(s"JSON does not describe an inventory: $inventoryJson")
+    }
   }
 
   private def startCoordinator(inventory: Inventory) {

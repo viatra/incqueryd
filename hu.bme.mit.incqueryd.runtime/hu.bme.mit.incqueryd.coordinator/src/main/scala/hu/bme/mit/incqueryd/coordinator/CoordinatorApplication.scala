@@ -22,7 +22,7 @@ object CoordinatorApplication {
     actorSystem.actorOf(props, Coordinator.actorName)
     Runtime.getRuntime.addShutdownHook(new Thread(new Runnable {
       def run = {
-        actorSystem.shutdown
+        actorSystem.terminate
       }
     }))
   }

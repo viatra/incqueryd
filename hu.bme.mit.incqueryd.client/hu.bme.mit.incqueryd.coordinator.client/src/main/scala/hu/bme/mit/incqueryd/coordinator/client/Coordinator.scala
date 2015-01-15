@@ -41,14 +41,14 @@ akka {
   }
 }
 """)
-       ActorSystem(Coordinator.actorSystemName, config)
+    ActorSystem(Coordinator.actorSystemName, config)
   }
   def createCoordinatorRuntimeActorSystem(externalIp: String) = {
     Coordinator.getRemotingActorSystem(externalIp, Coordinator.port)
   }
-  
+
   def coordinatorActor(ip: String): ActorRef = {
-	lazy val coordinatorClientActorSystem = Coordinator.getRemotingActorSystem(NetworkUtils.getLocalIpAddress, 0)
+	  lazy val coordinatorClientActorSystem = Coordinator.getRemotingActorSystem(NetworkUtils.getLocalIpAddress, 0)
     val actorPath = s"akka.tcp://${Coordinator.actorSystemName}@$ip:${Coordinator.port}/user/${Coordinator.actorName}"
     coordinatorClientActorSystem.actorFor(actorPath)
   }
