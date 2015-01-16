@@ -3,8 +3,10 @@ package hu.bme.mit.incqueryd.coordinator.client
 import akka.pattern.ask
 import akka.util.Timeout
 import hu.bme.mit.incqueryd.engine._
-import hu.bme.mit.incqueryd.inventory.MachineInstance
+import hu.bme.mit.incqueryd.inventory.{Inventory, MachineInstance}
+import hu.bme.mit.incqueryd.util.EObjectSerializer
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
+import org.openrdf.model.Resource
 
 import scala.concurrent.Await
 import scala.concurrent.duration._
@@ -17,7 +19,12 @@ object Coordinator {
 
 class Coordinator(instance: MachineInstance) {
 
-  def startQuery(recipe: ReteRecipe): ReteNetwork = {
+  def loadData(databaseUrl: String, vocabulary: Resource, inventory: Inventory): Index = {
+    val inventoryJson = EObjectSerializer.serializeToString(inventory)
+    askCoordinator[Index](LoadData(databaseUrl, vocabulary, inventoryJson))
+  }
+
+  def startQuery(recipe: ReteRecipe, index: Index): ReteNetwork = {
     println(s"Starting query")
     askCoordinator[ReteNetwork](StartQuery(recipe))
   }

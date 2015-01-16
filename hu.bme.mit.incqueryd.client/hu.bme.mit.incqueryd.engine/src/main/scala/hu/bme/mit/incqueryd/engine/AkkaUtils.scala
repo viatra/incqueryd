@@ -37,9 +37,7 @@ akka {
 
   def createActor(actorSystemName: String, ip: String, port: Int, actorName: String, actorClass: Class[_ <: Actor]): ActorRef = {
     UnixUtils.exec(s"./start-actor-system.sh $actorSystemName $ip $port $actorName ${actorClass.getName}", Map[String, String](), System.out)
-    retry(10)(1000) {
-      findActor(actorSystemName, ip, port, actorName)
-    }
+    findActor(actorSystemName, ip, port, actorName)
   }
 
   @annotation.tailrec

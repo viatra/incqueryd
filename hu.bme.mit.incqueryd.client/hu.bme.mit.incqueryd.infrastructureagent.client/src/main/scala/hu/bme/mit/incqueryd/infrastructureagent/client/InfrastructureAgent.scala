@@ -36,9 +36,6 @@ trait InfrastructureAgent {
   def stopMicrokernels
 }
 
-object DefaultInfrastructureAgent {
-}
-
 class DefaultInfrastructureAgent(val instance: MachineInstance) extends InfrastructureAgent {
 
   def prepareInfrastructure(inventory: Inventory): Infrastructure = {

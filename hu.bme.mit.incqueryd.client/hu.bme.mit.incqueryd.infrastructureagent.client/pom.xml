@@ -9,15 +9,6 @@
 	</parent>
 	<artifactId>hu.bme.mit.incqueryd.infrastructureagent.client</artifactId>
 	<name>IncQuery-D Infrastructure Agent Client</name>
-	<properties>
-		<emfjson.version>0.9.0</emfjson.version>
-	</properties>
-	<repositories>
-		<repository>
-			<id>emfjson</id>
-			<url>http://repository-ghillairet.forge.cloudbees.com/snapshot</url>
-		</repository>
-	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
@@ -46,16 +37,6 @@
 			<groupId>eu.mondo</groupId>
 			<artifactId>eu.mondo.utils</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.emfjson</groupId>
-			<artifactId>emfjson-core</artifactId>
-			<version>${emfjson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.emfjson</groupId>
-			<artifactId>emfjson-jackson</artifactId>
-			<version>${emfjson.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>

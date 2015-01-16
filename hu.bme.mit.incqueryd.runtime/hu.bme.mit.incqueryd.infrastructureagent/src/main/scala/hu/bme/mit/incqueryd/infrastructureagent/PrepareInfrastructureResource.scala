@@ -42,7 +42,10 @@ class PrepareInfrastructureResource {
 
   private def startCoordinator(inventory: Inventory) {
     val masterIp = inventory.getMaster.getIp
-    AkkaUtils.createActor(Coordinator.actorSystemName, masterIp, Coordinator.port, Coordinator.actorName, classOf[CoordinatorActor])
+    val coordinatorActor = AkkaUtils.createActor(Coordinator.actorSystemName, masterIp, Coordinator.port, Coordinator.actorName, classOf[CoordinatorActor])
+    AkkaUtils.retry(10)(1000) {
+      coordinatorActor ! IsAlive
+    }
   }
 
   private def startMonitoring {

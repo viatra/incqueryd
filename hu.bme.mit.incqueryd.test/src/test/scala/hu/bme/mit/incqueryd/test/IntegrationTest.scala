@@ -24,7 +24,8 @@ trait IntegrationTest {
       assertEquals(1, coordinators.size)
       val coordinator = coordinators.head
       val recipe = loadRecipe
-      val network = coordinator.startQuery(recipe)
+      val index = coordinator.loadData(null, null, inventory)
+      val network = coordinator.startQuery(recipe, index)
       try {
         assertTrue(!network.patterns.isEmpty)
         val result = coordinator.checkResults(network.patterns.head)
