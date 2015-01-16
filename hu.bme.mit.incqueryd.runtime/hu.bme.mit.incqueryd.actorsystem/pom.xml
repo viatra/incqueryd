@@ -7,7 +7,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>hu.bme.mit.incqueryd.coordinator</artifactId>
+	<artifactId>hu.bme.mit.incqueryd.actorsystem</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>org.scala-lang</groupId>
@@ -22,22 +22,9 @@
 			<artifactId>akka-remote_2.10</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.typesafe.akka</groupId>
-			<artifactId>akka-kernel_2.10</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.typesafe.akka</groupId>
-			<artifactId>akka-testkit_2.10</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>hu.bme.mit.incqueryd</groupId>
-			<artifactId>hu.bme.mit.incqueryd.arch</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
 			<artifactId>
-				hu.bme.mit.incqueryd.coordinator.client
+				hu.bme.mit.incqueryd.engine
 			</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
@@ -57,7 +44,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>hu.bme.mit.incqueryd.coordinator.CoordinatorApplication</mainClass>
+							<mainClass>hu.bme.mit.incqueryd.actorsystem.Main</mainClass>
 							<useUniqueVersions>false</useUniqueVersions>
 						</manifest>
 					</archive>
@@ -84,5 +71,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<name>IncQuery-D Coordinator</name>
+	<name>IncQuery-D Actor System</name>
 </project>

@@ -17,7 +17,7 @@ class DestroyInfrastructureResource {
   @GET
   @Timed
   def execute: Response = {
-    UnixUtils.exec("./stop-coordinator.sh", Map[String, String](), System.out)
+    UnixUtils.exec("./stop-actor-system.sh", Map[String, String](), System.out)
     Response.ok.build 
   }
 

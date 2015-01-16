@@ -6,11 +6,12 @@
     <file url="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.arch" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.bootstrapagent.client" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.coordinator.client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.engine" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.infrastructureagent.client" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.inventory" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.monitoringserver.client" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.runtime" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.coordinator" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.actorsystem" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.infrastructureagent" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.test" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/hu.bme.mit.incqueryd.tooling/sandbox" charset="UTF-8" />

@@ -1,7 +1,11 @@
-package hu.bme.mit.incqueryd.coordinator.client
+package hu.bme.mit.incqueryd.engine
 
 import akka.actor.Actor
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
+
+object CoordinatorActor {
+  final val sampleResult = List(ChangeSet(Set(Tuple(List(42))), true))
+}
 
 class CoordinatorActor extends Actor {
 
@@ -12,7 +16,7 @@ class CoordinatorActor extends Actor {
       sender ! ReteNetwork(List(PatternDescriptor()))
     }
     case CheckResults(pattern) => {
-      sender ! Coordinator.CheckResults.sampleResult
+      sender ! CoordinatorActor.sampleResult
     }
     case StopQuery(network) => {
       sender ! "Ready"

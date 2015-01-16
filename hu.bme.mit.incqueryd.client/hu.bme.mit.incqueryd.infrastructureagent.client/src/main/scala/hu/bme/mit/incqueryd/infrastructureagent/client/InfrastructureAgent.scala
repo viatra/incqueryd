@@ -1,40 +1,14 @@
 package hu.bme.mit.incqueryd.infrastructureagent.client
 
-import org.apache.http.HttpStatus
-import org.apache.http.client.methods.HttpGet
-import org.apache.http.impl.client.DefaultHttpClient
-import hu.bme.mit.incqueryd.coordinator.client.Coordinator
-import hu.bme.mit.incqueryd.inventory.Inventory
-import hu.bme.mit.incqueryd.inventory.MachineInstance
-import hu.bme.mit.incqueryd.monitoringserver.client.MonitoringServer
-import org.apache.http.HttpResponse
+import akka.actor.{ActorSystem, Props}
 import eu.mondo.utils.WebServiceUtils
-import org.apache.http.NameValuePair
+import hu.bme.mit.incqueryd.coordinator.client.Coordinator
+import hu.bme.mit.incqueryd.engine.{AkkaUtils, CoordinatorActor}
+import hu.bme.mit.incqueryd.inventory.{Inventory, MachineInstance}
+import hu.bme.mit.incqueryd.monitoringserver.client.MonitoringServer
 import hu.bme.mit.incqueryd.util.EObjectSerializer
+import org.apache.http.NameValuePair
 import org.apache.http.message.BasicNameValuePair
-import com.sun.jersey.api.client.Client
-import javax.ws.rs.core.MediaType
-import javax.ws.rs.core.Response
-import com.sun.jersey.api.client.ClientResponse
-import org.apache.http.client.utils.URIUtils
-import org.apache.http.client.utils.URLEncodedUtils
-import com.google.common.collect.ImmutableList
-import com.sun.jersey.api.client.config.DefaultClientConfig
-import org.codehaus.jackson.jaxrs.JacksonJsonProvider
-import akka.actor.ActorSystem
-import hu.bme.mit.incqueryd.coordinator.client.CoordinatorActor
-import akka.actor.Props
-import akka.actor.Deploy
-import akka.remote.RemoteScope
-import akka.actor.Address
-import hu.bme.mit.incqueryd.coordinator.client.Coordinator
-import hu.bme.mit.incqueryd.coordinator.client.Coordinator
-import akka.actor.ActorPath
-import scala.concurrent.Await
-import akka.util.Timeout
-import java.util.concurrent.TimeUnit
-import eu.mondo.utils.NetworkUtils
-import akka.actor.ActorRef
 
 object InfrastructureAgent {
   final val port = 8084
@@ -75,10 +49,10 @@ class DefaultInfrastructureAgent(val instance: MachineInstance) extends Infrastr
       new BasicNameValuePair(InfrastructureAgent.PrepareInfrastructure.inventoryParameter, inventoryJson),
       new BasicNameValuePair(InfrastructureAgent.PrepareInfrastructure.currentIpParameter, instanceIp)).getEntity(classOf[PrepareInfrastructureResponse])
     if (response.isMaster) {
-        val coordinator = new Coordinator(instance)
-        val monitoringServer = new MonitoringServer(instance)
-        Infrastructure(Some(coordinator), Some(monitoringServer))
-      } else {
+      val coordinator = new Coordinator(instance)
+      val monitoringServer = new MonitoringServer(instance)
+      Infrastructure(Some(coordinator), Some(monitoringServer))
+    } else {
       Infrastructure(None, None)
     }
   }
@@ -101,11 +75,10 @@ class DefaultInfrastructureAgent(val instance: MachineInstance) extends Infrastr
 
 class DebugInfrastructureAgent(val instance: MachineInstance) extends InfrastructureAgent {
 
-  val actorSystem = ActorSystem(Coordinator.actorSystemName)
+  lazy val actorSystem = AkkaUtils.createRemotingActorSystem(Coordinator.actorSystemName, instance.getIp, Coordinator.port)
 
   def prepareInfrastructure(inventory: Inventory): Infrastructure = {
     println("Preparing infrastructure on local machine")
-    val actorSystem = Coordinator.createCoordinatorRuntimeActorSystem(instance.getIp)
     val props = Props[CoordinatorActor]
     actorSystem.actorOf(props, Coordinator.actorName)
     val coordinator = new Coordinator(instance)

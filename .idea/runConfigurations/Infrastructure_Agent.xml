@@ -9,7 +9,7 @@
     <option name="MAIN_CLASS_NAME" value="hu.bme.mit.incqueryd.infrastructureagent.InfrastructureAgentApplication" />
     <option name="VM_PARAMETERS" value="" />
     <option name="PROGRAM_PARAMETERS" value="server" />
-    <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+    <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$/../scripts" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
     <option name="ALTERNATIVE_JRE_PATH" value="" />
     <option name="ENABLE_SWING_INSPECTOR" value="false" />
@@ -17,7 +17,13 @@
     <option name="PASS_PARENT_ENVS" value="true" />
     <module name="hu.bme.mit.incqueryd.infrastructureagent" />
     <envs />
+    <RunnerSettings RunnerId="Debug">
+      <option name="DEBUG_PORT" value="" />
+      <option name="TRANSPORT" value="0" />
+      <option name="LOCAL" value="true" />
+    </RunnerSettings>
     <RunnerSettings RunnerId="Run" />
+    <ConfigurationWrapper RunnerId="Debug" />
     <ConfigurationWrapper RunnerId="Run" />
     <method />
   </configuration>

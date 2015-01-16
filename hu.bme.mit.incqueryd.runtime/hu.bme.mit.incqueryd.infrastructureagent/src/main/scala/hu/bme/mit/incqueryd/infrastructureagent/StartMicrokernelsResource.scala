@@ -8,10 +8,11 @@ import javax.ws.rs.QueryParam
 import javax.ws.rs.core.Response
 import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
+import eu.mondo.utils.NetworkUtils
 import hu.bme.mit.incqueryd.arch.Configuration
 import hu.bme.mit.incqueryd.arch.ArchFactory
 import scala.collection.JavaConversions._
-import hu.bme.mit.incqueryd.infrastructure.Process
+import hu.bme.mit.incqueryd.infrastructure.{Machine, Process}
 import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
 
 @Path(InfrastructureAgent.StartMicrokernels.path)
@@ -33,8 +34,10 @@ class StartMicrokernelsResource {
   }
 
   private def getLocalProcesses(configuration: Configuration): Iterable[Process] = {
-    configuration.getMappings.map(_.getProcess).filter(process => InfrastructureAgentUtils.thisMachineIs(process.getMachine))
+    configuration.getMappings.map(_.getProcess).filter(process => thisMachineIs(process.getMachine))
   }
+
+  def thisMachineIs(machine: Machine): Boolean = machine.getIp == NetworkUtils.getLocalIpAddress
 
   private def generateConfigs(processes: Iterable[Process]) {
     // TODO

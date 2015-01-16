@@ -1,18 +1,14 @@
 package hu.bme.mit.incqueryd.test
 
-import scala.Option.option2Iterable
+import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
+import hu.bme.mit.incqueryd.engine.CoordinatorActor
+import hu.bme.mit.incqueryd.infrastructureagent.client.{DebugInfrastructureAgent, DefaultInfrastructureAgent, InfrastructureAgent}
+import hu.bme.mit.incqueryd.inventory.{InstanceSet, Inventory, InventoryFactory}
 import org.junit.Assert._
 import org.junit.Test
-import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
-import hu.bme.mit.incqueryd.coordinator.client.Coordinator
-import hu.bme.mit.incqueryd.inventory.InventoryFactory
-import hu.bme.mit.incqueryd.inventory.Inventory
-import hu.bme.mit.incqueryd.inventory.InstanceSet
+
+import scala.Option.option2Iterable
 import scala.collection.JavaConversions._
-import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
-import eu.mondo.utils.NetworkUtils
-import hu.bme.mit.incqueryd.infrastructureagent.client.DefaultInfrastructureAgent
-import hu.bme.mit.incqueryd.infrastructureagent.client.DebugInfrastructureAgent
 
 trait IntegrationTest {
 
@@ -33,7 +29,7 @@ trait IntegrationTest {
         assertTrue(!network.patterns.isEmpty)
         val result = coordinator.checkResults(network.patterns.head)
         println(s"Query result: $result")
-        assertEquals(Coordinator.CheckResults.sampleResult, result)
+        assertEquals(CoordinatorActor.sampleResult, result)
       } finally {
         coordinator.stopQuery(network)
       }
@@ -47,7 +43,7 @@ trait IntegrationTest {
     val instanceSet = InventoryFactory.eINSTANCE.createInstanceSet
     val instance = InventoryFactory.eINSTANCE.createMachineInstance
     val instanceIpKey: String = "instanceIp"
-    val instanceIp: String = System.getProperty(instanceIpKey)
+    val instanceIp = System.getProperty(instanceIpKey)
     if (instanceIp == null) {
       throw new IllegalArgumentException(s"VM argument $instanceIpKey is not set!")
     }

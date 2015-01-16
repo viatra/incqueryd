@@ -22,10 +22,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="hu.bme.mit.incqueryd.actorsystem" />
         <module name="hu.bme.mit.incqueryd.arch" />
         <module name="hu.bme.mit.incqueryd.bootstrapagent.client" />
         <module name="hu.bme.mit.incqueryd.coordinator" />
         <module name="hu.bme.mit.incqueryd.coordinator.client" />
+        <module name="hu.bme.mit.incqueryd.engine" />
+        <module name="hu.bme.mit.incqueryd.engine.runtime" />
         <module name="hu.bme.mit.incqueryd.infrastructureagent" />
         <module name="hu.bme.mit.incqueryd.infrastructureagent.client" />
         <module name="hu.bme.mit.incqueryd.inventory" />
@@ -36,11 +39,14 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="hu.bme.mit.incqueryd" target="1.7" />
+      <module name="hu.bme.mit.incqueryd.actorsystem" target="1.7" />
       <module name="hu.bme.mit.incqueryd.arch" target="1.7" />
       <module name="hu.bme.mit.incqueryd.bootstrapagent.client" target="1.7" />
       <module name="hu.bme.mit.incqueryd.client" target="1.7" />
       <module name="hu.bme.mit.incqueryd.coordinator" target="1.7" />
       <module name="hu.bme.mit.incqueryd.coordinator.client" target="1.7" />
+      <module name="hu.bme.mit.incqueryd.engine" target="1.7" />
+      <module name="hu.bme.mit.incqueryd.engine.runtime" target="1.7" />
       <module name="hu.bme.mit.incqueryd.infrastructureagent" target="1.7" />
       <module name="hu.bme.mit.incqueryd.infrastructureagent.client" target="1.7" />
       <module name="hu.bme.mit.incqueryd.inventory" target="1.7" />

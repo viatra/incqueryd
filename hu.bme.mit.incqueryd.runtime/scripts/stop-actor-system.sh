@@ -2,7 +2,7 @@
 
 cd "$( cd "$( dirname "$0" )" && pwd )"
 
-PID_FILE=coordinator.pid
+PID_FILE=actor-system.pid
 if [ -f "$PID_FILE" ]
 then
     kill -9 $(<"$PID_FILE")

@@ -1,29 +1,20 @@
 package hu.bme.mit.incqueryd.infrastructureagent
 
-import com.codahale.metrics.annotation.Timed
-import hu.bme.mit.incqueryd.inventory.Inventory
-import javax.ws.rs.GET
-import javax.ws.rs.Path
-import javax.ws.rs.Produces
-import javax.ws.rs.QueryParam
-import javax.ws.rs.core.Response
+import javax.ws.rs.{GET, Path, Produces, QueryParam}
 import javax.ws.rs.core.MediaType
-import hu.bme.mit.incqueryd.inventory.InventoryFactory
-import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
-import hu.bme.mit.incqueryd.util.EObjectDeserializer
-import hu.bme.mit.incqueryd.inventory.InventoryPackage
-import scala.collection.JavaConversions._
+
+import akka.actor.{Address, Deploy, Props}
+import akka.remote.RemoteScope
+import com.codahale.metrics.annotation.Timed
 import eu.mondo.utils.UnixUtils
-import java.util.Collections
-import com.google.common.collect.ImmutableMap
 import hu.bme.mit.incqueryd.coordinator.client.Coordinator
-import hu.bme.mit.incqueryd.coordinator.client.Coordinator
-import scala.concurrent.duration._
-import hu.bme.mit.incqueryd.infrastructureagent.client.PrepareInfrastructureResponse
-import akka.actor.Identify
-import hu.bme.mit.incqueryd.infrastructureagent.client.DefaultInfrastructureAgent
-import hu.bme.mit.incqueryd.coordinator.client.IsAlive
+import hu.bme.mit.incqueryd.engine.{IsAlive, AkkaUtils, CoordinatorActor}
 import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent.PrepareInfrastructure._
+import hu.bme.mit.incqueryd.infrastructureagent.client.{InfrastructureAgent, PrepareInfrastructureResponse}
+import hu.bme.mit.incqueryd.inventory.{Inventory, InventoryPackage}
+import hu.bme.mit.incqueryd.util.EObjectDeserializer
+
+import scala.collection.JavaConversions._
 
 @Path(InfrastructureAgent.PrepareInfrastructure.path)
 @Produces(Array(MediaType.APPLICATION_JSON))
@@ -50,11 +41,8 @@ class PrepareInfrastructureResource {
   }
 
   private def startCoordinator(inventory: Inventory) {
-    UnixUtils.exec(s"./start-coordinator.sh ${inventory.getMaster.getIp}", Map[String, String](), System.out)
-    val coordinatorActor = Coordinator.coordinatorActor(inventory.getMaster.getIp)
-    InfrastructureAgentUtils.retry(10)(1000) {
-      coordinatorActor ! IsAlive
-    }
+    val masterIp = inventory.getMaster.getIp
+    AkkaUtils.createActor(Coordinator.actorSystemName, masterIp, Coordinator.port, Coordinator.actorName, classOf[CoordinatorActor])
   }
 
   private def startMonitoring {

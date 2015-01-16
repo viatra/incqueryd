@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.coordinator.client
+package hu.bme.mit.incqueryd.engine
 
 case class ReteNetwork(patterns: Iterable[PatternDescriptor])
 
