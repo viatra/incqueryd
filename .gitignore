@@ -16,3 +16,4 @@ xtend-gen/*
 *.out
 *.iml
 workspace.xml
+.idea/
