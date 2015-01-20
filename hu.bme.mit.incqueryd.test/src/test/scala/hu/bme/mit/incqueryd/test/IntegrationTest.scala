@@ -1,11 +1,17 @@
 package hu.bme.mit.incqueryd.test
 
+import java.net.URL
+
 import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
 import hu.bme.mit.incqueryd.engine.CoordinatorActor
 import hu.bme.mit.incqueryd.infrastructureagent.client.{DebugInfrastructureAgent, DefaultInfrastructureAgent, InfrastructureAgent}
 import hu.bme.mit.incqueryd.inventory.{InstanceSet, Inventory, InventoryFactory}
 import org.junit.Assert._
 import org.junit.Test
+import org.openrdf.model.Model
+import org.openrdf.model.impl.LinkedHashModel
+import org.openrdf.rio.Rio
+import org.openrdf.rio.helpers.StatementCollector
 
 import scala.Option.option2Iterable
 import scala.collection.JavaConversions._
@@ -24,10 +30,11 @@ trait IntegrationTest {
       assertEquals(1, coordinators.size)
       val coordinator = coordinators.head
       val recipe = loadRecipe
-      val index = coordinator.loadData(null, null, inventory)
+      val vocabulary = loadRdf(getClass.getClassLoader.getResource("railway.rdf"))
+      val index = coordinator.loadData(null, vocabulary, inventory)
       val network = coordinator.startQuery(recipe, index)
       try {
-        assertTrue(!network.patterns.isEmpty)
+        assertTrue(network.patterns.nonEmpty)
         val result = coordinator.checkResults(network.patterns.head)
         println(s"Query result: $result")
         assertEquals(CoordinatorActor.sampleResult, result)
@@ -53,6 +60,17 @@ trait IntegrationTest {
     inventory.setMachineSet(instanceSet)
     inventory.setMaster(instance)
     inventory
+  }
+
+  private def loadRdf(documentUrl: URL): Model = {
+    val result = new LinkedHashModel
+    val urlString = documentUrl.toString
+    val format = Rio.getParserFormatForFileName(urlString)
+    val parser = Rio.createParser(format)
+    parser.setRDFHandler(new StatementCollector(result))
+    val inputStream = documentUrl.openStream
+    parser.parse(inputStream, urlString)
+    result
   }
 
   private def loadRecipe = null // TODO

@@ -6,7 +6,7 @@ import hu.bme.mit.incqueryd.engine._
 import hu.bme.mit.incqueryd.inventory.{Inventory, MachineInstance}
 import hu.bme.mit.incqueryd.util.EObjectSerializer
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
-import org.openrdf.model.Resource
+import org.openrdf.model.Model
 
 import scala.concurrent.Await
 import scala.concurrent.duration._
@@ -19,7 +19,7 @@ object Coordinator {
 
 class Coordinator(instance: MachineInstance) {
 
-  def loadData(databaseUrl: String, vocabulary: Resource, inventory: Inventory): Index = {
+  def loadData(databaseUrl: String, vocabulary: Model, inventory: Inventory): Index = {
     val inventoryJson = EObjectSerializer.serializeToString(inventory)
     askCoordinator[Index](LoadData(databaseUrl, vocabulary, inventoryJson))
   }

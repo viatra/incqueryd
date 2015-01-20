@@ -56,9 +56,8 @@
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.openrdf</groupId>
-            <artifactId>openrdf-model</artifactId>
-            <version>1.2.7</version>
+            <groupId>org.openrdf.sesame</groupId>
+            <artifactId>sesame-model</artifactId>
         </dependency>
         <dependency>
             <groupId>org.emfjson</groupId>
