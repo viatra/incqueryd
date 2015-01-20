@@ -5,7 +5,6 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.openrdf.model.{Resource, Model}
 import org.openrdf.model.vocabulary.{OWL, RDFS, RDF}
 import scala.collection.JavaConversions._
-import scala.collection.immutable
 
 object CoordinatorActor {
   final val sampleResult = List(ChangeSet(Set(Tuple(List(42))), true))
@@ -31,13 +30,21 @@ class CoordinatorActor extends Actor {
     }
   }
 
-  def getTypes(model: Model) = {
-    val rdfClasses = model.filter(null, RDF.TYPE, RDFS.CLASS).subjects
-    val owlClasses = model.filter(null, RDF.TYPE, OWL.CLASS).subjects
-    rdfClasses.union(owlClasses)
+  def getTypes(model: Model): Set[RdfType] = {
+    val rdfClasses = model.filter(null, RDF.TYPE, RDFS.CLASS)
+    val owlClasses = model.filter(null, RDF.TYPE, OWL.CLASS)
+    val classes = rdfClasses union owlClasses
+    val classTypes = classes.map(statement => RdfType(statement.getSubject, 1))
+    val objectProperties = model.filter(null, RDF.TYPE, OWL.OBJECTPROPERTY)
+    val datatypeProperties = model.filter(null, RDF.TYPE, OWL.DATATYPEPROPERTY)
+    val properties = objectProperties union datatypeProperties
+    val propertyTypes = properties.map(statement => RdfType(statement.getSubject, 2))
+    (classTypes union propertyTypes).toSet
   }
 
 }
+
+case class RdfType(typeId: Resource, arity: Int)
 
 sealed trait CoordinatorCommand
 case object IsAlive extends CoordinatorCommand
