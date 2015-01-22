@@ -1,9 +1,11 @@
 package hu.bme.mit.incqueryd.test
 
 import java.net.URL
+import java.io.File
 
+import eu.mondo.utils.{NetworkUtils, UnixUtils}
 import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
-import hu.bme.mit.incqueryd.engine.CoordinatorActor
+import hu.bme.mit.incqueryd.engine.{AkkaUtils, CoordinatorActor}
 import hu.bme.mit.incqueryd.infrastructureagent.client.{DebugInfrastructureAgent, DefaultInfrastructureAgent, InfrastructureAgent}
 import hu.bme.mit.incqueryd.inventory.{InstanceSet, Inventory, InventoryFactory}
 import org.junit.Assert._
@@ -30,8 +32,12 @@ trait IntegrationTest {
       assertEquals(1, coordinators.size)
       val coordinator = coordinators.head
       val recipe = loadRecipe
-      val vocabulary = loadRdf(getClass.getClassLoader.getResource("railway.rdf"))
-      val index = coordinator.loadData(null, vocabulary, inventory)
+      val vocabulary = loadRdf(getClass.getClassLoader.getResource("vocabulary.rdf"))
+      val modelFileName = "model.ttl"
+      val workingDirectory = new File(getClass.getClassLoader.getResource(modelFileName).getFile).getParentFile
+      TestFileServer.start(workingDirectory)
+      val databaseUrl = s"http://${NetworkUtils.getLocalIpAddress}:${TestFileServer.port}/$modelFileName"
+      val index = coordinator.loadData(databaseUrl, vocabulary, inventory)
       val network = coordinator.startQuery(recipe, index)
       try {
         assertTrue(network.patterns.nonEmpty)
@@ -76,6 +82,7 @@ trait IntegrationTest {
   private def loadRecipe = null // TODO
 
 }
+
 
 class Debug extends IntegrationTest {
   override def getInfrastructureAgents(inventory: Inventory) = {

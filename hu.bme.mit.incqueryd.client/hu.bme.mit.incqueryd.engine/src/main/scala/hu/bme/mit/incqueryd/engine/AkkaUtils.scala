@@ -6,6 +6,7 @@ import eu.mondo.utils.{NetworkUtils, UnixUtils}
 
 import scala.collection.JavaConversions._
 import scala.util.{Failure, Success, Try}
+import scala.concurrent.duration._
 
 object AkkaUtils {
 
@@ -41,16 +42,20 @@ akka {
   }
 
   @annotation.tailrec
-  def retry[T](n: Int)(delayMillis: Long)(fn: => T): T = {
+  def retry[T](retryCount: Int)(delayMillis: Long)(fn: => T): T = {
     Try {
       fn
     } match {
       case Success(x) => x
-      case _ if n > 1 => {
-        Thread.sleep(delayMillis); retry(n - 1)(delayMillis)(fn)
+      case _ if retryCount > 1 => {
+        Thread.sleep(delayMillis); retry(retryCount - 1)(delayMillis)(fn)
       }
       case Failure(e) => throw e
     }
   }
+
+  val defaultRetryCount = 10
+  val defaultDelayMillis = 1000
+  val defaultTimeout = 10 seconds
 
 }

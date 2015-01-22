@@ -1,9 +1,10 @@
 package hu.bme.mit.incqueryd.engine
 
 import akka.actor.Actor
-import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
-import org.openrdf.model.{Resource, Model}
-import org.openrdf.model.vocabulary.{OWL, RDFS, RDF}
+import eu.mondo.driver.file.FileGraphDriverRead
+import org.openrdf.model.vocabulary.{OWL, RDF, RDFS}
+import org.openrdf.model.{Model, URI}
+
 import scala.collection.JavaConversions._
 
 object CoordinatorActor {
@@ -17,6 +18,7 @@ class CoordinatorActor extends Actor {
     }
     case LoadData(databaseUrl, vocabulary, inventoryJson) => {
       val types = getTypes(vocabulary)
+      val typeInfos = getTypeInfos(types, databaseUrl)
       sender ! Index()
     }
     case StartQuery(recipe) => {
@@ -31,24 +33,23 @@ class CoordinatorActor extends Actor {
   }
 
   def getTypes(model: Model): Set[RdfType] = {
-    val rdfClasses = model.filter(null, RDF.TYPE, RDFS.CLASS)
-    val owlClasses = model.filter(null, RDF.TYPE, OWL.CLASS)
-    val classes = rdfClasses union owlClasses
-    val classTypes = classes.map(statement => RdfType(statement.getSubject, 1))
-    val objectProperties = model.filter(null, RDF.TYPE, OWL.OBJECTPROPERTY)
-    val datatypeProperties = model.filter(null, RDF.TYPE, OWL.DATATYPEPROPERTY)
-    val properties = objectProperties union datatypeProperties
-    val propertyTypes = properties.map(statement => RdfType(statement.getSubject, 2))
-    (classTypes union propertyTypes).toSet
+    val rdfClassStatements = model.filter(null, RDF.TYPE, RDFS.CLASS)
+    val owlClassStatements = model.filter(null, RDF.TYPE, OWL.CLASS)
+    val classStatements = rdfClassStatements union owlClassStatements
+    val classTypes = classStatements.map(statement => RdfClass(statement.getSubject)).toSet[RdfType]
+    val objectPropertyStatements = model.filter(null, RDF.TYPE, OWL.OBJECTPROPERTY)
+    val objectPropertyTypes = objectPropertyStatements.map(statement => RdfObjectProperty(statement.getSubject)).toSet[RdfType]
+    val datatypePropertyStatements = model.filter(null, RDF.TYPE, OWL.DATATYPEPROPERTY)
+    val datatypePropertyTypes = datatypePropertyStatements.map(statement => RdfDatatypeProperty(statement.getSubject)).toSet[RdfType]
+    val propertyTypes = objectPropertyTypes union datatypePropertyTypes
+    (classTypes union propertyTypes).filter(rdfType => rdfType.id.isInstanceOf[URI]) // Discard blank nodes
   }
 
+  def getTypeInfos(types: Set[RdfType], databaseUrl: String): Set[RdfTypeInfo] = {
+    val driver = new FileGraphDriverRead(databaseUrl)
+    types.map(rdfType => RdfTypeInfo(rdfType, rdfType.getTupleCount(driver)))
+  }
+
+  case class RdfTypeInfo(rdfType: RdfType, tupleCount: Long)
+
 }
-
-case class RdfType(typeId: Resource, arity: Int)
-
-sealed trait CoordinatorCommand
-case object IsAlive extends CoordinatorCommand
-case class LoadData(databaseUrl: String, vocabulary: Model, inventoryJson: String) extends CoordinatorCommand // XXX
-case class StartQuery(recipe: ReteRecipe) extends CoordinatorCommand
-case class CheckResults(pattern: PatternDescriptor) extends CoordinatorCommand
-case class StopQuery(network: ReteNetwork) extends CoordinatorCommand

@@ -40,7 +40,7 @@ class Coordinator(instance: MachineInstance) {
 
   private def askCoordinator[T](message: CoordinatorCommand): T = {
     val coordinatorActor = AkkaUtils.findActor(Coordinator.actorSystemName, instance.getIp, Coordinator.port, Coordinator.actorName)
-    implicit val timeout = Timeout(5 seconds)
+    implicit val timeout = Timeout(AkkaUtils.defaultTimeout)
     val future = coordinatorActor ? message
     Await.result(future, timeout.duration).asInstanceOf[T]
   }
