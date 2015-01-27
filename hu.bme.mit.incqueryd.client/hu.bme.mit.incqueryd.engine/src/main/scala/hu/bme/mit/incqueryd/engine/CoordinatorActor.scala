@@ -2,6 +2,8 @@ package hu.bme.mit.incqueryd.engine
 
 import akka.actor.Actor
 import eu.mondo.driver.file.FileGraphDriverRead
+import hu.bme.mit.incqueryd.inventory.{MemoryUnit, MachineInstance, Inventory}
+import org.eclipse.emf.ecore.util.EcoreUtil
 import org.openrdf.model.vocabulary.{OWL, RDF, RDFS}
 import org.openrdf.model.{Model, URI}
 
@@ -16,10 +18,13 @@ class CoordinatorActor extends Actor {
   def receive = {
     case IsAlive => {
     }
-    case LoadData(databaseUrl, vocabulary, inventoryJson) => {
+    case LoadData(databaseUrl, vocabulary, inventoryJson) => AkkaUtils.propagateException(sender) {
       val types = getTypes(vocabulary)
       val typeInfos = getTypeInfos(types, databaseUrl)
-      sender ! Index()
+      val inventory = InventoryUtils.parseInventory(inventoryJson)
+      val index = allocate(typeInfos, inventory)
+      deployIndex(index, databaseUrl)
+      sender ! Index(Map(), null) // TODO de-EMF-ize inventory metamodel
     }
     case StartQuery(recipe) => {
       sender ! ReteNetwork(List(PatternDescriptor()))
@@ -50,12 +55,28 @@ class CoordinatorActor extends Actor {
     types.map(rdfType => RdfTypeInfo(rdfType, rdfType.getTupleCount(driver)))
   }
 
-  case class RdfTypeInfo(rdfType: RdfType, tupleCount: Long) {
-    def getEstimatedMemoryUsageMb(): Long = {
-      val normalizedTupleCount = rdfType.arity * tupleCount
-      val memoryUsage = Math.ceil((0.0003 * normalizedTupleCount + 52.969) * 1.4)
-      Math.max(128, memoryUsage.toLong)
+  def allocate(typeInfos: Set[RdfTypeInfo], inventory: Inventory): Index = {
+    val typeInfosSorted = typeInfos.toList.sortBy(-_.getEstimatedMemoryUsageMb)
+    val allocation = scala.collection.mutable.Map[RdfType, MachineInstance]()
+    val deployedInventory = EcoreUtil.copy(inventory)
+    typeInfosSorted.foreach {
+      typeInfo =>
+        val memoryUsageMb = typeInfo.getEstimatedMemoryUsageMb
+        val goodInstances = InventoryUtils.getMachineInstances(deployedInventory).filter(InventoryUtils.getMemoryInMb(_) > memoryUsageMb)
+        if (goodInstances.isEmpty) {
+          throw new IllegalArgumentException(s"Can't allocate index of ${typeInfo.rdfType.id.stringValue} on any machine!") // XXX return Option[Index] instead?
+        } else {
+          val selectedInstance = goodInstances.head
+          allocation.put(typeInfo.rdfType, selectedInstance)
+          selectedInstance.setMemorySize(InventoryUtils.getMemoryInMb(selectedInstance) - memoryUsageMb)
+          selectedInstance.setMemoryUnit(MemoryUnit.MB)
+        }
     }
+    Index(allocation.toMap, deployedInventory)
+  }
+
+  def deployIndex(index: Index, databaseUrl: String): Unit = {
+
   }
 
 }

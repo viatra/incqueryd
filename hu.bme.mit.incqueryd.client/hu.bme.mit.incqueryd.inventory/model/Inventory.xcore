@@ -24,7 +24,7 @@ abstract class Machine {
 	
 	int cost
 	
-	int memorySize
+	long memorySize
 	MemoryUnit memoryUnit
 	
 	int CPUs

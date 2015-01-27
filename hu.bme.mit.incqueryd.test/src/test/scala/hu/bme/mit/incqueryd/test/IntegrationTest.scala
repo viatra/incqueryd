@@ -5,9 +5,9 @@ import java.io.File
 
 import eu.mondo.utils.{NetworkUtils, UnixUtils}
 import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
-import hu.bme.mit.incqueryd.engine.{AkkaUtils, CoordinatorActor}
+import hu.bme.mit.incqueryd.engine.{InventoryUtils, AkkaUtils, CoordinatorActor}
 import hu.bme.mit.incqueryd.infrastructureagent.client.{DebugInfrastructureAgent, DefaultInfrastructureAgent, InfrastructureAgent}
-import hu.bme.mit.incqueryd.inventory.{InstanceSet, Inventory, InventoryFactory}
+import hu.bme.mit.incqueryd.inventory.{MemoryUnit, InstanceSet, Inventory, InventoryFactory}
 import org.junit.Assert._
 import org.junit.Test
 import org.openrdf.model.Model
@@ -25,6 +25,9 @@ trait IntegrationTest {
   @Test
   def test() {
     val inventory = loadInventory
+    val modelFileName = "model.ttl"
+    val workingDirectory = new File(getClass.getClassLoader.getResource(modelFileName).getFile).getParentFile
+    val testFileServer = TestFileServer.start(workingDirectory)
     val infrastructureAgents = getInfrastructureAgents(inventory)
     try {
       val infrastructures = infrastructureAgents.map(_.prepareInfrastructure(inventory))
@@ -33,9 +36,6 @@ trait IntegrationTest {
       val coordinator = coordinators.head
       val recipe = loadRecipe
       val vocabulary = loadRdf(getClass.getClassLoader.getResource("vocabulary.rdf"))
-      val modelFileName = "model.ttl"
-      val workingDirectory = new File(getClass.getClassLoader.getResource(modelFileName).getFile).getParentFile
-      TestFileServer.start(workingDirectory)
       val databaseUrl = s"http://${NetworkUtils.getLocalIpAddress}:${TestFileServer.port}/$modelFileName"
       val index = coordinator.loadData(databaseUrl, vocabulary, inventory)
       val network = coordinator.startQuery(recipe, index)
@@ -48,6 +48,7 @@ trait IntegrationTest {
         coordinator.stopQuery(network)
       }
     } finally {
+      testFileServer.destroy
       infrastructureAgents.foreach(_.destroyInfrastructure)
     }
   }
@@ -62,6 +63,8 @@ trait IntegrationTest {
       throw new IllegalArgumentException(s"VM argument $instanceIpKey is not set!")
     }
     instance.setIp(instanceIp)
+    instance.setMemorySize(4)
+    instance.setMemoryUnit(MemoryUnit.GB)
     instanceSet.getMachineInstances.add(instance)
     inventory.setMachineSet(instanceSet)
     inventory.setMaster(instance)
@@ -86,21 +89,13 @@ trait IntegrationTest {
 
 class Debug extends IntegrationTest {
   override def getInfrastructureAgents(inventory: Inventory) = {
-    inventory.getMachineSet match {
-      case instanceSet: InstanceSet =>
-        instanceSet.getMachineInstances.map(new DebugInfrastructureAgent(_))
-      case _ => List()
-    }
+    InventoryUtils.getMachineInstances(inventory).map(new DebugInfrastructureAgent(_))
   }
 }
 
 class Development extends IntegrationTest {
   override def getInfrastructureAgents(inventory: Inventory) = {
-    inventory.getMachineSet match {
-      case instanceSet: InstanceSet =>
-        instanceSet.getMachineInstances.map(new DefaultInfrastructureAgent(_))
-      case _ => List()
-    }
+    InventoryUtils.getMachineInstances(inventory).map(new DefaultInfrastructureAgent(_))
   }
 }
 

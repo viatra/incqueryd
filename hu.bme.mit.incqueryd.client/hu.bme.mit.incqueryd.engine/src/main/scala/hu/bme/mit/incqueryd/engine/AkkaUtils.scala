@@ -11,7 +11,7 @@ import scala.concurrent.duration._
 object AkkaUtils {
 
   def createRemotingActorSystem(actorSystemName: String, externalIp: String, port: Int): ActorSystem = {
-    val config = ConfigFactory.parseString( s"""
+    val config = ConfigFactory.parseString(s"""
 akka {
   actor {
     provider = "akka.remote.RemoteActorRefProvider"
@@ -41,6 +41,17 @@ akka {
     findActor(actorSystemName, ip, port, actorName)
   }
 
+  def propagateException[T](sender: ActorRef)(fn: => T): T = {
+    try {
+      fn
+    } catch {
+      case e: Exception => {
+        sender ! Status.Failure(e) // Alert the sender of the failure
+        throw e // Alert any supervisor actor of the failure
+      }
+    }
+  }
+
   @annotation.tailrec
   def retry[T](retryCount: Int)(delayMillis: Long)(fn: => T): T = {
     Try {
@@ -56,6 +67,7 @@ akka {
 
   val defaultRetryCount = 10
   val defaultDelayMillis = 1000
-  val defaultTimeout = 10 seconds
+
+  val defaultTimeout = 20 seconds
 
 }

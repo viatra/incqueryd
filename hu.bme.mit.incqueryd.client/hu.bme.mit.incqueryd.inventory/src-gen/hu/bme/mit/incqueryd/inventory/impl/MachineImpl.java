@@ -86,7 +86,7 @@ public abstract class MachineImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int MEMORY_SIZE_EDEFAULT = 0;
+	protected static final long MEMORY_SIZE_EDEFAULT = 0L;
 
 	/**
 	 * The cached value of the '{@link #getMemorySize() <em>Memory Size</em>}' attribute.
@@ -96,7 +96,7 @@ public abstract class MachineImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected int memorySize = MEMORY_SIZE_EDEFAULT;
+	protected long memorySize = MEMORY_SIZE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMemoryUnit() <em>Memory Unit</em>}' attribute.
@@ -214,7 +214,7 @@ public abstract class MachineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getMemorySize() {
+	public long getMemorySize() {
 		return memorySize;
 	}
 
@@ -223,8 +223,8 @@ public abstract class MachineImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMemorySize(int newMemorySize) {
-		int oldMemorySize = memorySize;
+	public void setMemorySize(long newMemorySize) {
+		long oldMemorySize = memorySize;
 		memorySize = newMemorySize;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, InventoryPackage.MACHINE__MEMORY_SIZE, oldMemorySize, memorySize));
@@ -324,7 +324,7 @@ public abstract class MachineImpl extends MinimalEObjectImpl.Container implement
 				setCost((Integer)newValue);
 				return;
 			case InventoryPackage.MACHINE__MEMORY_SIZE:
-				setMemorySize((Integer)newValue);
+				setMemorySize((Long)newValue);
 				return;
 			case InventoryPackage.MACHINE__MEMORY_UNIT:
 				setMemoryUnit((MemoryUnit)newValue);

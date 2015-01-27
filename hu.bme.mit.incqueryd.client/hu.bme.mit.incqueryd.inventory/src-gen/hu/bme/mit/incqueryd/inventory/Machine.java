@@ -89,12 +89,12 @@ public interface Machine extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Memory Size</em>' attribute.
-	 * @see #setMemorySize(int)
+	 * @see #setMemorySize(long)
 	 * @see hu.bme.mit.incqueryd.inventory.InventoryPackage#getMachine_MemorySize()
 	 * @model unique="false"
 	 * @generated
 	 */
-	int getMemorySize();
+	long getMemorySize();
 
 	/**
 	 * Sets the value of the '{@link hu.bme.mit.incqueryd.inventory.Machine#getMemorySize <em>Memory Size</em>}' attribute.
@@ -104,7 +104,7 @@ public interface Machine extends EObject {
 	 * @see #getMemorySize()
 	 * @generated
 	 */
-	void setMemorySize(int value);
+	void setMemorySize(long value);
 
 	/**
 	 * Returns the value of the '<em><b>Memory Unit</b></em>' attribute.

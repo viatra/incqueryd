@@ -20,6 +20,7 @@ object Coordinator {
 class Coordinator(instance: MachineInstance) {
 
   def loadData(databaseUrl: String, vocabulary: Model, inventory: Inventory): Index = {
+    println(s"Loading data")
     val inventoryJson = EObjectSerializer.serializeToString(inventory)
     askCoordinator[Index](LoadData(databaseUrl, vocabulary, inventoryJson))
   }
@@ -38,10 +39,9 @@ class Coordinator(instance: MachineInstance) {
     askCoordinator[String](StopQuery(network))
   }
 
-  private def askCoordinator[T](message: CoordinatorCommand): T = {
+  private def askCoordinator[T](message: CoordinatorCommand, timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)): T = {
     val coordinatorActor = AkkaUtils.findActor(Coordinator.actorSystemName, instance.getIp, Coordinator.port, Coordinator.actorName)
-    implicit val timeout = Timeout(AkkaUtils.defaultTimeout)
-    val future = coordinatorActor ? message
+    val future = coordinatorActor.ask(message)(timeout)
     Await.result(future, timeout.duration).asInstanceOf[T]
   }
 
