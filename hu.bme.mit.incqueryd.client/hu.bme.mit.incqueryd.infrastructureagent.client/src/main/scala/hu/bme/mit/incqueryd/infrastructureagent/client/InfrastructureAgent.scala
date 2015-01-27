@@ -6,9 +6,9 @@ import hu.bme.mit.incqueryd.coordinator.client.Coordinator
 import hu.bme.mit.incqueryd.engine.{AkkaUtils, CoordinatorActor}
 import hu.bme.mit.incqueryd.inventory.{Inventory, MachineInstance}
 import hu.bme.mit.incqueryd.monitoringserver.client.MonitoringServer
-import hu.bme.mit.incqueryd.util.EObjectSerializer
 import org.apache.http.NameValuePair
 import org.apache.http.message.BasicNameValuePair
+import upickle._
 
 object InfrastructureAgent {
   final val port = 8084
@@ -39,13 +39,13 @@ trait InfrastructureAgent {
 class DefaultInfrastructureAgent(val instance: MachineInstance) extends InfrastructureAgent {
 
   def prepareInfrastructure(inventory: Inventory): Infrastructure = {
-    println(s"Preparing infrastructure on ${instance.getIp}")
-    val inventoryJson = EObjectSerializer.serializeToString(inventory)
-    val instanceIp = instance.getIp
+    println(s"Preparing infrastructure on ${instance.ip}")
+    val inventoryJson = write(inventory)
+    val instanceIp = instance.ip
     val response = callWebService(InfrastructureAgent.PrepareInfrastructure.path,
       new BasicNameValuePair(InfrastructureAgent.PrepareInfrastructure.inventoryParameter, inventoryJson),
       new BasicNameValuePair(InfrastructureAgent.PrepareInfrastructure.currentIpParameter, instanceIp)).getEntity(classOf[PrepareInfrastructureResponse])
-    if (response.isMaster) {
+    if (response.isMaster()) {
       val coordinator = new Coordinator(instance)
       val monitoringServer = new MonitoringServer(instance)
       Infrastructure(Some(coordinator), Some(monitoringServer))
@@ -66,13 +66,13 @@ class DefaultInfrastructureAgent(val instance: MachineInstance) extends Infrastr
     val response = callWebService(InfrastructureAgent.StopMicrokernels.path)
   }
 
-  private def callWebService(path: String, params: NameValuePair*) = WebServiceUtils.call(instance.getIp, InfrastructureAgent.port, path, params: _*)
+  private def callWebService(path: String, params: NameValuePair*) = WebServiceUtils.call(instance.ip, InfrastructureAgent.port, path, params: _*)
 
 }
 
 class DebugInfrastructureAgent(val instance: MachineInstance) extends InfrastructureAgent {
 
-  lazy val actorSystem = AkkaUtils.createRemotingActorSystem(Coordinator.actorSystemName, instance.getIp, Coordinator.port)
+  lazy val actorSystem = AkkaUtils.createRemotingActorSystem(Coordinator.actorSystemName, instance.ip, Coordinator.port)
 
   def prepareInfrastructure(inventory: Inventory): Infrastructure = {
     println("Preparing infrastructure on local machine")

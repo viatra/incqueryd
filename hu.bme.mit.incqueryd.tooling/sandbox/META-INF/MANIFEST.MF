@@ -6,6 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: sandbox.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- hu.bme.mit.incqueryd.hu.bme.mit.incqueryd.arch;bundle-version="1.0.0"
+ hu.bme.mit.incqueryd.hu.bme.mit.incqueryd.bootstrapagent.client;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy

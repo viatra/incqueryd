@@ -64,6 +64,14 @@
 			<artifactId>hu.bme.mit.incqueryd.engine</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.lihaoyi</groupId>
+			<artifactId>upickle_2.10</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.scalamacros</groupId>
+			<artifactId>quasiquotes_2.10</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

@@ -57,12 +57,8 @@
 			<artifactId>akka-testkit_2.10</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.emfjson</groupId>
-			<artifactId>emfjson-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.emfjson</groupId>
-			<artifactId>emfjson-jackson</artifactId>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-model</artifactId>
 		</dependency>
 	</dependencies>
 	<name>IncQuery-D Coordinator Client</name>

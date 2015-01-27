@@ -4,7 +4,6 @@ import akka.pattern.ask
 import akka.util.Timeout
 import hu.bme.mit.incqueryd.engine._
 import hu.bme.mit.incqueryd.inventory.{Inventory, MachineInstance}
-import hu.bme.mit.incqueryd.util.EObjectSerializer
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.openrdf.model.Model
 
@@ -21,8 +20,7 @@ class Coordinator(instance: MachineInstance) {
 
   def loadData(databaseUrl: String, vocabulary: Model, inventory: Inventory): Index = {
     println(s"Loading data")
-    val inventoryJson = EObjectSerializer.serializeToString(inventory)
-    askCoordinator[Index](LoadData(databaseUrl, vocabulary, inventoryJson))
+    askCoordinator[Index](LoadData(databaseUrl, vocabulary, inventory))
   }
 
   def startQuery(recipe: ReteRecipe, index: Index): ReteNetwork = {
@@ -40,7 +38,7 @@ class Coordinator(instance: MachineInstance) {
   }
 
   private def askCoordinator[T](message: CoordinatorCommand, timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)): T = {
-    val coordinatorActor = AkkaUtils.findActor(Coordinator.actorSystemName, instance.getIp, Coordinator.port, Coordinator.actorName)
+    val coordinatorActor = AkkaUtils.findActor(Coordinator.actorSystemName, instance.ip, Coordinator.port, Coordinator.actorName)
     val future = coordinatorActor.ask(message)(timeout)
     Await.result(future, timeout.duration).asInstanceOf[T]
   }

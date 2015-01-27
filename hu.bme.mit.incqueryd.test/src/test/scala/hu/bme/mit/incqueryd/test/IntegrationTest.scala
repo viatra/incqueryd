@@ -2,21 +2,20 @@ package hu.bme.mit.incqueryd.test
 
 import java.net.URL
 import java.io.File
-
 import eu.mondo.utils.{NetworkUtils, UnixUtils}
 import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
-import hu.bme.mit.incqueryd.engine.{InventoryUtils, AkkaUtils, CoordinatorActor}
+import hu.bme.mit.incqueryd.engine.{AkkaUtils, CoordinatorActor}
 import hu.bme.mit.incqueryd.infrastructureagent.client.{DebugInfrastructureAgent, DefaultInfrastructureAgent, InfrastructureAgent}
-import hu.bme.mit.incqueryd.inventory.{MemoryUnit, InstanceSet, Inventory, InventoryFactory}
+import hu.bme.mit.incqueryd.inventory.Inventory
 import org.junit.Assert._
 import org.junit.Test
 import org.openrdf.model.Model
 import org.openrdf.model.impl.LinkedHashModel
 import org.openrdf.rio.Rio
 import org.openrdf.rio.helpers.StatementCollector
-
 import scala.Option.option2Iterable
 import scala.collection.JavaConversions._
+import hu.bme.mit.incqueryd.inventory.MachineInstance
 
 trait IntegrationTest {
 
@@ -54,21 +53,13 @@ trait IntegrationTest {
   }
 
   private def loadInventory = {
-    val inventory = InventoryFactory.eINSTANCE.createInventory
-    val instanceSet = InventoryFactory.eINSTANCE.createInstanceSet
-    val instance = InventoryFactory.eINSTANCE.createMachineInstance
     val instanceIpKey: String = "instanceIp"
     val instanceIp = System.getProperty(instanceIpKey)
     if (instanceIp == null) {
       throw new IllegalArgumentException(s"VM argument $instanceIpKey is not set!")
     }
-    instance.setIp(instanceIp)
-    instance.setMemorySize(4)
-    instance.setMemoryUnit(MemoryUnit.GB)
-    instanceSet.getMachineInstances.add(instance)
-    inventory.setMachineSet(instanceSet)
-    inventory.setMaster(instance)
-    inventory
+    val instance = MachineInstance(4*1024, instanceIp)
+    Inventory(List(instance), instance)
   }
 
   private def loadRdf(documentUrl: URL): Model = {
@@ -89,13 +80,13 @@ trait IntegrationTest {
 
 class Debug extends IntegrationTest {
   override def getInfrastructureAgents(inventory: Inventory) = {
-    InventoryUtils.getMachineInstances(inventory).map(new DebugInfrastructureAgent(_))
+    inventory.machineInstances.map(new DebugInfrastructureAgent(_))
   }
 }
 
 class Development extends IntegrationTest {
   override def getInfrastructureAgents(inventory: Inventory) = {
-    InventoryUtils.getMachineInstances(inventory).map(new DefaultInfrastructureAgent(_))
+    inventory.machineInstances.map(new DefaultInfrastructureAgent(_))
   }
 }
 

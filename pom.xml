@@ -14,7 +14,6 @@
         <scala.version>2.10.4</scala.version>
         <akka.version>2.4-20141220-230903</akka.version>
         <emf.version>2.9.1-v20130827-0309</emf.version>
-        <emfjson.version>0.9.0</emfjson.version>
         <sesame.version>2.7.14</sesame.version>
     </properties>
     <repositories>
@@ -25,10 +24,6 @@
         <repository>
             <id>akka</id>
             <url>http://repo.akka.io/snapshots/</url>
-        </repository>
-        <repository>
-            <id>emfjson</id>
-            <url>http://repository-ghillairet.forge.cloudbees.com/snapshot</url>
         </repository>
     </repositories>
     <dependencyManagement>
@@ -89,16 +84,6 @@
                 <version>0.9.0-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.emfjson</groupId>
-                <artifactId>emfjson-core</artifactId>
-                <version>${emfjson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.emfjson</groupId>
-                <artifactId>emfjson-jackson</artifactId>
-                <version>${emfjson.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.openrdf.sesame</groupId>
                 <artifactId>sesame-model</artifactId>
                 <version>${sesame.version}</version>
@@ -112,6 +97,16 @@
                 <groupId>org.openrdf.sesame</groupId>
                 <artifactId>sesame-rio-rdfxml</artifactId>
                 <version>${sesame.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.lihaoyi</groupId>
+                <artifactId>upickle_2.10</artifactId>
+                <version>0.2.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.scalamacros</groupId>
+                <artifactId>quasiquotes_2.10</artifactId>
+                <version>2.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
