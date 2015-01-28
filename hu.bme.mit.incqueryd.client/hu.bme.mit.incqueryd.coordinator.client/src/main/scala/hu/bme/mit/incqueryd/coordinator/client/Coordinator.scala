@@ -6,14 +6,17 @@ import hu.bme.mit.incqueryd.engine._
 import hu.bme.mit.incqueryd.inventory.{Inventory, MachineInstance}
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.openrdf.model.Model
-
 import scala.concurrent.Await
 import scala.concurrent.duration._
+import hu.bme.mit.incqueryd.actorservice.ActorId
+import hu.bme.mit.incqueryd.actorservice.ActorId
+import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 
 object Coordinator {
-  final val port = 9090
+  final val port = 2552
   final val actorSystemName = "coordinator"
   final val actorName = "coordinator"
+  def actorId(ip: String) = ActorId(actorSystemName, ip, port, actorName)
 }
 
 class Coordinator(instance: MachineInstance) {
@@ -38,7 +41,7 @@ class Coordinator(instance: MachineInstance) {
   }
 
   private def askCoordinator[T](message: CoordinatorCommand, timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)): T = {
-    val coordinatorActor = AkkaUtils.findActor(Coordinator.actorSystemName, instance.ip, Coordinator.port, Coordinator.actorName)
+    val coordinatorActor = AkkaUtils.findActor(Coordinator.actorId(instance.ip))
     val future = coordinatorActor.ask(message)(timeout)
     Await.result(future, timeout.duration).asInstanceOf[T]
   }

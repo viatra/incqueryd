@@ -7,49 +7,20 @@
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>hu.bme.mit.incqueryd.infrastructureagent</artifactId>
+	<artifactId>hu.bme.mit.incqueryd.actorservice.server</artifactId>
 	<dependencies>
 		<dependency>
 			<groupId>io.dropwizard</groupId>
 			<artifactId>dropwizard-core</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>hu.bme.mit.incqueryd</groupId>
-			<artifactId>hu.bme.mit.incqueryd.inventory</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.incquery</groupId>
-			<artifactId>org.eclipse.incquery.runtime.rete.recipes</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
-			<artifactId>hu.bme.mit.incqueryd.infrastructureagent.client</artifactId>
+			<artifactId>hu.bme.mit.incqueryd.actorservice</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>eu.mondo</groupId>
-			<artifactId>eu.mondo.utils</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>hu.bme.mit.incqueryd</groupId>
-			<artifactId>
-				hu.bme.mit.incqueryd.coordinator.client
-			</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.lihaoyi</groupId>
-			<artifactId>upickle_2.10</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.scalamacros</groupId>
-			<artifactId>quasiquotes_2.10</artifactId>
 		</dependency>
 	</dependencies>
 	<build>
@@ -68,5 +39,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	<name>IncQuery-D Infrastructure Agent</name>
+	<name>IncQuery-D Actor Service Server</name>
 </project>

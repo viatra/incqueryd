@@ -2,9 +2,8 @@ package hu.bme.mit.incqueryd.test
 
 import java.io.File
 import java.net.URL
-
 import eu.mondo.utils.NetworkUtils
-import hu.bme.mit.incqueryd.engine.AkkaUtils
+import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 
 object TestFileServer {
 
@@ -14,14 +13,14 @@ object TestFileServer {
     processBuilder.redirectOutput(new File(s"${getClass.getSimpleName}.out"))
     processBuilder.redirectError(new File(s"${getClass.getSimpleName}.err"))
     val process = processBuilder.start
-    val testUrl = new URL(s"http://${NetworkUtils.getLocalIpAddress}:${port}")
+    val testUrl = new URL(s"http://${NetworkUtils.getLocalIpAddress}:$port")
     AkkaUtils.retry(AkkaUtils.defaultRetryCount)(AkkaUtils.defaultDelayMillis) {
       testUrl.openConnection.connect
     }
     process
   }
 
-  val port = 50000
+  val port = 1024
 
 }
 

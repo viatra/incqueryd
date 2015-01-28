@@ -1,16 +1,26 @@
-package hu.bme.mit.incqueryd.engine
+package hu.bme.mit.incqueryd.actorservice
 
 import akka.actor._
 import com.typesafe.config.ConfigFactory
-import eu.mondo.utils.{NetworkUtils, UnixUtils}
+import eu.mondo.utils.{ NetworkUtils, UnixUtils }
 
 import scala.collection.JavaConversions._
-import scala.util.{Failure, Success, Try}
+import scala.util.{ Failure, Success, Try }
 import scala.concurrent.duration._
+import scala.collection.mutable
 
 object AkkaUtils {
 
-  def createRemotingActorSystem(actorSystemName: String, externalIp: String, port: Int): ActorSystem = {
+  case class ActorSystemId(val actorSystemName: String, val ip: String, val port: Int)
+
+  private[this] val actorSystems = mutable.Map.empty[ActorSystemId, ActorSystem]
+
+  def getRemotingActorSystem(actorSystemName: String, ip: String, port: Int): ActorSystem = {
+    val id = ActorSystemId(actorSystemName, ip, port)
+    actorSystems.getOrElseUpdate(id, createRemotingActorSystem(id))
+  }
+
+  private def createRemotingActorSystem(id: ActorSystemId): ActorSystem = {
     val config = ConfigFactory.parseString(s"""
 akka {
   actor {
@@ -19,26 +29,27 @@ akka {
   remote {
     enabled-transports = ["akka.remote.netty.tcp"]
     netty.tcp {
-      hostname = "$externalIp"
+      hostname = "${id.ip}"
       bind-hostname = "${NetworkUtils.getLocalIpAddress}" # XXX needed for docker networking
-      port = $port
+      port = ${id.port}
     }
   }
 }
 """)
-    ActorSystem(actorSystemName, config)
+    val actorSystem = ActorSystem(id.actorSystemName, config)
+    Runtime.getRuntime.addShutdownHook(new Thread(new Runnable {
+      def run = {
+        actorSystem.terminate
+      }
+    }))
+    actorSystem
   }
 
-  lazy val clientActorSystem = AkkaUtils.createRemotingActorSystem("client", NetworkUtils.getLocalIpAddress, 0)
+  lazy val clientActorSystem = getRemotingActorSystem("client", NetworkUtils.getLocalIpAddress, 0)
 
-  def findActor(actorSystemName: String, ip: String, port: Int, actorName: String): ActorRef = {
-    val actorPath = s"akka.tcp://$actorSystemName@$ip:$port/user/$actorName"
+  def findActor(id: ActorId): ActorRef = {
+    val actorPath = s"akka.tcp://${id.actorSystemName}@${id.ip}:${id.port}/user/${id.name}"
     clientActorSystem.actorFor(actorPath)
-  }
-
-  def createActor(actorSystemName: String, ip: String, port: Int, actorName: String, actorClass: Class[_ <: Actor]): ActorRef = {
-    UnixUtils.exec(s"./start-actor-system.sh $actorSystemName $ip $port $actorName ${actorClass.getName}", Map[String, String](), System.out)
-    findActor(actorSystemName, ip, port, actorName)
   }
 
   def propagateException[T](sender: ActorRef)(fn: => T): T = {

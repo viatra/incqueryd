@@ -20,9 +20,7 @@ class InfrastructureAgentApplication extends Application[InfrastructureAgentConf
 
   override def run(configuration: InfrastructureAgentConfiguration, environment: Environment) {
     List(new PrepareInfrastructureResource,
-      new DestroyInfrastructureResource,
-      new StartMicrokernelsResource,
-      new StopMicrokernelsResource).foreach(environment.jersey.register(_))
+      new DestroyInfrastructureResource).foreach(environment.jersey.register(_))
   }
 
 }

@@ -4,7 +4,6 @@ import java.net.URL
 import java.io.File
 import eu.mondo.utils.{NetworkUtils, UnixUtils}
 import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
-import hu.bme.mit.incqueryd.engine.{AkkaUtils, CoordinatorActor}
 import hu.bme.mit.incqueryd.infrastructureagent.client.{DebugInfrastructureAgent, DefaultInfrastructureAgent, InfrastructureAgent}
 import hu.bme.mit.incqueryd.inventory.Inventory
 import org.junit.Assert._
@@ -16,6 +15,7 @@ import org.openrdf.rio.helpers.StatementCollector
 import scala.Option.option2Iterable
 import scala.collection.JavaConversions._
 import hu.bme.mit.incqueryd.inventory.MachineInstance
+import hu.bme.mit.incqueryd.engine.CoordinatorActor
 
 trait IntegrationTest {
 
@@ -48,7 +48,7 @@ trait IntegrationTest {
       }
     } finally {
       testFileServer.destroy
-      infrastructureAgents.foreach(_.destroyInfrastructure)
+      infrastructureAgents.foreach(_.destroyInfrastructure(inventory))
     }
   }
 

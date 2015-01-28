@@ -11,6 +11,8 @@ import scala.collection.mutable.ListBuffer
 import hu.bme.mit.incqueryd.inventory.MachineInstance
 import scala.collection.JavaConverters._
 import java.util.ArrayList
+import hu.bme.mit.incqueryd.actorservice.AkkaUtils
+import hu.bme.mit.incqueryd.actorservice.ActorId
 
 object CoordinatorActor {
   final val sampleResult = List(ChangeSet(Set(Tuple(List(42))), true))
@@ -19,8 +21,6 @@ object CoordinatorActor {
 class CoordinatorActor extends Actor {
 
   def receive = {
-    case IsAlive => {
-    }
     case LoadData(databaseUrl, vocabulary, inventory) => AkkaUtils.propagateException(sender) {
       val types = getTypes(vocabulary)
       val typeInfos = getTypeInfos(types, databaseUrl)
