@@ -1,0 +1,5 @@
+{
+  "eClass" : "http://www.eclipse.org/incquery/rete/recipes#//InequalityFilterRecipe",
+  "subject" : 0,
+  "inequals" : [ 2, 3 ]
+}

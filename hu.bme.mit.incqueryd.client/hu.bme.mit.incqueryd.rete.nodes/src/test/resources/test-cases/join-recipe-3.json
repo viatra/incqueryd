@@ -1,0 +1,17 @@
+{
+  "eClass" : "http://www.eclipse.org/incquery/rete/recipes#//JoinRecipe",
+  "leftParent" : {
+    "eClass" : "http://www.eclipse.org/incquery/rete/recipes#//ProjectionIndexerRecipe",
+    "mask" : {
+      "eClass" : "http://www.eclipse.org/incquery/rete/recipes#//Mask",
+      "sourceIndices" : [ ]
+    }
+  },
+  "rightParent" : {
+    "eClass" : "http://www.eclipse.org/incquery/rete/recipes#//ProjectionIndexerRecipe",
+    "mask" : {
+      "eClass" : "http://www.eclipse.org/incquery/rete/recipes#//Mask",
+      "sourceIndices" : [ ]
+    }
+  }
+}

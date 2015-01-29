@@ -13,6 +13,10 @@ import scala.collection.JavaConverters._
 import java.util.ArrayList
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 import hu.bme.mit.incqueryd.actorservice.ActorId
+import hu.bme.mit.incqueryd.actorservice.RemoteActorService
+import java.security.MessageDigest
+import org.apache.commons.codec.digest.DigestUtils
+import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
 
 object CoordinatorActor {
   final val sampleResult = List(ChangeSet(Set(Tuple(List(42))), true))
@@ -79,7 +83,11 @@ class CoordinatorActor extends Actor {
   }
 
   def deployIndex(index: Index, databaseUrl: String): Unit = {
-
+    for ((rdfType, instance) <- index.allocation) {
+      val name = DigestUtils.md5Hex(rdfType.id.stringValue)
+      val id = ActorId(ReteNetwork.actorSystemName, instance.ip, ReteNetwork.port, name)
+      new RemoteActorService(instance.ip).start(id, classOf[ReteActor])
+    }
   }
 
 }

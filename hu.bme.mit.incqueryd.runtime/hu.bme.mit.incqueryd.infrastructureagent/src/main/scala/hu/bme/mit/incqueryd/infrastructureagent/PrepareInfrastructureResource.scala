@@ -4,15 +4,15 @@ import javax.ws.rs.core.MediaType
 import javax.ws.rs.{GET, Path, Produces, QueryParam}
 import com.codahale.metrics.annotation.Timed
 import hu.bme.mit.incqueryd.coordinator.client.Coordinator
-import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent._
-import hu.bme.mit.incqueryd.infrastructureagent.client.{InfrastructureAgent, PrepareInfrastructureResponse}
+import hu.bme.mit.incqueryd.infrastructureagent.client.DefaultInfrastructureAgent._
+import hu.bme.mit.incqueryd.infrastructureagent.client.PrepareInfrastructureResponse
 import hu.bme.mit.incqueryd.inventory.Inventory
 import upickle._
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 import hu.bme.mit.incqueryd.actorservice.LocalActorService
 import hu.bme.mit.incqueryd.engine.CoordinatorActor
 
-@Path(InfrastructureAgent.PrepareInfrastructure.path)
+@Path(PrepareInfrastructure.path)
 @Produces(Array(MediaType.APPLICATION_JSON))
 class PrepareInfrastructureResource {
 

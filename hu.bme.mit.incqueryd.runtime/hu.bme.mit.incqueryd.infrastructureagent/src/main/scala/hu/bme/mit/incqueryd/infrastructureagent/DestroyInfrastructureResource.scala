@@ -6,17 +6,16 @@ import javax.ws.rs.Path
 import javax.ws.rs.Produces
 import javax.ws.rs.core.Response
 import javax.ws.rs.core.MediaType
-import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
 import eu.mondo.utils.UnixUtils
 import scala.collection.JavaConversions._
 import hu.bme.mit.incqueryd.actorservice.LocalActorService
 import hu.bme.mit.incqueryd.coordinator.client.Coordinator
 import javax.ws.rs.QueryParam
-import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent._
+import hu.bme.mit.incqueryd.infrastructureagent.client.DefaultInfrastructureAgent._
 import upickle._
 import hu.bme.mit.incqueryd.inventory.Inventory
 
-@Path(InfrastructureAgent.DestroyInfrastructure.path)
+@Path(DestroyInfrastructure.path)
 @Produces(Array(MediaType.APPLICATION_JSON))
 class DestroyInfrastructureResource {
 
