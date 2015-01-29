@@ -1,1 +1,1 @@
-[Architecture](https://drive.draw.io/#G0B5cQ9R1yxAD5YkxZLV9qQnVRSFU)
+[Architecture](https://drive.google.com/file/d/0B5cQ9R1yxAD5YkxZLV9qQnVRSFU/view?usp=sharing)
