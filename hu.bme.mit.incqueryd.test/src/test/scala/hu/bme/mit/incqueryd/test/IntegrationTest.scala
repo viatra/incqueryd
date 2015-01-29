@@ -1,21 +1,25 @@
 package hu.bme.mit.incqueryd.test
 
-import java.net.URL
 import java.io.File
-import eu.mondo.utils.{NetworkUtils, UnixUtils}
-import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
-import hu.bme.mit.incqueryd.infrastructureagent.client.{DebugInfrastructureAgent, DefaultInfrastructureAgent, InfrastructureAgent}
-import hu.bme.mit.incqueryd.inventory.Inventory
+import java.net.URL
+
+import scala.Option.option2Iterable
+import scala.collection.JavaConversions._
+
 import org.junit.Assert._
 import org.junit.Test
 import org.openrdf.model.Model
 import org.openrdf.model.impl.LinkedHashModel
 import org.openrdf.rio.Rio
 import org.openrdf.rio.helpers.StatementCollector
-import scala.Option.option2Iterable
-import scala.collection.JavaConversions._
-import hu.bme.mit.incqueryd.inventory.MachineInstance
+
+import eu.mondo.utils.NetworkUtils
+import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
 import hu.bme.mit.incqueryd.engine.CoordinatorActor
+import hu.bme.mit.incqueryd.infrastructureagent.client.DefaultInfrastructureAgent
+import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
+import hu.bme.mit.incqueryd.inventory.Inventory
+import hu.bme.mit.incqueryd.inventory.MachineInstance
 
 trait IntegrationTest {
 
@@ -75,13 +79,6 @@ trait IntegrationTest {
 
   private def loadRecipe = null // TODO
 
-}
-
-
-class Debug extends IntegrationTest {
-  override def getInfrastructureAgents(inventory: Inventory) = {
-    inventory.machineInstances.map(new DebugInfrastructureAgent(_))
-  }
 }
 
 class Development extends IntegrationTest {
