@@ -25,6 +25,11 @@
 			<groupId>org.eclipse.incquery</groupId>
 			<artifactId>org.eclipse.incquery.runtime.rete.recipes</artifactId>
 		</dependency>
+		<dependency> <!-- XXX needed by recipes transitively -->
+			<groupId>org.eclipse.xtext</groupId>
+			<artifactId>org.eclipse.xtext.xbase.lib</artifactId>
+			<version>2.7.0</version>
+		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>

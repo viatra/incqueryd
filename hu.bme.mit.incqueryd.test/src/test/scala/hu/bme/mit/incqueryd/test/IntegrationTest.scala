@@ -2,17 +2,14 @@ package hu.bme.mit.incqueryd.test
 
 import java.io.File
 import java.net.URL
-
 import scala.Option.option2Iterable
 import scala.collection.JavaConversions._
-
 import org.junit.Assert._
 import org.junit.Test
 import org.openrdf.model.Model
 import org.openrdf.model.impl.LinkedHashModel
 import org.openrdf.rio.Rio
 import org.openrdf.rio.helpers.StatementCollector
-
 import eu.mondo.utils.NetworkUtils
 import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
 import hu.bme.mit.incqueryd.engine.CoordinatorActor
@@ -20,6 +17,14 @@ import hu.bme.mit.incqueryd.infrastructureagent.client.DefaultInfrastructureAgen
 import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
 import hu.bme.mit.incqueryd.inventory.Inventory
 import hu.bme.mit.incqueryd.inventory.MachineInstance
+import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.ecore.resource.Resource
+import org.apache.commons.io.FilenameUtils
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import org.eclipse.emf.common.util.URI
+import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage
 
 trait IntegrationTest {
 
@@ -43,8 +48,7 @@ trait IntegrationTest {
       val index = coordinator.loadData(databaseUrl, vocabulary, inventory)
       val network = coordinator.startQuery(recipe, index)
       try {
-        assertTrue(network.patterns.nonEmpty)
-        val result = coordinator.checkResults(network.patterns.head)
+        val result = coordinator.checkResults
         println(s"Query result: $result")
         assertEquals(CoordinatorActor.sampleResult, result)
       } finally {
@@ -62,7 +66,7 @@ trait IntegrationTest {
     if (instanceIp == null) {
       throw new IllegalArgumentException(s"VM argument $instanceIpKey is not set!")
     }
-    val instance = MachineInstance(4*1024, instanceIp)
+    val instance = MachineInstance(8*1024, instanceIp)
     Inventory(List(instance), instance)
   }
 
@@ -77,7 +81,17 @@ trait IntegrationTest {
     result
   }
 
-  private def loadRecipe = null // TODO
+  private def loadRecipe: ReteRecipe = {
+    val filename = "SwitchSensor.rdfiq.recipe"
+    val extension = FilenameUtils.getExtension(filename)
+    val url = getClass.getClassLoader.getResource(filename)
+    RecipesPackage.eINSTANCE.eClass
+	val resourceSet = new ResourceSetImpl
+	Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap.put(extension, new XMIResourceFactoryImpl)
+	val resource = resourceSet.createResource(URI.createURI(url.toString))
+	resource.load(Map[Object, Object]())
+	resource.getContents.get(0).asInstanceOf[ReteRecipe]
+  }
 
 }
 

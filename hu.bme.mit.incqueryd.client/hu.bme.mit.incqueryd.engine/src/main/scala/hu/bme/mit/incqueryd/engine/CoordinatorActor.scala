@@ -17,6 +17,17 @@ import hu.bme.mit.incqueryd.actorservice.RemoteActorService
 import java.security.MessageDigest
 import org.apache.commons.codec.digest.DigestUtils
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
+import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
+import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
+import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory
+import scala.collection.mutable
+import hu.bme.mit.incqueryd.inventory.MachineInstance
+import org.openrdf.model.Statement
+import org.openrdf.model.Resource
+import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
+import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
+import hu.bme.mit.incqueryd.engine.util.RecipeDeserializer
+import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 
 object CoordinatorActor {
   final val sampleResult = List(ChangeSet(Set(Tuple(List(42))), true))
@@ -26,67 +37,95 @@ class CoordinatorActor extends Actor {
 
   def receive = {
     case LoadData(databaseUrl, vocabulary, inventory) => AkkaUtils.propagateException(sender) {
-      val types = getTypes(vocabulary)
-      val typeInfos = getTypeInfos(types, databaseUrl)
-      val index = allocate(typeInfos, inventory)
-      deployIndex(index, databaseUrl)
+      val types = getTypes(vocabulary, databaseUrl)
+      val typeInputRecipes = types.map(_.getInputRecipe)
+      val plan = allocate(types, typeInputRecipes, inventory)
+      val index = deploy(plan, recipe => types.find(_.id.stringValue == RecipeUtils.getName(recipe)))
       sender ! index
     }
-    case StartQuery(recipe) => {
-      sender ! ReteNetwork(List(PatternDescriptor()))
+    case StartQuery(recipeJson, index) => {
+      val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
+      val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe])
+      val plan = allocate(index.specialActors.keySet, notTypeInputRecipes, index.deployedInventory)
+      val network = deploy(plan, getPatternName(_))
+      sender ! network
     }
-    case CheckResults(pattern) => {
+    case CheckResults() => {
       sender ! CoordinatorActor.sampleResult
     }
     case StopQuery(network) => {
+      undeploy(network)
       sender ! "Ready"
     }
   }
 
-  def getTypes(model: Model): Set[RdfType] = {
-    val rdfClassStatements = model.filter(null, RDF.TYPE, RDFS.CLASS)
-    val owlClassStatements = model.filter(null, RDF.TYPE, OWL.CLASS)
-    val classStatements = rdfClassStatements union owlClassStatements
-    val classTypes = classStatements.map(statement => RdfClass(statement.getSubject)).toSet[RdfType]
-    val objectPropertyStatements = model.filter(null, RDF.TYPE, OWL.OBJECTPROPERTY)
-    val objectPropertyTypes = objectPropertyStatements.map(statement => RdfObjectProperty(statement.getSubject)).toSet[RdfType]
-    val datatypePropertyStatements = model.filter(null, RDF.TYPE, OWL.DATATYPEPROPERTY)
-    val datatypePropertyTypes = datatypePropertyStatements.map(statement => RdfDatatypeProperty(statement.getSubject)).toSet[RdfType]
-    val propertyTypes = objectPropertyTypes union datatypePropertyTypes
-    (classTypes union propertyTypes).filter(rdfType => rdfType.id.isInstanceOf[URI]) // Discard blank nodes
+  def getPatternName(recipe: ReteNodeRecipe): Option[String] = {
+    recipe match {
+      case recipe: ProductionRecipe => recipe.getPattern match { // XXX it is Object :(
+        case pQuery: PQuery => Some(pQuery.getFullyQualifiedName)
+        case _ => None
+      }
+      case _ => None
+    }
   }
 
-  def getTypeInfos(types: Set[RdfType], databaseUrl: String): Set[RdfTypeInfo] = {
+  def getTypes(vocabulary: Model, databaseUrl: String): Set[RdfType] = {
     val driver = new FileGraphDriverRead(databaseUrl)
-    types.map(rdfType => RdfTypeInfo(rdfType, rdfType.getTupleCount(driver)))
+    val rdfClassStatements = vocabulary.filter(null, RDF.TYPE, RDFS.CLASS).toSet
+    val owlClassStatements = vocabulary.filter(null, RDF.TYPE, OWL.CLASS).toSet
+    val classes = getUriSubjects(rdfClassStatements union owlClassStatements)
+    val classTypes: Set[RdfType] = classes.map(RdfType(RdfType.Class, _, driver))
+    val objectProperties = getUriSubjects(vocabulary.filter(null, RDF.TYPE, OWL.OBJECTPROPERTY).toSet)
+    val objectPropertyTypes: Set[RdfType] = objectProperties.map(RdfType(RdfType.ObjectProperty, _, driver))
+    val datatypeProperties = getUriSubjects(vocabulary.filter(null, RDF.TYPE, OWL.DATATYPEPROPERTY).toSet)
+    val datatypePropertyTypes: Set[RdfType] = datatypeProperties.map(RdfType(RdfType.DatatypeProperty, _, driver))
+    classTypes union objectPropertyTypes union datatypePropertyTypes
+  }
+  
+  def getUriSubjects(statements: Set[Statement]): Set[Resource] = {
+    statements.map(_.getSubject).filter(_.isInstanceOf[URI]) // Discard blank nodes
   }
 
-  def allocate(typeInfos: Set[RdfTypeInfo], inventory: Inventory): Index = {
-    val typeInfosSorted = typeInfos.toList.sortBy(-_.getEstimatedMemoryUsageMb)
-    val allocation = scala.collection.mutable.Map[RdfType, MachineInstance]()
+  def allocate(types: Set[RdfType], recipes: Iterable[ReteNodeRecipe], inventory: Inventory): DeploymentPlan = {
+    val recipesSorted = recipes.toList.sortBy(-RecipeUtils.getEstimatedMemoryUsageMb(_, types))
+    val allocation = mutable.Map[ReteNodeRecipe, MachineInstance]()
     val allocatedInstances = new ArrayList(inventory.machineInstances)
-    typeInfosSorted.foreach { typeInfo =>
-      val memoryUsageMb = typeInfo.getEstimatedMemoryUsageMb
+    for (recipe <- recipesSorted) {
+      val memoryUsageMb = RecipeUtils.getEstimatedMemoryUsageMb(recipe, types)
       val goodInstances = allocatedInstances.filter(_.memoryMb > memoryUsageMb)
       if (goodInstances.isEmpty) {
-        throw new IllegalArgumentException(s"Can't allocate index of ${typeInfo.rdfType.id.stringValue} on any machine!") // XXX return Option[Index] instead?
+        throw new IllegalArgumentException(s"Can't allocate ${RecipeUtils.getName(recipe)} on any machine!") // XXX return Option instead?
       } else {
         val selectedInstance = goodInstances.head
-        allocation.put(typeInfo.rdfType, selectedInstance)
+        allocation.put(recipe, selectedInstance)
         val allocatedInstance = selectedInstance.copy(memoryMb = selectedInstance.memoryMb - memoryUsageMb)
         allocatedInstances.remove(selectedInstance)
         allocatedInstances.add(allocatedInstance)
       }
     }
     val deployedInventory = inventory.copy(machineInstances = allocatedInstances.toList)
-    Index(allocation.toMap, deployedInventory)
+    DeploymentPlan(allocation.toMap, deployedInventory)
   }
 
-  def deployIndex(index: Index, databaseUrl: String): Unit = {
-    for ((rdfType, instance) <- index.allocation) {
-      val name = DigestUtils.md5Hex(rdfType.id.stringValue)
-      val id = ActorId(ReteNetwork.actorSystemName, instance.ip, ReteNetwork.port, name)
-      new RemoteActorService(instance.ip).start(id, classOf[ReteActor])
+  def deploy[Key](deploymentPlan: DeploymentPlan, keyFunction: ReteNodeRecipe => Option[Key]): DeploymentResult[Key] = {
+    val allActors = deploymentPlan.allocation.map { case (recipe, instance) =>
+      val actorId = RemoteReteActor.actorId(recipe, instance) 
+      new RemoteActorService(instance.ip).start(actorId, classOf[ReteActor])
+      actorId
+    }.toSet
+    val specialActors = mutable.Map[Key, ActorId]()
+    for ((recipe, instance) <- deploymentPlan.allocation) {
+      for (key <- keyFunction.apply(recipe)) {
+        val actorId = RemoteReteActor.actorId(recipe, instance)
+        specialActors.put(key, actorId)
+      }
+    }
+    DeploymentResult(allActors, specialActors.toMap, deploymentPlan.deployedInventory)
+  }
+
+  def undeploy(deploymentResult: DeploymentResult[_]): Unit = {
+    for (actorId <- deploymentResult.allActors) {
+      new RemoteActorService(actorId.ip).stop(actorId)
     }
   }
 

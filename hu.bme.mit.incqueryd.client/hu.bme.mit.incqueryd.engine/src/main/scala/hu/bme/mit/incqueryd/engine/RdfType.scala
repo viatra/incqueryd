@@ -1,31 +1,38 @@
 package hu.bme.mit.incqueryd.engine
 
-import eu.mondo.driver.file.FileGraphDriverRead
+import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory
+import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 import org.openrdf.model.Resource
 
-abstract class RdfType() {
-  val id: Resource
-  val arity: Int
-  def getTupleCount(driver: FileGraphDriverRead): Long
+import eu.mondo.driver.file.FileGraphDriverRead
+
+case class RdfType(
+  id: Resource,
+  arity: Int,
+  tupleCount: Long) {
+
+  def getInputRecipe: TypeInputRecipe = {
+    val recipe = if (arity == 1) RecipesFactory.eINSTANCE.createUnaryInputRecipe else RecipesFactory.eINSTANCE.createBinaryInputRecipe
+    recipe.setTypeKey(id)
+    recipe.setTypeName(id.stringValue)
+    recipe
+  }
+
 }
 
-case class RdfClass(override val id: Resource) extends RdfType {
-  override val arity = 1
-  override def getTupleCount(driver: FileGraphDriverRead): Long = {
-    driver.countVertices(id.stringValue)
-  }
-}
+object RdfType {
 
-case class RdfObjectProperty(override val id: Resource) extends RdfType {
-  override val arity = 2
-  override def getTupleCount(driver: FileGraphDriverRead): Long = {
-    driver.countEdges(id.stringValue)
-  }
-}
+  sealed trait Type 
+  case object Class extends Type
+  case object ObjectProperty extends Type
+  case object DatatypeProperty extends Type
 
-case class RdfDatatypeProperty(override val id: Resource) extends RdfType {
-  override val arity = 2
-  override def getTupleCount(driver: FileGraphDriverRead): Long = {
-    driver.countProperties(id.stringValue)
+  def apply(`type`: Type, id: Resource, driver: FileGraphDriverRead): RdfType = {
+    `type` match {
+      case Class => RdfType(id, 1, driver.countVertices(id.stringValue))
+      case ObjectProperty => RdfType(id, 2, driver.countEdges(id.stringValue))
+      case DatatypeProperty => RdfType(id, 2, driver.countProperties(id.stringValue))
+    }
   }
+
 }

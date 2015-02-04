@@ -11,6 +11,9 @@ import scala.concurrent.duration._
 import hu.bme.mit.incqueryd.actorservice.ActorId
 import hu.bme.mit.incqueryd.actorservice.ActorId
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
+import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
+import hu.bme.mit.incqueryd.engine.DeploymentResult
+import hu.bme.mit.incqueryd.engine.util.EObjectSerializer
 
 object Coordinator {
   final val port = 2552
@@ -21,21 +24,21 @@ object Coordinator {
 
 class Coordinator(instance: MachineInstance) {
 
-  def loadData(databaseUrl: String, vocabulary: Model, inventory: Inventory): Index = {
+  def loadData(databaseUrl: String, vocabulary: Model, inventory: Inventory): DeploymentResult[RdfType] = {
     println(s"Loading data")
-    askCoordinator[Index](LoadData(databaseUrl, vocabulary, inventory))
+    askCoordinator[DeploymentResult[RdfType]](LoadData(databaseUrl, vocabulary, inventory))
   }
 
-  def startQuery(recipe: ReteRecipe, index: Index): ReteNetwork = {
+  def startQuery(recipe: ReteRecipe, index: DeploymentResult[RdfType]): DeploymentResult[String] = {
     println(s"Starting query")
-    askCoordinator[ReteNetwork](StartQuery(recipe))
+    askCoordinator[DeploymentResult[String]](StartQuery(EObjectSerializer.serializeToString(recipe), index))
   }
 
-  def checkResults(pattern: PatternDescriptor): List[ChangeSet] = {
-    askCoordinator[List[ChangeSet]](CheckResults(pattern))
+  def checkResults(): List[ChangeSet] = {
+    askCoordinator[List[ChangeSet]](CheckResults())
   }
 
-  def stopQuery(network: ReteNetwork) {
+  def stopQuery(network: DeploymentResult[String]) {
     println(s"Stopping query")
     askCoordinator[String](StopQuery(network))
   }
