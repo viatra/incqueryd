@@ -14,8 +14,4 @@ object LocalActorService extends ActorService {
     actorSystem.actorOf(props, id.name)
   }
 
-  override def stop(id: ActorId) {
-    AkkaUtils.findActor(id) ! PoisonPill
-  }
-
 }

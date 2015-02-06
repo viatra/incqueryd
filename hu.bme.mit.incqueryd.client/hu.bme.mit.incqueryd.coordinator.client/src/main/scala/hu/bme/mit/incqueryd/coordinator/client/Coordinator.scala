@@ -24,21 +24,21 @@ object Coordinator {
 
 class Coordinator(instance: MachineInstance) {
 
-  def loadData(databaseUrl: String, vocabulary: Model, inventory: Inventory): DeploymentResult[RdfType] = {
+  def loadData(databaseUrl: String, vocabulary: Model, inventory: Inventory): DeploymentResult = {
     println(s"Loading data")
-    askCoordinator[DeploymentResult[RdfType]](LoadData(databaseUrl, vocabulary, inventory))
+    askCoordinator[DeploymentResult](LoadData(databaseUrl, vocabulary, inventory))
   }
 
-  def startQuery(recipe: ReteRecipe, index: DeploymentResult[RdfType]): DeploymentResult[String] = {
+  def startQuery(recipe: ReteRecipe, index: DeploymentResult): DeploymentResult = {
     println(s"Starting query")
-    askCoordinator[DeploymentResult[String]](StartQuery(EObjectSerializer.serializeToString(recipe), index))
+    askCoordinator[DeploymentResult](StartQuery(EObjectSerializer.serializeToString(recipe), index))
   }
 
   def checkResults(): List[ChangeSet] = {
     askCoordinator[List[ChangeSet]](CheckResults())
   }
 
-  def stopQuery(network: DeploymentResult[String]) {
+  def stopQuery(network: DeploymentResult) {
     println(s"Stopping query")
     askCoordinator[String](StopQuery(network))
   }

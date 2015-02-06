@@ -19,8 +19,7 @@ class ActorServiceApplication extends Application[ActorServiceConfiguration] {
   }
 
   override def run(configuration: ActorServiceConfiguration, environment: Environment) {
-    List(new StartResource,
-      new StopResource).foreach(environment.jersey.register(_))
+    List(new StartResource).foreach(environment.jersey.register(_))
   }
 
 }

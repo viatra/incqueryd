@@ -28,6 +28,8 @@ import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
 import hu.bme.mit.incqueryd.engine.util.RecipeDeserializer
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
+import akka.actor.ActorRef
+import akka.actor.PoisonPill
 
 object CoordinatorActor {
   final val sampleResult = List(ChangeSet(Set(Tuple(List(42))), true))
@@ -39,15 +41,16 @@ class CoordinatorActor extends Actor {
     case LoadData(databaseUrl, vocabulary, inventory) => AkkaUtils.propagateException(sender) {
       val types = getTypes(vocabulary, databaseUrl)
       val typeInputRecipes = types.map(_.getInputRecipe)
-      val plan = allocate(types, typeInputRecipes, inventory)
-      val index = deploy(plan, recipe => types.find(_.id.stringValue == RecipeUtils.getName(recipe)))
+      val plan = allocate(typeInputRecipes, types, inventory)
+      val index = deploy(plan, types)
       sender ! index
     }
     case StartQuery(recipeJson, index) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe])
-      val plan = allocate(index.specialActors.keySet, notTypeInputRecipes, index.deployedInventory)
-      val network = deploy(plan, getPatternName(_))
+      val types = index.inputNodesByType.keySet
+      val plan = allocate(notTypeInputRecipes, types, index.deployedInventory)
+      val network = deploy(plan, types)
       sender ! network
     }
     case CheckResults() => {
@@ -86,7 +89,7 @@ class CoordinatorActor extends Actor {
     statements.map(_.getSubject).filter(_.isInstanceOf[URI]) // Discard blank nodes
   }
 
-  def allocate(types: Set[RdfType], recipes: Iterable[ReteNodeRecipe], inventory: Inventory): DeploymentPlan = {
+  def allocate(recipes: Iterable[ReteNodeRecipe], types: Set[RdfType], inventory: Inventory): DeploymentPlan = {
     val recipesSorted = recipes.toList.sortBy(-RecipeUtils.getEstimatedMemoryUsageMb(_, types))
     val allocation = mutable.Map[ReteNodeRecipe, MachineInstance]()
     val allocatedInstances = new ArrayList(inventory.machineInstances)
@@ -107,25 +110,23 @@ class CoordinatorActor extends Actor {
     DeploymentPlan(allocation.toMap, deployedInventory)
   }
 
-  def deploy[Key](deploymentPlan: DeploymentPlan, keyFunction: ReteNodeRecipe => Option[Key]): DeploymentResult[Key] = {
-    val allActors = deploymentPlan.allocation.map { case (recipe, instance) =>
-      val actorId = RemoteReteActor.actorId(recipe, instance) 
-      new RemoteActorService(instance.ip).start(actorId, classOf[ReteActor])
-      actorId
-    }.toSet
-    val specialActors = mutable.Map[Key, ActorId]()
+  def deploy(deploymentPlan: DeploymentPlan, types: Set[RdfType]): DeploymentResult = {
+	val inputNodesByType = mutable.Map[RdfType, ActorRef]()
+	val otherNodesByEmfUri = mutable.Map[String, ActorRef]()
     for ((recipe, instance) <- deploymentPlan.allocation) {
-      for (key <- keyFunction.apply(recipe)) {
-        val actorId = RemoteReteActor.actorId(recipe, instance)
-        specialActors.put(key, actorId)
+      val actorId = RemoteReteActor.actorId(recipe, instance) 
+      val actor = new RemoteActorService(instance.ip).start(actorId, classOf[ReteActor])
+      recipe match {
+        case recipe: TypeInputRecipe => inputNodesByType.put(RecipeUtils.findType(types, recipe).get, actor)
+        case recipe => otherNodesByEmfUri.put(EcoreUtil.getURI(recipe).toString, actor)
       }
     }
-    DeploymentResult(allActors, specialActors.toMap, deploymentPlan.deployedInventory)
+    DeploymentResult(inputNodesByType.toMap, otherNodesByEmfUri.toMap, deploymentPlan.deployedInventory)
   }
 
-  def undeploy(deploymentResult: DeploymentResult[_]): Unit = {
-    for (actorId <- deploymentResult.allActors) {
-      new RemoteActorService(actorId.ip).stop(actorId)
+  def undeploy(deploymentResult: DeploymentResult): Unit = {
+    for (actor <- deploymentResult.inputNodesByType.values ++ deploymentResult.otherNodesByEmfUri.values) {
+      actor ! PoisonPill
     }
   }
 

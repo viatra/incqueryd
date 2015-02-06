@@ -14,6 +14,8 @@ import javax.ws.rs.QueryParam
 import hu.bme.mit.incqueryd.infrastructureagent.client.DefaultInfrastructureAgent._
 import upickle._
 import hu.bme.mit.incqueryd.inventory.Inventory
+import hu.bme.mit.incqueryd.actorservice.AkkaUtils
+import akka.actor.PoisonPill
 
 @Path(DestroyInfrastructure.path)
 @Produces(Array(MediaType.APPLICATION_JSON))
@@ -31,7 +33,7 @@ class DestroyInfrastructureResource {
   }
   
   private def stopCoordinator(currentIp: String) {
-    LocalActorService.stop(Coordinator.actorId(currentIp))
+    AkkaUtils.findActor(Coordinator.actorId(currentIp)) ! PoisonPill
   }
 
 }

@@ -20,7 +20,7 @@ object RecipeUtils {
     recipe match {
       case recipe: TypeInputRecipe => {
         val arity = recipe.getArity
-        val tupleCount: Long = types.find(_.id.stringValue == recipe.getTypeName).map(_.tupleCount).getOrElse(0)
+        val tupleCount: Long = findType(types, recipe).map(_.tupleCount).getOrElse(0)
         arity * tupleCount
       }
       case recipe: TrimmerRecipe => {
@@ -62,6 +62,10 @@ object RecipeUtils {
       // TODO more cases
       case _ => recipe.toString
     }
+  }
+  
+  def findType(types: Set[RdfType], recipe: TypeInputRecipe): Option[RdfType] = {
+    types.find(_.id.stringValue == recipe.getTypeName)
   }
 
 }

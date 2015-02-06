@@ -1,14 +1,9 @@
 package hu.bme.mit.incqueryd.engine
 
+import akka.actor.ActorRef
 import hu.bme.mit.incqueryd.inventory.Inventory
-import hu.bme.mit.incqueryd.inventory.MachineInstance
-import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
-import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
-import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
-import hu.bme.mit.incqueryd.actorservice.ActorId
-import java.io.Serializable
 
-case class DeploymentResult[Key](
-  allActors: Set[ActorId],
-  specialActors: Map[Key, ActorId],
+case class DeploymentResult(
+  inputNodesByType: Map[RdfType, ActorRef],
+  otherNodesByEmfUri: Map[String, ActorRef],
   deployedInventory: Inventory)

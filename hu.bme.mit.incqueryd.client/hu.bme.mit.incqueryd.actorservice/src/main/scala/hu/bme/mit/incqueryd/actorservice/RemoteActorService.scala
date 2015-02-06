@@ -15,28 +15,21 @@ object RemoteActorService {
   object Start {
     final val path = "/start"
   }
-  object Stop {
-    final val path = "/stop"
-  }
 }
 
 class RemoteActorService(val ip: String) extends ActorService {
 
   override def start(id: ActorId, actorClass: Class[_ <: Actor]): ActorRef = {
-    callWebService(RemoteActorService.Start.path, id,
-        new BasicNameValuePair(RemoteActorService.classNameParameter, actorClass.getName))
+    val idJson = write(id)
+    val allParameters = List(
+      new BasicNameValuePair(RemoteActorService.idJsonParameter, idJson),
+      new BasicNameValuePair(RemoteActorService.classNameParameter, actorClass.getName)
+    )
+    WebServiceUtils.call(ip, RemoteActorService.port, RemoteActorService.Start.path, allParameters: _*)
     AkkaUtils.findActor(id)
   }
 
-  override def stop(id: ActorId) {
-    callWebService(RemoteActorService.Stop.path, id)
-  }
-
   private def callWebService(path: String, id: ActorId, moreParameters: NameValuePair*) = {
-    val idJson = write(id)
-    val allParameters =
-      new BasicNameValuePair(RemoteActorService.idJsonParameter, idJson) :: moreParameters.toList  
-    WebServiceUtils.call(ip, RemoteActorService.port, path, allParameters: _*)
   }
 
 }
