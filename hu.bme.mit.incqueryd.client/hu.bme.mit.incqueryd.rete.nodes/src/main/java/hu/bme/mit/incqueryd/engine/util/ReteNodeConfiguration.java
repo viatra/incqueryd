@@ -14,35 +14,30 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 
 public class ReteNodeConfiguration implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	protected String recipeString;
-	protected List<String> cacheMachineIps;
-	protected final String connectionString;
+	protected final String networkRecipeString;
+	protected final String nodeRecipeUriFragment;
+	protected final List<String> cacheMachineIps;
 	
-	public ReteNodeConfiguration(final String recipeString, final List<String> cacheMachineIps, final String connectionString) {
+	public ReteNodeConfiguration(final ReteNodeRecipe recipe, final List<String> cacheMachineIps) throws IOException {
 		super();
-		this.recipeString = recipeString;
+		this.networkRecipeString = EObjectSerializer.serializeToString(EcoreUtil.getRootContainer(recipe));
+		this.nodeRecipeUriFragment = recipe.eResource().getURIFragment(recipe);
 		this.cacheMachineIps = cacheMachineIps;
-		this.connectionString = connectionString;
 	}
 
-	public String getRecipeString() {
-		return recipeString;
-	}
-	
 	public List<String> getCacheMachineIps() {
 		return cacheMachineIps;
 	}
 	
 	public ReteNodeRecipe getReteNodeRecipe() throws IOException {
-		return (ReteNodeRecipe) RecipeDeserializer.deserializeFromString(getRecipeString());	
-	}
-	
-	public String getConnectionString() {
-		return connectionString;
+		Resource resource = RecipeDeserializer.deserializeFromString(networkRecipeString).eResource();
+		return (ReteNodeRecipe)resource.getEObject(nodeRecipeUriFragment); 
 	}
 }

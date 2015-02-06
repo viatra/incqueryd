@@ -13,6 +13,7 @@ import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe
 import scala.collection.JavaConversions._
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
+import org.eclipse.emf.ecore.EObject
 
 object RecipeUtils {
 
@@ -66,6 +67,10 @@ object RecipeUtils {
   
   def findType(types: Set[RdfType], recipe: TypeInputRecipe): Option[RdfType] = {
     types.find(_.id.stringValue == recipe.getTypeName)
+  }
+
+  def getEmfId(eObject: EObject): String = {
+    eObject.eResource().getURIFragment(eObject)
   }
 
 }

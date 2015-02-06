@@ -19,14 +19,14 @@ import hu.bme.mit.incqueryd.engine.rete.messages.ReteCommunicationMessage;
 import hu.bme.mit.incqueryd.engine.rete.messages.SubscriptionMessage;
 import hu.bme.mit.incqueryd.engine.rete.messages.TerminationMessage;
 import hu.bme.mit.incqueryd.engine.rete.messages.UpdateMessage;
+import hu.bme.mit.incqueryd.engine.util.RecipeDeserializer;
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Stack;
 
-import org.apache.commons.io.FileUtils;
+import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -42,7 +42,7 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 	protected final JavaTestKit targetActor;
 	protected final ReteNodeConfiguration conf;
 
-	public ReteActorTestKit(final ActorSystem system, final String recipeFile)
+	public ReteActorTestKit(final ActorSystem system, final String recipeFilename)
 			throws IOException {
 		super(system);
 		this.system = system;
@@ -53,8 +53,8 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 		coordinatorActor = new JavaTestKit(system);
 		targetActor = new JavaTestKit(system);
 
-		final String jsonRecipe = FileUtils.readFileToString(new File(recipeFile));
-		conf = new ReteNodeConfiguration(jsonRecipe, Collections.<String>emptyList(), "trainbenchmark_cluster");
+		ReteNodeRecipe recipe = (ReteNodeRecipe) RecipeDeserializer.deserializeFromFile(recipeFilename);
+		conf = new ReteNodeConfiguration(recipe, Collections.<String>emptyList());
 	}
 
 	// @formatter:off

@@ -30,6 +30,8 @@ import hu.bme.mit.incqueryd.engine.util.RecipeDeserializer
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 import akka.actor.ActorRef
 import akka.actor.PoisonPill
+import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
+import hu.bme.mit.incqueryd.engine.util.EObjectSerializer
 
 object CoordinatorActor {
   final val sampleResult = List(ChangeSet(Set(Tuple(List(42))), true))
@@ -48,9 +50,10 @@ class CoordinatorActor extends Actor {
     case StartQuery(recipeJson, index) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe])
-      val types = index.inputNodesByType.keySet
+      val types = index.inputActorsByType.keySet
       val plan = allocate(notTypeInputRecipes, types, index.deployedInventory)
       val network = deploy(plan, types)
+      configureNetwork(network, recipe)
       sender ! network
     }
     case CheckResults() => {
@@ -86,7 +89,7 @@ class CoordinatorActor extends Actor {
   }
   
   def getUriSubjects(statements: Set[Statement]): Set[Resource] = {
-    statements.map(_.getSubject).filter(_.isInstanceOf[URI]) // Discard blank nodes
+    statements.map(_.getSubject).filter(_.isInstanceOf[URI]) // Discard blank Actors
   }
 
   def allocate(recipes: Iterable[ReteNodeRecipe], types: Set[RdfType], inventory: Inventory): DeploymentPlan = {
@@ -111,22 +114,36 @@ class CoordinatorActor extends Actor {
   }
 
   def deploy(deploymentPlan: DeploymentPlan, types: Set[RdfType]): DeploymentResult = {
-	val inputNodesByType = mutable.Map[RdfType, ActorRef]()
-	val otherNodesByEmfUri = mutable.Map[String, ActorRef]()
+	val inputActorsByType = mutable.Map[RdfType, ActorRef]()
+	val otherActorsByEmfUri = mutable.Map[String, ActorRef]()
     for ((recipe, instance) <- deploymentPlan.allocation) {
       val actorId = RemoteReteActor.actorId(recipe, instance) 
       val actor = new RemoteActorService(instance.ip).start(actorId, classOf[ReteActor])
       recipe match {
-        case recipe: TypeInputRecipe => inputNodesByType.put(RecipeUtils.findType(types, recipe).get, actor)
-        case recipe => otherNodesByEmfUri.put(EcoreUtil.getURI(recipe).toString, actor)
+        case recipe: TypeInputRecipe => inputActorsByType.put(RecipeUtils.findType(types, recipe).get, actor)
+        case recipe => otherActorsByEmfUri.put(RecipeUtils.getEmfId(recipe), actor)
       }
     }
-    DeploymentResult(inputNodesByType.toMap, otherNodesByEmfUri.toMap, deploymentPlan.deployedInventory)
+    DeploymentResult(inputActorsByType.toMap, otherActorsByEmfUri.toMap, deploymentPlan.deployedInventory)
   }
 
   def undeploy(deploymentResult: DeploymentResult): Unit = {
-    for (actor <- deploymentResult.inputNodesByType.values ++ deploymentResult.otherNodesByEmfUri.values) {
+    for (actor <- deploymentResult.inputActorsByType.values ++ deploymentResult.otherActorsByEmfId.values) {
       actor ! PoisonPill
+    }
+  }
+  
+  def configureNetwork(network: DeploymentResult, recipe: ReteRecipe): Unit = {
+    for ((rdfType, actor) <- network.inputActorsByType) {
+      val nodeRecipe = rdfType.getInputRecipe
+      actor ! new ReteNodeConfiguration(nodeRecipe, List())
+    }
+    for ((emfId, actor) <- network.otherActorsByEmfId) {
+      val maybeNodeRecipe = recipe.getRecipeNodes.find(RecipeUtils.getEmfId(_) == emfId)
+      if (maybeNodeRecipe.isEmpty) {
+        println("Programming error")
+      }
+      actor ! new ReteNodeConfiguration(maybeNodeRecipe.get, List())
     }
   }
 
