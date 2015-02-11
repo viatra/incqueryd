@@ -32,6 +32,11 @@ import akka.actor.ActorRef
 import akka.actor.PoisonPill
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
 import hu.bme.mit.incqueryd.engine.util.EObjectSerializer
+import akka.pattern.ask
+import akka.util.Timeout
+import akka.dispatch.Futures
+import scala.concurrent.Future
+import scala.concurrent.Await
 
 object CoordinatorActor {
   final val sampleResult = List(ChangeSet(Set(Tuple(List(42))), true))
@@ -45,6 +50,7 @@ class CoordinatorActor extends Actor {
       val typeInputRecipes = types.map(_.getInputRecipe)
       val plan = allocate(typeInputRecipes, types, inventory)
       val index = deploy(plan, types)
+      configureIndex(index)
       sender ! index
     }
     case StartQuery(recipeJson, index) => {
@@ -133,18 +139,29 @@ class CoordinatorActor extends Actor {
     }
   }
   
-  def configureNetwork(network: DeploymentResult, recipe: ReteRecipe): Unit = {
-    for ((rdfType, actor) <- network.inputActorsByType) {
-      val nodeRecipe = rdfType.getInputRecipe
-      actor ! new ReteNodeConfiguration(nodeRecipe, List())
+  def configureIndex(index: DeploymentResult): Unit = {
+    implicit val timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)
+    val typeConfigurations = index.inputActorsByType.map { case (rdfType, actor) =>
+      val nodeRecipe = rdfType.getInputRecipe;
+      actor.ask(new ReteNodeConfiguration(nodeRecipe, List()))
     }
-    for ((emfId, actor) <- network.otherActorsByEmfId) {
+    import context.dispatcher
+    val allConfigurations = Future.sequence(typeConfigurations)
+    Await.result(allConfigurations, timeout.duration)
+  }
+  
+  def configureNetwork(network: DeploymentResult, recipe: ReteRecipe): Unit = {
+    implicit val timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)
+    val otherConfigurations = network.otherActorsByEmfId.map { case (emfId, actor) =>
       val maybeNodeRecipe = recipe.getRecipeNodes.find(RecipeUtils.getEmfId(_) == emfId)
       if (maybeNodeRecipe.isEmpty) {
         println("Programming error")
       }
-      actor ! new ReteNodeConfiguration(maybeNodeRecipe.get, List())
+      actor.ask(new ReteNodeConfiguration(maybeNodeRecipe.get, List()))
     }
+    import context.dispatcher
+    val allConfigurations = Future.sequence(otherConfigurations)
+    Await.result(allConfigurations, timeout.duration)
   }
 
 }

@@ -33,8 +33,6 @@ import eu.mondo.driver.graph.RDFGraphDriverRead;
 
 public class TypeInputNode implements ReteNode {
 
-	final String connectionString = getClass().getClassLoader().getResource("models/railway-xform-1.ttl").toString();
-
 	protected final TypeInputRecipe recipe;
 
 	protected Set<Tuple> tuples = new HashSet<>();
@@ -47,6 +45,7 @@ public class TypeInputNode implements ReteNode {
 
 	public void load() throws IOException {
 		try {
+			final String connectionString = getClass().getClassLoader().getResource("models/railway-xform-1.ttl").toString(); // XXX get from configuration
 			driver = new FileGraphDriverRead(connectionString);
 		} catch (RDFParseException | RDFHandlerException e) {
 			throw new IOException(e);
