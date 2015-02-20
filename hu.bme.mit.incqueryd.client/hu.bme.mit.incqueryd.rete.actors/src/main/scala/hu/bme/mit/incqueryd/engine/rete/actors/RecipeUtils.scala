@@ -1,19 +1,15 @@
-package hu.bme.mit.incqueryd.engine
+package hu.bme.mit.incqueryd.engine.rete.actors
 
-import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
-import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
-import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe
-import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe
-import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe
-import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe
+import scala.collection.JavaConversions.asScalaBuffer
+
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe
-import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe
+import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ConstantRecipe
 import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe
-import scala.collection.JavaConversions._
-import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
-import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
-import org.eclipse.emf.ecore.EObject
+import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
+import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe
+import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 
 object RecipeUtils {
 
@@ -64,7 +60,7 @@ object RecipeUtils {
       case _ => recipe.toString
     }
   }
-  
+
   def findType(types: Set[RdfType], recipe: TypeInputRecipe): Option[RdfType] = {
     types.find(_.id.stringValue == recipe.getTypeName)
   }

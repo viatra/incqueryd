@@ -1,9 +1,8 @@
-package hu.bme.mit.incqueryd.engine
+package hu.bme.mit.incqueryd.engine.rete.actors
 
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 import org.openrdf.model.Resource
-
 import eu.mondo.driver.file.FileGraphDriverRead
 
 case class RdfType(
@@ -22,13 +21,13 @@ case class RdfType(
 
 object RdfType {
 
-  sealed trait Type 
-  case object Class extends Type
-  case object ObjectProperty extends Type
-  case object DatatypeProperty extends Type
+  sealed trait Kind 
+  case object Class extends Kind
+  case object ObjectProperty extends Kind
+  case object DatatypeProperty extends Kind
 
-  def apply(`type`: Type, id: Resource, driver: FileGraphDriverRead): RdfType = {
-    `type` match {
+  def apply(kind: Kind, id: Resource, driver: FileGraphDriverRead): RdfType = {
+    kind match {
       case Class => RdfType(id, 1, driver.countVertices(id.stringValue))
       case ObjectProperty => RdfType(id, 2, driver.countEdges(id.stringValue))
       case DatatypeProperty => RdfType(id, 2, driver.countProperties(id.stringValue))

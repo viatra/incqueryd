@@ -37,6 +37,10 @@ import akka.util.Timeout
 import akka.dispatch.Futures
 import scala.concurrent.Future
 import scala.concurrent.Await
+import hu.bme.mit.incqueryd.engine.rete.actors.RdfType
+import hu.bme.mit.incqueryd.engine.rete.actors.RecipeUtils
+import hu.bme.mit.incqueryd.engine.rete.actors.YellowPages
+import hu.bme.mit.incqueryd.engine.rete.actors.RecipeUtils
 
 object CoordinatorActor {
   final val sampleResult = List(ChangeSet(Set(Tuple(List(42))), true))
@@ -58,8 +62,9 @@ class CoordinatorActor extends Actor {
       val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe])
       val types = index.inputActorsByType.keySet
       val plan = allocate(notTypeInputRecipes, types, index.deployedInventory)
-      val network = deploy(plan, types)
+      val network = deploy(plan, types).copy(inputActorsByType = index.inputActorsByType)
       configureNetwork(network, recipe)
+      establishSubscriptions(network)
       sender ! network
     }
     case CheckResults() => {
@@ -74,7 +79,7 @@ class CoordinatorActor extends Actor {
   def getPatternName(recipe: ReteNodeRecipe): Option[String] = {
     recipe match {
       case recipe: ProductionRecipe => recipe.getPattern match { // XXX it is Object :(
-        case pQuery: PQuery => Some(pQuery.getFullyQualifiedName)
+        case pattern: PQuery => Some(pattern.getFullyQualifiedName)
         case _ => None
       }
       case _ => None
@@ -126,8 +131,8 @@ class CoordinatorActor extends Actor {
       val actorId = RemoteReteActor.actorId(recipe, instance) 
       val actor = new RemoteActorService(instance.ip).start(actorId, classOf[ReteActor])
       recipe match {
-        case recipe: TypeInputRecipe => inputActorsByType.put(RecipeUtils.findType(types, recipe).get, actor)
-        case recipe => otherActorsByEmfUri.put(RecipeUtils.getEmfId(recipe), actor)
+        case recipe: TypeInputRecipe => inputActorsByType.put(RecipeUtils.findType(types, recipe).get, actor) // XXX Option.get
+        case _ => otherActorsByEmfUri.put(RecipeUtils.getEmfId(recipe), actor)
       }
     }
     DeploymentResult(inputActorsByType.toMap, otherActorsByEmfUri.toMap, deploymentPlan.deployedInventory)
@@ -138,30 +143,34 @@ class CoordinatorActor extends Actor {
       actor ! PoisonPill
     }
   }
-  
+
   def configureIndex(index: DeploymentResult): Unit = {
     implicit val timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)
-    val typeConfigurations = index.inputActorsByType.map { case (rdfType, actor) =>
-      val nodeRecipe = rdfType.getInputRecipe;
+    val configurations = index.inputActorsByType.map { case (rdfType, actor) =>
+      val nodeRecipe = rdfType.getInputRecipe
       actor.ask(new ReteNodeConfiguration(nodeRecipe, List()))
     }
     import context.dispatcher
-    val allConfigurations = Future.sequence(typeConfigurations)
-    Await.result(allConfigurations, timeout.duration)
+    Await.result(Future.sequence(configurations), timeout.duration) // XXX should be async
   }
   
   def configureNetwork(network: DeploymentResult, recipe: ReteRecipe): Unit = {
     implicit val timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)
-    val otherConfigurations = network.otherActorsByEmfId.map { case (emfId, actor) =>
-      val maybeNodeRecipe = recipe.getRecipeNodes.find(RecipeUtils.getEmfId(_) == emfId)
-      if (maybeNodeRecipe.isEmpty) {
-        println("Programming error")
-      }
-      actor.ask(new ReteNodeConfiguration(maybeNodeRecipe.get, List()))
+    val configurations = network.otherActorsByEmfId.map { case (emfId, actor) =>
+      val nodeRecipe = recipe.getRecipeNodes.find(RecipeUtils.getEmfId(_) == emfId).get // XXX Option.get
+      actor.ask(new ReteNodeConfiguration(nodeRecipe, List()))
     }
     import context.dispatcher
-    val allConfigurations = Future.sequence(otherConfigurations)
-    Await.result(allConfigurations, timeout.duration)
+    Await.result(Future.sequence(configurations), timeout.duration) // XXX should be async
+  }
+  
+  def establishSubscriptions(network: DeploymentResult): Unit = {
+    implicit val timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)
+    val subscriptions = network.otherActorsByEmfId.values.map { actor =>
+      actor.ask(YellowPages(network.inputActorsByType, network.otherActorsByEmfId))
+    }
+    import context.dispatcher
+    Await.result(Future.sequence(subscriptions), timeout.duration) // XXX should be async
   }
 
 }

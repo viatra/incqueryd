@@ -2,7 +2,6 @@ package hu.bme.mit.incqueryd.engine
 
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.openrdf.model.Model
-
 import hu.bme.mit.incqueryd.inventory.Inventory
 
 sealed trait CoordinatorCommand

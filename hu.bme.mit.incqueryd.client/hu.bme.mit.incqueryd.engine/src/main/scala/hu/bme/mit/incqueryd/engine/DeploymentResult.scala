@@ -1,6 +1,8 @@
 package hu.bme.mit.incqueryd.engine
 
 import akka.actor.ActorRef
+import hu.bme.mit.incqueryd.engine.rete.actors.RdfType
+import hu.bme.mit.incqueryd.engine.rete.actors.RdfType
 import hu.bme.mit.incqueryd.inventory.Inventory
 
 case class DeploymentResult(

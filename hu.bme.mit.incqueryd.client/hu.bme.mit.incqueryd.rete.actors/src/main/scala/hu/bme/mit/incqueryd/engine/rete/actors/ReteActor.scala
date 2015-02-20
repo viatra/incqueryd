@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.engine.rete.actors
 
 import java.util.HashMap
-import scala.collection.JavaConversions.asScalaSet
+import scala.collection.JavaConversions._
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import akka.actor.Actor
 import akka.actor.ActorRef
@@ -21,6 +21,12 @@ import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNodeFactory
 import hu.bme.mit.incqueryd.engine.rete.nodes.TypeInputNode
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
 import java.util.Stack
+import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe
+import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe
+import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe
+import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
+import scala.collection.JavaConversions
+import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 
 class ReteActor extends Actor {
 
@@ -31,7 +37,7 @@ class ReteActor extends Actor {
 
   var recipe: ReteNodeRecipe = null
   var reteNode: ReteNode = null
-  var subscribers = new HashMap[ActorRef, ReteNodeSlot]
+  var subscribers = scala.collection.mutable.Map[ActorRef, ReteNodeSlot]()
   var coordinatorRef: ActorRef = null
 
   var updateMessageCount = 0 // To count how many update messages this actor sent
@@ -53,87 +59,45 @@ class ReteActor extends Actor {
     sender ! ActorReply.CONFIGURATION_RECEIVED
   }
 
-//  def subscribe(yellowPages: YellowPages) = {
-//
-//    monitoringServerActor = yellowPages.getMonitoringServerAddress
-//
-//    val emfUriToActorRef = yellowPages.getEmfUriToActorRef
-//
-//    println(logPrefix + self + ", Recipe: " + recipe.toString)
-//
-//    recipe match {
-//      case alphaRecipe: AlphaRecipe => {
-//        val parent = alphaRecipe.getParent
-//        val parentUri = ArchUtil.getJsonEObjectUri(parent)
-//        val parentActorRef = emfUriToActorRef.get(parentUri)
-//
-//        println(logPrefix + "Parent: " + parentUri + " -> " + parentActorRef)
-//
-//        subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE)
-//      }
-//      case betaRecipe: BetaRecipe => {
-//        val primaryParent = betaRecipe.getLeftParent.getParent
-//        val secondaryParent = betaRecipe.getRightParent.getParent
-//
-//        val primaryParentUri = ArchUtil.getJsonEObjectUri(primaryParent)
-//        val primaryParentActorRef = emfUriToActorRef.get(primaryParentUri)
-//
-//        println(logPrefix + "Primary parent URI: " + primaryParentUri + " -> " + primaryParentActorRef)
-//
-//        val secondaryParentUri = ArchUtil.getJsonEObjectUri(secondaryParent)
-//        val secondaryParentActorRef = emfUriToActorRef.get(secondaryParentUri)
-//
-//        println(logPrefix + "Secondary parent URI: " + secondaryParentUri + " -> "
-//          + secondaryParentActorRef)
-//
-//        subscribeToActor(primaryParentActorRef, ReteNodeSlot.PRIMARY)
-//        subscribeToActor(secondaryParentActorRef, ReteNodeSlot.SECONDARY)
-//      }
-//      case productionRecipe: ProductionRecipe => {
-//        val parents = productionRecipe.getParents
-//
-//        parents.foreach(parent => {
-//          val parentUri = ArchUtil.getJsonEObjectUri(parent)
-//          val parentActorRef = emfUriToActorRef.get(parentUri)
-//
-//          println(logPrefix + "Parent URI: " + parentUri + " -> " + parentActorRef)
-//
-//          subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE)
-//        })
-//
-//      }
-//      case multiParentNodeRecipe: MultiParentNodeRecipe => {
-//        val parents = multiParentNodeRecipe.getParents
-//        parents.foreach(parent => {
-//          val parentUri = ArchUtil.getJsonEObjectUri(parent)
-//          val parentActorRef = emfUriToActorRef.get(parentUri)
-//
-//          println(logPrefix + "Parent: " + parentUri + " -> " + parentActorRef)
-//
-//          subscribeToActor(parentActorRef, ReteNodeSlot.SINGLE)
-//        })
-//      }
-//      case _ => {}
-//    }
-//
-//  }
+  def subscribe(yellowPages: YellowPages) = {
+    println(logPrefix + self + " Subscribing to parent(s)")
+    recipe match {
+      case alphaRecipe: AlphaRecipe => {
+        val parent = alphaRecipe.getParent
+        subscribeToActor(parent, ReteNodeSlot.SINGLE, yellowPages)
+      }
+      case betaRecipe: BetaRecipe => {
+        val primaryParent = betaRecipe.getLeftParent.getParent
+        val secondaryParent = betaRecipe.getRightParent.getParent
+        subscribeToActor(primaryParent, ReteNodeSlot.PRIMARY, yellowPages)
+        subscribeToActor(secondaryParent, ReteNodeSlot.SECONDARY, yellowPages)
+      }
+      case multiParentNodeRecipe: MultiParentNodeRecipe => {
+        val parents = multiParentNodeRecipe.getParents
+        parents.foreach(parent => {
+          subscribeToActor(parent, ReteNodeSlot.SINGLE, yellowPages)
+        })
+      }
+      case _ => {}
+    }
+  }
 
-  def subscribeToActor(actorRef: ActorRef, slot: ReteNodeSlot) = {
-
+  def subscribeToActor(recipe: ReteNodeRecipe, slot: ReteNodeSlot, yellowPages: YellowPages) = {
+    val actorRef = recipe match {
+	  case recipe: TypeInputRecipe => {
+	    val rdfType = RecipeUtils.findType(yellowPages.inputActorsByType.keySet, recipe)
+	    rdfType.flatMap(yellowPages.inputActorsByType.get(_))
+	  }
+	  case _ => yellowPages.otherActorsByEmfId.get(RecipeUtils.getEmfId(recipe))
+	}
     val message = slot match {
       case ReteNodeSlot.PRIMARY => SubscriptionMessage.SUBSCRIBE_PRIMARY
       case ReteNodeSlot.SECONDARY => SubscriptionMessage.SUBSCRIBE_SECONDARY
       case ReteNodeSlot.SINGLE => SubscriptionMessage.SUBSCRIBE_SINGLE
       case _ => null
     }
-
-    actorRef ! message
-
-    try {
-      Thread.sleep(100)
-    } catch {
-      case e: InterruptedException => e.printStackTrace
-    }
+    actorRef.get ! message // XXX Option.get
+    // TODO wait for reply?
   }
 
   def subscribeSender(slot: ReteNodeSlot) = {
@@ -167,11 +131,9 @@ class ReteActor extends Actor {
 
     sendToSubscribers(changeSet, updateMessage.getRoute)
 
-//        if (monitoringServerActor != null) monitoringServerActor ! monitor // send the monitoring server the updated metrics
-
     reteNode match {
       case node: ProductionNode => {
-        if (subscribers.isEmpty()) terminationProtocol(new TerminationMessage(updateMessage.getRoute))
+        if (subscribers.isEmpty) terminationProtocol(new TerminationMessage(updateMessage.getRoute))
       }
       case _ => {}
     }
@@ -182,9 +144,7 @@ class ReteActor extends Actor {
       updateMessageCount += 1
     }
 
-    subscribers.entrySet.foreach(entry => {
-      val subscriber = entry.getKey
-      val slot = entry.getValue
+    for ((subscriber, slot) <- subscribers) {
 
       val propagatedRoute = senderStack.clone.asInstanceOf[Stack[ActorRef]]
       propagatedRoute.push(self)
@@ -198,15 +158,13 @@ class ReteActor extends Actor {
       // @formatter:on
 
       subscriber ! updateMessage
-    })
+    }
 
     if (changeSet != null) changesCount += changeSet.getTuples.size // In case it's not a production node
   }
 
   def initialize = {
     coordinatorRef = sender
-
-//    if (monitoringServerActor != null) monitoringServerActor ! monitor // send the monitoring server the updated metrics    
   }
 
   def initializeInput = {
@@ -224,10 +182,6 @@ class ReteActor extends Actor {
   def terminationProtocol(terminationMessage: TerminationMessage): Unit = {
     val route = terminationMessage.getRoute
 
-//    val pair = route.pop2
-//    val terminationMessageTarget = pair._1
-//    val terminationMessageRoute = pair._2
-
     val terminationMessageRoute = route.clone.asInstanceOf[Stack[ActorRef]]
     val terminationMessageTarget = terminationMessageRoute.pop
     
@@ -243,10 +197,10 @@ class ReteActor extends Actor {
   def receive = {
     case conf: ReteNodeConfiguration => configure(conf)
     case updateMessage: UpdateMessage => update(updateMessage)
-//    case yellowPages: YellowPages => {
-//      subscribe(yellowPages)
-//      sender ! ActorReply.YELLOWPAGES_RECEIVED
-//    }
+    case yellowPages: YellowPages => {
+      subscribe(yellowPages)
+      sender ! ActorReply.YELLOWPAGES_RECEIVED
+    }
     case terminationMessage: TerminationMessage => terminationProtocol(terminationMessage)
     case SubscriptionMessage.SUBSCRIBE_SINGLE => subscribeSender(ReteNodeSlot.SINGLE)
     case SubscriptionMessage.SUBSCRIBE_PRIMARY => subscribeSender(ReteNodeSlot.PRIMARY)
