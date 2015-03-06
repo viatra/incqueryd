@@ -10,7 +10,6 @@
  *******************************************************************************/
 package hu.bme.mit.incqueryd.engine.rete.actors.testkits;
 
-import static org.junit.Assert.assertEquals;
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ReteNodeSlot;
@@ -32,6 +31,7 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.testkit.JavaTestKit;
+import static org.junit.Assert.assertEquals;
 
 public abstract class ReteActorTestKit extends JavaTestKit {
 
@@ -54,7 +54,7 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 		targetActor = new JavaTestKit(system);
 
 		ReteNodeRecipe recipe = (ReteNodeRecipe) RecipeDeserializer.deserializeFromFile(recipeFilename);
-		conf = new ReteNodeConfiguration(recipe, Collections.<String>emptyList());
+		conf = new ReteNodeConfiguration(recipe, Collections.<String>emptyList(), "");
 	}
 
 	// @formatter:off

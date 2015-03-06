@@ -33,20 +33,26 @@ import eu.mondo.driver.graph.RDFGraphDriverRead;
 
 public class TypeInputNode implements ReteNode {
 
+	public static final String VERTEX = "vertex";
+	public static final String EDGE = "edge";
+	public static final String ATTRIBUTE = "attribute";
+
 	protected final TypeInputRecipe recipe;
 
 	protected Set<Tuple> tuples = new HashSet<>();
 	protected RDFGraphDriverRead driver;
 
-	TypeInputNode(final TypeInputRecipe recipe) {
+	private final String databaseUrl;
+
+	TypeInputNode(final TypeInputRecipe recipe, String databaseUrl) {
 		super();
 		this.recipe = recipe;
+		this.databaseUrl = databaseUrl;
 	}
 
 	public void load() throws IOException {
 		try {
-			final String connectionString = getClass().getClassLoader().getResource("models/railway-xform-1.ttl").toString(); // XXX get from configuration
-			driver = new FileGraphDriverRead(connectionString);
+			driver = new FileGraphDriverRead(databaseUrl);
 		} catch (RDFParseException | RDFHandlerException e) {
 			throw new IOException(e);
 		}
@@ -57,9 +63,9 @@ public class TypeInputNode implements ReteNode {
 			initializeVertex(typeName);
 		} else if (recipe instanceof BinaryInputRecipe) {
 			String traceInfo = recipe.getTraceInfo();
-			if (traceInfo.startsWith("attribute")) {
+			if (traceInfo.startsWith(ATTRIBUTE)) {
 				initializeProperty(typeName);
-			} else if (traceInfo.startsWith("edge")) {
+			} else if (traceInfo.startsWith(EDGE)) {
 				initializeEdge(typeName);
 			}
 		}

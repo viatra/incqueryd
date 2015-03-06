@@ -32,7 +32,7 @@ import akka.actor.ActorRef
 import akka.actor.PoisonPill
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
 import hu.bme.mit.incqueryd.engine.util.EObjectSerializer
-import akka.pattern.ask
+import akka.pattern.{ ask, pipe }
 import akka.util.Timeout
 import akka.dispatch.Futures
 import scala.concurrent.Future
@@ -41,10 +41,9 @@ import hu.bme.mit.incqueryd.engine.rete.actors.RdfType
 import hu.bme.mit.incqueryd.engine.rete.actors.RecipeUtils
 import hu.bme.mit.incqueryd.engine.rete.actors.YellowPages
 import hu.bme.mit.incqueryd.engine.rete.actors.RecipeUtils
-
-object CoordinatorActor {
-  final val sampleResult = List(ChangeSet(Set(Tuple(List(42))), true))
-}
+import hu.bme.mit.incqueryd.engine.rete.messages.CoordinatorMessage
+import java.util.concurrent.TimeUnit
+import scala.concurrent.duration._
 
 class CoordinatorActor extends Actor {
 
@@ -54,7 +53,7 @@ class CoordinatorActor extends Actor {
       val typeInputRecipes = types.map(_.getInputRecipe)
       val plan = allocate(typeInputRecipes, types, inventory)
       val index = deploy(plan, types)
-      configureIndex(index)
+      configureIndex(index, databaseUrl)
       sender ! index
     }
     case StartQuery(recipeJson, index) => {
@@ -67,8 +66,16 @@ class CoordinatorActor extends Actor {
       establishSubscriptions(network)
       sender ! network
     }
-    case CheckResults() => {
-      sender ! CoordinatorActor.sampleResult
+    case CheckResults(recipeJson, network) => {
+      val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
+      network.inputActorsByType.values.foreach(_ ! CoordinatorMessage.INITIALIZE_INPUT)
+      Thread.sleep((5 seconds).toMillis) // XXX TODO wait for TerminationMessage when termination protocol is ready
+      val productionRecipes = recipe.getRecipeNodes.filter(_.isInstanceOf[ProductionRecipe])
+      val productionNodeKey = RecipeUtils.getEmfId(productionRecipes.head)
+      val productionNode = network.otherActorsByEmfId.get(productionNodeKey).get // XXX Option.get
+      implicit val timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)
+      import context.dispatcher
+      productionNode.ask(CoordinatorMessage.GETQUERYRESULTS).mapTo[ArrayList[ChangeSet]].map(_.toList).pipeTo(sender) // XXX convert ArrayList to List
     }
     case StopQuery(network) => {
       undeploy(network)
@@ -100,7 +107,7 @@ class CoordinatorActor extends Actor {
   }
   
   def getUriSubjects(statements: Set[Statement]): Set[Resource] = {
-    statements.map(_.getSubject).filter(_.isInstanceOf[URI]) // Discard blank Actors
+    statements.map(_.getSubject).filter(_.isInstanceOf[URI]) // Discard blank nodes
   }
 
   def allocate(recipes: Iterable[ReteNodeRecipe], types: Set[RdfType], inventory: Inventory): DeploymentPlan = {
@@ -144,11 +151,11 @@ class CoordinatorActor extends Actor {
     }
   }
 
-  def configureIndex(index: DeploymentResult): Unit = {
+  def configureIndex(index: DeploymentResult, databaseUrl: String): Unit = {
     implicit val timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)
     val configurations = index.inputActorsByType.map { case (rdfType, actor) =>
       val nodeRecipe = rdfType.getInputRecipe
-      actor.ask(new ReteNodeConfiguration(nodeRecipe, List()))
+      actor.ask(new ReteNodeConfiguration(nodeRecipe, List(), databaseUrl))
     }
     import context.dispatcher
     Await.result(Future.sequence(configurations), timeout.duration) // XXX should be async
@@ -158,7 +165,7 @@ class CoordinatorActor extends Actor {
     implicit val timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)
     val configurations = network.otherActorsByEmfId.map { case (emfId, actor) =>
       val nodeRecipe = recipe.getRecipeNodes.find(RecipeUtils.getEmfId(_) == emfId).get // XXX Option.get
-      actor.ask(new ReteNodeConfiguration(nodeRecipe, List()))
+      actor.ask(new ReteNodeConfiguration(nodeRecipe, List(), ""))
     }
     import context.dispatcher
     Await.result(Future.sequence(configurations), timeout.duration) // XXX should be async

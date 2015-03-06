@@ -7,5 +7,5 @@ import hu.bme.mit.incqueryd.inventory.Inventory
 sealed trait CoordinatorCommand
 case class LoadData(databaseUrl: String, vocabulary: Model, inventory: Inventory) extends CoordinatorCommand
 case class StartQuery(recipeJson: String, index: DeploymentResult) extends CoordinatorCommand
-case class CheckResults() extends CoordinatorCommand
+case class CheckResults(recipeJson: String, network: DeploymentResult) extends CoordinatorCommand
 case class StopQuery(network: DeploymentResult) extends CoordinatorCommand

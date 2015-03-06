@@ -24,12 +24,14 @@ public class ReteNodeConfiguration implements Serializable {
 	protected final String networkRecipeString;
 	protected final String nodeRecipeUriFragment;
 	protected final List<String> cacheMachineIps;
+	private final String databaseUrl;
 	
-	public ReteNodeConfiguration(final ReteNodeRecipe recipe, final List<String> cacheMachineIps) throws IOException {
+	public ReteNodeConfiguration(final ReteNodeRecipe recipe, final List<String> cacheMachineIps, String databaseUrl) throws IOException {
 		super();
 		this.networkRecipeString = EObjectSerializer.serializeToString(EcoreUtil.getRootContainer(recipe));
 		this.nodeRecipeUriFragment = recipe.eResource().getURIFragment(recipe);
 		this.cacheMachineIps = cacheMachineIps;
+		this.databaseUrl = databaseUrl;
 	}
 
 	public List<String> getCacheMachineIps() {
@@ -39,5 +41,9 @@ public class ReteNodeConfiguration implements Serializable {
 	public ReteNodeRecipe getReteNodeRecipe() throws IOException {
 		Resource resource = RecipeDeserializer.deserializeFromString(networkRecipeString).eResource();
 		return (ReteNodeRecipe)resource.getEObject(nodeRecipeUriFragment); 
+	}
+
+	public String getDatabaseUrl() {
+		return databaseUrl;
 	}
 }

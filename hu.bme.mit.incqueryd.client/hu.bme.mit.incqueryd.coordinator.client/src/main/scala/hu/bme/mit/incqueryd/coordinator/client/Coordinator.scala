@@ -34,8 +34,8 @@ class Coordinator(instance: MachineInstance) {
     askCoordinator[DeploymentResult](StartQuery(EObjectSerializer.serializeToString(recipe), index))
   }
 
-  def checkResults(): List[ChangeSet] = {
-    askCoordinator[List[ChangeSet]](CheckResults())
+  def checkResults(recipe: ReteRecipe, index: DeploymentResult): List[ChangeSet] = {
+    askCoordinator[List[ChangeSet]](CheckResults(EObjectSerializer.serializeToString(recipe), index))
   }
 
   def stopQuery(network: DeploymentResult) {

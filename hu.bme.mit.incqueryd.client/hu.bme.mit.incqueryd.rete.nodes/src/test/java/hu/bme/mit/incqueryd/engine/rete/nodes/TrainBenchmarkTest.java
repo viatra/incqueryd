@@ -136,7 +136,7 @@ public class TrainBenchmarkTest {
 	private TypeInputNode createVertexInputNode(String typeName) {
 		UnaryInputRecipe recipe = RecipesFactory.eINSTANCE.createUnaryInputRecipe();
 		recipe.setTypeName(typeName);
-		TypeInputNode node = new TypeInputNode(recipe);
+		TypeInputNode node = new TypeInputNode(recipe, TypeInputNodeTest.DATABASE_URL);
 		return node;
 	}
 
@@ -178,7 +178,7 @@ public class TrainBenchmarkTest {
 		BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
 		recipe.setTypeName(type);
 		recipe.setTraceInfo("edge");
-		TypeInputNode node = new TypeInputNode(recipe);
+		TypeInputNode node = new TypeInputNode(recipe, TypeInputNodeTest.DATABASE_URL);
 		return node;
 	}
 
@@ -199,7 +199,7 @@ public class TrainBenchmarkTest {
 		BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
 		recipe.setTypeName(type);
 		recipe.setTraceInfo("attribute");
-		TypeInputNode node = new TypeInputNode(recipe);
+		TypeInputNode node = new TypeInputNode(recipe, TypeInputNodeTest.DATABASE_URL);
 		return node;
 	}
 

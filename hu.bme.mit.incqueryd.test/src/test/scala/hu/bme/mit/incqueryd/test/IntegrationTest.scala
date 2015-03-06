@@ -25,6 +25,9 @@ import org.apache.commons.io.FilenameUtils
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.eclipse.emf.common.util.URI
 import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage
+import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
+import hu.bme.mit.incqueryd.engine.rete.messages.CoordinatorMessage
+import java.util.concurrent.TimeUnit
 
 trait IntegrationTest {
 
@@ -48,9 +51,9 @@ trait IntegrationTest {
       val index = coordinator.loadData(databaseUrl, vocabulary, inventory)
       val network = coordinator.startQuery(recipe, index)
       try {
-        val result = coordinator.checkResults
+        val result = coordinator.checkResults(recipe, network)
         println(s"Query result: $result")
-        assertEquals(CoordinatorActor.sampleResult, result)
+        // TODO assert when expected result is determined
       } finally {
         coordinator.stopQuery(network)
       }

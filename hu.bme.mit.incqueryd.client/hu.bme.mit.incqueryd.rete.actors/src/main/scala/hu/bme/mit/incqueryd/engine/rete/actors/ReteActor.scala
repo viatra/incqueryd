@@ -1,8 +1,15 @@
 package hu.bme.mit.incqueryd.engine.rete.actors
 
-import java.util.HashMap
-import scala.collection.JavaConversions._
+import java.util.Stack
+
+import scala.collection.JavaConversions.asScalaBuffer
+
+import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe
+import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe
+import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
+import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
+
 import akka.actor.Actor
 import akka.actor.ActorRef
 import akka.actor.actorRef2Scala
@@ -20,13 +27,6 @@ import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNode
 import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNodeFactory
 import hu.bme.mit.incqueryd.engine.rete.nodes.TypeInputNode
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
-import java.util.Stack
-import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe
-import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe
-import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe
-import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
-import scala.collection.JavaConversions
-import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 
 class ReteActor extends Actor {
 
@@ -80,6 +80,7 @@ class ReteActor extends Actor {
       }
       case _ => {}
     }
+    sender ! ActorReply.YELLOWPAGES_RECEIVED
   }
 
   def subscribeToActor(recipe: ReteNodeRecipe, slot: ReteNodeSlot, yellowPages: YellowPages) = {
@@ -175,8 +176,7 @@ class ReteActor extends Actor {
     val senderStack = new Stack[ActorRef]
     senderStack.push(self)
     senderStack.push(sender)
-    val updateMessage = new UpdateMessage(changeSet, ReteNodeSlot.SINGLE, senderStack)
-    self.tell(updateMessage, self)
+    sendToSubscribers(changeSet, senderStack)
   }
 
   def terminationProtocol(terminationMessage: TerminationMessage): Unit = {
@@ -197,10 +197,7 @@ class ReteActor extends Actor {
   def receive = {
     case conf: ReteNodeConfiguration => configure(conf)
     case updateMessage: UpdateMessage => update(updateMessage)
-    case yellowPages: YellowPages => {
-      subscribe(yellowPages)
-      sender ! ActorReply.YELLOWPAGES_RECEIVED
-    }
+    case yellowPages: YellowPages => subscribe(yellowPages)
     case terminationMessage: TerminationMessage => terminationProtocol(terminationMessage)
     case SubscriptionMessage.SUBSCRIBE_SINGLE => subscribeSender(ReteNodeSlot.SINGLE)
     case SubscriptionMessage.SUBSCRIBE_PRIMARY => subscribeSender(ReteNodeSlot.PRIMARY)

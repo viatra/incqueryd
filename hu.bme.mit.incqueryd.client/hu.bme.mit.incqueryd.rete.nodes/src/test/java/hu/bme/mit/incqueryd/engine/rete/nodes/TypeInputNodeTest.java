@@ -23,6 +23,8 @@ import org.junit.Test;
 
 public class TypeInputNodeTest {
 
+	static final String DATABASE_URL = TypeInputNodeTest.class.getClassLoader().getResource("models/railway-xform-1.ttl").toString();
+
 	@Test
 	public void testEdge() throws IOException {
 		BinaryInputRecipe recipe = RecipesFactory.eINSTANCE
@@ -30,7 +32,7 @@ public class TypeInputNodeTest {
 		recipe.setTypeName(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.TRACKELEMENT_SENSOR);
 		recipe.setTraceInfo("edge");
 
-		TypeInputNode typeInputNode = new TypeInputNode(recipe);
+		TypeInputNode typeInputNode = new TypeInputNode(recipe, DATABASE_URL);
 		typeInputNode.load();
 		Set<Tuple> tuples = typeInputNode.getTuples();
 		
@@ -43,7 +45,7 @@ public class TypeInputNodeTest {
 				.createUnaryInputRecipe();
 		recipe.setTypeName(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.SWITCH);
 
-		TypeInputNode typeInputNode = new TypeInputNode(recipe);
+		TypeInputNode typeInputNode = new TypeInputNode(recipe, DATABASE_URL);
 		typeInputNode.load();
 		Set<Tuple> tuples = typeInputNode.getTuples();
 	
@@ -57,7 +59,7 @@ public class TypeInputNodeTest {
 		recipe.setTypeName(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.SEGMENT_LENGTH);
 		recipe.setTraceInfo("attribute");
 
-		TypeInputNode typeInputNode = new TypeInputNode(recipe);
+		TypeInputNode typeInputNode = new TypeInputNode(recipe, DATABASE_URL);
 		typeInputNode.load();
 		Set<Tuple> tuples = typeInputNode.getTuples();
 		

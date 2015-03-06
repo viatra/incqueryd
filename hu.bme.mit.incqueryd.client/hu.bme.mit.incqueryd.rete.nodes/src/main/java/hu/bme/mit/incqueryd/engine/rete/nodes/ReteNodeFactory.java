@@ -55,7 +55,7 @@ public class ReteNodeFactory {
 		} else if (recipe instanceof TrimmerRecipe) {
 			return new TrimmerNode((TrimmerRecipe) recipe);
 		} else if (recipe instanceof TypeInputRecipe) {
-			return new TypeInputNode((TypeInputRecipe) recipe);
+			return new TypeInputNode((TypeInputRecipe) recipe, conf.getDatabaseUrl());
 		} else if (recipe instanceof UniquenessEnforcerRecipe) {
 			return new UniquenessEnforcerNode((UniquenessEnforcerRecipe) recipe);
 		} else {
