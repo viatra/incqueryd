@@ -36,7 +36,7 @@ trait IntegrationTest {
   @Test
   def test() {
     val inventory = loadInventory
-    val modelFileName = "model.ttl"
+    val modelFileName = "railway-test-1.ttl"
     val workingDirectory = new File(getClass.getClassLoader.getResource(modelFileName).getFile).getParentFile
     val testFileServer = TestFileServer.start(workingDirectory)
     val infrastructureAgents = getInfrastructureAgents(inventory)
