@@ -39,6 +39,10 @@ public class TypeInputNode implements ReteNode {
 
 	protected final TypeInputRecipe recipe;
 
+	public TypeInputRecipe getRecipe() {
+		return recipe;
+	}
+
 	protected Set<Tuple> tuples = new HashSet<>();
 	protected RDFGraphDriverRead driver;
 

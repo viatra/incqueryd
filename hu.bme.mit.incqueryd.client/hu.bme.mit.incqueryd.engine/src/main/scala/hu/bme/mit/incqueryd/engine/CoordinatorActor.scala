@@ -44,6 +44,8 @@ import hu.bme.mit.incqueryd.engine.rete.actors.RecipeUtils
 import hu.bme.mit.incqueryd.engine.rete.messages.CoordinatorMessage
 import java.util.concurrent.TimeUnit
 import scala.concurrent.duration._
+import java.util.HashSet
+import hu.bme.mit.incqueryd.engine.rete.nodes.ProductionNode
 
 class CoordinatorActor extends Actor {
 
@@ -66,16 +68,16 @@ class CoordinatorActor extends Actor {
       establishSubscriptions(network)
       sender ! network
     }
-    case CheckResults(recipeJson, network) => {
+    case CheckResults(recipeJson, network, patternName) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       network.inputActorsByType.values.foreach(_ ! CoordinatorMessage.INITIALIZE_INPUT)
-      Thread.sleep((5 seconds).toMillis) // XXX TODO wait for TerminationMessage when termination protocol is ready
-      val productionRecipes = recipe.getRecipeNodes.filter(_.isInstanceOf[ProductionRecipe])
-      val productionNodeKey = RecipeUtils.getEmfId(productionRecipes.head)
+      Thread.sleep((8 seconds).toMillis) // XXX TODO wait for TerminationMessage when termination protocol is implemented
+      val productionRecipeOption = recipe.getRecipeNodes.find(recipe => recipe.isInstanceOf[ProductionRecipe] && recipe.getTraceInfo.startsWith(patternName)) // XXX naming convention
+      val productionNodeKey = RecipeUtils.getEmfId(productionRecipeOption.get) // XXX Option.get
       val productionNode = network.otherActorsByEmfId.get(productionNodeKey).get // XXX Option.get
       implicit val timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)
       import context.dispatcher
-      productionNode.ask(CoordinatorMessage.GETQUERYRESULTS).mapTo[ArrayList[ChangeSet]].map(_.toList).pipeTo(sender) // XXX convert ArrayList to List
+      productionNode.ask(CoordinatorMessage.GETQUERYRESULTS).pipeTo(sender) // XXX convert Java collection ot Scala
     }
     case StopQuery(network) => {
       undeploy(network)

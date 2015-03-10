@@ -58,7 +58,7 @@ public class ProductionNode implements AlphaNode {
         	break;
         }
 
-		System.out.println("[ReteActor       ] (ProductionNode, " + recipe.getTraceInfo() + ") Production memory size: " + memory.size());
+		System.out.println("[ReteActor       ] (ProductionNode, " + recipe.getTraceInfo() + ") Production memory: " + memory);
 		return incomingChangeSet;
     }
     

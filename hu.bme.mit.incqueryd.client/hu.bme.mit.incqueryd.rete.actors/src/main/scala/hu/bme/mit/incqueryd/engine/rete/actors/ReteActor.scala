@@ -169,8 +169,8 @@ class ReteActor extends Actor {
   }
 
   def initializeInput = {
-    println(logPrefix + " Initializing input node")
     val inputNode = reteNode.asInstanceOf[TypeInputNode]
+    println(logPrefix + s" Initializing input node ${inputNode.getRecipe.getTypeName}")
     inputNode.load
     val changeSet = inputNode.getChangeSet
     val senderStack = new Stack[ActorRef]

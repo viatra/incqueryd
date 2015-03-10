@@ -51,7 +51,7 @@ trait IntegrationTest {
       val index = coordinator.loadData(databaseUrl, vocabulary, inventory)
       val network = coordinator.startQuery(recipe, index)
       try {
-        val result = coordinator.checkResults(recipe, network)
+        val result = coordinator.checkResults(recipe, network, "switchSensor")
         println(s"Query result: $result")
         // TODO assert when expected result is determined
       } finally {

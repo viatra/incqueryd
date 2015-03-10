@@ -14,6 +14,8 @@ import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import hu.bme.mit.incqueryd.engine.DeploymentResult
 import hu.bme.mit.incqueryd.engine.util.EObjectSerializer
+import java.util.HashSet
+import java.util.ArrayList
 
 object Coordinator {
   final val port = 2552
@@ -34,8 +36,9 @@ class Coordinator(instance: MachineInstance) {
     askCoordinator[DeploymentResult](StartQuery(EObjectSerializer.serializeToString(recipe), index))
   }
 
-  def checkResults(recipe: ReteRecipe, index: DeploymentResult): List[ChangeSet] = {
-    askCoordinator[List[ChangeSet]](CheckResults(EObjectSerializer.serializeToString(recipe), index))
+  def checkResults(recipe: ReteRecipe, index: DeploymentResult, patternName: String): ArrayList[ChangeSet] = {
+    println(s"Checking results")
+    askCoordinator[ArrayList[ChangeSet]](CheckResults(EObjectSerializer.serializeToString(recipe), index, patternName))
   }
 
   def stopQuery(network: DeploymentResult) {
