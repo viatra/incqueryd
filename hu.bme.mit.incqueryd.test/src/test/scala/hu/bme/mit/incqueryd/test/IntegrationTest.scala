@@ -39,8 +39,12 @@ trait IntegrationTest {
 
   @Test
   def test() {
+	val modelFileName = "railway-test-1.ttl"
+	val vocabularyFileName = "vocabulary.rdf"
+	val patternName = "switchSensor"
+	val expectedResult = Set(52, 138, 78, 391).map(n => new Tuple(new Long(n)))
+
     val inventory = loadInventory
-    val modelFileName = "railway-test-1.ttl"
     val workingDirectory = new File(getClass.getClassLoader.getResource(modelFileName).getFile).getParentFile
     val testFileServer = TestFileServer.start(workingDirectory)
     val infrastructureAgents = getInfrastructureAgents(inventory)
@@ -50,14 +54,13 @@ trait IntegrationTest {
       assertEquals(1, coordinators.size)
       val coordinator = coordinators.head
       val recipe = loadRecipe
-      val vocabulary = loadRdf(getClass.getClassLoader.getResource("vocabulary.rdf"))
+      val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
       val databaseUrl = s"http://${NetworkUtils.getLocalIpAddress}:${TestFileServer.port}/$modelFileName"
       val index = coordinator.loadData(databaseUrl, vocabulary, inventory)
       val network = coordinator.startQuery(recipe, index)
       try {
-        val result = coordinator.checkResults(recipe, network, "switchSensor")
+        val result = coordinator.checkResults(recipe, network, patternName)
         println(s"Query result: $result")
-        val expectedResult = Set(52, 138, 78, 391).map(n => new Tuple(new Long(n)))
         assertEquals(expectedResult, result)
       } finally {
         coordinator.stopQuery(network)
