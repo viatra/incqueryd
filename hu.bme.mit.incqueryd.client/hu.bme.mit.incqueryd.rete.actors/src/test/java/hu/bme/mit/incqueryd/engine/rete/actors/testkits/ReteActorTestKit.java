@@ -10,6 +10,7 @@
  *******************************************************************************/
 package hu.bme.mit.incqueryd.engine.rete.actors.testkits;
 
+import static org.junit.Assert.assertEquals;
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ReteNodeSlot;
@@ -23,15 +24,17 @@ import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.Stack;
 
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 
+import scala.collection.JavaConversions;
+import scala.collection.immutable.List;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.testkit.JavaTestKit;
-import static org.junit.Assert.assertEquals;
+
+import com.google.common.collect.ImmutableList;
 
 public abstract class ReteActorTestKit extends JavaTestKit {
 
@@ -131,16 +134,14 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 			final ReteNodeSlot targetSlot) {
 		// Act
 		// message (A) !
-		final Stack<ActorRef> messageAStack = new Stack<ActorRef>();
-		messageAStack.push(parentActor.getRef());
-		final UpdateMessage messageA = new UpdateMessage(incomingChangeSet, targetSlot, messageAStack);
+		final ImmutableList<ActorRef> messageAStack = ImmutableList.of(parentActor.getRef());
+		final UpdateMessage messageA = new UpdateMessage(incomingChangeSet, targetSlot, toScalaList(messageAStack));
 		testedActor.tell(messageA, parentActor.getRef());
 
 		// Assert
 		// message (B) ?
-		final Stack<ActorRef> messageBStack = (Stack<ActorRef>) messageAStack.clone();
-		messageBStack.push(testedActor);
-		final UpdateMessage expectedMessageB = new UpdateMessage(expectedChangeSet, ReteNodeSlot.SINGLE, messageBStack);
+		final ImmutableList<ActorRef> messageBStack = ImmutableList.<ActorRef>builder().add(testedActor).addAll(messageAStack).build();
+		final UpdateMessage expectedMessageB = new UpdateMessage(expectedChangeSet, ReteNodeSlot.SINGLE, toScalaList(messageBStack));
 		final UpdateMessage actualMessageB = targetActor.expectMsgClass(duration("1 second"), UpdateMessage.class);
 
 		// System.out.println("exp: " + expectedMessageB);
@@ -153,18 +154,20 @@ public abstract class ReteActorTestKit extends JavaTestKit {
 		// message (C) !
 		//final Tuple2<ActorRef, Stack<ActorRef>> pair = actualMessageB.getRoute().pop();
 		//final ActorRef terminationActorRef = pair._1();
-		final ActorRef terminationActorRef = actualMessageB.getRoute().pop();
+		final ActorRef terminationActorRef = actualMessageB.route().head();
 		//final Stack<ActorRef> messageCStack = pair._2();
-		final Stack<ActorRef> messageCStack = (Stack<ActorRef>) actualMessageB.getRoute().clone(); 
-		final ReteCommunicationMessage messageC = new TerminationMessage(messageCStack);
+		final ReteCommunicationMessage messageC = new TerminationMessage(actualMessageB.route().drop(1));
 		terminationActorRef.tell(messageC, targetActor.getRef());
 
 		// Assert
 		// message (D) ?
 		// we expect a ReadyMessage with an empty stack as the sender route
-		final ReteCommunicationMessage expectedMessageD = new TerminationMessage(new Stack());
+		final ReteCommunicationMessage expectedMessageD = new TerminationMessage(toScalaList(ImmutableList.<ActorRef>of()));
 		final ReteCommunicationMessage actualMessageD = parentActor.expectMsgClass(duration("1 second"), ReteCommunicationMessage.class);
 		assertEquals(expectedMessageD, actualMessageD);
 	}
 
+	private static <E> List<E> toScalaList(Iterable<E> iterable) {
+		return JavaConversions.asScalaIterable(iterable).toList();
+	}
 }

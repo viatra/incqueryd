@@ -45,14 +45,32 @@ public class ChangeSet implements Serializable {
 	}
 
 	@Override
-	public boolean equals(final Object o) {
-		if (!(o instanceof ChangeSet))
-			return false;
-		final ChangeSet changeSet = (ChangeSet) o;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((changeType == null) ? 0 : changeType.hashCode());
+		result = prime * result + ((tuples == null) ? 0 : tuples.hashCode());
+		return result;
+	}
 
-		// comparing fields
-		return getChangeType().equals(changeSet.getChangeType()) //
-				&& getTuples().equals(changeSet.getTuples());
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ChangeSet other = (ChangeSet) obj;
+		if (changeType != other.changeType)
+			return false;
+		if (tuples == null) {
+			if (other.tuples != null)
+				return false;
+		} else if (!tuples.equals(other.tuples))
+			return false;
+		return true;
 	}
 
 	public int size() {

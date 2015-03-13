@@ -1,15 +1,11 @@
 package hu.bme.mit.incqueryd.engine.rete.actors
 
-import java.util.Stack
-
 import scala.collection.JavaConversions.asScalaBuffer
-
 import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe
 import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
-
 import akka.actor.Actor
 import akka.actor.ActorRef
 import akka.actor.actorRef2Scala
@@ -18,7 +14,6 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.ReteNodeSlot
 import hu.bme.mit.incqueryd.engine.rete.messages.ActorReply
 import hu.bme.mit.incqueryd.engine.rete.messages.CoordinatorMessage
 import hu.bme.mit.incqueryd.engine.rete.messages.SubscriptionMessage
-import hu.bme.mit.incqueryd.engine.rete.messages.TerminationMessage
 import hu.bme.mit.incqueryd.engine.rete.messages.UpdateMessage
 import hu.bme.mit.incqueryd.engine.rete.nodes.AlphaNode
 import hu.bme.mit.incqueryd.engine.rete.nodes.BetaNode
@@ -27,6 +22,8 @@ import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNode
 import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNodeFactory
 import hu.bme.mit.incqueryd.engine.rete.nodes.TypeInputNode
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
+import scala.collection.immutable.Stack
+import hu.bme.mit.incqueryd.engine.rete.messages.TerminationMessage
 
 class ReteActor extends Actor {
 
@@ -113,42 +110,41 @@ class ReteActor extends Actor {
 
   def update(updateMessage: UpdateMessage) = {
     println(logPrefix + self + " "
-      + "Update message received, " + updateMessage.getChangeSet.getChangeType + ", "
-      + updateMessage.getNodeSlot + ", " + updateMessage.getChangeSet.getTuples.size)
+      + "Update message received, " + updateMessage.changeSet.getChangeType + ", "
+      + updateMessage.nodeSlot + ", " + updateMessage.changeSet.getTuples.size)
 
     var changeSet: ChangeSet = null
 
-    updateMessage.getNodeSlot match {
+    updateMessage.nodeSlot match {
       case ReteNodeSlot.SINGLE => {
-        changeSet = reteNode.asInstanceOf[AlphaNode].update(updateMessage.getChangeSet)
+        changeSet = reteNode.asInstanceOf[AlphaNode].update(updateMessage.changeSet)
       }
       case ReteNodeSlot.PRIMARY | ReteNodeSlot.SECONDARY => {
-        changeSet = reteNode.asInstanceOf[BetaNode].update(updateMessage.getChangeSet, updateMessage.getNodeSlot)
+        changeSet = reteNode.asInstanceOf[BetaNode].update(updateMessage.changeSet, updateMessage.nodeSlot)
       }
       case _ => {
-        throw new UnsupportedOperationException(updateMessage.getNodeSlot + " slot is not supported.")
+        throw new UnsupportedOperationException(updateMessage.nodeSlot + " slot is not supported.")
       }
     }
 
-    sendToSubscribers(changeSet, updateMessage.getRoute)
+    sendToSubscribers(changeSet, updateMessage.route)
 
     reteNode match {
       case node: ProductionNode => {
-        if (subscribers.isEmpty) terminationProtocol(new TerminationMessage(updateMessage.getRoute))
+        if (subscribers.isEmpty) terminationProtocol(new TerminationMessage(updateMessage.route))
       }
       case _ => {}
     }
   }
 
-  def sendToSubscribers(changeSet: ChangeSet, senderStack: Stack[ActorRef]) = {
+  def sendToSubscribers(changeSet: ChangeSet, senderStack: List[ActorRef]) = {
     if (changeSet != null) {
       updateMessageCount += 1
     }
 
     for ((subscriber, slot) <- subscribers) {
 
-      val propagatedRoute = senderStack.clone.asInstanceOf[Stack[ActorRef]]
-      propagatedRoute.push(self)
+      val propagatedRoute = self :: senderStack
       val updateMessage = new UpdateMessage(changeSet, slot, propagatedRoute)
 
       // @formatter:off
@@ -173,17 +169,15 @@ class ReteActor extends Actor {
     println(logPrefix + s" Initializing input node ${inputNode.getRecipe.getTypeName}")
     inputNode.load
     val changeSet = inputNode.getChangeSet
-    val senderStack = new Stack[ActorRef]
-    senderStack.push(self)
-    senderStack.push(sender)
+    val senderStack = List(sender, self)
     sendToSubscribers(changeSet, senderStack)
   }
 
   def terminationProtocol(terminationMessage: TerminationMessage): Unit = {
-    val route = terminationMessage.getRoute
+    val route = terminationMessage.route
 
-    val terminationMessageRoute = route.clone.asInstanceOf[Stack[ActorRef]]
-    val terminationMessageTarget = terminationMessageRoute.pop
+    val terminationMessageTarget = route.head
+    val terminationMessageRoute = route.tail
     
     val propagatedTerminationMessage = new TerminationMessage(terminationMessageRoute)
 
@@ -208,11 +202,6 @@ class ReteActor extends Actor {
       val productionNode = reteNode.asInstanceOf[ProductionNode]
       sender ! productionNode.getDeltaResults
     }
-//    case QueryMessage.ALL => {
-//      val inputNode = reteNode.asInstanceOf[InputNode];
-//      val tuples = inputNode.tuples
-//      sender ! tuples
-//    }
     case _ => {}
   }
 
