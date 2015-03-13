@@ -16,6 +16,9 @@ import hu.bme.mit.incqueryd.engine.DeploymentResult
 import hu.bme.mit.incqueryd.engine.util.EObjectSerializer
 import java.util.HashSet
 import java.util.ArrayList
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
+import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
+import scala.collection.JavaConversions._
 
 object Coordinator {
   final val port = 2552
@@ -36,9 +39,9 @@ class Coordinator(instance: MachineInstance) {
     askCoordinator[DeploymentResult](StartQuery(EObjectSerializer.serializeToString(recipe), index))
   }
 
-  def checkResults(recipe: ReteRecipe, index: DeploymentResult, patternName: String): ArrayList[ChangeSet] = {
+  def checkResults(recipe: ReteRecipe, index: DeploymentResult, patternName: String): Set[Tuple] = {
     println(s"Checking results")
-    askCoordinator[ArrayList[ChangeSet]](CheckResults(EObjectSerializer.serializeToString(recipe), index, patternName))
+    askCoordinator[HashSet[Tuple]](CheckResults(EObjectSerializer.serializeToString(recipe), index, patternName)).toSet
   }
 
   def stopQuery(network: DeploymentResult) {

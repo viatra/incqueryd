@@ -37,7 +37,7 @@ public class TrainBenchmarkTest {
 
 		// act
 		segmentLengthInputNode.load();
-		ChangeSet segmentLengthChangeSet = segmentLengthInputNode.getChangeSet();
+		ChangeSet segmentLengthChangeSet = segmentLengthInputNode.getChangeSetFromCurrentState();
 		ChangeSet cs = node.update(segmentLengthChangeSet);
 
 		// assert
@@ -75,10 +75,10 @@ public class TrainBenchmarkTest {
 		trackElementSensorNode.load();
 		routeRouteDefinitionNode.load();
 
-		ChangeSet switchPositionChangeSet = switchPositionNode.getChangeSet();
-		ChangeSet routeSwitchPositionChangeSet = routeSwitchPositionNode.getChangeSet();
-		ChangeSet trackElementSensorChangeSet = trackElementSensorNode.getChangeSet();
-		ChangeSet routeRouteDefinitionChangeSet = routeRouteDefinitionNode.getChangeSet();
+		ChangeSet switchPositionChangeSet = switchPositionNode.getChangeSetFromCurrentState();
+		ChangeSet routeSwitchPositionChangeSet = routeSwitchPositionNode.getChangeSetFromCurrentState();
+		ChangeSet trackElementSensorChangeSet = trackElementSensorNode.getChangeSetFromCurrentState();
+		ChangeSet routeRouteDefinitionChangeSet = routeRouteDefinitionNode.getChangeSetFromCurrentState();
 
 		// joinNode1
 		ChangeSet cs1 = joinNode1.update(switchPositionChangeSet, ReteNodeSlot.PRIMARY); // empty
@@ -119,9 +119,9 @@ public class TrainBenchmarkTest {
 
 		// act
 		switchInputNode.load();
-		ChangeSet switchChangeSet = switchInputNode.getChangeSet();
+		ChangeSet switchChangeSet = switchInputNode.getChangeSetFromCurrentState();
 		trackElementSensorNode.load();
-		ChangeSet trackElementSensorChangeSet = trackElementSensorNode.getChangeSet();
+		ChangeSet trackElementSensorChangeSet = trackElementSensorNode.getChangeSetFromCurrentState();
 
 		// secondary changeset
 		ChangeSet cs1 = antiJoinNode.update(trackElementSensorChangeSet, ReteNodeSlot.SECONDARY);

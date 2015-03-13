@@ -28,6 +28,10 @@ import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
 import hu.bme.mit.incqueryd.engine.rete.messages.CoordinatorMessage
 import java.util.concurrent.TimeUnit
+import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
+import java.util.HashSet
+import com.google.common.collect.ImmutableSet
+import java.lang.Long
 
 trait IntegrationTest {
 
@@ -53,7 +57,8 @@ trait IntegrationTest {
       try {
         val result = coordinator.checkResults(recipe, network, "switchSensor")
         println(s"Query result: $result")
-        // TODO assert when expected result is determined
+        val expectedResult = Set(52, 138, 78, 391).map(n => new Tuple(new Long(n)))
+        assertEquals(expectedResult, result)
       } finally {
         coordinator.stopQuery(network)
       }

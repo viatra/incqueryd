@@ -32,7 +32,7 @@ public class ProductionNode implements AlphaNode {
 
 	protected final ProductionRecipe recipe;
 	protected final Set<Tuple> memory = new HashSet<>();
-	protected List<ChangeSet> lastChangeSets = new ArrayList<>();
+	protected List<ChangeSet> changeSetHistory = new ArrayList<>();
 	
 	ProductionNode(final ProductionRecipe recipe) {
         super();
@@ -42,8 +42,8 @@ public class ProductionNode implements AlphaNode {
     @Override
 	public ChangeSet update(final ChangeSet incomingChangeSet) {
     	if (incomingChangeSet.getTuples().size() > 0) {
-			synchronized (lastChangeSets) {
-				lastChangeSets.add(incomingChangeSet);
+			synchronized (changeSetHistory) {
+				changeSetHistory.add(incomingChangeSet);
 			}
 		}
     	
@@ -66,13 +66,13 @@ public class ProductionNode implements AlphaNode {
 		return memory;
 	}
     
-    public List<ChangeSet> getDeltaResults() {
-    	synchronized (lastChangeSets) {
+    public List<ChangeSet> getChangeSetHistory() {
+    	synchronized (changeSetHistory) {
     		final List<ChangeSet> copyList = new ArrayList<>();
-			for (final ChangeSet changeSet : lastChangeSets) {
+			for (final ChangeSet changeSet : changeSetHistory) {
 				copyList.add(changeSet);
 			}
-			lastChangeSets.clear();
+			changeSetHistory.clear();
 			return copyList;
 		}
     }

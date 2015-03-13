@@ -168,7 +168,7 @@ class ReteActor extends Actor {
     val inputNode = reteNode.asInstanceOf[TypeInputNode]
     println(logPrefix + s" Initializing input node ${inputNode.getRecipe.getTypeName}")
     inputNode.load
-    val changeSet = inputNode.getChangeSet
+    val changeSet = inputNode.getChangeSetFromCurrentState
     val senderStack = List(sender, self)
     sendToSubscribers(changeSet, senderStack)
   }
@@ -200,7 +200,7 @@ class ReteActor extends Actor {
     case CoordinatorMessage.INITIALIZE_INPUT => initializeInput
     case CoordinatorMessage.GETQUERYRESULTS => {
       val productionNode = reteNode.asInstanceOf[ProductionNode]
-      sender ! productionNode.getDeltaResults
+      sender ! productionNode.getResults
     }
     case _ => {}
   }

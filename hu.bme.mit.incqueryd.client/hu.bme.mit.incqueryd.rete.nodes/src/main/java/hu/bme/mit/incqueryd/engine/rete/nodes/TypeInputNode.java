@@ -106,7 +106,7 @@ public class TypeInputNode implements ReteNode {
 		return tuples;
 	}
 	
-	public ChangeSet getChangeSet() {
+	public ChangeSet getChangeSetFromCurrentState() {
 		return new ChangeSet(tuples, ChangeType.POSITIVE);
 	}
 
