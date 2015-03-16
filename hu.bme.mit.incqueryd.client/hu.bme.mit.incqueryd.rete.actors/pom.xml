@@ -17,6 +17,13 @@
 			<artifactId>hu.bme.mit.incqueryd.rete.nodes</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.rete.nodes</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+ 			<type>test-jar</type>
+      		<scope>test</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
