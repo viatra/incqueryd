@@ -1,7 +1,5 @@
 package hu.bme.mit.incqueryd.engine.rete.actors
 
-import scala.collection.JavaConversions.asScalaBuffer
-
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe
 import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe
@@ -10,6 +8,9 @@ import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
+import scala.collection.JavaConversions._
+import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
+import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 
 object RecipeUtils {
 
@@ -65,8 +66,13 @@ object RecipeUtils {
     types.find(_.id.stringValue == recipe.getTypeName)
   }
 
-  def getEmfId(eObject: EObject): String = {
-    eObject.eResource().getURIFragment(eObject)
+  def findRecipe(recipe: ReteRecipe, key: ReteActorKey): Option[ReteNodeRecipe] = {
+    recipe.getRecipeNodes.find(ReteActorKey(_) == key)
+  }
+
+  def findProductionRecipe(recipe: ReteRecipe, patternName: String): Option[ProductionRecipe] = {
+    val productionRecipes = recipe.getRecipeNodes.collect { case productionRecipe: ProductionRecipe => productionRecipe }
+    productionRecipes.find(_.getTraceInfo.startsWith(patternName)) // XXX naming convention
   }
 
 }

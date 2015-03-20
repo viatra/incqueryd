@@ -1,37 +1,35 @@
 package hu.bme.mit.incqueryd.test
 
 import java.io.File
+import java.lang.Long
 import java.net.URL
+
 import scala.Option.option2Iterable
 import scala.collection.JavaConversions._
+
+import org.apache.commons.io.FilenameUtils
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage
+import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.junit.Assert._
 import org.junit.Test
 import org.openrdf.model.Model
 import org.openrdf.model.impl.LinkedHashModel
 import org.openrdf.rio.Rio
 import org.openrdf.rio.helpers.StatementCollector
+
 import eu.mondo.utils.NetworkUtils
 import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
 import hu.bme.mit.incqueryd.engine.CoordinatorActor
+import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
+import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import hu.bme.mit.incqueryd.infrastructureagent.client.DefaultInfrastructureAgent
 import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
 import hu.bme.mit.incqueryd.inventory.Inventory
 import hu.bme.mit.incqueryd.inventory.MachineInstance
-import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
-import org.eclipse.emf.ecore.resource.Resource
-import org.apache.commons.io.FilenameUtils
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
-import org.eclipse.emf.common.util.URI
-import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage
-import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
-import hu.bme.mit.incqueryd.engine.rete.messages.CoordinatorMessage
-import java.util.concurrent.TimeUnit
-import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
-import java.util.HashSet
-import com.google.common.collect.ImmutableSet
-import java.lang.Long
 
 trait IntegrationTest {
 
