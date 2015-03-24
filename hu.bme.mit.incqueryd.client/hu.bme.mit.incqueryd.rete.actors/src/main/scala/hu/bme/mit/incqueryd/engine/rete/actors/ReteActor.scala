@@ -1,13 +1,11 @@
 package hu.bme.mit.incqueryd.engine.rete.actors
 
 import scala.collection.JavaConversions.asScalaBuffer
-
 import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe
 import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
-
 import akka.actor.Actor
 import akka.actor.ActorRef
 import akka.actor.actorRef2Scala
@@ -21,6 +19,9 @@ import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNodeFactory
 import hu.bme.mit.incqueryd.engine.rete.nodes.TypeInputNode
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
 import scala.concurrent.duration._
+import java.util.concurrent.CountDownLatch
+import scala.concurrent._
+import ExecutionContext.Implicits.global
 
 class ReteActor extends Actor {
 
@@ -48,8 +49,8 @@ class ReteActor extends Actor {
     sender ! ConfigurationFinished
   }
 
-  var recipe: ReteNodeRecipe = null
-  var reteNode: ReteNode = null
+  var recipe: ReteNodeRecipe = _
+  var reteNode: ReteNode = _
 
   def establishSubscriptions(yellowPages: YellowPages) = {
     log("Subscribing to parent(s)")
@@ -68,38 +69,51 @@ class ReteActor extends Actor {
   val subscribers = scala.collection.mutable.Map[ActorRef, ReteNodeSlot]()
 
   def propagateState(children: Set[ReteActorConnection]) = {
-    for (ReteActorConnection(_, slot, child) <- children) {
-      val changeSet = reteNode.asInstanceOf[TypeInputNode].getChangeSetFromCurrentState
-      val route = List(sender, self)
-      sendToSubscriber(changeSet, route, child, slot)
+    if (children.isEmpty) {
+      sender ! StatePropagated
+    } else {
+      log(s"Propagating state to ${children.size} children")
+      for (ReteActorConnection(_, slot, child) <- children) {
+        val changeSet = reteNode.asInstanceOf[TypeInputNode].getChangeSetFromCurrentState
+        val route = List()
+        sendToSubscriber(changeSet, route, child, slot)
+      }
+      val originalSender = sender
+      pending = new CountDownLatch(children.size)
+      future {
+        pending.await
+      } onSuccess {
+        case _ =>
+          originalSender ! StatePropagated
+      } // TODO timeout?
     }
-    Thread.sleep((8 seconds).toMillis) // XXX TODO wait for TerminationMessage when termination protocol is implemented
-    sender ! StatePropagated
   }
+
+  var pending: CountDownLatch = _
 
   def update(updateMessage: UpdateMessage) = {
     log("Update message received, " + updateMessage.changeSet.getChangeType + ", "
       + updateMessage.slot + ", " + updateMessage.changeSet.getTuples.size)
-
-    val changeSet: ChangeSet = updateMessage.slot match {
-      case ReteNodeSlot.SINGLE => {
-        reteNode.asInstanceOf[AlphaNode].update(updateMessage.changeSet)
+    reteNode match {
+      case alphaNode: AlphaNode => {
+        val changeSet = alphaNode.update(updateMessage.changeSet)
+        for ((subscriber, slot) <- subscribers) {
+	      sendToSubscriber(changeSet, updateMessage.route, subscriber, slot)
+	    }
       }
-      case ReteNodeSlot.PRIMARY | ReteNodeSlot.SECONDARY => {
-        reteNode.asInstanceOf[BetaNode].update(updateMessage.changeSet, updateMessage.slot)
+      case betaNode: BetaNode => {
+        val changeSet = betaNode.update(updateMessage.changeSet, updateMessage.slot)
+        for ((subscriber, slot) <- subscribers) {
+	      sendToSubscriber(changeSet, updateMessage.route, subscriber, slot)
+	    }
       }
-      case _ => {
-        throw new UnsupportedOperationException(updateMessage.slot + " slot is not supported.")
-      }
+      case _ => {}
     }
-
-    for ((subscriber, slot) <- subscribers) {
-      sendToSubscriber(changeSet, updateMessage.route, subscriber, slot)
-    }
-
     reteNode match {
       case _: ProductionNode => {
-        if (subscribers.isEmpty) terminationProtocol(new TerminationMessage(updateMessage.route))
+        if (subscribers.isEmpty) {
+          terminationProtocol(new TerminationMessage(updateMessage.route))
+        }
       }
       case _ => {}
     }
@@ -118,15 +132,17 @@ class ReteActor extends Actor {
 
   def terminationProtocol(terminationMessage: TerminationMessage): Unit = {
     val route = terminationMessage.route
-    val target = route.head
-    val newRoute = route.tail
-    
-    val propagatedTerminationMessage = new TerminationMessage(newRoute)
-
-    log("Termination protocol sending: " + newRoute + " to " + target)
-    if (throttle) Thread.sleep(1000)
-
-    target ! propagatedTerminationMessage
+    if (route.isEmpty) {
+      pending.countDown
+      log(s"Termination protocol finished from $sender, ${pending.getCount} updates pending")
+    } else {
+      val target = route.head
+      val newRoute = route.tail
+      val propagatedTerminationMessage = new TerminationMessage(newRoute)
+      log("Termination protocol sending: " + newRoute + " to " + target)
+      if (throttle) Thread.sleep(1000)
+      target ! propagatedTerminationMessage
+    }
   }
 
   val throttle = false // throttle termination protocol
