@@ -12,7 +12,7 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<emf.version>2.9.1-v20130827-0309</emf.version>
-		<incquery.version>0.9.0-SNAPSHOT</incquery.version>
+		<incquery.version>0.9.1</incquery.version>
 	</properties>
 
 	<dependencies>
