@@ -44,6 +44,7 @@ public class TrainBenchmarkTest {
 		assertEquals(470, cs.size());
 	}
 
+	@SuppressWarnings("unused")
 	@Test
 	public void routeSensorTest() throws IOException {
 		// arrange
@@ -99,6 +100,7 @@ public class TrainBenchmarkTest {
 		assertEquals(94, cs7.size());
 	}
 
+	@SuppressWarnings("unused")
 	@Test
 	public void switchSensorTest() throws IOException {
 		// arrange
