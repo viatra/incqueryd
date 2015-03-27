@@ -46,10 +46,6 @@
 						<configuration>
 							<artifacts>
 								<artifact>
-									<id>hu.bme.mit.incqueryd:hu.bme.mit.incqueryd.arch:1.0.0-SNAPSHOT</id>
-									<source>true</source>
-								</artifact>
-								<artifact>
 									<id>hu.bme.mit.incqueryd:hu.bme.mit.incqueryd.bootstrapagent.client:1.0.0-SNAPSHOT</id>
 									<source>true</source>
 								</artifact>
