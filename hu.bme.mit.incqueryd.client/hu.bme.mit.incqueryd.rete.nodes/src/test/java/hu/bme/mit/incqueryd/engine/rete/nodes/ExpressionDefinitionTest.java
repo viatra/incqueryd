@@ -16,21 +16,20 @@ import org.eclipse.incquery.runtime.rete.recipes.ExpressionDefinition;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class ExpressionDefinitionTest {
 	
-	@Ignore // TODO don't hardcode filename
 	@Test
 	public void test() throws IOException {
-		final String filename = "/home/szarnyasg/git/incqueryd/hu.bme.mit.incqueryd.queries/recipes/PosLength.rdfiq.recipe";
+		final String filename = "PosLength.rdfiq.recipe";
+		String path = getClass().getClassLoader().getResource(filename).getPath();
 
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("recipe", new XMIResourceFactoryImpl());
 		RecipesPackage.eINSTANCE.eClass();
 
 		final ResourceSet resourceSet = new ResourceSetImpl();
-		final Resource resource = resourceSet.getResource(URI.createFileURI(filename), true);
+		final Resource resource = resourceSet.getResource(URI.createFileURI(path), true);
 		EcoreUtil.resolveAll(resource);
 
 		final EObject o = resource.getContents().get(0);

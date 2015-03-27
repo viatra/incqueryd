@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipes:ReteRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="posLength [recipe 0]" parents="//@recipeNodes.1">
+    <mappedIndices key="Segment" value="0"/>
+    <mappedIndices key="SegmentLength" value="1"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="null [recipe 1]">
+    <leftParent parent="//@recipeNodes.2">
+      <mask sourceArity="2">
+        <sourceIndices>0</sourceIndices>
+      </mask>
+    </leftParent>
+    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.3">
+      <mask sourceArity="1">
+        <sourceIndices>0</sourceIndices>
+      </mask>
+    </rightParent>
+    <rightParentComplementaryMask sourceArity="1"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:CheckRecipe" traceInfo="null [recipe 2]" parent="//@recipeNodes.4">
+    <expression evaluator="ACED0005757200135B4C6A6176612E6C616E672E4F626A6563743B90CE589F1073296C0200007870000000027400125365676D656E744C656E677468203C3D203073720035636F6D2E676F6F676C652E636F6D6D6F6E2E636F6C6C6563742E496D6D757461626C655365742453657269616C697A6564466F726D00000000000000000200015B0008656C656D656E74737400135B4C6A6176612F6C616E672F4F626A6563743B78707571007E00000000000174000D5365676D656E744C656E677468"/>
+    <mappedIndices key="SegmentLength" value="1"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:UnaryInputRecipe" traceInfo="vertex: Segment [recipe 3]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740051687474703A2F2F7777772E73656D616E7469637765622E6F72672F6F6E746F6C6F676965732F323031312F312F547261696E526571756972656D656E744F6E746F6C6F67792E6F776C235365676D656E74" typeName="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Segment"/>
+  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="attribute: Segment_length [recipe 4]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740058687474703A2F2F7777772E73656D616E7469637765622E6F72672F6F6E746F6C6F676965732F323031312F312F547261696E526571756972656D656E744F6E746F6C6F67792E6F776C235365676D656E745F6C656E677468" typeName="http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Segment_length"/>
+</recipes:ReteRecipe>
