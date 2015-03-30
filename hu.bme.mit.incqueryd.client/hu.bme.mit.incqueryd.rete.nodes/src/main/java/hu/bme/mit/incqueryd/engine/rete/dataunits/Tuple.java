@@ -21,6 +21,7 @@ import com.google.common.collect.ImmutableList;
  * @author szarnyasg
  * 
  */
+// TODO use Longs instead of Objects
 public class Tuple implements Serializable, Comparable<Tuple> {
 
 	private static final long serialVersionUID = 1L;

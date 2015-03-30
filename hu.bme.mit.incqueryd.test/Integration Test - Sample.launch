@@ -15,5 +15,5 @@
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="hu.bme.mit.incqueryd.test.Development"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="hu.bme.mit.incqueryd.test"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-DinstanceIp=192.168.59.103"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-DinventoryPath=/Users/thsoft/Development/incqueryd/inventory.json"/>
 </launchConfiguration>

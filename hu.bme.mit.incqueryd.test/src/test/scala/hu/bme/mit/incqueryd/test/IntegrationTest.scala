@@ -3,10 +3,8 @@ package hu.bme.mit.incqueryd.test
 import java.io.File
 import java.lang.Long
 import java.net.URL
-
 import scala.Option.option2Iterable
 import scala.collection.JavaConversions._
-
 import org.apache.commons.io.FilenameUtils
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
@@ -20,7 +18,6 @@ import org.openrdf.model.Model
 import org.openrdf.model.impl.LinkedHashModel
 import org.openrdf.rio.Rio
 import org.openrdf.rio.helpers.StatementCollector
-
 import eu.mondo.utils.NetworkUtils
 import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
 import hu.bme.mit.incqueryd.engine.CoordinatorActor
@@ -29,6 +26,8 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import hu.bme.mit.incqueryd.infrastructureagent.client.DefaultInfrastructureAgent
 import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
 import hu.bme.mit.incqueryd.inventory.Inventory
+import hu.bme.mit.incqueryd.inventory.MachineInstance
+import upickle._
 import hu.bme.mit.incqueryd.inventory.MachineInstance
 
 trait IntegrationTest {
@@ -70,13 +69,28 @@ trait IntegrationTest {
   }
 
   private def loadInventory = {
-    val instanceIpKey: String = "instanceIp"
-    val instanceIp = System.getProperty(instanceIpKey)
-    if (instanceIp == null) {
-      throw new IllegalArgumentException(s"VM argument $instanceIpKey is not set!")
+    val inventoryPathKey: String = "inventoryPath"
+    val inventoryPath = System.getProperty(inventoryPathKey)
+    if (inventoryPath == null) {
+      throw new IllegalArgumentException(s"VM argument $inventoryPathKey is not set!")
     }
-    val instance = MachineInstance(8*1024, instanceIp)
-    Inventory(List(instance), instance)
+    val inventoryContents = reflect.io.File(inventoryPath).slurp
+    val serializedInventory =
+      try {
+        read[SerializedInventory](inventoryContents)
+      } catch {
+        case e: Throwable => {
+          val sample = SerializedInventory(List(), MachineInstance(8 * 1024, "192.168.59.103"))
+          println(s"Invalid inventory file!\nIt should look like this:\n${write(sample)}")
+          throw e
+        }
+      }
+    transformSerializedInventory(serializedInventory)
+  }
+
+  private def transformSerializedInventory(serializedInventory: SerializedInventory): Inventory = {
+    val machineInstances = serializedInventory.master :: serializedInventory.slaves
+    Inventory(machineInstances, serializedInventory.master)
   }
 
   private def loadRdf(documentUrl: URL): Model = {
