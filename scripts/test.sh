@@ -9,6 +9,7 @@ fi
 set -e
 cd "$( cd "$( dirname "$0" )" && pwd )/.."
 
+hu.bme.mit.incqueryd.runtime/scripts/stop.sh || true
 hu.bme.mit.incqueryd.runtime/scripts/start.sh
 sleep 15s # XXX
 cd hu.bme.mit.incqueryd.test
