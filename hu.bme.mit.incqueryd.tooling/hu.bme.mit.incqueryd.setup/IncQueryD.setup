@@ -65,7 +65,7 @@
         name="org.sonatype.tycho.m2e.feature.feature.group"/>
     <requirement
         name="org.eclipse.xtext.sdk.feature.group"
-        versionRange="[2.6.0,2.7.0)"/>
+        versionRange="[2.7.0,2.8.0)"/>
     <repository
         url="http://download.eclipse.org/technology/m2e/releases"/>
     <repository
@@ -84,7 +84,7 @@
       xsi:type="git:GitCloneTask"
       id="git.clone.incqueryd"
       remoteURI="FTSRG/incqueryd"
-      checkoutBranch="issues/35">
+      checkoutBranch="master">
     <annotation
         source="http://www.eclipse.org/oomph/setup/InducedChoices">
       <detail
@@ -171,7 +171,7 @@
           name="org.apache.commons.exec"/>
       <requirement
           name="org.eclipse.xtext.sdk.feature.group"
-          versionRange="[2.6.0,2.7.0)"/>
+          versionRange="[2.7.0,2.8.0)"/>
       <requirement
           name="com.sun.jersey"
           versionRange="1.17.0"/>
@@ -197,7 +197,7 @@
         <repository
             url="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
         <repository
-            url="http://download.eclipse.org/incquery/updates/integration"/>
+            url="http://download.eclipse.org/incquery/updates/release"/>
         <repository
             url="http://ghillairet.github.io/p2/"/>
         <repository
