@@ -69,7 +69,7 @@
     <repository
         url="http://download.eclipse.org/technology/m2e/releases"/>
     <repository
-        url="http://download.scala-ide.org/sdk/helium/e38/scala210/stable/site "/>
+        url="http://download.scala-ide.org/sdk/helium/e38/scala210/stable/site"/>
     <repository
         url="http://alchim31.free.fr/m2e-scala/update-site/"/>
     <repository
