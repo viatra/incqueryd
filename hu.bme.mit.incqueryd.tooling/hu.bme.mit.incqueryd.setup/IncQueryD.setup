@@ -187,6 +187,11 @@
           name="Luna">
         <repository
             url="http://download.eclipse.org/releases/luna"/>
+      </repositoryList>
+      <repositoryList
+          name="Kepler">
+        <repository
+            url="http://download.eclipse.org/releases/kepler"/>
         <repository
             url="http://download.eclipse.org/modeling/emf/emf/updates/releases/"/>
         <repository
@@ -197,11 +202,6 @@
             url="http://ghillairet.github.io/p2/"/>
         <repository
             url="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/"/>
-      </repositoryList>
-      <repositoryList
-          name="Kepler">
-        <repository
-            url="http://download.eclipse.org/releases/kepler"/>
       </repositoryList>
       <repositoryList
           name="Juno">
