@@ -124,6 +124,28 @@
     <description>mondo-utils</description>
   </setupTask>
   <setupTask
+      xsi:type="git:GitCloneTask"
+      id="git.clone.rdf-graph-drivers"
+      remoteURI="FTSRG/rdf-graph-drivers"
+      pushURI="">
+    <annotation
+        source="http://www.eclipse.org/oomph/setup/InducedChoices">
+      <detail
+          key="inherit">
+        <value>github.remoteURIs</value>
+      </detail>
+      <detail
+          key="label">
+        <value>rdf-graph-drivers Github repository</value>
+      </detail>
+      <detail
+          key="target">
+        <value>remoteURI</value>
+      </detail>
+    </annotation>
+    <description>rdf-graph-drivers</description>
+  </setupTask>
+  <setupTask
       xsi:type="setup.targlets:TargletTask">
     <targlet
         name="${scope.project.label}"
@@ -218,6 +240,9 @@
     <sourceLocator
         rootFolder="${git.clone.mondo-utils.location}"
         locateNestedProjects="true"/>
+    <sourceLocator
+        rootFolder="${git.clone.rdf-graph-drivers.location}"
+        locateNestedProjects="true"/>
   </setupTask>
   <setupTask
       xsi:type="setup:EclipseIniTask"
@@ -233,6 +258,9 @@
         <operand
             xsi:type="predicates:RepositoryPredicate"
             project="eu.mondo.utils"/>
+        <operand
+            xsi:type="predicates:RepositoryPredicate"
+            project="eu.mondo.driver.rdf"/>
       </predicate>
     </workingSet>
     <workingSet
