@@ -73,7 +73,7 @@
     <repository
         url="http://alchim31.free.fr/m2e-scala/update-site/"/>
     <repository
-        url="http://download.eclipse.org/releases/kepler"/>
+        url="http://download.eclipse.org/releases/luna"/>
     <repository
         url="http://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.6.0/N/0.6.0.201210231015/"/>
     <repository
@@ -209,11 +209,6 @@
           name="Luna">
         <repository
             url="http://download.eclipse.org/releases/luna"/>
-      </repositoryList>
-      <repositoryList
-          name="Kepler">
-        <repository
-            url="http://download.eclipse.org/releases/kepler"/>
         <repository
             url="http://download.eclipse.org/modeling/emf/emf/updates/releases/"/>
         <repository
@@ -224,6 +219,11 @@
             url="http://ghillairet.github.io/p2/"/>
         <repository
             url="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/"/>
+      </repositoryList>
+      <repositoryList
+          name="Kepler">
+        <repository
+            url="http://download.eclipse.org/releases/kepler"/>
       </repositoryList>
       <repositoryList
           name="Juno">
