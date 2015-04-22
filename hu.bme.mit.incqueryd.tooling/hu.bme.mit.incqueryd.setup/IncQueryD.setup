@@ -66,6 +66,8 @@
     <requirement
         name="org.eclipse.xtext.sdk.feature.group"
         versionRange="[2.7.0,2.8.0)"/>
+    <requirement
+        name="de.itemis.xtext.antlr.sdk.feature.group"/>
     <repository
         url="http://download.eclipse.org/technology/m2e/releases"/>
     <repository
@@ -78,6 +80,8 @@
         url="http://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.6.0/N/0.6.0.201210231015/"/>
     <repository
         url="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
+    <repository
+        url="http://download.itemis.com/updates/"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -181,7 +185,7 @@
           name="org.eclipse.emf.sdk.feature.group"/>
       <requirement
           name="org.eclipse.incquery.sdk.feature.source.feature.group"
-          versionRange="[0.9.0,0.10.0)"/>
+          versionRange="[0.9.0,0.9.1)"/>
       <requirement
           name="org.openrdf.sesame.feature.feature.group"/>
       <requirement
