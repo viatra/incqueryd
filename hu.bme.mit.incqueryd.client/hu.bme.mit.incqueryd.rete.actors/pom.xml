@@ -27,22 +27,22 @@
 
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
-			<artifactId>akka-actor_2.10</artifactId>
+			<artifactId>akka-actor_2.11</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
-			<artifactId>akka-remote_2.10</artifactId>
+			<artifactId>akka-remote_2.11</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
-			<artifactId>akka-kernel_2.10</artifactId>
+			<artifactId>akka-kernel_2.11</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>com.typesafe.akka</groupId>
-			<artifactId>akka-testkit_2.10</artifactId>
+			<artifactId>akka-testkit_2.11</artifactId>
 		</dependency>
 
 		<dependency>

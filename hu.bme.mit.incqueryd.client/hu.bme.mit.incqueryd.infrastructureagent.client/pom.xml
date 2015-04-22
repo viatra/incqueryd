@@ -58,11 +58,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.lihaoyi</groupId>
-			<artifactId>upickle_2.10</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.scalamacros</groupId>
-			<artifactId>quasiquotes_2.10</artifactId>
+			<artifactId>upickle_2.11</artifactId>
 		</dependency>
 	</dependencies>
 	<build>

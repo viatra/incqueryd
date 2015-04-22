@@ -11,8 +11,8 @@
         <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
-        <scala.version>2.10.4</scala.version>
-        <akka.version>2.4-20141220-230903</akka.version>
+        <scala.version>2.11.6</scala.version>
+        <akka.version>2.4-20150420-230104</akka.version>
         <emf.version>2.9.1-v20130827-0309</emf.version>
         <sesame.version>2.7.14</sesame.version>
     </properties>
@@ -60,22 +60,22 @@
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-actor_2.10</artifactId>
+                <artifactId>akka-actor_2.11</artifactId>
                 <version>${akka.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-remote_2.10</artifactId>
+                <artifactId>akka-remote_2.11</artifactId>
                 <version>${akka.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-kernel_2.10</artifactId>
+                <artifactId>akka-kernel_2.11</artifactId>
                 <version>${akka.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.typesafe.akka</groupId>
-                <artifactId>akka-testkit_2.10</artifactId>
+                <artifactId>akka-testkit_2.11</artifactId>
                 <version>${akka.version}</version>
             </dependency>
             <dependency>
@@ -100,13 +100,8 @@
             </dependency>
             <dependency>
                 <groupId>com.lihaoyi</groupId>
-                <artifactId>upickle_2.10</artifactId>
+                <artifactId>upickle_2.11</artifactId>
                 <version>0.2.5</version>
-            </dependency>
-            <dependency>
-                <groupId>org.scalamacros</groupId>
-                <artifactId>quasiquotes_2.10</artifactId>
-                <version>2.0.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -138,7 +133,7 @@
                 <plugin>
                     <groupId>org.scala-tools</groupId>
                     <artifactId>maven-scala-plugin</artifactId>
-                    <version>2.10.1</version>
+                    <version>2.11</version>
                     <executions>
                         <execution>
                             <id>scala-compile-first</id>

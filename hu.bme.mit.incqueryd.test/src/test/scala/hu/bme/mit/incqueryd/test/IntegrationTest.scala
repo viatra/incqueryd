@@ -74,7 +74,7 @@ trait IntegrationTest {
     if (inventoryPath == null) {
       throw new IllegalArgumentException(s"VM argument $inventoryPathKey is not set!")
     }
-    val inventoryContents = reflect.io.File(inventoryPath).slurp
+    val inventoryContents = io.Source.fromFile(inventoryPath).mkString
     val serializedInventory =
       try {
         read[SerializedInventory](inventoryContents)
