@@ -4,6 +4,10 @@
 package org.eclipse.incquery.patternlanguage.rdf;
 
 import org.eclipse.incquery.patternlanguage.rdf.conversion.RdfPatternLanguageValueConverterService;
+import org.eclipse.incquery.patternlanguage.typing.ITypeInferrer;
+import org.eclipse.incquery.patternlanguage.typing.ITypeInferrer.NullTypeInferrer;
+import org.eclipse.incquery.patternlanguage.typing.ITypeSystem;
+import org.eclipse.incquery.patternlanguage.typing.ITypeSystem.NullTypeSystem;
 import org.eclipse.xtext.conversion.IValueConverterService;
 
 import com.google.inject.Binder;
@@ -22,7 +26,9 @@ public class RdfPatternLanguageRuntimeModule extends org.eclipse.incquery.patter
 	@Override
 	public void configure(Binder binder) {
 		super.configure(binder);
-//		binder.bind(ITypeProvider.class).to(XbaseBatchTypeProvider.class); // XXX IncQuery workaround to avoid "No implementation for org.eclipse.xtext.xbase.typing.ITypeProvider was bound"
+		// XXX IncQuery workarounds
+		binder.bind(ITypeInferrer.class).to(NullTypeInferrer.class);
+		binder.bind(ITypeSystem.class).to(NullTypeSystem.class);
 	}
 
 }
