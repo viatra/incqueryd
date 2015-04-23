@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="hu.bme.mit.incqueryd.tooling.feature"
+      label="IncQuery-D Tooling"
+      version="1.0.0.qualifier">
+
+   <description url="http://incquery.net/">
+      IncQuery-D Tooling
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.eclipse.org/legal/epl-v10.html">
+      Eclipse Public License 1.0
+   </license>
+
+   <plugin
+         id="org.eclipse.incquery.patternlanguage.rdf.generator.recipe"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

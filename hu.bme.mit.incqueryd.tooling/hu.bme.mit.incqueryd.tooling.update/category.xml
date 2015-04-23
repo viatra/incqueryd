@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/hu.bme.mit.incqueryd.tooling.feature_1.0.0.qualifier.jar" id="hu.bme.mit.incqueryd.tooling.feature" version="1.0.0.qualifier">
+      <category name="org.eclipse.incquery"/>
+   </feature>
+   <category-def name="org.eclipse.incquery" label="Eclipse IncQuery"/>
+</site>
