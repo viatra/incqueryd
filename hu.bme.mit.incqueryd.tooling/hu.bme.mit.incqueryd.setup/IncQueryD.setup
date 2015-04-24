@@ -276,7 +276,7 @@
             pattern="hu.bme.mit.incqueryd.client"/>
         <operand
             xsi:type="predicates:LocationPredicate"
-            pattern="${git.clone.incqueryd.location}/hu.bme.mit.incqueryd.client/hu.bme.mit.incqueryd.*"/>
+            pattern="${git.clone.incqueryd.location}/hu.bme.mit.incqueryd.client/.*"/>
       </predicate>
     </workingSet>
     <workingSet
@@ -288,7 +288,7 @@
             pattern="hu.bme.mit.incqueryd.runtime"/>
         <operand
             xsi:type="predicates:LocationPredicate"
-            pattern="${git.clone.incqueryd.location}/hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.*"/>
+            pattern="${git.clone.incqueryd.location}/hu.bme.mit.incqueryd.runtime/.*"/>
       </predicate>
     </workingSet>
     <workingSet
@@ -307,7 +307,7 @@
             pattern="hu.bme.mit.incqueryd.tooling"/>
         <operand
             xsi:type="predicates:LocationPredicate"
-            pattern="${git.clone.incqueryd.location}/hu.bme.mit.incqueryd.tooling/hu.bme.mit.incqueryd.*"/>
+            pattern="${git.clone.incqueryd.location}/hu.bme.mit.incqueryd.tooling/.*"/>
       </predicate>
     </workingSet>
     <description>The dynamic working sets for ${scope.project.label}</description>
