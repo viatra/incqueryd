@@ -26,18 +26,22 @@ class YarnIntegrationTest {
 
   @Test
   def main() {
-    implicit val conf = createConfiguration
-    val client = initYarnClient(conf)
-    val app = client.createApplication
-    val amContainerSpec = initApplicationMasterContainerSpec
-    val resource = initResource
-    val appContext = initAppContext(app, amContainerSpec, resource)
-    client.submitApplication(appContext)
+    runRemotely("yarn-rm.docker", List("echo Hello 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout"))
   }
 
-  def createConfiguration() = {
+  def runRemotely(rmHostname: String, commands: List[String]) = {
+	  implicit val conf = createConfiguration(rmHostname)
+	  val client = initYarnClient(conf)
+	  val app = client.createApplication
+	  val amContainerSpec = initApplicationMasterContainerSpec(conf, commands)
+	  val resource = initResource
+	  val appContext = initAppContext(app, amContainerSpec, resource)
+	  client.submitApplication(appContext)
+  }
+
+  def createConfiguration(rmHostname: String) = {
     val conf = new YarnConfiguration()
-    conf.set(YarnConfiguration.RM_HOSTNAME, "yarn-rm.docker")
+    conf.set(YarnConfiguration.RM_HOSTNAME, rmHostname)
     conf
   }
 
@@ -48,15 +52,14 @@ class YarnIntegrationTest {
     client
   }
 
-  def initApplicationMasterContainerSpec(implicit conf: YarnConfiguration) = {
+  def initApplicationMasterContainerSpec(conf: YarnConfiguration, commands: List[String]) = {
     val amContainer = Records.newRecord(classOf[ContainerLaunchContext])
     //application master is a just java program with given commands
-    amContainer.setCommands(List(
-      "echo Hello").asJava)
+    amContainer.setCommands(commands.asJava)
     //add the jar which contains the Application master code to classpath
     //    val appMasterJar = setUpLocalResource(new Path(jarPath))
     //    amContainer.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))
-    val env = setUpEnv
+    val env = setUpEnv(conf)
     amContainer.setEnvironment(env)
     amContainer
   }
@@ -76,7 +79,8 @@ class YarnIntegrationTest {
     val env = Maps.newHashMap[String, String]()
     val classPath = conf.getStrings(YarnConfiguration.YARN_APPLICATION_CLASSPATH, YarnConfiguration.DEFAULT_YARN_APPLICATION_CLASSPATH: _*)
     for (c <- classPath) {
-      Apps.addToEnvironment(env, Environment.CLASSPATH.name(),
+      Apps.addToEnvironment(env,
+        Environment.CLASSPATH.name(),
         c.trim())
     }
     Apps.addToEnvironment(env,
