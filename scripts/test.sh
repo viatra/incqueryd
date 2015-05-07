@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if (( "$#" != 1 )) 
+if (( "$#" != 1 ))
 then
     echo "Required parameter: path of an inventory file"
 exit 1
@@ -13,6 +13,6 @@ hu.bme.mit.incqueryd.runtime/scripts/stop.sh || true
 hu.bme.mit.incqueryd.runtime/scripts/start.sh
 sleep 15s # XXX
 cd hu.bme.mit.incqueryd.test
-mvn verify -Dtest=**/Development* -DinventoryPath=$1
+mvn verify -Dtest=**/IT* -DinventoryPath=$1
 cd ..
 hu.bme.mit.incqueryd.runtime/scripts/stop.sh

@@ -19,15 +19,29 @@ import java.util.ArrayList
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import scala.collection.JavaConversions._
+import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
+import hu.bme.mit.incqueryd.actorservice.RemoteActorService
 
 object Coordinator {
   final val port = 2552
   final val actorSystemName = "coordinator"
   final val actorName = "coordinator"
   def actorId(ip: String) = ActorId(actorSystemName, ip, port, actorName)
+  
+  def apply(client: AdvancedYarnClient): Coordinator = {
+    val localJarDirectory = "/tmp/"
+    val jarFilename = "hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated filename
+    val applicationId = client.runRemotely(List(
+        "/usr/local/hadoop/bin/hadoop fs -get hdfs://yarn-rm.docker:9000/jars/" + jarFilename + " " + localJarDirectory,
+        "$JAVA_HOME/bin/java -jar " + localJarDirectory + jarFilename
+    ))
+    val ip = client.getIp(applicationId)
+    new RemoteActorService(ip).start(Coordinator.actorId(ip), classOf[CoordinatorActor])
+    new Coordinator(ip)
+  }
 }
 
-class Coordinator(instance: MachineInstance) {
+class Coordinator(ip: String) {
 
   def loadData(databaseUrl: String, vocabulary: Model, inventory: Inventory): DeploymentResult = {
     println(s"Loading data")
@@ -50,7 +64,7 @@ class Coordinator(instance: MachineInstance) {
   }
 
   private def askCoordinator[T](message: CoordinatorCommand, timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)): T = {
-    val coordinatorActor = AkkaUtils.findActor(Coordinator.actorId(instance.ip))
+    val coordinatorActor = AkkaUtils.findActor(Coordinator.actorId(ip))
     val future = coordinatorActor.ask(message)(timeout)
     Await.result(future, timeout.duration).asInstanceOf[T]
   }

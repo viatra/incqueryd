@@ -30,15 +30,10 @@
   <setupTask
       xsi:type="setup:EclipseIniTask"
       option="-XX:MaxPermSize="
-      value="256M"
+      value="1G"
       vm="true">
     <description></description>
   </setupTask>
-  <setupTask
-      xsi:type="setup:EclipseIniTask"
-      option="-Xmx"
-      value="4G"
-      vm="true"/>
   <setupTask
       xsi:type="setup:ResourceCreationTask"
       excludedTriggers="STARTUP MANUAL"

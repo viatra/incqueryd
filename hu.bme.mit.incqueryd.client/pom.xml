@@ -34,7 +34,6 @@
 		</dependencies>
 	</dependencyManagement>
 	<modules>
-		<module>hu.bme.mit.incqueryd.bootstrapagent.client</module>
 		<module>hu.bme.mit.incqueryd.actorservice</module>
 		<module>hu.bme.mit.incqueryd.inventory</module>
 		<module>hu.bme.mit.incqueryd.rete.nodes</module>
@@ -42,7 +41,7 @@
 		<module>hu.bme.mit.incqueryd.engine</module>
 		<module>hu.bme.mit.incqueryd.coordinator.client</module>
 		<module>hu.bme.mit.incqueryd.monitoringserver.client</module>
-		<module>hu.bme.mit.incqueryd.infrastructureagent.client</module>
+		<module>hu.bme.mit.incqueryd.yarn</module>
 	</modules>
 	<name>IncQuery-D Client</name>
 	<description>The API through which the services of the runtime can be accessed.</description>
@@ -56,9 +55,9 @@
           <execution>
             <id>bundle-manifest</id>
             <phase>process-classes</phase>
-            <goals>    
+            <goals>
               <goal>manifest</goal>
-            </goals>   
+            </goals>
           </execution>
         </executions>
 				<configuration>
@@ -70,9 +69,9 @@
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
-          <archive>  
+          <archive>
             <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-          </archive> 
+          </archive>
         </configuration>
       </plugin>
 		</plugins>

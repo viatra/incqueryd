@@ -24,6 +24,11 @@
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.yarn</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
 			<groupId>org.eclipse.incquery</groupId>
 			<artifactId>org.eclipse.incquery.runtime.rete.recipes</artifactId>
 		</dependency>
