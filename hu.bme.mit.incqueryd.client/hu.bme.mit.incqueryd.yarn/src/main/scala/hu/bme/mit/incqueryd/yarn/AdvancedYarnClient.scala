@@ -22,11 +22,13 @@ import java.io.File
 import org.apache.hadoop.yarn.client.api.YarnClientApplication
 import org.apache.hadoop.yarn.api.records.ApplicationId
 
-class AdvancedYarnClient(rmHostname: String) {
+class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
 
   val conf = {
     val conf = new YarnConfiguration()
     conf.set(YarnConfiguration.RM_HOSTNAME, rmHostname)
+    conf.set("fs.defaultFS", fileSystemUri)
+    conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
     conf
   }
 
@@ -37,49 +39,30 @@ class AdvancedYarnClient(rmHostname: String) {
     client
   }
 
-  def runRemotely(commands: List[String]) = {
+  def runRemotely(commands: List[String], jarPath: String) = {
     val app = client.createApplication
-    val amContainerSpec = initApplicationMasterContainerSpec(commands)
+    val amContainerSpec = initApplicationMasterContainerSpec(commands, jarPath)
     val resource = initResource
     val appContext = initAppContext(app, amContainerSpec, resource)
     client.submitApplication(appContext)
   }
-  
-  def getIp(applicationId: ApplicationId) = {
-    client.getApplicationReport(applicationId).getHost
+
+  def kill(applicationId: ApplicationId) = {
+    client.killApplication(applicationId)
   }
 
-  private def initApplicationMasterContainerSpec(commands: List[String]) = {
+  def getIp(applicationId: ApplicationId) = {
+    "" // TODO
+  }
+
+  private def initApplicationMasterContainerSpec(commands: List[String], jarPath: String) = {
     val amContainer = Records.newRecord(classOf[ContainerLaunchContext])
     amContainer.setCommands(commands.asJava)
-    val env = setUpEnv
+    val appMasterJar = AdvancedYarnClient.setUpLocalResource(new Path(jarPath), conf)
+    amContainer.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))
+    val env = AdvancedYarnClient.setUpEnv(conf)
     amContainer.setEnvironment(env)
     amContainer
-  }
-
-  private def setUpLocalResource(resourcePath: Path) = {
-    val resource = Records.newRecord(classOf[LocalResource])
-    val jarStat = FileSystem.get(conf).getFileStatus(resourcePath)
-    resource.setResource(ConverterUtils.getYarnUrlFromPath(resourcePath))
-    resource.setSize(jarStat.getLen())
-    resource.setTimestamp(jarStat.getModificationTime())
-    resource.setType(LocalResourceType.FILE)
-    resource.setVisibility(LocalResourceVisibility.PUBLIC)
-    resource
-  }
-
-  private def setUpEnv = {
-    val env = Maps.newHashMap[String, String]()
-    val classPath = conf.getStrings(YarnConfiguration.YARN_APPLICATION_CLASSPATH, YarnConfiguration.DEFAULT_YARN_APPLICATION_CLASSPATH: _*)
-    for (c <- classPath) {
-      Apps.addToEnvironment(env,
-        Environment.CLASSPATH.name(),
-        c.trim())
-    }
-    Apps.addToEnvironment(env,
-      Environment.CLASSPATH.name(),
-      Environment.PWD.$() + File.separator + "*")
-    env
   }
 
   private def initResource = {
@@ -98,4 +81,33 @@ class AdvancedYarnClient(rmHostname: String) {
     appContext
   }
  
+}
+
+object AdvancedYarnClient {
+
+  def setUpLocalResource(resourcePath: Path, conf: YarnConfiguration) = {
+    val resource = Records.newRecord(classOf[LocalResource])
+    val jarStat = FileSystem.get(conf).getFileStatus(resourcePath)
+    resource.setResource(ConverterUtils.getYarnUrlFromPath(resourcePath))
+    resource.setSize(jarStat.getLen())
+    resource.setTimestamp(jarStat.getModificationTime())
+    resource.setType(LocalResourceType.FILE)
+    resource.setVisibility(LocalResourceVisibility.PUBLIC)
+    resource
+  }
+
+  def setUpEnv(conf: YarnConfiguration) = {
+    val env = Maps.newHashMap[String, String]()
+    val classPath = conf.getStrings(YarnConfiguration.YARN_APPLICATION_CLASSPATH, YarnConfiguration.DEFAULT_YARN_APPLICATION_CLASSPATH: _*)
+    for (c <- classPath) {
+      Apps.addToEnvironment(env,
+        Environment.CLASSPATH.name(),
+        c.trim())
+    }
+    Apps.addToEnvironment(env,
+      Environment.CLASSPATH.name(),
+      Environment.PWD.$() + File.separator + "*")
+    env
+  }
+
 }

@@ -21,6 +21,8 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import scala.collection.JavaConversions._
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
 import hu.bme.mit.incqueryd.actorservice.RemoteActorService
+import hu.bme.mit.incqueryd.yarn.ApplicationMaster
+import org.apache.hadoop.yarn.api.records.ApplicationId
 
 object Coordinator {
   final val port = 2552
@@ -29,19 +31,17 @@ object Coordinator {
   def actorId(ip: String) = ActorId(actorSystemName, ip, port, actorName)
   
   def apply(client: AdvancedYarnClient): Coordinator = {
-    val localJarDirectory = "/tmp/"
-    val jarFilename = "hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated filename
-    val applicationId = client.runRemotely(List(
-        "/usr/local/hadoop/bin/hadoop fs -get hdfs://yarn-rm.docker:9000/jars/" + jarFilename + " " + localJarDirectory,
-        "$JAVA_HOME/bin/java -jar " + localJarDirectory + jarFilename
-    ))
+    val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
+    val applicationId = client.runRemotely(
+        List("$JAVA_HOME/bin/java -Xmx256M hu.bme.mit.incqueryd.yarn.ApplicationMaster " + jarPath + " hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication"),
+        jarPath)
     val ip = client.getIp(applicationId)
     new RemoteActorService(ip).start(Coordinator.actorId(ip), classOf[CoordinatorActor])
-    new Coordinator(ip)
+    new Coordinator(ip, client, applicationId)
   }
 }
 
-class Coordinator(ip: String) {
+class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: ApplicationId) {
 
   def loadData(databaseUrl: String, vocabulary: Model, inventory: Inventory): DeploymentResult = {
     println(s"Loading data")
@@ -67,6 +67,10 @@ class Coordinator(ip: String) {
     val coordinatorActor = AkkaUtils.findActor(Coordinator.actorId(ip))
     val future = coordinatorActor.ask(message)(timeout)
     Await.result(future, timeout.duration).asInstanceOf[T]
+  }
+
+  def dispose = {
+    client.kill(applicationId)
   }
 
 }

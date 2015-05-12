@@ -40,11 +40,12 @@ class ITBasic {
     val patternName = "switchSensor"
     val expectedResult = Set(52, 138, 78, 391).map(n => new Tuple(new Long(n)))
     val rmHostname = "yarn-rm.docker"
+    val fileSystemUri = "hdfs://yarn-rm.docker:9000"
 
     val inventory = loadInventory
     val workingDirectory = new File(getClass.getClassLoader.getResource(modelFileName).getFile).getParentFile
     val testFileServer = TestFileServer.start(workingDirectory)
-    val advancedYarnClient = new AdvancedYarnClient(rmHostname)
+    val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
     try {
       val coordinator = Coordinator(advancedYarnClient)
       val recipe = loadRecipe
@@ -58,6 +59,7 @@ class ITBasic {
         assertEquals(expectedResult, result)
       } finally {
         coordinator.stopQuery(network)
+        coordinator.dispose
       }
     } finally {
       testFileServer.destroy
