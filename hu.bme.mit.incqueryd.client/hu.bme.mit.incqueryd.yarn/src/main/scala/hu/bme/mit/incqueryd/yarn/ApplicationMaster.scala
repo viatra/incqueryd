@@ -1,7 +1,6 @@
 package hu.bme.mit.incqueryd.yarn
 
 import java.util.Collections
-
 import org.apache.hadoop.fs.Path
 import org.apache.hadoop.yarn.api.ApplicationConstants
 import org.apache.hadoop.yarn.api.records._
@@ -10,10 +9,16 @@ import org.apache.hadoop.yarn.client.api.{ AMRMClient, NMClient }
 import org.apache.hadoop.yarn.conf.YarnConfiguration
 import org.apache.hadoop.yarn.util.Records
 import org.apache.hadoop.yarn.api.records.Container
-
 import scala.collection.JavaConverters._
+import org.apache.zookeeper.ZooKeeper
+import org.apache.zookeeper.Watcher
+import org.apache.zookeeper.WatchedEvent
 
 object ApplicationMaster {
+
+  val zooKeeperHost = "localhost:2181"
+  val ipPath = "/ip"
+  val anyVersion = -1
 
   def main(args: Array[String]) {
 
@@ -57,7 +62,7 @@ object ApplicationMaster {
     var responseId = 0
     var completedContainers = 0
 
-    while (completedContainers < 2) {
+    while (completedContainers < 1) {
 
       val appMasterJar = AdvancedYarnClient.setUpLocalResource(new Path(jarPath), conf)
 
@@ -84,12 +89,19 @@ object ApplicationMaster {
 
       for (status <- response.getCompletedContainersStatuses.asScala) {
         println("Completed container " + status.getContainerId)
+        val zk = new ZooKeeper("localhost:2181", 10000, new Watcher {
+          def process(event: WatchedEvent) {
+          }
+        })
+        val ip = response.getUpdatedNodes.get(0).getHttpAddress
+        zk.setData(ipPath, ip.getBytes, anyVersion)
         completedContainers += 1
       }
 
       Thread.sleep(10000)
     }
     rmClient.unregisterApplicationMaster(FinalApplicationStatus.SUCCEEDED, "", "")
+    rmClient.stop()
 
   }
 

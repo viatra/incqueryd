@@ -29,6 +29,10 @@
 			<artifactId>hadoop-hdfs</artifactId>
 			<version>2.6.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
