@@ -51,10 +51,6 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
     client.killApplication(applicationId)
   }
 
-  def getIp(applicationId: ApplicationId) = {
-    "" // TODO
-  }
-
   private def initApplicationMasterContainerSpec(commands: List[String], jarPath: String) = {
     val amContainer = Records.newRecord(classOf[ContainerLaunchContext])
     amContainer.setCommands(commands.asJava)

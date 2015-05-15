@@ -23,6 +23,17 @@ import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
 import hu.bme.mit.incqueryd.actorservice.RemoteActorService
 import hu.bme.mit.incqueryd.yarn.ApplicationMaster
 import org.apache.hadoop.yarn.api.records.ApplicationId
+import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
+import scala.concurrent.Promise
+import org.apache.zookeeper.Watcher
+import org.apache.zookeeper.WatchedEvent
+import org.apache.zookeeper.data.Stat
+import org.apache.zookeeper.Watcher.Event.EventType
+import scala.concurrent.Future
+import org.apache.zookeeper.CreateMode
+import org.apache.zookeeper.data.ACL
+import org.apache.zookeeper.ZooDefs.Perms
+import org.apache.zookeeper.ZooDefs.Ids
 
 object Coordinator {
   final val port = 2552
@@ -30,14 +41,28 @@ object Coordinator {
   final val actorName = "coordinator"
   def actorId(ip: String) = ActorId(actorSystemName, ip, port, actorName)
   
-  def apply(client: AdvancedYarnClient): Coordinator = {
+  def create(client: AdvancedYarnClient, zooKeeperHost: String): Future[Coordinator] = {
     val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
+    val zk = IncQueryDZooKeeper.create(zooKeeperHost)
+    zk.create(IncQueryDZooKeeper.ipPath, Array[Byte](), List(new ACL(Perms.ALL, Ids.ANYONE_ID_UNSAFE)), CreateMode.PERSISTENT)
     val applicationId = client.runRemotely(
-        List("$JAVA_HOME/bin/java -Xmx256M hu.bme.mit.incqueryd.yarn.ApplicationMaster " + jarPath + " hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication"),
+        List("$JAVA_HOME/bin/java -Xmx256M hu.bme.mit.incqueryd.yarn.ApplicationMaster " + jarPath + " hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication " + zooKeeperHost),
         jarPath)
-    val ip = client.getIp(applicationId)
-    new RemoteActorService(ip).start(Coordinator.actorId(ip), classOf[CoordinatorActor])
-    new Coordinator(ip, client, applicationId)
+    val result = Promise[Coordinator]()
+    zk.getData(IncQueryDZooKeeper.ipPath, new Watcher() {
+      def process(event: WatchedEvent) {
+        event.getType() match {
+          case EventType.NodeCreated | EventType.NodeDataChanged => {
+            val data = zk.getData(IncQueryDZooKeeper.ipPath, false, new Stat())
+            val ip = new String(data)
+            new RemoteActorService(ip).start(Coordinator.actorId(ip), classOf[CoordinatorActor])
+            result.success(new Coordinator(ip, client, applicationId))
+          }
+          case _ => result.failure(new IllegalStateException(s"Unexpected event on ${IncQueryDZooKeeper.ipPath}: $event"))
+        }
+      }
+    }, new Stat())
+    result.future
   }
 }
 

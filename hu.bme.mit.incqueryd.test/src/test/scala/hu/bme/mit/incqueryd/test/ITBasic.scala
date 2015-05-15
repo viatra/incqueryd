@@ -30,6 +30,8 @@ import upickle._
 import hu.bme.mit.incqueryd.inventory.MachineInstance
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
 import hu.bme.mit.incqueryd.coordinator.client.Coordinator
+import scala.concurrent.Await
+import scala.concurrent.duration._
 
 class ITBasic {
 
@@ -41,13 +43,15 @@ class ITBasic {
     val expectedResult = Set(52, 138, 78, 391).map(n => new Tuple(new Long(n)))
     val rmHostname = "yarn-rm.docker"
     val fileSystemUri = "hdfs://yarn-rm.docker:9000"
+    val zooKeeperHost = rmHostname
+    val timeout = 20 seconds
 
     val inventory = loadInventory
     val workingDirectory = new File(getClass.getClassLoader.getResource(modelFileName).getFile).getParentFile
     val testFileServer = TestFileServer.start(workingDirectory)
     val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
     try {
-      val coordinator = Coordinator(advancedYarnClient)
+      val coordinator = Await.result(Coordinator.create(advancedYarnClient, zooKeeperHost), timeout)
       val recipe = loadRecipe
       val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
       val databaseUrl = s"http://${NetworkUtils.getLocalIpAddress}:${TestFileServer.port}/$modelFileName"

@@ -16,14 +16,10 @@ import org.apache.zookeeper.WatchedEvent
 
 object ApplicationMaster {
 
-  val zooKeeperHost = "localhost:2181"
-  val ipPath = "/ip"
-  val anyVersion = -1
-
-  def main(args: Array[String]) {
-
+  def main(args: Array[String]){
     val jarPath = args(0)
     val mainClass = args(1)
+    val zooKeeperHost = args(2)
 
     // Create new YARN configuration
     implicit val conf = new YarnConfiguration()
@@ -89,12 +85,9 @@ object ApplicationMaster {
 
       for (status <- response.getCompletedContainersStatuses.asScala) {
         println("Completed container " + status.getContainerId)
-        val zk = new ZooKeeper("localhost:2181", 10000, new Watcher {
-          def process(event: WatchedEvent) {
-          }
-        })
+        val zk = IncQueryDZooKeeper.create(zooKeeperHost)
         val ip = response.getUpdatedNodes.get(0).getHttpAddress
-        zk.setData(ipPath, ip.getBytes, anyVersion)
+        zk.setData(IncQueryDZooKeeper.ipPath, ip.getBytes, IncQueryDZooKeeper.anyVersion)
         completedContainers += 1
       }
 
@@ -102,7 +95,6 @@ object ApplicationMaster {
     }
     rmClient.unregisterApplicationMaster(FinalApplicationStatus.SUCCEEDED, "", "")
     rmClient.stop()
-
   }
 
 }
