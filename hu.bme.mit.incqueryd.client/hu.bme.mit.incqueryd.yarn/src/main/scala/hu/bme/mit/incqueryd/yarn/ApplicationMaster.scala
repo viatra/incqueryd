@@ -81,13 +81,14 @@ object ApplicationMaster {
 
         System.out.println("Launching container " + container)
         nmClient.startContainer(container, ctx)
+        
+        val zk = IncQueryDZooKeeper.create(zooKeeperHost)
+        val ip = container.getNodeHttpAddress
+        zk.setData(IncQueryDZooKeeper.ipPath, ip.getBytes, IncQueryDZooKeeper.anyVersion)
       }
 
       for (status <- response.getCompletedContainersStatuses.asScala) {
         println("Completed container " + status.getContainerId)
-        val zk = IncQueryDZooKeeper.create(zooKeeperHost)
-        val ip = response.getUpdatedNodes.get(0).getHttpAddress
-        zk.setData(IncQueryDZooKeeper.ipPath, ip.getBytes, IncQueryDZooKeeper.anyVersion)
         completedContainers += 1
       }
 
