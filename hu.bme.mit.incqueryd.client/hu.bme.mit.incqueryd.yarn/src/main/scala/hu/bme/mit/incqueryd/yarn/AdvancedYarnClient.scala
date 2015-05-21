@@ -39,9 +39,9 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
     client
   }
 
-  def runRemotely(commands: List[String], jarPath: String) = {
+  def runRemotely(commands: List[String], jarPath: String, useDefaultClassPath: Boolean) = {
     val app = client.createApplication
-    val amContainerSpec = initApplicationMasterContainerSpec(commands, jarPath)
+    val amContainerSpec = initApplicationMasterContainerSpec(commands, jarPath, useDefaultClassPath)
     val resource = initResource
     val appContext = initAppContext(app, amContainerSpec, resource)
     client.submitApplication(appContext)
@@ -51,12 +51,12 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
     client.killApplication(applicationId)
   }
 
-  private def initApplicationMasterContainerSpec(commands: List[String], jarPath: String) = {
+  private def initApplicationMasterContainerSpec(commands: List[String], jarPath: String, useDefaultClassPath: Boolean) = {
     val amContainer = Records.newRecord(classOf[ContainerLaunchContext])
     amContainer.setCommands(commands.asJava)
     val appMasterJar = AdvancedYarnClient.setUpLocalResource(new Path(jarPath), conf)
     amContainer.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))
-    val env = AdvancedYarnClient.setUpEnv(conf)
+    val env = AdvancedYarnClient.setUpEnv(conf, useDefaultClassPath)
     amContainer.setEnvironment(env)
     amContainer
   }
@@ -92,13 +92,15 @@ object AdvancedYarnClient {
     resource
   }
 
-  def setUpEnv(conf: YarnConfiguration) = {
+  def setUpEnv(conf: YarnConfiguration, useDefaultClassPath: Boolean) = {
     val env = Maps.newHashMap[String, String]()
-    val classPath = conf.getStrings(YarnConfiguration.YARN_APPLICATION_CLASSPATH, YarnConfiguration.DEFAULT_YARN_APPLICATION_CLASSPATH: _*)
-    for (c <- classPath) {
-      Apps.addToEnvironment(env,
-        Environment.CLASSPATH.name(),
-        c.trim())
+    if (useDefaultClassPath) {
+      val classPath = conf.getStrings(YarnConfiguration.YARN_APPLICATION_CLASSPATH, YarnConfiguration.DEFAULT_YARN_APPLICATION_CLASSPATH: _*)
+      for (c <- classPath) {
+        Apps.addToEnvironment(env,
+          Environment.CLASSPATH.name(),
+          c.trim())
+      }
     }
     Apps.addToEnvironment(env,
       Environment.CLASSPATH.name(),

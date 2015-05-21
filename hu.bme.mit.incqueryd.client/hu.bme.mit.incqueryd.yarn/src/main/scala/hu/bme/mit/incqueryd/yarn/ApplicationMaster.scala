@@ -13,6 +13,8 @@ import scala.collection.JavaConverters._
 import org.apache.zookeeper.ZooKeeper
 import org.apache.zookeeper.Watcher
 import org.apache.zookeeper.WatchedEvent
+import java.net.URL
+import org.apache.hadoop.conf.Configuration
 
 object ApplicationMaster {
 
@@ -20,6 +22,7 @@ object ApplicationMaster {
     val jarPath = args(0)
     val mainClass = args(1)
     val zooKeeperHost = args(2)
+    val applicationArgument = args(3)
 
     // Create new YARN configuration
     implicit val conf = new YarnConfiguration()
@@ -62,7 +65,7 @@ object ApplicationMaster {
 
       val appMasterJar = AdvancedYarnClient.setUpLocalResource(new Path(jarPath), conf)
 
-      val env = AdvancedYarnClient.setUpEnv(conf)
+      val env = AdvancedYarnClient.setUpEnv(conf, false)
 
       val response = rmClient.allocate(responseId + 1)
       responseId += 1
@@ -73,7 +76,7 @@ object ApplicationMaster {
 
         ctx.setCommands(
             List(
-              "$JAVA_HOME/bin/java -Xmx256M " + mainClass +
+              "$JAVA_HOME/bin/java -Xmx256M " + mainClass + " " + applicationArgument +
                 " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
                 " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
         ctx.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))

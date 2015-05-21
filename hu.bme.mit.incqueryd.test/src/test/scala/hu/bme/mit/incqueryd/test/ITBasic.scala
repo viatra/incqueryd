@@ -44,7 +44,7 @@ class ITBasic {
     val rmHostname = "yarn-rm.docker"
     val fileSystemUri = "hdfs://yarn-rm.docker:9000"
     val zooKeeperHost = rmHostname
-    val timeout = 20 seconds
+    val timeout = 30 seconds
 
     val inventory = loadInventory
     val workingDirectory = new File(getClass.getClassLoader.getResource(modelFileName).getFile).getParentFile
