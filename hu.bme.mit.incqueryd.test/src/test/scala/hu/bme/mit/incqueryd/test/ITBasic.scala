@@ -32,6 +32,7 @@ import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
 import hu.bme.mit.incqueryd.coordinator.client.Coordinator
 import scala.concurrent.Await
 import scala.concurrent.duration._
+import hu.bme.mit.incqueryd.yarn.HdfsUtils
 
 class ITBasic {
 
@@ -46,27 +47,28 @@ class ITBasic {
     val zooKeeperHost = rmHostname
     val timeout = 30 seconds
 
-    val inventory = loadInventory
-    val workingDirectory = new File(getClass.getClassLoader.getResource(modelFileName).getFile).getParentFile
-    val testFileServer = TestFileServer.start(workingDirectory)
     val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
+
+    val testFile = new File(getClass.getClassLoader.getResource(modelFileName).getFile)
+    val testFilePath = fileSystemUri + "/test/" + modelFileName
+    val hdfs = HdfsUtils.getDistributedFileSystem(fileSystemUri)
+    HdfsUtils.upload(hdfs, testFile, testFilePath)
+
+    val coordinator = Await.result(Coordinator.create(advancedYarnClient, zooKeeperHost), timeout)
+    val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
+    val inventory = loadInventory
+    val index = coordinator.loadData(testFilePath, vocabulary, inventory)
+
+    val recipe = loadRecipe
+    val network = coordinator.startQuery(recipe, index)
+
     try {
-      val coordinator = Await.result(Coordinator.create(advancedYarnClient, zooKeeperHost), timeout)
-      val recipe = loadRecipe
-      val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
-      val databaseUrl = s"http://${NetworkUtils.getLocalIpAddress}:${TestFileServer.port}/$modelFileName"
-      val index = coordinator.loadData(databaseUrl, vocabulary, inventory)
-      val network = coordinator.startQuery(recipe, index)
-      try {
-        val result = coordinator.checkResults(recipe, network, patternName)
-        println(s"Query result: $result")
-        assertEquals(expectedResult, result)
-      } finally {
-        coordinator.stopQuery(network)
-        coordinator.dispose
-      }
+      val result = coordinator.checkResults(recipe, network, patternName)
+      println(s"Query result: $result")
+      assertEquals(expectedResult, result)
     } finally {
-      testFileServer.destroy
+      coordinator.stopQuery(network)
+      coordinator.dispose
     }
   }
 

@@ -21,14 +21,15 @@ import org.apache.hadoop.fs.FileSystem
 import java.io.File
 import org.apache.hadoop.yarn.client.api.YarnClientApplication
 import org.apache.hadoop.yarn.api.records.ApplicationId
+import java.io.InputStream
+import org.apache.commons.io.IOUtils
+import java.io.FileInputStream
 
 class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
 
   val conf = {
     val conf = new YarnConfiguration()
     conf.set(YarnConfiguration.RM_HOSTNAME, rmHostname)
-    conf.set("fs.defaultFS", fileSystemUri)
-    conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
     conf
   }
 
@@ -54,7 +55,7 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
   private def initApplicationMasterContainerSpec(commands: List[String], jarPath: String, useDefaultClassPath: Boolean) = {
     val amContainer = Records.newRecord(classOf[ContainerLaunchContext])
     amContainer.setCommands(commands.asJava)
-    val appMasterJar = AdvancedYarnClient.setUpLocalResource(new Path(jarPath), conf)
+    val appMasterJar = AdvancedYarnClient.setUpLocalResource(new Path(jarPath), HdfsUtils.getDistributedFileSystem(fileSystemUri))
     amContainer.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))
     val env = AdvancedYarnClient.setUpEnv(conf, useDefaultClassPath)
     amContainer.setEnvironment(env)
@@ -81,9 +82,9 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
 
 object AdvancedYarnClient {
 
-  def setUpLocalResource(resourcePath: Path, conf: YarnConfiguration) = {
+  def setUpLocalResource(resourcePath: Path, fileSystem: FileSystem) = {
     val resource = Records.newRecord(classOf[LocalResource])
-    val jarStat = FileSystem.get(conf).getFileStatus(resourcePath)
+    val jarStat = fileSystem.getFileStatus(resourcePath)
     resource.setResource(ConverterUtils.getYarnUrlFromPath(resourcePath))
     resource.setSize(jarStat.getLen())
     resource.setTimestamp(jarStat.getModificationTime())

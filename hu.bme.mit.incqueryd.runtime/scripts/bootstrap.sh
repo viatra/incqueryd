@@ -14,6 +14,7 @@ sed s/HOSTNAME/$HOSTNAME/ /usr/local/hadoop/etc/hadoop/core-site.xml.template > 
 
 service ssh start
 $HADOOP_PREFIX/sbin/start-dfs.sh && $HADOOP_PREFIX/bin/hdfs dfs -mkdir -p /user/root && $HADOOP_PREFIX/bin/hdfs dfs -put $HADOOP_PREFIX/etc/hadoop/ input
+$HADOOP_PREFIX/bin/hdfs dfs -mkdir -p /test && $HADOOP_PREFIX/bin/hdfs dfs -chmod -R 777 /test
 $HADOOP_PREFIX/sbin/start-yarn.sh
 
 if [[ $1 == "-d" ]]; then

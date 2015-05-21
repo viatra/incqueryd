@@ -15,6 +15,7 @@ import org.apache.zookeeper.Watcher
 import org.apache.zookeeper.WatchedEvent
 import java.net.URL
 import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.FileSystem
 
 object ApplicationMaster {
 
@@ -63,7 +64,7 @@ object ApplicationMaster {
 
     while (completedContainers < 1) {
 
-      val appMasterJar = AdvancedYarnClient.setUpLocalResource(new Path(jarPath), conf)
+      val appMasterJar = AdvancedYarnClient.setUpLocalResource(new Path(jarPath), FileSystem.get(conf))
 
       val env = AdvancedYarnClient.setUpEnv(conf, false)
 

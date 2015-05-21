@@ -51,6 +51,7 @@ import hu.bme.mit.incqueryd.engine.rete.actors.YellowPages
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
 import hu.bme.mit.incqueryd.engine.rete.actors.YellowPagesUtils
 import hu.bme.mit.incqueryd.engine.rete.actors.PropagateState
+import hu.bme.mit.incqueryd.yarn.HdfsUtils
 
 class CoordinatorActor extends Actor {
   
@@ -58,12 +59,12 @@ class CoordinatorActor extends Actor {
   import context.dispatcher
 
   def receive = AkkaUtils.propagateException(sender) ({
-    case LoadData(databaseUrl, vocabulary, inventory) => {
-      val types = getTypes(vocabulary, databaseUrl)
+    case LoadData(hdfsPath, vocabulary, inventory) => {
+      val types = getTypes(vocabulary, hdfsPath)
       val typeInputRecipes = types.map(_.getInputRecipe)
       val plan = allocate(typeInputRecipes, types, inventory)
       val index = deploy(plan, types)
-      configureIndex(index, databaseUrl)
+      configureIndex(index, hdfsPath)
       sender ! index
     }
     case StartQuery(recipeJson, index) => {
@@ -101,8 +102,11 @@ class CoordinatorActor extends Actor {
     }
   }
 
-  def getTypes(vocabulary: Model, databaseUrl: String): Set[RdfType] = {
-    val driver = new FileGraphDriverRead(databaseUrl)
+  def getTypes(vocabulary: Model, hdfsPath: String): Set[RdfType] = {
+    val hdfs = HdfsUtils.getDistributedFileSystem(hdfsPath)
+    val inputStream = HdfsUtils.download(hdfs, hdfsPath)
+    val driver = new FileGraphDriverRead(hdfsPath, inputStream)
+    inputStream.close
     val rdfClassStatements = vocabulary.filter(null, RDF.TYPE, RDFS.CLASS).toSet
     val owlClassStatements = vocabulary.filter(null, RDF.TYPE, OWL.CLASS).toSet
     val classes = getUriSubjects(rdfClassStatements union owlClassStatements)
@@ -159,10 +163,10 @@ class CoordinatorActor extends Actor {
     }
   }
 
-  def configureIndex(index: DeploymentResult, databaseUrl: String): Unit = {
+  def configureIndex(index: DeploymentResult, hdfsPath: String): Unit = {
     wait(index.yellowPages.inputActorsByType.map { case (rdfType, actor) =>
       val nodeRecipe = rdfType.getInputRecipe
-      actor.ask(Configure(new ReteNodeConfiguration(nodeRecipe, List(), databaseUrl)))
+      actor.ask(Configure(new ReteNodeConfiguration(nodeRecipe, List(), hdfsPath)))
     })
   }
 

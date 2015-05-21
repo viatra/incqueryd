@@ -77,9 +77,9 @@ object Coordinator {
 
 class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: ApplicationId) {
 
-  def loadData(databaseUrl: String, vocabulary: Model, inventory: Inventory): DeploymentResult = {
+  def loadData(hdfsPath: String, vocabulary: Model, inventory: Inventory): DeploymentResult = {
     println(s"Loading data")
-    askCoordinator[DeploymentResult](LoadData(databaseUrl, vocabulary, inventory))
+    askCoordinator[DeploymentResult](LoadData(hdfsPath, vocabulary, inventory))
   }
 
   def startQuery(recipe: ReteRecipe, index: DeploymentResult): DeploymentResult = {
