@@ -25,8 +25,4 @@ object HdfsUtils {
     outputStream.close
   }
 
-  def download(fileSystem: FileSystem, pathString: String): InputStream = {
-    fileSystem.open(new Path(pathString))
-  }
-
 }

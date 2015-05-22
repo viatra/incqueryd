@@ -4,6 +4,8 @@ import io.dropwizard.Application
 import io.dropwizard.Configuration
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
+import java.net.URL
+import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
 
 object ActorServiceApplication {
 
@@ -20,6 +22,7 @@ class ActorServiceApplication extends Application[ActorServiceConfiguration] {
 
   override def run(configuration: ActorServiceConfiguration, environment: Environment) {
     List(new StartResource).foreach(environment.jersey.register(_))
+    URL.setURLStreamHandlerFactory(new FsUrlStreamHandlerFactory)
   }
 
 }

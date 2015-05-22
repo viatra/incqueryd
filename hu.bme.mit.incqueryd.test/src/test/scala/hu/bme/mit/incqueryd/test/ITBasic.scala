@@ -33,6 +33,8 @@ import hu.bme.mit.incqueryd.coordinator.client.Coordinator
 import scala.concurrent.Await
 import scala.concurrent.duration._
 import hu.bme.mit.incqueryd.yarn.HdfsUtils
+import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
+import org.apache.commons.io.IOUtils
 
 class ITBasic {
 
@@ -73,28 +75,13 @@ class ITBasic {
   }
 
   private def loadInventory = {
-    val inventoryPathKey: String = "inventoryPath"
-    val inventoryPath = System.getProperty(inventoryPathKey)
-    if (inventoryPath == null) {
-      throw new IllegalArgumentException(s"VM argument $inventoryPathKey is not set!")
+    val actorServiceIpKey: String = "actorServiceIp"
+    val actorServiceIp = System.getProperty(actorServiceIpKey)
+    if (actorServiceIp == null) {
+      throw new IllegalArgumentException(s"VM argument $actorServiceIpKey is not set!")
     }
-    val inventoryContents = io.Source.fromFile(inventoryPath).mkString
-    val serializedInventory =
-      try {
-        read[SerializedInventory](inventoryContents)
-      } catch {
-        case e: Throwable => {
-          val sample = SerializedInventory(List(), MachineInstance(8 * 1024, "192.168.59.103"))
-          println(s"Invalid inventory file!\nIt should look like this:\n${write(sample)}")
-          throw e
-        }
-      }
-    transformSerializedInventory(serializedInventory)
-  }
-
-  private def transformSerializedInventory(serializedInventory: SerializedInventory): Inventory = {
-    val machineInstances = serializedInventory.master :: serializedInventory.slaves
-    Inventory(machineInstances, serializedInventory.master)
+    val actorServiceMachine = MachineInstance(8 * 1024, actorServiceIp)
+    Inventory(List(actorServiceMachine), actorServiceMachine)
   }
 
   private def loadRdf(documentUrl: URL): Model = {

@@ -104,9 +104,7 @@ class CoordinatorActor extends Actor {
 
   def getTypes(vocabulary: Model, hdfsPath: String): Set[RdfType] = {
     val hdfs = HdfsUtils.getDistributedFileSystem(hdfsPath)
-    val inputStream = HdfsUtils.download(hdfs, hdfsPath)
-    val driver = new FileGraphDriverRead(hdfsPath, inputStream)
-    inputStream.close
+    val driver = new FileGraphDriverRead(hdfsPath)
     val rdfClassStatements = vocabulary.filter(null, RDF.TYPE, RDFS.CLASS).toSet
     val owlClassStatements = vocabulary.filter(null, RDF.TYPE, OWL.CLASS).toSet
     val classes = getUriSubjects(rdfClassStatements union owlClassStatements)
