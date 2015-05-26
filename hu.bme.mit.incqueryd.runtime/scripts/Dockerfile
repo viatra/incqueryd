@@ -5,7 +5,7 @@ MAINTAINER IncQuery-D Team
 USER root
 
 # install tools
-RUN apt-get update && apt-get -y install curl tar sudo openssh-server openssh-client rsync nano telnet
+RUN apt-get update && apt-get -y install curl tar sudo openssh-server openssh-client rsync nano telnet dnsmasq
 
 # passwordless ssh
 # RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key
@@ -30,14 +30,19 @@ ENV HADOOP_YARN_HOME /usr/local/hadoop
 ENV HADOOP_CONF_DIR /usr/local/hadoop/etc/hadoop
 ENV YARN_CONF_DIR $HADOOP_PREFIX/etc/hadoop
 
+RUN echo "export HADOOP_PREFIX=/usr/local/hadoop" >> /etc/profile
+RUN echo "export HADOOP_COMMON_HOME=/usr/local/hadoop" >> /etc/profile
+RUN echo "export HADOOP_HDFS_HOME=/usr/local/hadoop" >> /etc/profile
+RUN echo "export HADOOP_MAPRED_HOME=/usr/local/hadoop" >> /etc/profile
+RUN echo "export HADOOP_YARN_HOME=/usr/local/hadoop" >> /etc/profile
+RUN echo "export HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop" >> /etc/profile
+RUN echo "export YARN_CONF_DIR=$HADOOP_PREFIX/etc/hadoop" >> /etc/profile
+
 RUN cd $HADOOP_PREFIX && ln -s $HADOOP_CONF_DIR conf
 
 RUN sed -i '/^export JAVA_HOME/ s:.*:export JAVA_HOME=/usr/lib/jvm/java-7-oracle\nexport HADOOP_PREFIX=/usr/local/hadoop\nexport HADOOP_HOME=/usr/local/hadoop\n:' $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
 RUN sed -i '/^export HADOOP_CONF_DIR/ s:.*:export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop/:' $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
 #RUN . $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
-
-RUN mkdir $HADOOP_PREFIX/input
-RUN cp $HADOOP_PREFIX/etc/hadoop/*.xml $HADOOP_PREFIX/input
 
 # pseudo distributed
 ADD core-site.xml.template $HADOOP_PREFIX/etc/hadoop/core-site.xml.template
@@ -91,15 +96,16 @@ ADD zkServer.sh /usr/local/zookeeper/bin/zkServer.sh
 RUN chown root:root /usr/local/zookeeper/bin/zkServer.sh
 RUN chmod 700 /usr/local/zookeeper/bin/zkServer.sh
 
+# Add dnsmasq.conf file
+ADD dnsmasq.conf /etc/dnsmasq.conf
+ADD dnsmasq.resolv.conf /etc/dnsmasq.resolv.conf
+
 # Add demo app start script
 ADD run_demo.sh /usr/local/hadoop/run_demo.sh
 RUN chmod 700 /usr/local/hadoop/run_demo.sh
 
 # Add new node script
 ADD add-yarn-node.sh /usr/local/hadoop/add-yarn-node.sh
-
-# RUN service ssh start && $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh && $HADOOP_PREFIX/sbin/start-dfs.sh && $HADOOP_PREFIX/bin/hdfs dfs -mkdir -p /user/root
-# RUN service ssh start && $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh && $HADOOP_PREFIX/sbin/start-dfs.sh && $HADOOP_PREFIX/bin/hdfs dfs -put $HADOOP_PREFIX/etc/hadoop/ input
 
 # CMD ["/etc/bootstrap.sh", "-d"]
 
