@@ -23,7 +23,8 @@ object ApplicationMaster {
     val jarPath = args(0)
     val mainClass = args(1)
     val zooKeeperHost = args(2)
-    val applicationArgument = args(3)
+    val zooKeeperIpPath = args(3)
+    val applicationArgument = args(4)
 
     // Create new YARN configuration
     implicit val conf = new YarnConfiguration()
@@ -88,7 +89,7 @@ object ApplicationMaster {
         
         val zk = IncQueryDZooKeeper.create(zooKeeperHost)
         val ip = container.getNodeHttpAddress
-        zk.setData(IncQueryDZooKeeper.ipPath, ip.getBytes, IncQueryDZooKeeper.anyVersion)
+        zk.setData(zooKeeperIpPath, ip.getBytes, IncQueryDZooKeeper.anyVersion)
       }
 
       for (status <- response.getCompletedContainersStatuses.asScala) {

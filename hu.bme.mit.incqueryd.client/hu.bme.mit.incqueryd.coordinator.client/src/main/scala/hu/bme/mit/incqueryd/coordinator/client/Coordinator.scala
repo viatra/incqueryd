@@ -36,43 +36,24 @@ import org.apache.zookeeper.ZooDefs.Perms
 import org.apache.zookeeper.ZooDefs.Ids
 import java.net.URI
 import hu.bme.mit.incqueryd.yarn.ApplicationMaster
+import hu.bme.mit.incqueryd.actorservice.YarnActorService
+import scala.concurrent.ExecutionContext.Implicits.global
 
 object Coordinator {
   final val port = 2552
   final val actorSystemName = "coordinator"
   final val actorName = "coordinator"
+  final val zooKeeperIpPath = "/coordinatorIp"
+
   def actorId(ip: String) = ActorId(actorSystemName, ip, port, actorName)
-  
+
   def create(client: AdvancedYarnClient, zooKeeperHost: String): Future[Coordinator] = {
-    val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
-    val zk = IncQueryDZooKeeper.create(zooKeeperHost)
-    if (zk.exists(IncQueryDZooKeeper.ipPath, false) == null) {
-    	zk.create(IncQueryDZooKeeper.ipPath, Array[Byte](), List(new ACL(Perms.ALL, Ids.ANYONE_ID_UNSAFE)), CreateMode.PERSISTENT)
+    YarnActorService.create(client, zooKeeperHost, zooKeeperIpPath).map { yarnActorService =>
+      new RemoteActorService(yarnActorService.ip).start(Coordinator.actorId(yarnActorService.ip), classOf[CoordinatorActor])
+      new Coordinator(yarnActorService.ip, client, yarnActorService.applicationId)
     }
-    val appMasterObjectName = ApplicationMaster.getClass.getName
-    val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1)
-    val actorServiceClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication" // XXX duplicated class name to avoid dependency on runtime
-    val applicationId = client.runRemotely(
-        List("$JAVA_HOME/bin/java -Xmx256M " + appMasterClassName + " " + jarPath + " " + actorServiceClassName + " " + zooKeeperHost + " server"),
-        jarPath, true)
-    val result = Promise[Coordinator]()
-    zk.getData(IncQueryDZooKeeper.ipPath, new Watcher() {
-      def process(event: WatchedEvent) {
-        event.getType() match {
-          case EventType.NodeCreated | EventType.NodeDataChanged => {
-            val data = zk.getData(IncQueryDZooKeeper.ipPath, false, new Stat())
-            val ipWithPort = new String(data)
-            val ip = ipWithPort.replaceFirst(":\\d+", "")
-            Thread.sleep((8 seconds).toMillis) // Wait for server to start
-            new RemoteActorService(ip).start(Coordinator.actorId(ip), classOf[CoordinatorActor])
-            result.success(new Coordinator(ip, client, applicationId))
-          }
-          case _ => result.failure(new IllegalStateException(s"Unexpected event on ${IncQueryDZooKeeper.ipPath}: $event"))
-        }
-      }
-    }, new Stat())
-    result.future
   }
+
 }
 
 class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: ApplicationId) {

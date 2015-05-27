@@ -7,7 +7,6 @@ import org.apache.zookeeper.Watcher
 object IncQueryDZooKeeper {
 
   val port = 2181
-  val ipPath = "/ip"
   val anyVersion = -1
 
   def create(host: String) = {
