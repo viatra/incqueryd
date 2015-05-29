@@ -41,9 +41,9 @@ import java.net.URI
 import hu.bme.mit.incqueryd.yarn.ApplicationMaster
 
 object YarnActorService {
-  def create(client: AdvancedYarnClient, zooKeeperHost: String, zooKeeperIpPath: String): Future[YarnActorService] = {
+  def create(client: AdvancedYarnClient, zkHostname: String, zooKeeperIpPath: String): Future[YarnActorService] = {
     val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
-    val zk = IncQueryDZooKeeper.create(zooKeeperHost)
+    val zk = IncQueryDZooKeeper.create(zkHostname)
     if (zk.exists(zooKeeperIpPath, false) == null) {
       zk.create(zooKeeperIpPath, Array[Byte](), ImmutableList.of(new ACL(Perms.ALL, Ids.ANYONE_ID_UNSAFE)), CreateMode.PERSISTENT)
     }
@@ -51,7 +51,7 @@ object YarnActorService {
     val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1)
     val actorServiceClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication" // XXX duplicated class name to avoid dependency on runtime
     val applicationId = client.runRemotely(
-        List(s"$$JAVA_HOME/bin/java -Xmx256M $appMasterClassName $jarPath $actorServiceClassName $zooKeeperHost $zooKeeperIpPath server"),
+        List(s"$$JAVA_HOME/bin/java -Xmx256M $appMasterClassName $jarPath $actorServiceClassName $zkHostname $zooKeeperIpPath server"),
         jarPath, true)
     val result = Promise[YarnActorService]()
     zk.getData(zooKeeperIpPath, new Watcher() {

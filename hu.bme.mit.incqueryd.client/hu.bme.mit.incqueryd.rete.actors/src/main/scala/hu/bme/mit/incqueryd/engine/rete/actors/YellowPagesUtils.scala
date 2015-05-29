@@ -24,7 +24,7 @@ object YellowPagesUtils {
     }
   }
 
-  def getParentConnections(childRecipe: ReteNodeRecipe, yellowPages: YellowPages): Set[ReteActorConnection] = {
+  def getParentConnections(childRecipe: ReteNodeRecipe, yellowPages: YellowPages): Set[ReteActorConnection] = { // TODO remove parameter
     childRecipe match {
       case alphaRecipe: AlphaRecipe =>
         getActorConnection(alphaRecipe.getParent, ReteNodeSlot.SINGLE, childRecipe, yellowPages)
@@ -44,7 +44,7 @@ object YellowPagesUtils {
     ) yield ReteActorConnection(parentActor, slot, childActor)
   }
 
-  def getChildrenConnections(parent: ActorRef, recipe: ReteRecipe, yellowPages: YellowPages): Set[ReteActorConnection] = {
+  def getChildrenConnections(parent: ActorRef, recipe: ReteRecipe, yellowPages: YellowPages): Set[ReteActorConnection] = { // TODO remove parameter
     for (
       childRecipe <- recipe.getRecipeNodes.toSet[ReteNodeRecipe];
       connection <- getParentConnections(childRecipe, yellowPages) if connection.parent == parent

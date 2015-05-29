@@ -52,6 +52,9 @@ import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
 import hu.bme.mit.incqueryd.engine.rete.actors.YellowPagesUtils
 import hu.bme.mit.incqueryd.engine.rete.actors.PropagateState
 import hu.bme.mit.incqueryd.yarn.HdfsUtils
+import hu.bme.mit.incqueryd.actorservice.YarnActorService
+import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
+import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
 
 class CoordinatorActor extends Actor {
   
@@ -59,48 +62,38 @@ class CoordinatorActor extends Actor {
   import context.dispatcher
 
   def receive = AkkaUtils.propagateException(sender) ({
-    case LoadData(hdfsPath, vocabulary, inventory) => {
+    case LoadData(vocabulary, hdfsPath, rmHostname, fileSystemUri, zkHostname) => {
       val types = getTypes(vocabulary, hdfsPath)
-      val typeInputRecipes = types.map(_.getInputRecipe)
-      val plan = allocate(typeInputRecipes, types, inventory)
-      val index = deploy(plan, types)
-      configureIndex(index, hdfsPath)
-      sender ! index
+      val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
+      val actorsByRecipe = deploy(typeInputRecipes, rmHostname, fileSystemUri, zkHostname)
+      configure(actorsByRecipe, hdfsPath, zkHostname)
+      sender ! true
     }
-    case StartQuery(recipeJson, index) => {
+    case StartQuery(recipeJson, rmHostname, fileSystemUri, zkHostname) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
-      val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe])
-      val types = index.yellowPages.inputActorsByType.keySet
-      val plan = allocate(notTypeInputRecipes, types, index.deployedInventory)
-      val deploymentResult = deploy(plan, types)
-      val network = DeploymentResult(YellowPages(index.yellowPages.inputActorsByType, deploymentResult.yellowPages.otherActorsByKey), deploymentResult.deployedInventory)
-      configureNetwork(network, recipe)
-      establishSubscriptions(network)
-      propagateInputStates(network, recipe)
-      sender ! network
+      val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe]).toSet
+      val otherActorsByRecipe = deploy(notTypeInputRecipes, rmHostname, fileSystemUri, zkHostname)
+      configure(otherActorsByRecipe, "", zkHostname)
+      establishSubscriptions(otherActorsByRecipe)
+      val typeInputRecipes = recipe.getRecipeNodes.filter(_.isInstanceOf[TypeInputRecipe]).toSet
+      val inputActorsByRecipe = lookup(typeInputRecipes, zkHostname)
+      propagateInputStates(inputActorsByRecipe, recipe)
+      sender ! true
     }
-    case CheckResults(recipeJson, network, patternName) => {
+    case CheckResults(recipeJson, patternName, zkHostname) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)
-      val productionKey = ReteActorKey(productionRecipeOption.get) // XXX Option.get
-      val production = network.yellowPages.otherActorsByKey.get(productionKey).get // XXX Option.get
+      val productionRecipe = productionRecipeOption.get // XXX Option.get
+      val production = YellowPagesUtils.findActorUsingZooKeeper(productionRecipe, zkHostname).get // XXX Option.get
       production.ask(GetQueryResults).pipeTo(sender)
     }
-    case StopQuery(network) => {
-      undeploy(network)
-      sender ! "Ready"
+    case StopQuery(recipeJson, zkHostname) => {
+      val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
+      val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe]).toSet
+      undeploy(notTypeInputRecipes, zkHostname)
+      sender ! true
     }
   })
-
-  def getPatternName(recipe: ReteNodeRecipe): Option[String] = {
-    recipe match {
-      case recipe: ProductionRecipe => recipe.getPattern match { // XXX it is Object :(
-        case pattern: PQuery => Some(pattern.getFullyQualifiedName)
-        case _ => None
-      }
-      case _ => None
-    }
-  }
 
   def getTypes(vocabulary: Model, hdfsPath: String): Set[RdfType] = {
     val hdfs = HdfsUtils.getDistributedFileSystem(hdfsPath)
@@ -120,70 +113,41 @@ class CoordinatorActor extends Actor {
     statements.map(_.getSubject).filter(_.isInstanceOf[URI]) // Discard blank nodes
   }
 
-  def allocate(recipes: Iterable[ReteNodeRecipe], types: Set[RdfType], inventory: Inventory): DeploymentPlan = {
-    val recipesSorted = recipes.toList.sortBy(-RecipeUtils.getEstimatedMemoryUsageMb(_, types))
-    val allocation = mutable.Map[ReteNodeRecipe, MachineInstance]()
-    val allocatedInstances = new ArrayList(inventory.machineInstances)
-    for (recipe <- recipesSorted) {
-      val memoryUsageMb = RecipeUtils.getEstimatedMemoryUsageMb(recipe, types)
-      val goodInstances = allocatedInstances.filter(_.memoryMb > memoryUsageMb)
-      if (goodInstances.isEmpty) {
-        throw new IllegalArgumentException(s"Can't allocate ${RecipeUtils.getName(recipe)} on any machine!") // XXX return Option instead?
-      } else {
-        val selectedInstance = goodInstances.head
-        allocation.put(recipe, selectedInstance)
-        val allocatedInstance = selectedInstance.copy(memoryMb = selectedInstance.memoryMb - memoryUsageMb)
-        allocatedInstances.remove(selectedInstance)
-        allocatedInstances.add(allocatedInstance)
-      }
-    }
-    val deployedInventory = inventory.copy(machineInstances = allocatedInstances.toList)
-    DeploymentPlan(allocation.toMap, deployedInventory)
+  def lookup(recipes: Set[ReteNodeRecipe], zkHostname: String): Map[ReteNodeRecipe, ActorRef] = {
+    recipes.map { recipe => recipe -> YellowPagesUtils.findActorUsingZooKeeper(recipe, zkHostname).getOrElse(null) }
+      .filter { case (key, value) => value != null }.toMap
   }
 
-  def deploy(deploymentPlan: DeploymentPlan, types: Set[RdfType]): DeploymentResult = {
-	val inputActorsByType = mutable.Map[RdfType, ActorRef]()
-	val otherActorsByKey = mutable.Map[ReteActorKey, ActorRef]()
-    for ((recipe, instance) <- deploymentPlan.allocation) {
-      val actorId = RemoteReteActor.actorId(recipe, instance) 
-      val actor = new RemoteActorService(instance.ip).start(actorId, classOf[ReteActor])
-      recipe match {
-        case recipe: TypeInputRecipe => inputActorsByType.put(RecipeUtils.findType(types, recipe).get, actor) // XXX Option.get
-        case _ => otherActorsByKey.put(ReteActorKey(recipe), actor)
-      }
-    }
-    DeploymentResult(YellowPages(inputActorsByType.toMap, otherActorsByKey.toMap), deploymentPlan.deployedInventory)
+  def deploy(recipes: Set[ReteNodeRecipe], rmHostname: String, fileSystemUri: String, zkHostname: String): Map[ReteNodeRecipe, ActorRef] = {
+    val client = new AdvancedYarnClient(rmHostname, fileSystemUri)
+    wait(recipes.map { recipe =>
+      YarnActorService.create(client, zkHostname, ReteActorKey(recipe).internalId)
+    })
+    lookup(recipes, zkHostname)
   }
 
-  def undeploy(deploymentResult: DeploymentResult): Unit = {
-    for (actor <- deploymentResult.yellowPages.inputActorsByType.values ++ deploymentResult.yellowPages.otherActorsByKey.values) {
+  def undeploy(recipes: Set[ReteNodeRecipe], zkHostname: String): Unit = {
+    val actorsByRecipe = lookup(recipes, zkHostname)
+    for (actor <- actorsByRecipe.values) {
       actor ! PoisonPill
     }
   }
 
-  def configureIndex(index: DeploymentResult, hdfsPath: String): Unit = {
-    wait(index.yellowPages.inputActorsByType.map { case (rdfType, actor) =>
-      val nodeRecipe = rdfType.getInputRecipe
-      actor.ask(Configure(new ReteNodeConfiguration(nodeRecipe, List(), hdfsPath)))
+  def configure(actorsByRecipe: Map[ReteNodeRecipe, ActorRef], hdfsPath: String, zkHostname: String): Unit = {
+    wait(actorsByRecipe.map { case (recipe, actor) =>
+      actor.ask(Configure(new ReteNodeConfiguration(recipe, List(), hdfsPath)))
     })
   }
 
-  def configureNetwork(network: DeploymentResult, recipe: ReteRecipe): Unit = {
-    wait(network.yellowPages.otherActorsByKey.map { case (key, actor) =>
-      val nodeRecipe = RecipeUtils.findRecipe(recipe, key).get // XXX Option.get
-      actor.ask(Configure(new ReteNodeConfiguration(nodeRecipe, List(), "")))
-    })
-  }
-
-  def establishSubscriptions(network: DeploymentResult): Unit = {
-    wait(network.yellowPages.otherActorsByKey.values.map { actor =>
-      actor.ask(EstablishSubscriptions(network.yellowPages))
+  def establishSubscriptions(actorsByRecipe: Map[ReteNodeRecipe, ActorRef]): Unit = {
+    wait(actorsByRecipe.values.map { actor =>
+      actor.ask(EstablishSubscriptions(YellowPages(Map(), Map())))
     })
   }
   
-  def propagateInputStates(network: DeploymentResult, recipe: ReteRecipe): Unit = {
-    wait(network.yellowPages.inputActorsByType.map { case (rdfType, actor) =>
-      val children = YellowPagesUtils.getChildrenConnections(actor, recipe, network.yellowPages)
+  def propagateInputStates(actorsByRecipe: Map[ReteNodeRecipe, ActorRef], recipe: ReteRecipe): Unit = {
+    wait(actorsByRecipe.values.map { actor =>
+      val children = YellowPagesUtils.getChildrenConnections(actor, recipe, YellowPages(Map(), Map()))
       actor.ask(PropagateState(children))
     })
   }

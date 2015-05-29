@@ -9,8 +9,8 @@ object IncQueryDZooKeeper {
   val port = 2181
   val anyVersion = -1
 
-  def create(host: String) = {
-    new ZooKeeper(s"$host:$port", 10000, new Watcher {
+  def create(zkHostname: String) = {
+    new ZooKeeper(s"$zkHostname:$port", 10000, new Watcher {
       def process(event: WatchedEvent) {
       }
     })

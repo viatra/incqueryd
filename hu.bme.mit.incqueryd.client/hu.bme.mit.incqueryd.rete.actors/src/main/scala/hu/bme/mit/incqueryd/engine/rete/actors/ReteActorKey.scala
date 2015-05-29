@@ -2,7 +2,7 @@ package hu.bme.mit.incqueryd.engine.rete.actors
 
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 
-case class ReteActorKey private (internalId: String)
+case class ReteActorKey private (val internalId: String)
 
 object ReteActorKey {
 

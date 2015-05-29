@@ -46,7 +46,7 @@ class ITBasic {
     val expectedResult = Set(52, 138, 78, 391).map(n => new Tuple(new Long(n)))
     val rmHostname = "yarn-rm.docker"
     val fileSystemUri = "hdfs://yarn-rm.docker:9000"
-    val zooKeeperHost = rmHostname
+    val zkHostname = rmHostname
     val timeout = 30 seconds
 
     val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
@@ -56,32 +56,21 @@ class ITBasic {
     val hdfs = HdfsUtils.getDistributedFileSystem(fileSystemUri)
     HdfsUtils.upload(hdfs, testFile, testFilePath)
 
-    val coordinator = Await.result(Coordinator.create(advancedYarnClient, zooKeeperHost), timeout)
+    val coordinator = Await.result(Coordinator.create(advancedYarnClient, zkHostname), timeout)
     val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
-    val inventory = loadInventory
-    val index = coordinator.loadData(testFilePath, vocabulary, inventory)
+    coordinator.loadData(vocabulary, testFilePath, rmHostname, fileSystemUri, zkHostname)
 
     val recipe = loadRecipe
-    val network = coordinator.startQuery(recipe, index)
+    coordinator.startQuery(recipe, rmHostname, fileSystemUri, zkHostname)
 
     try {
-      val result = coordinator.checkResults(recipe, network, patternName)
+      val result = coordinator.checkResults(recipe, patternName, zkHostname)
       println(s"Query result: $result")
       assertEquals(expectedResult, result)
     } finally {
-      coordinator.stopQuery(network)
+      coordinator.stopQuery(recipe, zkHostname)
       coordinator.dispose
     }
-  }
-
-  private def loadInventory = {
-    val actorServiceIpKey: String = "actorServiceIp"
-    val actorServiceIp = System.getProperty(actorServiceIpKey)
-    if (actorServiceIp == null) {
-      throw new IllegalArgumentException(s"VM argument $actorServiceIpKey is not set!")
-    }
-    val actorServiceMachine = MachineInstance(8 * 1024, actorServiceIp)
-    Inventory(List(actorServiceMachine), actorServiceMachine)
   }
 
   private def loadRdf(documentUrl: URL): Model = {
