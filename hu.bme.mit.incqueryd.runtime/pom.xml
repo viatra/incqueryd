@@ -12,7 +12,6 @@
 	</parent>
 	<modules>
 		<module>hu.bme.mit.incqueryd.actorservice.server</module>
-		<module>hu.bme.mit.incqueryd.infrastructureagent</module>
 	</modules>
 	<description>The server-side components of IncQuery-D which run on the remote nodes.</description>
 	<build>

@@ -3,5 +3,6 @@
 set -e
 cd "$( cd "$( dirname "$0" )" && pwd )"
 
-./build.sh
-./test.sh
+./stop.sh
+../../scripts/build.sh -DskipTests=true
+./start.sh

@@ -22,9 +22,19 @@
 			<artifactId>hu.bme.mit.incqueryd.actorservice</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
-		<dependency> <!-- Accessed by reflection! --> 
+		<dependency> <!-- Accessed by reflection! -->
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.engine</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency> <!-- Accessed by reflection! -->
 			<groupId>hu.bme.mit.incqueryd</groupId>
 			<artifactId>hu.bme.mit.incqueryd.rete.actors</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency> <!-- Needed dynamically! -->
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.yarn</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
