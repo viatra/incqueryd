@@ -11,6 +11,6 @@ bin/hdfs dfs -mkdir /jars
 
 # Remove jar if exists
 bin/hdfs dfs -rm /jars/$JARFILE
-bin/hdfs dfs -put /tmp/$JARFILE /jars/
+bin/hdfs dfs -put /tmp/target/$JARFILE /jars/
 
 #hdfs://yarn-rm.docker:9000/jars/$JARFILE

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+USE_SSH=false
+if [ "$1" = "-use_ssh" ]; then
+	USE_SSH=true;
+fi
+
 set -e
 cd "$( cd "$( dirname "$0" )" && pwd )"
 
@@ -8,7 +13,8 @@ source setnames.sh
 ./build_image.sh
 
 # Start containers
-docker run --dns 127.0.0.1 -p 127.0.0.1:53:53/udp --hostname $YARN_RM_HOST --name $YARN_RM -i -t -d $IMAGE
+TARGET_PATH=`pwd`/../../hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.actorservice.server/target
+docker run --dns 127.0.0.1 -p 127.0.0.1:53:53/udp --hostname $YARN_RM_HOST --name $YARN_RM -v $TARGET_PATH:/tmp/target -i -t -d $IMAGE
 YARN_RM_IP=$(docker inspect --format="{{.NetworkSettings.IPAddress}}" $YARN_RM)
 
 docker run --dns $YARN_RM_IP --hostname $YARN_NM1_HOST --name $YARN_NM1 -i -t -d $IMAGE 
@@ -33,11 +39,13 @@ YARN_NM1_RSA=$(docker exec $YARN_NM1 cat /root/.ssh/id_rsa.pub)
 YARN_NM2_RSA=$(docker exec $YARN_NM2 cat /root/.ssh/id_rsa.pub)
 
 # Enable SSH from host
-HOST_RSA=$(cat ~/.ssh/id_rsa.pub)
+if $USE_SSH; then
+	HOST_RSA=$(cat ~/.ssh/id_rsa.pub)
 
-docker exec $YARN_RM /etc/write-auth-keys.sh $HOST_RSA
-docker exec $YARN_NM1 /etc/write-auth-keys.sh $HOST_RSA
-docker exec $YARN_NM2 /etc/write-auth-keys.sh $HOST_RSA
+	docker exec $YARN_RM /etc/write-auth-keys.sh $HOST_RSA
+	docker exec $YARN_NM1 /etc/write-auth-keys.sh $HOST_RSA
+	docker exec $YARN_NM2 /etc/write-auth-keys.sh $HOST_RSA
+fi
 
 # Start ssh service on slaves
 docker exec $YARN_NM1 service ssh start
@@ -61,8 +69,6 @@ docker exec $YARN_NM2 /usr/local/zookeeper/bin/zkServer.sh start
 # docker exec $YARN_NM2 /usr/local/hadoop/sbin/start-dfs.sh
 
 docker exec $YARN_RM /etc/bootstrap.sh -bash
-
-./scp_to_rm.sh
 
 docker exec $YARN_RM /usr/local/hadoop/run_demo.sh
 
