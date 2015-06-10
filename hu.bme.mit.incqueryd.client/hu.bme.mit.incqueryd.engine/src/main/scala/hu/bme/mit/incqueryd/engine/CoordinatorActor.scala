@@ -149,7 +149,7 @@ class CoordinatorActor extends Actor {
 
   def establishSubscriptions(actorsByRecipe: Map[ReteNodeRecipe, ActorRef]): Unit = {
     wait(actorsByRecipe.values.map { actor =>
-      actor.ask(EstablishSubscriptions(YellowPages(Map(), Map())))
+      actor.ask(EstablishSubscriptions())
     })
   }
   

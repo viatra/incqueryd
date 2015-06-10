@@ -24,7 +24,7 @@ object YellowPagesUtils {
     Some(AkkaUtils.findActor(actorPath))
   }
 
-  def findActor(recipe: ReteNodeRecipe, yellowPages: YellowPages): Option[ActorRef] = {
+  def findActor(recipe: ReteNodeRecipe): Option[ActorRef] = {
     findActorUsingZooKeeper(recipe)
 //    recipe match {
 //      case recipe: TypeInputRecipe => {
@@ -35,30 +35,30 @@ object YellowPagesUtils {
 //    }
   }
 
-  def getParentConnections(childRecipe: ReteNodeRecipe, yellowPages: YellowPages): Set[ReteActorConnection] = { // TODO remove parameter
+  def getParentConnections(childRecipe: ReteNodeRecipe): Set[ReteActorConnection] = { // TODO remove parameter
     childRecipe match {
       case alphaRecipe: AlphaRecipe =>
-        getActorConnection(alphaRecipe.getParent, ReteNodeSlot.SINGLE, childRecipe, yellowPages)
+        getActorConnection(alphaRecipe.getParent, ReteNodeSlot.SINGLE, childRecipe)
       case betaRecipe: BetaRecipe =>
-        getActorConnection(betaRecipe.getLeftParent.getParent, ReteNodeSlot.PRIMARY, childRecipe, yellowPages) ++
-          getActorConnection(betaRecipe.getRightParent.getParent, ReteNodeSlot.SECONDARY, childRecipe, yellowPages)
+        getActorConnection(betaRecipe.getLeftParent.getParent, ReteNodeSlot.PRIMARY, childRecipe) ++
+          getActorConnection(betaRecipe.getRightParent.getParent, ReteNodeSlot.SECONDARY, childRecipe)
       case multiParentNodeRecipe: MultiParentNodeRecipe =>
-        multiParentNodeRecipe.getParents.toSet[ReteNodeRecipe].flatMap(getActorConnection(_, ReteNodeSlot.SINGLE, childRecipe, yellowPages))
+        multiParentNodeRecipe.getParents.toSet[ReteNodeRecipe].flatMap(getActorConnection(_, ReteNodeSlot.SINGLE, childRecipe))
       case _ => Set()
     }
   }
 
-  private def getActorConnection(parentRecipe: ReteNodeRecipe, slot: ReteNodeSlot, childRecipe: ReteNodeRecipe, yellowPages: YellowPages): Set[ReteActorConnection] = {
+  private def getActorConnection(parentRecipe: ReteNodeRecipe, slot: ReteNodeSlot, childRecipe: ReteNodeRecipe): Set[ReteActorConnection] = {
     for (
-      parentActor <- findActor(parentRecipe, yellowPages).toSet[ActorRef];
-      childActor <- findActor(childRecipe, yellowPages).toSet[ActorRef]
+      parentActor <- findActor(parentRecipe).toSet[ActorRef];
+      childActor <- findActor(childRecipe).toSet[ActorRef]
     ) yield ReteActorConnection(parentActor, slot, childActor)
   }
 
   def getChildrenConnections(parent: ActorRef, recipe: ReteRecipe, yellowPages: YellowPages): Set[ReteActorConnection] = { // TODO remove parameter
     for (
       childRecipe <- recipe.getRecipeNodes.toSet[ReteNodeRecipe];
-      connection <- getParentConnections(childRecipe, yellowPages) if connection.parent == parent
+      connection <- getParentConnections(childRecipe) if connection.parent == parent
     ) yield connection
   }
 

@@ -27,7 +27,7 @@ class ReteActor extends Actor {
 
   def receive = {
     case Configure(configuration) => configure(configuration)
-    case EstablishSubscriptions(yellowPages) => establishSubscriptions(yellowPages)
+    case EstablishSubscriptions() => establishSubscriptions()
     case RegisterSubscriber(slot) => registerSubscriber(slot)
     case PropagateState(children) => propagateState(children)
     case updateMessage: UpdateMessage => update(updateMessage)
@@ -52,9 +52,9 @@ class ReteActor extends Actor {
   var recipe: ReteNodeRecipe = _
   var reteNode: ReteNode = _
 
-  def establishSubscriptions(yellowPages: YellowPages) = {
+  def establishSubscriptions() = {
     log("Subscribing to parent(s)")
-    for (ReteActorConnection(parent, slot, _) <- YellowPagesUtils.getParentConnections(recipe, yellowPages)) {
+    for (ReteActorConnection(parent, slot, _) <- YellowPagesUtils.getParentConnections(recipe)) {
       parent ! RegisterSubscriber(slot)
     }
     sender ! SubscriptionFinished

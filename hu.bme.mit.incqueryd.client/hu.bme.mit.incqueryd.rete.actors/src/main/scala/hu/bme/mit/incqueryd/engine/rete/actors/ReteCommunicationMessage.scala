@@ -7,7 +7,7 @@ import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
 
 sealed trait ReteCommunicationMessage
 case class Configure(configuration: ReteNodeConfiguration) extends ReteCommunicationMessage
-case class EstablishSubscriptions(yellowPages: YellowPages) extends ReteCommunicationMessage // TODO remove parameter
+case class EstablishSubscriptions() extends ReteCommunicationMessage
 case class RegisterSubscriber(slot: ReteNodeSlot) extends ReteCommunicationMessage
 case class UpdateMessage(changeSet: ChangeSet, slot: ReteNodeSlot, route: List[ActorRef]) extends ReteCommunicationMessage
 case class TerminationMessage(route: List[ActorRef]) extends ReteCommunicationMessage
