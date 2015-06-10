@@ -64,7 +64,7 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
 
   private def initResource = {
     val resource = Records.newRecord(classOf[Resource])
-    resource.setMemory(300)
+    resource.setMemory(200)
     resource.setVirtualCores(1)
     resource
   }

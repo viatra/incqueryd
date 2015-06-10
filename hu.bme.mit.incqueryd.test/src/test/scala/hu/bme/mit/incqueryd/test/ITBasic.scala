@@ -19,11 +19,9 @@ import org.openrdf.model.impl.LinkedHashModel
 import org.openrdf.rio.Rio
 import org.openrdf.rio.helpers.StatementCollector
 import eu.mondo.utils.NetworkUtils
-import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
 import hu.bme.mit.incqueryd.engine.CoordinatorActor
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
-import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
 import hu.bme.mit.incqueryd.inventory.Inventory
 import hu.bme.mit.incqueryd.inventory.MachineInstance
 import upickle._
@@ -56,15 +54,15 @@ class ITBasic {
     val hdfs = HdfsUtils.getDistributedFileSystem(fileSystemUri)
     HdfsUtils.upload(hdfs, testFile, testFilePath)
 
-    val coordinator = Await.result(Coordinator.create(advancedYarnClient, zkHostname), timeout)
+    val coordinator = Await.result(Coordinator.create(advancedYarnClient), timeout)
     val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
     coordinator.loadData(vocabulary, testFilePath, rmHostname, fileSystemUri, zkHostname)
 
     val recipe = loadRecipe
-    coordinator.startQuery(recipe, rmHostname, fileSystemUri, zkHostname)
+    coordinator.startQuery(recipe, rmHostname, fileSystemUri)
 
     try {
-      val result = coordinator.checkResults(recipe, patternName, zkHostname)
+      val result = coordinator.checkResults(recipe, patternName)
       println(s"Query result: $result")
       assertEquals(expectedResult, result)
     } finally {

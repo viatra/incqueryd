@@ -42,12 +42,14 @@ object Coordinator {
   final val port = 2552
   final val actorSystemName = "coordinator"
   final val actorName = "coordinator"
-  final val zooKeeperIpPath = "/coordinatorIp"
+  //final val zooKeeperIpPath = "/coordinatorIp"
 
   def actorId(ip: String) = ActorId(actorSystemName, ip, port, actorName)
 
-  def create(client: AdvancedYarnClient, zkHostname: String): Future[Coordinator] = {
-    YarnActorService.create(client, zkHostname, zooKeeperIpPath).map { yarnActorService =>
+  def create(client: AdvancedYarnClient): Future[Coordinator] = {
+    IncQueryDZooKeeper.createDir(IncQueryDZooKeeper.defaultCoordinatorPath)
+    val actorServices = YarnActorService.create(client, IncQueryDZooKeeper.coordinatorsPath)
+    actorServices.get(0).map { yarnActorService => 
       new RemoteActorService(yarnActorService.ip).start(Coordinator.actorId(yarnActorService.ip), classOf[CoordinatorActor])
       new Coordinator(yarnActorService.ip, client, yarnActorService.applicationId)
     }
@@ -59,25 +61,25 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
 
   def loadData(vocabulary: Model, hdfsPath: String, rmHostname: String, fileSystemUri: String, zkHostname: String): Boolean = {
     println(s"Loading data")
-    askCoordinator[Boolean](LoadData(vocabulary, hdfsPath, rmHostname, fileSystemUri, zkHostname))
+    askCoordinator[Boolean](LoadData(vocabulary, hdfsPath, rmHostname, fileSystemUri))
   }
 
-  def startQuery(recipe: ReteRecipe, rmHostname: String, fileSystemUri: String, zkHostname: String): Boolean = {
+  def startQuery(recipe: ReteRecipe, rmHostname: String, fileSystemUri: String): Boolean = {
     println(s"Starting query")
     val recipeJson = EObjectSerializer.serializeToString(recipe)
-    askCoordinator[Boolean](StartQuery(recipeJson, rmHostname, fileSystemUri, zkHostname))
+    askCoordinator[Boolean](StartQuery(recipeJson, rmHostname, fileSystemUri))
   }
 
-  def checkResults(recipe: ReteRecipe, patternName: String, zkHostname: String): Set[Tuple] = {
+  def checkResults(recipe: ReteRecipe, patternName: String): Set[Tuple] = {
     println(s"Checking results")
     val recipeJson = EObjectSerializer.serializeToString(recipe)
-    askCoordinator[HashSet[Tuple]](CheckResults(recipeJson, patternName, zkHostname)).toSet
+    askCoordinator[HashSet[Tuple]](CheckResults(recipeJson, patternName)).toSet
   }
 
   def stopQuery(recipe: ReteRecipe, zkHostname: String): Boolean = {
     println(s"Stopping query")
     val recipeJson = EObjectSerializer.serializeToString(recipe)
-    askCoordinator[Boolean](StopQuery(recipeJson, zkHostname))
+    askCoordinator[Boolean](StopQuery(recipeJson))
   }
 
   private def askCoordinator[T](message: CoordinatorCommand, timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)): T = {

@@ -62,35 +62,35 @@ class CoordinatorActor extends Actor {
   import context.dispatcher
 
   def receive = AkkaUtils.propagateException(sender) ({
-    case LoadData(vocabulary, hdfsPath, rmHostname, fileSystemUri, zkHostname) => {
+    case LoadData(vocabulary, hdfsPath, rmHostname, fileSystemUri) => {
       val types = getTypes(vocabulary, hdfsPath)
       val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
-      val actorsByRecipe = deploy(typeInputRecipes, rmHostname, fileSystemUri, zkHostname)
-      configure(actorsByRecipe, hdfsPath, zkHostname)
+      val actorsByRecipe = deploy(typeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.inputNodesPath)
+      configure(actorsByRecipe, hdfsPath)
       sender ! true
     }
-    case StartQuery(recipeJson, rmHostname, fileSystemUri, zkHostname) => {
+    case StartQuery(recipeJson, rmHostname, fileSystemUri) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe]).toSet
-      val otherActorsByRecipe = deploy(notTypeInputRecipes, rmHostname, fileSystemUri, zkHostname)
-      configure(otherActorsByRecipe, "", zkHostname)
+      val otherActorsByRecipe = deploy(notTypeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.reteNodesPath)
+      configure(otherActorsByRecipe, "")
       establishSubscriptions(otherActorsByRecipe)
       val typeInputRecipes = recipe.getRecipeNodes.filter(_.isInstanceOf[TypeInputRecipe]).toSet
-      val inputActorsByRecipe = lookup(typeInputRecipes, zkHostname)
+      val inputActorsByRecipe = lookup(typeInputRecipes)
       propagateInputStates(inputActorsByRecipe, recipe)
       sender ! true
     }
-    case CheckResults(recipeJson, patternName, zkHostname) => {
+    case CheckResults(recipeJson, patternName) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)
       val productionRecipe = productionRecipeOption.get // XXX Option.get
-      val production = YellowPagesUtils.findActorUsingZooKeeper(productionRecipe, zkHostname).get // XXX Option.get
+      val production = YellowPagesUtils.findActorUsingZooKeeper(productionRecipe).get // XXX Option.get
       production.ask(GetQueryResults).pipeTo(sender)
     }
-    case StopQuery(recipeJson, zkHostname) => {
+    case StopQuery(recipeJson) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe]).toSet
-      undeploy(notTypeInputRecipes, zkHostname)
+      undeploy(notTypeInputRecipes)
       sender ! true
     }
   })
@@ -113,27 +113,34 @@ class CoordinatorActor extends Actor {
     statements.map(_.getSubject).filter(_.isInstanceOf[URI]) // Discard blank nodes
   }
 
-  def lookup(recipes: Set[ReteNodeRecipe], zkHostname: String): Map[ReteNodeRecipe, ActorRef] = {
-    recipes.map { recipe => recipe -> YellowPagesUtils.findActorUsingZooKeeper(recipe, zkHostname).getOrElse(null) }
+  def lookup(recipes: Set[ReteNodeRecipe]): Map[ReteNodeRecipe, ActorRef] = {
+    recipes.map { recipe => recipe -> YellowPagesUtils.findActorUsingZooKeeper(recipe).getOrElse(null) }
       .filter { case (key, value) => value != null }.toMap
   }
 
-  def deploy(recipes: Set[ReteNodeRecipe], rmHostname: String, fileSystemUri: String, zkHostname: String): Map[ReteNodeRecipe, ActorRef] = {
+  def deploy(recipes: Set[ReteNodeRecipe], rmHostname: String, fileSystemUri: String, zkAMPath : String): Map[ReteNodeRecipe, ActorRef] = {
+
     val client = new AdvancedYarnClient(rmHostname, fileSystemUri)
-    wait(recipes.map { recipe =>
-      YarnActorService.create(client, zkHostname, ReteActorKey(recipe).internalId)
-    })
-    lookup(recipes, zkHostname)
+    recipes.foreach { recipe => 
+      var zkRecipePath = "/"
+      recipe match {
+        case recipe: TypeInputRecipe => zkRecipePath = IncQueryDZooKeeper.inputNodesPath + "/" + ReteActorKey(recipe).internalId
+        case _ => zkRecipePath = IncQueryDZooKeeper.reteNodesPath + "/" + ReteActorKey(recipe).internalId
+      }
+      IncQueryDZooKeeper.createDir(zkRecipePath)
+    }
+    wait(YarnActorService.create(client, zkAMPath))
+    lookup(recipes)
   }
 
-  def undeploy(recipes: Set[ReteNodeRecipe], zkHostname: String): Unit = {
-    val actorsByRecipe = lookup(recipes, zkHostname)
+  def undeploy(recipes: Set[ReteNodeRecipe]): Unit = {
+    val actorsByRecipe = lookup(recipes)
     for (actor <- actorsByRecipe.values) {
       actor ! PoisonPill
     }
   }
 
-  def configure(actorsByRecipe: Map[ReteNodeRecipe, ActorRef], hdfsPath: String, zkHostname: String): Unit = {
+  def configure(actorsByRecipe: Map[ReteNodeRecipe, ActorRef], hdfsPath: String): Unit = {
     wait(actorsByRecipe.map { case (recipe, actor) =>
       actor.ask(Configure(new ReteNodeConfiguration(recipe, List(), hdfsPath)))
     })

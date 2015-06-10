@@ -49,9 +49,13 @@ akka {
 
   def findActor(id: ActorId): ActorRef = {
     val actorPath = s"akka.tcp://${id.actorSystemName}@${id.ip}:${id.port}/user/${id.name}"
-    clientActorSystem.actorFor(actorPath)
+    findActor(actorPath)
   }
 
+  def findActor(actorPath: String) = {
+    clientActorSystem.actorFor(actorPath)
+  }
+  
   def propagateException[T](sender: ActorRef)(fn: => T): T = {
     try {
       fn
@@ -80,5 +84,4 @@ akka {
   val defaultDelayMillis = 1000
 
   val defaultTimeout = 30 seconds
-
 }

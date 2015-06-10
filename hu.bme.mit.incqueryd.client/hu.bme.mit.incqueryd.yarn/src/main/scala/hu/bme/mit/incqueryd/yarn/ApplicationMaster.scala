@@ -22,9 +22,8 @@ object ApplicationMaster {
   def main(args: Array[String]){
     val jarPath = args(0)
     val mainClass = args(1)
-    val zooKeeperHost = args(2)
-    val zooKeeperIpPath = args(3)
-    val applicationArgument = args(4)
+    val zkAMPath = args(2)
+    val applicationArgument = args(3)
 
     // Create new YARN configuration
     implicit val conf = new YarnConfiguration()
@@ -54,16 +53,20 @@ object ApplicationMaster {
 
     //resources needed by each container
     val resource = Records.newRecord(classOf[Resource])
-    resource.setMemory(128)
+    resource.setMemory(200)
     resource.setVirtualCores(1)
 
     val containerRequest = new ContainerRequest(resource, null, null, priority, true)
     rmClient.addContainerRequest(containerRequest)
-
+    
+    val containerPaths = IncQueryDZooKeeper.getChildPaths(zkAMPath)
+    
+    var neededContainers = containerPaths.length
     var responseId = 0
     var completedContainers = 0
-
-    while (completedContainers < 1) {
+    val containerPathIt = containerPaths.iterator
+    
+    while (completedContainers < neededContainers) {
 
       val appMasterJar = AdvancedYarnClient.setUpLocalResource(new Path(jarPath), FileSystem.get(conf))
 
@@ -78,7 +81,7 @@ object ApplicationMaster {
 
         ctx.setCommands(
             List(
-              "$JAVA_HOME/bin/java -Xmx256M " + mainClass + " " + applicationArgument +
+              "$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M " + mainClass + " " + applicationArgument +
                 " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
                 " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
         ctx.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))
@@ -87,9 +90,8 @@ object ApplicationMaster {
         System.out.println("Launching container " + container)
         nmClient.startContainer(container, ctx)
         
-        val zk = IncQueryDZooKeeper.create(zooKeeperHost)
         val ip = container.getNodeHttpAddress
-        zk.setData(zooKeeperIpPath, ip.getBytes, IncQueryDZooKeeper.anyVersion)
+        IncQueryDZooKeeper.setData(zkAMPath + "/" + containerPathIt.next() + "/ip", ip.getBytes)
       }
 
       for (status <- response.getCompletedContainersStatuses.asScala) {

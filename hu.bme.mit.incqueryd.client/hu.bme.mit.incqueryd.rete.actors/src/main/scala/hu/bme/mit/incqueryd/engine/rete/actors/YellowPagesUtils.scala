@@ -12,7 +12,7 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 
 object YellowPagesUtils {
 
-  def findActorUsingZooKeeper(recipe: ReteNodeRecipe, zkHostname: String): Option[ActorRef] = ??? // TODO pappi
+  def findActorUsingZooKeeper(recipe: ReteNodeRecipe): Option[ActorRef] = ??? // TODO pappi
 
   def findActor(recipe: ReteNodeRecipe, yellowPages: YellowPages): Option[ActorRef] = {
     recipe match {
