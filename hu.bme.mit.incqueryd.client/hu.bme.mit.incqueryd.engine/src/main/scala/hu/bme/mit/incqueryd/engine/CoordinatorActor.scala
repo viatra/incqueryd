@@ -130,6 +130,7 @@ class CoordinatorActor extends Actor {
       IncQueryDZooKeeper.createDir(zkRecipePath)
     }
     wait(YarnActorService.create(client, zkAMPath))
+    //TODO: start RemoteActorServices and store ActorPaths in ZK
     lookup(recipes)
   }
 
