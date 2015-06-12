@@ -9,7 +9,7 @@ import hu.bme.mit.incqueryd.actorservice.RemoteActorService
 class ActorServiceConfiguration extends Configuration {
   val serverFactory = getServerFactory().asInstanceOf[DefaultServerFactory]
   val connectorFactory = serverFactory.getApplicationConnectors().get(0).asInstanceOf[HttpConnectorFactory]
-  connectorFactory.setPort(RemoteActorService.port)
+  connectorFactory.setPort(0)
   connectorFactory.setBindHost(NetworkUtils.getLocalIpAddress)
-  serverFactory.getAdminConnectors().get(0).asInstanceOf[HttpConnectorFactory].setPort(RemoteActorService.adminPort)
+  serverFactory.getAdminConnectors().get(0).asInstanceOf[HttpConnectorFactory].setPort(0)
 }

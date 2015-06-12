@@ -40,6 +40,7 @@ import org.apache.zookeeper.ZooDefs.Ids
 import java.net.URI
 import hu.bme.mit.incqueryd.yarn.ApplicationMaster
 import org.apache.curator.utils.ZKPaths
+import com.google.common.net.HostAndPort
 
 object YarnActorService {
 
@@ -51,32 +52,32 @@ object YarnActorService {
     val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1)
     val actorServiceClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication" // XXX duplicated class name to avoid dependency on runtime 
     val containers = IncQueryDZooKeeper.getChildPaths(zkAMPath)
-    
+
     val applicationId = client.runRemotely(
       List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $actorServiceClassName $zkAMPath server"),
       jarPath, true)
 
     val result = Promise[YarnActorService]()
     containers.map { container =>
-      val zooKeeperIpPath = zkAMPath + "/" + container + "/ip"
-      IncQueryDZooKeeper.createDir(zooKeeperIpPath)
-      zk.getData(zooKeeperIpPath, new Watcher() {
+      val zkContainerAddressPath = zkAMPath + "/" + container + IncQueryDZooKeeper.addressPath
+      IncQueryDZooKeeper.createDir(zkContainerAddressPath)
+      val watcher = new Watcher() {
         def process(event: WatchedEvent) {
           event.getType() match {
             case EventType.NodeCreated | EventType.NodeDataChanged => {
-              val data = zk.getData(zooKeeperIpPath, false, new Stat())
-              val ipWithPort = new String(data)
-              val ip = ipWithPort.replaceFirst(":\\d+", "")
-              Thread.sleep((8 seconds).toMillis) // Wait for server to start
-              result.success(YarnActorService(ip, applicationId))
+              val data = IncQueryDZooKeeper.getStringData(zkContainerAddressPath)
+              val url = HostAndPort.fromString(data)
+              result.success(YarnActorService(url.getHostText, url.getPort, applicationId))
             }
-            case _ => result.failure(new IllegalStateException(s"Unexpected event on ${zooKeeperIpPath}: $event"))
+            case _ => result.failure(new IllegalStateException(s"Unexpected event on ${zkContainerAddressPath}: $event"))
           }
         }
-      }, new Stat())
+      }
+      IncQueryDZooKeeper.getStringDataWithWatcher(zkContainerAddressPath, watcher)
       result.future
     }
   }
+
 }
 
-case class YarnActorService(ip: String, applicationId: ApplicationId)
+case class YarnActorService(ip: String, port: Int, applicationId: ApplicationId)

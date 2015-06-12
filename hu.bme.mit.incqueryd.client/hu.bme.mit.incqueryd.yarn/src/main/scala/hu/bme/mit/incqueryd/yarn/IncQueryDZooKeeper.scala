@@ -24,18 +24,28 @@ import org.apache.zookeeper.data.Stat
 import scala.collection.generic.SetFactory
 import org.apache.curator.utils.ZKPaths
 import scala.collection.JavaConverters._
+import org.apache.zookeeper.Watcher.Event.EventType
+import java.net.URL
+import scala.concurrent.duration._
+import java.io.FileWriter
 
 object IncQueryDZooKeeper {
 
   val port = 2181
   val anyVersion = -1
-  
+
   val rdfTypesPath = "/rdftypes"
   val reteNodesPath = "/retenodes"
   val inputNodesPath = "/inputnodes"
+
   val coordinatorsPath = "/coordinators"
   val defaultCoordinatorPath = coordinatorsPath + "/default"
+
+  val addressPath = "/address"
+  val portPath = "/port"
   
+  val timeout = (300 seconds)
+
   // Handle ZooKeeper connection
   var zk = create()
 
@@ -85,13 +95,13 @@ object IncQueryDZooKeeper {
       ZKPaths.mkdirs(zk, path)
     zk.setData(path, data, -1)
   }
-  
-  def serializeAndSetData(path : String, data : AnyRef) {
+
+  def serializeAndSetData(path: String, data: AnyRef) {
     setData(path, serialize(data))
   }
-  
+
   // Handle getting ZooKeeper data
-  def getChildrenData[A](path : String) : Set[A] = {
+  def getChildrenData[A](path: String): Set[A] = {
     getConnection()
     zk.exists(path, true) match {
       case null => {
@@ -99,15 +109,15 @@ object IncQueryDZooKeeper {
       }
       case _ => {
         var retSet = immutable.Set.empty[A]
-        zk.getChildren(path, false).asScala.foreach { child => 
-          retSet += getDeserializedData(path + "/" +child)
+        zk.getChildren(path, false).asScala.foreach { child =>
+          retSet += getDeserializedData(path + "/" + child)
         }
         retSet
       }
     }
   }
-  
-  def getChildPaths(path : String) : List[String] = {
+
+  def getChildPaths(path: String): List[String] = {
     getConnection()
     zk.exists(path, true) match {
       case null => {
@@ -118,7 +128,7 @@ object IncQueryDZooKeeper {
       }
     }
   }
-  
+
   def getData(path: String): Array[Byte] = {
     getConnection()
     zk.exists(path, true) match {
@@ -131,22 +141,20 @@ object IncQueryDZooKeeper {
       }
     }
   }
-  
-  def getStringData(path : String): String = {
+
+  def getStringData(path: String): String = {
     new String(getData(path))
   }
-  
-  def getDeserializedData[A](path: String) : A = {
+
+  def getDeserializedData[A](path: String): A = {
     deserialize(getData(path)).asInstanceOf[A]
   }
-  
-  def getDataWithWatcher(path : String) = {
+
+  def getStringDataWithWatcher(path: String, watcher : Watcher) = {
     getConnection()
-    zk.getData(path, new Watcher {
-      def process(event: WatchedEvent) {}
-    }, new Stat())
+    zk.getData(path, watcher, new Stat())
   }
-  
+
   // Helper methods
   private def serialize(obj: AnyRef): Array[Byte] = {
     obj match {
@@ -180,40 +188,40 @@ object IncQueryDZooKeeper {
       }
     }
   }
-  
+
   def encodeZooPath(path: String): String = {
     URLEncoder.encode(path, "UTF-8")
   }
-  
+
   // IncQuery-D specific methods
-  def getActorsWithAdditionalData[A](path : String) : Map[String, A] = {
-   getConnection()
+  def getActorsWithAdditionalData[A](path: String): Map[String, A] = {
+    getConnection()
     var retMap = immutable.Map.empty[String, A]
-   zk.exists(path, true) match {
+    zk.exists(path, true) match {
       case null => {
         retMap
       }
       case _ => {
-       
+
         val children = zk.getChildren(path, false).asScala
         children.foreach { childPath =>
           val childData = getStringData(path + "/" + childPath)
           val grandChildPath = zk.getChildren(path + "/" + childPath, false).get(0)
           val grandChildData = getDeserializedData[A](path + "/" + childPath + "/" + grandChildPath)
-          
+
           retMap += (childData -> grandChildData)
         }
         retMap
       }
-   }
+    }
   }
-  
-  def createDir(path : String) {
+
+  def createDir(path: String) {
     getConnection()
     ZKPaths.mkdirs(zk, path)
   }
-  
-  def getActorPaths(path : String) : Set[String] = {
+
+  def getActorPaths(path: String): Set[String] = {
     getConnection()
     var retSet = immutable.Set.empty[String]
     zk.exists(path, true) match {
@@ -221,14 +229,13 @@ object IncQueryDZooKeeper {
         retSet
       }
       case _ => {
-        
-        zk.getChildren(path, false).asScala.foreach { child => 
-          retSet += getStringData(path + "/" +child)
+
+        zk.getChildren(path, false).asScala.foreach { child =>
+          retSet += getStringData(path + "/" + child)
         }
         retSet
       }
     }
   }
-  
   
 }

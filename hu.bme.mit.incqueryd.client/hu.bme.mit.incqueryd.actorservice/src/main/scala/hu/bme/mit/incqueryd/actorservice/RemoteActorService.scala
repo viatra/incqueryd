@@ -8,8 +8,8 @@ import org.apache.http.message.BasicNameValuePair
 import upickle._
 
 object RemoteActorService {
-  final val port = 8094
-  final val adminPort = 8095
+  //final val port = 8094
+  //final val adminPort = 8095
   final val idJsonParameter = "idJson"
   final val classNameParameter = "className"
   object Start {
@@ -17,7 +17,7 @@ object RemoteActorService {
   }
 }
 
-class RemoteActorService(val ip: String) extends ActorService {
+class RemoteActorService(val ip: String, val port: Int) extends ActorService {
 
   override def start(id: ActorId, actorClass: Class[_ <: Actor]): ActorRef = {
     val idJson = write(id)
@@ -25,7 +25,7 @@ class RemoteActorService(val ip: String) extends ActorService {
       new BasicNameValuePair(RemoteActorService.idJsonParameter, idJson),
       new BasicNameValuePair(RemoteActorService.classNameParameter, actorClass.getName)
     )
-    WebServiceUtils.call(ip, RemoteActorService.port, RemoteActorService.Start.path, allParameters: _*)
+    WebServiceUtils.call(ip, port, RemoteActorService.Start.path, allParameters: _*)
     AkkaUtils.findActor(id)
   }
 

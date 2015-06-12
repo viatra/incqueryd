@@ -67,21 +67,23 @@ object ApplicationMaster {
     val containerPathIt = containerPaths.iterator
     
     while (completedContainers < neededContainers) {
-
+      
       val appMasterJar = AdvancedYarnClient.setUpLocalResource(new Path(jarPath), FileSystem.get(conf))
 
       val env = AdvancedYarnClient.setUpEnv(conf, false)
 
       val response = rmClient.allocate(responseId + 1)
       responseId += 1
-
+      
       for (container <- response.getAllocatedContainers.asScala) {
-
+        val zkContainerPath = containerPathIt.next()
+        val zkAppAddress = zkAMPath + "/" + zkContainerPath + IncQueryDZooKeeper.addressPath
+        
         val ctx = Records.newRecord(classOf[ContainerLaunchContext])
 
         ctx.setCommands(
             List(
-              "$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M " + mainClass + " " + applicationArgument +
+              s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $mainClass $zkAppAddress $applicationArgument " + 
                 " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
                 " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
         ctx.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))
@@ -90,8 +92,8 @@ object ApplicationMaster {
         System.out.println("Launching container " + container)
         nmClient.startContainer(container, ctx)
         
-        val ip = container.getNodeHttpAddress
-        IncQueryDZooKeeper.setData(zkAMPath + "/" + containerPathIt.next() + "/ip", ip.getBytes)
+        // val ip = container.getNodeHttpAddress.replaceFirst(":\\d+", "")
+        
       }
 
       for (status <- response.getCompletedContainersStatuses.asScala) {

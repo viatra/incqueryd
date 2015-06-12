@@ -42,7 +42,6 @@ object Coordinator {
   final val port = 2552
   final val actorSystemName = "coordinator"
   final val actorName = "coordinator"
-  //final val zooKeeperIpPath = "/coordinatorIp"
 
   def actorId(ip: String) = ActorId(actorSystemName, ip, port, actorName)
 
@@ -50,7 +49,7 @@ object Coordinator {
     IncQueryDZooKeeper.createDir(IncQueryDZooKeeper.defaultCoordinatorPath)
     val actorServices = YarnActorService.create(client, IncQueryDZooKeeper.coordinatorsPath)
     actorServices.get(0).map { yarnActorService => 
-      new RemoteActorService(yarnActorService.ip).start(Coordinator.actorId(yarnActorService.ip), classOf[CoordinatorActor])
+      new RemoteActorService(yarnActorService.ip, yarnActorService.port).start(Coordinator.actorId(yarnActorService.ip), classOf[CoordinatorActor])
       new Coordinator(yarnActorService.ip, client, yarnActorService.applicationId)
     }
   }
@@ -59,7 +58,7 @@ object Coordinator {
 
 class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: ApplicationId) {
 
-  def loadData(vocabulary: Model, hdfsPath: String, rmHostname: String, fileSystemUri: String, zkHostname: String): Boolean = {
+  def loadData(vocabulary: Model, hdfsPath: String, rmHostname: String, fileSystemUri: String): Boolean = {
     println(s"Loading data")
     askCoordinator[Boolean](LoadData(vocabulary, hdfsPath, rmHostname, fileSystemUri))
   }

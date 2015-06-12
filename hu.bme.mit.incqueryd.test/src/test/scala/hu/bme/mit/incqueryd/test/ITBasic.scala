@@ -56,7 +56,7 @@ class ITBasic {
 
     val coordinator = Await.result(Coordinator.create(advancedYarnClient), timeout)
     val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
-    coordinator.loadData(vocabulary, testFilePath, rmHostname, fileSystemUri, zkHostname)
+    coordinator.loadData(vocabulary, testFilePath, rmHostname, fileSystemUri)
 
     val recipe = loadRecipe
     coordinator.startQuery(recipe, rmHostname, fileSystemUri)
