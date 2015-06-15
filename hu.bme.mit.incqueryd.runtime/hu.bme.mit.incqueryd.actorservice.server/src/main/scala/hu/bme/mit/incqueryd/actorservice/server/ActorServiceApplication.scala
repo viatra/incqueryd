@@ -12,11 +12,11 @@ import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 object ActorServiceApplication {
 
   def main(args: Array[String]) {
-    val containerPath = args(0)
+    val zkApplicationPath = args(0)
     val application = new ActorServiceApplication()
     application.run(args.drop(1))
     Thread.sleep(1000)
-    IncQueryDZooKeeper.setData(containerPath, application.getHostAndPort().getBytes)
+    IncQueryDZooKeeper.setData(IncQueryDZooKeeper.yarnNodesPath + zkApplicationPath, application.getHostAndPort().getBytes)
   }
 
 }

@@ -33,6 +33,8 @@ import scala.concurrent.duration._
 import hu.bme.mit.incqueryd.yarn.HdfsUtils
 import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
 import org.apache.commons.io.IOUtils
+import hu.bme.mit.incqueryd.actorservice.YarnActorService
+import hu.bme.mit.incqueryd.yarn.ActorSystemDeployment
 
 class ITBasic {
 
@@ -48,12 +50,15 @@ class ITBasic {
     val timeout = 30 seconds
 
     val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
-
+    
     val testFile = new File(getClass.getClassLoader.getResource(modelFileName).getFile)
     val testFilePath = fileSystemUri + "/test/" + modelFileName
     val hdfs = HdfsUtils.getDistributedFileSystem(fileSystemUri)
     HdfsUtils.upload(hdfs, testFile, testFilePath)
-
+    
+    // Start ActorSystem on each yarn node
+    ActorSystemDeployment.startActorSystemsOnYarnNodes(advancedYarnClient)
+    
     val coordinator = Await.result(Coordinator.create(advancedYarnClient), timeout)
     val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
     coordinator.loadData(vocabulary, testFilePath, rmHostname, fileSystemUri)

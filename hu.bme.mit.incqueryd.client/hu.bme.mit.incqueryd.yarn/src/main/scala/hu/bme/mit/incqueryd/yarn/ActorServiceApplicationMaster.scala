@@ -17,13 +17,12 @@ import java.net.URL
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
 
-object ApplicationMaster {
+object ActorServiceApplicationMaster {
 
-  def main(args: Array[String]){
+  def main(args: Array[String]) {
     val jarPath = args(0)
     val mainClass = args(1)
-    val zkActorPath = args(2)
-    val applicationArgument = args(3)
+    val applicationArgument = args(2)
 
     // Create new YARN configuration
     implicit val conf = new YarnConfiguration()
@@ -56,35 +55,48 @@ object ApplicationMaster {
     resource.setMemory(200)
     resource.setVirtualCores(1)
 
-    val containerRequest = new ContainerRequest(resource, null, null, priority, true)
-    rmClient.addContainerRequest(containerRequest)
+    val nodes = IncQueryDZooKeeper.getYarnNodesWithZK()
 
+    nodes.foreach { node =>
+      val nodesarray = new Array[String](1)
+      nodesarray(0) = node
+      val containerRequest = new ContainerRequest(resource, nodesarray, null, priority, true)
+      rmClient.addContainerRequest(containerRequest)
+    }
+    
+    var neededContainers = nodes.length
     var responseId = 0
     var completedContainers = 0
-    
-    while (completedContainers < 1) {
-      
+    val nodesIt = nodes.iterator
+
+    while (completedContainers < neededContainers) {
+
       val appMasterJar = AdvancedYarnClient.setUpLocalResource(new Path(jarPath), FileSystem.get(conf))
 
       val env = AdvancedYarnClient.setUpEnv(conf, false)
 
       val response = rmClient.allocate(responseId + 1)
       responseId += 1
-      
+
       for (container <- response.getAllocatedContainers.asScala) {
         
+        val zkAppAddress = "/" + nodesIt.next() + IncQueryDZooKeeper.applicationPath
+
         val ctx = Records.newRecord(classOf[ContainerLaunchContext])
 
         ctx.setCommands(
-            List(
-              s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $mainClass $zkActorPath $applicationArgument " + 
-                " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
-                " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
+          List(
+            s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $mainClass $zkAppAddress $applicationArgument " +
+              " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
+              " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
         ctx.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))
         ctx.setEnvironment(env)
 
         System.out.println("Launching container " + container)
-        nmClient.startContainer(container, ctx) 
+        nmClient.startContainer(container, ctx)
+
+        // val ip = container.getNodeHttpAddress.replaceFirst(":\\d+", "")
+
       }
 
       for (status <- response.getCompletedContainersStatuses.asScala) {

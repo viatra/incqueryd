@@ -41,25 +41,78 @@ import java.net.URI
 import hu.bme.mit.incqueryd.yarn.ApplicationMaster
 import org.apache.curator.utils.ZKPaths
 import com.google.common.net.HostAndPort
+import hu.bme.mit.incqueryd.yarn.ActorServiceApplicationMaster
 
 object YarnActorService {
-
-  def create(client: AdvancedYarnClient, zkAMPath: String): List[Future[YarnActorService]] = {
+  
+   /*
+    *  TODO: modify this method according to the new workflow
+    *  
+    *  1. Read deployment information from ZooKeeper (e.g. Recipe, ZK paths ... whatever)
+    *  2. Start an application master
+    *  3. Run an application to start ReteActor (using the ActorSystem running on the same node)
+    *  4. Write ActorPath into the appropriate ZNode when Actor is started
+    *  5. Stop container and AM
+    *  
+    */
+  def create(client: AdvancedYarnClient, zkParentPath: String): List[Future[YarnActorService]] = {
     val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
-    val zk = IncQueryDZooKeeper.create()
-    IncQueryDZooKeeper.createDir(zkAMPath)
+    IncQueryDZooKeeper.createDir(zkParentPath)
     val appMasterObjectName = ApplicationMaster.getClass.getName
     val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1)
-    val actorServiceClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication" // XXX duplicated class name to avoid dependency on runtime 
-    val containers = IncQueryDZooKeeper.getChildPaths(zkAMPath)
-
-    val applicationId = client.runRemotely(
-      List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $actorServiceClassName $zkAMPath server"),
-      jarPath, true)
-
+    
+    //TODO: replace this to the application which will start the appropriate ReteActor
+    val actorStartedApplicationName = "hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication" // XXX duplicated class name to avoid dependency on runtime 
+    val actorPaths = IncQueryDZooKeeper.getChildPaths(zkParentPath)
+    
+    actorPaths.foreach { actorPath => 
+      val applicationId = client.runRemotely(
+        List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $actorStartedApplicationName server"),
+        jarPath, true)
+    }
+    
     val result = Promise[YarnActorService]()
-    containers.map { container =>
-      val zkContainerAddressPath = zkAMPath + "/" + container + IncQueryDZooKeeper.addressPath
+    actorPaths.map { actorPath =>
+      val zkContainerAddressPath = actorPath + "/" + actorPath + IncQueryDZooKeeper.addressPath
+      IncQueryDZooKeeper.createDir(zkContainerAddressPath)
+      val watcher = new Watcher() {
+        def process(event: WatchedEvent) {
+          event.getType() match {
+            case EventType.NodeCreated | EventType.NodeDataChanged => {
+              val data = IncQueryDZooKeeper.getStringData(zkContainerAddressPath)
+              val url = HostAndPort.fromString(data)
+              result.success(YarnActorService(url.getHostText, url.getPort, null))
+            }
+            case _ => result.failure(new IllegalStateException(s"Unexpected event on ${zkContainerAddressPath}: $event"))
+          }
+        }
+      }
+      IncQueryDZooKeeper.getStringDataWithWatcher(zkContainerAddressPath, watcher)
+      result.future
+    }
+  }
+  
+  
+  /**
+   * 1. Start one ActorServiceApplication instance on each yarn node
+   * 2. Start one RemoteActorSystem on each yarn node
+   */
+  def startActorServices(client : AdvancedYarnClient) : List[Future[YarnActorService]] = {
+    val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
+    val appMasterObjectName = ActorServiceApplicationMaster.getClass.getName
+    val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1)
+    val actorServiceClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication" // XXX duplicated class name to avoid dependency on runtime 
+    
+    val yarnNodes = client.getRunningNodes()
+    IncQueryDZooKeeper.registerYarnNodes(yarnNodes)
+    
+    val applicationId = client.runRemotely(
+      List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $actorServiceClassName server"),
+      jarPath, true)
+    
+    val result = Promise[YarnActorService]()
+    yarnNodes.map { yarnNode =>
+      val zkContainerAddressPath = IncQueryDZooKeeper.yarnNodesPath + "/" + yarnNode + IncQueryDZooKeeper.applicationPath
       IncQueryDZooKeeper.createDir(zkContainerAddressPath)
       val watcher = new Watcher() {
         def process(event: WatchedEvent) {
@@ -76,6 +129,7 @@ object YarnActorService {
       IncQueryDZooKeeper.getStringDataWithWatcher(zkContainerAddressPath, watcher)
       result.future
     }
+    
   }
 
 }

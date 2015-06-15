@@ -24,6 +24,10 @@ import org.apache.hadoop.yarn.api.records.ApplicationId
 import java.io.InputStream
 import org.apache.commons.io.IOUtils
 import java.io.FileInputStream
+import org.apache.hadoop.yarn.client.api.AMRMClient
+import org.apache.hadoop.yarn.client.api.AMRMClient.ContainerRequest
+import org.apache.hadoop.yarn.api.records.NodeState
+import com.google.common.net.HostAndPort
 
 class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
 
@@ -39,7 +43,7 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
     client.start()
     client
   }
-
+  
   def runRemotely(commands: List[String], jarPath: String, useDefaultClassPath: Boolean) = {
     val app = client.createApplication
     val amContainerSpec = initApplicationMasterContainerSpec(commands, jarPath, useDefaultClassPath)
@@ -77,7 +81,12 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
     appContext.setQueue("default")
     appContext
   }
- 
+  
+  def getRunningNodes() : List[String] = {
+    client.getNodeReports(NodeState.RUNNING).asScala.map { nodeReport => 
+      HostAndPort.fromString(nodeReport.getHttpAddress).getHostText }.toList
+  }
+  
 }
 
 object AdvancedYarnClient {

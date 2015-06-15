@@ -14,16 +14,28 @@ import upickle._
 import hu.bme.mit.incqueryd.actorservice.ActorId
 import akka.actor.Actor
 
-@Path(RemoteActorService.Start.path)
+@Path(RemoteActorService.Start.start)
 @Produces(Array(MediaType.APPLICATION_JSON))
 class StartResource {
 
   @GET
   @Timed
-  def execute(@QueryParam(idJsonParameter) idJson: String, @QueryParam(classNameParameter) className: String): Response = {
+  @Path(RemoteActorService.Start.actor)
+  @Produces(Array(MediaType.APPLICATION_JSON))
+  def startActor(@QueryParam(idJsonParameter) idJson: String, @QueryParam(classNameParameter) className: String): Response = {
     val id = read[ActorId](idJson)
-    LocalActorService.start(id, Class.forName(className).asSubclass(classOf[Actor]))
+    LocalActorService.startActor(id, Class.forName(className).asSubclass(classOf[Actor]))
     Response.ok.build
   }
-
+  
+  @GET
+  @Timed
+  @Path(RemoteActorService.Start.system)
+  @Produces(Array(MediaType.APPLICATION_JSON))
+  def startActorSystem(@QueryParam(idJsonParameter) idJson: String, @QueryParam(classNameParameter) className: String): Response = {
+    val id = read[ActorId](idJson)
+    LocalActorService.startActorSystem(id, Class.forName(className).asSubclass(classOf[Actor]))
+    Response.ok.build
+  }
+  
 }

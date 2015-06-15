@@ -3,7 +3,8 @@ package hu.bme.mit.incqueryd.coordinator.client
 import akka.pattern.ask
 import akka.util.Timeout
 import hu.bme.mit.incqueryd.engine._
-import hu.bme.mit.incqueryd.inventory.{Inventory, MachineInstance}
+import hu.bme.mit.incqueryd.engine.RemoteReteActor
+import hu.bme.mit.incqueryd.inventory.{ Inventory, MachineInstance }
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.openrdf.model.Model
 import scala.concurrent.Await
@@ -37,6 +38,7 @@ import java.net.URI
 import hu.bme.mit.incqueryd.yarn.ApplicationMaster
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
 import scala.concurrent.ExecutionContext.Implicits.global
+import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
 
 object Coordinator {
   final val port = 2552
@@ -44,12 +46,14 @@ object Coordinator {
   final val actorName = "coordinator"
 
   def actorId(ip: String) = ActorId(actorSystemName, ip, port, actorName)
-
+  
+  //TODO: modify Coordinator creation according to the new workflow
   def create(client: AdvancedYarnClient): Future[Coordinator] = {
     IncQueryDZooKeeper.createDir(IncQueryDZooKeeper.defaultCoordinatorPath)
     val actorServices = YarnActorService.create(client, IncQueryDZooKeeper.coordinatorsPath)
-    actorServices.get(0).map { yarnActorService => 
-      new RemoteActorService(yarnActorService.ip, yarnActorService.port).start(Coordinator.actorId(yarnActorService.ip), classOf[CoordinatorActor])
+    actorServices.get(0).map { yarnActorService =>
+      new RemoteActorService(yarnActorService.ip, yarnActorService.port)
+        .startActor(Coordinator.actorId(yarnActorService.ip), classOf[CoordinatorActor])
       new Coordinator(yarnActorService.ip, client, yarnActorService.applicationId)
     }
   }

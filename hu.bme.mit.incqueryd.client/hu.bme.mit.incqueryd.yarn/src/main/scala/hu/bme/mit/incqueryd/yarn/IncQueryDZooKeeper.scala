@@ -40,11 +40,15 @@ object IncQueryDZooKeeper {
 
   val coordinatorsPath = "/coordinators"
   val defaultCoordinatorPath = coordinatorsPath + "/default"
-
+  
+  val yarnNodesPath = "/yarnnodes"
+  
   val addressPath = "/address"
   val portPath = "/port"
   
-  val timeout = (300 seconds)
+  val applicationPath = "/application"
+  
+  val timeout = (30 seconds)
 
   // Handle ZooKeeper connection
   var zk = create()
@@ -192,7 +196,14 @@ object IncQueryDZooKeeper {
   def encodeZooPath(path: String): String = {
     URLEncoder.encode(path, "UTF-8")
   }
-
+  
+  def normalizePath(path : String) : String = {
+    var _path = path
+      if(!_path.startsWith("/"))
+         _path = "/".concat(_path)
+    _path
+  }
+  
   // IncQuery-D specific methods
   def getActorsWithAdditionalData[A](path: String): Map[String, A] = {
     getConnection()
@@ -218,9 +229,27 @@ object IncQueryDZooKeeper {
 
   def createDir(path: String) {
     getConnection()
-    ZKPaths.mkdirs(zk, path)
+    ZKPaths.mkdirs(zk, normalizePath(path))
   }
-
+  
+  def createAndGetPath(path : String) : String = {
+    createDir(path)
+    path
+  }
+  
+  def registerYarnNodes(nodes : List[String]) {
+    nodes.map { node => 
+      IncQueryDZooKeeper.createDir(IncQueryDZooKeeper.yarnNodesPath + normalizePath(node))}
+  }
+  
+  def getYarnNodesWithZK() : List[String] = {
+   getChildPaths(createAndGetPath(IncQueryDZooKeeper.yarnNodesPath))
+  }
+  
+  def writeApplicationData(nodePath : String) {
+    
+  }
+  
   def getActorPaths(path: String): Set[String] = {
     getConnection()
     var retSet = immutable.Set.empty[String]
