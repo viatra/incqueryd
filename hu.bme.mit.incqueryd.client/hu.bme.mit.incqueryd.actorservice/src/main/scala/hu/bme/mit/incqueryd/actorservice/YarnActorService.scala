@@ -73,7 +73,7 @@ object YarnActorService {
     
     val result = Promise[YarnActorService]()
     actorPaths.map { actorPath =>
-      val zkContainerAddressPath = actorPath + "/" + actorPath + IncQueryDZooKeeper.addressPath
+      val zkContainerAddressPath = "/" + actorPath + "/" + actorPath + IncQueryDZooKeeper.addressPath
       IncQueryDZooKeeper.createDir(zkContainerAddressPath)
       val watcher = new Watcher() {
         def process(event: WatchedEvent) {
