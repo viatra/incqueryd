@@ -69,5 +69,3 @@ docker exec $YARN_NM2 /usr/local/zookeeper/bin/zkServer.sh start
 # docker exec $YARN_NM2 /usr/local/hadoop/sbin/start-dfs.sh
 
 docker exec $YARN_RM /etc/bootstrap.sh -bash
-
-docker exec $YARN_RM /usr/local/hadoop/run_demo.sh

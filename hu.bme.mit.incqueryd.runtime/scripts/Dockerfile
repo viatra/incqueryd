@@ -100,10 +100,6 @@ RUN chmod 700 /usr/local/zookeeper/bin/zkServer.sh
 ADD dnsmasq.conf /etc/dnsmasq.conf
 ADD dnsmasq.resolv.conf /etc/dnsmasq.resolv.conf
 
-# Add demo app start script
-ADD run_demo.sh /usr/local/hadoop/run_demo.sh
-RUN chmod 700 /usr/local/hadoop/run_demo.sh
-
 # Add new node script
 ADD add-yarn-node.sh /usr/local/hadoop/add-yarn-node.sh
 
