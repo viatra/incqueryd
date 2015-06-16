@@ -67,7 +67,7 @@ object YarnActorService {
     
     actorPaths.foreach { actorPath => 
       val applicationId = client.runRemotely(
-        List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $actorStartedApplicationName server"),
+        List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $actorStartedApplicationName $zkParentPath server"),
         jarPath, true)
     }
     
