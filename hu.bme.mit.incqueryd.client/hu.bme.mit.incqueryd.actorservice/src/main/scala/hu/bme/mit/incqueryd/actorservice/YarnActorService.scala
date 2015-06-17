@@ -2,7 +2,6 @@ package hu.bme.mit.incqueryd.actorservice
 
 import org.apache.hadoop.yarn.api.records.ApplicationId
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
-import hu.bme.mit.incqueryd.yarn.ApplicationMaster
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import com.sun.xml.bind.v2.runtime.Coordinator
 import scala.concurrent.Future
@@ -24,7 +23,6 @@ import java.util.HashSet
 import java.util.ArrayList
 import scala.collection.JavaConversions._
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
-import hu.bme.mit.incqueryd.yarn.ApplicationMaster
 import org.apache.hadoop.yarn.api.records.ApplicationId
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import scala.concurrent.Promise
@@ -38,10 +36,9 @@ import org.apache.zookeeper.data.ACL
 import org.apache.zookeeper.ZooDefs.Perms
 import org.apache.zookeeper.ZooDefs.Ids
 import java.net.URI
-import hu.bme.mit.incqueryd.yarn.ApplicationMaster
 import org.apache.curator.utils.ZKPaths
 import com.google.common.net.HostAndPort
-import hu.bme.mit.incqueryd.yarn.ActorServiceApplicationMaster
+import hu.bme.mit.incqueryd.yarn.YarnApplication
 
 object YarnActorService {
   
@@ -55,23 +52,22 @@ object YarnActorService {
     *  5. Stop container and AM
     *  
     */
-  def create(client: AdvancedYarnClient, zkParentPath: String): List[Future[YarnActorService]] = {
+  def startActors(client: AdvancedYarnClient, zkParentPath: String): List[Future[YarnApplication]] = {
     val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
     IncQueryDZooKeeper.createDir(zkParentPath)
-    val appMasterObjectName = ApplicationMaster.getClass.getName
+    val appMasterObjectName = ActorApplicationMaster.getClass.getName
     val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1)
-    
-    //TODO: replace this to the application which will start the appropriate ReteActor
-    val actorStartedApplicationName = "hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication" // XXX duplicated class name to avoid dependency on runtime 
+     
     val actorPaths = IncQueryDZooKeeper.getChildPaths(zkParentPath)
     
-    actorPaths.foreach { actorPath => 
+    actorPaths.foreach { actorPath =>
+      val actorName = actorPath // TODO
       val applicationId = client.runRemotely(
-        List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $actorStartedApplicationName $zkParentPath server"),
+        List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $zkParentPath $actorName"),
         jarPath, true)
     }
     
-    val result = Promise[YarnActorService]()
+    val result = Promise[YarnApplication]()
     actorPaths.map { actorPath =>
       val zkContainerAddressPath = "/" + actorPath + "/" + actorPath + IncQueryDZooKeeper.addressPath
       IncQueryDZooKeeper.createDir(zkContainerAddressPath)
@@ -81,7 +77,7 @@ object YarnActorService {
             case EventType.NodeCreated | EventType.NodeDataChanged => {
               val data = IncQueryDZooKeeper.getStringData(zkContainerAddressPath)
               val url = HostAndPort.fromString(data)
-              result.success(YarnActorService(url.getHostText, url.getPort, null))
+              result.success(YarnApplication(url.getHostText, url.getPort, null))
             }
             case _ => result.failure(new IllegalStateException(s"Unexpected event on ${zkContainerAddressPath}: $event"))
           }
@@ -92,25 +88,25 @@ object YarnActorService {
     }
   }
   
+  val actorSystemName = "incqueryd"
+  val port = 2552
   
   /**
-   * 1. Start one ActorServiceApplication instance on each yarn node
-   * 2. Start one RemoteActorSystem on each yarn node
+   * Start one RemoteActorSystem on each yarn node
    */
-  def startActorServices(client : AdvancedYarnClient) : List[Future[YarnActorService]] = {
+  def startActorServices(client : AdvancedYarnClient) : List[Future[YarnApplication]] = {
     val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
     val appMasterObjectName = ActorServiceApplicationMaster.getClass.getName
-    val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1)
-    val actorServiceClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication" // XXX duplicated class name to avoid dependency on runtime 
+    val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1) // XXX
     
     val yarnNodes = client.getRunningNodes()
     IncQueryDZooKeeper.registerYarnNodes(yarnNodes)
     
     val applicationId = client.runRemotely(
-      List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $actorServiceClassName server"),
+      List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath"),
       jarPath, true)
     
-    val result = Promise[YarnActorService]()
+    val result = Promise[YarnApplication]()
     yarnNodes.map { yarnNode =>
       val zkContainerAddressPath = IncQueryDZooKeeper.yarnNodesPath + "/" + yarnNode + IncQueryDZooKeeper.applicationPath
       IncQueryDZooKeeper.createDir(zkContainerAddressPath)
@@ -120,7 +116,7 @@ object YarnActorService {
             case EventType.NodeCreated | EventType.NodeDataChanged => {
               val data = IncQueryDZooKeeper.getStringData(zkContainerAddressPath)
               val url = HostAndPort.fromString(data)
-              result.success(YarnActorService(url.getHostText, url.getPort, applicationId))
+              result.success(YarnApplication(url.getHostText, url.getPort, applicationId))
             }
             case _ => result.failure(new IllegalStateException(s"Unexpected event on ${zkContainerAddressPath}: $event"))
           }
@@ -133,5 +129,3 @@ object YarnActorService {
   }
 
 }
-
-case class YarnActorService(ip: String, port: Int, applicationId: ApplicationId)

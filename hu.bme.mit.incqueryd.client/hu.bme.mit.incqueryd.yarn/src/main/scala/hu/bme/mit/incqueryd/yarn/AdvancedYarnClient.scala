@@ -51,11 +51,7 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
     val appContext = initAppContext(app, amContainerSpec, resource)
     client.submitApplication(appContext)
   }
-
-  def kill(applicationId: ApplicationId) = {
-    client.killApplication(applicationId)
-  }
-
+  
   private def initApplicationMasterContainerSpec(commands: List[String], jarPath: String, useDefaultClassPath: Boolean) = {
     val amContainer = Records.newRecord(classOf[ContainerLaunchContext])
     amContainer.setCommands(commands.asJava)
@@ -72,7 +68,7 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
     resource.setVirtualCores(1)
     resource
   }
-
+  
   private def initAppContext(app: YarnClientApplication, amContainerSpec: ContainerLaunchContext, resource: Resource) = {
     val appContext = app.getApplicationSubmissionContext
     appContext.setApplicationName("IncQuery-D")
@@ -81,7 +77,11 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
     appContext.setQueue("default")
     appContext
   }
-  
+
+  def kill(applicationId: ApplicationId) = {
+    client.killApplication(applicationId)
+  }
+
   def getRunningNodes() : List[String] = {
     client.getNodeReports(NodeState.RUNNING).asScala.map { nodeReport => 
       HostAndPort.fromString(nodeReport.getHttpAddress).getHostText }.toList
@@ -90,7 +90,7 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
 }
 
 object AdvancedYarnClient {
-
+  
   def setUpLocalResource(resourcePath: Path, fileSystem: FileSystem) = {
     val resource = Records.newRecord(classOf[LocalResource])
     val jarStat = fileSystem.getFileStatus(resourcePath)

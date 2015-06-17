@@ -13,7 +13,6 @@ import scala.collection.JavaConverters._
 import java.util.ArrayList
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 import hu.bme.mit.incqueryd.actorservice.ActorId
-import hu.bme.mit.incqueryd.actorservice.RemoteActorService
 import java.security.MessageDigest
 import org.apache.commons.codec.digest.DigestUtils
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
@@ -129,9 +128,8 @@ class CoordinatorActor extends Actor {
       }
       IncQueryDZooKeeper.createDir(zkRecipePath)
     }
-    val yarnActorServices = YarnActorService.create(client, zkAMPath)
+    val yarnActorServices = YarnActorService.startActors(client, zkAMPath)
     
-    //TODO: start RemoteActorServices and store ActorPaths in ZK
     lookup(recipes)
   }
 

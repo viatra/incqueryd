@@ -20,8 +20,6 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import scala.collection.JavaConversions._
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
-import hu.bme.mit.incqueryd.actorservice.RemoteActorService
-import hu.bme.mit.incqueryd.yarn.ApplicationMaster
 import org.apache.hadoop.yarn.api.records.ApplicationId
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import scala.concurrent.Promise
@@ -35,7 +33,6 @@ import org.apache.zookeeper.data.ACL
 import org.apache.zookeeper.ZooDefs.Perms
 import org.apache.zookeeper.ZooDefs.Ids
 import java.net.URI
-import hu.bme.mit.incqueryd.yarn.ApplicationMaster
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
 import scala.concurrent.ExecutionContext.Implicits.global
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
@@ -47,13 +44,11 @@ object Coordinator {
 
   def actorId(ip: String) = ActorId(actorSystemName, ip, port, actorName)
   
-  //TODO: modify Coordinator creation according to the new workflow
   def create(client: AdvancedYarnClient): Future[Coordinator] = {
     IncQueryDZooKeeper.createDir(IncQueryDZooKeeper.defaultCoordinatorPath)
-    val actorServices = YarnActorService.create(client, IncQueryDZooKeeper.coordinatorsPath)
+    val actorServices = YarnActorService.startActors(client, IncQueryDZooKeeper.coordinatorsPath)
     actorServices.get(0).map { yarnActorService =>
-      new RemoteActorService(yarnActorService.ip, yarnActorService.port)
-        .startActor(Coordinator.actorId(yarnActorService.ip), classOf[CoordinatorActor])
+      AkkaUtils.startActor(Coordinator.actorId(yarnActorService.ip), classOf[CoordinatorActor])
       new Coordinator(yarnActorService.ip, client, yarnActorService.applicationId)
     }
   }

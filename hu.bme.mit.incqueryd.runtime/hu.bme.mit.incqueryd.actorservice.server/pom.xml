@@ -10,10 +10,6 @@
 	<artifactId>hu.bme.mit.incqueryd.actorservice.server</artifactId>
 	<dependencies>
 		<dependency>
-			<groupId>io.dropwizard</groupId>
-			<artifactId>dropwizard-core</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
 		</dependency>

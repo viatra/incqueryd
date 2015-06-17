@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.yarn
+package hu.bme.mit.incqueryd.actorservice
 
 import java.util.Collections
 import org.apache.hadoop.fs.Path
@@ -8,21 +8,22 @@ import org.apache.hadoop.yarn.client.api.AMRMClient.ContainerRequest
 import org.apache.hadoop.yarn.client.api.{ AMRMClient, NMClient }
 import org.apache.hadoop.yarn.conf.YarnConfiguration
 import org.apache.hadoop.yarn.util.Records
-import org.apache.hadoop.yarn.api.records.Container
 import scala.collection.JavaConverters._
-import org.apache.zookeeper.ZooKeeper
-import org.apache.zookeeper.Watcher
-import org.apache.zookeeper.WatchedEvent
-import java.net.URL
-import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
+import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
+import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
+import org.apache.hadoop.yarn.api.records.ContainerLaunchContext
+import org.apache.hadoop.yarn.api.records.Priority
+import org.apache.hadoop.yarn.api.records.Resource
+import org.apache.hadoop.yarn.api.records.ContainerLaunchContext
+import org.apache.hadoop.yarn.api.records.Priority
+import org.apache.hadoop.yarn.api.records.Resource
 
 object ActorServiceApplicationMaster {
 
   def main(args: Array[String]) {
     val jarPath = args(0)
-    val mainClass = args(1)
-    val applicationArgument = args(2)
+    val applicationClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication" // XXX duplicated class name to avoid dependency on runtime
 
     // Create new YARN configuration
     implicit val conf = new YarnConfiguration()
@@ -86,7 +87,7 @@ object ActorServiceApplicationMaster {
 
         ctx.setCommands(
           List(
-            s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $mainClass $zkAppAddress $applicationArgument " +
+            s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $applicationClassName $zkAppAddress " +
               " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
               " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
         ctx.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))

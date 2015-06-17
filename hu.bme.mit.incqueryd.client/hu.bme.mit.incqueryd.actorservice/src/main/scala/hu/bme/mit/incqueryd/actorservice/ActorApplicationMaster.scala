@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.yarn
+package hu.bme.mit.incqueryd.actorservice
 
 import java.util.Collections
 import org.apache.hadoop.fs.Path
@@ -8,22 +8,20 @@ import org.apache.hadoop.yarn.client.api.AMRMClient.ContainerRequest
 import org.apache.hadoop.yarn.client.api.{ AMRMClient, NMClient }
 import org.apache.hadoop.yarn.conf.YarnConfiguration
 import org.apache.hadoop.yarn.util.Records
-import org.apache.hadoop.yarn.api.records.Container
 import scala.collection.JavaConverters._
-import org.apache.zookeeper.ZooKeeper
-import org.apache.zookeeper.Watcher
-import org.apache.zookeeper.WatchedEvent
-import java.net.URL
-import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
+import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
+import org.apache.hadoop.yarn.api.records.ContainerLaunchContext
+import org.apache.hadoop.yarn.api.records.Priority
+import org.apache.hadoop.yarn.api.records.Resource
 
-object ApplicationMaster {
+object ActorApplicationMaster {
 
   def main(args: Array[String]){
     val jarPath = args(0)
-    val mainClass = args(1)
-    val zkActorPath = args(2)
-    val applicationArgument = args(3)
+    val applicationClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorApplication" // XXX duplicated class name to avoid dependency on runtime
+    val zkActorPath = args(1)
+    val actorName = args(2)
 
     // Create new YARN configuration
     implicit val conf = new YarnConfiguration()
@@ -77,7 +75,7 @@ object ApplicationMaster {
 
         ctx.setCommands(
             List(
-              s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $mainClass $zkActorPath $applicationArgument " + 
+              s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $applicationClassName $zkActorPath $actorName " + 
                 " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
                 " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
         ctx.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))
