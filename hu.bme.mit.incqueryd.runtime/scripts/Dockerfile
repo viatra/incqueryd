@@ -100,12 +100,11 @@ RUN chmod 700 /usr/local/zookeeper/bin/zkServer.sh
 ADD dnsmasq.conf /etc/dnsmasq.conf
 ADD dnsmasq.resolv.conf /etc/dnsmasq.resolv.conf
 
-# Add new node script
-ADD add-yarn-node.sh /usr/local/hadoop/add-yarn-node.sh
+# Add scripts
+ADD copy_runtime_to_hdfs.sh /usr/local/hadoop/copy_runtime_to_hdfs.sh
+RUN chmod 700 /usr/local/hadoop/copy_runtime_to_hdfs.sh
 
 # CMD ["/etc/bootstrap.sh", "-d"]
 
 EXPOSE 50020 50090 50070 50010 50075 8031 8032 8033 8040 8042 49707 22 8088 8030 19888 2888 3888 2181 9990 10020 19888 2552
-
-EXPOSE 8084 8094 2552 2553 2181
 # XXX duplicated ports
