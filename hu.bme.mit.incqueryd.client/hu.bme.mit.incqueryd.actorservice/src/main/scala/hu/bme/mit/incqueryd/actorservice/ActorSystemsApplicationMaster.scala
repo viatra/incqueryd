@@ -19,7 +19,7 @@ import org.apache.hadoop.yarn.api.records.ContainerLaunchContext
 import org.apache.hadoop.yarn.api.records.Priority
 import org.apache.hadoop.yarn.api.records.Resource
 
-object ActorSystemApplicationMaster {
+object ActorSystemsApplicationMaster {
 
   def main(args: Array[String]) {
     val jarPath = args(0)
