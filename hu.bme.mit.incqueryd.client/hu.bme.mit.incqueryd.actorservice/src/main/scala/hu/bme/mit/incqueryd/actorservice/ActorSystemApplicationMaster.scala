@@ -19,11 +19,11 @@ import org.apache.hadoop.yarn.api.records.ContainerLaunchContext
 import org.apache.hadoop.yarn.api.records.Priority
 import org.apache.hadoop.yarn.api.records.Resource
 
-object ActorServiceApplicationMaster {
+object ActorSystemApplicationMaster {
 
   def main(args: Array[String]) {
     val jarPath = args(0)
-    val applicationClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication" // XXX duplicated class name to avoid dependency on runtime
+    val applicationClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorSystemApplication" // XXX duplicated class name to avoid dependency on runtime
 
     // Create new YARN configuration
     implicit val conf = new YarnConfiguration()

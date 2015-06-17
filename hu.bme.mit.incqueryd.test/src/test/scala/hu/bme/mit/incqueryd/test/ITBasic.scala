@@ -56,7 +56,7 @@ class ITBasic {
     HdfsUtils.upload(hdfs, testFile, testFilePath)
 
     val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
-    Await.result(Future.sequence(YarnActorService.startActorServices(advancedYarnClient)), timeout)
+    Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), timeout)
     val coordinator = Await.result(Coordinator.create(advancedYarnClient), timeout)
 
     val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))

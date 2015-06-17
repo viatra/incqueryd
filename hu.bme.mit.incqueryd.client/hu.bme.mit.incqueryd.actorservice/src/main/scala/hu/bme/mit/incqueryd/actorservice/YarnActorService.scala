@@ -94,9 +94,9 @@ object YarnActorService {
   /**
    * Start one RemoteActorSystem on each yarn node
    */
-  def startActorServices(client : AdvancedYarnClient) : List[Future[YarnApplication]] = {
+  def startActorSystems(client : AdvancedYarnClient): List[Future[YarnApplication]] = {
     val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
-    val appMasterObjectName = ActorServiceApplicationMaster.getClass.getName
+    val appMasterObjectName = ActorSystemApplicationMaster.getClass.getName
     val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1) // XXX
     
     val yarnNodes = client.getRunningNodes()

@@ -7,7 +7,7 @@ import upickle._
 import eu.mondo.utils.NetworkUtils
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
 
-object ActorServiceApplication {
+object ActorSystemApplication {
 
   def main(args: Array[String]) {
     val zkApplicationPath = args(0)
