@@ -57,7 +57,7 @@ class ITBasic {
 
     val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
     Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), timeout)
-    val coordinator = Await.result(Coordinator.create(advancedYarnClient), 30 minutes)
+    val coordinator = Await.result(Coordinator.create(advancedYarnClient), timeout)
 
     val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
     coordinator.loadData(vocabulary, testFilePath, rmHostname, fileSystemUri)
