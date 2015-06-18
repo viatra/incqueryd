@@ -39,6 +39,7 @@ import java.net.URI
 import org.apache.curator.utils.ZKPaths
 import com.google.common.net.HostAndPort
 import hu.bme.mit.incqueryd.yarn.YarnApplication
+import akka.actor.Actor
 
 object YarnActorService {
   // TODO eliminate duplication between these methods
@@ -53,7 +54,7 @@ object YarnActorService {
     *  5. Stop container and AM
     *  
     */
-  def startActors(client: AdvancedYarnClient, zkParentPath: String): List[Future[YarnApplication]] = {
+  def startActors(client: AdvancedYarnClient, zkParentPath: String, actorClass: Class[_ <: Actor]): List[Future[YarnApplication]] = {
     val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
     IncQueryDZooKeeper.createDir(zkParentPath)
     val appMasterObjectName = ActorApplicationMaster.getClass.getName
@@ -64,7 +65,7 @@ object YarnActorService {
     actorPaths.foreach { actorPath =>
       val actorName = actorPath // TODO
       val applicationId = client.runRemotely(
-        List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $zkParentPath $actorName"),
+        List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $zkParentPath $actorName ${actorClass.getName}"),
         jarPath, true)
     }
     

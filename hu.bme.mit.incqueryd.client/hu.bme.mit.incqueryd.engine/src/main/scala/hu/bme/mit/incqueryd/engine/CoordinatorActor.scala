@@ -128,7 +128,7 @@ class CoordinatorActor extends Actor {
       }
       IncQueryDZooKeeper.createDir(zkRecipePath)
     }
-    val yarnActorServices = YarnActorService.startActors(client, zkAMPath)
+    val yarnActorServices = YarnActorService.startActors(client, zkAMPath, classOf[ReteActor])
     
     lookup(recipes)
   }

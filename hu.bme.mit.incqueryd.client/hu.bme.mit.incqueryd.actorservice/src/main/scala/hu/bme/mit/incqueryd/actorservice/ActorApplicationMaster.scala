@@ -22,6 +22,7 @@ object ActorApplicationMaster {
     val applicationClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorApplication" // XXX duplicated class name to avoid dependency on runtime
     val zkActorPath = args(1)
     val actorName = args(2)
+    val actorClassName = args(3)
 
     // Create new YARN configuration
     implicit val conf = new YarnConfiguration()
@@ -75,7 +76,7 @@ object ActorApplicationMaster {
 
         ctx.setCommands(
             List(
-              s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $applicationClassName $zkActorPath $actorName " + 
+              s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $applicationClassName $zkActorPath $actorName $actorClassName " + 
                 " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
                 " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
         ctx.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))

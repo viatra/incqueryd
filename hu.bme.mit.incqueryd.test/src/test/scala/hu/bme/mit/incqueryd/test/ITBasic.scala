@@ -57,7 +57,7 @@ class ITBasic {
 
     val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
     Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), timeout)
-    val coordinator = Await.result(Coordinator.create(advancedYarnClient), timeout)
+    val coordinator = Await.result(Coordinator.create(advancedYarnClient), 30 minutes)
 
     val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
     coordinator.loadData(vocabulary, testFilePath, rmHostname, fileSystemUri)
@@ -73,6 +73,7 @@ class ITBasic {
       coordinator.stopQuery(recipe, zkHostname)
       coordinator.dispose
     }
+    // TODO finally stop actor systems
   }
 
   private def loadRdf(documentUrl: URL): Model = {

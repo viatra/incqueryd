@@ -46,7 +46,7 @@ object Coordinator {
   
   def create(client: AdvancedYarnClient): Future[Coordinator] = {
     IncQueryDZooKeeper.createDir(IncQueryDZooKeeper.defaultCoordinatorPath)
-    val startCoordinator = YarnActorService.startActors(client, IncQueryDZooKeeper.coordinatorsPath).get(0)
+    val startCoordinator = YarnActorService.startActors(client, IncQueryDZooKeeper.coordinatorsPath, classOf[CoordinatorActor]).get(0)
     startCoordinator.map { coordinatorApplication =>
       new Coordinator(coordinatorApplication.ip, client, coordinatorApplication.applicationId)
     }
