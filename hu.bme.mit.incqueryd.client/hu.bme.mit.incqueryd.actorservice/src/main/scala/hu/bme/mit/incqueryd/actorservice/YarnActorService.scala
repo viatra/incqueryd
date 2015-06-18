@@ -41,7 +41,8 @@ import com.google.common.net.HostAndPort
 import hu.bme.mit.incqueryd.yarn.YarnApplication
 
 object YarnActorService {
-  
+  // TODO eliminate duplication between these methods
+
    /*
     *  TODO: modify this method according to the new workflow
     *  
