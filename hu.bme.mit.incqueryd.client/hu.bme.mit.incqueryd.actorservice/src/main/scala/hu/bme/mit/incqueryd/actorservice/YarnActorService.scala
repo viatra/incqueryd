@@ -65,13 +65,13 @@ object YarnActorService {
     actorPaths.foreach { actorPath =>
       val actorName = actorPath // TODO
       val applicationId = client.runRemotely(
-        List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $zkParentPath $actorName ${actorClass.getName}"),
+        List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $zkParentPath/$actorPath $actorName ${actorClass.getName}"),
         jarPath, true)
     }
     
     val result = Promise[YarnApplication]()
     actorPaths.map { actorPath =>
-      val zkContainerAddressPath = "/" + actorPath + "/" + actorPath + IncQueryDZooKeeper.addressPath
+      val zkContainerAddressPath = s"$zkParentPath/$actorPath"
       IncQueryDZooKeeper.createDir(zkContainerAddressPath)
       val watcher = new Watcher() {
         def process(event: WatchedEvent) {

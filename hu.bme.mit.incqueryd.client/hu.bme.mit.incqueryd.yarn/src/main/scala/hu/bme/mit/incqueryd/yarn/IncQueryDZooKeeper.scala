@@ -42,6 +42,7 @@ object IncQueryDZooKeeper {
   val defaultCoordinatorPath = coordinatorsPath + "/default"
   
   val yarnNodesPath = "/yarnnodes"
+  val actorSystemsPath = "/actorsystems"
   
   val addressPath = "/address"
   val portPath = "/port"
@@ -202,6 +203,12 @@ object IncQueryDZooKeeper {
       if(!_path.startsWith("/"))
          _path = "/".concat(_path)
     _path
+  }
+  
+  def writeToFile(obj : Object ) {
+    val writer = new FileWriter("/tmp/incquery-zk-debug.txt", true)
+        writer.write("\n" + obj.toString())
+        writer.close()
   }
   
   // IncQuery-D specific methods
