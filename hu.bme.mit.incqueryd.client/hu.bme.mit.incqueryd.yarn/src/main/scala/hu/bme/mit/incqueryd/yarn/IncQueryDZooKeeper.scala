@@ -42,12 +42,12 @@ object IncQueryDZooKeeper {
   val defaultCoordinatorPath = coordinatorsPath + "/default"
   
   val yarnNodesPath = "/yarnnodes"
-  val actorSystemsPath = "/actorsystems"
+  val actorNamePath = "/actorname"
   
   val addressPath = "/address"
   val portPath = "/port"
   
-  val applicationPath = "/application"
+  val applicationPath = "/actorsystem"
   
   val timeout = (30 seconds)
 

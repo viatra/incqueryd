@@ -8,6 +8,7 @@ import eu.mondo.utils.NetworkUtils
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
 import hu.bme.mit.incqueryd.actorservice.ActorId
 import akka.actor.Actor
+import scala.concurrent.Await
 
 object ActorApplication {
 
@@ -19,8 +20,9 @@ object ActorApplication {
     val ip = NetworkUtils.getLocalIpAddress
     val port = YarnActorService.port
     AkkaUtils.startActor(ActorId(YarnActorService.actorSystemName, ip, port, name), actorClass)
-    AkkaUtils.clientActorSystem.shutdown()
     IncQueryDZooKeeper.setData(zkApplicationPath, s"$ip:$port".getBytes)
+    val terminate = AkkaUtils.clientActorSystem.terminate()
+    Await.result(terminate, AkkaUtils.defaultTimeout)
   }
 
 }

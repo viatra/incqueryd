@@ -1,5 +1,6 @@
 package hu.bme.mit.incqueryd.actorservice
 
+import akka.pattern.ask
 import akka.actor._
 import com.typesafe.config.ConfigFactory
 import eu.mondo.utils.{ NetworkUtils, UnixUtils }
@@ -8,6 +9,9 @@ import scala.util.{ Failure, Success, Try }
 import scala.concurrent.duration._
 import scala.collection.mutable
 import akka.remote.RemoteScope
+import java.net.InetAddress
+import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
+import scala.concurrent.Await
 
 object AkkaUtils {
 
@@ -61,9 +65,14 @@ akka {
   }
 
   def startActor(id: ActorId, actorClass: Class[_ <: Actor]): ActorRef = {
- 		val address = Address("akka.tcp", id.actorSystemName, id.ip, id.port)
-    val props = Props(actorClass).withDeploy(Deploy(scope = RemoteScope(address)))
-    clientActorSystem.actorOf(props, id.name)
+// 		val address = Address("akka.tcp", id.actorSystemName, id.ip, id.port)
+//    val props = Props(actorClass).withDeploy(Deploy(scope = RemoteScope(address)))
+//    clientActorSystem.actorOf(props, id.name)
+    val deployActor = AkkaUtils.findActor(new ActorId(id.actorSystemName, id.ip, id.port, YarnActorService.deployActorName))
+    IncQueryDZooKeeper.writeToFile("Deploy actor: " + deployActor.path)
+    val futureDeploy = deployActor.ask(DoDeploy(actorClass, id))(defaultTimeout)
+    Await.result(futureDeploy, defaultTimeout)
+    AkkaUtils.findActor(id)
   }
 
   def propagateException[T](sender: ActorRef)(fn: => T): T = {
@@ -93,6 +102,6 @@ akka {
   val defaultRetryCount = 10
   val defaultDelayMillis = 1000
 
-  val defaultTimeout = 30 seconds
+  val defaultTimeout = 300 seconds
 
 }

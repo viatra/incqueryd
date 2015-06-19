@@ -44,26 +44,16 @@ import akka.actor.Actor
 object YarnActorService {
   // TODO eliminate duplication between these methods
 
-   /*
-    *  TODO: modify this method according to the new workflow
-    *  
-    *  1. Read deployment information from ZooKeeper (e.g. Recipe, ZK paths ... whatever)
-    *  2. Start an application master
-    *  3. Run an application to start ReteActor (using the ActorSystem running on the same node)
-    *  4. Write ActorPath into the appropriate ZNode when Actor is started
-    *  5. Stop container and AM
-    *  
-    */
   def startActors(client: AdvancedYarnClient, zkParentPath: String, actorClass: Class[_ <: Actor]): List[Future[YarnApplication]] = {
     val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
     IncQueryDZooKeeper.createDir(zkParentPath)
     val appMasterObjectName = ActorApplicationMaster.getClass.getName
     val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1)
-     
+    
     val actorPaths = IncQueryDZooKeeper.getChildPaths(zkParentPath)
     
     actorPaths.foreach { actorPath =>
-      val actorName = actorPath // TODO
+      val actorName = IncQueryDZooKeeper.getStringData(s"$zkParentPath/$actorPath" + IncQueryDZooKeeper.actorNamePath)
       val applicationId = client.runRemotely(
         List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $zkParentPath/$actorPath $actorName ${actorClass.getName}"),
         jarPath, true)
@@ -92,6 +82,7 @@ object YarnActorService {
   
   val actorSystemName = "incqueryd"
   val port = 2552
+  val deployActorName = "deploy"
   
   /**
    * Start one RemoteActorSystem on each yarn node

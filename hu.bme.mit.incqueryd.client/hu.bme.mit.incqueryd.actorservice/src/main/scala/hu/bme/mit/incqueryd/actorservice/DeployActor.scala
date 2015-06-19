@@ -6,19 +6,29 @@ import akka.actor.Props
 import akka.actor.AddressFromURIString
 import akka.remote.RemoteScope
 import akka.actor.Address
+import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
+import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
+import java.net.URL
 
 /**
  * @author pappi
  */
 class DeployActor extends Actor {
+  
+  override def preStart() = {
+    URL.setURLStreamHandlerFactory(new FsUrlStreamHandlerFactory)
+  }
+  
   def receive = {
     case DoDeploy(actorClass, id) => {
-      //Get the remote actorsystem path
       val address = Address("akka.tcp", id.actorSystemName, id.ip, id.port)
-      val props = Props(actorClass).withDeploy(Deploy(scope = RemoteScope(address)))
-      val remoteActor = context.actorOf(props)
+      val remoteActor = context.system.actorOf(Props(actorClass), id.name)
+      IncQueryDZooKeeper.writeToFile(s"Deploy actor: ${actorClass.getCanonicalName} actor deployed!")
+      sender ! DeployDone
     }
   }
 }
 
-case class DoDeploy(actorClass: Class[_ <: Actor], id : ActorId)
+sealed trait DeployCommand
+case class DoDeploy(actorClass: Class[_ <: Actor], id : ActorId) extends DeployCommand
+case class DeployDone() extends DeployCommand

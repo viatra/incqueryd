@@ -52,7 +52,7 @@ object ActorApplicationMaster {
 
     //resources needed by each container
     val resource = Records.newRecord(classOf[Resource])
-    resource.setMemory(200)
+    resource.setMemory(100)
     resource.setVirtualCores(1)
 
     val containerRequest = new ContainerRequest(resource, null, null, priority, true)

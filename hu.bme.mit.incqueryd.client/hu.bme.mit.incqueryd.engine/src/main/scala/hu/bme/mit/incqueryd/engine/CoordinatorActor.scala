@@ -54,12 +54,14 @@ import hu.bme.mit.incqueryd.yarn.HdfsUtils
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
+import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
+import java.net.URL
 
 class CoordinatorActor extends Actor {
   
   implicit val timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)
   import context.dispatcher
-
+  
   def receive = AkkaUtils.propagateException(sender) ({
     case LoadData(vocabulary, hdfsPath, rmHostname, fileSystemUri) => {
       val types = getTypes(vocabulary, hdfsPath)
@@ -117,18 +119,18 @@ class CoordinatorActor extends Actor {
       .filter { case (key, value) => value != null }.toMap
   }
 
-  def deploy(recipes: Set[ReteNodeRecipe], rmHostname: String, fileSystemUri: String, zkAMPath : String): Map[ReteNodeRecipe, ActorRef] = {
+  def deploy(recipes: Set[ReteNodeRecipe], rmHostname: String, fileSystemUri: String, zkParentPath : String): Map[ReteNodeRecipe, ActorRef] = {
 
     val client = new AdvancedYarnClient(rmHostname, fileSystemUri)
     recipes.foreach { recipe => 
       var zkRecipePath = "/"
       recipe match {
-        case recipe: TypeInputRecipe => zkRecipePath = IncQueryDZooKeeper.inputNodesPath + "/" + ReteActorKey(recipe).internalId
-        case _ => zkRecipePath = IncQueryDZooKeeper.reteNodesPath + "/" + ReteActorKey(recipe).internalId
+        case recipe: TypeInputRecipe => zkRecipePath = s"${IncQueryDZooKeeper.inputNodesPath}/${ReteActorKey(recipe).internalId}"
+        case _ => zkRecipePath = s"${IncQueryDZooKeeper.reteNodesPath}/${ReteActorKey(recipe).internalId}"
       }
-      IncQueryDZooKeeper.createDir(zkRecipePath)
+      IncQueryDZooKeeper.setData(s"$zkRecipePath${IncQueryDZooKeeper.actorNamePath}", RemoteReteActor.reteActorName(recipe).getBytes)
     }
-    val yarnActorServices = YarnActorService.startActors(client, zkAMPath, classOf[ReteActor])
+    val yarnActorServices = YarnActorService.startActors(client, zkParentPath, classOf[ReteActor])
     
     lookup(recipes)
   }
