@@ -38,11 +38,9 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
 
 object Coordinator {
-  final val port = 2552
-  final val actorSystemName = "coordinator"
   final val actorName = "coordinator"
 
-  def actorId(ip: String) = ActorId(actorSystemName, ip, port, actorName)
+  def actorId(ip: String) = ActorId(YarnActorService.actorSystemName, ip, YarnActorService.port, actorName)
   
   def create(client: AdvancedYarnClient): Future[Coordinator] = {
     IncQueryDZooKeeper.createDir(IncQueryDZooKeeper.defaultCoordinatorPath)

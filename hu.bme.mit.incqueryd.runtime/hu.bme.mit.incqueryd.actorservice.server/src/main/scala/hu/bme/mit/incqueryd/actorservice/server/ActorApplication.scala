@@ -19,6 +19,7 @@ object ActorApplication {
     val ip = NetworkUtils.getLocalIpAddress
     val port = YarnActorService.port
     AkkaUtils.startActor(ActorId(YarnActorService.actorSystemName, ip, port, name), actorClass)
+    AkkaUtils.clientActorSystem.shutdown()
     IncQueryDZooKeeper.setData(zkApplicationPath, s"$ip:$port".getBytes)
   }
 

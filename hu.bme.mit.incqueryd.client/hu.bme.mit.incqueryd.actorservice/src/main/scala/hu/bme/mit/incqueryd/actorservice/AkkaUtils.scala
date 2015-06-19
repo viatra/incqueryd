@@ -1,23 +1,13 @@
 package hu.bme.mit.incqueryd.actorservice
 
-import scala.collection.mutable
-import scala.concurrent.duration.DurationInt
-import scala.util.Failure
-import scala.util.Success
-import scala.util.Try
-import com.typesafe.config.Config
+import akka.actor._
 import com.typesafe.config.ConfigFactory
-import akka.actor.ActorRef
-import akka.actor.ActorSystem
-import akka.actor.Address
-import akka.actor.Deploy
-import akka.actor.Props
-import akka.actor.Status
-import akka.actor.actorRef2Scala
+import eu.mondo.utils.{ NetworkUtils, UnixUtils }
+import scala.collection.JavaConversions._
+import scala.util.{ Failure, Success, Try }
+import scala.concurrent.duration._
+import scala.collection.mutable
 import akka.remote.RemoteScope
-import akka.serialization.SerializationExtension
-import eu.mondo.utils.NetworkUtils
-import akka.actor.Actor
 
 object AkkaUtils {
 
@@ -27,13 +17,11 @@ object AkkaUtils {
 
   def getRemotingActorSystem(actorSystemName: String, ip: String, port: Int): ActorSystem = {
     val id = ActorSystemId(actorSystemName, ip, port)
-    val actorSystem = actorSystems.getOrElseUpdate(id, createRemotingActorSystem(id))
-    actorSystem.actorOf(Props[DeployActor], "deploy")
-    actorSystem
+    actorSystems.getOrElseUpdate(id, createRemotingActorSystem(id))
   }
 
-  private def getActorSystemConfig(id: ActorSystemId): Config = {
-    ConfigFactory.parseString(s"""
+  private def createRemotingActorSystem(id: ActorSystemId): ActorSystem = {
+    val config = ConfigFactory.parseString(s"""
 akka {
   actor {
     provider = "akka.remote.RemoteActorRefProvider"
@@ -48,10 +36,7 @@ akka {
   }
 }
 """)
-  }
-
-  private def createRemotingActorSystem(id: ActorSystemId): ActorSystem = {
-    val actorSystem = ActorSystem(id.actorSystemName, getActorSystemConfig(id))
+    val actorSystem = ActorSystem(id.actorSystemName, config)
     Runtime.getRuntime.addShutdownHook(new Thread(new Runnable {
       def run = {
         actorSystem.terminate
@@ -70,23 +55,15 @@ akka {
   def toActorPath(id: ActorId) = {
     s"akka.tcp://${id.actorSystemName}@${id.ip}:${id.port}/user/${id.name}"
   }
-
+  
   def findActor(actorPath: String) = {
     clientActorSystem.actorFor(actorPath)
   }
-  
-  def serializeActorSystem(system : ActorSystem) : Array[Byte] = {
-    val serialization = SerializationExtension.get(system)
-    val serializer = serialization.findSerializerFor(system)
-    serializer.toBinary(system)
-  }
-  
+
   def startActor(id: ActorId, actorClass: Class[_ <: Actor]): ActorRef = {
-    val address = Address("akka.tcp", id.actorSystemName, id.ip, id.port)
-    val system = AkkaUtils.clientActorSystem
-    val deployActor = AkkaUtils.findActor(new ActorId(id.actorSystemName, id.ip, id.port, "deploy"))
-    deployActor ! DoDeploy(actorClass, id)
-    AkkaUtils.findActor(id)
+ 		val address = Address("akka.tcp", id.actorSystemName, id.ip, id.port)
+    val props = Props(actorClass).withDeploy(Deploy(scope = RemoteScope(address)))
+    clientActorSystem.actorOf(props, id.name)
   }
 
   def propagateException[T](sender: ActorRef)(fn: => T): T = {
