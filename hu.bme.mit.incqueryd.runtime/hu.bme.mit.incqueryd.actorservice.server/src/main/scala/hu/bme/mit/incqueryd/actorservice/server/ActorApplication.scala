@@ -13,16 +13,16 @@ import scala.concurrent.Await
 object ActorApplication {
 
   def main(args: Array[String]) {
-    val zkApplicationPath = args(0)
+    val zkActorPath = args(0)
     val name = args(1)
     val actorClassName = args(2)
     val actorClass = Class.forName(actorClassName).asSubclass(classOf[Actor])
     val ip = NetworkUtils.getLocalIpAddress
     val port = YarnActorService.port
-    AkkaUtils.startActor(ActorId(YarnActorService.actorSystemName, ip, port, name), actorClass)
-    IncQueryDZooKeeper.setData(zkApplicationPath, s"$ip:$port".getBytes)
-    val terminate = AkkaUtils.clientActorSystem.terminate()
-    Await.result(terminate, AkkaUtils.defaultTimeout)
+    val actorRef = AkkaUtils.startActor(ActorId(YarnActorService.actorSystemName, ip, port, name), actorClass)
+    IncQueryDZooKeeper.setData(zkActorPath + IncQueryDZooKeeper.addressPath, s"$ip:$port".getBytes)
+    IncQueryDZooKeeper.setData(zkActorPath, actorRef.path.toSerializationFormat.getBytes)
+    AkkaUtils.teminateClientActorSystem()
   }
 
 }

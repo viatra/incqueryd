@@ -123,15 +123,13 @@ class CoordinatorActor extends Actor {
 
     val client = new AdvancedYarnClient(rmHostname, fileSystemUri)
     recipes.foreach { recipe => 
-      var zkRecipePath = "/"
-      recipe match {
-        case recipe: TypeInputRecipe => zkRecipePath = s"${IncQueryDZooKeeper.inputNodesPath}/${ReteActorKey(recipe).internalId}"
-        case _ => zkRecipePath = s"${IncQueryDZooKeeper.reteNodesPath}/${ReteActorKey(recipe).internalId}"
-      }
-      IncQueryDZooKeeper.setData(s"$zkRecipePath${IncQueryDZooKeeper.actorNamePath}", RemoteReteActor.reteActorName(recipe).getBytes)
+      val zkActorPath = YellowPagesUtils.getZKActorPath(recipe)
+      IncQueryDZooKeeper.setData(s"$zkActorPath${IncQueryDZooKeeper.actorNamePath}", RemoteReteActor.reteActorName(recipe).getBytes)
     }
-    val yarnActorServices = YarnActorService.startActors(client, zkParentPath, classOf[ReteActor])
     
+    // Wait until actors starts    
+    wait(YarnActorService.startActors(client, zkParentPath, classOf[ReteActor]))
+
     lookup(recipes)
   }
 

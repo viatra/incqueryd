@@ -49,7 +49,14 @@ akka {
     actorSystem
   }
 
-  lazy val clientActorSystem = getRemotingActorSystem("client", NetworkUtils.getLocalIpAddress, 0)
+  private lazy val clientActorSystem = getRemotingActorSystem("client", NetworkUtils.getLocalIpAddress, 0)
+
+  def teminateClientActorSystem() = {
+    if (clientActorSystem != null) {
+      val terminate = clientActorSystem.terminate()
+      Await.result(terminate, AkkaUtils.defaultTimeout)
+    }
+  }
 
   def findActor(id: ActorId): ActorRef = {
     val actorPath = toActorPath(id)
@@ -65,11 +72,7 @@ akka {
   }
 
   def startActor(id: ActorId, actorClass: Class[_ <: Actor]): ActorRef = {
-// 		val address = Address("akka.tcp", id.actorSystemName, id.ip, id.port)
-//    val props = Props(actorClass).withDeploy(Deploy(scope = RemoteScope(address)))
-//    clientActorSystem.actorOf(props, id.name)
     val deployActor = AkkaUtils.findActor(new ActorId(id.actorSystemName, id.ip, id.port, YarnActorService.deployActorName))
-    IncQueryDZooKeeper.writeToFile("Deploy actor: " + deployActor.path)
     val futureDeploy = deployActor.ask(DoDeploy(actorClass, id))(defaultTimeout)
     Await.result(futureDeploy, defaultTimeout)
     AkkaUtils.findActor(id)

@@ -59,23 +59,24 @@ object YarnActorService {
         jarPath, true)
     }
     
-    val result = Promise[YarnApplication]()
     actorPaths.map { actorPath =>
-      val zkContainerAddressPath = s"$zkParentPath/$actorPath"
-      IncQueryDZooKeeper.createDir(zkContainerAddressPath)
+      val result = Promise[YarnApplication]()
+      val zkActorPath = s"$zkParentPath/$actorPath"
+      val zkActorAddressPath = s"$zkActorPath${IncQueryDZooKeeper.addressPath}"
+      IncQueryDZooKeeper.createDir(zkActorAddressPath)
       val watcher = new Watcher() {
         def process(event: WatchedEvent) {
           event.getType() match {
             case EventType.NodeCreated | EventType.NodeDataChanged => {
-              val data = IncQueryDZooKeeper.getStringData(zkContainerAddressPath)
+              val data = IncQueryDZooKeeper.getStringData(zkActorAddressPath)
               val url = HostAndPort.fromString(data)
               result.success(YarnApplication(url.getHostText, url.getPort, null))
             }
-            case _ => result.failure(new IllegalStateException(s"Unexpected event on ${zkContainerAddressPath}: $event"))
+            case _ => result.failure(new IllegalStateException(s"Unexpected event on ${zkActorAddressPath}: $event"))
           }
         }
       }
-      IncQueryDZooKeeper.getStringDataWithWatcher(zkContainerAddressPath, watcher)
+      IncQueryDZooKeeper.getStringDataWithWatcher(zkActorPath, watcher)
       result.future
     }
   }
@@ -99,8 +100,8 @@ object YarnActorService {
       List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath"),
       jarPath, true)
     
-    val result = Promise[YarnApplication]()
     yarnNodes.map { yarnNode =>
+      val result = Promise[YarnApplication]()
       val zkContainerAddressPath = IncQueryDZooKeeper.yarnNodesPath + "/" + yarnNode + IncQueryDZooKeeper.applicationPath
       IncQueryDZooKeeper.createDir(zkContainerAddressPath)
       val watcher = new Watcher() {

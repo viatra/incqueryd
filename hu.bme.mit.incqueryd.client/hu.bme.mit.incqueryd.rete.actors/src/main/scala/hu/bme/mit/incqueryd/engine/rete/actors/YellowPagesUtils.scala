@@ -15,24 +15,20 @@ import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 object YellowPagesUtils {
 
   def findActorUsingZooKeeper(recipe: ReteNodeRecipe): Option[ActorRef] = {
-    var zkRecipePath = "/"
-    recipe match {
-       case recipe: TypeInputRecipe => zkRecipePath = IncQueryDZooKeeper.inputNodesPath + "/" + ReteActorKey(recipe).internalId
-       case _ => zkRecipePath = IncQueryDZooKeeper.reteNodesPath + "/" + ReteActorKey(recipe).internalId
-    }
-    val actorPath = IncQueryDZooKeeper.getStringData(zkRecipePath)
+    val zkActorPath = getZKActorPath(recipe)
+    val actorPath = IncQueryDZooKeeper.getStringData(zkActorPath)
     Some(AkkaUtils.findActor(actorPath))
   }
-
+  
+  def getZKActorPath(recipe : ReteNodeRecipe) : String = {
+    recipe match {
+       case recipe: TypeInputRecipe => s"${IncQueryDZooKeeper.inputNodesPath}/${ReteActorKey(recipe).internalId}"
+       case _ => s"${IncQueryDZooKeeper.reteNodesPath}/${ReteActorKey(recipe).internalId}"
+    }
+  }
+  
   def findActor(recipe: ReteNodeRecipe): Option[ActorRef] = {
     findActorUsingZooKeeper(recipe)
-//    recipe match {
-//      case recipe: TypeInputRecipe => {
-//        val rdfType = RecipeUtils.findType(yellowPages.inputActorsByType.keySet, recipe)
-//        rdfType.flatMap(yellowPages.inputActorsByType.get(_))
-//      }
-//      case _ => yellowPages.otherActorsByKey.get(ReteActorKey(recipe))
-//    }
   }
 
   def getParentConnections(childRecipe: ReteNodeRecipe): Set[ReteActorConnection] = { // TODO remove parameter

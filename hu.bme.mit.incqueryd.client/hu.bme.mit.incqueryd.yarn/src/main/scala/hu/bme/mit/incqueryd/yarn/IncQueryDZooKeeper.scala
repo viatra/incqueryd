@@ -28,6 +28,7 @@ import org.apache.zookeeper.Watcher.Event.EventType
 import java.net.URL
 import scala.concurrent.duration._
 import java.io.FileWriter
+import java.util.Calendar
 
 object IncQueryDZooKeeper {
 
@@ -207,7 +208,7 @@ object IncQueryDZooKeeper {
   
   def writeToFile(obj : Object ) {
     val writer = new FileWriter("/tmp/incquery-zk-debug.txt", true)
-        writer.write("\n" + obj.toString())
+        writer.write(s"\n${Calendar.getInstance().getTime()} | ${obj.toString()}")
         writer.close()
   }
   
