@@ -23,7 +23,6 @@ class DeployActor extends Actor {
     case DoDeploy(actorClass, id) => {
       val address = Address("akka.tcp", id.actorSystemName, id.ip, id.port)
       val remoteActor = context.system.actorOf(Props(actorClass), id.name)
-      IncQueryDZooKeeper.writeToFile(s"Deploy actor: ${actorClass.getCanonicalName} actor deployed!")
       sender ! DeployDone
     }
   }

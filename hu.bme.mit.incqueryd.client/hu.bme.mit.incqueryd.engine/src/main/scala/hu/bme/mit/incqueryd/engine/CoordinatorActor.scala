@@ -46,9 +46,7 @@ import hu.bme.mit.incqueryd.engine.rete.actors.RecipeUtils
 import hu.bme.mit.incqueryd.engine.rete.actors.EstablishSubscriptions
 import hu.bme.mit.incqueryd.engine.rete.actors.Configure
 import hu.bme.mit.incqueryd.engine.rete.actors.EstablishSubscriptions
-import hu.bme.mit.incqueryd.engine.rete.actors.YellowPages
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
-import hu.bme.mit.incqueryd.engine.rete.actors.YellowPagesUtils
 import hu.bme.mit.incqueryd.engine.rete.actors.PropagateState
 import hu.bme.mit.incqueryd.yarn.HdfsUtils
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
@@ -56,6 +54,7 @@ import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
 import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
 import java.net.URL
+import hu.bme.mit.incqueryd.engine.rete.actors.ActorLookupUtils
 
 class CoordinatorActor extends Actor {
   
@@ -85,7 +84,7 @@ class CoordinatorActor extends Actor {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)
       val productionRecipe = productionRecipeOption.get // XXX Option.get
-      val production = YellowPagesUtils.findActorUsingZooKeeper(productionRecipe).get // XXX Option.get
+      val production = ActorLookupUtils.findActorUsingZooKeeper(productionRecipe).get // XXX Option.get
       production.ask(GetQueryResults).pipeTo(sender)
     }
     case StopQuery(recipeJson) => {
@@ -115,7 +114,7 @@ class CoordinatorActor extends Actor {
   }
 
   def lookup(recipes: Set[ReteNodeRecipe]): Map[ReteNodeRecipe, ActorRef] = {
-    recipes.map { recipe => recipe -> YellowPagesUtils.findActorUsingZooKeeper(recipe).getOrElse(null) }
+    recipes.map { recipe => recipe -> ActorLookupUtils.findActorUsingZooKeeper(recipe).getOrElse(null) }
       .filter { case (key, value) => value != null }.toMap
   }
 
@@ -123,7 +122,7 @@ class CoordinatorActor extends Actor {
 
     val client = new AdvancedYarnClient(rmHostname, fileSystemUri)
     recipes.foreach { recipe => 
-      val zkActorPath = YellowPagesUtils.getZKActorPath(recipe)
+      val zkActorPath = ActorLookupUtils.getZKActorPath(recipe)
       IncQueryDZooKeeper.setData(s"$zkActorPath${IncQueryDZooKeeper.actorNamePath}", RemoteReteActor.reteActorName(recipe).getBytes)
     }
     
@@ -154,7 +153,8 @@ class CoordinatorActor extends Actor {
   
   def propagateInputStates(actorsByRecipe: Map[ReteNodeRecipe, ActorRef], recipe: ReteRecipe): Unit = {
     wait(actorsByRecipe.values.map { actor =>
-      val children = YellowPagesUtils.getChildrenConnections(actor, recipe, YellowPages(Map(), Map()))
+      val children = ActorLookupUtils.getChildrenConnections(actor, recipe)
+      IncQueryDZooKeeper.writeToFile("CoordinatorActor propagateInputState: " + children)
       actor.ask(PropagateState(children))
     })
   }

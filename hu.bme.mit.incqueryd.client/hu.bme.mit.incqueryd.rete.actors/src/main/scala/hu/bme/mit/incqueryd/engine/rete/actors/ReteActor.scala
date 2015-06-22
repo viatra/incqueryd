@@ -54,7 +54,7 @@ class ReteActor extends Actor {
 
   def establishSubscriptions() = {
     log("Subscribing to parent(s)")
-    for (ReteActorConnection(parent, slot, _) <- YellowPagesUtils.getParentConnections(recipe)) {
+    for (ReteActorConnection(parent, slot, _) <- ActorLookupUtils.getParentConnections(recipe)) {
       parent ! RegisterSubscriber(slot)
     }
     sender ! SubscriptionFinished

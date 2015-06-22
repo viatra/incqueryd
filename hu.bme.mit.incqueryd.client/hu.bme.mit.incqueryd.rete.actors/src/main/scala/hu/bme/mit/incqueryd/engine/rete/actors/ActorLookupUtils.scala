@@ -12,7 +12,7 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 
-object YellowPagesUtils {
+object ActorLookupUtils {
 
   def findActorUsingZooKeeper(recipe: ReteNodeRecipe): Option[ActorRef] = {
     val zkActorPath = getZKActorPath(recipe)
@@ -51,7 +51,7 @@ object YellowPagesUtils {
     ) yield ReteActorConnection(parentActor, slot, childActor)
   }
 
-  def getChildrenConnections(parent: ActorRef, recipe: ReteRecipe, yellowPages: YellowPages): Set[ReteActorConnection] = { // TODO remove parameter
+  def getChildrenConnections(parent: ActorRef, recipe: ReteRecipe): Set[ReteActorConnection] = {
     for (
       childRecipe <- recipe.getRecipeNodes.toSet[ReteNodeRecipe];
       connection <- getParentConnections(childRecipe) if connection.parent == parent
