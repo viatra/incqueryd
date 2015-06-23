@@ -81,13 +81,13 @@ object ActorSystemsApplicationMaster {
 
       for (container <- response.getAllocatedContainers.asScala) {
         
-        val zkAppAddress = "/" + nodesIt.next() + IncQueryDZooKeeper.applicationPath
+        val zkActorSystemAddress = "/" + nodesIt.next() + IncQueryDZooKeeper.actorSystemPath
 
         val ctx = Records.newRecord(classOf[ContainerLaunchContext])
 
         ctx.setCommands(
           List(
-            s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $applicationClassName $zkAppAddress " +
+            s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $applicationClassName $zkActorSystemAddress " +
               " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
               " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
         ctx.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))

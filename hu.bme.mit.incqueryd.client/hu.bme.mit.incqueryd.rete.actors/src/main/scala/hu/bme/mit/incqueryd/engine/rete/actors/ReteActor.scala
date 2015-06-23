@@ -1,14 +1,17 @@
 package hu.bme.mit.incqueryd.engine.rete.actors
 
-import scala.collection.JavaConversions.asScalaBuffer
-import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe
-import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe
-import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe
+import java.util.concurrent.CountDownLatch
+
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.future
+
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
-import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
+
 import akka.actor.Actor
+import akka.actor.ActorPath
 import akka.actor.ActorRef
 import akka.actor.actorRef2Scala
+import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ReteNodeSlot
 import hu.bme.mit.incqueryd.engine.rete.nodes.AlphaNode
@@ -18,10 +21,6 @@ import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNode
 import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNodeFactory
 import hu.bme.mit.incqueryd.engine.rete.nodes.TypeInputNode
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
-import scala.concurrent.duration._
-import java.util.concurrent.CountDownLatch
-import scala.concurrent._
-import ExecutionContext.Implicits.global
 
 class ReteActor extends Actor {
 
@@ -55,18 +54,18 @@ class ReteActor extends Actor {
   def establishSubscriptions() = {
     log("Subscribing to parent(s)")
     for (ReteActorConnection(parent, slot, _) <- ActorLookupUtils.getParentConnections(recipe)) {
-      parent ! RegisterSubscriber(slot)
+      AkkaUtils.convertToRemoteActorRef(parent, context) ! RegisterSubscriber(slot)
     }
     sender ! SubscriptionFinished
   }
 
   def registerSubscriber(slot: ReteNodeSlot) = {
-    subscribers.put(sender, slot)
+    subscribers.put(AkkaUtils.toRemoteActorPath(sender), slot)
     sender ! SubscriberRegistered
     log("Subscriber " + sender + " registered on slot " + slot)
   }
 
-  val subscribers = scala.collection.mutable.Map[ActorRef, ReteNodeSlot]()
+  val subscribers = scala.collection.mutable.Map[ActorPath, ReteNodeSlot]()
 
   def propagateState(children: Set[ReteActorConnection]) = {
     if (children.isEmpty) {
@@ -119,15 +118,15 @@ class ReteActor extends Actor {
     }
   }
 
-  def sendToSubscriber(changeSet: ChangeSet, route: List[ActorRef], subscriber: ActorRef, slot: ReteNodeSlot) = {
-    val propagatedRoute = self :: route
+  def sendToSubscriber(changeSet: ChangeSet, route: List[ActorPath], subscriber: ActorPath, slot: ReteNodeSlot) = {
+    val propagatedRoute = selfAsRemoteActorPath :: route
     val updateMessage = new UpdateMessage(changeSet, slot, propagatedRoute)
 
     log(" Sending to " + subscriber)
     log(" " + changeSet.getChangeType + " changeset, " + changeSet.getTuples.size + " tuples")
     log(" Propagated route: " + propagatedRoute)
 
-    subscriber ! updateMessage
+    AkkaUtils.convertToRemoteActorRef(subscriber, context) ! updateMessage
   }
 
   def terminationProtocol(terminationMessage: TerminationMessage): Unit = {
@@ -141,7 +140,7 @@ class ReteActor extends Actor {
       val propagatedTerminationMessage = new TerminationMessage(newRoute)
       log("Termination protocol sending: " + newRoute + " to " + target)
       if (throttle) Thread.sleep(1000)
-      target ! propagatedTerminationMessage
+      AkkaUtils.convertToRemoteActorRef(target, context) ! propagatedTerminationMessage
     }
   }
 
@@ -153,7 +152,14 @@ class ReteActor extends Actor {
   }
 
   def log(message: String) {
-    println("(" + reteNode.getClass.getSimpleName + ", " + recipe.getTraceInfo + ") " + self + " " + message)
+    if(reteNode != null && recipe != null)
+    println("(" + reteNode.getClass.getSimpleName + ", " + recipe.getTraceInfo + ") " + selfAsRemoteActorPath + " " + message)
+    else
+      println(message)
   }
-
+  
+  private def selfAsRemoteActorPath() : ActorPath = {
+    AkkaUtils.toRemoteActorPath(self)
+  }
+  
 }

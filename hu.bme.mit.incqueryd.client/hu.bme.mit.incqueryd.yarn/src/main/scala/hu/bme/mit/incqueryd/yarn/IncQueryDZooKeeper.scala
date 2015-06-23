@@ -45,10 +45,17 @@ object IncQueryDZooKeeper {
   val yarnNodesPath = "/yarnnodes"
   val actorNamePath = "/actorname"
   
+  val applicationIdPath = "/applicationId"
   val addressPath = "/address"
   val portPath = "/port"
   
-  val applicationPath = "/actorsystem"
+  val reteNodeTypePath = "/retenodetype"
+  val subscribersPath = "/subscribers"
+  
+  val propagateSentPath = "/propagate_sent"
+  val propagateReceivedPath = "/propagate_received"
+  val propagateResponsePath = "/propagate_response_sent"
+  val actorSystemPath = "/actorsystem"
   
   val timeout = (30 seconds)
 
@@ -238,6 +245,11 @@ object IncQueryDZooKeeper {
   def createDir(path: String) {
     getConnection()
     ZKPaths.mkdirs(zk, normalizePath(path))
+  }
+  
+  def createChildDir(parent : String, child : String) {
+    getConnection()
+    ZKPaths.mkdirs(zk, parent + child)
   }
   
   def createAndGetPath(path : String) : String = {

@@ -1,17 +1,21 @@
 package hu.bme.mit.incqueryd.engine.rete.actors.tests
 
 import java.io.FileReader
-
 import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Test
-
+import BetaActorTest.system
 import akka.actor.ActorSystem
+import eu.mondo.utils.NetworkUtils
+import hu.bme.mit.incqueryd.actorservice.AkkaUtils
+import hu.bme.mit.incqueryd.actorservice.YarnActorService
 import hu.bme.mit.incqueryd.engine.rete.actors.testkits.BetaActorTestKit
 import hu.bme.mit.incqueryd.engine.rete.nodes.data.BetaTestData
 import hu.bme.mit.incqueryd.engine.test.util.GsonParser
 import hu.bme.mit.incqueryd.engine.test.util.TestCaseFinder
-import BetaActorTest._
+import org.junit.Before
+import org.junit.After
+import scala.concurrent.Await
 
 object BetaActorTest {
 
@@ -19,12 +23,12 @@ object BetaActorTest {
 
   @BeforeClass
   def setup() {
-    system = ActorSystem.create()
+    system = AkkaUtils.getRemotingActorSystem(YarnActorService.actorSystemName, NetworkUtils.getLocalIpAddress, YarnActorService.port)
   }
 
   @AfterClass
   def teardown() {
-    system.shutdown()
+     //Await.result(system.terminate(), AkkaUtils.defaultTimeout)
   }
 }
 

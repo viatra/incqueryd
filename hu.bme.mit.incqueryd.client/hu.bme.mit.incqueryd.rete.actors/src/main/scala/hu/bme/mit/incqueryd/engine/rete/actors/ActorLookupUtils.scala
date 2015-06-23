@@ -11,13 +11,14 @@ import scala.collection.JavaConversions._
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
+import akka.actor.ActorPath
 
 object ActorLookupUtils {
 
-  def findActorUsingZooKeeper(recipe: ReteNodeRecipe): Option[ActorRef] = {
+  def findActorUsingZooKeeper(recipe: ReteNodeRecipe): Option[ActorPath] = {
     val zkActorPath = getZKActorPath(recipe)
-    val actorPath = IncQueryDZooKeeper.getStringData(zkActorPath)
-    Some(AkkaUtils.findActor(actorPath))
+    val actorPathString = IncQueryDZooKeeper.getStringData(zkActorPath)
+    Some(ActorPath.fromString(actorPathString))
   }
   
   def getZKActorPath(recipe : ReteNodeRecipe) : String = {
@@ -27,7 +28,7 @@ object ActorLookupUtils {
     }
   }
   
-  def findActor(recipe: ReteNodeRecipe): Option[ActorRef] = {
+  def findActor(recipe: ReteNodeRecipe): Option[ActorPath] = {
     findActorUsingZooKeeper(recipe)
   }
 
@@ -46,12 +47,12 @@ object ActorLookupUtils {
 
   private def getActorConnection(parentRecipe: ReteNodeRecipe, slot: ReteNodeSlot, childRecipe: ReteNodeRecipe): Set[ReteActorConnection] = {
     for (
-      parentActor <- findActor(parentRecipe).toSet[ActorRef];
-      childActor <- findActor(childRecipe).toSet[ActorRef]
+      parentActor <- findActor(parentRecipe).toSet[ActorPath];
+      childActor <- findActor(childRecipe).toSet[ActorPath]
     ) yield ReteActorConnection(parentActor, slot, childActor)
   }
 
-  def getChildrenConnections(parent: ActorRef, recipe: ReteRecipe): Set[ReteActorConnection] = {
+  def getChildrenConnections(parent: ActorPath, recipe: ReteRecipe): Set[ReteActorConnection] = {
     for (
       childRecipe <- recipe.getRecipeNodes.toSet[ReteNodeRecipe];
       connection <- getParentConnections(childRecipe) if connection.parent == parent

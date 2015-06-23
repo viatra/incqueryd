@@ -9,6 +9,7 @@ import akka.actor.Address
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
 import java.net.URL
+import scala.concurrent.Await
 
 /**
  * @author pappi
@@ -25,9 +26,15 @@ class DeployActor extends Actor {
       val remoteActor = context.system.actorOf(Props(actorClass), id.name)
       sender ! DeployDone
     }
+    case GetActorRef(actorPath) => {
+      val actorRef = context.actorSelection(actorPath).resolveOne()(AkkaUtils.defaultTimeout)
+      sender ! Await.result(actorRef, AkkaUtils.defaultTimeout)
+    }
   }
+
 }
 
 sealed trait DeployCommand
 case class DoDeploy(actorClass: Class[_ <: Actor], id : ActorId) extends DeployCommand
 case class DeployDone() extends DeployCommand
+case class GetActorRef(actorPath : String)

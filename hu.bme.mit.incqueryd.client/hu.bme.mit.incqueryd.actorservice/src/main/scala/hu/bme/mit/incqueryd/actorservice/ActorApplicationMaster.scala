@@ -91,7 +91,7 @@ object ActorApplicationMaster {
         completedContainers += 1
       }
 
-      Thread.sleep(1000)
+      Thread.sleep(100)
     }
     rmClient.unregisterApplicationMaster(FinalApplicationStatus.SUCCEEDED, "", "")
     rmClient.stop()

@@ -1,3 +1,4 @@
+
 package hu.bme.mit.incqueryd.actorservice
 
 import org.apache.hadoop.yarn.api.records.ApplicationId
@@ -40,6 +41,9 @@ import org.apache.curator.utils.ZKPaths
 import com.google.common.net.HostAndPort
 import hu.bme.mit.incqueryd.yarn.YarnApplication
 import akka.actor.Actor
+import java.util.HashMap
+import akka.actor.ActorSystem
+import scala.collection.mutable
 
 object YarnActorService {
   // TODO eliminate duplication between these methods
@@ -52,11 +56,14 @@ object YarnActorService {
     
     val actorPaths = IncQueryDZooKeeper.getChildPaths(zkParentPath)
     
+    val applicationIds = mutable.Map.empty[String, ApplicationId]
+    
     actorPaths.foreach { actorPath =>
       val actorName = IncQueryDZooKeeper.getStringData(s"$zkParentPath/$actorPath" + IncQueryDZooKeeper.actorNamePath)
       val applicationId = client.runRemotely(
         List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $zkParentPath/$actorPath $actorName ${actorClass.getName}"),
         jarPath, true)
+      applicationIds.put(s"$zkParentPath/$actorPath", applicationId)
     }
     
     actorPaths.map { actorPath =>
@@ -70,7 +77,7 @@ object YarnActorService {
             case EventType.NodeCreated | EventType.NodeDataChanged => {
               val data = IncQueryDZooKeeper.getStringData(zkActorAddressPath)
               val url = HostAndPort.fromString(data)
-              result.success(YarnApplication(url.getHostText, url.getPort, null))
+              result.success(YarnApplication(url.getHostText, url.getPort, applicationIds.get(zkActorPath).get))
             }
             case _ => result.failure(new IllegalStateException(s"Unexpected event on ${zkActorAddressPath}: $event"))
           }
@@ -102,7 +109,7 @@ object YarnActorService {
     
     yarnNodes.map { yarnNode =>
       val result = Promise[YarnApplication]()
-      val zkContainerAddressPath = IncQueryDZooKeeper.yarnNodesPath + "/" + yarnNode + IncQueryDZooKeeper.applicationPath
+      val zkContainerAddressPath = IncQueryDZooKeeper.yarnNodesPath + "/" + yarnNode + IncQueryDZooKeeper.actorSystemPath
       IncQueryDZooKeeper.createDir(zkContainerAddressPath)
       val watcher = new Watcher() {
         def process(event: WatchedEvent) {
