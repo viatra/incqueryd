@@ -71,12 +71,10 @@ akka {
   }
   
   def findActor(actorPathString: String) = {
-    println("AkkaUtils findActorByActorPathString: " + actorPathString)
     getClientActorSystem.actorFor(actorPathString)
   }
   
   def findActor(actorPath : ActorPath) = {
-    println("AkkaUtils findActorByActorPath: " + actorPath)
     getClientActorSystem.actorFor(actorPath)
   }
   
@@ -97,7 +95,7 @@ akka {
     val _path = toRemoteActorPath(_actorRef.path)
     val _host = _path.address.host
     val _name = _path.name
-    if(_host == null || _host == None || _name.equals("") || _name == null || _name == None || _path.toString().contains("/temp/"))
+    if(_name.equals("") || _name == null || _name == None || _path.toString().contains("/temp/")) // XXX further cleanup needed
       return _actorRef
     val actorPathString = toActorPath(new ActorId(YarnActorService.actorSystemName, _host.get, YarnActorService.port, _name))
     convertToRemoteActorRef(actorPathString, context)
@@ -145,6 +143,6 @@ akka {
   val defaultRetryCount = 10
   val defaultDelayMillis = 1000
 
-  val defaultTimeout = 90 seconds
+  val defaultTimeout = 60 seconds
 
 }

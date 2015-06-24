@@ -78,7 +78,6 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
   }
 
   private def askCoordinator[T](message: CoordinatorCommand, timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)): T = {
-    println("Coordinator IP: " + ip)
     val coordinatorActor = AkkaUtils.findActor(Coordinator.actorId(ip))
     val future = coordinatorActor.ask(message)(timeout)
     Await.result(future, timeout.duration).asInstanceOf[T]
