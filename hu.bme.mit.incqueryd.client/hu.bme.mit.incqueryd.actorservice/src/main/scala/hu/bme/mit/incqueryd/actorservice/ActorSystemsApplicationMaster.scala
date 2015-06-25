@@ -1,4 +1,4 @@
-package hu.bme.mit.incqueryd.yarn
+package hu.bme.mit.incqueryd.actorservice
 
 import java.util.Collections
 import org.apache.hadoop.fs.Path
@@ -8,22 +8,22 @@ import org.apache.hadoop.yarn.client.api.AMRMClient.ContainerRequest
 import org.apache.hadoop.yarn.client.api.{ AMRMClient, NMClient }
 import org.apache.hadoop.yarn.conf.YarnConfiguration
 import org.apache.hadoop.yarn.util.Records
-import org.apache.hadoop.yarn.api.records.Container
 import scala.collection.JavaConverters._
-import org.apache.zookeeper.ZooKeeper
-import org.apache.zookeeper.Watcher
-import org.apache.zookeeper.WatchedEvent
-import java.net.URL
-import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
+import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
+import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
+import org.apache.hadoop.yarn.api.records.ContainerLaunchContext
+import org.apache.hadoop.yarn.api.records.Priority
+import org.apache.hadoop.yarn.api.records.Resource
+import org.apache.hadoop.yarn.api.records.ContainerLaunchContext
+import org.apache.hadoop.yarn.api.records.Priority
+import org.apache.hadoop.yarn.api.records.Resource
 
-object ApplicationMaster {
+object ActorSystemsApplicationMaster {
 
-  def main(args: Array[String]){
+  def main(args: Array[String]) {
     val jarPath = args(0)
-    val mainClass = args(1)
-    val zooKeeperHost = args(2)
-    val applicationArgument = args(3)
+    val applicationClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorSystemApplication" // XXX duplicated class name to avoid dependency on runtime
 
     // Create new YARN configuration
     implicit val conf = new YarnConfiguration()
@@ -53,16 +53,24 @@ object ApplicationMaster {
 
     //resources needed by each container
     val resource = Records.newRecord(classOf[Resource])
-    resource.setMemory(128)
+    resource.setMemory(200)
     resource.setVirtualCores(1)
 
-    val containerRequest = new ContainerRequest(resource, null, null, priority, true)
-    rmClient.addContainerRequest(containerRequest)
+    val nodes = IncQueryDZooKeeper.getYarnNodesWithZK()
 
+    nodes.foreach { node =>
+      val nodesarray = new Array[String](1)
+      nodesarray(0) = node
+      val containerRequest = new ContainerRequest(resource, nodesarray, null, priority, true)
+      rmClient.addContainerRequest(containerRequest)
+    }
+    
+    var neededContainers = nodes.length
     var responseId = 0
     var completedContainers = 0
+    val nodesIt = nodes.iterator
 
-    while (completedContainers < 1) {
+    while (completedContainers < neededContainers) {
 
       val appMasterJar = AdvancedYarnClient.setUpLocalResource(new Path(jarPath), FileSystem.get(conf))
 
@@ -72,23 +80,24 @@ object ApplicationMaster {
       responseId += 1
 
       for (container <- response.getAllocatedContainers.asScala) {
+        
+        val zkActorSystemAddress = "/" + nodesIt.next() + IncQueryDZooKeeper.actorSystemPath
 
         val ctx = Records.newRecord(classOf[ContainerLaunchContext])
 
         ctx.setCommands(
-            List(
-              "$JAVA_HOME/bin/java -Xmx256M " + mainClass + " " + applicationArgument +
-                " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
-                " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
+          List(
+            s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $applicationClassName $zkActorSystemAddress " +
+              " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
+              " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
         ctx.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))
         ctx.setEnvironment(env)
 
         System.out.println("Launching container " + container)
         nmClient.startContainer(container, ctx)
-        
-        val zk = IncQueryDZooKeeper.create(zooKeeperHost)
-        val ip = container.getNodeHttpAddress
-        zk.setData(IncQueryDZooKeeper.ipPath, ip.getBytes, IncQueryDZooKeeper.anyVersion)
+
+        // val ip = container.getNodeHttpAddress.replaceFirst(":\\d+", "")
+
       }
 
       for (status <- response.getCompletedContainersStatuses.asScala) {

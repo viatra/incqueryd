@@ -24,6 +24,10 @@ import org.apache.hadoop.yarn.api.records.ApplicationId
 import java.io.InputStream
 import org.apache.commons.io.IOUtils
 import java.io.FileInputStream
+import org.apache.hadoop.yarn.client.api.AMRMClient
+import org.apache.hadoop.yarn.client.api.AMRMClient.ContainerRequest
+import org.apache.hadoop.yarn.api.records.NodeState
+import com.google.common.net.HostAndPort
 
 class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
 
@@ -39,7 +43,7 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
     client.start()
     client
   }
-
+  
   def runRemotely(commands: List[String], jarPath: String, useDefaultClassPath: Boolean) = {
     val app = client.createApplication
     val amContainerSpec = initApplicationMasterContainerSpec(commands, jarPath, useDefaultClassPath)
@@ -47,11 +51,7 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
     val appContext = initAppContext(app, amContainerSpec, resource)
     client.submitApplication(appContext)
   }
-
-  def kill(applicationId: ApplicationId) = {
-    client.killApplication(applicationId)
-  }
-
+  
   private def initApplicationMasterContainerSpec(commands: List[String], jarPath: String, useDefaultClassPath: Boolean) = {
     val amContainer = Records.newRecord(classOf[ContainerLaunchContext])
     amContainer.setCommands(commands.asJava)
@@ -64,11 +64,11 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
 
   private def initResource = {
     val resource = Records.newRecord(classOf[Resource])
-    resource.setMemory(300)
+    resource.setMemory(200)
     resource.setVirtualCores(1)
     resource
   }
-
+  
   private def initAppContext(app: YarnClientApplication, amContainerSpec: ContainerLaunchContext, resource: Resource) = {
     val appContext = app.getApplicationSubmissionContext
     appContext.setApplicationName("IncQuery-D")
@@ -77,11 +77,20 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
     appContext.setQueue("default")
     appContext
   }
- 
+
+  def kill(applicationId: ApplicationId) = {
+    client.killApplication(applicationId)
+  }
+
+  def getRunningNodes() : List[String] = {
+    client.getNodeReports(NodeState.RUNNING).asScala.map { nodeReport => 
+      HostAndPort.fromString(nodeReport.getHttpAddress).getHostText }.toList
+  }
+  
 }
 
 object AdvancedYarnClient {
-
+  
   def setUpLocalResource(resourcePath: Path, fileSystem: FileSystem) = {
     val resource = Records.newRecord(classOf[LocalResource])
     val jarStat = fileSystem.getFileStatus(resourcePath)

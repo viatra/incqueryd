@@ -1,13 +1,18 @@
 package hu.bme.mit.incqueryd.actorservice
 
-import akka.actor._
-import com.typesafe.config.ConfigFactory
-import eu.mondo.utils.{ NetworkUtils, UnixUtils }
-
 import scala.collection.JavaConversions._
-import scala.util.{ Failure, Success, Try }
-import scala.concurrent.duration._
 import scala.collection.mutable
+import scala.concurrent.Await
+import scala.concurrent.duration._
+import scala.util.Failure
+import scala.util.Success
+import scala.util.Try
+
+import com.typesafe.config.ConfigFactory
+
+import akka.actor._
+import akka.pattern.ask
+import eu.mondo.utils.NetworkUtils
 
 object AkkaUtils {
 
@@ -45,11 +50,70 @@ akka {
     actorSystem
   }
 
-  lazy val clientActorSystem = getRemotingActorSystem("client", NetworkUtils.getLocalIpAddress, 0)
+  private var clientActorSystem : ActorSystem = null
+  
+  def getClientActorSystem() : ActorSystem = {
+    if(clientActorSystem == null || clientActorSystem.isTerminated)
+      clientActorSystem = getRemotingActorSystem("client", NetworkUtils.getLocalIpAddress, 0)
+    clientActorSystem
+  }
+  
+  def teminateClientActorSystem() = {
+    if (clientActorSystem != null) {
+      val terminate = clientActorSystem.terminate()
+      Await.result(terminate, AkkaUtils.defaultTimeout)
+    }
+  }
 
   def findActor(id: ActorId): ActorRef = {
-    val actorPath = s"akka.tcp://${id.actorSystemName}@${id.ip}:${id.port}/user/${id.name}"
-    clientActorSystem.actorFor(actorPath)
+    val actorPath = toActorPath(id)
+    findActor(actorPath)
+  }
+  
+  def findActor(actorPathString: String) = {
+    getClientActorSystem.actorFor(actorPathString)
+  }
+  
+  def findActor(actorPath : ActorPath) = {
+    getClientActorSystem.actorFor(actorPath)
+  }
+  
+  def toActorPath(id: ActorId) = {
+    s"akka.tcp://${id.actorSystemName}@${id.ip}:${id.port}/user/${id.name}"
+  }
+  
+  def toRemoteActorPath(actorRef : ActorRef) : ActorPath = {
+    toRemoteActorPath(actorRef.path)
+  }
+  
+  def toRemoteActorPath(actorPath : ActorPath) : ActorPath = {
+    val address = new Address("akka.tcp", YarnActorService.actorSystemName, NetworkUtils.getLocalIpAddress, YarnActorService.port)
+    ActorPath.fromString(actorPath.toStringWithAddress(address))
+  }
+  
+  def convertToRemoteActorRef(_actorRef : ActorRef, context: ActorContext) : ActorRef = {
+    val _path = toRemoteActorPath(_actorRef.path)
+    val _host = _path.address.host
+    val _name = _path.name
+    if(_name.equals("") || _name == null || _name == None || _path.toString().contains("/temp/")) // XXX further cleanup needed
+      return _actorRef
+    val actorPathString = toActorPath(new ActorId(YarnActorService.actorSystemName, _host.get, YarnActorService.port, _name))
+    convertToRemoteActorRef(actorPathString, context)
+  }
+  
+  def convertToRemoteActorRef(actorPathString : String, context: ActorContext) : ActorRef = {
+    context.actorFor(actorPathString)
+  }
+  
+  def convertToRemoteActorRef(actorPath : ActorPath, context : ActorContext) : ActorRef = {
+    context.actorFor(actorPath)
+  }
+  
+  def startActor(id: ActorId, actorClass: Class[_ <: Actor]): ActorRef = {
+    val deployActor = AkkaUtils.findActor(new ActorId(id.actorSystemName, id.ip, id.port, YarnActorService.deployActorName))
+    val futureDeploy = deployActor.ask(DoDeploy(actorClass, id))(defaultTimeout)
+    Await.result(futureDeploy, defaultTimeout)
+    AkkaUtils.findActor(id)
   }
 
   def propagateException[T](sender: ActorRef)(fn: => T): T = {
@@ -79,6 +143,6 @@ akka {
   val defaultRetryCount = 10
   val defaultDelayMillis = 1000
 
-  val defaultTimeout = 30 seconds
+  val defaultTimeout = 60 seconds
 
 }

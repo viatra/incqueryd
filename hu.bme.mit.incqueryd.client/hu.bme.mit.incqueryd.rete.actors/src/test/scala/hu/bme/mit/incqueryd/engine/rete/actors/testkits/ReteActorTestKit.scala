@@ -20,6 +20,7 @@ import hu.bme.mit.incqueryd.engine.rete.actors.UpdateMessage
 import hu.bme.mit.incqueryd.engine.util.RecipeDeserializer
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
 import hu.bme.mit.incqueryd.engine.rete.actors.Configure
+import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 
 abstract class ReteActorTestKit(protected val system: ActorSystem, recipeFilename: String) extends JavaTestKit(system) {
 
@@ -51,16 +52,16 @@ abstract class ReteActorTestKit(protected val system: ActorSystem, recipeFilenam
       incomingChangeSet: ChangeSet, 
       expectedChangeSet: ChangeSet, 
       targetSlot: ReteNodeSlot) {
-    val messageAStack = List(parentActor.getRef)
+    val messageAStack = List(AkkaUtils.toRemoteActorPath(parentActor.getRef))
     val messageA = UpdateMessage(incomingChangeSet, targetSlot, messageAStack)
     testedActor.tell(messageA, parentActor.getRef)
-    val messageBStack = testedActor :: messageAStack
+    val messageBStack = AkkaUtils.toRemoteActorPath(testedActor.path) :: messageAStack
     val expectedMessageB = UpdateMessage(expectedChangeSet, ReteNodeSlot.SINGLE, messageBStack)
     val actualMessageB = targetActor.expectMsgClass(duration("1 second"), classOf[UpdateMessage])
     assertEquals(expectedMessageB, actualMessageB)
     val terminationActorRef = actualMessageB.route.head
     val messageC = TerminationMessage(actualMessageB.route.drop(1))
-    terminationActorRef.tell(messageC, targetActor.getRef)
+    AkkaUtils.findActor(terminationActorRef).tell(messageC, targetActor.getRef)
     val expectedMessageD = TerminationMessage(List())
     val actualMessageD = parentActor.expectMsgClass(duration("1 second"), classOf[TerminationMessage])
     assertEquals(expectedMessageD, actualMessageD)

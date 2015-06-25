@@ -14,11 +14,11 @@ source setnames.sh
 
 # Start containers
 TARGET_PATH=`pwd`/../../hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.actorservice.server/target
-docker run --dns 127.0.0.1 -p 127.0.0.1:53:53/udp --hostname $YARN_RM_HOST --name $YARN_RM -v $TARGET_PATH:/tmp/target -i -t -d $IMAGE
+docker run --dns 127.0.0.1 -p 127.0.0.1:53:53/udp -p 127.0.0.1:2181:2181 --hostname $YARN_RM_HOST --name $YARN_RM -v $TARGET_PATH:/tmp/target -i -t -d $IMAGE
 YARN_RM_IP=$(docker inspect --format="{{.NetworkSettings.IPAddress}}" $YARN_RM)
 
-docker run --dns $YARN_RM_IP --hostname $YARN_NM1_HOST --name $YARN_NM1 -i -t -d $IMAGE 
-docker run --dns $YARN_RM_IP --hostname $YARN_NM2_HOST --name $YARN_NM2 -i -t -d $IMAGE 
+docker run --dns $YARN_RM_IP --hostname $YARN_NM1_HOST --name $YARN_NM1 -i -t -d $IMAGE
+docker run --dns $YARN_RM_IP --hostname $YARN_NM2_HOST --name $YARN_NM2 -i -t -d $IMAGE
 
 # Containers HOSTS config
 YARN_NM1_IP=$(docker inspect --format="{{.NetworkSettings.IPAddress}}" $YARN_NM1)
@@ -70,15 +70,4 @@ docker exec $YARN_NM2 /usr/local/zookeeper/bin/zkServer.sh start
 
 docker exec $YARN_RM /etc/bootstrap.sh -bash
 
-docker exec $YARN_RM /usr/local/hadoop/run_demo.sh
-
-# Legacy Actor Service
-
-cd ..
-docker build -t=$OLD_IMAGE .
-docker run -d --name $OLD_CONTAINER -p 8084:8084 -p 8094:8094 -p 2552:2552 -p 2553:2553 $OLD_IMAGE /bin/bash -c incqueryd/scripts/bootstrap-old.sh # XXX duplicated ports and path
-echo "Started container $OLD_CONTAINER"
-
-docker exec $OLD_CONTAINER /etc/write-hosts.sh $YARN_RM_IP $YARN_RM_HOST
-docker exec $OLD_CONTAINER /etc/write-hosts.sh $YARN_NM1_IP $YARN_NM1_HOST
-docker exec $OLD_CONTAINER /etc/write-hosts.sh $YARN_NM2_IP $YARN_NM2_HOST
+docker exec $YARN_RM /usr/local/hadoop/copy_runtime_to_hdfs.sh

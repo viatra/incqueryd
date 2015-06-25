@@ -3,7 +3,6 @@ package hu.bme.mit.incqueryd.engine.rete.actors.tests
 import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Test
-
 import akka.actor.ActorSystem
 import akka.actor.Props
 import akka.testkit.JavaTestKit
@@ -13,6 +12,12 @@ import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
 import hu.bme.mit.incqueryd.engine.rete.actors.SubscriberRegistered
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ReteNodeSlot
 import ReteActorTest._
+import eu.mondo.utils.NetworkUtils
+import hu.bme.mit.incqueryd.actorservice.YarnActorService
+import hu.bme.mit.incqueryd.actorservice.AkkaUtils
+import org.junit.Before
+import org.junit.After
+import scala.concurrent.Await
 
 object ReteActorTest {
 
@@ -20,12 +25,12 @@ object ReteActorTest {
 
   @BeforeClass
   def setup() {
-    system = ActorSystem.create()
+    system = AkkaUtils.getRemotingActorSystem(YarnActorService.actorSystemName, NetworkUtils.getLocalIpAddress, YarnActorService.port)
   }
 
   @AfterClass
   def teardown() {
-    system.shutdown()
+     //Await.result(system.terminate(), AkkaUtils.defaultTimeout)
   }
 }
 

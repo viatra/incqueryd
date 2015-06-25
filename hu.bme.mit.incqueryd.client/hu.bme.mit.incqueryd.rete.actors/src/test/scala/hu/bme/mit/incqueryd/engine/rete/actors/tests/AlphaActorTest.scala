@@ -11,25 +11,32 @@ import org.junit.Test
 import akka.actor.ActorSystem
 import com.google.gson.Gson
 import AlphaActorTest._
+import hu.bme.mit.incqueryd.actorservice.AkkaUtils
+import hu.bme.mit.incqueryd.actorservice.YarnActorService
+import eu.mondo.utils.NetworkUtils
+import org.junit.Before
+import org.junit.After
+import scala.concurrent.Await
 
 object AlphaActorTest {
 
-  protected var system: ActorSystem = _
+  var system: ActorSystem = _
 
   @BeforeClass
   def setup() {
-    system = ActorSystem.create()
+    system = AkkaUtils.getRemotingActorSystem(YarnActorService.actorSystemName, NetworkUtils.getLocalIpAddress, YarnActorService.port)
   }
 
   @AfterClass
   def teardown() {
-    system.shutdown()
+    //Await.result(system.terminate(), AkkaUtils.defaultTimeout)
   }
 }
 
 class AlphaActorTest {
 
   private def alphaNodeTest(typeString: String) {
+    
     val files = TestCaseFinder.getTestCases(typeString + "-test-*.json")
     for (testFile <- files) {
       val recipeFile = testFile.getPath.replace("-test-", "-recipe-")
@@ -37,7 +44,9 @@ class AlphaActorTest {
       val data = gson.fromJson(new FileReader(testFile), classOf[AlphaTestData])
       val testKit = new AlphaActorTestKit(system, recipeFile)
       testKit.test(data)
+
     }
+
   }
 
   @Test

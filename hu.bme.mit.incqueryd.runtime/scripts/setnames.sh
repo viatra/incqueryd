@@ -13,8 +13,3 @@ export YARN_NM2=yarn-docker-node2
 export YARN_RM_HOST=yarn-rm.docker
 export YARN_NM1_HOST=yarn-node1.docker
 export YARN_NM2_HOST=yarn-node2.docker
-
-# Legacy Actor Service
-
-export OLD_IMAGE=incqueryd/node
-export OLD_CONTAINER=incqueryd

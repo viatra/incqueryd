@@ -19,11 +19,9 @@ import org.openrdf.model.impl.LinkedHashModel
 import org.openrdf.rio.Rio
 import org.openrdf.rio.helpers.StatementCollector
 import eu.mondo.utils.NetworkUtils
-import hu.bme.mit.incqueryd.bootstrapagent.client.BootstrapAgent
 import hu.bme.mit.incqueryd.engine.CoordinatorActor
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
-import hu.bme.mit.incqueryd.infrastructureagent.client.InfrastructureAgent
 import hu.bme.mit.incqueryd.inventory.Inventory
 import hu.bme.mit.incqueryd.inventory.MachineInstance
 import upickle._
@@ -35,6 +33,9 @@ import scala.concurrent.duration._
 import hu.bme.mit.incqueryd.yarn.HdfsUtils
 import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
 import org.apache.commons.io.IOUtils
+import hu.bme.mit.incqueryd.actorservice.YarnActorService
+import scala.concurrent.Future
+import scala.concurrent.ExecutionContext.Implicits.global
 
 class ITBasic {
 
@@ -46,42 +47,33 @@ class ITBasic {
     val expectedResult = Set(52, 138, 78, 391).map(n => new Tuple(new Long(n)))
     val rmHostname = "yarn-rm.docker"
     val fileSystemUri = "hdfs://yarn-rm.docker:9000"
-    val zooKeeperHost = rmHostname
+    val zkHostname = rmHostname
     val timeout = 30 seconds
-
-    val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
 
     val testFile = new File(getClass.getClassLoader.getResource(modelFileName).getFile)
     val testFilePath = fileSystemUri + "/test/" + modelFileName
     val hdfs = HdfsUtils.getDistributedFileSystem(fileSystemUri)
     HdfsUtils.upload(hdfs, testFile, testFilePath)
 
-    val coordinator = Await.result(Coordinator.create(advancedYarnClient, zooKeeperHost), timeout)
+    val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
+    Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), timeout)
+    val coordinator = Await.result(Coordinator.create(advancedYarnClient), timeout)
+
     val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
-    val inventory = loadInventory
-    val index = coordinator.loadData(testFilePath, vocabulary, inventory)
+    coordinator.loadData(vocabulary, testFilePath, rmHostname, fileSystemUri)
 
     val recipe = loadRecipe
-    val network = coordinator.startQuery(recipe, index)
+    coordinator.startQuery(recipe, rmHostname, fileSystemUri)
 
     try {
-      val result = coordinator.checkResults(recipe, network, patternName)
+      val result = coordinator.checkResults(recipe, patternName)
       println(s"Query result: $result")
       assertEquals(expectedResult, result)
     } finally {
-      coordinator.stopQuery(network)
+      coordinator.stopQuery(recipe, zkHostname)
       coordinator.dispose
     }
-  }
-
-  private def loadInventory = {
-    val actorServiceIpKey: String = "actorServiceIp"
-    val actorServiceIp = System.getProperty(actorServiceIpKey)
-    if (actorServiceIp == null) {
-      throw new IllegalArgumentException(s"VM argument $actorServiceIpKey is not set!")
-    }
-    val actorServiceMachine = MachineInstance(8 * 1024, actorServiceIp)
-    Inventory(List(actorServiceMachine), actorServiceMachine)
+    // TODO finally stop actor systems
   }
 
   private def loadRdf(documentUrl: URL): Model = {

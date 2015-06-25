@@ -3,7 +3,8 @@ package hu.bme.mit.incqueryd.coordinator.client
 import akka.pattern.ask
 import akka.util.Timeout
 import hu.bme.mit.incqueryd.engine._
-import hu.bme.mit.incqueryd.inventory.{Inventory, MachineInstance}
+import hu.bme.mit.incqueryd.engine.RemoteReteActor
+import hu.bme.mit.incqueryd.inventory.{ Inventory, MachineInstance }
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.openrdf.model.Model
 import scala.concurrent.Await
@@ -12,7 +13,6 @@ import hu.bme.mit.incqueryd.actorservice.ActorId
 import hu.bme.mit.incqueryd.actorservice.ActorId
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
-import hu.bme.mit.incqueryd.engine.DeploymentResult
 import hu.bme.mit.incqueryd.engine.util.EObjectSerializer
 import java.util.HashSet
 import java.util.ArrayList
@@ -20,8 +20,6 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import scala.collection.JavaConversions._
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
-import hu.bme.mit.incqueryd.actorservice.RemoteActorService
-import hu.bme.mit.incqueryd.yarn.ApplicationMaster
 import org.apache.hadoop.yarn.api.records.ApplicationId
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import scala.concurrent.Promise
@@ -35,66 +33,48 @@ import org.apache.zookeeper.data.ACL
 import org.apache.zookeeper.ZooDefs.Perms
 import org.apache.zookeeper.ZooDefs.Ids
 import java.net.URI
-import hu.bme.mit.incqueryd.yarn.ApplicationMaster
+import hu.bme.mit.incqueryd.actorservice.YarnActorService
+import scala.concurrent.ExecutionContext.Implicits.global
+import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
 
 object Coordinator {
-  final val port = 2552
-  final val actorSystemName = "coordinator"
   final val actorName = "coordinator"
-  def actorId(ip: String) = ActorId(actorSystemName, ip, port, actorName)
+
+  def actorId(ip: String) = ActorId(YarnActorService.actorSystemName, ip, YarnActorService.port, actorName)
   
-  def create(client: AdvancedYarnClient, zooKeeperHost: String): Future[Coordinator] = {
-    val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
-    val zk = IncQueryDZooKeeper.create(zooKeeperHost)
-    if (zk.exists(IncQueryDZooKeeper.ipPath, false) == null) {
-    	zk.create(IncQueryDZooKeeper.ipPath, Array[Byte](), List(new ACL(Perms.ALL, Ids.ANYONE_ID_UNSAFE)), CreateMode.PERSISTENT)
+  def create(client: AdvancedYarnClient): Future[Coordinator] = {
+    IncQueryDZooKeeper.setData(IncQueryDZooKeeper.defaultCoordinatorPath + IncQueryDZooKeeper.actorNamePath, actorName.getBytes)
+    val startCoordinator = YarnActorService.startActors(client, IncQueryDZooKeeper.coordinatorsPath, classOf[CoordinatorActor]).get(0)
+    startCoordinator.map { coordinatorApplication =>
+      new Coordinator(coordinatorApplication.ip, client, coordinatorApplication.applicationId)
     }
-    val appMasterObjectName = ApplicationMaster.getClass.getName
-    val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1)
-    val actorServiceClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorServiceApplication" // XXX duplicated class name to avoid dependency on runtime
-    val applicationId = client.runRemotely(
-        List("$JAVA_HOME/bin/java -Xmx256M " + appMasterClassName + " " + jarPath + " " + actorServiceClassName + " " + zooKeeperHost + " server"),
-        jarPath, true)
-    val result = Promise[Coordinator]()
-    zk.getData(IncQueryDZooKeeper.ipPath, new Watcher() {
-      def process(event: WatchedEvent) {
-        event.getType() match {
-          case EventType.NodeCreated | EventType.NodeDataChanged => {
-            val data = zk.getData(IncQueryDZooKeeper.ipPath, false, new Stat())
-            val ipWithPort = new String(data)
-            val ip = ipWithPort.replaceFirst(":\\d+", "")
-            Thread.sleep((8 seconds).toMillis) // Wait for server to start
-            new RemoteActorService(ip).start(Coordinator.actorId(ip), classOf[CoordinatorActor])
-            result.success(new Coordinator(ip, client, applicationId))
-          }
-          case _ => result.failure(new IllegalStateException(s"Unexpected event on ${IncQueryDZooKeeper.ipPath}: $event"))
-        }
-      }
-    }, new Stat())
-    result.future
   }
+
 }
 
 class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: ApplicationId) {
 
-  def loadData(hdfsPath: String, vocabulary: Model, inventory: Inventory): DeploymentResult = {
+  def loadData(vocabulary: Model, hdfsPath: String, rmHostname: String, fileSystemUri: String): Boolean = {
     println(s"Loading data")
-    askCoordinator[DeploymentResult](LoadData(hdfsPath, vocabulary, inventory))
+    askCoordinator[Boolean](LoadData(vocabulary, hdfsPath, rmHostname, fileSystemUri))
   }
 
-  def startQuery(recipe: ReteRecipe, index: DeploymentResult): DeploymentResult = {
+  def startQuery(recipe: ReteRecipe, rmHostname: String, fileSystemUri: String): Boolean = {
     println(s"Starting query")
-    askCoordinator[DeploymentResult](StartQuery(EObjectSerializer.serializeToString(recipe), index))
+    val recipeJson = EObjectSerializer.serializeToString(recipe)
+    askCoordinator[Boolean](StartQuery(recipeJson, rmHostname, fileSystemUri))
   }
 
-  def checkResults(recipe: ReteRecipe, index: DeploymentResult, patternName: String): Set[Tuple] = {
+  def checkResults(recipe: ReteRecipe, patternName: String): Set[Tuple] = {
     println(s"Checking results")
-    askCoordinator[HashSet[Tuple]](CheckResults(EObjectSerializer.serializeToString(recipe), index, patternName)).toSet
+    val recipeJson = EObjectSerializer.serializeToString(recipe)
+    askCoordinator[HashSet[Tuple]](CheckResults(recipeJson, patternName)).toSet
   }
 
-  def stopQuery(network: DeploymentResult) {
+  def stopQuery(recipe: ReteRecipe, zkHostname: String): Boolean = {
     println(s"Stopping query")
-    askCoordinator[String](StopQuery(network))
+    val recipeJson = EObjectSerializer.serializeToString(recipe)
+    askCoordinator[Boolean](StopQuery(recipeJson))
   }
 
   private def askCoordinator[T](message: CoordinatorCommand, timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)): T = {
