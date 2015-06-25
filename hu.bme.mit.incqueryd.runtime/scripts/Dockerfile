@@ -96,6 +96,14 @@ ADD zkServer.sh /usr/local/zookeeper/bin/zkServer.sh
 RUN chown root:root /usr/local/zookeeper/bin/zkServer.sh
 RUN chmod 700 /usr/local/zookeeper/bin/zkServer.sh
 
+# Download and install Spark
+RUN curl -s http://xenia.sote.hu/ftp/mirrors/www.apache.org/spark/spark-1.4.0/spark-1.4.0-bin-hadoop2.6.tgz | tar xz -C /usr/local/
+RUN cd /usr/local && ln -s ./spark-1.3.1-bin-hadoop2.6 spark
+
+ENV SPARK_HOME=/usr/local/spark
+RUN echo "export SPARK_HOME=/usr/local/spark" >> /etc/profile
+RUN echo "export SPARK_CLASSPATH=$SPARK_HOME/lib/" >> /etc/profile
+
 # Add dnsmasq.conf file
 ADD dnsmasq.conf /etc/dnsmasq.conf
 ADD dnsmasq.resolv.conf /etc/dnsmasq.resolv.conf
