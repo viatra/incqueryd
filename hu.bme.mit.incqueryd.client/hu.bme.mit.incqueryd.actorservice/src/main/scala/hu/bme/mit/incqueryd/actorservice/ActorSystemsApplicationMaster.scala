@@ -87,7 +87,7 @@ object ActorSystemsApplicationMaster {
 
         ctx.setCommands(
           List(
-            s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $applicationClassName $zkActorSystemAddress " +
+            s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M -agentlib:jdwp=transport=dt_socket,address=9999,server=y,suspend=n $applicationClassName $zkActorSystemAddress " +
               " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
               " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
         ctx.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))
