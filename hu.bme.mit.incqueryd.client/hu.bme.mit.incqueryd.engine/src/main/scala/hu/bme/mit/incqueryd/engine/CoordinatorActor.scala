@@ -78,7 +78,6 @@ class CoordinatorActor extends Actor {
       val otherActorsByRecipe = deploy(notTypeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.reteNodesPath)
       configure(otherActorsByRecipe, "")
       establishSubscriptions(otherActorsByRecipe)
-      // val typeInputRecipes = recipe.getRecipeNodes.filter(_.isInstanceOf[TypeInputRecipe]).toSet  // !!! It returns all TypeInputRecipe instances; we need only one per types !!!
       val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
       val inputActorsByRecipe = lookup(typeInputRecipes)
       propagateInputStates(inputActorsByRecipe, recipe)
@@ -95,6 +94,11 @@ class CoordinatorActor extends Actor {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe]).toSet
       undeploy(notTypeInputRecipes)
+      sender ! true
+    }
+    case Dispose() => {
+      val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
+      undeploy(typeInputRecipes)
       sender ! true
     }
   })

@@ -1,41 +1,29 @@
 package hu.bme.mit.incqueryd.coordinator.client
 
-import akka.pattern.ask
-import akka.util.Timeout
-import hu.bme.mit.incqueryd.engine._
-import hu.bme.mit.incqueryd.engine.RemoteReteActor
-import hu.bme.mit.incqueryd.inventory.{ Inventory, MachineInstance }
+import java.util.HashSet
+
+import scala.collection.JavaConversions._
+import scala.concurrent.Await
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
+import scala.concurrent.duration._
+
+import org.apache.hadoop.yarn.api.records.ApplicationId
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.openrdf.model.Model
-import scala.concurrent.Await
-import scala.concurrent.duration._
+
+import akka.pattern.ask
+import akka.util.Timeout
 import hu.bme.mit.incqueryd.actorservice.ActorId
 import hu.bme.mit.incqueryd.actorservice.ActorId
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
-import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
-import hu.bme.mit.incqueryd.engine.util.EObjectSerializer
-import java.util.HashSet
-import java.util.ArrayList
-import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
-import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
-import scala.collection.JavaConversions._
-import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
-import org.apache.hadoop.yarn.api.records.ApplicationId
-import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
-import scala.concurrent.Promise
-import org.apache.zookeeper.Watcher
-import org.apache.zookeeper.WatchedEvent
-import org.apache.zookeeper.data.Stat
-import org.apache.zookeeper.Watcher.Event.EventType
-import scala.concurrent.Future
-import org.apache.zookeeper.CreateMode
-import org.apache.zookeeper.data.ACL
-import org.apache.zookeeper.ZooDefs.Perms
-import org.apache.zookeeper.ZooDefs.Ids
-import java.net.URI
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
-import scala.concurrent.ExecutionContext.Implicits.global
+import hu.bme.mit.incqueryd.engine._
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
+import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
+import hu.bme.mit.incqueryd.engine.util.EObjectSerializer
+import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
+import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 
 object Coordinator {
   final val actorName = "coordinator"
@@ -84,6 +72,8 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
   }
 
   def dispose = {
+    println("Dispose ... ")
+    askCoordinator[Boolean](Dispose())
     client.kill(applicationId)
   }
 

@@ -9,3 +9,4 @@ case class LoadData(vocabulary: Model, hdfsPath: String, rmHostname: String, fil
 case class StartQuery(recipeJson: String, rmHostname: String, fileSystemUri: String) extends CoordinatorCommand
 case class CheckResults(recipeJson: String, patternName: String) extends CoordinatorCommand
 case class StopQuery(recipeJson: String) extends CoordinatorCommand
+case class Dispose() extends CoordinatorCommand

@@ -48,17 +48,22 @@ class ITBasic {
     val rmHostname = "yarn-rm.docker"
     val fileSystemUri = "hdfs://yarn-rm.docker:9000"
     val zkHostname = rmHostname
-    val timeout = 30 seconds
-
+    val timeout = 300 seconds
+    
+    val hdfs = HdfsUtils.getDistributedFileSystem(fileSystemUri)
+    
+    // Upload testfile
     val testFile = new File(getClass.getClassLoader.getResource(modelFileName).getFile)
     val testFilePath = fileSystemUri + "/test/" + modelFileName
-    val hdfs = HdfsUtils.getDistributedFileSystem(fileSystemUri)
     HdfsUtils.upload(hdfs, testFile, testFilePath)
-
+    
+    // Upload jar file
+    val ret = sys.process.stringToProcess("docker exec yarn-docker-rm /usr/local/hadoop/copy_runtime_to_hdfs.sh").run()
+    
     val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
     Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), timeout)
     val coordinator = Await.result(Coordinator.create(advancedYarnClient), timeout)
-
+    
     val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
     coordinator.loadData(vocabulary, testFilePath, rmHostname, fileSystemUri)
 
@@ -73,7 +78,8 @@ class ITBasic {
       coordinator.stopQuery(recipe, zkHostname)
       coordinator.dispose
     }
-    // TODO finally stop actor systems
+    
+    YarnActorService.stopActorSystems()
   }
 
   private def loadRdf(documentUrl: URL): Model = {

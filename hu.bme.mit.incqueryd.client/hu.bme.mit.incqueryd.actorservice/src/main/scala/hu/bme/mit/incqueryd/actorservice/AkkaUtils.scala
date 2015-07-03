@@ -110,8 +110,8 @@ akka {
   }
   
   def startActor(id: ActorId, actorClass: Class[_ <: Actor]): ActorRef = {
-    val deployActor = AkkaUtils.findActor(new ActorId(id.actorSystemName, id.ip, id.port, YarnActorService.deployActorName))
-    val futureDeploy = deployActor.ask(DoDeploy(actorClass, id))(defaultTimeout)
+    val serviceActor = AkkaUtils.findActor(new ActorId(id.actorSystemName, id.ip, id.port, YarnActorService.serviceActorName))
+    val futureDeploy = serviceActor.ask(DoDeploy(actorClass, id))(defaultTimeout)
     Await.result(futureDeploy, defaultTimeout)
     AkkaUtils.findActor(id)
   }
@@ -143,6 +143,6 @@ akka {
   val defaultRetryCount = 10
   val defaultDelayMillis = 1000
 
-  val defaultTimeout = 60 seconds
+  val defaultTimeout = 300 seconds
 
 }
