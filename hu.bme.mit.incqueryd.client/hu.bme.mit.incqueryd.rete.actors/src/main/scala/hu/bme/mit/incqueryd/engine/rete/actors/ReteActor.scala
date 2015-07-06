@@ -97,14 +97,24 @@ class ReteActor extends Actor {
       case alphaNode: AlphaNode => {
         val changeSet = alphaNode.update(updateMessage.changeSet)
         for ((subscriber, slot) <- subscribers) {
-	      sendToSubscriber(changeSet, updateMessage.route, subscriber, slot)
-	    }
+          sendToSubscriber(changeSet, updateMessage.route, subscriber, slot)
+        }
       }
       case betaNode: BetaNode => {
         val changeSet = betaNode.update(updateMessage.changeSet, updateMessage.slot)
         for ((subscriber, slot) <- subscribers) {
-	      sendToSubscriber(changeSet, updateMessage.route, subscriber, slot)
-	    }
+          sendToSubscriber(changeSet, updateMessage.route, subscriber, slot)
+        }
+      }
+      case inputNode: TypeInputNode => {
+          // Update inputNode state
+          inputNode.update(updateMessage.changeSet)
+          
+          // Propagate changes to subscribers
+          val route = List()
+          for((subscriber, slot) <- subscribers) {
+            sendToSubscriber(updateMessage.changeSet, route, subscriber, slot)
+          }
       }
       case _ => {}
     }
@@ -148,18 +158,18 @@ class ReteActor extends Actor {
 
   def getQueryResults = {
     val productionNode = reteNode.asInstanceOf[ProductionNode]
-	sender ! productionNode.getResults
+    sender ! productionNode.getResults
   }
 
   def log(message: String) {
-    if(reteNode != null && recipe != null)
-    println("(" + reteNode.getClass.getSimpleName + ", " + recipe.getTraceInfo + ") " + selfAsRemoteActorPath + " " + message)
+    if (reteNode != null && recipe != null)
+      println("(" + reteNode.getClass.getSimpleName + ", " + recipe.getTraceInfo + ") " + selfAsRemoteActorPath + " " + message)
     else
       println(message)
   }
-  
-  private def selfAsRemoteActorPath() : ActorPath = {
+
+  private def selfAsRemoteActorPath(): ActorPath = {
     AkkaUtils.toRemoteActorPath(self)
   }
-  
+
 }
