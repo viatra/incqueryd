@@ -1,17 +1,14 @@
 package hu.bme.mit.incqueryd.coordinator.client
 
 import java.util.HashSet
-
 import scala.collection.JavaConversions._
 import scala.concurrent.Await
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.concurrent.duration._
-
 import org.apache.hadoop.yarn.api.records.ApplicationId
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.openrdf.model.Model
-
 import akka.pattern.ask
 import akka.util.Timeout
 import hu.bme.mit.incqueryd.actorservice.ActorId
@@ -24,6 +21,9 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import hu.bme.mit.incqueryd.engine.util.EObjectSerializer
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
+import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
+import hu.bme.mit.incqueryd.engine.PropagateInputChanges
 
 object Coordinator {
   final val actorName = "coordinator"
@@ -58,7 +58,11 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
     val recipeJson = EObjectSerializer.serializeToString(recipe)
     askCoordinator[HashSet[Tuple]](CheckResults(recipeJson, patternName)).toSet
   }
-
+  
+  def sendChangesToInputs(inputChanges : Map[String, ChangeSet]): Boolean = {
+    askCoordinator[Boolean](PropagateInputChanges(inputChanges))
+  }
+  
   def stopQuery(recipe: ReteRecipe, zkHostname: String): Boolean = {
     println(s"Stopping query")
     val recipeJson = EObjectSerializer.serializeToString(recipe)

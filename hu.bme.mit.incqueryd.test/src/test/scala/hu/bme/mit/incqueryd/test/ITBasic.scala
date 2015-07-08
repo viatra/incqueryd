@@ -36,6 +36,10 @@ import org.apache.commons.io.IOUtils
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
+import java.util.HashSet
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
+import java.util.HashMap
 
 class ITBasic {
 
@@ -45,10 +49,11 @@ class ITBasic {
     val vocabularyFileName = "vocabulary.rdf"
     val patternName = "switchSensor"
     val expectedResult = Set(52, 138, 78, 391).map(n => new Tuple(new Long(n)))
+    val expectedResultAfterChange = Set(52, 78, 391).map(n => new Tuple(new Long(n)))
     val rmHostname = "yarn-rm.docker"
     val fileSystemUri = "hdfs://yarn-rm.docker:9000"
     val zkHostname = rmHostname
-    val timeout = 300 seconds
+    val timeout = 3000 seconds
     
     val hdfs = HdfsUtils.getDistributedFileSystem(fileSystemUri)
     
@@ -71,9 +76,26 @@ class ITBasic {
     coordinator.startQuery(recipe, rmHostname, fileSystemUri)
 
     try {
+      val initResult = coordinator.checkResults(recipe, patternName)
+      println(s"Query result: $initResult")
+      assertEquals(expectedResult, initResult)
+      
+      // Create simple ChangeSet - XXX 
+      val tuple = new Tuple(new Long(138))
+      val tupleSet = new HashSet[Tuple]()
+      tupleSet.add(tuple)
+      val changeSet = new ChangeSet(tupleSet, ChangeType.NEGATIVE)
+      val inputChanges = new HashMap[String, ChangeSet]()
+      inputChanges.put("Switch", changeSet) // XXX input type ID can get from ZK
+      
+      // Propagate changes
+      coordinator.sendChangesToInputs(inputChanges.toMap)
+      
+      // Get result after changes
       val result = coordinator.checkResults(recipe, patternName)
       println(s"Query result: $result")
-      assertEquals(expectedResult, result)
+      assertEquals(expectedResultAfterChange, result)
+      
     } finally {
       coordinator.stopQuery(recipe, zkHostname)
       coordinator.dispose
