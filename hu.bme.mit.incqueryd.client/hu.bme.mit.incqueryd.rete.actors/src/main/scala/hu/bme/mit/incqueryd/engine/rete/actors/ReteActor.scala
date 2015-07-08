@@ -29,6 +29,7 @@ class ReteActor extends Actor {
     case EstablishSubscriptions() => establishSubscriptions()
     case RegisterSubscriber(slot) => registerSubscriber(slot)
     case PropagateState(children) => propagateState(children)
+    case PropagateInputState(changeSet) => propagateInputChange(changeSet)
     case updateMessage: UpdateMessage => update(updateMessage)
     case terminationMessage: TerminationMessage => terminationProtocol(terminationMessage)
     case GetQueryResults => getQueryResults
@@ -87,7 +88,32 @@ class ReteActor extends Actor {
       } // TODO timeout?
     }
   }
-
+  
+  // XXX merge this method with propagateState?
+  def propagateInputChange(changeSet : ChangeSet) = {
+    if(changeSet.getTuples.isEmpty()) {
+      sender ! StatePropagated
+    } else {
+      log(s"Propagating input changes to ${subscribers.size} subscriber")
+      for ((subscriber, slot) <- subscribers) {
+        val route = List()
+        sendToSubscriber(changeSet, route, subscriber, slot)
+      }
+      
+      // Update the input node state
+      reteNode.asInstanceOf[TypeInputNode].update(changeSet)
+ 
+      val originalSender = sender
+      pending = new CountDownLatch(subscribers.size)
+      future {
+        pending.await
+      } onSuccess {
+        case _ =>
+          originalSender ! StatePropagated
+      } // TODO timeout?
+    }
+  }
+  
   var pending: CountDownLatch = _
 
   def update(updateMessage: UpdateMessage) = {
@@ -105,16 +131,6 @@ class ReteActor extends Actor {
         for ((subscriber, slot) <- subscribers) {
           sendToSubscriber(changeSet, updateMessage.route, subscriber, slot)
         }
-      }
-      case inputNode: TypeInputNode => {
-          // Update inputNode state
-          inputNode.update(updateMessage.changeSet)
-          
-          // Propagate changes to subscribers
-          val route = List()
-          for((subscriber, slot) <- subscribers) {
-            sendToSubscriber(updateMessage.changeSet, route, subscriber, slot)
-          }
       }
       case _ => {}
     }
