@@ -72,7 +72,7 @@ object RecipeUtils {
 
   def findProductionRecipe(recipe: ReteRecipe, patternName: String): Option[ProductionRecipe] = {
     val productionRecipes = recipe.getRecipeNodes.collect { case productionRecipe: ProductionRecipe => productionRecipe }
-    productionRecipes.find(_.getTraceInfo.startsWith(patternName)) // XXX naming convention
+    productionRecipes.find(_.getTraceInfo.startsWith(patternName)) // XXX relying on naming convention
   }
 
 }

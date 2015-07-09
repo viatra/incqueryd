@@ -78,8 +78,7 @@ class CoordinatorActor extends Actor {
       val otherActorsByRecipe = deploy(notTypeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.reteNodesPath)
       configure(otherActorsByRecipe, "")
       establishSubscriptions(otherActorsByRecipe)
-      // val typeInputRecipes = recipe.getRecipeNodes.filter(_.isInstanceOf[TypeInputRecipe]).toSet  // !!! It returns all TypeInputRecipe instances; we need only one per types !!!
-      val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
+      val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe) // Only one per type
       val inputActorsByRecipe = lookup(typeInputRecipes)
       propagateInputStates(inputActorsByRecipe, recipe)
       sender ! true
@@ -130,7 +129,7 @@ class CoordinatorActor extends Actor {
       IncQueryDZooKeeper.setData(s"$zkActorPath${IncQueryDZooKeeper.actorNamePath}", RemoteReteActor.reteActorName(recipe).getBytes)
     }
     
-    // Wait until actors starts    
+    // Wait until actors start
     wait(YarnActorService.startActors(client, zkParentPath, classOf[ReteActor]))
 
     lookup(recipes)

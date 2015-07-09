@@ -32,7 +32,7 @@ object ActorLookupUtils {
     findActorUsingZooKeeper(recipe)
   }
 
-  def getParentConnections(childRecipe: ReteNodeRecipe): Set[ReteActorConnection] = { // TODO remove parameter
+  def getParentConnections(childRecipe: ReteNodeRecipe): Set[ReteActorConnection] = {
     childRecipe match {
       case alphaRecipe: AlphaRecipe =>
         getActorConnection(alphaRecipe.getParent, ReteNodeSlot.SINGLE, childRecipe)
