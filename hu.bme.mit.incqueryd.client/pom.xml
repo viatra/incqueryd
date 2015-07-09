@@ -45,7 +45,6 @@
 		<module>hu.bme.mit.incqueryd.rete.actors</module>
 		<module>hu.bme.mit.incqueryd.engine</module>
 		<module>hu.bme.mit.incqueryd.coordinator.client</module>
-		<module>hu.bme.mit.incqueryd.monitoringserver.client</module>
 		<module>hu.bme.mit.incqueryd.yarn</module>
 	</modules>
 	<name>IncQuery-D Client</name>
