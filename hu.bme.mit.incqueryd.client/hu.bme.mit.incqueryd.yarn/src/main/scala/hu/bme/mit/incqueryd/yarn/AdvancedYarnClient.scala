@@ -30,10 +30,13 @@ import org.apache.hadoop.yarn.api.records.NodeState
 import com.google.common.net.HostAndPort
 
 class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
-
+  
+  val memory_mb = "512"
+  
   val conf = {
     val conf = new YarnConfiguration()
     conf.set(YarnConfiguration.RM_HOSTNAME, rmHostname)
+    conf.set(YarnConfiguration.RM_SCHEDULER_MAXIMUM_ALLOCATION_MB, memory_mb)
     conf
   }
 
@@ -64,8 +67,8 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
 
   private def initResource = {
     val resource = Records.newRecord(classOf[Resource])
-    resource.setMemory(200)
-    resource.setVirtualCores(1)
+    resource.setMemory(new Integer(memory_mb))
+    resource.setVirtualCores(2)
     resource
   }
   

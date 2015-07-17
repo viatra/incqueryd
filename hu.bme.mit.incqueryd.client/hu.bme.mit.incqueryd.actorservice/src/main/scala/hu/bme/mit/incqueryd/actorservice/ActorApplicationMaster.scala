@@ -24,9 +24,12 @@ object ActorApplicationMaster {
     val actorName = args(2)
     val actorClassName = args(3)
 
+    val memory_mb = "512"
+
     // Create new YARN configuration
     implicit val conf = new YarnConfiguration()
-
+    
+    conf.set(YarnConfiguration.RM_SCHEDULER_MAXIMUM_ALLOCATION_MB, memory_mb)
     // Create a client to talk to the RM
     val rmClient = AMRMClient.createAMRMClient().asInstanceOf[AMRMClient[ContainerRequest]]
 
@@ -50,11 +53,11 @@ object ActorApplicationMaster {
     val priority = Records.newRecord(classOf[Priority])
     priority.setPriority(0)
 
-    //resources needed by each container
+    //resources needed by each Actor
     val resource = Records.newRecord(classOf[Resource])
-    resource.setMemory(100)
-    resource.setVirtualCores(1)
-
+    resource.setMemory(new Integer(memory_mb))
+    resource.setVirtualCores(2)
+    
     val containerRequest = new ContainerRequest(resource, null, null, priority, true)
     rmClient.addContainerRequest(containerRequest)
 
@@ -76,7 +79,7 @@ object ActorApplicationMaster {
 
         ctx.setCommands(
             List(
-              s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $applicationClassName $zkActorPath $actorName $actorClassName " + 
+              s"$$JAVA_HOME/bin/java -Xms${memory_mb}m -Xmx${memory_mb}m -XX:MaxPermSize=${memory_mb}m -XX:MaxDirectMemorySize=${memory_mb}m $applicationClassName $zkActorPath $actorName $actorClassName " + 
                 " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
                 " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
         ctx.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))

@@ -20,14 +20,18 @@ import org.apache.hadoop.yarn.api.records.Priority
 import org.apache.hadoop.yarn.api.records.Resource
 
 object ActorSystemsApplicationMaster {
-
+  
+  val memory_mb = "5120"
+  
   def main(args: Array[String]) {
     val jarPath = args(0)
     val applicationClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorSystemApplication" // XXX duplicated class name to avoid dependency on runtime
 
     // Create new YARN configuration
     implicit val conf = new YarnConfiguration()
-
+    
+    conf.set(YarnConfiguration.RM_SCHEDULER_MAXIMUM_ALLOCATION_MB, memory_mb)
+    
     // Create a client to talk to the RM
     val rmClient = AMRMClient.createAMRMClient().asInstanceOf[AMRMClient[ContainerRequest]]
 
@@ -51,10 +55,10 @@ object ActorSystemsApplicationMaster {
     val priority = Records.newRecord(classOf[Priority])
     priority.setPriority(0)
 
-    //resources needed by each container
+    //resources needed by each ActorSystem
     val resource = Records.newRecord(classOf[Resource])
-    resource.setMemory(200)
-    resource.setVirtualCores(1)
+    resource.setMemory(new Integer(memory_mb))
+    resource.setVirtualCores(4)
 
     val nodes = IncQueryDZooKeeper.getYarnNodesWithZK()
 
@@ -87,7 +91,7 @@ object ActorSystemsApplicationMaster {
 
         ctx.setCommands(
           List(
-            s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M -agentlib:jdwp=transport=dt_socket,address=9999,server=y,suspend=n $applicationClassName $zkActorSystemAddress " +
+            s"$$JAVA_HOME/bin/java -Xmx${memory_mb}m -XX:MaxPermSize=${memory_mb}m -XX:MaxDirectMemorySize=${memory_mb}m -agentlib:jdwp=transport=dt_socket,address=9999,server=y,suspend=n $applicationClassName $zkActorSystemAddress " +
               " 1>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stdout" +
               " 2>" + ApplicationConstants.LOG_DIR_EXPANSION_VAR + "/stderr").asJava)
         ctx.setLocalResources(Collections.singletonMap("appMaster.jar", appMasterJar))
@@ -105,7 +109,7 @@ object ActorSystemsApplicationMaster {
         completedContainers += 1
       }
 
-      Thread.sleep(10000)
+      Thread.sleep(1000)
     }
     rmClient.unregisterApplicationMaster(FinalApplicationStatus.SUCCEEDED, "", "")
     rmClient.stop()

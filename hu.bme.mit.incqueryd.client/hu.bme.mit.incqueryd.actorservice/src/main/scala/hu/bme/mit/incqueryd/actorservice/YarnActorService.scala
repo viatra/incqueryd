@@ -18,7 +18,9 @@ import akka.actor.Actor
 
 object YarnActorService {
   // TODO eliminate duplication between these methods
-
+  
+  val memory_mb = "512"
+  
   def startActors(client: AdvancedYarnClient, zkParentPath: String, actorClass: Class[_ <: Actor]): List[Future[YarnApplication]] = {
     val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
     IncQueryDZooKeeper.createDir(zkParentPath)
@@ -32,7 +34,7 @@ object YarnActorService {
     actorPaths.foreach { actorPath =>
       val actorName = IncQueryDZooKeeper.getStringData(s"$zkParentPath/$actorPath" + IncQueryDZooKeeper.actorNamePath)
       val applicationId = client.runRemotely(
-        List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $zkParentPath/$actorPath $actorName ${actorClass.getName}"),
+        List(s"$$JAVA_HOME/bin/java -Xmx${memory_mb}m -XX:MaxPermSize=${memory_mb}m -XX:MaxDirectMemorySize=${memory_mb}m $appMasterClassName $jarPath $zkParentPath/$actorPath $actorName ${actorClass.getName}"),
         jarPath, true)
       applicationIds.put(s"$zkParentPath/$actorPath", applicationId)
     }
@@ -75,7 +77,7 @@ object YarnActorService {
     IncQueryDZooKeeper.registerYarnNodes(yarnNodes)
     
     val applicationId = client.runRemotely(
-      List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath"),
+      List(s"$$JAVA_HOME/bin/java -Xmx${memory_mb}m -XX:MaxPermSize=${memory_mb}m -XX:MaxDirectMemorySize=${memory_mb}m $appMasterClassName $jarPath"),
       jarPath, true)
     
     yarnNodes.map { yarnNode =>

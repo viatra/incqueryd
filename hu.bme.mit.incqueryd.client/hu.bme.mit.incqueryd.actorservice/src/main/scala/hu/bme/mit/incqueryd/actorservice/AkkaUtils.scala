@@ -143,6 +143,6 @@ akka {
   val defaultRetryCount = 10
   val defaultDelayMillis = 1000
 
-  val defaultTimeout = 300 seconds
+  val defaultTimeout = 3000 seconds
 
 }
