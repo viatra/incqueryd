@@ -31,7 +31,7 @@ class IQDYarnClient {
 
   val DEFAULT_RM_HOST = "yarn-rm.docker"
   val DEFAULT_HDFS_URL = s"hdfs://$DEFAULT_RM_HOST:9000"
-  val DEFAULT_TIMEOUT = 3000 seconds
+  val DEFAULT_TIMEOUT = 900 seconds
 
   var filesystem: FileSystem = null
   var advancedYarnClient: AdvancedYarnClient = null

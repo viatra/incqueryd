@@ -16,6 +16,7 @@ object HdfsUtils {
     val conf = new HdfsConfiguration
     conf.set("fs.defaultFS", fileSystemUri)
     conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
+    conf.set("dfs.replication", "1")
     FileSystem.get(conf)
   }
 
