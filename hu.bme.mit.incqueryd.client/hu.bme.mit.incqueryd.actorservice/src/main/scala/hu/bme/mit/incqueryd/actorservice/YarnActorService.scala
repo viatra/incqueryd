@@ -19,7 +19,7 @@ import akka.actor.Actor
 object YarnActorService {
   // TODO eliminate duplication between these methods
   
-  val memory_mb = "512"
+  val memory_mb = AdvancedYarnClient.AM_MEMORY_MB
   
   def startActors(client: AdvancedYarnClient, zkParentPath: String, actorClass: Class[_ <: Actor]): List[Future[YarnApplication]] = {
     val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
@@ -33,8 +33,10 @@ object YarnActorService {
     
     actorPaths.foreach { actorPath =>
       val actorName = IncQueryDZooKeeper.getStringData(s"$zkParentPath/$actorPath" + IncQueryDZooKeeper.actorNamePath)
+      val actorMemory = "512" // XXX read from ZK in the future
+      val actorCPU = 1
       val applicationId = client.runRemotely(
-        List(s"$$JAVA_HOME/bin/java -Xmx${memory_mb}m -XX:MaxPermSize=${memory_mb}m -XX:MaxDirectMemorySize=${memory_mb}m $appMasterClassName $jarPath $zkParentPath/$actorPath $actorName ${actorClass.getName}"),
+        List(s"$$JAVA_HOME/bin/java -Xmx${memory_mb}m -XX:MaxPermSize=${memory_mb}m -XX:MaxDirectMemorySize=${memory_mb}m $appMasterClassName -jarpath $jarPath -zkpath $zkParentPath/$actorPath -actorname $actorName -actorclass ${actorClass.getName} -memory $actorMemory -cpu $actorCPU"),
         jarPath, true)
       applicationIds.put(s"$zkParentPath/$actorPath", applicationId)
     }
@@ -73,11 +75,13 @@ object YarnActorService {
     val appMasterObjectName = ActorSystemsApplicationMaster.getClass.getName
     val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1) // XXX
     
+    val actorSystemMemory = "4096" // XXX read from ZK in the future
+    val actorSystemCPU = 4         
     val yarnNodes = client.getRunningNodes()
     IncQueryDZooKeeper.registerYarnNodes(yarnNodes)
     
     val applicationId = client.runRemotely(
-      List(s"$$JAVA_HOME/bin/java -Xmx${memory_mb}m -XX:MaxPermSize=${memory_mb}m -XX:MaxDirectMemorySize=${memory_mb}m $appMasterClassName $jarPath"),
+      List(s"$$JAVA_HOME/bin/java -Xmx${memory_mb}m -XX:MaxPermSize=${memory_mb}m -XX:MaxDirectMemorySize=${memory_mb}m $appMasterClassName -jarpath $jarPath -memory $actorSystemMemory -cpu $actorSystemCPU"),
       jarPath, true)
     
     yarnNodes.map { yarnNode =>

@@ -18,14 +18,25 @@ import org.apache.hadoop.yarn.api.records.Resource
 import org.apache.hadoop.yarn.api.records.ContainerLaunchContext
 import org.apache.hadoop.yarn.api.records.Priority
 import org.apache.hadoop.yarn.api.records.Resource
+import org.apache.commons.cli.Options
+import org.apache.commons.cli.PosixParser
 
 object ActorSystemsApplicationMaster {
   
-  val memory_mb = "5120"
+  
+  
+  val options = new Options
+  options.addOption("jarpath", true, "JAR path")
+  options.addOption("memory", true, "Requested memory in MB")
+  options.addOption("cpu", true, "Requested CPU cores")
   
   def main(args: Array[String]) {
-    val jarPath = args(0)
-    val applicationClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorSystemApplication" // XXX duplicated class name to avoid dependency on runtime
+    val parser = (new PosixParser).parse(options, args)
+    val jarPath = parser.getOptionValue("jarpath")
+    val memory_mb = parser.getOptionValue("memory")
+    val cpu_cores = parser.getOptionValue("cpu")
+    
+    val applicationClassName = "hu.bme.mit.incqueryd.actorservice.server.ActorSystemApplication"  // XXX duplicated class name to avoid dependency on runtime
 
     // Create new YARN configuration
     implicit val conf = new YarnConfiguration()
@@ -58,7 +69,7 @@ object ActorSystemsApplicationMaster {
     //resources needed by each ActorSystem
     val resource = Records.newRecord(classOf[Resource])
     resource.setMemory(new Integer(memory_mb))
-    resource.setVirtualCores(4)
+    resource.setVirtualCores(new Integer(cpu_cores))
 
     val nodes = IncQueryDZooKeeper.getYarnNodesWithZK()
 

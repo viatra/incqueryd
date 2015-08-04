@@ -31,12 +31,10 @@ import com.google.common.net.HostAndPort
 
 class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
   
-  val memory_mb = "512"
-  
   val conf = {
     val conf = new YarnConfiguration()
     conf.set(YarnConfiguration.RM_HOSTNAME, rmHostname)
-    conf.set(YarnConfiguration.RM_SCHEDULER_MAXIMUM_ALLOCATION_MB, memory_mb)
+    conf.set(YarnConfiguration.RM_SCHEDULER_MAXIMUM_ALLOCATION_MB, AdvancedYarnClient.AM_MEMORY_MB)
     conf
   }
 
@@ -67,7 +65,7 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
 
   private def initResource = {
     val resource = Records.newRecord(classOf[Resource])
-    resource.setMemory(new Integer(memory_mb))
+    resource.setMemory(new Integer(AdvancedYarnClient.AM_MEMORY_MB))
     resource.setVirtualCores(2)
     resource
   }
@@ -93,6 +91,8 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
 }
 
 object AdvancedYarnClient {
+  
+  val AM_MEMORY_MB = "512"
   
   def setUpLocalResource(resourcePath: Path, fileSystem: FileSystem) = {
     val resource = Records.newRecord(classOf[LocalResource])
