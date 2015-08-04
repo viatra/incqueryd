@@ -29,6 +29,7 @@ class ReteActor extends Actor {
     case EstablishSubscriptions() => establishSubscriptions()
     case RegisterSubscriber(slot) => registerSubscriber(slot)
     case PropagateState(children) => propagateState(children)
+    case PropagateInputState(changeSet) => propagateInputChange(changeSet)
     case updateMessage: UpdateMessage => update(updateMessage)
     case terminationMessage: TerminationMessage => terminationProtocol(terminationMessage)
     case GetQueryResults => getQueryResults
@@ -87,7 +88,32 @@ class ReteActor extends Actor {
       } // TODO timeout?
     }
   }
-
+  
+  // XXX merge this method with propagateState?
+  def propagateInputChange(changeSet : ChangeSet) = {
+    if(changeSet.getTuples.isEmpty()) {
+      sender ! StatePropagated
+    } else {
+      log(s"Propagating input changes to ${subscribers.size} subscriber")
+      for ((subscriber, slot) <- subscribers) {
+        val route = List()
+        sendToSubscriber(changeSet, route, subscriber, slot)
+      }
+      
+      // Update the input node state
+      reteNode.asInstanceOf[TypeInputNode].update(changeSet)
+ 
+      val originalSender = sender
+      pending = new CountDownLatch(subscribers.size)
+      future {
+        pending.await
+      } onSuccess {
+        case _ =>
+          originalSender ! StatePropagated
+      } // TODO timeout?
+    }
+  }
+  
   var pending: CountDownLatch = _
 
   def update(updateMessage: UpdateMessage) = {
@@ -97,14 +123,14 @@ class ReteActor extends Actor {
       case alphaNode: AlphaNode => {
         val changeSet = alphaNode.update(updateMessage.changeSet)
         for ((subscriber, slot) <- subscribers) {
-	      sendToSubscriber(changeSet, updateMessage.route, subscriber, slot)
-	    }
+          sendToSubscriber(changeSet, updateMessage.route, subscriber, slot)
+        }
       }
       case betaNode: BetaNode => {
         val changeSet = betaNode.update(updateMessage.changeSet, updateMessage.slot)
         for ((subscriber, slot) <- subscribers) {
-	      sendToSubscriber(changeSet, updateMessage.route, subscriber, slot)
-	    }
+          sendToSubscriber(changeSet, updateMessage.route, subscriber, slot)
+        }
       }
       case _ => {}
     }
@@ -148,18 +174,18 @@ class ReteActor extends Actor {
 
   def getQueryResults = {
     val productionNode = reteNode.asInstanceOf[ProductionNode]
-	sender ! productionNode.getResults
+    sender ! productionNode.getResults
   }
 
   def log(message: String) {
-    if(reteNode != null && recipe != null)
-    println("(" + reteNode.getClass.getSimpleName + ", " + recipe.getTraceInfo + ") " + selfAsRemoteActorPath + " " + message)
+    if (reteNode != null && recipe != null)
+      println("(" + reteNode.getClass.getSimpleName + ", " + recipe.getTraceInfo + ") " + selfAsRemoteActorPath + " " + message)
     else
       println(message)
   }
-  
-  private def selfAsRemoteActorPath() : ActorPath = {
+
+  private def selfAsRemoteActorPath(): ActorPath = {
     AkkaUtils.toRemoteActorPath(self)
   }
-  
+
 }

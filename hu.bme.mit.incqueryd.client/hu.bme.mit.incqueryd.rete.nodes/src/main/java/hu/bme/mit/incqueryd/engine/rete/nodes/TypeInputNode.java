@@ -74,6 +74,17 @@ public class TypeInputNode implements ReteNode {
 			}
 		}
 	}
+	
+	public void update(ChangeSet changeSet) {
+		switch(changeSet.getChangeType()) {
+			case POSITIVE:
+				tuples.addAll(changeSet.getTuples());
+				break;
+			case NEGATIVE:
+				tuples.removeAll(changeSet.getTuples());
+				break;
+		}
+	}
 
 	private void initializeEdge(final String typeName) throws IOException {
 		Multimap<Long, Long> edges = driver.collectEdges(typeName);

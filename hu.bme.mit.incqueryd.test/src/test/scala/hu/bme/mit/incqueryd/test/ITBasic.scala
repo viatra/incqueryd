@@ -36,6 +36,10 @@ import org.apache.commons.io.IOUtils
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
+import java.util.HashSet
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
+import java.util.HashMap
 
 class ITBasic {
 
@@ -45,20 +49,23 @@ class ITBasic {
     val vocabularyFileName = "vocabulary.rdf"
     val patternName = "switchSensor"
     val expectedResult = Set(52, 138, 78, 391).map(n => new Tuple(new Long(n)))
+    val expectedResultAfterChange = Set(52, 78, 391).map(n => new Tuple(new Long(n)))
     val rmHostname = "yarn-rm.docker"
     val fileSystemUri = "hdfs://yarn-rm.docker:9000"
     val zkHostname = rmHostname
-    val timeout = 30 seconds
-
+    val timeout = 300 seconds
+    
+    val hdfs = HdfsUtils.getDistributedFileSystem(fileSystemUri)
+    
+    // Upload testfile
     val testFile = new File(getClass.getClassLoader.getResource(modelFileName).getFile)
     val testFilePath = fileSystemUri + "/test/" + modelFileName
-    val hdfs = HdfsUtils.getDistributedFileSystem(fileSystemUri)
     HdfsUtils.upload(hdfs, testFile, testFilePath)
-
+    
     val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
     Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), timeout)
     val coordinator = Await.result(Coordinator.create(advancedYarnClient), timeout)
-
+    
     val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
     coordinator.loadData(vocabulary, testFilePath, rmHostname, fileSystemUri)
 
@@ -66,14 +73,32 @@ class ITBasic {
     coordinator.startQuery(recipe, rmHostname, fileSystemUri)
 
     try {
+      val initResult = coordinator.checkResults(recipe, patternName)
+      println(s"Query result: $initResult")
+      assertEquals(expectedResult, initResult)
+      
+      // Create simple ChangeSet - XXX 
+      val tuple = new Tuple(new Long(138))
+      val tupleSet = new HashSet[Tuple]()
+      tupleSet.add(tuple)
+      val changeSet = new ChangeSet(tupleSet, ChangeType.NEGATIVE)
+      val inputChanges = new HashMap[String, ChangeSet]()
+      inputChanges.put("Switch", changeSet)
+      
+      // Propagate changes
+      coordinator.sendChangesToInputs(inputChanges.toMap)
+      
+      // Get result after changes
       val result = coordinator.checkResults(recipe, patternName)
       println(s"Query result: $result")
-      assertEquals(expectedResult, result)
+      assertEquals(expectedResultAfterChange, result)
+      
     } finally {
       coordinator.stopQuery(recipe, zkHostname)
       coordinator.dispose
     }
-    // TODO finally stop actor systems
+    
+    YarnActorService.stopActorSystems()
   }
 
   private def loadRdf(documentUrl: URL): Model = {

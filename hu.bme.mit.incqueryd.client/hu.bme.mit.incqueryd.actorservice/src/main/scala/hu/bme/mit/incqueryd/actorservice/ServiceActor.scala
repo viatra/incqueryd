@@ -14,7 +14,7 @@ import scala.concurrent.Await
 /**
  * @author pappi
  */
-class DeployActor extends Actor {
+class ServiceActor extends Actor {
   
   override def preStart() = {
     URL.setURLStreamHandlerFactory(new FsUrlStreamHandlerFactory)
@@ -26,10 +26,17 @@ class DeployActor extends Actor {
       val remoteActor = context.system.actorOf(Props(actorClass), id.name)
       sender ! DeployDone
     }
+    case DisposeSystem() => {
+      context.stop(self)
+    }
   }
 
+  override def postStop() = {
+    context.system.terminate()
+  }
 }
 
-sealed trait DeployCommand
-case class DoDeploy(actorClass: Class[_ <: Actor], id : ActorId) extends DeployCommand
-case class DeployDone() extends DeployCommand
+sealed trait ServiceCommand
+case class DoDeploy(actorClass: Class[_ <: Actor], id : ActorId) extends ServiceCommand
+case class DeployDone() extends ServiceCommand
+case class DisposeSystem() extends ServiceCommand

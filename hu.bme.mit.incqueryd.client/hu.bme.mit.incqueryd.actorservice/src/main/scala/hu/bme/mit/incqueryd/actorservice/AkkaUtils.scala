@@ -7,12 +7,11 @@ import scala.concurrent.duration._
 import scala.util.Failure
 import scala.util.Success
 import scala.util.Try
-
 import com.typesafe.config.ConfigFactory
-
 import akka.actor._
 import akka.pattern.ask
 import eu.mondo.utils.NetworkUtils
+import java.net.InetAddress
 
 object AkkaUtils {
 
@@ -35,8 +34,13 @@ akka {
     enabled-transports = ["akka.remote.netty.tcp"]
     netty.tcp {
       hostname = "${id.ip}"
-      bind-hostname = "${NetworkUtils.getLocalIpAddress}" # XXX needed for docker networking
+      bind-hostname = "${getLocalIp}" # XXX needed for docker networking
       port = ${id.port}
+      maximum-frame-size = 128000000
+    }
+    transport-failure-detector {
+      heartbeat-interval = 30 s   # default 4s
+      acceptable-heartbeat-pause = 60 s  # default 10s
     }
   }
 }
@@ -54,7 +58,7 @@ akka {
   
   def getClientActorSystem() : ActorSystem = {
     if(clientActorSystem == null || clientActorSystem.isTerminated)
-      clientActorSystem = getRemotingActorSystem("client", NetworkUtils.getLocalIpAddress, 0)
+      clientActorSystem = getRemotingActorSystem("client", getLocalIp, 0)
     clientActorSystem
   }
   
@@ -87,7 +91,7 @@ akka {
   }
   
   def toRemoteActorPath(actorPath : ActorPath) : ActorPath = {
-    val address = new Address("akka.tcp", YarnActorService.actorSystemName, NetworkUtils.getLocalIpAddress, YarnActorService.port)
+    val address = new Address("akka.tcp", YarnActorService.actorSystemName, getLocalIp, YarnActorService.port)
     ActorPath.fromString(actorPath.toStringWithAddress(address))
   }
   
@@ -110,8 +114,8 @@ akka {
   }
   
   def startActor(id: ActorId, actorClass: Class[_ <: Actor]): ActorRef = {
-    val deployActor = AkkaUtils.findActor(new ActorId(id.actorSystemName, id.ip, id.port, YarnActorService.deployActorName))
-    val futureDeploy = deployActor.ask(DoDeploy(actorClass, id))(defaultTimeout)
+    val serviceActor = AkkaUtils.findActor(new ActorId(id.actorSystemName, id.ip, id.port, YarnActorService.serviceActorName))
+    val futureDeploy = serviceActor.ask(DoDeploy(actorClass, id))(defaultTimeout)
     Await.result(futureDeploy, defaultTimeout)
     AkkaUtils.findActor(id)
   }
@@ -139,10 +143,15 @@ akka {
       case Failure(e) => throw e
     }
   }
-
+  
+  def getLocalIp() : String = {
+    val hostname = InetAddress.getLocalHost.getHostName;
+    InetAddress.getByName(hostname).getHostAddress()
+  }
+  
   val defaultRetryCount = 10
   val defaultDelayMillis = 1000
 
-  val defaultTimeout = 60 seconds
+  val defaultTimeout = 900 seconds
 
 }

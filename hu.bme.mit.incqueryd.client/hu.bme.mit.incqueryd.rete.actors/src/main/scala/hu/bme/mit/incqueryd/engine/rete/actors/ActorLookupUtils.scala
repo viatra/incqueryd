@@ -15,8 +15,7 @@ import akka.actor.ActorPath
 
 object ActorLookupUtils {
 
-  def findActorUsingZooKeeper(recipe: ReteNodeRecipe): Option[ActorPath] = {
-    val zkActorPath = getZKActorPath(recipe)
+  def findActorUsingZooKeeper(zkActorPath : String): Option[ActorPath] = {
     val actorPathString = IncQueryDZooKeeper.getStringData(zkActorPath)
     Some(ActorPath.fromString(actorPathString))
   }
@@ -27,9 +26,15 @@ object ActorLookupUtils {
        case _ => s"${IncQueryDZooKeeper.reteNodesPath}/${ReteActorKey(recipe).internalId}"
     }
   }
-  
+
   def findActor(recipe: ReteNodeRecipe): Option[ActorPath] = {
-    findActorUsingZooKeeper(recipe)
+    val zkActorPath = getZKActorPath(recipe)
+    findActorUsingZooKeeper(zkActorPath)
+  }
+  
+  def findInputActor(inputTypeId : String) : Option[ActorPath] = {
+    val zkActorPath = s"${IncQueryDZooKeeper.inputNodesPath}/$inputTypeId"
+    findActorUsingZooKeeper(zkActorPath)
   }
 
   def getParentConnections(childRecipe: ReteNodeRecipe): Set[ReteActorConnection] = {

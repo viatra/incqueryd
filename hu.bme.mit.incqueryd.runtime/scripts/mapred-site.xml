@@ -24,10 +24,15 @@
         <name>mapreduce.reduce.java.opts</name>
         <value>-Xmx128m</value>
     </property>
-
-    <property>
-    	<name>yarn.app.mapreduce.am.command-opts</name>
-    	<value>-Xmx128m</value>
-    </property>
-
+	
+	<property>
+		<name>yarn.app.mapreduce.am.command-opts</name>
+		<value>-Xmx512m</value>
+	</property>
+	
+	<property>
+		<name>yarn.app.mapreduce.am.resource.mb</name>
+		<value>512</value>
+	</property>
+	
 </configuration>

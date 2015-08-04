@@ -17,7 +17,7 @@ object ActorApplication {
     val name = args(1)
     val actorClassName = args(2)
     val actorClass = Class.forName(actorClassName).asSubclass(classOf[Actor])
-    val ip = NetworkUtils.getLocalIpAddress
+    val ip = AkkaUtils.getLocalIp
     val port = YarnActorService.port
     val actorRef = AkkaUtils.startActor(ActorId(YarnActorService.actorSystemName, ip, port, name), actorClass)
     IncQueryDZooKeeper.setData(zkActorPath + IncQueryDZooKeeper.addressPath, s"$ip:$port".getBytes)

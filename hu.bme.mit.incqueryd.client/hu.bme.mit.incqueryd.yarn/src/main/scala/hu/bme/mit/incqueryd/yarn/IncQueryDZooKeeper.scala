@@ -57,7 +57,7 @@ object IncQueryDZooKeeper {
   val propagateResponsePath = "/propagate_response_sent"
   val actorSystemPath = "/actorsystem"
   
-  val timeout = (30 seconds)
+  val timeout = (300 seconds)
 
   // Handle ZooKeeper connection
   var zk = create()

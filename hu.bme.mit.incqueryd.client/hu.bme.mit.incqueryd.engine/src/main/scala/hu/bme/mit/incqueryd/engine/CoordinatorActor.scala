@@ -56,6 +56,9 @@ import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
 import java.net.URL
 import hu.bme.mit.incqueryd.engine.rete.actors.ActorLookupUtils
 import akka.actor.ActorPath
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
+import hu.bme.mit.incqueryd.engine.rete.actors.UpdateMessage
+import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputState
 
 class CoordinatorActor extends Actor {
   
@@ -78,22 +81,31 @@ class CoordinatorActor extends Actor {
       val otherActorsByRecipe = deploy(notTypeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.reteNodesPath)
       configure(otherActorsByRecipe, "")
       establishSubscriptions(otherActorsByRecipe)
-      val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe) // Only one per type
+      val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
       val inputActorsByRecipe = lookup(typeInputRecipes)
       propagateInputStates(inputActorsByRecipe, recipe)
+      sender ! true
+    }
+    case PropagateInputChanges(inputChangesMap : Map[String, ChangeSet]) => {
+      propagateInputChanges(inputChangesMap)
       sender ! true
     }
     case CheckResults(recipeJson, patternName) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)
       val productionRecipe = productionRecipeOption.get // XXX Option.get
-      val production = ActorLookupUtils.findActorUsingZooKeeper(productionRecipe).get // XXX Option.get
+      val production = ActorLookupUtils.findActor(productionRecipe).get // XXX Option.get // XXX Option.get
       AkkaUtils.convertToRemoteActorRef(production, context).ask(GetQueryResults).pipeTo(sender)
     }
     case StopQuery(recipeJson) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe]).toSet
       undeploy(notTypeInputRecipes)
+      sender ! true
+    }
+    case Dispose() => {
+      val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
+      undeploy(typeInputRecipes)
       sender ! true
     }
   })
@@ -117,7 +129,7 @@ class CoordinatorActor extends Actor {
   }
 
   def lookup(recipes: Set[ReteNodeRecipe]): Map[ReteNodeRecipe, ActorPath] = {
-    recipes.map { recipe => recipe -> ActorLookupUtils.findActorUsingZooKeeper(recipe).getOrElse(null) }
+    recipes.map { recipe => recipe -> ActorLookupUtils.findActor(recipe).getOrElse(null) }
       .filter { case (key, value) => value != null }.toMap
   }
 
@@ -157,11 +169,16 @@ class CoordinatorActor extends Actor {
   def propagateInputStates(actorsByRecipe: Map[ReteNodeRecipe, ActorPath], recipe: ReteRecipe): Unit = {
     wait(actorsByRecipe.values.map { actor =>
       val children = ActorLookupUtils.getChildrenConnections(actor, recipe)
-      IncQueryDZooKeeper.writeToFile("CoordinatorActor propagateInputState: " + children)
       AkkaUtils.convertToRemoteActorRef(actor, context).ask(PropagateState(children))
     })
   }
 
+  def propagateInputChanges(inputChangesMap : Map[String, ChangeSet]) {
+    wait(inputChangesMap.map{case (inputTypeId, changeSet) => 
+      val inputActorPath = ActorLookupUtils.findInputActor(inputTypeId).get
+      AkkaUtils.convertToRemoteActorRef(inputActorPath, context).ask(PropagateInputState(changeSet))})
+  }
+  
   private def wait(futures: Iterable[Future[Any]]) { // XXX don't use this, compose Futures
     Await.result(Future.sequence(futures), timeout.duration)
   }

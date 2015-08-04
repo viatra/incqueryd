@@ -1,53 +1,26 @@
 
 package hu.bme.mit.incqueryd.actorservice
 
-import org.apache.hadoop.yarn.api.records.ApplicationId
-import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
-import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
-import com.sun.xml.bind.v2.runtime.Coordinator
+import scala.collection.mutable
 import scala.concurrent.Future
 import scala.concurrent.Promise
-import org.apache.zookeeper.CreateMode
-import org.apache.zookeeper.Watcher
-import org.apache.zookeeper.data.ACL
-import org.apache.zookeeper.WatchedEvent
-import org.apache.zookeeper.ZooDefs.Ids
-import org.apache.zookeeper.Watcher.Event.EventType
-import org.apache.zookeeper.ZooDefs.Perms
-import org.apache.zookeeper.data.Stat
-import com.google.common.collect.ImmutableList
-import akka.pattern.ask
-import akka.util.Timeout
-import scala.concurrent.Await
-import scala.concurrent.duration._
-import java.util.HashSet
-import java.util.ArrayList
-import scala.collection.JavaConversions._
-import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
 import org.apache.hadoop.yarn.api.records.ApplicationId
-import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
-import scala.concurrent.Promise
-import org.apache.zookeeper.Watcher
 import org.apache.zookeeper.WatchedEvent
-import org.apache.zookeeper.data.Stat
+import org.apache.zookeeper.Watcher
 import org.apache.zookeeper.Watcher.Event.EventType
-import scala.concurrent.Future
-import org.apache.zookeeper.CreateMode
-import org.apache.zookeeper.data.ACL
-import org.apache.zookeeper.ZooDefs.Perms
-import org.apache.zookeeper.ZooDefs.Ids
-import java.net.URI
-import org.apache.curator.utils.ZKPaths
 import com.google.common.net.HostAndPort
+import akka.pattern.ask
+import akka.util.Timeout.durationToTimeout
+import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
+import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import hu.bme.mit.incqueryd.yarn.YarnApplication
 import akka.actor.Actor
-import java.util.HashMap
-import akka.actor.ActorSystem
-import scala.collection.mutable
 
 object YarnActorService {
   // TODO eliminate duplication between these methods
-
+  
+  val memory_mb = AdvancedYarnClient.AM_MEMORY_MB
+  
   def startActors(client: AdvancedYarnClient, zkParentPath: String, actorClass: Class[_ <: Actor]): List[Future[YarnApplication]] = {
     val jarPath = client.fileSystemUri + "/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar" // XXX duplicated path
     IncQueryDZooKeeper.createDir(zkParentPath)
@@ -60,8 +33,10 @@ object YarnActorService {
     
     actorPaths.foreach { actorPath =>
       val actorName = IncQueryDZooKeeper.getStringData(s"$zkParentPath/$actorPath" + IncQueryDZooKeeper.actorNamePath)
+      val actorMemory = "512" // XXX read from ZK in the future
+      val actorCPU = 1
       val applicationId = client.runRemotely(
-        List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath $zkParentPath/$actorPath $actorName ${actorClass.getName}"),
+        List(s"$$JAVA_HOME/bin/java -Xmx${memory_mb}m -XX:MaxPermSize=${memory_mb}m -XX:MaxDirectMemorySize=${memory_mb}m $appMasterClassName -jarpath $jarPath -zkpath $zkParentPath/$actorPath -actorname $actorName -actorclass ${actorClass.getName} -memory $actorMemory -cpu $actorCPU"),
         jarPath, true)
       applicationIds.put(s"$zkParentPath/$actorPath", applicationId)
     }
@@ -90,7 +65,7 @@ object YarnActorService {
   
   val actorSystemName = "incqueryd"
   val port = 2552
-  val deployActorName = "deploy"
+  val serviceActorName = "service"
   
   /**
    * Start one RemoteActorSystem on each yarn node
@@ -100,11 +75,13 @@ object YarnActorService {
     val appMasterObjectName = ActorSystemsApplicationMaster.getClass.getName
     val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1) // XXX
     
+    val actorSystemMemory = "2048" // XXX read from ZK in the future
+    val actorSystemCPU = 4         
     val yarnNodes = client.getRunningNodes()
     IncQueryDZooKeeper.registerYarnNodes(yarnNodes)
     
     val applicationId = client.runRemotely(
-      List(s"$$JAVA_HOME/bin/java -Xmx64m -XX:MaxPermSize=64m -XX:MaxDirectMemorySize=128M $appMasterClassName $jarPath"),
+      List(s"$$JAVA_HOME/bin/java -Xmx${memory_mb}m -XX:MaxPermSize=${memory_mb}m -XX:MaxDirectMemorySize=${memory_mb}m $appMasterClassName -jarpath $jarPath -memory $actorSystemMemory -cpu $actorSystemCPU"),
       jarPath, true)
     
     yarnNodes.map { yarnNode =>
@@ -125,8 +102,17 @@ object YarnActorService {
       }
       IncQueryDZooKeeper.getStringDataWithWatcher(zkContainerAddressPath, watcher)
       result.future
-    }
-    
+    } 
   }
 
+  def stopActorSystems() {
+    val nodes = IncQueryDZooKeeper.getYarnNodesWithZK()
+    nodes.foreach { node => 
+        val asData = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.yarnNodesPath}/$node${IncQueryDZooKeeper.actorSystemPath}")
+        val asURL = HostAndPort.fromString(asData)
+        val serviceActor = AkkaUtils.findActor(new ActorId(actorSystemName, asURL.getHostText, port, YarnActorService.serviceActorName))
+        serviceActor.ask(DisposeSystem())(AkkaUtils.defaultTimeout)
+    }
+    AkkaUtils.teminateClientActorSystem()
+  }
 }
