@@ -53,7 +53,7 @@ class ITBasic {
     val rmHostname = "yarn-rm.docker"
     val fileSystemUri = "hdfs://yarn-rm.docker:9000"
     val zkHostname = rmHostname
-    val timeout = 3000 seconds
+    val timeout = 300 seconds
     
     val hdfs = HdfsUtils.getDistributedFileSystem(fileSystemUri)
     
@@ -61,9 +61,6 @@ class ITBasic {
     val testFile = new File(getClass.getClassLoader.getResource(modelFileName).getFile)
     val testFilePath = fileSystemUri + "/test/" + modelFileName
     HdfsUtils.upload(hdfs, testFile, testFilePath)
-    
-    // Upload jar file
-    val ret = sys.process.stringToProcess("docker exec yarn-docker-rm /usr/local/hadoop/copy_runtime_to_hdfs.sh").run()
     
     val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
     Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), timeout)
@@ -86,7 +83,7 @@ class ITBasic {
       tupleSet.add(tuple)
       val changeSet = new ChangeSet(tupleSet, ChangeType.NEGATIVE)
       val inputChanges = new HashMap[String, ChangeSet]()
-      inputChanges.put("Switch", changeSet) // XXX input type ID can get from ZK
+      inputChanges.put("Switch", changeSet)
       
       // Propagate changes
       coordinator.sendChangesToInputs(inputChanges.toMap)
