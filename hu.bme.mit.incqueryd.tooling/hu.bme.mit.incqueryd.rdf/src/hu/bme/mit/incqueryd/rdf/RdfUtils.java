@@ -58,14 +58,13 @@ public class RdfUtils {
 	}
 
 	public static boolean isObjectProperty(Resource resource, Model vocabulary) {
-		return vocabulary.contains(resource, RDF.TYPE, OWL.OBJECTPROPERTY);
+		return vocabulary.contains(resource, RDF.TYPE, RDF.PROPERTY) ||
+				vocabulary.contains(resource, RDF.TYPE, OWL.OBJECTPROPERTY);
 	}
 
 	public static boolean isDatatypeProperty(Resource resource, Model vocabulary) {
-		return vocabulary.contains(resource, RDF.TYPE, OWL.DATATYPEPROPERTY);
+		return vocabulary.contains(resource, RDF.TYPE, OWL.DATATYPEPROPERTY) ||
+				vocabulary.contains(resource, RDF.TYPE, OWL.ANNOTATIONPROPERTY);
 	}
 	
-	public static String getTypeSuffix() {
-		return "";
-	}
 }

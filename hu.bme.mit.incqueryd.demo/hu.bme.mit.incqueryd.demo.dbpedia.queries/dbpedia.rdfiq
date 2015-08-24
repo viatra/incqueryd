@@ -1,0 +1,11 @@
+vocabulary <axiomatic.ttl>
+vocabulary <dcterms.ttl>
+vocabulary <dbpedia_2015-04.nt>
+
+prefix dcterms: <http://purl.org/dc/terms/>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+pattern category(page, category, title) {
+	dcterms:subject(page, category);
+	rdfs:label(page, title);
+}
