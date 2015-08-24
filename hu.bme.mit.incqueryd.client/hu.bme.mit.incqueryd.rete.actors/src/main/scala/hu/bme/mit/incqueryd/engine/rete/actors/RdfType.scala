@@ -5,6 +5,7 @@ import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 import org.openrdf.model.Resource
 import eu.mondo.driver.file.FileGraphDriverRead
 import hu.bme.mit.incqueryd.engine.rete.nodes.TypeInputNode
+import eu.mondo.driver.graph.RDFGraphDriverRead
 
 case class RdfType(
   id: Resource,
@@ -29,7 +30,7 @@ object RdfType {
   case object ObjectProperty extends Kind
   case object DatatypeProperty extends Kind
 
-  def apply(kind: Kind, id: Resource, driver: FileGraphDriverRead): RdfType = {
+  def apply(kind: Kind, id: Resource, driver: RDFGraphDriverRead): RdfType = {
     kind match {
       case Class => RdfType(id, 1, driver.countVertices(id.stringValue), TypeInputNode.VERTEX)
       case ObjectProperty => RdfType(id, 2, driver.countEdges(id.stringValue), TypeInputNode.EDGE)

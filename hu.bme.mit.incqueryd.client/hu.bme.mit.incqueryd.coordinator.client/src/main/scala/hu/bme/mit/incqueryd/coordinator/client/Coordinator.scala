@@ -36,6 +36,7 @@ import java.net.URI
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
 import scala.concurrent.ExecutionContext.Implicits.global
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 
 object Coordinator {
   final val actorName = "coordinator"
@@ -54,9 +55,9 @@ object Coordinator {
 
 class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: ApplicationId) {
 
-  def loadData(vocabulary: Model, hdfsPath: String, rmHostname: String, fileSystemUri: String): Boolean = {
+  def loadData(vocabulary: Model, databaseConnection: DatabaseConnection, rmHostname: String, fileSystemUri: String): Boolean = {
     println(s"Loading data")
-    askCoordinator[Boolean](LoadData(vocabulary, hdfsPath, rmHostname, fileSystemUri))
+    askCoordinator[Boolean](LoadData(vocabulary, databaseConnection, rmHostname, fileSystemUri))
   }
 
   def startQuery(recipe: ReteRecipe, rmHostname: String, fileSystemUri: String): Boolean = {

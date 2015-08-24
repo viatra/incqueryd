@@ -56,6 +56,8 @@ import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
 import java.net.URL
 import hu.bme.mit.incqueryd.engine.rete.actors.ActorLookupUtils
 import akka.actor.ActorPath
+import eu.mondo.driver.graph.RDFGraphDriverRead
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 
 class CoordinatorActor extends Actor {
   
@@ -65,18 +67,18 @@ class CoordinatorActor extends Actor {
   private var types : Set[RdfType] = _
   
   def receive = AkkaUtils.propagateException(sender) ({
-    case LoadData(vocabulary, hdfsPath, rmHostname, fileSystemUri) => {
-      types = getTypes(vocabulary, hdfsPath)
+    case LoadData(vocabulary, databaseConnection, rmHostname, fileSystemUri) => {
+      types = getTypes(vocabulary, databaseConnection.getDriver)
       val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
       val actorsByRecipe = deploy(typeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.inputNodesPath)
-      configure(actorsByRecipe, hdfsPath)
+      configure(actorsByRecipe, databaseConnection)
       sender ! true
     }
     case StartQuery(recipeJson, rmHostname, fileSystemUri) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe]).toSet
       val otherActorsByRecipe = deploy(notTypeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.reteNodesPath)
-      configure(otherActorsByRecipe, "")
+      configure(otherActorsByRecipe, null)
       establishSubscriptions(otherActorsByRecipe)
       val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe) // Only one per type
       val inputActorsByRecipe = lookup(typeInputRecipes)
@@ -98,20 +100,18 @@ class CoordinatorActor extends Actor {
     }
   })
 
-  def getTypes(vocabulary: Model, hdfsPath: String): Set[RdfType] = {
-    val hdfs = HdfsUtils.getDistributedFileSystem(hdfsPath)
-    val driver = new FileGraphDriverRead(hdfsPath)
+  def getTypes(vocabulary: Model, driver: RDFGraphDriverRead): Set[RdfType] = {
     val rdfClassStatements = vocabulary.filter(null, RDF.TYPE, RDFS.CLASS).toSet
     val owlClassStatements = vocabulary.filter(null, RDF.TYPE, OWL.CLASS).toSet
     val classes = getUriSubjects(rdfClassStatements union owlClassStatements)
     val classTypes: Set[RdfType] = classes.map(RdfType(RdfType.Class, _, driver))
-    val objectProperties = getUriSubjects(vocabulary.filter(null, RDF.TYPE, OWL.OBJECTPROPERTY).toSet)
+    val objectProperties = getUriSubjects(vocabulary.filter(null, RDF.TYPE, OWL.OBJECTPROPERTY).toSet union vocabulary.filter(null, RDF.TYPE, RDF.PROPERTY).toSet)
     val objectPropertyTypes: Set[RdfType] = objectProperties.map(RdfType(RdfType.ObjectProperty, _, driver))
-    val datatypeProperties = getUriSubjects(vocabulary.filter(null, RDF.TYPE, OWL.DATATYPEPROPERTY).toSet)
+    val datatypeProperties = getUriSubjects(vocabulary.filter(null, RDF.TYPE, OWL.DATATYPEPROPERTY).toSet union vocabulary.filter(null, RDF.TYPE, OWL.ANNOTATIONPROPERTY).toSet)
     val datatypePropertyTypes: Set[RdfType] = datatypeProperties.map(RdfType(RdfType.DatatypeProperty, _, driver))
     classTypes union objectPropertyTypes union datatypePropertyTypes
   }
-  
+
   def getUriSubjects(statements: Set[Statement]): Set[Resource] = {
     statements.map(_.getSubject).filter(_.isInstanceOf[URI]) // Discard blank nodes
   }
@@ -142,9 +142,9 @@ class CoordinatorActor extends Actor {
     }
   }
 
-  def configure(actorsByRecipe: Map[ReteNodeRecipe, ActorPath], hdfsPath: String): Unit = {
+  def configure(actorsByRecipe: Map[ReteNodeRecipe, ActorPath], databaseConnection: DatabaseConnection): Unit = {
     wait(actorsByRecipe.map { case (recipe, actor) =>
-      AkkaUtils.convertToRemoteActorRef(actor, context).ask(Configure(new ReteNodeConfiguration(recipe, List(), hdfsPath)))
+      AkkaUtils.convertToRemoteActorRef(actor, context).ask(Configure(new ReteNodeConfiguration(recipe, databaseConnection)))
     })
   }
 
