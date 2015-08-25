@@ -41,7 +41,7 @@ class ReteActor extends Actor {
     reteNode match {
       case inputNode: TypeInputNode => {
         log(s"Loading input node of type ${inputNode.getRecipe.getTypeName}")
-        inputNode.load
+        //inputNode.load // XXX initial load with Spark!
       }
       case _ => {}
     }
@@ -88,10 +88,10 @@ class ReteActor extends Actor {
       } // TODO timeout?
     }
   }
-  
+
   // XXX merge this method with propagateState?
-  def propagateInputChange(changeSet : ChangeSet) = {
-    if(changeSet.getTuples.isEmpty()) {
+  def propagateInputChange(changeSet: ChangeSet) = {
+    if (changeSet.getTuples.isEmpty()) {
       sender ! StatePropagated
     } else {
       log(s"Propagating input changes to ${subscribers.size} subscriber")
@@ -99,21 +99,25 @@ class ReteActor extends Actor {
         val route = List()
         sendToSubscriber(changeSet, route, subscriber, slot)
       }
-      
+
       // Update the input node state
       reteNode.asInstanceOf[TypeInputNode].update(changeSet)
- 
-      val originalSender = sender
-      pending = new CountDownLatch(subscribers.size)
-      future {
-        pending.await
-      } onSuccess {
-        case _ =>
-          originalSender ! StatePropagated
+
+      if (subscribers.isEmpty) {
+        sender ! StatePropagated
+      } else {
+        val originalSender = sender
+        pending = new CountDownLatch(subscribers.size)
+        future {
+          pending.await
+        } onSuccess {
+          case _ =>
+            originalSender ! StatePropagated
+        }
       } // TODO timeout?
     }
   }
-  
+
   var pending: CountDownLatch = _
 
   def update(updateMessage: UpdateMessage) = {

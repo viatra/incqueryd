@@ -59,6 +59,7 @@ import akka.actor.ActorPath
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import hu.bme.mit.incqueryd.engine.rete.actors.UpdateMessage
 import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputState
+import hu.bme.mit.incqueryd.spark.client.IQDSparkClient
 
 class CoordinatorActor extends Actor {
   
@@ -73,6 +74,7 @@ class CoordinatorActor extends Actor {
       val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
       val actorsByRecipe = deploy(typeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.inputNodesPath)
       configure(actorsByRecipe, hdfsPath)
+      IQDSparkClient.loadDataFromFile(hdfsPath)
       sender ! true
     }
     case StartQuery(recipeJson, rmHostname, fileSystemUri) => {
@@ -139,6 +141,8 @@ class CoordinatorActor extends Actor {
     recipes.foreach { recipe => 
       val zkActorPath = ActorLookupUtils.getZKActorPath(recipe)
       IncQueryDZooKeeper.setData(s"$zkActorPath${IncQueryDZooKeeper.actorNamePath}", RemoteReteActor.reteActorName(recipe).getBytes)
+      IncQueryDZooKeeper.setData(s"$zkActorPath${IncQueryDZooKeeper.nodeType}", RecipeUtils.getNodeType(recipe).getBytes)
+      IncQueryDZooKeeper.setData(s"$zkActorPath${IncQueryDZooKeeper.rdfType}", RecipeUtils.getName(recipe).getBytes)
     }
     
     // Wait until actors start

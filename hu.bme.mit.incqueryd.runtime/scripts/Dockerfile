@@ -5,7 +5,7 @@ MAINTAINER IncQuery-D Team
 USER root
 
 # install tools
-RUN apt-get update && apt-get -y install curl tar sudo openssh-server openssh-client rsync nano telnet dnsmasq
+RUN apt-get update && apt-get -y install curl tar sudo openssh-server openssh-client rsync nano telnet dnsmasq maven
 
 # passwordless ssh
 # RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key
@@ -17,6 +17,7 @@ RUN cp /etc/ssh/ssh_host_rsa_key.pub /root/.ssh/known_hosts
 # JAVA_HOME setup
 ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 ENV PATH $PATH:$JAVA_HOME/bin
+ENV MAVEN_OPTS="-Xmx2048m -XX:MaxPermSize=1024m"
 
 # Download and install YARN (hadoop-2.6.0)
 RUN curl -s http://www.eu.apache.org/dist/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz | tar -xz -C /usr/local/
@@ -96,13 +97,25 @@ ADD zkServer.sh /usr/local/zookeeper/bin/zkServer.sh
 RUN chown root:root /usr/local/zookeeper/bin/zkServer.sh
 RUN chmod 700 /usr/local/zookeeper/bin/zkServer.sh
 
-# Download and install Spark
-RUN curl -s http://xenia.sote.hu/ftp/mirrors/www.apache.org/spark/spark-1.4.0/spark-1.4.0-bin-hadoop2.6.tgz | tar xz -C /usr/local/
-RUN cd /usr/local && ln -s ./spark-1.3.1-bin-hadoop2.6 spark
+# Install SPARK
+
+# Build spark
+# RUN curl -s http://xenia.sote.hu/ftp/mirrors/www.apache.org/spark/spark-1.4.1/spark-1.4.1.tgz | tar xz -C /usr/local/
+# RUN cd /usr/local && ln -s ./spark-1.4.1 spark
+# RUN /usr/local/spark/dev/change-version-to-2.11.sh
+# RUN cd /usr/local/spark/ && mvn -Pyarn -Phadoop-2.6 -Dscala-2.11 -DskipTests clean package
+
+# Install pre-build spark
+RUN curl -s http://apache.mirrorcatalogs.com/spark/spark-1.4.1/spark-1.4.1-bin-hadoop2.6.tgz | tar xz -C /usr/local/
+RUN cd /usr/local && ln -s ./spark-1.4.1-bin-hadoop2.6 spark
 
 ENV SPARK_HOME=/usr/local/spark
 RUN echo "export SPARK_HOME=/usr/local/spark" >> /etc/profile
 RUN echo "export SPARK_CLASSPATH=$SPARK_HOME/lib/" >> /etc/profile
+
+ADD start_spark.sh /usr/local/spark/start_spark.sh
+RUN chown root:root /usr/local/spark/start_spark.sh
+RUN chmod 700 /usr/local/spark/start_spark.sh
 
 # Add dnsmasq.conf file
 ADD dnsmasq.conf /etc/dnsmasq.conf

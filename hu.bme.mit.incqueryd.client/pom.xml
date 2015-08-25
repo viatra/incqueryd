@@ -46,6 +46,7 @@
 		<module>hu.bme.mit.incqueryd.engine</module>
 		<module>hu.bme.mit.incqueryd.coordinator.client</module>
 		<module>hu.bme.mit.incqueryd.yarn</module>
+		<module>hu.bme.mit.incqueryd.spark</module>
 	</modules>
 	<name>IncQuery-D Client</name>
 	<description>The API through which the services of the runtime can be accessed.</description>

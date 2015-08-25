@@ -35,10 +35,12 @@ object IncQueryDZooKeeper {
   val port = 2181
   val anyVersion = -1
 
-  val rdfTypesPath = "/rdftypes"
-  val reteNodesPath = "/retenodes"
+  val reteNodesPath = "/retenodes"  // query nodes
+  
   val inputNodesPath = "/inputnodes"
-
+  val nodeType = "/nodetype" 
+  val rdfType = "/rdftype" // RDF type
+  
   val coordinatorsPath = "/coordinators"
   val defaultCoordinatorPath = coordinatorsPath + "/default"
   

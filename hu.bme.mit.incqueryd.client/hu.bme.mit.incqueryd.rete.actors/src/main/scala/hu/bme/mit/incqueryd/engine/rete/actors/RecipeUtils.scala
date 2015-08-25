@@ -11,6 +11,8 @@ import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 import scala.collection.JavaConversions._
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
+import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe
+import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe
 
 object RecipeUtils {
 
@@ -53,7 +55,23 @@ object RecipeUtils {
     val memoryUsage = Math.ceil((0.0003 * normalizedTupleCount + 52.969) * 1.4).toLong
     Math.max(128, memoryUsage)
   }
-
+  
+  val VERTEX = "vertex";
+  val EDGE = "edge";
+  val ATTRIBUTE = "attribute";
+  
+  def getNodeType(recipe: ReteNodeRecipe): String = {
+    recipe match {
+      case recipe: UnaryInputRecipe => VERTEX
+      case recipe: BinaryInputRecipe => {
+        if(recipe.getTraceInfo.startsWith(EDGE)) return EDGE
+        if(recipe.getTraceInfo.startsWith(ATTRIBUTE)) return ATTRIBUTE
+        return ""
+      }
+      case _ => recipe.getClass.getSimpleName
+    }
+  }
+  
   def getName(recipe: ReteNodeRecipe): String = {
     recipe match {
       case recipe: TypeInputRecipe => recipe.getTypeName

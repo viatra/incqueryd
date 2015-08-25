@@ -17,8 +17,8 @@ TARGET_PATH=`pwd`/../../hu.bme.mit.incqueryd.runtime/hu.bme.mit.incqueryd.actors
 docker run --dns 127.0.0.1 -p 127.0.0.1:53:53/udp -p 127.0.0.1:2181:2181 --hostname $YARN_RM_HOST --name $YARN_RM -v $TARGET_PATH:/tmp/target -i -t -d $IMAGE
 YARN_RM_IP=$(docker inspect --format="{{.NetworkSettings.IPAddress}}" $YARN_RM)
 
-docker run --dns $YARN_RM_IP --hostname $YARN_NM1_HOST --name $YARN_NM1 -i -t -d $IMAGE
-docker run --dns $YARN_RM_IP --hostname $YARN_NM2_HOST --name $YARN_NM2 -i -t -d $IMAGE
+docker run --dns $YARN_RM_IP --hostname $YARN_NM1_HOST --name $YARN_NM1 -v $TARGET_PATH:/tmp/target -i -t -d $IMAGE
+docker run --dns $YARN_RM_IP --hostname $YARN_NM2_HOST --name $YARN_NM2 -v $TARGET_PATH:/tmp/target -i -t -d $IMAGE
 
 # Containers HOSTS config
 YARN_NM1_IP=$(docker inspect --format="{{.NetworkSettings.IPAddress}}" $YARN_NM1)
