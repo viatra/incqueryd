@@ -48,7 +48,7 @@ akka {
     val actorSystem = ActorSystem(id.actorSystemName, config)
     Runtime.getRuntime.addShutdownHook(new Thread(new Runnable {
       def run = {
-        actorSystem.terminate
+      actorSystem.shutdown() // XXX akka-2.3
       }
     }))
     actorSystem
@@ -64,8 +64,7 @@ akka {
   
   def teminateClientActorSystem() = {
     if (clientActorSystem != null) {
-      val terminate = clientActorSystem.terminate()
-      Await.result(terminate, AkkaUtils.defaultTimeout)
+      clientActorSystem.shutdown() // XXX akka-2.3
     }
   }
 
