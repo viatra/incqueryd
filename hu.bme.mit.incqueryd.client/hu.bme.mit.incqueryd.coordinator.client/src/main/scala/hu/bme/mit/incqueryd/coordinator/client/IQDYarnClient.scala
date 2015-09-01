@@ -70,20 +70,20 @@ class IQDYarnClient {
     coordinator.loadData(metamodel, modelFilePath, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
   }
   
-  def loadChanges(changesMap : java.util.Map[String, ChangeSet]) {
-    coordinator.sendChangesToInputs(changesMap.toMap)
+  def loadChanges(changesMap : Map[String, ChangeSet]) {
+    coordinator.sendChangesToInputs(changesMap)
   }
   
   def startQuery(reteRecipe: ReteRecipe) {
     coordinator.startQuery(reteRecipe, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
   }
 
-  def checkQuery(reteRecipe: ReteRecipe, patternName: String): java.util.Collection[Tuple] = {
+  def checkQuery(reteRecipe: ReteRecipe, patternName: String): Set[Tuple] = {
     if (!queries.keySet.contains(patternName)) {
       startQuery(reteRecipe)
       queries.put(patternName, reteRecipe)
     }
-    asJavaCollection(coordinator.checkResults(reteRecipe, patternName))
+    coordinator.checkResults(reteRecipe, patternName)
   }
 
   def dispose() {
