@@ -34,7 +34,7 @@ akka {
     enabled-transports = ["akka.remote.netty.tcp"]
     netty.tcp {
       hostname = "${id.ip}"
-      bind-hostname = "${getLocalIp}" # XXX needed for docker networking
+      bind-hostname = "${NetworkUtils.getLocalIpAddress}" # XXX needed for docker networking
       port = ${id.port}
       maximum-frame-size = 128000000
     }
@@ -58,7 +58,7 @@ akka {
   
   def getClientActorSystem() : ActorSystem = {
     if(clientActorSystem == null || clientActorSystem.isTerminated)
-      clientActorSystem = getRemotingActorSystem("client", getLocalIp, 0)
+      clientActorSystem = getRemotingActorSystem("client", NetworkUtils.getLocalIpAddress, 0)
     clientActorSystem
   }
   
@@ -90,7 +90,7 @@ akka {
   }
   
   def toRemoteActorPath(actorPath : ActorPath) : ActorPath = {
-    val address = new Address("akka.tcp", YarnActorService.actorSystemName, getLocalIp, YarnActorService.port)
+    val address = new Address("akka.tcp", YarnActorService.actorSystemName, NetworkUtils.getLocalIpAddress, YarnActorService.port)
     ActorPath.fromString(actorPath.toStringWithAddress(address))
   }
   
@@ -141,11 +141,6 @@ akka {
       }
       case Failure(e) => throw e
     }
-  }
-  
-  def getLocalIp() : String = {
-    val hostname = InetAddress.getLocalHost.getHostName;
-    InetAddress.getByName(hostname).getHostAddress()
   }
   
   val defaultRetryCount = 10

@@ -13,7 +13,7 @@ object ActorSystemApplication {
   
   def main(args: Array[String]) {
     val zkApplicationPath = args(0)
-    val ip = AkkaUtils.getLocalIp
+    val ip = NetworkUtils.getLocalIpAddress
     val port = YarnActorService.port
     val actorSystem = AkkaUtils.getRemotingActorSystem(YarnActorService.actorSystemName, ip, port)
     actorSystem.actorOf(Props[ServiceActor], YarnActorService.serviceActorName)
