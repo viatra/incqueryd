@@ -55,11 +55,7 @@ public class TypeInputNode implements ReteNode {
 	}
 
 	public void load() throws IOException {
-		try {
-			driver = new FileGraphDriverRead(databaseUrl);
-		} catch (RDFParseException | RDFHandlerException e) {
-			throw new IOException(e);
-		}
+		driver = new FileGraphDriverRead(databaseUrl);
 
 		String typeName = recipe.getTypeName();
 
