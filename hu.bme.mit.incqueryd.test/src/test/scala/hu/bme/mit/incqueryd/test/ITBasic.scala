@@ -40,77 +40,37 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import java.util.HashSet
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
 import java.util.HashMap
+import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
 
 class ITBasic {
 
+  val vocabularyFileName = "vocabulary.rdf"
+	val modelFileName = "railway-test-1.ttl"
+	val patternName = "switchSensor"
+	val expectedResult = toTuples(Set(52, 138, 78, 391))
+	val inputChanges = Map("Switch" -> new ChangeSet(toTuples(Set(138)), ChangeType.NEGATIVE))
+	val expectedResultAfterChange = toTuples(Set(52, 78, 391))
+
   @Test
   def test() {
-    val modelFileName = "railway-test-1.ttl"
-    val vocabularyFileName = "vocabulary.rdf"
-    val patternName = "switchSensor"
-    val expectedResult = Set(52, 138, 78, 391).map(n => new Tuple(new Long(n)))
-    val expectedResultAfterChange = Set(52, 78, 391).map(n => new Tuple(new Long(n)))
-    val rmHostname = "yarn-rm.docker"
-    val fileSystemUri = "hdfs://yarn-rm.docker:9000"
-    val zkHostname = rmHostname
-    val timeout = 300 seconds
-    
-    val hdfs = HdfsUtils.getDistributedFileSystem(fileSystemUri)
-    
-    // Upload testfile
-    val testFile = new File(getClass.getClassLoader.getResource(modelFileName).getFile)
-    val testFilePath = fileSystemUri + "/test/" + modelFileName
-    HdfsUtils.upload(hdfs, testFile, testFilePath)
-    
-    val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
-    Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), timeout)
-    val coordinator = Await.result(Coordinator.create(advancedYarnClient), timeout)
-    
-    val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
-    coordinator.loadData(vocabulary, testFilePath, rmHostname, fileSystemUri)
-
+    val client = new IQDYarnClient 
+    client.connect()
+    client.startActorSystems()
+    client.startCoordinator()
+    client.loadMetamodel(getClass.getClassLoader.getResource(vocabularyFileName))
+    client.loadInitialData(getClass.getClassLoader.getResource(modelFileName))
     val recipe = loadRecipe
-    coordinator.startQuery(recipe, rmHostname, fileSystemUri)
-
+    client.startQuery(recipe)
     try {
-      val initResult = coordinator.checkResults(recipe, patternName)
-      println(s"Query result: $initResult")
-      assertEquals(expectedResult, initResult)
-      
-      // Create simple ChangeSet - XXX 
-      val tuple = new Tuple(new Long(138))
-      val tupleSet = new HashSet[Tuple]()
-      tupleSet.add(tuple)
-      val changeSet = new ChangeSet(tupleSet, ChangeType.NEGATIVE)
-      val inputChanges = new HashMap[String, ChangeSet]()
-      inputChanges.put("Switch", changeSet)
-      
-      // Propagate changes
-      coordinator.sendChangesToInputs(inputChanges.toMap)
-      
-      // Get result after changes
-      val result = coordinator.checkResults(recipe, patternName)
-      println(s"Query result: $result")
-      assertEquals(expectedResultAfterChange, result)
-      
+      assertResult(client, recipe, expectedResult)
+      client.loadChanges(inputChanges)
+      assertResult(client, recipe, expectedResultAfterChange)
     } finally {
-      coordinator.stopQuery(recipe, zkHostname)
-      coordinator.dispose
+      client.dispose()
     }
-    
-    YarnActorService.stopActorSystems()
   }
 
-  private def loadRdf(documentUrl: URL): Model = {
-    val result = new LinkedHashModel
-    val urlString = documentUrl.toString
-    val format = Rio.getParserFormatForFileName(urlString)
-    val parser = Rio.createParser(format)
-    parser.setRDFHandler(new StatementCollector(result))
-    val inputStream = documentUrl.openStream
-    parser.parse(inputStream, urlString)
-    result
-  }
+  private def toTuples(set: Set[Int]) = set.map(n => new Tuple(new Long(n)))
 
   private def loadRecipe: ReteRecipe = {
     val filename = "SwitchSensor.rdfiq.recipe"
@@ -124,4 +84,10 @@ class ITBasic {
     resource.getContents.get(0).asInstanceOf[ReteRecipe]
   }
 
+  private def assertResult(client: IQDYarnClient, recipe: ReteRecipe, expectedResult: Set[Tuple]) {
+	  val result = client.checkQuery(recipe, patternName)
+	  println(s"Query result: $result")
+	  assertEquals(expectedResult, result)
+  }
+  
 }
