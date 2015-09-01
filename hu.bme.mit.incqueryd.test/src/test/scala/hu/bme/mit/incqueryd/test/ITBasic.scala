@@ -41,6 +41,7 @@ import java.util.HashSet
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
 import java.util.HashMap
 import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
+import scala.collection.JavaConverters
 
 class ITBasic {
 
@@ -48,7 +49,8 @@ class ITBasic {
 	val modelFileName = "railway-test-1.ttl"
 	val patternName = "switchSensor"
 	val expectedResult = toTuples(Set(52, 138, 78, 391))
-	val inputChanges = Map("Switch" -> new ChangeSet(toTuples(Set(138)), ChangeType.NEGATIVE))
+	val inputChanges = Map("Switch" ->
+    new ChangeSet(new java.util.HashSet(toTuples(Set(138))), ChangeType.NEGATIVE)) // XXX must be serializable
 	val expectedResultAfterChange = toTuples(Set(52, 78, 391))
 
   @Test
