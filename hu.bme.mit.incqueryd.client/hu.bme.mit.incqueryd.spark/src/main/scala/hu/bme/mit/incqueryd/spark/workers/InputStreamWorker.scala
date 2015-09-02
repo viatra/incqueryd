@@ -1,7 +1,6 @@
 package hu.bme.mit.incqueryd.spark.workers
 
 import org.apache.spark.streaming.StreamingContext
-import hu.bme.mit.incqueryd.spark.recievers.FileGraphLoadReceiver
 import org.apache.spark.SparkEnv
 import org.apache.spark.streaming.dstream.ReceiverInputDStream
 import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
