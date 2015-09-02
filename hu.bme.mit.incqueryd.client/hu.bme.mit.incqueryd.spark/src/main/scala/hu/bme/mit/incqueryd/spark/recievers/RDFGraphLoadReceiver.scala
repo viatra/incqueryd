@@ -26,11 +26,12 @@ import hu.bme.mit.incqueryd.actorservice.ActorId
 import com.google.common.net.HostAndPort
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
+import hu.bme.mit.incqueryd.spark.utils.Delta
 
 /**
  * @author pappi
  */
-class FileGraphLoadReceiver(databaseURL: String) extends Receiver[String](StorageLevel.MEMORY_ONLY) {
+class RDFGraphLoadReceiver(driver: RDFGraphDriverRead) extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
 
   def onStart() {
     
@@ -38,8 +39,6 @@ class FileGraphLoadReceiver(databaseURL: String) extends Receiver[String](Storag
     
     val inputNodes = IncQueryDZooKeeper.getChildPaths(IncQueryDZooKeeper.inputNodesPath)
     val pool: ExecutorService = Executors.newFixedThreadPool(inputNodes.length)
-    
-    val driver = new FileGraphDriverRead(databaseURL)
     
     inputNodes.foreach { inputNode =>
       val rdfType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.rdfType}")
@@ -63,18 +62,21 @@ class FileGraphLoadReceiver(databaseURL: String) extends Receiver[String](Storag
         
         case RecipeUtils.VERTEX => 
           val dataset = driver.collectVertices(rdfTypeName)
-          dataset.toList.foreach { x => 
-            store(s"${x.toString()}$SEPARATOR${ChangeType.POSITIVE}$SEPARATOR$inputType$SEPARATOR$inputActorPath") }
+          dataset.toList.foreach(x => 
+            store(Delta(Array(x.toString()), ChangeType.POSITIVE, inputType, inputActorPath))
+          )
         
         case RecipeUtils.EDGE =>
           val dataset = driver.collectEdges(rdfTypeName)
           dataset.entries().foreach(entry => 
-            store(s"${entry.getKey}$SEPARATOR${entry.getValue}$SEPARATOR${ChangeType.POSITIVE}$SEPARATOR$inputType$SEPARATOR$inputActorPath"))
+            store(Delta(Array(entry.getKey.toString(), entry.getValue.toString()), ChangeType.POSITIVE, inputType, inputActorPath))
+          )
         
         case RecipeUtils.ATTRIBUTE =>
           val dataset = driver.collectProperties(rdfTypeName)
           dataset.entries().foreach(entry => 
-            store(s"${entry.getKey}${SEPARATOR}${entry.getValue}$SEPARATOR${ChangeType.POSITIVE}$SEPARATOR$inputType$SEPARATOR$inputActorPath"))
+            store(Delta(Array(entry.getKey.toString(), entry.getValue.toString()), ChangeType.POSITIVE, inputType, inputActorPath))
+          )
       }
       
     } catch {

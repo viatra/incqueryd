@@ -6,7 +6,7 @@ import org.apache.spark.streaming.StreamingContext
 import hu.bme.mit.incqueryd.actorservice.ActorId
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import com.google.common.net.HostAndPort
-import hu.bme.mit.incqueryd.spark.recievers.FileGraphLoadReceiver
+import hu.bme.mit.incqueryd.spark.recievers.RDFGraphLoadReceiver
 import hu.bme.mit.incqueryd.spark.workers.InputStreamWorker
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
@@ -17,6 +17,9 @@ import org.apache.spark.SparkConf
 import org.apache.spark.streaming.dstream.InputDStream
 import org.apache.spark.streaming.dstream.ReceiverInputDStream
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
+import hu.bme.mit.incqueryd.spark.utils.Delta
+import eu.mondo.driver.file.FileGraphDriverRead
+import eu.mondo.driver.fourstore.FourStoreGraphDriverRead
 
 /**
  * @author pappi
@@ -45,12 +48,12 @@ object IQDSparkMain extends Serializable {
     val ssc = new StreamingContext(sparkConf, Milliseconds(DURATION.toInt))
 
     // Create stream
-    var stream : ReceiverInputDStream[String] = null
-    METHOD match {
-      case ProcessingMethod.HDFS_LOAD => stream = ssc.receiverStream(new FileGraphLoadReceiver(DS_URL))
-      case ProcessingMethod.FOURSTORE_LOAD => throw new UnsupportedOperationException("Not supported yet!")
+    val receiver = METHOD match {
+      case ProcessingMethod.HDFS_LOAD => new RDFGraphLoadReceiver(new FileGraphDriverRead(DS_URL))
+      case ProcessingMethod.FOURSTORE_LOAD => new RDFGraphLoadReceiver(new FourStoreGraphDriverRead(DS_URL))
       case ProcessingMethod.WIKISTREAM => throw new UnsupportedOperationException("Not supported yet!")
     }
+    val stream : ReceiverInputDStream[Delta] = ssc.receiverStream(receiver)
     
     // Processing stream
     InputStreamWorker.process(stream)
