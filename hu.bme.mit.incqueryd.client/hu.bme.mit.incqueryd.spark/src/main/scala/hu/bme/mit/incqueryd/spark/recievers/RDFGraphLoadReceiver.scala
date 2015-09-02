@@ -43,14 +43,19 @@ class RDFGraphLoadReceiver(driver: RDFGraphDriverRead) extends Receiver[Delta](S
     inputNodes.foreach { inputNode =>
       val rdfType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.rdfType}")
       val nodeType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.nodeType}")
-      val address = HostAndPort.fromString(IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.addressPath}"))
-      val actorName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.actorNamePath}")
-      val actorId = new ActorId(YarnActorService.actorSystemName, address.getHostText, address.getPort, actorName)
+      val inputActorPath = getInputActorPath(inputNode)
       
-      pool.execute(new HDFSLoadWorker(driver, nodeType, rdfType, AkkaUtils.toActorPath(actorId)))
+      pool.execute(new HDFSLoadWorker(driver, nodeType, rdfType, inputActorPath))
     }
     
     pool.shutdown()
+  }
+
+  private def getInputActorPath(inputNode: String) = {
+  	val address = HostAndPort.fromString(IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.addressPath}"))
+    val actorName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.actorNamePath}")
+    val actorId = new ActorId(YarnActorService.actorSystemName, address.getHostText, address.getPort, actorName)
+    AkkaUtils.toActorPath(actorId)
   }
 
   def onStop() {}
