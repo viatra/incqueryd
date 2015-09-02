@@ -1,17 +1,16 @@
 package hu.bme.mit.incqueryd.spark.workers
 
-import org.apache.spark.streaming.StreamingContext
-import hu.bme.mit.incqueryd.spark.recievers.FileGraphLoadReceiver
-import org.apache.spark.SparkEnv
 import org.apache.spark.streaming.dstream.ReceiverInputDStream
-import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
+
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
-import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import hu.bme.mit.incqueryd.engine.rete.actors.RecipeUtils
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
+import hu.bme.mit.incqueryd.idservice.IDService._
+import hu.bme.mit.incqueryd.spark.recievers.FileGraphLoadReceiver
+import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
 import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
 import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils
-import scala.collection.JavaConverters._
 import java.lang.Long
 
 /**
@@ -20,7 +19,6 @@ import java.lang.Long
 object InputStreamWorker {
 
   def process(stream: ReceiverInputDStream[String]) {
-    // TODO: implement ID generation
     val sections = stream.map {_.split(SEPARATOR)}
     sections.foreachRDD {_.foreach { record =>
         val inputActorPath = record.last
@@ -30,11 +28,20 @@ object InputStreamWorker {
         
         val tupleSet = new java.util.HashSet[Tuple]
         
-        // XXX ID generation
         inputType match {
-          case RecipeUtils.VERTEX => tupleSet.add(new Tuple(Long.valueOf(data(0))))
-          case RecipeUtils.EDGE => tupleSet.add(new Tuple(Long.valueOf(data(0)), Long.valueOf(data(1))))
-          case RecipeUtils.ATTRIBUTE => tupleSet.add(new Tuple(Long.valueOf(data(0)), data(1)))
+          case RecipeUtils.VERTEX => {
+            val id0 = lookupID(data(0))
+            tupleSet.add(new Tuple(id0))
+          }
+          case RecipeUtils.EDGE => {
+            val id0 = lookupID(data(0))
+            val id1 = lookupID(data(1))
+            tupleSet.add(new Tuple(id0, id1))
+          }
+          case RecipeUtils.ATTRIBUTE => {
+            val id0 = lookupID(data(0))
+            tupleSet.add(new Tuple(id0, data(1)))
+          }
         }
         
         propagateToInput(inputActorPath, new ChangeSet(tupleSet, ChangeType.valueOf(changeType)))
