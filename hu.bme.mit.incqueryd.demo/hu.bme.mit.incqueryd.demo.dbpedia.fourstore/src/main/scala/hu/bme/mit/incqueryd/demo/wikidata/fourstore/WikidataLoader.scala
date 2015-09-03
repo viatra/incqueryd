@@ -12,10 +12,11 @@ import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream
 
 object WikidataLoader {
 
-  def load(driver: FourStoreGraphDriverReadWrite) {
+
+  def load(driver: FourStoreGraphDriverReadWrite, dumpName: String) {
     val tempDir = new File(System.getProperty("java.io.tmpdir"))
     val compressed = new File(tempDir, "wikidata_compressed.nt.gz")
-    FileUtils.copyURLToFile(new URL("http://tools.wmflabs.org/wikidata-exports/rdf/exports/20150817/wikidata-terms.nt.gz"), compressed)
+    FileUtils.copyURLToFile(new URL(s"http://tools.wmflabs.org/wikidata-exports/rdf/exports/20150817/wikidata-$dumpName.nt.gz"), compressed)
     val extracted = new File(tempDir, "wikidata_extracted.ttl")
     extractGzip(compressed, extracted)
     driver.load(extracted)
