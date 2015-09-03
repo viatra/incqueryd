@@ -64,6 +64,11 @@ docker exec $YARN_RM /usr/local/zookeeper/bin/zkServer.sh start
 docker exec $YARN_NM1 /usr/local/zookeeper/bin/zkServer.sh start
 docker exec $YARN_NM2 /usr/local/zookeeper/bin/zkServer.sh start
 
+# Start Hazelcast on nodes
+echo "Start hazelcast nodes ... "
+docker exec -d $YARN_NM1 sh /usr/local/hazelcast/bin/server.sh
+docker exec -d $YARN_NM2 sh /usr/local/hazelcast/bin/server.sh
+
 # Start HDFS on slaves
 # docker exec $YARN_NM1 /usr/local/hadoop/sbin/start-dfs.sh
 # docker exec $YARN_NM2 /usr/local/hadoop/sbin/start-dfs.sh

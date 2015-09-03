@@ -41,6 +41,7 @@
 	<modules>
 		<module>hu.bme.mit.incqueryd.actorservice</module>
 		<module>hu.bme.mit.incqueryd.inventory</module>
+		<module>hu.bme.mit.incqueryd.idservice</module>
 		<module>hu.bme.mit.incqueryd.rete.nodes</module>
 		<module>hu.bme.mit.incqueryd.rete.actors</module>
 		<module>hu.bme.mit.incqueryd.engine</module>

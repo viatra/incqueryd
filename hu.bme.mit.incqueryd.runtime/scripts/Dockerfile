@@ -117,6 +117,21 @@ ADD start_spark.sh /usr/local/spark/start_spark.sh
 RUN chown root:root /usr/local/spark/start_spark.sh
 RUN chmod 700 /usr/local/spark/start_spark.sh
 
+# Install Hazelcast
+RUN cd /tmp/ && curl -s -o hazelcast-3.4.5.tar.gz http://download.hazelcast.com/download.jsp --data "version=hazelcast-3.4.5&type=tar&p=118961842"
+RUN tar -xzf /tmp/hazelcast-3.4.5.tar.gz -C /usr/local/
+RUN cd /usr/local && ln -s ./hazelcast-3.4.5 hazelcast
+
+ENV HZ_HOME /usr/local/hazelcast
+RUN echo "export HZ_HOME=/usr/local/hazelcast" >> /etc/profile
+RUN cd $HZ_HOME/lib && curl -s -o snowcast-1.0.0-RC1.jar http://central.maven.org/maven2/com/noctarius/snowcast/snowcast/1.0.0-RC1/snowcast-1.0.0-RC1.jar
+
+ADD hz_server.sh $HZ_HOME/bin/server.sh
+RUN chown root:root $HZ_HOME/bin/server.sh
+RUN chmod 700 $HZ_HOME/bin/server.sh
+
+ADD hazelcast.xml $HZ_HOME/bin/hazelcast.xml
+
 # Add dnsmasq.conf file
 ADD dnsmasq.conf /etc/dnsmasq.conf
 ADD dnsmasq.resolv.conf /etc/dnsmasq.resolv.conf

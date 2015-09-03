@@ -38,6 +38,11 @@
 			<artifactId>hu.bme.mit.incqueryd.spark</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>hu.bme.mit.incqueryd</groupId>
+			<artifactId>hu.bme.mit.incqueryd.idservice</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
