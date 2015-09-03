@@ -1,18 +1,18 @@
-package hu.bme.mit.incqueryd.demo.dbpedia.fourstore
+package hu.bme.mit.incqueryd.demo.wikidata.fourstore
 
 import org.junit.Assert._
 import org.junit.Test
 
 import eu.mondo.driver.fourstore.FourStoreGraphDriverReadWrite
 
-class DBpediaLoaderTest {
+class WikidataLoaderTest {
 
   @Test
   def load() {
-    val driver = new FourStoreGraphDriverReadWrite("dbpedia")
+    val driver = new FourStoreGraphDriverReadWrite("wikidata")
     driver.setShowCommandOutput(true)
     driver.start()
-    DBpediaLoader.load(driver, "hu")
+    WikidataLoader.load(driver)
     try {
     	assertTrue(driver.countProperties("http://www.w3.org/2000/01/rdf-schema#label") > 0)
     } finally {

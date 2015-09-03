@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>hu.bme.mit.incqueryd.demo.dbpedia</groupId>
-	<artifactId>hu.bme.mit.incqueryd.demo.dbpedia.fourstore</artifactId>
+	<groupId>hu.bme.mit.incqueryd.demo.wikidata</groupId>
+	<artifactId>hu.bme.mit.incqueryd.demo.wikidata.fourstore</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<inceptionYear>2008</inceptionYear>
 	<properties>
