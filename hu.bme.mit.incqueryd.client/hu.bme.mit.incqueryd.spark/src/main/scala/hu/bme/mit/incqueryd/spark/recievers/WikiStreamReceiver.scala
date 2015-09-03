@@ -24,7 +24,7 @@ class WikiStreamReceiver extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
     def configuration = new Configuration.Builder()
       .setName(s"iqd-wikichanges-${InetAddress.getLocalHost().getHostName()}")
       .setServerHostname("irc.wikimedia.org")
-      .addAutoJoinChannel("#hu.wikipedia")
+      .addAutoJoinChannel("#wikidata.wikipedia")
       .addListener(new IrcListener(pool))
       .buildConfiguration
     val bot = new PircBotX(configuration)
@@ -33,22 +33,30 @@ class WikiStreamReceiver extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
   }
 
   def onStop() {}
+
   class IrcListener(pool: ExecutorService) extends ListenerAdapter[PircBotX] {
     override def onGenericMessage(event: GenericMessageEvent[PircBotX]) {
-      parse(event.getMessage).foreach { edit => pool.submit(new Worker(edit)) }
-    }
-    
-    def parse(message: String): Option[WikipediaEdit] = {
-      val regex = """\u000314\[\[\u000307(.+?)\u000314\]\]\u00034 (.*?)\u000310.*\u000302(.*?)\u0003.+\u000303(.+?)\u0003.+\u0003 .+([+-]\d+).+ \u000310(.*)\u0003.*""".r
-      message match {
-        case regex(pageTitle, flags, diffUrl, userName, diffSizeString, comment) => 
-          val robot = flags.contains('B')
-          val newPage = flags.contains('N')
-          val unpatrolled = flags.contains('!')
-          val diffSize = diffSizeString.toInt
-          Some(WikipediaEdit(pageTitle, robot, newPage, unpatrolled, diffUrl, userName, diffSize, comment))
-        case _ => None
+      parse(event.getMessage).foreach { edit =>
+        pool.submit(new Runnable {
+          def run() {
+            println(edit)
+            // TODO transform edit to delta and store it
+          }
+        })
       }
+    }
+  }
+
+  def parse(message: String): Option[WikipediaEdit] = {
+    val regex = """\u000314\[\[\u000307(.+?)\u000314\]\]\u00034 (.*?)\u000310.*\u000302(.*?)\u0003.+\u000303(.+?)\u0003.+\u0003 .+([+-]\d+).+ \u000310(.*)\u0003.*""".r
+    message match {
+      case regex(pageTitle, flags, diffUrl, userName, diffSizeString, comment) =>
+        val robot = flags.contains('B')
+        val newPage = flags.contains('N')
+        val unpatrolled = flags.contains('!')
+        val diffSize = diffSizeString.toInt
+        Some(WikipediaEdit(pageTitle, robot, newPage, unpatrolled, diffUrl, userName, diffSize, comment))
+      case _ => None
     }
   }
 
@@ -63,13 +71,6 @@ class WikiStreamReceiver extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
     comment: String
   )
   
-  class Worker(edit: WikipediaEdit) extends Runnable {
-	  def run() {
-      println(edit)
-      // TODO transform edit to delta and store it
-	  }
-  }
-
 }
 
 object Sandbox {
