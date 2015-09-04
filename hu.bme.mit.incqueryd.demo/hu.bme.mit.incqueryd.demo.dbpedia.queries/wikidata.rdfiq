@@ -1,10 +1,7 @@
-vocabulary <axiomatic.ttl>
-vocabulary <dcterms.ttl>
+vocabulary <wikidata-property-taxonomy.nt>
 
-prefix dcterms: <http://purl.org/dc/terms/>
-prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix wd: <http://www.wikidata.org/entity/>
 
-pattern category(page, category, title) {
-	dcterms:subject(page, category);
-	rdfs:label(page, title);
+pattern instanceOf(topic, class) {
+	wd:P31(topic, class);
 }

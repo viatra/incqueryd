@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <recipes:ReteRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
-  <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="null [recipe 0]">
-    <leftParent parent="//@recipeNodes.2">
-      <mask sourceArity="2">
-        <sourceIndices>0</sourceIndices>
-      </mask>
-    </leftParent>
-    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.1">
-      <mask sourceArity="2">
-        <sourceIndices>0</sourceIndices>
-      </mask>
-    </rightParent>
-    <rightParentComplementaryMask sourceArity="2">
-      <sourceIndices>1</sourceIndices>
-    </rightParentComplementaryMask>
-  </recipeNodes>
-  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="attribute: http://www.w3.org/2000/01/rdf-schema#label [recipe 1]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF74002A687474703A2F2F7777772E77332E6F72672F323030302F30312F7264662D736368656D61236C6162656C" typeName="http://www.w3.org/2000/01/rdf-schema#label"/>
-  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge: http://purl.org/dc/terms/subject [recipe 2]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740020687474703A2F2F7075726C2E6F72672F64632F7465726D732F7375626A656374" typeName="http://purl.org/dc/terms/subject"/>
-  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="category [recipe 3]" parents="//@recipeNodes.0">
-    <mappedIndices key="page" value="0"/>
-    <mappedIndices key="category" value="1"/>
-    <mappedIndices key="title" value="2"/>
+  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge: http://www.wikidata.org/entity/P31 [recipe 0]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740022687474703A2F2F7777772E77696B69646174612E6F72672F656E746974792F503331" typeName="http://www.wikidata.org/entity/P31"/>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="instanceOf [recipe 1]" parents="//@recipeNodes.0">
+    <mappedIndices key="topic" value="0"/>
+    <mappedIndices key="class" value="1"/>
   </recipeNodes>
 </recipes:ReteRecipe>
