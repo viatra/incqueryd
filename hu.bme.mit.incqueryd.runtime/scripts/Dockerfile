@@ -106,7 +106,7 @@ RUN chmod 700 /usr/local/zookeeper/bin/zkServer.sh
 # RUN cd /usr/local/spark/ && mvn -Pyarn -Phadoop-2.6 -Dscala-2.11 -DskipTests clean package
 
 # Install pre-build spark
-RUN curl -s http://apache.mirrorcatalogs.com/spark/spark-1.4.1/spark-1.4.1-bin-hadoop2.6.tgz | tar xz -C /usr/local/
+RUN curl -s http://xenia.sote.hu/ftp/mirrors/www.apache.org//spark/spark-1.4.1/spark-1.4.1-bin-hadoop2.6.tgz | tar xz -C /usr/local/
 RUN cd /usr/local && ln -s ./spark-1.4.1-bin-hadoop2.6 spark
 
 ENV SPARK_HOME=/usr/local/spark
