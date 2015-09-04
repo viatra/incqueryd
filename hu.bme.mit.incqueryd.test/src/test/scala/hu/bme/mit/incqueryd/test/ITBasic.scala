@@ -27,7 +27,6 @@ import hu.bme.mit.incqueryd.inventory.MachineInstance
 import upickle._
 import hu.bme.mit.incqueryd.inventory.MachineInstance
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
-import hu.bme.mit.incqueryd.coordinator.client.Coordinator
 import scala.concurrent.Await
 import scala.concurrent.duration._
 import hu.bme.mit.incqueryd.yarn.HdfsUtils
@@ -40,8 +39,10 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import java.util.HashSet
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
 import java.util.HashMap
-import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
 import scala.collection.JavaConverters
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection.Backend
+import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
 
 class ITBasic {
 
@@ -56,13 +57,10 @@ class ITBasic {
   @Test
   def test() {
     val client = new IQDYarnClient 
-    client.connect()
-    client.startActorSystems()
-    client.startCoordinator()
-    client.loadMetamodel(getClass.getClassLoader.getResource(vocabularyFileName))
-    client.loadInitialData(getClass.getClassLoader.getResource(modelFileName))
+    val metamodel = client.loadMetamodel(getClass.getClassLoader.getResource(vocabularyFileName))
+    val modelFilePath = client.uploadFile(getClass.getClassLoader.getResource(modelFileName))
+    client.loadInitialData(metamodel, new DatabaseConnection(modelFilePath, Backend.FILE))
     val recipe = loadRecipe
-    client.startQuery(recipe)
     try {
       assertResult(client, recipe, expectedResult)
       client.loadChanges(inputChanges)
@@ -84,6 +82,9 @@ class ITBasic {
     val resource = resourceSet.createResource(URI.createURI(url.toString))
     resource.load(Map[Object, Object]())
     resource.getContents.get(0).asInstanceOf[ReteRecipe]
+  }
+  
+  private def uploadFile() {
   }
 
   private def assertResult(client: IQDYarnClient, recipe: ReteRecipe, expectedResult: Set[Tuple]) {

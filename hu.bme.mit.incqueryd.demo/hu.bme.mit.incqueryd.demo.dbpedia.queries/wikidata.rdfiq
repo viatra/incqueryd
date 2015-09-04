@@ -1,0 +1,7 @@
+vocabulary <wikidata-property-taxonomy.nt>
+
+prefix wd: <http://www.wikidata.org/entity/>
+
+pattern instanceOf(topic, class) {
+	wd:P31(topic, class);
+}

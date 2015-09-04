@@ -23,6 +23,8 @@ import org.junit.Test;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
+import eu.mondo.driver.file.FileGraphDriverRead;
+
 public class TrainBenchmarkTest {
 
 	@Test
@@ -135,10 +137,10 @@ public class TrainBenchmarkTest {
 		assertEquals(19, cs2.size());
 	}
 
-	private TypeInputNode createVertexInputNode(String typeName) {
+	private TypeInputNode createVertexInputNode(String typeName) throws IOException {
 		UnaryInputRecipe recipe = RecipesFactory.eINSTANCE.createUnaryInputRecipe();
 		recipe.setTypeName(typeName);
-		TypeInputNode node = new TypeInputNode(recipe, TypeInputNodeTest.DATABASE_URL);
+		TypeInputNode node = new TypeInputNode(recipe, new FileGraphDriverRead(TypeInputNodeTest.DATABASE_URL));
 		return node;
 	}
 
@@ -180,7 +182,7 @@ public class TrainBenchmarkTest {
 		BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
 		recipe.setTypeName(type);
 		recipe.setTraceInfo("edge");
-		TypeInputNode node = new TypeInputNode(recipe, TypeInputNodeTest.DATABASE_URL);
+		TypeInputNode node = new TypeInputNode(recipe, new FileGraphDriverRead(TypeInputNodeTest.DATABASE_URL));
 		return node;
 	}
 
@@ -197,11 +199,11 @@ public class TrainBenchmarkTest {
 		return recipe;
 	}
 
-	private TypeInputNode createAttributeInputNode(String type) {
+	private TypeInputNode createAttributeInputNode(String type) throws IOException {
 		BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
 		recipe.setTypeName(type);
 		recipe.setTraceInfo("attribute");
-		TypeInputNode node = new TypeInputNode(recipe, TypeInputNodeTest.DATABASE_URL);
+		TypeInputNode node = new TypeInputNode(recipe, new FileGraphDriverRead(TypeInputNodeTest.DATABASE_URL));
 		return node;
 	}
 
