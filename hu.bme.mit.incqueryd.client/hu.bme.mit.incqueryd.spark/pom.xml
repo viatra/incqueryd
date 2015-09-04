@@ -101,7 +101,7 @@
 		
 		<dependency>
 			<groupId>org.wikidata.wdtk</groupId>
-			<artifactId>wdtk-dumpfiles</artifactId>
+			<artifactId>wdtk-wikibaseapi</artifactId>
 			<version>0.5.0</version>
 		</dependency>
 

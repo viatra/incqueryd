@@ -11,13 +11,12 @@ object ReteActorKey {
 
   def apply(recipe: ReteNodeRecipe): ReteActorKey = {
     recipe match {
-      case recipe: TypeInputRecipe => ReteActorKey(recipe)
-      case _ => ReteActorKey(URLEncoder.encode(recipe.eResource().getURIFragment(recipe), "UTF-8"))
+      case recipe: TypeInputRecipe => fromString(recipe.getTypeName)
+      case _ => fromString(recipe.eResource().getURIFragment(recipe))
     }
   }
   
-  def apply(recipe: TypeInputRecipe): ReteActorKey = {
-    val inputName = recipe.getTypeName.split("#").last
-    ReteActorKey(URLEncoder.encode(inputName, "UTF-8"))
+  def fromString(keyId: String): ReteActorKey = {
+    ReteActorKey(URLEncoder.encode(keyId, "UTF-8"))
   }
 }

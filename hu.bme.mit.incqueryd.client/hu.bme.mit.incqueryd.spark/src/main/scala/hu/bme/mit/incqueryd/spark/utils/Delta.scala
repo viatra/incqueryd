@@ -1,5 +1,12 @@
 package hu.bme.mit.incqueryd.spark.utils
 
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
+import akka.actor.ActorPath
 
-case class Delta(data: Array[String], changeType: ChangeType, inputType: String, inputActorPath: String)
+trait Delta {
+  def inputActorPath: ActorPath
+  def changeType: ChangeType 
+}
+case class VertexDelta(inputActorPath: ActorPath, changeType: ChangeType, vertexId: String) extends Delta
+case class EdgeDelta(inputActorPath: ActorPath, changeType: ChangeType, subjectId: String, objectId: String) extends Delta
+case class AttributeDelta(inputActorPath: ActorPath, changeType: ChangeType, subjectId: String, objectValue: String) extends Delta

@@ -9,6 +9,11 @@ import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputState
 import java.io.FileWriter
 import scala.concurrent.duration._
 import scala.concurrent.Await
+import hu.bme.mit.incqueryd.actorservice.ActorId
+import com.google.common.net.HostAndPort
+import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
+import hu.bme.mit.incqueryd.actorservice.YarnActorService
+import akka.actor.ActorPath
 
 /**
  * @author pappi
@@ -24,7 +29,7 @@ object IQDSparkUtils {
   val APP_RESOURCE = "/tmp/target/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar"
   val MAIN_CLASS = "hu.bme.mit.incqueryd.spark.IQDSparkMain"
 
-  def propagateToInput(actorPath: String, changeSet: ChangeSet) {
+  def propagateToInput(actorPath: ActorPath, changeSet: ChangeSet) {
     val inputActor = SparkEnv.get.actorSystem.actorFor(actorPath)
     inputActor ! PropagateInputState(changeSet)
   }
@@ -40,4 +45,12 @@ object IQDSparkUtils {
     writer.write(s" | ${obj.toString()}")
     writer.close()
   }
+  
+  def getInputActorPath(inputNodeZnodeId: String): ActorPath = {
+    val address = HostAndPort.fromString(IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNodeZnodeId${IncQueryDZooKeeper.addressPath}"))
+    val actorName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNodeZnodeId${IncQueryDZooKeeper.actorNamePath}")
+    val actorId = new ActorId(YarnActorService.actorSystemName, address.getHostText, address.getPort, actorName)
+    ActorPath.fromString(AkkaUtils.toActorPath(actorId))
+  }
+
 }

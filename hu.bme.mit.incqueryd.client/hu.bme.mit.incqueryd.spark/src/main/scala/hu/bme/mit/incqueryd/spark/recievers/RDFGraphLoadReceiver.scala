@@ -27,6 +27,10 @@ import com.google.common.net.HostAndPort
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 import hu.bme.mit.incqueryd.spark.utils.Delta
+import akka.actor.ActorPath
+import hu.bme.mit.incqueryd.spark.utils.VertexDelta
+import hu.bme.mit.incqueryd.spark.utils.EdgeDelta
+import hu.bme.mit.incqueryd.spark.utils.AttributeDelta
 
 /**
  * @author pappi
@@ -42,57 +46,45 @@ class RDFGraphLoadReceiver(driver: RDFGraphDriverRead) extends Receiver[Delta](S
     
     inputNodes.foreach { inputNode =>
       val rdfType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.rdfType}")
-      val nodeType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.nodeType}")
+      val inputType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.nodeType}")
       val inputActorPath = getInputActorPath(inputNode)
       
-      pool.execute(new HDFSLoadWorker(driver, nodeType, rdfType, inputActorPath))
+      pool.execute(new HDFSLoadWorker(driver, inputType, rdfType, inputActorPath))
     }
     
     pool.shutdown()
   }
 
-  private def getInputActorPath(inputNode: String) = {
-  	val address = HostAndPort.fromString(IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.addressPath}"))
-    val actorName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.actorNamePath}")
-    val actorId = new ActorId(YarnActorService.actorSystemName, address.getHostText, address.getPort, actorName)
-    AkkaUtils.toActorPath(actorId)
-  }
-
   def onStop() {}
   
-  private def receive(driver: RDFGraphDriverRead, inputType: String, rdfTypeName : String, inputActorPath : String) {
-    
-    try {
-      inputType match {
-        
-        case RecipeUtils.VERTEX => 
-          val dataset = driver.collectVertices(rdfTypeName)
-          dataset.toList.foreach(x => 
-            store(Delta(Array(x.toString()), ChangeType.POSITIVE, inputType, inputActorPath))
-          )
-        
-        case RecipeUtils.EDGE =>
-          val dataset = driver.collectEdges(rdfTypeName)
-          dataset.entries().foreach(entry => 
-            store(Delta(Array(entry.getKey.toString(), entry.getValue.toString()), ChangeType.POSITIVE, inputType, inputActorPath))
-          )
-        
-        case RecipeUtils.ATTRIBUTE =>
-          val dataset = driver.collectProperties(rdfTypeName)
-          dataset.entries().foreach(entry => 
-            store(Delta(Array(entry.getKey.toString(), entry.getValue.toString()), ChangeType.POSITIVE, inputType, inputActorPath))
-          )
-      }
-      
-    } catch {
-      case t: Throwable =>
-        restart("Error receiving data", t)
-    }
-  }
-  
-  class HDFSLoadWorker(driver : RDFGraphDriverRead, inputType : String, rdfTypeName : String,  inputActorPath : String) extends Runnable {
+  class HDFSLoadWorker(driver : RDFGraphDriverRead, inputType : String, rdfTypeName : String,  inputActorPath : ActorPath) extends Runnable {
     def run() {
-      receive(driver, inputType, rdfTypeName, inputActorPath)
+      try {
+        inputType match {
+          
+          case RecipeUtils.VERTEX => 
+            val dataset = driver.collectVertices(rdfTypeName)
+            dataset.toList.foreach(x => 
+              store(VertexDelta(inputActorPath, ChangeType.POSITIVE, x.toString()))
+            )
+          
+          case RecipeUtils.EDGE =>
+            val dataset = driver.collectEdges(rdfTypeName)
+            dataset.entries().foreach(entry => 
+              store(EdgeDelta(inputActorPath, ChangeType.POSITIVE, entry.getKey.toString(), entry.getValue.toString()))
+            )
+          
+          case RecipeUtils.ATTRIBUTE =>
+            val dataset = driver.collectProperties(rdfTypeName)
+            dataset.entries().foreach(entry => 
+              store(AttributeDelta(inputActorPath, ChangeType.POSITIVE, entry.getKey.toString(), entry.getValue.toString()))
+            )
+        }
+        
+      } catch {
+        case t: Throwable =>
+          restart("Error receiving data", t)
+      }
     }
   }
   

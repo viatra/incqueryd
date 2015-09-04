@@ -42,6 +42,7 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
 import java.util.HashMap
 import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
 import scala.collection.JavaConverters
+import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
 
 class ITBasic {
 
@@ -49,13 +50,18 @@ class ITBasic {
 	val modelFileName = "railway-test-1.ttl"
 	val patternName = "switchSensor"
 	val expectedResult = toTuples(Set(52, 138, 78, 391))
-	val inputChanges = Map("Switch" ->
-    new ChangeSet(new java.util.HashSet(toTuples(Set(138))), ChangeType.NEGATIVE)) // XXX must be serializable
+	val inputChanges =
+    Map(ReteActorKey.fromString("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Switch").internalId ->
+      new ChangeSet(
+        new java.util.HashSet(toTuples(Set(138))), // XXX must be serializable
+        ChangeType.NEGATIVE
+      )
+    )
 	val expectedResultAfterChange = toTuples(Set(52, 78, 391))
 
   @Test
   def test() {
-    val client = new IQDYarnClient 
+    val client = new IQDYarnClient
     client.connect()
     client.startActorSystems()
     client.startCoordinator()

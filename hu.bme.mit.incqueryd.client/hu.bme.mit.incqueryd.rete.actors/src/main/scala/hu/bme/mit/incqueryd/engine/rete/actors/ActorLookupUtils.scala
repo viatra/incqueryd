@@ -21,9 +21,10 @@ object ActorLookupUtils {
   }
   
   def getZKActorPath(recipe : ReteNodeRecipe) : String = {
+    val znodeId = ReteActorKey(recipe).internalId
     recipe match {
-       case recipe: TypeInputRecipe => s"${IncQueryDZooKeeper.inputNodesPath}/${ReteActorKey(recipe).internalId}"
-       case _ => s"${IncQueryDZooKeeper.reteNodesPath}/${ReteActorKey(recipe).internalId}"
+       case recipe: TypeInputRecipe => s"${IncQueryDZooKeeper.inputNodesPath}/$znodeId"
+       case _ => s"${IncQueryDZooKeeper.reteNodesPath}/$znodeId"
     }
   }
 
