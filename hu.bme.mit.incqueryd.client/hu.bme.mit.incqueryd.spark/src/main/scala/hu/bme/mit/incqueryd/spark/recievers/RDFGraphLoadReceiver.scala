@@ -27,11 +27,12 @@ import com.google.common.net.HostAndPort
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 import hu.bme.mit.incqueryd.spark.utils.Delta
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 
 /**
  * @author pappi
  */
-class RDFGraphLoadReceiver(driver: RDFGraphDriverRead) extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
+class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
 
   def onStart() {
     
@@ -47,7 +48,7 @@ class RDFGraphLoadReceiver(driver: RDFGraphDriverRead) extends Receiver[Delta](S
       val actorName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.actorNamePath}")
       val actorId = new ActorId(YarnActorService.actorSystemName, address.getHostText, address.getPort, actorName)
       
-      pool.execute(new HDFSLoadWorker(driver, nodeType, rdfType, AkkaUtils.toActorPath(actorId)))
+      pool.execute(new HDFSLoadWorker(databaseConnection.getDriver, nodeType, rdfType, AkkaUtils.toActorPath(actorId)))
     }
     
     pool.shutdown()
