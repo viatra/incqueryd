@@ -33,13 +33,15 @@ import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
  * @author pappi
  */
 class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
-
+  
+  var pool: ExecutorService = _
+  
   def onStart() {
     
     URL.setURLStreamHandlerFactory(new FsUrlStreamHandlerFactory)
     
     val inputNodes = IncQueryDZooKeeper.getChildPaths(IncQueryDZooKeeper.inputNodesPath)
-    val pool: ExecutorService = Executors.newFixedThreadPool(inputNodes.length)
+    pool = Executors.newFixedThreadPool(inputNodes.length)
     
     inputNodes.foreach { inputNode =>
       val rdfType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.rdfType}")
@@ -51,10 +53,11 @@ class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Recei
       pool.execute(new HDFSLoadWorker(databaseConnection.getDriver, nodeType, rdfType, AkkaUtils.toActorPath(actorId)))
     }
     
-    pool.shutdown()
   }
 
-  def onStop() {}
+  def onStop() {
+    pool.shutdown()
+  }
   
   private def receive(driver: RDFGraphDriverRead, inputType: String, rdfTypeName : String, inputActorPath : String) {
     
