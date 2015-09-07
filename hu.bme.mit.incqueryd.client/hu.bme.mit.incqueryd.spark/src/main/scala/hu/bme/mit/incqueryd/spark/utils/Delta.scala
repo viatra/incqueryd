@@ -9,4 +9,4 @@ trait Delta {
 }
 case class VertexDelta(inputActorPath: ActorPath, changeType: ChangeType, vertexId: String) extends Delta
 case class EdgeDelta(inputActorPath: ActorPath, changeType: ChangeType, subjectId: String, objectId: String) extends Delta
-case class AttributeDelta(inputActorPath: ActorPath, changeType: ChangeType, subjectId: String, objectValue: String) extends Delta
+case class AttributeDelta(inputActorPath: ActorPath, changeType: ChangeType, subjectId: String, objectValue: Object) extends Delta

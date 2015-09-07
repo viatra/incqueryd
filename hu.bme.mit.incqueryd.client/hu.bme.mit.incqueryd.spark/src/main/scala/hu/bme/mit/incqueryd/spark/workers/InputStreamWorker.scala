@@ -31,9 +31,9 @@ object InputStreamWorker {
         
         // XXX ID generation
         record match {
-          case delta: VertexDelta => tupleSet.add(new Tuple(Long.valueOf(delta.vertexId)))
-          case delta: EdgeDelta => tupleSet.add(new Tuple(Long.valueOf(delta.subjectId), Long.valueOf(delta.objectId)))
-          case delta: AttributeDelta => tupleSet.add(new Tuple(Long.valueOf(delta.subjectId), Long.valueOf(delta.objectValue)))
+          case delta: VertexDelta => tupleSet.add(new Tuple(delta.vertexId))
+          case delta: EdgeDelta => tupleSet.add(new Tuple(delta.subjectId, delta.objectId))
+          case delta: AttributeDelta => tupleSet.add(new Tuple(delta.subjectId, delta.objectValue))
         }
         
         propagateToInput(inputActorPath, new ChangeSet(tupleSet, changeType))

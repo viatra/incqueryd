@@ -25,6 +25,7 @@ import hu.bme.mit.incqueryd.spark.utils.EdgeDelta
 import org.wikidata.wdtk.datamodel.interfaces.StringValue
 import hu.bme.mit.incqueryd.spark.utils.AttributeDelta
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
+import org.wikidata.wdtk.datamodel.interfaces.MonolingualTextValue
 
 /**
  * @author pappi
@@ -66,6 +67,7 @@ class WikiStreamReceiver extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
     }
 
     private def removeStatements(edit: WikipediaEdit) {
+      val subjectId = edit.pageTitle
       // TODO
     }
 
@@ -77,12 +79,13 @@ class WikiStreamReceiver extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
           for (statement <- document.getAllStatements) {
             val propertyId = statement.getClaim.getMainSnak.getPropertyId.getId
             val inputActorPath = IQDSparkUtils.getInputActorPath(ReteActorKey.fromString(propertyId).internalId)
-            val subjectName = statement.getClaim.getSubject.getId
+            val subjectId = statement.getClaim.getSubject.getId
             val deltaOption = statement.getClaim.getMainSnak match {
               case snak: ValueSnak =>
                 snak.getValue match {
-                  case value: EntityIdValue => Some(EdgeDelta(inputActorPath, ChangeType.POSITIVE, subjectName, value.getId))
-                  case value: StringValue => Some(AttributeDelta(inputActorPath, ChangeType.POSITIVE, subjectName, value.getString))
+                  case value: EntityIdValue => Some(EdgeDelta(inputActorPath, ChangeType.POSITIVE, subjectId, value.getId))
+                  case value: StringValue => Some(AttributeDelta(inputActorPath, ChangeType.POSITIVE, subjectId, value.getString))
+                  case value: MonolingualTextValue => Some(AttributeDelta(inputActorPath, ChangeType.POSITIVE, subjectId, value.getText))
                   // TODO
                   case _ => None
                 }
