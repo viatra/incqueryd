@@ -31,8 +31,9 @@ import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
  */
 class WikiStreamReceiver extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
 
+  val pool: ExecutorService = Executors.newFixedThreadPool(2)
+
   def onStart() {
-    val pool: ExecutorService = Executors.newFixedThreadPool(2)
     def configuration = new Configuration.Builder()
       .setName(s"iqd-wikichanges-${InetAddress.getLocalHost().getHostName()}")
       .setServerHostname("irc.wikimedia.org")
@@ -44,7 +45,9 @@ class WikiStreamReceiver extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
     pool.shutdown()
   }
 
-  def onStop() {}
+  def onStop() {
+    pool.shutdown()
+  }
 
   class IrcListener(pool: ExecutorService) extends ListenerAdapter[PircBotX] {
 
