@@ -16,6 +16,7 @@ import hu.bme.mit.incqueryd.spark.utils.Delta
 import hu.bme.mit.incqueryd.spark.utils.VertexDelta
 import hu.bme.mit.incqueryd.spark.utils.EdgeDelta
 import hu.bme.mit.incqueryd.spark.utils.AttributeDelta
+import hu.bme.mit.incqueryd.idservice.IDService.lookupID
 
 /**
  * @author pappi
@@ -23,17 +24,23 @@ import hu.bme.mit.incqueryd.spark.utils.AttributeDelta
 object InputStreamWorker {
 
   def process(stream: ReceiverInputDStream[Delta]) {
-    // TODO: implement ID generation
     stream.foreachRDD {_.foreach { record =>
         val inputActorPath = record.inputActorPath
         val changeType = record.changeType
         val tupleSet = new java.util.HashSet[Tuple]
         
-        // XXX ID generation
         record match {
-          case delta: VertexDelta => tupleSet.add(new Tuple(delta.vertexId))
-          case delta: EdgeDelta => tupleSet.add(new Tuple(delta.subjectId, delta.objectId))
-          case delta: AttributeDelta => tupleSet.add(new Tuple(delta.subjectId, delta.objectValue))
+          case delta: VertexDelta =>
+          	val vertexId = lookupID(delta.vertexId)
+          	tupleSet.add(new Tuple(vertexId))
+          case delta: EdgeDelta =>
+          	val subjectId = lookupID(delta.subjectId)
+          	val objectId = lookupID(delta.objectId)
+          	tupleSet.add(new Tuple(subjectId, objectId))
+          case delta: AttributeDelta =>
+          	val subjectId = lookupID(delta.subjectId)
+          	val objectValue = lookupID(delta.objectValue)
+          	tupleSet.add(new Tuple(subjectId, objectValue))
         }
         
         propagateToInput(inputActorPath, new ChangeSet(tupleSet, changeType))

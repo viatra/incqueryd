@@ -106,7 +106,7 @@ RUN chmod 700 /usr/local/zookeeper/bin/zkServer.sh
 # RUN cd /usr/local/spark/ && mvn -Pyarn -Phadoop-2.6 -Dscala-2.11 -DskipTests clean package
 
 # Install pre-build spark
-RUN curl -s http://apache.mirrorcatalogs.com/spark/spark-1.4.1/spark-1.4.1-bin-hadoop2.6.tgz | tar xz -C /usr/local/
+RUN curl -s http://xenia.sote.hu/ftp/mirrors/www.apache.org//spark/spark-1.4.1/spark-1.4.1-bin-hadoop2.6.tgz | tar xz -C /usr/local/
 RUN cd /usr/local && ln -s ./spark-1.4.1-bin-hadoop2.6 spark
 
 ENV SPARK_HOME=/usr/local/spark
@@ -116,6 +116,21 @@ RUN echo "export SPARK_CLASSPATH=$SPARK_HOME/lib/" >> /etc/profile
 ADD start_spark.sh /usr/local/spark/start_spark.sh
 RUN chown root:root /usr/local/spark/start_spark.sh
 RUN chmod 700 /usr/local/spark/start_spark.sh
+
+# Install Hazelcast
+RUN cd /tmp/ && curl -s -o hazelcast-3.4.5.tar.gz http://download.hazelcast.com/download.jsp --data "version=hazelcast-3.4.5&type=tar&p=118961842"
+RUN tar -xzf /tmp/hazelcast-3.4.5.tar.gz -C /usr/local/
+RUN cd /usr/local && ln -s ./hazelcast-3.4.5 hazelcast
+
+ENV HZ_HOME /usr/local/hazelcast
+RUN echo "export HZ_HOME=/usr/local/hazelcast" >> /etc/profile
+RUN cd $HZ_HOME/lib && curl -s -o snowcast-1.0.0-RC1.jar http://central.maven.org/maven2/com/noctarius/snowcast/snowcast/1.0.0-RC1/snowcast-1.0.0-RC1.jar
+
+ADD hz_server.sh $HZ_HOME/bin/server.sh
+RUN chown root:root $HZ_HOME/bin/server.sh
+RUN chmod 700 $HZ_HOME/bin/server.sh
+
+ADD hazelcast.xml $HZ_HOME/bin/hazelcast.xml
 
 # Add dnsmasq.conf file
 ADD dnsmasq.conf /etc/dnsmasq.conf

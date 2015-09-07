@@ -24,6 +24,7 @@ import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import hu.bme.mit.incqueryd.engine.PropagateInputChanges
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 
 object Coordinator {
   final val actorName = "coordinator"
@@ -42,9 +43,9 @@ object Coordinator {
 
 class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: ApplicationId) {
 
-  def loadData(vocabulary: Model, hdfsPath: String, rmHostname: String, fileSystemUri: String): Boolean = {
+  def loadData(vocabulary: Model, databaseConnection: DatabaseConnection, rmHostname: String, fileSystemUri: String): Boolean = {
     println(s"Loading data")
-    askCoordinator[Boolean](LoadData(vocabulary, hdfsPath, rmHostname, fileSystemUri))
+    askCoordinator[Boolean](LoadData(vocabulary, databaseConnection, rmHostname, fileSystemUri))
   }
 
   def startQuery(recipe: ReteRecipe, rmHostname: String, fileSystemUri: String): Boolean = {

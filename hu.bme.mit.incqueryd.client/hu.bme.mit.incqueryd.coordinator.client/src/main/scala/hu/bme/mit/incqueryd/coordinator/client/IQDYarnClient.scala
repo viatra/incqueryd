@@ -19,6 +19,7 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 
 /**
  *
@@ -33,48 +34,40 @@ class IQDYarnClient {
   val DEFAULT_HDFS_URL = s"hdfs://$DEFAULT_RM_HOST:9000"
   val DEFAULT_TIMEOUT = 900 seconds
 
-  var filesystem: FileSystem = null
-  var advancedYarnClient: AdvancedYarnClient = null
-  var coordinator: Coordinator = null
-  var metamodel: Model = null
+  val filesystem: FileSystem = HdfsUtils.getDistributedFileSystem(DEFAULT_HDFS_URL)
+  val advancedYarnClient: AdvancedYarnClient = new AdvancedYarnClient(DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
+  Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), DEFAULT_TIMEOUT)
+  val coordinator: Coordinator = Await.result(Coordinator.create(advancedYarnClient), DEFAULT_TIMEOUT)
 
-  var queries : scala.collection.mutable.Map[String, ReteRecipe] = scala.collection.mutable.Map()
+  val queries : scala.collection.mutable.Map[String, ReteRecipe] = scala.collection.mutable.Map()
 
-  def connect() {
-    filesystem = HdfsUtils.getDistributedFileSystem(DEFAULT_HDFS_URL)
-    advancedYarnClient = new AdvancedYarnClient(DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
+  def uploadFile(modelURL: URL): String = {
+    val modelFile = new File(modelURL.getPath)
+    val modelFilePath = s"$DEFAULT_HDFS_URL/test/${modelFile.getName}"
+    HdfsUtils.upload(filesystem, modelFile, modelFilePath)
+    modelFilePath
   }
 
-  def startActorSystems() {
-    Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), DEFAULT_TIMEOUT)
-  }
-
-  def startCoordinator() {
-    coordinator = Await.result(Coordinator.create(advancedYarnClient), DEFAULT_TIMEOUT)
-  }
-  
-  def loadMetamodel(metamodelURL: URL) {
-    metamodel = new LinkedHashModel
+  def loadMetamodel(metamodelURL: URL): Model = {
+    val metamodel = new LinkedHashModel
     val urlString = metamodelURL.toString
     val format = Rio.getParserFormatForFileName(urlString)
     val parser = Rio.createParser(format)
     parser.setRDFHandler(new StatementCollector(metamodel))
     val inputStream = metamodelURL.openStream
     parser.parse(inputStream, urlString)
+    metamodel
   }
 
-  def loadInitialData(modelURL: URL) {
-    val modelFile = new File(modelURL.getPath)
-    val modelFilePath = s"$DEFAULT_HDFS_URL/test/${modelFile.getName}"
-    HdfsUtils.upload(filesystem, modelFile, modelFilePath)
-    coordinator.loadData(metamodel, modelFilePath, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
+  def loadInitialData(metamodel: Model, databaseConnection: DatabaseConnection) {
+    coordinator.loadData(metamodel, databaseConnection, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
   }
   
   def loadChanges(changesMap : Map[String, ChangeSet]) {
     coordinator.sendChangesToInputs(changesMap)
   }
-  
-  def startQuery(reteRecipe: ReteRecipe) {
+
+  private def startQuery(reteRecipe: ReteRecipe) {
     coordinator.startQuery(reteRecipe, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
   }
 

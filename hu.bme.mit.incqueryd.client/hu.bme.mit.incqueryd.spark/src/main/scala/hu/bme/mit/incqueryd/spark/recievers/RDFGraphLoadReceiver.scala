@@ -31,31 +31,35 @@ import akka.actor.ActorPath
 import hu.bme.mit.incqueryd.spark.utils.VertexDelta
 import hu.bme.mit.incqueryd.spark.utils.EdgeDelta
 import hu.bme.mit.incqueryd.spark.utils.AttributeDelta
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 
 /**
  * @author pappi
  */
-class RDFGraphLoadReceiver(driver: RDFGraphDriverRead) extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
-
+class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
+  
+  var pool: ExecutorService = _
+  
   def onStart() {
     
     URL.setURLStreamHandlerFactory(new FsUrlStreamHandlerFactory)
     
     val inputNodes = IncQueryDZooKeeper.getChildPaths(IncQueryDZooKeeper.inputNodesPath)
-    val pool: ExecutorService = Executors.newFixedThreadPool(inputNodes.length)
+    pool = Executors.newFixedThreadPool(inputNodes.length)
     
     inputNodes.foreach { inputNode =>
-      val rdfType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.rdfType}")
+      val rdfTypeName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.rdfType}")
       val inputType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.nodeType}")
       val inputActorPath = getInputActorPath(inputNode)
       
-      pool.execute(new HDFSLoadWorker(driver, inputType, rdfType, inputActorPath))
+      pool.execute(new HDFSLoadWorker(databaseConnection.getDriver, inputType, rdfTypeName, inputActorPath))
     }
     
-    pool.shutdown()
   }
 
-  def onStop() {}
+  def onStop() {
+    pool.shutdown()
+  }
   
   class HDFSLoadWorker(driver : RDFGraphDriverRead, inputType : String, rdfTypeName : String,  inputActorPath : ActorPath) extends Runnable {
     def run() {

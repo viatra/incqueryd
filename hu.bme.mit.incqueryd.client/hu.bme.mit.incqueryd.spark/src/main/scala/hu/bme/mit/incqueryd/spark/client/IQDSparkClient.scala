@@ -7,6 +7,8 @@ import hu.bme.mit.incqueryd.spark.ProcessingMethod
 import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection.Backend
 
 /**
  * @author pappi
@@ -24,21 +26,19 @@ object IQDSparkClient {
       .setConf(SparkLauncher.EXECUTOR_MEMORY, "512m")
   }
 
-  def loadDataFromFile(databaseURL: String) {
-
+  def loadData(databaseConnection: DatabaseConnection) {
+    val method = databaseConnection.getBackend match {
+      case Backend.FILE => ProcessingMethod.HDFS_LOAD
+      case Backend.FOURSTORE => ProcessingMethod.FOURSTORE_LOAD
+    }
     val exit_code = getSparkLauncher()
       .setAppName(s"HDFS LOAD")
-      .addAppArgs("-method", ProcessingMethod.HDFS_LOAD.toString())
+      .addAppArgs("-method", method.toString())
       .addAppArgs("-duration", DEFAULT_DURATION.toString())
-      .addAppArgs("-ds_url", databaseURL)
+      .addAppArgs("-ds_url", databaseConnection.getConnectionString)
       .addAppArgs("-single")
       .launch().waitFor()
 
-  }
-
-  def loadDataFrom4Store(databaseURL: String) {
-    // TODO: submit spark streaming application to perform initial load from 4Store database
-    throw new UnsupportedOperationException("Not implemented yet")
   }
 
   def startWikipediaStreaming(streamURL: String) {

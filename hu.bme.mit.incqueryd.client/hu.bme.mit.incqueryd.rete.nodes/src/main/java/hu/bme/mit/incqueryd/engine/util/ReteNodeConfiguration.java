@@ -12,30 +12,25 @@ package hu.bme.mit.incqueryd.engine.util;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
+
+import eu.mondo.driver.graph.RDFGraphDriverRead;
 
 public class ReteNodeConfiguration implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	protected final String networkRecipeString;
 	protected final String nodeRecipeUriFragment;
-	protected final List<String> cacheMachineIps;
-	private final String databaseUrl;
+	private final DatabaseConnection databaseConnection;
 	
-	public ReteNodeConfiguration(final ReteNodeRecipe recipe, final List<String> cacheMachineIps, String databaseUrl) throws IOException {
+	public ReteNodeConfiguration(final ReteNodeRecipe recipe, DatabaseConnection databaseConnection) throws IOException {
 		super();
+		this.databaseConnection = databaseConnection;
 		this.networkRecipeString = EObjectSerializer.serializeToString(EcoreUtil.getRootContainer(recipe));
 		this.nodeRecipeUriFragment = recipe.eResource().getURIFragment(recipe);
-		this.cacheMachineIps = cacheMachineIps;
-		this.databaseUrl = databaseUrl;
-	}
-
-	public List<String> getCacheMachineIps() {
-		return cacheMachineIps;
 	}
 	
 	public ReteNodeRecipe getReteNodeRecipe() throws IOException {
@@ -43,7 +38,12 @@ public class ReteNodeConfiguration implements Serializable {
 		return (ReteNodeRecipe)resource.getEObject(nodeRecipeUriFragment); 
 	}
 
-	public String getDatabaseUrl() {
-		return databaseUrl;
+	public RDFGraphDriverRead getDriver() {
+		if (databaseConnection == null) {
+			return null;
+		} else {
+			return databaseConnection.getDriver();
+		}
 	}
+
 }

@@ -10,10 +10,6 @@
  *******************************************************************************/
 package hu.bme.mit.incqueryd.engine.rete.nodes;
 
-import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet;
-import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType;
-import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -23,13 +19,13 @@ import java.util.Set;
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
-import org.openrdf.rio.RDFHandlerException;
-import org.openrdf.rio.RDFParseException;
 
 import com.google.common.collect.Multimap;
 
-import eu.mondo.driver.file.FileGraphDriverRead;
 import eu.mondo.driver.graph.RDFGraphDriverRead;
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet;
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType;
+import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple;
 
 public class TypeInputNode implements ReteNode {
 
@@ -44,19 +40,15 @@ public class TypeInputNode implements ReteNode {
 	}
 
 	protected Set<Tuple> tuples = new HashSet<>();
-	protected RDFGraphDriverRead driver;
+	protected final RDFGraphDriverRead driver;
 
-	private final String databaseUrl;
-
-	TypeInputNode(final TypeInputRecipe recipe, String databaseUrl) {
+	TypeInputNode(final TypeInputRecipe recipe, RDFGraphDriverRead driver) {
 		super();
 		this.recipe = recipe;
-		this.databaseUrl = databaseUrl;
+		this.driver = driver;
 	}
-
+	
 	public void load() throws IOException {
-		driver = new FileGraphDriverRead(databaseUrl);
-
 		String typeName = recipe.getTypeName();
 
 		if (recipe instanceof UnaryInputRecipe) {

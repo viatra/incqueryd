@@ -21,6 +21,8 @@ import hu.bme.mit.incqueryd.spark.utils.Delta
 import eu.mondo.driver.file.FileGraphDriverRead
 import eu.mondo.driver.fourstore.FourStoreGraphDriverRead
 import hu.bme.mit.incqueryd.spark.recievers.WikiStreamReceiver
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection.Backend
 
 /**
  * @author pappi
@@ -50,8 +52,8 @@ object IQDSparkMain extends Serializable {
 
     // Create stream
     val receiver = METHOD match {
-      case ProcessingMethod.HDFS_LOAD => new RDFGraphLoadReceiver(new FileGraphDriverRead(DS_URL))
-      case ProcessingMethod.FOURSTORE_LOAD => new RDFGraphLoadReceiver(new FourStoreGraphDriverRead(DS_URL))
+      case ProcessingMethod.HDFS_LOAD => new RDFGraphLoadReceiver(new DatabaseConnection(DS_URL, Backend.FILE))
+      case ProcessingMethod.FOURSTORE_LOAD => new RDFGraphLoadReceiver(new DatabaseConnection(DS_URL, Backend.FOURSTORE))
       case ProcessingMethod.WIKISTREAM => new WikiStreamReceiver
     }
     val stream : ReceiverInputDStream[Delta] = ssc.receiverStream(receiver)

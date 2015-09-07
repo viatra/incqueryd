@@ -1,8 +1,5 @@
 package org.eclipse.incquery.patternlanguage.rdf.generator.recipe;
 
-import hu.bme.mit.incqueryd.rdf.RdfUtils;
-import hu.bme.mit.incqueryd.recipes.RecipeProcessor;
-
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPModel;
@@ -19,6 +16,8 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
 import org.openrdf.model.Model;
+
+import hu.bme.mit.incqueryd.rdf.RdfUtils;
 
 public class RdfRecipeGenerator extends RecipeGenerator<RdfPatternModel, RdfPModel, Model> {
 
@@ -42,17 +41,17 @@ public class RdfRecipeGenerator extends RecipeGenerator<RdfPatternModel, RdfPMod
 		} else if (nodeRecipe instanceof UnaryInputRecipe) {
 			UnaryInputRecipe unaryInputRecipe = (UnaryInputRecipe) nodeRecipe;
 
-			String typeNameSuffix = RecipeProcessor.extractType(unaryInputRecipe).getTypeNameSuffix();
-			unaryInputRecipe.setTraceInfo(VERTEX_DISCRIMINATOR + ": " + typeNameSuffix);
+			String typeName = unaryInputRecipe.getTypeName();
+			unaryInputRecipe.setTraceInfo(VERTEX_DISCRIMINATOR + ": " + typeName);
 		} else if (nodeRecipe instanceof BinaryInputRecipe) {
 			BinaryInputRecipe binaryInputRecipe = (BinaryInputRecipe) nodeRecipe;
 			org.openrdf.model.Resource propertyUri = RdfPatternLanguageUtils.toRdfResource(binaryInputRecipe.getTypeName());
 
-			String typeNameSuffix = RecipeProcessor.extractType(binaryInputRecipe).getTypeNameSuffix();
+			String typeName = binaryInputRecipe.getTypeName();
 			if (RdfUtils.isDatatypeProperty(propertyUri, vocabulary)) {
-				binaryInputRecipe.setTraceInfo(ATTRIBUTE_DISCRIMINATOR + ": " + typeNameSuffix);
+				binaryInputRecipe.setTraceInfo(ATTRIBUTE_DISCRIMINATOR + ": " + typeName);
 			} else if (RdfUtils.isObjectProperty(propertyUri, vocabulary)) {
-				binaryInputRecipe.setTraceInfo(EDGE_DISCRIMINATOR + ": " + typeNameSuffix);
+				binaryInputRecipe.setTraceInfo(EDGE_DISCRIMINATOR + ": " + typeName);
 			}
 		}
 		nodeRecipe.setTraceInfo(nodeRecipe.getTraceInfo() + " [recipe " + recipeIndex + "]");
