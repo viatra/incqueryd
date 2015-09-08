@@ -26,13 +26,16 @@ import org.wikidata.wdtk.datamodel.interfaces.StringValue
 import hu.bme.mit.incqueryd.spark.utils.AttributeDelta
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
 import org.wikidata.wdtk.datamodel.interfaces.MonolingualTextValue
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
+import eu.mondo.driver.graph.RDFGraphDriverReadWrite
 
 /**
  * @author pappi
  */
-class WikiStreamReceiver extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
+class WikiStreamReceiver(databaseConnection: DatabaseConnection) extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
 
   val pool: ExecutorService = Executors.newFixedThreadPool(2)
+  val driver = databaseConnection.getDriver
 
   def onStart() {
     def configuration = new Configuration.Builder()
@@ -56,42 +59,75 @@ class WikiStreamReceiver extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
       parse(event.getMessage).foreach { edit =>
         pool.submit(new Runnable {
           def run() {
-            println(edit)
+            println(s"Processing $edit")
             if (!edit.newPage) {
-              removeStatements(edit)
+              val oldDeltas = getOldDeltas(edit.pageTitle)
+              apply(oldDeltas)
             }
-            addStatements(edit)
+            val newDeltas = getNewDeltas(edit)
+            apply(newDeltas)
           }
         })
       }
     }
-
-    private def removeStatements(edit: WikipediaEdit) {
-      val subjectId = edit.pageTitle
+    
+    def getOldDeltas(itemId: String): List[Delta] = {
+      List()
       // TODO
     }
 
-    private def addStatements(edit: WikipediaEdit) {
+    private def getNewDeltas(edit: WikipediaEdit): List[Delta] = {
       val fetcher = WikibaseDataFetcher.getWikidataDataFetcher
       val document = fetcher.getEntityDocument(edit.pageTitle)
       document match {
         case document: StatementDocument =>
-          for (statement <- document.getAllStatements) {
+          document.getAllStatements.toList.flatMap { statement =>
+            val subjectId = statement.getClaim.getSubject.getId
             val propertyId = statement.getClaim.getMainSnak.getPropertyId.getId
             val inputActorPath = IQDSparkUtils.getInputActorPath(ReteActorKey.fromString(propertyId).internalId)
-            val subjectId = statement.getClaim.getSubject.getId
-            val deltaOption = statement.getClaim.getMainSnak match {
+            statement.getClaim.getMainSnak match {
               case snak: ValueSnak =>
                 snak.getValue match {
-                  case value: EntityIdValue => Some(EdgeDelta(inputActorPath, ChangeType.POSITIVE, subjectId, value.getId))
-                  case value: StringValue => Some(AttributeDelta(inputActorPath, ChangeType.POSITIVE, subjectId, value.getString))
-                  case value: MonolingualTextValue => Some(AttributeDelta(inputActorPath, ChangeType.POSITIVE, subjectId, value.getText))
+                  case value: EntityIdValue => Some(EdgeDelta(inputActorPath, ChangeType.POSITIVE, subjectId, propertyId, value.getId))
+                  case value: StringValue => Some(AttributeDelta(inputActorPath, ChangeType.POSITIVE, subjectId, propertyId, value.getString))
+                  case value: MonolingualTextValue => Some(AttributeDelta(inputActorPath, ChangeType.POSITIVE, subjectId, propertyId, value.getText))
                   // TODO
                   case _ => None
                 }
               case _ => None
             }
-            deltaOption.foreach(delta => store(delta))
+          }
+        case _ => List()
+      }
+    }
+    
+    private def apply(deltas: List[Delta]) {
+     deltas.foreach { delta =>
+        applyToDatabase(delta)
+        store(delta)
+      }
+    }
+
+    private def applyToDatabase(delta: Delta) {
+      driver match {
+        case driver: RDFGraphDriverReadWrite =>
+          delta match {
+            case delta: VertexDelta =>
+              // TODO
+            case delta: EdgeDelta =>
+              delta.changeType match {
+                case ChangeType.POSITIVE =>
+                	driver.insertEdge(delta.subjectId, delta.objectId, delta.propertyId)
+                case ChangeType.NEGATIVE =>
+                  driver.deleteEdge(delta.subjectId, delta.objectId, delta.propertyId)
+              }
+            case delta: AttributeDelta =>
+              delta.changeType match {
+                case ChangeType.POSITIVE =>
+                  driver.insertEdge(delta.subjectId, delta.objectValue, delta.propertyId)
+                case ChangeType.NEGATIVE =>
+                  driver.deleteEdge(delta.subjectId, delta.objectValue, delta.propertyId)
+              }
           }
       }
     }

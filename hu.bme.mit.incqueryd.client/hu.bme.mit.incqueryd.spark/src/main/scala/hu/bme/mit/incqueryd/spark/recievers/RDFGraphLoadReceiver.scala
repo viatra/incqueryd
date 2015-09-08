@@ -68,20 +68,20 @@ class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Recei
           
           case RecipeUtils.VERTEX => 
             val dataset = driver.collectVertices(rdfTypeName)
-            dataset.toList.foreach(x => 
+            dataset.foreach(x => 
               store(VertexDelta(inputActorPath, ChangeType.POSITIVE, x.toString()))
             )
           
           case RecipeUtils.EDGE =>
             val dataset = driver.collectEdges(rdfTypeName)
             dataset.entries().foreach(entry => 
-              store(EdgeDelta(inputActorPath, ChangeType.POSITIVE, entry.getKey.toString(), entry.getValue.toString()))
+              store(EdgeDelta(inputActorPath, ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString()))
             )
           
           case RecipeUtils.ATTRIBUTE =>
             val dataset = driver.collectProperties(rdfTypeName)
             dataset.entries().foreach(entry => 
-              store(AttributeDelta(inputActorPath, ChangeType.POSITIVE, entry.getKey.toString(), entry.getValue.toString()))
+              store(AttributeDelta(inputActorPath, ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString()))
             )
         }
         

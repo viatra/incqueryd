@@ -3,7 +3,7 @@ package hu.bme.mit.incqueryd.engine.util;
 import java.io.Serializable;
 
 import eu.mondo.driver.file.FileGraphDriverRead;
-import eu.mondo.driver.fourstore.FourStoreGraphDriverRead;
+import eu.mondo.driver.fourstore.FourStoreGraphDriverReadWrite;
 import eu.mondo.driver.graph.RDFGraphDriverRead;
 
 public class DatabaseConnection implements Serializable {
@@ -25,7 +25,7 @@ public class DatabaseConnection implements Serializable {
 	public RDFGraphDriverRead getDriver() {
 		switch (getBackend()) {
 		case FOURSTORE:
-			return new FourStoreGraphDriverRead(getConnectionString());
+			return new FourStoreGraphDriverReadWrite(getConnectionString());
 		case FILE:
 		default:
 			return new FileGraphDriverRead(getConnectionString());

@@ -8,5 +8,5 @@ trait Delta {
   def changeType: ChangeType 
 }
 case class VertexDelta(inputActorPath: ActorPath, changeType: ChangeType, vertexId: String) extends Delta
-case class EdgeDelta(inputActorPath: ActorPath, changeType: ChangeType, subjectId: String, objectId: String) extends Delta
-case class AttributeDelta(inputActorPath: ActorPath, changeType: ChangeType, subjectId: String, objectValue: String) extends Delta
+case class EdgeDelta(inputActorPath: ActorPath, changeType: ChangeType, subjectId: String, propertyId: String, objectId: String) extends Delta
+case class AttributeDelta(inputActorPath: ActorPath, changeType: ChangeType, subjectId: String, propertyId: String, objectValue: String) extends Delta

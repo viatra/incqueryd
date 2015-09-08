@@ -54,7 +54,7 @@ object IQDSparkMain extends Serializable {
     val receiver = METHOD match {
       case ProcessingMethod.HDFS_LOAD => new RDFGraphLoadReceiver(new DatabaseConnection(DS_URL, Backend.FILE))
       case ProcessingMethod.FOURSTORE_LOAD => new RDFGraphLoadReceiver(new DatabaseConnection(DS_URL, Backend.FOURSTORE))
-      case ProcessingMethod.WIKISTREAM => new WikiStreamReceiver
+      case ProcessingMethod.WIKISTREAM => new WikiStreamReceiver(new DatabaseConnection(DS_URL, Backend.FOURSTORE))
     }
     val stream : ReceiverInputDStream[Delta] = ssc.receiverStream(receiver)
     
