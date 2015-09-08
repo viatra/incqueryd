@@ -14,6 +14,7 @@ import com.google.common.net.HostAndPort
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
 import akka.actor.ActorPath
+import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
 
 /**
  * @author pappi
@@ -46,9 +47,13 @@ object IQDSparkUtils {
     writer.close()
   }
   
-  def getInputActorPath(inputNodeZnodeId: String): ActorPath = {
-    val address = HostAndPort.fromString(IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNodeZnodeId${IncQueryDZooKeeper.addressPath}"))
-    val actorName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNodeZnodeId${IncQueryDZooKeeper.actorNamePath}")
+  def getInputActorPathByTypeName(typeName: String): ActorPath = {
+    getInputActorPathByZnodeId(ReteActorKey.fromString(typeName).internalId)
+  }
+
+  def getInputActorPathByZnodeId(znodeId: String): ActorPath = {
+    val address = HostAndPort.fromString(IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$znodeId${IncQueryDZooKeeper.addressPath}"))
+    val actorName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$znodeId${IncQueryDZooKeeper.actorNamePath}")
     val actorId = new ActorId(YarnActorService.actorSystemName, address.getHostText, address.getPort, actorName)
     ActorPath.fromString(AkkaUtils.toActorPath(actorId))
   }

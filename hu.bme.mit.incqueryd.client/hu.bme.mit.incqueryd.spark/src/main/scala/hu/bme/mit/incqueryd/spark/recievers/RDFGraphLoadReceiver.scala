@@ -50,7 +50,7 @@ class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Recei
     inputNodes.foreach { inputNode =>
       val rdfTypeName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.rdfType}")
       val inputType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.nodeType}")
-      val inputActorPath = getInputActorPath(inputNode)
+      val inputActorPath = IQDSparkUtils.getInputActorPathByZnodeId(inputNode)
       
       pool.execute(new HDFSLoadWorker(databaseConnection.getDriver, inputType, rdfTypeName, inputActorPath))
     }
