@@ -40,25 +40,20 @@ import java.util.HashSet
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
 import java.util.HashMap
 import scala.collection.JavaConverters
+import scala.collection.SortedSet
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection.Backend
 import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
+import hu.bme.mit.incqueryd.idservice.IDService
 
 class ITBasic {
 
   val vocabularyFileName = "vocabulary.rdf"
 	val modelFileName = "railway-test-1.ttl"
 	val patternName = "switchSensor"
-	val expectedResult = toTuples(Set(52, 138, 78, 391))
-	val inputChanges =
-    Map(ReteActorKey.fromString("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Switch").internalId ->
-      new ChangeSet(
-        new java.util.HashSet(toTuples(Set(138))), // XXX must be serializable
-        ChangeType.NEGATIVE
-      )
-    )
-	val expectedResultAfterChange = toTuples(Set(52, 78, 391))
+	val expectedResult = toTuples(Set("52", "138", "78", "391"))
+	val expectedResultAfterChange = toTuples(Set("52", "78", "391"))
 
   @Test
   def test() {
@@ -69,14 +64,25 @@ class ITBasic {
     val recipe = loadRecipe
     try {
       assertResult(client, recipe, expectedResult)
-      client.loadChanges(inputChanges)
+      client.loadChanges(getInputChanges)
       assertResult(client, recipe, expectedResultAfterChange)
     } finally {
       client.dispose()
     }
   }
 
-  private def toTuples(set: Set[Int]) = set.map(n => new Tuple(new Long(n)))
+  private def getInputChanges() = {
+  	val switchID = IDService.lookupID("138")
+    println("SwitchID: " + switchID)
+    Map(ReteActorKey.fromString("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Switch").internalId ->
+      new ChangeSet(
+        new java.util.HashSet(toTuples(Set(switchID))), // XXX must be serializable
+        ChangeType.NEGATIVE
+      )
+    )
+  }
+
+  private def toTuples(set: Set[AnyRef]) = set.map(new Tuple(_))
 
   private def loadRecipe: ReteRecipe = {
     val filename = "SwitchSensor.rdfiq.recipe"
@@ -89,14 +95,28 @@ class ITBasic {
     resource.load(Map[Object, Object]())
     resource.getContents.get(0).asInstanceOf[ReteRecipe]
   }
-  
-  private def uploadFile() {
-  }
 
   private def assertResult(client: IQDYarnClient, recipe: ReteRecipe, expectedResult: Set[Tuple]) {
 	  val result = client.checkQuery(recipe, patternName)
 	  println(s"Query result: $result")
-	  assertEquals(expectedResult, result)
+    val resolved = resolveIDs(result)
+	  assertEquals(expectedResult, resolved)
   }
-  
+
+  private def resolveIDs(tuples : Set[Tuple]) : Set[Tuple] = {
+    tuples.map { tuple =>
+      val val0 = IDService.resolveID(tuple.get(0).asInstanceOf[Long])
+      if(tuple.size() == 1) {
+        new Tuple(val0)
+      } else {
+        val val1 = tuple.get(1)
+        if(val1.isInstanceOf[Long]) {
+          new Tuple(val0, IDService.resolveID(val1.asInstanceOf[Long]))
+        } else {
+          new Tuple(val0, val1)
+        }
+      }
+    }
+  }
+
 }
