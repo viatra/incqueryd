@@ -39,7 +39,7 @@ class IQDYarnClient {
   Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), DEFAULT_TIMEOUT)
   val coordinator: Coordinator = Await.result(Coordinator.create(advancedYarnClient), DEFAULT_TIMEOUT)
 
-  val queries : scala.collection.mutable.Map[String, ReteRecipe] = scala.collection.mutable.Map()
+  val queries : scala.collection.mutable.Set[ReteRecipe] = scala.collection.mutable.Set()
 
   def uploadFile(modelURL: URL): String = {
     val modelFile = new File(modelURL.getPath)
@@ -67,20 +67,17 @@ class IQDYarnClient {
     coordinator.sendChangesToInputs(changesMap)
   }
 
-  private def startQuery(reteRecipe: ReteRecipe) {
+  def startQuery(reteRecipe: ReteRecipe) {
     coordinator.startQuery(reteRecipe, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
+    queries.add(reteRecipe)
   }
 
   def checkQuery(reteRecipe: ReteRecipe, patternName: String): Set[Tuple] = {
-    if (!queries.keySet.contains(patternName)) {
-      startQuery(reteRecipe)
-      queries.put(patternName, reteRecipe)
-    }
     coordinator.checkResults(reteRecipe, patternName)
   }
 
   def dispose() {
-    queries.values.foreach { recipe =>  coordinator.stopQuery(recipe, DEFAULT_RM_HOST)}
+    queries.foreach { recipe => coordinator.stopQuery(recipe, DEFAULT_RM_HOST)}
     coordinator.dispose
     YarnActorService.stopActorSystems()
   }
