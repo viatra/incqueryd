@@ -15,13 +15,6 @@ object WikidataDemo {
   val recipeFilename = "recipes/wikidata.rdfiq.recipe"
 
   def main(args: Array[String]) {
-    println("Do you want to setup 4store database and load Wikidata dump (y = yes)?")
-    if (System.console.readLine == "y") {
-      println("Setting up 4store database")
-      FourstoreUtils.setup(WikidataLoader.defaultDatabaseName)
-      println("Loading Wikidata dump")
-    	WikidataLoader.load(driver, "simple-statements")
-    }
     println("Initializing IQD YARN client")
     val client = new IQDYarnClient
     println("Loading metamodel")
