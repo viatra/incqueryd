@@ -64,6 +64,7 @@ class ITBasic {
     val recipe = loadRecipe
     try {
       assertResult(client, recipe, expectedResult)
+      Thread.sleep(60000) // Wait until output stream processing starts
       client.loadChanges(getInputChanges)
       assertResult(client, recipe, expectedResultAfterChange)
     } finally {

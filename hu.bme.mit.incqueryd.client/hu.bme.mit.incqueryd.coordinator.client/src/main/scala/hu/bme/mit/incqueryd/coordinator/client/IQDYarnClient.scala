@@ -39,6 +39,7 @@ class IQDYarnClient {
   Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), DEFAULT_TIMEOUT)
   val coordinator: Coordinator = Await.result(Coordinator.create(advancedYarnClient), DEFAULT_TIMEOUT)
 
+  // XXX store started queries and output streams identifications in ZooKeeper
   val queries : scala.collection.mutable.Map[String, ReteRecipe] = scala.collection.mutable.Map()
 
   def uploadFile(modelURL: URL): String = {
@@ -70,16 +71,22 @@ class IQDYarnClient {
   private def startQuery(reteRecipe: ReteRecipe) {
     coordinator.startQuery(reteRecipe, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
   }
-
+  
+  private def startOutputStream(reteRecipe: ReteRecipe, patternName : String) {
+    coordinator.startOutputStream(reteRecipe, patternName)
+  }
+  
   def checkQuery(reteRecipe: ReteRecipe, patternName: String): Set[Tuple] = {
     if (!queries.keySet.contains(patternName)) {
       startQuery(reteRecipe)
+      startOutputStream(reteRecipe, patternName)
       queries.put(patternName, reteRecipe)
     }
     coordinator.checkResults(reteRecipe, patternName)
   }
 
   def dispose() {
+    //coordinator.stopOutputStreams()
     queries.values.foreach { recipe =>  coordinator.stopQuery(recipe, DEFAULT_RM_HOST)}
     coordinator.dispose
     YarnActorService.stopActorSystems()

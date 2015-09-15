@@ -87,6 +87,7 @@ class CoordinatorActor extends Actor {
       establishSubscriptions(otherActorsByRecipe)
       val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
       val inputActorsByRecipe = lookup(typeInputRecipes)
+      
       propagateInputStates(inputActorsByRecipe, recipe)
       sender ! true
     }
@@ -94,11 +95,17 @@ class CoordinatorActor extends Actor {
       propagateInputChanges(inputChangesMap)
       sender ! true
     }
+    case StartOutputStream(recipeJson, patternName) => {
+      val production = getProductionActorPath(recipeJson, patternName)
+      IQDSparkClient.startOutputStreaming(production.toSerializationFormat)
+      sender ! true
+    }
+    case StopOutputStreams() => {
+      IQDSparkClient.stopOutputStreaming()
+      sender ! true
+    }
     case CheckResults(recipeJson, patternName) => {
-      val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
-      val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)
-      val productionRecipe = productionRecipeOption.get // XXX Option.get
-      val production = ActorLookupUtils.findActor(productionRecipe).get // XXX Option.get // XXX Option.get
+      val production = getProductionActorPath(recipeJson, patternName)
       AkkaUtils.convertToRemoteActorRef(production, context).ask(GetQueryResults).pipeTo(sender)
     }
     case StopQuery(recipeJson) => {
@@ -125,7 +132,14 @@ class CoordinatorActor extends Actor {
     val datatypePropertyTypes: Set[RdfType] = datatypeProperties.map(RdfType(RdfType.DatatypeProperty, _, driver))
     classTypes union objectPropertyTypes union datatypePropertyTypes
   }
-
+  
+  private def getProductionActorPath(recipeJson : String, patternName : String) : ActorPath = {
+    val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
+      val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)
+      val productionRecipe = productionRecipeOption.get // XXX Option.get
+      ActorLookupUtils.findActor(productionRecipe).get // XXX Option.get // XXX Option.get
+  }
+  
   def getUriSubjects(statements: Set[Statement]): Set[Resource] = {
     statements.map(_.getSubject).filter(_.isInstanceOf[URI]) // Discard blank nodes
   }
