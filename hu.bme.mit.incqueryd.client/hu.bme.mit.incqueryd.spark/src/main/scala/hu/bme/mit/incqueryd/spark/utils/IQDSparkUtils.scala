@@ -25,15 +25,12 @@ object IQDSparkUtils {
 
   val DEFAULT_DURATION = 100
   val DEFAULT_TIMEOUT = 300 second
+  val DEFAULT_LOAD_TIMEOUT = 900
 
   val SPARK_HOME = "/usr/local/spark"
-  val APP_RESOURCE = "/tmp/target/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar"
+  val TARGET_PATH = "/tmp/target"
+  val APP_RESOURCE = s"$TARGET_PATH/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar"
   val MAIN_CLASS = "hu.bme.mit.incqueryd.spark.IQDSparkMain"
-
-  def propagateToInput(actorPath: ActorPath, changeSet: ChangeSet) {
-    val inputActor = SparkEnv.get.actorSystem.actorFor(actorPath)
-    inputActor ! PropagateInputState(changeSet)
-  }
   
   def writeln(obj: AnyRef) {
     val writer = new FileWriter("/tmp/spark_iqd.txt", true)
@@ -45,6 +42,22 @@ object IQDSparkUtils {
     val writer = new FileWriter("/tmp/spark_iqd.txt", true)
     writer.write(s" | ${obj.toString()}")
     writer.close()
+  }
+  
+  def writeException[T]()(fn: => T): T = {
+    try {
+      fn
+    } catch {
+      case e: Exception => {
+        write("Exception: ")
+        writeln(e)
+      }
+      throw e;
+    }
+  }
+  
+  def getJars() : Array[String] = {
+    Array(APP_RESOURCE)
   }
   
   def getInputActorPathByTypeName(typeName: String): ActorPath = {

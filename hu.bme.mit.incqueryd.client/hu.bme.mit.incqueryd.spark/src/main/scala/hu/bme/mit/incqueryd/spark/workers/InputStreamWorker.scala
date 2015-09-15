@@ -17,12 +17,17 @@ import hu.bme.mit.incqueryd.spark.utils.VertexDelta
 import hu.bme.mit.incqueryd.spark.utils.EdgeDelta
 import hu.bme.mit.incqueryd.spark.utils.AttributeDelta
 import hu.bme.mit.incqueryd.idservice.IDService.lookupID
+import akka.actor.ActorPath
+import akka.actor.ActorRef
+import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputState
 
 /**
  * @author pappi
  */
 object InputStreamWorker {
-
+  
+  val actorMap : collection.mutable.Map[ActorPath, ActorRef] = collection.mutable.Map[ActorPath, ActorRef]()
+  
   def process(stream: ReceiverInputDStream[Delta]) {
     stream.foreachRDD {_.foreach { record =>
         val inputActorPath = record.inputActorPath
@@ -43,7 +48,8 @@ object InputStreamWorker {
           	tupleSet.add(new Tuple(subjectId, objectValue))
         }
         
-        propagateToInput(inputActorPath, new ChangeSet(tupleSet, changeType))
+        val inputActor = actorMap.getOrElseUpdate(inputActorPath, SparkEnv.get.actorSystem.actorFor(inputActorPath))
+        inputActor ! PropagateInputState(new ChangeSet(tupleSet, changeType))
       }
     }
   }

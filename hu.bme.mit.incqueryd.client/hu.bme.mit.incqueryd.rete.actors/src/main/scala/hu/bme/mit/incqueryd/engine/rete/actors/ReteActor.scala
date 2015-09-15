@@ -1,12 +1,9 @@
 package hu.bme.mit.incqueryd.engine.rete.actors
 
 import java.util.concurrent.CountDownLatch
-
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.future
-
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
-
 import akka.actor.Actor
 import akka.actor.ActorPath
 import akka.actor.ActorRef
@@ -21,6 +18,8 @@ import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNode
 import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNodeFactory
 import hu.bme.mit.incqueryd.engine.rete.nodes.TypeInputNode
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
+import scala.collection.mutable.LinkedList
+import scala.collection.JavaConverters._
 
 class ReteActor extends Actor {
 
@@ -33,6 +32,8 @@ class ReteActor extends Actor {
     case updateMessage: UpdateMessage => update(updateMessage)
     case terminationMessage: TerminationMessage => terminationProtocol(terminationMessage)
     case GetQueryResults => getQueryResults
+    case SubscribeReceiver(receiver : ActorRef) => registerReceiver(receiver)
+    case UnsubscribeReceiver(receiver : ActorRef) => unregisterReceiver(receiver);
   }
 
   def configure(configuration: ReteNodeConfiguration) = {
@@ -67,7 +68,16 @@ class ReteActor extends Actor {
   }
 
   val subscribers = scala.collection.mutable.Map[ActorPath, ReteNodeSlot]()
+  var receivers : Set[ActorRef] = Set[ActorRef]()
 
+  def registerReceiver(receiver : ActorRef) {
+    receivers+=receiver;
+  }
+  
+  def unregisterReceiver(receiver : ActorRef) {
+    receivers-=receiver
+  }
+  
   def propagateState(children: Set[ReteActorConnection]) = {
     if (children.isEmpty) {
       sender ! StatePropagated
@@ -139,7 +149,9 @@ class ReteActor extends Actor {
       case _ => {}
     }
     reteNode match {
-      case _: ProductionNode => {
+      case productionNode: ProductionNode => {
+        if(!receivers.isEmpty)
+          receivers.foreach { _ ! productionNode.getResults.asScala }
         if (subscribers.isEmpty) {
           terminationProtocol(new TerminationMessage(updateMessage.route))
         }

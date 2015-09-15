@@ -14,7 +14,9 @@ import hu.bme.mit.incqueryd.engine.util.DatabaseConnection.Backend
  * @author pappi
  */
 object IQDSparkClient {
-
+  
+  lazy val pool: ExecutorService = Executors.newCachedThreadPool()
+  
   def getSparkLauncher(): SparkLauncher = {
     new SparkLauncher()
       .setSparkHome(SPARK_HOME)
@@ -24,7 +26,8 @@ object IQDSparkClient {
       .setMainClass(MAIN_CLASS)
       .setConf(SparkLauncher.DRIVER_MEMORY, "512m")
       .setConf(SparkLauncher.EXECUTOR_MEMORY, "512m")
-  }
+      .setConf(SparkLauncher.EXECUTOR_EXTRA_LIBRARY_PATH, TARGET_PATH)
+      }
 
   def loadData(databaseConnection: DatabaseConnection) {
     val method = databaseConnection.getBackend match {
@@ -38,7 +41,6 @@ object IQDSparkClient {
       .addAppArgs("-ds_url", databaseConnection.getConnectionString)
       .addAppArgs("-single")
       .launch().waitFor()
-
   }
 
   def startWikipediaStreaming(streamURL: String) {
@@ -49,6 +51,27 @@ object IQDSparkClient {
   def stopWikipediaStreaming() {
     // TODO: terminate Wikipedia stream processing application
     throw new UnsupportedOperationException("Not implemented yet")
+  }
+
+  def startOutputStreaming(productionNodePath: String) = {
+   
+    val thread = new Thread {
+      override def run() {
+        val process = getSparkLauncher()
+          .setAppName(s"Output stream processor")
+          .addAppArgs("-method", ProcessingMethod.PRODUCTIONSTREAM.toString())
+          .addAppArgs("-duration", DEFAULT_DURATION.toString())
+          .addAppArgs("-ds_url", productionNodePath)
+          .launch()
+      }
+    }
+    
+    pool.execute(thread);
+    
+  }
+
+  def stopOutputStreaming() = {
+    pool.shutdownNow()
   }
 
 }
