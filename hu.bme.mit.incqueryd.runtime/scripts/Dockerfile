@@ -5,7 +5,7 @@ MAINTAINER IncQuery-D Team
 USER root
 
 # install tools
-RUN apt-get update && apt-get -y install curl tar sudo openssh-server openssh-client rsync nano telnet dnsmasq maven
+RUN apt-get update && apt-get -y install curl tar sudo openssh-server openssh-client rsync nano telnet dnsmasq
 
 # passwordless ssh
 # RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key
@@ -54,15 +54,26 @@ ADD mapred-site.xml $HADOOP_PREFIX/etc/hadoop/mapred-site.xml
 ADD yarn-site.xml $HADOOP_PREFIX/etc/hadoop/yarn-site.xml
 
 ADD slaves $HADOOP_PREFIX/etc/hadoop/slaves
-ADD write-hosts.sh /etc/write-hosts.sh
-RUN chown root:root /etc/write-hosts.sh
-RUN chmod 700 /etc/write-hosts.sh
 
+ADD add-dns-entry.sh /etc/add-dns-entry.sh
+RUN chown root:root /etc/add-dns-entry.sh
+RUN chmod 700 /etc/add-dns-entry.sh
+
+ADD add-dns-entries.sh /etc/add-dns-entries.sh
+RUN chown root:root /etc/add-dns-entries.sh
+RUN chmod 700 /etc/add-dns-entries.sh
 
 ADD write-auth-keys.sh /etc/write-auth-keys.sh
 RUN chown root:root /etc/write-auth-keys.sh
 RUN chmod 700 /etc/write-auth-keys.sh
 
+ADD fix_networking.sh /etc/fix_networking.sh
+RUN chown root:root /etc/fix_networking.sh
+RUN chmod 700 /etc/fix_networking.sh
+
+ADD add-yarn-node.sh /usr/local/hadoop/add-yarn-node.sh
+RUN chown root:root /usr/local/hadoop/add-yarn-node.sh
+RUN chmod 700 /usr/local/hadoop/add-yarn-node.sh
 
 RUN $HADOOP_PREFIX/bin/hdfs namenode -format
 
@@ -82,8 +93,9 @@ RUN chmod +x /usr/local/hadoop/etc/hadoop/*-env.sh
 RUN ls -la /usr/local/hadoop/etc/hadoop/*-env.sh
 
 # Download and install ZooKeeper
-RUN curl -s http://mirrors.ukfast.co.uk/sites/ftp.apache.org/zookeeper/stable/zookeeper-3.4.6.tar.gz | tar -xz -C /usr/local/
-RUN cd /usr/local && ln -s ./zookeeper-3.4.6 zookeeper
+# RUN curl -s http://mirrors.ukfast.co.uk/sites/ftp.apache.org/zookeeper/stable/zookeeper-3.4.6.tar.gz | tar -xz -C /usr/local/
+RUN curl -s http://mirrors.ukfast.co.uk/sites/ftp.apache.org/zookeeper/zookeeper-3.5.1-alpha/zookeeper-3.5.1-alpha.tar.gz | tar -xz -C /usr/local/
+RUN cd /usr/local && ln -s ./zookeeper-3.5.1-alpha zookeeper
 
 RUN mkdir -p /var/lib/zookeeper
 
@@ -93,9 +105,9 @@ ADD write-zoo-myid.sh /etc/write-zoo-myid.sh
 RUN chown root:root /etc/write-zoo-myid.sh
 RUN chmod 700 /etc/write-zoo-myid.sh
 
-ADD zkServer.sh /usr/local/zookeeper/bin/zkServer.sh
-RUN chown root:root /usr/local/zookeeper/bin/zkServer.sh
-RUN chmod 700 /usr/local/zookeeper/bin/zkServer.sh
+ADD start-zk-server.sh /usr/local/zookeeper/bin/start-zk-server.sh
+RUN chown root:root /usr/local/zookeeper/bin/start-zk-server.sh
+RUN chmod 700 /usr/local/zookeeper/bin/start-zk-server.sh
 
 # Install SPARK
 
@@ -142,5 +154,5 @@ RUN chmod 700 /usr/local/hadoop/copy_runtime_to_hdfs.sh
 
 # CMD ["/etc/bootstrap.sh", "-d"]
 
-EXPOSE 50020 50090 50070 50010 50075 8031 8032 8033 8040 8042 49707 22 8088 8030 19888 2888 3888 2181 9990 10020 19888 2552
+EXPOSE 50020 50090 50070 50010 50075 8031 8032 8033 8040 8042 49707 22 8088 8030 19888 2888 3888 2181 2182 10020 19888 2552
 # XXX duplicated ports

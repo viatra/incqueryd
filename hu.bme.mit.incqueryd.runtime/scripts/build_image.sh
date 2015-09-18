@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t incquerylabs/yarn-docker-demo:0.1 .
+docker build -t incquerylabs/incqueryd:0.1 .

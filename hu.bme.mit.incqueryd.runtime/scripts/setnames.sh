@@ -6,6 +6,10 @@ export IMAGE=incquerylabs/yarn-docker-demo:$IMAGE_VERSION
 
 export YARN_RM=yarn-docker-rm
 
+export YARN_NM=yarn-docker-node
+export YARN_NM_HOST=yarn-node
+export IQD_HOST=".docker"
+
 export YARN_NM1=yarn-docker-node1
 
 export YARN_NM2=yarn-docker-node2

@@ -2,12 +2,11 @@
 
 cd "$( cd "$( dirname "$0" )" && pwd )"
 
-source setnames.sh
+containers=`docker inspect --format='{{.Name}}' $(docker ps -aq --no-trunc) | grep yarn-docker`
 
-docker stop $YARN_RM
-docker stop $YARN_NM1
-docker stop $YARN_NM2
-
-docker rm $YARN_RM
-docker rm $YARN_NM1
-docker rm $YARN_NM2
+for cont in $containers
+do
+	cont=${cont:1:${#cont}}
+	docker stop $cont 
+	docker rm $cont
+done
