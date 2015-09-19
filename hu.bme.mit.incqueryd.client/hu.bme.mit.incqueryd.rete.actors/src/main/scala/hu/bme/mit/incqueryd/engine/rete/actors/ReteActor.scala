@@ -150,8 +150,8 @@ class ReteActor extends Actor {
     }
     reteNode match {
       case productionNode: ProductionNode => {
-        if(!receivers.isEmpty)
-          receivers.foreach { _ ! productionNode.getResults.asScala }
+        if(!receivers.isEmpty) 
+          receivers.foreach { _ ! AkkaUtils.serializeMessage(productionNode.getResults) }
         if (subscribers.isEmpty) {
           terminationProtocol(new TerminationMessage(updateMessage.route))
         }

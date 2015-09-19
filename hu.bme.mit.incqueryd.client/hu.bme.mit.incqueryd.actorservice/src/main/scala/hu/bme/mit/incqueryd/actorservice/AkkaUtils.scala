@@ -12,6 +12,8 @@ import akka.actor._
 import akka.pattern.ask
 import eu.mondo.utils.NetworkUtils
 import java.net.InetAddress
+import java.io.ByteArrayOutputStream
+import java.io.ObjectOutputStream
 
 object AkkaUtils {
 
@@ -129,7 +131,14 @@ akka {
       }
     }
   }
-
+  
+  def serializeMessage(msg : AnyRef) : Array[Byte] = {
+    val bao = new ByteArrayOutputStream
+    val oo = new ObjectOutputStream(bao)
+    oo.writeObject(msg)
+    bao.toByteArray()
+  }
+  
   @annotation.tailrec
   def retry[T](retryCount: Int)(delayMillis: Long)(fn: => T): T = {
     Try {

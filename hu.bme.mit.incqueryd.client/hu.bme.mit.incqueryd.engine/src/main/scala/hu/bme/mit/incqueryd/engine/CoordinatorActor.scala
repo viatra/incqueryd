@@ -97,11 +97,11 @@ class CoordinatorActor extends Actor {
     }
     case StartOutputStream(recipeJson, patternName) => {
       val production = getProductionActorPath(recipeJson, patternName)
-      IQDSparkClient.startOutputStreaming(production.toSerializationFormat)
+      IQDSparkClient.startOutputStream(patternName, production.toSerializationFormat)
       sender ! true
     }
     case StopOutputStreams() => {
-      IQDSparkClient.stopOutputStreaming()
+      IQDSparkClient.stopOutputStreams()
       sender ! true
     }
     case CheckResults(recipeJson, patternName) => {

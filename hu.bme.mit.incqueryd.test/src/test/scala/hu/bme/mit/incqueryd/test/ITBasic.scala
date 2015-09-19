@@ -46,6 +46,7 @@ import hu.bme.mit.incqueryd.engine.util.DatabaseConnection.Backend
 import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
 import hu.bme.mit.incqueryd.idservice.IDService
+import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
 
 class ITBasic {
 
@@ -65,20 +66,22 @@ class ITBasic {
     try {
       assertResult(client, recipe, expectedResult)
       Thread.sleep(60000) // Wait until output stream processing starts
-      client.loadChanges(getInputChanges)
+      for(i <- 1 to 99) {
+        val changeType = if(i % 2 == 0 ) ChangeType.POSITIVE else ChangeType.NEGATIVE
+        client.loadChanges(getInputChanges(changeType))
+      }
       assertResult(client, recipe, expectedResultAfterChange)
     } finally {
       client.dispose()
     }
   }
 
-  private def getInputChanges() = {
+  private def getInputChanges(changeType : ChangeType) = {
   	val switchID = IDService.lookupID("138")
-    println("SwitchID: " + switchID)
     Map(ReteActorKey.fromString("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Switch").internalId ->
       new ChangeSet(
         new java.util.HashSet(toTuples(Set(switchID))), // XXX must be serializable
-        ChangeType.NEGATIVE
+        changeType
       )
     )
   }
@@ -102,22 +105,6 @@ class ITBasic {
 	  println(s"Query result: $result")
     val resolved = resolveIDs(result)
 	  assertEquals(expectedResult, resolved)
-  }
-
-  private def resolveIDs(tuples : Set[Tuple]) : Set[Tuple] = {
-    tuples.map { tuple =>
-      val val0 = IDService.resolveID(tuple.get(0).asInstanceOf[Long])
-      if(tuple.size() == 1) {
-        new Tuple(val0)
-      } else {
-        val val1 = tuple.get(1)
-        if(val1.isInstanceOf[Long]) {
-          new Tuple(val0, IDService.resolveID(val1.asInstanceOf[Long]))
-        } else {
-          new Tuple(val0, val1)
-        }
-      }
-    }
   }
 
 }

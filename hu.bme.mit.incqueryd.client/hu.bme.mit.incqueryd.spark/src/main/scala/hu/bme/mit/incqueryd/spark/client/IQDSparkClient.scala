@@ -20,13 +20,12 @@ object IQDSparkClient {
   def getSparkLauncher(): SparkLauncher = {
     new SparkLauncher()
       .setSparkHome(SPARK_HOME)
-      .setAppResource(APP_RESOURCE)
+      .setAppResource(HDFS_JAR_PATH)
       .setMaster("yarn-cluster")
       .setDeployMode("cluster")
       .setMainClass(MAIN_CLASS)
       .setConf(SparkLauncher.DRIVER_MEMORY, "512m")
       .setConf(SparkLauncher.EXECUTOR_MEMORY, "512m")
-      .setConf(SparkLauncher.EXECUTOR_EXTRA_LIBRARY_PATH, TARGET_PATH)
       }
 
   def loadData(databaseConnection: DatabaseConnection) {
@@ -36,10 +35,11 @@ object IQDSparkClient {
     }
     val exit_code = getSparkLauncher()
       .setAppName(s"HDFS LOAD")
-      .addAppArgs("-method", method.toString())
-      .addAppArgs("-duration", DEFAULT_DURATION.toString())
-      .addAppArgs("-ds_url", databaseConnection.getConnectionString)
-      .addAppArgs("-single")
+      .addAppArgs(s"-$OPTION_PROCESSING_METHOD", method.toString())
+      .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
+      .addAppArgs(s"-$OPTION_DATASOURCE_URL", databaseConnection.getConnectionString)
+      .addAppArgs(s"-$OPTION_SINGLE_RUN")
+      .addAppArgs(s"-$OPTION_NO_DATA_TIMEOUT_MS", 30000.toString())
       .launch().waitFor()
   }
 
@@ -53,15 +53,16 @@ object IQDSparkClient {
     throw new UnsupportedOperationException("Not implemented yet")
   }
 
-  def startOutputStreaming(productionNodePath: String) = {
+  def startOutputStream(patternName : String, productionNodePath: String) = {
    
     val thread = new Thread {
       override def run() {
         val process = getSparkLauncher()
-          .setAppName(s"Output stream processor")
-          .addAppArgs("-method", ProcessingMethod.PRODUCTIONSTREAM.toString())
-          .addAppArgs("-duration", DEFAULT_DURATION.toString())
-          .addAppArgs("-ds_url", productionNodePath)
+          .setAppName(s"$patternName query results stream")
+          .addAppArgs(s"-$OPTION_PROCESSING_METHOD", ProcessingMethod.PRODUCTIONSTREAM.toString())
+          .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
+          .addAppArgs(s"-$OPTION_DATASOURCE_URL", productionNodePath)
+          .addAppArgs(s"-$OPTION_QUERY_ID", patternName)
           .launch()
       }
     }
@@ -70,7 +71,7 @@ object IQDSparkClient {
     
   }
 
-  def stopOutputStreaming() = {
+  def stopOutputStreams() = {
     pool.shutdownNow()
   }
 
