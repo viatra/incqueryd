@@ -6,7 +6,6 @@ cd "$( cd "$( dirname "$0" )" && pwd )"
 source setnames.sh
 
 ./build_image.sh
-echo "${@:2}"
 
 ./start_node.sh rm -local ${@:2}
 

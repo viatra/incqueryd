@@ -17,7 +17,6 @@ RUN cp /etc/ssh/ssh_host_rsa_key.pub /root/.ssh/known_hosts
 # JAVA_HOME setup
 ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 ENV PATH $PATH:$JAVA_HOME/bin
-ENV MAVEN_OPTS="-Xmx2048m -XX:MaxPermSize=1024m"
 
 # Download and install YARN (hadoop-2.6.0)
 RUN curl -s http://www.eu.apache.org/dist/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz | tar -xz -C /usr/local/
@@ -109,15 +108,7 @@ ADD start-zk-server.sh /usr/local/zookeeper/bin/start-zk-server.sh
 RUN chown root:root /usr/local/zookeeper/bin/start-zk-server.sh
 RUN chmod 700 /usr/local/zookeeper/bin/start-zk-server.sh
 
-# Install SPARK
-
-# Build spark
-# RUN curl -s http://xenia.sote.hu/ftp/mirrors/www.apache.org/spark/spark-1.4.1/spark-1.4.1.tgz | tar xz -C /usr/local/
-# RUN cd /usr/local && ln -s ./spark-1.4.1 spark
-# RUN /usr/local/spark/dev/change-version-to-2.11.sh
-# RUN cd /usr/local/spark/ && mvn -Pyarn -Phadoop-2.6 -Dscala-2.11 -DskipTests clean package
-
-# Install pre-build spark
+# Install Spark
 RUN curl -s http://xenia.sote.hu/ftp/mirrors/www.apache.org//spark/spark-1.4.1/spark-1.4.1-bin-hadoop2.6.tgz | tar xz -C /usr/local/
 RUN cd /usr/local && ln -s ./spark-1.4.1-bin-hadoop2.6 spark
 
@@ -148,11 +139,17 @@ ADD hazelcast.xml $HZ_HOME/bin/hazelcast.xml
 ADD dnsmasq.conf /etc/dnsmasq.conf
 ADD dnsmasq.resolv.conf /etc/dnsmasq.resolv.conf
 
+# Install mosquitto
+ENV DEBIAN_FRONTEND noninteractive
+RUN curl -s -o mosquitto-repo.gpg.key http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+RUN apt-key add mosquitto-repo.gpg.key
+RUN cd /etc/apt/sources.list.d/ && curl -s -o mosquitto-wheezy.list http://repo.mosquitto.org/debian/mosquitto-wheezy.list
+RUN apt-get update
+RUN apt-get -y install mosquitto
+
 # Add scripts
 ADD copy_runtime_to_hdfs.sh /usr/local/hadoop/copy_runtime_to_hdfs.sh
 RUN chmod 700 /usr/local/hadoop/copy_runtime_to_hdfs.sh
-
-# CMD ["/etc/bootstrap.sh", "-d"]
 
 EXPOSE 50020 50090 50070 50010 50075 8031 8032 8033 8040 8042 49707 22 8088 8030 19888 2888 3888 2181 2182 10020 19888 2552
 # XXX duplicated ports

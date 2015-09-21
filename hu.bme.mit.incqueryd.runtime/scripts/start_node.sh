@@ -48,7 +48,7 @@ fi
 # Add port binding parameters if starting RM
 BINDING_PORTS=" "
 if $RM; then
-	BINDING_PORTS="-p 127.0.0.1:53:53/udp -p 127.0.0.1:2181:2181 -p 127.0.0.1:2182:2182 -p 127.0.0.1:5701:5701 -p 127.0.0.1:8088:8088 -p 127.0.0.1:50070:50070"
+	BINDING_PORTS="-p 127.0.0.1:53:53/udp -p 127.0.0.1:2181:2181 -p 127.0.0.1:2182:2182 -p 127.0.0.1:5701:5701 -p 127.0.0.1:9876:9876 -p 127.0.0.1:8088:8088 -p 127.0.0.1:50070:50070"
 fi
 
 # Start docker container
@@ -99,6 +99,7 @@ if $RM; then
 	docker exec $INSTANCE_NAME /etc/write-zoo-myid.sh 1
 	docker exec $INSTANCE_NAME /usr/local/zookeeper/bin/start-zk-server.sh 1 "RM"
 	docker exec -d $INSTANCE_NAME sh /usr/local/hazelcast/bin/server.sh
+	docker exec -d $INSTANCE_NAME mosquitto -d -p 9876 > /dev/null 2>&1
 else
 	if $LOCAL; then
 		docker exec $YARN_RM service dnsmasq restart
