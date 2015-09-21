@@ -2,7 +2,7 @@
 
 export IMAGE_VERSION=0.1
 
-export IMAGE=incquerylabs/yarn-docker-demo:$IMAGE_VERSION
+export IMAGE=incquerylabs/incqueryd:$IMAGE_VERSION
 
 export YARN_RM=yarn-docker-rm
 
