@@ -56,17 +56,19 @@ class WikiStreamReceiver(databaseConnection: DatabaseConnection) extends Receive
 
     override def onGenericMessage(event: GenericMessageEvent[PircBotX]) {
       parse(event.getMessage).foreach { edit =>
-        pool.submit(new Runnable {
-          def run() {
-            println(s"Processing $edit")
-            if (!edit.newPage) {
-              val oldDeltas = getOldDeltas(edit.pageTitle)
-              apply(oldDeltas)
-            }
-            val newDeltas = getNewDeltas(edit)
-            apply(newDeltas)
-          }
-        })
+        if (!edit.robot) { // Bot edits come too frequently
+        	pool.submit(new Runnable {
+        		def run() {
+        			println(s"Processing $edit")
+        			if (!edit.newPage) {
+        				val oldDeltas = getOldDeltas(edit.pageTitle)
+        						apply(oldDeltas)
+        			}
+        			val newDeltas = getNewDeltas(edit)
+        					apply(newDeltas)
+        		}
+        	})
+        }
       }
     }
 
