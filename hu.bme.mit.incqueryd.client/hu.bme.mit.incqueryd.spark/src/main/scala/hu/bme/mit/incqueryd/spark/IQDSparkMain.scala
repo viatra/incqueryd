@@ -106,6 +106,7 @@ class ProcessingFinishedListener(ssc : StreamingContext, batchIdleLimit : Long) 
       currentBatchIdle = 0
     
     if(currentBatchIdle >= batchIdleLimit) {
+      ssc.sparkContext.cancelAllJobs()
       val applicationId = ssc.sparkContext.applicationId
       val process = Process(s"/usr/local/hadoop/bin/yarn application -kill $applicationId")
       process.run()
