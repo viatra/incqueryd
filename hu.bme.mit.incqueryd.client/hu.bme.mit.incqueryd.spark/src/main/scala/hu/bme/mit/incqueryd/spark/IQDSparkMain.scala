@@ -32,6 +32,12 @@ import hu.bme.mit.incqueryd.spark.workers.OutputStreamWorker
 import scala.sys.process.Process
 import akka.actor.Props
 import hu.bme.mit.incqueryd.spark.recievers.ProductionReceiver
+import hu.bme.mit.incqueryd.spark.mqtt.MQTTPublisher
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence
+import org.eclipse.paho.client.mqttv3.MqttClient
+import org.eclipse.paho.client.mqttv3.MqttMessage
+
+
 /**
  * @author pappi
  */
@@ -59,7 +65,7 @@ object IQDSparkMain extends Serializable {
     val sparkConf = new SparkConf
     sparkConf.set("spark.scheduler.mode", "FAIR")
     sparkConf.set("spark.executor.instances", "3")
-
+    
     val ssc = new StreamingContext(sparkConf, Milliseconds(DURATION))
 
     // Create stream

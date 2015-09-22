@@ -20,9 +20,9 @@ class ProductionReceiver(productionActorPath : String) extends Actor with ActorH
   
   override def preStart(): Unit = productionActor ! SubscribeReceiver(context.self)
   
-  def receive = IQDSparkUtils.writeException()({
+  def receive() = {
     case msg => store(msg)
-  })
+  }
   
   override def postStop(): Unit = productionActor ! UnsubscribeReceiver(context.self)
 

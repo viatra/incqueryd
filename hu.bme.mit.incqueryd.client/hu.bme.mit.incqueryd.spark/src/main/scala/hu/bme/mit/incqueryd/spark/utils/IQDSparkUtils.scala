@@ -9,7 +9,6 @@ import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputState
 import java.io.FileWriter
 import scala.concurrent.duration._
 import scala.concurrent.Await
-import scala.collection.JavaConversions._
 import hu.bme.mit.incqueryd.actorservice.ActorId
 import com.google.common.net.HostAndPort
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
@@ -34,7 +33,8 @@ object IQDSparkUtils {
   val SPARK_HOME = "/usr/local/spark"
   val MAIN_CLASS = "hu.bme.mit.incqueryd.spark.IQDSparkMain"
   val HDFS_JAR_PATH = "hdfs://yarn-rm.docker:9000/jars/hu.bme.mit.incqueryd.actorservice.server-1.0.0-SNAPSHOT.jar"
-  val RESULT_BASE_DIR = "hdfs://yarn-rm.docker:9000/QUERYRESULTS"
+  val RESULT_BASE_DIR = "hdfs://yarn-rm.docker:9000/"
+  val BROKER_URL = "tcp://yarn-rm.docker:9876"
   
   val OPTION_PROCESSING_METHOD = "proc_method"
   val OPTION_DURATION = "duration"
@@ -80,11 +80,13 @@ object IQDSparkUtils {
     }
   }
   
-  def deserializeProductionMessage(msg : Array[Byte]) : Set[Tuple] = {
+  def deserializeProductionMessage[T](msg : Array[Byte]) : T = {
     val b = new ByteArrayInputStream(msg);
     val o = new ObjectInputStream(b);
-    o.readObject().asInstanceOf[java.util.Set[Tuple]].toSet
+    o.readObject().asInstanceOf[T]
   }
+  
+  
   
   def getJars() : Array[String] = {
     Array(HDFS_JAR_PATH)
