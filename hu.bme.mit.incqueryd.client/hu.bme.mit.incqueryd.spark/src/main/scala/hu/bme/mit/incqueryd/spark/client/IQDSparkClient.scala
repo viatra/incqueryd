@@ -34,7 +34,7 @@ object IQDSparkClient {
       case Backend.FOURSTORE => ProcessingMethod.FOURSTORE_LOAD
     }
     val exit_code = getSparkLauncher()
-      .setAppName(s"HDFS LOAD")
+      .setAppName(method.toString())
       .addAppArgs(s"-$OPTION_PROCESSING_METHOD", method.toString())
       .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
       .addAppArgs(s"-$OPTION_DATASOURCE_URL", databaseConnection.getConnectionString)
@@ -43,14 +43,26 @@ object IQDSparkClient {
       .launch().waitFor()
   }
 
-  def startWikipediaStreaming(streamURL: String) {
-    // TODO: submit spark streaming application to process stream received from Wikipedia
-    throw new UnsupportedOperationException("Not implemented yet")
+  lazy val wikistreamPool: ExecutorService = Executors.newCachedThreadPool()
+
+  def startWikidataStreaming(databaseConnection: DatabaseConnection)  = {
+    val thread = new Thread {
+      override def run() {
+        val process = getSparkLauncher()
+          .setAppName(s"WIKISTREAM")
+          .addAppArgs(s"-$OPTION_PROCESSING_METHOD", ProcessingMethod.WIKISTREAM.toString())
+          .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
+          .addAppArgs(s"-$OPTION_DATASOURCE_URL", databaseConnection.getConnectionString)
+          .addAppArgs(s"-$OPTION_SINGLE_RUN")
+          .addAppArgs(s"-$OPTION_NO_DATA_TIMEOUT_MS", 60000.toString())
+          .launch()
+      }
+    }
+    wikistreamPool.execute(thread)
   }
 
-  def stopWikipediaStreaming() {
-    // TODO: terminate Wikipedia stream processing application
-    throw new UnsupportedOperationException("Not implemented yet")
+  def stopWikidataStreaming() = {
+    wikistreamPool.shutdownNow()
   }
 
   def startOutputStream(patternName : String, productionNodePath: String) = {
