@@ -5,7 +5,7 @@ import org.junit.Test
 
 import eu.mondo.driver.fourstore.FourStoreGraphDriverReadWrite
 
-class WikidataLoaderTest {
+class ITWikidataLoader {
 
   /** Start 4store before running! */
   @Test
