@@ -7,17 +7,20 @@ import eu.mondo.driver.fourstore.FourStoreGraphDriverReadWrite
 
 class WikidataLoaderTest {
 
-  /** Configure and start 4store before running! */
+  /** Start 4store before running! */
   @Test
   def load() {
-    val driver = new FourStoreGraphDriverReadWrite("wikidata")
+    println("Setting up database")
+    FourstoreUtils.setup(WikidataLoader.defaultDatabaseName)
+    val driver = new FourStoreGraphDriverReadWrite(WikidataLoader.defaultDatabaseName)
     driver.setShowCommandOutput(true)
-    driver.start()
-    WikidataLoader.load(driver, "terms")
+    println("Loading dump")
+    WikidataLoader.load(driver, "property-taxonomy")
     try {
-    	assertTrue(driver.countProperties("http://www.w3.org/2000/01/rdf-schema#label") > 0)
+    	assertTrue(driver.countProperties("http://www.w3.org/1999/02/22-rdf-syntax-ns#type") > 0)
     } finally {
-    	driver.stop()
+      println("Destroying database")
+    	FourstoreUtils.destroy(WikidataLoader.defaultDatabaseName)
     }
   }
 

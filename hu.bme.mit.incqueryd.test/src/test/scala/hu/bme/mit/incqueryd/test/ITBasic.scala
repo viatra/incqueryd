@@ -47,11 +47,13 @@ import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
 import hu.bme.mit.incqueryd.idservice.IDService
 import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
+import hu.bme.mit.incqueryd.engine.rete.actors.RecipeUtils
 
 class ITBasic {
 
-  val vocabularyFileName = "vocabulary.rdf"
-	val modelFileName = "railway-test-1.ttl"
+  val vocabularyFilename = "vocabulary.rdf"
+	val modelFilename = "railway-test-1.ttl"
+	val recipeFilename = "SwitchSensor.rdfiq.recipe"
 	val patternName = "switchSensor"
 	val expectedResult = toTuples(Set("52", "138", "78", "391"))
 	val expectedResultAfterChange = toTuples(Set("52", "78", "391"))
@@ -59,10 +61,11 @@ class ITBasic {
   @Test
   def test() {
     val client = new IQDYarnClient
-    val metamodel = client.loadMetamodel(getClass.getClassLoader.getResource(vocabularyFileName))
-    val modelFilePath = client.uploadFile(getClass.getClassLoader.getResource(modelFileName))
+    val metamodel = client.loadMetamodel(getClass.getClassLoader.getResource(vocabularyFilename))
+    val modelFilePath = client.uploadFile(getClass.getClassLoader.getResource(modelFilename))
     client.loadInitialData(metamodel, new DatabaseConnection(modelFilePath, Backend.FILE))
-    val recipe = loadRecipe
+    val recipe = RecipeUtils.loadRecipe(recipeFilename)
+    client.startQuery(recipe)
     try {
       assertResult(client, recipe, expectedResult)
       Thread.sleep(60000) // Wait until output stream processing starts
@@ -87,18 +90,6 @@ class ITBasic {
   }
 
   private def toTuples(set: Set[AnyRef]) = set.map(new Tuple(_))
-
-  private def loadRecipe: ReteRecipe = {
-    val filename = "SwitchSensor.rdfiq.recipe"
-    val extension = FilenameUtils.getExtension(filename)
-    val url = getClass.getClassLoader.getResource(filename)
-    RecipesPackage.eINSTANCE.eClass
-    val resourceSet = new ResourceSetImpl
-    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap.put(extension, new XMIResourceFactoryImpl)
-    val resource = resourceSet.createResource(URI.createURI(url.toString))
-    resource.load(Map[Object, Object]())
-    resource.getContents.get(0).asInstanceOf[ReteRecipe]
-  }
 
   private def assertResult(client: IQDYarnClient, recipe: ReteRecipe, expectedResult: Set[Tuple]) {
 	  val result = client.checkQuery(recipe, patternName)

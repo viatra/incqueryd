@@ -40,6 +40,8 @@ class IQDYarnClient {
   Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), DEFAULT_TIMEOUT)
   val coordinator: Coordinator = Await.result(Coordinator.create(advancedYarnClient), DEFAULT_TIMEOUT)
 
+  val patternsToRecipes : scala.collection.mutable.Map[String, ReteRecipe] = scala.collection.mutable.Map()
+
   def uploadFile(modelURL: URL): String = {
     val modelFile = new File(modelURL.getPath)
     val modelFilePath = s"$DEFAULT_HDFS_URL/test/${modelFile.getName}"
@@ -66,7 +68,7 @@ class IQDYarnClient {
     coordinator.sendChangesToInputs(changesMap)
   }
 
-  private def startQuery(reteRecipe: ReteRecipe) {
+  def startQuery(reteRecipe: ReteRecipe) {
     coordinator.startQuery(reteRecipe, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
   }
   
@@ -75,9 +77,10 @@ class IQDYarnClient {
   }
   
   def checkQuery(reteRecipe: ReteRecipe, patternName: String): Set[Tuple] = {
-    if (IncQueryDZooKeeper.getData(s"${IncQueryDZooKeeper.runningQueries}/$patternName") == null) {
+    if (IncQueryDZooKeeper.getData(s"${IncQueryDZooKeeper.runningQueries}/$patternName") == null && !patternsToRecipes.contains(patternName)) {
       startQuery(reteRecipe)
       startOutputStream(reteRecipe, patternName)
+      patternsToRecipes.put(patternName, reteRecipe)
     }
     coordinator.checkResults(reteRecipe, patternName)
   }

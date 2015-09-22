@@ -13,6 +13,12 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe
+import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import org.apache.commons.io.FilenameUtils
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.common.util.URI
 
 object RecipeUtils {
 
@@ -91,6 +97,17 @@ object RecipeUtils {
   def findProductionRecipe(recipe: ReteRecipe, patternName: String): Option[ProductionRecipe] = {
     val productionRecipes = recipe.getRecipeNodes.collect { case productionRecipe: ProductionRecipe => productionRecipe }
     productionRecipes.find(_.getTraceInfo.startsWith(patternName)) // XXX relying on naming convention
+  }
+
+  def loadRecipe(filename: String): ReteRecipe = {
+    val extension = FilenameUtils.getExtension(filename)
+    val url = getClass.getClassLoader.getResource(filename)
+    RecipesPackage.eINSTANCE.eClass
+    val resourceSet = new ResourceSetImpl
+    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap.put(extension, new XMIResourceFactoryImpl)
+    val resource = resourceSet.createResource(URI.createURI(url.toString))
+    resource.load(Map[Object, Object]())
+    resource.getContents.get(0).asInstanceOf[ReteRecipe]
   }
 
 }
