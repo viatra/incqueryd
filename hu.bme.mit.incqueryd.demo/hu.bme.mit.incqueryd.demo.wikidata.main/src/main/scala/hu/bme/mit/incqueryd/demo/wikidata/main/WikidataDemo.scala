@@ -12,8 +12,8 @@ import hu.bme.mit.incqueryd.spark.client.IQDSparkClient
 
 object WikidataDemo {
 
-  val vocabularyFilename = "wikidata-property-taxonomy.nt"
-	val driver = new FourStoreGraphDriverReadWrite(WikidataLoader.defaultDatabaseName)
+  val vocabularyFilename = "wikidata-demo-vocabulary.nt"
+  val driver = new FourStoreGraphDriverReadWrite(WikidataLoader.defaultDatabaseName)
   val recipeFilename = "recipes/wikidata.rdfiq.recipe"
 
   def main(args: Array[String]){
