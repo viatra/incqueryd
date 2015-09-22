@@ -41,6 +41,8 @@ object IncQueryDZooKeeper {
   val nodeType = "/nodetype" 
   val rdfType = "/rdftype" // RDF type
   
+  val runningQueries = "/queries"
+  
   val coordinatorsPath = "/coordinators"
   val defaultCoordinatorPath = coordinatorsPath + "/default"
   

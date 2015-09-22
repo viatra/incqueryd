@@ -137,7 +137,9 @@ class CoordinatorActor extends Actor {
     val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)
       val productionRecipe = productionRecipeOption.get // XXX Option.get
-      ActorLookupUtils.findActor(productionRecipe).get // XXX Option.get // XXX Option.get
+      val actorPath = ActorLookupUtils.findActor(productionRecipe).get // XXX Option.get // XXX Option.get
+      IncQueryDZooKeeper.setData(s"${IncQueryDZooKeeper.runningQueries}/$patternName", actorPath.toSerializationFormat.getBytes)
+      actorPath
   }
   
   def getUriSubjects(statements: Set[Statement]): Set[Resource] = {
