@@ -1,6 +1,5 @@
 package hu.bme.mit.incqueryd.demo.wikidata.main
 
-import eu.mondo.driver.fourstore.FourStoreGraphDriverReadWrite
 import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
 import hu.bme.mit.incqueryd.demo.wikidata.fourstore.FourstoreUtils
 import hu.bme.mit.incqueryd.demo.wikidata.fourstore.WikidataLoader
@@ -13,7 +12,6 @@ import hu.bme.mit.incqueryd.spark.client.IQDSparkClient
 object WikidataDemo {
 
   val vocabularyFilename = "wikidata-demo-vocabulary.nt"
-  val driver = new FourStoreGraphDriverReadWrite(WikidataLoader.defaultDatabaseName)
   val recipeFilename = "recipes/wikidata.rdfiq.recipe"
 
   def main(args: Array[String]){
@@ -22,7 +20,7 @@ object WikidataDemo {
     println("Loading metamodel")
     val metamodel = client.loadMetamodel(getClass.getClassLoader.getResource(vocabularyFilename))
     println("Loading initial data")
-    val databaseConnection = new DatabaseConnection(WikidataLoader.defaultDatabaseName, Backend.FOURSTORE)
+    val databaseConnection = new DatabaseConnection("https://query.wikidata.org/bigdata/namespace/wdq/sparql?format=json&query=", Backend.SPARQL)
     client.loadInitialData(metamodel, databaseConnection)
     println("Starting query")
     val recipe = RecipeUtils.loadRecipe(recipeFilename)
