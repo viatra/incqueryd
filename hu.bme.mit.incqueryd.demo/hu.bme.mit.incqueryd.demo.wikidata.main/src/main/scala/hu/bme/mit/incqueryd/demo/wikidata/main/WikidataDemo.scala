@@ -1,7 +1,6 @@
 package hu.bme.mit.incqueryd.demo.wikidata.main
 
 import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
-import hu.bme.mit.incqueryd.demo.wikidata.fourstore.FourstoreUtils
 import hu.bme.mit.incqueryd.demo.wikidata.fourstore.WikidataLoader
 import hu.bme.mit.incqueryd.engine.rete.actors.RecipeUtils
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection

@@ -7,14 +7,14 @@ import java.net.URL
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.IOUtils
-import eu.mondo.driver.fourstore.FourStoreGraphDriverReadWrite
 import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream
+import eu.mondo.driver.fourstore.FourStoreGraphDriverRead
 
 object WikidataLoader {
 
   val defaultDatabaseName = "wikidata"
 
-  def load(driver: FourStoreGraphDriverReadWrite, dumpName: String) {
+  def load(driver: FourStoreGraphDriverRead, dumpName: String) {
     val tempDir = new File(System.getProperty("java.io.tmpdir"))
     val compressed = new File(tempDir, "wikidata_compressed.nt.gz")
     println("Downloading dumpfile")
