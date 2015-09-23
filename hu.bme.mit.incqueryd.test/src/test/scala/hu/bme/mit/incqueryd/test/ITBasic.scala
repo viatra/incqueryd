@@ -65,7 +65,6 @@ class ITBasic {
     val modelFilePath = client.uploadFile(getClass.getClassLoader.getResource(modelFilename))
     client.loadInitialData(metamodel, new DatabaseConnection(modelFilePath, Backend.FILE))
     val recipe = RecipeUtils.loadRecipe(recipeFilename)
-    client.startQuery(recipe)
     try {
       assertResult(client, recipe, expectedResult)
       Thread.sleep(60000) // Wait until output stream processing starts
