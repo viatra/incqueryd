@@ -3,8 +3,9 @@ package hu.bme.mit.incqueryd.engine.util;
 import java.io.Serializable;
 
 import eu.mondo.driver.file.FileGraphDriverRead;
-import eu.mondo.driver.fourstore.FourStoreGraphDriverReadWrite;
+import eu.mondo.driver.fourstore.FourStoreGraphDriverRead;
 import eu.mondo.driver.graph.RDFGraphDriverRead;
+import eu.mondo.driver.sparql.SparqlGraphDriverRead;
 
 public class DatabaseConnection implements Serializable {
 
@@ -19,13 +20,16 @@ public class DatabaseConnection implements Serializable {
 	
 	public enum Backend {
 		FILE,
+		SPARQL,
 		FOURSTORE
 	}
 
 	public RDFGraphDriverRead getDriver() {
 		switch (getBackend()) {
+		case SPARQL:
+			return new SparqlGraphDriverRead(getConnectionString());
 		case FOURSTORE:
-			return new FourStoreGraphDriverReadWrite(getConnectionString());
+			return new FourStoreGraphDriverRead(getConnectionString());
 		case FILE:
 		default:
 			return new FileGraphDriverRead(getConnectionString());

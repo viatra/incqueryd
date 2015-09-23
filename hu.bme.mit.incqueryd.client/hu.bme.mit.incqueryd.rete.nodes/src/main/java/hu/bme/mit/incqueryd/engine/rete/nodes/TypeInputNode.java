@@ -10,6 +10,10 @@
  *******************************************************************************/
 package hu.bme.mit.incqueryd.engine.rete.nodes;
 
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet;
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType;
+import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple;
+
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
@@ -19,13 +23,12 @@ import java.util.Set;
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
+import org.openrdf.model.Resource;
+import org.openrdf.model.Value;
 
 import com.google.common.collect.Multimap;
 
 import eu.mondo.driver.graph.RDFGraphDriverRead;
-import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet;
-import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType;
-import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple;
 
 public class TypeInputNode implements ReteNode {
 
@@ -75,29 +78,26 @@ public class TypeInputNode implements ReteNode {
 	}
 
 	private void initializeEdge(final String typeName) throws IOException {
-		Multimap<Long, Long> edges = driver.collectEdges(typeName);
+		Multimap<Resource, Resource> edges = driver.collectEdges(typeName);
 
-		for (Entry<Long, Long> edge : edges.entries()) {
-			tuples.add(new Tuple(edge.getKey(), edge.getValue()));
+		for (Entry<Resource, Resource> edge : edges.entries()) {
+			tuples.add(new Tuple(edge.getKey().stringValue(), edge.getValue().stringValue()));
 		}
 	}
 
 	private void initializeProperty(final String typeName) throws IOException {
-		Multimap<Long, Object> properties = driver.collectProperties(typeName);
+		Multimap<Resource, Value> properties = driver.collectProperties(typeName);
 
-		for (Entry<Long, Object> property : properties.entries()) {
-
-			Object attribute = property.getValue();
-			
-			tuples.add(new Tuple(property.getKey(), attribute));
+		for (Entry<Resource, Value> property : properties.entries()) {
+			tuples.add(new Tuple(property.getKey().stringValue(), property.getValue().stringValue()));
 		}
 	}
 
 	private void initializeVertex(final String typeName) throws IOException {
-		List<Long> vertices = driver.collectVertices(typeName);
+		List<Resource> vertices = driver.collectVertices(typeName);
 		
-		for (Long vertex : vertices) {
-			tuples.add(new Tuple(vertex));
+		for (Resource vertex : vertices) {
+			tuples.add(new Tuple(vertex.stringValue()));
 		}
 	}
 
