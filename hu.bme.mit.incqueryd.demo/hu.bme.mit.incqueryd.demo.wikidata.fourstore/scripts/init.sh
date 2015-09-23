@@ -5,3 +5,4 @@ set -e
 
 sudo 4s-backend-setup $DATABASE
 sudo 4s-backend $DATABASE
+4s-boss
