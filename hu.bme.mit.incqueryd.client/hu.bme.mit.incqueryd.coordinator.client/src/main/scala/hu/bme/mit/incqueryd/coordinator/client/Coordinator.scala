@@ -67,6 +67,16 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
     askCoordinator[Boolean](StopOutputStreams())
   }
   
+  def startWikidataStream(databaseConnection: DatabaseConnection) = {
+    println("Starting wikidata stream...")
+    askCoordinator[Boolean](StartWikidataStream(databaseConnection))
+  }
+  
+  def stopWikidataStream() {
+    println(s"Stopping wikidata stream...")
+    askCoordinator[Boolean](StopWikidataStream)
+  }
+  
   def checkResults(recipe: ReteRecipe, patternName: String): Set[Tuple] = {
     println(s"Checking results")
     val recipeJson = EObjectSerializer.serializeToString(recipe)

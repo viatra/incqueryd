@@ -119,6 +119,14 @@ class CoordinatorActor extends Actor {
       undeploy(typeInputRecipes)
       sender ! true
     }
+    case StartWikidataStream(databaseConnection) => {
+      IQDSparkClient.startWikidataStreaming(databaseConnection)
+      sender ! true
+    }
+    case StopWikidataStream => {
+      IQDSparkClient.stopWikidataStreaming()
+      sender ! true
+    }
   })
 
   def getTypes(vocabulary: Model, driver: RDFGraphDriverRead): Set[RdfType] = {
@@ -135,11 +143,11 @@ class CoordinatorActor extends Actor {
   
   private def getProductionActorPath(recipeJson : String, patternName : String) : ActorPath = {
     val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
-      val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)
-      val productionRecipe = productionRecipeOption.get // XXX Option.get
-      val actorPath = ActorLookupUtils.findActor(productionRecipe).get // XXX Option.get // XXX Option.get
-      IncQueryDZooKeeper.setData(s"${IncQueryDZooKeeper.runningQueries}/$patternName", actorPath.toSerializationFormat.getBytes)
-      actorPath
+    val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)
+    val productionRecipe = productionRecipeOption.get // XXX Option.get
+    val actorPath = ActorLookupUtils.findActor(productionRecipe).get // XXX Option.get
+    IncQueryDZooKeeper.setData(s"${IncQueryDZooKeeper.runningQueries}/$patternName", actorPath.toSerializationFormat.getBytes)
+    actorPath
   }
   
   def getUriSubjects(statements: Set[Statement]): Set[Resource] = {

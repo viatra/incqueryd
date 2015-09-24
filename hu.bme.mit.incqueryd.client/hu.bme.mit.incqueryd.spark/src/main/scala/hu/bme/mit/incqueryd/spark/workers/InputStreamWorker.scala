@@ -20,6 +20,7 @@ import hu.bme.mit.incqueryd.idservice.IDService.lookupID
 import akka.actor.ActorPath
 import akka.actor.ActorRef
 import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputState
+import akka.actor.DeadLetterActorRef
 
 /**
  * @author pappi
@@ -30,7 +31,7 @@ object InputStreamWorker {
   
   def process(stream: ReceiverInputDStream[Delta]) {
     stream.foreachRDD {_.foreach { record =>
-        val inputActorPath = record.inputActorPath
+        val inputActorPath = IQDSparkUtils.getInputActorPathByTypeName(record.rdfTypeId)
         val changeType = record.changeType
         val tupleSet = new java.util.HashSet[Tuple]
         
@@ -49,7 +50,11 @@ object InputStreamWorker {
         }
         
         val inputActor = actorMap.getOrElseUpdate(inputActorPath, SparkEnv.get.actorSystem.actorFor(inputActorPath))
-        inputActor ! PropagateInputState(new ChangeSet(tupleSet, changeType))
+        if (inputActor == SparkEnv.get.actorSystem.deadLetters) {
+          println(s"No actor found at $inputActorPath!")
+        } else {
+        	inputActor ! PropagateInputState(new ChangeSet(tupleSet, changeType))
+        }
       }
     }
   }

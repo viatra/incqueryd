@@ -50,9 +50,8 @@ class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Recei
     inputNodes.foreach { inputNode =>
       val rdfTypeName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.rdfType}")
       val inputType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.nodeType}")
-      val inputActorPath = IQDSparkUtils.getInputActorPathByZnodeId(inputNode)
       
-      pool.execute(new HDFSLoadWorker(databaseConnection.getDriver, inputType, rdfTypeName, inputActorPath))
+      pool.execute(new HDFSLoadWorker(databaseConnection.getDriver, inputType, rdfTypeName))
     }
     
   }
@@ -61,7 +60,7 @@ class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Recei
     pool.shutdown()
   }
   
-  class HDFSLoadWorker(driver : RDFGraphDriverRead, inputType : String, rdfTypeName : String,  inputActorPath : ActorPath) extends Runnable {
+  class HDFSLoadWorker(driver : RDFGraphDriverRead, inputType : String, rdfTypeName : String) extends Runnable {
     def run() {
       try {
         inputType match {
@@ -69,19 +68,19 @@ class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Recei
           case RecipeUtils.VERTEX => 
             val dataset = driver.collectVertices(rdfTypeName)
             dataset.foreach(x => 
-              store(VertexDelta(inputActorPath, ChangeType.POSITIVE, x.toString()))
+              store(VertexDelta(ChangeType.POSITIVE, x.toString(), rdfTypeName))
             )
           
           case RecipeUtils.EDGE =>
             val dataset = driver.collectEdges(rdfTypeName)
             dataset.entries().foreach(entry => 
-              store(EdgeDelta(inputActorPath, ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString()))
+              store(EdgeDelta(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString()))
             )
           
           case RecipeUtils.ATTRIBUTE =>
             val dataset = driver.collectProperties(rdfTypeName)
             dataset.entries().foreach(entry => 
-              store(AttributeDelta(inputActorPath, ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString()))
+              store(AttributeDelta(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString()))
             )
         }
         

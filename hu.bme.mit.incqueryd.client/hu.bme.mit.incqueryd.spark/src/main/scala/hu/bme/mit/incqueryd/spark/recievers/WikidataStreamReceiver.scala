@@ -33,7 +33,7 @@ import java.util.Map.Entry
 /**
  * @author pappi
  */
-class WikiStreamReceiver(databaseConnection: DatabaseConnection) extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
+class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
 
   val pool: ExecutorService = Executors.newFixedThreadPool(2)
 
@@ -57,17 +57,17 @@ class WikiStreamReceiver(databaseConnection: DatabaseConnection) extends Receive
     override def onGenericMessage(event: GenericMessageEvent[PircBotX]) {
       parse(event.getMessage).foreach { edit =>
         if (!edit.robot) { // Bot edits come too frequently
-        	pool.submit(new Runnable {
-        		def run() {
-        			println(s"Processing $edit")
-        			if (!edit.newPage) {
-        				val oldDeltas = getOldDeltas(edit.pageTitle)
-        						apply(oldDeltas)
-        			}
-        			val newDeltas = getNewDeltas(edit)
-        					apply(newDeltas)
-        		}
-        	})
+          pool.submit(new Runnable {
+            def run() {
+              println(s"Processing $edit")
+              if (!edit.newPage) {
+                val oldDeltas = getOldDeltas(edit.pageTitle)
+                apply(oldDeltas)
+              }
+              val newDeltas = getNewDeltas(edit)
+              apply(newDeltas)
+            }
+          })
         }
       }
     }
@@ -95,21 +95,18 @@ class WikiStreamReceiver(databaseConnection: DatabaseConnection) extends Receive
     diffUrl: String,
     userName: String,
     diffSize: Int,
-    comment: String
-  )
-  
+    comment: String)
+
   val driver = databaseConnection.getDriver
 
   private def getOldDeltas(itemId: String): List[Delta] = {
     val edgeDeltas = driver.collectEdges(itemId).entries.toList.map { entry =>
       val propertyId = entry.getKey.toString
-      val inputActorPath = IQDSparkUtils.getInputActorPathByTypeName(propertyId)
-      EdgeDelta(inputActorPath, ChangeType.NEGATIVE, itemId, propertyId, entry.getValue.toString)
+      EdgeDelta(ChangeType.NEGATIVE, itemId, propertyId, entry.getValue.toString)
     }
     val attributeDeltas = driver.collectProperties(itemId).entries.toList.map { entry =>
       val propertyId = entry.getKey.toString
-      val inputActorPath = IQDSparkUtils.getInputActorPathByTypeName(propertyId)
-      AttributeDelta(inputActorPath, ChangeType.NEGATIVE, itemId, propertyId, entry.getValue.toString)
+      AttributeDelta(ChangeType.NEGATIVE, itemId, propertyId, entry.getValue.toString)
     }
     edgeDeltas ++ attributeDeltas
   }
@@ -120,27 +117,35 @@ class WikiStreamReceiver(databaseConnection: DatabaseConnection) extends Receive
     document match {
       case document: StatementDocument =>
         document.getAllStatements.toList.flatMap { statement =>
-          val subjectId = statement.getClaim.getSubject.getId
-          val propertyId = statement.getClaim.getMainSnak.getPropertyId.getId
-          val inputActorPath = IQDSparkUtils.getInputActorPathByTypeName(propertyId)
-          statement.getClaim.getMainSnak match {
-            case snak: ValueSnak =>
-              snak.getValue match {
-                case value: EntityIdValue => Some(EdgeDelta(inputActorPath, ChangeType.POSITIVE, subjectId, propertyId, value.getId))
-                case value: StringValue => Some(AttributeDelta(inputActorPath, ChangeType.POSITIVE, subjectId, propertyId, value.getString))
-                case value: MonolingualTextValue => Some(AttributeDelta(inputActorPath, ChangeType.POSITIVE, subjectId, propertyId, value.getText))
-                // TODO
-                case _ => None
-              }
-            case _ => None
+          val subjectId = statement.getClaim.getSubject.getIri
+          val propertyId = s"http://www.wikidata.org/prop/direct/${statement.getClaim.getMainSnak.getPropertyId.getId}"
+          try {
+    			  statement.getClaim.getMainSnak match {
+    			  case snak: ValueSnak =>
+      			  snak.getValue match {
+        			  case value: EntityIdValue =>
+          			  Some(EdgeDelta(ChangeType.POSITIVE, subjectId, propertyId, value.getIri))
+      			    case value: StringValue =>
+      			      Some(AttributeDelta(ChangeType.POSITIVE, subjectId, propertyId, value.getString))
+      			    case value: MonolingualTextValue =>
+      			      Some(AttributeDelta(ChangeType.POSITIVE, subjectId, propertyId, value.getText))
+        			  // TODO
+        			  case _ => None
+      			  }
+    			    case _ => None
+        	  }
+          } catch {
+            case e: Exception =>
+              println(s"Exception while ")
+              None
           }
         }
       case _ => List()
     }
   }
-  
+
   private def apply(deltas: List[Delta]) {
-   deltas.foreach { delta =>
+    deltas.foreach { delta =>
       applyToDatabase(delta)
       store(delta)
     }
@@ -151,20 +156,20 @@ class WikiStreamReceiver(databaseConnection: DatabaseConnection) extends Receive
       case driver: RDFGraphDriverReadWrite =>
         delta match {
           case delta: VertexDelta =>
-            // TODO
+          // TODO
           case delta: EdgeDelta =>
             delta.changeType match {
               case ChangeType.POSITIVE =>
-                driver.insertEdge(delta.subjectId, delta.objectId, delta.propertyId)
+                driver.insertEdge(delta.subjectId, delta.objectId, delta.rdfTypeId)
               case ChangeType.NEGATIVE =>
-                driver.deleteEdge(delta.subjectId, delta.objectId, delta.propertyId)
+                driver.deleteEdge(delta.subjectId, delta.objectId, delta.rdfTypeId)
             }
           case delta: AttributeDelta =>
             delta.changeType match {
               case ChangeType.POSITIVE =>
-                driver.insertEdge(delta.subjectId, delta.objectValue, delta.propertyId)
+                driver.insertEdge(delta.subjectId, delta.objectValue, delta.rdfTypeId)
               case ChangeType.NEGATIVE =>
-                driver.deleteEdge(delta.subjectId, delta.objectValue, delta.propertyId)
+                driver.deleteEdge(delta.subjectId, delta.objectValue, delta.rdfTypeId)
             }
         }
     }

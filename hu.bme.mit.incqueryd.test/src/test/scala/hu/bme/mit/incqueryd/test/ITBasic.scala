@@ -65,8 +65,8 @@ class ITBasic {
 
   @Test
   def test() {
+    val metamodel = IQDYarnClient.loadMetamodel(getClass.getClassLoader.getResource(vocabularyFilename))
     val client = new IQDYarnClient
-    val metamodel = client.loadMetamodel(getClass.getClassLoader.getResource(vocabularyFilename))
     val modelFilePath = client.uploadFile(getClass.getClassLoader.getResource(modelFilename))
     client.loadInitialData(metamodel, new DatabaseConnection(modelFilePath, Backend.FILE))
     val recipe = RecipeUtils.loadRecipe(recipeFilename)
@@ -97,7 +97,7 @@ class ITBasic {
   private def toTuples(set: Set[AnyRef]) = set.map(new Tuple(_))
 
   private def assertResult(client: IQDYarnClient, recipe: ReteRecipe, expectedResult: Set[Tuple]) {
-	  val result = client.checkQuery(recipe, patternName)
+	  val result = client.checkResults(recipe, patternName)
 	  println(s"Query result: $result")
     val resolved = resolveIDs(result)
 	  assertEquals(expectedResult, resolved)

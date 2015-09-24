@@ -49,17 +49,6 @@ class IQDYarnClient {
     modelFilePath
   }
 
-  def loadMetamodel(metamodelURL: URL): Model = {
-    val metamodel = new LinkedHashModel
-    val urlString = metamodelURL.toString
-    val format = Rio.getParserFormatForFileName(urlString)
-    val parser = Rio.createParser(format)
-    parser.setRDFHandler(new StatementCollector(metamodel))
-    val inputStream = metamodelURL.openStream
-    parser.parse(inputStream, urlString)
-    metamodel
-  }
-
   def loadInitialData(metamodel: Model, databaseConnection: DatabaseConnection) {
     coordinator.loadData(metamodel, databaseConnection, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
   }
@@ -76,7 +65,7 @@ class IQDYarnClient {
     coordinator.startOutputStream(reteRecipe, patternName)
   }
   
-  def checkQuery(reteRecipe: ReteRecipe, patternName: String): Set[Tuple] = {
+  def checkResults(reteRecipe: ReteRecipe, patternName: String): Set[Tuple] = {
     if (IncQueryDZooKeeper.getData(s"${IncQueryDZooKeeper.runningQueries}/$patternName") == null && !patternsToRecipes.contains(patternName)) {
       startQuery(reteRecipe)
       startOutputStream(reteRecipe, patternName)
@@ -90,6 +79,21 @@ class IQDYarnClient {
   def dispose() {
     coordinator.dispose
     YarnActorService.stopActorSystems()
+  }
+
+}
+
+object IQDYarnClient {
+
+  def loadMetamodel(metamodelURL: URL): Model = {
+    val metamodel = new LinkedHashModel
+    val urlString = metamodelURL.toString
+    val format = Rio.getParserFormatForFileName(urlString)
+    val parser = Rio.createParser(format)
+    parser.setRDFHandler(new StatementCollector(metamodel))
+    val inputStream = metamodelURL.openStream
+    parser.parse(inputStream, urlString)
+    metamodel
   }
 
 }

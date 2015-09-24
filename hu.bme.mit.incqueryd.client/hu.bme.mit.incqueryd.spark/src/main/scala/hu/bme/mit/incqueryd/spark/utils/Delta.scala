@@ -4,9 +4,9 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
 import akka.actor.ActorPath
 
 trait Delta {
-  def inputActorPath: ActorPath
-  def changeType: ChangeType 
+  def changeType: ChangeType
+  def rdfTypeId: String
 }
-case class VertexDelta(inputActorPath: ActorPath, changeType: ChangeType, vertexId: String) extends Delta
-case class EdgeDelta(inputActorPath: ActorPath, changeType: ChangeType, subjectId: String, propertyId: String, objectId: String) extends Delta
-case class AttributeDelta(inputActorPath: ActorPath, changeType: ChangeType, subjectId: String, propertyId: String, objectValue: String) extends Delta
+case class VertexDelta(changeType: ChangeType, vertexId: String, rdfTypeId: String) extends Delta
+case class EdgeDelta(changeType: ChangeType, subjectId: String, rdfTypeId: String, objectId: String) extends Delta
+case class AttributeDelta(changeType: ChangeType, subjectId: String, rdfTypeId: String, objectValue: String) extends Delta

@@ -17,3 +17,6 @@ case class PropagateInputChanges(inputChanges : Map[String, ChangeSet]) extends 
 case class CheckResults(recipeJson: String, patternName: String) extends CoordinatorCommand
 case class StopQuery(recipeJson: String) extends CoordinatorCommand
 case class Dispose() extends CoordinatorCommand
+// XXX move out of coordinator
+case class StartWikidataStream(databaseConnection: DatabaseConnection) extends CoordinatorCommand
+case object StopWikidataStream extends CoordinatorCommand

@@ -29,17 +29,15 @@ object IQDSparkClient {
       }
 
   def loadData(databaseConnection: DatabaseConnection) {
-    val method = databaseConnection.getBackend match {
-      case Backend.FILE => ProcessingMethod.HDFS_LOAD
-      case Backend.FOURSTORE => ProcessingMethod.FOURSTORE_LOAD
-    }
+    val backend = databaseConnection.getBackend
     val exit_code = getSparkLauncher()
-      .setAppName(method.toString())
-      .addAppArgs(s"-$OPTION_PROCESSING_METHOD", method.toString())
+      .setAppName(s"Load from $backend")
+      .addAppArgs(s"-$OPTION_PROCESSING_METHOD", ProcessingMethod.LOAD.toString())
+      .addAppArgs(s"-$OPTION_DATABASE_BACKEND", backend.toString())
       .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
       .addAppArgs(s"-$OPTION_DATASOURCE_URL", databaseConnection.getConnectionString)
       .addAppArgs(s"-$OPTION_SINGLE_RUN")
-      .addAppArgs(s"-$OPTION_NO_DATA_TIMEOUT_MS", 30000.toString())
+      .addAppArgs(s"-$OPTION_NO_DATA_TIMEOUT_MS", 60000.toString())
       .launch().waitFor()
   }
 
@@ -49,11 +47,10 @@ object IQDSparkClient {
     val thread = new Thread {
       override def run() {
         val process = getSparkLauncher()
-          .setAppName(s"WIKISTREAM")
+          .setAppName(s"Wikidata stream processor")
           .addAppArgs(s"-$OPTION_PROCESSING_METHOD", ProcessingMethod.WIKISTREAM.toString())
           .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
           .addAppArgs(s"-$OPTION_DATASOURCE_URL", databaseConnection.getConnectionString)
-          .addAppArgs(s"-$OPTION_SINGLE_RUN")
           .addAppArgs(s"-$OPTION_NO_DATA_TIMEOUT_MS", 60000.toString())
           .launch()
       }

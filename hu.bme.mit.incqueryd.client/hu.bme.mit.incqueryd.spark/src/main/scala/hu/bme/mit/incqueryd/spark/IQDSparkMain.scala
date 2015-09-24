@@ -1,6 +1,9 @@
 package hu.bme.mit.incqueryd.spark
 
 import java.net.URL
+
+import scala.sys.process.Process
+
 import org.apache.commons.cli.Options
 import org.apache.commons.cli.PosixParser
 import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
@@ -10,8 +13,6 @@ import org.apache.spark.SparkContext
 import org.apache.spark.SparkException
 import org.apache.spark.scheduler.JobResult
 import org.apache.spark.scheduler.SparkListener
-import org.apache.spark.scheduler.SparkListenerJobEnd
-import org.apache.spark.scheduler.SparkListenerJobEnd
 import org.apache.spark.streaming.Milliseconds
 import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.streaming.dstream.InputDStream
@@ -19,23 +20,17 @@ import org.apache.spark.streaming.dstream.ReceiverInputDStream
 import org.apache.spark.streaming.receiver.Receiver
 import org.apache.spark.streaming.scheduler.StreamingListener
 import org.apache.spark.streaming.scheduler.StreamingListenerBatchCompleted
-import org.apache.spark.streaming.scheduler.StreamingListenerReceiverStopped
-import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
+
+import akka.actor.Props
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection.Backend
+import hu.bme.mit.incqueryd.spark.recievers.ProductionReceiver
 import hu.bme.mit.incqueryd.spark.recievers.RDFGraphLoadReceiver
-import hu.bme.mit.incqueryd.spark.recievers.WikiStreamReceiver
+import hu.bme.mit.incqueryd.spark.recievers.WikidataStreamReceiver
 import hu.bme.mit.incqueryd.spark.utils.Delta
 import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
 import hu.bme.mit.incqueryd.spark.workers.InputStreamWorker
 import hu.bme.mit.incqueryd.spark.workers.OutputStreamWorker
-import scala.sys.process.Process
-import akka.actor.Props
-import hu.bme.mit.incqueryd.spark.recievers.ProductionReceiver
-import hu.bme.mit.incqueryd.spark.mqtt.MQTTPublisher
-import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence
-import org.eclipse.paho.client.mqttv3.MqttClient
-import org.eclipse.paho.client.mqttv3.MqttMessage
 
 
 /**
@@ -44,7 +39,8 @@ import org.eclipse.paho.client.mqttv3.MqttMessage
 object IQDSparkMain extends Serializable {
 
   val options = new Options  // XXX create option groups
-  options.addOption(OPTION_PROCESSING_METHOD, true, "Stream processing method: HDFS_LOAD | FOURSTORE_LOAD | WIKISTREAM | OUTPUTSTREAM")
+  options.addOption(OPTION_PROCESSING_METHOD, true, "Stream processing method: LOAD | WIKISTREAM | OUTPUTSTREAM")
+  options.addOption(OPTION_DATABASE_BACKEND, true, "Database backend in case of load method")
   options.addOption(OPTION_DURATION, true, "Duration time in milliseconds")
   options.addOption(OPTION_DATASOURCE_URL, true, "Datasource URL")
   options.addOption(OPTION_NO_DATA_TIMEOUT_MS, true, "No data time limit (ms)")
@@ -70,15 +66,17 @@ object IQDSparkMain extends Serializable {
 
     // Create stream
     val receiver = METHOD match {
-      case ProcessingMethod.HDFS_LOAD => new RDFGraphLoadReceiver(new DatabaseConnection(DS_URL, Backend.FILE))
-      case ProcessingMethod.FOURSTORE_LOAD => new RDFGraphLoadReceiver(new DatabaseConnection(DS_URL, Backend.FOURSTORE))
-      case ProcessingMethod.WIKISTREAM => new WikiStreamReceiver(new DatabaseConnection(DS_URL, Backend.FOURSTORE))
+      case ProcessingMethod.LOAD => {
+        val backend = Backend.valueOf(parser.getOptionValue(OPTION_DATABASE_BACKEND))
+        new RDFGraphLoadReceiver(new DatabaseConnection(DS_URL, backend))
+      }
+      case ProcessingMethod.WIKISTREAM => new WikidataStreamReceiver(new DatabaseConnection(DS_URL, Backend.FOURSTORE))
       case _ => {}
     }
     
     val stream = METHOD match {
       // Input streams
-      case ProcessingMethod.HDFS_LOAD | ProcessingMethod.FOURSTORE_LOAD | ProcessingMethod.WIKISTREAM => 
+      case ProcessingMethod.LOAD | ProcessingMethod.WIKISTREAM => 
         InputStreamWorker.process(ssc.receiverStream(receiver.asInstanceOf[Receiver[Delta]]))
       
       // Output streams
@@ -122,5 +120,5 @@ class ProcessingFinishedListener(ssc : StreamingContext, batchIdleLimit : Long) 
 
 object ProcessingMethod extends Enumeration {
   type Method = Value
-  val HDFS_LOAD, FOURSTORE_LOAD, WIKISTREAM, PRODUCTIONSTREAM = Value
+  val LOAD, WIKISTREAM, PRODUCTIONSTREAM = Value
 }

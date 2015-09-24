@@ -37,6 +37,7 @@ object IQDSparkUtils {
   val BROKER_URL = "tcp://yarn-rm.docker:9876"
   
   val OPTION_PROCESSING_METHOD = "proc_method"
+  val OPTION_DATABASE_BACKEND = "backend"
   val OPTION_DURATION = "duration"
   val OPTION_DATASOURCE_URL = "ds_url"
   val OPTION_NO_DATA_TIMEOUT_MS = "no_data_timeout"
