@@ -29,6 +29,7 @@ import org.wikidata.wdtk.datamodel.interfaces.MonolingualTextValue
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 import eu.mondo.driver.graph.RDFGraphDriverReadWrite
 import java.util.Map.Entry
+import eu.mondo.driver.graph.RDFGraphDriverRead
 
 /**
  * @author pappi
@@ -60,12 +61,13 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
           pool.submit(new Runnable {
             def run() {
               println(s"Processing $edit")
+              val driver = databaseConnection.getDriver
               if (!edit.newPage) {
-                val oldDeltas = getOldDeltas(edit.pageTitle)
-                apply(oldDeltas)
+                val oldDeltas = getOldDeltas(edit.pageTitle, driver)
+                apply(oldDeltas, driver)
               }
               val newDeltas = getNewDeltas(edit)
-              apply(newDeltas)
+              apply(newDeltas, driver)
             }
           })
         }
@@ -97,9 +99,8 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
     diffSize: Int,
     comment: String)
 
-  val driver = databaseConnection.getDriver
 
-  private def getOldDeltas(itemId: String): List[Delta] = {
+  private def getOldDeltas(itemId: String, driver: RDFGraphDriverRead): List[Delta] = {
     val edgeDeltas = driver.collectEdges(itemId).entries.toList.map { entry =>
       val propertyId = entry.getKey.toString
       EdgeDelta(ChangeType.NEGATIVE, itemId, propertyId, entry.getValue.toString)
@@ -144,14 +145,14 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
     }
   }
 
-  private def apply(deltas: List[Delta]) {
+  private def apply(deltas: List[Delta], driver: RDFGraphDriverRead) {
     deltas.foreach { delta =>
-      applyToDatabase(delta)
+      applyToDatabase(delta, driver)
       store(delta)
     }
   }
 
-  private def applyToDatabase(delta: Delta) {
+  private def applyToDatabase(delta: Delta, driver: RDFGraphDriverRead) {
     driver match {
       case driver: RDFGraphDriverReadWrite =>
         delta match {
