@@ -55,8 +55,13 @@ class ITBasic {
 	val modelFilename = "railway-test-1.ttl"
 	val recipeFilename = "SwitchSensor.rdfiq.recipe"
 	val patternName = "switchSensor"
-	val expectedResult = toTuples(Set("52", "138", "78", "391"))
-	val expectedResultAfterChange = toTuples(Set("52", "78", "391"))
+
+	val _52 = "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#_52"
+	val _138 = "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#_138"
+	val _78 = "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#_78"
+	val _391 = "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#_391"
+	val expectedResult = toTuples(Set(_52, _138, _78, _391))
+	val expectedResultAfterChange = toTuples(Set(_52, _78, _391))
 
   @Test
   def test() {
@@ -65,9 +70,11 @@ class ITBasic {
     val modelFilePath = client.uploadFile(getClass.getClassLoader.getResource(modelFilename))
     client.loadInitialData(metamodel, new DatabaseConnection(modelFilePath, Backend.FILE))
     val recipe = RecipeUtils.loadRecipe(recipeFilename)
+    client.startQuery(recipe)
     try {
       assertResult(client, recipe, expectedResult)
-      Thread.sleep(60000) // Wait until output stream processing starts
+      println("Waiting until output stream processing starts")
+      Thread.sleep(60000)
       for(i <- 1 to 99) {
         val changeType = if(i % 2 == 0 ) ChangeType.POSITIVE else ChangeType.NEGATIVE
         client.loadChanges(getInputChanges(changeType))
@@ -79,7 +86,7 @@ class ITBasic {
   }
 
   private def getInputChanges(changeType : ChangeType) = {
-  	val switchID = IDService.lookupID("138")
+  	val switchID = IDService.lookupID(_138)
     Map(ReteActorKey.fromString("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Switch").internalId ->
       new ChangeSet(
         new java.util.HashSet(toTuples(Set(switchID))), // XXX must be serializable

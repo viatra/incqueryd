@@ -36,6 +36,12 @@
 			<artifactId>eu.mondo.driver.fourstore</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>eu.mondo.driver</groupId>
+			<artifactId>eu.mondo.driver.sparql</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<!-- general dependencies -->
 
 		<dependency>
@@ -102,9 +108,7 @@
 			<artifactId>gson</artifactId>
 			<version>2.3.1</version>
 		</dependency>
-
 	</dependencies>
-
 	<repositories>
 		<repository>
 			<id>incquery</id>

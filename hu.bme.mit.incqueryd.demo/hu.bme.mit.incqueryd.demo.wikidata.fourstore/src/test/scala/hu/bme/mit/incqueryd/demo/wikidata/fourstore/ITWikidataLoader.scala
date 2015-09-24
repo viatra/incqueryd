@@ -3,7 +3,7 @@ package hu.bme.mit.incqueryd.demo.wikidata.fourstore
 import org.junit.Assert._
 import org.junit.Test
 
-import eu.mondo.driver.fourstore.FourStoreGraphDriverReadWrite
+import eu.mondo.driver.fourstore.FourStoreGraphDriverRead
 
 class ITWikidataLoader {
 
@@ -12,7 +12,7 @@ class ITWikidataLoader {
   def load() {
     println("Setting up database")
     FourstoreUtils.setup(WikidataLoader.defaultDatabaseName)
-    val driver = new FourStoreGraphDriverReadWrite(WikidataLoader.defaultDatabaseName)
+    val driver = new FourStoreGraphDriverRead(WikidataLoader.defaultDatabaseName)
     driver.setShowCommandOutput(true)
     println("Loading dump")
     WikidataLoader.load(driver, "property-taxonomy")

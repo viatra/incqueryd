@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 import org.apache.commons.io.FilenameUtils
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.common.util.URI
+import scala.collection.mutable.Buffer
 
 object RecipeUtils {
 
@@ -93,10 +94,22 @@ object RecipeUtils {
   def findRecipe(recipe: ReteRecipe, key: ReteActorKey): Option[ReteNodeRecipe] = {
     recipe.getRecipeNodes.find(ReteActorKey(_) == key)
   }
-
+  
+  def getPatternNamesFromRecipe(recipe : ReteRecipe) : Set[String] = {
+    val productionRecipes = getProductionRecipes(recipe)
+    var patternNames : Set[String] = Set[String]()
+    productionRecipes.foreach { productionRecipe => 
+      patternNames+=(productionRecipe.getTraceInfo.split("\\[")(0).trim())
+    }
+    patternNames
+  }
+  
   def findProductionRecipe(recipe: ReteRecipe, patternName: String): Option[ProductionRecipe] = {
-    val productionRecipes = recipe.getRecipeNodes.collect { case productionRecipe: ProductionRecipe => productionRecipe }
-    productionRecipes.find(_.getTraceInfo.startsWith(patternName)) // XXX relying on naming convention
+    getProductionRecipes(recipe).find(_.getTraceInfo.startsWith(patternName)) // XXX relying on naming convention
+  }
+  
+  def getProductionRecipes(recipe : ReteRecipe) : Buffer[ProductionRecipe] = {
+    recipe.getRecipeNodes.collect { case productionRecipe: ProductionRecipe => productionRecipe }
   }
 
   def loadRecipe(filename: String): ReteRecipe = {

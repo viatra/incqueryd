@@ -36,6 +36,7 @@ import hu.bme.mit.incqueryd.spark.mqtt.MQTTPublisher
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence
 import org.eclipse.paho.client.mqttv3.MqttClient
 import org.eclipse.paho.client.mqttv3.MqttMessage
+import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 
 
 /**
@@ -50,6 +51,7 @@ object IQDSparkMain extends Serializable {
   options.addOption(OPTION_NO_DATA_TIMEOUT_MS, true, "No data time limit (ms)")
   options.addOption(OPTION_QUERY_ID, true, "Query name - in case of output stream processing application")
   options.addOption(OPTION_SINGLE_RUN, false, "Stop processing after data run out")
+  options.addOption(OPTION_NUM_EXECUTORS, true, "Executor instances")
   
   def main(args: Array[String]) {
     val parser = (new PosixParser).parse(options, args)
@@ -59,12 +61,12 @@ object IQDSparkMain extends Serializable {
     val SINGLE = parser.hasOption(OPTION_SINGLE_RUN)
     val QUERY = if(parser.hasOption(OPTION_QUERY_ID)) parser.getOptionValue(OPTION_QUERY_ID) else ""
     val NO_DATA_TIMEOUT = if(parser.hasOption(OPTION_NO_DATA_TIMEOUT_MS)) parser.getOptionValue(OPTION_NO_DATA_TIMEOUT_MS).toLong else -1
-    
+    val EXECUTORS = if(parser.hasOption(OPTION_NUM_EXECUTORS)) parser.getOptionValue(OPTION_NUM_EXECUTORS) else "3"
     URL.setURLStreamHandlerFactory(new FsUrlStreamHandlerFactory)
     
     val sparkConf = new SparkConf
     sparkConf.set("spark.scheduler.mode", "FAIR")
-    sparkConf.set("spark.executor.instances", "3")
+    sparkConf.set("spark.executor.instances", EXECUTORS)
     
     val ssc = new StreamingContext(sparkConf, Milliseconds(DURATION))
 

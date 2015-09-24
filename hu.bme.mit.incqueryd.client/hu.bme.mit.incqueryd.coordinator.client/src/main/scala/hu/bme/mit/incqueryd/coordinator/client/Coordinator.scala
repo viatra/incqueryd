@@ -56,10 +56,9 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
     askCoordinator[Boolean](StartQuery(recipeJson, rmHostname, fileSystemUri))
   }
 
-  def startOutputStream(recipe : ReteRecipe, patternName: String) = {
-    println(s"Starting output stream for $patternName")
+  def startOutputStream(recipe : ReteRecipe) = {
     val recipeJSon = EObjectSerializer.serializeToString(recipe)
-    askCoordinator[Boolean](StartOutputStream(recipeJSon, patternName))
+    askCoordinator[Boolean](StartOutputStream(recipeJSon))
   }
   
   def stopOutputStreams() {
