@@ -15,7 +15,7 @@
 	<!--<akka.version>2.4-20150420-230104</akka.version>-->
 	<akka.version>2.3.4</akka.version>
         <emf.version>2.9.1-v20130827-0309</emf.version>
-        <sesame.version>2.7.14</sesame.version>
+        <sesame.version>2.8.6</sesame.version>
     </properties>
     <repositories>
         <repository>
