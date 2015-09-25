@@ -109,8 +109,8 @@ RUN chown root:root /usr/local/zookeeper/bin/start-zk-server.sh
 RUN chmod 700 /usr/local/zookeeper/bin/start-zk-server.sh
 
 # Install Spark
-RUN curl -s http://xenia.sote.hu/ftp/mirrors/www.apache.org//spark/spark-1.4.1/spark-1.4.1-bin-hadoop2.6.tgz | tar xz -C /usr/local/
-RUN cd /usr/local && ln -s ./spark-1.4.1-bin-hadoop2.6 spark
+RUN curl -s http://xenia.sote.hu/ftp/mirrors/www.apache.org/spark/spark-1.5.0/spark-1.5.0-bin-hadoop2.6.tgz | tar xz -C /usr/local/
+RUN cd /usr/local && ln -s ./spark-1.5.0-bin-hadoop2.6 spark
 
 ENV SPARK_HOME=/usr/local/spark
 RUN echo "export SPARK_HOME=/usr/local/spark" >> /etc/profile

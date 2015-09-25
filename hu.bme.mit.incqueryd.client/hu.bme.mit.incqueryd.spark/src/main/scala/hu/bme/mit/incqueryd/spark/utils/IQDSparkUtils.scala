@@ -21,6 +21,7 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import java.io.ObjectInputStream
 import java.io.ByteArrayInputStream
 import hu.bme.mit.incqueryd.idservice.IDService
+import java.util.Date
 
 /**
  * @author pappi
@@ -50,7 +51,7 @@ object IQDSparkUtils {
   
   def writeln(obj: AnyRef) {
     val writer = new FileWriter("/tmp/spark_iqd.txt", true)
-    writer.write(s"${System.currentTimeMillis} | ${obj.toString()}\n")
+    writer.write(s"${new Date} | ${obj.toString()}\n")
     writer.close()
   }
   

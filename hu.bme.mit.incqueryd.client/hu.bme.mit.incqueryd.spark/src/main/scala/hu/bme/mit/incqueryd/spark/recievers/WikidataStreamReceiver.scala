@@ -54,10 +54,9 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
   class IrcListener extends ListenerAdapter[PircBotX] {
 
     override def onGenericMessage(event: GenericMessageEvent[PircBotX]) {
-      val log = Logger.getLogger(getClass.getName)
       parse(event.getMessage).foreach { edit =>
         if (!edit.robot) { // Bot edits come too frequently
-          log.info(s"Processing $edit")
+        	println(s"Processing $edit")
           val driver = databaseConnection.getDriver
           if (!edit.newPage) {
             val oldDeltas = getOldDeltas(edit.pageTitle, driver)
@@ -74,15 +73,15 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
   private def parse(message: String): Option[WikipediaEdit] = {
     val regex = """\u000314\[\[\u000307(.+?)\u000314\]\]\u00034 (.*?)\u000310.*\u000302(.*?)\u0003.+\u000303(.+?)\u0003.+\u0003 .+([+-]\d+).+ \u000310(.*)\u0003.*""".r
     message match {
-      case regex(pageTitle, flags, diffUrl, userName, diffSizeString, comment) =>
+      case regex(pageTitle, flags, diffUrl, userName, diffSizeString, comment) => {
         val robot = flags.contains('B')
         val newPage = flags.contains('N')
         val unpatrolled = flags.contains('!')
         val diffSize = diffSizeString.toInt
-        Some(WikipediaEdit(pageTitle, robot, newPage, unpatrolled, diffUrl, userName, diffSize, comment))
+        val edit = WikipediaEdit(pageTitle, robot, newPage, unpatrolled, diffUrl, userName, diffSize, comment)
+        Some(edit)
+      }
       case _ => {
-        val log = Logger.getLogger(getClass.getName)
-        log.warn(s"Can't parse $message")
         None
       }
     }
@@ -98,16 +97,10 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
     diffSize: Int,
     comment: String)
 
-
-  private def getOldDeltas(itemId: String, driver: RDFGraphDriverRead): List[Delta] = {
-    val edgeDeltas = driver.collectEdges(itemId).entries.toList.map { entry =>
-      val propertyId = entry.getKey.toString
-      EdgeDelta(ChangeType.NEGATIVE, itemId, propertyId, entry.getValue.toString)
-    }
-    val attributeDeltas = driver.collectProperties(itemId).entries.toList.map { entry =>
-      val propertyId = entry.getKey.toString
-      AttributeDelta(ChangeType.NEGATIVE, itemId, propertyId, entry.getValue.toString)
-    }
+  private def getOldDeltas(subjectId: String, driver: RDFGraphDriverRead): List[Delta] = {
+    // TODO wildcard delta for all statements of subjectId in all input nodes
+    val edgeDeltas = List()
+    val attributeDeltas = List()
     edgeDeltas ++ attributeDeltas
   }
 
