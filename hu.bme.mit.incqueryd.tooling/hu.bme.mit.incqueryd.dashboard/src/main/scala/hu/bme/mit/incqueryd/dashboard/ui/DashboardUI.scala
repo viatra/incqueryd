@@ -13,6 +13,7 @@ import com.vaadin.ui.UI
 import com.vaadin.ui.VerticalLayout
 import hu.bme.mit.incqueryd.dashboard.controller.DashboardController
 import hu.bme.mit.incqueryd.dashboard.ui.UIHelper._
+import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils._
 import javax.servlet.annotation.WebInitParam
 import javax.servlet.annotation.WebServlet
 import scala.collection.JavaConverters._
@@ -23,6 +24,8 @@ import com.vaadin.ui.Grid.Header
 import com.vaadin.addon.charts.model.style.Style
 import com.vaadin.ui.themes.ValoTheme
 import com.vaadin.ui.themes.Runo
+import scala.collection.mutable.HashMap
+
 
 /**
  * @author pappi
@@ -43,25 +46,42 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
   val streamLayout = new VerticalLayout
   val streamPanel = new Panel
 
-  // Query selection layout
+  // Pattern selection layout
   val queriesLayout = new VerticalLayout
-
+  var queryPanels : HashMap[String, Panel] = HashMap[String, Panel]()
+  var patternBtns : HashMap[String, Button] = HashMap[String, Button]()
+  
   def configureWidgets() {
     headerLabel.setSizeFull()
     headerLabel.setStyleName(ValoTheme.LABEL_H2)
+    headerLabel.setStyleName(ValoTheme.LABEL_BOLD)
   }
 
   def initLayout() {
     
     // Header panel
+    // XXX not used yet
     val headerPanel = new Panel(headerLabel)
-    headerPanel.setStyleName(Runo.PANEL_LIGHT)
     headerPanel.setSizeFull()
     
     // Queries panel
-    val queries = DashboardController.getRunningQueries()
-    queries.foreach { query => queriesLayout.addComponent(initializeQueryButton(new Button(query))) }
-
+    val queriesPanel = new Panel("Queries")
+    queriesPanel.setContent(queriesLayout)
+    
+    val patternIds = DashboardController.getRunningPatterns()
+    patternIds.foreach { patternId => 
+      val query = resolveQuery(patternId)
+      val pattern = resolvePattern(patternId)
+      val queryPanel = queryPanels.getOrElseUpdate(query, initializeQueryPanel(new Panel(query)))
+      val patternBtn = patternBtns.getOrElseUpdate(patternId, initializePatternButton(new Button(pattern)))
+      queryPanel.getContent.asInstanceOf[VerticalLayout].addComponent(patternBtn)
+    }
+    
+    queryPanels.foreach{ case (query : String, panel : Panel) =>
+      queriesLayout.addComponent(panel)
+    }
+    
+    
     // Stream data layout
     streamPanel.setSizeFull()
     streamPanel.setContent(streamLayout)
@@ -70,23 +90,23 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
     metricsPanel.setSizeFull()
     
     // Body
-    val bodyLayout = new HorizontalLayout(queriesLayout, streamPanel, metricsPanel)
+    val bodyLayout = new HorizontalLayout(queriesPanel, streamPanel, metricsPanel)
     bodyLayout.setSizeFull
-    bodyLayout.setExpandRatio(queriesLayout, 1)
+    bodyLayout.setExpandRatio(queriesPanel, 1.2F)
     bodyLayout.setExpandRatio(streamPanel, 6)
     bodyLayout.setExpandRatio(metricsPanel, 3)
-    bodyLayout.setComponentAlignment(queriesLayout, Alignment.TOP_CENTER)
+    bodyLayout.setComponentAlignment(queriesPanel, Alignment.TOP_CENTER)
     bodyLayout.setComponentAlignment(streamPanel, Alignment.TOP_CENTER)
     bodyLayout.setComponentAlignment(metricsPanel, Alignment.TOP_CENTER)
 
     // Main
     val mainPanel = new Panel("IncQuery-D Dashboard")
-    val mainLayout = new VerticalLayout(headerPanel, bodyLayout, footerLabel)
+    val mainLayout = new VerticalLayout(headerLabel, bodyLayout, footerLabel)
     mainLayout.setSizeFull
-    mainLayout.setExpandRatio(headerPanel, 2)
+    mainLayout.setExpandRatio(headerLabel, 2)
     mainLayout.setExpandRatio(bodyLayout, 16)
     mainLayout.setExpandRatio(footerLabel, 1)
-    mainLayout.setComponentAlignment(headerPanel, Alignment.TOP_CENTER)
+    mainLayout.setComponentAlignment(headerLabel, Alignment.TOP_CENTER)
     mainLayout.setComponentAlignment(bodyLayout, Alignment.MIDDLE_CENTER)
     mainLayout.setComponentAlignment(footerLabel, Alignment.MIDDLE_CENTER)
     setContent(mainLayout)
@@ -95,17 +115,22 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
 
   def messageReceived(msg: UIMessage) {
     msg match {
-      case AddQuery(query) => {
+      case AddPattern(pattern, query) => {
         access(new Runnable() {
           override def run() {
-            queriesLayout.addComponent(initializeQueryButton(new Button(query)))
+            val isNew = !queryPanels.contains(query)
+            val patternBtn = patternBtns.getOrElseUpdate(createPatternId(pattern, query), initializePatternButton(new Button(pattern)))
+            val panel = queryPanels.getOrElseUpdate(query, initializeQueryPanel(new Panel(query)))
+            panel.getContent.asInstanceOf[VerticalLayout].addComponent(patternBtn)
+            if(isNew)
+              queriesLayout.addComponent(panel)
           }
         })
       }
-      case RemoveQuery(query) => {
+      case RemovePattern(pattern, query) => {
         // TODO: implement it!
       }
-      case QueryResult(queryName, result, newTuples, removedTuples) => {
+      case QueryResult(patternId, result, newTuples, removedTuples) => {
         access(new Runnable() {
           override def run() {
             streamLayout.addComponentAsFirst(buildResultPanel(result, newTuples, removedTuples))

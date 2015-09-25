@@ -16,5 +16,18 @@ import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
 object DashboardUtils {
 
   val JETTY_PORT = 7070
-
+  val SEPARATOR = "_"
+  
+  
+  def createPatternId(pattern : String, query : String) : String = {
+    s"${query}$SEPARATOR${pattern}"
+  }
+  
+  def resolvePattern(patternId : String) : String = {
+    patternId.split(SEPARATOR).tail.mkString(SEPARATOR)
+  }
+  
+  def resolveQuery(patternId : String) : String = {
+    patternId.split(SEPARATOR).head
+  }
 }

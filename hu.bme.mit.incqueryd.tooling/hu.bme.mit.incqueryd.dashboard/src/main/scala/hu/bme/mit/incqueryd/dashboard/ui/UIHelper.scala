@@ -12,15 +12,24 @@ import com.vaadin.ui.HorizontalLayout
 import com.vaadin.ui.Component
 import com.vaadin.ui.Link
 import com.vaadin.server.ExternalResource
+import com.vaadin.ui.VerticalLayout
 
 /**
  * @author pappi
  */
 object UIHelper {
   
-  def initializeQueryButton(button : Button) : Button = {
+  def initializePatternButton(button : Button) : Button = {
     button.setSizeFull()
     button
+  }
+  
+  def initializeQueryPanel(panel : Panel) : Panel = {
+    panel.setWidth(100.0F, Unit.PERCENTAGE)
+    val panelLayout = new VerticalLayout
+    panelLayout.setWidth(100.0F, Unit.PERCENTAGE)
+    panel.setContent(panelLayout)
+    panel
   }
   
   def buildResultPanel(result : Set[Tuple], newTuples : Long, removedTuple : Long) : Panel = {
