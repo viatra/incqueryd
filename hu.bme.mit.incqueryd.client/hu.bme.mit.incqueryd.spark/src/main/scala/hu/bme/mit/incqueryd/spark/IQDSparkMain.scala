@@ -70,7 +70,7 @@ object IQDSparkMain extends Serializable {
         val backend = Backend.valueOf(parser.getOptionValue(OPTION_DATABASE_BACKEND))
         new RDFGraphLoadReceiver(new DatabaseConnection(DS_URL, backend))
       }
-      case ProcessingMethod.WIKISTREAM => new WikidataStreamReceiver(new DatabaseConnection(DS_URL, Backend.FOURSTORE))
+      case ProcessingMethod.WIKISTREAM => new WikidataStreamReceiver(new DatabaseConnection(DS_URL, Backend.SPARQL))
       case _ => {}
     }
     

@@ -30,17 +30,16 @@ import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 import eu.mondo.driver.graph.RDFGraphDriverReadWrite
 import java.util.Map.Entry
 import eu.mondo.driver.graph.RDFGraphDriverRead
+import org.apache.log4j.Logger
 
 /**
  * @author pappi
  */
 class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
 
-  val pool: ExecutorService = Executors.newFixedThreadPool(2)
-
   def onStart() {
     def configuration = new Configuration.Builder()
-      .setName(s"iqd-wikichanges-${InetAddress.getLocalHost().getHostName()}")
+      .setName(s"iqd-wikichanges-${InetAddress.getLocalHost().getHostAddress().replace('.', '-')}")
       .setServerHostname("irc.wikimedia.org")
       .addAutoJoinChannel("#wikidata.wikipedia")
       .addListener(new IrcListener)
@@ -50,26 +49,22 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
   }
 
   def onStop() {
-    pool.shutdown()
   }
 
   class IrcListener extends ListenerAdapter[PircBotX] {
 
     override def onGenericMessage(event: GenericMessageEvent[PircBotX]) {
+      val log = Logger.getLogger(getClass.getName)
       parse(event.getMessage).foreach { edit =>
         if (!edit.robot) { // Bot edits come too frequently
-          pool.submit(new Runnable {
-            def run() {
-              println(s"Processing $edit")
-              val driver = databaseConnection.getDriver
-              if (!edit.newPage) {
-                val oldDeltas = getOldDeltas(edit.pageTitle, driver)
-                apply(oldDeltas, driver)
-              }
-              val newDeltas = getNewDeltas(edit)
-              apply(newDeltas, driver)
-            }
-          })
+          log.info(s"Processing $edit")
+          val driver = databaseConnection.getDriver
+          if (!edit.newPage) {
+            val oldDeltas = getOldDeltas(edit.pageTitle, driver)
+            apply(oldDeltas, driver)
+          }
+          val newDeltas = getNewDeltas(edit)
+          apply(newDeltas, driver)
         }
       }
     }
@@ -85,7 +80,11 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
         val unpatrolled = flags.contains('!')
         val diffSize = diffSizeString.toInt
         Some(WikipediaEdit(pageTitle, robot, newPage, unpatrolled, diffUrl, userName, diffSize, comment))
-      case _ => None
+      case _ => {
+        val log = Logger.getLogger(getClass.getName)
+        log.warn(s"Can't parse $message")
+        None
+      }
     }
   }
 
@@ -120,26 +119,20 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
         document.getAllStatements.toList.flatMap { statement =>
           val subjectId = statement.getClaim.getSubject.getIri
           val propertyId = s"http://www.wikidata.org/prop/direct/${statement.getClaim.getMainSnak.getPropertyId.getId}"
-          try {
-    			  statement.getClaim.getMainSnak match {
-    			  case snak: ValueSnak =>
-      			  snak.getValue match {
-        			  case value: EntityIdValue =>
-          			  Some(EdgeDelta(ChangeType.POSITIVE, subjectId, propertyId, value.getIri))
-      			    case value: StringValue =>
-      			      Some(AttributeDelta(ChangeType.POSITIVE, subjectId, propertyId, value.getString))
-      			    case value: MonolingualTextValue =>
-      			      Some(AttributeDelta(ChangeType.POSITIVE, subjectId, propertyId, value.getText))
-        			  // TODO
-        			  case _ => None
-      			  }
-    			    case _ => None
-        	  }
-          } catch {
-            case e: Exception =>
-              println(s"Exception while ")
-              None
-          }
+  			  statement.getClaim.getMainSnak match {
+  			  case snak: ValueSnak =>
+    			  snak.getValue match {
+      			  case value: EntityIdValue =>
+        			  Some(EdgeDelta(ChangeType.POSITIVE, subjectId, propertyId, value.getIri))
+    			    case value: StringValue =>
+    			      Some(AttributeDelta(ChangeType.POSITIVE, subjectId, propertyId, value.getString))
+    			    case value: MonolingualTextValue =>
+    			      Some(AttributeDelta(ChangeType.POSITIVE, subjectId, propertyId, value.getText))
+      			  // TODO
+      			  case _ => None
+    			  }
+  			    case _ => None
+      	  }
         }
       case _ => List()
     }
@@ -157,7 +150,7 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
       case driver: RDFGraphDriverReadWrite =>
         delta match {
           case delta: VertexDelta =>
-          // TODO
+            {} // TODO
           case delta: EdgeDelta =>
             delta.changeType match {
               case ChangeType.POSITIVE =>
@@ -173,6 +166,7 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
                 driver.deleteEdge(delta.subjectId, delta.objectValue, delta.rdfTypeId)
             }
         }
+      case _ => {}
     }
   }
 }

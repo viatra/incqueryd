@@ -75,7 +75,7 @@ object YarnActorService {
     val appMasterObjectName = ActorSystemsApplicationMaster.getClass.getName
     val appMasterClassName = appMasterObjectName.substring(0, appMasterObjectName.length - 1) // XXX
     
-    val actorSystemMemory = "2048" // XXX read from ZK in the future
+    val actorSystemMemory = "1024" // XXX read from ZK in the future
     val actorSystemCPU = 4         
     val yarnNodes = client.getRunningNodes()
     IncQueryDZooKeeper.registerYarnNodes(yarnNodes)

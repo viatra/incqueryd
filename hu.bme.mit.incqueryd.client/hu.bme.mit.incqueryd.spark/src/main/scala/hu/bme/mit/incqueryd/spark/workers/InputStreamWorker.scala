@@ -30,30 +30,35 @@ object InputStreamWorker {
   val actorMap : collection.mutable.Map[ActorPath, ActorRef] = collection.mutable.Map[ActorPath, ActorRef]()
   
   def process(stream: ReceiverInputDStream[Delta]) {
-    stream.foreachRDD {_.foreach { record =>
-        val inputActorPath = IQDSparkUtils.getInputActorPathByTypeName(record.rdfTypeId)
-        val changeType = record.changeType
-        val tupleSet = new java.util.HashSet[Tuple]
-        
-        record match {
-          case delta: VertexDelta =>
-          	val vertexId = lookupID(delta.vertexId)
-          	tupleSet.add(new Tuple(vertexId))
-          case delta: EdgeDelta =>
-          	val subjectId = lookupID(delta.subjectId)
-          	val objectId = lookupID(delta.objectId)
-          	tupleSet.add(new Tuple(subjectId, objectId))
-          case delta: AttributeDelta =>
-          	val subjectId = lookupID(delta.subjectId)
-          	val objectValue = lookupID(delta.objectValue)
-          	tupleSet.add(new Tuple(subjectId, objectValue))
-        }
-        
-        val inputActor = actorMap.getOrElseUpdate(inputActorPath, SparkEnv.get.actorSystem.actorFor(inputActorPath))
-        if (inputActor == SparkEnv.get.actorSystem.deadLetters) {
-          println(s"No actor found at $inputActorPath!")
-        } else {
-        	inputActor ! PropagateInputState(new ChangeSet(tupleSet, changeType))
+    stream.foreachRDD {
+      _.foreach { delta =>
+        try {
+          val inputActorPath = IQDSparkUtils.getInputActorPathByTypeName(delta.rdfTypeId)
+          val changeType = delta.changeType
+          val tupleSet = new java.util.HashSet[Tuple]
+          
+          delta match {
+            case delta: VertexDelta =>
+              val vertexId = lookupID(delta.vertexId)
+              tupleSet.add(new Tuple(vertexId))
+            case delta: EdgeDelta =>
+              val subjectId = lookupID(delta.subjectId)
+              val objectId = lookupID(delta.objectId)
+              tupleSet.add(new Tuple(subjectId, objectId))
+            case delta: AttributeDelta =>
+              val subjectId = lookupID(delta.subjectId)
+              val objectValue = lookupID(delta.objectValue)
+              tupleSet.add(new Tuple(subjectId, objectValue))
+          }
+          
+          val inputActor = actorMap.getOrElseUpdate(inputActorPath, SparkEnv.get.actorSystem.actorFor(inputActorPath))
+          if (inputActor == SparkEnv.get.actorSystem.deadLetters) {
+            println(s"No actor found at $inputActorPath!")
+          } else {
+            inputActor ! PropagateInputState(new ChangeSet(tupleSet, changeType))
+          }
+        } catch {
+          case e: Exception => println(s"Can't process delta $delta because of $e")
         }
       }
     }
