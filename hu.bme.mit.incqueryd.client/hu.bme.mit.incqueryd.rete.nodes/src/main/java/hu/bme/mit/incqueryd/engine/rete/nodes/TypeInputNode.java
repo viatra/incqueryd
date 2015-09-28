@@ -26,7 +26,9 @@ import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
 import org.openrdf.model.Resource;
 import org.openrdf.model.Value;
 
+import com.google.common.base.Predicate;
 import com.google.common.collect.Multimap;
+import com.google.common.collect.Sets;
 
 import eu.mondo.driver.graph.RDFGraphDriverRead;
 
@@ -75,6 +77,10 @@ public class TypeInputNode implements ReteNode {
 				tuples.removeAll(changeSet.getTuples());
 				break;
 		}
+	}
+	
+	public void filter(Predicate<Tuple> predicate) {
+		tuples = Sets.filter(tuples, predicate);
 	}
 
 	private void initializeEdge(final String typeName) throws IOException {

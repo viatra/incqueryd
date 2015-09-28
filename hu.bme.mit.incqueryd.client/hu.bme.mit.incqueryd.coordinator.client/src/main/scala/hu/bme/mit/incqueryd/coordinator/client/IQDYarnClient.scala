@@ -57,8 +57,8 @@ class IQDYarnClient {
     coordinator.sendChangesToInputs(changesMap)
   }
 
-  def startQuery(reteRecipe: ReteRecipe) {
-    coordinator.startQuery(reteRecipe, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
+  def startQuery(reteRecipe: ReteRecipe, rdfiqContents: String) {
+    coordinator.startQuery(reteRecipe, rdfiqContents, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
     startOutputStream(reteRecipe)
   }
   

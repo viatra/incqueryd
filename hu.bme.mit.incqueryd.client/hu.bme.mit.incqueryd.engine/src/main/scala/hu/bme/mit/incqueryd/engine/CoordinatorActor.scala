@@ -80,11 +80,12 @@ class CoordinatorActor extends Actor {
       IQDSparkClient.loadData(databaseConnection)
       sender ! true
     }
-    case StartQuery(recipeJson, rmHostname, fileSystemUri) => {
+    case StartQuery(recipeJson, rdfiqContents, rmHostname, fileSystemUri) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe]).toSet
       val otherActorsByRecipe = deploy(notTypeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.reteNodesPath)
       val queryID = IDService.lookupID(recipeJson)
+      IncQueryDZooKeeper.setData(s"${IncQueryDZooKeeper.runningQueries}/$queryID", rdfiqContents.getBytes)
       RecipeUtils.getPatternNamesFromRecipe(recipe).foreach { patternName => 
         val patternPath = s"${IncQueryDZooKeeper.runningQueries}/$queryID/$patternName"
         IncQueryDZooKeeper.createDir(patternPath)

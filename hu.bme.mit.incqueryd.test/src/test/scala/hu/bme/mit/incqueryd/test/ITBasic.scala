@@ -48,12 +48,16 @@ import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
 import hu.bme.mit.incqueryd.idservice.IDService
 import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
 import hu.bme.mit.incqueryd.engine.rete.actors.RecipeUtils
+import org.apache.commons.io.FileUtils
+import com.google.common.io.Resources
+import com.google.common.base.Charsets
 
 class ITBasic {
 
   val vocabularyFilename = "vocabulary.rdf"
 	val modelFilename = "railway-test-1.ttl"
-	val recipeFilename = "SwitchSensor.rdfiq.recipe"
+  val rdfiqFilename = "SwitchSensor.rdfiq"
+	val recipeFilename = s"$rdfiqFilename.recipe"
 	val patternName = "switchSensor"
 
 	val _52 = "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#_52"
@@ -65,12 +69,12 @@ class ITBasic {
 
   @Test
   def test() {
-    val metamodel = IQDYarnClient.loadMetamodel(getClass.getClassLoader.getResource(vocabularyFilename))
+    val metamodel = IQDYarnClient.loadMetamodel(Resources.getResource(vocabularyFilename))
     val client = new IQDYarnClient
-    val modelFilePath = client.uploadFile(getClass.getClassLoader.getResource(modelFilename))
+    val modelFilePath = client.uploadFile(Resources.getResource(modelFilename))
     client.loadInitialData(metamodel, new DatabaseConnection(modelFilePath, Backend.FILE))
     val recipe = RecipeUtils.loadRecipe(recipeFilename)
-    client.startQuery(recipe)
+    client.startQuery(recipe, Resources.toString(Resources.getResource(rdfiqFilename), Charsets.UTF_8))
     try {
       assertResult(client, recipe, expectedResult)
       println("Waiting until output stream processing starts")

@@ -50,10 +50,10 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
     askCoordinator[Boolean](LoadData(vocabulary, databaseConnection, rmHostname, fileSystemUri))
   }
 
-  def startQuery(recipe: ReteRecipe, rmHostname: String, fileSystemUri: String): Boolean = {
+  def startQuery(recipe: ReteRecipe, rdfiqContents: String, rmHostname: String, fileSystemUri: String): Boolean = {
     println(s"Starting query")
     val recipeJson = EObjectSerializer.serializeToString(recipe)
-    askCoordinator[Boolean](StartQuery(recipeJson, rmHostname, fileSystemUri))
+    askCoordinator[Boolean](StartQuery(recipeJson, rdfiqContents, rmHostname, fileSystemUri))
   }
 
   def startOutputStream(recipe : ReteRecipe) = {
