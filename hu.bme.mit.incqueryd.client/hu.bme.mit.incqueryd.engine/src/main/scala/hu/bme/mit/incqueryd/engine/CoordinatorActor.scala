@@ -62,6 +62,7 @@ import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputState
 import hu.bme.mit.incqueryd.spark.client.IQDSparkClient
 import eu.mondo.driver.graph.RDFGraphDriverRead
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
+import hu.bme.mit.incqueryd.idservice.IDService
 
 class CoordinatorActor extends Actor {
   
@@ -83,11 +84,16 @@ class CoordinatorActor extends Actor {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe]).toSet
       val otherActorsByRecipe = deploy(notTypeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.reteNodesPath)
+      val queryID = IDService.lookupID(recipeJson)
+      RecipeUtils.getPatternNamesFromRecipe(recipe).foreach { patternName => 
+        val patternPath = s"${IncQueryDZooKeeper.runningQueries}/$queryID/$patternName"
+        IncQueryDZooKeeper.createDir(patternPath)
+        IncQueryDZooKeeper.setData(patternPath, getProductionActorPath(recipeJson, patternName).toSerializationFormat.getBytes)
+      }
       configure(otherActorsByRecipe, null)
       establishSubscriptions(otherActorsByRecipe)
       val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
       val inputActorsByRecipe = lookup(typeInputRecipes)
-      
       propagateInputStates(inputActorsByRecipe, recipe)
       sender ! true
     }
@@ -95,9 +101,8 @@ class CoordinatorActor extends Actor {
       propagateInputChanges(inputChangesMap)
       sender ! true
     }
-    case StartOutputStream(recipeJson, patternName) => {
-      val production = getProductionActorPath(recipeJson, patternName)
-      IQDSparkClient.startOutputStream(patternName, production.toSerializationFormat)
+    case StartOutputStream(recipeJson) => {
+      IQDSparkClient.startOutputStream(IDService.lookupID(recipeJson))
       sender ! true
     }
     case StopOutputStreams() => {
@@ -143,11 +148,10 @@ class CoordinatorActor extends Actor {
   
   private def getProductionActorPath(recipeJson : String, patternName : String) : ActorPath = {
     val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
-    val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)
-    val productionRecipe = productionRecipeOption.get // XXX Option.get
-    val actorPath = ActorLookupUtils.findActor(productionRecipe).get // XXX Option.get
-    IncQueryDZooKeeper.setData(s"${IncQueryDZooKeeper.runningQueries}/$patternName", actorPath.toSerializationFormat.getBytes)
-    actorPath
+      val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)
+      val productionRecipe = productionRecipeOption.get // XXX Option.get
+      val actorPath = ActorLookupUtils.findActor(productionRecipe).get // XXX Option.get
+      actorPath
   }
   
   def getUriSubjects(statements: Set[Statement]): Set[Resource] = {

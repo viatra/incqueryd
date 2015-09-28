@@ -62,22 +62,29 @@ object IQDSparkClient {
     wikistreamPool.shutdownNow()
   }
 
-  def startOutputStream(patternName : String, productionNodePath: String) = {
+  def startOutputStream(recipeID : Long) = {
+   val patternNames = IncQueryDZooKeeper.getChildPaths(s"${IncQueryDZooKeeper.runningQueries}/$recipeID")
+   patternNames.foreach { patternName => 
    
-    val thread = new Thread {
+     val query_id = s"${recipeID}_${patternName}"
+     
+     val productionActorPath = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.runningQueries}/$recipeID/$patternName")
+
+     val thread = new Thread {
       override def run() {
         val process = getSparkLauncher()
-          .setAppName(s"$patternName query results stream")
+          .setAppName(s"$query_id production streams")
           .addAppArgs(s"-$OPTION_PROCESSING_METHOD", ProcessingMethod.PRODUCTIONSTREAM.toString())
           .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
-          .addAppArgs(s"-$OPTION_DATASOURCE_URL", productionNodePath)
-          .addAppArgs(s"-$OPTION_QUERY_ID", patternName)
+          .addAppArgs(s"-$OPTION_QUERY_ID", query_id)
+          .addAppArgs(s"-$OPTION_DATASOURCE_URL", productionActorPath)
+          .addAppArgs(s"-$OPTION_NUM_EXECUTORS", "3")
           .launch()
       }
     }
     
     pool.execute(thread);
-    
+   }
   }
 
   def stopOutputStreams() = {

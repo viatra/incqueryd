@@ -10,12 +10,17 @@ import hu.bme.mit.incqueryd.spark.mqtt.MQTTPublisher
  * @author pappi
  */
 object OutputStreamWorker {
-  
-  def process(queryName : String, stream : ReceiverInputDStream[Array[Byte]]) {
+
+  def process(patternTopic: String, stream: ReceiverInputDStream[Array[Byte]]) {
     val result = stream.map { msg => resolveIDs(deserializeProductionMessage[java.util.Set[Tuple]](msg).toSet) }
-    result.foreachRDD { _.foreach {
-      MQTTPublisher.publishResults(queryName, _)
-    }}
+    result.foreachRDD {
+      _.foreach { resultset =>
+        {
+          writeln(s"$patternTopic $resultset")
+          MQTTPublisher.publishResults(patternTopic, resultset)
+        }
+      }
+    }
   }
-  
+
 }

@@ -11,7 +11,7 @@ import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 sealed trait CoordinatorCommand
 case class LoadData(vocabulary: Model, databaseConnection: DatabaseConnection, rmHostname: String, fileSystemUri: String) extends CoordinatorCommand
 case class StartQuery(recipeJson: String, rmHostname: String, fileSystemUri: String) extends CoordinatorCommand
-case class StartOutputStream(recipeJson: String, patternName: String) extends CoordinatorCommand
+case class StartOutputStream(recipeJson: String) extends CoordinatorCommand
 case class StopOutputStreams() extends CoordinatorCommand
 case class PropagateInputChanges(inputChanges : Map[String, ChangeSet]) extends CoordinatorCommand
 case class CheckResults(recipeJson: String, patternName: String) extends CoordinatorCommand

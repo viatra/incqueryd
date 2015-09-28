@@ -171,7 +171,12 @@ object IncQueryDZooKeeper {
     getConnection()
     zk.getData(path, watcher, new Stat())
   }
-
+  
+  def getChildrenWithWatcher(path: String, watcher : Watcher) = {
+    getConnection()
+    zk.getChildren(path, watcher)
+  }
+  
   // Helper methods
   private def serialize(obj: AnyRef): Array[Byte] = {
     obj match {

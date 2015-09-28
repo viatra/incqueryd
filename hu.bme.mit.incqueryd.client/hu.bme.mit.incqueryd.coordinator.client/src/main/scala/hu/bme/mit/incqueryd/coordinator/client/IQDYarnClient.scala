@@ -59,22 +59,19 @@ class IQDYarnClient {
 
   def startQuery(reteRecipe: ReteRecipe) {
     coordinator.startQuery(reteRecipe, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
+    startOutputStream(reteRecipe)
   }
   
-  private def startOutputStream(reteRecipe: ReteRecipe, patternName : String) {
-    coordinator.startOutputStream(reteRecipe, patternName)
+  def startOutputStream(reteRecipe: ReteRecipe) {
+    coordinator.startOutputStream(reteRecipe)
   }
   
   def checkResults(reteRecipe: ReteRecipe, patternName: String): Set[Tuple] = {
-    if (IncQueryDZooKeeper.getData(s"${IncQueryDZooKeeper.runningQueries}/$patternName") == null && !patternsToRecipes.contains(patternName)) {
-      startQuery(reteRecipe)
-      startOutputStream(reteRecipe, patternName)
+    if (!patternsToRecipes.contains(patternName)) {
       patternsToRecipes.put(patternName, reteRecipe)
     }
     coordinator.checkResults(reteRecipe, patternName)
   }
-
-  
   
   def dispose() {
     coordinator.dispose
