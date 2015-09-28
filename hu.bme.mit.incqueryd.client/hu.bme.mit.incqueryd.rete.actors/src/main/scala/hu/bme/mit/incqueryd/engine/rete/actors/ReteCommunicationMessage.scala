@@ -14,7 +14,8 @@ case class RegisterSubscriber(slot: ReteNodeSlot) extends ReteCommunicationMessa
 case class UpdateMessage(changeSet: ChangeSet, slot: ReteNodeSlot, route: List[ActorPath]) extends ReteCommunicationMessage
 case class TerminationMessage(route: List[ActorPath]) extends ReteCommunicationMessage
 case class PropagateState(children: Set[ReteActorConnection]) extends ReteCommunicationMessage   // XXX probably the children parameter is unnecessary, use subscribers instead 
-case class PropagateInputState(changeSet : ChangeSet) extends ReteCommunicationMessage  // TODO: merge with previous
+case class PropagateInputChange(changeSet : ChangeSet) extends ReteCommunicationMessage  // TODO: merge with previous
+case class FilterOutAndPropagate(subjectId: Long) extends ReteCommunicationMessage  // XXX only for demo?
 case class SubscribeReceiver(receiver : ActorRef) extends ReteCommunicationMessage;
 case class UnsubscribeReceiver(receiver : ActorRef) extends ReteCommunicationMessage
 case object GetQueryResults extends ReteCommunicationMessage

@@ -13,6 +13,7 @@ import com.google.common.base.Charsets
 object WikidataDemo {
 
 	val endpoint = "https://query.wikidata.org/bigdata/namespace/wdq/sparql?format=json&query="
+  val databaseConnection = new DatabaseConnection(endpoint, Backend.SPARQL)
   val vocabularyFilename = "wikidata-demo-vocabulary.nt"
   val rdfiqFilename = "wikidata.rdfiq"
   val recipeFilename = s"recipes/$rdfiqFilename.recipe"
@@ -24,7 +25,6 @@ object WikidataDemo {
     println("Initializing IQD YARN client")
     val client = new IQDYarnClient
     println("Loading initial data")
-    val databaseConnection = new DatabaseConnection(endpoint, Backend.SPARQL)
     client.loadInitialData(metamodel, databaseConnection)
     println("Initializing IncQuery-D")
     val recipe = RecipeUtils.loadRecipe(recipeFilename)

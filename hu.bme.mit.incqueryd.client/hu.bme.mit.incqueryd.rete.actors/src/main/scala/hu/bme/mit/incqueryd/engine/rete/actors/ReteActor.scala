@@ -20,6 +20,8 @@ import hu.bme.mit.incqueryd.engine.rete.nodes.TypeInputNode
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
 import scala.collection.mutable.LinkedList
 import scala.collection.JavaConverters._
+import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
+import com.google.common.base.Predicate
 
 class ReteActor extends Actor {
 
@@ -28,7 +30,15 @@ class ReteActor extends Actor {
     case EstablishSubscriptions() => establishSubscriptions()
     case RegisterSubscriber(slot) => registerSubscriber(slot)
     case PropagateState(children) => propagateState(children)
-    case PropagateInputState(changeSet) => propagateInputChange(changeSet)
+    case PropagateInputChange(changeSet) => {
+      // Update the input node state
+      reteNode.asInstanceOf[TypeInputNode].update(changeSet)
+      propagateInputChange(changeSet)
+    }
+    case FilterOutAndPropagate(subjectId) => {
+      val changeSet = reteNode.asInstanceOf[TypeInputNode].filter(new Predicate[Tuple] { def apply(tuple: Tuple): Boolean = tuple.get(0) != subjectId })
+      propagateInputChange(changeSet)
+    }
     case updateMessage: UpdateMessage => update(updateMessage)
     case terminationMessage: TerminationMessage => terminationProtocol(terminationMessage)
     case GetQueryResults => getQueryResults
@@ -41,7 +51,6 @@ class ReteActor extends Actor {
     reteNode = ReteNodeFactory.createNode(configuration)
     reteNode match {
       case inputNode: TypeInputNode => {
-        log(s"Loading input node of type ${inputNode.getRecipe.getTypeName}")
         //inputNode.load // XXX initial load with Spark!
       }
       case _ => {}
@@ -105,13 +114,11 @@ class ReteActor extends Actor {
       sender ! StatePropagated
     } else {
       log(s"Propagating input changes to ${subscribers.size} subscriber")
+
       for ((subscriber, slot) <- subscribers) {
         val route = List()
         sendToSubscriber(changeSet, route, subscriber, slot)
       }
-
-      // Update the input node state
-      reteNode.asInstanceOf[TypeInputNode].update(changeSet)
 
       if (subscribers.isEmpty) {
         sender ! StatePropagated

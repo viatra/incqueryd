@@ -1,27 +1,25 @@
 package hu.bme.mit.incqueryd.spark.utils
 
-import org.apache.spark.SparkEnv
-import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
-import org.apache.spark.util.AkkaUtils
-import hu.bme.mit.incqueryd.actorservice.AkkaUtils
-import akka.pattern.ask
-import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputState
+import java.io.ByteArrayInputStream
 import java.io.FileWriter
-import scala.concurrent.duration._
-import scala.concurrent.Await
-import hu.bme.mit.incqueryd.actorservice.ActorId
-import com.google.common.net.HostAndPort
-import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
-import hu.bme.mit.incqueryd.actorservice.YarnActorService
-import akka.actor.ActorPath
-import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
+import java.io.ObjectInputStream
+import java.util.Date
+
+import scala.concurrent.duration.DurationInt
+
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkJobInfo
+
+import com.google.common.net.HostAndPort
+
+import akka.actor.ActorPath
+import hu.bme.mit.incqueryd.actorservice.ActorId
+import hu.bme.mit.incqueryd.actorservice.AkkaUtils
+import hu.bme.mit.incqueryd.actorservice.YarnActorService
+import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
-import java.io.ObjectInputStream
-import java.io.ByteArrayInputStream
 import hu.bme.mit.incqueryd.idservice.IDService
-import java.util.Date
+import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 
 /**
  * @author pappi

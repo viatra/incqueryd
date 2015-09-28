@@ -79,8 +79,11 @@ public class TypeInputNode implements ReteNode {
 		}
 	}
 	
-	public void filter(Predicate<Tuple> predicate) {
-		tuples = Sets.filter(tuples, predicate);
+	public ChangeSet filter(Predicate<Tuple> predicate) {
+		Set<Tuple> remainingTuples = Sets.filter(tuples, predicate);
+		Set<Tuple> removedTuples = Sets.difference(tuples, remainingTuples);
+		tuples = remainingTuples;
+		return new ChangeSet(removedTuples, ChangeType.NEGATIVE);
 	}
 
 	private void initializeEdge(final String typeName) throws IOException {

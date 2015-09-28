@@ -19,10 +19,14 @@ import hu.bme.mit.incqueryd.spark.utils.AttributeDelta
 import hu.bme.mit.incqueryd.idservice.IDService.lookupID
 import akka.actor.ActorPath
 import akka.actor.ActorRef
-import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputState
 import akka.actor.DeadLetterActorRef
 import scala.util.Either
 import com.google.common.collect.Sets
+import hu.bme.mit.incqueryd.spark.utils.SingleDelta
+import hu.bme.mit.incqueryd.spark.utils.ResetDelta
+import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
+import hu.bme.mit.incqueryd.engine.rete.actors.FilterOutAndPropagate
+import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputChange
 
 /**
  * @author pappi
@@ -34,38 +38,53 @@ object InputStreamWorker {
   def process(stream: ReceiverInputDStream[Delta]) {
     stream.foreachRDD {
       _.foreach { delta =>
-        val inputActorPath =
-          try {
-            IQDSparkUtils.getInputActorPathByTypeName(delta.rdfTypeId)
-          } catch {
-            case e: Exception => {
-              println(s"WARNING: No type input node for ${delta.rdfTypeId}, skipping delta")
-              null
+        delta match {
+          case delta: SingleDelta => {
+            val inputActor = getInputActor(delta.rdfTypeId)
+            if (inputActor == null) {
+                println(s"WARNING: No type input node for delta, skipping $delta")
+            } else {
+              val changeType = delta.changeType
+      
+              val tupleSet = delta match {
+                case delta: VertexDelta =>
+                  val vertexId = lookupID(delta.subjectId)
+                  Sets.newHashSet(new Tuple(vertexId))
+                case delta: EdgeDelta =>
+                  val subjectId = lookupID(delta.subjectId)
+                  val objectId = lookupID(delta.objectId)
+                  Sets.newHashSet(new Tuple(subjectId, objectId))
+                case delta: AttributeDelta =>
+                  val subjectId = lookupID(delta.subjectId)
+                  val objectValue = lookupID(delta.objectValue)
+                  Sets.newHashSet(new Tuple(subjectId, objectValue))
+              }
+    
+              println(s"Sending update for $delta")
+              inputActor ! PropagateInputChange(new ChangeSet(tupleSet, changeType))          
             }
           }
-        if (inputActorPath != null) {
-          val inputActor = actorMap.getOrElseUpdate(inputActorPath, SparkEnv.get.actorSystem.actorFor(inputActorPath))
-          val changeType = delta.changeType
-  
-          val tupleSet = delta match {
-            case delta: VertexDelta =>
-              val vertexId = lookupID(delta.vertexId)
-              Sets.newHashSet(new Tuple(vertexId))
-            case delta: EdgeDelta =>
-              val subjectId = lookupID(delta.subjectId)
-              val objectId = lookupID(delta.objectId)
-              Sets.newHashSet(new Tuple(subjectId, objectId))
-            case delta: AttributeDelta =>
-              val subjectId = lookupID(delta.subjectId)
-              val objectValue = lookupID(delta.objectValue)
-              Sets.newHashSet(new Tuple(subjectId, objectValue))
+          case delta: ResetDelta => {
+            val inputNodes = IncQueryDZooKeeper.getChildPaths(IncQueryDZooKeeper.inputNodesPath)
+            inputNodes.foreach { inputNode =>
+              println(s"Resetting statements of ${delta.subjectId}, property $inputNode")
+              val inputActor = getInputActor(inputNode)
+              inputActor ! FilterOutAndPropagate(lookupID(delta.subjectId))
+            }
           }
-
-          println(s"Sending update for $delta")
-          inputActor ! PropagateInputState(new ChangeSet(tupleSet, changeType))          
         }
       }
     }
   }
 
+  def getInputActor(rdfTypeId: String): ActorRef = {
+    try {
+      val inputActorPath = IQDSparkUtils.getInputActorPathByTypeName(rdfTypeId)
+      actorMap.getOrElseUpdate(inputActorPath, SparkEnv.get.actorSystem.actorFor(inputActorPath))
+    } catch {
+      case e: Exception => {
+        null
+      }
+    }
+  }
 }

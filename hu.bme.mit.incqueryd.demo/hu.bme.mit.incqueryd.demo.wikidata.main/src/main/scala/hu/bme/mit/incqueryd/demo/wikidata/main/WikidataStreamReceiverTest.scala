@@ -12,13 +12,9 @@ import hu.bme.mit.incqueryd.spark.utils.Delta
 
 object WikidataStreamReceiverTest {
 
-	val endpoint = "https://query.wikidata.org/bigdata/namespace/wdq/sparql?format=json&query="
-  val databaseConnection = new DatabaseConnection(endpoint, Backend.SPARQL)
-
   def main(args: Array[String]) {
-    val receiver = new WikidataStreamReceiver(databaseConnection) {
+    val receiver = new WikidataStreamReceiver(WikidataDemo.databaseConnection) {
       override def store(delta: Delta) {
-        println(delta)
       }
     }
     receiver.onStart()

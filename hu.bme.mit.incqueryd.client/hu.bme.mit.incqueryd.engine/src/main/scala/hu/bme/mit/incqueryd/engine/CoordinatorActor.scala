@@ -58,11 +58,11 @@ import hu.bme.mit.incqueryd.engine.rete.actors.ActorLookupUtils
 import akka.actor.ActorPath
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import hu.bme.mit.incqueryd.engine.rete.actors.UpdateMessage
-import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputState
 import hu.bme.mit.incqueryd.spark.client.IQDSparkClient
 import eu.mondo.driver.graph.RDFGraphDriverRead
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 import hu.bme.mit.incqueryd.idservice.IDService
+import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputChange
 
 class CoordinatorActor extends Actor {
   
@@ -209,7 +209,7 @@ class CoordinatorActor extends Actor {
   def propagateInputChanges(inputChangesMap : Map[String, ChangeSet]) {
     wait(inputChangesMap.map{case (inputTypeId, changeSet) => 
       val inputActorPath = ActorLookupUtils.findInputActor(inputTypeId).get
-      AkkaUtils.convertToRemoteActorRef(inputActorPath, context).ask(PropagateInputState(changeSet))})
+      AkkaUtils.convertToRemoteActorRef(inputActorPath, context).ask(PropagateInputChange(changeSet))})
   }
   
   private def wait(futures: Iterable[Future[Any]]) { // XXX don't use this, compose Futures

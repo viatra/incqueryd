@@ -31,6 +31,7 @@ import eu.mondo.driver.graph.RDFGraphDriverReadWrite
 import java.util.Map.Entry
 import eu.mondo.driver.graph.RDFGraphDriverRead
 import org.apache.log4j.Logger
+import hu.bme.mit.incqueryd.spark.utils.ResetDelta
 
 /**
  * @author pappi
@@ -59,7 +60,7 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
         	println(s"Processing $edit")
           val driver = databaseConnection.getDriver
           if (!edit.newPage) {
-            val oldDeltas = getOldDeltas(edit.pageTitle, driver)
+            val oldDeltas = getOldDeltas(edit)
             apply(oldDeltas, driver)
           }
           val newDeltas = getNewDeltas(edit)
@@ -97,11 +98,8 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
     diffSize: Int,
     comment: String)
 
-  private def getOldDeltas(subjectId: String, driver: RDFGraphDriverRead): List[Delta] = {
-    // TODO wildcard delta for all statements of subjectId in all input nodes
-    val edgeDeltas = List()
-    val attributeDeltas = List()
-    edgeDeltas ++ attributeDeltas
+  private def getOldDeltas(edit: WikipediaEdit): List[Delta] = {
+    List(ResetDelta(s"http://www.wikidata.org/entity/${edit.pageTitle}"))
   }
 
   private def getNewDeltas(edit: WikipediaEdit): List[Delta] = {
