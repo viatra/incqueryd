@@ -7,6 +7,7 @@ import com.vaadin.ui.Panel
 import com.vaadin.server.Sizeable.Unit
 import com.vaadin.ui.Label
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
+import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils._
 import sun.awt.HorizBagLayout
 import com.vaadin.ui.HorizontalLayout
 import com.vaadin.ui.Component
@@ -19,7 +20,9 @@ import com.vaadin.ui.VerticalLayout
  */
 object UIHelper {
   
-  def initializePatternButton(button : Button) : Button = {
+  def initializePatternButton(patternId : String) : Button = {
+    val button = new Button(resolvePattern(patternId))
+    button.setDisableOnClick(true)
     button.setSizeFull()
     button
   }

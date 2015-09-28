@@ -25,6 +25,9 @@ import com.vaadin.addon.charts.model.style.Style
 import com.vaadin.ui.themes.ValoTheme
 import com.vaadin.ui.themes.Runo
 import scala.collection.mutable.HashMap
+import scala.collection.mutable.HashSet
+import com.vaadin.ui.Button.ClickListener
+import com.vaadin.ui.Button.ClickEvent
 
 
 /**
@@ -34,9 +37,7 @@ import scala.collection.mutable.HashMap
 @Theme("valo")
 @Push
 class DashboardUI extends UI with UIBroadcaster.MessageListener {
-
-  val headLabel = new Label("TeqBox Web Console");
-
+  
   val streamBtn = new Button("Body")
   val headerLabel = new Label("IncQuery-D Dashboard")
   val footerLabel = new Label("Powered by IncQuery Labs Ltd.")
@@ -45,11 +46,30 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
   // Stream 
   val streamLayout = new VerticalLayout
   val streamPanel = new Panel
-
-  // Pattern selection layout
+  
+  // Pattern selection
   val queriesLayout = new VerticalLayout
   var queryPanels : HashMap[String, Panel] = HashMap[String, Panel]()
   var patternBtns : HashMap[String, Button] = HashMap[String, Button]()
+  var selectedPatternId : String = _
+  
+  def selectPattern(patternId : String) {
+    selectedPatternId = patternId;
+    patternBtns.foreach{ case (patternId, button) =>
+      if(patternId.equals(selectedPatternId))
+        button.setEnabled(false)
+      else
+        button.setEnabled(true)
+    }
+  }
+  
+  def addPatternButtonListener(button : Button, patternId : String) {
+    button.addClickListener(new ClickListener() {
+      override def buttonClick(clickEvent : ClickEvent) {
+        selectPattern(patternId)
+      }
+    })
+  }
   
   def configureWidgets() {
     headerLabel.setSizeFull()
@@ -73,7 +93,8 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
       val query = resolveQuery(patternId)
       val pattern = resolvePattern(patternId)
       val queryPanel = queryPanels.getOrElseUpdate(query, initializeQueryPanel(new Panel(query)))
-      val patternBtn = patternBtns.getOrElseUpdate(patternId, initializePatternButton(new Button(pattern)))
+      val patternBtn = patternBtns.getOrElseUpdate(patternId, initializePatternButton(patternId))
+      addPatternButtonListener(patternBtn, patternId)
       queryPanel.getContent.asInstanceOf[VerticalLayout].addComponent(patternBtn)
     }
     
@@ -119,7 +140,9 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
         access(new Runnable() {
           override def run() {
             val isNew = !queryPanels.contains(query)
-            val patternBtn = patternBtns.getOrElseUpdate(createPatternId(pattern, query), initializePatternButton(new Button(pattern)))
+            val patternId = createPatternId(pattern, query)
+            val patternBtn = patternBtns.getOrElseUpdate(patternId, initializePatternButton(patternId))
+            addPatternButtonListener(patternBtn, patternId)
             val panel = queryPanels.getOrElseUpdate(query, initializeQueryPanel(new Panel(query)))
             panel.getContent.asInstanceOf[VerticalLayout].addComponent(patternBtn)
             if(isNew)
@@ -128,12 +151,28 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
         })
       }
       case RemovePattern(pattern, query) => {
-        // TODO: implement it!
+        access(new Runnable() {
+          override def run() {
+            if (patternBtns.contains(createPatternId(pattern, query)) && queryPanels.contains(query)) {
+              val patternBtn = patternBtns.get(createPatternId(pattern, query)).get
+              val panel = queryPanels.get(query).get
+              val layout = panel.getContent.asInstanceOf[VerticalLayout]
+              layout.removeComponent(patternBtn)
+              patternBtns.remove(pattern)
+              if(layout.getComponentCount == 0) {
+                queriesLayout.removeComponent(panel)
+                queryPanels.remove(query)
+              }
+                
+            }
+          }
+        })
       }
       case QueryResult(patternId, result, newTuples, removedTuples) => {
         access(new Runnable() {
           override def run() {
-            streamLayout.addComponentAsFirst(buildResultPanel(result, newTuples, removedTuples))
+            if(patternId.equals(selectedPatternId))
+              streamLayout.addComponentAsFirst(buildResultPanel(result, newTuples, removedTuples))
           }
         })
       }
