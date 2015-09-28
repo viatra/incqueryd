@@ -160,7 +160,11 @@ object IncQueryDZooKeeper {
   }
 
   def getStringData(path: String): String = {
-    new String(getData(path))
+    val data = getData(path)
+    if (data == null) {
+      throw new IllegalArgumentException(s"No znode found at $path")
+    }
+    new String(data)
   }
 
   def getDeserializedData[A](path: String): A = {

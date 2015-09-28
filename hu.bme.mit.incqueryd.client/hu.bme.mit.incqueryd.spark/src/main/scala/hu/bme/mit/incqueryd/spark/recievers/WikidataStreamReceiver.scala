@@ -55,7 +55,7 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
 
     override def onGenericMessage(event: GenericMessageEvent[PircBotX]) {
       parse(event.getMessage).foreach { edit =>
-        if (!edit.robot) { // Bot edits come too frequently
+        if (!edit.robot && edit.pageTitle.startsWith("Q")) { // Bot edits come too frequently
         	println(s"Processing $edit")
           val driver = databaseConnection.getDriver
           if (!edit.newPage) {

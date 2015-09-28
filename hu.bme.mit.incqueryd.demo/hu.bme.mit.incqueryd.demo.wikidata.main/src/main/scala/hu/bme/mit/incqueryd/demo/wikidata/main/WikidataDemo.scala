@@ -14,8 +14,8 @@ object WikidataDemo {
 
 	val endpoint = "https://query.wikidata.org/bigdata/namespace/wdq/sparql?format=json&query="
   val vocabularyFilename = "wikidata-demo-vocabulary.nt"
-  val rdfiqFilename = "recipes/wikidata.rdfiq"
-  val recipeFilename = s"$rdfiqFilename.recipe"
+  val rdfiqFilename = "wikidata.rdfiq"
+  val recipeFilename = s"recipes/$rdfiqFilename.recipe"
   val patternName = "highestPoint"
 
   def main(args: Array[String]){
