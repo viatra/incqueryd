@@ -22,6 +22,7 @@ ENV PATH $PATH:$JAVA_HOME/bin
 RUN curl -s http://www.eu.apache.org/dist/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s ./hadoop-2.6.0 hadoop
 
+ENV DEBIAN_FRONTEND noninteractive
 ENV HADOOP_PREFIX /usr/local/hadoop
 ENV HADOOP_COMMON_HOME /usr/local/hadoop
 ENV HADOOP_HDFS_HOME /usr/local/hadoop
@@ -92,7 +93,6 @@ RUN chmod +x /usr/local/hadoop/etc/hadoop/*-env.sh
 RUN ls -la /usr/local/hadoop/etc/hadoop/*-env.sh
 
 # Download and install ZooKeeper
-# RUN curl -s http://mirrors.ukfast.co.uk/sites/ftp.apache.org/zookeeper/stable/zookeeper-3.4.6.tar.gz | tar -xz -C /usr/local/
 RUN curl -s http://mirrors.ukfast.co.uk/sites/ftp.apache.org/zookeeper/zookeeper-3.5.1-alpha/zookeeper-3.5.1-alpha.tar.gz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s ./zookeeper-3.5.1-alpha zookeeper
 
@@ -109,8 +109,8 @@ RUN chown root:root /usr/local/zookeeper/bin/start-zk-server.sh
 RUN chmod 700 /usr/local/zookeeper/bin/start-zk-server.sh
 
 # Install Spark
-RUN curl -s http://xenia.sote.hu/ftp/mirrors/www.apache.org/spark/spark-1.5.0/spark-1.5.0-bin-hadoop2.6.tgz | tar xz -C /usr/local/
-RUN cd /usr/local && ln -s ./spark-1.5.0-bin-hadoop2.6 spark
+RUN curl -s http://static.incquerylabs.com/projects/incquery-d/spark-iqd-1.5.0.tgz | tar -xz -C /usr/local/
+RUN cd /usr/local && ln -s ./spark-1.5.0-bin-iqd-spark-1.5 spark
 
 ENV SPARK_HOME=/usr/local/spark
 RUN echo "export SPARK_HOME=/usr/local/spark" >> /etc/profile
@@ -140,7 +140,6 @@ ADD dnsmasq.conf /etc/dnsmasq.conf
 ADD dnsmasq.resolv.conf /etc/dnsmasq.resolv.conf
 
 # Install mosquitto
-ENV DEBIAN_FRONTEND noninteractive
 RUN curl -s -o mosquitto-repo.gpg.key http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
 RUN apt-key add mosquitto-repo.gpg.key
 RUN cd /etc/apt/sources.list.d/ && curl -s -o mosquitto-wheezy.list http://repo.mosquitto.org/debian/mosquitto-wheezy.list
