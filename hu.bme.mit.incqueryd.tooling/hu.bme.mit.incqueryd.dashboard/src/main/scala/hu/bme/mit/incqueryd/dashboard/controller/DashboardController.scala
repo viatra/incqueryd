@@ -32,7 +32,7 @@ object DashboardController {
   lazy val executorService: ExecutorService = Executors.newCachedThreadPool()
   
   private var runningPatterns = new HashSet[String]()
-  private var previousResultSet : Set[Tuple] = Set[Tuple]()
+  private var previousResultSets : HashMap[String, Set[Tuple]] = HashMap[String, Set[Tuple]]()
   
   var subscribers: HashMap[String, MQTTSubscriber] = new HashMap[String, MQTTSubscriber]()
 
@@ -104,15 +104,16 @@ object DashboardController {
     this.synchronized {
       var removedTuples = 0
       var newTuples = 0;
-      previousResultSet.foreach { tuple =>
+      val prevResultSet = previousResultSets.getOrElseUpdate(patternId, Set[Tuple]())
+      prevResultSet.foreach { tuple =>
         if(!results.contains(tuple))
           removedTuples += 1
       }
       results.foreach { tuple => 
-         if(!previousResultSet.contains(tuple))
+         if(!prevResultSet.contains(tuple))
            newTuples += 1;
       }
-      previousResultSet = results
+      previousResultSets(patternId) = results
       if(newTuples > 0 || removedTuples > 0)
         UIBroadcaster.update(QueryResult(patternId, results, newTuples, removedTuples))
     }
