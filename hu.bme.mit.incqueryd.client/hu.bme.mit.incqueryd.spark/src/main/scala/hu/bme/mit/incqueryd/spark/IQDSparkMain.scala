@@ -79,7 +79,7 @@ object IQDSparkMain extends Serializable {
     val stream = METHOD match {
       // Input streams
       case ProcessingMethod.LOAD | ProcessingMethod.WIKISTREAM => 
-        InputStreamWorker.process(ssc.receiverStream(receiver.asInstanceOf[Receiver[Delta]]))
+        InputStreamWorker.process(ssc.receiverStream(receiver.asInstanceOf[Receiver[Set[Delta]]]))
       
       // Output streams
       case ProcessingMethod.PRODUCTIONSTREAM =>

@@ -32,11 +32,14 @@ import hu.bme.mit.incqueryd.spark.utils.VertexDelta
 import hu.bme.mit.incqueryd.spark.utils.EdgeDelta
 import hu.bme.mit.incqueryd.spark.utils.AttributeDelta
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
+import java.util.Map.Entry
+import org.openrdf.model.Resource
+import org.openrdf.model.Value
 
 /**
  * @author pappi
  */
-class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
+class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Receiver[Set[Delta]](StorageLevel.MEMORY_ONLY) {
   
   var pool: ExecutorService = _
   
@@ -67,21 +70,18 @@ class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Recei
           
           case RecipeUtils.VERTEX => 
             val dataset = driver.collectVertices(rdfTypeName)
-            dataset.foreach(x => 
-              store(VertexDelta(ChangeType.POSITIVE, x.toString(), rdfTypeName))
-            )
+            val deltas: Set[Delta] = dataset.toSet.map{x: Resource => VertexDelta(ChangeType.POSITIVE, x.toString(), rdfTypeName)}
+            store(deltas)
           
           case RecipeUtils.EDGE =>
             val dataset = driver.collectEdges(rdfTypeName)
-            dataset.entries().foreach(entry => 
-              store(EdgeDelta(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString()))
-            )
+            val deltas: Set[Delta] = dataset.entries().toSet.map{entry: Entry[Resource, Resource] => EdgeDelta(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString())}
+            store(deltas)
           
           case RecipeUtils.ATTRIBUTE =>
             val dataset = driver.collectProperties(rdfTypeName)
-            dataset.entries().foreach(entry => 
-              store(AttributeDelta(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString()))
-            )
+            val deltas: Set[Delta] = dataset.entries().toSet.map{entry: Entry[Resource, Value] => AttributeDelta(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString())} 
+            store(deltas)
         }
         
       } catch {

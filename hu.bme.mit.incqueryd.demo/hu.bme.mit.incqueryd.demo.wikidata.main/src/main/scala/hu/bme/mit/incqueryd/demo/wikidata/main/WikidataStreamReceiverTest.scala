@@ -14,7 +14,7 @@ object WikidataStreamReceiverTest {
 
   def main(args: Array[String]) {
     val receiver = new WikidataStreamReceiver(WikidataDemo.databaseConnection) {
-      override def store(delta: Delta) {
+      override def store(deltas: Set[Delta]) {
       }
     }
     receiver.onStart()

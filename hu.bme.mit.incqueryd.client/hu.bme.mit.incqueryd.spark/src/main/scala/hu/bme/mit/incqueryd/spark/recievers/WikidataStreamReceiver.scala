@@ -32,11 +32,12 @@ import java.util.Map.Entry
 import eu.mondo.driver.graph.RDFGraphDriverRead
 import org.apache.log4j.Logger
 import hu.bme.mit.incqueryd.spark.utils.ResetDelta
+import org.openrdf.model.Statement
 
 /**
  * @author pappi
  */
-class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Receiver[Delta](StorageLevel.MEMORY_ONLY) {
+class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Receiver[Set[Delta]](StorageLevel.MEMORY_ONLY) {
 
   def onStart() {
     def configuration = new Configuration.Builder()
@@ -98,16 +99,16 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
     diffSize: Int,
     comment: String)
 
-  private def getOldDeltas(edit: WikipediaEdit): List[Delta] = {
-    List(ResetDelta(s"http://www.wikidata.org/entity/${edit.pageTitle}"))
+  private def getOldDeltas(edit: WikipediaEdit): Set[Delta] = {
+    Set(ResetDelta(s"http://www.wikidata.org/entity/${edit.pageTitle}"))
   }
 
-  private def getNewDeltas(edit: WikipediaEdit): List[Delta] = {
+  private def getNewDeltas(edit: WikipediaEdit): Set[Delta] = {
     val fetcher = WikibaseDataFetcher.getWikidataDataFetcher
     val document = fetcher.getEntityDocument(edit.pageTitle)
     document match {
       case document: StatementDocument =>
-        document.getAllStatements.toList.flatMap { statement =>
+        document.getAllStatements.flatMap { statement =>
           val subjectId = statement.getClaim.getSubject.getIri
           val propertyId = s"http://www.wikidata.org/prop/direct/${statement.getClaim.getMainSnak.getPropertyId.getId}"
   			  statement.getClaim.getMainSnak match {
@@ -124,16 +125,16 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
     			  }
   			    case _ => None
       	  }
-        }
-      case _ => List()
+        }.toSet
+      case _ => Set()
     }
   }
 
-  private def apply(deltas: List[Delta], driver: RDFGraphDriverRead) {
+  private def apply(deltas: Set[Delta], driver: RDFGraphDriverRead) {
     deltas.foreach { delta =>
       applyToDatabase(delta, driver)
-      store(delta)
     }
+    store(deltas)
   }
 
   private def applyToDatabase(delta: Delta, driver: RDFGraphDriverRead) {
