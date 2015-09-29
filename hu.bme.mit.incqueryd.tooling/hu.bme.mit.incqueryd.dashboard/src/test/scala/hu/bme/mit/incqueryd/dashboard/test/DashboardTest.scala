@@ -11,8 +11,8 @@ import org.junit.Test
 
 class DashboardTest {
 
-  val TEST_QUERY1 = "test_query1"
-  val TEST_QUERY2 = "test_query2"
+  val TEST_QUERY1 = "testQuery1"
+  val TEST_QUERY2 = "testQuery2"
   
   val TEST_PATTERN11 = "pattern11"
   val TEST_PATTERN12 = "pattern12"

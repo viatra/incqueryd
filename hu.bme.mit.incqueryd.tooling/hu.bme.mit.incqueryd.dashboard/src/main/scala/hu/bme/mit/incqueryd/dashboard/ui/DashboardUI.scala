@@ -29,7 +29,6 @@ import scala.collection.mutable.HashSet
 import com.vaadin.ui.Button.ClickListener
 import com.vaadin.ui.Button.ClickEvent
 
-
 /**
  * @author pappi
  */
@@ -37,7 +36,7 @@ import com.vaadin.ui.Button.ClickEvent
 @Theme("valo")
 @Push
 class DashboardUI extends UI with UIBroadcaster.MessageListener {
-  
+
   val streamBtn = new Button("Body")
   val headerLabel = new Label("IncQuery-D Dashboard")
   val footerLabel = new Label("Powered by IncQuery Labs Ltd.")
@@ -46,31 +45,33 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
   // Stream 
   val streamLayout = new VerticalLayout
   val streamPanel = new Panel
-  
+
   // Pattern selection
   val queriesLayout = new VerticalLayout
-  var queryPanels : HashMap[String, Panel] = HashMap[String, Panel]()
-  var patternBtns : HashMap[String, Button] = HashMap[String, Button]()
-  var selectedPatternId : String = _
-  
-  def selectPattern(patternId : String) {
+  var queryPanels: HashMap[String, Panel] = HashMap[String, Panel]()
+  var patternBtns: HashMap[String, Button] = HashMap[String, Button]()
+  var selectedPatternId: String = _
+
+  def selectPattern(patternId: String) {
+    streamLayout.removeAllComponents()
     selectedPatternId = patternId;
-    patternBtns.foreach{ case (patternId, button) =>
-      if(patternId.equals(selectedPatternId))
-        button.setEnabled(false)
-      else
-        button.setEnabled(true)
+    patternBtns.foreach {
+      case (patternId, button) =>
+        if (patternId.equals(selectedPatternId))
+          button.setEnabled(false)
+        else
+          button.setEnabled(true)
     }
   }
-  
-  def addPatternButtonListener(button : Button, patternId : String) {
+
+  def addPatternButtonListener(button: Button, patternId: String) {
     button.addClickListener(new ClickListener() {
-      override def buttonClick(clickEvent : ClickEvent) {
+      override def buttonClick(clickEvent: ClickEvent) {
         selectPattern(patternId)
       }
     })
   }
-  
+
   def configureWidgets() {
     headerLabel.setSizeFull()
     headerLabel.setStyleName(ValoTheme.LABEL_H2)
@@ -78,38 +79,39 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
   }
 
   def initLayout() {
-    
+
     // Header panel
     // XXX not used yet
     val headerPanel = new Panel(headerLabel)
     headerPanel.setSizeFull()
-    
+
     // Queries panel
     val queriesPanel = new Panel("Queries")
     queriesPanel.setContent(queriesLayout)
-    
+
     val patternIds = DashboardController.getRunningPatterns()
-    patternIds.foreach { patternId => 
+    patternIds.foreach { patternId =>
       val query = resolveQuery(patternId)
       val pattern = resolvePattern(patternId)
-      val queryPanel = queryPanels.getOrElseUpdate(query, initializeQueryPanel(new Panel(query)))
+      val queryPanel = queryPanels.getOrElseUpdate(query, initializeQueryPanel(query))
+      queryPanel.addStyleName(ValoTheme.PANEL_WELL)
       val patternBtn = patternBtns.getOrElseUpdate(patternId, initializePatternButton(patternId))
       addPatternButtonListener(patternBtn, patternId)
       queryPanel.getContent.asInstanceOf[VerticalLayout].addComponent(patternBtn)
     }
-    
-    queryPanels.foreach{ case (query : String, panel : Panel) =>
-      queriesLayout.addComponent(panel)
+
+    queryPanels.foreach {
+      case (query: String, panel: Panel) =>
+        queriesLayout.addComponent(panel)
     }
-    
-    
+
     // Stream data layout
     streamPanel.setSizeFull()
     streamPanel.setContent(streamLayout)
 
     // Metrics
     metricsPanel.setSizeFull()
-    
+
     // Body
     val bodyLayout = new HorizontalLayout(queriesPanel, streamPanel, metricsPanel)
     bodyLayout.setSizeFull
@@ -143,9 +145,9 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
             val patternId = createPatternId(pattern, query)
             val patternBtn = patternBtns.getOrElseUpdate(patternId, initializePatternButton(patternId))
             addPatternButtonListener(patternBtn, patternId)
-            val panel = queryPanels.getOrElseUpdate(query, initializeQueryPanel(new Panel(query)))
+            val panel = queryPanels.getOrElseUpdate(query, initializeQueryPanel(query))
             panel.getContent.asInstanceOf[VerticalLayout].addComponent(patternBtn)
-            if(isNew)
+            if (isNew)
               queriesLayout.addComponent(panel)
           }
         })
@@ -159,11 +161,11 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
               val layout = panel.getContent.asInstanceOf[VerticalLayout]
               layout.removeComponent(patternBtn)
               patternBtns.remove(pattern)
-              if(layout.getComponentCount == 0) {
+              if (layout.getComponentCount == 0) {
                 queriesLayout.removeComponent(panel)
                 queryPanels.remove(query)
               }
-                
+
             }
           }
         })
@@ -171,8 +173,8 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
       case QueryResult(patternId, result, newTuples, removedTuples) => {
         access(new Runnable() {
           override def run() {
-            if(patternId.equals(selectedPatternId))
-              streamLayout.addComponentAsFirst(buildResultPanel(result, newTuples, removedTuples))
+            if (patternId.equals(selectedPatternId))
+              streamLayout.addComponentAsFirst(buildResultPanel(resolvePattern(patternId), result, newTuples, removedTuples))
           }
         })
       }
@@ -185,6 +187,7 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
 
     initLayout
 
+    selectPattern(patternBtns.keySet.head)
     UIBroadcaster.addListener(this)
   }
 
@@ -193,6 +196,12 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
     super.detach()
   }
 
+}
+
+class QueryPanelClickListener extends com.vaadin.event.MouseEvents.ClickListener {
+  override def click(clickEvent : com.vaadin.event.MouseEvents.ClickEvent) {
+    println("Panel clicked!")
+  }
 }
 
 @WebServlet(urlPatterns = Array("/*"))
