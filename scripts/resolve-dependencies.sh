@@ -18,6 +18,4 @@ cd ..
 git clone http://git.eclipse.org/gitroot/paho/org.eclipse.paho.mqtt.java.git
 cd org.eclipse.paho.mqtt.java
 git pull
-mvn clean install
-
-
+mvn clean install -DskipTests
