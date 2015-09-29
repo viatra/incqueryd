@@ -95,7 +95,7 @@ object UIHelper {
     resultSet.foreach { tuple =>
         val tuplePanel = buildTuplePanel(i, tuple)
         resultsLayout.addComponent(tuplePanel)
-        resultsLayout.setComponentAlignment(tuplePanel, Alignment.MIDDLE_CENTER)
+        resultsLayout.setComponentAlignment(tuplePanel, Alignment.MIDDLE_LEFT)
         i += 1
     }
     resultPanel.setContent(resultsLayout)
@@ -111,6 +111,7 @@ object UIHelper {
 
   def buildTuplePanel(rowNum : Int, tuple: Tuple): Component = {
     val tuplePanel = new Panel
+    tuplePanel.setSizeFull()
     val tupleLayout = new HorizontalLayout
     val rowLabel = new Label(s"${rowNum}. ")
     tupleLayout.addComponent(rowLabel)
@@ -128,7 +129,6 @@ object UIHelper {
 
   def buildTupleLink(name: String, url: String): Link = {
     val link = new Link(name, new ExternalResource(url))
-    link.setWidth(50.0F, Unit.PIXELS)
     link
   }
 
