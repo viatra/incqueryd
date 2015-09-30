@@ -80,8 +80,8 @@ public class TypeInputNode implements ReteNode {
 	}
 	
 	public ChangeSet filter(Predicate<Tuple> predicate) {
-		Set<Tuple> remainingTuples = Sets.filter(tuples, predicate);
-		Set<Tuple> removedTuples = Sets.difference(tuples, remainingTuples);
+		Set<Tuple> remainingTuples = Sets.newHashSet(Sets.filter(tuples, predicate));
+		Set<Tuple> removedTuples = Sets.newHashSet(Sets.difference(tuples, remainingTuples));
 		tuples = remainingTuples;
 		return new ChangeSet(removedTuples, ChangeType.NEGATIVE);
 	}

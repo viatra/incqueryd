@@ -36,7 +36,9 @@ class ReteActor extends Actor {
       propagateInputChange(changeSet)
     }
     case FilterOutAndPropagate(subjectId) => {
-      val changeSet = reteNode.asInstanceOf[TypeInputNode].filter(new Predicate[Tuple] { def apply(tuple: Tuple): Boolean = tuple.get(0) != subjectId })
+      val changeSet = reteNode.asInstanceOf[TypeInputNode].filter(new Predicate[Tuple] {
+        def apply(tuple: Tuple): Boolean = tuple.get(0) != subjectId
+      })
       propagateInputChange(changeSet)
     }
     case updateMessage: UpdateMessage => update(updateMessage)
