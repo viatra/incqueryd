@@ -12,6 +12,8 @@ import akka.actor._
 import akka.pattern.ask
 import eu.mondo.utils.NetworkUtils
 import java.net.InetAddress
+import java.io.ByteArrayOutputStream
+import java.io.ObjectOutputStream
 
 object AkkaUtils {
 
@@ -34,7 +36,7 @@ akka {
     enabled-transports = ["akka.remote.netty.tcp"]
     netty.tcp {
       hostname = "${id.ip}"
-      bind-hostname = "${getLocalIp}" # XXX needed for docker networking
+      bind-hostname = "${NetworkUtils.getLocalIpAddress}" # XXX needed for docker networking
       port = ${id.port}
       maximum-frame-size = 128000000
     }
@@ -48,7 +50,7 @@ akka {
     val actorSystem = ActorSystem(id.actorSystemName, config)
     Runtime.getRuntime.addShutdownHook(new Thread(new Runnable {
       def run = {
-        actorSystem.terminate
+      actorSystem.shutdown() // XXX akka-2.3
       }
     }))
     actorSystem
@@ -58,14 +60,13 @@ akka {
   
   def getClientActorSystem() : ActorSystem = {
     if(clientActorSystem == null || clientActorSystem.isTerminated)
-      clientActorSystem = getRemotingActorSystem("client", getLocalIp, 0)
+      clientActorSystem = getRemotingActorSystem("client", NetworkUtils.getLocalIpAddress, 0)
     clientActorSystem
   }
   
   def teminateClientActorSystem() = {
     if (clientActorSystem != null) {
-      val terminate = clientActorSystem.terminate()
-      Await.result(terminate, AkkaUtils.defaultTimeout)
+      clientActorSystem.shutdown() // XXX akka-2.3
     }
   }
 
@@ -91,7 +92,7 @@ akka {
   }
   
   def toRemoteActorPath(actorPath : ActorPath) : ActorPath = {
-    val address = new Address("akka.tcp", YarnActorService.actorSystemName, getLocalIp, YarnActorService.port)
+    val address = new Address("akka.tcp", YarnActorService.actorSystemName, NetworkUtils.getLocalIpAddress, YarnActorService.port)
     ActorPath.fromString(actorPath.toStringWithAddress(address))
   }
   
@@ -130,7 +131,14 @@ akka {
       }
     }
   }
-
+  
+  def serializeMessage(msg : AnyRef) : Array[Byte] = {
+    val bao = new ByteArrayOutputStream
+    val oo = new ObjectOutputStream(bao)
+    oo.writeObject(msg)
+    bao.toByteArray()
+  }
+  
   @annotation.tailrec
   def retry[T](retryCount: Int)(delayMillis: Long)(fn: => T): T = {
     Try {
@@ -142,11 +150,6 @@ akka {
       }
       case Failure(e) => throw e
     }
-  }
-  
-  def getLocalIp() : String = {
-    val hostname = InetAddress.getLocalHost.getHostName;
-    InetAddress.getByName(hostname).getHostAddress()
   }
   
   val defaultRetryCount = 10

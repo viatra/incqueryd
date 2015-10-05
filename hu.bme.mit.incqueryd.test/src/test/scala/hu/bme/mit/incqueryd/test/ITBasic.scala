@@ -27,7 +27,6 @@ import hu.bme.mit.incqueryd.inventory.MachineInstance
 import upickle._
 import hu.bme.mit.incqueryd.inventory.MachineInstance
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
-import hu.bme.mit.incqueryd.coordinator.client.Coordinator
 import scala.concurrent.Await
 import scala.concurrent.duration._
 import hu.bme.mit.incqueryd.yarn.HdfsUtils
@@ -40,88 +39,73 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import java.util.HashSet
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
 import java.util.HashMap
+import scala.collection.JavaConverters
+import scala.collection.SortedSet
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection.Backend
+import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
+import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
+import hu.bme.mit.incqueryd.idservice.IDService
+import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
+import hu.bme.mit.incqueryd.engine.rete.actors.RecipeUtils
+import org.apache.commons.io.FileUtils
+import com.google.common.io.Resources
+import com.google.common.base.Charsets
 
 class ITBasic {
 
+  val vocabularyFilename = "vocabulary.rdf"
+	val modelFilename = "railway-test-1.ttl"
+  val rdfiqFilename = "SwitchSensor.rdfiq"
+	val recipeFilename = s"$rdfiqFilename.recipe"
+	val patternName = "switchSensor"
+
+	val _52 = "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#_52"
+	val _138 = "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#_138"
+	val _78 = "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#_78"
+	val _391 = "http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#_391"
+	val expectedResult = toTuples(Set(_52, _138, _78, _391))
+	val expectedResultAfterChange = toTuples(Set(_52, _78, _391))
+
   @Test
   def test() {
-    val modelFileName = "railway-test-1.ttl"
-    val vocabularyFileName = "vocabulary.rdf"
-    val patternName = "switchSensor"
-    val expectedResult = Set(52, 138, 78, 391).map(n => new Tuple(new Long(n)))
-    val expectedResultAfterChange = Set(52, 78, 391).map(n => new Tuple(new Long(n)))
-    val rmHostname = "yarn-rm.docker"
-    val fileSystemUri = "hdfs://yarn-rm.docker:9000"
-    val zkHostname = rmHostname
-    val timeout = 300 seconds
-    
-    val hdfs = HdfsUtils.getDistributedFileSystem(fileSystemUri)
-    
-    // Upload testfile
-    val testFile = new File(getClass.getClassLoader.getResource(modelFileName).getFile)
-    val testFilePath = fileSystemUri + "/test/" + modelFileName
-    HdfsUtils.upload(hdfs, testFile, testFilePath)
-    
-    val advancedYarnClient = new AdvancedYarnClient(rmHostname, fileSystemUri)
-    Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), timeout)
-    val coordinator = Await.result(Coordinator.create(advancedYarnClient), timeout)
-    
-    val vocabulary = loadRdf(getClass.getClassLoader.getResource(vocabularyFileName))
-    coordinator.loadData(vocabulary, testFilePath, rmHostname, fileSystemUri)
-
-    val recipe = loadRecipe
-    coordinator.startQuery(recipe, rmHostname, fileSystemUri)
-
+    val metamodel = IQDYarnClient.loadMetamodel(Resources.getResource(vocabularyFilename))
+    val client = new IQDYarnClient
+    val modelFilePath = client.uploadFile(Resources.getResource(modelFilename))
+    val databaseConnection = new DatabaseConnection(modelFilePath, Backend.FILE)
+    client.deployInputNodes(metamodel, databaseConnection)
+    val recipe = RecipeUtils.loadRecipe(recipeFilename)
+    client.startQuery(recipe, Resources.toString(Resources.getResource(rdfiqFilename), Charsets.UTF_8))
+    client.coordinator.loadData(databaseConnection)
+    assertResult(client, recipe, expectedResult)
     try {
-      val initResult = coordinator.checkResults(recipe, patternName)
-      println(s"Query result: $initResult")
-      assertEquals(expectedResult, initResult)
-      
-      // Create simple ChangeSet - XXX 
-      val tuple = new Tuple(new Long(138))
-      val tupleSet = new HashSet[Tuple]()
-      tupleSet.add(tuple)
-      val changeSet = new ChangeSet(tupleSet, ChangeType.NEGATIVE)
-      val inputChanges = new HashMap[String, ChangeSet]()
-      inputChanges.put("Switch", changeSet)
-      
-      // Propagate changes
-      coordinator.sendChangesToInputs(inputChanges.toMap)
-      
-      // Get result after changes
-      val result = coordinator.checkResults(recipe, patternName)
-      println(s"Query result: $result")
-      assertEquals(expectedResultAfterChange, result)
-      
+      for(i <- 1 to 99) {
+        val changeType = if(i % 2 == 0 ) ChangeType.POSITIVE else ChangeType.NEGATIVE
+        client.loadChanges(getInputChanges(changeType))
+      }
+      assertResult(client, recipe, expectedResultAfterChange)
     } finally {
-      coordinator.stopQuery(recipe, zkHostname)
-      coordinator.dispose
+      client.dispose()
     }
-    
-    YarnActorService.stopActorSystems()
   }
 
-  private def loadRdf(documentUrl: URL): Model = {
-    val result = new LinkedHashModel
-    val urlString = documentUrl.toString
-    val format = Rio.getParserFormatForFileName(urlString)
-    val parser = Rio.createParser(format)
-    parser.setRDFHandler(new StatementCollector(result))
-    val inputStream = documentUrl.openStream
-    parser.parse(inputStream, urlString)
-    result
+  private def getInputChanges(changeType : ChangeType) = {
+  	val switchID = IDService.lookupID(_138)
+    Map(ReteActorKey.fromString("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#Switch").internalId ->
+      new ChangeSet(
+        new java.util.HashSet(toTuples(Set(switchID))), // XXX must be serializable
+        changeType
+      )
+    )
   }
 
-  private def loadRecipe: ReteRecipe = {
-    val filename = "SwitchSensor.rdfiq.recipe"
-    val extension = FilenameUtils.getExtension(filename)
-    val url = getClass.getClassLoader.getResource(filename)
-    RecipesPackage.eINSTANCE.eClass
-    val resourceSet = new ResourceSetImpl
-    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap.put(extension, new XMIResourceFactoryImpl)
-    val resource = resourceSet.createResource(URI.createURI(url.toString))
-    resource.load(Map[Object, Object]())
-    resource.getContents.get(0).asInstanceOf[ReteRecipe]
+  private def toTuples(set: Set[AnyRef]) = set.map(new Tuple(_))
+
+  private def assertResult(client: IQDYarnClient, recipe: ReteRecipe, expectedResult: Set[Tuple]) {
+	  val result = client.checkResults(recipe, patternName)
+	  println(s"Query result: $result")
+    val resolved = resolveIDs(result)
+	  assertEquals(expectedResult, resolved)
   }
 
 }

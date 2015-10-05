@@ -10,6 +10,5 @@ Require-Bundle: org.eclipse.xtend.lib,
  org.openrdf.sesame;bundle-version="2.8.0",
  org.junit;bundle-version="4.11.0",
  org.eclipse.incquery.runtime.rete.recipes;bundle-version="[0.9.0,0.9.1)"
-Export-Package: hu.bme.mit.incqueryd.rdf,
- hu.bme.mit.incqueryd.recipes
+Export-Package: hu.bme.mit.incqueryd.rdf
 

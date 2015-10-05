@@ -1,0 +1,7 @@
+vocabulary <wikidata-demo-vocabulary.nt>
+
+prefix wdt: <http://www.wikidata.org/prop/direct/>
+
+pattern highestPoint(subject, object) {
+	wdt:P610(subject, object);
+}

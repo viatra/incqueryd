@@ -23,12 +23,13 @@ import java.util.Set;
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
-import org.openrdf.rio.RDFHandlerException;
-import org.openrdf.rio.RDFParseException;
+import org.openrdf.model.Resource;
+import org.openrdf.model.Value;
 
+import com.google.common.base.Predicate;
 import com.google.common.collect.Multimap;
+import com.google.common.collect.Sets;
 
-import eu.mondo.driver.file.FileGraphDriverRead;
 import eu.mondo.driver.graph.RDFGraphDriverRead;
 
 public class TypeInputNode implements ReteNode {
@@ -44,31 +45,10 @@ public class TypeInputNode implements ReteNode {
 	}
 
 	protected Set<Tuple> tuples = new HashSet<>();
-	protected RDFGraphDriverRead driver;
 
-	private final String databaseUrl;
-
-	TypeInputNode(final TypeInputRecipe recipe, String databaseUrl) {
+	TypeInputNode(final TypeInputRecipe recipe) {
 		super();
 		this.recipe = recipe;
-		this.databaseUrl = databaseUrl;
-	}
-
-	public void load() throws IOException {
-		driver = new FileGraphDriverRead(databaseUrl);
-
-		String typeName = recipe.getTypeName();
-
-		if (recipe instanceof UnaryInputRecipe) {
-			initializeVertex(typeName);
-		} else if (recipe instanceof BinaryInputRecipe) {
-			String traceInfo = recipe.getTraceInfo();
-			if (traceInfo.startsWith(ATTRIBUTE)) {
-				initializeProperty(typeName);
-			} else if (traceInfo.startsWith(EDGE)) {
-				initializeEdge(typeName);
-			}
-		}
 	}
 	
 	public void update(ChangeSet changeSet) {
@@ -81,31 +61,50 @@ public class TypeInputNode implements ReteNode {
 				break;
 		}
 	}
+	
+	public ChangeSet filter(Predicate<Tuple> predicate) {
+		Set<Tuple> remainingTuples = Sets.newHashSet(Sets.filter(tuples, predicate));
+		Set<Tuple> removedTuples = Sets.newHashSet(Sets.difference(tuples, remainingTuples));
+		tuples = remainingTuples;
+		return new ChangeSet(removedTuples, ChangeType.NEGATIVE);
+	}
 
-	private void initializeEdge(final String typeName) throws IOException {
-		Multimap<Long, Long> edges = driver.collectEdges(typeName);
+	public void load(RDFGraphDriverRead driver) throws IOException {
+		String typeName = recipe.getTypeName();
 
-		for (Entry<Long, Long> edge : edges.entries()) {
-			tuples.add(new Tuple(edge.getKey(), edge.getValue()));
+		if (recipe instanceof UnaryInputRecipe) {
+			initializeVertex(typeName, driver);
+		} else if (recipe instanceof BinaryInputRecipe) {
+			String traceInfo = recipe.getTraceInfo();
+			if (traceInfo.startsWith(ATTRIBUTE)) {
+				initializeProperty(typeName, driver);
+			} else if (traceInfo.startsWith(EDGE)) {
+				initializeEdge(typeName, driver);
+			}
 		}
 	}
 
-	private void initializeProperty(final String typeName) throws IOException {
-		Multimap<Long, Object> properties = driver.collectProperties(typeName);
+	private void initializeEdge(final String typeName, RDFGraphDriverRead driver) throws IOException {
+		Multimap<Resource, Resource> edges = driver.collectEdges(typeName);
 
-		for (Entry<Long, Object> property : properties.entries()) {
-
-			Object attribute = property.getValue();
-			
-			tuples.add(new Tuple(property.getKey(), attribute));
+		for (Entry<Resource, Resource> edge : edges.entries()) {
+			tuples.add(new Tuple(edge.getKey().stringValue(), edge.getValue().stringValue()));
 		}
 	}
 
-	private void initializeVertex(final String typeName) throws IOException {
-		List<Long> vertices = driver.collectVertices(typeName);
+	private void initializeProperty(final String typeName, RDFGraphDriverRead driver) throws IOException {
+		Multimap<Resource, Value> properties = driver.collectProperties(typeName);
+
+		for (Entry<Resource, Value> property : properties.entries()) {
+			tuples.add(new Tuple(property.getKey().stringValue(), property.getValue().stringValue()));
+		}
+	}
+
+	private void initializeVertex(final String typeName, RDFGraphDriverRead driver) throws IOException {
+		List<Resource> vertices = driver.collectVertices(typeName);
 		
-		for (Long vertex : vertices) {
-			tuples.add(new Tuple(vertex));
+		for (Resource vertex : vertices) {
+			tuples.add(new Tuple(vertex.stringValue()));
 		}
 	}
 

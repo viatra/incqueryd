@@ -11,6 +11,15 @@ import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
 import scala.collection.JavaConversions._
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
+import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe
+import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe
+import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
+import org.apache.commons.io.FilenameUtils
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.common.util.URI
+import scala.collection.mutable.Buffer
 
 object RecipeUtils {
 
@@ -53,7 +62,23 @@ object RecipeUtils {
     val memoryUsage = Math.ceil((0.0003 * normalizedTupleCount + 52.969) * 1.4).toLong
     Math.max(128, memoryUsage)
   }
-
+  
+  val VERTEX = "vertex";
+  val EDGE = "edge";
+  val ATTRIBUTE = "attribute";
+  
+  def getNodeType(recipe: ReteNodeRecipe): String = {
+    recipe match {
+      case recipe: UnaryInputRecipe => VERTEX
+      case recipe: BinaryInputRecipe => {
+        if(recipe.getTraceInfo.startsWith(EDGE)) return EDGE
+        if(recipe.getTraceInfo.startsWith(ATTRIBUTE)) return ATTRIBUTE
+        return ""
+      }
+      case _ => recipe.getClass.getSimpleName
+    }
+  }
+  
   def getName(recipe: ReteNodeRecipe): String = {
     recipe match {
       case recipe: TypeInputRecipe => recipe.getTypeName
@@ -69,10 +94,33 @@ object RecipeUtils {
   def findRecipe(recipe: ReteRecipe, key: ReteActorKey): Option[ReteNodeRecipe] = {
     recipe.getRecipeNodes.find(ReteActorKey(_) == key)
   }
-
+  
+  def getPatternNamesFromRecipe(recipe : ReteRecipe) : Set[String] = {
+    val productionRecipes = getProductionRecipes(recipe)
+    var patternNames : Set[String] = Set[String]()
+    productionRecipes.foreach { productionRecipe => 
+      patternNames+=(productionRecipe.getTraceInfo.split("\\[")(0).trim())
+    }
+    patternNames
+  }
+  
   def findProductionRecipe(recipe: ReteRecipe, patternName: String): Option[ProductionRecipe] = {
-    val productionRecipes = recipe.getRecipeNodes.collect { case productionRecipe: ProductionRecipe => productionRecipe }
-    productionRecipes.find(_.getTraceInfo.startsWith(patternName)) // XXX relying on naming convention
+    getProductionRecipes(recipe).find(_.getTraceInfo.startsWith(patternName)) // XXX relying on naming convention
+  }
+  
+  def getProductionRecipes(recipe : ReteRecipe) : Buffer[ProductionRecipe] = {
+    recipe.getRecipeNodes.collect { case productionRecipe: ProductionRecipe => productionRecipe }
+  }
+
+  def loadRecipe(filename: String): ReteRecipe = {
+    val extension = FilenameUtils.getExtension(filename)
+    val url = getClass.getClassLoader.getResource(filename)
+    RecipesPackage.eINSTANCE.eClass
+    val resourceSet = new ResourceSetImpl
+    Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap.put(extension, new XMIResourceFactoryImpl)
+    val resource = resourceSet.createResource(URI.createURI(url.toString))
+    resource.load(Map[Object, Object]())
+    resource.getContents.get(0).asInstanceOf[ReteRecipe]
   }
 
 }

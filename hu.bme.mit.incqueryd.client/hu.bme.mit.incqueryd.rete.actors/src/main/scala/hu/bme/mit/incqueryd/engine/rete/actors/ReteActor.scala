@@ -3,9 +3,11 @@ package hu.bme.mit.incqueryd.engine.rete.actors
 import java.util.concurrent.CountDownLatch
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.future
+import scala.concurrent.Future
 
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
+
+import com.google.common.base.Predicate
 
 import akka.actor.Actor
 import akka.actor.ActorPath
@@ -14,6 +16,7 @@ import akka.actor.actorRef2Scala
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ReteNodeSlot
+import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import hu.bme.mit.incqueryd.engine.rete.nodes.AlphaNode
 import hu.bme.mit.incqueryd.engine.rete.nodes.BetaNode
 import hu.bme.mit.incqueryd.engine.rete.nodes.ProductionNode
@@ -26,25 +29,32 @@ class ReteActor extends Actor {
 
   def receive = {
     case Configure(configuration) => configure(configuration)
-    case EstablishSubscriptions() => establishSubscriptions()
+    case EstablishSubscriptions => establishSubscriptions()
     case RegisterSubscriber(slot) => registerSubscriber(slot)
-    case PropagateState(children) => propagateState(children)
-    case PropagateInputState(changeSet) => propagateInputChange(changeSet)
+    case PropagateState => {
+      val changeSet = reteNode.asInstanceOf[TypeInputNode].getChangeSetFromCurrentState
+      propagateInputChange(changeSet) 
+    }
+    case PropagateInputChange(changeSet) => {
+      reteNode.asInstanceOf[TypeInputNode].update(changeSet)
+      propagateInputChange(changeSet)
+    }
+    case FilterOutAndPropagate(subjectId) => {
+      val changeSet = reteNode.asInstanceOf[TypeInputNode].filter(new Predicate[Tuple] {
+        def apply(tuple: Tuple): Boolean = tuple.get(0) != subjectId
+      })
+      propagateInputChange(changeSet)
+    }
     case updateMessage: UpdateMessage => update(updateMessage)
     case terminationMessage: TerminationMessage => terminationProtocol(terminationMessage)
     case GetQueryResults => getQueryResults
+    case SubscribeReceiver(receiver : ActorRef) => registerReceiver(receiver)
+    case UnsubscribeReceiver(receiver : ActorRef) => unregisterReceiver(receiver);
   }
 
   def configure(configuration: ReteNodeConfiguration) = {
     recipe = configuration.getReteNodeRecipe
     reteNode = ReteNodeFactory.createNode(configuration)
-    reteNode match {
-      case inputNode: TypeInputNode => {
-        log(s"Loading input node of type ${inputNode.getRecipe.getTypeName}")
-        inputNode.load
-      }
-      case _ => {}
-    }
     log("Configuration finished")
     sender ! ConfigurationFinished
   }
@@ -67,53 +77,34 @@ class ReteActor extends Actor {
   }
 
   val subscribers = scala.collection.mutable.Map[ActorPath, ReteNodeSlot]()
+  var receivers : Set[ActorRef] = Set[ActorRef]()
 
-  def propagateState(children: Set[ReteActorConnection]) = {
-    if (children.isEmpty) {
-      sender ! StatePropagated
-    } else {
-      log(s"Propagating state to ${children.size} children")
-      for (ReteActorConnection(_, slot, child) <- children) {
-        val changeSet = reteNode.asInstanceOf[TypeInputNode].getChangeSetFromCurrentState
-        val route = List()
-        sendToSubscriber(changeSet, route, child, slot)
-      }
-      val originalSender = sender
-      pending = new CountDownLatch(children.size)
-      future {
-        pending.await
-      } onSuccess {
-        case _ =>
-          originalSender ! StatePropagated
-      } // TODO timeout?
-    }
+  def registerReceiver(receiver : ActorRef) {
+    receivers+=receiver;
   }
   
-  // XXX merge this method with propagateState?
-  def propagateInputChange(changeSet : ChangeSet) = {
-    if(changeSet.getTuples.isEmpty()) {
+  def unregisterReceiver(receiver : ActorRef) {
+    receivers-=receiver
+  }
+  
+  def propagateInputChange(changeSet: ChangeSet) = {
+    if (changeSet.getTuples.isEmpty || subscribers.isEmpty) {
       sender ! StatePropagated
     } else {
-      log(s"Propagating input changes to ${subscribers.size} subscriber")
+      log(s"Propagating input changes to ${subscribers.size} subscribers")
       for ((subscriber, slot) <- subscribers) {
         val route = List()
         sendToSubscriber(changeSet, route, subscriber, slot)
       }
-      
-      // Update the input node state
-      reteNode.asInstanceOf[TypeInputNode].update(changeSet)
- 
       val originalSender = sender
       pending = new CountDownLatch(subscribers.size)
-      future {
+      Future {
         pending.await
-      } onSuccess {
-        case _ =>
-          originalSender ! StatePropagated
-      } // TODO timeout?
-    }
+        originalSender ! StatePropagated
+      }
+    } // TODO timeout?
   }
-  
+
   var pending: CountDownLatch = _
 
   def update(updateMessage: UpdateMessage) = {
@@ -135,7 +126,9 @@ class ReteActor extends Actor {
       case _ => {}
     }
     reteNode match {
-      case _: ProductionNode => {
+      case productionNode: ProductionNode => {
+        if(!receivers.isEmpty) 
+          receivers.foreach { _ ! AkkaUtils.serializeMessage(productionNode.getResults) }
         if (subscribers.isEmpty) {
           terminationProtocol(new TerminationMessage(updateMessage.route))
         }

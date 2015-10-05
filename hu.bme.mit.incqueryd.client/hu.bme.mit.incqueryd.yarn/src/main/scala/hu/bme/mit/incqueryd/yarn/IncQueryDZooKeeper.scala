@@ -35,10 +35,14 @@ object IncQueryDZooKeeper {
   val port = 2181
   val anyVersion = -1
 
-  val rdfTypesPath = "/rdftypes"
-  val reteNodesPath = "/retenodes"
+  val reteNodesPath = "/retenodes"  // query nodes
+  
   val inputNodesPath = "/inputnodes"
-
+  val nodeType = "/nodetype" 
+  val rdfType = "/rdftype" // RDF type
+  
+  val runningQueries = "/queries"
+  
   val coordinatorsPath = "/coordinators"
   val defaultCoordinatorPath = coordinatorsPath + "/default"
   
@@ -156,7 +160,11 @@ object IncQueryDZooKeeper {
   }
 
   def getStringData(path: String): String = {
-    new String(getData(path))
+    val data = getData(path)
+    if (data == null) {
+      throw new IllegalArgumentException(s"No znode found at $path")
+    }
+    new String(data)
   }
 
   def getDeserializedData[A](path: String): A = {
@@ -167,7 +175,12 @@ object IncQueryDZooKeeper {
     getConnection()
     zk.getData(path, watcher, new Stat())
   }
-
+  
+  def getChildrenWithWatcher(path: String, watcher : Watcher) = {
+    getConnection()
+    zk.getChildren(path, watcher)
+  }
+  
   // Helper methods
   private def serialize(obj: AnyRef): Array[Byte] = {
     obj match {

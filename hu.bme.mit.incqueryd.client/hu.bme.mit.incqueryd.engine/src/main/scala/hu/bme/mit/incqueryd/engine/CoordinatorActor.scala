@@ -2,13 +2,11 @@ package hu.bme.mit.incqueryd.engine
 
 import akka.actor.Actor
 import eu.mondo.driver.file.FileGraphDriverRead
-import hu.bme.mit.incqueryd.inventory.{ MachineInstance, Inventory }
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.openrdf.model.vocabulary.{ OWL, RDF, RDFS }
 import org.openrdf.model.{ Model, URI }
 import scala.collection.JavaConversions._
 import scala.collection.mutable.ListBuffer
-import hu.bme.mit.incqueryd.inventory.MachineInstance
 import scala.collection.JavaConverters._
 import java.util.ArrayList
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
@@ -20,7 +18,6 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory
 import scala.collection.mutable
-import hu.bme.mit.incqueryd.inventory.MachineInstance
 import org.openrdf.model.Statement
 import org.openrdf.model.Resource
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
@@ -58,7 +55,11 @@ import hu.bme.mit.incqueryd.engine.rete.actors.ActorLookupUtils
 import akka.actor.ActorPath
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import hu.bme.mit.incqueryd.engine.rete.actors.UpdateMessage
-import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputState
+import hu.bme.mit.incqueryd.spark.client.IQDSparkClient
+import eu.mondo.driver.graph.RDFGraphDriverRead
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
+import hu.bme.mit.incqueryd.idservice.IDService
+import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputChange
 
 class CoordinatorActor extends Actor {
   
@@ -67,34 +68,50 @@ class CoordinatorActor extends Actor {
   
   private var types : Set[RdfType] = _
   
-  def receive = AkkaUtils.propagateException(sender) ({
-    case LoadData(vocabulary, hdfsPath, rmHostname, fileSystemUri) => {
-      types = getTypes(vocabulary, hdfsPath)
+  def receive = AkkaUtils.propagateException(sender) {
+    case DeployInputNodes(vocabulary, databaseConnection, rmHostname, fileSystemUri) => {
+      types = getTypes(vocabulary, databaseConnection.getDriver)
       val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
       val actorsByRecipe = deploy(typeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.inputNodesPath)
-      configure(actorsByRecipe, hdfsPath)
+      configure(actorsByRecipe)
       sender ! true
     }
-    case StartQuery(recipeJson, rmHostname, fileSystemUri) => {
+    case LoadData(databaseConnection) => {
+      IQDSparkClient.loadData(databaseConnection)
+      sender ! true
+    }
+    case StartQuery(recipeJson, rdfiqContents, rmHostname, fileSystemUri) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe]).toSet
       val otherActorsByRecipe = deploy(notTypeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.reteNodesPath)
-      configure(otherActorsByRecipe, "")
+      val queryID = IDService.lookupID(recipeJson)
+      IncQueryDZooKeeper.setData(s"${IncQueryDZooKeeper.runningQueries}/$queryID", rdfiqContents.getBytes)
+      RecipeUtils.getPatternNamesFromRecipe(recipe).foreach { patternName => 
+        val patternPath = s"${IncQueryDZooKeeper.runningQueries}/$queryID/$patternName"
+        IncQueryDZooKeeper.createDir(patternPath)
+        IncQueryDZooKeeper.setData(patternPath, getProductionActorPath(recipeJson, patternName).toSerializationFormat.getBytes)
+      }
+      configure(otherActorsByRecipe)
       establishSubscriptions(otherActorsByRecipe)
       val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
       val inputActorsByRecipe = lookup(typeInputRecipes)
-      propagateInputStates(inputActorsByRecipe, recipe)
+      propagateInputStates(inputActorsByRecipe)
       sender ! true
     }
     case PropagateInputChanges(inputChangesMap : Map[String, ChangeSet]) => {
       propagateInputChanges(inputChangesMap)
       sender ! true
     }
+    case StartOutputStream(recipeJson) => {
+      IQDSparkClient.startOutputStream(IDService.lookupID(recipeJson))
+      sender ! true
+    }
+    case StopOutputStreams => {
+      IQDSparkClient.stopOutputStreams()
+      sender ! true
+    }
     case CheckResults(recipeJson, patternName) => {
-      val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
-      val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)
-      val productionRecipe = productionRecipeOption.get // XXX Option.get
-      val production = ActorLookupUtils.findActor(productionRecipe).get // XXX Option.get // XXX Option.get
+      val production = getProductionActorPath(recipeJson, patternName)
       AkkaUtils.convertToRemoteActorRef(production, context).ask(GetQueryResults).pipeTo(sender)
     }
     case StopQuery(recipeJson) => {
@@ -103,25 +120,39 @@ class CoordinatorActor extends Actor {
       undeploy(notTypeInputRecipes)
       sender ! true
     }
-    case Dispose() => {
+    case Dispose => {
       val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
       undeploy(typeInputRecipes)
       sender ! true
     }
-  })
+    case StartWikidataStream(databaseConnection) => {
+      IQDSparkClient.startWikidataStreaming(databaseConnection)
+      sender ! true
+    }
+    case StopWikidataStream => {
+      IQDSparkClient.stopWikidataStreaming()
+      sender ! true
+    }
+  }
 
-  def getTypes(vocabulary: Model, hdfsPath: String): Set[RdfType] = {
-    val hdfs = HdfsUtils.getDistributedFileSystem(hdfsPath)
-    val driver = new FileGraphDriverRead(hdfsPath)
+  def getTypes(vocabulary: Model, driver: RDFGraphDriverRead): Set[RdfType] = {
     val rdfClassStatements = vocabulary.filter(null, RDF.TYPE, RDFS.CLASS).toSet
     val owlClassStatements = vocabulary.filter(null, RDF.TYPE, OWL.CLASS).toSet
     val classes = getUriSubjects(rdfClassStatements union owlClassStatements)
     val classTypes: Set[RdfType] = classes.map(RdfType(RdfType.Class, _, driver))
-    val objectProperties = getUriSubjects(vocabulary.filter(null, RDF.TYPE, OWL.OBJECTPROPERTY).toSet)
+    val objectProperties = getUriSubjects(vocabulary.filter(null, RDF.TYPE, OWL.OBJECTPROPERTY).toSet union vocabulary.filter(null, RDF.TYPE, RDF.PROPERTY).toSet)
     val objectPropertyTypes: Set[RdfType] = objectProperties.map(RdfType(RdfType.ObjectProperty, _, driver))
-    val datatypeProperties = getUriSubjects(vocabulary.filter(null, RDF.TYPE, OWL.DATATYPEPROPERTY).toSet)
+    val datatypeProperties = getUriSubjects(vocabulary.filter(null, RDF.TYPE, OWL.DATATYPEPROPERTY).toSet union vocabulary.filter(null, RDF.TYPE, OWL.ANNOTATIONPROPERTY).toSet)
     val datatypePropertyTypes: Set[RdfType] = datatypeProperties.map(RdfType(RdfType.DatatypeProperty, _, driver))
     classTypes union objectPropertyTypes union datatypePropertyTypes
+  }
+  
+  private def getProductionActorPath(recipeJson : String, patternName : String) : ActorPath = {
+    val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
+      val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)
+      val productionRecipe = productionRecipeOption.get // XXX Option.get
+      val actorPath = ActorLookupUtils.findActor(productionRecipe).get // XXX Option.get
+      actorPath
   }
   
   def getUriSubjects(statements: Set[Statement]): Set[Resource] = {
@@ -139,6 +170,8 @@ class CoordinatorActor extends Actor {
     recipes.foreach { recipe => 
       val zkActorPath = ActorLookupUtils.getZKActorPath(recipe)
       IncQueryDZooKeeper.setData(s"$zkActorPath${IncQueryDZooKeeper.actorNamePath}", RemoteReteActor.reteActorName(recipe).getBytes)
+      IncQueryDZooKeeper.setData(s"$zkActorPath${IncQueryDZooKeeper.nodeType}", RecipeUtils.getNodeType(recipe).getBytes)
+      IncQueryDZooKeeper.setData(s"$zkActorPath${IncQueryDZooKeeper.rdfType}", RecipeUtils.getName(recipe).getBytes)
     }
     
     // Wait until actors start
@@ -154,29 +187,31 @@ class CoordinatorActor extends Actor {
     }
   }
 
-  def configure(actorsByRecipe: Map[ReteNodeRecipe, ActorPath], hdfsPath: String): Unit = {
+  def configure(actorsByRecipe: Map[ReteNodeRecipe, ActorPath]): Unit = {
     wait(actorsByRecipe.map { case (recipe, actor) =>
-      AkkaUtils.convertToRemoteActorRef(actor, context).ask(Configure(new ReteNodeConfiguration(recipe, List(), hdfsPath)))
+      AkkaUtils.convertToRemoteActorRef(actor, context).ask(Configure(new ReteNodeConfiguration(recipe)))
     })
   }
 
   def establishSubscriptions(actorsByRecipe: Map[ReteNodeRecipe, ActorPath]): Unit = {
     wait(actorsByRecipe.values.map { actor =>
-      AkkaUtils.convertToRemoteActorRef(actor, context).ask(EstablishSubscriptions())
+      AkkaUtils.convertToRemoteActorRef(actor, context).ask(EstablishSubscriptions)
     })
   }
   
-  def propagateInputStates(actorsByRecipe: Map[ReteNodeRecipe, ActorPath], recipe: ReteRecipe): Unit = {
+  def propagateInputStates(actorsByRecipe: Map[ReteNodeRecipe, ActorPath]): Unit = {
     wait(actorsByRecipe.values.map { actor =>
-      val children = ActorLookupUtils.getChildrenConnections(actor, recipe)
-      AkkaUtils.convertToRemoteActorRef(actor, context).ask(PropagateState(children))
+      AkkaUtils.convertToRemoteActorRef(actor, context).ask(PropagateState)
     })
   }
 
   def propagateInputChanges(inputChangesMap : Map[String, ChangeSet]) {
     wait(inputChangesMap.map{case (inputTypeId, changeSet) => 
       val inputActorPath = ActorLookupUtils.findInputActor(inputTypeId).get
-      AkkaUtils.convertToRemoteActorRef(inputActorPath, context).ask(PropagateInputState(changeSet))})
+      val inputActor = AkkaUtils.convertToRemoteActorRef(inputActorPath, context)
+      println(s"Asking $inputActorPath to propagate $changeSet")
+      inputActor.ask(PropagateInputChange(changeSet))
+    })
   }
   
   private def wait(futures: Iterable[Future[Any]]) { // XXX don't use this, compose Futures

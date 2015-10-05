@@ -22,6 +22,7 @@ ENV PATH $PATH:$JAVA_HOME/bin
 RUN curl -s http://www.eu.apache.org/dist/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s ./hadoop-2.6.0 hadoop
 
+ENV DEBIAN_FRONTEND noninteractive
 ENV HADOOP_PREFIX /usr/local/hadoop
 ENV HADOOP_COMMON_HOME /usr/local/hadoop
 ENV HADOOP_HDFS_HOME /usr/local/hadoop
@@ -53,15 +54,26 @@ ADD mapred-site.xml $HADOOP_PREFIX/etc/hadoop/mapred-site.xml
 ADD yarn-site.xml $HADOOP_PREFIX/etc/hadoop/yarn-site.xml
 
 ADD slaves $HADOOP_PREFIX/etc/hadoop/slaves
-ADD write-hosts.sh /etc/write-hosts.sh
-RUN chown root:root /etc/write-hosts.sh
-RUN chmod 700 /etc/write-hosts.sh
 
+ADD add-dns-entry.sh /etc/add-dns-entry.sh
+RUN chown root:root /etc/add-dns-entry.sh
+RUN chmod 700 /etc/add-dns-entry.sh
+
+ADD add-dns-entries.sh /etc/add-dns-entries.sh
+RUN chown root:root /etc/add-dns-entries.sh
+RUN chmod 700 /etc/add-dns-entries.sh
 
 ADD write-auth-keys.sh /etc/write-auth-keys.sh
 RUN chown root:root /etc/write-auth-keys.sh
 RUN chmod 700 /etc/write-auth-keys.sh
 
+ADD fix_networking.sh /etc/fix_networking.sh
+RUN chown root:root /etc/fix_networking.sh
+RUN chmod 700 /etc/fix_networking.sh
+
+ADD add-yarn-node.sh /usr/local/hadoop/add-yarn-node.sh
+RUN chown root:root /usr/local/hadoop/add-yarn-node.sh
+RUN chmod 700 /usr/local/hadoop/add-yarn-node.sh
 
 RUN $HADOOP_PREFIX/bin/hdfs namenode -format
 
@@ -81,8 +93,8 @@ RUN chmod +x /usr/local/hadoop/etc/hadoop/*-env.sh
 RUN ls -la /usr/local/hadoop/etc/hadoop/*-env.sh
 
 # Download and install ZooKeeper
-RUN curl -s http://mirrors.ukfast.co.uk/sites/ftp.apache.org/zookeeper/stable/zookeeper-3.4.6.tar.gz | tar -xz -C /usr/local/
-RUN cd /usr/local && ln -s ./zookeeper-3.4.6 zookeeper
+RUN curl -s http://mirrors.ukfast.co.uk/sites/ftp.apache.org/zookeeper/zookeeper-3.5.1-alpha/zookeeper-3.5.1-alpha.tar.gz | tar -xz -C /usr/local/
+RUN cd /usr/local && ln -s ./zookeeper-3.5.1-alpha zookeeper
 
 RUN mkdir -p /var/lib/zookeeper
 
@@ -92,19 +104,51 @@ ADD write-zoo-myid.sh /etc/write-zoo-myid.sh
 RUN chown root:root /etc/write-zoo-myid.sh
 RUN chmod 700 /etc/write-zoo-myid.sh
 
-ADD zkServer.sh /usr/local/zookeeper/bin/zkServer.sh
-RUN chown root:root /usr/local/zookeeper/bin/zkServer.sh
-RUN chmod 700 /usr/local/zookeeper/bin/zkServer.sh
+ADD start-zk-server.sh /usr/local/zookeeper/bin/start-zk-server.sh
+RUN chown root:root /usr/local/zookeeper/bin/start-zk-server.sh
+RUN chmod 700 /usr/local/zookeeper/bin/start-zk-server.sh
+
+# Install Spark
+RUN curl -s http://static.incquerylabs.com/projects/incquery-d/spark-iqd-1.5.0.tgz | tar -xz -C /usr/local/
+RUN cd /usr/local && ln -s ./spark-1.5.0-bin-iqd-spark-1.5 spark
+
+ENV SPARK_HOME=/usr/local/spark
+RUN echo "export SPARK_HOME=/usr/local/spark" >> /etc/profile
+RUN echo "export SPARK_CLASSPATH=$SPARK_HOME/lib/" >> /etc/profile
+
+ADD start_spark.sh /usr/local/spark/start_spark.sh
+RUN chown root:root /usr/local/spark/start_spark.sh
+RUN chmod 700 /usr/local/spark/start_spark.sh
+
+# Install Hazelcast
+RUN cd /tmp/ && curl -s -o hazelcast-3.4.5.tar.gz http://download.hazelcast.com/download.jsp --data "version=hazelcast-3.4.5&type=tar&p=118961842"
+RUN tar -xzf /tmp/hazelcast-3.4.5.tar.gz -C /usr/local/
+RUN cd /usr/local && ln -s ./hazelcast-3.4.5 hazelcast
+
+ENV HZ_HOME /usr/local/hazelcast
+RUN echo "export HZ_HOME=/usr/local/hazelcast" >> /etc/profile
+RUN cd $HZ_HOME/lib && curl -s -o snowcast-1.0.0-RC1.jar http://central.maven.org/maven2/com/noctarius/snowcast/snowcast/1.0.0-RC1/snowcast-1.0.0-RC1.jar
+
+ADD hz_server.sh $HZ_HOME/bin/server.sh
+RUN chown root:root $HZ_HOME/bin/server.sh
+RUN chmod 700 $HZ_HOME/bin/server.sh
+
+ADD hazelcast.xml $HZ_HOME/bin/hazelcast.xml
 
 # Add dnsmasq.conf file
 ADD dnsmasq.conf /etc/dnsmasq.conf
 ADD dnsmasq.resolv.conf /etc/dnsmasq.resolv.conf
 
+# Install mosquitto
+RUN curl -s -o mosquitto-repo.gpg.key http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
+RUN apt-key add mosquitto-repo.gpg.key
+RUN cd /etc/apt/sources.list.d/ && curl -s -o mosquitto-wheezy.list http://repo.mosquitto.org/debian/mosquitto-wheezy.list
+RUN apt-get update
+RUN apt-get -y install mosquitto
+
 # Add scripts
 ADD copy_runtime_to_hdfs.sh /usr/local/hadoop/copy_runtime_to_hdfs.sh
 RUN chmod 700 /usr/local/hadoop/copy_runtime_to_hdfs.sh
 
-# CMD ["/etc/bootstrap.sh", "-d"]
-
-EXPOSE 50020 50090 50070 50010 50075 8031 8032 8033 8040 8042 49707 22 8088 8030 19888 2888 3888 2181 9990 10020 19888 2552
+EXPOSE 50020 50090 50070 50010 50075 8031 8032 8033 8040 8042 49707 22 8088 8030 19888 2888 3888 2181 2182 10020 19888 2552
 # XXX duplicated ports

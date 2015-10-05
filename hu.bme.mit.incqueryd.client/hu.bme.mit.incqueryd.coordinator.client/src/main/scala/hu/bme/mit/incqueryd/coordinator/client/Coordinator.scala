@@ -1,14 +1,17 @@
 package hu.bme.mit.incqueryd.coordinator.client
 
 import java.util.HashSet
+
 import scala.collection.JavaConversions._
 import scala.concurrent.Await
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.concurrent.duration._
+
 import org.apache.hadoop.yarn.api.records.ApplicationId
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.openrdf.model.Model
+
 import akka.pattern.ask
 import akka.util.Timeout
 import hu.bme.mit.incqueryd.actorservice.ActorId
@@ -16,14 +19,14 @@ import hu.bme.mit.incqueryd.actorservice.ActorId
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 import hu.bme.mit.incqueryd.actorservice.YarnActorService
 import hu.bme.mit.incqueryd.engine._
+import hu.bme.mit.incqueryd.engine.PropagateInputChanges
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 import hu.bme.mit.incqueryd.engine.util.EObjectSerializer
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
-import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
-import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
-import hu.bme.mit.incqueryd.engine.PropagateInputChanges
 
 object Coordinator {
   final val actorName = "coordinator"
@@ -41,18 +44,43 @@ object Coordinator {
 }
 
 class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: ApplicationId) {
-
-  def loadData(vocabulary: Model, hdfsPath: String, rmHostname: String, fileSystemUri: String): Boolean = {
-    println(s"Loading data")
-    askCoordinator[Boolean](LoadData(vocabulary, hdfsPath, rmHostname, fileSystemUri))
+  
+  def deployInputNodes(vocabulary: Model, databaseConnection: DatabaseConnection, rmHostname: String, fileSystemUri: String): Boolean = {
+    println(s"Deploying input nodes")
+    askCoordinator[Boolean](DeployInputNodes(vocabulary, databaseConnection, rmHostname, fileSystemUri))
   }
 
-  def startQuery(recipe: ReteRecipe, rmHostname: String, fileSystemUri: String): Boolean = {
+  def loadData(databaseConnection: DatabaseConnection): Boolean = {
+    println(s"Loading data")
+    askCoordinator[Boolean](LoadData(databaseConnection))
+  }
+
+  def startQuery(recipe: ReteRecipe, rdfiqContents: String, rmHostname: String, fileSystemUri: String): Boolean = {
     println(s"Starting query")
     val recipeJson = EObjectSerializer.serializeToString(recipe)
-    askCoordinator[Boolean](StartQuery(recipeJson, rmHostname, fileSystemUri))
+    askCoordinator[Boolean](StartQuery(recipeJson, rdfiqContents, rmHostname, fileSystemUri))
   }
 
+  def startOutputStream(recipe : ReteRecipe) = {
+    val recipeJSon = EObjectSerializer.serializeToString(recipe)
+    askCoordinator[Boolean](StartOutputStream(recipeJSon))
+  }
+  
+  def stopOutputStreams() {
+    println(s"Stopping output streams..")
+    askCoordinator[Boolean](StopOutputStreams)
+  }
+  
+  def startWikidataStream(databaseConnection: DatabaseConnection) = {
+    println("Starting wikidata stream...")
+    askCoordinator[Boolean](StartWikidataStream(databaseConnection))
+  }
+  
+  def stopWikidataStream() {
+    println(s"Stopping wikidata stream...")
+    askCoordinator[Boolean](StopWikidataStream)
+  }
+  
   def checkResults(recipe: ReteRecipe, patternName: String): Set[Tuple] = {
     println(s"Checking results")
     val recipeJson = EObjectSerializer.serializeToString(recipe)
@@ -60,6 +88,7 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
   }
   
   def sendChangesToInputs(inputChanges : Map[String, ChangeSet]): Boolean = {
+    println(s"Sending changes to inputs")
     askCoordinator[Boolean](PropagateInputChanges(inputChanges))
   }
   
@@ -76,8 +105,8 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
   }
 
   def dispose = {
-    println("Dispose ... ")
-    askCoordinator[Boolean](Dispose())
+    println("Disposing")
+    askCoordinator[Boolean](Dispose)
     client.kill(applicationId)
   }
 

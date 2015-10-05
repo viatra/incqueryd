@@ -41,11 +41,13 @@
 	<modules>
 		<module>hu.bme.mit.incqueryd.actorservice</module>
 		<module>hu.bme.mit.incqueryd.inventory</module>
+		<module>hu.bme.mit.incqueryd.idservice</module>
 		<module>hu.bme.mit.incqueryd.rete.nodes</module>
 		<module>hu.bme.mit.incqueryd.rete.actors</module>
 		<module>hu.bme.mit.incqueryd.engine</module>
 		<module>hu.bme.mit.incqueryd.coordinator.client</module>
 		<module>hu.bme.mit.incqueryd.yarn</module>
+		<module>hu.bme.mit.incqueryd.spark</module>
 	</modules>
 	<name>IncQuery-D Client</name>
 	<description>The API through which the services of the runtime can be accessed.</description>

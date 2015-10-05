@@ -16,3 +16,5 @@ xtend-gen/*
 *.out
 *.iml
 workspace.xml
+.cache-main
+.cache-tests

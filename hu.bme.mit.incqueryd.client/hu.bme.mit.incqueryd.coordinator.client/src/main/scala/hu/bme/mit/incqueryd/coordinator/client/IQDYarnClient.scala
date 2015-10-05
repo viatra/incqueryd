@@ -19,6 +19,8 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
+import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 
 /**
  *
@@ -33,63 +35,64 @@ class IQDYarnClient {
   val DEFAULT_HDFS_URL = s"hdfs://$DEFAULT_RM_HOST:9000"
   val DEFAULT_TIMEOUT = 900 seconds
 
-  var filesystem: FileSystem = null
-  var advancedYarnClient: AdvancedYarnClient = null
-  var coordinator: Coordinator = null
-  var metamodel: Model = null
+  val filesystem: FileSystem = HdfsUtils.getDistributedFileSystem(DEFAULT_HDFS_URL)
+  val advancedYarnClient: AdvancedYarnClient = new AdvancedYarnClient(DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
+  Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), DEFAULT_TIMEOUT)
+  val coordinator: Coordinator = Await.result(Coordinator.create(advancedYarnClient), DEFAULT_TIMEOUT)
 
-  var queries : scala.collection.mutable.Map[String, ReteRecipe] = scala.collection.mutable.Map()
+  val patternsToRecipes : scala.collection.mutable.Map[String, ReteRecipe] = scala.collection.mutable.Map()
 
-  def connect() {
-    filesystem = HdfsUtils.getDistributedFileSystem(DEFAULT_HDFS_URL)
-    advancedYarnClient = new AdvancedYarnClient(DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
+  def uploadFile(modelURL: URL): String = {
+    val modelFile = new File(modelURL.getPath)
+    val modelFilePath = s"$DEFAULT_HDFS_URL/test/${modelFile.getName}"
+    HdfsUtils.upload(filesystem, modelFile, modelFilePath)
+    modelFilePath
   }
 
-  def startActorSystems() {
-    Await.result(Future.sequence(YarnActorService.startActorSystems(advancedYarnClient)), DEFAULT_TIMEOUT)
-  }
-
-  def startCoordinator() {
-    coordinator = Await.result(Coordinator.create(advancedYarnClient), DEFAULT_TIMEOUT)
+  def deployInputNodes(metamodel: Model, databaseConnection: DatabaseConnection) {
+    coordinator.deployInputNodes(metamodel, databaseConnection, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
   }
   
-  def loadMetamodel(metamodelURL: URL) {
-    metamodel = new LinkedHashModel
+  def loadChanges(changesMap : Map[String, ChangeSet]) {
+    coordinator.sendChangesToInputs(changesMap)
+  }
+
+  def startQuery(reteRecipe: ReteRecipe, rdfiqContents: String) {
+    coordinator.startQuery(reteRecipe, rdfiqContents, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
+    startOutputStream(reteRecipe)
+    println("Waiting until output stream processing starts")
+    Thread.sleep(45000)
+  }
+  
+  def startOutputStream(reteRecipe: ReteRecipe) {
+    coordinator.startOutputStream(reteRecipe)
+  }
+  
+  def checkResults(reteRecipe: ReteRecipe, patternName: String): Set[Tuple] = {
+    if (!patternsToRecipes.contains(patternName)) {
+      patternsToRecipes.put(patternName, reteRecipe)
+    }
+    coordinator.checkResults(reteRecipe, patternName)
+  }
+  
+  def dispose() {
+    coordinator.dispose
+    YarnActorService.stopActorSystems()
+  }
+
+}
+
+object IQDYarnClient {
+
+  def loadMetamodel(metamodelURL: URL): Model = {
+    val metamodel = new LinkedHashModel
     val urlString = metamodelURL.toString
     val format = Rio.getParserFormatForFileName(urlString)
     val parser = Rio.createParser(format)
     parser.setRDFHandler(new StatementCollector(metamodel))
     val inputStream = metamodelURL.openStream
     parser.parse(inputStream, urlString)
-  }
-
-  def loadInitialData(modelURL: URL) {
-    val modelFile = new File(modelURL.getPath)
-    val modelFilePath = s"$DEFAULT_HDFS_URL/test/${modelFile.getName}"
-    HdfsUtils.upload(filesystem, modelFile, modelFilePath)
-    coordinator.loadData(metamodel, modelFilePath, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
-  }
-  
-  def loadChanges(changesMap : java.util.Map[String, ChangeSet]) {
-    coordinator.sendChangesToInputs(changesMap.toMap)
-  }
-  
-  def startQuery(reteRecipe: ReteRecipe) {
-    coordinator.startQuery(reteRecipe, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
-  }
-
-  def checkQuery(reteRecipe: ReteRecipe, patternName: String): java.util.Collection[Tuple] = {
-    if (!queries.keySet.contains(patternName)) {
-      startQuery(reteRecipe)
-      queries.put(patternName, reteRecipe)
-    }
-    asJavaCollection(coordinator.checkResults(reteRecipe, patternName))
-  }
-
-  def dispose() {
-    queries.values.foreach { recipe =>  coordinator.stopQuery(recipe, DEFAULT_RM_HOST)}
-    coordinator.dispose
-    YarnActorService.stopActorSystems()
+    metamodel
   }
 
 }

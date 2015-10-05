@@ -32,7 +32,7 @@ class ServiceActor extends Actor {
   }
 
   override def postStop() = {
-    context.system.terminate()
+    context.system.shutdown() // XXX akka-2.3
   }
 }
 
