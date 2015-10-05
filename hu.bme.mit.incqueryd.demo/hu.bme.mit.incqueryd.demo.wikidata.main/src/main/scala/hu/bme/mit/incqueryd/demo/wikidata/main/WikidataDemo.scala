@@ -28,15 +28,10 @@ object WikidataDemo {
     val recipe = RecipeUtils.loadRecipe(recipeFilename)
     client.startQuery(recipe, Resources.toString(Resources.getResource(rdfiqFilename), Charsets.UTF_8))
     client.coordinator.loadData(databaseConnection)
-    val results = client.checkResults(recipe, patternName)
-    println(s"Initial results of $patternName:\n$results")
-    println("Starting Wikidata stream processor")
     client.coordinator.startWikidataStream(databaseConnection)
     println("Press Enter to quit!")
     System.in.read()
-    println("Stopping Wikidata stream processor")
     client.coordinator.stopWikidataStream()
-    println("Disposing IQD")
     client.dispose()
   }
 

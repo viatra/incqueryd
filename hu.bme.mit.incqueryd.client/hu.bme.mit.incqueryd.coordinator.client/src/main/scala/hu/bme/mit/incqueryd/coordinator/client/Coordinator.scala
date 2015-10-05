@@ -105,7 +105,7 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
   }
 
   def dispose = {
-    println("Dispose ... ")
+    println("Disposing")
     askCoordinator[Boolean](Dispose)
     client.kill(applicationId)
   }
