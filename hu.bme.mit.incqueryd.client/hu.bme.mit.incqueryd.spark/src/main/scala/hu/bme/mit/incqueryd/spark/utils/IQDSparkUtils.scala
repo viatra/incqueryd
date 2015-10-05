@@ -94,7 +94,7 @@ object IQDSparkUtils {
     Array(HDFS_JAR_PATH)
   }
   
-  def getInputActorPathByZnodeId(znodeId: String): ActorPath = {
+  def getInputActorPathByZnodePath(znodeId: String): ActorPath = {
     val address = HostAndPort.fromString(IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$znodeId${IncQueryDZooKeeper.addressPath}"))
     val actorName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$znodeId${IncQueryDZooKeeper.actorNamePath}")
     val actorId = new ActorId(YarnActorService.actorSystemName, address.getHostText, address.getPort, actorName)

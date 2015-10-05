@@ -1,8 +1,9 @@
 package hu.bme.mit.incqueryd.spark.recievers
 
 import java.net.InetAddress
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
+
+import scala.collection.JavaConversions.asScalaIterator
+
 import org.apache.spark.annotation.DeveloperApi
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming.receiver.Receiver
@@ -10,29 +11,25 @@ import org.pircbotx.Configuration
 import org.pircbotx.PircBotX
 import org.pircbotx.hooks.ListenerAdapter
 import org.pircbotx.hooks.types.GenericMessageEvent
-import hu.bme.mit.incqueryd.spark.utils.Delta
-import org.wikidata.wdtk.wikibaseapi.WikibaseDataFetcher
-import org.wikidata.wdtk.datamodel.interfaces.EntityDocument
-import org.wikidata.wdtk.datamodel.interfaces.StatementDocument
-import scala.collection.JavaConversions._
-import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
-import hu.bme.mit.incqueryd.engine.rete.actors.RecipeUtils
-import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils
-import hu.bme.mit.incqueryd.spark.utils.VertexDelta
-import org.wikidata.wdtk.datamodel.interfaces.ValueSnak
 import org.wikidata.wdtk.datamodel.interfaces.EntityIdValue
-import hu.bme.mit.incqueryd.spark.utils.EdgeDelta
-import org.wikidata.wdtk.datamodel.interfaces.StringValue
-import hu.bme.mit.incqueryd.spark.utils.AttributeDelta
-import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
 import org.wikidata.wdtk.datamodel.interfaces.MonolingualTextValue
-import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
-import eu.mondo.driver.graph.RDFGraphDriverReadWrite
-import java.util.Map.Entry
+import org.wikidata.wdtk.datamodel.interfaces.StatementDocument
+import org.wikidata.wdtk.datamodel.interfaces.StringValue
+import org.wikidata.wdtk.datamodel.interfaces.ValueSnak
+import org.wikidata.wdtk.wikibaseapi.WikibaseDataFetcher
+
 import eu.mondo.driver.graph.RDFGraphDriverRead
-import org.apache.log4j.Logger
-import hu.bme.mit.incqueryd.spark.utils.ResetDelta
-import org.openrdf.model.Statement
+import eu.mondo.driver.graph.RDFGraphDriverReadWrite
+import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType
+import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
+import hu.bme.mit.incqueryd.spark.utils.UpdateAttribute
+import hu.bme.mit.incqueryd.spark.utils.Update
+import hu.bme.mit.incqueryd.spark.utils.Delta
+import hu.bme.mit.incqueryd.spark.utils.UpdateEdge
+import hu.bme.mit.incqueryd.spark.utils.NoChange
+import hu.bme.mit.incqueryd.spark.utils.Reset
+import hu.bme.mit.incqueryd.spark.utils.SendUpdates
+import hu.bme.mit.incqueryd.spark.utils.UpdateVertex
 
 /**
  * @author pappi
@@ -60,12 +57,9 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
         if (!edit.robot && edit.pageTitle.startsWith("Q")) { // Bot edits come too frequently
         	println(s"Processing $edit")
           val driver = databaseConnection.getDriver
-          if (!edit.newPage) {
-            val oldDeltas = getOldDeltas(edit)
-            apply(oldDeltas, driver)
-          }
-          val newDeltas = getNewDeltas(edit)
-          apply(newDeltas, driver)
+          val oldDelta = getOldDelta(edit)
+          val newDelta = getNewDelta(edit)
+          apply(Set(oldDelta, newDelta), driver)
         }
       }
     }
@@ -99,14 +93,18 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
     diffSize: Int,
     comment: String)
 
-  private def getOldDeltas(edit: WikipediaEdit): Set[Delta] = {
-    Set(ResetDelta(s"http://www.wikidata.org/entity/${edit.pageTitle}"))
+  private def getOldDelta(edit: WikipediaEdit): Delta = {
+    if (edit.newPage) {
+      NoChange
+    } else {
+    	Reset(s"http://www.wikidata.org/entity/${edit.pageTitle}")
+    }
   }
 
-  private def getNewDeltas(edit: WikipediaEdit): Set[Delta] = {
+  private def getNewDelta(edit: WikipediaEdit): Delta = {
     val fetcher = WikibaseDataFetcher.getWikidataDataFetcher
     val document = fetcher.getEntityDocument(edit.pageTitle)
-    document match {
+    val updates: Set[Update] = document match {
       case document: StatementDocument =>
         document.getAllStatements.flatMap { statement =>
           val subjectId = statement.getClaim.getSubject.getIri
@@ -115,11 +113,11 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
   			  case snak: ValueSnak =>
     			  snak.getValue match {
       			  case value: EntityIdValue =>
-        			  Some(EdgeDelta(ChangeType.POSITIVE, subjectId, propertyId, value.getIri))
+        			  Some(UpdateEdge(ChangeType.POSITIVE, subjectId, propertyId, value.getIri))
     			    case value: StringValue =>
-    			      Some(AttributeDelta(ChangeType.POSITIVE, subjectId, propertyId, value.getString))
+    			      Some(UpdateAttribute(ChangeType.POSITIVE, subjectId, propertyId, value.getString))
     			    case value: MonolingualTextValue =>
-    			      Some(AttributeDelta(ChangeType.POSITIVE, subjectId, propertyId, value.getText))
+    			      Some(UpdateAttribute(ChangeType.POSITIVE, subjectId, propertyId, value.getText))
       			  // TODO
       			  case _ => None
     			  }
@@ -128,6 +126,7 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
         }.toSet
       case _ => Set()
     }
+    SendUpdates(updates)
   }
 
   private def apply(deltas: Set[Delta], driver: RDFGraphDriverRead) {
@@ -141,16 +140,16 @@ class WikidataStreamReceiver(databaseConnection: DatabaseConnection) extends Rec
     driver match {
       case driver: RDFGraphDriverReadWrite =>
         delta match {
-          case delta: VertexDelta =>
+          case delta: UpdateVertex =>
             {} // TODO
-          case delta: EdgeDelta =>
+          case delta: UpdateEdge =>
             delta.changeType match {
               case ChangeType.POSITIVE =>
                 driver.insertEdge(delta.subjectId, delta.objectId, delta.rdfTypeId)
               case ChangeType.NEGATIVE =>
                 driver.deleteEdge(delta.subjectId, delta.objectId, delta.rdfTypeId)
             }
-          case delta: AttributeDelta =>
+          case delta: UpdateAttribute =>
             delta.changeType match {
               case ChangeType.POSITIVE =>
                 driver.insertEdge(delta.subjectId, delta.objectValue, delta.rdfTypeId)
