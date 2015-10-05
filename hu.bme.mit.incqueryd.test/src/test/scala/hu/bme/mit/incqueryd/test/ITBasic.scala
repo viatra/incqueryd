@@ -72,13 +72,13 @@ class ITBasic {
     val metamodel = IQDYarnClient.loadMetamodel(Resources.getResource(vocabularyFilename))
     val client = new IQDYarnClient
     val modelFilePath = client.uploadFile(Resources.getResource(modelFilename))
-    client.loadInitialData(metamodel, new DatabaseConnection(modelFilePath, Backend.FILE))
+    val databaseConnection = new DatabaseConnection(modelFilePath, Backend.FILE)
+    client.deployInputNodes(metamodel, databaseConnection)
     val recipe = RecipeUtils.loadRecipe(recipeFilename)
     client.startQuery(recipe, Resources.toString(Resources.getResource(rdfiqFilename), Charsets.UTF_8))
+    client.coordinator.loadData(databaseConnection)
+    assertResult(client, recipe, expectedResult)
     try {
-      assertResult(client, recipe, expectedResult)
-      println("Waiting until output stream processing starts")
-      Thread.sleep(60000)
       for(i <- 1 to 99) {
         val changeType = if(i % 2 == 0 ) ChangeType.POSITIVE else ChangeType.NEGATIVE
         client.loadChanges(getInputChanges(changeType))

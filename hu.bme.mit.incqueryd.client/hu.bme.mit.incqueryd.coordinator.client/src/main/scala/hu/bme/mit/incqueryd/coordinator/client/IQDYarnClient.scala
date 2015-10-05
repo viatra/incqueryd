@@ -49,8 +49,8 @@ class IQDYarnClient {
     modelFilePath
   }
 
-  def loadInitialData(metamodel: Model, databaseConnection: DatabaseConnection) {
-    coordinator.loadData(metamodel, databaseConnection, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
+  def deployInputNodes(metamodel: Model, databaseConnection: DatabaseConnection) {
+    coordinator.deployInputNodes(metamodel, databaseConnection, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
   }
   
   def loadChanges(changesMap : Map[String, ChangeSet]) {
@@ -60,6 +60,8 @@ class IQDYarnClient {
   def startQuery(reteRecipe: ReteRecipe, rdfiqContents: String) {
     coordinator.startQuery(reteRecipe, rdfiqContents, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
     startOutputStream(reteRecipe)
+    println("Waiting until output stream processing starts")
+    Thread.sleep(45000)
   }
   
   def startOutputStream(reteRecipe: ReteRecipe) {

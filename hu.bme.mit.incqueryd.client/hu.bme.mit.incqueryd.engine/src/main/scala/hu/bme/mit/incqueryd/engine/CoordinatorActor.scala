@@ -2,13 +2,11 @@ package hu.bme.mit.incqueryd.engine
 
 import akka.actor.Actor
 import eu.mondo.driver.file.FileGraphDriverRead
-import hu.bme.mit.incqueryd.inventory.{ MachineInstance, Inventory }
 import org.eclipse.emf.ecore.util.EcoreUtil
 import org.openrdf.model.vocabulary.{ OWL, RDF, RDFS }
 import org.openrdf.model.{ Model, URI }
 import scala.collection.JavaConversions._
 import scala.collection.mutable.ListBuffer
-import hu.bme.mit.incqueryd.inventory.MachineInstance
 import scala.collection.JavaConverters._
 import java.util.ArrayList
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
@@ -20,7 +18,6 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory
 import scala.collection.mutable
-import hu.bme.mit.incqueryd.inventory.MachineInstance
 import org.openrdf.model.Statement
 import org.openrdf.model.Resource
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
@@ -71,12 +68,15 @@ class CoordinatorActor extends Actor {
   
   private var types : Set[RdfType] = _
   
-  def receive = AkkaUtils.propagateException(sender) ({
-    case LoadData(vocabulary, databaseConnection, rmHostname, fileSystemUri) => {
+  def receive = AkkaUtils.propagateException(sender) {
+    case DeployInputNodes(vocabulary, databaseConnection, rmHostname, fileSystemUri) => {
       types = getTypes(vocabulary, databaseConnection.getDriver)
       val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
       val actorsByRecipe = deploy(typeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.inputNodesPath)
-      configure(actorsByRecipe, databaseConnection)
+      configure(actorsByRecipe)
+      sender ! true
+    }
+    case LoadData(databaseConnection) => {
       IQDSparkClient.loadData(databaseConnection)
       sender ! true
     }
@@ -91,11 +91,11 @@ class CoordinatorActor extends Actor {
         IncQueryDZooKeeper.createDir(patternPath)
         IncQueryDZooKeeper.setData(patternPath, getProductionActorPath(recipeJson, patternName).toSerializationFormat.getBytes)
       }
-      configure(otherActorsByRecipe, null)
+      configure(otherActorsByRecipe)
       establishSubscriptions(otherActorsByRecipe)
       val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
       val inputActorsByRecipe = lookup(typeInputRecipes)
-      propagateInputStates(inputActorsByRecipe, recipe)
+      propagateInputStates(inputActorsByRecipe)
       sender ! true
     }
     case PropagateInputChanges(inputChangesMap : Map[String, ChangeSet]) => {
@@ -106,7 +106,7 @@ class CoordinatorActor extends Actor {
       IQDSparkClient.startOutputStream(IDService.lookupID(recipeJson))
       sender ! true
     }
-    case StopOutputStreams() => {
+    case StopOutputStreams => {
       IQDSparkClient.stopOutputStreams()
       sender ! true
     }
@@ -120,7 +120,7 @@ class CoordinatorActor extends Actor {
       undeploy(notTypeInputRecipes)
       sender ! true
     }
-    case Dispose() => {
+    case Dispose => {
       val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
       undeploy(typeInputRecipes)
       sender ! true
@@ -133,7 +133,7 @@ class CoordinatorActor extends Actor {
       IQDSparkClient.stopWikidataStreaming()
       sender ! true
     }
-  })
+  }
 
   def getTypes(vocabulary: Model, driver: RDFGraphDriverRead): Set[RdfType] = {
     val rdfClassStatements = vocabulary.filter(null, RDF.TYPE, RDFS.CLASS).toSet
@@ -187,29 +187,31 @@ class CoordinatorActor extends Actor {
     }
   }
 
-  def configure(actorsByRecipe: Map[ReteNodeRecipe, ActorPath], databaseConnection: DatabaseConnection): Unit = {
+  def configure(actorsByRecipe: Map[ReteNodeRecipe, ActorPath]): Unit = {
     wait(actorsByRecipe.map { case (recipe, actor) =>
-      AkkaUtils.convertToRemoteActorRef(actor, context).ask(Configure(new ReteNodeConfiguration(recipe, databaseConnection)))
+      AkkaUtils.convertToRemoteActorRef(actor, context).ask(Configure(new ReteNodeConfiguration(recipe)))
     })
   }
 
   def establishSubscriptions(actorsByRecipe: Map[ReteNodeRecipe, ActorPath]): Unit = {
     wait(actorsByRecipe.values.map { actor =>
-      AkkaUtils.convertToRemoteActorRef(actor, context).ask(EstablishSubscriptions())
+      AkkaUtils.convertToRemoteActorRef(actor, context).ask(EstablishSubscriptions)
     })
   }
   
-  def propagateInputStates(actorsByRecipe: Map[ReteNodeRecipe, ActorPath], recipe: ReteRecipe): Unit = {
+  def propagateInputStates(actorsByRecipe: Map[ReteNodeRecipe, ActorPath]): Unit = {
     wait(actorsByRecipe.values.map { actor =>
-      val children = ActorLookupUtils.getChildrenConnections(actor, recipe)
-      AkkaUtils.convertToRemoteActorRef(actor, context).ask(PropagateState(children))
+      AkkaUtils.convertToRemoteActorRef(actor, context).ask(PropagateState)
     })
   }
 
   def propagateInputChanges(inputChangesMap : Map[String, ChangeSet]) {
     wait(inputChangesMap.map{case (inputTypeId, changeSet) => 
       val inputActorPath = ActorLookupUtils.findInputActor(inputTypeId).get
-      AkkaUtils.convertToRemoteActorRef(inputActorPath, context).ask(PropagateInputChange(changeSet))})
+      val inputActor = AkkaUtils.convertToRemoteActorRef(inputActorPath, context)
+      println(s"Asking $inputActorPath to propagate $changeSet")
+      inputActor.ask(PropagateInputChange(changeSet))
+    })
   }
   
   private def wait(futures: Iterable[Future[Any]]) { // XXX don't use this, compose Futures

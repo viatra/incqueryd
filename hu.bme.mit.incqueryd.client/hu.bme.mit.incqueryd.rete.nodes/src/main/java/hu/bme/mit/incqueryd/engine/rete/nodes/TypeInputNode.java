@@ -45,27 +45,10 @@ public class TypeInputNode implements ReteNode {
 	}
 
 	protected Set<Tuple> tuples = new HashSet<>();
-	protected final RDFGraphDriverRead driver;
 
-	TypeInputNode(final TypeInputRecipe recipe, RDFGraphDriverRead driver) {
+	TypeInputNode(final TypeInputRecipe recipe) {
 		super();
 		this.recipe = recipe;
-		this.driver = driver;
-	}
-	
-	public void load() throws IOException {
-		String typeName = recipe.getTypeName();
-
-		if (recipe instanceof UnaryInputRecipe) {
-			initializeVertex(typeName);
-		} else if (recipe instanceof BinaryInputRecipe) {
-			String traceInfo = recipe.getTraceInfo();
-			if (traceInfo.startsWith(ATTRIBUTE)) {
-				initializeProperty(typeName);
-			} else if (traceInfo.startsWith(EDGE)) {
-				initializeEdge(typeName);
-			}
-		}
 	}
 	
 	public void update(ChangeSet changeSet) {
@@ -86,7 +69,22 @@ public class TypeInputNode implements ReteNode {
 		return new ChangeSet(removedTuples, ChangeType.NEGATIVE);
 	}
 
-	private void initializeEdge(final String typeName) throws IOException {
+	public void load(RDFGraphDriverRead driver) throws IOException {
+		String typeName = recipe.getTypeName();
+
+		if (recipe instanceof UnaryInputRecipe) {
+			initializeVertex(typeName, driver);
+		} else if (recipe instanceof BinaryInputRecipe) {
+			String traceInfo = recipe.getTraceInfo();
+			if (traceInfo.startsWith(ATTRIBUTE)) {
+				initializeProperty(typeName, driver);
+			} else if (traceInfo.startsWith(EDGE)) {
+				initializeEdge(typeName, driver);
+			}
+		}
+	}
+
+	private void initializeEdge(final String typeName, RDFGraphDriverRead driver) throws IOException {
 		Multimap<Resource, Resource> edges = driver.collectEdges(typeName);
 
 		for (Entry<Resource, Resource> edge : edges.entries()) {
@@ -94,7 +92,7 @@ public class TypeInputNode implements ReteNode {
 		}
 	}
 
-	private void initializeProperty(final String typeName) throws IOException {
+	private void initializeProperty(final String typeName, RDFGraphDriverRead driver) throws IOException {
 		Multimap<Resource, Value> properties = driver.collectProperties(typeName);
 
 		for (Entry<Resource, Value> property : properties.entries()) {
@@ -102,7 +100,7 @@ public class TypeInputNode implements ReteNode {
 		}
 	}
 
-	private void initializeVertex(final String typeName) throws IOException {
+	private void initializeVertex(final String typeName, RDFGraphDriverRead driver) throws IOException {
 		List<Resource> vertices = driver.collectVertices(typeName);
 		
 		for (Resource vertex : vertices) {

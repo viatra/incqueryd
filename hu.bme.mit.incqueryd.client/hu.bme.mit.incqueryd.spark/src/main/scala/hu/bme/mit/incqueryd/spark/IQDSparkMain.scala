@@ -48,6 +48,7 @@ object IQDSparkMain extends Serializable {
   options.addOption(OPTION_QUERY_ID, true, "Query name - in case of output stream processing application")
   options.addOption(OPTION_SINGLE_RUN, false, "Stop processing after data run out")
   options.addOption(OPTION_NUM_EXECUTORS, true, "Executor instances")
+  options.addOption(OPTION_SCHEDULER_MODE, true, "Scheduler mode")
   
   def main(args: Array[String]) {
     val parser = (new PosixParser).parse(options, args)
@@ -61,7 +62,7 @@ object IQDSparkMain extends Serializable {
     URL.setURLStreamHandlerFactory(new FsUrlStreamHandlerFactory)
     
     val sparkConf = new SparkConf
-    sparkConf.set("spark.scheduler.mode", "FAIR")
+    sparkConf.set("spark.scheduler.mode", parser.getOptionValue(OPTION_SCHEDULER_MODE, "FAIR"))
     sparkConf.set("spark.executor.instances", EXECUTORS)
     
     val ssc = new StreamingContext(sparkConf, Milliseconds(DURATION))

@@ -22,11 +22,14 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import eu.mondo.driver.file.FileGraphDriverRead;
+import eu.mondo.driver.graph.RDFGraphDriverRead;
 
 public class TypeInputNodeTest {
 
 	static final String DATABASE_URL = TypeInputNodeTest.class.getClassLoader().getResource("models/railway-xform-1.ttl").toString();
 
+	private final RDFGraphDriverRead driver = new FileGraphDriverRead(TypeInputNodeTest.DATABASE_URL);
+	
 	@Test
 	public void testEdge() throws IOException {
 		BinaryInputRecipe recipe = RecipesFactory.eINSTANCE
@@ -34,8 +37,8 @@ public class TypeInputNodeTest {
 		recipe.setTypeName(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.TRACKELEMENT_SENSOR);
 		recipe.setTraceInfo("edge");
 
-		TypeInputNode typeInputNode = new TypeInputNode(recipe, new FileGraphDriverRead(DATABASE_URL));
-		typeInputNode.load();
+		TypeInputNode typeInputNode = new TypeInputNode(recipe);
+		typeInputNode.load(driver);
 		Set<Tuple> tuples = typeInputNode.getTuples();
 		
 		Assert.assertEquals(5772, tuples.size());
@@ -47,8 +50,8 @@ public class TypeInputNodeTest {
 				.createUnaryInputRecipe();
 		recipe.setTypeName(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.SWITCH);
 
-		TypeInputNode typeInputNode = new TypeInputNode(recipe, new FileGraphDriverRead(DATABASE_URL));
-		typeInputNode.load();
+		TypeInputNode typeInputNode = new TypeInputNode(recipe);
+		typeInputNode.load(driver);
 		Set<Tuple> tuples = typeInputNode.getTuples();
 	
 		Assert.assertEquals(217, tuples.size());
@@ -61,8 +64,8 @@ public class TypeInputNodeTest {
 		recipe.setTypeName(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.SEGMENT_LENGTH);
 		recipe.setTraceInfo("attribute");
 
-		TypeInputNode typeInputNode = new TypeInputNode(recipe, new FileGraphDriverRead(DATABASE_URL));
-		typeInputNode.load();
+		TypeInputNode typeInputNode = new TypeInputNode(recipe);
+		typeInputNode.load(driver);
 		Set<Tuple> tuples = typeInputNode.getTuples();
 		
 		Assert.assertEquals(4835, tuples.size());

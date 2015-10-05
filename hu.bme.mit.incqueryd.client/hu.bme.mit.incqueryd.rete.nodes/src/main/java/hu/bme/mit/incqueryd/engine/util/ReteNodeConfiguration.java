@@ -17,18 +17,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 
-import eu.mondo.driver.graph.RDFGraphDriverRead;
-
 public class ReteNodeConfiguration implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	protected final String networkRecipeString;
 	protected final String nodeRecipeUriFragment;
-	private final DatabaseConnection databaseConnection;
 	
-	public ReteNodeConfiguration(final ReteNodeRecipe recipe, DatabaseConnection databaseConnection) throws IOException {
+	public ReteNodeConfiguration(final ReteNodeRecipe recipe) throws IOException {
 		super();
-		this.databaseConnection = databaseConnection;
 		this.networkRecipeString = EObjectSerializer.serializeToString(EcoreUtil.getRootContainer(recipe));
 		this.nodeRecipeUriFragment = recipe.eResource().getURIFragment(recipe);
 	}
@@ -36,14 +32,6 @@ public class ReteNodeConfiguration implements Serializable {
 	public ReteNodeRecipe getReteNodeRecipe() throws IOException {
 		Resource resource = RecipeDeserializer.deserializeFromString(networkRecipeString).eResource();
 		return (ReteNodeRecipe)resource.getEObject(nodeRecipeUriFragment); 
-	}
-
-	public RDFGraphDriverRead getDriver() {
-		if (databaseConnection == null) {
-			return null;
-		} else {
-			return databaseConnection.getDriver();
-		}
 	}
 
 }

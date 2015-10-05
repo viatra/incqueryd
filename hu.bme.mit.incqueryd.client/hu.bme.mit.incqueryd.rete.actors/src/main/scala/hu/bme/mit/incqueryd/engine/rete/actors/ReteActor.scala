@@ -1,9 +1,14 @@
 package hu.bme.mit.incqueryd.engine.rete.actors
 
 import java.util.concurrent.CountDownLatch
+
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.future
+import scala.concurrent.Future
+
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
+
+import com.google.common.base.Predicate
+
 import akka.actor.Actor
 import akka.actor.ActorPath
 import akka.actor.ActorRef
@@ -11,6 +16,7 @@ import akka.actor.actorRef2Scala
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ReteNodeSlot
+import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import hu.bme.mit.incqueryd.engine.rete.nodes.AlphaNode
 import hu.bme.mit.incqueryd.engine.rete.nodes.BetaNode
 import hu.bme.mit.incqueryd.engine.rete.nodes.ProductionNode
@@ -18,20 +24,18 @@ import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNode
 import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNodeFactory
 import hu.bme.mit.incqueryd.engine.rete.nodes.TypeInputNode
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
-import scala.collection.mutable.LinkedList
-import scala.collection.JavaConverters._
-import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
-import com.google.common.base.Predicate
 
 class ReteActor extends Actor {
 
   def receive = {
     case Configure(configuration) => configure(configuration)
-    case EstablishSubscriptions() => establishSubscriptions()
+    case EstablishSubscriptions => establishSubscriptions()
     case RegisterSubscriber(slot) => registerSubscriber(slot)
-    case PropagateState(children) => propagateState(children)
+    case PropagateState => {
+      val changeSet = reteNode.asInstanceOf[TypeInputNode].getChangeSetFromCurrentState
+      propagateInputChange(changeSet) 
+    }
     case PropagateInputChange(changeSet) => {
-      // Update the input node state
       reteNode.asInstanceOf[TypeInputNode].update(changeSet)
       propagateInputChange(changeSet)
     }
@@ -51,12 +55,6 @@ class ReteActor extends Actor {
   def configure(configuration: ReteNodeConfiguration) = {
     recipe = configuration.getReteNodeRecipe
     reteNode = ReteNodeFactory.createNode(configuration)
-    reteNode match {
-      case inputNode: TypeInputNode => {
-        //inputNode.load // XXX initial load with Spark!
-      }
-      case _ => {}
-    }
     log("Configuration finished")
     sender ! ConfigurationFinished
   }
@@ -89,52 +87,22 @@ class ReteActor extends Actor {
     receivers-=receiver
   }
   
-  def propagateState(children: Set[ReteActorConnection]) = {
-    if (children.isEmpty) {
-      sender ! StatePropagated
-    } else {
-      log(s"Propagating state to ${children.size} children")
-      for (ReteActorConnection(_, slot, child) <- children) {
-        val changeSet = reteNode.asInstanceOf[TypeInputNode].getChangeSetFromCurrentState
-        val route = List()
-        sendToSubscriber(changeSet, route, child, slot)
-      }
-      val originalSender = sender
-      pending = new CountDownLatch(children.size)
-      future {
-        pending.await
-      } onSuccess {
-        case _ =>
-          originalSender ! StatePropagated
-      } // TODO timeout?
-    }
-  }
-
-  // XXX merge this method with propagateState?
   def propagateInputChange(changeSet: ChangeSet) = {
-    if (changeSet.getTuples.isEmpty()) {
+    if (changeSet.getTuples.isEmpty || subscribers.isEmpty) {
       sender ! StatePropagated
     } else {
-      log(s"Propagating input changes to ${subscribers.size} subscriber")
-
+      log(s"Propagating input changes to ${subscribers.size} subscribers")
       for ((subscriber, slot) <- subscribers) {
         val route = List()
         sendToSubscriber(changeSet, route, subscriber, slot)
       }
-
-      if (subscribers.isEmpty) {
-        sender ! StatePropagated
-      } else {
-        val originalSender = sender
-        pending = new CountDownLatch(subscribers.size)
-        future {
-          pending.await
-        } onSuccess {
-          case _ =>
-            originalSender ! StatePropagated
-        }
-      } // TODO timeout?
-    }
+      val originalSender = sender
+      pending = new CountDownLatch(subscribers.size)
+      Future {
+        pending.await
+        originalSender ! StatePropagated
+      }
+    } // TODO timeout?
   }
 
   var pending: CountDownLatch = _

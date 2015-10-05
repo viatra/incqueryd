@@ -20,6 +20,8 @@ import hu.bme.mit.incqueryd.idservice.IDService.lookupID
 import akka.actor.ActorPath
 import akka.actor.ActorRef
 import akka.actor.DeadLetterActorRef
+import scala.concurrent.duration._
+import akka.pattern.ask
 import scala.util.Either
 import com.google.common.collect.Sets
 import hu.bme.mit.incqueryd.spark.utils.SingleDelta
@@ -28,6 +30,11 @@ import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import hu.bme.mit.incqueryd.engine.rete.actors.FilterOutAndPropagate
 import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputChange
 import hu.bme.mit.incqueryd.engine.rete.actors.ReteActorKey
+import akka.util.Timeout
+import scala.concurrent.Await
+import hu.bme.mit.incqueryd.engine.rete.actors.ReteActor
+import org.apache.spark.util.AkkaUtils
+import hu.bme.mit.incqueryd.actorservice.AkkaUtils
 
 /**
  * @author pappi
@@ -40,6 +47,7 @@ object InputStreamWorker {
     stream.foreachRDD {
       _.foreach { deltas =>
         deltas.foreach { delta =>
+          implicit val timeout = Timeout(30 seconds)
           delta match {
             case delta: SingleDelta => {
               val inputActor = getInputActor(ReteActorKey.fromString(delta.rdfTypeId).internalId)
@@ -63,7 +71,8 @@ object InputStreamWorker {
                 }
       
                 println(s"Sending update for $delta")
-                inputActor ! PropagateInputChange(new ChangeSet(tupleSet, changeType))          
+                val future = inputActor ? PropagateInputChange(new ChangeSet(tupleSet, changeType))
+                Await.result(future, timeout.duration)
               }
             }
             case delta: ResetDelta => {
@@ -74,7 +83,8 @@ object InputStreamWorker {
                   println(s"WARNING: No type input node with related znode $inputNode, skipping $delta")
                 } else { 
                 	println(s"Resetting statements of ${delta.subjectId}, property $inputNode")
-                	inputActor ! FilterOutAndPropagate(lookupID(delta.subjectId))
+                	val future = inputActor ? FilterOutAndPropagate(lookupID(delta.subjectId))
+                  Await.result(future, timeout.duration)
                 }
               }
             }
@@ -87,7 +97,7 @@ object InputStreamWorker {
   def getInputActor(znodeId: String): ActorRef = {
     try {
       val inputActorPath = IQDSparkUtils.getInputActorPathByZnodeId(znodeId)
-      actorMap.getOrElseUpdate(inputActorPath, SparkEnv.get.actorSystem.actorFor(inputActorPath))
+      actorMap.getOrElseUpdate(inputActorPath, AkkaUtils.getClientActorSystem().actorFor(inputActorPath))
     } catch {
       case e: Exception => {
         null

@@ -41,7 +41,7 @@ public class ChangeSet implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ChangeSet, changeType=" + changeType + ", " + getTuples().size() + " tuples, [tuples=" + tuples + "]";
+		return "ChangeSet: changeType=" + changeType + ", " + getTuples().size() + " tuples, [tuples=" + tuples + "]";
 	}
 
 	@Override

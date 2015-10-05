@@ -24,8 +24,11 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 import eu.mondo.driver.file.FileGraphDriverRead;
+import eu.mondo.driver.graph.RDFGraphDriverRead;
 
 public class TrainBenchmarkTest {
+
+	private final RDFGraphDriverRead driver = new FileGraphDriverRead(TypeInputNodeTest.DATABASE_URL);
 
 	@Test
 	public void posLengthTest() throws IOException {
@@ -38,7 +41,7 @@ public class TrainBenchmarkTest {
 		CheckNode node = new CheckNode(recipe);
 
 		// act
-		segmentLengthInputNode.load();
+		segmentLengthInputNode.load(driver);
 		ChangeSet segmentLengthChangeSet = segmentLengthInputNode.getChangeSetFromCurrentState();
 		ChangeSet cs = node.update(segmentLengthChangeSet);
 
@@ -73,10 +76,10 @@ public class TrainBenchmarkTest {
 		TrimmerNode trimmerNode = createTrimmerNode(ImmutableList.of(3));
 
 		// act
-		switchPositionNode.load();
-		routeSwitchPositionNode.load();
-		trackElementSensorNode.load();
-		routeRouteDefinitionNode.load();
+		switchPositionNode.load(driver);
+		routeSwitchPositionNode.load(driver);
+		trackElementSensorNode.load(driver);
+		routeRouteDefinitionNode.load(driver);
 
 		ChangeSet switchPositionChangeSet = switchPositionNode.getChangeSetFromCurrentState();
 		ChangeSet routeSwitchPositionChangeSet = routeSwitchPositionNode.getChangeSetFromCurrentState();
@@ -122,9 +125,9 @@ public class TrainBenchmarkTest {
 		AntiJoinNode antiJoinNode = new AntiJoinNode(antiJoinRecipe);
 
 		// act
-		switchInputNode.load();
+		switchInputNode.load(driver);
 		ChangeSet switchChangeSet = switchInputNode.getChangeSetFromCurrentState();
-		trackElementSensorNode.load();
+		trackElementSensorNode.load(driver);
 		ChangeSet trackElementSensorChangeSet = trackElementSensorNode.getChangeSetFromCurrentState();
 
 		// secondary changeset
@@ -140,7 +143,7 @@ public class TrainBenchmarkTest {
 	private TypeInputNode createVertexInputNode(String typeName) throws IOException {
 		UnaryInputRecipe recipe = RecipesFactory.eINSTANCE.createUnaryInputRecipe();
 		recipe.setTypeName(typeName);
-		TypeInputNode node = new TypeInputNode(recipe, new FileGraphDriverRead(TypeInputNodeTest.DATABASE_URL));
+		TypeInputNode node = new TypeInputNode(recipe);
 		return node;
 	}
 
@@ -182,7 +185,7 @@ public class TrainBenchmarkTest {
 		BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
 		recipe.setTypeName(type);
 		recipe.setTraceInfo("edge");
-		TypeInputNode node = new TypeInputNode(recipe, new FileGraphDriverRead(TypeInputNodeTest.DATABASE_URL));
+		TypeInputNode node = new TypeInputNode(recipe);
 		return node;
 	}
 
@@ -203,7 +206,7 @@ public class TrainBenchmarkTest {
 		BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
 		recipe.setTypeName(type);
 		recipe.setTraceInfo("attribute");
-		TypeInputNode node = new TypeInputNode(recipe, new FileGraphDriverRead(TypeInputNodeTest.DATABASE_URL));
+		TypeInputNode node = new TypeInputNode(recipe);
 		return node;
 	}
 

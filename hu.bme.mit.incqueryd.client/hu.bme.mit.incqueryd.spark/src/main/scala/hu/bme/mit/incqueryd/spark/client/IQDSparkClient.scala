@@ -38,6 +38,7 @@ object IQDSparkClient {
       .addAppArgs(s"-$OPTION_DATASOURCE_URL", databaseConnection.getConnectionString)
       .addAppArgs(s"-$OPTION_SINGLE_RUN")
       .addAppArgs(s"-$OPTION_NO_DATA_TIMEOUT_MS", 60000.toString())
+      .addAppArgs(s"-$OPTION_SCHEDULER_MODE", "FIFO")
       .launch().waitFor()
   }
 

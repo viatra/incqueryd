@@ -34,7 +34,7 @@ abstract class ReteActorTestKit(protected val system: ActorSystem, recipeFilenam
 
   val recipe = RecipeDeserializer.deserializeFromFile(recipeFilename).asInstanceOf[ReteNodeRecipe]
 
-  protected val conf = new ReteNodeConfiguration(recipe, null)
+  protected val conf = new ReteNodeConfiguration(recipe)
 
   def configure(coordinatorActor: JavaTestKit, testedActor: ActorRef, conf: ReteNodeConfiguration) {
     testedActor.tell(Configure(conf), coordinatorActor.getRef)

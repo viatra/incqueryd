@@ -44,10 +44,15 @@ object Coordinator {
 }
 
 class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: ApplicationId) {
+  
+  def deployInputNodes(vocabulary: Model, databaseConnection: DatabaseConnection, rmHostname: String, fileSystemUri: String): Boolean = {
+    println(s"Deploying input nodes")
+    askCoordinator[Boolean](DeployInputNodes(vocabulary, databaseConnection, rmHostname, fileSystemUri))
+  }
 
-  def loadData(vocabulary: Model, databaseConnection: DatabaseConnection, rmHostname: String, fileSystemUri: String): Boolean = {
+  def loadData(databaseConnection: DatabaseConnection): Boolean = {
     println(s"Loading data")
-    askCoordinator[Boolean](LoadData(vocabulary, databaseConnection, rmHostname, fileSystemUri))
+    askCoordinator[Boolean](LoadData(databaseConnection))
   }
 
   def startQuery(recipe: ReteRecipe, rdfiqContents: String, rmHostname: String, fileSystemUri: String): Boolean = {
@@ -63,7 +68,7 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
   
   def stopOutputStreams() {
     println(s"Stopping output streams..")
-    askCoordinator[Boolean](StopOutputStreams())
+    askCoordinator[Boolean](StopOutputStreams)
   }
   
   def startWikidataStream(databaseConnection: DatabaseConnection) = {
@@ -83,6 +88,7 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
   }
   
   def sendChangesToInputs(inputChanges : Map[String, ChangeSet]): Boolean = {
+    println(s"Sending changes to inputs")
     askCoordinator[Boolean](PropagateInputChanges(inputChanges))
   }
   
@@ -100,7 +106,7 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
 
   def dispose = {
     println("Dispose ... ")
-    askCoordinator[Boolean](Dispose())
+    askCoordinator[Boolean](Dispose)
     client.kill(applicationId)
   }
 

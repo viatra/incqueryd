@@ -24,11 +24,10 @@ object WikidataDemo {
     val metamodel = IQDYarnClient.loadMetamodel(Resources.getResource(vocabularyFilename))
     println("Initializing IQD YARN client")
     val client = new IQDYarnClient
-    println("Loading initial data")
-    client.loadInitialData(metamodel, databaseConnection)
-    println("Initializing IncQuery-D")
+    client.deployInputNodes(metamodel, databaseConnection)
     val recipe = RecipeUtils.loadRecipe(recipeFilename)
     client.startQuery(recipe, Resources.toString(Resources.getResource(rdfiqFilename), Charsets.UTF_8))
+    client.coordinator.loadData(databaseConnection)
     val results = client.checkResults(recipe, patternName)
     println(s"Initial results of $patternName:\n$results")
     println("Starting Wikidata stream processor")
