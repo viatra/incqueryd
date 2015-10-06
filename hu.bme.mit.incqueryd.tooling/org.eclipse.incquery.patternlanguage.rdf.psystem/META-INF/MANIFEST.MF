@@ -5,13 +5,13 @@ Bundle-SymbolicName: org.eclipse.incquery.patternlanguage.rdf.psystem
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.xtext.xbase.lib;bundle-version="2.4.3",
- org.eclipse.incquery.runtime.matchers;bundle-version="[0.9.0,0.9.1)",
- org.eclipse.incquery.patternlanguage;bundle-version="[0.9.0,0.9.1)",
+ org.eclipse.incquery.runtime.matchers;bundle-version="[1.1.0,1.2.0)",
+ org.eclipse.incquery.patternlanguage;bundle-version="[1.1.0,1.2.0)",
  org.eclipse.incquery.patternlanguage.rdf;bundle-version="1.0.0",
  org.apache.log4j;bundle-version="1.2.15",
  hu.bme.mit.incqueryd.rdf;bundle-version="1.0.0",
  org.openrdf.sesame;bundle-version="2.8.0",
  org.mozilla.javascript;bundle-version="1.7.4",
  org.eclipse.incquery.patternlanguage.util;bundle-version="1.0.0",
- org.eclipse.incquery.runtime;bundle-version="[0.9.0,0.9.1)"
+ org.eclipse.incquery.runtime;bundle-version="[1.1.0,1.2.0)"
 Export-Package: org.eclipse.incquery.patternlanguage.rdf.psystem

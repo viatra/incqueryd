@@ -43,11 +43,6 @@
     <description>Initialize JDT's package explorer to show working sets as its root objects</description>
   </setupTask>
   <setupTask
-      xsi:type="setup:VariableTask"
-      name="eclipse.target.platform"
-      defaultValue="Kepler"
-      storageURI="scope://Workspace"/>
-  <setupTask
       xsi:type="setup.p2:P2Task">
     <requirement
         name="org.maven.ide.eclipse.scala_feature.feature.group"/>
@@ -59,8 +54,15 @@
     <requirement
         name="org.sonatype.tycho.m2e.feature.feature.group"/>
     <requirement
-        name="org.eclipse.xtext.sdk.feature.group"
-        versionRange="[2.7.0,2.8.0)"/>
+        name="org.eclipse.xtext.sdk.feature.group">
+      <annotation
+          source="http://www.eclipse.org/oomph/setup/FeatureSubstitution">
+        <detail
+            key="versionRange">
+          <value>[${xtext.version.lower},${xtext.version.upper})</value>
+        </detail>
+      </annotation>
+    </requirement>
     <requirement
         name="de.itemis.xtext.antlr.sdk.feature.group"/>
     <repository
@@ -74,11 +76,9 @@
     <repository
         url="http://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.6.0/N/0.6.0.201210231015/"/>
     <repository
-        url="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
+        url="${xtext.location}"/>
     <repository
         url="http://download.itemis.com/updates/"/>
-    <repository
-        url="http://download.eclipse.org/incquery/updates/release"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask
@@ -150,7 +150,7 @@
       xsi:type="setup.targlets:TargletTask">
     <targlet
         name="${scope.project.label}"
-        activeRepositoryList="${eclipse.target.platform}">
+        activeRepositoryList="Dependencies">
       <annotation
           source="http:/www.eclipse.org/oomph/targlets/TargetDefinitionGenerator">
         <detail
@@ -182,7 +182,7 @@
           name="org.eclipse.emf.sdk.feature.group"/>
       <requirement
           name="org.eclipse.incquery.sdk.feature.source.feature.group"
-          versionRange="[0.9.0,0.9.1)"/>
+          versionRange="[1.1.0,1.2.0)"/>
       <requirement
           name="org.openrdf.sesame.feature.feature.group"/>
       <requirement
@@ -193,8 +193,15 @@
       <requirement
           name="org.apache.commons.exec"/>
       <requirement
-          name="org.eclipse.xtext.sdk.feature.group"
-          versionRange="[2.7.0,2.8.0)"/>
+          name="org.eclipse.xtext.sdk.feature.group">
+        <annotation
+            source="http://www.eclipse.org/oomph/setup/FeatureSubstitution">
+          <detail
+              key="versionRange">
+            <value>[${xtext.version.lower},${xtext.version.upper})</value>
+          </detail>
+        </annotation>
+      </requirement>
       <requirement
           name="com.sun.jersey"
           versionRange="1.17.0"/>
@@ -202,34 +209,19 @@
           name="org.codehaus.jackson.jaxrs"
           versionRange="1.6.0"/>
       <repositoryList
-          name="Mars">
-        <repository
-            url="http://download.eclipse.org/releases/mars"/>
-      </repositoryList>
-      <repositoryList
-          name="Luna">
+          name="Dependencies">
         <repository
             url="http://download.eclipse.org/releases/luna"/>
         <repository
             url="http://download.eclipse.org/modeling/emf/emf/updates/releases/"/>
         <repository
-            url="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
+            url="${xtext.location}"/>
         <repository
-            url="http://download.eclipse.org/incquery/updates/release"/>
+            url="http://download.eclipse.org/incquery/updates/integration/"/>
         <repository
             url="http://ghillairet.github.io/p2/"/>
         <repository
             url="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/"/>
-      </repositoryList>
-      <repositoryList
-          name="Kepler">
-        <repository
-            url="http://download.eclipse.org/releases/kepler"/>
-      </repositoryList>
-      <repositoryList
-          name="Juno">
-        <repository
-            url="http://download.eclipse.org/releases/juno"/>
       </repositoryList>
     </targlet>
   </setupTask>
@@ -308,6 +300,30 @@
       </predicate>
     </workingSet>
     <description>The dynamic working sets for ${scope.project.label}</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="xtext.location"
+      name="xtext.location"
+      value="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/milestones/"
+      defaultValue="">
+    <description>Xtext update site location</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="xtext.version.lower"
+      name="xtext.version.lower"
+      value="2.9.0"
+      defaultValue="">
+    <description>Xtext version lower</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      id="xtext.version.upper"
+      name="xtext.version.upper"
+      value="2.10.0"
+      defaultValue="">
+    <description>Xtext version upper</description>
   </setupTask>
   <stream name="master"/>
   <logicalProjectContainer

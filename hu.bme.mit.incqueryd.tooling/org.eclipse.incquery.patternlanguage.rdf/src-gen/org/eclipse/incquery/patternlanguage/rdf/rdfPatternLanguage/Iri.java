@@ -11,11 +11,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getPrefix <em>Prefix</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getIri()
  * @model

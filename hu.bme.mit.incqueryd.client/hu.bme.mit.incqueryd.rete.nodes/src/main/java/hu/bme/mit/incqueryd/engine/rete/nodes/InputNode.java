@@ -20,9 +20,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.InputRecipe;
 import org.openrdf.model.Resource;
 import org.openrdf.model.Value;
 
@@ -32,21 +30,21 @@ import com.google.common.collect.Sets;
 
 import eu.mondo.driver.graph.RDFGraphDriverRead;
 
-public class TypeInputNode implements ReteNode {
+public class InputNode implements ReteNode {
 
 	public static final String VERTEX = "vertex";
 	public static final String EDGE = "edge";
 	public static final String ATTRIBUTE = "attribute";
 
-	protected final TypeInputRecipe recipe;
+	protected final InputRecipe recipe;
 
-	public TypeInputRecipe getRecipe() {
+	public InputRecipe getRecipe() {
 		return recipe;
 	}
 
 	protected Set<Tuple> tuples = new HashSet<>();
 
-	TypeInputNode(final TypeInputRecipe recipe) {
+	InputNode(final InputRecipe recipe) {
 		super();
 		this.recipe = recipe;
 	}
@@ -70,17 +68,19 @@ public class TypeInputNode implements ReteNode {
 	}
 
 	public void load(RDFGraphDriverRead driver) throws IOException {
-		String typeName = recipe.getTypeName();
-
-		if (recipe instanceof UnaryInputRecipe) {
+		String typeName = recipe.getKeyID();
+		switch (recipe.getKeyArity()) {
+		case 1:
 			initializeVertex(typeName, driver);
-		} else if (recipe instanceof BinaryInputRecipe) {
+			break;
+		default:
 			String traceInfo = recipe.getTraceInfo();
 			if (traceInfo.startsWith(ATTRIBUTE)) {
 				initializeProperty(typeName, driver);
 			} else if (traceInfo.startsWith(EDGE)) {
 				initializeEdge(typeName, driver);
 			}
+			break;
 		}
 	}
 

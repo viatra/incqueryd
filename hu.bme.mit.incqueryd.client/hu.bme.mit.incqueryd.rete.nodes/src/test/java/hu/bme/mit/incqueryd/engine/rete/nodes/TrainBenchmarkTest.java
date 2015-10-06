@@ -9,15 +9,14 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ExpressionDefinition;
+import org.eclipse.incquery.runtime.rete.recipes.InputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.Mask;
 import org.eclipse.incquery.runtime.rete.recipes.ProjectionIndexerRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory;
 import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
 import org.junit.Test;
 
 import com.google.common.collect.ImmutableList;
@@ -28,13 +27,13 @@ import eu.mondo.driver.graph.RDFGraphDriverRead;
 
 public class TrainBenchmarkTest {
 
-	private final RDFGraphDriverRead driver = new FileGraphDriverRead(TypeInputNodeTest.DATABASE_URL);
+	private final RDFGraphDriverRead driver = new FileGraphDriverRead(InputNodeTest.DATABASE_URL);
 
 	@Test
 	public void posLengthTest() throws IOException {
 		// arrange
 		// input nodes
-		TypeInputNode segmentLengthInputNode = createAttributeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE
+		InputNode segmentLengthInputNode = createAttributeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE
 				+ TrainBenchmarkConstants.SEGMENT_LENGTH);
 
 		CheckRecipe recipe = createCheckNode("SegmentLength <= 0", ImmutableMap.of("SegmentLength", 1));
@@ -54,13 +53,13 @@ public class TrainBenchmarkTest {
 	public void routeSensorTest() throws IOException {
 		// arrange
 		// input nodes
-		TypeInputNode switchPositionNode = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE
+		InputNode switchPositionNode = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE
 				+ TrainBenchmarkConstants.SWITCHPOSITION_SWITCH);
-		TypeInputNode routeSwitchPositionNode = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE
+		InputNode routeSwitchPositionNode = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE
 				+ TrainBenchmarkConstants.ROUTE_SWITCHPOSITION);
-		TypeInputNode trackElementSensorNode = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE
+		InputNode trackElementSensorNode = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE
 				+ TrainBenchmarkConstants.TRACKELEMENT_SENSOR);
-		TypeInputNode routeRouteDefinitionNode = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE
+		InputNode routeRouteDefinitionNode = createEdgeInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE
 				+ TrainBenchmarkConstants.ROUTE_ROUTEDEFINITION);
 
 		// join node: <SwP, Sw, R>
@@ -110,11 +109,11 @@ public class TrainBenchmarkTest {
 	public void switchSensorTest() throws IOException {
 		// arrange
 		// input node for switch vertices
-		TypeInputNode switchInputNode = createVertexInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.SWITCH);
+		InputNode switchInputNode = createVertexInputNode(TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.SWITCH);
 
 		// input node for trackElement_sensor edges
 		String type = TrainBenchmarkConstants.TRAINBENCHMARK_BASE + TrainBenchmarkConstants.TRACKELEMENT_SENSOR;
-		TypeInputNode trackElementSensorNode = createEdgeInputNode(type);
+		InputNode trackElementSensorNode = createEdgeInputNode(type);
 
 		// antijoin node
 		AntiJoinRecipe antiJoinRecipe = RecipesFactory.eINSTANCE.createAntiJoinRecipe();
@@ -140,10 +139,11 @@ public class TrainBenchmarkTest {
 		assertEquals(19, cs2.size());
 	}
 
-	private TypeInputNode createVertexInputNode(String typeName) throws IOException {
-		UnaryInputRecipe recipe = RecipesFactory.eINSTANCE.createUnaryInputRecipe();
-		recipe.setTypeName(typeName);
-		TypeInputNode node = new TypeInputNode(recipe);
+	private InputNode createVertexInputNode(String typeName) throws IOException {
+		InputRecipe recipe = RecipesFactory.eINSTANCE.createInputRecipe();
+		recipe.setKeyArity(1);
+		recipe.setKeyID(typeName);
+		InputNode node = new InputNode(recipe);
 		return node;
 	}
 
@@ -181,11 +181,12 @@ public class TrainBenchmarkTest {
 		return node;
 	}
 
-	private TypeInputNode createEdgeInputNode(String type) throws IOException {
-		BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
-		recipe.setTypeName(type);
+	private InputNode createEdgeInputNode(String type) throws IOException {
+		InputRecipe recipe = RecipesFactory.eINSTANCE.createInputRecipe();
+		recipe.setKeyArity(2);
+		recipe.setKeyID(type);
 		recipe.setTraceInfo("edge");
-		TypeInputNode node = new TypeInputNode(recipe);
+		InputNode node = new InputNode(recipe);
 		return node;
 	}
 
@@ -202,11 +203,12 @@ public class TrainBenchmarkTest {
 		return recipe;
 	}
 
-	private TypeInputNode createAttributeInputNode(String type) throws IOException {
-		BinaryInputRecipe recipe = RecipesFactory.eINSTANCE.createBinaryInputRecipe();
-		recipe.setTypeName(type);
+	private InputNode createAttributeInputNode(String type) throws IOException {
+		InputRecipe recipe = RecipesFactory.eINSTANCE.createInputRecipe();
+		recipe.setKeyArity(2);
+		recipe.setKeyID(type);
 		recipe.setTraceInfo("attribute");
-		TypeInputNode node = new TypeInputNode(recipe);
+		InputNode node = new InputNode(recipe);
 		return node;
 	}
 

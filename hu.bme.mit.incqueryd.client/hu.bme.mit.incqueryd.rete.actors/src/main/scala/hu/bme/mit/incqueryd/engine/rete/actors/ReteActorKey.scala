@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.engine.rete.actors
 
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
-import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
+import org.eclipse.incquery.runtime.rete.recipes.InputRecipe
 import java.net.URLEncoder
 import java.security.MessageDigest
 
@@ -11,7 +11,7 @@ object ReteActorKey {
 
   def apply(recipe: ReteNodeRecipe): ReteActorKey = {
     recipe match {
-      case recipe: TypeInputRecipe => fromString(recipe.getTypeName)
+      case recipe: InputRecipe => fromString(recipe.getKeyID)
       case _ => fromString(recipe.eResource().getURIFragment(recipe))
     }
   }

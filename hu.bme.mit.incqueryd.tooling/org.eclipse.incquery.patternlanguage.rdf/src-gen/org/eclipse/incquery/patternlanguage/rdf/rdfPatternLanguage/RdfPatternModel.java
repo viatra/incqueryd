@@ -13,12 +13,12 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getVocabularies <em>Vocabularies</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getBaseIriValue <em>Base Iri Value</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel#getIriPrefixes <em>Iri Prefixes</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfPatternModel()
  * @model

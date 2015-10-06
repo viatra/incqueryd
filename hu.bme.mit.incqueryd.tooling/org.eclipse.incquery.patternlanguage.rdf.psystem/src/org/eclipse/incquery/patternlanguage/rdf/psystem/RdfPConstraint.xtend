@@ -9,19 +9,17 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyCo
 import org.eclipse.incquery.runtime.matchers.psystem.PBody
 import org.eclipse.incquery.runtime.matchers.psystem.PConstraint
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.Equality
+import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.Inequality
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.NegativePatternCall
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.BinaryTransitiveClosure
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.PositivePatternCall
-import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeBinary
-import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary
-
-import static org.eclipse.incquery.patternlanguage.patternLanguage.CompareFeature.*
+import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeConstraint
+import org.eclipse.incquery.runtime.matchers.tuple.FlatTuple
 
 import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils.*
-import static extension org.eclipse.incquery.patternlanguage.util.psystem.PUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
-import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation
+import static extension org.eclipse.incquery.patternlanguage.util.psystem.PUtils.*
 
 class RdfPConstraint {
 
@@ -67,21 +65,17 @@ class RdfPConstraint {
 		}
 	}
 
-	static def TypeUnary convertClassConstraint(RdfClassConstraint constraint, PBody pBody, RdfPModel model) {
-		val variable = constraint.variable.variable
-		val pVariable = variable.toPVariable(pBody)
-		val typeObject = constraint.type.toRdfResource
-		val typeString = model.context.printType(typeObject)
-		new TypeUnary(pBody, pVariable, typeObject, typeString)
+	static def TypeConstraint convertClassConstraint(RdfClassConstraint constraint, PBody pBody, RdfPModel model) {
+		val pVariable = constraint.variable.variable.toPVariable(pBody)
+		val resource = constraint.type.toRdfResource
+		new TypeConstraint(pBody, new FlatTuple(pVariable), new RdfInputKey(resource, 1))
 	}
 
 	static def PConstraint convertPropertyConstraint(RdfPropertyConstraint constraint, PBody pBody, RdfPModel model) {
-		val refType = constraint.refType
 		val source = constraint.source.variable.toPVariable(pBody)
 		val target = constraint.target.toPVariable(pBody, model)
-		val typeObject = refType.toRdfResource
-		val typeString = model.context.printType(typeObject)
-		new TypeBinary(pBody, model.context, source, target, typeObject, typeString)
+		val resource = constraint.refType.toRdfResource
+		new TypeConstraint(pBody, new FlatTuple(source, target), new RdfInputKey(resource, 2))
 	}
 
 	static def PConstraint convertCheckConstraint(RdfCheckConstraint constraint, PBody pBody) {

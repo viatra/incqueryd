@@ -1,10 +1,8 @@
 package hu.bme.mit.incqueryd.engine
 
-import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.openrdf.model.Model
-import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
+
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet
-import hu.bme.mit.incqueryd.engine.rete.nodes.TypeInputNode
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 
 sealed trait CoordinatorCommand

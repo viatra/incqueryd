@@ -1,10 +1,10 @@
 package hu.bme.mit.incqueryd.engine.rete.actors
 
 import org.eclipse.incquery.runtime.rete.recipes.RecipesFactory
-import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
+import org.eclipse.incquery.runtime.rete.recipes.InputRecipe
 import org.openrdf.model.Resource
 import eu.mondo.driver.file.FileGraphDriverRead
-import hu.bme.mit.incqueryd.engine.rete.nodes.TypeInputNode
+import hu.bme.mit.incqueryd.engine.rete.nodes.InputNode
 import eu.mondo.driver.graph.RDFGraphDriverRead
 
 case class RdfType(
@@ -13,10 +13,11 @@ case class RdfType(
   tupleCount: Long,
   traceInfo: String) {
 
-  def getInputRecipe: TypeInputRecipe = {
-    val recipe = if (arity == 1) RecipesFactory.eINSTANCE.createUnaryInputRecipe else RecipesFactory.eINSTANCE.createBinaryInputRecipe
-    recipe.setTypeKey(id)
-    recipe.setTypeName(id.stringValue)
+  def getInputRecipe: InputRecipe = {
+    val recipe = RecipesFactory.eINSTANCE.createInputRecipe
+    recipe.setKeyArity(arity)
+    recipe.setInputKey(id)
+    recipe.setKeyID(id.stringValue)
     recipe.setTraceInfo(traceInfo)
     recipe
   }
@@ -32,9 +33,9 @@ object RdfType {
 
   def apply(kind: Kind, id: Resource, driver: RDFGraphDriverRead): RdfType = {
     kind match {
-      case Class => RdfType(id, 1, driver.countVertices(id.stringValue), TypeInputNode.VERTEX)
-      case ObjectProperty => RdfType(id, 2, driver.countEdges(id.stringValue), TypeInputNode.EDGE)
-      case DatatypeProperty => RdfType(id, 2, driver.countProperties(id.stringValue), TypeInputNode.ATTRIBUTE)
+      case Class => RdfType(id, 1, driver.countVertices(id.stringValue), InputNode.VERTEX)
+      case ObjectProperty => RdfType(id, 2, driver.countEdges(id.stringValue), InputNode.EDGE)
+      case DatatypeProperty => RdfType(id, 2, driver.countProperties(id.stringValue), InputNode.ATTRIBUTE)
     }
   }
 

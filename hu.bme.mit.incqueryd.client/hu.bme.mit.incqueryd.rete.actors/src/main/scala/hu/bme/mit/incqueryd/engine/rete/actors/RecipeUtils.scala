@@ -7,12 +7,10 @@ import org.eclipse.incquery.runtime.rete.recipes.ConstantRecipe
 import org.eclipse.incquery.runtime.rete.recipes.MultiParentNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
 import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe
-import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
+import org.eclipse.incquery.runtime.rete.recipes.InputRecipe
 import scala.collection.JavaConversions._
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
-import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe
-import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe
 import org.eclipse.incquery.runtime.rete.recipes.RecipesPackage
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
@@ -25,7 +23,7 @@ object RecipeUtils {
 
   def getNormalizedTupleCount(recipe: ReteNodeRecipe, types: Set[RdfType]): Long = {
     recipe match {
-      case recipe: TypeInputRecipe => {
+      case recipe: InputRecipe => {
         val arity = recipe.getArity
         val tupleCount: Long = findType(types, recipe).map(_.tupleCount).getOrElse(0)
         arity * tupleCount
@@ -69,11 +67,19 @@ object RecipeUtils {
   
   def getNodeType(recipe: ReteNodeRecipe): String = {
     recipe match {
-      case recipe: UnaryInputRecipe => VERTEX
-      case recipe: BinaryInputRecipe => {
-        if(recipe.getTraceInfo.startsWith(EDGE)) return EDGE
-        if(recipe.getTraceInfo.startsWith(ATTRIBUTE)) return ATTRIBUTE
-        return ""
+      case recipe: InputRecipe => {
+        recipe.getKeyArity match {
+          case 1 => VERTEX
+          case 2 => {
+            if(recipe.getTraceInfo.startsWith(EDGE))
+              EDGE
+            else if(recipe.getTraceInfo.startsWith(ATTRIBUTE))
+              ATTRIBUTE
+            else
+              ""
+          }
+          case _ => ""
+        }
       }
       case _ => recipe.getClass.getSimpleName
     }
@@ -81,14 +87,14 @@ object RecipeUtils {
   
   def getName(recipe: ReteNodeRecipe): String = {
     recipe match {
-      case recipe: TypeInputRecipe => recipe.getTypeName
+      case recipe: InputRecipe => recipe.getKeyID
       // TODO more cases
       case _ => recipe.toString
     }
   }
 
-  def findType(types: Set[RdfType], recipe: TypeInputRecipe): Option[RdfType] = {
-    types.find(_.id.stringValue == recipe.getTypeName)
+  def findType(types: Set[RdfType], recipe: InputRecipe): Option[RdfType] = {
+    types.find(_.id.stringValue == recipe.getKeyID)
   }
 
   def findRecipe(recipe: ReteRecipe, key: ReteActorKey): Option[ReteNodeRecipe] = {

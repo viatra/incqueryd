@@ -12,10 +12,10 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
         <scala.version>2.11.6</scala.version>
-	<!--<akka.version>2.4-20150420-230104</akka.version>-->
-	<akka.version>2.3.4</akka.version>
+		<akka.version>2.3.4</akka.version>
         <emf.version>2.9.1-v20130827-0309</emf.version>
         <sesame.version>2.8.6</sesame.version>
+        <incquery.version>1.1.0-SNAPSHOT</incquery.version>
     </properties>
     <repositories>
         <repository>
@@ -82,7 +82,7 @@
             <dependency>
                 <groupId>org.eclipse.incquery</groupId>
                 <artifactId>org.eclipse.incquery.runtime.rete.recipes</artifactId>
-                <version>0.9.1</version>
+                <version>${incquery.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.openrdf.sesame</groupId>

@@ -20,7 +20,7 @@ class RdfPModel {
 
 	val RdfPatternModel patternModel
 
-	public val RdfPatternMatcherContext context
+	public val RdfQueryMetaContext context
 
 	val LoadingCache<Pattern, PQuery> queries = CacheBuilder.newBuilder.build[toPQuery(this)] // XXX due to this solution, recursive patterns are not supported
 
@@ -31,7 +31,7 @@ class RdfPModel {
 	new(RdfPatternModel patternModel) {
 		this.patternModel = patternModel
 		val vocabulary = patternModel.vocabulary
-		context = new RdfPatternMatcherContext(vocabulary)
+		context = new RdfQueryMetaContext(vocabulary)
 	}
 
 	def Tuple toTuple(List<ValueReference> valueReferences, PBody pBody) {

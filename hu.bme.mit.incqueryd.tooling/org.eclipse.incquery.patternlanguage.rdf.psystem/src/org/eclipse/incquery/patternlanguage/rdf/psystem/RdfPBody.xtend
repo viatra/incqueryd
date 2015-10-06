@@ -14,7 +14,7 @@ class RdfPBody {
 
 	static def PBody toPBody(PatternBody body, Pattern pattern, PQuery query, RdfPModel model) {
 		new PBody(query) => [pBody |
-			pBody.exportedParameters = pattern.parameters.map[parameter |
+			pBody.symbolicParameters = pattern.parameters.map[parameter |
 				parameter.toExportedParameter(pBody)
 			]
 			pBody.constraints.addAll(

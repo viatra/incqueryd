@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <recipes:ReteRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
-  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="highestPoint [recipe 0]" parents="//@recipeNodes.1">
+  <recipeNodes xsi:type="recipes:InputRecipe" traceInfo="edge: http://www.wikidata.org/prop/direct/P610 [recipe 0]" keyID="http://www.wikidata.org/prop/direct/P610" keyArity="2"/>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="highestPoint [recipe 1]" parents="//@recipeNodes.0" patternFQN="highestPoint">
     <mappedIndices key="subject" value="0"/>
     <mappedIndices key="object" value="1"/>
   </recipeNodes>
-  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge: http://www.wikidata.org/prop/direct/P610 [recipe 1]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740028687474703A2F2F7777772E77696B69646174612E6F72672F70726F702F6469726563742F50363130" typeName="http://www.wikidata.org/prop/direct/P610"/>
 </recipes:ReteRecipe>

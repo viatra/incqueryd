@@ -11,10 +11,10 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint#getExpression <em>Expression</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfCheckConstraint()
  * @model

@@ -11,12 +11,12 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.LiteralValueReferenc
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral#getLexicalForm <em>Lexical Form</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral#getDatatype <em>Datatype</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral#getLanguage <em>Language</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfLiteral()
  * @model

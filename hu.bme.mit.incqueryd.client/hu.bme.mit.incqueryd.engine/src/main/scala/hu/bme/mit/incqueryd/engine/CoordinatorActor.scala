@@ -23,7 +23,7 @@ import org.openrdf.model.Resource
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery
 import hu.bme.mit.incqueryd.engine.util.RecipeDeserializer
-import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
+import org.eclipse.incquery.runtime.rete.recipes.InputRecipe
 import akka.actor.ActorRef
 import akka.actor.PoisonPill
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
@@ -82,8 +82,8 @@ class CoordinatorActor extends Actor {
     }
     case StartQuery(recipeJson, rdfiqContents, rmHostname, fileSystemUri) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
-      val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe]).toSet
-      val otherActorsByRecipe = deploy(notTypeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.reteNodesPath)
+      val notInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[InputRecipe]).toSet
+      val otherActorsByRecipe = deploy(notInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.reteNodesPath)
       val queryID = IDService.lookupID(recipeJson)
       IncQueryDZooKeeper.setData(s"${IncQueryDZooKeeper.runningQueries}/$queryID", rdfiqContents.getBytes)
       RecipeUtils.getPatternNamesFromRecipe(recipe).foreach { patternName => 
@@ -116,13 +116,13 @@ class CoordinatorActor extends Actor {
     }
     case StopQuery(recipeJson) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
-      val notTypeInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[TypeInputRecipe]).toSet
-      undeploy(notTypeInputRecipes)
+      val notInputRecipes = recipe.getRecipeNodes.filterNot(_.isInstanceOf[InputRecipe]).toSet
+      undeploy(notInputRecipes)
       sender ! true
     }
     case Dispose => {
-      val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
-      undeploy(typeInputRecipes)
+      val inputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
+      undeploy(inputRecipes)
       sender ! true
     }
     case StartWikidataStream(databaseConnection) => {

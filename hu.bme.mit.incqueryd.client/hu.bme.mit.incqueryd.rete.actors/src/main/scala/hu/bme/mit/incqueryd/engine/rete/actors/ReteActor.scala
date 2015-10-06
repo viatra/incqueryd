@@ -22,7 +22,7 @@ import hu.bme.mit.incqueryd.engine.rete.nodes.BetaNode
 import hu.bme.mit.incqueryd.engine.rete.nodes.ProductionNode
 import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNode
 import hu.bme.mit.incqueryd.engine.rete.nodes.ReteNodeFactory
-import hu.bme.mit.incqueryd.engine.rete.nodes.TypeInputNode
+import hu.bme.mit.incqueryd.engine.rete.nodes.InputNode
 import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration
 
 class ReteActor extends Actor {
@@ -32,15 +32,15 @@ class ReteActor extends Actor {
     case EstablishSubscriptions => establishSubscriptions()
     case RegisterSubscriber(slot) => registerSubscriber(slot)
     case PropagateState => {
-      val changeSet = reteNode.asInstanceOf[TypeInputNode].getChangeSetFromCurrentState
+      val changeSet = reteNode.asInstanceOf[InputNode].getChangeSetFromCurrentState
       propagateInputChange(changeSet) 
     }
     case PropagateInputChange(changeSet) => {
-      reteNode.asInstanceOf[TypeInputNode].update(changeSet)
+      reteNode.asInstanceOf[InputNode].update(changeSet)
       propagateInputChange(changeSet)
     }
     case FilterOutAndPropagate(subjectId) => {
-      val changeSet = reteNode.asInstanceOf[TypeInputNode].filter(new Predicate[Tuple] {
+      val changeSet = reteNode.asInstanceOf[InputNode].filter(new Predicate[Tuple] {
         def apply(tuple: Tuple): Boolean = tuple.get(0) != subjectId
       })
       propagateInputChange(changeSet)

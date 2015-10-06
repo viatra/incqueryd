@@ -9,13 +9,16 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.incquery.patternlanguage.patternLanguage.PatternModel;
 import org.eclipse.incquery.runtime.matchers.backend.IQueryBackendHintProvider;
-import org.eclipse.incquery.runtime.matchers.context.IPatternMatcherContext;
+import org.eclipse.incquery.runtime.matchers.context.IQueryCacheContext;
+import org.eclipse.incquery.runtime.matchers.context.IQueryMetaContext;
+import org.eclipse.incquery.runtime.matchers.planning.IQueryPlannerStrategy;
 import org.eclipse.incquery.runtime.matchers.planning.QueryProcessingException;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.incquery.runtime.rete.construction.plancompiler.ReteRecipeCompiler;
@@ -37,7 +40,7 @@ public abstract class RecipeGenerator<CustomPatternModel extends PatternModel, P
 
 	protected abstract PModel getPModel(CustomPatternModel patternModel);
 
-	protected abstract IPatternMatcherContext getPatternMatcherContext(PModel model);
+	protected abstract IQueryMetaContext getQueryMetaContext(PModel model);
 
 	protected abstract PQuery getPQuery(Pattern pattern, PModel model);
 
@@ -45,13 +48,19 @@ public abstract class RecipeGenerator<CustomPatternModel extends PatternModel, P
 
 	protected abstract void processForSerialization(ReteRecipe recipe, ReteNodeRecipe nodeRecipe, Metamodel metamodel, int recipeIndex);
 
+	private final Logger logger = Logger.getLogger(getClass());
+
 	@Override
 	public void doGenerate(Resource input, IFileSystemAccess fsa) {
 		int recipeIndex = 0;
 		for (CustomPatternModel patternModel : filter(input.getContents(), getPatternModelClass())) {
 			ReteRecipe recipe = RecipesFactory.eINSTANCE.createReteRecipe();
 			PModel model = getPModel(patternModel);
-			ReteRecipeCompiler compiler = new ReteRecipeCompiler(Options.builderMethod.layoutStrategy(), getPatternMatcherContext(model), IQueryBackendHintProvider.DEFAULT);
+			IQueryPlannerStrategy plannerStrategy = Options.builderMethod.layoutStrategy();
+			IQueryMetaContext metaContext = getQueryMetaContext(model);
+			IQueryBackendHintProvider backendHintProvider = IQueryBackendHintProvider.DEFAULT;
+			IQueryCacheContext cacheContext = null; // XXX unused by ReteRecipeCompiler?
+			ReteRecipeCompiler compiler = new ReteRecipeCompiler(plannerStrategy, logger, metaContext, cacheContext, backendHintProvider);
 			Metamodel metamodel = getMetamodel(patternModel);
 			ArrayList<CompiledQuery> compiledQueries = new ArrayList<>();
 			for (Pattern pattern : filter(copyOf(input.getAllContents()), Pattern.class)) {

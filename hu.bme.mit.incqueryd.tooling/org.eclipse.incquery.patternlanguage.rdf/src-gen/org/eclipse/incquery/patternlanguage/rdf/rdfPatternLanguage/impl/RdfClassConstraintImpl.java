@@ -24,11 +24,11 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLan
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfClassConstraintImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfClassConstraintImpl#getVariable <em>Variable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

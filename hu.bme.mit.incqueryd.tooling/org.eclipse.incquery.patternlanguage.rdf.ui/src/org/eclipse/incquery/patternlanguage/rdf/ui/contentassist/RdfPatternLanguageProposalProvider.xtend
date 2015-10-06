@@ -22,7 +22,7 @@ class RdfPatternLanguageProposalProvider extends AbstractRdfPatternLanguagePropo
 		val resources = vocabulary.map[subject].filter(URI).filter[subject | predicate.apply(subject, vocabulary)]
 		resources.forEach[resource |
 			val proposal = if (patternModel.baseIriValue == null) {
-				new RawIriValueConverter().toEscapedString(resource.stringValue)
+				new RawIriValueConverter().internalToString(resource.stringValue)
 			} else {
 				resource.stringValue.replaceFirst(patternModel.baseIriValue, "")
 			}

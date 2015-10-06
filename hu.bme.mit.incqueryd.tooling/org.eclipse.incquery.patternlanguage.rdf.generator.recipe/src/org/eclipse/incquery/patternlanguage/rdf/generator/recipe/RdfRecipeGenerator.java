@@ -1,30 +1,28 @@
 package org.eclipse.incquery.patternlanguage.rdf.generator.recipe;
 
+import hu.bme.mit.incqueryd.rdf.RdfUtils;
+
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPModel;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPQuery;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 import org.eclipse.incquery.patternlanguage.util.generator.recipe.RecipeGenerator;
-import org.eclipse.incquery.runtime.matchers.context.IPatternMatcherContext;
+import org.eclipse.incquery.runtime.matchers.context.IQueryMetaContext;
 import org.eclipse.incquery.runtime.matchers.psystem.IExpressionEvaluator;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
-import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ExpressionEnforcerRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.InputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
 import org.openrdf.model.Model;
-
-import hu.bme.mit.incqueryd.rdf.RdfUtils;
 
 public class RdfRecipeGenerator extends RecipeGenerator<RdfPatternModel, RdfPModel, Model> {
 
+	private static final String VERTEX_DISCRIMINATOR = "vertex";
 	private static final String ATTRIBUTE_DISCRIMINATOR = "attribute";
 	private static final String EDGE_DISCRIMINATOR = "edge";
-	// the VERTEX_DISCRIMINATOR is not used as a discriminator
-	private static final String VERTEX_DISCRIMINATOR = "vertex";
 
 	@Override
 	protected void processForSerialization(ReteRecipe recipe, ReteNodeRecipe nodeRecipe, Model vocabulary, int recipeIndex) { // XXX
@@ -38,25 +36,20 @@ public class RdfRecipeGenerator extends RecipeGenerator<RdfPatternModel, RdfPMod
 			// XXX use an evaluator shared from runtime
 			Object[] evaluationInfo = { evaluator.getShortDescription(), evaluator.getInputParameterNames() };
 			expressionEnforcerRecipe.getExpression().setEvaluator(evaluationInfo);
-		} else if (nodeRecipe instanceof UnaryInputRecipe) {
-			UnaryInputRecipe unaryInputRecipe = (UnaryInputRecipe) nodeRecipe;
-
-			String typeName = unaryInputRecipe.getTypeName();
-			unaryInputRecipe.setTraceInfo(VERTEX_DISCRIMINATOR + ": " + typeName);
-		} else if (nodeRecipe instanceof BinaryInputRecipe) {
-			BinaryInputRecipe binaryInputRecipe = (BinaryInputRecipe) nodeRecipe;
-			org.openrdf.model.Resource propertyUri = RdfPatternLanguageUtils.toRdfResource(binaryInputRecipe.getTypeName());
-
-			String typeName = binaryInputRecipe.getTypeName();
-			if (RdfUtils.isDatatypeProperty(propertyUri, vocabulary)) {
-				binaryInputRecipe.setTraceInfo(ATTRIBUTE_DISCRIMINATOR + ": " + typeName);
-			} else if (RdfUtils.isObjectProperty(propertyUri, vocabulary)) {
-				binaryInputRecipe.setTraceInfo(EDGE_DISCRIMINATOR + ": " + typeName);
+		} else if (nodeRecipe instanceof InputRecipe) {
+			InputRecipe inputRecipe = (InputRecipe) nodeRecipe;
+			String typeName = inputRecipe.getKeyID();
+			org.openrdf.model.Resource typeResource = RdfPatternLanguageUtils.toRdfResource(typeName);
+			if (RdfUtils.isClass(typeResource, vocabulary) || RdfUtils.isDatatype(typeResource, vocabulary)) {
+				inputRecipe.setTraceInfo(VERTEX_DISCRIMINATOR + ": " + typeName);
+			} else if (RdfUtils.isDatatypeProperty(typeResource, vocabulary)) {
+				inputRecipe.setTraceInfo(ATTRIBUTE_DISCRIMINATOR + ": " + typeName);
+			} else if (RdfUtils.isObjectProperty(typeResource, vocabulary)) {
+				inputRecipe.setTraceInfo(EDGE_DISCRIMINATOR + ": " + typeName);
 			}
 		}
 		nodeRecipe.setTraceInfo(nodeRecipe.getTraceInfo() + " [recipe " + recipeIndex + "]");
 	}
-
 
 	@Override
 	protected Class<? extends RdfPatternModel> getPatternModelClass() {
@@ -69,7 +62,7 @@ public class RdfRecipeGenerator extends RecipeGenerator<RdfPatternModel, RdfPMod
 	}
 
 	@Override
-	protected IPatternMatcherContext getPatternMatcherContext(RdfPModel model) {
+	protected IQueryMetaContext getQueryMetaContext(RdfPModel model) {
 		return model.context;
 	}
 

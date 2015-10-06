@@ -25,12 +25,12 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyCo
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPropertyConstraintImpl#getRefType <em>Ref Type</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPropertyConstraintImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPropertyConstraintImpl#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

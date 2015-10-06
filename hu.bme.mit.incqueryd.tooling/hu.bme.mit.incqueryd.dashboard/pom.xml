@@ -240,6 +240,7 @@
 											<goal>update-widgetset</goal>
 											<goal>compile</goal>
 											<goal>compile-theme</goal>
+											<goal>update-theme</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>

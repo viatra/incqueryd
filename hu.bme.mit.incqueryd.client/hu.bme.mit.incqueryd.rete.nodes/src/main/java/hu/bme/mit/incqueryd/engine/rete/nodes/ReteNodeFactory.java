@@ -10,6 +10,8 @@
  *******************************************************************************/
 package hu.bme.mit.incqueryd.engine.rete.nodes;
 
+import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration;
+
 import java.io.IOException;
 
 import org.eclipse.incquery.runtime.rete.recipes.AntiJoinRecipe;
@@ -17,14 +19,12 @@ import org.eclipse.incquery.runtime.rete.recipes.CheckRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ConstantRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.EqualityFilterRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.InequalityFilterRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.InputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.JoinRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.TrimmerRecipe;
-import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UniquenessEnforcerRecipe;
-
-import hu.bme.mit.incqueryd.engine.util.ReteNodeConfiguration;
 
 public class ReteNodeFactory {
 
@@ -54,8 +54,8 @@ public class ReteNodeFactory {
 			return new ProductionNode((ProductionRecipe) recipe);
 		} else if (recipe instanceof TrimmerRecipe) {
 			return new TrimmerNode((TrimmerRecipe) recipe);
-		} else if (recipe instanceof TypeInputRecipe) {
-			return new TypeInputNode((TypeInputRecipe) recipe);
+		} else if (recipe instanceof InputRecipe) {
+			return new InputNode((InputRecipe) recipe);
 		} else if (recipe instanceof UniquenessEnforcerRecipe) {
 			return new UniquenessEnforcerNode((UniquenessEnforcerRecipe) recipe);
 		} else {

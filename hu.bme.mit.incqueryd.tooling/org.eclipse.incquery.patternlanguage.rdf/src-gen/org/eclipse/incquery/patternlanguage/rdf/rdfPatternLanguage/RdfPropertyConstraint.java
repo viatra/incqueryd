@@ -13,12 +13,12 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint#getRefType <em>Ref Type</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfPropertyConstraint()
  * @model

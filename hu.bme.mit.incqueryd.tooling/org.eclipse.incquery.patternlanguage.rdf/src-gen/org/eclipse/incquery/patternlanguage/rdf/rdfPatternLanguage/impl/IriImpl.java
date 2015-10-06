@@ -20,11 +20,11 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLan
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriImpl#getPrefix <em>Prefix</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -1,12 +1,24 @@
 package org.eclipse.incquery.patternlanguage.rdf.conversion
 
-import org.eclipse.xtext.conversion.impl.AbstractLexerBasedConverter
-import org.eclipse.xtext.nodemodel.INode
 import org.eclipse.xtext.conversion.ValueConverterException
+import org.eclipse.xtext.conversion.impl.AbstractNullSafeConverter
+import org.eclipse.xtext.nodemodel.INode
 
-class RawIriValueConverter extends AbstractLexerBasedConverter<String> {
+class RawIriValueConverter extends AbstractNullSafeConverter<String> {
 
-	override toValue(String string, INode node) throws ValueConverterException {
+	private def unescape(String string, String forbidden) {
+		string.replace('''\\«forbidden»''', forbidden)
+	}
+
+	private def escape(String string, String forbidden) {
+		string.replace(forbidden, '''\\«forbidden»''')
+	}
+	
+	override public internalToString(String value) {
+		'''<«value.escape('<')»>'''
+	}
+	
+	override protected internalToValue(String string, INode node) throws ValueConverterException {
 		if (string == null) {
 			null
 		} else {
@@ -16,18 +28,6 @@ class RawIriValueConverter extends AbstractLexerBasedConverter<String> {
 				string
 			}
 		}
-	}
-
-	private def unescape(String string, String forbidden) {
-		string.replace('''\\«forbidden»''', forbidden)
-	}
-
-	override toEscapedString(String value) {
-		'''<«value.escape('<')»>'''
-	}
-
-	private def escape(String string, String forbidden) {
-		string.replace(forbidden, '''\\«forbidden»''')
 	}
 
 }

@@ -1,7 +1,7 @@
 package hu.bme.mit.incqueryd.engine.rete.actors
 
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe
-import org.eclipse.incquery.runtime.rete.recipes.TypeInputRecipe
+import org.eclipse.incquery.runtime.rete.recipes.InputRecipe
 import akka.actor.ActorRef
 import org.eclipse.incquery.runtime.rete.recipes.BetaRecipe
 import org.eclipse.incquery.runtime.rete.recipes.AlphaRecipe
@@ -23,7 +23,7 @@ object ActorLookupUtils {
   def getZKActorPath(recipe : ReteNodeRecipe) : String = {
     val znodeId = ReteActorKey(recipe).internalId
     recipe match {
-       case recipe: TypeInputRecipe => s"${IncQueryDZooKeeper.inputNodesPath}/$znodeId"
+       case recipe: InputRecipe => s"${IncQueryDZooKeeper.inputNodesPath}/$znodeId"
        case _ => s"${IncQueryDZooKeeper.reteNodesPath}/$znodeId"
     }
   }
