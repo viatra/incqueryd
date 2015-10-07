@@ -46,23 +46,7 @@
 						<configuration>
 							<artifacts>
 								<artifact>
-									<id>hu.bme.mit.incqueryd:hu.bme.mit.incqueryd.bootstrapagent.client:1.0.0-SNAPSHOT</id>
-									<source>true</source>
-								</artifact>
-								<artifact>
-									<id>hu.bme.mit.incqueryd:hu.bme.mit.incqueryd.coordinator.client:1.0.0-SNAPSHOT</id>
-									<source>true</source>
-								</artifact>
-								<artifact>
-									<id>hu.bme.mit.incqueryd:hu.bme.mit.incqueryd.infrastructureagent.client:1.0.0-SNAPSHOT</id>
-									<source>true</source>
-								</artifact>
-								<artifact>
-									<id>hu.bme.mit.incqueryd:hu.bme.mit.incqueryd.inventory:1.0.0-SNAPSHOT</id>
-									<source>true</source>
-								</artifact>
-								<artifact>
-									<id>hu.bme.mit.incqueryd:hu.bme.mit.incqueryd.monitoringserver.client:1.0.0-SNAPSHOT</id>
+									<id>hu.bme.mit.incqueryd:hu.bme.mit.incqueryd.rete.nodes:0.0.1-SNAPSHOT</id>
 									<source>true</source>
 								</artifact>
 							</artifacts>
