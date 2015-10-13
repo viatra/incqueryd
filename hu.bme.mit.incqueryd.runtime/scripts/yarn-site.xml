@@ -75,4 +75,9 @@
 		<value>5120</value>
 	</property>
 
+	<property>
+		<name>yarn.log-aggregation-enable</name>
+		<value>true</value>
+	</property>
+
 </configuration>
