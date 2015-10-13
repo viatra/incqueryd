@@ -24,6 +24,7 @@ import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import hu.bme.mit.incqueryd.spark.utils.SendUpdates
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import java.net.MalformedURLException
 
 /**
  * @author pappi
@@ -31,6 +32,13 @@ import scala.concurrent.ExecutionContext.Implicits.global
 class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Receiver[Set[Delta]](StorageLevel.MEMORY_ONLY) {
   
   def onStart() {
+    try {
+      new URL("hdfs://foo")
+    } catch {
+      case e: MalformedURLException =>
+        URL.setURLStreamHandlerFactory(new FsUrlStreamHandlerFactory)
+    }
+    
     val inputNodes = IncQueryDZooKeeper.getChildPaths(IncQueryDZooKeeper.inputNodesPath)
     val driver = databaseConnection.getDriver
     
