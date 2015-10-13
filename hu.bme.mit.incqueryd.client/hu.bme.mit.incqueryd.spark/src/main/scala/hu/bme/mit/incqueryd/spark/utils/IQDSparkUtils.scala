@@ -39,9 +39,7 @@ object IQDSparkUtils {
   val OPTION_DATABASE_BACKEND = "backend"
   val OPTION_DURATION = "duration"
   val OPTION_DATASOURCE_URL = "ds_url"
-  val OPTION_NO_DATA_TIMEOUT_MS = "no_data_timeout"
   val OPTION_QUERY_ID = "query_id"
-  val OPTION_SINGLE_RUN = "single"
   val OPTION_NUM_EXECUTORS = "num_exectrs"
   val OPTION_SCHEDULER_MODE = "scheduler_mode"
   
