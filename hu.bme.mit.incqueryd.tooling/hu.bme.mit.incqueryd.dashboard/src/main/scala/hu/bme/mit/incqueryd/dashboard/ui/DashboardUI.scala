@@ -1,33 +1,27 @@
 package hu.bme.mit.incqueryd.dashboard.ui
 
+import scala.collection.JavaConverters._
+import scala.collection.mutable.HashMap
+import scala.collection.mutable.HashSet
+import com.vaadin.annotations.Push
 import com.vaadin.annotations.Theme
 import com.vaadin.annotations.VaadinServletConfiguration
-import com.vaadin.data.util.IndexedContainer
 import com.vaadin.server.VaadinRequest
 import com.vaadin.server.VaadinServlet
 import com.vaadin.ui.Alignment
 import com.vaadin.ui.Button
+import com.vaadin.ui.Button.ClickEvent
+import com.vaadin.ui.Button.ClickListener
 import com.vaadin.ui.HorizontalLayout
 import com.vaadin.ui.Label
+import com.vaadin.ui.Panel
 import com.vaadin.ui.UI
 import com.vaadin.ui.VerticalLayout
+import com.vaadin.ui.themes.ValoTheme
 import hu.bme.mit.incqueryd.dashboard.controller.DashboardController
 import hu.bme.mit.incqueryd.dashboard.ui.UIHelper._
 import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils._
-import javax.servlet.annotation.WebInitParam
 import javax.servlet.annotation.WebServlet
-import scala.collection.JavaConverters._
-import com.vaadin.annotations.Push
-import com.codahale.metrics.Metric
-import com.vaadin.ui.Panel
-import com.vaadin.ui.Grid.Header
-import com.vaadin.addon.charts.model.style.Style
-import com.vaadin.ui.themes.ValoTheme
-import com.vaadin.ui.themes.Runo
-import scala.collection.mutable.HashMap
-import scala.collection.mutable.HashSet
-import com.vaadin.ui.Button.ClickListener
-import com.vaadin.ui.Button.ClickEvent
 
 /**
  * @author pappi
@@ -186,8 +180,10 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
     configureWidgets
 
     initLayout
-
-    selectPattern(patternBtns.keySet.head)
+    
+    if(patternBtns.size > 0)
+      selectPattern(patternBtns.keySet.head)
+      
     UIBroadcaster.addListener(this)
   }
 
@@ -204,6 +200,5 @@ class QueryPanelClickListener extends com.vaadin.event.MouseEvents.ClickListener
   }
 }
 
-@WebServlet(urlPatterns = Array("/*"))
 @VaadinServletConfiguration(ui = classOf[DashboardUI], productionMode = false)
 class DashboardUIServlet extends VaadinServlet {}

@@ -20,9 +20,6 @@ import com.google.common.net.HostAndPort
  */
 object DashboardApp {
 
-  val queryResultsFilter = (x: Path) => x.toString().startsWith("part")
-  val patternName = "switchSensor"
-  val RESULT_BASE_DIR = "hdfs://172.17.2.171:9000/QUERYRESULTS"
   val BROKER_URL = "tcp://yarn-rm.docker:9876"
 
   def main(args: Array[String]) {
