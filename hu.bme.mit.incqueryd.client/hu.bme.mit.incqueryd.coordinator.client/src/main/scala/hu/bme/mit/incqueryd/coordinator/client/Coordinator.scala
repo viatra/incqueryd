@@ -67,17 +67,17 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
   }
   
   def stopOutputStreams() {
-    println(s"Stopping output streams..")
+    println(s"Stopping output streams")
     askCoordinator[Boolean](StopOutputStreams)
   }
   
   def startWikidataStream(databaseConnection: DatabaseConnection) = {
-    println("Starting wikidata stream...")
+    println("Starting wikidata stream")
     askCoordinator[Boolean](StartWikidataStream(databaseConnection))
   }
   
   def stopWikidataStream() {
-    println(s"Stopping wikidata stream...")
+    println(s"Stopping wikidata stream")
     askCoordinator[Boolean](StopWikidataStream)
   }
   

@@ -29,10 +29,13 @@ object WikidataDemo {
     client.startQuery(recipe, Resources.toString(Resources.getResource(rdfiqFilename), Charsets.UTF_8))
     client.coordinator.loadData(databaseConnection)
     client.coordinator.startWikidataStream(databaseConnection)
-    println("Press Enter to quit!")
-    System.in.read()
-    client.coordinator.stopWikidataStream()
-    client.dispose()
+    Runtime.getRuntime.addShutdownHook(new Thread() {
+      override def run() {
+        client.coordinator.stopWikidataStream()
+        client.dispose()
+      }
+    })
+    while(true) {}
   }
 
 }
