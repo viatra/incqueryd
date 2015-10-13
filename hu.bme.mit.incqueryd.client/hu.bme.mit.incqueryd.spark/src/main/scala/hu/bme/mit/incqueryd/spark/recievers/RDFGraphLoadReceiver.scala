@@ -30,12 +30,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
  */
 class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Receiver[Set[Delta]](StorageLevel.MEMORY_ONLY) {
   
-  var pool: ExecutorService = _
-  
   def onStart() {
-    
-    URL.setURLStreamHandlerFactory(new FsUrlStreamHandlerFactory)
-    
     val inputNodes = IncQueryDZooKeeper.getChildPaths(IncQueryDZooKeeper.inputNodesPath)
     val driver = databaseConnection.getDriver
     
@@ -43,24 +38,19 @@ class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Recei
       Future {
         val rdfTypeName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.rdfType}")
         val inputType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.nodeType}")
-        try {
-          val updates: Set[Update] = inputType match {
-            case RecipeUtils.VERTEX => 
-              val dataset = driver.collectVertices(rdfTypeName)
-              dataset.toSet.map{x: Resource => UpdateVertex(ChangeType.POSITIVE, x.toString(), rdfTypeName)}
-            case RecipeUtils.EDGE =>
-              val dataset = driver.collectEdges(rdfTypeName)
-              dataset.entries().toSet.map{entry: Entry[Resource, Resource] => UpdateEdge(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString())}
-            case RecipeUtils.ATTRIBUTE =>
-              val dataset = driver.collectProperties(rdfTypeName)
-              dataset.entries().toSet.map{entry: Entry[Resource, Value] => UpdateAttribute(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString())} 
-          }
-          val deltas: Set[Delta] = Set(SendUpdates(updates))
-          store(deltas)
-        } catch {
-          case t: Throwable =>
-            restart("Error receiving data", t)
+        val updates: Set[Update] = inputType match {
+          case RecipeUtils.VERTEX => 
+            val dataset = driver.collectVertices(rdfTypeName)
+            dataset.toSet.map{x: Resource => UpdateVertex(ChangeType.POSITIVE, x.toString(), rdfTypeName)}
+          case RecipeUtils.EDGE =>
+            val dataset = driver.collectEdges(rdfTypeName)
+            dataset.entries().toSet.map{entry: Entry[Resource, Resource] => UpdateEdge(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString())}
+          case RecipeUtils.ATTRIBUTE =>
+            val dataset = driver.collectProperties(rdfTypeName)
+            dataset.entries().toSet.map{entry: Entry[Resource, Value] => UpdateAttribute(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString())} 
         }
+        val deltas: Set[Delta] = Set(SendUpdates(updates))
+        store(deltas)
       }
     })
     future.onSuccess { case _ =>
