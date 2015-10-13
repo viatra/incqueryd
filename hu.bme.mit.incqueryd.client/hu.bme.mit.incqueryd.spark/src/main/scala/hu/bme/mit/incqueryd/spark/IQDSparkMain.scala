@@ -92,6 +92,9 @@ class ReceiverStoppedListener(ssc: StreamingContext) extends StreamingListener {
 
   override def onReceiverStopped(receiverStopped: StreamingListenerReceiverStopped) {
     ssc.stop(true, true)
+    val applicationId = ssc.sparkContext.applicationId
+    val process = Process(s"/usr/local/hadoop/bin/yarn application -kill $applicationId")
+    process.run()
   }
 
 }
