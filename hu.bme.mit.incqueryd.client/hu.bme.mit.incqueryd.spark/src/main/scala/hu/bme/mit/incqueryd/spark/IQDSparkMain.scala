@@ -1,9 +1,7 @@
 package hu.bme.mit.incqueryd.spark
 
 import java.net.URL
-
 import scala.sys.process.Process
-
 import org.apache.commons.cli.Options
 import org.apache.commons.cli.PosixParser
 import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
@@ -20,7 +18,6 @@ import org.apache.spark.streaming.dstream.ReceiverInputDStream
 import org.apache.spark.streaming.receiver.Receiver
 import org.apache.spark.streaming.scheduler.StreamingListener
 import org.apache.spark.streaming.scheduler.StreamingListenerBatchCompleted
-
 import akka.actor.Props
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection.Backend
@@ -32,6 +29,7 @@ import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
 import hu.bme.mit.incqueryd.spark.workers.InputStreamWorker
 import hu.bme.mit.incqueryd.spark.workers.OutputStreamWorker
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
+import org.apache.spark.streaming.scheduler.StreamingListenerReceiverStopped
 
 
 /**
@@ -83,10 +81,17 @@ object IQDSparkMain extends Serializable {
         OutputStreamWorker.process(QUERY, ssc.actorStream[Array[Byte]](Props(new ProductionReceiver(DS_URL)), "productionReceiver"))
     }
     ssc.sparkContext.addJar(HDFS_JAR_PATH)
-    
+    ssc.addStreamingListener(new ReceiverStoppedListener(ssc))
     ssc.start()
     ssc.awaitTermination()
-    
+  }
+
+}
+
+class ReceiverStoppedListener(ssc: StreamingContext) extends StreamingListener {
+
+  override def onReceiverStopped(receiverStopped: StreamingListenerReceiverStopped) {
+    ssc.stop(true, true)
   }
 
 }
