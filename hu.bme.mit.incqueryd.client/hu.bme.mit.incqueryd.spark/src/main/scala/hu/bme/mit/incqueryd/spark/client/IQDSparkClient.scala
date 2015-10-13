@@ -21,6 +21,7 @@ object IQDSparkClient {
     new SparkLauncher()
       .setSparkHome(SPARK_HOME)
       .setAppResource(HDFS_JAR_PATH)
+      .setMaster("yarn-cluster")
       .setDeployMode("cluster")
       .setMainClass(MAIN_CLASS)
       .setConf(SparkLauncher.DRIVER_MEMORY, "512m")
@@ -31,7 +32,6 @@ object IQDSparkClient {
     val backend = databaseConnection.getBackend
     val exit_code = getSparkLauncher()
       .setAppName(s"Load from $backend")
-      .setMaster("yarn-client")
       .addAppArgs(s"-$OPTION_PROCESSING_METHOD", ProcessingMethod.LOAD.toString())
       .addAppArgs(s"-$OPTION_DATABASE_BACKEND", backend.toString())
       .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
@@ -47,7 +47,6 @@ object IQDSparkClient {
       override def run() {
         val process = getSparkLauncher()
           .setAppName(s"Wikidata stream processor")
-          .setMaster("yarn-cluster")
           .addAppArgs(s"-$OPTION_PROCESSING_METHOD", ProcessingMethod.WIKISTREAM.toString())
           .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
           .addAppArgs(s"-$OPTION_DATASOURCE_URL", databaseConnection.getConnectionString)
@@ -73,7 +72,6 @@ object IQDSparkClient {
       override def run() {
         val process = getSparkLauncher()
           .setAppName(s"$query_id production streams")
-          .setMaster("yarn-cluster")
           .addAppArgs(s"-$OPTION_PROCESSING_METHOD", ProcessingMethod.PRODUCTIONSTREAM.toString())
           .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
           .addAppArgs(s"-$OPTION_QUERY_ID", query_id)

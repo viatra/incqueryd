@@ -81,8 +81,20 @@ object IQDSparkMain extends Serializable {
         OutputStreamWorker.process(QUERY, ssc.actorStream[Array[Byte]](Props(new ProductionReceiver(DS_URL)), "productionReceiver"))
     }
     ssc.sparkContext.addJar(HDFS_JAR_PATH)
+    ssc.addStreamingListener(new ReceiverStoppedListener(ssc))
     ssc.start()
     ssc.awaitTermination()
+  }
+
+}
+
+class ReceiverStoppedListener(ssc: StreamingContext) extends StreamingListener {
+
+  override def onReceiverStopped(receiverStopped: StreamingListenerReceiverStopped) {
+    ssc.stop(true, true)
+    val applicationId = ssc.sparkContext.applicationId
+    val process = Process(s"/usr/local/hadoop/bin/yarn application -kill $applicationId")
+    process.run()
   }
 
 }
