@@ -22,13 +22,15 @@ import hu.bme.mit.incqueryd.dashboard.controller.DashboardController
 import hu.bme.mit.incqueryd.dashboard.ui.UIHelper._
 import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils._
 import javax.servlet.annotation.WebServlet
+import com.vaadin.annotations.Widgetset
 
 /**
  * @author pappi
  */
 
-@Theme("valo")
+@Theme("iqdtheme")
 @Push
+@Widgetset("hu.bme.mit.incqueryd.IQDWidgetset")
 class DashboardUI extends UI with UIBroadcaster.MessageListener {
 
   val streamBtn = new Button("Body")

@@ -1,13 +1,10 @@
 package hu.bme.mit.incqueryd.dashboard
 
 import org.apache.hadoop.fs.Path
-import org.apache.spark.streaming.ObjectInputStreamWithLoader
 import hu.bme.mit.incqueryd.dashboard.controller.DashboardController
 import hu.bme.mit.incqueryd.dashboard.mqtt.MQTTReceiver
 import hu.bme.mit.incqueryd.dashboard.mqtt.MQTTSubscriber
 import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils._
-import hu.bme.mit.incqueryd.spark.recievers.ProductionReceiver
-import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import hu.bme.mit.incqueryd.yarn.YarnApplication
 import org.apache.zookeeper.WatchedEvent

@@ -33,30 +33,35 @@ import com.vaadin.server.SessionDestroyEvent
 import scala.collection.mutable.HashMap
 import com.vaadin.ui.VerticalLayout
 import hu.bme.mit.incqueryd.dashboard.dev.DevPanelCreator
+import com.vaadin.ui.Label
+import com.vaadin.ui.HorizontalLayout
+import com.vaadin.annotations.Widgetset
 
 /**
  * @author pappi
  */
-@Theme("valo")
+@Theme("iqdtheme")
 @Push
+@Widgetset("hu.bme.mit.incqueryd.IQDWidgetset")
 class DeveloperUI extends UI {
   
-  val verticalLayout = new VerticalLayout
+  val mainLayout = new HorizontalLayout
   val gridLayout = new GridLayout(DevDashboardController.GRID_COLS, DevDashboardController.GRID_ROWS)
   val panelCreator = new DevPanelCreator
-  
+    
   def createDeveloperPanel(name : String, panelType : DeveloperPanel.PanelType, gridRow : Int, gridCol : Int) : DeveloperPanel = {
     panelCreator.createDevPanel(name, panelType, gridRow, gridCol)
   }
   
   override def init(request: VaadinRequest) {
     
-    verticalLayout.setSizeFull()
+    mainLayout.setSizeFull()
     gridLayout.setSizeFull()
     gridLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER)
+    
+    mainLayout.addComponent(gridLayout)
 
-    verticalLayout.addComponent(gridLayout)
-    verticalLayout.addComponent(panelCreator)
+    mainLayout.addComponent(panelCreator)
     
     for(rowNum<- 0 to DevDashboardController.GRID_ROWS - 1)
       for(colNum<- 0 to DevDashboardController.GRID_COLS - 1) {
@@ -74,7 +79,7 @@ class DeveloperUI extends UI {
       }
     })
     
-    setContent(verticalLayout)
+    setContent(mainLayout)
 
   }
 
