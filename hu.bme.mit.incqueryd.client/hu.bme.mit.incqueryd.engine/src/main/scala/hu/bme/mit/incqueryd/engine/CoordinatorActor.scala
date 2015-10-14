@@ -78,6 +78,7 @@ class CoordinatorActor extends Actor {
     }
     case LoadData(databaseConnection) => {
       IQDSparkClient.loadData(databaseConnection)
+      Thread.sleep(60*1000) // TODO XXX implement loading finished protocol
       sender ! true
     }
     case StartQuery(recipeJson, rdfiqContents, rmHostname, fileSystemUri) => {

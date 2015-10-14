@@ -1,9 +1,7 @@
 package hu.bme.mit.incqueryd.spark
 
 import java.net.URL
-
 import scala.sys.process.Process
-
 import org.apache.commons.cli.Options
 import org.apache.commons.cli.PosixParser
 import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
@@ -20,7 +18,6 @@ import org.apache.spark.streaming.dstream.ReceiverInputDStream
 import org.apache.spark.streaming.receiver.Receiver
 import org.apache.spark.streaming.scheduler.StreamingListener
 import org.apache.spark.streaming.scheduler.StreamingListenerBatchCompleted
-
 import akka.actor.Props
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection.Backend
@@ -32,6 +29,7 @@ import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
 import hu.bme.mit.incqueryd.spark.workers.InputStreamWorker
 import hu.bme.mit.incqueryd.spark.workers.OutputStreamWorker
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
+import org.apache.spark.streaming.scheduler.StreamingListenerReceiverStopped
 
 
 /**
@@ -44,9 +42,7 @@ object IQDSparkMain extends Serializable {
   options.addOption(OPTION_DATABASE_BACKEND, true, "Database backend in case of load method")
   options.addOption(OPTION_DURATION, true, "Duration time in milliseconds")
   options.addOption(OPTION_DATASOURCE_URL, true, "Datasource URL")
-  options.addOption(OPTION_NO_DATA_TIMEOUT_MS, true, "No data time limit (ms)")
   options.addOption(OPTION_QUERY_ID, true, "Query name - in case of output stream processing application")
-  options.addOption(OPTION_SINGLE_RUN, false, "Stop processing after data run out")
   options.addOption(OPTION_NUM_EXECUTORS, true, "Executor instances")
   options.addOption(OPTION_SCHEDULER_MODE, true, "Scheduler mode")
   
@@ -55,9 +51,7 @@ object IQDSparkMain extends Serializable {
     val DS_URL = parser.getOptionValue(OPTION_DATASOURCE_URL)
     val METHOD = ProcessingMethod.withName(parser.getOptionValue(OPTION_PROCESSING_METHOD))
     val DURATION = parser.getOptionValue(OPTION_DURATION).toLong
-    val SINGLE = parser.hasOption(OPTION_SINGLE_RUN)
     val QUERY = if(parser.hasOption(OPTION_QUERY_ID)) parser.getOptionValue(OPTION_QUERY_ID) else ""
-    val NO_DATA_TIMEOUT = if(parser.hasOption(OPTION_NO_DATA_TIMEOUT_MS)) parser.getOptionValue(OPTION_NO_DATA_TIMEOUT_MS).toLong else -1
     val EXECUTORS = if(parser.hasOption(OPTION_NUM_EXECUTORS)) parser.getOptionValue(OPTION_NUM_EXECUTORS) else "3"
     URL.setURLStreamHandlerFactory(new FsUrlStreamHandlerFactory)
     
@@ -87,38 +81,10 @@ object IQDSparkMain extends Serializable {
         OutputStreamWorker.process(QUERY, ssc.actorStream[Array[Byte]](Props(new ProductionReceiver(DS_URL)), "productionReceiver"))
     }
     ssc.sparkContext.addJar(HDFS_JAR_PATH)
-    if(SINGLE) {
-      val procFinishedListener = new ProcessingFinishedListener(ssc, NO_DATA_TIMEOUT / DURATION)
-      ssc.addStreamingListener(procFinishedListener)
-      ssc.sparkContext.addSparkListener(procFinishedListener)
-    }
-    
     ssc.start()
     ssc.awaitTermination()
-    
   }
 
-}
-
-class ProcessingFinishedListener(ssc : StreamingContext, batchIdleLimit : Long) extends StreamingListener with SparkListener {
-  
-  var currentBatchIdle : Long = 0
-  var processingFinished : Boolean = false
-  
-  override def onBatchCompleted(batchCompleted : StreamingListenerBatchCompleted) {
-    // If no processed record increase idle counter
-    if(batchCompleted.batchInfo.numRecords == 0) 
-      currentBatchIdle+=1;
-    else 
-      currentBatchIdle = 0
-    
-    if(currentBatchIdle >= batchIdleLimit) {
-      ssc.sparkContext.cancelAllJobs()
-      val applicationId = ssc.sparkContext.applicationId
-      val process = Process(s"/usr/local/hadoop/bin/yarn application -kill $applicationId")
-      process.run()
-    }
-  }
 }
 
 object ProcessingMethod extends Enumeration {
