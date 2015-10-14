@@ -61,12 +61,6 @@ class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Recei
         store(deltas)
       }
     })
-    future.onSuccess { case _ =>
-      stop("Loading finished")
-    }
-    future.onFailure { case error =>
-      stop("Loading failed", error)
-    }
   }
 
   def onStop() {

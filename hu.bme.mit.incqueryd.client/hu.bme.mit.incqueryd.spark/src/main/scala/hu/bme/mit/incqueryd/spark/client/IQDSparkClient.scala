@@ -37,7 +37,7 @@ object IQDSparkClient {
       .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
       .addAppArgs(s"-$OPTION_DATASOURCE_URL", databaseConnection.getConnectionString)
       .addAppArgs(s"-$OPTION_SCHEDULER_MODE", "FIFO")
-      .launch().waitFor()
+      .launch()
   }
 
   lazy val wikistreamPool: ExecutorService = Executors.newCachedThreadPool()
