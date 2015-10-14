@@ -81,9 +81,18 @@ object IQDSparkMain extends Serializable {
         OutputStreamWorker.process(QUERY, ssc.actorStream[Array[Byte]](Props(new ProductionReceiver(DS_URL)), "productionReceiver"))
     }
     ssc.sparkContext.addJar(HDFS_JAR_PATH)
+    ssc.addStreamingListener(new ReceiverStoppedListener(ssc))
     ssc.start()
     ssc.awaitTermination()
     System.exit(0)
+  }
+
+}
+
+class ReceiverStoppedListener(ssc: StreamingContext) extends StreamingListener {
+
+  override def onReceiverStopped(receiverStopped: StreamingListenerReceiverStopped) {
+    ssc.stop(true, true)
   }
 
 }
