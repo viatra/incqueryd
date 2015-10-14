@@ -8,6 +8,7 @@ trait Delta
 case object NoChange extends Delta
 case class Reset(subjectId: String) extends Delta
 case class SendUpdates(updates: Set[Update]) extends Delta
+case object LoadFinished extends Delta
 
 trait Update {
 	def changeType: ChangeType

@@ -61,7 +61,7 @@ class IQDYarnClient {
     coordinator.startQuery(reteRecipe, rdfiqContents, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
     startOutputStream(reteRecipe)
     println("Waiting until output stream processing starts")
-    Thread.sleep(45000)
+    Thread.sleep(45000) // XXX notify instead
   }
   
   def startOutputStream(reteRecipe: ReteRecipe) {

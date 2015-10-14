@@ -105,6 +105,12 @@ object IncQueryDZooKeeper {
     zk
   }
 
+  def delete(path: String) {
+    if (zk.exists(path, false) != null) {
+    	zk.delete(path, -1)
+    }
+  }
+
   // Handle setting ZooKeeper data
   def setData(path: String, data: Array[Byte]) {
     getConnection()
@@ -260,6 +266,11 @@ object IncQueryDZooKeeper {
     ZKPaths.mkdirs(zk, normalizePath(path))
   }
   
+  def createSequential(parent: String, prefix: String) = {
+    createDir(parent)
+    zk.create(ZKPaths.makePath(parent, prefix), Array(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT_SEQUENTIAL)
+  }
+
   def createChildDir(parent : String, child : String) {
     getConnection()
     ZKPaths.mkdirs(zk, parent + child)

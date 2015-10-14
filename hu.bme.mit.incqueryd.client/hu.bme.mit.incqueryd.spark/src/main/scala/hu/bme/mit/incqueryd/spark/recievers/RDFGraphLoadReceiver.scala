@@ -25,6 +25,7 @@ import hu.bme.mit.incqueryd.spark.utils.SendUpdates
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
 import java.net.MalformedURLException
+import hu.bme.mit.incqueryd.spark.utils.LoadFinished
 
 /**
  * @author pappi
@@ -42,25 +43,25 @@ class RDFGraphLoadReceiver(databaseConnection: DatabaseConnection) extends Recei
     val inputNodes = IncQueryDZooKeeper.getChildPaths(IncQueryDZooKeeper.inputNodesPath)
     val driver = databaseConnection.getDriver
     
-    val future = Future.sequence(inputNodes.map{ inputNode =>
-      Future {
-        val rdfTypeName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.rdfType}")
-        val inputType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.nodeType}")
-        val updates: Set[Update] = inputType match {
-          case RecipeUtils.VERTEX => 
-            val dataset = driver.collectVertices(rdfTypeName)
-            dataset.toSet.map{x: Resource => UpdateVertex(ChangeType.POSITIVE, x.toString(), rdfTypeName)}
-          case RecipeUtils.EDGE =>
-            val dataset = driver.collectEdges(rdfTypeName)
-            dataset.entries().toSet.map{entry: Entry[Resource, Resource] => UpdateEdge(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString())}
-          case RecipeUtils.ATTRIBUTE =>
-            val dataset = driver.collectProperties(rdfTypeName)
-            dataset.entries().toSet.map{entry: Entry[Resource, Value] => UpdateAttribute(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString())} 
-        }
-        val deltas: Set[Delta] = Set(SendUpdates(updates))
-        store(deltas)
+    inputNodes.map{ inputNode =>
+      val rdfTypeName = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.rdfType}")
+      val inputType = IncQueryDZooKeeper.getStringData(s"${IncQueryDZooKeeper.inputNodesPath}/$inputNode${IncQueryDZooKeeper.nodeType}")
+      val updates: Set[Update] = inputType match {
+        case RecipeUtils.VERTEX => 
+          val dataset = driver.collectVertices(rdfTypeName)
+          dataset.toSet.map{x: Resource => UpdateVertex(ChangeType.POSITIVE, x.toString(), rdfTypeName)}
+        case RecipeUtils.EDGE =>
+          val dataset = driver.collectEdges(rdfTypeName)
+          dataset.entries().toSet.map{entry: Entry[Resource, Resource] => UpdateEdge(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString())}
+        case RecipeUtils.ATTRIBUTE =>
+          val dataset = driver.collectProperties(rdfTypeName)
+          dataset.entries().toSet.map{entry: Entry[Resource, Value] => UpdateAttribute(ChangeType.POSITIVE, entry.getKey.toString(), rdfTypeName, entry.getValue.toString())} 
       }
-    })
+      val deltas: Set[Delta] = Set(SendUpdates(updates))
+      store(deltas)
+    }
+    val finished: Set[Delta] = Set(LoadFinished)
+    store(finished)
   }
 
   def onStop() {

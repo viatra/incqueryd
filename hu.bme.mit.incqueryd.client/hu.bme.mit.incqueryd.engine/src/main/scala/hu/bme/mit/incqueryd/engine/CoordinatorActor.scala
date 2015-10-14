@@ -60,6 +60,10 @@ import eu.mondo.driver.graph.RDFGraphDriverRead
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 import hu.bme.mit.incqueryd.idservice.IDService
 import hu.bme.mit.incqueryd.engine.rete.actors.PropagateInputChange
+import org.apache.zookeeper.WatchedEvent
+import org.apache.zookeeper.Watcher
+import org.apache.zookeeper.Watcher.Event.EventType
+import org.apache.zookeeper.WatchedEvent
 
 class CoordinatorActor extends Actor {
   
@@ -77,9 +81,16 @@ class CoordinatorActor extends Actor {
       sender ! true
     }
     case LoadData(databaseConnection) => {
-      IQDSparkClient.loadData(databaseConnection)
-      Thread.sleep(60*1000) // TODO XXX implement loading finished protocol
-      sender ! true
+      val originalSender = sender
+      val zkPath = IncQueryDZooKeeper.createSequential("/loadData", "instance")
+      IncQueryDZooKeeper.getStringDataWithWatcher(zkPath, new Watcher() {
+        override def process(event: WatchedEvent) {
+          if ((event.getPath == zkPath) && (event.getType == EventType.NodeDeleted)) {
+            originalSender ! true
+          }
+        }
+      })
+      IQDSparkClient.loadData(databaseConnection, zkPath)
     }
     case StartQuery(recipeJson, rdfiqContents, rmHostname, fileSystemUri) => {
       val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]

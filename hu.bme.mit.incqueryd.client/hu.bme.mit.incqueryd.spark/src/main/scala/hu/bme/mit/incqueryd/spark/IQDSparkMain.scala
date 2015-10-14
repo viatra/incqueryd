@@ -1,7 +1,9 @@
 package hu.bme.mit.incqueryd.spark
 
 import java.net.URL
+
 import scala.sys.process.Process
+
 import org.apache.commons.cli.Options
 import org.apache.commons.cli.PosixParser
 import org.apache.hadoop.fs.FsUrlStreamHandlerFactory
@@ -18,6 +20,7 @@ import org.apache.spark.streaming.dstream.ReceiverInputDStream
 import org.apache.spark.streaming.receiver.Receiver
 import org.apache.spark.streaming.scheduler.StreamingListener
 import org.apache.spark.streaming.scheduler.StreamingListenerBatchCompleted
+
 import akka.actor.Props
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection
 import hu.bme.mit.incqueryd.engine.util.DatabaseConnection.Backend
@@ -29,7 +32,6 @@ import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
 import hu.bme.mit.incqueryd.spark.workers.InputStreamWorker
 import hu.bme.mit.incqueryd.spark.workers.OutputStreamWorker
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
-import org.apache.spark.streaming.scheduler.StreamingListenerReceiverStopped
 
 
 /**
@@ -45,6 +47,7 @@ object IQDSparkMain extends Serializable {
   options.addOption(OPTION_QUERY_ID, true, "Query name - in case of output stream processing application")
   options.addOption(OPTION_NUM_EXECUTORS, true, "Executor instances")
   options.addOption(OPTION_SCHEDULER_MODE, true, "Scheduler mode")
+  options.addOption(OPTION_ZK_PATH, true, "Path of znode to delete when processing finished")
   
   def main(args: Array[String]) {
     val parser = (new PosixParser).parse(options, args)
@@ -73,18 +76,50 @@ object IQDSparkMain extends Serializable {
     
     val stream = METHOD match {
       // Input streams
-      case ProcessingMethod.LOAD | ProcessingMethod.WIKISTREAM => 
-        InputStreamWorker.process(ssc.receiverStream(receiver.asInstanceOf[Receiver[Set[Delta]]]))
+      case ProcessingMethod.LOAD | ProcessingMethod.WIKISTREAM => {
+    	  val zkPath = parser.getOptionValue(OPTION_ZK_PATH)  
+    	  val receiver = METHOD match {
+      	  case ProcessingMethod.LOAD => {
+      		  val backend = Backend.valueOf(parser.getOptionValue(OPTION_DATABASE_BACKEND))
+      				  new RDFGraphLoadReceiver(new DatabaseConnection(DS_URL, backend))
+      	  }
+      	  case ProcessingMethod.WIKISTREAM => new WikidataStreamReceiver(new DatabaseConnection(DS_URL, Backend.SPARQL))
+    	  }
+    	  InputStreamWorker.process(ssc.receiverStream(receiver), zkPath)
+      }
       
       // Output streams
       case ProcessingMethod.PRODUCTIONSTREAM =>
         OutputStreamWorker.process(QUERY, ssc.actorStream[Array[Byte]](Props(new ProductionReceiver(DS_URL)), "productionReceiver"))
     }
     ssc.sparkContext.addJar(HDFS_JAR_PATH)
+    
     ssc.start()
     ssc.awaitTermination()
+    
   }
 
+}
+
+class ProcessingFinishedListener(ssc : StreamingContext, batchIdleLimit : Long) extends StreamingListener with SparkListener {
+  
+  var currentBatchIdle : Long = 0
+  var processingFinished : Boolean = false
+  
+  override def onBatchCompleted(batchCompleted : StreamingListenerBatchCompleted) {
+    // If no processed record increase idle counter
+    if(batchCompleted.batchInfo.numRecords == 0) 
+      currentBatchIdle+=1;
+    else 
+      currentBatchIdle = 0
+    
+    if(currentBatchIdle >= batchIdleLimit) {
+      ssc.sparkContext.cancelAllJobs()
+      val applicationId = ssc.sparkContext.applicationId
+      val process = Process(s"/usr/local/hadoop/bin/yarn application -kill $applicationId")
+      process.run()
+    }
+  }
 }
 
 object ProcessingMethod extends Enumeration {

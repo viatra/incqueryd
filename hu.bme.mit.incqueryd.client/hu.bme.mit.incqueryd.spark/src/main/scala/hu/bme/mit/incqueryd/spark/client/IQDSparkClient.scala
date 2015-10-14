@@ -28,7 +28,7 @@ object IQDSparkClient {
       .setConf(SparkLauncher.EXECUTOR_MEMORY, "512m")
       }
 
-  def loadData(databaseConnection: DatabaseConnection) {
+  def loadData(databaseConnection: DatabaseConnection, zkPath: String) {
     val backend = databaseConnection.getBackend
     val exit_code = getSparkLauncher()
       .setAppName(s"Load from $backend")
@@ -37,6 +37,7 @@ object IQDSparkClient {
       .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
       .addAppArgs(s"-$OPTION_DATASOURCE_URL", databaseConnection.getConnectionString)
       .addAppArgs(s"-$OPTION_SCHEDULER_MODE", "FIFO")
+      .addAppArgs(s"-$OPTION_ZK_PATH", zkPath)
       .launch()
   }
 
