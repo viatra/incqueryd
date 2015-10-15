@@ -1,7 +1,18 @@
 @import "../valo/valo.scss";
 
 @mixin iqdtheme {
+
   @include valo;
 
-  // Insert your own theme rules here
+  .v-window-devpanel {
+    border: ridge;
+    z-index: 1000;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  
+  .v-button {
+  	border: ridge;
+  	
+  }
 }

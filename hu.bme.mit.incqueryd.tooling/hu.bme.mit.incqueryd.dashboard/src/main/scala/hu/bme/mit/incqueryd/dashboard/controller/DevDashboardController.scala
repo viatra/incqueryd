@@ -13,5 +13,3 @@ object DevDashboardController {
   val GRID_COLS = 3;
   
 }
-
-case class GridItem(row : Int, col : Int)
