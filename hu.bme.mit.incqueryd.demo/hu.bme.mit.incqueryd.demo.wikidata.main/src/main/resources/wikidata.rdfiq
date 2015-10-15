@@ -1,7 +1,13 @@
 vocabulary <wikidata-demo-vocabulary.nt>
 
+prefix wd: <http://www.wikidata.org/entity/> 
 prefix wdt: <http://www.wikidata.org/prop/direct/>
 
 pattern highestPoint(subject, object) {
 	wdt:P610(subject, object);
+}
+
+pattern spouseOfUSPresident(president, spouse) {
+	wdt:P6(wd:Q30, president);
+	wdt:P26(president, spouse);
 }
