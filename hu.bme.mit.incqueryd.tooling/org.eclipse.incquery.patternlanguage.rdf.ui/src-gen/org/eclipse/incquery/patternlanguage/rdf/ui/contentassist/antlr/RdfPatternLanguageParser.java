@@ -37,11 +37,11 @@ public class RdfPatternLanguageParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getIriAccess().getAlternatives(), "rule__Iri__Alternatives");
 					put(grammarAccess.getConstraintAccess().getAlternatives(), "rule__Constraint__Alternatives");
 					put(grammarAccess.getValueReferenceAccess().getAlternatives(), "rule__ValueReference__Alternatives");
 					put(grammarAccess.getLiteralValueReferenceAccess().getAlternatives(), "rule__LiteralValueReference__Alternatives");
 					put(grammarAccess.getRdfLiteralAccess().getAlternatives_1(), "rule__RdfLiteral__Alternatives_1");
-					put(grammarAccess.getRawIriAccess().getAlternatives(), "rule__RawIri__Alternatives");
 					put(grammarAccess.getAnnotationValueReferenceAccess().getAlternatives(), "rule__AnnotationValueReference__Alternatives");
 					put(grammarAccess.getBOOLEANAccess().getAlternatives(), "rule__BOOLEAN__Alternatives");
 					put(grammarAccess.getComputationValueAccess().getAlternatives(), "rule__ComputationValue__Alternatives");
@@ -89,7 +89,6 @@ public class RdfPatternLanguageParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRdfPatternModelAccess().getGroup_2(), "rule__RdfPatternModel__Group_2__0");
 					put(grammarAccess.getVocabularyAccess().getGroup(), "rule__Vocabulary__Group__0");
 					put(grammarAccess.getIriPrefixAccess().getGroup(), "rule__IriPrefix__Group__0");
-					put(grammarAccess.getIriAccess().getGroup(), "rule__Iri__Group__0");
 					put(grammarAccess.getIriAccess().getGroup_0(), "rule__Iri__Group_0__0");
 					put(grammarAccess.getRdfClassConstraintAccess().getGroup(), "rule__RdfClassConstraint__Group__0");
 					put(grammarAccess.getRdfPropertyConstraintAccess().getGroup(), "rule__RdfPropertyConstraint__Group__0");
@@ -327,6 +326,7 @@ public class RdfPatternLanguageParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIriPrefixAccess().getNameAssignment_1(), "rule__IriPrefix__NameAssignment_1");
 					put(grammarAccess.getIriPrefixAccess().getValueAssignment_3(), "rule__IriPrefix__ValueAssignment_3");
 					put(grammarAccess.getIriAccess().getPrefixAssignment_0_0(), "rule__Iri__PrefixAssignment_0_0");
+					put(grammarAccess.getIriAccess().getValueAssignment_0_2(), "rule__Iri__ValueAssignment_0_2");
 					put(grammarAccess.getIriAccess().getValueAssignment_1(), "rule__Iri__ValueAssignment_1");
 					put(grammarAccess.getParameterAccess().getNameAssignment(), "rule__Parameter__NameAssignment");
 					put(grammarAccess.getRdfClassConstraintAccess().getTypeAssignment_0(), "rule__RdfClassConstraint__TypeAssignment_0");

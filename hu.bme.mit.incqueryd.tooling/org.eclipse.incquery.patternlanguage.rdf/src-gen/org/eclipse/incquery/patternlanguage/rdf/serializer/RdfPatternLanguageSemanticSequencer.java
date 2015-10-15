@@ -298,7 +298,10 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 			}
 		else if(semanticObject.eClass().getEPackage() == RdfPatternLanguagePackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
 			case RdfPatternLanguagePackage.IRI:
-				if(context == grammarAccess.getIriRule()) {
+				if(context == grammarAccess.getAnnotationValueReferenceRule() ||
+				   context == grammarAccess.getIriRule() ||
+				   context == grammarAccess.getLiteralValueReferenceRule() ||
+				   context == grammarAccess.getValueReferenceRule()) {
 					sequence_Iri(context, (Iri) semanticObject); 
 					return; 
 				}
@@ -1489,7 +1492,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 	
 	/**
 	 * Constraint:
-	 *     (prefix=[IriPrefix|ID]? value=RawIri)
+	 *     ((prefix=[IriPrefix|ID] value=ID) | value=RawIri)
 	 */
 	protected void sequence_Iri(EObject context, Iri semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1560,7 +1563,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 	
 	/**
 	 * Constraint:
-	 *     (refType=Iri source=VariableReference target=ValueReference)
+	 *     (refType=Iri source=ValueReference target=ValueReference)
 	 */
 	protected void sequence_RdfPropertyConstraint(EObject context, RdfPropertyConstraint semanticObject) {
 		if(errorAcceptor != null) {
@@ -1574,7 +1577,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getRdfPropertyConstraintAccess().getRefTypeIriParserRuleCall_0_0(), semanticObject.getRefType());
-		feeder.accept(grammarAccess.getRdfPropertyConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0(), semanticObject.getSource());
+		feeder.accept(grammarAccess.getRdfPropertyConstraintAccess().getSourceValueReferenceParserRuleCall_2_0(), semanticObject.getSource());
 		feeder.accept(grammarAccess.getRdfPropertyConstraintAccess().getTargetValueReferenceParserRuleCall_4_0(), semanticObject.getTarget());
 		feeder.finish();
 	}

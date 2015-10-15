@@ -2,7 +2,7 @@
  */
 package org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.incquery.patternlanguage.patternLanguage.LiteralValueReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -11,17 +11,17 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getPrefix <em>Prefix</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getIri()
  * @model
  * @generated
  */
-public interface Iri extends EObject
+public interface Iri extends LiteralValueReference
 {
   /**
    * Returns the value of the '<em><b>Prefix</b></em>' reference.

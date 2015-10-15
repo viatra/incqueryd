@@ -77,7 +77,7 @@ class RdfPConstraint {
 
 	static def PConstraint convertPropertyConstraint(RdfPropertyConstraint constraint, PBody pBody, RdfPModel model) {
 		val refType = constraint.refType
-		val source = constraint.source.variable.toPVariable(pBody)
+		val source = constraint.source.toPVariable(pBody, model)
 		val target = constraint.target.toPVariable(pBody, model)
 		val typeObject = refType.toRdfResource
 		val typeString = model.context.printType(typeObject)

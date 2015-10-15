@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
-import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.impl.ConstraintImpl;
 
@@ -25,12 +24,12 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyCo
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPropertyConstraintImpl#getRefType <em>Ref Type</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPropertyConstraintImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPropertyConstraintImpl#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -54,7 +53,7 @@ public class RdfPropertyConstraintImpl extends ConstraintImpl implements RdfProp
    * @generated
    * @ordered
    */
-  protected VariableReference source;
+  protected ValueReference source;
 
   /**
    * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
@@ -140,7 +139,7 @@ public class RdfPropertyConstraintImpl extends ConstraintImpl implements RdfProp
    * <!-- end-user-doc -->
    * @generated
    */
-  public VariableReference getSource()
+  public ValueReference getSource()
   {
     return source;
   }
@@ -150,9 +149,9 @@ public class RdfPropertyConstraintImpl extends ConstraintImpl implements RdfProp
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetSource(VariableReference newSource, NotificationChain msgs)
+  public NotificationChain basicSetSource(ValueReference newSource, NotificationChain msgs)
   {
-    VariableReference oldSource = source;
+    ValueReference oldSource = source;
     source = newSource;
     if (eNotificationRequired())
     {
@@ -167,7 +166,7 @@ public class RdfPropertyConstraintImpl extends ConstraintImpl implements RdfProp
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSource(VariableReference newSource)
+  public void setSource(ValueReference newSource)
   {
     if (newSource != source)
     {
@@ -285,7 +284,7 @@ public class RdfPropertyConstraintImpl extends ConstraintImpl implements RdfProp
         setRefType((Iri)newValue);
         return;
       case RdfPatternLanguagePackage.RDF_PROPERTY_CONSTRAINT__SOURCE:
-        setSource((VariableReference)newValue);
+        setSource((ValueReference)newValue);
         return;
       case RdfPatternLanguagePackage.RDF_PROPERTY_CONSTRAINT__TARGET:
         setTarget((ValueReference)newValue);
@@ -308,7 +307,7 @@ public class RdfPropertyConstraintImpl extends ConstraintImpl implements RdfProp
         setRefType((Iri)null);
         return;
       case RdfPatternLanguagePackage.RDF_PROPERTY_CONSTRAINT__SOURCE:
-        setSource((VariableReference)null);
+        setSource((ValueReference)null);
         return;
       case RdfPatternLanguagePackage.RDF_PROPERTY_CONSTRAINT__TARGET:
         setTarget((ValueReference)null);

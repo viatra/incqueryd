@@ -18,10 +18,10 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Vocabulary;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.VocabularyImpl#getLocation <em>Location</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -22,7 +22,8 @@ IriPrefix:
 ;
 
 Iri:
-	(prefix=[IriPrefix] ':')? value=RawIri
+	prefix=[IriPrefix] ':' value=ID |
+	value=RawIri
 ;
 
 Parameter returns Variable:
@@ -42,7 +43,7 @@ RdfClassConstraint:
 ;
 
 RdfPropertyConstraint:
-	refType=Iri '(' source=VariableReference ',' target=ValueReference ')'
+	refType=Iri '(' source=ValueReference ',' target=ValueReference ')'
 ;
 
 RdfCheckConstraint:
@@ -60,7 +61,8 @@ LiteralValueReference returns core::LiteralValueReference:
 	DoubleValue |
 	StringValue |
 	BoolValue |
-	RdfLiteral
+	RdfLiteral |
+	Iri
 ;
 
 RdfLiteral:
@@ -68,9 +70,9 @@ RdfLiteral:
 ;
 
 RawIri returns ecore::EString:
-	ID | ESCAPED_IRI
+	RAW_IRI
 ;
 
-terminal ESCAPED_IRI:
+terminal RAW_IRI:
 	'<' ('\\>' | !'>')* '>'
 ;

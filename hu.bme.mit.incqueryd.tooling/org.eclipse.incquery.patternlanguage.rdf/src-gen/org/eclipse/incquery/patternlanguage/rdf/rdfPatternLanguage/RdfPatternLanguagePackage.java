@@ -140,7 +140,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int IRI__PREFIX = 0;
+  int IRI__PREFIX = PatternLanguagePackage.LITERAL_VALUE_REFERENCE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -149,7 +149,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int IRI__VALUE = 1;
+  int IRI__VALUE = PatternLanguagePackage.LITERAL_VALUE_REFERENCE_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Iri</em>' class.
@@ -158,7 +158,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int IRI_FEATURE_COUNT = 2;
+  int IRI_FEATURE_COUNT = PatternLanguagePackage.LITERAL_VALUE_REFERENCE_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.VariableImpl <em>Variable</em>}' class.

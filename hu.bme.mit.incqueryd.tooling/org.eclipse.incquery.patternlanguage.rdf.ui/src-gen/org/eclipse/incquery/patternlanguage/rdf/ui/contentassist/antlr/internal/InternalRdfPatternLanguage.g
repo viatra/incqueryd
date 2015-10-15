@@ -157,9 +157,9 @@ ruleIri
     }
 	:
 (
-{ before(grammarAccess.getIriAccess().getGroup()); }
-(rule__Iri__Group__0)
-{ after(grammarAccess.getIriAccess().getGroup()); }
+{ before(grammarAccess.getIriAccess().getAlternatives()); }
+(rule__Iri__Alternatives)
+{ after(grammarAccess.getIriAccess().getAlternatives()); }
 )
 
 ;
@@ -409,9 +409,9 @@ ruleRawIri
     }
 	:
 (
-{ before(grammarAccess.getRawIriAccess().getAlternatives()); }
-(rule__RawIri__Alternatives)
-{ after(grammarAccess.getRawIriAccess().getAlternatives()); }
+{ before(grammarAccess.getRawIriAccess().getRAW_IRITerminalRuleCall()); }
+	RULE_RAW_IRI
+{ after(grammarAccess.getRawIriAccess().getRAW_IRITerminalRuleCall()); }
 )
 
 ;
@@ -3310,6 +3310,28 @@ finally {
 
 
 
+rule__Iri__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getIriAccess().getGroup_0()); }
+(rule__Iri__Group_0__0)
+{ after(grammarAccess.getIriAccess().getGroup_0()); }
+)
+
+    |(
+{ before(grammarAccess.getIriAccess().getValueAssignment_1()); }
+(rule__Iri__ValueAssignment_1)
+{ after(grammarAccess.getIriAccess().getValueAssignment_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__Constraint__Alternatives
     @init {
 		int stackSize = keepStackSize();
@@ -3413,6 +3435,12 @@ rule__LiteralValueReference__Alternatives
 { after(grammarAccess.getLiteralValueReferenceAccess().getRdfLiteralParserRuleCall_4()); }
 )
 
+    |(
+{ before(grammarAccess.getLiteralValueReferenceAccess().getIriParserRuleCall_5()); }
+	ruleIri
+{ after(grammarAccess.getLiteralValueReferenceAccess().getIriParserRuleCall_5()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -3433,28 +3461,6 @@ rule__RdfLiteral__Alternatives_1
 { before(grammarAccess.getRdfLiteralAccess().getGroup_1_1()); }
 (rule__RdfLiteral__Group_1_1__0)
 { after(grammarAccess.getRdfLiteralAccess().getGroup_1_1()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__RawIri__Alternatives
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getRawIriAccess().getIDTerminalRuleCall_0()); }
-	RULE_ID
-{ after(grammarAccess.getRawIriAccess().getIDTerminalRuleCall_0()); }
-)
-
-    |(
-{ before(grammarAccess.getRawIriAccess().getESCAPED_IRITerminalRuleCall_1()); }
-	RULE_ESCAPED_IRI
-{ after(grammarAccess.getRawIriAccess().getESCAPED_IRITerminalRuleCall_1()); }
 )
 
 ;
@@ -5160,67 +5166,6 @@ finally {
 
 
 
-rule__Iri__Group__0
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__Iri__Group__0__Impl
-	rule__Iri__Group__1
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Iri__Group__0__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getIriAccess().getGroup_0()); }
-(rule__Iri__Group_0__0)?
-{ after(grammarAccess.getIriAccess().getGroup_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__Iri__Group__1
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__Iri__Group__1__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Iri__Group__1__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getIriAccess().getValueAssignment_1()); }
-(rule__Iri__ValueAssignment_1)
-{ after(grammarAccess.getIriAccess().getValueAssignment_1()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
-
-
-
 rule__Iri__Group_0__0
     @init {
 		int stackSize = keepStackSize();
@@ -5256,6 +5201,7 @@ rule__Iri__Group_0__1
     }
 :
 	rule__Iri__Group_0__1__Impl
+	rule__Iri__Group_0__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -5278,6 +5224,36 @@ rule__Iri__Group_0__1__Impl
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+rule__Iri__Group_0__2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Iri__Group_0__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Iri__Group_0__2__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getIriAccess().getValueAssignment_0_2()); }
+(rule__Iri__ValueAssignment_0_2)
+{ after(grammarAccess.getIriAccess().getValueAssignment_0_2()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 
 
 
@@ -23003,6 +22979,21 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__Iri__ValueAssignment_0_2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getIriAccess().getValueIDTerminalRuleCall_0_2_0()); }
+	RULE_ID{ after(grammarAccess.getIriAccess().getValueIDTerminalRuleCall_0_2_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__Iri__ValueAssignment_1
     @init {
 		int stackSize = keepStackSize();
@@ -23084,8 +23075,8 @@ rule__RdfPropertyConstraint__SourceAssignment_2
     }
 :
 (
-{ before(grammarAccess.getRdfPropertyConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); }
-	ruleVariableReference{ after(grammarAccess.getRdfPropertyConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); }
+{ before(grammarAccess.getRdfPropertyConstraintAccess().getSourceValueReferenceParserRuleCall_2_0()); }
+	ruleValueReference{ after(grammarAccess.getRdfPropertyConstraintAccess().getSourceValueReferenceParserRuleCall_2_0()); }
 )
 
 ;
@@ -26187,7 +26178,7 @@ finally {
 }
 
 
-RULE_ESCAPED_IRI : '<' ('\\>'|~('>'))* '>';
+RULE_RAW_IRI : '<' ('\\>'|~('>'))* '>';
 
 RULE_HEX : ('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F'|'_')+ ('#' (('b'|'B') ('i'|'I')|('l'|'L')))?;
 

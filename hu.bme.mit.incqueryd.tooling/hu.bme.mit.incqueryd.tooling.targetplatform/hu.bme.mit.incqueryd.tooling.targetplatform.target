@@ -1,1 +1,62 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>null<?pde version="3.8"?>null<target name="Generated from IncQuery-D" sequenceNumber="5">null  <locations>null    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">null      <unit id="org.eclipse.emf.ecore.xcore.sdk.feature.group" version="1.2.2.v20150202-0452"/>null      <unit id="org.eclipse.emf.sdk.feature.group" version="2.10.2.v20150123-0452"/>null      <unit id="org.eclipse.epp.package.rcp.feature.feature.group" version="4.4.2.20150219-0708"/>null      <unit id="org.eclipse.equinox.sdk.feature.group" version="3.10.2.v20150204-1316"/>null      <unit id="org.eclipse.sdk.feature.group" version="4.4.2.v20150204-1700"/>null      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.7.3.v201411190455"/>null      <repository location="http://download.eclipse.org/releases/luna"/>null    </location>null    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">null      <unit id="org.eclipse.emf.mwe2.language.ui" version="2.7.1.v201503051215"/>null      <repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>null    </location>null    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">null      <unit id="org.eclipse.incquery.databinding.runtime.feature.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.databinding.runtime.feature.source.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.querybasedfeatures.runtime.feature.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.querybasedfeatures.runtime.feature.source.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.querybasedfeatures.tooling" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.querybasedfeatures.tooling.feature.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.querybasedfeatures.tooling.feature.source.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.runtime.feature.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.runtime.feature.source.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.runtime.generic.feature.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.runtime.generic.feature.source.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.sdk.feature.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.sdk.feature.source.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.tooling.generator.model.ui" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.validation.runtime.feature.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.validation.runtime.feature.source.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.validation.runtime.ui" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.validation.tooling" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.validation.tooling.feature.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.validation.tooling.feature.source.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.viewers.runtime.feature.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.viewers.runtime.feature.source.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.viewers.tooling.ui" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.viewers.tooling.ui.feature.feature.jar" version="0.9.0.201502051519"/>null      <unit id="org.eclipse.incquery.viewers.tooling.ui.feature.source.feature.jar" version="0.9.0.201502051519"/>null      <repository location="http://download.eclipse.org/incquery/updates/release"/>null    </location>null    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">null      <unit id="org.openrdf.sesame.feature.feature.group" version="2.8.0.201402141023"/>null      <repository location="http://ghillairet.github.io/p2/"/>null    </location>null    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">null      <unit id="com.google.gwt.servlet" version="2.1.0.v201111291940"/>null      <unit id="org.apache.commons.io" version="2.2.0.v201405211200"/>null      <unit id="org.junit" version="3.8.2.v3_8_2_v20130308-0410"/>null      <unit id="org.mozilla.javascript" version="1.7.4.v201209142200"/>null      <repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/"/>null    </location>null  </locations>null</target>null
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<target name="Generated from IncQuery-D" sequenceNumber="6">
+  <locations>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <unit id="org.eclipse.emf.ecore.xcore.sdk.feature.group" version="1.2.2.v20150202-0452"/>
+      <unit id="org.eclipse.epp.package.rcp.feature.feature.group" version="4.4.2.20150219-0708"/>
+      <unit id="org.eclipse.equinox.sdk.feature.group" version="3.10.2.v20150204-1316"/>
+      <unit id="org.eclipse.sdk.feature.group" version="4.4.2.v20150204-1700"/>
+      <unit id="org.eclipse.xtext.sdk.feature.group" version="2.7.3.v201411190455"/>
+      <repository location="http://download.eclipse.org/releases/luna"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <unit id="org.eclipse.emf.sdk.feature.group" version="2.11.0.v20150601-0402"/>
+      <unit id="org.eclipse.xsd.edit" version="2.8.0.v20150601-0402"/>
+      <repository location="http://download.eclipse.org/modeling/emf/emf/updates/releases/"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <unit id="org.eclipse.emf.mwe2.language.ui" version="2.7.1.v201503051215"/>
+      <repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <unit id="org.eclipse.incquery.databinding.runtime.feature.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.databinding.runtime.feature.source.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.querybasedfeatures.runtime.feature.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.querybasedfeatures.runtime.feature.source.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.querybasedfeatures.tooling" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.querybasedfeatures.tooling.feature.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.querybasedfeatures.tooling.feature.source.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.runtime.feature.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.runtime.feature.source.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.runtime.generic.feature.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.runtime.generic.feature.source.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.sdk.feature.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.sdk.feature.source.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.tooling.generator.model.ui" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.validation.runtime.feature.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.validation.runtime.feature.source.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.validation.runtime.ui" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.validation.tooling" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.validation.tooling.feature.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.validation.tooling.feature.source.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.viewers.runtime.feature.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.viewers.runtime.feature.source.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.viewers.tooling.ui" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.viewers.tooling.ui.feature.feature.jar" version="0.9.0.201502051519"/>
+      <unit id="org.eclipse.incquery.viewers.tooling.ui.feature.source.feature.jar" version="0.9.0.201502051519"/>
+      <repository location="http://download.eclipse.org/incquery/updates/release"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <unit id="org.openrdf.sesame.feature.feature.group" version="2.8.0.201402141023"/>
+      <repository location="http://ghillairet.github.io/p2/"/>
+    </location>
+    <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
+      <unit id="com.google.gwt.servlet" version="2.1.0.v201111291940"/>
+      <unit id="org.apache.commons.io" version="2.2.0.v201405211200"/>
+      <unit id="org.junit" version="3.8.2.v3_8_2_v20130308-0410"/>
+      <unit id="org.mozilla.javascript" version="1.7.4.v201209142200"/>
+      <repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository/"/>
+    </location>
+  </locations>
+</target>

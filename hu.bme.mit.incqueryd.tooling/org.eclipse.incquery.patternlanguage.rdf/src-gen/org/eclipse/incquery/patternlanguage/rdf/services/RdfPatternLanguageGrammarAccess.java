@@ -138,23 +138,25 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 
 	public class IriElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Iri");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Assignment cPrefixAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
 		private final CrossReference cPrefixIriPrefixCrossReference_0_0_0 = (CrossReference)cPrefixAssignment_0_0.eContents().get(0);
 		private final RuleCall cPrefixIriPrefixIDTerminalRuleCall_0_0_0_1 = (RuleCall)cPrefixIriPrefixCrossReference_0_0_0.eContents().get(1);
 		private final Keyword cColonKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Assignment cValueAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
+		private final RuleCall cValueIDTerminalRuleCall_0_2_0 = (RuleCall)cValueAssignment_0_2.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cValueRawIriParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
 		
 		//Iri:
-		//	(prefix=[IriPrefix] ":")? value=RawIri;
+		//	prefix=[IriPrefix] ":" value=ID | value=RawIri;
 		public ParserRule getRule() { return rule; }
 
-		//(prefix=[IriPrefix] ":")? value=RawIri
-		public Group getGroup() { return cGroup; }
+		//prefix=[IriPrefix] ":" value=ID | value=RawIri
+		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//(prefix=[IriPrefix] ":")?
+		//prefix=[IriPrefix] ":" value=ID
 		public Group getGroup_0() { return cGroup_0; }
 
 		//prefix=[IriPrefix]
@@ -168,6 +170,12 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 
 		//":"
 		public Keyword getColonKeyword_0_1() { return cColonKeyword_0_1; }
+
+		//value=ID
+		public Assignment getValueAssignment_0_2() { return cValueAssignment_0_2; }
+
+		//ID
+		public RuleCall getValueIDTerminalRuleCall_0_2_0() { return cValueIDTerminalRuleCall_0_2_0; }
 
 		//value=RawIri
 		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
@@ -267,17 +275,17 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		private final RuleCall cRefTypeIriParserRuleCall_0_0 = (RuleCall)cRefTypeAssignment_0.eContents().get(0);
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cSourceAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cSourceVariableReferenceParserRuleCall_2_0 = (RuleCall)cSourceAssignment_2.eContents().get(0);
+		private final RuleCall cSourceValueReferenceParserRuleCall_2_0 = (RuleCall)cSourceAssignment_2.eContents().get(0);
 		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cTargetAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cTargetValueReferenceParserRuleCall_4_0 = (RuleCall)cTargetAssignment_4.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//RdfPropertyConstraint:
-		//	refType=Iri "(" source=VariableReference "," target=ValueReference ")";
+		//	refType=Iri "(" source=ValueReference "," target=ValueReference ")";
 		public ParserRule getRule() { return rule; }
 
-		//refType=Iri "(" source=VariableReference "," target=ValueReference ")"
+		//refType=Iri "(" source=ValueReference "," target=ValueReference ")"
 		public Group getGroup() { return cGroup; }
 
 		//refType=Iri
@@ -289,11 +297,11 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
-		//source=VariableReference
+		//source=ValueReference
 		public Assignment getSourceAssignment_2() { return cSourceAssignment_2; }
 
-		//VariableReference
-		public RuleCall getSourceVariableReferenceParserRuleCall_2_0() { return cSourceVariableReferenceParserRuleCall_2_0; }
+		//ValueReference
+		public RuleCall getSourceValueReferenceParserRuleCall_2_0() { return cSourceValueReferenceParserRuleCall_2_0; }
 
 		//","
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
@@ -372,12 +380,13 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		private final RuleCall cStringValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cBoolValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cRdfLiteralParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cIriParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
 		//LiteralValueReference returns core::LiteralValueReference:
-		//	IntValue | DoubleValue | StringValue | BoolValue | RdfLiteral;
+		//	IntValue | DoubleValue | StringValue | BoolValue | RdfLiteral | Iri;
 		public ParserRule getRule() { return rule; }
 
-		//IntValue | DoubleValue | StringValue | BoolValue | RdfLiteral
+		//IntValue | DoubleValue | StringValue | BoolValue | RdfLiteral | Iri
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//IntValue
@@ -394,6 +403,9 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 
 		//RdfLiteral
 		public RuleCall getRdfLiteralParserRuleCall_4() { return cRdfLiteralParserRuleCall_4; }
+
+		//Iri
+		public RuleCall getIriParserRuleCall_5() { return cIriParserRuleCall_5; }
 	}
 
 	public class RdfLiteralElements extends AbstractParserRuleElementFinder {
@@ -454,22 +466,14 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 
 	public class RawIriElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RawIri");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cESCAPED_IRITerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cRAW_IRITerminalRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//RawIri returns ecore::EString:
-		//	ID | ESCAPED_IRI;
+		//	RAW_IRI;
 		public ParserRule getRule() { return rule; }
 
-		//ID | ESCAPED_IRI
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//ID
-		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
-
-		//ESCAPED_IRI
-		public RuleCall getESCAPED_IRITerminalRuleCall_1() { return cESCAPED_IRITerminalRuleCall_1; }
+		//RAW_IRI
+		public RuleCall getRAW_IRITerminalRuleCall() { return cRAW_IRITerminalRuleCall; }
 	}
 	
 	
@@ -486,7 +490,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	private final LiteralValueReferenceElements pLiteralValueReference;
 	private final RdfLiteralElements pRdfLiteral;
 	private final RawIriElements pRawIri;
-	private final TerminalRule tESCAPED_IRI;
+	private final TerminalRule tRAW_IRI;
 	
 	private final Grammar grammar;
 
@@ -510,7 +514,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		this.pLiteralValueReference = new LiteralValueReferenceElements();
 		this.pRdfLiteral = new RdfLiteralElements();
 		this.pRawIri = new RawIriElements();
-		this.tESCAPED_IRI = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ESCAPED_IRI");
+		this.tRAW_IRI = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "RAW_IRI");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -571,7 +575,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//Iri:
-	//	(prefix=[IriPrefix] ":")? value=RawIri;
+	//	prefix=[IriPrefix] ":" value=ID | value=RawIri;
 	public IriElements getIriAccess() {
 		return pIri;
 	}
@@ -611,7 +615,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//RdfPropertyConstraint:
-	//	refType=Iri "(" source=VariableReference "," target=ValueReference ")";
+	//	refType=Iri "(" source=ValueReference "," target=ValueReference ")";
 	public RdfPropertyConstraintElements getRdfPropertyConstraintAccess() {
 		return pRdfPropertyConstraint;
 	}
@@ -641,7 +645,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//LiteralValueReference returns core::LiteralValueReference:
-	//	IntValue | DoubleValue | StringValue | BoolValue | RdfLiteral;
+	//	IntValue | DoubleValue | StringValue | BoolValue | RdfLiteral | Iri;
 	public LiteralValueReferenceElements getLiteralValueReferenceAccess() {
 		return pLiteralValueReference;
 	}
@@ -661,7 +665,7 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 	}
 
 	//RawIri returns ecore::EString:
-	//	ID | ESCAPED_IRI;
+	//	RAW_IRI;
 	public RawIriElements getRawIriAccess() {
 		return pRawIri;
 	}
@@ -670,10 +674,10 @@ public class RdfPatternLanguageGrammarAccess extends AbstractGrammarElementFinde
 		return getRawIriAccess().getRule();
 	}
 
-	//terminal ESCAPED_IRI:
+	//terminal RAW_IRI:
 	//	"<" ("\\>" | !">")* ">";
-	public TerminalRule getESCAPED_IRIRule() {
-		return tESCAPED_IRI;
+	public TerminalRule getRAW_IRIRule() {
+		return tRAW_IRI;
 	} 
 
 	//PatternModel:

@@ -4,7 +4,6 @@ package org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.Constraint;
 import org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference;
-import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,12 +12,12 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint#getRefType <em>Ref Type</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfPropertyConstraint()
  * @model
@@ -61,12 +60,12 @@ public interface RdfPropertyConstraint extends Constraint
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Source</em>' containment reference.
-   * @see #setSource(VariableReference)
+   * @see #setSource(ValueReference)
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfPropertyConstraint_Source()
    * @model containment="true"
    * @generated
    */
-  VariableReference getSource();
+  ValueReference getSource();
 
   /**
    * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint#getSource <em>Source</em>}' containment reference.
@@ -76,7 +75,7 @@ public interface RdfPropertyConstraint extends Constraint
    * @see #getSource()
    * @generated
    */
-  void setSource(VariableReference value);
+  void setSource(ValueReference value);
 
   /**
    * Returns the value of the '<em><b>Target</b></em>' containment reference.

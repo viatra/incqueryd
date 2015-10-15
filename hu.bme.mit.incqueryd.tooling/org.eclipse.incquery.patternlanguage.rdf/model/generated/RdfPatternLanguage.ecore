@@ -9,7 +9,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Iri">
+  <eClassifiers xsi:type="ecore:EClass" name="Iri" eSuperTypes="platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//LiteralValueReference">
     <eStructuralFeatures xsi:type="ecore:EReference" name="prefix" eType="#//IriPrefix"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -22,7 +22,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="RdfPropertyConstraint" eSuperTypes="platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//Constraint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="refType" eType="#//Iri"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//VariableReference"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//ValueReference"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="ecore:EClass platform:/resource/org.eclipse.incquery.patternlanguage/model/generated/PatternLanguage.ecore#//ValueReference"
         containment="true"/>

@@ -306,19 +306,38 @@ ruleIri returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getIriAccess().getColonKeyword_0_1());
     }
-)?(
+(
+(
+		lv_value_2_0=RULE_ID
+		{
+			newLeafNode(lv_value_2_0, grammarAccess.getIriAccess().getValueIDTerminalRuleCall_0_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getIriRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_2_0, 
+        		"ID");
+	    }
+
+)
+))
+    |(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getIriAccess().getValueRawIriParserRuleCall_1_0()); 
 	    }
-		lv_value_2_0=ruleRawIri		{
+		lv_value_3_0=ruleRawIri		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getIriRule());
 	        }
        		set(
        			$current, 
        			"value",
-        		lv_value_2_0, 
+        		lv_value_3_0, 
         		"RawIri");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -544,9 +563,9 @@ ruleRdfPropertyConstraint returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRdfPropertyConstraintAccess().getSourceVariableReferenceParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getRdfPropertyConstraintAccess().getSourceValueReferenceParserRuleCall_2_0()); 
 	    }
-		lv_source_2_0=ruleVariableReference		{
+		lv_source_2_0=ruleValueReference		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRdfPropertyConstraintRule());
 	        }
@@ -554,7 +573,7 @@ ruleRdfPropertyConstraint returns [EObject current=null]
        			$current, 
        			"source",
         		lv_source_2_0, 
-        		"VariableReference");
+        		"ValueReference");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -756,6 +775,16 @@ ruleLiteralValueReference returns [EObject current=null]
         $current = $this_RdfLiteral_4.current; 
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getLiteralValueReferenceAccess().getIriParserRuleCall_5()); 
+    }
+    this_Iri_5=ruleIri
+    { 
+        $current = $this_Iri_5.current; 
+        afterParserOrEnumRuleCall();
+    }
 )
 ;
 
@@ -861,22 +890,14 @@ ruleRawIri returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(    this_ID_0=RULE_ID    {
-		$current.merge(this_ID_0);
+    this_RAW_IRI_0=RULE_RAW_IRI    {
+		$current.merge(this_RAW_IRI_0);
     }
 
     { 
-    newLeafNode(this_ID_0, grammarAccess.getRawIriAccess().getIDTerminalRuleCall_0()); 
+    newLeafNode(this_RAW_IRI_0, grammarAccess.getRawIriAccess().getRAW_IRITerminalRuleCall()); 
     }
 
-    |    this_ESCAPED_IRI_1=RULE_ESCAPED_IRI    {
-		$current.merge(this_ESCAPED_IRI_1);
-    }
-
-    { 
-    newLeafNode(this_ESCAPED_IRI_1, grammarAccess.getRawIriAccess().getESCAPED_IRITerminalRuleCall_1()); 
-    }
-)
     ;
 
 
@@ -8522,7 +8543,7 @@ ruleCompareFeature returns [Enumerator current=null]
 
 
 
-RULE_ESCAPED_IRI : '<' ('\\>'|~('>'))* '>';
+RULE_RAW_IRI : '<' ('\\>'|~('>'))* '>';
 
 RULE_HEX : ('0x'|'0X') ('0'..'9'|'a'..'f'|'A'..'F'|'_')+ ('#' (('b'|'B') ('i'|'I')|('l'|'L')))?;
 

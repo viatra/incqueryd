@@ -127,6 +127,16 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
         return createRdfPatternModelAdapter();
       }
       @Override
+      public Adapter caseValueReference(ValueReference object)
+      {
+        return createValueReferenceAdapter();
+      }
+      @Override
+      public Adapter caseLiteralValueReference(LiteralValueReference object)
+      {
+        return createLiteralValueReferenceAdapter();
+      }
+      @Override
       public Adapter caseJvmIdentifiableElement(JvmIdentifiableElement object)
       {
         return createJvmIdentifiableElementAdapter();
@@ -140,16 +150,6 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
       public Adapter caseConstraint(Constraint object)
       {
         return createConstraintAdapter();
-      }
-      @Override
-      public Adapter caseValueReference(ValueReference object)
-      {
-        return createValueReferenceAdapter();
-      }
-      @Override
-      public Adapter caseLiteralValueReference(LiteralValueReference object)
-      {
-        return createLiteralValueReferenceAdapter();
       }
       @Override
       public Adapter casePatternModel(PatternModel object)
@@ -314,6 +314,36 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference <em>Value Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference
+   * @generated
+   */
+  public Adapter createValueReferenceAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.patternLanguage.LiteralValueReference <em>Literal Value Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.incquery.patternlanguage.patternLanguage.LiteralValueReference
+   * @generated
+   */
+  public Adapter createLiteralValueReferenceAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.eclipse.xtext.common.types.JvmIdentifiableElement <em>Jvm Identifiable Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -354,36 +384,6 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createConstraintAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference <em>Value Reference</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.patternLanguage.ValueReference
-   * @generated
-   */
-  public Adapter createValueReferenceAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.patternLanguage.LiteralValueReference <em>Literal Value Reference</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.incquery.patternlanguage.patternLanguage.LiteralValueReference
-   * @generated
-   */
-  public Adapter createLiteralValueReferenceAdapter()
   {
     return null;
   }
