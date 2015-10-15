@@ -36,8 +36,7 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
   val streamBtn = new Button("Body")
   val headerLabel = new Label("IncQuery-D Dashboard")
   val footerLabel = new Label("Powered by IncQuery Labs Ltd.")
-  val metricsPanel = new Panel("Metrics")
-
+  
   // Stream 
   val streamLayout = new VerticalLayout
   val streamPanel = new Panel
@@ -105,18 +104,15 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
     streamPanel.setSizeFull()
     streamPanel.setContent(streamLayout)
 
-    // Metrics
-    metricsPanel.setSizeFull()
 
     // Body
-    val bodyLayout = new HorizontalLayout(queriesPanel, streamPanel, metricsPanel)
+    val bodyLayout = new HorizontalLayout(queriesPanel, streamPanel)
     bodyLayout.setSizeFull
-    bodyLayout.setExpandRatio(queriesPanel, 1.2F)
+    bodyLayout.setExpandRatio(queriesPanel, 2F)
     bodyLayout.setExpandRatio(streamPanel, 6)
-    bodyLayout.setExpandRatio(metricsPanel, 3)
+
     bodyLayout.setComponentAlignment(queriesPanel, Alignment.TOP_CENTER)
     bodyLayout.setComponentAlignment(streamPanel, Alignment.TOP_CENTER)
-    bodyLayout.setComponentAlignment(metricsPanel, Alignment.TOP_CENTER)
 
     // Main
     val mainPanel = new Panel("IncQuery-D Dashboard")
