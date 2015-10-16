@@ -7,7 +7,6 @@ pattern highestPoint(subject, object) {
 	wdt:P610(subject, object);
 }
 
-pattern USMovieDirectors(movie, director) {
-	wdt:P495(movie, wd:Q30);
-	wdt:P57(movie, director);
+pattern UKMovies(movie) {
+	wdt:P495(movie, wd:Q145);
 }
