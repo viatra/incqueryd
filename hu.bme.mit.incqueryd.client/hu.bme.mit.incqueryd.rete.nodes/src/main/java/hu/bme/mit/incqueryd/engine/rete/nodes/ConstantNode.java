@@ -3,6 +3,7 @@ package hu.bme.mit.incqueryd.engine.rete.nodes;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeSet;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.ChangeType;
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple;
+import hu.bme.mit.incqueryd.idservice.IDService;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,9 +19,9 @@ public class ConstantNode implements AlphaNode {
 	public ConstantNode(ConstantRecipe recipe) {
 		Set<Tuple> tuples = new HashSet<>();
 		Iterable<String> constantValues = Splitter.on(SEPARATOR).split(recipe.getTraceInfo());
-		for (Object value : constantValues) {
-			Tuple tuple = new Tuple(value);
-			tuples.add(tuple);		
+		for (String value : constantValues) {
+			Tuple tuple = new Tuple(IDService.lookupID(value));
+			tuples.add(tuple);
 		}
 		changeSet = new ChangeSet(tuples, ChangeType.POSITIVE);
 	}
