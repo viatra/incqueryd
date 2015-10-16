@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <recipes:ReteRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
-  <recipeNodes xsi:type="recipes:TrimmerRecipe" traceInfo="null [recipe 0]" parent="//@recipeNodes.1">
+  <recipeNodes xsi:type="recipes:ConstantRecipe" traceInfo="http://www.wikidata.org/entity/Q30"/>
+  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740028687474703A2F2F7777772E77696B69646174612E6F72672F70726F702F6469726563742F50363130" typeName="http://www.wikidata.org/prop/direct/P610"/>
+  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740028687474703A2F2F7777772E77696B69646174612E6F72672F70726F702F6469726563742F50343935" typeName="http://www.wikidata.org/prop/direct/P495"/>
+  <recipeNodes xsi:type="recipes:TrimmerRecipe" parent="//@recipeNodes.7">
     <mask sourceArity="3">
       <sourceIndices>0</sourceIndices>
       <sourceIndices>1</sourceIndices>
     </mask>
   </recipeNodes>
-  <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="null [recipe 1]">
-    <leftParent parent="//@recipeNodes.6">
-      <mask sourceArity="2">
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="highestPoint" parents="//@recipeNodes.1">
+    <mappedIndices key="subject" value="0"/>
+    <mappedIndices key="object" value="1"/>
+  </recipeNodes>
+  <recipeNodes xsi:type="recipes:JoinRecipe">
+    <leftParent parent="//@recipeNodes.0">
+      <mask sourceArity="1">
         <sourceIndices>0</sourceIndices>
       </mask>
     </leftParent>
-    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.3">
+    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.2">
       <mask sourceArity="2">
         <sourceIndices>1</sourceIndices>
       </mask>
@@ -21,31 +28,24 @@
       <sourceIndices>0</sourceIndices>
     </rightParentComplementaryMask>
   </recipeNodes>
-  <recipeNodes xsi:type="recipes:ConstantRecipe" traceInfo="null [recipe 2]">
-    <constantValues>ACED0005740022687474703A2F2F7777772E77696B69646174612E6F72672F656E746974792F513330</constantValues>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="USMovieDirectors" parents="//@recipeNodes.3">
+    <mappedIndices key="movie" value="0"/>
+    <mappedIndices key="director" value="1"/>
   </recipeNodes>
-  <recipeNodes xsi:type="recipes:JoinRecipe" traceInfo="null [recipe 3]">
-    <leftParent parent="//@recipeNodes.4">
+  <recipeNodes xsi:type="recipes:JoinRecipe">
+    <leftParent parent="//@recipeNodes.8">
       <mask sourceArity="2">
         <sourceIndices>0</sourceIndices>
       </mask>
     </leftParent>
-    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.2">
-      <mask sourceArity="1">
-        <sourceIndices>0</sourceIndices>
+    <rightParent xsi:type="recipes:ProjectionIndexerRecipe" parent="//@recipeNodes.5">
+      <mask sourceArity="2">
+        <sourceIndices>1</sourceIndices>
       </mask>
     </rightParent>
-    <rightParentComplementaryMask sourceArity="1"/>
+    <rightParentComplementaryMask sourceArity="2">
+      <sourceIndices>0</sourceIndices>
+    </rightParentComplementaryMask>
   </recipeNodes>
-  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge: http://www.wikidata.org/prop/direct/P6 [recipe 4]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740026687474703A2F2F7777772E77696B69646174612E6F72672F70726F702F6469726563742F5036" typeName="http://www.wikidata.org/prop/direct/P6"/>
-  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge: http://www.wikidata.org/prop/direct/P610 [recipe 5]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740028687474703A2F2F7777772E77696B69646174612E6F72672F70726F702F6469726563742F50363130" typeName="http://www.wikidata.org/prop/direct/P610"/>
-  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge: http://www.wikidata.org/prop/direct/P26 [recipe 6]" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740027687474703A2F2F7777772E77696B69646174612E6F72672F70726F702F6469726563742F503236" typeName="http://www.wikidata.org/prop/direct/P26"/>
-  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="spouseOfUSPresident [recipe 7]" parents="//@recipeNodes.0">
-    <mappedIndices key="president" value="0"/>
-    <mappedIndices key="spouse" value="1"/>
-  </recipeNodes>
-  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="highestPoint [recipe 8]" parents="//@recipeNodes.5">
-    <mappedIndices key="subject" value="0"/>
-    <mappedIndices key="object" value="1"/>
-  </recipeNodes>
+  <recipeNodes xsi:type="recipes:BinaryInputRecipe" traceInfo="edge" typeKey="ACED00057372001E6F72672E6F70656E7264662E6D6F64656C2E696D706C2E555249496D706C9A452A439366466E02000249000C6C6F63616C4E616D654964784C0009757269537472696E677400124C6A6176612F6C616E672F537472696E673B7870FFFFFFFF740027687474703A2F2F7777772E77696B69646174612E6F72672F70726F702F6469726563742F503537" typeName="http://www.wikidata.org/prop/direct/P57"/>
 </recipes:ReteRecipe>

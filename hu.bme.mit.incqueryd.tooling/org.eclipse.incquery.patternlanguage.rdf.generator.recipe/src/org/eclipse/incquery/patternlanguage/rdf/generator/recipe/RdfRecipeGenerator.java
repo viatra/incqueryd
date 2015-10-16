@@ -1,5 +1,7 @@
 package org.eclipse.incquery.patternlanguage.rdf.generator.recipe;
 
+import hu.bme.mit.incqueryd.rdf.RdfUtils;
+
 import org.eclipse.incquery.patternlanguage.patternLanguage.Pattern;
 import org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils;
 import org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPModel;
@@ -10,6 +12,7 @@ import org.eclipse.incquery.runtime.matchers.context.IPatternMatcherContext;
 import org.eclipse.incquery.runtime.matchers.psystem.IExpressionEvaluator;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.incquery.runtime.rete.recipes.BinaryInputRecipe;
+import org.eclipse.incquery.runtime.rete.recipes.ConstantRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ExpressionEnforcerRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
@@ -17,14 +20,15 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.UnaryInputRecipe;
 import org.openrdf.model.Model;
 
-import hu.bme.mit.incqueryd.rdf.RdfUtils;
+import com.google.common.base.Joiner;
 
 public class RdfRecipeGenerator extends RecipeGenerator<RdfPatternModel, RdfPModel, Model> {
 
+	// XXX duplication with runtime
 	private static final String ATTRIBUTE_DISCRIMINATOR = "attribute";
 	private static final String EDGE_DISCRIMINATOR = "edge";
-	// the VERTEX_DISCRIMINATOR is not used as a discriminator
 	private static final String VERTEX_DISCRIMINATOR = "vertex";
+	private static final String SEPARATOR = " ";
 
 	@Override
 	protected void processForSerialization(ReteRecipe recipe, ReteNodeRecipe nodeRecipe, Model vocabulary, int recipeIndex) { // XXX
@@ -40,23 +44,21 @@ public class RdfRecipeGenerator extends RecipeGenerator<RdfPatternModel, RdfPMod
 			expressionEnforcerRecipe.getExpression().setEvaluator(evaluationInfo);
 		} else if (nodeRecipe instanceof UnaryInputRecipe) {
 			UnaryInputRecipe unaryInputRecipe = (UnaryInputRecipe) nodeRecipe;
-
-			String typeName = unaryInputRecipe.getTypeName();
-			unaryInputRecipe.setTraceInfo(VERTEX_DISCRIMINATOR + ": " + typeName);
+			unaryInputRecipe.setTraceInfo(VERTEX_DISCRIMINATOR);
 		} else if (nodeRecipe instanceof BinaryInputRecipe) {
 			BinaryInputRecipe binaryInputRecipe = (BinaryInputRecipe) nodeRecipe;
 			org.openrdf.model.Resource propertyUri = RdfPatternLanguageUtils.toRdfResource(binaryInputRecipe.getTypeName());
-
-			String typeName = binaryInputRecipe.getTypeName();
 			if (RdfUtils.isDatatypeProperty(propertyUri, vocabulary)) {
-				binaryInputRecipe.setTraceInfo(ATTRIBUTE_DISCRIMINATOR + ": " + typeName);
+				binaryInputRecipe.setTraceInfo(ATTRIBUTE_DISCRIMINATOR);
 			} else if (RdfUtils.isObjectProperty(propertyUri, vocabulary)) {
-				binaryInputRecipe.setTraceInfo(EDGE_DISCRIMINATOR + ": " + typeName);
+				binaryInputRecipe.setTraceInfo(EDGE_DISCRIMINATOR);
 			}
+		} else if (nodeRecipe instanceof ConstantRecipe) {
+			ConstantRecipe constantRecipe = (ConstantRecipe) nodeRecipe;
+			constantRecipe.setTraceInfo(Joiner.on(SEPARATOR).join(constantRecipe.getConstantValues()));
+			constantRecipe.getConstantValues().clear();
 		}
-		nodeRecipe.setTraceInfo(nodeRecipe.getTraceInfo() + " [recipe " + recipeIndex + "]");
 	}
-
 
 	@Override
 	protected Class<? extends RdfPatternModel> getPatternModelClass() {

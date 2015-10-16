@@ -7,7 +7,7 @@ pattern highestPoint(subject, object) {
 	wdt:P610(subject, object);
 }
 
-pattern spouseOfUSPresident(president, spouse) {
-	wdt:P6(wd:Q30, president);
-	wdt:P26(president, spouse);
+pattern USMovieDirectors(movie, director) {
+	wdt:P495(movie, wd:Q30);
+	wdt:P57(movie, director);
 }
