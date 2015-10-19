@@ -63,6 +63,8 @@
         versionRange="[2.7.0,2.8.0)"/>
     <requirement
         name="de.itemis.xtext.antlr.sdk.feature.group"/>
+    <requirement
+        name="com.vaadin.integration.eclipse.feature.group"/>
     <repository
         url="http://download.eclipse.org/technology/m2e/releases"/>
     <repository
@@ -79,6 +81,8 @@
         url="http://download.itemis.com/updates/"/>
     <repository
         url="http://download.eclipse.org/incquery/updates/release"/>
+    <repository
+        url="http://vaadin.com/eclipse"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask

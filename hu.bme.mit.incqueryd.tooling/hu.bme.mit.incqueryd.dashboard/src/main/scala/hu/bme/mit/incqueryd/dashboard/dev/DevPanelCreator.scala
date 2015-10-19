@@ -5,6 +5,7 @@ import com.vaadin.ui.UI
 import hu.bme.mit.incqueryd.dashboard.panels.DeveloperPanel
 import com.vaadin.ui.Button.ClickListener
 import com.vaadin.ui.Button.ClickEvent
+import hu.bme.mit.incqueryd.dashboard.panels.OverviewPanel
 
 /**
  * 
@@ -31,7 +32,10 @@ class DevPanelCreator extends Button {
   
   addClickListener(new ClickListener() {
       override def buttonClick(clickEvent : ClickEvent) {
-        devPanel = new DeveloperPanel(devPanelConf, gridPos)
+        devPanel = devPanelConf.panelType match {
+          case OVERVIEW => new OverviewPanel(devPanelConf, gridPos)
+          case _ => new DeveloperPanel(devPanelConf, gridPos)
+        }
         devPanel.updatePositionAndSize()
         UI.getCurrent.addWindow(devPanel)
       }
