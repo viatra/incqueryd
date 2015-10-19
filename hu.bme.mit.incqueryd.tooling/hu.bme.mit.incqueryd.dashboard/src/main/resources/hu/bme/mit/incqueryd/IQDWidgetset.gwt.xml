@@ -4,4 +4,8 @@
 <module>
     <inherits name="com.vaadin.DefaultWidgetSet"/>
     
+
+    <inherits name="org.vaadin.jouni.dom.DomWidgetset" />
+
+    <inherits name="org.vaadin.jouni.animator.AnimatorWidgetset" />
 </module>

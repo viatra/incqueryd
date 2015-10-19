@@ -3,7 +3,11 @@
 @mixin iqdtheme {
 
   @include valo;
-
+  
+  .dashboardui {
+  	background-color: gainsboro;
+  }
+  
   .v-window-devpanel {
     border: ridge;
     z-index: 1000;
@@ -15,4 +19,168 @@
   	border: ridge;
   	
   }
+  
+  .v-panel-query {
+  	border-radius: 0px;
+  	border: none;
+  }
+  
+  .v-slot-query {
+  	background-color: skyblue;
+  }
+  
+  .v-popupview-query {
+  	text-decoration: none;
+  	color: midnightblue;
+  	font-weight: bolder;
+  	height: 30px;
+  }
+  
+  .v-button-pattern {
+  	border: none;
+  	background-image: none;
+  	-webkit-box-shadow: none;
+  	box-shadow: none;
+  	background-color: mintcream;
+  	border-radius: 0px;
+  }
+  
+  input[disabled="disabled"]   {
+  	color: black;
+  	
+  }
+  
+  .v-disabled.v-button-pattern {
+    background-image: none;
+    opacity: 1.0;
+    background: -webkit-linear-gradient(left, mintcream, steelblue); /* For Safari 5.1 to 6.0 */
+  	background: -o-linear-gradient(left, mintcream, steelblue); /* For Opera 11.1 to 12.0 */
+  	background: -moz-linear-gradient(left, mintcream, steelblue); /* For Firefox 3.6 to 15 */
+  	background: linear-gradient(left, mintcream, steelblue); /* Standard syntax */
+  }
+  
+  .v-panel-queriespanel {
+  	text-align: center;
+  	border-color: steelblue;
+    border-width: medium;
+  }  
+  
+  .v-panel-caption-queriespanel {
+  	border: steelblue;
+  	box-shadow: none;
+  	-webkit-box-shadow: none;
+  	background-image: none;
+  	background-color: steelblue;
+  	color: skyblue;
+    font-size: 20px;
+    border-radius: 0px;
+  }
+  
+  .v-image-freeze {
+  	opacity: 0.1;
+  	color: black;
+  	border: none;
+  	box-shadow: none;
+  	-webkit-box-shadow: none;
+  	z-index: 9999;
+  }
+  
+  .v-image-freeze:hover {
+  	border: none;
+  	opacity: 1.0;
+  	-webkit-transition: opacity 500ms;
+    transition: opacity 500ms;
+    box-shadow: none;
+  	-webkit-box-shadow: none;
+  	z-index: 9999;
+  }
+  
+  .v-absolutelayout-wrapper-freeze {
+  	z-index: 9999;
+  	border: none;
+  }
+  
+  .v-panel-freeze {
+  	background: transparent;
+  	border: 0px;
+  	box-shadow: none;
+  	-webkit-box-shadow: none;
+  }
+  
+  .v-label-headerlabel {
+  	font-weight: 600;
+  	text-align: center;
+  	font-size: xx-large;
+  }
+  
+  .v-panel-headerpanel {
+  	background-image: none;
+  	background: transparent;
+  	border: 0px;
+  	box-shadow: none;
+  	-webkit-box-shadow: none;
+  }
+  
+  .v-panel-stream {
+  	
+  	background-color: transparent;
+  	background-position: center center;
+  	background-size: auto 80%;
+  	border: 0px;
+  	box-shadow: none;
+  	-webkit-box-shadow: none;
+  	
+  }
+  
+  .v-panel-resultpanel {
+  	background: #F8F9FB;
+  	opacity: 0;
+  }
+  
+  .v-panel-tuplepanel {
+  	background-image: none;
+  	background: transparent;
+  	border: 0px;
+  	box-shadow: none;
+  	-webkit-box-shadow: none;
+  }
+  
+  .v-label-resultmeta {
+    font-weight: 600;
+  	margin-left: 10px;
+  	text-align: right;
+  }
+  
+  .v-panel-dashsettings {
+  	background-color: steelblue;
+  	color: skyblue;
+  	overflow: none;
+  }
+  
+  /* Lay the options horizontally */
+  .v-select-optiongroup-horizontal .v-select-option {
+    display: inline-block;
+  }
+
+  /* Avoid wrapping if the layout is too tight */
+  .v-select-optiongroup-horizontal {
+    white-space: nowrap;
+  }
+
+  /* Some extra spacing is needed */
+  .v-select-optiongroup-horizontal .v-select-option.v-radiobutton {
+    padding-right: 10px;
+  }
+  
+  .v-label-dashmodelabel {
+  	margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  
+  .v-radiobutton-dashmodelabel {
+  	margin-right: 0px;
+  }
+  
 }

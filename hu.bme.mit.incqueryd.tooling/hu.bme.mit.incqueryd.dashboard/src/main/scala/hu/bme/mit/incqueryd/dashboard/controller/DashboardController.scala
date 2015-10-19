@@ -102,19 +102,19 @@ object DashboardController {
   
   def pushQueryResult(patternId : String, results : Set[Tuple]) {
     this.synchronized {
-      var removedTuples = 0
-      var newTuples = 0;
+      var removedTuples = Set[Tuple]()
+      var newTuples = Set[Tuple]();
       val prevResultSet = previousResultSets.getOrElseUpdate(patternId, Set[Tuple]())
       prevResultSet.foreach { tuple =>
         if(!results.contains(tuple))
-          removedTuples += 1
+          removedTuples += tuple
       }
       results.foreach { tuple => 
          if(!prevResultSet.contains(tuple))
-           newTuples += 1;
+           newTuples += tuple;
       }
       previousResultSets(patternId) = results
-      if(newTuples > 0 || removedTuples > 0)
+      if(newTuples.size > 0 || removedTuples.size > 0)
         UIBroadcaster.update(QueryResult(patternId, results, newTuples, removedTuples))
     }
   }
