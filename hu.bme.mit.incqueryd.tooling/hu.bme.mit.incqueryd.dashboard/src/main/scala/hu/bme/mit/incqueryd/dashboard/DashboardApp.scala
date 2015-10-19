@@ -1,13 +1,10 @@
 package hu.bme.mit.incqueryd.dashboard
 
 import org.apache.hadoop.fs.Path
-import org.apache.spark.streaming.ObjectInputStreamWithLoader
 import hu.bme.mit.incqueryd.dashboard.controller.DashboardController
 import hu.bme.mit.incqueryd.dashboard.mqtt.MQTTReceiver
 import hu.bme.mit.incqueryd.dashboard.mqtt.MQTTSubscriber
 import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils._
-import hu.bme.mit.incqueryd.spark.recievers.ProductionReceiver
-import hu.bme.mit.incqueryd.spark.utils.IQDSparkUtils._
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import hu.bme.mit.incqueryd.yarn.YarnApplication
 import org.apache.zookeeper.WatchedEvent
@@ -20,9 +17,6 @@ import com.google.common.net.HostAndPort
  */
 object DashboardApp {
 
-  val queryResultsFilter = (x: Path) => x.toString().startsWith("part")
-  val patternName = "switchSensor"
-  val RESULT_BASE_DIR = "hdfs://172.17.2.171:9000/QUERYRESULTS"
   val BROKER_URL = "tcp://yarn-rm.docker:9876"
 
   def main(args: Array[String]) {

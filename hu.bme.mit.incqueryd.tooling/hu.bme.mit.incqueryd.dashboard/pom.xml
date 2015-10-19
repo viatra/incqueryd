@@ -24,65 +24,86 @@
 		</repository>
 
 	</repositories>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-bom</artifactId>
+				<version>${vaadin.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<dependencies>
+
+		<!-- IQD dependencies -->
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
-			<artifactId>hu.bme.mit.incqueryd.spark</artifactId>
+			<artifactId>hu.bme.mit.incqueryd.yarn</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>asm</groupId>
+					<artifactId>asm</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>javax.servlet-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.servlet</groupId>
+					<artifactId>servlet-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.eclipse.jetty.orbit</groupId>
+					<artifactId>javax.servlet</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>hu.bme.mit.incqueryd</groupId>
-			<artifactId>hu.bme.mit.incqueryd.idservice</artifactId>
+			<artifactId>hu.bme.mit.incqueryd.engine</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-core_2.11</artifactId>
-			<version>1.4.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-streaming_2.11</artifactId>
-			<version>1.4.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.jetty.orbit</groupId>
+					<artifactId>javax.servlet</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
-
+		<!-- Vaadin dependencies -->
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-server</artifactId>
-			<version>${vaadin.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-client-compiled</artifactId>
-			<version>${vaadin.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-themes</artifactId>
-			<version>${vaadin.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-widgets</artifactId>
-			<version>${vaadin.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-push</artifactId>
-			<version>${vaadin.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.vaadin.addon</groupId>
-			<artifactId>vaadin-charts</artifactId>
-			<version>1.0.0</version>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-client</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
-			<version>1.9.2</version>
-			<type>jar</type>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-themes</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.vaadin.addons</groupId>
+			<artifactId>animator</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.vaadin.addons</groupId>
+			<artifactId>dom</artifactId>
+			<version>0.1.0</version>
+		</dependency>
+		<!-- Jetty dependencies -->
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-server</artifactId>
@@ -98,22 +119,62 @@
 			<artifactId>jetty-continuation</artifactId>
 			<version>${jettyVersion}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.eclipse.jetty.websocket</groupId>
 			<artifactId>websocket-server</artifactId>
 			<version>${jettyVersion}</version>
 		</dependency>
 
+		<!-- Paho dependencies -->
 		<dependency>
 			<groupId>org.eclipse.paho</groupId>
 			<artifactId>org.eclipse.paho.client.mqttv3</artifactId>
 			<version>1.0.2</version>
 		</dependency>
+
+		<!-- Misc -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.9.2</version>
+			<type>jar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.ow2.asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty.orbit</groupId>
+			<artifactId>javax.servlet</artifactId>
+			<version>3.0.0.v201112011016</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.lihaoyi</groupId>
+			<artifactId>upickle_2.11</artifactId>
+			<version>0.3.6</version>
+		</dependency>
+
 	</dependencies>
 
-
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>src/main/webapp</directory>
+			</resource>
+		</resources>
 		<sourceDirectory>src/main/scala</sourceDirectory>
 		<plugins>
 			<plugin>
@@ -140,34 +201,19 @@
 			</plugin>
 
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>${project.encoding}</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.3</version>
 			</plugin>
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
-<!-- 				<artifactId>maven-shade-plugin</artifactId> -->
-<!-- 				<version>2.3</version> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<goals> -->
-<!-- 							<goal>shade</goal> -->
-<!-- 						</goals> -->
-<!-- 						<configuration> -->
-<!-- 							<filters> -->
-<!-- 								<filter> -->
-<!-- 									<artifact>*:*</artifact> -->
-<!-- 									<excludes> -->
-<!-- 										<exclude>META-INF/*.SF</exclude> -->
-<!-- 										<exclude>META-INF/*.DSA</exclude> -->
-<!-- 										<exclude>META-INF/*.RSA</exclude> -->
-<!-- 										<exclude>META-INF/**/*</exclude> -->
-<!-- 									</excludes> -->
-<!-- 								</filter> -->
-<!-- 							</filters> -->
-<!-- 						</configuration> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			</plugin> -->
 
 			<plugin>
 				<groupId>com.vaadin</groupId>
@@ -176,6 +222,7 @@
 				<configuration>
 					<extraJvmArgs>-Xmx512M -Xss1024k</extraJvmArgs>
 					<webappDirectory>${basedir}/target/classes/VAADIN/widgetsets</webappDirectory>
+					<hostedWebapp>${basedir}/src/main/webapp/VAADIN/widgetsets</hostedWebapp>
 					<draftCompile>false</draftCompile>
 					<compileReport>false</compileReport>
 					<style>OBF</style>
@@ -188,10 +235,34 @@
 							<goal>update-widgetset</goal>
 							<goal>compile</goal>
 							<!-- disabled by default to use on-the-fly theme compilation -->
-							<!-- <goal>compile-theme</goal> -->
+							<goal>compile-theme</goal>
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.6.1</version>
+				<!-- Clean up also any pre-compiled themes -->
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>src/main/webapp/VAADIN/themes</directory>
+							<includes>
+								<include>**/styles.css</include>
+								<include>**/styles.scss.cache</include>
+							</includes>
+						</fileset>
+					</filesets>
+				</configuration>
 			</plugin>
 
 			<plugin>

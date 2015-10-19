@@ -10,4 +10,4 @@ import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 trait UIMessage
 case class AddPattern(pattern : String, query : String) extends UIMessage
 case class RemovePattern(pattern : String, query : String) extends UIMessage
-case class QueryResult(patternId : String, result : Set[Tuple], newTuples : Long, removedTuples : Long) extends UIMessage
+case class QueryResult(patternId : String, result : Set[Tuple], newTuples : Set[Tuple], removedTuples : Set[Tuple]) extends UIMessage
