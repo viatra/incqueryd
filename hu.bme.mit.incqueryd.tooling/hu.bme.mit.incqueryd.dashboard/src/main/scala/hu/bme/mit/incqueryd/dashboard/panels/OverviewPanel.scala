@@ -27,6 +27,8 @@ import com.vaadin.ui.UI
 import com.vaadin.ui.TreeTable
 import java.util.TimerTask
 import java.util.Timer
+import java.text.DateFormat
+import org.apache.log4j.helpers.ISO8601DateFormat
 
 /**
  * 
@@ -39,7 +41,8 @@ class OverviewPanel(devConfig : DevPanelConfiguration, gridPos : GridPosition) e
   val client = new AdvancedYarnClient(IQDYarnClient.DEFAULT_RM_HOST, IQDYarnClient.DEFAULT_HDFS_URL).client
 
   val applicationTable = new TreeTable("Applications")
-  applicationTable.addContainerProperty("ID", classOf[String], null)
+  val idPropertyId = "ID"
+  applicationTable.addContainerProperty(idPropertyId, classOf[String], null)
   applicationTable.addContainerProperty("Name", classOf[String], null)
   applicationTable.addContainerProperty("Type", classOf[String], null)
   applicationTable.addContainerProperty("Start time", classOf[String], null)
@@ -50,15 +53,17 @@ class OverviewPanel(devConfig : DevPanelConfiguration, gridPos : GridPosition) e
   applicationTable.addContainerProperty("Tracking UI", classOf[Link], null)
   applicationTable.addContainerProperty("View logs", classOf[Button], null)
   applicationTable.addContainerProperty("Kill", classOf[Button], null)
+  applicationTable.setSortContainerPropertyId(idPropertyId)
 
   val nodeTable = new TreeTable("Nodes")
-  nodeTable.addContainerProperty("ID", classOf[String], null)
+  nodeTable.addContainerProperty(idPropertyId, classOf[String], null)
   nodeTable.addContainerProperty("HTTP address", classOf[Link], null)
   nodeTable.addContainerProperty("Containers", classOf[Integer], null)
   nodeTable.addContainerProperty("Memory used", classOf[Integer], null)
   nodeTable.addContainerProperty("Memory available", classOf[Integer], null)
   nodeTable.addContainerProperty("Virtual cores used", classOf[Integer], null)
   nodeTable.addContainerProperty("Virtual cores available", classOf[Integer], null)
+  nodeTable.setSortContainerPropertyId(idPropertyId)
   
   val panelContent = new VerticalSplitPanel(applicationTable, nodeTable)
   panelContent.setSplitPosition(75, Unit.PERCENTAGE)
@@ -94,7 +99,8 @@ class OverviewPanel(devConfig : DevPanelConfiguration, gridPos : GridPosition) e
         	val kill: Button = killButton(application.getApplicationId)
         	applicationTable.addItem(Array(id, name, appType, startTime, finishTime, state, finalStatus, progress, trackingLink, viewLogs, kill), id)
       	}
-    
+      	applicationTable.sort()
+
       	nodeTable.removeAllItems()
       	client.getNodeReports(NodeState.RUNNING).foreach { node =>
         	val id: String = node.getNodeId.toString
@@ -105,7 +111,8 @@ class OverviewPanel(devConfig : DevPanelConfiguration, gridPos : GridPosition) e
         	val virtualCoresUsed: Integer = node.getUsed.getVirtualCores
         	val virtualCoresAvailable: Integer = node.getCapability.getVirtualCores
         	nodeTable.addItem(Array(id, httpAddress, numContainers, memoryUsed, memoryAvailable, virtualCoresUsed, virtualCoresAvailable), id)
-      	}       
+      	}
+      	nodeTable.sort()
       }
     })
   }
@@ -122,7 +129,7 @@ class OverviewPanel(devConfig : DevPanelConfiguration, gridPos : GridPosition) e
   }
 
   def displayTimestamp(timestamp: Long): String = {
-    if (timestamp == 0) "N/A" else new Date(timestamp).toString()
+    if (timestamp == 0) "N/A" else new ISO8601DateFormat().format(new Date(timestamp))
   }
 
   def link(url: String) = new Link(url, new ExternalResource(url))
