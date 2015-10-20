@@ -45,11 +45,11 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
     client
   }
   
-  def runRemotely(commands: List[String], jarPath: String, useDefaultClassPath: Boolean) = {
+  def runRemotely(appName: String, commands: List[String], jarPath: String, useDefaultClassPath: Boolean) = {
     val app = client.createApplication
     val amContainerSpec = initApplicationMasterContainerSpec(commands, jarPath, useDefaultClassPath)
     val resource = initResource
-    val appContext = initAppContext(app, amContainerSpec, resource)
+    val appContext = initAppContext(appName, app, amContainerSpec, resource)
     client.submitApplication(appContext)
   }
   
@@ -70,9 +70,9 @@ class AdvancedYarnClient(rmHostname: String, val fileSystemUri: String) {
     resource
   }
   
-  private def initAppContext(app: YarnClientApplication, amContainerSpec: ContainerLaunchContext, resource: Resource) = {
+  private def initAppContext(appName: String, app: YarnClientApplication, amContainerSpec: ContainerLaunchContext, resource: Resource) = {
     val appContext = app.getApplicationSubmissionContext
-    appContext.setApplicationName("IncQuery-D")
+    appContext.setApplicationName(appName)
     appContext.setAMContainerSpec(amContainerSpec)
     appContext.setResource(resource)
     appContext.setQueue("default")

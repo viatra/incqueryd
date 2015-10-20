@@ -36,8 +36,10 @@ object YarnActorService {
       val actorMemory = "512" // XXX read from ZK in the future
       val actorCPU = 1
       val applicationId = client.runRemotely(
+        "Deploy IncQuery-D Actor",
         List(s"$$JAVA_HOME/bin/java -Xmx${memory_mb}m -XX:MaxPermSize=${memory_mb}m -XX:MaxDirectMemorySize=${memory_mb}m $appMasterClassName -jarpath $jarPath -zkpath $zkParentPath/$actorPath -actorname $actorName -actorclass ${actorClass.getName} -memory $actorMemory -cpu $actorCPU"),
-        jarPath, true)
+        jarPath,
+        true)
       applicationIds.put(s"$zkParentPath/$actorPath", applicationId)
     }
     
@@ -81,8 +83,10 @@ object YarnActorService {
     IncQueryDZooKeeper.registerYarnNodes(yarnNodes)
     
     val applicationId = client.runRemotely(
+      "IncQuery-D Actor System",
       List(s"$$JAVA_HOME/bin/java -Xmx${memory_mb}m -XX:MaxPermSize=${memory_mb}m -XX:MaxDirectMemorySize=${memory_mb}m $appMasterClassName -jarpath $jarPath -memory $actorSystemMemory -cpu $actorSystemCPU"),
-      jarPath, true)
+      jarPath,
+      true)
     
     yarnNodes.map { yarnNode =>
       val result = Promise[YarnApplication]()
