@@ -83,9 +83,9 @@ class IQDYarnClient {
 
 object IQDYarnClient {
 
-  def DEFAULT_RM_HOST = "yarn-rm.docker"
-  def DEFAULT_HDFS_URL = s"hdfs://$DEFAULT_RM_HOST:9000"
-  def DEFAULT_TIMEOUT = 900 seconds
+  val DEFAULT_RM_HOST = "yarn-rm.docker"
+  val DEFAULT_HDFS_URL = s"hdfs://$DEFAULT_RM_HOST:9000"
+  val DEFAULT_TIMEOUT = 900 seconds
 
   def loadMetamodel(metamodelURL: URL): Model = {
     val metamodel = new LinkedHashModel

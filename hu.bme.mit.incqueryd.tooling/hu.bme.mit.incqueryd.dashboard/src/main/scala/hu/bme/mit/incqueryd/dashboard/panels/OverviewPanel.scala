@@ -17,6 +17,16 @@ import com.vaadin.server.ExternalResource
 import scala.collection.JavaConversions._
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
 import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
+import com.vaadin.ui.Button.ClickListener
+import com.vaadin.ui.Button.ClickEvent
+import org.apache.hadoop.yarn.api.records.ApplicationId
+import com.vaadin.server.Sizeable.Unit
+import com.vaadin.ui.Window.CloseListener
+import com.vaadin.ui.Window.CloseEvent
+import com.vaadin.ui.UI
+import com.vaadin.ui.TreeTable
+import java.util.TimerTask
+import java.util.Timer
 
 /**
  * 
@@ -27,15 +37,13 @@ import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
 class OverviewPanel(devConfig : DevPanelConfiguration, gridPos : GridPosition) extends DeveloperPanel(devConfig, gridPos) {
 
   val client = new AdvancedYarnClient(IQDYarnClient.DEFAULT_RM_HOST, IQDYarnClient.DEFAULT_HDFS_URL).client
-  val applicationReports = client.getApplications
-  val nodeReports = client.getNodeReports(NodeState.RUNNING)
-  
-  val applicationTable = new Table("Applications")
+
+  val applicationTable = new TreeTable("Applications")
   applicationTable.addContainerProperty("ID", classOf[String], null)
   applicationTable.addContainerProperty("Name", classOf[String], null)
   applicationTable.addContainerProperty("Type", classOf[String], null)
-  applicationTable.addContainerProperty("Start time", classOf[Date], null)
-  applicationTable.addContainerProperty("Finish time", classOf[Date], null)
+  applicationTable.addContainerProperty("Start time", classOf[String], null)
+  applicationTable.addContainerProperty("Finish time", classOf[String], null)
   applicationTable.addContainerProperty("State", classOf[String], null)  
   applicationTable.addContainerProperty("Final status", classOf[String], null)
   applicationTable.addContainerProperty("Progress", classOf[ProgressBar], null)
@@ -43,24 +51,7 @@ class OverviewPanel(devConfig : DevPanelConfiguration, gridPos : GridPosition) e
   applicationTable.addContainerProperty("View logs", classOf[Button], null)
   applicationTable.addContainerProperty("Kill", classOf[Button], null)
 
-  applicationReports.foreach { application =>
-    val id = application.getApplicationId
-    val name = application.getName
-    val appType = application.getApplicationType
-    val startTime = new Date(application.getStartTime)
-    val finishTime = new Date(application.getFinishTime)
-    val state = application.getYarnApplicationState.toString
-    val finalStatus = application.getFinalApplicationStatus.toString
-    val progress = new ProgressBar(application.getProgress)
-    val trackingLink = link(application.getTrackingUrl)
-    val viewLogs = new Button("View logs")
-    val kill = new Button("Kill")
-    applicationTable.addItem(Array(id, name, appType, startTime, finishTime, state, finalStatus, progress, trackingLink, viewLogs, kill), id)
-  }
-  
-  def link(url: String) = new Link(url, new ExternalResource(url))
-  
-  val nodeTable = new Table("Nodes")
+  val nodeTable = new TreeTable("Nodes")
   nodeTable.addContainerProperty("ID", classOf[String], null)
   nodeTable.addContainerProperty("HTTP address", classOf[Link], null)
   nodeTable.addContainerProperty("Containers", classOf[Integer], null)
@@ -68,18 +59,72 @@ class OverviewPanel(devConfig : DevPanelConfiguration, gridPos : GridPosition) e
   nodeTable.addContainerProperty("Memory available", classOf[Integer], null)
   nodeTable.addContainerProperty("Virtual cores used", classOf[Integer], null)
   nodeTable.addContainerProperty("Virtual cores available", classOf[Integer], null)
-
-  nodeReports.foreach { node =>
-    val id = node.getNodeId.toString
-    val httpAddress = link(node.getHttpAddress)
-    val numContainers: Integer = node.getNumContainers
-    val memoryUsed: Integer = node.getUsed.getMemory
-    val memoryAvailable: Integer = node.getCapability.getMemory
-    val virtualCoresUsed: Integer = node.getUsed.getVirtualCores
-    val virtualCoresAvailable: Integer = node.getCapability.getVirtualCores
-    nodeTable.addItem(Array(id, httpAddress, numContainers, memoryUsed, memoryAvailable, virtualCoresUsed, virtualCoresAvailable), id)
-  }
   
   val panelContent = new VerticalSplitPanel(applicationTable, nodeTable)
+  panelContent.setSplitPosition(75, Unit.PERCENTAGE)
   setContent(panelContent)
+  refreshTables()
+  val refreshingTimer = new Timer()
+  refreshingTimer.scheduleAtFixedRate(new TimerTask() {
+    override def run() {
+      refreshTables()
+    }
+  }, 0, 5 * 1000)
+  addCloseListener(new CloseListener() {
+    override def windowClose(event: CloseEvent) {
+      refreshingTimer.cancel()
+    }
+  })
+
+  def refreshTables() {
+    UI.getCurrent.access(new Runnable() {
+      override def run() {
+      	applicationTable.removeAllItems()
+      	client.getApplications.foreach { application =>
+        	val id: String = application.getApplicationId.toString
+        	val name: String = application.getName
+        	val appType: String = application.getApplicationType
+        	val startTime: String = displayTimestamp(application.getStartTime)
+        	val finishTime: String = displayTimestamp(application.getFinishTime)
+        	val state: String = application.getYarnApplicationState.toString
+        	val finalStatus: String = application.getFinalApplicationStatus.toString
+        	val progress: ProgressBar = new ProgressBar(application.getProgress)
+        	val trackingLink: Link = link(application.getTrackingUrl)
+        	val viewLogs: Button = new Button("View logs")
+        	val kill: Button = killButton(application.getApplicationId)
+        	applicationTable.addItem(Array(id, name, appType, startTime, finishTime, state, finalStatus, progress, trackingLink, viewLogs, kill), id)
+      	}
+    
+      	nodeTable.removeAllItems()
+      	client.getNodeReports(NodeState.RUNNING).foreach { node =>
+        	val id: String = node.getNodeId.toString
+        	val httpAddress: Link = link(node.getHttpAddress)
+        	val numContainers: Integer = node.getNumContainers
+        	val memoryUsed: Integer = node.getUsed.getMemory
+        	val memoryAvailable: Integer = node.getCapability.getMemory
+        	val virtualCoresUsed: Integer = node.getUsed.getVirtualCores
+        	val virtualCoresAvailable: Integer = node.getCapability.getVirtualCores
+        	nodeTable.addItem(Array(id, httpAddress, numContainers, memoryUsed, memoryAvailable, virtualCoresUsed, virtualCoresAvailable), id)
+      	}       
+      }
+    })
+  }
+  
+  def killButton(applicationId: ApplicationId) = {
+    val button = new Button("Kill")
+    button.addClickListener(new ClickListener() {
+      override def buttonClick(clickEvent : ClickEvent) {
+        client.killApplication(applicationId)
+        refreshTables()
+      }
+    })
+    button
+  }
+
+  def displayTimestamp(timestamp: Long): String = {
+    if (timestamp == 0) "N/A" else new Date(timestamp).toString()
+  }
+
+  def link(url: String) = new Link(url, new ExternalResource(url))
+
 }
