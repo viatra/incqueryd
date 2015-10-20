@@ -31,7 +31,7 @@ object IQDSparkClient {
   def loadData(databaseConnection: DatabaseConnection, zkPath: String) {
     val backend = databaseConnection.getBackend
     val exit_code = getSparkLauncher()
-      .setAppName(s"Load from $backend")
+      .setAppName(s"Load data from $backend")
       .addAppArgs(s"-$OPTION_PROCESSING_METHOD", ProcessingMethod.LOAD.toString())
       .addAppArgs(s"-$OPTION_DATABASE_BACKEND", backend.toString())
       .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
@@ -72,7 +72,7 @@ object IQDSparkClient {
      val thread = new Thread {
       override def run() {
         val process = getSparkLauncher()
-          .setAppName(s"$query_id production streams")
+          .setAppName(s"$query_id production stream")
           .addAppArgs(s"-$OPTION_PROCESSING_METHOD", ProcessingMethod.PRODUCTIONSTREAM.toString())
           .addAppArgs(s"-$OPTION_DURATION", DEFAULT_DURATION.toString())
           .addAppArgs(s"-$OPTION_QUERY_ID", query_id)
