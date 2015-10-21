@@ -20,7 +20,6 @@ import com.vaadin.ui.UI
 import hu.bme.mit.incqueryd.dashboard.controller.DevDashboardController
 import hu.bme.mit.incqueryd.dashboard.dev.DevPanelCloseListener
 import hu.bme.mit.incqueryd.dashboard.dev.DevPanelConfiguration
-import hu.bme.mit.incqueryd.dashboard.dev.DevPanelCreator
 import hu.bme.mit.incqueryd.dashboard.dev.GridPosition
 import hu.bme.mit.incqueryd.dashboard.panels.AddDevPanelPopup
 import hu.bme.mit.incqueryd.dashboard.panels.DeveloperPanel
@@ -29,6 +28,9 @@ import hu.bme.mit.incqueryd.dashboard.panels.SaveConfigPanel
 import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils
 import hu.bme.mit.incqueryd.dashboard.dev.DeveloperPanelType
 import hu.bme.mit.incqueryd.dashboard.dev.DASHBOARD
+import hu.bme.mit.incqueryd.dashboard.dev.OVERVIEW
+import hu.bme.mit.incqueryd.dashboard.panels.OverviewPanel
+import com.vaadin.ui.PopupView
 
 /**
  * @author pappi
@@ -38,9 +40,7 @@ import hu.bme.mit.incqueryd.dashboard.dev.DASHBOARD
 @Widgetset("hu.bme.mit.incqueryd.IQDWidgetset")
 class DeveloperUI extends UI with Handler {
 
-  val mainLayout = new HorizontalLayout
   val gridLayout = new GridLayout(DevDashboardController.GRID_COLS, DevDashboardController.GRID_ROWS)
-  val panelCreator = new DevPanelCreator
 
   val load_config_action = new ShortcutAction("Load config", ShortcutAction.KeyCode.O, Seq(ShortcutAction.ModifierKey.CTRL): _*)
 
@@ -48,13 +48,18 @@ class DeveloperUI extends UI with Handler {
 
   var gridConfiguration: Map[GridPosition, DevPanelConfiguration] = _;
 
-  def createDeveloperPanel(name: String, panelType: DeveloperPanelType, gridPos: GridPosition): DeveloperPanel = {
-    val panelConf = DevPanelConfiguration(name, panelType)
-    val devPanel = panelCreator.createDevPanel(panelConf, gridPos)
-    devPanel.addActionHandler(this)
-    devPanel.focus()
-    registerDeveloperPanel(panelConf, gridPos)
-    devPanel
+  def createDeveloperPanel(devPanelConf: DevPanelConfiguration, gridPos: GridPosition, popupView: PopupView) = {
+    val devPanelOption = devPanelConf.panelType match {
+      case OVERVIEW => Some(new OverviewPanel(devPanelConf, gridPos))
+      case _ => None
+    }
+    devPanelOption.foreach { devPanel =>
+      devPanel.addActionHandler(this)
+      devPanel.updatePositionAndSize()
+      addWindow(devPanel)
+      devPanel.focus()
+      devPanel.addCloseListener(new DevPanelCloseListener(devPanel, this, popupView))
+    }
   }
 
   def registerDeveloperPanel(panelConf: DevPanelConfiguration, gridPos: GridPosition) {
@@ -74,16 +79,8 @@ class DeveloperUI extends UI with Handler {
       gridConfiguration = Map[GridPosition, DevPanelConfiguration]()
     }
 
-    mainLayout.setSizeFull()
     gridLayout.setSizeFull()
     gridLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER)
-
-    mainLayout.setMargin(false);
-    mainLayout.setSpacing(false);
-
-    mainLayout.addComponent(gridLayout)
-    mainLayout.setExpandRatio(gridLayout, 1);
-    mainLayout.addComponent(panelCreator)
 
     for (rowNum <- 0 to DevDashboardController.GRID_ROWS - 1)
       for (colNum <- 0 to DevDashboardController.GRID_COLS - 1) {
@@ -93,12 +90,7 @@ class DeveloperUI extends UI with Handler {
         gridLayout.addComponent(popupView, colNum, rowNum)
         if (!devPanelConf.isEmpty) {
           popupView.setVisible(false)
-          val devPanel = new DeveloperPanel(devPanelConf.get, gridPos)
-          devPanel.updatePositionAndSize()
-          devPanel.addActionHandler(this)
-          devPanel.addCloseListener(new DevPanelCloseListener(devPanel, this, popupView))
-          UI.getCurrent.addWindow(devPanel)
-          devPanel.focus()
+          createDeveloperPanel(devPanelConf.get, gridPos, popupView)
         }
       }
 
@@ -114,7 +106,7 @@ class DeveloperUI extends UI with Handler {
     })
 
     addActionHandler(this);
-    setContent(mainLayout)
+    setContent(gridLayout)
 
   }
 

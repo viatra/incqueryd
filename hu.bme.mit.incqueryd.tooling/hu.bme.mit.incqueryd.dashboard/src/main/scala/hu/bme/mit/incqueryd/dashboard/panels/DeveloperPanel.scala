@@ -13,6 +13,7 @@ import hu.bme.mit.incqueryd.dashboard.dev.GridPosition
 import hu.bme.mit.incqueryd.dashboard.dev.LOG
 import hu.bme.mit.incqueryd.dashboard.dev.OVERVIEW
 import com.vaadin.shared.ui.window.WindowMode
+import com.vaadin.ui.UI
 
 
 /**
@@ -21,9 +22,7 @@ import com.vaadin.shared.ui.window.WindowMode
  * 
  */
 
-class DeveloperPanel(devConfig : DevPanelConfiguration, gridPos : GridPosition) extends Window(devConfig.name) {
-  
-  var gridPosition : GridPosition = gridPos
+abstract class DeveloperPanel(devConfig : DevPanelConfiguration, val gridPosition : GridPosition) extends Window(devConfig.name) {
   
   setClosable(true)
   setResizable(true)
@@ -57,5 +56,3 @@ object DeveloperPanel {
     Set(OVERVIEW, DASHBOARD, LOG)
   }
 }
-
-

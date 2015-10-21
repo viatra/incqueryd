@@ -10,10 +10,10 @@ import com.vaadin.ui.Button.ClickListener
 import com.vaadin.ui.Component
 import com.vaadin.ui.PopupView
 import com.vaadin.ui.VerticalLayout
-
 import hu.bme.mit.incqueryd.dashboard.dev.DevPanelCloseListener
 import hu.bme.mit.incqueryd.dashboard.dev.GridPosition
 import hu.bme.mit.incqueryd.dashboard.ui.DeveloperUI
+import hu.bme.mit.incqueryd.dashboard.dev.DevPanelConfiguration
 
 /**
  * @author pappi
@@ -35,11 +35,10 @@ class AddDevPanelPopupContent(gridPos : GridPosition, popupView : PopupView, dev
     typeButton.setStyleName("selectbutton")
     typeButton.addClickListener(new ClickListener() {
       override def buttonClick(clickEvent : ClickEvent) {
-        val devPanel = devUI.createDeveloperPanel(panelType.toString(), panelType, gridPos)
-        if(devPanel != null) {
-          devPanel.addCloseListener(new DevPanelCloseListener(devPanel, devUI, popupView))
-        }
-        popupView.setVisible(false);
+    	  popupView.setVisible(false);
+    	  val devPanelConf = new DevPanelConfiguration(panelType.toString(), panelType)
+        devUI.createDeveloperPanel(devPanelConf, gridPos, popupView)
+        devUI.registerDeveloperPanel(devPanelConf, gridPos)
       }
     })
     verticalLayout.addComponent(typeButton)
