@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
-<target name="Generated from IncQuery-D" sequenceNumber="7">
+<target name="Generated from IncQuery-D" sequenceNumber="8">
   <locations>
     <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
       <unit id="org.eclipse.epp.package.rcp.feature.feature.group" version="4.4.2.20150219-0708"/>
@@ -19,34 +19,34 @@
       <repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/milestones/"/>
     </location>
     <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">
-      <unit id="org.eclipse.incquery.databinding.runtime.feature.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.databinding.runtime.feature.source.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.querybasedfeatures.runtime.feature.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.querybasedfeatures.runtime.feature.source.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.querybasedfeatures.tooling" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.querybasedfeatures.tooling.feature.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.querybasedfeatures.tooling.feature.source.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.runtime.evm.transactions" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.runtime.evm.transactions.feature.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.runtime.evm.transactions.feature.source.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.runtime.feature.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.runtime.feature.source.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.runtime.generic.feature.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.runtime.generic.feature.source.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.sdk.feature.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.sdk.feature.source.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.tooling.generator.model.ui" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.validation.runtime.feature.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.validation.runtime.feature.source.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.validation.runtime.ui" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.validation.tooling" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.validation.tooling.feature.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.validation.tooling.feature.source.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.viewers.runtime.feature.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.viewers.runtime.feature.source.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.viewers.tooling.ui" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.viewers.tooling.ui.feature.feature.jar" version="1.1.0.201510021635"/>
-      <unit id="org.eclipse.incquery.viewers.tooling.ui.feature.source.feature.jar" version="1.1.0.201510021635"/>
+      <unit id="org.eclipse.incquery.databinding.runtime.feature.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.databinding.runtime.feature.source.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.querybasedfeatures.runtime.feature.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.querybasedfeatures.runtime.feature.source.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.querybasedfeatures.tooling" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.querybasedfeatures.tooling.feature.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.querybasedfeatures.tooling.feature.source.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.runtime.evm.transactions" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.runtime.evm.transactions.feature.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.runtime.evm.transactions.feature.source.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.runtime.feature.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.runtime.feature.source.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.runtime.generic.feature.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.runtime.generic.feature.source.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.sdk.feature.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.sdk.feature.source.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.tooling.generator.model.ui" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.validation.runtime.feature.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.validation.runtime.feature.source.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.validation.runtime.ui" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.validation.tooling" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.validation.tooling.feature.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.validation.tooling.feature.source.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.viewers.runtime.feature.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.viewers.runtime.feature.source.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.viewers.tooling.ui" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.viewers.tooling.ui.feature.feature.jar" version="1.1.0.201510161636"/>
+      <unit id="org.eclipse.incquery.viewers.tooling.ui.feature.source.feature.jar" version="1.1.0.201510161636"/>
       <repository location="http://download.eclipse.org/incquery/updates/integration/"/>
     </location>
     <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="false" type="InstallableUnit">

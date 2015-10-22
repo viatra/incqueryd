@@ -11,6 +11,7 @@ import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.osgi.framework.BundleContext;
 
 import com.google.inject.Injector;
+import com.google.inject.Module;
 
 public class Activator extends AbstractUIPlugin {
 
@@ -27,7 +28,7 @@ public class Activator extends AbstractUIPlugin {
 		injector = createInjector(mixin(
 			new RdfPatternLanguageRuntimeModule(),
 			new SharedStateModule(),
-			new RdfPatternLanguageUiModule(this),
+			(Module) new RdfPatternLanguageUiModule(this), // XXX need to cast because of Eclipse compiler bug?
 			new RecipeGeneratorModule(this, RdfRecipeGenerator.class)));
 	}
 
