@@ -35,7 +35,35 @@ object DashboardController {
   private var previousResultSets : HashMap[String, Set[Tuple]] = HashMap[String, Set[Tuple]]()
   
   var subscribers: HashMap[String, MQTTSubscriber] = new HashMap[String, MQTTSubscriber]()
+  
+  private var initialized = false;
+  
+  def initialize() {
+    
+    if(initialized) return
+    
+     // Read queries
+    var queries = IncQueryDZooKeeper.getChildPaths(s"${IncQueryDZooKeeper.runningQueries}")
 
+    // Start streams 
+    queries.foreach { query =>
+      val patterns = IncQueryDZooKeeper.getChildPaths(s"${IncQueryDZooKeeper.runningQueries}/$query")
+      patterns.foreach { pattern =>  
+        DashboardController.registerPattern(pattern, query)
+        DashboardController.startSubscriber(createPatternId(pattern, query))
+      }
+    }
+
+    // Add queries zNode if not exist
+    if (queries.size == 0)
+      IncQueryDZooKeeper.createDir(s"${IncQueryDZooKeeper.runningQueries}")
+
+    // Looking for new or removed queries
+    DashboardController.watchForQueryChanges()
+    
+    initialized = true;
+  }
+  
   def startSubscriber(topic: String) {
     val subscriber = subscribers.getOrElseUpdate(topic, new MQTTSubscriber(BROKER_URL))
     if (!subscriber.isActive()) {

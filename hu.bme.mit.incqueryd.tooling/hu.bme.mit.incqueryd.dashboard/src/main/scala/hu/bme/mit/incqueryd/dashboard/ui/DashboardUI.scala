@@ -32,6 +32,7 @@ import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils.resolvePattern
 import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils.resolveQuery
 import com.vaadin.server.ThemeResource
 import com.vaadin.ui.Image
+import javax.servlet.annotation.WebServlet
 
 /**
  * @author pappi
@@ -232,6 +233,8 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
   }
 
   override def init(request: VaadinRequest) {
+    
+    DashboardController.initialize()
     
     println("Dashboard initialization started...")
     configureWidgets

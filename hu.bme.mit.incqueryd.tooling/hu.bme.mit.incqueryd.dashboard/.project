@@ -3,6 +3,11 @@
 	<name>hu.bme.mit.incqueryd.dashboard</name>
 	<comment></comment>
 	<projects>
+		<project>eu.mondo.driver.file</project>
+		<project>eu.mondo.driver.rdf</project>
+		<project>eu.mondo.driver.sparql</project>
+		<project>eu.mondo.driver.fourstore</project>
+		<project>eu.mondo.utils</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -21,12 +26,12 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<name>org.eclipse.wst.validation.validationbuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.wst.validation.validationbuilder</name>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -39,5 +44,6 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
+		<nature>org.apache.ivyde.eclipse.ivynature</nature>
 	</natures>
 </projectDescription>

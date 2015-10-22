@@ -24,25 +24,6 @@ object DashboardApp {
     // Start UI thread
     DashboardController.startUIThread()
 
-    // Read queries
-    var queries = IncQueryDZooKeeper.getChildPaths(s"${IncQueryDZooKeeper.runningQueries}")
-
-    // Start streams 
-    queries.foreach { query =>
-      val patterns = IncQueryDZooKeeper.getChildPaths(s"${IncQueryDZooKeeper.runningQueries}/$query")
-      patterns.foreach { pattern =>  
-        DashboardController.registerPattern(pattern, query)
-        DashboardController.startSubscriber(createPatternId(pattern, query))
-      }
-    }
-
-    // Add queries zNode if not exist
-    if (queries.size == 0)
-      IncQueryDZooKeeper.createDir(s"${IncQueryDZooKeeper.runningQueries}")
-
-    // Looking for new or removed queries
-    DashboardController.watchForQueryChanges()
-
   }
 
 }
