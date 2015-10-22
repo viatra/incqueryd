@@ -1,0 +1,36 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eclipse.incquery.patternlanguage.rdf
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.eclipse.incquery.patternlanguage.rdf; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.incquery.patternlanguage;bundle-version="1.1.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.common.types,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common,
+ hu.bme.mit.incqueryd.rdf;bundle-version="1.0.0",
+ org.openrdf.sesame;bundle-version="2.8.0",
+ org.eclipse.incquery.patternlanguage.util
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.eclipse.incquery.patternlanguage.rdf,
+ org.eclipse.incquery.patternlanguage.rdf.conversion,
+ org.eclipse.incquery.patternlanguage.rdf.formatting2,
+ org.eclipse.incquery.patternlanguage.rdf.jvmmodel,
+ org.eclipse.incquery.patternlanguage.rdf.parser.antlr,
+ org.eclipse.incquery.patternlanguage.rdf.parser.antlr.internal,
+ org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage,
+ org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl,
+ org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.util,
+ org.eclipse.incquery.patternlanguage.rdf.serializer,
+ org.eclipse.incquery.patternlanguage.rdf.services,
+ org.eclipse.incquery.patternlanguage.rdf.validation
+Import-Package: org.apache.log4j

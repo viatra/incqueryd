@@ -1,6 +1,6 @@
 package org.eclipse.incquery.patternlanguage.rdf.generator.recipe.tests;
 
-import org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageInjectorProvider;
+import org.eclipse.incquery.patternlanguage.rdf.tests.RdfPatternLanguageInjectorProvider;
 import org.eclipse.incquery.patternlanguage.rdf.generator.recipe.RdfRecipeGenerator;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternModel;
 import org.eclipse.incquery.patternlanguage.rdf.tests.ParserTest;

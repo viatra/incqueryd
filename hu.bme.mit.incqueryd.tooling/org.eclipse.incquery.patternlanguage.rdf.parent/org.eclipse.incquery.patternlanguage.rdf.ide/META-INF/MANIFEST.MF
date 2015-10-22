@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eclipse.incquery.patternlanguage.rdf.ide
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.eclipse.incquery.patternlanguage.rdf.ide; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.incquery.patternlanguage.rdf,
+ org.eclipse.xtext.ide,
+ org.eclipse.xtext.xbase.ide,
+ org.eclipse.incquery.patternlanguage;bundle-version="1.1.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.eclipse.incquery.patternlanguage.rdf.ide.contentassist.antlr.internal,
+ org.eclipse.incquery.patternlanguage.rdf.ide.contentassist.antlr
+

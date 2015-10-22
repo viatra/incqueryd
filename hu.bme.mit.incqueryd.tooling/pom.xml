@@ -11,7 +11,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<tycho.version>0.20.0</tycho.version>
-		<xtend.version>2.9.0.beta3</xtend.version>
+		<xtend.version>2.9.0.beta5</xtend.version>
 	</properties>
 	<build>
 		<plugins>
@@ -101,9 +101,7 @@
 		<module>org.eclipse.incquery.patternlanguage.util.generator.recipe</module>
 		<module>org.mozilla.javascript</module>
 		<module>hu.bme.mit.incqueryd.rdf</module>
-		<module>org.eclipse.incquery.patternlanguage.rdf</module>
-		<module>org.eclipse.incquery.patternlanguage.rdf.tests</module>
-		<module>org.eclipse.incquery.patternlanguage.rdf.ui</module>
+		<module>org.eclipse.incquery.patternlanguage.rdf.parent</module>
 		<module>org.eclipse.incquery.patternlanguage.rdf.psystem</module>
 		<module>org.eclipse.incquery.patternlanguage.rdf.generator.recipe</module>
 		<module>hu.bme.mit.incqueryd.tooling.feature</module>
