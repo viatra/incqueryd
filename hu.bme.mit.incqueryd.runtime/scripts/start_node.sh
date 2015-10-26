@@ -75,7 +75,7 @@ DOCKER_IP=$(docker inspect --format="{{.NetworkSettings.IPAddress}}" $INSTANCE_N
 
 # Resolve cluster node from host
 sudo sed -i "/$INSTANCE_HOST/d" /etc/hosts
-sudo printf $DOCKER_IP' '$INSTANCE_HOST'\n' >> /etc/hosts
+sudo -- sh -c "printf $DOCKER_IP' '$INSTANCE_HOST'\n' >> /etc/hosts"
 
 if $LOCAL; then
 	docker exec $YARN_RM /etc/add-dns-entry.sh $DOCKER_IP $INSTANCE_HOST
