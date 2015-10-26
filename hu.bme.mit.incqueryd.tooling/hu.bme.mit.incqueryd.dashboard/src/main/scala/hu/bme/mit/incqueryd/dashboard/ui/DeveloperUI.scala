@@ -31,6 +31,7 @@ import hu.bme.mit.incqueryd.dashboard.dev.DASHBOARD
 import hu.bme.mit.incqueryd.dashboard.dev.OVERVIEW
 import hu.bme.mit.incqueryd.dashboard.panels.OverviewPanel
 import com.vaadin.ui.PopupView
+import javax.servlet.annotation.WebServlet
 
 /**
  * @author pappi

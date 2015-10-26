@@ -3,8 +3,61 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/scala"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/scala"/>
-        <property name="context-root" value="hu.bme.mit.incqueryd.dashboard"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes/VAADIN" source-path="/target/classes/VAADIN"/>
+        <dependent-module archiveName="eu.mondo.driver.file.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/eu.mondo.driver.file/eu.mondo.driver.file">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="eu.mondo.driver.rdf.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/eu.mondo.driver.rdf/eu.mondo.driver.rdf">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="eu.mondo.driver.sparql.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/eu.mondo.driver.sparql/eu.mondo.driver.sparql">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="eu.mondo.driver.fourstore.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/eu.mondo.driver.fourstore/eu.mondo.driver.fourstore">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="eu.mondo.utils.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/eu.mondo.utils/eu.mondo.utils">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.idservice.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.idservice/hu.bme.mit.incqueryd.idservice">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.actorservice.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.actorservice/hu.bme.mit.incqueryd.actorservice">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.rete.actors.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.rete.actors/hu.bme.mit.incqueryd.rete.actors">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.rdf.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.rdf/hu.bme.mit.incqueryd.rdf">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.rete.nodes.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.rete.nodes/hu.bme.mit.incqueryd.rete.nodes">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.test.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.test/hu.bme.mit.incqueryd.test">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.actorservice.server.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.actorservice.server/hu.bme.mit.incqueryd.actorservice.server">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.spark.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.spark/hu.bme.mit.incqueryd.spark">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.inventory.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.inventory/hu.bme.mit.incqueryd.inventory">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.yarn.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.yarn/hu.bme.mit.incqueryd.yarn">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.engine.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.engine/hu.bme.mit.incqueryd.engine">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.coordinator.client.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.coordinator.client/hu.bme.mit.incqueryd.coordinator.client">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/hu.bme.mit.incqueryd.dashboard/target/classes"/>
+        <property name="context-root" value="/"/>
     </wb-module>
 </project-modules>
