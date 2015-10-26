@@ -43,11 +43,6 @@
     <description>Initialize JDT's package explorer to show working sets as its root objects</description>
   </setupTask>
   <setupTask
-      xsi:type="setup:VariableTask"
-      name="eclipse.target.platform"
-      defaultValue="Kepler"
-      storageURI="scope://Workspace"/>
-  <setupTask
       xsi:type="setup.p2:P2Task">
     <requirement
         name="org.maven.ide.eclipse.scala_feature.feature.group"/>
@@ -65,6 +60,8 @@
         name="de.itemis.xtext.antlr.sdk.feature.group"/>
     <requirement
         name="com.vaadin.integration.eclipse.feature.group"/>
+    <requirement
+        name="org.apache.ivyde.feature.feature.group"/>
     <repository
         url="http://download.eclipse.org/technology/m2e/releases"/>
     <repository
@@ -83,6 +80,8 @@
         url="http://download.eclipse.org/incquery/updates/release"/>
     <repository
         url="http://vaadin.com/eclipse"/>
+    <repository
+        url="http://www.apache.org/dist/ant/ivyde/updatesite"/>
     <description>Install the tools needed in the IDE to work with the source code for ${scope.project.label}</description>
   </setupTask>
   <setupTask
