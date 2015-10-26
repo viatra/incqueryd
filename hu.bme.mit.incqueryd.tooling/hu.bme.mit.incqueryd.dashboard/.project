@@ -8,6 +8,18 @@
 		<project>eu.mondo.driver.sparql</project>
 		<project>eu.mondo.driver.fourstore</project>
 		<project>eu.mondo.utils</project>
+		<project>hu.bme.mit.incqueryd.idservice</project>
+		<project>hu.bme.mit.incqueryd.actorservice</project>
+		<project>hu.bme.mit.incqueryd.rete.actors</project>
+		<project>hu.bme.mit.incqueryd.rdf</project>
+		<project>hu.bme.mit.incqueryd.rete.nodes</project>
+		<project>hu.bme.mit.incqueryd.test</project>
+		<project>hu.bme.mit.incqueryd.actorservice.server</project>
+		<project>hu.bme.mit.incqueryd.spark</project>
+		<project>hu.bme.mit.incqueryd.inventory</project>
+		<project>hu.bme.mit.incqueryd.yarn</project>
+		<project>hu.bme.mit.incqueryd.engine</project>
+		<project>hu.bme.mit.incqueryd.coordinator.client</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -37,9 +49,9 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
 		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
-		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.scala-ide.sdt.core.scalanature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
