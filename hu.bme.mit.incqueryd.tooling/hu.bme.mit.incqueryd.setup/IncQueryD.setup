@@ -15,6 +15,11 @@
     name="incqueryd"
     label="IncQuery-D">
   <setupTask
+      xsi:type="setup:VariableTask"
+      name="eclipse.target.platform"
+      defaultValue="Luna"
+      storageURI="scope://Workspace"/>
+  <setupTask
       xsi:type="jdt:JRETask"
       version="JavaSE-1.7"
       location="${jre.location-1.7}">
