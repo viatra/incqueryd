@@ -1,3 +1,4 @@
+<!-- TODO refer duplicated values from setnames.sh -->
 <configuration>
 	<property>
 		<name>yarn.resourcemanager.bind-host</name>

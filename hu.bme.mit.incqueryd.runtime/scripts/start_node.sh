@@ -51,6 +51,8 @@ if $RM; then
 	BINDING_PORTS="-p 127.0.0.1:53:53/udp -p 127.0.0.1:2181:2181 -p 127.0.0.1:2182:2182 -p 127.0.0.1:5701:5701 -p 127.0.0.1:9876:9876 -p 127.0.0.1:8088:8088 -p 127.0.0.1:50070:50070"
 fi
 
+DOCKER_OPTS="$BINDING_PORTS --hostname $INSTANCE_HOST --name $INSTANCE_NAME -v $TARGET_PATH:/tmp/target --privileged --device=/dev/fuse -i -t -d $IMAGE" # see https://github.com/docker/docker/issues/9448
+
 # Start docker container
 if $LOCAL; then
 	# Define DNS IP
@@ -60,11 +62,11 @@ if $LOCAL; then
 		DNS_IP=$(docker inspect --format="{{.NetworkSettings.IPAddress}}" $YARN_RM)
 	fi
 
-	docker run --dns $DNS_IP $BINDING_PORTS --hostname $INSTANCE_HOST --name $INSTANCE_NAME -v $TARGET_PATH:/tmp/target -i -t -d $IMAGE
+	docker run --dns $DNS_IP $DOCKER_OPTS
 else
 	# DNS IP is fix if working with weave (multihost mode)
 	DNS_IP="10.0.0.100"
-	weave run $WEAVE_IP/24 --dns $DNS_IP $BINDING_PORTS --hostname $INSTANCE_HOST --name $INSTANCE_NAME -v $TARGET_PATH:/tmp/target -i -t -d $IMAGE
+	weave run $WEAVE_IP/24 --dns $DNS_IP $DOCKER_OPTS
 fi
 
 # Fix container hostname and used nameserver
@@ -105,10 +107,9 @@ else
 	if $LOCAL; then
 		docker exec $YARN_RM service dnsmasq restart
 	fi
+	docker exec $INSTANCE_NAME hadoop-fuse-dfs dfs://$YARN_RM_HOST:$NAMENODE_PORT $HDFS_MOUNT_POINT
 	docker exec $INSTANCE_NAME /usr/local/hadoop/add-yarn-node.sh
 	docker exec $INSTANCE_NAME /etc/write-zoo-myid.sh $(($INSTANCE_ID+1))
 	docker exec $INSTANCE_NAME /usr/local/zookeeper/bin/start-zk-server.sh $(($INSTANCE_ID+1)) $INSTANCE_ID $YARN_RM_HOST
 	docker exec -d $INSTANCE_NAME sh /usr/local/hazelcast/bin/server.sh
-
-	docker exec $INSTANCE_NAME hadoop-fuse-dfs dfs://$YARN_RM_HOST:$NAMENODE_PORT $HDFS_MOUNT_POINT
 fi

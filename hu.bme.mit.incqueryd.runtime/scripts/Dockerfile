@@ -5,6 +5,7 @@ MAINTAINER IncQuery-D Team
 USER root
 
 # install tools
+RUN wget http://archive.cloudera.com/cdh5/one-click-install/trusty/amd64/cdh5-repository_1.0_all.deb && sudo dpkg -i cdh5-repository_1.0_all.deb
 RUN apt-get update && apt-get -y install curl tar sudo openssh-server openssh-client rsync nano telnet dnsmasq hadoop-hdfs-fuse
 
 # passwordless ssh
@@ -19,7 +20,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
 ENV PATH $PATH:$JAVA_HOME/bin
 
 # Download and install YARN (hadoop-2.6.0)
-RUN curl -s http://www.eu.apache.org/dist/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz | tar -xz -C /usr/local/
+RUN curl -s http://xenia.sote.hu/ftp/mirrors/www.apache.org/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz | tar -xz -C /usr/local/
 RUN cd /usr/local && ln -s ./hadoop-2.6.0 hadoop
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -151,7 +152,7 @@ ADD copy_runtime_to_hdfs.sh /usr/local/hadoop/copy_runtime_to_hdfs.sh
 RUN chmod 700 /usr/local/hadoop/copy_runtime_to_hdfs.sh
 
 # Initialize HDFS mount
-sudo mkdir -p $HDFS_MOUNT_POINT
+RUN sudo mkdir -p /mnt/hdfs # XXX duplicated
 
 EXPOSE 50020 50090 50070 50010 50075 8031 8032 8033 8040 8042 49707 22 8088 8030 19888 2888 3888 2181 2182 10020 19888 2552
 # XXX duplicated ports
