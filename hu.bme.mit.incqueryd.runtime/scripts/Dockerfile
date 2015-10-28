@@ -5,7 +5,7 @@ MAINTAINER IncQuery-D Team
 USER root
 
 # install tools
-RUN apt-get update && apt-get -y install curl tar sudo openssh-server openssh-client rsync nano telnet dnsmasq
+RUN apt-get update && apt-get -y install curl tar sudo openssh-server openssh-client rsync nano telnet dnsmasq hadoop-hdfs-fuse
 
 # passwordless ssh
 # RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key
@@ -150,13 +150,8 @@ RUN apt-get -y install mosquitto
 ADD copy_runtime_to_hdfs.sh /usr/local/hadoop/copy_runtime_to_hdfs.sh
 RUN chmod 700 /usr/local/hadoop/copy_runtime_to_hdfs.sh
 
-# Set up log aggregation
-
-ADD aggregate_logs.sh /usr/local/hadoop/aggregate_logs.sh
-RUN chmod 700 /usr/local/hadoop/aggregate_logs.sh
-
-RUN echo "* * * * * root /usr/local/hadoop/aggregate_logs.sh" >> /etc/crontab
-CMD cron -f
+# Initialize HDFS mount
+sudo mkdir -p $HDFS_MOUNT_POINT
 
 EXPOSE 50020 50090 50070 50010 50075 8031 8032 8033 8040 8042 49707 22 8088 8030 19888 2888 3888 2181 2182 10020 19888 2552
 # XXX duplicated ports

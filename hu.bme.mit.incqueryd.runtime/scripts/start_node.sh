@@ -59,7 +59,7 @@ if $LOCAL; then
 	else
 		DNS_IP=$(docker inspect --format="{{.NetworkSettings.IPAddress}}" $YARN_RM)
 	fi
-	
+
 	docker run --dns $DNS_IP $BINDING_PORTS --hostname $INSTANCE_HOST --name $INSTANCE_NAME -v $TARGET_PATH:/tmp/target -i -t -d $IMAGE
 else
 	# DNS IP is fix if working with weave (multihost mode)
@@ -109,4 +109,6 @@ else
 	docker exec $INSTANCE_NAME /etc/write-zoo-myid.sh $(($INSTANCE_ID+1))
 	docker exec $INSTANCE_NAME /usr/local/zookeeper/bin/start-zk-server.sh $(($INSTANCE_ID+1)) $INSTANCE_ID $YARN_RM_HOST
 	docker exec -d $INSTANCE_NAME sh /usr/local/hazelcast/bin/server.sh
+
+	docker exec $INSTANCE_NAME hadoop-fuse-dfs dfs://$YARN_RM_HOST:$NAMENODE_PORT $HDFS_MOUNT_POINT
 fi
