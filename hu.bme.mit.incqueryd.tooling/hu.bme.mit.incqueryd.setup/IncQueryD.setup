@@ -217,7 +217,7 @@
         <repository
             url="${xtext.location}"/>
         <repository
-            url="http://download.eclipse.org/incquery/updates/integration/"/>
+            url="https://hudson.eclipse.org/incquery/job/incquery-master/lastSuccessfulBuild/artifact/update-site/"/>
         <repository
             url="http://ghillairet.github.io/p2/"/>
         <repository
