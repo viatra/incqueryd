@@ -38,7 +38,6 @@ import scala.concurrent.duration._
 import java.util.HashSet
 import hu.bme.mit.incqueryd.engine.rete.nodes.ProductionNode
 import hu.bme.mit.incqueryd.engine.rete.actors.GetQueryResults
-import hu.bme.mit.incqueryd.engine.rete.actors.RdfType
 import hu.bme.mit.incqueryd.engine.rete.actors.RecipeUtils
 import hu.bme.mit.incqueryd.engine.rete.actors.EstablishSubscriptions
 import hu.bme.mit.incqueryd.engine.rete.actors.Configure
@@ -70,12 +69,10 @@ class CoordinatorActor extends Actor {
   implicit val timeout: Timeout = Timeout(AkkaUtils.defaultTimeout)
   import context.dispatcher
   
-  private var types : Set[RdfType] = _
-  
   def receive = AkkaUtils.propagateException(sender) {
-    case DeployInputNodes(vocabulary, databaseConnection, rmHostname, fileSystemUri) => {
-      types = getTypes(vocabulary, databaseConnection.getDriver)
-      val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
+    case DeployInputNodes(vocabulary, recipeJson, databaseConnection, rmHostname, fileSystemUri) => {
+      val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
+      val typeInputRecipes = recipe.getRecipeNodes.filter(_.isInstanceOf[TypeInputRecipe]).toSet
       val actorsByRecipe = deploy(typeInputRecipes, rmHostname, fileSystemUri, IncQueryDZooKeeper.inputNodesPath)
       configure(actorsByRecipe)
       sender ! true
@@ -105,7 +102,7 @@ class CoordinatorActor extends Actor {
       }
       configure(otherActorsByRecipe)
       establishSubscriptions(otherActorsByRecipe)
-      val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
+      val typeInputRecipes = recipe.getRecipeNodes.filter(_.isInstanceOf[TypeInputRecipe]).toSet
       val inputActorsByRecipe = lookup(typeInputRecipes)
       propagateInputStates(inputActorsByRecipe)
       sender ! true
@@ -132,8 +129,9 @@ class CoordinatorActor extends Actor {
       undeploy(notTypeInputRecipes)
       sender ! true
     }
-    case Dispose => {
-      val typeInputRecipes: Set[ReteNodeRecipe] = types.map(_.getInputRecipe)
+    case UndeployInputNodes(recipeJson) => {
+      val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
+      val typeInputRecipes = recipe.getRecipeNodes.filter(_.isInstanceOf[TypeInputRecipe]).toSet
       undeploy(typeInputRecipes)
       sender ! true
     }
@@ -147,18 +145,6 @@ class CoordinatorActor extends Actor {
     }
   }
 
-  def getTypes(vocabulary: Model, driver: RDFGraphDriverRead): Set[RdfType] = {
-    val rdfClassStatements = vocabulary.filter(null, RDF.TYPE, RDFS.CLASS).toSet
-    val owlClassStatements = vocabulary.filter(null, RDF.TYPE, OWL.CLASS).toSet
-    val classes = getUriSubjects(rdfClassStatements union owlClassStatements)
-    val classTypes: Set[RdfType] = classes.map(RdfType(RdfType.Class, _, driver))
-    val objectProperties = getUriSubjects(vocabulary.filter(null, RDF.TYPE, OWL.OBJECTPROPERTY).toSet union vocabulary.filter(null, RDF.TYPE, RDF.PROPERTY).toSet)
-    val objectPropertyTypes: Set[RdfType] = objectProperties.map(RdfType(RdfType.ObjectProperty, _, driver))
-    val datatypeProperties = getUriSubjects(vocabulary.filter(null, RDF.TYPE, OWL.DATATYPEPROPERTY).toSet union vocabulary.filter(null, RDF.TYPE, OWL.ANNOTATIONPROPERTY).toSet)
-    val datatypePropertyTypes: Set[RdfType] = datatypeProperties.map(RdfType(RdfType.DatatypeProperty, _, driver))
-    classTypes union objectPropertyTypes union datatypePropertyTypes
-  }
-  
   private def getProductionActorPath(recipeJson : String, patternName : String) : ActorPath = {
     val recipe = RecipeDeserializer.deserializeFromString(recipeJson).asInstanceOf[ReteRecipe]
       val productionRecipeOption = RecipeUtils.findProductionRecipe(recipe, patternName)

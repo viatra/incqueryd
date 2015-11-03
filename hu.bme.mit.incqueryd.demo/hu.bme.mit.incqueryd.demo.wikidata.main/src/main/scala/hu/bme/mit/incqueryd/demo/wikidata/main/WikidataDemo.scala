@@ -24,8 +24,8 @@ object WikidataDemo {
     val metamodel = IQDYarnClient.loadMetamodel(Resources.getResource(vocabularyFilename))
     println("Initializing IQD YARN client")
     val client = new IQDYarnClient
-    client.deployInputNodes(metamodel, databaseConnection)
     val recipe = RecipeUtils.loadRecipe(recipeFilename)
+    client.deployInputNodes(metamodel, recipe, databaseConnection)
     client.startQuery(recipe, Resources.toString(Resources.getResource(rdfiqFilename), Charsets.UTF_8))
     client.coordinator.loadData(databaseConnection)
     client.coordinator.startWikidataStream(databaseConnection)
