@@ -126,7 +126,7 @@ class RdfPatternMatcherContext implements IPatternMatcherContext {
 	}
 
 	override printType(Object typeObject) {
-		(typeObject as Value).stringValue
+		(typeObject as Value)?.stringValue
 	}
 
 	// Logging

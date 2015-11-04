@@ -70,6 +70,8 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
       case RdfPatternLanguagePackage.VARIABLE: return createVariable();
       case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT: return createRdfClassConstraint();
       case RdfPatternLanguagePackage.RDF_PROPERTY_CONSTRAINT: return createRdfPropertyConstraint();
+      case RdfPatternLanguagePackage.TYPE_ID: return createTypeId();
+      case RdfPatternLanguagePackage.LABEL: return createLabel();
       case RdfPatternLanguagePackage.RDF_CHECK_CONSTRAINT: return createRdfCheckConstraint();
       case RdfPatternLanguagePackage.RDF_LITERAL: return createRdfLiteral();
       case RdfPatternLanguagePackage.RDF_PATTERN_MODEL: return createRdfPatternModel();
@@ -142,6 +144,28 @@ public class RdfPatternLanguageFactoryImpl extends EFactoryImpl implements RdfPa
   {
     RdfPropertyConstraintImpl rdfPropertyConstraint = new RdfPropertyConstraintImpl();
     return rdfPropertyConstraint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeId createTypeId()
+  {
+    TypeIdImpl typeId = new TypeIdImpl();
+    return typeId;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Label createLabel()
+  {
+    LabelImpl label = new LabelImpl();
+    return label;
   }
 
   /**

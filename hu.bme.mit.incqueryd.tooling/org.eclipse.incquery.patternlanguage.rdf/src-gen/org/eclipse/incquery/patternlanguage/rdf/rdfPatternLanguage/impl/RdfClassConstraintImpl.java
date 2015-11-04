@@ -14,9 +14,9 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 
 import org.eclipse.incquery.patternlanguage.patternLanguage.impl.ConstraintImpl;
 
-import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeId;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +42,7 @@ public class RdfClassConstraintImpl extends ConstraintImpl implements RdfClassCo
    * @generated
    * @ordered
    */
-  protected Iri type;
+  protected TypeId type;
 
   /**
    * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
@@ -80,7 +80,7 @@ public class RdfClassConstraintImpl extends ConstraintImpl implements RdfClassCo
    * <!-- end-user-doc -->
    * @generated
    */
-  public Iri getType()
+  public TypeId getType()
   {
     return type;
   }
@@ -90,9 +90,9 @@ public class RdfClassConstraintImpl extends ConstraintImpl implements RdfClassCo
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(Iri newType, NotificationChain msgs)
+  public NotificationChain basicSetType(TypeId newType, NotificationChain msgs)
   {
-    Iri oldType = type;
+    TypeId oldType = type;
     type = newType;
     if (eNotificationRequired())
     {
@@ -107,7 +107,7 @@ public class RdfClassConstraintImpl extends ConstraintImpl implements RdfClassCo
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(Iri newType)
+  public void setType(TypeId newType)
   {
     if (newType != type)
     {
@@ -218,7 +218,7 @@ public class RdfClassConstraintImpl extends ConstraintImpl implements RdfClassCo
     switch (featureID)
     {
       case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__TYPE:
-        setType((Iri)newValue);
+        setType((TypeId)newValue);
         return;
       case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__VARIABLE:
         setVariable((VariableReference)newValue);
@@ -238,7 +238,7 @@ public class RdfClassConstraintImpl extends ConstraintImpl implements RdfClassCo
     switch (featureID)
     {
       case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__TYPE:
-        setType((Iri)null);
+        setType((TypeId)null);
         return;
       case RdfPatternLanguagePackage.RDF_CLASS_CONSTRAINT__VARIABLE:
         setVariable((VariableReference)null);
