@@ -3,6 +3,6 @@ vocabulary <wikidata-demo-vocabulary.nt>
 prefix wd: <http://www.wikidata.org/entity/> 
 prefix wdt: <http://www.wikidata.org/prop/direct/>
 
-pattern highestPoint(subject, object) {
-	wdt:P610(subject, object);
+pattern UKMovies(movie) {
+	wdt:P495(movie, wd:Q145);
 }
