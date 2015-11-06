@@ -44,7 +44,7 @@ import javax.servlet.annotation.WebServlet
 class DashboardUI extends UI with UIBroadcaster.MessageListener {
 
   val streamBtn = new Button("Body")
-  val headerLabel = new Label("IncQuery-D Wikipedia Demo")
+  val headerLabel = new Label("IncQuery-D Wikidata Demo")
   val footerLabel = new Label("Powered by IncQuery Labs Ltd.")
   
   
