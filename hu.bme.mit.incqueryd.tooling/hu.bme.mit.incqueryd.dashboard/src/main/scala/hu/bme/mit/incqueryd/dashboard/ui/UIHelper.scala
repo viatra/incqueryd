@@ -172,6 +172,7 @@ object UIHelper {
       tupleLayout.addComponent(tupleLink)
       tupleLayout.setComponentAlignment(tupleLink, Alignment.MIDDLE_CENTER)
       tupleLayout.setExpandRatio(tupleLink, 9.0f)
+      tupleLayout.addComponent(new Label(" "));
     }
     tuplePanel.setContent(tupleLayout)
     tuplePanel
