@@ -64,7 +64,7 @@ object UIHelper {
     }
     
     override def getMinimizedValueAsHTML() : String = {
-      query
+      s"Query group ${query}"
     }
   }
   
