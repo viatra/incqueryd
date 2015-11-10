@@ -281,6 +281,62 @@ finally {
 
 
 
+// Entry rule entryRuleTypeId
+entryRuleTypeId 
+:
+{ before(grammarAccess.getTypeIdRule()); }
+	 ruleTypeId
+{ after(grammarAccess.getTypeIdRule()); } 
+	 EOF 
+;
+
+// Rule TypeId
+ruleTypeId
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getTypeIdAccess().getAlternatives()); }
+(rule__TypeId__Alternatives)
+{ after(grammarAccess.getTypeIdAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+// Entry rule entryRuleLabel
+entryRuleLabel 
+:
+{ before(grammarAccess.getLabelRule()); }
+	 ruleLabel
+{ after(grammarAccess.getLabelRule()); } 
+	 EOF 
+;
+
+// Rule Label
+ruleLabel
+    @init {
+		int stackSize = keepStackSize();
+    }
+	:
+(
+{ before(grammarAccess.getLabelAccess().getLabelAssignment()); }
+(rule__Label__LabelAssignment)
+{ after(grammarAccess.getLabelAccess().getLabelAssignment()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleRdfCheckConstraint
 entryRuleRdfCheckConstraint 
 :
@@ -3365,6 +3421,28 @@ rule__Constraint__Alternatives
 { before(grammarAccess.getConstraintAccess().getRdfCheckConstraintParserRuleCall_4()); }
 	ruleRdfCheckConstraint
 { after(grammarAccess.getConstraintAccess().getRdfCheckConstraintParserRuleCall_4()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__TypeId__Alternatives
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getTypeIdAccess().getIriParserRuleCall_0()); }
+	ruleIri
+{ after(grammarAccess.getTypeIdAccess().getIriParserRuleCall_0()); }
+)
+
+    |(
+{ before(grammarAccess.getTypeIdAccess().getLabelParserRuleCall_1()); }
+	ruleLabel
+{ after(grammarAccess.getTypeIdAccess().getLabelParserRuleCall_1()); }
 )
 
 ;
@@ -23030,8 +23108,8 @@ rule__RdfClassConstraint__TypeAssignment_0
     }
 :
 (
-{ before(grammarAccess.getRdfClassConstraintAccess().getTypeIriParserRuleCall_0_0()); }
-	ruleIri{ after(grammarAccess.getRdfClassConstraintAccess().getTypeIriParserRuleCall_0_0()); }
+{ before(grammarAccess.getRdfClassConstraintAccess().getTypeTypeIdParserRuleCall_0_0()); }
+	ruleTypeId{ after(grammarAccess.getRdfClassConstraintAccess().getTypeTypeIdParserRuleCall_0_0()); }
 )
 
 ;
@@ -23060,8 +23138,8 @@ rule__RdfPropertyConstraint__RefTypeAssignment_0
     }
 :
 (
-{ before(grammarAccess.getRdfPropertyConstraintAccess().getRefTypeIriParserRuleCall_0_0()); }
-	ruleIri{ after(grammarAccess.getRdfPropertyConstraintAccess().getRefTypeIriParserRuleCall_0_0()); }
+{ before(grammarAccess.getRdfPropertyConstraintAccess().getRefTypeTypeIdParserRuleCall_0_0()); }
+	ruleTypeId{ after(grammarAccess.getRdfPropertyConstraintAccess().getRefTypeTypeIdParserRuleCall_0_0()); }
 )
 
 ;
@@ -23092,6 +23170,21 @@ rule__RdfPropertyConstraint__TargetAssignment_4
 (
 { before(grammarAccess.getRdfPropertyConstraintAccess().getTargetValueReferenceParserRuleCall_4_0()); }
 	ruleValueReference{ after(grammarAccess.getRdfPropertyConstraintAccess().getTargetValueReferenceParserRuleCall_4_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Label__LabelAssignment
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getLabelAccess().getLabelSTRINGTerminalRuleCall_0()); }
+	RULE_STRING{ after(grammarAccess.getLabelAccess().getLabelSTRINGTerminalRuleCall_0()); }
 )
 
 ;

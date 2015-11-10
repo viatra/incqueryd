@@ -39,11 +39,20 @@ Constraint returns core::Constraint:
 ;
 
 RdfClassConstraint:
-	type=Iri '(' variable=VariableReference ')'
+	type=TypeId '(' variable=VariableReference ')'
 ;
 
 RdfPropertyConstraint:
-	refType=Iri '(' source=ValueReference ',' target=ValueReference ')'
+	refType=TypeId '(' source=ValueReference ',' target=ValueReference ')'
+;
+
+TypeId:
+	Iri |
+	Label
+;
+
+Label:
+	label=STRING
 ;
 
 RdfCheckConstraint:

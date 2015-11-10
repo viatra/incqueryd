@@ -34,6 +34,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.VariableReference;
 import org.eclipse.incquery.patternlanguage.patternLanguage.VariableValue;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix;
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Label;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfClassConstraint;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfLiteral;
@@ -301,6 +302,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 				if(context == grammarAccess.getAnnotationValueReferenceRule() ||
 				   context == grammarAccess.getIriRule() ||
 				   context == grammarAccess.getLiteralValueReferenceRule() ||
+				   context == grammarAccess.getTypeIdRule() ||
 				   context == grammarAccess.getValueReferenceRule()) {
 					sequence_Iri(context, (Iri) semanticObject); 
 					return; 
@@ -309,6 +311,13 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 			case RdfPatternLanguagePackage.IRI_PREFIX:
 				if(context == grammarAccess.getIriPrefixRule()) {
 					sequence_IriPrefix(context, (IriPrefix) semanticObject); 
+					return; 
+				}
+				else break;
+			case RdfPatternLanguagePackage.LABEL:
+				if(context == grammarAccess.getLabelRule() ||
+				   context == grammarAccess.getTypeIdRule()) {
+					sequence_Label(context, (Label) semanticObject); 
 					return; 
 				}
 				else break;
@@ -1501,6 +1510,22 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 	
 	/**
 	 * Constraint:
+	 *     label=STRING
+	 */
+	protected void sequence_Label(EObject context, Label semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, RdfPatternLanguagePackage.Literals.LABEL__LABEL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, RdfPatternLanguagePackage.Literals.LABEL__LABEL));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getLabelAccess().getLabelSTRINGTerminalRuleCall_0(), semanticObject.getLabel());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     name=ID
 	 */
 	protected void sequence_Parameter(EObject context, org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Variable semanticObject) {
@@ -1526,7 +1551,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 	
 	/**
 	 * Constraint:
-	 *     (type=Iri variable=VariableReference)
+	 *     (type=TypeId variable=VariableReference)
 	 */
 	protected void sequence_RdfClassConstraint(EObject context, RdfClassConstraint semanticObject) {
 		if(errorAcceptor != null) {
@@ -1537,7 +1562,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getRdfClassConstraintAccess().getTypeIriParserRuleCall_0_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getRdfClassConstraintAccess().getTypeTypeIdParserRuleCall_0_0(), semanticObject.getType());
 		feeder.accept(grammarAccess.getRdfClassConstraintAccess().getVariableVariableReferenceParserRuleCall_2_0(), semanticObject.getVariable());
 		feeder.finish();
 	}
@@ -1563,7 +1588,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 	
 	/**
 	 * Constraint:
-	 *     (refType=Iri source=ValueReference target=ValueReference)
+	 *     (refType=TypeId source=ValueReference target=ValueReference)
 	 */
 	protected void sequence_RdfPropertyConstraint(EObject context, RdfPropertyConstraint semanticObject) {
 		if(errorAcceptor != null) {
@@ -1576,7 +1601,7 @@ public class RdfPatternLanguageSemanticSequencer extends PatternLanguageSemantic
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getRdfPropertyConstraintAccess().getRefTypeIriParserRuleCall_0_0(), semanticObject.getRefType());
+		feeder.accept(grammarAccess.getRdfPropertyConstraintAccess().getRefTypeTypeIdParserRuleCall_0_0(), semanticObject.getRefType());
 		feeder.accept(grammarAccess.getRdfPropertyConstraintAccess().getSourceValueReferenceParserRuleCall_2_0(), semanticObject.getSource());
 		feeder.accept(grammarAccess.getRdfPropertyConstraintAccess().getTargetValueReferenceParserRuleCall_4_0(), semanticObject.getTarget());
 		feeder.finish();

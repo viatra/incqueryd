@@ -34,12 +34,12 @@ public interface RdfPropertyConstraint extends Constraint
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Ref Type</em>' containment reference.
-   * @see #setRefType(Iri)
+   * @see #setRefType(TypeId)
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage#getRdfPropertyConstraint_RefType()
    * @model containment="true"
    * @generated
    */
-  Iri getRefType();
+  TypeId getRefType();
 
   /**
    * Sets the value of the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyConstraint#getRefType <em>Ref Type</em>}' containment reference.
@@ -49,7 +49,7 @@ public interface RdfPropertyConstraint extends Constraint
    * @see #getRefType()
    * @generated
    */
-  void setRefType(Iri value);
+  void setRefType(TypeId value);
 
   /**
    * Returns the value of the '<em><b>Source</b></em>' containment reference.

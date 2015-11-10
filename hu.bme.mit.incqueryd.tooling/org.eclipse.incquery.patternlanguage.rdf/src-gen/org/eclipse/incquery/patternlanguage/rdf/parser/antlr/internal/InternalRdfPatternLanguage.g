@@ -476,9 +476,9 @@ ruleRdfClassConstraint returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRdfClassConstraintAccess().getTypeIriParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getRdfClassConstraintAccess().getTypeTypeIdParserRuleCall_0_0()); 
 	    }
-		lv_type_0_0=ruleIri		{
+		lv_type_0_0=ruleTypeId		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRdfClassConstraintRule());
 	        }
@@ -486,7 +486,7 @@ ruleRdfClassConstraint returns [EObject current=null]
        			$current, 
        			"type",
         		lv_type_0_0, 
-        		"Iri");
+        		"TypeId");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -541,9 +541,9 @@ ruleRdfPropertyConstraint returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRdfPropertyConstraintAccess().getRefTypeIriParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getRdfPropertyConstraintAccess().getRefTypeTypeIdParserRuleCall_0_0()); 
 	    }
-		lv_refType_0_0=ruleIri		{
+		lv_refType_0_0=ruleTypeId		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRdfPropertyConstraintRule());
 	        }
@@ -551,7 +551,7 @@ ruleRdfPropertyConstraint returns [EObject current=null]
        			$current, 
        			"refType",
         		lv_refType_0_0, 
-        		"Iri");
+        		"TypeId");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -604,6 +604,85 @@ ruleRdfPropertyConstraint returns [EObject current=null]
     {
     	newLeafNode(otherlv_5, grammarAccess.getRdfPropertyConstraintAccess().getRightParenthesisKeyword_5());
     }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleTypeId
+entryRuleTypeId returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTypeIdRule()); }
+	 iv_ruleTypeId=ruleTypeId 
+	 { $current=$iv_ruleTypeId.current; } 
+	 EOF 
+;
+
+// Rule TypeId
+ruleTypeId returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getTypeIdAccess().getIriParserRuleCall_0()); 
+    }
+    this_Iri_0=ruleIri
+    { 
+        $current = $this_Iri_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getTypeIdAccess().getLabelParserRuleCall_1()); 
+    }
+    this_Label_1=ruleLabel
+    { 
+        $current = $this_Label_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleLabel
+entryRuleLabel returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getLabelRule()); }
+	 iv_ruleLabel=ruleLabel 
+	 { $current=$iv_ruleLabel.current; } 
+	 EOF 
+;
+
+// Rule Label
+ruleLabel returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		lv_label_0_0=RULE_STRING
+		{
+			newLeafNode(lv_label_0_0, grammarAccess.getLabelAccess().getLabelSTRINGTerminalRuleCall_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getLabelRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"label",
+        		lv_label_0_0, 
+        		"STRING");
+	    }
+
+)
 )
 ;
 

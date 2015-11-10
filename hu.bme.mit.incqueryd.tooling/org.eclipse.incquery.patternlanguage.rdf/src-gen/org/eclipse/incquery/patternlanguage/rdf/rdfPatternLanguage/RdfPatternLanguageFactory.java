@@ -77,6 +77,24 @@ public interface RdfPatternLanguageFactory extends EFactory
   RdfPropertyConstraint createRdfPropertyConstraint();
 
   /**
+   * Returns a new object of class '<em>Type Id</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Id</em>'.
+   * @generated
+   */
+  TypeId createTypeId();
+
+  /**
+   * Returns a new object of class '<em>Label</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Label</em>'.
+   * @generated
+   */
+  Label createLabel();
+
+  /**
    * Returns a new object of class '<em>Rdf Check Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

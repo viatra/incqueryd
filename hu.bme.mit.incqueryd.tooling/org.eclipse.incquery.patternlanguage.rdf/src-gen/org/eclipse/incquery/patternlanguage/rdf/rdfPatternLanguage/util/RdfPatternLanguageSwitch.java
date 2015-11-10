@@ -97,6 +97,7 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
       {
         Iri iri = (Iri)theEObject;
         T result = caseIri(iri);
+        if (result == null) result = caseTypeId(iri);
         if (result == null) result = caseLiteralValueReference(iri);
         if (result == null) result = caseValueReference(iri);
         if (result == null) result = defaultCase(theEObject);
@@ -124,6 +125,21 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
         RdfPropertyConstraint rdfPropertyConstraint = (RdfPropertyConstraint)theEObject;
         T result = caseRdfPropertyConstraint(rdfPropertyConstraint);
         if (result == null) result = caseConstraint(rdfPropertyConstraint);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RdfPatternLanguagePackage.TYPE_ID:
+      {
+        TypeId typeId = (TypeId)theEObject;
+        T result = caseTypeId(typeId);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case RdfPatternLanguagePackage.LABEL:
+      {
+        Label label = (Label)theEObject;
+        T result = caseLabel(label);
+        if (result == null) result = caseTypeId(label);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -248,6 +264,38 @@ public class RdfPatternLanguageSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRdfPropertyConstraint(RdfPropertyConstraint object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Id</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Id</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTypeId(TypeId object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Label</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Label</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLabel(Label object)
   {
     return null;
   }

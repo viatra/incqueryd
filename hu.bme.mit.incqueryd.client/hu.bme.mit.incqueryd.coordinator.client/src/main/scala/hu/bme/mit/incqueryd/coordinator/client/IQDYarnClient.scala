@@ -48,8 +48,8 @@ class IQDYarnClient {
     modelFilePath
   }
 
-  def deployInputNodes(metamodel: Model, databaseConnection: DatabaseConnection) {
-    coordinator.deployInputNodes(metamodel, databaseConnection, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
+  def deployInputNodes(metamodel: Model, reteRecipe: ReteRecipe, databaseConnection: DatabaseConnection) {
+    coordinator.deployInputNodes(metamodel, reteRecipe, databaseConnection, DEFAULT_RM_HOST, DEFAULT_HDFS_URL)
   }
   
   def loadChanges(changesMap : Map[String, ChangeSet]) {

@@ -39,6 +39,7 @@ public class RdfPatternLanguageParser extends AbstractContentAssistParser {
 				{
 					put(grammarAccess.getIriAccess().getAlternatives(), "rule__Iri__Alternatives");
 					put(grammarAccess.getConstraintAccess().getAlternatives(), "rule__Constraint__Alternatives");
+					put(grammarAccess.getTypeIdAccess().getAlternatives(), "rule__TypeId__Alternatives");
 					put(grammarAccess.getValueReferenceAccess().getAlternatives(), "rule__ValueReference__Alternatives");
 					put(grammarAccess.getLiteralValueReferenceAccess().getAlternatives(), "rule__LiteralValueReference__Alternatives");
 					put(grammarAccess.getRdfLiteralAccess().getAlternatives_1(), "rule__RdfLiteral__Alternatives_1");
@@ -334,6 +335,7 @@ public class RdfPatternLanguageParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRdfPropertyConstraintAccess().getRefTypeAssignment_0(), "rule__RdfPropertyConstraint__RefTypeAssignment_0");
 					put(grammarAccess.getRdfPropertyConstraintAccess().getSourceAssignment_2(), "rule__RdfPropertyConstraint__SourceAssignment_2");
 					put(grammarAccess.getRdfPropertyConstraintAccess().getTargetAssignment_4(), "rule__RdfPropertyConstraint__TargetAssignment_4");
+					put(grammarAccess.getLabelAccess().getLabelAssignment(), "rule__Label__LabelAssignment");
 					put(grammarAccess.getRdfCheckConstraintAccess().getExpressionAssignment_2(), "rule__RdfCheckConstraint__ExpressionAssignment_2");
 					put(grammarAccess.getRdfLiteralAccess().getLexicalFormAssignment_0(), "rule__RdfLiteral__LexicalFormAssignment_0");
 					put(grammarAccess.getRdfLiteralAccess().getDatatypeAssignment_1_0_1(), "rule__RdfLiteral__DatatypeAssignment_1_0_1");
