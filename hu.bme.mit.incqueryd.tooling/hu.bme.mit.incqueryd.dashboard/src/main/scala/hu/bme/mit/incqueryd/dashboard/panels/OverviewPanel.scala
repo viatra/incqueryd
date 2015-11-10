@@ -32,6 +32,10 @@ import com.vaadin.ui.Label
 import com.vaadin.ui.HorizontalLayout
 import org.apache.hadoop.yarn.client.api.YarnClient
 import com.vaadin.server.Page
+import hu.bme.mit.incqueryd.dashboard.ui.DeveloperUI
+import hu.bme.mit.incqueryd.dashboard.controller.LogController
+import hu.bme.mit.incqueryd.dashboard.dev.DevPanelConfiguration
+import hu.bme.mit.incqueryd.dashboard.dev.LOG
 
 /**
  * 
@@ -110,7 +114,7 @@ class OverviewPanel(devConfig : DevPanelConfiguration, gridPos : GridPosition) e
         	  val containerFinalStatus: String = getFinalStatus(container)
         	  val containerProgress: ProgressBar = new ProgressBar(getProgress(container))
         	  val containerTrackingLink: Link = link("Container", getTrackingUrl(container, client))
-        	  val containerViewLogs: AbstractComponent = getLogLinks(container.getLogUrl)
+        	  val containerViewLogs: AbstractComponent = getLogPaths(applicationId, containerId)
         	  val containerActions: AbstractComponent = new Label()
         	  applicationTable.addItem(Array(containerId, containerName, appType, containerStartTime, containerFinishTime, containerState, containerFinalStatus, containerProgress, containerTrackingLink, containerViewLogs, containerActions), containerId)
         	  applicationTable.setParent(containerId, applicationId)
@@ -194,6 +198,27 @@ class OverviewPanel(devConfig : DevPanelConfiguration, gridPos : GridPosition) e
       .getOrElse(container.getLogUrl)
   }
 
+  def getLogPaths(applicationId : String, containerId : String) = {
+    val stdout = getLogButton(s"${LogController.HDFS_LOG_MOUNT_POINT}/$applicationId/$containerId/stdout", "stdout")
+    val stderr = getLogButton(s"${LogController.HDFS_LOG_MOUNT_POINT}/$applicationId/$containerId/stderr", "stderr")
+    new HorizontalLayout(stdout, stderr)
+  }
+  
+  def getLogButton(logPath : String, name : String) : Button = {
+    val button = new Button(name)
+    button.addClickListener(new ClickListener {
+      override def buttonClick(clickEvent : ClickEvent) {
+        addLogPanel(logPath)
+      }
+    })
+    button
+  }
+  
+  def addLogPanel(logPath : String) = {
+      val devConf = new DevPanelConfiguration("LOG", LOG, logPath)
+		  this.getUI().asInstanceOf[DeveloperUI].createDeveloperPanel(devConf)
+  }
+  
   def getLogLinks(logUrl: String) = {
     val stdout = getLogLink(logUrl, "stdout")
     val separator = new Label("/")

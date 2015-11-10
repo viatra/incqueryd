@@ -32,6 +32,8 @@ import hu.bme.mit.incqueryd.dashboard.dev.OVERVIEW
 import hu.bme.mit.incqueryd.dashboard.panels.OverviewPanel
 import com.vaadin.ui.PopupView
 import javax.servlet.annotation.WebServlet
+import hu.bme.mit.incqueryd.dashboard.dev.LOG
+import hu.bme.mit.incqueryd.dashboard.panels.LogPanel
 
 /**
  * @author pappi
@@ -48,10 +50,25 @@ class DeveloperUI extends UI with Handler {
   val save_config_action = new ShortcutAction("Save config", ShortcutAction.KeyCode.S, Seq(ShortcutAction.ModifierKey.CTRL): _*)
 
   var gridConfiguration: Map[GridPosition, DevPanelConfiguration] = _;
-
+  
+  
+  // TODO: use free positioned windows instead of grid
+  def createDeveloperPanel(devPanelConf : DevPanelConfiguration) = {
+    val devPanelOption = devPanelConf.panelType match {
+      case LOG => Some(new LogPanel(devPanelConf))
+      case _ => None;
+    }
+    devPanelOption.foreach { devPanel => 
+      devPanel.addActionHandler(this)
+      addWindow(devPanel)
+      devPanel.focus()
+    }
+  }
+  
   def createDeveloperPanel(devPanelConf: DevPanelConfiguration, gridPos: GridPosition, popupView: PopupView) = {
     val devPanelOption = devPanelConf.panelType match {
       case OVERVIEW => Some(new OverviewPanel(devPanelConf, gridPos))
+      case LOG => Some(new LogPanel(devPanelConf))
       case _ => None
     }
     devPanelOption.foreach { devPanel =>

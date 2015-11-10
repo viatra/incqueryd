@@ -18,7 +18,7 @@ case object OVERVIEW extends DeveloperPanelType
 case object LOG extends DeveloperPanelType
 case object DASHBOARD extends DeveloperPanelType
 
-case class DevPanelConfiguration(name: String, panelType: DeveloperPanelType)
+case class DevPanelConfiguration(name: String, panelType: DeveloperPanelType, source : String)
 
 case class GridPosition(gridRow: Int, gridCol: Int)
 

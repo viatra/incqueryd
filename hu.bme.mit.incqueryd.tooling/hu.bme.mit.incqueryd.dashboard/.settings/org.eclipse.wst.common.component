@@ -30,12 +30,6 @@
         <dependent-module archiveName="hu.bme.mit.incqueryd.rete.actors.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.rete.actors/hu.bme.mit.incqueryd.rete.actors">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="hu.bme.mit.incqueryd.rdf.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.rdf/hu.bme.mit.incqueryd.rdf">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-        <dependent-module archiveName="hu.bme.mit.incqueryd.rete.nodes.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.rete.nodes/hu.bme.mit.incqueryd.rete.nodes">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="hu.bme.mit.incqueryd.test.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.test/hu.bme.mit.incqueryd.test">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -46,6 +40,15 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="hu.bme.mit.incqueryd.inventory.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.inventory/hu.bme.mit.incqueryd.inventory">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.rdf.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.rdf/hu.bme.mit.incqueryd.rdf">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.rete.nodes.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.rete.nodes/hu.bme.mit.incqueryd.rete.nodes">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hu.bme.mit.incqueryd.demo.wikidata.fourstore.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.demo.wikidata.fourstore/hu.bme.mit.incqueryd.demo.wikidata.fourstore">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="hu.bme.mit.incqueryd.yarn.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hu.bme.mit.incqueryd.yarn/hu.bme.mit.incqueryd.yarn">

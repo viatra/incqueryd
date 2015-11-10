@@ -14,6 +14,8 @@ import hu.bme.mit.incqueryd.dashboard.dev.DevPanelCloseListener
 import hu.bme.mit.incqueryd.dashboard.dev.GridPosition
 import hu.bme.mit.incqueryd.dashboard.ui.DeveloperUI
 import hu.bme.mit.incqueryd.dashboard.dev.DevPanelConfiguration
+import hu.bme.mit.incqueryd.dashboard.dev.DeveloperPanelType
+import hu.bme.mit.incqueryd.dashboard.dev.DeveloperPanelType
 
 /**
  * @author pappi
@@ -29,14 +31,13 @@ class AddDevPanelPopupContent(gridPos : GridPosition, popupView : PopupView, dev
   verticalLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER)
   
   DeveloperPanel.getTypes().foreach { panelType => 
-    
     val typeButton = new Button(panelType.toString())
     typeButton.setSizeFull()
     typeButton.setStyleName("selectbutton")
     typeButton.addClickListener(new ClickListener() {
       override def buttonClick(clickEvent : ClickEvent) {
     	  popupView.setVisible(false);
-    	  val devPanelConf = new DevPanelConfiguration(panelType.toString(), panelType)
+    	  val devPanelConf = new DevPanelConfiguration(panelType.toString(), panelType, "")
         devUI.createDeveloperPanel(devPanelConf, gridPos, popupView)
         devUI.registerDeveloperPanel(devPanelConf, gridPos)
       }

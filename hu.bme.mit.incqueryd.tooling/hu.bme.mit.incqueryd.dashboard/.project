@@ -11,12 +11,13 @@
 		<project>hu.bme.mit.incqueryd.idservice</project>
 		<project>hu.bme.mit.incqueryd.actorservice</project>
 		<project>hu.bme.mit.incqueryd.rete.actors</project>
-		<project>hu.bme.mit.incqueryd.rdf</project>
-		<project>hu.bme.mit.incqueryd.rete.nodes</project>
 		<project>hu.bme.mit.incqueryd.test</project>
 		<project>hu.bme.mit.incqueryd.actorservice.server</project>
 		<project>hu.bme.mit.incqueryd.spark</project>
 		<project>hu.bme.mit.incqueryd.inventory</project>
+		<project>hu.bme.mit.incqueryd.rdf</project>
+		<project>hu.bme.mit.incqueryd.rete.nodes</project>
+		<project>hu.bme.mit.incqueryd.demo.wikidata.fourstore</project>
 		<project>hu.bme.mit.incqueryd.yarn</project>
 		<project>hu.bme.mit.incqueryd.engine</project>
 		<project>hu.bme.mit.incqueryd.coordinator.client</project>
