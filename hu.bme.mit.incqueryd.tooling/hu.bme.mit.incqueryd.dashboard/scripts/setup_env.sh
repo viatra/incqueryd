@@ -4,4 +4,4 @@ wget http://archive.cloudera.com/cdh5/one-click-install/trusty/amd64/cdh5-reposi
 
 rm cdh5-repository_1.0_all.deb
 
-sudo apt-get update && sudo apt-get -y hadoop-hdfs-fuse
+sudo apt-get update && sudo apt-get -y install hadoop-hdfs-fuse
