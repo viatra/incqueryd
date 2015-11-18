@@ -13,7 +13,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.2.1</version>
+				<version>1.4.0</version>
 				<executions>
 					<execution>
 						<id>mwe2Launcher</id>
@@ -28,9 +28,10 @@
 					<arguments>
 						<argument>/${project.basedir}/src/org/eclipse/incquery/patternlanguage/rdf/GenerateRdfPatternLanguage.mwe2</argument>
 						<argument>-p</argument>
-						<argument>projectPath=/${project.basedir}</argument>
+						<argument>rootPath=/${project.basedir}/..</argument>
 					</arguments>
 					<includePluginDependencies>true</includePluginDependencies>
+					<cleanupDaemonThreads>false</cleanupDaemonThreads><!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=475098#c3 -->
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -59,7 +60,7 @@
 				<groupId>org.eclipse.xtend</groupId>
 				<artifactId>xtend-maven-plugin</artifactId>
 			</plugin>
-	
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>

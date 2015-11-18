@@ -3,9 +3,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="Content-Language" content="en-us">
 	<title>Example Web Editor</title>
-	<link rel="stylesheet" type="text/css" href="xtext/2.9.0.beta5/xtext-ace.css"/>
+	<link rel="stylesheet" type="text/css" href="xtext/2.9.0.rc2/xtext-ace.css"/>
 	<link rel="stylesheet" type="text/css" href="style.css"/>
-	<script src="webjars/requirejs/2.1.17/require.min.js"></script>
+	<script src="webjars/requirejs/2.1.20/require.min.js"></script>
 	<script type="text/javascript">
 		var baseUrl = window.location.pathname;
 		var fileIndex = baseUrl.indexOf("index.html");
@@ -15,11 +15,11 @@
 			baseUrl: baseUrl,
 			paths: {
 				"jquery": "webjars/jquery/2.1.4/jquery.min",
-				"ace/ext/language_tools": "webjars/ace/1.1.9/src/ext-language_tools",
-				"xtext/xtext-ace": "xtext/2.9.0.beta5/xtext-ace"
+				"ace/ext/language_tools": "webjars/ace/1.2.0/src/ext-language_tools",
+				"xtext/xtext-ace": "xtext/2.9.0.rc2/xtext-ace"
 			}
 		});
-		require(["webjars/ace/1.1.9/src/ace"], function() {
+		require(["webjars/ace/1.2.0/src/ace"], function() {
 			require(["xtext/xtext-ace"], function(xtext) {
 				xtext.createEditor({
 					baseUrl: baseUrl,
@@ -33,7 +33,7 @@
 
 <div class="container">
 	<div class="header">
-		<h1>RdfPatternLanguage Web Editor</h1>
+		<h1>Example RdfPatternLanguage Web Editor</h1>
 	</div>
 	<div class="content">
 		<div id="xtext-editor" data-editor-xtext-lang="rdfiq"></div>

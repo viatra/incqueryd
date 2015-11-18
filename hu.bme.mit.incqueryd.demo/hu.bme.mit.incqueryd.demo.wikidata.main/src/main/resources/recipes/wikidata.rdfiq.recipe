@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <recipes:ReteRecipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:recipes="http://www.eclipse.org/incquery/rete/recipes">
-  <recipeNodes xsi:type="recipes:InputRecipe" traceInfo="edge: http://www.wikidata.org/prop/direct/P610 [recipe 0]" keyID="http://www.wikidata.org/prop/direct/P610" keyArity="2"/>
-  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="highestPoint [recipe 1]" parents="//@recipeNodes.0" patternFQN="highestPoint">
+  <recipeNodes xsi:type="recipes:InputRecipe" traceInfo="edge" keyID="http://www.wikidata.org/prop/direct/P610" keyArity="2"/>
+  <recipeNodes xsi:type="recipes:ProductionRecipe" traceInfo="highestPoint" parents="//@recipeNodes.0" patternFQN="highestPoint">
     <mappedIndices key="subject" value="0"/>
     <mappedIndices key="object" value="1"/>
   </recipeNodes>

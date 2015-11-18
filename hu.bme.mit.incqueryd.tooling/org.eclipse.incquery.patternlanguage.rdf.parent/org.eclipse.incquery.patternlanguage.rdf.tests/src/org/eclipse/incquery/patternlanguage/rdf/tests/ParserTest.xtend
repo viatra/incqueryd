@@ -11,6 +11,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri
 
 @InjectWith(RdfPatternLanguageInjectorProvider)
 @RunWith(XtextRunner)
@@ -26,8 +27,8 @@ base <http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#
 prefix xsd: <http://www.w3.org/2001/XMLSchema#>
 
 pattern posLength(Segment, SegmentLength) {
-	Segment(Segment);
-	Segment_length(Segment, SegmentLength);
+	<Segment>(Segment);
+	<Segment_length>(Segment, SegmentLength);
 	check('SegmentLength <= 0');
 }
 '''
@@ -38,7 +39,11 @@ pattern posLength(Segment, SegmentLength) {
 		assertTrue(model.eResource.errors.empty)
 		assertEquals("http://www.semanticweb.org/ontologies/2011/1/TrainRequirementOntology.owl#", model.baseIriValue)
 		switch firstConstraint : model.patterns.head.bodies.head.constraints.head {
-			RdfClassConstraint: assertEquals("Segment", firstConstraint.type.value)
+			RdfClassConstraint:
+				switch typeId: firstConstraint.type {
+					Iri: assertEquals("Segment", typeId.value)
+					default: fail
+				}
 			default: fail
 		}
 	}

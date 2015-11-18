@@ -73,10 +73,11 @@ docker exec $INSTANCE_NAME /etc/fix_networking.sh $INSTANCE_HOST $DNS_IP
 # Define container IP in docker subnetwork
 DOCKER_IP=$(docker inspect --format="{{.NetworkSettings.IPAddress}}" $INSTANCE_NAME)
 
-if ! $LOCAL; then
-	sudo sed -i "/$INSTANCE_HOST/d" /etc/hosts
-	sudo printf $DOCKER_IP' '$INSTANCE_HOST'\n' >> /etc/hosts
-else
+# Resolve cluster node from host
+sudo sed -i "/$INSTANCE_HOST/d" /etc/hosts
+sudo -- sh -c "printf $DOCKER_IP' '$INSTANCE_HOST'\n' >> /etc/hosts"
+
+if $LOCAL; then
 	docker exec $YARN_RM /etc/add-dns-entry.sh $DOCKER_IP $INSTANCE_HOST
 fi
 

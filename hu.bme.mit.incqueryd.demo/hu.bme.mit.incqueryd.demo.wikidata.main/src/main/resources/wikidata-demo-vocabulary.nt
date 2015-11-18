@@ -1,1 +1,3 @@
 <http://www.wikidata.org/prop/direct/P610> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<http://www.wikidata.org/prop/direct/P610> <http://www.w3.org/2000/01/rdf-schema#label> "highest point" .
+<http://www.wikidata.org/prop/direct/P495> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .

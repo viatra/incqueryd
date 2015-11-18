@@ -14,6 +14,8 @@ import org.eclipse.incquery.runtime.matchers.psystem.PVariable
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.PatternMatchCounter
 
 import static extension org.eclipse.incquery.patternlanguage.util.psystem.PUtils.*
+import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils.*
+import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri
 
 class RdfPVariable {
 
@@ -24,6 +26,7 @@ class RdfPVariable {
 			BoolValue: convertLiteralValue(value, pBody)
 			StringValue: convertLiteralValue(value, pBody)
 			RdfLiteral: convertLiteralValue(it, pBody)
+			Iri: convertLiteralValue(it.asString, pBody)
 			VariableValue: convertVariableValue(pBody)
 			AggregatedValue: convertAggregatedValue(pBody, model)
 			default: throw new IllegalArgumentException('''Unhandled case «it»''')

@@ -1,57 +1,73 @@
 package hu.bme.mit.incqueryd.dashboard.ui
 
+import scala.collection.mutable.HashMap
+import org.vaadin.jouni.animator.Animator
+import org.vaadin.jouni.dom.client.Css
+import com.vaadin.annotations.Push
 import com.vaadin.annotations.Theme
 import com.vaadin.annotations.VaadinServletConfiguration
-import com.vaadin.data.util.IndexedContainer
+import com.vaadin.annotations.Widgetset
+import com.vaadin.server.Sizeable.Unit
 import com.vaadin.server.VaadinRequest
 import com.vaadin.server.VaadinServlet
+import com.vaadin.ui.AbsoluteLayout
 import com.vaadin.ui.Alignment
 import com.vaadin.ui.Button
+import com.vaadin.ui.Button.ClickEvent
+import com.vaadin.ui.Button.ClickListener
 import com.vaadin.ui.HorizontalLayout
 import com.vaadin.ui.Label
+import com.vaadin.ui.OptionGroup
+import com.vaadin.ui.Panel
 import com.vaadin.ui.UI
 import com.vaadin.ui.VerticalLayout
-import hu.bme.mit.incqueryd.dashboard.controller.DashboardController
-import hu.bme.mit.incqueryd.dashboard.ui.UIHelper._
-import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils._
-import javax.servlet.annotation.WebInitParam
-import javax.servlet.annotation.WebServlet
-import scala.collection.JavaConverters._
-import com.vaadin.annotations.Push
-import com.codahale.metrics.Metric
-import com.vaadin.ui.Panel
-import com.vaadin.ui.Grid.Header
-import com.vaadin.addon.charts.model.style.Style
 import com.vaadin.ui.themes.ValoTheme
-import com.vaadin.ui.themes.Runo
-import scala.collection.mutable.HashMap
-import scala.collection.mutable.HashSet
-import com.vaadin.ui.Button.ClickListener
-import com.vaadin.ui.Button.ClickEvent
+import hu.bme.mit.incqueryd.dashboard.controller.DashboardController
+import hu.bme.mit.incqueryd.dashboard.panels.FreezePanel
+import hu.bme.mit.incqueryd.dashboard.ui.UIHelper.buildResultPanel
+import hu.bme.mit.incqueryd.dashboard.ui.UIHelper.initializePatternButton
+import hu.bme.mit.incqueryd.dashboard.ui.UIHelper.initializeQueryPanel
+import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils.createPatternId
+import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils.resolvePattern
+import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils.resolveQuery
+import com.vaadin.server.ThemeResource
+import com.vaadin.ui.Image
+import javax.servlet.annotation.WebServlet
 
 /**
  * @author pappi
  */
 
-@Theme("valo")
+@Theme("iqdtheme")
 @Push
+@Widgetset("hu.bme.mit.incqueryd.IQDWidgetset")
 class DashboardUI extends UI with UIBroadcaster.MessageListener {
 
   val streamBtn = new Button("Body")
-  val headerLabel = new Label("IncQuery-D Dashboard")
+  val headerLabel = new Label("IncQuery-D Wikipedia Demo")
   val footerLabel = new Label("Powered by IncQuery Labs Ltd.")
-  val metricsPanel = new Panel("Metrics")
-
+  
+  
+  // Display mode
+   val displayMode = new OptionGroup
+   
   // Stream 
   val streamLayout = new VerticalLayout
   val streamPanel = new Panel
-
+  
   // Pattern selection
   val queriesLayout = new VerticalLayout
+  
   var queryPanels: HashMap[String, Panel] = HashMap[String, Panel]()
   var patternBtns: HashMap[String, Button] = HashMap[String, Button]()
   var selectedPatternId: String = _
 
+  var freezed : Boolean = false
+  
+  def setFreezed(value : Boolean) {
+    freezed = value;
+  }
+  
   def selectPattern(patternId: String) {
     streamLayout.removeAllComponents()
     selectedPatternId = patternId;
@@ -73,21 +89,53 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
   }
 
   def configureWidgets() {
-    headerLabel.setSizeFull()
-    headerLabel.setStyleName(ValoTheme.LABEL_H2)
-    headerLabel.setStyleName(ValoTheme.LABEL_BOLD)
+    headerLabel.setStyleName("headerlabel")
   }
-
+  
   def initLayout() {
+    
+    // Header
+    val headerPanel = new Panel
+    headerPanel.setStyleName("headerpanel")
+    val headerLayout = new HorizontalLayout
+    headerLayout.setSizeFull()
+    headerLayout.addComponent(headerLabel)
+    headerLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER)
+    headerPanel.setHeight(50.0f, Unit.PIXELS)
+    headerPanel.setWidth(99.0f, Unit.PERCENTAGE)
+    headerPanel.setContent(headerLayout)
+    
+    // Settings panel
+    val settingsPanel = new Panel
+    settingsPanel.setStyleName("dashsettings")
+    
+   
+    displayMode.setStyleName("horizontal")
+    val modeLabel = new Label("Display: ")
+    modeLabel.setStyleName("dashmodelabel")
+    settingsPanel.setHeight(40.0f, Unit.PIXELS)
+    settingsPanel.setWidth(99.0f, Unit.PERCENTAGE)
 
-    // Header panel
-    // XXX not used yet
-    val headerPanel = new Panel(headerLabel)
-    headerPanel.setSizeFull()
-
+    displayMode.addItems(ALLCHANGES, POSITIVECHANGES, NEGATIVECHANGES)
+    
+    displayMode.select(ALLCHANGES)
+    displayMode.setItemCaption(ALLCHANGES, "All changes")
+    displayMode.setItemCaption(POSITIVECHANGES, "Positive changes")
+    displayMode.setItemCaption(NEGATIVECHANGES, "Negative changes")
+    
+    val settingsLayout = new HorizontalLayout
+    
+    settingsLayout.setHeight(100.0f, Unit.PERCENTAGE)
+    settingsLayout.setDefaultComponentAlignment(Alignment.MIDDLE_LEFT)
+    settingsLayout.addComponent(modeLabel)
+    settingsLayout.addComponent(displayMode)
+    settingsPanel.setContent(settingsLayout)
+    
     // Queries panel
     val queriesPanel = new Panel("Queries")
     queriesPanel.setContent(queriesLayout)
+    queriesPanel.setWidth(280.0f, Unit.PIXELS)
+    queriesPanel.setStyleName("queriespanel")
 
     val patternIds = DashboardController.getRunningPatterns()
     patternIds.foreach { patternId =>
@@ -104,34 +152,24 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
       case (query: String, panel: Panel) =>
         queriesLayout.addComponent(panel)
     }
-
+    
     // Stream data layout
-    streamPanel.setSizeFull()
+    streamPanel.setStyleName("stream")
     streamPanel.setContent(streamLayout)
-
-    // Metrics
-    metricsPanel.setSizeFull()
-
-    // Body
-    val bodyLayout = new HorizontalLayout(queriesPanel, streamPanel, metricsPanel)
-    bodyLayout.setSizeFull
-    bodyLayout.setExpandRatio(queriesPanel, 1.2F)
-    bodyLayout.setExpandRatio(streamPanel, 6)
-    bodyLayout.setExpandRatio(metricsPanel, 3)
-    bodyLayout.setComponentAlignment(queriesPanel, Alignment.TOP_CENTER)
-    bodyLayout.setComponentAlignment(streamPanel, Alignment.TOP_CENTER)
-    bodyLayout.setComponentAlignment(metricsPanel, Alignment.TOP_CENTER)
-
+    streamPanel.setHeight(100.0f, Unit.PERCENTAGE)
+    streamPanel.setWidth(99.0f, Unit.PERCENTAGE)
+    
     // Main
     val mainPanel = new Panel("IncQuery-D Dashboard")
-    val mainLayout = new VerticalLayout(headerLabel, bodyLayout, footerLabel)
+    val mainLayout = new AbsoluteLayout
     mainLayout.setSizeFull
-    mainLayout.setExpandRatio(headerLabel, 2)
-    mainLayout.setExpandRatio(bodyLayout, 16)
-    mainLayout.setExpandRatio(footerLabel, 1)
-    mainLayout.setComponentAlignment(headerLabel, Alignment.TOP_CENTER)
-    mainLayout.setComponentAlignment(bodyLayout, Alignment.MIDDLE_CENTER)
-    mainLayout.setComponentAlignment(footerLabel, Alignment.MIDDLE_CENTER)
+    mainLayout.addComponent(new FreezePanel(this), "bottom: 50; right: 50")
+    mainLayout.addComponent(headerPanel, "top: 0px; left: 10px")
+    mainLayout.addComponent(settingsPanel, "top: 50px; left: 300px;")
+    mainLayout.addComponent(streamPanel, "top: 90px; left: 300px;")
+    mainLayout.addComponent(queriesPanel, "top: 50px; left: 10px;")
+    
+    
     setContent(mainLayout)
 
   }
@@ -173,8 +211,21 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
       case QueryResult(patternId, result, newTuples, removedTuples) => {
         access(new Runnable() {
           override def run() {
-            if (patternId.equals(selectedPatternId))
-              streamLayout.addComponentAsFirst(buildResultPanel(resolvePattern(patternId), result, newTuples, removedTuples))
+            if (patternId.equals(selectedPatternId) && !freezed) {
+              val mode = displayMode.getValue.asInstanceOf[DisplayMode]
+              
+              if(mode == ALLCHANGES || 
+                  (mode == POSITIVECHANGES && newTuples.size > 0) || 
+                  (mode == NEGATIVECHANGES && removedTuples.size > 0)) {
+                
+                val resultPanel = buildResultPanel(resolvePattern(patternId), result, newTuples, removedTuples)
+              
+                val resultpanelIt = streamLayout.iterator()
+
+                streamLayout.addComponentAsFirst(resultPanel)
+                Animator.animate(resultPanel, new Css().opacity(1)).duration(1000)
+              }
+            }
           }
         })
       }
@@ -182,12 +233,17 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
   }
 
   override def init(request: VaadinRequest) {
+    
+    DashboardController.initialize()
+    
     println("Dashboard initialization started...")
     configureWidgets
-
+    
     initLayout
-
-    selectPattern(patternBtns.keySet.head)
+    
+    if(patternBtns.size > 0)
+      selectPattern(patternBtns.keySet.head)
+    
     UIBroadcaster.addListener(this)
   }
 
@@ -198,12 +254,16 @@ class DashboardUI extends UI with UIBroadcaster.MessageListener {
 
 }
 
+sealed trait DisplayMode
+case object ALLCHANGES extends DisplayMode
+case object NEGATIVECHANGES extends DisplayMode
+case object POSITIVECHANGES extends DisplayMode
+
 class QueryPanelClickListener extends com.vaadin.event.MouseEvents.ClickListener {
   override def click(clickEvent : com.vaadin.event.MouseEvents.ClickEvent) {
     println("Panel clicked!")
   }
 }
 
-@WebServlet(urlPatterns = Array("/*"))
 @VaadinServletConfiguration(ui = classOf[DashboardUI], productionMode = false)
 class DashboardUIServlet extends VaadinServlet {}

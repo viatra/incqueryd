@@ -44,6 +44,7 @@ object IQDSparkUtils {
   val OPTION_SINGLE_RUN = "single"
   val OPTION_NUM_EXECUTORS = "num_exectrs"
   val OPTION_SCHEDULER_MODE = "scheduler_mode"
+  val OPTION_ZK_PATH = "zk_path"
   
   def getJobInfo(sc : SparkContext, jobId : Int) : SparkJobInfo = {
     sc.statusTracker.getJobInfo(jobId).get

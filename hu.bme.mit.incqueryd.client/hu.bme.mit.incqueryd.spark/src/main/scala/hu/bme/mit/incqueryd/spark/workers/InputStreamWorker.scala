@@ -25,6 +25,7 @@ import akka.pattern.ask
 import scala.concurrent.Await
 import akka.util.Timeout
 import hu.bme.mit.incqueryd.actorservice.AkkaUtils
+import hu.bme.mit.incqueryd.spark.utils.LoadFinished
 
 /**
  * @author pappi
@@ -35,7 +36,7 @@ object InputStreamWorker {
 
   implicit val timeout = Timeout(30 seconds)
 
-  def process(stream: ReceiverInputDStream[Set[Delta]]) {
+  def process(stream: ReceiverInputDStream[Set[Delta]], zkPath: String) {
     stream.foreachRDD {
       _.foreach { deltas =>
         val inputNodeZnodePaths = IncQueryDZooKeeper.getChildPaths(IncQueryDZooKeeper.inputNodesPath)
@@ -57,6 +58,9 @@ object InputStreamWorker {
             applyChangeSet(inputNodeZnodePath, inputActor, updates, ChangeType.NEGATIVE)
             applyChangeSet(inputNodeZnodePath, inputActor, updates, ChangeType.POSITIVE)
           }
+        }
+        if (deltas.contains(LoadFinished) && zkPath != null) {
+          IncQueryDZooKeeper.delete(zkPath)
         }
       }
     }

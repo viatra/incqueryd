@@ -2,25 +2,19 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.eclipse.incquery.patternlanguage.rdf</groupId>
-	<version>1.0.0-SNAPSHOT</version>
 	<artifactId>org.eclipse.incquery.patternlanguage.rdf.parent</artifactId>
 	<packaging>pom</packaging>
-
 	<properties>
-		<tycho-version>0.23.1</tycho-version>
-		<xtextVersion>2.9.0.beta5</xtextVersion>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
+		<xtextVersion>2.9.0.rc2</xtextVersion>
 		<incquery.version>1.1.0-SNAPSHOT</incquery.version>
 	</properties>
 	<modules>
 		<module>org.eclipse.incquery.patternlanguage.rdf</module>
+		<module>org.eclipse.incquery.patternlanguage.rdf.tests</module>
 		<module>org.eclipse.incquery.patternlanguage.rdf.ide</module>
 		<module>org.eclipse.incquery.patternlanguage.rdf.ui</module>
 		<module>org.eclipse.incquery.patternlanguage.rdf.web</module>
-		<module>org.eclipse.incquery.patternlanguage.rdf.tests</module>
-		<module>org.eclipse.incquery.patternlanguage.rdf.ui.tests</module>
+		<module>../hu.bme.mit.incqueryd.tooling.targetplatform</module>
 	</modules>
 	<build>
 		<plugins>
@@ -97,7 +91,27 @@
 			</plugins>
 		</pluginManagement>
 	</build>
-
-	<dependencies>
-	</dependencies>
+	<repositories>
+		<repository>
+			<id>incquery</id>
+			<url>https://repo.eclipse.org/content/groups/emf-incquery/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>incquery-plugin</id>
+			<url>https://repo.eclipse.org/content/groups/emf-incquery/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	<parent>
+		<groupId>hu.bme.mit.incqueryd</groupId>
+		<artifactId>hu.bme.mit.incqueryd.tooling</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
 </project>

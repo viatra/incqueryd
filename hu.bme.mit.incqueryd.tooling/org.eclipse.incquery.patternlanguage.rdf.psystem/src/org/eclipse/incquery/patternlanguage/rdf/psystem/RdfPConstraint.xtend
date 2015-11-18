@@ -72,7 +72,7 @@ class RdfPConstraint {
 	}
 
 	static def PConstraint convertPropertyConstraint(RdfPropertyConstraint constraint, PBody pBody, RdfPModel model) {
-		val source = constraint.source.variable.toPVariable(pBody)
+		val source = constraint.source.toPVariable(pBody, model)
 		val target = constraint.target.toPVariable(pBody, model)
 		val resource = constraint.refType.toRdfResource
 		new TypeConstraint(pBody, new FlatTuple(source, target), new RdfInputKey(resource, 2))

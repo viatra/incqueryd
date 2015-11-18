@@ -32,5 +32,6 @@ Export-Package: org.eclipse.incquery.patternlanguage.rdf,
  org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.util,
  org.eclipse.incquery.patternlanguage.rdf.serializer,
  org.eclipse.incquery.patternlanguage.rdf.services,
- org.eclipse.incquery.patternlanguage.rdf.validation
+ org.eclipse.incquery.patternlanguage.rdf.validation,
+ org.eclipse.incquery.patternlanguage.rdf.scoping
 Import-Package: org.apache.log4j

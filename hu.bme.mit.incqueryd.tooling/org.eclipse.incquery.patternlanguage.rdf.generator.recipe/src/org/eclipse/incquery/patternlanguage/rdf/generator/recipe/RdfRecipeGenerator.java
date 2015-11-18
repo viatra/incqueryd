@@ -11,6 +11,7 @@ import org.eclipse.incquery.patternlanguage.util.generator.recipe.RecipeGenerato
 import org.eclipse.incquery.runtime.matchers.context.IQueryMetaContext;
 import org.eclipse.incquery.runtime.matchers.psystem.IExpressionEvaluator;
 import org.eclipse.incquery.runtime.matchers.psystem.queries.PQuery;
+import org.eclipse.incquery.runtime.rete.recipes.ConstantRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ExpressionEnforcerRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.InputRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ProductionRecipe;
@@ -18,11 +19,16 @@ import org.eclipse.incquery.runtime.rete.recipes.ReteNodeRecipe;
 import org.eclipse.incquery.runtime.rete.recipes.ReteRecipe;
 import org.openrdf.model.Model;
 
+
+import com.google.common.base.Joiner;
+
 public class RdfRecipeGenerator extends RecipeGenerator<RdfPatternModel, RdfPModel, Model> {
 
-	private static final String VERTEX_DISCRIMINATOR = "vertex";
+	// XXX duplication with runtime
 	private static final String ATTRIBUTE_DISCRIMINATOR = "attribute";
 	private static final String EDGE_DISCRIMINATOR = "edge";
+	private static final String VERTEX_DISCRIMINATOR = "vertex";
+	private static final String SEPARATOR = " ";
 
 	@Override
 	protected void processForSerialization(ReteRecipe recipe, ReteNodeRecipe nodeRecipe, Model vocabulary, int recipeIndex) { // XXX
@@ -41,14 +47,17 @@ public class RdfRecipeGenerator extends RecipeGenerator<RdfPatternModel, RdfPMod
 			String typeName = inputRecipe.getKeyID();
 			org.openrdf.model.Resource typeResource = RdfPatternLanguageUtils.toRdfResource(typeName);
 			if (RdfUtils.isClass(typeResource, vocabulary) || RdfUtils.isDatatype(typeResource, vocabulary)) {
-				inputRecipe.setTraceInfo(VERTEX_DISCRIMINATOR + ": " + typeName);
+				inputRecipe.setTraceInfo(VERTEX_DISCRIMINATOR);
 			} else if (RdfUtils.isDatatypeProperty(typeResource, vocabulary)) {
-				inputRecipe.setTraceInfo(ATTRIBUTE_DISCRIMINATOR + ": " + typeName);
+				inputRecipe.setTraceInfo(ATTRIBUTE_DISCRIMINATOR);
 			} else if (RdfUtils.isObjectProperty(typeResource, vocabulary)) {
-				inputRecipe.setTraceInfo(EDGE_DISCRIMINATOR + ": " + typeName);
+				inputRecipe.setTraceInfo(EDGE_DISCRIMINATOR);
 			}
+		} else if (nodeRecipe instanceof ConstantRecipe) {
+			ConstantRecipe constantRecipe = (ConstantRecipe) nodeRecipe;
+			constantRecipe.setTraceInfo(Joiner.on(SEPARATOR).join(constantRecipe.getConstantValues()));
+			constantRecipe.getConstantValues().clear();
 		}
-		nodeRecipe.setTraceInfo(nodeRecipe.getTraceInfo() + " [recipe " + recipeIndex + "]");
 	}
 
 	@Override

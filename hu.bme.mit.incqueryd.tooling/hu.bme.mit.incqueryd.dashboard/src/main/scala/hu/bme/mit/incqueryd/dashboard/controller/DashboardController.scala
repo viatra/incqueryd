@@ -35,7 +35,35 @@ object DashboardController {
   private var previousResultSets : HashMap[String, Set[Tuple]] = HashMap[String, Set[Tuple]]()
   
   var subscribers: HashMap[String, MQTTSubscriber] = new HashMap[String, MQTTSubscriber]()
+  
+  private var initialized = false;
+  
+  def initialize() {
+    
+    if(initialized) return
+    
+     // Read queries
+    var queries = IncQueryDZooKeeper.getChildPaths(s"${IncQueryDZooKeeper.runningQueries}")
 
+    // Start streams 
+    queries.foreach { query =>
+      val patterns = IncQueryDZooKeeper.getChildPaths(s"${IncQueryDZooKeeper.runningQueries}/$query")
+      patterns.foreach { pattern =>  
+        DashboardController.registerPattern(pattern, query)
+        DashboardController.startSubscriber(createPatternId(pattern, query))
+      }
+    }
+
+    // Add queries zNode if not exist
+    if (queries.size == 0)
+      IncQueryDZooKeeper.createDir(s"${IncQueryDZooKeeper.runningQueries}")
+
+    // Looking for new or removed queries
+    DashboardController.watchForQueryChanges()
+    
+    initialized = true;
+  }
+  
   def startSubscriber(topic: String) {
     val subscriber = subscribers.getOrElseUpdate(topic, new MQTTSubscriber(BROKER_URL))
     if (!subscriber.isActive()) {
@@ -102,19 +130,19 @@ object DashboardController {
   
   def pushQueryResult(patternId : String, results : Set[Tuple]) {
     this.synchronized {
-      var removedTuples = 0
-      var newTuples = 0;
+      var removedTuples = Set[Tuple]()
+      var newTuples = Set[Tuple]();
       val prevResultSet = previousResultSets.getOrElseUpdate(patternId, Set[Tuple]())
       prevResultSet.foreach { tuple =>
         if(!results.contains(tuple))
-          removedTuples += 1
+          removedTuples += tuple
       }
       results.foreach { tuple => 
          if(!prevResultSet.contains(tuple))
-           newTuples += 1;
+           newTuples += tuple;
       }
       previousResultSets(patternId) = results
-      if(newTuples > 0 || removedTuples > 0)
+      if(newTuples.size > 0 || removedTuples.size > 0)
         UIBroadcaster.update(QueryResult(patternId, results, newTuples, removedTuples))
     }
   }
