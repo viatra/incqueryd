@@ -75,6 +75,7 @@ class DeveloperUI extends UI with Handler {
   }
 
   def unregisterDeveloperPanel(devPanel: DeveloperPanel) {
+    devPanels -= devPanel
     gridConfiguration -= devPanel.devConfig
     getSession.setAttribute("config", gridConfiguration)
   }
@@ -98,7 +99,6 @@ class DeveloperUI extends UI with Handler {
     mainLayout.addComponent(popupView, "top: 50%; left: 50%")
     mainLayout.addLayoutClickListener(new LayoutClickListener() {
       override def layoutClick( event : LayoutClickEvent) {
-        println("Layout clicked!")
         mainLayout.removeComponent(popupView)
         mainLayout.addComponent(popupView, s"top: ${event.getClientY}px; left: ${event.getClientX}px")
         popupView.showPopup(PanelPositionAndSize(event.getClientX - 50, event.getClientY - 50, DeveloperPanel.DEFAULT_SIZE_X, DeveloperPanel.DEFAULT_SIZE_Y))

@@ -15,11 +15,6 @@ import hu.bme.mit.incqueryd.dashboard.dev.DevPanelConfiguration
 import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
 import hu.bme.mit.incqueryd.dashboard.ui.DeveloperUI
 import com.vaadin.ui.PopupView.PopupVisibilityEvent
-import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
-import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
-import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
-import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
-import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
 
 /**
  * @author pappi
