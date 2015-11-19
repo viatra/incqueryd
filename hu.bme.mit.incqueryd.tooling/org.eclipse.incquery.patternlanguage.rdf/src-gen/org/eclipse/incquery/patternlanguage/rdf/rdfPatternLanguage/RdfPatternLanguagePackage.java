@@ -124,6 +124,25 @@ public interface RdfPatternLanguagePackage extends EPackage
   int IRI_PREFIX_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.TypeIdImpl <em>Type Id</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.TypeIdImpl
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getTypeId()
+   * @generated
+   */
+  int TYPE_ID = 6;
+
+  /**
+   * The number of structural features of the '<em>Type Id</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_ID_FEATURE_COUNT = 0;
+
+  /**
    * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.IriImpl <em>Iri</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -140,7 +159,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int IRI__PREFIX = PatternLanguagePackage.LITERAL_VALUE_REFERENCE_FEATURE_COUNT + 0;
+  int IRI__PREFIX = TYPE_ID_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -149,7 +168,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int IRI__VALUE = PatternLanguagePackage.LITERAL_VALUE_REFERENCE_FEATURE_COUNT + 1;
+  int IRI__VALUE = TYPE_ID_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Iri</em>' class.
@@ -158,7 +177,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    * @ordered
    */
-  int IRI_FEATURE_COUNT = PatternLanguagePackage.LITERAL_VALUE_REFERENCE_FEATURE_COUNT + 2;
+  int IRI_FEATURE_COUNT = TYPE_ID_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.VariableImpl <em>Variable</em>}' class.
@@ -290,6 +309,34 @@ public interface RdfPatternLanguagePackage extends EPackage
   int RDF_PROPERTY_CONSTRAINT_FEATURE_COUNT = PatternLanguagePackage.CONSTRAINT_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.LabelImpl <em>Label</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.LabelImpl
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getLabel()
+   * @generated
+   */
+  int LABEL = 7;
+
+  /**
+   * The feature id for the '<em><b>Label</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LABEL__LABEL = TYPE_ID_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Label</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LABEL_FEATURE_COUNT = TYPE_ID_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfCheckConstraintImpl <em>Rdf Check Constraint</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -297,7 +344,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfCheckConstraint()
    * @generated
    */
-  int RDF_CHECK_CONSTRAINT = 6;
+  int RDF_CHECK_CONSTRAINT = 8;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -325,7 +372,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfLiteral()
    * @generated
    */
-  int RDF_LITERAL = 7;
+  int RDF_LITERAL = 9;
 
   /**
    * The feature id for the '<em><b>Lexical Form</b></em>' attribute.
@@ -371,7 +418,7 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getRdfPatternModel()
    * @generated
    */
-  int RDF_PATTERN_MODEL = 8;
+  int RDF_PATTERN_MODEL = 10;
 
   /**
    * The feature id for the '<em><b>Package Name</b></em>' attribute.
@@ -597,6 +644,37 @@ public interface RdfPatternLanguagePackage extends EPackage
    * @generated
    */
   EReference getRdfPropertyConstraint_Target();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeId <em>Type Id</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type Id</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeId
+   * @generated
+   */
+  EClass getTypeId();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Label <em>Label</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Label</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Label
+   * @generated
+   */
+  EClass getLabel();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Label#getLabel <em>Label</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Label</em>'.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Label#getLabel()
+   * @see #getLabel()
+   * @generated
+   */
+  EAttribute getLabel_Label();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfCheckConstraint <em>Rdf Check Constraint</em>}'.
@@ -867,6 +945,34 @@ public interface RdfPatternLanguagePackage extends EPackage
      * @generated
      */
     EReference RDF_PROPERTY_CONSTRAINT__TARGET = eINSTANCE.getRdfPropertyConstraint_Target();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.TypeIdImpl <em>Type Id</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.TypeIdImpl
+     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getTypeId()
+     * @generated
+     */
+    EClass TYPE_ID = eINSTANCE.getTypeId();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.LabelImpl <em>Label</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.LabelImpl
+     * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfPatternLanguagePackageImpl#getLabel()
+     * @generated
+     */
+    EClass LABEL = eINSTANCE.getLabel();
+
+    /**
+     * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LABEL__LABEL = eINSTANCE.getLabel_Label();
 
     /**
      * The meta object literal for the '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.impl.RdfCheckConstraintImpl <em>Rdf Check Constraint</em>}' class.

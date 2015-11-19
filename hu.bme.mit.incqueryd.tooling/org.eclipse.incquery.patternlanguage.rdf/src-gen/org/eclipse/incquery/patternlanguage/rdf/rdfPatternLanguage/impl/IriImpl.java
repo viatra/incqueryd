@@ -9,8 +9,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.incquery.patternlanguage.patternLanguage.impl.LiteralValueReferenceImpl;
-
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Iri;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.IriPrefix;
 import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLanguagePackage;
@@ -29,7 +27,7 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPatternLan
  *
  * @generated
  */
-public class IriImpl extends LiteralValueReferenceImpl implements Iri
+public class IriImpl extends TypeIdImpl implements Iri
 {
   /**
    * The cached value of the '{@link #getPrefix() <em>Prefix</em>}' reference.

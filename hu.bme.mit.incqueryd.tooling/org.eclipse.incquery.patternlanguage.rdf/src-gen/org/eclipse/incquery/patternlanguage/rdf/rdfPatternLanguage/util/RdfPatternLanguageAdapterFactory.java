@@ -112,6 +112,16 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
         return createRdfPropertyConstraintAdapter();
       }
       @Override
+      public Adapter caseTypeId(TypeId object)
+      {
+        return createTypeIdAdapter();
+      }
+      @Override
+      public Adapter caseLabel(Label object)
+      {
+        return createLabelAdapter();
+      }
+      @Override
       public Adapter caseRdfCheckConstraint(RdfCheckConstraint object)
       {
         return createRdfCheckConstraintAdapter();
@@ -264,6 +274,36 @@ public class RdfPatternLanguageAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRdfPropertyConstraintAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeId <em>Type Id</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.TypeId
+   * @generated
+   */
+  public Adapter createTypeIdAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Label <em>Label</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.Label
+   * @generated
+   */
+  public Adapter createLabelAdapter()
   {
     return null;
   }

@@ -20,6 +20,7 @@ import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils._
 import hu.bme.mit.incqueryd.engine.rete.dataunits.Tuple
 import hu.bme.mit.incqueryd.yarn.IncQueryDZooKeeper
 import org.vaadin.jouni.animator.Animator
+import com.vaadin.shared.ui.label.ContentMode
 
 /**
  * @author pappi
@@ -64,7 +65,7 @@ object UIHelper {
     }
     
     override def getMinimizedValueAsHTML() : String = {
-      query
+      s"Query group ${query}"
     }
   }
   
@@ -172,6 +173,7 @@ object UIHelper {
       tupleLayout.addComponent(tupleLink)
       tupleLayout.setComponentAlignment(tupleLink, Alignment.MIDDLE_CENTER)
       tupleLayout.setExpandRatio(tupleLink, 9.0f)
+      tupleLayout.addComponent(new Label("&nbsp;", ContentMode.HTML));
     }
     tuplePanel.setContent(tupleLayout)
     tuplePanel
@@ -179,6 +181,7 @@ object UIHelper {
 
   def buildTupleLink(name: String, url: String): Link = {
     val link = new Link(name, new ExternalResource(url))
+    link.setTargetName("_blank")
     link
   }
 

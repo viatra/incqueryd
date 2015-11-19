@@ -21,7 +21,7 @@ import org.eclipse.incquery.patternlanguage.patternLanguage.LiteralValueReferenc
  * @model
  * @generated
  */
-public interface Iri extends LiteralValueReference
+public interface Iri extends TypeId, LiteralValueReference
 {
   /**
    * Returns the value of the '<em><b>Prefix</b></em>' reference.

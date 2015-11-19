@@ -45,9 +45,10 @@ object Coordinator {
 
 class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: ApplicationId) {
   
-  def deployInputNodes(vocabulary: Model, databaseConnection: DatabaseConnection, rmHostname: String, fileSystemUri: String): Boolean = {
+  def deployInputNodes(vocabulary: Model, recipe: ReteRecipe, databaseConnection: DatabaseConnection, rmHostname: String, fileSystemUri: String): Boolean = {
     println(s"Deploying input nodes")
-    askCoordinator[Boolean](DeployInputNodes(vocabulary, databaseConnection, rmHostname, fileSystemUri))
+    val recipeJson = EObjectSerializer.serializeToString(recipe)
+    askCoordinator[Boolean](DeployInputNodes(vocabulary, recipeJson, databaseConnection, rmHostname, fileSystemUri))
   }
 
   def loadData(databaseConnection: DatabaseConnection): Boolean = {
@@ -106,7 +107,6 @@ class Coordinator(ip: String, client: AdvancedYarnClient, applicationId: Applica
 
   def dispose = {
     println("Disposing")
-    askCoordinator[Boolean](Dispose)
     client.kill(applicationId)
   }
 

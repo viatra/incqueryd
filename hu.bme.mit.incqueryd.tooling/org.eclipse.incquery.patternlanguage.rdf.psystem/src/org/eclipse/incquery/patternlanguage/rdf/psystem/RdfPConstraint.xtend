@@ -9,6 +9,7 @@ import org.eclipse.incquery.patternlanguage.rdf.rdfPatternLanguage.RdfPropertyCo
 import org.eclipse.incquery.runtime.matchers.psystem.PBody
 import org.eclipse.incquery.runtime.matchers.psystem.PConstraint
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.Equality
+import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.Inequality
 import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.NegativePatternCall
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.BinaryTransitiveClosure
@@ -16,12 +17,9 @@ import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.PositivePa
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeBinary
 import org.eclipse.incquery.runtime.matchers.psystem.basicenumerables.TypeUnary
 
-import static org.eclipse.incquery.patternlanguage.patternLanguage.CompareFeature.*
-
 import static extension org.eclipse.incquery.patternlanguage.rdf.RdfPatternLanguageUtils.*
-import static extension org.eclipse.incquery.patternlanguage.util.psystem.PUtils.*
 import static extension org.eclipse.incquery.patternlanguage.rdf.psystem.RdfPVariable.*
-import org.eclipse.incquery.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation
+import static extension org.eclipse.incquery.patternlanguage.util.psystem.PUtils.*
 
 class RdfPConstraint {
 

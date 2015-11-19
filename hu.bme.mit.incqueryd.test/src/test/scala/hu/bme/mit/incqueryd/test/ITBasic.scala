@@ -73,8 +73,8 @@ class ITBasic {
     val client = new IQDYarnClient
     val modelFilePath = client.uploadFile(Resources.getResource(modelFilename))
     val databaseConnection = new DatabaseConnection(modelFilePath, Backend.FILE)
-    client.deployInputNodes(metamodel, databaseConnection)
     val recipe = RecipeUtils.loadRecipe(recipeFilename)
+    client.deployInputNodes(metamodel, recipe, databaseConnection)
     client.startQuery(recipe, Resources.toString(Resources.getResource(rdfiqFilename), Charsets.UTF_8))
     client.coordinator.loadData(databaseConnection)
     assertResult(client, recipe, expectedResult)

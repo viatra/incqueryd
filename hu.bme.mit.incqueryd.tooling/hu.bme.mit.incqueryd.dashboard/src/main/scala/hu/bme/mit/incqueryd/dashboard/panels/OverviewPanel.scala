@@ -37,6 +37,8 @@ import hu.bme.mit.incqueryd.dashboard.dev.LOG
 import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
 import hu.bme.mit.incqueryd.dashboard.ui.DeveloperUI
 import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
+import org.apache.hadoop.yarn.api.records.ApplicationAttemptReport
+import org.apache.hadoop.yarn.api.records.YarnApplicationAttemptState
 
 /**
  * 
