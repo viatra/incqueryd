@@ -1,24 +1,18 @@
 package hu.bme.mit.incqueryd.dashboard.panels
 
-import com.vaadin.ui.Window
-import com.vaadin.ui.Label
 import com.vaadin.server.Sizeable.Unit
-import com.vaadin.ui.VerticalLayout
-import com.vaadin.ui.TextField
-import com.vaadin.ui.Button
-import com.vaadin.ui.Alignment
 import com.vaadin.shared.ui.MarginInfo
-import com.vaadin.ui.Button.ClickListener
+import com.vaadin.ui.Alignment
+import com.vaadin.ui.Button
 import com.vaadin.ui.Button.ClickEvent
-import hu.bme.mit.incqueryd.dashboard.ui.DeveloperUI
-import java.io.File
-import hu.bme.mit.incqueryd.dashboard.utils.DashboardUtils
-import java.io.FileOutputStream
-import com.vaadin.ui.Notification
-import hu.bme.mit.incqueryd.dashboard.dev.GridPosition
-import hu.bme.mit.incqueryd.dashboard.dev.GridPosition
-import hu.bme.mit.incqueryd.dashboard.dev.DevPanelConfiguration
+import com.vaadin.ui.Button.ClickListener
+import com.vaadin.ui.Label
+import com.vaadin.ui.TextField
+import com.vaadin.ui.VerticalLayout
+import com.vaadin.ui.Window
+
 import hu.bme.mit.incqueryd.dashboard.dev.DevGridConfiguration
+import hu.bme.mit.incqueryd.dashboard.ui.DeveloperUI
 
 
 /**

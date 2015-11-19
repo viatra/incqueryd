@@ -9,23 +9,43 @@ import com.vaadin.ui.Button.ClickEvent
 import com.vaadin.ui.Button.ClickListener
 import com.vaadin.ui.Component
 import com.vaadin.ui.PopupView
+import com.vaadin.ui.PopupView.PopupVisibilityListener
 import com.vaadin.ui.VerticalLayout
-import hu.bme.mit.incqueryd.dashboard.dev.DevPanelCloseListener
-import hu.bme.mit.incqueryd.dashboard.dev.GridPosition
-import hu.bme.mit.incqueryd.dashboard.ui.DeveloperUI
 import hu.bme.mit.incqueryd.dashboard.dev.DevPanelConfiguration
-import hu.bme.mit.incqueryd.dashboard.dev.DeveloperPanelType
-import hu.bme.mit.incqueryd.dashboard.dev.DeveloperPanelType
+import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
+import hu.bme.mit.incqueryd.dashboard.ui.DeveloperUI
+import com.vaadin.ui.PopupView.PopupVisibilityEvent
+import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
+import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
+import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
+import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
+import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
 
 /**
  * @author pappi
  */
-class AddDevPanelPopup(gridPos : GridPosition, devUI : DeveloperUI) extends PopupView {
-   val popupContent = new AddDevPanelPopupContent(gridPos, this, devUI)
-   setContent(popupContent)   
+class AddDevPanelPopup(devUI : DeveloperUI) extends PopupView {
+   var posAndSize : PanelPositionAndSize = _
+   val popupContent = new AddDevPanelPopupContent(this, devUI)
+   setContent(popupContent)
+   setVisible(false)
+   setPopupVisible(false)
+   addPopupVisibilityListener(new PopupVisibilityListener() {
+     override def popupVisibilityChange(event : PopupVisibilityEvent) {
+       if(!event.isPopupVisible()) {
+         setVisible(false)
+       }
+     }
+   })
+   
+   def showPopup(_posAndSize : PanelPositionAndSize) {
+     posAndSize = _posAndSize
+     setVisible(true)
+     setPopupVisible(true)
+   }
 }
 
-class AddDevPanelPopupContent(gridPos : GridPosition, popupView : PopupView, devUI : DeveloperUI) extends PopupView.Content {
+class AddDevPanelPopupContent(popupView : AddDevPanelPopup, devUI : DeveloperUI) extends PopupView.Content {
 
   val verticalLayout = new VerticalLayout
   verticalLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER)
@@ -37,9 +57,8 @@ class AddDevPanelPopupContent(gridPos : GridPosition, popupView : PopupView, dev
     typeButton.addClickListener(new ClickListener() {
       override def buttonClick(clickEvent : ClickEvent) {
     	  popupView.setVisible(false);
-    	  val devPanelConf = new DevPanelConfiguration(panelType.toString(), panelType, "")
-        devUI.createDeveloperPanel(devPanelConf, gridPos, popupView)
-        devUI.registerDeveloperPanel(devPanelConf, gridPos)
+    	  val devPanelConf = new DevPanelConfiguration(panelType.toString(), panelType, "", popupView.posAndSize)
+        devUI.createDeveloperPanel(devPanelConf)
       }
     })
     verticalLayout.addComponent(typeButton)
@@ -50,7 +69,7 @@ class AddDevPanelPopupContent(gridPos : GridPosition, popupView : PopupView, dev
   }
 
   override def getMinimizedValueAsHTML(): String = {
-    "<h3 style=\"color: grey\">Add panel</h3>"
+    ""
   }
 
 }

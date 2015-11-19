@@ -3,39 +3,40 @@ package hu.bme.mit.incqueryd.dashboard.panels
 import java.util.Date
 import java.util.Timer
 import java.util.TimerTask
+
 import scala.collection.JavaConversions.asScalaBuffer
+
 import org.apache.hadoop.yarn.api.records.ApplicationId
+import org.apache.hadoop.yarn.api.records.ContainerReport
+import org.apache.hadoop.yarn.api.records.ContainerState
 import org.apache.hadoop.yarn.api.records.NodeState
+import org.apache.hadoop.yarn.client.api.YarnClient
 import org.apache.log4j.helpers.ISO8601DateFormat
+
 import com.vaadin.server.ExternalResource
 import com.vaadin.server.Sizeable.Unit
+import com.vaadin.ui.AbstractComponent
 import com.vaadin.ui.Button
 import com.vaadin.ui.Button.ClickEvent
 import com.vaadin.ui.Button.ClickListener
+import com.vaadin.ui.HorizontalLayout
+import com.vaadin.ui.Label
 import com.vaadin.ui.Link
 import com.vaadin.ui.ProgressBar
 import com.vaadin.ui.TreeTable
 import com.vaadin.ui.UI
-import com.vaadin.ui.VerticalLayout
 import com.vaadin.ui.VerticalSplitPanel
 import com.vaadin.ui.Window.CloseEvent
 import com.vaadin.ui.Window.CloseListener
+
 import hu.bme.mit.incqueryd.coordinator.client.IQDYarnClient
-import hu.bme.mit.incqueryd.dashboard.dev.DevPanelConfiguration
-import hu.bme.mit.incqueryd.dashboard.dev.GridPosition
-import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
-import org.apache.hadoop.yarn.api.records.Container
-import org.apache.hadoop.yarn.api.records.ContainerReport
-import org.apache.hadoop.yarn.api.records.ContainerState
-import com.vaadin.ui.AbstractComponent
-import com.vaadin.ui.Label
-import com.vaadin.ui.HorizontalLayout
-import org.apache.hadoop.yarn.client.api.YarnClient
-import com.vaadin.server.Page
-import hu.bme.mit.incqueryd.dashboard.ui.DeveloperUI
 import hu.bme.mit.incqueryd.dashboard.controller.LogController
 import hu.bme.mit.incqueryd.dashboard.dev.DevPanelConfiguration
+import hu.bme.mit.incqueryd.dashboard.dev.DevPanelConfiguration
 import hu.bme.mit.incqueryd.dashboard.dev.LOG
+import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
+import hu.bme.mit.incqueryd.dashboard.ui.DeveloperUI
+import hu.bme.mit.incqueryd.yarn.AdvancedYarnClient
 
 /**
  * 
@@ -43,7 +44,7 @@ import hu.bme.mit.incqueryd.dashboard.dev.LOG
  * 
  */
 
-class OverviewPanel(devConfig : DevPanelConfiguration, gridPos : GridPosition) extends DeveloperPanel(devConfig, gridPos) {
+class OverviewPanel(devConfig : DevPanelConfiguration) extends DeveloperPanel(devConfig) {
 
   val client = new AdvancedYarnClient(IQDYarnClient.DEFAULT_RM_HOST, IQDYarnClient.DEFAULT_HDFS_URL).client
 
@@ -215,7 +216,7 @@ class OverviewPanel(devConfig : DevPanelConfiguration, gridPos : GridPosition) e
   }
   
   def addLogPanel(logPath : String) = {
-      val devConf = new DevPanelConfiguration("LOG", LOG, logPath)
+      val devConf = new DevPanelConfiguration("LOG", LOG, logPath, PanelPositionAndSize(getPositionX + 100, getPositionY + 100, 300, 300))
 		  this.getUI().asInstanceOf[DeveloperUI].createDeveloperPanel(devConf)
   }
   

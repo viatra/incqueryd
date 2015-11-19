@@ -18,17 +18,18 @@ case object OVERVIEW extends DeveloperPanelType
 case object LOG extends DeveloperPanelType
 case object DASHBOARD extends DeveloperPanelType
 
-case class DevPanelConfiguration(name: String, panelType: DeveloperPanelType, source : String)
+case class DevPanelConfiguration(name: String, panelType: DeveloperPanelType, source : String, posAndSize : PanelPositionAndSize)
 
-case class GridPosition(gridRow: Int, gridCol: Int)
+case class PanelPositionAndSize(var positionX: Int, var positionY: Int, var width: Float, var height : Float)
 
 object DevGridConfiguration {
 
   def saveConfiguration(devUI: DeveloperUI, filename: String) {
 
     try {
+      devUI.gridConfiguration = devUI.devPanels.map { _.updateConfPositionAndSize() }
       val serializedGrid = write(devUI.gridConfiguration)
-      val filepath = DashboardUtils.getConfigFolderPath() + filename + DashboardUtils.DEVELOPER_DASHBOARD_CONFIGFILE_EXTENSION
+      val filepath = s"${DashboardUtils.getConfigFolderPath()}$filename${DashboardUtils.DEVELOPER_DASHBOARD_CONFIGFILE_EXTENSION}"
       new PrintWriter(filepath) { write(serializedGrid); close }
       Notification.show("Configuration saved successfully!")
     } catch {
@@ -42,7 +43,7 @@ object DevGridConfiguration {
 
       val filepath = DashboardUtils.getConfigFolderPath() + filename
       val confSource = scala.io.Source.fromFile(filepath).mkString
-      devUI.gridConfiguration = read[Map[GridPosition, DevPanelConfiguration]](confSource)
+      devUI.gridConfiguration = read[Set[DevPanelConfiguration]](confSource)
       devUI.reload()
 
       Notification.show("Configuration loaded successfully!")
