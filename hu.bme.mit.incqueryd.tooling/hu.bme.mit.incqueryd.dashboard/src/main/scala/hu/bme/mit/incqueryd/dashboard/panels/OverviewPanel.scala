@@ -51,6 +51,7 @@ class OverviewPanel(devConfig : DevPanelConfiguration) extends DeveloperPanel(de
   val client = new AdvancedYarnClient(IQDYarnClient.DEFAULT_RM_HOST, IQDYarnClient.DEFAULT_HDFS_URL).client
 
   val applicationTable = treeTable("Applications")
+  applicationTable.setSizeFull()
   val idPropertyId = "ID"
   applicationTable.addContainerProperty(idPropertyId, classOf[String], null)
   applicationTable.addContainerProperty("Name", classOf[String], null)
@@ -64,7 +65,7 @@ class OverviewPanel(devConfig : DevPanelConfiguration) extends DeveloperPanel(de
   applicationTable.addContainerProperty("View logs", classOf[AbstractComponent], null)
   applicationTable.addContainerProperty("Actions", classOf[AbstractComponent], null)
   applicationTable.setSortContainerPropertyId(idPropertyId)
-
+  
   val nodeTable = treeTable("Nodes")
   nodeTable.addContainerProperty(idPropertyId, classOf[String], null)
   nodeTable.addContainerProperty("HTTP address", classOf[Link], null)
@@ -118,6 +119,7 @@ class OverviewPanel(devConfig : DevPanelConfiguration) extends DeveloperPanel(de
         	  val containerProgress: ProgressBar = new ProgressBar(getProgress(container))
         	  val containerTrackingLink: Link = link("Container", getTrackingUrl(container, client))
         	  val containerViewLogs: AbstractComponent = getLogPaths(applicationId, containerId)
+        	  containerViewLogs.setWidth(100.0f, Unit.PIXELS)
         	  val containerActions: AbstractComponent = new Label()
         	  applicationTable.addItem(Array(containerId, containerName, appType, containerStartTime, containerFinishTime, containerState, containerFinalStatus, containerProgress, containerTrackingLink, containerViewLogs, containerActions), containerId)
         	  applicationTable.setParent(containerId, applicationId)
