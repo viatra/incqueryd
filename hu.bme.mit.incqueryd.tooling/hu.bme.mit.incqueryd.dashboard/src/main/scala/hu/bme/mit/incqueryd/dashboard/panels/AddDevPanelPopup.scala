@@ -15,6 +15,7 @@ import hu.bme.mit.incqueryd.dashboard.dev.DevPanelConfiguration
 import hu.bme.mit.incqueryd.dashboard.dev.PanelPositionAndSize
 import hu.bme.mit.incqueryd.dashboard.ui.DeveloperUI
 import com.vaadin.ui.PopupView.PopupVisibilityEvent
+import hu.bme.mit.incqueryd.dashboard.dev.LOG
 
 /**
  * @author pappi
@@ -46,17 +47,19 @@ class AddDevPanelPopupContent(popupView : AddDevPanelPopup, devUI : DeveloperUI)
   verticalLayout.setDefaultComponentAlignment(Alignment.MIDDLE_CENTER)
   
   DeveloperPanel.getTypes().foreach { panelType => 
-    val typeButton = new Button(panelType.toString())
-    typeButton.setSizeFull()
-    typeButton.setStyleName("selectbutton")
-    typeButton.addClickListener(new ClickListener() {
-      override def buttonClick(clickEvent : ClickEvent) {
-    	  popupView.setVisible(false);
-    	  val devPanelConf = new DevPanelConfiguration(panelType.toString(), panelType, "", popupView.posAndSize)
-        devUI.createDeveloperPanel(devPanelConf)
-      }
-    })
-    verticalLayout.addComponent(typeButton)
+    if(panelType != LOG) {
+      val typeButton = new Button(panelType.toString())
+      typeButton.setSizeFull()
+      typeButton.setStyleName("selectbutton")
+      typeButton.addClickListener(new ClickListener() {
+        override def buttonClick(clickEvent : ClickEvent) {
+      	  popupView.setVisible(false);
+      	  val devPanelConf = new DevPanelConfiguration(panelType.toString(), panelType, "", popupView.posAndSize)
+          devUI.createDeveloperPanel(devPanelConf)
+        }
+      })
+      verticalLayout.addComponent(typeButton)
+    }
   }
 
   override def getPopupComponent(): Component = {

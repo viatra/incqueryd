@@ -65,7 +65,7 @@ class OverviewPanel(devConfig : DevPanelConfiguration) extends DeveloperPanel(de
   applicationTable.addContainerProperty("View logs", classOf[AbstractComponent], null)
   applicationTable.addContainerProperty("Actions", classOf[AbstractComponent], null)
   applicationTable.setSortContainerPropertyId(idPropertyId)
-  
+
   val nodeTable = treeTable("Nodes")
   nodeTable.addContainerProperty(idPropertyId, classOf[String], null)
   nodeTable.addContainerProperty("HTTP address", classOf[Link], null)
@@ -75,7 +75,7 @@ class OverviewPanel(devConfig : DevPanelConfiguration) extends DeveloperPanel(de
   nodeTable.addContainerProperty("Virtual cores used", classOf[Integer], null)
   nodeTable.addContainerProperty("Virtual cores available", classOf[Integer], null)
   nodeTable.setSortContainerPropertyId(idPropertyId)
-  
+
   val panelContent = new VerticalSplitPanel(new HorizontalLayout(applicationTable), new HorizontalLayout(nodeTable)) // workaround for https://dev.vaadin.com/ticket/11055
   panelContent.setSplitPosition(75, Unit.PERCENTAGE)
   setContent(panelContent)
@@ -95,64 +95,77 @@ class OverviewPanel(devConfig : DevPanelConfiguration) extends DeveloperPanel(de
   def refreshTables() {
     UI.getCurrent.access(new Runnable() {
       override def run() {
-      	applicationTable.removeAllItems()
-      	client.getApplications.foreach { application =>
-        	val applicationId: String = application.getApplicationId.toString
-        	val name: String = application.getName
-        	val appType: String = application.getApplicationType
-        	val startTime: String = displayTimestamp(application.getStartTime)
-        	val finishTime: String = displayTimestamp(application.getFinishTime)
-        	val state: String = application.getYarnApplicationState.toString
-        	val finalStatus: String = application.getFinalApplicationStatus.toString
-        	val progress: ProgressBar = new ProgressBar(application.getProgress)
-        	val trackingLink: Link = link("Application", application.getTrackingUrl)
-        	val viewLogs: AbstractComponent = new Label
-        	val actions: AbstractComponent = killButton(application.getApplicationId)
-        	applicationTable.addItem(Array(applicationId, name, appType, startTime, finishTime, state, finalStatus, progress, trackingLink, viewLogs, actions), applicationId)
-        	client.getContainers(application.getCurrentApplicationAttemptId).foreach { container =>
-        	  val containerId: String = container.getContainerId.toString
-        	  val containerName: String = s"Container on ${container.getAssignedNode}"
-        	  val containerStartTime: String = displayTimestamp(container.getCreationTime)
-        	  val containerFinishTime: String = displayTimestamp(container.getFinishTime)
-        	  val containerState: String = container.getContainerState.toString
-        	  val containerFinalStatus: String = getFinalStatus(container)
-        	  val containerProgress: ProgressBar = new ProgressBar(getProgress(container))
-        	  val containerTrackingLink: Link = link("Container", getTrackingUrl(container, client))
-        	  val containerViewLogs: AbstractComponent = getLogPaths(applicationId, containerId)
-        	  containerViewLogs.setWidth(100.0f, Unit.PIXELS)
-        	  val containerActions: AbstractComponent = new Label()
-        	  applicationTable.addItem(Array(containerId, containerName, appType, containerStartTime, containerFinishTime, containerState, containerFinalStatus, containerProgress, containerTrackingLink, containerViewLogs, containerActions), containerId)
-        	  applicationTable.setParent(containerId, applicationId)
-        	}
-      	}
-      	applicationTable.sort()
+        applicationTable.removeAllItems()
+        client.getApplications.foreach { application =>
+          val applicationId: String = application.getApplicationId.toString
+          val name: String = application.getName
+          val appType: String = application.getApplicationType
+          val startTime: String = displayTimestamp(application.getStartTime)
+          val finishTime: String = displayTimestamp(application.getFinishTime)
+          val state: String = application.getYarnApplicationState.toString
+          val finalStatus: String = application.getFinalApplicationStatus.toString
+          val progress: ProgressBar = new ProgressBar(application.getProgress)
+          val trackingLink: Link = link("Application", application.getTrackingUrl)
+          val viewLogs: AbstractComponent = new Label
+          val actions: AbstractComponent = killButton(application.getApplicationId)
+          applicationTable.addItem(Array(applicationId, name, appType, startTime, finishTime, state, finalStatus, progress, trackingLink, viewLogs, actions), applicationId)
+          client.getApplicationAttempts(application.getApplicationId).foreach { attempt =>
+            val attemptId: String = attempt.getApplicationAttemptId.toString
+            val attemptName: String = s"Attempt ${getNumber(attemptId)}"
+            val attemptStartTime: String = "N/A"
+            val attemptFinishTime: String = "N/A"
+            val attemptState: String = attempt.getYarnApplicationAttemptState.toString()
+            val attemptFinalStatus: String = "N/A"
+            val attemptProgress: ProgressBar = new ProgressBar(getProgress(attempt))
+            val attemptTrackingLink: Link = link("Attempt", attempt.getTrackingUrl)
+            val attemptViewLogs: AbstractComponent = new Label
+            val attemptActions: AbstractComponent = new Label()
+            applicationTable.addItem(Array(attemptId, attemptName, appType, attemptStartTime, attemptFinishTime, attemptState, attemptFinalStatus, attemptProgress, attemptTrackingLink, attemptViewLogs, attemptActions), attemptId)
+            applicationTable.setParent(attemptId, applicationId)
+            client.getContainers(attempt.getApplicationAttemptId).foreach { container =>
+              val containerId: String = container.getContainerId.toString
+              val containerName: String = s"Container ${getNumber(containerId)} (node: ${container.getAssignedNode})"
+              val containerStartTime: String = displayTimestamp(container.getCreationTime)
+              val containerFinishTime: String = displayTimestamp(container.getFinishTime)
+              val containerState: String = container.getContainerState.toString
+              val containerFinalStatus: String = getFinalStatus(container)
+              val containerProgress: ProgressBar = new ProgressBar(getProgress(container))
+              val containerTrackingLink: Link = link("Container", getTrackingUrl(container, client))
+              val containerViewLogs: AbstractComponent = getLogPaths(applicationId, containerId)
+              val containerActions: AbstractComponent = new Label()
+              applicationTable.addItem(Array(containerId, containerName, appType, containerStartTime, containerFinishTime, containerState, containerFinalStatus, containerProgress, containerTrackingLink, containerViewLogs, containerActions), containerId)
+              applicationTable.setParent(containerId, attemptId)
+            }
+          }
+        }
+        applicationTable.sort()
 
-      	nodeTable.removeAllItems()
-      	val containers = client.getApplications.flatMap { application => client.getContainers(application.getCurrentApplicationAttemptId) }
-      	client.getNodeReports(NodeState.RUNNING).foreach { node =>
-        	val nodeId: String = node.getNodeId.toString
-        	val httpAddress: Link = link("Node", node.getHttpAddress)
-        	val numContainers: Integer = node.getNumContainers
-        	val memoryUsed: Integer = node.getUsed.getMemory
-        	val memoryAvailable: Integer = node.getCapability.getMemory
-        	val virtualCoresUsed: Integer = node.getUsed.getVirtualCores
-        	val virtualCoresAvailable: Integer = node.getCapability.getVirtualCores
-        	nodeTable.addItem(Array(nodeId, httpAddress, numContainers, memoryUsed, memoryAvailable, virtualCoresUsed, virtualCoresAvailable), nodeId)
-        	containers.filter { container => container.getAssignedNode.toString == nodeId }.foreach { container =>
-        	  val containerId: String = container.getContainerId.toString
-          	val containerHttpAddress: Link = link("Container", getTrackingUrl(container, client))
-          	val containerNumContainers: Integer = 1
-          	val containerMemoryUsed: Integer = container.getAllocatedResource.getMemory
-          	val containerVirtualCoresUsed: Integer = container.getAllocatedResource.getVirtualCores
-          	nodeTable.addItem(Array(containerId, containerHttpAddress, containerNumContainers, containerMemoryUsed, memoryAvailable, containerVirtualCoresUsed, virtualCoresAvailable), containerId)
-          	nodeTable.setParent(containerId, nodeId)
-        	}
-      	}
-      	nodeTable.sort()
+        nodeTable.removeAllItems()
+        val containers = client.getApplications.flatMap { application => client.getContainers(application.getCurrentApplicationAttemptId) }
+        client.getNodeReports(NodeState.RUNNING).foreach { node =>
+          val nodeId: String = node.getNodeId.toString
+          val httpAddress: Link = link("Node", node.getHttpAddress)
+          val numContainers: Integer = node.getNumContainers
+          val memoryUsed: Integer = node.getUsed.getMemory
+          val memoryAvailable: Integer = node.getCapability.getMemory
+          val virtualCoresUsed: Integer = node.getUsed.getVirtualCores
+          val virtualCoresAvailable: Integer = node.getCapability.getVirtualCores
+          nodeTable.addItem(Array(nodeId, httpAddress, numContainers, memoryUsed, memoryAvailable, virtualCoresUsed, virtualCoresAvailable), nodeId)
+          containers.filter { container => container.getAssignedNode.toString == nodeId }.foreach { container =>
+            val containerId: String = container.getContainerId.toString
+            val containerHttpAddress: Link = link("Container", getTrackingUrl(container, client))
+            val containerNumContainers: Integer = 1
+            val containerMemoryUsed: Integer = container.getAllocatedResource.getMemory
+            val containerVirtualCoresUsed: Integer = container.getAllocatedResource.getVirtualCores
+            nodeTable.addItem(Array(containerId, containerHttpAddress, containerNumContainers, containerMemoryUsed, memoryAvailable, containerVirtualCoresUsed, virtualCoresAvailable), containerId)
+            nodeTable.setParent(containerId, nodeId)
+          }
+        }
+        nodeTable.sort()
       }
     })
   }
-  
+
   def treeTable(caption: String): TreeTable = {
     val treeTable = new TreeTable(caption)
     treeTable.setColumnReorderingAllowed(true)
@@ -162,7 +175,7 @@ class OverviewPanel(devConfig : DevPanelConfiguration) extends DeveloperPanel(de
   def killButton(applicationId: ApplicationId) = {
     val button = new Button("Kill")
     button.addClickListener(new ClickListener() {
-      override def buttonClick(clickEvent : ClickEvent) {
+      override def buttonClick(clickEvent: ClickEvent) {
         client.killApplication(applicationId)
         refreshTables()
       }
@@ -194,7 +207,21 @@ class OverviewPanel(devConfig : DevPanelConfiguration) extends DeveloperPanel(de
       case ContainerState.COMPLETE => 1
     }
   }
-  
+
+  def getProgress(attempt: ApplicationAttemptReport): Float = {
+    attempt.getYarnApplicationAttemptState match {
+      case YarnApplicationAttemptState.NEW => 0
+      case YarnApplicationAttemptState.SUBMITTED => 0.1f
+      case YarnApplicationAttemptState.SCHEDULED => 0.2f
+      case YarnApplicationAttemptState.ALLOCATED_SAVING => 0.3f
+      case YarnApplicationAttemptState.ALLOCATED => 0.4f
+      case YarnApplicationAttemptState.LAUNCHED => 0.5f
+      case YarnApplicationAttemptState.RUNNING => 0.6f
+      case YarnApplicationAttemptState.FINISHING => 0.9f
+      case _ => 1
+    }
+  }
+
   def getTrackingUrl(container: ContainerReport, client: YarnClient): String = { // XXX
     val nodeId = container.getAssignedNode
     val nodeOption = client.getNodeReports(NodeState.RUNNING).find { node => node.getNodeId == nodeId }
@@ -233,6 +260,18 @@ class OverviewPanel(devConfig : DevPanelConfiguration) extends DeveloperPanel(de
 
   def getLogLink(logUrl: String, postfix: String): Link = {
     link(postfix, s"$logUrl/$postfix/?start=0")
+  }
+
+  def getNumber(id: String): Int = {
+    val numberPattern = """.*_(\d+)"""r;
+    try {
+      id match {
+        case numberPattern(numberString) => numberString.toInt
+        case _ => 0
+      }
+    } catch {
+      case e: NumberFormatException => 0
+    }
   }
 
 }
