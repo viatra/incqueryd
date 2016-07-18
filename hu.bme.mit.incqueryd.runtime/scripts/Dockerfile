@@ -7,7 +7,7 @@ USER root
 # install tools
 RUN apt-get update && apt-get -y install apt-transport-https
 RUN wget http://archive.cloudera.com/cdh5/one-click-install/trusty/amd64/cdh5-repository_1.0_all.deb && sudo dpkg -i cdh5-repository_1.0_all.deb
-RUN apt-get -y install curl tar sudo openssh-server openssh-client rsync nano telnet dnsmasq hadoop-hdfs-fuse
+RUN apt-get update && apt-get -y install curl tar sudo openssh-server openssh-client rsync nano telnet dnsmasq hadoop-hdfs-fuse
 
 # passwordless ssh
 # RUN ssh-keygen -q -N "" -t dsa -f /etc/ssh/ssh_host_dsa_key
