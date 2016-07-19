@@ -5,6 +5,8 @@ cd "$( cd "$( dirname "$0" )" && pwd )"
 
 HDFS_MOUNT_POINT=/mnt/iqdhdfs
 
+umount -f $HDFS_MOUNT_POINT
+
 sudo mkdir -p $HDFS_MOUNT_POINT || true
 
 sudo hadoop-fuse-dfs dfs://yarn-rm.docker:9000 $HDFS_MOUNT_POINT || true
