@@ -5,7 +5,7 @@ cd "$( cd "$( dirname "$0" )" && pwd )"
 
 HDFS_MOUNT_POINT=/mnt/iqdhdfs
 
-umount -f $HDFS_MOUNT_POINT
+sudo umount -f $HDFS_MOUNT_POINT
 
 sudo mkdir -p $HDFS_MOUNT_POINT || true
 
