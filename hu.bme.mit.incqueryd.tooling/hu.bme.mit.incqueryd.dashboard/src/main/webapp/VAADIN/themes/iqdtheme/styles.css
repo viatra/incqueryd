@@ -12960,3 +12960,7 @@ div.v-layout.v-horizontal.v-widget {
 .iqdtheme .v-radiobutton-dashmodelabel {
 	margin-right: 0px;
 }
+
+.iqdtheme .v-loading-indicator, .iqdtheme .v-loading-indicator-delay, .iqdtheme .v-loading-indicator-wait {
+	background: none;
+}
