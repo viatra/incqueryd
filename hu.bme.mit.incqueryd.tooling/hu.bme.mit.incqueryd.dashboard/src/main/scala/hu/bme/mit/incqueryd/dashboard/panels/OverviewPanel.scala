@@ -91,7 +91,12 @@ class OverviewPanel(devConfig : DevPanelConfiguration) extends DeveloperPanel(de
       refreshingTimer.cancel()
     }
   })
-
+  
+  override def detach() {
+    super.detach();
+    refreshingTimer.cancel();
+  }
+  
   def refreshTables() {
     UI.getCurrent.access(new Runnable() {
       override def run() {
@@ -134,6 +139,7 @@ class OverviewPanel(devConfig : DevPanelConfiguration) extends DeveloperPanel(de
               val containerViewLogs: AbstractComponent = getLogPaths(applicationId, containerId)
               val containerActions: AbstractComponent = new Label()
               applicationTable.addItem(Array(containerId, containerName, appType, containerStartTime, containerFinishTime, containerState, containerFinalStatus, containerProgress, containerTrackingLink, containerViewLogs, containerActions), containerId)
+              applicationTable.setItemIcon(containerId, null)
               applicationTable.setParent(containerId, attemptId)
             }
           }
